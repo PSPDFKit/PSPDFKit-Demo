@@ -18,10 +18,6 @@ Please report any bugs via [GitHub Issues](https://github.com/steipete/PSPDFKit-
 
 [![PSPDFKit](http://pspdfkit.com/images/header.png)](http://pspdfkit.com)
 
-Changelog
----------
-1. Aug 2011: v1.0, first public release.
-
 Features
 --------
 * Single or double page view support, including automatic mode that changes on landscape switch.
