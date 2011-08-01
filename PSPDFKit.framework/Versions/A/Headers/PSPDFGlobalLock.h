@@ -1,5 +1,5 @@
 //
-//  AMPDFGlobalLock.h
+//  PSPDFGlobalLock.h
 //  PSPDFKit
 //
 //  Created by Peter Steinberger on 7/20/11.
@@ -25,8 +25,9 @@
 - (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
 - (void)freeWithPDFPageRef:(CGPDFPageRef)pdfPage;
 
-// special lock for zip
-- (void)lockForZip;
-- (void)unlockForZip;
+// special lock for your application (e.g. unzip)
+// use this if you perform an operation in background that needs lots of memory
+- (void)lockGlobal;
+- (void)unlockGlobal;
 
 @end
