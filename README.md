@@ -1,4 +1,4 @@
-# PSPDFKit - Rendering PDF on iOS is hard. PSPFKit fixes that.
+# PSPDFKit - Rendering PDF on iOS is hard. PSPDFKit fixes that.
 
 PSPDFKit is a heavily optimized framework for displaying PDF files with horizontal scrolling.  
 It is fast, flexible, has intelligent caching and renders pages usually faster than iBooks.
