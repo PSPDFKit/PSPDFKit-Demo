@@ -69,6 +69,8 @@ enum {
 // returns cached image of document. If not found, add to TOP of current caching queue
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
+// returns cached image of document. preload decompresses the image in the background.
+- (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
 // start document caching (update often to improve cache hits)
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
@@ -81,7 +83,6 @@ enum {
 
 // clear whole cache directory
 - (BOOL)clearCache;
-
 
 // delegate (uses MAZeroWeakRef to weak/nil out deallocated delegates)
 - (void)addDelegate:(id<PSPDFCacheDelegate>)aDelegate;
@@ -120,14 +121,11 @@ enum {
 // additional thumbnail cache control helper
 @interface PSPDFCache (PSPDFKitThumbnailCache)
 
-// identifier for thumbnail caching
-- (NSNumber *)identifierForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
-
 // save image in an NSCache object for specified identifier.
-- (void)cacheImage:(UIImage *)image forIdentifier:(NSNumber *)identifer;
+- (void)cacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-// load image for a certain identifier
-- (UIImage *)imageForIdentifier:(NSNumber *)identifer;
+// load image for a certain document page
+- (UIImage *)imageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 // clear thumbnail memory cache
 - (void)clearThumbnailMemoryCache;

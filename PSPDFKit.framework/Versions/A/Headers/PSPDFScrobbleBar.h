@@ -21,8 +21,11 @@
 
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
-// updates toolbar, realigns page screenshots
+// updates toolbar, realigns page screenshots.
 - (void)updateToolbar;
+
+// updates the page marker. call manually after alpha > 0 !
+- (void)updatePageMarker;
 
 // current selected page
 @property(nonatomic, assign) NSUInteger page;
