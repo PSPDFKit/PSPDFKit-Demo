@@ -1,0 +1,9 @@
+// german localization
+
+"SearchBarPlaceholder" = "Volltextsuche";
+"Site %d" = "Seite %d";
+
+"Close" = "Schließen";
+"Documents" = "Dokumente";
+"Single" = "Seite";
+"Grid" = "Grid";
