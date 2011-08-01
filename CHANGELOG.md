@@ -1,5 +1,4 @@
 # Changelog
 
-1. August 2011
---------------
+01/Aug/2011
 * First public release
