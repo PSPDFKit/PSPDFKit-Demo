@@ -20,7 +20,7 @@ Please report any bugs via [GitHub Issues](https://github.com/steipete/PSPDFKit-
 
 Changelog
 ---------
-1. Aug 2011: v1.0, first Public Release.
+1. Aug 2011: v1.0, first public release.
 
 Features
 --------
@@ -85,7 +85,7 @@ Licensing
 This is example code to show you the features of PSPDFKit.  
 You need a license if you want to distribute this within your application, see [License.md](https://github.com/steipete/PSPDFKit-Demo/blob/master/LICENSE.md) for details.  
 
-[Click here to purchase a commercial license with full source code](https://sites.fastspring.com/petersteinberger/instant/pspdfkit)
+[Click here to purchase a commercial license with full source code](http://pspdfkit.com/purchase.html)
 
 PSPDFKit uses 3rd-party code, see [ACKNOWLEDGEMENTS](https://github.com/steipete/PSPDFKit-Demo/blob/master/ACKNOWLEDGEMENTS) for contributions.
 
