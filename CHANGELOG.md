@@ -1,5 +1,11 @@
 # Changelog
 
-__01/Aug/2011__  
+__v1.0 - 01/Aug/2011__  
 First public release
 
+__v1.1 - 03/Aug/2011__
+* ddd PDF outline parser. If it doesn't work for you, please send me the pdf.
+* add verbose log level
+* improve search animation
+* fixes a warning log message when no external thumbs are used
+* fixes some potential crashes in PSPDFCache
