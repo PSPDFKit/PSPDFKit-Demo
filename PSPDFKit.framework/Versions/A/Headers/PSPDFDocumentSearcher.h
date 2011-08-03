@@ -19,6 +19,7 @@
     NSMutableString *currentData_;
 }
 
+// main init
 - (id)initWithDocument:(PSPDFDocument *)document;
 
 // YES if we extracted all text from the document

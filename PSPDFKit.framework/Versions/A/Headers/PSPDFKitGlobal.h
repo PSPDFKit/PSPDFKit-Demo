@@ -16,6 +16,7 @@ enum {
     PSPDFLogLevelNothing,
     PSPDFLogLevelError,    
     PSPDFLogLevelInfo,
+    PSPDFLogLevelVerbose
 }typedef PSPDFLogLevel;
 
 // set log level.
@@ -34,10 +35,13 @@ extern BOOL kPSPDFKitDebugScrollViews;
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 #ifdef kPSPDFKitDebugEnabled
+#define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLog(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLogError(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
+#define PSPDFLogVerbose(...)
 #define PSPDFLog(...)
+#define PSPDFLogError(...)
 #endif
 
 
