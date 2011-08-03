@@ -12,7 +12,7 @@
 @interface PSPDFGlobalLock : NSObject {
   BOOL                clearCacheRequested_;
   CGPDFPageRef        pdfPage_;
-  NSUInteger          page_;
+  NSInteger           page_;
   CGPDFDocumentRef    pdfDocument_;
   NSURL               *pdfPath_;
   NSLock              *pdfGlobalLock_;
@@ -24,6 +24,10 @@
 - (CGPDFPageRef)tryLockWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // returns early
 - (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
 - (void)freeWithPDFPageRef:(CGPDFPageRef)pdfPage;
+
+// optain a document reference
+- (CGPDFDocumentRef)lockDocumentWithPath:(NSURL *)pdfPath;
+- (void)freeWithPDFDocument:(CGPDFDocumentRef)pdfDocument;
 
 // special lock for your application (e.g. unzip)
 // use this if you perform an operation in background that needs lots of memory
