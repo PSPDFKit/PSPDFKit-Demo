@@ -58,78 +58,92 @@ enum {
     CGFloat pagePadding_;
     BOOL navigationBarHidden_;
     BOOL scrobbleBarEnabled_;
+    BOOL toolbarEnabled_;
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
 }
 
-// initialize with a document
+/// initialize with a document
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-// control currently displayed page
+/// control currently displayed page
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+
+/// control currently displayed page, optionally show/hide the HUD
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
+
+/// scroll to next page
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;
+
+// scroll to previous page
 - (BOOL)scrollToPreviousPageAnimated:(BOOL)animated;
 
-// depending on pageMode, this returns true if two pages are displayed
+/// depending on pageMode, this returns true if two pages are displayed
 - (BOOL)isDualPageMode;
 
-// show a modal view controller with automatically added close button on the left side.
+/// show a modal view controller with automatically added close button on the left side.
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller;
 
-// register delegate to capture events, change properties
+/// register delegate to capture events, change properties
 @property(nonatomic, assign) id<PSPDFViewControllerDelegate> delegate;
 
-// Magazine is currently not exchangeable. This may change. Create a new PSPDFController to change.
+/// Magazine is currently not exchangeable. This may change. Create a new PSPDFController to change.
 @property(nonatomic, retain, readonly) PSPDFDocument *document;
 
-// current page displayed
+/// current page displayed
 @property(nonatomic, assign, readonly) NSUInteger page;
 
-// view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails
+/// view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails
 @property(nonatomic, assign) PSPDFViewMode viewMode;
 
-// page mode: PSPDFPageModeSingle or PSPDFPageModeDouble
+/// page mode: PSPDFPageModeSingle or PSPDFPageModeDouble
 @property(nonatomic, assign, readonly) PSPDFPageMode pageMode;
 
-// shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
+/// shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
 @property(nonatomic, assign) BOOL doublePageModeOnFirstPage;
 
-// allow zooming of small documents to screen width/height. Defaults to YES.
+/// allow zooming of small documents to screen width/height. Defaults to YES.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 
-// page padding width between single/double pages. Defaults to 20.
+/// page padding width between single/double pages. Defaults to 20.
 @property(nonatomic, assign) CGFloat pagePadding;
 
-// enable/disable shadow
+/// enable/disable shadow
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
-// saves the popoverController if currently displayed
+/// saves the popoverController if currently displayed
 @property(nonatomic, retain) UIPopoverController *popoverController;
 
-// if not set, we'll use scrollViewTexturedBackgroundColor as default.
+/// if not set, we'll use scrollViewTexturedBackgroundColor as default.
 @property(nonatomic, retain) UIColor *backgroundColor;
 
-// enables bottom scrobble bar. will be hidden automatically when in thumbnail mode. Defaults to YES. Set before loading view.
+/// enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isSrobbleBarEnabled) BOOL scrobbleBarEnabled;
 
-// thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.588
+/// enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
+@property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
+
+/// thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.588
 @property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
 
-// view that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
+/// view that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
 @property(nonatomic, retain, readonly) UIView *hudView;
 
-// show or hide HUD controls, titlebar, status bar (iPhone only)
+/// show or hide HUD controls, titlebar, status bar (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
+
+/// animated show or hide HUD controls, titlebar, status bar (iPhone only)
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
 // ****** functions you may wanna override in subclasses ****
 
-// if you override PSPDFScrollView, change this.
+/// if you override PSPDFScrollView, change this.
 - (Class)scrollViewClass;
 
-- (NSArray *)additionalToolbarButtons;
+/// override if you're changing the toolbar to your own
+/// note that the toolbar is only displayed, if PSPDFViewController is inside a UINavigationController!
 - (void)createToolbar;
+- (NSArray *)additionalToolbarButtons;
 - (void)updateToolbars;
 
 // called from scrollviews
