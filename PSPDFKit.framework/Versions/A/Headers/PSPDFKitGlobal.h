@@ -10,7 +10,7 @@
 #define kPSPDFKitDebugEnabled
 
 // return status bar width, orientation corrected, and only on iPad
-CGFloat PSStatusBarWidth(void);
+CGFloat PSStatusBarHeight(void);
 
 enum {
     PSPDFLogLevelNothing,

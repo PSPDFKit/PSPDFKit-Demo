@@ -8,7 +8,9 @@
 
 @class PSPDFViewController, PSPDFDocument;
 
-@protocol PSPDFViewControllerDelegate
+@protocol PSPDFViewControllerDelegate <NSObject>
+
+@optional
 
 // time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;

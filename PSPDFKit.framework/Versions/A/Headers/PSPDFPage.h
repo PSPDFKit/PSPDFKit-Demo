@@ -29,8 +29,8 @@
 - (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale;
 
 // readonly properties. recreate page to re-set
-@property(atomic, assign, readonly) NSUInteger page;
-@property(atomic, retain, readonly) PSPDFDocument *document;
+@property(assign, readonly) NSUInteger page;
+@property(retain, readonly) PSPDFDocument *document;
 @property(nonatomic, assign, readonly) CGFloat pdfScale;
 @property(nonatomic, retain, readonly) PSPDFTilingView *pdfView;
 @property(nonatomic, retain, readonly) UIImageView *backgroundImageView;
