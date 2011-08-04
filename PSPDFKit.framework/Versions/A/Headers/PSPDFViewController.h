@@ -37,6 +37,7 @@ enum {
     UIColor *backgroundColor_;
     BOOL doublePageModeOnFirstPage_;
     BOOL suppressHUDHideOnce_;
+    UIInterfaceOrientation lastOrientation_;
     
     // paging scrollview
     UIScrollView *pagingScrollView_;

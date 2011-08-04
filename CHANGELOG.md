@@ -21,3 +21,7 @@ __v1.2 - 04/Aug/2011__
 *  add property to control toolbar settings
 *  made delegate protocol @optional
 *  fixed potential crash on rotate
+
+__v1.2.1 - 04/Aug/2011__
+
+*  detect rotation changes when offscreen

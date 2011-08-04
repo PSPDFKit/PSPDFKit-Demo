@@ -43,28 +43,23 @@
     
     self.pdfController.scrobbleBarEnabled = NO;
     
-    [self.pdfController viewWillAppear:NO];
     self.pdfController.view.frame = CGRectMake(80, 80, 600, 900);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.pdfController.view];
-    [self.pdfController viewDidAppear:NO];
     
     // add a border
     self.pdfController.view.layer.borderColor = [UIColor blueColor].CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.pdfController viewWillAppear:NO];    
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    // relay any rotation that may happened while we were offscreen
-    UIInterfaceOrientation currentOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (currentOrientation != lastOrientation_) {
-        [self.pdfController willRotateToInterfaceOrientation:currentOrientation duration:0.f];
-        [self.pdfController willAnimateRotationToInterfaceOrientation:currentOrientation duration:0.f];
-        [self.pdfController didRotateFromInterfaceOrientation:lastOrientation_];
-        lastOrientation_ = currentOrientation;
-    }
+    [self.pdfController viewDidAppear:NO];
 }
 
 - (void)viewDidUnload {
@@ -82,10 +77,7 @@
 
 // relay rotation events
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self.pdfController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    
-    // save orientation in case we rotate while off-screen
-    lastOrientation_ = toInterfaceOrientation;
+    [self.pdfController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];    
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {

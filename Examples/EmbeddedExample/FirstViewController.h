@@ -11,7 +11,6 @@
 
 @interface FirstViewController : UIViewController {
     PSPDFViewController *pdfController_;
-    UIInterfaceOrientation lastOrientation_;
 }
 
 @property(nonatomic, retain) PSPDFViewController *pdfController;
