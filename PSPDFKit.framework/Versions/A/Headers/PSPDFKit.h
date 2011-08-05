@@ -7,7 +7,6 @@
 //
 
 // PDFKit features can be disabled - only compile what you use.
-#define kPSPDFKitSearchFeature
 #define kPSPDFKitThumbnailFeature
 
 // for the demo page. if you purchased it, you most likely want to disable it.
@@ -29,19 +28,19 @@
 #import "UIView+PSSizes.h"
 
 // search
-#ifdef kPSPDFKitSearchFeature
-
 #define kPSPDFSearchMinimumLength 1
-
 #import "PSPDFDocumentSearcher.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 
-#endif
-
-
+// thumbnails
 #ifdef kPSPDFKitThumbnailFeature
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailGridViewCell.h"
 #import "UIImage+PSPDFKitAdditions.h"
 #endif
+
+// outline
+#import "PSPDFOutlineParser.h"
+#import "PSPDFOutlineElement.h"
+#import "PSPDFOutlineViewController.h"
