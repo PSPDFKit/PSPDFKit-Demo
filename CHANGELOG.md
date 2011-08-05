@@ -25,3 +25,7 @@ __v1.2 - 04/Aug/2011__
 __v1.2.1 - 04/Aug/2011__
 
 *  detect rotation changes when offscreen
+
+__v1.2.2 - 04/Aug/2011__
+
+*  fixed a crash with < iOS 4.3
