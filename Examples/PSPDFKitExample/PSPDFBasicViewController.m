@@ -37,6 +37,7 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    self.popoverController.delegate = nil;
     [popoverController_ release];
     [super dealloc];
 }
@@ -45,7 +46,7 @@
 #pragma mark - UIView
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.popoverController dismissPopoverAnimated:YES];
+    [self.popoverController dismissPopoverAnimated:animated];
     [super viewWillDisappear:animated];  
 }
 
