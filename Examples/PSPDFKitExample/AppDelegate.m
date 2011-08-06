@@ -12,10 +12,6 @@
 #import "PSPDFMagazineFolder.h"
 #import "PSPDFNavigationController.h"
 
-#if TARGET_IPHONE_SIMULATOR
-#import "DCIntrospect.h"
-#endif
-
 @interface AppDelegate()
 @property (nonatomic, retain) NSArray *magazineFolders;
 @end
@@ -116,11 +112,6 @@
     window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     window_.rootViewController = navigationController_;
     [window_ makeKeyAndVisible];
-    
-    // always call after makeKeyAndDisplay.
-#if TARGET_IPHONE_SIMULATOR
-    [[DCIntrospect sharedIntrospector] start];
-#endif
     
     // in a production app, you'd better of to make this async.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
