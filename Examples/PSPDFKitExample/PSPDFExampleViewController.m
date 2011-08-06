@@ -40,8 +40,7 @@
     
     // update title!
     if (PSIsIpad()) {
-        NSUInteger actualPage = [self landscapePage:page];
-        NSString *title = [NSString stringWithFormat:@"%@ %d/%d", self.magazine.title, actualPage, [self.magazine pageCount]];
+        NSString *title = [NSString stringWithFormat:@"%@ %d/%d", self.magazine.title, page, [self.magazine pageCount]];
         pdfController.title = title;
     }
 }
