@@ -28,7 +28,7 @@
     if ((self = [super init])) {
         
         // most magazines can enable this to speed up display (aspect ration doesn't need to be recalculated)
-        aspectRatioEqual_ = YES;
+        //aspectRatioEqual_ = YES;
     }
     return self;
 }
