@@ -12,4 +12,16 @@
     NSArray *content_;
 }
 
+- (id)initWithStyle:(UITableViewStyle)style;
+
+// global settings read by PSPDFGridController
+
++ (PSPDFPageMode)pageMode;
++ (BOOL)doublePageModeOnFirstPage;
++ (BOOL)zoomingSmallDocumentsEnabled;
++ (BOOL)scrobbleBar;
++ (BOOL)search;
++ (BOOL)pdfoutline;
++ (BOOL)annotations;
+
 @end

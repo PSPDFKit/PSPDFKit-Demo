@@ -39,14 +39,6 @@
 }
 
 - (void)shopButtonPressed {
-    /*
-    [[[[UIAlertView alloc] initWithTitle:@"Your demo shop implementation."
-                                 message:nil
-                                delegate:nil
-                       cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                       otherButtonTitles:nil] autorelease] show];
-     */
-    
     NSString *urlString = @"http://manuals.info.apple.com/en_US/ipad_2_user_guide.pdf";
     [[PSPDFDownload PDFDownloadWithURL:[NSURL URLWithString:urlString]] start];
 }
@@ -74,7 +66,18 @@
     return YES;
 #endif
     
+    // set global settings for magazine
+    magazine.searchEnabled = [PSPDFCacheSettingsController search];
+    magazine.annotationsEnabled = [PSPDFCacheSettingsController annotations];
+    magazine.outlineEnabled = [PSPDFCacheSettingsController pdfoutline];
+    
     PSPDFExampleViewController *pdfController = [[[PSPDFExampleViewController alloc] initWithDocument:magazine] autorelease];
+    
+    // set global settings from PSPDFCacheSettingsController
+    pdfController.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
+    pdfController.pageMode = [PSPDFCacheSettingsController pageMode];
+    pdfController.zoomingSmallDocumentsEnabled = [PSPDFCacheSettingsController zoomingSmallDocumentsEnabled];
+    
     UINavigationController *pdfNavController = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
     pdfNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
