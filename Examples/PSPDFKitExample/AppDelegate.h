@@ -34,6 +34,6 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
-@property (nonatomic, copy, readonly) NSArray *magazineFolders;
+@property (nonatomic, retain, readonly) NSArray *magazineFolders;
 
 @end
