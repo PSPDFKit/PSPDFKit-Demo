@@ -7,71 +7,239 @@
 //
 
 #import "PSPDFCacheSettingsController.h"
+#import <UIKit/UIKit.h>
 
 @implementation PSPDFCacheSettingsController
 
-- (id)initWithStyle:(UITableViewStyle)style {
+static PSPDFPageMode pageMode = PSPDFPageModeAutomatic;
+static BOOL doublePageModeOnFirstPage = NO;
+static BOOL zoomingSmallDocumentsEnabled = YES;
+static BOOL scrobbleBar = YES;
+static BOOL search = YES;
+static BOOL pdfoutline = YES;
+static BOOL annotations = YES;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
+
+- (id)initWithStyle:(UITableViewStyle)style; {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-        content_ = [[NSArray alloc] initWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil];
+        content_ = [[NSArray alloc] initWithObjects:
+                    [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
+                    [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
+                    [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
+                    [NSArray arrayWithObjects:@"Zoom small files", @"Scrobblebar", nil],
+                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", nil],                    
+                    nil];
+        
+        //self.contentSizeForViewInPopover = CGSizeMake(300, 500);
     }
     return self;
 }
 
+- (void)dealloc {
+    [content_ release];
+    [super dealloc];
+}
 
-#pragma mark - View lifecycle
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.contentSizeForViewInPopover = CGSizeMake(300, 160);
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView flashScrollIndicators];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
-#pragma mark - Table view data source
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDataSource
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @"Cache";
+            break;
+        case 1:
+            return @"PSPDFViewController Display";
+            break;
+        case 2:
+            return @"Double Page Mode";
+            break;
+        case 3:
+            return @"";
+            break;            
+        case 4:
+            return @"PSPDFDocument";
+            break;            
+        default:
+            return @"";
+            break;
+    }
+}
+
+- (void)switchChanged:(UISwitch *)cellSwitch {
+    UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+
+    if (indexPath.section == 3) {
+        switch (indexPath.row) {
+            case 0:
+                zoomingSmallDocumentsEnabled = cellSwitch.on;
+                break;
+            case 1:
+                scrobbleBar = cellSwitch.on;
+                break;
+                
+            default:
+                break;
+        }
+    }else if(indexPath.section == 4) {
+        switch (indexPath.row) {
+            case 0:
+                search = cellSwitch.on;
+                break;
+            case 1:
+                pdfoutline = cellSwitch.on;
+                break;
+            case 2:
+                annotations = cellSwitch.on;
+                break;
+            default:
+                break;
+        }        
+    }
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [content_ count];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[content_ objectAtIndex:section] count];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"CacheSettingsCell";
+    NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%d", indexPath.section];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
-    cell.textLabel.text = [content_ objectAtIndex:indexPath.row];
-    if (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.textLabel.text = [[content_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    switch (indexPath.section) {
+        case 0:
+            cell.accessoryType = (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            break;
+        case 1:
+            cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            break;
+        case 2:
+            cell.accessoryType = (indexPath.row == doublePageModeOnFirstPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            break;
+        case 3:
+        case 4: {
+            UISwitch *cellSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            [cellSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = cellSwitch;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            if (indexPath.section == 3) {
+                switch (indexPath.row) {
+                    case 0:
+                        cellSwitch.on = zoomingSmallDocumentsEnabled;
+                        break;
+                    case 1:
+                        cellSwitch.on = scrobbleBar;
+                        break;
+                    default:
+                        break;
+                }
+            }else if(indexPath.section == 4) {
+                switch (indexPath.row) {
+                    case 0:
+                        cellSwitch.on = search;
+                        break;
+                    case 1:
+                        cellSwitch.on = pdfoutline;
+                        break;
+                    case 2:
+                        cellSwitch.on = annotations;
+                        break;
+                    default:
+                        break;
+                }        
+            }
+        }break;
+            
+        default:
+            break;
     }
     
     return cell;
 }
 
-#pragma mark - Table view delegate
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[PSPDFCache sharedPSPDFCache] clearCache];
-    [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
+    switch (indexPath.section) {
+        case 0:
+            [[PSPDFCache sharedPSPDFCache] clearCache];
+            [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
+            break;
+        case 1:
+            pageMode = indexPath.row;
+            break;
+        case 2:
+            doublePageModeOnFirstPage = indexPath.row == 1;
+            break;
+            
+        default:
+            break;
+    }
     
     [self.tableView reloadData];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
++ (PSPDFPageMode)pageMode; {
+    return pageMode;
+}
+
++ (BOOL)doublePageModeOnFirstPage; {
+    return doublePageModeOnFirstPage;
+}
+
++ (BOOL)zoomingSmallDocumentsEnabled {
+    return zoomingSmallDocumentsEnabled;
+}
+
++ (BOOL)scrobbleBar; {
+    return scrobbleBar;
+}
+
++ (BOOL)search; {
+    return search;
+}
+
++ (BOOL)pdfoutline; {
+    return pdfoutline;
+}
+
++ (BOOL)annotations; {
+    return annotations;
+}
+
 
 @end

@@ -43,10 +43,6 @@
 		788ACD0513E6A23B00689E19 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 788ACD0413E6A23B00689E19 /* Icon.png */; };
 		78B6E3CE13DC607600948D43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78B6E3CB13DC607600948D43 /* Localizable.strings */; };
 		78B6E3D413DC6ED400948D43 /* PSPDFCacheSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B6E3D313DC6ED400948D43 /* PSPDFCacheSettingsController.m */; };
-		78DE006013DF208C005ABEFD /* DCCrossHairView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE005813DF208C005ABEFD /* DCCrossHairView.m */; };
-		78DE006113DF208C005ABEFD /* DCFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE005A13DF208C005ABEFD /* DCFrameView.m */; };
-		78DE006213DF208C005ABEFD /* DCIntrospect.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE005C13DF208C005ABEFD /* DCIntrospect.m */; };
-		78DE006313DF208C005ABEFD /* DCStatusBarOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DE005F13DF208C005ABEFD /* DCStatusBarOverlay.m */; };
 		78E6325513DEC96700F3392F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6325413DEC96700F3392F /* PSPDFKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,15 +109,6 @@
 		78B6E3CD13DC607600948D43 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78B6E3D213DC6ED400948D43 /* PSPDFCacheSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFCacheSettingsController.h; sourceTree = "<group>"; };
 		78B6E3D313DC6ED400948D43 /* PSPDFCacheSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFCacheSettingsController.m; sourceTree = "<group>"; };
-		78DE005713DF208C005ABEFD /* DCCrossHairView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCrossHairView.h; sourceTree = "<group>"; };
-		78DE005813DF208C005ABEFD /* DCCrossHairView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCrossHairView.m; sourceTree = "<group>"; };
-		78DE005913DF208C005ABEFD /* DCFrameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCFrameView.h; sourceTree = "<group>"; };
-		78DE005A13DF208C005ABEFD /* DCFrameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCFrameView.m; sourceTree = "<group>"; };
-		78DE005B13DF208C005ABEFD /* DCIntrospect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospect.h; sourceTree = "<group>"; };
-		78DE005C13DF208C005ABEFD /* DCIntrospect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCIntrospect.m; sourceTree = "<group>"; };
-		78DE005D13DF208C005ABEFD /* DCIntrospectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCIntrospectSettings.h; sourceTree = "<group>"; };
-		78DE005E13DF208C005ABEFD /* DCStatusBarOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCStatusBarOverlay.h; sourceTree = "<group>"; };
-		78DE005F13DF208C005ABEFD /* DCStatusBarOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCStatusBarOverlay.m; sourceTree = "<group>"; };
 		78E6325413DEC96700F3392F /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				78E6325413DEC96700F3392F /* PSPDFKit.framework */,
-				78DE005613DF208C005ABEFD /* DCIntrospect */,
 				783417CC13DCB0EF009DAEE8 /* libz.dylib */,
 				783417D213DCB169009DAEE8 /* SystemConfiguration.framework */,
 				783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */,
@@ -304,23 +290,6 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
-		78DE005613DF208C005ABEFD /* DCIntrospect */ = {
-			isa = PBXGroup;
-			children = (
-				78DE005713DF208C005ABEFD /* DCCrossHairView.h */,
-				78DE005813DF208C005ABEFD /* DCCrossHairView.m */,
-				78DE005913DF208C005ABEFD /* DCFrameView.h */,
-				78DE005A13DF208C005ABEFD /* DCFrameView.m */,
-				78DE005B13DF208C005ABEFD /* DCIntrospect.h */,
-				78DE005C13DF208C005ABEFD /* DCIntrospect.m */,
-				78DE005D13DF208C005ABEFD /* DCIntrospectSettings.h */,
-				78DE005E13DF208C005ABEFD /* DCStatusBarOverlay.h */,
-				78DE005F13DF208C005ABEFD /* DCStatusBarOverlay.m */,
-			);
-			name = DCIntrospect;
-			path = PSPDFKitExample/DCIntrospect;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -410,10 +379,6 @@
 				783417C313DCAFF1009DAEE8 /* ASIAuthenticationDialog.m in Sources */,
 				783417C613DCB000009DAEE8 /* ASIDataDecompressor.m in Sources */,
 				783417C913DCB00F009DAEE8 /* ASIDataCompressor.m in Sources */,
-				78DE006013DF208C005ABEFD /* DCCrossHairView.m in Sources */,
-				78DE006113DF208C005ABEFD /* DCFrameView.m in Sources */,
-				78DE006213DF208C005ABEFD /* DCIntrospect.m in Sources */,
-				78DE006313DF208C005ABEFD /* DCStatusBarOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
