@@ -17,7 +17,7 @@
 #endif
 
 @interface AppDelegate()
-@property (nonatomic, copy) NSArray *magazineFolders;
+@property (nonatomic, retain) NSArray *magazineFolders;
 @end
 
 @implementation AppDelegate
