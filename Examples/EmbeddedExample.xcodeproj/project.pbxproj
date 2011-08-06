@@ -66,8 +66,6 @@
 		78836E5D13EAD25B0043F631 = {
 			isa = PBXGroup;
 			children = (
-				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
-				78836E9F13EAD49C0043F631 /* CoreText.framework */,
 				78836E7213EAD25B0043F631 /* EmbeddedExample */,
 				78836E6B13EAD25B0043F631 /* Frameworks */,
 				78836E6913EAD25B0043F631 /* Products */,
@@ -85,6 +83,8 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
+				78836E9F13EAD49C0043F631 /* CoreText.framework */,
 				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
 				78836E6C13EAD25B0043F631 /* UIKit.framework */,
 				78836E6E13EAD25B0043F631 /* Foundation.framework */,
@@ -146,6 +146,9 @@
 /* Begin PBXProject section */
 		78836E5F13EAD25B0043F631 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 78836E6213EAD25B0043F631 /* Build configuration list for PBXProject "EmbeddedExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
