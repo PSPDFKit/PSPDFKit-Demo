@@ -25,7 +25,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:2];
+        self.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:2] autorelease];
         
         // disable default toolbar
         [self setToolbarEnabled:NO];
@@ -55,6 +55,11 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page; {
     self.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
+}
+
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode; {
+    [customViewModeSegment_ setSelectedSegmentIndex:(NSUInteger)viewMode];
 }
 
 @end
