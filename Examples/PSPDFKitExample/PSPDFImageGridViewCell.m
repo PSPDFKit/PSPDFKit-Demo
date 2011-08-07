@@ -63,6 +63,7 @@
 }
 
 - (void)dealloc {
+    [self clearObservers];
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
     [observedMagazineDownloads_ release];
     [magazine_ release];
@@ -278,6 +279,7 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
+    [self clearObservers];
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;
