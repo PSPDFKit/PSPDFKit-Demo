@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define kGlobalVarChangeNotification @"kGlobalVarChangeNotification"
+
 @interface PSPDFCacheSettingsController : UITableViewController {
     NSArray *content_;
 }

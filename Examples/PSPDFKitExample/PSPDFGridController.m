@@ -32,7 +32,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
+- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
     controller.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)] autorelease];
     [self presentModalViewController:navController animated:animated];
@@ -66,18 +66,8 @@
     return YES;
 #endif
     
-    // set global settings for magazine
-    magazine.searchEnabled = [PSPDFCacheSettingsController search];
-    magazine.annotationsEnabled = [PSPDFCacheSettingsController annotations];
-    magazine.outlineEnabled = [PSPDFCacheSettingsController pdfoutline];
     
     PSPDFExampleViewController *pdfController = [[[PSPDFExampleViewController alloc] initWithDocument:magazine] autorelease];
-    
-    // set global settings from PSPDFCacheSettingsController
-    pdfController.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
-    pdfController.pageMode = [PSPDFCacheSettingsController pageMode];
-    pdfController.zoomingSmallDocumentsEnabled = [PSPDFCacheSettingsController zoomingSmallDocumentsEnabled];
-    
     UINavigationController *pdfNavController = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
     pdfNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     

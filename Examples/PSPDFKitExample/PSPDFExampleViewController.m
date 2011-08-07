@@ -9,8 +9,51 @@
 #import "PSPDFExampleViewController.h"
 #import "AppDelegate.h"
 #import "PSPDFMagazine.h"
+#import "PSPDFCacheSettingsController.h"
+#import "PSPDFGridController.h"
 
 @implementation PSPDFExampleViewController
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)optionsButtonPressed:(id)sender {
+    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFCacheSettingsController class]]) {
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
+    }else {
+        PSPDFCacheSettingsController *cacheSettingsController = [[[PSPDFCacheSettingsController alloc] init] autorelease];
+        if (PSIsIpad()) {
+            self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
+            [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }else {
+            [(PSPDFGridController *)(self.parentViewController) presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
+        }
+    }
+}
+
+- (void)globalVarChanged {
+    
+    // set global settings for magazine
+    self.magazine.searchEnabled = [PSPDFCacheSettingsController search];
+    self.magazine.annotationsEnabled = [PSPDFCacheSettingsController annotations];
+    self.magazine.outlineEnabled = [PSPDFCacheSettingsController pdfoutline];
+
+    // set global settings from PSPDFCacheSettingsController
+    self.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
+    self.pageMode = [PSPDFCacheSettingsController pageMode];
+    self.zoomingSmallDocumentsEnabled = [PSPDFCacheSettingsController zoomingSmallDocumentsEnabled];
+    self.scrobbleBarEnabled = [PSPDFCacheSettingsController scrobbleBar];
+    
+    // reload scrollview
+    [self reloadData];
+    
+    // update toolbar
+    if ([self isViewLoaded]) {
+        [self createToolbar];        
+        [self updateToolbars];
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -18,13 +61,42 @@
 - (id)initWithDocument:(PSPDFDocument *)magazine {
     if ((self = [super initWithDocument:magazine])) {
         self.delegate = self;
-    }
-    
+        
+        // initally update vars
+        [self globalVarChanged];
+        
+        // register for global var change notifications from PSPDFCacheSettingsController
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
+    }    
     return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 - (PSPDFMagazine *)magazine {
     return (PSPDFMagazine *)self.document;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIViewController
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
+    [self.popoverController dismissPopoverAnimated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController
+
+- (NSArray *)additionalLeftToolbarButtons {
+    UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithTitle:@"Options"
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(optionsButtonPressed:)] autorelease];
+    return [NSArray arrayWithObject:button];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,5 +125,6 @@
     // touch not used
     return NO;
 }
+
 
 @end
