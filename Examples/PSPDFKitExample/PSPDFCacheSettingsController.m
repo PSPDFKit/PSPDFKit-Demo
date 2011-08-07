@@ -115,6 +115,8 @@ static BOOL annotations = YES;
                 break;
         }        
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
 }
 
 
@@ -208,6 +210,7 @@ static BOOL annotations = YES;
     }
     
     [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
