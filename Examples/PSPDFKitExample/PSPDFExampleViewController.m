@@ -17,6 +17,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
+- (void)closeModalView {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+    controller.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)] autorelease];
+    [self presentModalViewController:navController animated:animated];
+}
+
 - (void)optionsButtonPressed:(id)sender {
     if ([self.popoverController.contentViewController isKindOfClass:[PSPDFCacheSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
@@ -27,7 +37,7 @@
             self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
             [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
-            [(PSPDFGridController *)(self.parentViewController) presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
+            [self presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
         }
     }
 }
@@ -41,12 +51,14 @@
 
     // set global settings from PSPDFCacheSettingsController
     self.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
-    self.pageMode = [PSPDFCacheSettingsController pageMode];
     self.zoomingSmallDocumentsEnabled = [PSPDFCacheSettingsController zoomingSmallDocumentsEnabled];
     self.scrobbleBarEnabled = [PSPDFCacheSettingsController scrobbleBar];
     
+    NSUInteger page = [self landscapePage:self.page];
+    self.pageMode = [PSPDFCacheSettingsController pageMode];
+    
     // reload scrollview
-    [self reloadData];
+    [self reloadDataAndScrollToPage:page];
     
     // update toolbar
     if ([self isViewLoaded]) {
@@ -84,6 +96,8 @@
 #pragma mark - UIViewController
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
     // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
     [self.popoverController dismissPopoverAnimated:YES];
 }
@@ -92,11 +106,25 @@
 #pragma mark - PSPDFViewController
 
 - (NSArray *)additionalLeftToolbarButtons {
-    UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithTitle:@"Options"
+    
+    // button width is too high
+    UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Options" : @"O"
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
                                                                action:@selector(optionsButtonPressed:)] autorelease];
     return [NSArray arrayWithObject:button];
+}
+
+- (void)documentButtonPressed {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (UIBarButtonItem *)toolbarBackButton; {
+    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Documents" : @"Back"
+                                                                    style:UIBarButtonItemStyleBordered
+                                                                   target:self
+                                                                   action:@selector(documentButtonPressed)] autorelease];
+    return backButton;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

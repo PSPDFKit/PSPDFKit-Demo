@@ -24,6 +24,4 @@
 @property (nonatomic, retain) PSPDFGridView *gridView;
 @property (nonatomic, retain, readonly) PSPDFMagazineFolder *magazineFolder;
 
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated;
-
 @end
