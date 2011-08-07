@@ -26,14 +26,9 @@
     PSPDFGridController *gridController_;
     UINavigationController *navigationController_;
     UIWindow *window_;
-    NSArray *magazineFolders_;
 }
-
-- (void)updateFolders;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
-
-@property (nonatomic, retain, readonly) NSArray *magazineFolders;
 
 @end

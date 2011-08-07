@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *title;
 
 - (BOOL)isSingleMagazine;
+- (void)sortMagazines;
 
 - (PSPDFMagazine *)firstMagazine;
 - (void)addMagazine:(PSPDFMagazine *)magazine;
