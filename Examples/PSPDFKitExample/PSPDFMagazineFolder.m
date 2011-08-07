@@ -25,14 +25,6 @@
     return folder;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Private
-
-- (void)sortMagazines {
-    [magazines_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
-//    PSELog(@"sorted: %@", magazines_);
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -95,6 +87,10 @@
     magazine.folder = nil;
     [magazines_ removeObject:magazine];
     [self sortMagazines];
+}
+
+- (void)sortMagazines {
+    [magazines_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
 }
 
 @end

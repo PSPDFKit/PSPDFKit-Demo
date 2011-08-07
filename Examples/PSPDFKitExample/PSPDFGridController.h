@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFGridView.h"
 #import "PSPDFBasicViewController.h"
+#import "PSPDFStoreManager.h"
 
 @class PSPDFMagazineFolder;
 
-@interface PSPDFGridController : PSPDFBasicViewController <AQGridViewDelegate, AQGridViewDataSource> {
+@interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
   PSPDFMagazineFolder *magazineFolder_;  
   PSPDFGridView *gridView_;
 }
