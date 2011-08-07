@@ -53,6 +53,7 @@ static char kvoToken; // we need a static address for the kvo token
                     PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:fullPath];
                     [contentFolder addMagazine:magazine];
                 }
+
                 if ([contentFolder.magazines count]) {
                     [folders addObject:contentFolder];
                 }
@@ -63,7 +64,6 @@ static char kvoToken; // we need a static address for the kvo token
         }
     }
     if ([rootFolder.magazines count]) {
-        [rootFolder sortMagazines];
         [folders addObject:rootFolder];
     }
     
