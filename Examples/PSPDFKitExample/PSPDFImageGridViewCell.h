@@ -14,9 +14,10 @@
     UILabel *magazineCounter_;
     UIImageView *magazineCounterBadgeImage_;
     NSUInteger magazineCount_;
-
+    
     PSPDFMagazine *magazine_;
     PSPDFMagazineFolder *magazineFolder_;
+    NSMutableSet *observedMagazineDownloads_;
 }
 
 @property(nonatomic, retain) UIImage *image;

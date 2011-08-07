@@ -39,8 +39,16 @@
 }
 
 - (void)shopButtonPressed {
-    NSString *urlString = @"http://manuals.info.apple.com/en_US/ipad_2_user_guide.pdf";
-    [[PSPDFDownload PDFDownloadWithURL:[NSURL URLWithString:urlString]] start];
+    NSArray *urls = [NSArray arrayWithObjects:@"http://manuals.info.apple.com/en_US/ipad_2_user_guide.pdf", 
+                     @"http://manuals.info.apple.com/en_US/Nike_Plus_iPod_User_Guide.pdf", 
+                     @"http://manuals.info.apple.com/en_US/iPhone_4_Finger_Tips.pdf",
+                     @"http://manuals.info.apple.com/en_US/Earphones_UG.pdf",
+                     @"http://manuals.info.apple.com/en_US/iPhone_Bluetooth_Headset_UserGuide.pdf",
+                     @"http://manuals.info.apple.com/en_US/iPhone_4_Dock.pdf",
+                     nil];
+    
+    int index = random() % [urls count];
+    [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazineWithUrl:[NSURL URLWithString:[urls objectAtIndex:index]]];
 }
 
 - (void)optionsButtonPressed {
@@ -65,7 +73,6 @@
     [self presentModalViewController:previewController animated:YES];
     return YES;
 #endif
-    
     
     PSPDFExampleViewController *pdfController = [[[PSPDFExampleViewController alloc] initWithDocument:magazine] autorelease];
     UINavigationController *pdfNavController = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
@@ -122,7 +129,6 @@
     return self;
 }
 
-
 - (void)dealloc {
     [magazineFolder_ release];
     [super dealloc];
@@ -164,7 +170,6 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    
     self.gridView.delegate = nil;
     self.gridView.dataSource = nil;
     self.gridView = nil;
@@ -180,8 +185,16 @@
         [self.gridView deselectItemAtIndex:[self.gridView indexOfSelectedItem] animated:NO];
     }
     
+    // only one delegate at a time (only one grid is displayed at a time)
+    [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
+    
     // ensure everything is up to date (we could change magazines in other controllers)
     [self.gridView reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [PSPDFStoreManager sharedPSPDFStoreManager].delegate = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -203,7 +216,7 @@
     if (self.magazineFolder) {
         return [self.magazineFolder.magazines count];
     }else {
-        return [XAppDelegate.magazineFolders count];
+        return [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count];
     }
 }
 
@@ -220,7 +233,7 @@
     if (self.magazineFolder) {
         cell.magazine = [self.magazineFolder.magazines objectAtIndex:index];
     }else {
-        cell.magazineFolder = [XAppDelegate.magazineFolders objectAtIndex:index];  
+        cell.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];  
     }
     
     return cell;
@@ -243,17 +256,24 @@
         folder = self.magazineFolder;
         magazine = [self.magazineFolder.magazines objectAtIndex:index];
     }else {
-        folder = [XAppDelegate.magazineFolders objectAtIndex:index];
+        folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];
         magazine = [folder firstMagazine];
     }
     
     PSELog(@"Magazine selected: %d %@", index, magazine);    
     
-    if ([folder.magazines count] == 1 || self.magazineFolder
-        ) {
-        BOOL openSuccess = [self openMagazine:magazine animated:YES cellIndex:index];
-        if (!openSuccess) {
-            [self.gridView deselectItemAtIndex:index animated:NO];
+    if ([folder.magazines count] == 1 || self.magazineFolder) {
+        if (magazine.isDownloading) {
+            [[[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Item is currently downloading."]
+                                         message:nil
+                                        delegate:nil
+                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                               otherButtonTitles:nil] autorelease] show];
+        }else {
+            BOOL openSuccess = [self openMagazine:magazine animated:YES cellIndex:index];
+            if (!openSuccess) {
+                [self.gridView deselectItemAtIndex:index animated:NO];
+            }
         }
     }else {
         PSPDFGridController *gridController = [[[PSPDFGridController alloc] initWithMagazineFolder:folder] autorelease];
@@ -287,21 +307,21 @@
 
 - (void)magazineStoreFolderDeleted:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger index = [XAppDelegate.magazineFolders indexOfObject:magazineFolder];
+        NSUInteger index = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         [self.gridView deleteItemsAtIndices:[NSIndexSet indexSetWithIndex:index] withAnimation:AQGridViewItemAnimationBottom];
     }
 }
 
 - (void)magazineStoreFolderAdded:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger index = [XAppDelegate.magazineFolders indexOfObject:magazineFolder];
+        NSUInteger index = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         [self.gridView insertItemsAtIndices:[NSIndexSet indexSetWithIndex:index] withAnimation:AQGridViewItemAnimationTop];
     }
 }
 
 - (void)magazineStoreFolderModified:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger index = [XAppDelegate.magazineFolders indexOfObject:magazineFolder];
+        NSUInteger index = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         [self.gridView reloadItemsAtIndices:[NSIndexSet indexSetWithIndex:index] withAnimation:AQGridViewItemAnimationFade];  
     }
 }

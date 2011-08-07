@@ -13,20 +13,20 @@
 @implementation PSPDFMagazine
 
 @synthesize folder = folder_;
+@synthesize downloading = downloading_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSObject
 
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path; {
-    NSURL *url = [NSURL fileURLWithPath:path];
+    NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
     PSPDFMagazine *magazine = [[(PSPDFMagazine *)[[self class] alloc] initWithUrl:url] autorelease];
     return magazine;
 }
 
 - (id)init {
     if ((self = [super init])) {
-        
         // most magazines can enable this to speed up display (aspect ration doesn't need to be recalculated)
         //aspectRatioEqual_ = YES;
     }
