@@ -142,7 +142,7 @@
     [super viewDidLoad];
     
     if(!self.magazineFolder) {
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Download PDF"
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Download"
                                                                                   style:UIBarButtonItemStyleBordered
                                                                                  target:self
                                                                                  action:@selector(shopButtonPressed)] autorelease];
