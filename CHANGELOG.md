@@ -51,6 +51,8 @@ __v1.3 - 06/Aug/2011__
 *  add reloadData to PSPDFViewController
 *  add scrollOnTapPageEndEnabled property to control prev/next tap
 *  add animations for page change
+*  improve kiosk example to show download progress
+*  improve scrobblebar; now has correct aspect ratio + double page mode
 *  improve scrollbar page changing
 *  improve outline parsing speed
 *  improve support for rotated PDFs
@@ -58,3 +60,4 @@ __v1.3 - 06/Aug/2011__
 *  fixes some analyzer warnings
 *  fixes a timing problem when PSPDFCache was accessed from a background thread
 *  fixes various other potential crashes
+*  fixes a rare deadlock
