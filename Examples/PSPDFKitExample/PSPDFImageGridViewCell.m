@@ -155,7 +155,7 @@
     if (!magazineCounter_) { // lazy creation
         magazineCounterBadgeImage_= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
         magazineCounterBadgeImage_.opaque = NO;
-        magazineCounterBadgeImage_.alpha = 0.9;
+        magazineCounterBadgeImage_.alpha = 0.9f;
         magazineCounterBadgeImage_.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:magazineCounterBadgeImage_];
         
@@ -197,7 +197,7 @@
     if (!progressView_) {
         progressView_ = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];    
         CGRect contentFrame = self.contentView.frame;
-        CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : floorf(kProgressBarWidth * kiPhoneReductionFactor*1.1);
+        CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : floorf(kProgressBarWidth * kiPhoneReductionFactor*1.1f);
         progressView_.frame = CGRectMake(0, 0, progressViewWidth, 21);
         progressView_.center = CGPointMake(floorf(contentFrame.size.width/2), floorf(contentFrame.size.height*10/11));
         [self.contentView addSubview:progressView_];
