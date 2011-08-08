@@ -11,17 +11,20 @@
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar;
 
+/// current active view mode
 enum {
     PSPDFViewModeDocument,
     PSPDFViewModeThumbnails
 }typedef PSPDFViewMode;
 
+/// active page mode
 enum {
     PSPDFPageModeSingle,
     PSPDFPageModeDouble,
     PSPDFPageModeAutomatic // single in portrait, double in landscape. Default.
 }typedef PSPDFPageMode;
 
+/// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 @interface PSPDFViewController : UIViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
     id<PSPDFViewControllerDelegate> delegate_;
     PSPDFDocument *document_;
@@ -37,6 +40,7 @@ enum {
     UIColor *backgroundColor_;
     BOOL doublePageModeOnFirstPage_;
     BOOL suppressHUDHideOnce_;
+    NSUInteger lastDisplayedPage_;
     UIInterfaceOrientation lastOrientation_;
     
     // paging scrollview
@@ -45,7 +49,7 @@ enum {
     NSMutableSet *visiblePages_;
     
     // for rotation event
-    NSUInteger targetPageAfterRotate_;
+    NSInteger targetPageAfterRotate_;
     
     // toolbar updating
     UIBarButtonItem *magazineButton_;
@@ -62,6 +66,7 @@ enum {
     BOOL toolbarEnabled_;
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
+    BOOL scrollOnTapPageEndEnabled_;
 }
 
 /// initialize with a document
@@ -85,6 +90,15 @@ enum {
 /// show a modal view controller with automatically added close button on the left side.
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller;
 
+/// reload scrollview. Call if you manually change the view width/height or some property inside PSPDFDocument. Usually not needed.
+- (void)reloadData;
+
+/// reload scrollview, scroll to specified page.
+- (void)reloadDataAndScrollToPage:(NSUInteger)page;
+
+/// checks if the current page is on the right side, when in double page mode.
+- (BOOL)isRightPageInDoublePageNode:(NSUInteger)page;
+
 /// register delegate to capture events, change properties
 @property(nonatomic, assign) id<PSPDFViewControllerDelegate> delegate;
 
@@ -98,10 +112,10 @@ enum {
 @property(nonatomic, assign) PSPDFViewMode viewMode;
 
 /// page mode: PSPDFPageModeSingle or PSPDFPageModeDouble
-@property(nonatomic, assign, readonly) PSPDFPageMode pageMode;
+@property(nonatomic, assign) PSPDFPageMode pageMode;
 
 /// shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
-@property(nonatomic, assign) BOOL doublePageModeOnFirstPage;
+@property(nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
 
 /// allow zooming of small documents to screen width/height. Defaults to YES.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
@@ -124,6 +138,9 @@ enum {
 /// enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
 
+/// tap on begin/end of page scrolls to previous/next page. Defaults to YES.
+@property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
+
 /// thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.588
 @property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
 
@@ -144,7 +161,8 @@ enum {
 /// override if you're changing the toolbar to your own
 /// note that the toolbar is only displayed, if PSPDFViewController is inside a UINavigationController!
 - (void)createToolbar;
-- (NSArray *)additionalToolbarButtons;
+- (UIBarButtonItem *)toolbarBackButton; // defaults to "Documents"
+- (NSArray *)additionalLeftToolbarButtons;
 - (void)updateToolbars;
 
 // called from scrollviews

@@ -9,8 +9,16 @@
 // *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
+#define kPSPDFKitHUDTransparency 0.9f
+
 // return status bar width, orientation corrected, and only on iPad
 CGFloat PSStatusBarHeight(void);
+
+/// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
+BOOL PSPDFIsCrappyDevice(void);
+
+/// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
+BOOL PSPDFShouldAnimate(void);
 
 enum {
     PSPDFLogLevelNothing,
@@ -21,6 +29,16 @@ enum {
 
 // set log level.
 extern PSPDFLogLevel kPSPDFKitDebugLogLevel; // defaults to PSPDFLogLevelError
+
+
+/// settings for animation of pages, global
+enum {
+    PSPDFAnimateNever,
+    PSPDFAnimateModernDevices,
+    PSPDFAnimateEverywhere
+}typedef PSPDFAnimate;
+
+extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
 // optionally enable scrollbar debugging.
 extern BOOL kPSPDFKitDebugScrollViews;
@@ -81,6 +99,19 @@ return NSUIntegerMax; \
 return self; \
 }
 
+// swapper
+
+#define ps_swap(a,b) {  \
+int c = (a);         \
+(a) = (b);           \
+(b) = c;             \
+}
+
+#define ps_swapf(a,b) { \
+float c = (a);       \
+(a) = (b);           \
+(b) = c;             \
+}
 
 // draw demo mode code
 #ifdef kPSPDFKitDemoMode
