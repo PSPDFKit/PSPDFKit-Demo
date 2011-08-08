@@ -25,4 +25,7 @@
 /// returns cached outline. starts parsing if outline is not yet created.
 @property(nonatomic, retain, readonly) NSArray *outline;
 
+/// resolves named destination entries, returns dict with name -> page NSNumber
++ (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;
+
 @end

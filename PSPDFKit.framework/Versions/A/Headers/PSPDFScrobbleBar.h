@@ -8,28 +8,33 @@
 
 #import "PSPDFCache.h"
 
-// Scrobble bar like iBooks
+/// Scrobble bar like iBooks
 @interface PSPDFScrobbleBar : UIToolbar <PSPDFCacheDelegate> {
     PSPDFViewController *pdfController_;
     NSUInteger page_;
     NSInteger pageMarkerPage_;
     NSUInteger thumbCount_;
+    NSInteger lastTouchedPage_;
+    BOOL touchInProgress_;
     
     UIImageView *positionImage_;
-    NSMutableDictionary *imageViews_;
+    UIImageView *positionImage2_;
+    NSMutableDictionary *imageViews_;    // NSNumber (page) -> UIImageView
 }
 
+/// initialize
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
-// updates toolbar, realigns page screenshots.
+/// updates toolbar, realigns page screenshots.
 - (void)updateToolbar;
 
-// updates the page marker. call manually after alpha > 0 !
+/// updates the page marker. call manually after alpha > 0 !
 - (void)updatePageMarker;
 
-// current selected page
+/// current selected page
 @property(nonatomic, assign) NSUInteger page;
 
+/// weak linked pdf controller
 @property(nonatomic, assign, readonly) PSPDFViewController *pdfController;
 
 @end
