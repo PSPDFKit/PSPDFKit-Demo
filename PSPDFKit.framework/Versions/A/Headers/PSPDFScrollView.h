@@ -19,14 +19,15 @@
     PSPDFDocument *document_;
     PSPDFViewController *pdfController_;
     
-    UIView *compoundPdfView_;
-    UIView*compountPdfImageView_;
+    UIView *compoundView_;
+    UIView *compountPdfImageView_;
     
     NSUInteger page_;
     BOOL dualPageMode_;
     BOOL doublePageModeOnFirstPage_;
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
+    BOOL scrollOnTapPageEndEnabled_;
     
     NSInteger memoryWarningCounter_;
 }
@@ -34,7 +35,10 @@
 /// display specific document with specified page
 - (void)displayDocument:(PSPDFDocument *)aDocument withPage:(NSUInteger)pageId;
 
-/// releases document, removes all caches
+/// prepares reuse of internal data
+- (void)prepareForReuse;
+
+/// releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
 - (void)releaseDocument;
 
 // for memory warning relay
@@ -58,10 +62,10 @@
 /// enables/disables page shadow
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
-/// for subclassing
-- (CGPathRef)renderPaperCurl:(UIView*)imgView;
+/// tap on begin/end of page scrolls to previous/next page.
+@property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
 /// for subclassing
-- (void)configureShadowForLayer:(CALayer *)layer;
+- (CGPathRef)renderPaperCurl:(UIView*)imgView;
 
 @end

@@ -16,12 +16,12 @@
     PSPDFDocument *document_;
     BOOL           backgroundImageCached_;  
     BOOL           tiledRenderingAllowed_;
-    CGFloat        myScale;
-    NSUInteger     page_;
+    NSInteger      page_;
+    CGRect         pageRenderRect;
 }
 
 // init the CATiledLayer
-- (id)initWithFrame:(CGRect)frame andScale:(CGFloat)scale;
+- (id)initWithFrame:(CGRect)frame;
 
 // explicitely destroy the layer. actual dealloc may happen in a block, so destroy explicitely.
 - (void)stopTiledRenderingAndRemoveFromSuperlayer;
@@ -30,7 +30,7 @@
 @property(nonatomic, retain) PSPDFDocument *document;
 
 // current page to display
-@property(nonatomic, assign) NSUInteger page;
+@property(nonatomic, assign) NSInteger page;
 
 @end
 
