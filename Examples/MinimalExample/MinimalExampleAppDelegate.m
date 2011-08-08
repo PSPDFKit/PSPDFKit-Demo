@@ -16,7 +16,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
         
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"Developers_Guide_8th.pdf"];
+    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
