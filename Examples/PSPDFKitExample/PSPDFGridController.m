@@ -209,7 +209,7 @@
 #pragma mark AQGridViewDataSource
 
 - (CGFloat)thumbnailSizeReductionFactor {
-    return PSIsIpad() ? 1.f : 0.588;
+    return PSIsIpad() ? 1.f : 0.588f;
 }
 
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
@@ -226,7 +226,7 @@
     PSPDFImageGridViewCell * cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCellWithIdentifier:MagazineCellIdentifier];
     if (!cell) {
         CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
-        cell = [[[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.0, 0.0, floorf(150.0*thumbnailSizeReductionFactor), floorf(200.0*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier] autorelease];
+        cell = [[[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.f, 0.f, floorf(150.f*thumbnailSizeReductionFactor), floorf(200.f*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier] autorelease];
         cell.selectionGlowColor = [UIColor blueColor];
     }
     
@@ -241,7 +241,7 @@
 
 - (CGSize)portraitGridCellSizeForGridView:(AQGridView *)aGridView {
     CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
-    return CGSizeMake(floorf(168.0*thumbnailSizeReductionFactor), floorf(224.0*thumbnailSizeReductionFactor));
+    return CGSizeMake(floorf(168.f*thumbnailSizeReductionFactor), floorf(224.f*thumbnailSizeReductionFactor));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
