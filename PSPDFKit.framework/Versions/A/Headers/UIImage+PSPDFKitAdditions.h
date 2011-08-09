@@ -23,13 +23,14 @@ typedef enum {
 - (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor;
 
 
-// simple image cache that is used to display thumbnails
-// it's cleared as long as a PSPDFViewController is open, on a memory warning
-// if you use this on your own, it's advised to put [UIImage pspdf_clearCache] in yout AppDelegate's applicationDidReceiveMemoryWarning
-
-+ (id)pspdf_cachedImageWithContentsOfFile:(NSString *)path;
-+ (void)pspdf_clearCache;
 + (UIImage*)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;
+
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;
+
+/// preload image in memory
++ (UIImage *)pspdf_preloadedImageForPath:(NSString *)path;
+
+/// process image and preload completely
+- (UIImage *)pspdf_preloadedImage;
 
 @end

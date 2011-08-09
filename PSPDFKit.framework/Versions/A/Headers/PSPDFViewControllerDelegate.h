@@ -24,7 +24,7 @@
 /// Note that PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
 
-/// delegate for tapping on an annotation. If you don't impement this or return false, it will be processed by default action (scroll to page, ask to open Safari)
+/// delegate for tapping on an annotation. If you don't implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFLinkAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
 
 /// will be called when viewMode changes
