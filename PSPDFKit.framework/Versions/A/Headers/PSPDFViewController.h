@@ -24,22 +24,22 @@ enum {
     PSPDFPageModeAutomatic // single in portrait, double in landscape. Default.
 }typedef PSPDFPageMode;
 
+/// active scrolling direction
+enum {
+    PSPDFScrollingHorizontal, // default
+    PSPDFScrollingVertical
+}typedef PSPDFScrolling;
+
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 @interface PSPDFViewController : UIViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
     id<PSPDFViewControllerDelegate> delegate_;
     PSPDFDocument *document_;
     AQGridView *gridView_;
-    BOOL magazineRectCacheLoaded_;
     
     // view states
     UISegmentedControl *viewModeSegment_;
     NSUInteger lastPage_;
     NSUInteger page_;
-    PSPDFViewMode viewMode_;
-    PSPDFPageMode pageMode_;
-    UIColor *backgroundColor_;
-    BOOL doublePageModeOnFirstPage_;
-    BOOL suppressHUDHideOnce_;
     NSUInteger lastDisplayedPage_;
     UIInterfaceOrientation lastOrientation_;
     
@@ -59,14 +59,21 @@ enum {
     
     UIPopoverController *popoverController_;
     PSPDFScrobbleBar *scrobbleBar_;
+    PSPDFViewMode viewMode_;
+    PSPDFPageMode pageMode_;
+    PSPDFScrolling pageScrolling_;
+    UIColor *backgroundColor_;
     CGFloat iPhoneThumbnailSizeReductionFactor_;
     CGFloat pagePadding_;
+    BOOL doublePageModeOnFirstPage_;
     BOOL navigationBarHidden_;
     BOOL scrobbleBarEnabled_;
     BOOL toolbarEnabled_;
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
     BOOL scrollOnTapPageEndEnabled_;
+    BOOL suppressHUDHideOnce_;
+    BOOL magazineRectCacheLoaded_;
 }
 
 /// initialize with a document
@@ -96,7 +103,7 @@ enum {
 /// reload scrollview, scroll to specified page.
 - (void)reloadDataAndScrollToPage:(NSUInteger)page;
 
-/// checks if the current page is on the right side, when in double page mode.
+/// checks if the current page is on the right side, when in double page mode. Page starts at 0.
 - (BOOL)isRightPageInDoublePageNode:(NSUInteger)page;
 
 /// register delegate to capture events, change properties
@@ -113,6 +120,9 @@ enum {
 
 /// page mode: PSPDFPageModeSingle or PSPDFPageModeDouble
 @property(nonatomic, assign) PSPDFPageMode pageMode;
+
+/// change scrolling direction. defaults to horizontal scrolling (PSPDFScrollingHorizontal)
+@property(nonatomic, assign) PSPDFScrolling pageScrolling;
 
 /// shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
 @property(nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;

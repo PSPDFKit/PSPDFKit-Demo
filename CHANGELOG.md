@@ -43,7 +43,7 @@ __v1.2.3 - 05/Aug/2011__
 *  fixes a bug with caching and invalid page numbers
 
 
-__v1.3 - 06/Aug/2011__
+__v1.3 - 08/Aug/2011__
 
 *  Major Update!
 *  add support for pdf link annotations (site links and external links)
@@ -61,3 +61,11 @@ __v1.3 - 06/Aug/2011__
 *  fixes a timing problem when PSPDFCache was accessed from a background thread
 *  fixes various other potential crashes
 *  fixes a rare deadlock
+
+__v1.3.1 - 09/Aug/2011__
+
+*  Add optional vertical scrolling (pageScrolling property)
+*  Adds animation for iOS Simulator 
+*  improve thumbnail loading speed
+*  fixes memory pressure when using big preprocessed external thumbnails
+*  fixes a regression with zoomScale introduced in 1.3
