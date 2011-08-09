@@ -19,6 +19,7 @@
 // global settings read by PSPDFGridController
 
 + (PSPDFPageMode)pageMode;
++ (PSPDFScrolling)pageScrolling;
 + (BOOL)doublePageModeOnFirstPage;
 + (BOOL)zoomingSmallDocumentsEnabled;
 + (BOOL)scrobbleBar;
