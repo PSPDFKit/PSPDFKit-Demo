@@ -56,6 +56,7 @@
     
     NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFCacheSettingsController pageMode];
+    self.pageScrolling = [PSPDFCacheSettingsController pageScrolling];
     
     // reload scrollview
     [self reloadDataAndScrollToPage:page];
