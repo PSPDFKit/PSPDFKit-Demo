@@ -12,12 +12,16 @@
 @implementation PSPDFCacheSettingsController
 
 static PSPDFPageMode pageMode = PSPDFPageModeAutomatic;
+static PSPDFScrolling pageScrolling = PSPDFScrollingHorizontal;
 static BOOL doublePageModeOnFirstPage = NO;
 static BOOL zoomingSmallDocumentsEnabled = YES;
 static BOOL scrobbleBar = YES;
 static BOOL search = YES;
 static BOOL pdfoutline = YES;
 static BOOL annotations = YES;
+
+#define kOptionBlockIndex    4
+#define kDocOptionBlockIndex 5
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -26,6 +30,7 @@ static BOOL annotations = YES;
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         content_ = [[NSArray alloc] initWithObjects:
                     [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
+                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertial (like UIWebView)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Scrobblebar", nil],
@@ -67,15 +72,18 @@ static BOOL annotations = YES;
             return @"Cache";
             break;
         case 1:
-            return @"PSPDFViewController Display";
+            return @"Scrolling";
             break;
         case 2:
-            return @"Double Page Mode";
+            return @"PSPDFViewController Display";
             break;
         case 3:
+            return @"Double Page Mode";
+            break;
+        case kOptionBlockIndex:
             return @"";
             break;            
-        case 4:
+        case kDocOptionBlockIndex:
             return @"PSPDFDocument";
             break;            
         default:
@@ -88,7 +96,7 @@ static BOOL annotations = YES;
     UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 
-    if (indexPath.section == 3) {
+    if (indexPath.section == kOptionBlockIndex) {
         switch (indexPath.row) {
             case 0:
                 zoomingSmallDocumentsEnabled = cellSwitch.on;
@@ -100,7 +108,7 @@ static BOOL annotations = YES;
             default:
                 break;
         }
-    }else if(indexPath.section == 4) {
+    }else if(indexPath.section == kDocOptionBlockIndex) {
         switch (indexPath.row) {
             case 0:
                 search = cellSwitch.on;
@@ -142,19 +150,22 @@ static BOOL annotations = YES;
             cell.accessoryType = (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
         case 1:
-            cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            cell.accessoryType = (indexPath.row == pageScrolling) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
         case 2:
-            cell.accessoryType = (indexPath.row == doublePageModeOnFirstPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
         case 3:
-        case 4: {
+            cell.accessoryType = (indexPath.row == doublePageModeOnFirstPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+            break;
+        case kOptionBlockIndex:
+        case kDocOptionBlockIndex: {
             UISwitch *cellSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             [cellSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = cellSwitch;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            if (indexPath.section == 3) {
+            if (indexPath.section == kOptionBlockIndex) {
                 switch (indexPath.row) {
                     case 0:
                         cellSwitch.on = zoomingSmallDocumentsEnabled;
@@ -165,7 +176,7 @@ static BOOL annotations = YES;
                     default:
                         break;
                 }
-            }else if(indexPath.section == 4) {
+            }else if(indexPath.section == kDocOptionBlockIndex) {
                 switch (indexPath.row) {
                     case 0:
                         cellSwitch.on = search;
@@ -199,9 +210,12 @@ static BOOL annotations = YES;
             [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
             break;
         case 1:
-            pageMode = indexPath.row;
+            pageScrolling = indexPath.row;
             break;
         case 2:
+            pageMode = indexPath.row;
+            break;
+        case 3:
             doublePageModeOnFirstPage = indexPath.row == 1;
             break;
             
@@ -218,6 +232,10 @@ static BOOL annotations = YES;
 
 + (PSPDFPageMode)pageMode; {
     return pageMode;
+}
+
++ (PSPDFScrolling)pageScrolling {
+    return pageScrolling;
 }
 
 + (BOOL)doublePageModeOnFirstPage; {
