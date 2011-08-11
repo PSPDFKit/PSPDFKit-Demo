@@ -69,3 +69,9 @@ __v1.3.1 - 09/Aug/2011__
 *  improve thumbnail loading speed
 *  fixes memory pressure when using big preprocessed external thumbnails
 *  fixes a regression with zoomScale introduced in 1.3
+
+__v1.3.2 - 11/Aug/2011__
+
+*  Add example to append/replace a document
+*  allow changing the document
+*  improve clearCache
