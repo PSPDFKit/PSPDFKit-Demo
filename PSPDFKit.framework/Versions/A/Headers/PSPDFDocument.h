@@ -14,7 +14,7 @@
 /// Can be overriden to support custom collections.
 @interface PSPDFDocument : NSObject {
     NSURL *basePath_;
-    NSArray *files_;
+    NSMutableArray *files_;
     NSString *uid_;
     NSString *title_;
     
@@ -46,6 +46,9 @@
 - (id)initWithUrl:(NSURL *)url;
 - (id)initWithBaseUrl:(NSURL *)basePath files:(NSArray *)files;
 
+/// appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if basePath is nil)
+- (void)appendFile:(NSString *)file;
+
 /// returns path for a single page (in case pages are split up). Page starts at 0.
 - (NSURL *)pathForPage:(NSUInteger)page;
 
@@ -65,10 +68,10 @@
 /// rotation for specified page. cached. Page starts at 0.
 - (int)rotationForPage:(NSUInteger)page;
 
-/// if you change internal properties (like file count), cache needs to be cleared
-- (void)clearCache;
+/// if you change internal properties (like file count), cache needs to be cleared. Forced clears *everything* and even if doc is currently displayed.
+- (void)clearCacheForced:(BOOL)forced;
 
-/// creats internal cache for faster display. override to provide custom caching. called in a thread.
+/// creates internal cache for faster display. override to provide custom caching. usually called in a thread.
 - (void)fillCache;
 
 /// return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
@@ -87,14 +90,14 @@
 /// document title as shown in the controller
 @property(nonatomic, copy) NSString *title;
 
-/// For caching, provide a unique uid here
+/// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
 @property(nonatomic, copy) NSString *uid;
 
-/// common base path for pdf files
+/// common base path for pdf files. Set to nil to use absolute paths for files.
 @property(nonatomic, retain) NSURL *basePath;
 
-/// array of pdf files
-@property(nonatomic, copy) NSArray *files;
+/// array of NSString pdf files. 
+@property(nonatomic, copy, readonly) NSArray *files;
 
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual, readonly) BOOL aspectRatioEqual;

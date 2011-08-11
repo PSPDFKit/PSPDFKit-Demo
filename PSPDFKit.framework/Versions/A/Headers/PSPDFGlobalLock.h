@@ -44,4 +44,7 @@
 /// special global unlock. Use with lockGlobal.
 - (void)unlockGlobal;
 
+/// clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.
+- (void)clearCache:(BOOL)forced;
+
 @end
