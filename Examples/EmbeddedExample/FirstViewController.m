@@ -69,7 +69,7 @@
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     
-    self.pdfController.scrobbleBarEnabled = NO;
+    //self.pdfController.scrobbleBarEnabled = NO;
     
     self.pdfController.view.frame = CGRectMake(80, 450, 600, 500);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -146,20 +146,23 @@
 }
 
 - (IBAction)replaceDocument {
+    [self replaceFile];
     
     // although replacing a document *inline* is possible, it's not advised.
     // it's better to re-create the PSPDFDocument and set a new uid
     //[self.pdfController.document clearCacheForced:YES];
+    //[[PSPDFCache sharedPSPDFCache] clearCache];
     //[self.pdfController reloadData];    
     
+    // create new document
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
 
     // we have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
     [[PSPDFCache sharedPSPDFCache] clearCache];
 
+    // set document on active controller
     self.pdfController.document = document;
-
 }
 
 @end
