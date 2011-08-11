@@ -109,8 +109,8 @@ enum {
 /// register delegate to capture events, change properties
 @property(nonatomic, assign) id<PSPDFViewControllerDelegate> delegate;
 
-/// Magazine is currently not exchangeable. This may change. Create a new PSPDFController to change.
-@property(nonatomic, retain, readonly) PSPDFDocument *document;
+/// document that will be displayed.
+@property(nonatomic, retain) PSPDFDocument *document;
 
 /// current page displayed
 @property(nonatomic, assign, readonly) NSUInteger page;
