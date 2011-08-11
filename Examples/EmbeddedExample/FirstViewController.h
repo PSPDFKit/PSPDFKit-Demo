@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <PSPDFKit/PSPDFKit.h>
+//#import "PSPDFKit.h"
 
 @interface FirstViewController : UIViewController {
     PSPDFViewController *pdfController_;
 }
+
+- (IBAction)appendDocument;
+
+- (IBAction)replaceDocument;
+
 
 @property(nonatomic, retain) PSPDFViewController *pdfController;
 

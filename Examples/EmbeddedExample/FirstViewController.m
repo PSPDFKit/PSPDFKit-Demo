@@ -13,11 +13,38 @@
 @synthesize pdfController = pdfController_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (NSString *)documentsFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
+    return [paths objectAtIndex:0];
+}
+
+- (void)copySampleToDocumentsFolder:(NSString *)fileName {
+    NSError *error = nil;
+    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
+    NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
+        NSLog(@"error while deleting: %@", [error localizedDescription]);
+    }
+    
+    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];    
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         self.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFeatured tag:1] autorelease];
+        
+        // prepare document to display, copy it do docs folder
+        // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
+        [self copySampleToDocumentsFolder:@"PSPDFKit.pdf"];
+        [self copySampleToDocumentsFolder:@"Developers_Guide_8th.pdf"];
+        [self copySampleToDocumentsFolder:@"amazon-dynamo-sosp2007.pdf"];
+        
     }
     return self;
 }
@@ -37,13 +64,14 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     // add pdf controller as subcontroller (iOS4 way, iOS5 has new, better methods for that)
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"Developers_Guide_8th.pdf"];
+    //NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     
     self.pdfController.scrobbleBarEnabled = NO;
     
-    self.pdfController.view.frame = CGRectMake(80, 80, 600, 900);
+    self.pdfController.view.frame = CGRectMake(80, 450, 600, 500);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.pdfController.view];
     
@@ -86,6 +114,52 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self.pdfController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public
+
+- (IBAction)appendDocument {
+    PSPDFDocument *document = self.pdfController.document;
+    [document appendFile:@"Developers_Guide_8th.pdf"];
+    [self.pdfController reloadData];
+}
+
+
+- (void)replaceFile {
+    static BOOL replace = YES;
+    if (replace) {
+        NSError *error = nil;
+        NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"amazon-dynamo-sosp2007.pdf"];
+        NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+        if (![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
+            NSLog(@"error while deleting: %@", [error localizedDescription]);
+        }
+        if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:&error]) {
+            NSLog(@"error while copying: %@", [error localizedDescription]);
+        }
+        replace = NO;
+    }else {
+        [self copySampleToDocumentsFolder:@"PSPDFKit.pdf"];
+        replace = YES;
+    }
+}
+
+- (IBAction)replaceDocument {
+    
+    // although replacing a document *inline* is possible, it's not advised.
+    // it's better to re-create the PSPDFDocument and set a new uid
+    //[self.pdfController.document clearCacheForced:YES];
+    //[self.pdfController reloadData];    
+    
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+
+    // we have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
+    [[PSPDFCache sharedPSPDFCache] clearCache];
+
+    self.pdfController.document = document;
+
 }
 
 @end
