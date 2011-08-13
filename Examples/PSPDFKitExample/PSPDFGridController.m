@@ -113,7 +113,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.title = @"PSPSFKit Example";   
+        self.title = @"PSPDFKit Example";   
         
         // custom back button for smaller wording
         self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Kiosk" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
