@@ -23,6 +23,7 @@
 + (BOOL)doublePageModeOnFirstPage;
 + (BOOL)zoomingSmallDocumentsEnabled;
 + (BOOL)scrobbleBar;
++ (BOOL)aspectRatioEqual;
 + (BOOL)search;
 + (BOOL)pdfoutline;
 + (BOOL)annotations;
