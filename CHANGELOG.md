@@ -75,3 +75,15 @@ __v1.3.2 - 11/Aug/2011__
 *  Add example to append/replace a document
 *  allow changing the document
 *  improve clearCache
+
+__v1.4.0 - 13/Aug/2011__
+
+*  greatly improves PDF rendering speed!
+*  improves responsiveness of page scrolling while rendering
+*  improves cache timings
+*  improves full page cache
+*  improve scrobble bar default thumb size
+*  API change: PSPDFDocument.aspectRatioEqual now defaults to YES.
+*  fixes rounding errors, resulting in a small border around the pages
+*  fixes a potential deadlock while parsing page annotations
+*  other minor bugfixes and improvements

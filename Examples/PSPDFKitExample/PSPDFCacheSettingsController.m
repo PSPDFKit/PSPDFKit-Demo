@@ -16,6 +16,7 @@ static PSPDFScrolling pageScrolling = PSPDFScrollingHorizontal;
 static BOOL doublePageModeOnFirstPage = NO;
 static BOOL zoomingSmallDocumentsEnabled = YES;
 static BOOL scrobbleBar = YES;
+static BOOL aspectRatioEqual = YES;
 static BOOL search = YES;
 static BOOL pdfoutline = YES;
 static BOOL annotations = YES;
@@ -34,7 +35,7 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Scrobblebar", nil],
-                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", nil],                    
+                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
                     nil];
         
         //self.contentSizeForViewInPopover = CGSizeMake(300, 500);
@@ -92,6 +93,32 @@ static BOOL annotations = YES;
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return @"Cache Settings are global, more aggressive settings need more disk memory.";
+            break;
+        case 1:
+            return @"";
+            break;
+        case 2:
+            return @"";
+            break;
+        case 3:
+            return @"";
+            break;
+        case kOptionBlockIndex:
+            return @"If small file zooming is enabled, pdf files will always be shown in full width/height, regardless of the defined CropBox.";
+            break;            
+        case kDocOptionBlockIndex:
+            return @"Usually, you have an equal aspect ratio, which speeds up displaying pdf files quite a bit. Disable if you have pages of different size inside your document.";
+            break;            
+        default:
+            return @"";
+            break;
+    }
+}
+
 - (void)switchChanged:(UISwitch *)cellSwitch {
     UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
@@ -103,8 +130,7 @@ static BOOL annotations = YES;
                 break;
             case 1:
                 scrobbleBar = cellSwitch.on;
-                break;
-                
+                break;                
             default:
                 break;
         }
@@ -118,6 +144,9 @@ static BOOL annotations = YES;
                 break;
             case 2:
                 annotations = cellSwitch.on;
+                break;
+            case 3:
+                aspectRatioEqual = cellSwitch.on;
                 break;
             default:
                 break;
@@ -187,6 +216,9 @@ static BOOL annotations = YES;
                     case 2:
                         cellSwitch.on = annotations;
                         break;
+                    case 3:
+                        cellSwitch.on = aspectRatioEqual;
+                        break;
                     default:
                         break;
                 }        
@@ -248,6 +280,10 @@ static BOOL annotations = YES;
 
 + (BOOL)scrobbleBar; {
     return scrobbleBar;
+}
+
++ (BOOL)aspectRatioEqual {
+    return aspectRatioEqual;
 }
 
 + (BOOL)search; {

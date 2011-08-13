@@ -48,6 +48,7 @@
     self.magazine.searchEnabled = [PSPDFCacheSettingsController search];
     self.magazine.annotationsEnabled = [PSPDFCacheSettingsController annotations];
     self.magazine.outlineEnabled = [PSPDFCacheSettingsController pdfoutline];
+    self.magazine.aspectRatioEqual = [PSPDFCacheSettingsController aspectRatioEqual];
 
     // set global settings from PSPDFCacheSettingsController
     self.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
