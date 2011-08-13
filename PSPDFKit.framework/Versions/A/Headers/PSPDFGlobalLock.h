@@ -28,6 +28,9 @@
 /// lock with path and real pdf page number (starts at 1). Get page via [PSPDFDocument pageNumberForPage:]
 - (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
 
+/// returns a page reference that is autoreleased, doesn't lock the system.
+- (CGPDFPageRef)pageRefWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // DANGER, WILL ROBINSON!
+
 /// free lock with CGPDFPageRef
 - (void)freeWithPDFPageRef:(CGPDFPageRef)pdfPage;
 

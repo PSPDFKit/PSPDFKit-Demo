@@ -22,6 +22,9 @@
 /// return annotation array for specified page.
 - (NSArray *)annotationsForPage:(NSUInteger)page;
 
+/// return annotation array for specified page, use already open pageRef
+- (NSArray *)annotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
+
 /// document for annotation parser. weak.
 @property(nonatomic, assign, readonly) PSPDFDocument *document;
 
