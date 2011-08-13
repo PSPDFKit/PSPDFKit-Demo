@@ -53,7 +53,7 @@
 - (void)drawAnnotations:(NSArray *)annotations inContext:(CGContextRef)context pageInfo:(PSPDFPageInfo *)pageInfo pageRect:(CGRect)pageRect; {
     // only render if annotation parser is available
     if ([annotations count]) {
-        float yellowComponents[4] = { 1, 1, 0.1, 1 };
+        float yellowComponents[4] = { 1, 1, 0.3f, 1 };
         CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
         CGContextSetStrokeColorSpace(context, rgbColorSpace);
         CGColorRef yellow = CGColorCreate(rgbColorSpace, yellowComponents);
@@ -74,7 +74,7 @@
             CGRect linkRectangle = CGRectMake(pt1.x, pt1.y, pt2.x - pt1.x, pt2.y - pt1.y);
                         
             // add round rect path
-            CGFloat radius = 5.f;                         
+            CGFloat radius = 1.f;                         
             CGFloat minx = CGRectGetMinX(linkRectangle), midx = CGRectGetMidX(linkRectangle), maxx = CGRectGetMaxX(linkRectangle); 
             CGFloat miny = CGRectGetMinY(linkRectangle), midy = CGRectGetMidY(linkRectangle), maxy = CGRectGetMaxY(linkRectangle); 
             CGContextMoveToPoint(context, minx, midy); 
