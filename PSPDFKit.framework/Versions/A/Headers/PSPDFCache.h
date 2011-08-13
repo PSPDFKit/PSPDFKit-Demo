@@ -32,10 +32,12 @@ enum {
     BOOL caching_;
 }
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
+
 @property(retain) PSPDFDocument *document;
 @property(assign) NSUInteger page;
 @property(assign) PSPDFSize size;
 @property(assign, getter=isCaching) BOOL caching;
+
 @end
 
 /// renders magazine pages and caches them
@@ -72,6 +74,12 @@ enum {
 /// returns cached image of document. preload decompresses the image in the background.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
+/// renders image of a page for spezified size. Used here and in PSPDFTilingView.
+- (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size pdfPage:(CGPDFPageRef)pdfPage;
+
+/// save native rendered image, then call delegate. Used from PSPDFTilingView.
+- (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
+
 /// start document caching (update often to improve cache hits)
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
@@ -98,7 +106,6 @@ enum {
 
 /// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages
 @property(assign) NSUInteger numberOfNearCachedPages;
-
 
 /// PNG needs ~200% more space, but is both faster in creation, loading and looks nicer. Defaults to NO.
 @property(assign) BOOL largeImagesUseJPGFormat;

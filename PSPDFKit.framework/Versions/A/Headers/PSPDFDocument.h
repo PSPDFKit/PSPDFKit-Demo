@@ -71,6 +71,9 @@
 /// if you change internal properties (like file count), cache needs to be cleared. Forced clears *everything* and even if doc is currently displayed.
 - (void)clearCacheForced:(BOOL)forced;
 
+/// shortcut to clearCacheForced:NO
+- (void)clearCache;
+
 /// creates internal cache for faster display. override to provide custom caching. usually called in a thread.
 - (void)fillCache;
 
@@ -87,6 +90,12 @@
 /// if this returns nil for a site, we'll try to extract text ourselves
 - (NSString *)pageContentForPage:(NSUInteger)page;
 
+/// override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
+- (UIColor *)backgroundColorForPage:(NSUInteger)page;
+
+/// callback to draw annotations. Use tilingView's convertPDFPointToViewPoint to recalculate coordinates
+- (void)drawAnnotations:(NSArray *)annotations inContext:(CGContextRef)context pageInfo:(PSPDFPageInfo *)pageInfo pageRect:(CGRect)pageRect;
+
 /// document title as shown in the controller
 @property(nonatomic, copy) NSString *title;
 
@@ -99,8 +108,8 @@
 /// array of NSString pdf files. 
 @property(nonatomic, copy, readonly) NSArray *files;
 
-/// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
-@property(nonatomic, assign, getter=isAspectRatioEqual, readonly) BOOL aspectRatioEqual;
+/// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to YES.
+@property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 
 /// text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.
 @property(nonatomic, assign, getter=isSearchEnabled) BOOL searchEnabled;
