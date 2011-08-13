@@ -88,3 +88,10 @@ __v1.4.0 - 13/Aug/2011__
 *  fixes a potential deadlock while parsing page annotations
 *  fixes bug where right thumbnail in scrobble bar is not always loaded
 *  other minor bugfixes and improvements
+
+__v1.4.1 - 13/Aug/2011__
+
+*  add optional two-step rendering for more quality
+*  improve scrobble bar marker
+*  fixes annotation handling on first page
+*  fixes page orientation loading on landscape & iPhone

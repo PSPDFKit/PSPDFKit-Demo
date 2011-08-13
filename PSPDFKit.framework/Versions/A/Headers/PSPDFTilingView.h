@@ -17,6 +17,7 @@
     NSInteger      page_;
     CGRect         pageRenderRect_;
     UIImage       *pdfRenderImage_;
+    BOOL           renderStepTwo_;
 }
 
 /// init the CATiledLayer
