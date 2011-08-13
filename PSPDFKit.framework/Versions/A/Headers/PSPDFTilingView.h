@@ -8,31 +8,37 @@
 
 #import <QuartzCore/CATiledLayer.h>
 
-@class PSPDFDocument;
+@class PSPDFDocument, PSPDFPage;
 
-// represents the CATiledLayer, the dynamic pdf renderer
+/// represents the CATiledLayer, the dynamic pdf renderer
 @interface PSPDFTilingView : UIView {
-    UIImage       *pdfImage_;
     PSPDFDocument *document_;
-    BOOL           backgroundImageCached_;  
-    BOOL           tiledRenderingAllowed_;
+    PSPDFPage     *pdfPage_;
     NSInteger      page_;
-    CGRect         pageRenderRect;
+    CGRect         pageRenderRect_;
+    UIImage       *pdfRenderImage_;
 }
 
-// init the CATiledLayer
+/// init the CATiledLayer
 - (id)initWithFrame:(CGRect)frame;
 
-// explicitely destroy the layer. actual dealloc may happen in a block, so destroy explicitely.
+/// explicitely destroy the layer. actual dealloc may happen in a block, so destroy explicitely.
 - (void)stopTiledRenderingAndRemoveFromSuperlayer;
 
-// document to display
+/// document to display
 @property(nonatomic, retain) PSPDFDocument *document;
 
-// current page to display
+/// current page to display
 @property(nonatomic, assign) NSInteger page;
+
+/// page that hosts the tiling view object
+@property(nonatomic, assign) PSPDFPage *pdfPage;
+
+/// currenct rect in which page is rendered
+@property(nonatomic, assign, readonly) CGRect pageRenderRect;
 
 @end
 
+/// CATiledLayer-Subclass with disabled animations
 @interface PSPDFTiledLayer : CATiledLayer
 @end

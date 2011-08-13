@@ -29,6 +29,9 @@
 /// destroys and removes CATiledLayer. Call prior deallocating
 - (void)destroyPage;
 
+/// set background image to custom image. used in PSPDFTiledLayer.
+- (void)setBackgroundImage:(UIImage *)image;
+
 /// readonly properties. recreate page to re-set
 @property(nonatomic, assign, readonly) NSUInteger page;
 @property(nonatomic, retain, readonly) PSPDFDocument *document;

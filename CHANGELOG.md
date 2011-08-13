@@ -86,4 +86,5 @@ __v1.4.0 - 13/Aug/2011__
 *  API change: PSPDFDocument.aspectRatioEqual now defaults to YES.
 *  fixes rounding errors, resulting in a small border around the pages
 *  fixes a potential deadlock while parsing page annotations
+*  fixes bug where right thumbnail in scrobble bar is not always loaded
 *  other minor bugfixes and improvements

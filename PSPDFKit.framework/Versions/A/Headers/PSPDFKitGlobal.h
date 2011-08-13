@@ -115,7 +115,7 @@ float c = (a);       \
 
 // draw demo mode code
 #ifdef kPSPDFKitDemoMode
-#define DrawPSPDFKitDemo(); \
+#define DrawPSPDFKitDemo(context); \
 NSString *text = @"PSPDFKit DEMO"; \
 NSUInteger fontSize = 30; \
 CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor); \
@@ -126,5 +126,5 @@ CGContextSetTextDrawingMode(context, kCGTextFill); \
 CGContextSetTextPosition(context, 30.0f, 30.0f + round(fontSize / 4.0f)); \
 CGContextShowText(context, [text UTF8String], strlen([text UTF8String]));
 #else
-#define DrawPSPDFKitDemo();
+#define DrawPSPDFKitDemo(context);
 #endif

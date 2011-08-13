@@ -20,7 +20,7 @@
 
 @interface PSPDFTilingView (PSPDFAnnotations)
 
-- (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint rect:(CGRect)rect rotation:(NSUInteger)rotation;
-- (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint rect:(CGRect)rect rotation:(NSUInteger)rotation;
++ (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint rect:(CGRect)rect rotation:(NSUInteger)rotation pageRect:(CGRect)pageRect;
++ (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint rect:(CGRect)rect rotation:(NSUInteger)rotation pageRect:(CGRect)pageRect;
 
 @end
