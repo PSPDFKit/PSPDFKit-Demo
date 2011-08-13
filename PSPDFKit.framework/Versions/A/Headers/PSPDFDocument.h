@@ -24,6 +24,7 @@
     BOOL annotationsEnabled_;
     BOOL isDestroyed_;
     BOOL displayed_;
+    BOOL twoStepRenderingEnabled_;
     NSUInteger pageCount_;
     NSMutableDictionary *pageInfoCache_;
     NSMutableDictionary *pageCountCache_;
@@ -119,6 +120,10 @@
 
 /// annotation link extraction. Defaults to YES.
 @property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
+
+/// enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
+/// or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+@property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
 
 /// returns if document is currently displayed by a PSPDFViewController. Don't set this yourself. Optimizes caching.
 @property(nonatomic, assign, getter=isDisplayed) BOOL displayed;
