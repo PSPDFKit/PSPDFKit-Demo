@@ -61,7 +61,7 @@ static BOOL annotations = YES;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return interfaceOrientation == UIInterfaceOrientationPortrait;
+    return PSIsIpad() ? YES : interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
