@@ -95,3 +95,9 @@ __v1.4.1 - 13/Aug/2011__
 *  improve scrobble bar marker
 *  fixes annotation handling on first page
 *  fixes page orientation loading on landscape & iPhone
+
+__v1.4.2 - 17/Aug/2011__
+
+*  remove queued cache requests when document cache stop is requested
+*  fixes an assertion "main thread" when rapidly allocating/deallocating PSPDFViewController. Tip: Use the .document property to change documents instead if creating new controllers, it's much less expensive.
+*  fixes incorrect tile setting in scrobble bar
