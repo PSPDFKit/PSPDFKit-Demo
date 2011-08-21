@@ -56,6 +56,11 @@
         
     NSString *cacheFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     PSELog(@"CacheDir: %@", cacheFolder);
+
+    // set white status bar style when not on ipad
+    if (!PSIsIpad()) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
+    }
     
     return YES;
 }

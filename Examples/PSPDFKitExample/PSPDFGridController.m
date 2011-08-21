@@ -1,5 +1,5 @@
 //
-//  AMGridController.m
+//  PSPDFGridController.m
 //  PSPDFKitExample
 //
 //  Created by Peter Steinberger on 7/22/11.
@@ -178,7 +178,7 @@
 // default style
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
+
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     
     if ([self.gridView indexOfSelectedItem] != NSNotFound) {
