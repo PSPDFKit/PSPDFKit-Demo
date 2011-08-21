@@ -1,5 +1,5 @@
 //
-//  AMGridController.h
+//  PSPDFGridController.h
 //  PSPDFKitExample
 //
 //  Created by Peter Steinberger on 7/22/11.
