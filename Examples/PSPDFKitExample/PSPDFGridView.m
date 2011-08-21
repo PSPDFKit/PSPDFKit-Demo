@@ -1,5 +1,5 @@
 //
-//  AMGridView.m
+//  PSPDFGridView.m
 //  PSPDFKitExample
 //
 //  Created by Peter Steinberger on 7/22/11.
@@ -37,9 +37,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    //
     // Construct the origin shadow if needed
-    //
     if (!originShadow_) {
         originShadow_ = [self shadowAsInverse:NO];
         [self.layer insertSublayer:originShadow_ atIndex:9999];

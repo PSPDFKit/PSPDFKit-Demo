@@ -1,5 +1,5 @@
 //
-//  AMImageGridViewCell.m
+//  PSPDFImageGridViewCell.m
 //  PSPDFKitExample
 //
 //  Created by Peter Steinberger on 7/22/11.
