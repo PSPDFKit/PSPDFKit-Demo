@@ -101,3 +101,8 @@ __v1.4.2 - 17/Aug/2011__
 *  remove queued cache requests when document cache stop is requested
 *  fixes an assertion "main thread" when rapidly allocating/deallocating PSPDFViewController. Tip: Use the .document property to change documents instead if creating new controllers, it's much less expensive.
 *  fixes incorrect tile setting in scrobble bar
+
+__v1.4.3 - 21/Aug/2011__
+
+*  add setting for status bar management (leave alone, black, etc)
+*  fixes bug where page index was incremented on first page after multiple rotations
