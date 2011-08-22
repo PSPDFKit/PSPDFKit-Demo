@@ -48,7 +48,7 @@
 - (id)initWithBaseUrl:(NSURL *)basePath files:(NSArray *)files;
 
 /// appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if basePath is nil)
-- (void)appendFile:(NSString *)file;
+- (BOOL)appendFile:(NSString *)file;
 
 /// returns path for a single page (in case pages are split up). Page starts at 0.
 - (NSURL *)pathForPage:(NSUInteger)page;
