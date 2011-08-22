@@ -68,10 +68,11 @@
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     
     //self.pdfController.scrobbleBarEnabled = NO;
     
-    self.pdfController.view.frame = CGRectMake(80, 450, 600, 500);
+    self.pdfController.view.frame = CGRectMake(80, 350, 600, 500);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.pdfController.view];
     
@@ -120,11 +121,14 @@
 #pragma mark - Public
 
 - (IBAction)appendDocument {
+    NSString *docName = @"Developers_Guide_8th.pdf";
     PSPDFDocument *document = self.pdfController.document;
-    [document appendFile:@"Developers_Guide_8th.pdf"];
-    [self.pdfController reloadData];
+    if (![document appendFile:docName]) {
+        NSLog(@"Skipping operation: Document already appended.");
+    }else {
+        [self.pdfController reloadData];
+    }
 }
-
 
 - (void)replaceFile {
     static BOOL replace = YES;
