@@ -104,5 +104,10 @@ __v1.4.2 - 17/Aug/2011__
 
 __v1.4.3 - 21/Aug/2011__
 
+*  enables page bouncing (allow zooming < 1, bounces back)
 *  add setting for status bar management (leave alone, black, etc)
-*  fixes bug where page index was incremented on first page after multiple rotations
+*  fixes issue where page index was incremented on first page after multiple rotations
+*  fixes issue where pdf text is rendered slightly blurry on initial zoom level
+*  fixes issue where status bar was not taken into account on cache creation
+*  fixes issue where pages were sometimes misaligned by 0.5-1 pixel
+*  fixes issue where page shadow was not animated on zoomIn/zoomOut

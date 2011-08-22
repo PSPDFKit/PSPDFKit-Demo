@@ -7,12 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFTilingView.h"
-#import "PSPDFCache.h"
 
 @class PSPDFDocument, PSPDFTilingView, PSPDFPage, PSPDFViewController;
 
-@interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate, PSPDFCacheDelegate> {
+@interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate> {
     PSPDFPage *leftPage_;
     PSPDFPage *rightPage_;
     
@@ -20,7 +18,6 @@
     PSPDFViewController *pdfController_;
     
     UIView *compoundView_;
-    UIView *compountPdfImageView_;
     
     NSUInteger page_;
     BOOL dualPageMode_;
