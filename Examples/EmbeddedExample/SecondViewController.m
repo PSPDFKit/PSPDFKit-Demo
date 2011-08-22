@@ -29,6 +29,7 @@
         
         // disable default toolbar
         [self setToolbarEnabled:NO];
+        self.statusBarStyleSetting = PSPDFStatusBarInherit;
         
         // add custom controls to our toolbar
         customViewModeSegment_ = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @""), nil]];
