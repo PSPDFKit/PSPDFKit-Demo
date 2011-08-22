@@ -30,6 +30,15 @@ enum {
     PSPDFScrollingVertical
 }typedef PSPDFScrolling;
 
+/// status bar style (old status will be restored regardless of the style chosen)
+enum {
+    PSPDFStatusBarInherit,      /// don't change status bar style, but show/hide statusbar on HUD events
+    PSPDFStatusBarSmartBlack,   /// use UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
+    PSPDFStatusBarBlackOpaque,  /// Opaque Black everywhere
+    PSPDFStatusBarDefaultWhite, /// Switch to default (white) statusbar
+    PSPDFStatusBarDisable       /// never show status bar
+}typedef PSPDFStatusBarStyleSetting;
+
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 @interface PSPDFViewController : UIViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
     id<PSPDFViewControllerDelegate> delegate_;
@@ -62,6 +71,9 @@ enum {
     PSPDFViewMode viewMode_;
     PSPDFPageMode pageMode_;
     PSPDFScrolling pageScrolling_;
+    PSPDFStatusBarStyleSetting statusBarStyleSetting_;
+    BOOL savedStatusBarVisibility_;
+    UIStatusBarStyle savedStatusBarStyle_;
     UIColor *backgroundColor_;
     CGFloat iPhoneThumbnailSizeReductionFactor_;
     CGFloat pagePadding_;
@@ -143,10 +155,14 @@ enum {
 @property(nonatomic, retain) UIColor *backgroundColor;
 
 /// enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Set before loading view.
+/// there's some more logic involved, e.g. is the default white statusbar not hidden on a HUD change.
 @property(nonatomic, assign, getter=isSrobbleBarEnabled) BOOL scrobbleBarEnabled;
 
 /// enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
+
+/// status bar styling. Defaults to PSPDFStatusBarSmartBlack.
+@property(nonatomic, assign) PSPDFStatusBarStyleSetting statusBarStyleSetting;
 
 /// tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
