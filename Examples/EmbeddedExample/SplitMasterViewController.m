@@ -10,7 +10,7 @@
 
 @interface SplitMasterViewController() 
 @property(nonatomic, retain) PSPDFViewController *pdfController;
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@property (nonatomic, retain) UIPopoverController *masterPopoverController;
 @end
 
 // note that it would be much better if we directly use PSPDFViewController,
