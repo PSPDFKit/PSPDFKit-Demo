@@ -28,7 +28,7 @@
     NSUInteger pageCount_;
     NSMutableDictionary *pageInfoCache_;
     NSMutableDictionary *pageCountCache_;
-    PSPDFMAZeroingWeakRef *pdfControllerRef_;
+    PSPDFViewController *displayingPdfController_; // weak
     
     PSPDFDocumentSearcher *documentSearcher_;
     PSPDFOutlineParser *outlineParser_;

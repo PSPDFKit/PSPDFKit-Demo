@@ -49,7 +49,6 @@ enum {
     UISegmentedControl *viewModeSegment_;
     NSUInteger lastPage_;
     NSUInteger page_;
-    NSUInteger lastDisplayedPage_;
     UIInterfaceOrientation lastOrientation_;
     
     // paging scrollview
