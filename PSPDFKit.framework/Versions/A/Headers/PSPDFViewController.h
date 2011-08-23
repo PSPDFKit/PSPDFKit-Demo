@@ -1,5 +1,5 @@
 //
-//  PSPDFController.h
+//  PSPDFViewController.h
 //  PSPDFKit
 //
 //  Created by Peter Steinberger on 7/20/11.

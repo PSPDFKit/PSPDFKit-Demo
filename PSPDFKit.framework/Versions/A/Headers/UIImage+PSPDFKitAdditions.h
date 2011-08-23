@@ -33,4 +33,7 @@ typedef enum {
 /// process image and preload completely
 - (UIImage *)pspdf_preloadedImage;
 
+/// calculates scale for images
++ (CGFloat)pspdf_scaleForImageSize:(CGSize)imageSize bounds:(CGSize)boundsSize;
+
 @end
