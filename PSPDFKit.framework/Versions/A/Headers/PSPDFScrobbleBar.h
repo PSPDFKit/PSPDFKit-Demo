@@ -17,6 +17,7 @@
     NSUInteger thumbCount_;
     NSInteger lastTouchedPage_;
     BOOL touchInProgress_;
+    BOOL viewLocked_;
     
     UIImageView *positionImage_;
     UIImageView *positionImage2_;
@@ -35,7 +36,8 @@
 /// current selected page
 @property(nonatomic, assign) NSUInteger page;
 
-/// weak linked pdf controller
-//@property(nonatomic, assign, readonly) PSPDFViewController *pdfController;
+/// locks view for animations
+@property(nonatomic, assign, getter=isViewLocked) BOOL viewLocked;
+
 
 @end

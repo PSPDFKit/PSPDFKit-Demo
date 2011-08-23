@@ -136,3 +136,10 @@ __v1.5.2 - 23/Aug/2011__
 *  fixes a race condition when changing documents while annotations are still parsed
 *  fixes a crash when removing the view while a scrolling action is still active
 *  possible bug fix for a "no autorelease pool in place"
+
+__v1.5.3 - 23/Aug/2011__
+
+*  add correct aspect ratio for thumbnails
+*  improve thumbnail switch animation
+*  improve memory use during thumbnail display
+*  improve thumbnail scrolling speed

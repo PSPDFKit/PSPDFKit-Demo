@@ -1,5 +1,5 @@
 //
-//  AMAsyncImageGridViewCell.h
+//  PSPDFThumbnailGridViewCell.h
 //  PSPDFKit
 //
 //  Created by Peter Steinberger on 7/20/11.
@@ -12,11 +12,9 @@
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting
 #define kPSPDFShrinkOwnImagesTresholdFactor 1.5
 
-// animated thumb loading is pretty slow
-//#define kPSPDFAnimateThumbnailLoading
-
 @interface PSPDFThumbnailGridViewCell : AQGridViewCell <PSPDFCacheDelegate> {
     PSPDFDocument *document_;
+    CALayer *shadowLayer_;
     UIImageView *imageView_;
     UILabel *sideLabel_;
     NSUInteger page_;
