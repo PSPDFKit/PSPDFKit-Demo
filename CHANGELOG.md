@@ -102,7 +102,7 @@ __v1.4.2 - 17/Aug/2011__
 *  fixes an assertion "main thread" when rapidly allocating/deallocating PSPDFViewController. Tip: Use the .document property to change documents instead if creating new controllers, it's much less expensive.
 *  fixes incorrect tile setting in scrobble bar
 
-__v1.4.3 - 21/Aug/2011__
+__v1.4.3 - 22/Aug/2011__
 
 *  enables page bouncing (allow zooming < 1, bounces back)
 *  add setting for status bar management (leave alone, black, etc)
@@ -111,3 +111,14 @@ __v1.4.3 - 21/Aug/2011__
 *  fixes issue where status bar was not taken into account on cache creation
 *  fixes issue where pages were sometimes misaligned by 0.5-1 pixel
 *  fixes issue where page shadow was not animated on zoomIn/zoomOut
+
+__v1.5.0 - 23/Aug/2011__
+
+*  add advanced page preload - fully preloads pages in memory for even faster display
+*  API change: PSPDFDocument now has a displayingPdfController attached if displayed. isDisplayed is removed.
+*  improves animation between thumbnails and page view
+*  improves scrolling performance
+*  fixes crash when caching pages on iOS 4.0/iPhone
+*  fixes crashes related to fast allocating/deallocating PSPDFViewControllers.
+*  fixes issue where tap at rightmost border would not be translated to a next page event
+*  fixes assertion when viewDidDisappear was not called

@@ -124,8 +124,11 @@ enum {
 /// document that will be displayed.
 @property(nonatomic, retain) PSPDFDocument *document;
 
-/// current page displayed
+/// current page displayed, not landscape corrected
 @property(nonatomic, assign, readonly) NSUInteger page;
+
+/// current page displayed, landscape corrected
+@property(nonatomic, assign, readonly) NSUInteger realPage;
 
 /// view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails
 @property(nonatomic, assign) PSPDFViewMode viewMode;
