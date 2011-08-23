@@ -195,6 +195,9 @@
     // create new document
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    
+    // if we mix documents, they sure have different aspect ratios. This is a bit slower though.w
+    document.aspectRatioEqual = NO;
 
     // we have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
     [[PSPDFCache sharedPSPDFCache] clearCache];
