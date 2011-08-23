@@ -78,7 +78,7 @@
 #pragma mark KVO
 
 - (void)updateProgressAnimated:(BOOL)animated {
-    float progressTotal = 1.0;
+    float progressTotal = 1.f;
     
     if ([observedMagazineDownloads_ count]) {
         progressTotal = [[observedMagazineDownloads_ valueForKeyPath:@"@avg.downloadProgress"] floatValue];
@@ -198,8 +198,8 @@
         progressView_ = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];    
         CGRect contentFrame = self.contentView.frame;
         CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : roundf(kProgressBarWidth * kiPhoneReductionFactor*1.1f);
-        progressView_.frame = CGRectMake(0, 0, progressViewWidth, 21);
-        progressView_.center = CGPointMake(roundf(contentFrame.size.width/2), roundf(contentFrame.size.height*10/11));
+        progressView_.frame = CGRectMake(0.f, 0.f, progressViewWidth, 21.f);
+        progressView_.center = CGPointMake(roundf(contentFrame.size.width/2.f), roundf(contentFrame.size.height*10.f/11.f));
         [self.contentView addSubview:progressView_];
     }
     return progressView_;
@@ -210,24 +210,24 @@
     if(darken && !progressViewBackground_) {
         progressViewBackground_ = [[UIView alloc] initWithFrame:self.contentView.frame];
         progressViewBackground_.backgroundColor = [UIColor blackColor];
-        progressViewBackground_.alpha = 0.5;
+        progressViewBackground_.alpha = 0.5f;
     }
     
     if (darken && !progressViewBackground_.superview) {
-        progressViewBackground_.alpha = 0.0;
+        progressViewBackground_.alpha = 0.f;
         [self.contentView addSubview:progressViewBackground_];
         [self.contentView bringSubviewToFront:[self progressView]];
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
-                progressViewBackground_.alpha = 0.5;                        
+                progressViewBackground_.alpha = 0.5f;                        
             }];
         }else {
-            progressViewBackground_.alpha = 0.5;                                    
+            progressViewBackground_.alpha = 0.5f;                                    
         }
     }else if(!darken && progressViewBackground_.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
-                progressViewBackground_.alpha = 0.0;                                    
+                progressViewBackground_.alpha = 0.f;                                    
             } completion:^(BOOL finished) {
                 if (finished) {
                     [progressViewBackground_ removeFromSuperview];
@@ -241,14 +241,14 @@
 
 - (void)setProgress:(float)theProgress animated:(BOOL)animated {
     [[self progressView] setProgress:theProgress];
-    BOOL shouldDarkenView = theProgress < 1.0;
+    BOOL shouldDarkenView = theProgress < 1.f;
     [self darkenView:shouldDarkenView animated:animated];
     
     // remove progressView
     if (!shouldDarkenView && progressView_.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^(void) {
-                self.progressView.alpha = 0.0;
+                self.progressView.alpha = 0.f;
             } completion:^(BOOL finished) {
                 MCReleaseViewNil(progressView_);
             }];
