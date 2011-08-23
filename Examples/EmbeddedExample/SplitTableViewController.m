@@ -8,6 +8,8 @@
 
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
+#import <PSPDFKit/PSPDFKit.h>
+//#import "PSPDFKit.h"
 
 @interface SplitTableViewController()
 @property(nonatomic, retain) NSArray *content;
@@ -34,7 +36,8 @@
         BOOL isDir;
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
             if (!isDir) {
-                [folders addObject:folder];
+                PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:fullPath isDirectory:NO]];
+                [folders addObject:document];
             }
         }
     }
@@ -48,13 +51,16 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
         self.title = @"Files";
-
+        
         content_ = [[self filesFromSampleDir] copy];
+        
+        [[PSPDFCache sharedPSPDFCache] addDelegate:self];
     }
     return self;
 }
 
 - (void)dealloc {
+    [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
     masterVC_ = nil;
     [content_ release];
     [super dealloc];
@@ -63,15 +69,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
     // ensure we have an initial selection [perform late, wait for master VC to load]
-        if (![self.tableView indexPathForSelectedRow]) {
-            NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-            [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-        }
+    if (![self.tableView indexPathForSelectedRow]) {
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+        [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+    }    
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -93,8 +99,10 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
     }
     
-    cell.textLabel.text = [[self.content objectAtIndex:indexPath.row] lastPathComponent];
-    
+    PSPDFDocument *document = [self.content objectAtIndex:indexPath.row];
+    cell.textLabel.text = document.title;
+    cell.imageView.image = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];    
+
     return cell;
 }
 
@@ -103,14 +111,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"pressed index %d", indexPath.row);
-
-    // create folder reference
-    NSString *sampleFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
-    NSString *documentStringPath = [sampleFolder stringByAppendingPathComponent:[self.content objectAtIndex:indexPath.row]];
     
-    // create and set pdf document
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:documentStringPath]];
+    PSPDFDocument *document = [self.content objectAtIndex:indexPath.row];
     [self.masterVC displayDocument:document];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFCacheDelegate
+
+- (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size; {
+    if (size == PSPDFSizeTiny && page == 0) {
+        for (PSPDFDocument *aDocument in self.content) {
+            if (document == aDocument) {
+                NSUInteger index = [content_ indexOfObject:document];
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                break;
+            }
+        }
+    }
 }
 
 @end
