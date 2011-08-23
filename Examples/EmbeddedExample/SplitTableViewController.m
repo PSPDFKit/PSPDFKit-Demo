@@ -9,7 +9,6 @@
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
 #import <PSPDFKit/PSPDFKit.h>
-//#import "PSPDFKit.h"
 
 @interface SplitTableViewController()
 @property(nonatomic, retain) NSArray *content;
@@ -37,6 +36,7 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
             if (!isDir) {
                 PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:fullPath isDirectory:NO]];
+                document.aspectRatioEqual = NO; // let them calculate!
                 [folders addObject:document];
             }
         }
