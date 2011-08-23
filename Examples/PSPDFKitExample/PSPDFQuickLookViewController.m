@@ -61,7 +61,7 @@
  * @param index The index of the item to preview.
  * @result An item conforming to the QLPreviewItem protocol.
  */
-- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+- (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)cellIndex {
     PSPDFQuickLookMagazineContainer *container = [[[PSPDFQuickLookMagazineContainer alloc] init] autorelease];
     container.document = self.document;
     return container;

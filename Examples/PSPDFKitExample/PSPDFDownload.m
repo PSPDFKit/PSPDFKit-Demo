@@ -82,7 +82,7 @@
     // remove progress view, animated
     if (progressView_ && (status_ == PSPDFStoreDownloadFinished || status_ == PSPDFStoreDownloadFailed)) {
         [UIView animateWithDuration:0.25 delay:0 options:0 animations:^{
-            progressView_.alpha = 0.0;
+            progressView_.alpha = 0.f;
         } completion:^(BOOL finished) {
             if (finished) {
                 progressView_.hidden = YES;
