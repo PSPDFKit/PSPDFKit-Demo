@@ -10,9 +10,7 @@ If you need something faster, with more control, thumbnails, search, etc - PSPDF
 
 PSPDFKit is fully compatible with iPhone/iPad on iOS4 and iOS5, works with classical retain/release or ARC.
 
-__PSPDFKit just launched, [get 10% off with coupon code "EARLYBIRD" - only works a few days!](https://sites.fastspring.com/petersteinberger/instant/pspdfkit).__
-
-Please report any bugs via [GitHub Issues](https://github.com/steipete/PSPDFKit-Demo/issues).
+__[Check out the homepage for a screencast, purchase informations and the full feature list](http://pspdfkit.com)__
 
 # You can purchase a license and the full source code at http://pspdfkit.com.
 
