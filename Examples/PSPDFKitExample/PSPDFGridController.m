@@ -225,8 +225,9 @@
     PSPDFImageGridViewCell * cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCellWithIdentifier:MagazineCellIdentifier];
     if (!cell) {
         CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
-        cell = [[[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.f, 0.f, roundf(150.f*thumbnailSizeReductionFactor), roundf(200.f*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier] autorelease];
+        cell = [[[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.f, 0.f, roundf(154.f*thumbnailSizeReductionFactor), roundf(208.f*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier] autorelease];
         cell.selectionGlowColor = [UIColor blueColor];
+        cell.showingSiteLabel = NO;
     }
     
     if (self.magazineFolder) {
