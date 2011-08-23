@@ -47,6 +47,7 @@
 }
 
 - (void)dealloc {
+    self.delegate = nil;
     [customViewModeSegment_ release];
     [super dealloc];
 }

@@ -43,6 +43,33 @@
     }
     return folders;
 }
+
+// tests fast cycling through the pdf elements
+- (void)cycleAction {
+    [[PSPDFCache sharedPSPDFCache] clearCache];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        for (int i = 0; i < [content_ count]; i++) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+            });
+            [NSThread sleepForTimeInterval:0.1];
+        }        
+        
+        // and back up!
+        for (int i = [content_ count]-1; i >= 0; i--) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+            });
+            [NSThread sleepForTimeInterval:0.05];
+        }           
+    });
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -55,6 +82,8 @@
         content_ = [[self filesFromSampleDir] copy];
         
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)] autorelease];
     }
     return self;
 }
