@@ -28,6 +28,8 @@
     
     // add items to tabbar
     FirstViewController *firstVC = [[[FirstViewController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
+    UINavigationController *firstNavVC = [[[UINavigationController alloc] initWithRootViewController:firstVC] autorelease];
+    
     
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"macbook_air_users_guide.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
@@ -50,9 +52,9 @@
         
         splitVC.viewControllers = [NSArray arrayWithObjects:tableNavVC, hostNavVC, nil];
 
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstVC, secondVC, splitVC, nil] animated:NO];
+        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, splitVC, nil] animated:NO];
     }else { 
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstVC, secondVC, nil] animated:NO];
+        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, nil] animated:NO];
     }
     
     [self.window makeKeyAndVisible];

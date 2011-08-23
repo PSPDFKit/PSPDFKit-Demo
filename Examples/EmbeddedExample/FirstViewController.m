@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import <PSPDFKit/PSPDFKit.h>
 
 @implementation FirstViewController
 
@@ -32,6 +33,25 @@
     [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];    
 }
 
+
+- (void)pushView {
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    pdfController.pageMode = PSPDFPageModeSingle;
+    pdfController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:pdfController animated:YES];
+}
+
+- (void)openModalView {
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    pdfController.pageMode = PSPDFPageModeSingle;
+    UINavigationController *navCtrl = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
+    [self presentModalViewController:navCtrl animated:YES];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -45,6 +65,11 @@
         [self copySampleToDocumentsFolder:@"Developers_Guide_8th.pdf"];
         [self copySampleToDocumentsFolder:@"amazon-dynamo-sosp2007.pdf"];
         
+        // add button to push view
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)] autorelease];
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)] autorelease];
+
     }
     return self;
 }
