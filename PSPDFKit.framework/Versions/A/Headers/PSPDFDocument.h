@@ -7,6 +7,7 @@
 //
 
 #import "PSPDFCache.h"
+#import "PSPDFMAZeroingWeakRef.h"
 
 @class PSPDFDocumentSearcher, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser;
 
@@ -23,11 +24,11 @@
     BOOL outlineEnabled_;
     BOOL annotationsEnabled_;
     BOOL isDestroyed_;
-    BOOL displayed_;
     BOOL twoStepRenderingEnabled_;
     NSUInteger pageCount_;
     NSMutableDictionary *pageInfoCache_;
     NSMutableDictionary *pageCountCache_;
+    PSPDFMAZeroingWeakRef *pdfControllerRef_;
     
     PSPDFDocumentSearcher *documentSearcher_;
     PSPDFOutlineParser *outlineParser_;
@@ -125,8 +126,9 @@
 /// or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
 @property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
 
-/// returns if document is currently displayed by a PSPDFViewController. Don't set this yourself. Optimizes caching.
-@property(nonatomic, assign, getter=isDisplayed) BOOL displayed;
+/// if document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
+@property(nonatomic, assign) PSPDFViewController *displayingPdfController;
+
 
 /// Text extraction class for current document. Readonly.
 @property(nonatomic, retain, readonly) PSPDFDocumentSearcher *documentSearcher;
