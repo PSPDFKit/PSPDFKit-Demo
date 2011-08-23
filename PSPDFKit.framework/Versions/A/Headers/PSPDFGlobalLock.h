@@ -10,12 +10,12 @@
 
 /// pdf reading needs memory, which is a rare resource. So we lock access very carefully.
 @interface PSPDFGlobalLock : NSObject {
-    BOOL                clearCacheRequested_;
-    CGPDFPageRef        pdfPage_;
-    NSInteger           page_;
-    CGPDFDocumentRef    pdfDocument_;
-    NSURL               *pdfPath_;
-    NSLock              *pdfGlobalLock_;
+    BOOL              clearCacheRequested_;
+    CGPDFPageRef      pdfPage_;
+    NSInteger         page_;
+    CGPDFDocumentRef  pdfDocument_;
+    NSURL            *pdfPath_;
+    NSLock           *pdfGlobalLock_;
 }
 
 /// get global singleton.
@@ -29,6 +29,7 @@
 - (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
 
 /// returns a page reference that is autoreleased, doesn't lock the system.
+/// still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely. 
 - (CGPDFPageRef)pageRefWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // DANGER, WILL ROBINSON!
 
 /// free lock with CGPDFPageRef
@@ -48,6 +49,6 @@
 - (void)unlockGlobal;
 
 /// clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.
-- (void)clearCache:(BOOL)forced;
+- (void)requestClearCacheAndWait:(BOOL)wait;
 
 @end

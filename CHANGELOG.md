@@ -126,3 +126,13 @@ __v1.5.0 - 23/Aug/2011__
 __v1.5.1 - 23/Aug/2011__
 
 *  fixes setting of back button when view is pushed non-modally
+
+__v1.5.2 - 23/Aug/2011__
+
+*  add basic compatibility with GCC (LLVM is advised)
+*  renamed button "Single" to "Page"
+*  fixes page navigation for search/outline view
+*  fixes a rare deadlock on PSPDFViewController initialization
+*  fixes a race condition when changing documents while annotations are still parsed
+*  fixes a crash when removing the view while a scrolling action is still active
+*  possible bug fix for a "no autorelease pool in place"
