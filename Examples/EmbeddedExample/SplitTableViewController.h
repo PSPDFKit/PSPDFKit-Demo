@@ -11,7 +11,7 @@
 
 @class  SplitMasterViewController;
 
-@interface SplitTableViewController : UITableViewController {
+@interface SplitTableViewController : UITableViewController <PSPDFCacheDelegate> {
     SplitMasterViewController *masterVC_;
     NSArray *content_;
 }
