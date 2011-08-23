@@ -52,6 +52,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIView
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page; {
