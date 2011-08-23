@@ -191,7 +191,7 @@ enum {
 /// note that the toolbar is only displayed, if PSPDFViewController is inside a UINavigationController!
 - (void)createToolbar;
 - (UIBarButtonItem *)toolbarBackButton; // defaults to "Documents"
-- (NSArray *)additionalLeftToolbarButtons;
+- (NSArray *)additionalLeftToolbarButtons; // not used when not modal
 - (void)updateToolbars;
 
 // called from scrollviews

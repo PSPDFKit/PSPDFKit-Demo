@@ -122,3 +122,7 @@ __v1.5.0 - 23/Aug/2011__
 *  fixes crashes related to fast allocating/deallocating PSPDFViewControllers.
 *  fixes issue where tap at rightmost border would not be translated to a next page event
 *  fixes assertion when viewDidDisappear was not called
+
+__v1.5.1 - 23/Aug/2011__
+
+*  fixes setting of back button when view is pushed non-modally
