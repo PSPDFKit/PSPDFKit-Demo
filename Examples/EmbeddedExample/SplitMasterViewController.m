@@ -47,7 +47,7 @@
     } 
     
     // if controller is already displayed, destroy it first
-    if (!self.pdfController) {
+    if (self.pdfController) {
         [pdfController_ viewWillDisappear:NO];
         [pdfController_.view removeFromSuperview];
         [pdfController_ viewDidAppear:NO];
