@@ -98,10 +98,11 @@
     [self.pdfController viewWillDisappear:NO];
     [self.pdfController.view removeFromSuperview];
     [self.pdfController viewDidDisappear:NO];
+    self.pdfController = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 // relay rotation events
@@ -144,7 +145,15 @@
         }
         replace = NO;
     }else {
+        // first remove the document
+        self.pdfController.document = nil;
+        
+        // there may be operations outstanding - wait until they're all finished up
+        [NSThread sleepForTimeInterval:2.0];
+        
+        // now copy doc (deletes doc on position of currently there)
         [self copySampleToDocumentsFolder:@"PSPDFKit.pdf"];
+        
         replace = YES;
     }
 }
