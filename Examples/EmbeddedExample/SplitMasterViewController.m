@@ -8,6 +8,8 @@
 
 #import "SplitMasterViewController.h"
 
+#define kPSPDFReusePDFViewController YES
+
 @interface SplitMasterViewController() 
 @property(nonatomic, retain) PSPDFViewController *pdfController;
 @property (nonatomic, retain) UIPopoverController *masterPopoverController;
@@ -20,6 +22,21 @@
 
 @synthesize pdfController = pdfController_;
 @synthesize masterPopoverController = masterPopoverController_;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)createPdfController {
+    self.pdfController = [[[PSPDFViewController alloc] init] autorelease];
+    
+    pdfController_.view.frame = self.view.bounds;
+    [[pdfController_ view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    //[pdfController_ setPageMode:PSPDFPageModeSingle];
+    
+    [pdfController_ viewWillAppear:NO];
+    [self.view addSubview:pdfController_.view];
+    [pdfController_ viewDidAppear:NO]; 
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -42,9 +59,17 @@
 
 - (void)displayDocument:(PSPDFDocument *)document; {
     
+    // dismiss any open popovers
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     } 
+    
+    // if reusing is active (advised), create controller only once
+    if (kPSPDFReusePDFViewController) {
+        if (!self.pdfController) {
+            [self createPdfController];
+        }
+    }else {
     
     // if controller is already displayed, destroy it first
     if (self.pdfController) {
@@ -53,15 +78,11 @@
         [pdfController_ viewDidAppear:NO];
     }
     
-    self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+        [self createPdfController];
+    }
     
-    pdfController_.view.frame = self.view.bounds;
-    [[pdfController_ view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    [pdfController_ setPageMode:PSPDFPageModeSingle];
-
-    [pdfController_ viewWillAppear:NO];
-    [self.view addSubview:pdfController_.view];
-    [pdfController_ viewDidAppear:NO];
+    // anyway, set document
+    self.pdfController.document = document;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
