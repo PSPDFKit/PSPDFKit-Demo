@@ -88,11 +88,10 @@
         [self.view addSubview:coverImageView];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [NSThread sleepForTimeInterval:0.2];
             [self presentModalViewController:pdfNavController animated:YES];
         });
         
-        [UIView animateWithDuration:0.3 delay:0.0 options:0 animations:^{
+        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             CGRect newFrame = self.view.frame;
             newFrame.origin.y -= self.navigationController.navigationBar.height;
             newFrame.size.height += self.navigationController.navigationBar.height;
