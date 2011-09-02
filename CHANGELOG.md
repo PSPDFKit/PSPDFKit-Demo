@@ -143,3 +143,12 @@ __v1.5.3 - 23/Aug/2011__
 *  improve thumbnail switch animation
 *  improve memory use during thumbnail display
 *  improve thumbnail scrolling speed
+
+__v1.5.4 - 29/Aug/2011__
+
+*  new: pdf cache handle is cleared on view controller destruction
+*  new: exposes pagingScrollView in PSPDFViewController
+*  new: scrobble bar class can be overridden and set in PSPDFViewController
+*  fixes touch handling to prev/next page for zoomed pages.
+*  fixes rasterizationScale for retina display (thumbnails)
+*  fixes non-localizable text (Document-Name Page)
