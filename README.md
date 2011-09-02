@@ -20,6 +20,8 @@ Features
 --------
 * Single or double page view support, including automatic mode that changes on landscape switch.
 
+* PDF Outline/Table Of Contents parsing & display.
+* Annotations support (Page Links, Web Links).
 * Optional setting to show first page in single mode, everything else in two pages. (magazine style)
 * Beautiful side page sliding, with shadow & gap between pages.
 * Pinch to Zoom / Double Tap to to zoom in and out.
@@ -66,11 +68,13 @@ Example Project Features
 ------------------------
 * Two minimal examples, with ARC and with classical retain/release.
 
-* Full featured Magazine Kiosk app.
+* Full featured magazine kiosk app.
 * Large file download support, even continues in the background.
-* Loads Magazines from Document folder and displays them in an animated grid.
+* Loads magazines from document folder and displays them in an animated grid.
 * Shows how you extend and implement all features of PSPDFKit.
-* Lets you play around with the Cache Settings.
+* Lets you play around with the cache settings.
+
+* Embedding Example (how to use PSPDFKit within another UIViewController)
 
 PSPDFKit.framework includes the compiled static library for armv6, armv7 and i386.
 
