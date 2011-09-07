@@ -27,15 +27,13 @@
 #pragma mark - Private
 
 - (void)createPdfController {
+    self.pdfController.delegate = nil;
     self.pdfController = [[[PSPDFViewController alloc] init] autorelease];
+    self.pdfController.delegate = self;
     
     pdfController_.view.frame = self.view.bounds;
     [[pdfController_ view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     //[pdfController_ setPageMode:PSPDFPageModeSingle];
-    
-    [pdfController_ viewWillAppear:NO];
-    [self.view addSubview:pdfController_.view];
-    [pdfController_ viewDidAppear:NO]; 
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,8 +48,44 @@
 
 - (void)dealloc {
     [masterPopoverController_ release];
+    pdfController_.delegate = nil;
     [pdfController_ release];
     [super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIView
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    if (self.pdfController) {
+        [self.view addSubview:self.pdfController.view];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.pdfController viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.pdfController viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self.pdfController viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    [self.pdfController viewDidDisappear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,6 +132,13 @@
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewControllerDelegate
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page; {
+    self.title = [NSString stringWithFormat:@"Page %d", page];    
 }
 
 @end

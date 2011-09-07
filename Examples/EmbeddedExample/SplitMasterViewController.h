@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <PSPDFKit/PSPDFKit.h>
 
-@interface SplitMasterViewController : UIViewController <UISplitViewControllerDelegate> {
+@interface SplitMasterViewController : UIViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate> {
     PSPDFViewController *pdfController_;
     UIPopoverController *masterPopoverController_;
 }
