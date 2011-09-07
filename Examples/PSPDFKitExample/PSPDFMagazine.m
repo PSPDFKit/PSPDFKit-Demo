@@ -92,4 +92,16 @@
     }
 }
 
+- (void)setDownloading:(BOOL)downloading {
+    if (downloading == downloading_) {
+        downloading_ = downloading;
+        
+        // clear cache, needed to recalculate pageCount
+        [self clearCacheForced:YES];
+        
+        // request coverImage - grid listens for those events
+        [self coverImage];
+    }
+}
+
 @end
