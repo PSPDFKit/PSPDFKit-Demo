@@ -11,7 +11,7 @@
 #import "PSPDFMagazine.h"
 #import "PSPDFMagazineFolder.h"
 #import "PSPDFExampleViewController.h"
-#import "PSPDFCacheSettingsController.h"
+#import "PSPDFSettingsController.h"
 #import "PSPDFDownload.h"
 #import "AppDelegate.h"
 
@@ -19,10 +19,15 @@
 
 #define kPSPDFGridFadeAnimationDuration 0.3f
 
+@interface PSPDFGridController()
+@property(nonatomic, retain) UIView *magazineView;
+@end
+
 @implementation PSPDFGridController
 
 @synthesize gridView = gridView_;
 @synthesize magazineFolder = magazineFolder_;
+@synthesize magazineView = magazineView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -52,11 +57,11 @@
 }
 
 - (void)optionsButtonPressed {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFCacheSettingsController class]]) {
+    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
-        PSPDFCacheSettingsController *cacheSettingsController = [[[PSPDFCacheSettingsController alloc] init] autorelease];
+        PSPDFSettingsController *cacheSettingsController = [[[PSPDFSettingsController alloc] init] autorelease];
         if (PSIsIpad()) {
             self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
             [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -65,6 +70,23 @@
         }
     }
 }
+
+/*
+- (CGPathRef)renderPaperCurl:(UIView*)imgView {
+    CGSize size = imgView.bounds.size;
+    CGFloat curlFactor = 15.0f;
+    CGFloat shadowDepth = 5.0f;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(0.0f, 0.0f)];
+    [path addLineToPoint:CGPointMake(size.width, 0.0f)];
+    [path addLineToPoint:CGPointMake(size.width, size.height + shadowDepth)];
+    [path addCurveToPoint:CGPointMake(0.0f, size.height + shadowDepth)
+            controlPoint1:CGPointMake(size.width - curlFactor, size.height + shadowDepth - curlFactor)
+            controlPoint2:CGPointMake(curlFactor, size.height + shadowDepth - curlFactor)];
+    
+    return path.CGPath;
+}*/
 
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
@@ -81,23 +103,42 @@
     if (animated) {
         UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
         AQGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
-        CGRect cellCoords = cell.frame;
+        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[[UIImageView alloc] initWithImage:coverImage] autorelease];
-        coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-        coverImageView.frame = cellCoords;
-        [self.view addSubview:coverImageView];
+        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        coverImageView.frame = CGRectMake(0, 0, cellCoords.size.width, cellCoords.size.height);
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentModalViewController:pdfNavController animated:YES];
-        });
+        UIView *magazineView = [[UIView alloc] initWithFrame:cellCoords];
+        [magazineView addSubview:coverImageView];
+        
+        /*
+        CALayer *shadowLayer = magazineView.layer;
+        shadowLayer.shadowColor = [UIColor blackColor].CGColor;
+        shadowLayer.shadowOpacity = 0.7f;
+        shadowLayer.shadowOffset = PSIsIpad() ? CGSizeMake(10.0f, 10.0f) : CGSizeMake(8.0f, 8.0f); 
+        shadowLayer.shadowRadius = 4.0f;
+        shadowLayer.masksToBounds = NO;
+        shadowLayer.shadowPath = [self renderPaperCurl:magazineView];
+         */
+        
+        coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view addSubview:magazineView];
+        self.magazineView = magazineView;
+        baseGridPosition_ = cellCoords;
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             CGRect newFrame = self.view.frame;
             newFrame.origin.y -= self.navigationController.navigationBar.height;
             newFrame.size.height += self.navigationController.navigationBar.height;
-            coverImageView.frame = newFrame;
+            magazineView.frame = newFrame;
+            self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [coverImageView removeFromSuperview];    
+            [self presentModalViewController:pdfNavController animated:NO];
+            //[magazineView removeFromSuperview];
+
+            // Delay execution of my block for 10 seconds.
+            //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            //});
         }];  
     }else {
         [self presentModalViewController:pdfNavController animated:NO];
@@ -153,7 +194,14 @@
                                                                               target:self
                                                                               action:@selector(optionsButtonPressed)] autorelease];
     
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    // use custom view to match background with PSPDFViewController
+    CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    backgroundView.opaque = YES;
+    [self.view addSubview:backgroundView];
+    
     self.gridView = [[[PSPDFGridView alloc] initWithFrame:CGRectZero] autorelease];
     self.gridView.backgroundColor = [UIColor clearColor];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -177,7 +225,7 @@
 // default style
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     
     if ([self.gridView indexOfSelectedItem] != NSNotFound) {
@@ -189,6 +237,20 @@
     
     // ensure everything is up to date (we could change magazines in other controllers)
     [self.gridView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.magazineView) {
+        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+            self.magazineView.frame = baseGridPosition_;
+            self.gridView.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            [self.magazineView removeFromSuperview];
+            self.magazineView = nil;
+        }];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
