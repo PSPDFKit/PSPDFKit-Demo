@@ -14,14 +14,17 @@
 @class PSPDFMagazineFolder;
 
 @interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
-  PSPDFMagazineFolder *magazineFolder_;  
-  PSPDFGridView *gridView_;
+    PSPDFMagazineFolder *magazineFolder_;  
+    PSPDFGridView *gridView_;
+    
+    CGRect baseGridPosition_;
+    UIView *magazineView_;
 }
 
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
 
-@property (nonatomic, retain) PSPDFGridView *gridView;
-@property (nonatomic, retain, readonly) PSPDFMagazineFolder *magazineFolder;
+@property(nonatomic, retain) PSPDFGridView *gridView;
+@property(nonatomic, retain, readonly) PSPDFMagazineFolder *magazineFolder;
 
 @end
