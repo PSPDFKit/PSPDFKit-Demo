@@ -299,7 +299,7 @@
     }
     
     if (magazine == document && page == 0 && size == PSPDFSizeThumbnail) {
-        self.image = cachedImage;
+        [self setImage:cachedImage animated:YES];
         imageView_.alpha = 0.0;
         [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
             imageView_.alpha = 1.0;
