@@ -97,8 +97,8 @@
     
     //self.pdfController.scrobbleBarEnabled = NO;
     
-    self.pdfController.view.frame = CGRectMake(80, 350, 600, 500);
-    self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.pdfController.view.frame = CGRectMake(80, 150, 600, 500);
+    self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.pdfController.view];
     
     // add a border
