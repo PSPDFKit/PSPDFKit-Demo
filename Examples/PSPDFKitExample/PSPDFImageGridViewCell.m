@@ -184,7 +184,7 @@
 }
 
 - (void)setImage:(UIImage *)anImage {
-    imageView_.image = anImage;
+    [self setImage:anImage animated:NO];
     [self setNeedsLayout];
 }
 
@@ -273,6 +273,14 @@
     }
 }
 
+- (void)setImage:(UIImage *)image animated:(BOOL)animated {
+    [super setImage:image animated:animated];
+    
+    // ensure magazineCounter is at top
+    [self.contentView addSubview:magazineCounterBadgeImage_];
+    [self.contentView addSubview:magazineCounter_];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark AQGridViewCell
@@ -300,10 +308,6 @@
     
     if (magazine == document && page == 0 && size == PSPDFSizeThumbnail) {
         [self setImage:cachedImage animated:YES];
-        imageView_.alpha = 0.0;
-        [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            imageView_.alpha = 1.0;
-        } completion:nil];
     }    
 }
 
