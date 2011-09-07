@@ -9,7 +9,7 @@
 #import "PSPDFExampleViewController.h"
 #import "AppDelegate.h"
 #import "PSPDFMagazine.h"
-#import "PSPDFCacheSettingsController.h"
+#import "PSPDFSettingsController.h"
 #import "PSPDFGridController.h"
 
 @implementation PSPDFExampleViewController
@@ -28,11 +28,11 @@
 }
 
 - (void)optionsButtonPressed:(id)sender {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFCacheSettingsController class]]) {
+    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
-        PSPDFCacheSettingsController *cacheSettingsController = [[[PSPDFCacheSettingsController alloc] init] autorelease];
+        PSPDFSettingsController *cacheSettingsController = [[[PSPDFSettingsController alloc] init] autorelease];
         if (PSIsIpad()) {
             self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
             [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -45,19 +45,20 @@
 - (void)globalVarChanged {
     
     // set global settings for magazine
-    self.magazine.searchEnabled = [PSPDFCacheSettingsController search];
-    self.magazine.annotationsEnabled = [PSPDFCacheSettingsController annotations];
-    self.magazine.outlineEnabled = [PSPDFCacheSettingsController pdfoutline];
-    self.magazine.aspectRatioEqual = [PSPDFCacheSettingsController aspectRatioEqual];
+    self.magazine.searchEnabled = [PSPDFSettingsController search];
+    self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
+    self.magazine.outlineEnabled = [PSPDFSettingsController pdfoutline];
+    self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
 
     // set global settings from PSPDFCacheSettingsController
-    self.doublePageModeOnFirstPage = [PSPDFCacheSettingsController doublePageModeOnFirstPage];
-    self.zoomingSmallDocumentsEnabled = [PSPDFCacheSettingsController zoomingSmallDocumentsEnabled];
-    self.scrobbleBarEnabled = [PSPDFCacheSettingsController scrobbleBar];
+    self.doublePageModeOnFirstPage = [PSPDFSettingsController doublePageModeOnFirstPage];
+    self.zoomingSmallDocumentsEnabled = [PSPDFSettingsController zoomingSmallDocumentsEnabled];
+    self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
+    self.fitWidth = [PSPDFSettingsController fitWidth];
     
     NSUInteger page = [self landscapePage:self.page];
-    self.pageMode = [PSPDFCacheSettingsController pageMode];
-    self.pageScrolling = [PSPDFCacheSettingsController pageScrolling];
+    self.pageMode = [PSPDFSettingsController pageMode];
+    self.pageScrolling = [PSPDFSettingsController pageScrolling];
     
     // reload scrollview
     [self reloadDataAndScrollToPage:page];
@@ -121,7 +122,7 @@
 }
 
 - (void)documentButtonPressed {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:NO];
 }
 
 - (UIBarButtonItem *)toolbarBackButton; {
