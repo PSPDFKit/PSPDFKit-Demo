@@ -13,6 +13,7 @@
 #import "PSPDFStoreManager.h"
 
 @interface PSPDFImageGridViewCell()
+@property(nonatomic, retain) UIImageView *magazineCounterBadgeImage;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
 - (void)updateProgressAnimated:(BOOL)animated;
 @end
@@ -22,6 +23,7 @@
 @synthesize magazineCount = magazineCount_;
 @synthesize magazine = magazine_;
 @synthesize magazineFolder = magazineFolder_;
+@synthesize magazineCounterBadgeImage = magazineCounterBadgeImage_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -71,6 +73,7 @@
     [magazineCounter_ release];
     [progressView_ release];
     [progressViewBackground_ release];
+    [magazineCounterBadgeImage_ release];
     [super dealloc];
 }
 
@@ -149,14 +152,17 @@
     }
 }
 
+- (void)updateMagazineBadgeFrame {
+    magazineCounterBadgeImage_.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 50, 50);
+}
+
 #define kiPhoneReductionFactor 0.588
 #define kMagazineCountLabelTag 32443
 - (void)setMagazineCount:(NSUInteger)newMagazineCount {
     if (!magazineCounter_) { // lazy creation
-        magazineCounterBadgeImage_= [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
+        self.magazineCounterBadgeImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]] autorelease];
         magazineCounterBadgeImage_.opaque = NO;
         magazineCounterBadgeImage_.alpha = 0.9f;
-        magazineCounterBadgeImage_.frame = CGRectMake(0, 0, 50, 50);
         [self.contentView addSubview:magazineCounterBadgeImage_];
         
         magazineCounter_ = [[UILabel alloc] init];
@@ -167,12 +173,13 @@
         magazineCounter_.backgroundColor = [UIColor clearColor];
         magazineCounter_.frame = CGRectMake(1, 1, 25, 25);
         magazineCounter_.textAlignment = UITextAlignmentCenter;
-        [self.contentView addSubview:magazineCounter_];
+        [magazineCounterBadgeImage_ addSubview:magazineCounter_];
     }
     
     magazineCounter_.text = [NSString stringWithFormat:@"%d", newMagazineCount];
     magazineCounter_.hidden = newMagazineCount < 2;
     magazineCounterBadgeImage_.hidden = newMagazineCount < 2;
+    [self updateMagazineBadgeFrame];
 }
 
 - (CALayer *)glowSelectionLayer {
@@ -186,6 +193,12 @@
 - (void)setImage:(UIImage *)anImage {
     [self setImage:anImage animated:NO];
     [self setNeedsLayout];
+}
+
+- (void)setImageSize:(CGSize)imageSize {
+    [super setImageSize:imageSize];
+    
+    [self updateMagazineBadgeFrame];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -277,8 +290,7 @@
     [super setImage:image animated:animated];
     
     // ensure magazineCounter is at top
-    [self.contentView addSubview:magazineCounterBadgeImage_];
-    [self.contentView addSubview:magazineCounter_];
+    [self.contentView bringSubviewToFront:magazineCounterBadgeImage_];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
