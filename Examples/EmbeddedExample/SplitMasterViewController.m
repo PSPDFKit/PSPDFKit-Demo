@@ -58,6 +58,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self createPdfController];
 
     if (self.pdfController) {
         [self.view addSubview:self.pdfController.view];
