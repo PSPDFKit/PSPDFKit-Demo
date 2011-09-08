@@ -140,7 +140,12 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page; {
-    self.title = [NSString stringWithFormat:@"Page %d", page];    
+    if (page > 0) {
+        self.title = [NSString stringWithFormat:@"Page %d", page];    
+    }else {
+        self.title = @"No document loaded.";
+        [self.pdfController setHUDVisible:NO animated:NO]; // ensure hud is disabled if no document is loaded.
+    }
 }
 
 @end
