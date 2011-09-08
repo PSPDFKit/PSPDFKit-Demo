@@ -23,6 +23,7 @@
 + (BOOL)doublePageModeOnFirstPage;
 + (BOOL)zoomingSmallDocumentsEnabled;
 + (BOOL)fitWidth;
++ (BOOL)pagingEnabled;
 + (BOOL)scrobbleBar;
 + (BOOL)aspectRatioEqual;
 + (BOOL)search;
