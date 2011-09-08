@@ -6,15 +6,16 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFCacheSettingsController.h"
+#import "PSPDFSettingsController.h"
 #import <UIKit/UIKit.h>
 
-@implementation PSPDFCacheSettingsController
+@implementation PSPDFSettingsController
 
 static PSPDFPageMode pageMode = PSPDFPageModeAutomatic;
 static PSPDFScrolling pageScrolling = PSPDFScrollingHorizontal;
 static BOOL doublePageModeOnFirstPage = NO;
 static BOOL zoomingSmallDocumentsEnabled = YES;
+static BOOL fitWidth = NO;
 static BOOL scrobbleBar = YES;
 static BOOL aspectRatioEqual = YES;
 static BOOL search = YES;
@@ -34,7 +35,7 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertial (like UIWebView)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
-                    [NSArray arrayWithObjects:@"Zoom small files", @"Scrobblebar", nil],
+                    [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil],
                     [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
                     nil];
         
@@ -129,6 +130,9 @@ static BOOL annotations = YES;
                 zoomingSmallDocumentsEnabled = cellSwitch.on;
                 break;
             case 1:
+                fitWidth = cellSwitch.on;
+                break;   
+            case 2:
                 scrobbleBar = cellSwitch.on;
                 break;                
             default:
@@ -200,6 +204,9 @@ static BOOL annotations = YES;
                         cellSwitch.on = zoomingSmallDocumentsEnabled;
                         break;
                     case 1:
+                        cellSwitch.on = fitWidth;
+                        break;
+                    case 2:
                         cellSwitch.on = scrobbleBar;
                         break;
                     default:
@@ -276,6 +283,10 @@ static BOOL annotations = YES;
 
 + (BOOL)zoomingSmallDocumentsEnabled {
     return zoomingSmallDocumentsEnabled;
+}
+
++ (BOOL)fitWidth; {
+    return fitWidth;
 }
 
 + (BOOL)scrobbleBar; {

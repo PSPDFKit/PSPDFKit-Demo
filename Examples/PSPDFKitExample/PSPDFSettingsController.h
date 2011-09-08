@@ -10,7 +10,7 @@
 
 #define kGlobalVarChangeNotification @"kGlobalVarChangeNotification"
 
-@interface PSPDFCacheSettingsController : UITableViewController {
+@interface PSPDFSettingsController : UITableViewController {
     NSArray *content_;
 }
 
@@ -22,6 +22,7 @@
 + (PSPDFScrolling)pageScrolling;
 + (BOOL)doublePageModeOnFirstPage;
 + (BOOL)zoomingSmallDocumentsEnabled;
++ (BOOL)fitWidth;
 + (BOOL)scrobbleBar;
 + (BOOL)aspectRatioEqual;
 + (BOOL)search;
