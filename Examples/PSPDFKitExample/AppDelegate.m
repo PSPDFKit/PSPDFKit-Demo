@@ -28,21 +28,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
 
-- (void)updateFolders; {    
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        if (gridController_) {
-            [gridController_.gridView reloadData];
-        }
-    });
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
     
     // enable to see the scrollviews semi-transparent
-    //kPSPDFKitDebugScrollViews = YES;
+    kPSPDFKitDebugScrollViews = NO;
     
     // enable to change anomations (e.g. enable on iPad1)
     //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
