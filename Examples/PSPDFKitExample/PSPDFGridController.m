@@ -134,11 +134,6 @@
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [self presentModalViewController:pdfNavController animated:NO];
-            //[magazineView removeFromSuperview];
-
-            // Delay execution of my block for 10 seconds.
-            //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            //});
         }];  
     }else {
         [self presentModalViewController:pdfNavController animated:NO];
