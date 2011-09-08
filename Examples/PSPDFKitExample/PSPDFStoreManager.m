@@ -50,14 +50,16 @@ static char kvoToken; // we need a static address for the kvo token
                 PSPDFMagazineFolder *contentFolder = [PSPDFMagazineFolder folderWithTitle:[fullPath lastPathComponent]];
                 NSArray *subDocumentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder error:&error];
                 for (NSString *afolder in subDocumentContents) {
-                    PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:[folder stringByAppendingPathComponent:afolder]];
-                    [contentFolder addMagazine:magazine];
+                    if ([afolder hasSuffix:@"pdf"]) {
+                        PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:[folder stringByAppendingPathComponent:afolder]];
+                        [contentFolder addMagazine:magazine];
+                    }
                 }
 
                 if ([contentFolder.magazines count]) {
                     [folders addObject:contentFolder];
                 }
-            }else {
+            }else if([fullPath hasSuffix:@"pdf"]) {
                 PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:fullPath];
                 [rootFolder addMagazine:magazine];
             }
