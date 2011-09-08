@@ -101,12 +101,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    /*
     // ensure we have an initial selection [perform late, wait for master VC to load]
     if (![self.tableView indexPathForSelectedRow]) {
         NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
         [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-    }    
+    } */   
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
