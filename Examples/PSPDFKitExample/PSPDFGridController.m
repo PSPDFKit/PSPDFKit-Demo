@@ -72,21 +72,21 @@
 }
 
 /*
-- (CGPathRef)renderPaperCurl:(UIView*)imgView {
-    CGSize size = imgView.bounds.size;
-    CGFloat curlFactor = 15.0f;
-    CGFloat shadowDepth = 5.0f;
-    
-    UIBezierPath *path = [UIBezierPath bezierPath];
-    [path moveToPoint:CGPointMake(0.0f, 0.0f)];
-    [path addLineToPoint:CGPointMake(size.width, 0.0f)];
-    [path addLineToPoint:CGPointMake(size.width, size.height + shadowDepth)];
-    [path addCurveToPoint:CGPointMake(0.0f, size.height + shadowDepth)
-            controlPoint1:CGPointMake(size.width - curlFactor, size.height + shadowDepth - curlFactor)
-            controlPoint2:CGPointMake(curlFactor, size.height + shadowDepth - curlFactor)];
-    
-    return path.CGPath;
-}*/
+ - (CGPathRef)renderPaperCurl:(UIView*)imgView {
+ CGSize size = imgView.bounds.size;
+ CGFloat curlFactor = 15.0f;
+ CGFloat shadowDepth = 5.0f;
+ 
+ UIBezierPath *path = [UIBezierPath bezierPath];
+ [path moveToPoint:CGPointMake(0.0f, 0.0f)];
+ [path addLineToPoint:CGPointMake(size.width, 0.0f)];
+ [path addLineToPoint:CGPointMake(size.width, size.height + shadowDepth)];
+ [path addCurveToPoint:CGPointMake(0.0f, size.height + shadowDepth)
+ controlPoint1:CGPointMake(size.width - curlFactor, size.height + shadowDepth - curlFactor)
+ controlPoint2:CGPointMake(curlFactor, size.height + shadowDepth - curlFactor)];
+ 
+ return path.CGPath;
+ }*/
 
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
@@ -112,13 +112,13 @@
         [magazineView addSubview:coverImageView];
         
         /*
-        CALayer *shadowLayer = magazineView.layer;
-        shadowLayer.shadowColor = [UIColor blackColor].CGColor;
-        shadowLayer.shadowOpacity = 0.7f;
-        shadowLayer.shadowOffset = PSIsIpad() ? CGSizeMake(10.0f, 10.0f) : CGSizeMake(8.0f, 8.0f); 
-        shadowLayer.shadowRadius = 4.0f;
-        shadowLayer.masksToBounds = NO;
-        shadowLayer.shadowPath = [self renderPaperCurl:magazineView];
+         CALayer *shadowLayer = magazineView.layer;
+         shadowLayer.shadowColor = [UIColor blackColor].CGColor;
+         shadowLayer.shadowOpacity = 0.7f;
+         shadowLayer.shadowOffset = PSIsIpad() ? CGSizeMake(10.0f, 10.0f) : CGSizeMake(8.0f, 8.0f); 
+         shadowLayer.shadowRadius = 4.0f;
+         shadowLayer.masksToBounds = NO;
+         shadowLayer.shadowPath = [self renderPaperCurl:magazineView];
          */
         
         coverImageView.contentMode = UIViewContentModeScaleAspectFit;
