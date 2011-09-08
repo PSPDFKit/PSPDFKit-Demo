@@ -24,7 +24,7 @@
     self.window.rootViewController = self.tabBarController;
     
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
-    kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
+    //kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
     
     // add items to tabbar
     FirstViewController *firstVC = [[[FirstViewController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
