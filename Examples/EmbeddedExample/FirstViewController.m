@@ -104,6 +104,9 @@
     // add a border
     self.pdfController.view.layer.borderColor = [UIColor blueColor].CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
+    
+    // hide after load (will animate later)
+    self.pdfController.view.layer.opacity = 0.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,6 +117,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.pdfController viewDidAppear:NO];
+    
+    // show how controller can be animated
+    self.pdfController.view.layer.opacity = 0.0f;
+    [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        self.pdfController.view.layer.opacity = 1.0f;
+    } completion:nil];
 }
 
 - (void)viewDidUnload {
