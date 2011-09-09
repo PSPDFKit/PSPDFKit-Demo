@@ -70,6 +70,11 @@
     });
 }
 
+- (void)deselectAction {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [self.masterVC displayDocument:nil];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -84,6 +89,8 @@
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
         
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)] autorelease];
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Deselect" style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)] autorelease];        
     }
     return self;
 }
