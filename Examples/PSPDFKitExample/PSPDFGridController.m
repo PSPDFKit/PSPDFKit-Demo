@@ -353,7 +353,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
-#pragma mark AMStoreManagerDelegate
+#pragma mark PSPDFStoreManagerDelegate
 
 - (void)magazineStoreBeginUpdate {
     [self.gridView beginUpdates];
