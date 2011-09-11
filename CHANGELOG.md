@@ -1,10 +1,9 @@
 # Changelog
 
-__v1.6.0 - 8/Sept/2011__
+__v1.6.0 - 11/Sept/2011__
 *  changed: willShowPage is now deprecated, use didShowPage. Both now change page when page is 51% visible. Former behavior was leftIndex
 *  changed: pageCount is now only calculated once. If it's 0, you need to call clearCacheForced:YES to reset internal state of PSPDFDocument
 *  changed: iPhone no longer uses dualPage display in landscape, now zooms current page to fullWidth
-*  new: property pagingEnabled to control paging behavior of the UIScrollView
 *  new: property fitWidth in PSPDFViewController lets you enable document fitting to width instead of largest element (usually height). Only works with horizontal scrolling
 *  new: thumbnails in Grid, ScrobbleBar, KioskExample are now faded in
 *  new: pdf view fades in. Duration is changeable in global var kPSPDFKitPDFAnimationDuration.
@@ -20,7 +19,8 @@ __v1.6.0 - 8/Sept/2011__
 *  improve: cache writes are now atomically
 *  improve: no more log warnings when initializing PSPDFViewController w/o document (e.g. when using Storyboard)
 *  improve: faster speed for documents with high page count (better caching within PSPDFDocument)
-*  improve: keyboard on searchController popover is now hidden within the same animation as popover alpha disappear.
+*  improve: keyboard on searchController popover is now hidden within the same animation as popover alpha disappear
+*  improve: grid/site animation no longer blocks interface
 *  fixes touch handling to previous/next page for zoomed pages
 *  fixes rasterizationScale for retina display (thumbnails)
 *  fixes non-localizable text (Document-Name Page)

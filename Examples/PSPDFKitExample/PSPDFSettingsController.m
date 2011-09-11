@@ -36,7 +36,7 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertial (like UIWebView)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
-                    [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Paging Enabled", @"Scrobblebar", nil],
+                    [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
                     [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
                     nil];
         
@@ -134,11 +134,11 @@ static BOOL annotations = YES;
                 fitWidth = cellSwitch.on;
                 break;   
             case 2:
-                pagingEnabled = cellSwitch.on;
-                break;                
-            case 3:
                 scrobbleBar = cellSwitch.on;
                 break;               
+            case 3:
+                pagingEnabled = cellSwitch.on;
+                break;                
             default:
                 break;
         }
@@ -211,10 +211,10 @@ static BOOL annotations = YES;
                         cellSwitch.on = fitWidth;
                         break;
                     case 2:
-                        cellSwitch.on = pagingEnabled;
+                        cellSwitch.on = scrobbleBar;
                         break;
                     case 3:
-                        cellSwitch.on = scrobbleBar;
+                        cellSwitch.on = pagingEnabled;
                         break;
                     default:
                         break;
