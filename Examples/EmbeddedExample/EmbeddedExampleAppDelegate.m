@@ -9,10 +9,10 @@
 #import "EmbeddedExampleAppDelegate.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
+#import "PSEmbeddedVideoPDFViewController.h"
 #import "IntelligentSplitViewController.h"
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
-#import <PSPDFKit/PSPDFKit.h>
 
 @implementation EmbeddedExampleAppDelegate
 
@@ -30,31 +30,29 @@
     FirstViewController *firstVC = [[[FirstViewController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
     UINavigationController *firstNavVC = [[[UINavigationController alloc] initWithRootViewController:firstVC] autorelease];
     
-    
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"macbook_air_users_guide.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     SecondViewController *pdfController = [[[SecondViewController alloc] initWithDocument:document] autorelease];
     UINavigationController *secondVC = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
+
+    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSEmbeddedVideoPDFViewController *videoVC = [[[PSEmbeddedVideoPDFViewController alloc] initWithDocument:videoDocument] autorelease];
+    UINavigationController *videoNavC = [[[UINavigationController alloc] initWithRootViewController:videoVC] autorelease];
     
     if (PSIsIpad()) {
-        
         // create and configure splitview
         IntelligentSplitViewController *splitVC = [[[IntelligentSplitViewController alloc] init] autorelease];
-
-        splitVC.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore tag:3] autorelease];
-        
+        splitVC.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"44-shoebox"] tag:3] autorelease];
         SplitTableViewController *tableVC = [[[SplitTableViewController alloc] init] autorelease];
         UINavigationController *tableNavVC = [[[UINavigationController alloc] initWithRootViewController:tableVC] autorelease];
         SplitMasterViewController *hostVC = [[[SplitMasterViewController alloc] init] autorelease];
         UINavigationController *hostNavVC = [[[UINavigationController alloc] initWithRootViewController:hostVC] autorelease];
         tableVC.masterVC = hostVC;
         splitVC.delegate = hostVC;
-        
         splitVC.viewControllers = [NSArray arrayWithObjects:tableNavVC, hostNavVC, nil];
-
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, splitVC, nil] animated:NO];
+        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, splitVC, videoNavC, nil] animated:NO];
     }else { 
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, nil] animated:NO];
+        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, videoNavC, nil] animated:NO];
     }
     
     [self.window makeKeyAndVisible];
@@ -100,17 +98,5 @@
     [_tabBarController release];
     [super dealloc];
 }
-
-/*
- // Optional UITabBarControllerDelegate method.
- - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
- }
- */
-
-/*
- // Optional UITabBarControllerDelegate method.
- - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
- }
- */
 
 @end

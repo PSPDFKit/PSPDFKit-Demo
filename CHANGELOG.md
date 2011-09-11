@@ -19,7 +19,8 @@ __v1.6.0 - 8/Sept/2011__
 *  improve: split view example code now correctly relays view events
 *  improve: cache writes are now atomically
 *  improve: no more log warnings when initializing PSPDFViewController w/o document (e.g. when using Storyboard)
-*  fixes touch handling to previous/next page for zoomed pagesw
+*  improve: faster speed for documents with high page count (better caching within PSPDFDocument)
+*  fixes touch handling to previous/next page for zoomed pages
 *  fixes rasterizationScale for retina display (thumbnails)
 *  fixes non-localizable text (Document-Name Page)
 *  fixes inefficiency creating the pagedScrollView multiple times on controller startup/rotation events
@@ -28,6 +29,7 @@ __v1.6.0 - 8/Sept/2011__
 *  fixes issue where caching was not stopped sometimes due to running background threads
 *  fixes bug where alpha of navigationBar was set even if toolbarEnabled was set to NO
 *  fixes bug where initial page delegation event was not sent when switching documents
+*  fixes crash related to too high memory pressure on older devices
 
 __v1.5.3 - 23/Aug/2011__
 *  add correct aspect ratio for thumbnails

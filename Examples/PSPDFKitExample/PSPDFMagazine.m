@@ -93,7 +93,7 @@
 }
 
 - (void)setDownloading:(BOOL)downloading {
-    if (downloading == downloading_) {
+    if (downloading != downloading_) {
         downloading_ = downloading;
         
         // clear cache, needed to recalculate pageCount

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <PSPDFKit/PSPDFKit.h>
 
 @interface SecondViewController : PSPDFViewController <PSPDFViewControllerDelegate> {
     UISegmentedControl *customViewModeSegment_;
