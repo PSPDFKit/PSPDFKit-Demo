@@ -55,7 +55,7 @@
     self.zoomingSmallDocumentsEnabled = [PSPDFSettingsController zoomingSmallDocumentsEnabled];
     self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
     self.fitWidth = [PSPDFSettingsController fitWidth];
-    self.pagingEnabled = [PSPDFSettingsController pagingEnabled];
+    //self.pagingEnabled = [PSPDFSettingsController pagingEnabled];
     
     NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFSettingsController pageMode];
