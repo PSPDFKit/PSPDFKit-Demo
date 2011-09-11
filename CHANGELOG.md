@@ -20,6 +20,7 @@ __v1.6.0 - 8/Sept/2011__
 *  improve: cache writes are now atomically
 *  improve: no more log warnings when initializing PSPDFViewController w/o document (e.g. when using Storyboard)
 *  improve: faster speed for documents with high page count (better caching within PSPDFDocument)
+*  improve: keyboard on searchController popover is now hidden within the same animation as popover alpha disappear.
 *  fixes touch handling to previous/next page for zoomed pages
 *  fixes rasterizationScale for retina display (thumbnails)
 *  fixes non-localizable text (Document-Name Page)
