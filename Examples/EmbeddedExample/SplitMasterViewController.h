@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <PSPDFKit/PSPDFKit.h>
 
 @interface SplitMasterViewController : UIViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate> {
     PSPDFViewController *pdfController_;

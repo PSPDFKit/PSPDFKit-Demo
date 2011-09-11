@@ -25,7 +25,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:2] autorelease];
+        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"114-balloon"] tag:2] autorelease];
         
         // disable default toolbar
         [self setToolbarEnabled:NO];
