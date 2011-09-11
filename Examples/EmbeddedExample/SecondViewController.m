@@ -42,6 +42,13 @@
         self.navigationItem.rightBarButtonItem = viewModeButton;
         
         self.delegate = self;
+        
+        // use large thumbnails!
+        CGSize thumbnailSize = CGSizeMake(300, 300);
+        self.thumbnailSize = thumbnailSize;
+        
+        // don't forget to also set the large size in PSPDFCache!
+        [PSPDFCache sharedPSPDFCache].thumbnailSize = thumbnailSize;
    }
     return self;
 }
