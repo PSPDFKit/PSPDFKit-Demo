@@ -8,7 +8,6 @@
 
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
-#import <PSPDFKit/PSPDFKit.h>
 
 @interface SplitTableViewController()
 @property(nonatomic, retain) NSArray *content;

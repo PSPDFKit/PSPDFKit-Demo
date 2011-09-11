@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <PSPDFKit/PSPDFKit.h>
-//#import "PSPDFKit.h"
 
 @interface FirstViewController : UIViewController {
     PSPDFViewController *pdfController_;
