@@ -63,7 +63,7 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page; {
-    self.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
+    self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
 }
 
 
