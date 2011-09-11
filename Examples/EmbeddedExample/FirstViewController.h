@@ -13,9 +13,8 @@
 }
 
 - (IBAction)appendDocument;
-
 - (IBAction)replaceDocument;
-
+- (IBAction)clearCache;
 
 @property(nonatomic, retain) PSPDFViewController *pdfController;
 

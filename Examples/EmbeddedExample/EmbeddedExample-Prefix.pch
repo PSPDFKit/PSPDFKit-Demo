@@ -8,7 +8,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
+#ifdef PSPDF_USE_SOURCE
+    #import "PSPDFKit.h"
+#else
     #import <PSPDFKit/PSPDFKit.h>
-    //#import "PSPDFKit.h"
+#endif
 
 #endif
