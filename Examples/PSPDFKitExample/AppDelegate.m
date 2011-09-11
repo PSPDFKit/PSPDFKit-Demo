@@ -34,7 +34,7 @@
     kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
     
     // enable to see the scrollviews semi-transparent
-    kPSPDFKitDebugScrollViews = NO;
+    //kPSPDFKitDebugScrollViews = YES;
     
     // enable to change anomations (e.g. enable on iPad1)
     //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
