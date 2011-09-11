@@ -42,7 +42,7 @@
 		783C783713D9A55E00CF7C9D /* badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C783513D9A55E00CF7C9D /* badge@2x.png */; };
 		788ACD0513E6A23B00689E19 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 788ACD0413E6A23B00689E19 /* Icon.png */; };
 		7892B347141845C100DC5575 /* PSPDFSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892B346141845C100DC5575 /* PSPDFSettingsController.m */; };
-		78B6E3CE13DC607600948D43 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78B6E3CB13DC607600948D43 /* Localizable.strings */; };
+		78BF7555141D382A00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7552141D382A00FF02DF /* Localizable.strings */; };
 		78D880B013EE3984009ACEB5 /* PSPDFStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */; };
 		78D880B713EE399B009ACEB5 /* NSObject+AssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B413EE399B009ACEB5 /* NSObject+AssociatedObjects.m */; };
 		78D880B813EE399B009ACEB5 /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */; };
@@ -110,8 +110,8 @@
 		788ACD0413E6A23B00689E19 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7892B345141845C100DC5575 /* PSPDFSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFSettingsController.h; sourceTree = "<group>"; };
 		7892B346141845C100DC5575 /* PSPDFSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFSettingsController.m; sourceTree = "<group>"; };
-		78B6E3CC13DC607600948D43 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		78B6E3CD13DC607600948D43 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78BF7553141D382A00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78BF7554141D382A00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78D880AE13EE3984009ACEB5 /* PSPDFStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFStoreManager.h; sourceTree = "<group>"; };
 		78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFStoreManager.m; sourceTree = "<group>"; };
 		78D880B313EE399B009ACEB5 /* NSObject+AssociatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AssociatedObjects.h"; sourceTree = "<group>"; };
@@ -284,8 +284,8 @@
 		783C782913D9961A00CF7C9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78BF7551141D382A00FF02DF /* Localization */,
 				788ACD0413E6A23B00689E19 /* Icon.png */,
-				78B6E3CA13DC607600948D43 /* Localization */,
 				783C783413D9A55E00CF7C9D /* badge.png */,
 				783C783513D9A55E00CF7C9D /* badge@2x.png */,
 				783C782A13D9961B00CF7C9D /* linen_texture_dark.png */,
@@ -294,10 +294,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		78B6E3CA13DC607600948D43 /* Localization */ = {
+		78BF7551141D382A00FF02DF /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				78B6E3CB13DC607600948D43 /* Localizable.strings */,
+				78BF7552141D382A00FF02DF /* Localizable.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -350,6 +350,7 @@
 				en,
 				English,
 				German,
+				de,
 			);
 			mainGroup = 783C779513D982B100CF7C9D;
 			productRefGroup = 783C77A113D982B100CF7C9D /* Products */;
@@ -371,8 +372,8 @@
 				783C783613D9A55E00CF7C9D /* badge.png in Resources */,
 				783C783713D9A55E00CF7C9D /* badge@2x.png in Resources */,
 				781384A613D9AF600090CAC1 /* Samples in Resources */,
-				78B6E3CE13DC607600948D43 /* Localizable.strings in Resources */,
 				788ACD0513E6A23B00689E19 /* Icon.png in Resources */,
+				78BF7555141D382A00FF02DF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,11 +412,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		78B6E3CB13DC607600948D43 /* Localizable.strings */ = {
+		78BF7552141D382A00FF02DF /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				78B6E3CC13DC607600948D43 /* English */,
-				78B6E3CD13DC607600948D43 /* German */,
+				78BF7553141D382A00FF02DF /* de */,
+				78BF7554141D382A00FF02DF /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

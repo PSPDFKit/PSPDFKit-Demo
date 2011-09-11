@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
+		78BF755E141D383B00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF755B141D383B00FF02DF /* Localizable.strings */; };
 		78DEFF9F13DECEAD005ABEFD /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */; };
 		78DEFFA213DECEB6005ABEFD /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78DEFFA113DECEB6005ABEFD /* Samples */; };
 		78DEFFA413DECEBF005ABEFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFFA313DECEBF005ABEFD /* CoreText.framework */; };
@@ -22,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		78BF755C141D383B00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78BF755D141D383B00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 		78DEFFA113DECEB6005ABEFD /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
 		78DEFFA313DECEBF005ABEFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -55,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		78BF755A141D383B00FF02DF /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				78BF755B141D383B00FF02DF /* Localizable.strings */,
+			);
+			name = Localization;
+			path = PSPDFKitExample/Resources/Localization;
+			sourceTree = SOURCE_ROOT;
+		};
 		78E6A42E13DECE56006000BB = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +111,7 @@
 		78E6A44413DECE56006000BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78BF755A141D383B00FF02DF /* Localization */,
 				7808B4E413E6A7BA005380C8 /* Icon.png */,
 				78E6A44513DECE56006000BB /* MinimalExample-Info.plist */,
 				78E6A44613DECE56006000BB /* InfoPlist.strings */,
@@ -143,6 +156,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = 78E6A42E13DECE56006000BB;
 			productRefGroup = 78E6A43A13DECE56006000BB /* Products */;
@@ -162,6 +176,7 @@
 				78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */,
 				78DEFFA213DECEB6005ABEFD /* Samples in Resources */,
 				7808B4E513E6A7BA005380C8 /* Icon.png in Resources */,
+				78BF755E141D383B00FF02DF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +195,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		78BF755B141D383B00FF02DF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78BF755C141D383B00FF02DF /* de */,
+				78BF755D141D383B00FF02DF /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		78E6A44613DECE56006000BB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
