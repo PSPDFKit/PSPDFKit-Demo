@@ -13,7 +13,6 @@
 		78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6C13EAD25B0043F631 /* UIKit.framework */; };
 		78836E6F13EAD25B0043F631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6E13EAD25B0043F631 /* Foundation.framework */; };
 		78836E7113EAD25B0043F631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E7013EAD25B0043F631 /* CoreGraphics.framework */; };
-		78836E7713EAD25B0043F631 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78836E7513EAD25B0043F631 /* InfoPlist.strings */; };
 		78836E7913EAD25B0043F631 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78836E7813EAD25B0043F631 /* main.m */; };
 		78836E7D13EAD25B0043F631 /* EmbeddedExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78836E7C13EAD25B0043F631 /* EmbeddedExampleAppDelegate.m */; };
 		78836E8013EAD25B0043F631 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78836E7E13EAD25B0043F631 /* MainWindow.xib */; };
@@ -24,6 +23,18 @@
 		78836EA013EAD49C0043F631 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E9F13EAD49C0043F631 /* CoreText.framework */; };
 		78836EA213EAD4A90043F631 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836EA113EAD4A90043F631 /* QuartzCore.framework */; };
 		78AB1CE414085D820056E688 /* IntelligentSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AB1CE314085D820056E688 /* IntelligentSplitViewController.m */; };
+		78BF7531141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BF7530141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.m */; };
+		78BF753C141D37D300FF02DF /* 10-medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7533141D37D300FF02DF /* 10-medical.png */; };
+		78BF753D141D37D300FF02DF /* 10-medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7534141D37D300FF02DF /* 10-medical@2x.png */; };
+		78BF753E141D37D300FF02DF /* 114-balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7535141D37D300FF02DF /* 114-balloon.png */; };
+		78BF753F141D37D300FF02DF /* 114-balloon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7536141D37D300FF02DF /* 114-balloon@2x.png */; };
+		78BF7540141D37D300FF02DF /* 44-shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7537141D37D300FF02DF /* 44-shoebox.png */; };
+		78BF7541141D37D300FF02DF /* 44-shoebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */; };
+		78BF7542141D37D300FF02DF /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7539141D37D300FF02DF /* 45-movie-1.png */; };
+		78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */; };
+		78BF7544141D37D300FF02DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753B141D37D300FF02DF /* star.png */; };
+		78BF7549141D37DF00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7546141D37DF00FF02DF /* Localizable.strings */; };
+		78BF754B141D380600FF02DF /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF754A141D380600FF02DF /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +48,6 @@
 		78836E6E13EAD25B0043F631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78836E7013EAD25B0043F631 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		78836E7413EAD25B0043F631 /* EmbeddedExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EmbeddedExample-Info.plist"; sourceTree = "<group>"; };
-		78836E7613EAD25B0043F631 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78836E7813EAD25B0043F631 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78836E7A13EAD25B0043F631 /* EmbeddedExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EmbeddedExample-Prefix.pch"; sourceTree = "<group>"; };
 		78836E7B13EAD25B0043F631 /* EmbeddedExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmbeddedExampleAppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +63,20 @@
 		78836EA113EAD4A90043F631 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78AB1CE214085D820056E688 /* IntelligentSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntelligentSplitViewController.h; path = EmbeddedExample/IntelligentSplitViewController.h; sourceTree = SOURCE_ROOT; };
 		78AB1CE314085D820056E688 /* IntelligentSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntelligentSplitViewController.m; path = EmbeddedExample/IntelligentSplitViewController.m; sourceTree = SOURCE_ROOT; };
+		78BF752F141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSEmbeddedVideoPDFViewController.h; sourceTree = "<group>"; };
+		78BF7530141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSEmbeddedVideoPDFViewController.m; sourceTree = "<group>"; };
+		78BF7533141D37D300FF02DF /* 10-medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical.png"; sourceTree = "<group>"; };
+		78BF7534141D37D300FF02DF /* 10-medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical@2x.png"; sourceTree = "<group>"; };
+		78BF7535141D37D300FF02DF /* 114-balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114-balloon.png"; sourceTree = "<group>"; };
+		78BF7536141D37D300FF02DF /* 114-balloon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114-balloon@2x.png"; sourceTree = "<group>"; };
+		78BF7537141D37D300FF02DF /* 44-shoebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "44-shoebox.png"; sourceTree = "<group>"; };
+		78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "44-shoebox@2x.png"; sourceTree = "<group>"; };
+		78BF7539141D37D300FF02DF /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1.png"; sourceTree = "<group>"; };
+		78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1@2x.png"; sourceTree = "<group>"; };
+		78BF753B141D37D300FF02DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		78BF7547141D37DF00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78BF7548141D37DF00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78BF754A141D380600FF02DF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BF754B141D380600FF02DF /* MediaPlayer.framework in Frameworks */,
 				78836EA213EAD4A90043F631 /* QuartzCore.framework in Frameworks */,
 				78836EA013EAD49C0043F631 /* CoreText.framework in Frameworks */,
 				78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */,
@@ -105,6 +130,7 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
 				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
 				78836E9F13EAD49C0043F631 /* CoreText.framework */,
 				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
@@ -120,14 +146,15 @@
 			children = (
 				78836E7B13EAD25B0043F631 /* EmbeddedExampleAppDelegate.h */,
 				78836E7C13EAD25B0043F631 /* EmbeddedExampleAppDelegate.m */,
-				78836E7E13EAD25B0043F631 /* MainWindow.xib */,
 				78836E8113EAD25B0043F631 /* FirstViewController.h */,
 				78836E8213EAD25B0043F631 /* FirstViewController.m */,
 				78836E8413EAD25B0043F631 /* SecondViewController.h */,
 				78836E8513EAD25B0043F631 /* SecondViewController.m */,
-				78836E8713EAD25B0043F631 /* FirstView.xib */,
+				78BF752F141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.h */,
+				78BF7530141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.m */,
 				7840C9431402B7CF008F3AC7 /* SplitView */,
 				78836E9D13EAD2FF0043F631 /* Samples */,
+				78BF7532141D37D300FF02DF /* Resources */,
 				78836E7313EAD25B0043F631 /* Supporting Files */,
 			);
 			path = EmbeddedExample;
@@ -136,13 +163,40 @@
 		78836E7313EAD25B0043F631 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78836E7E13EAD25B0043F631 /* MainWindow.xib */,
+				78836E8713EAD25B0043F631 /* FirstView.xib */,
 				78836E7413EAD25B0043F631 /* EmbeddedExample-Info.plist */,
-				78836E7513EAD25B0043F631 /* InfoPlist.strings */,
 				78836E7813EAD25B0043F631 /* main.m */,
 				78836E7A13EAD25B0043F631 /* EmbeddedExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		78BF7532141D37D300FF02DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78BF7545141D37DF00FF02DF /* Localization */,
+				78BF7533141D37D300FF02DF /* 10-medical.png */,
+				78BF7534141D37D300FF02DF /* 10-medical@2x.png */,
+				78BF7535141D37D300FF02DF /* 114-balloon.png */,
+				78BF7536141D37D300FF02DF /* 114-balloon@2x.png */,
+				78BF7537141D37D300FF02DF /* 44-shoebox.png */,
+				78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */,
+				78BF7539141D37D300FF02DF /* 45-movie-1.png */,
+				78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */,
+				78BF753B141D37D300FF02DF /* star.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		78BF7545141D37DF00FF02DF /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				78BF7546141D37DF00FF02DF /* Localizable.strings */,
+			);
+			name = Localization;
+			path = PSPDFKitExample/Resources/Localization;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -179,6 +233,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
 			);
 			mainGroup = 78836E5D13EAD25B0043F631;
 			productRefGroup = 78836E6913EAD25B0043F631 /* Products */;
@@ -195,10 +250,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78836E7713EAD25B0043F631 /* InfoPlist.strings in Resources */,
 				78836E8013EAD25B0043F631 /* MainWindow.xib in Resources */,
 				78836E8913EAD25B0043F631 /* FirstView.xib in Resources */,
 				78836E9E13EAD2FF0043F631 /* Samples in Resources */,
+				78BF753C141D37D300FF02DF /* 10-medical.png in Resources */,
+				78BF753D141D37D300FF02DF /* 10-medical@2x.png in Resources */,
+				78BF753E141D37D300FF02DF /* 114-balloon.png in Resources */,
+				78BF753F141D37D300FF02DF /* 114-balloon@2x.png in Resources */,
+				78BF7540141D37D300FF02DF /* 44-shoebox.png in Resources */,
+				78BF7541141D37D300FF02DF /* 44-shoebox@2x.png in Resources */,
+				78BF7542141D37D300FF02DF /* 45-movie-1.png in Resources */,
+				78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */,
+				78BF7544141D37D300FF02DF /* star.png in Resources */,
+				78BF7549141D37DF00FF02DF /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,20 +280,13 @@
 				7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */,
 				7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */,
 				78AB1CE414085D820056E688 /* IntelligentSplitViewController.m in Sources */,
+				78BF7531141D37C600FF02DF /* PSEmbeddedVideoPDFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		78836E7513EAD25B0043F631 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				78836E7613EAD25B0043F631 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		78836E7E13EAD25B0043F631 /* MainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -244,6 +301,15 @@
 				78836E8813EAD25B0043F631 /* en */,
 			);
 			name = FirstView.xib;
+			sourceTree = "<group>";
+		};
+		78BF7546141D37DF00FF02DF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78BF7547141D37DF00FF02DF /* de */,
+				78BF7548141D37DF00FF02DF /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
