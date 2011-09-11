@@ -93,6 +93,7 @@
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
+    self.pdfController.pageMode = PSPDFPageModeSingle;
     
     //self.pdfController.scrobbleBarEnabled = NO;
     
@@ -212,6 +213,10 @@
 
     // set document on active controller
     self.pdfController.document = document;
+}
+
+- (void)clearCache {
+    [[PSPDFCache sharedPSPDFCache] clearCache];
 }
 
 @end
