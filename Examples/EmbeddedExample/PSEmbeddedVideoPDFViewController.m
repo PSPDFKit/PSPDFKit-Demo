@@ -55,23 +55,25 @@
     // in a more complex example, you may wanna parse mockup data (e.g. from a JSON) and parse this to determine
     // which videos should be added where. There also be more than one player active, so you could use a dictionary to reference them.
     if (page == 1) {
-        [self.moviePlayer stop];
-        MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1211/sample_iTunes.mov"]];
-        self.moviePlayer = moviePlayer;
+        if (!self.moviePlayer) {
+            MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:@"http://km.support.apple.com/library/APPLE/APPLECARE_ALLGEOS/HT1211/sample_iTunes.mov"]];
+            self.moviePlayer = moviePlayer;
+            moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            
+            // add black border
+            moviePlayer.view.layer.borderColor = [UIColor blackColor].CGColor;
+            moviePlayer.view.layer.borderWidth = 1.f;
+        }
+        
         CGRect pageRect = pdfScrollView.compoundView.frame;
         CGSize videoSize = CGSizeMake(500, 375);
         CGRect videoFrame = CGRectMake(floorf((pageRect.size.width-videoSize.width)/2), floorf((pageRect.size.width-videoSize.height)/2), videoSize.width, videoSize.height);
-        moviePlayer.view.frame = videoFrame;
-        moviePlayer.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        [pdfScrollView.compoundView addSubview:moviePlayer.view];
-        
+        self.moviePlayer.view.frame = videoFrame;
+        [pdfScrollView.compoundView addSubview:self.moviePlayer.view];
+
         // auto-play
-        [moviePlayer play];
+        [self.moviePlayer play];
         
-        // add black border
-        moviePlayer.view.layer.borderColor = [UIColor blackColor].CGColor;
-        moviePlayer.view.layer.borderWidth = 1.f;
                 
         // in your full featured app, you may wanna customized the controls
         //moviePlayer.controlStyle = MPMovieControlStyleNone;
@@ -93,9 +95,8 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
     if (page == 1) {
-        [self.moviePlayer stop];
+        [self.moviePlayer pause];
         [self.moviePlayer.view removeFromSuperview];
-        self.moviePlayer = nil;
     }
 }
 
