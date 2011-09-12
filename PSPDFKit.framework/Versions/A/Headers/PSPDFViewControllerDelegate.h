@@ -24,7 +24,7 @@
 #pragma events, annotations
 
 /// deprecated. called same time as didShowPage
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page __attribute__((deprecated("use didShowPage instead, same functionality")));
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page __attribute__((deprecated)); // "use didShowPage instead, same functionality"
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page;

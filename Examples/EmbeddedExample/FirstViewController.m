@@ -50,21 +50,19 @@
 }
 
 - (void)openModalView {
-//    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
-//    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    
-    NSString *path = [[self samplesFolder] stringByAppendingPathComponent:@"pricing.pdf"];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    [document appendFile:@"availability.pdf"];
-
     
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     pdfController.pageMode = PSPDFPageModeSingle;
     UINavigationController *navCtrl = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
-    navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-    pdfController.pageMode = PSPDFPageModeDouble;
-    pdfController.doublePageModeOnFirstPage = YES;
+    if (!PSIsIpad()) {
+        navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }else {
+        navCtrl.modalPresentationStyle = UIModalPresentationFormSheet;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
+    }
     
     [self presentModalViewController:navCtrl animated:YES];
 }
@@ -122,7 +120,7 @@
     self.pdfController.view.layer.borderWidth = 2.f;
     
     // hide after load (will animate later)
-    self.pdfController.view.layer.opacity = 0.0f;
+    self.pdfController.view.alpha = 0.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,9 +133,9 @@
     [self.pdfController viewDidAppear:NO];
     
     // show how controller can be animated
-    self.pdfController.view.layer.opacity = 0.0f;
-    [UIView animateWithDuration:1.f delay:0.25f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        self.pdfController.view.layer.opacity = 1.0f;
+    self.pdfController.view.alpha = 0.0f;
+    [UIView animateWithDuration:.25f delay:0.5f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        self.pdfController.view.alpha = 1.0f;
     } completion:nil];
 }
 

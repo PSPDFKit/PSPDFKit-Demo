@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.6.1 - 13/Sept/2011__
+
+*  new: open email sheet per default when detecting mailto: annotation links. (You now need the MessageUI.framework!)
+*  new: fileUrl property in PSPDFDocument
+*  improve toolbar behavior when setting statusbar to default
+*  fixes memory related crash on older devices
+*  fixes crash when toolbarBackButton is nil
+*  greatly improved KioskExample
+
+
 __v1.6.0 - 12/Sept/2011__
 
 *  changed: willShowPage is now deprecated, use didShowPage. Both now change page when page is 51% visible. Former behavior was leftIndex
