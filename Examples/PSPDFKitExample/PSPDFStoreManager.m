@@ -13,6 +13,8 @@
 #import "AppDelegate.h"
 #import "NSObject+BlockObservation.h"
 #import "NSObject+AssociatedObjects.h"
+#import "NSOperationQueue+CWSharedQueue.h"
+#import "AFJSONRequestOperation.h"
 
 @interface PSPDFStoreManager()
 @property (nonatomic, retain) NSMutableArray *magazines;
@@ -114,26 +116,64 @@ static char kvoToken; // we need a static address for the kvo token
 
 // add a magazine to folder, then re-sort it
 - (PSPDFMagazineFolder *)addMagazineToFolder:(PSPDFMagazine *)magazine {
-    PSPDFMagazineFolder *folder = nil;
-    for (PSPDFMagazineFolder *aFolder in self.magazineFolders) {
-        if ([aFolder.title isEqualToString:magazine.title]) {
-            [aFolder addMagazine:magazine];
-            folder = aFolder;
-            break;
+    PSPDFMagazineFolder *folder = [self.magazineFolders lastObject];
+    
+    [folder addMagazine:magazine];
+    NSAssert([folder isKindOfClass:[PSPDFMagazineFolder class]], @"incorrect type");
+    dispatch_sync_reentrant([self magazineFolderQueue], ^{
+        [magazineFolders_ addObject:folder];
+        [magazineFolders_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
+    });
+    
+    return folder;
+}
+
+- (PSPDFMagazine *)magazineForUid:(NSString *)uid {
+    for (PSPDFMagazineFolder *folder in self.magazineFolders) {
+        for (PSPDFMagazine *magazine in folder.magazines) {
+            if ([magazine.uid isEqualToString:uid]) {
+                return magazine;
+            }
         }
     }
     
-    if (!folder) {
-        folder = [PSPDFMagazineFolder folderWithTitle:magazine.title];
-        [folder addMagazine:magazine];
-        NSAssert([folder isKindOfClass:[PSPDFMagazineFolder class]], @"incorrect type");
-        dispatch_sync_reentrant([self magazineFolderQueue], ^{
-            [magazineFolders_ addObject:folder];
-            [magazineFolders_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
-        });
-    }
+    return nil;
+}
+
+
+
+- (void)loadMagazinesAvailableFromWeb {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation operationWithRequest:request success:^(id JSON) {
+        NSArray *dlMagazines = (NSArray *)JSON;
+        NSMutableArray *newMagazines = [NSMutableArray array];
+        for (NSDictionary *dlMagazine in dlMagazines) {
+            if (![dlMagazine isKindOfClass:[NSDictionary class]]) {
+                PSPDFLogError(@"Error while parsing magazine JSON!");
+            }else {
+                // create and fill PSPDFMagazine
+                NSString *title = [dlMagazine objectForKey:@"name"];
+                NSString *urlString = [dlMagazine objectForKey:@"url"];
+                NSString *imageUrlString = [dlMagazine objectForKey:@"image"];
+                NSString *uid = [urlString lastPathComponent]; // we use fileName as uid - be sure to make it unique!
+                
+                PSPDFMagazine *magazine = [self magazineForUid:uid];
+                if (!magazine) {
+                    // no magazine found on-disk, create new container
+                    magazine = [PSPDFMagazine magazineWithPath:nil];                
+                    magazine.available = NO; // not yet available
+                    [newMagazines addObject:magazine];
+                }
+                magazine.title = title;
+                magazine.url = [urlString length] ? [NSURL URLWithString:urlString] : nil;
+                magazine.imageUrl = [imageUrlString length] ? [NSURL URLWithString:imageUrlString] : nil;
+                magazine.uid = uid;
+            }
+        }
+        [self addMagazinesToStore:newMagazines];
+    }];
     
-    return folder;
+    [[NSOperationQueue sharedOperationQueue] addOperation:operation];
 }
 
 // load magazines from disk
@@ -144,6 +184,9 @@ static char kvoToken; // we need a static address for the kvo token
         dispatch_sync([self magazineFolderQueue], ^{
             self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
+            
+            // now start web-request
+            [self loadMagazinesAvailableFromWeb];
         });
     });
 }
@@ -228,12 +271,16 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (void)deleteMagazine:(PSPDFMagazine *)magazine {
     [delegate_ magazineStoreBeginUpdate];
+
+    PSPDFMagazineFolder *folder = magazine.folder;
     
     // first notify, then delete from the backing store
-    [delegate_ magazineStoreMagazineDeleted:magazine];
-    PSPDFMagazineFolder *folder = magazine.folder;
-    if ([folder.magazines count] == 1) {
-        [delegate_ magazineStoreFolderDeleted:folder];
+    if (!magazine.url) {
+        [delegate_ magazineStoreMagazineDeleted:magazine];
+
+        if ([folder.magazines count] == 1) {
+            [delegate_ magazineStoreFolderDeleted:folder];
+        }
     }
     
     // cancel eventual download!
@@ -244,22 +291,31 @@ static char kvoToken; // we need a static address for the kvo token
     
     // clear everything
     [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES];
-    [magazines_ removeObject:magazine];
-    [folder removeMagazine:magazine];
-    
-    if([folder.magazines count] > 0) {
-        [delegate_ magazineStoreFolderModified:folder]; // was just modified
+
+    // if magazine has no url - delete
+    if (!magazine.url) {
+        [magazines_ removeObject:magazine];
+        [folder removeMagazine:magazine];
+        
+        if([folder.magazines count] > 0) {
+            [delegate_ magazineStoreFolderModified:folder]; // was just modified
+        }else {
+            dispatch_sync_reentrant([self magazineFolderQueue], ^{
+                [magazineFolders_ removeObject:folder]; // remove!
+            });
+        }
     }else {
-        dispatch_sync_reentrant([self magazineFolderQueue], ^{
-            [magazineFolders_ removeObject:folder]; // remove!
-        });
+        // just set availability to now - needs redownloading!
+        magazine.available = NO;
+        [delegate_ magazineStoreMagazineModified:magazine];
     }
     
     [delegate_ magazineStoreEndUpdate];
 }
 
-- (void)downloadMagazineWithUrl:(NSURL *)url; {
-    PSPDFDownload *storeDownload = [PSPDFDownload PDFDownloadWithURL:url];
+- (void)downloadMagazine:(PSPDFMagazine *)magazine; {
+    PSPDFDownload *storeDownload = [PSPDFDownload PDFDownloadWithURL:magazine.url];
+    storeDownload.magazine = magazine;
     
     // use kvo to track status
     AMBlockToken *token = [storeDownload addObserverForKeyPath:@"status" task:^(id obj, NSDictionary *change) {
@@ -292,31 +348,47 @@ static char kvoToken; // we need a static address for the kvo token
             [self finishDownload:storeDownload];
             
             // delete unfinished magazine
-            [self deleteMagazine:storeDownload.magazine];
+            //[self deleteMagazine:storeDownload.magazine];
         }
     }];
     
     [storeDownload associateValue:token withKey:&kvoToken];
     [downloadQueue_ addObject:storeDownload];  
     [storeDownload startDownload];
+    magazine.downloading = YES;
 }
 
-- (void)downloadLoadedData:(PSPDFDownload *)storeDownload {
-    PSPDFMagazine *magazine = storeDownload.magazine;
-    [self.magazines addObject:magazine]; // add magazine to store!
-    PSPDFMagazineFolder *folder = [self addMagazineToFolder:magazine];
+- (void)addMagazinesToStore:(NSArray *)magazines {
     
-    [delegate_ magazineStoreBeginUpdate];
+    // filter out magazines that are already in array
+    NSMutableArray *newMagazines = [NSMutableArray array];
+    for (PSPDFMagazine *newMagazine in magazines) {
+        NSArray *newMagazineArray = [self.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@", newMagazine]];
+        if ([newMagazineArray count] == 0) {
+            [newMagazines addObject:newMagazine];
+        }        
+    }    
     
-    // folder fresh or updated?
-    if ([folder.magazines count] == 1) {
-        [delegate_ magazineStoreFolderAdded:folder];
-    }else {
-        [delegate_ magazineStoreFolderModified:folder]; 
+    if ([newMagazines count] > 0) {
+        [delegate_ magazineStoreBeginUpdate];
+        
+        for (PSPDFMagazine *magazine in magazines) {
+            [self.magazines addObject:magazine]; // add magazine to store!
+            PSPDFMagazineFolder *folder = [self addMagazineToFolder:magazine];
+            
+            
+            // folder fresh or updated?
+            if ([folder.magazines count] == 1) {
+                [delegate_ magazineStoreFolderAdded:folder];
+            }else {
+                [delegate_ magazineStoreFolderModified:folder]; 
+            }
+            
+            [delegate_ magazineStoreMagazineAdded:magazine];    
+        }
+        
+        [delegate_ magazineStoreEndUpdate];
     }
-    
-    [delegate_ magazineStoreMagazineAdded:magazine];    
-    [delegate_ magazineStoreEndUpdate];
 }
 
 - (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine; {
