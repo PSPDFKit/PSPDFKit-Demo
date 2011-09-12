@@ -48,6 +48,11 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
     self.title = @"VideoEx"; // keep title
+    
+    // don't show title on iPhone!
+    if (!PSIsIpad()) {
+        self.navigationItem.title = @"";
+    }
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
@@ -66,7 +71,7 @@
         }
         
         CGRect pageRect = pdfScrollView.compoundView.frame;
-        CGSize videoSize = CGSizeMake(500, 375);
+        CGSize videoSize = PSIsIpad() ? CGSizeMake(500, 375) : CGSizeMake(220, 170);
         CGRect videoFrame = CGRectMake(floorf((pageRect.size.width-videoSize.width)/2), floorf((pageRect.size.width-videoSize.height)/2), videoSize.width, videoSize.height);
         self.moviePlayer.view.frame = videoFrame;
         [pdfScrollView.compoundView addSubview:self.moviePlayer.view];
