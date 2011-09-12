@@ -19,6 +19,8 @@
     
     CGRect baseGridPosition_;
     UIView *magazineView_;
+    
+    NSUInteger lastNumbersOfItemsInGridView_;
 }
 
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;
