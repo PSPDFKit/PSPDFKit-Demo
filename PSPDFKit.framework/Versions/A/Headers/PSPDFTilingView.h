@@ -18,6 +18,7 @@
     CGRect         pageRenderRect_;
     UIImage       *pdfRenderImage_;
     BOOL           renderStepTwo_;
+    NSTimer       *debugTimer_;
 }
 
 /// init the CATiledLayer

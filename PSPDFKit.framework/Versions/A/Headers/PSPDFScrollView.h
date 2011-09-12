@@ -26,6 +26,7 @@
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
     BOOL scrollOnTapPageEndEnabled_;
+    BOOL fitWidth_;
     
     NSInteger memoryWarningCounter_;
 }
@@ -43,10 +44,13 @@
 - (void)didReceiveMemoryWarning;
 
 /// weak reference to parent pdfController
-@property (nonatomic, assign) PSPDFViewController *pdfController;
+@property(nonatomic, assign) PSPDFViewController *pdfController;
 
 /// current displayed page
-@property (nonatomic, assign) NSUInteger page;
+@property(nonatomic, assign) NSUInteger page;
+
+// actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
+@property(nonatomic, retain, readonly) UIView *compoundView;
 
 /// if YES, two sites are displayed
 @property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode;
@@ -56,6 +60,9 @@
 
 /// allow zooming of small documents to screen width/height
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
+
+/// if true, pages are fit to screen width, not to either height or width (which one is larger - usually height)
+@property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
 
 /// enables/disables page shadow
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;

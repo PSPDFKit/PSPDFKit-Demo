@@ -10,7 +10,7 @@
 #import "PSPDFMAZeroingWeakRef.h"
 
 /// Scrobble bar like iBooks
-@interface PSPDFScrobbleBar : UIToolbar <PSPDFCacheDelegate> {
+@interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate> {
     PSPDFMAZeroingWeakRef *pdfControllerRef_; // PSPDFViewController
     NSUInteger page_;
     NSInteger pageMarkerPage_;
@@ -19,6 +19,7 @@
     BOOL touchInProgress_;
     BOOL viewLocked_;
     
+    UIToolbar *toolbar_;
     UIImageView *positionImage_;
     UIImageView *positionImage2_;
     NSMutableDictionary *imageViews_;    // NSNumber (page) -> UIImageView
@@ -38,6 +39,9 @@
 
 /// locks view for animations
 @property(nonatomic, assign, getter=isViewLocked) BOOL viewLocked;
+
+/// access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images
+@property(nonatomic, retain) UIToolbar *toolbar;
 
 
 @end

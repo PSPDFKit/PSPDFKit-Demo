@@ -22,14 +22,28 @@
     BOOL showingSiteLabel_;
 }
 
-@property (nonatomic, retain) PSPDFDocument *document;
-@property (nonatomic, retain) UILabel *sideLabel;
-@property (nonatomic, assign) NSUInteger page;
+/// manually set image. use if you override class
+- (void)setImage:(UIImage *)image animated:(BOOL)animated;
 
-// enables thumbnail shadow. defaults to YES
-@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
+/// called when cell resizes. use in override class to re-positionize your content
+- (void)setImageSize:(CGSize)imageSize;
 
-// enable page label
-@property (nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
+/// internal image view
+@property(nonatomic, retain) UIImageView *imageView;
+
+/// referenced document
+@property(nonatomic, retain) PSPDFDocument *document;
+
+/// site label
+@property(nonatomic, retain) UILabel *sideLabel;
+
+/// referenced page
+@property(nonatomic, assign) NSUInteger page;
+
+/// enables thumbnail shadow. defaults to YES
+@property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
+
+/// enable page label
+@property(nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
 
 @end

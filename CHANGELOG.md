@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.6.0 - 11/Sept/2011__
+__v1.6.0 - 12/Sept/2011__
 *  changed: willShowPage is now deprecated, use didShowPage. Both now change page when page is 51% visible. Former behavior was leftIndex
 *  changed: pageCount is now only calculated once. If it's 0, you need to call clearCacheForced:YES to reset internal state of PSPDFDocument
 *  changed: iPhone no longer uses dualPage display in landscape, now zooms current page to fullWidth
@@ -14,6 +14,8 @@ __v1.6.0 - 11/Sept/2011__
 *  new: HUD transparency is now a setting (see PSPDFKitGlobal)
 *  new: scrobble bar class can be overridden and set in PSPDFViewController
 *  new: directionalLock is enabled for PSPDFScrollView. This is to better match iBooks and aid scrolling
+*  new: kPSPDFKitZoomLevels is now a global setting. It's set to a sensible default, so editing is not advised.
+*  new: thumbnailSize is now changeable in PSPDFViewController
 *  improve: faster locking in PSPDFCache, no longer freezes main thread on first access of pageCount
 *  improve: split view example code now correctly relays view events
 *  improve: cache writes are now atomically
