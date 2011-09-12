@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78881B1D141EC35C00CB0739 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78881B1C141EC35C00CB0739 /* Icon.png */; };
+		78881B20141EC36700CB0739 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78881B1F141EC36700CB0739 /* MessageUI.framework */; };
 		78BF7568141D385A00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7565141D385A00FF02DF /* Localizable.strings */; };
 		78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326513DECAF600F3392F /* UIKit.framework */; };
 		78E6326813DECAF600F3392F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326713DECAF600F3392F /* Foundation.framework */; };
@@ -22,9 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78881B1C141EC35C00CB0739 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
+		78881B1F141EC36700CB0739 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78BF7566141D385A00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78BF7567141D385A00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		78E6326113DECAF600F3392F /* MinimalExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78E6326113DECAF600F3392F /* MinimalARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalARC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E6326513DECAF600F3392F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78E6326713DECAF600F3392F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78E6326913DECAF600F3392F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -46,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78881B20141EC36700CB0739 /* MessageUI.framework in Frameworks */,
 				78E6328313DECC4600F3392F /* QuartzCore.framework in Frameworks */,
 				78E6328113DECC4000F3392F /* CoreText.framework in Frameworks */,
 				78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */,
@@ -79,7 +84,7 @@
 		78E6326213DECAF600F3392F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78E6326113DECAF600F3392F /* MinimalExample.app */,
+				78E6326113DECAF600F3392F /* MinimalARC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +92,10 @@
 		78E6326413DECAF600F3392F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78E6329913DECD8400F3392F /* PSPDFKit.framework */,
+				78881B1F141EC36700CB0739 /* MessageUI.framework */,
 				78E6328213DECC4600F3392F /* QuartzCore.framework */,
 				78E6328013DECC4000F3392F /* CoreText.framework */,
-				78E6329913DECD8400F3392F /* PSPDFKit.framework */,
 				78E6326513DECAF600F3392F /* UIKit.framework */,
 				78E6326713DECAF600F3392F /* Foundation.framework */,
 				78E6326913DECAF600F3392F /* CoreGraphics.framework */,
@@ -115,6 +121,7 @@
 				78FB666913E6A7FE001A8BAC /* Icon.png */,
 				78E6329013DECD7C00F3392F /* en.lproj */,
 				78E6329313DECD7C00F3392F /* main.m */,
+				78881B1C141EC35C00CB0739 /* Icon.png */,
 				78E6329413DECD7C00F3392F /* MinimalExample-Info.plist */,
 				78E6329513DECD7C00F3392F /* MinimalExample-Prefix.pch */,
 			);
@@ -147,7 +154,7 @@
 			);
 			name = MinimalExample;
 			productName = MinimalExample;
-			productReference = 78E6326113DECAF600F3392F /* MinimalExample.app */;
+			productReference = 78E6326113DECAF600F3392F /* MinimalARC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -186,6 +193,7 @@
 				78E6329C13DECD8B00F3392F /* Samples in Resources */,
 				78FB666A13E6A7FE001A8BAC /* Icon.png in Resources */,
 				78BF7568141D385A00FF02DF /* Localizable.strings in Resources */,
+				78881B1D141EC35C00CB0739 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +252,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -263,7 +271,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -282,7 +290,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
 				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -298,7 +306,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
 				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
