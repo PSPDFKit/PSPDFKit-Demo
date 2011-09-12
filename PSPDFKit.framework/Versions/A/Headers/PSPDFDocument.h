@@ -28,6 +28,7 @@
     NSUInteger pageCount_;
     NSMutableDictionary *pageInfoCache_;
     NSMutableDictionary *pageCountCache_;
+    NSMutableDictionary *fileUrlCache_;
     PSPDFViewController *displayingPdfController_; // weak
     
     PSPDFDocumentSearcher *documentSearcher_;

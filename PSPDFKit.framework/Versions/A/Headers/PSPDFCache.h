@@ -42,6 +42,10 @@ enum {
 
 /// renders magazine pages and caches them
 @interface PSPDFCache : NSObject <NSCacheDelegate> {
+    dispatch_queue_t cacheMgmtQueue_;    // syncs adding/releasing queuedItems_/queuedDocuments_
+    dispatch_queue_t fileMgmtQueue_;     // syncs fileMgmtQueue_
+    dispatch_queue_t cacheRequestQueue_;  // syncs access for adding/removing queue requests
+    
     NSMutableDictionary *cachedFiles_;
     BOOL cacheFileDictLoaded_;
     
@@ -89,7 +93,7 @@ enum {
 /// clear cache
 - (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine;
 
-/// clear whole cache directory
+/// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
 
 /// delegate (uses MAZeroWeakRef to weak/nil out deallocated delegates)
@@ -101,7 +105,8 @@ enum {
 /// set up caching strategy
 @property(assign) PSPDFCacheStrategy strategy;
 
-/// maximum number of cached documents
+/// maximum number of cached documents. Defaults to 1.
+/// if you experience memory issues, set this to zero in your AppDelegate.
 @property(assign) NSUInteger numberOfMaximumCachedDocuments;
 
 /// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages
