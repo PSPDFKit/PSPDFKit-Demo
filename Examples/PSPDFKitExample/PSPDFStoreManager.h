@@ -41,7 +41,6 @@
 @interface PSPDFStoreManager : NSObject {
     dispatch_queue_t magazineFolderQueue_;
     id<PSPDFStoreManagerDelegate> delegate_;
-    NSMutableArray *magazines_;
     NSMutableArray *magazineFolders_;  
     NSMutableArray *downloadQueue_;
 }
@@ -59,7 +58,6 @@
 - (void)deleteMagazine:(PSPDFMagazine *)magazine;
 - (void)deleteMagazineFolder:(PSPDFMagazineFolder *)magazineFolder;
 
-@property (nonatomic, retain, readonly) NSMutableArray *magazines;
 @property (nonatomic, retain, readonly) NSMutableArray *magazineFolders;
 @property (nonatomic, retain, readonly) NSMutableArray *downloadQueue;
 
