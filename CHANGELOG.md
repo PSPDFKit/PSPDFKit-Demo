@@ -1,6 +1,7 @@
 # Changelog
 
 __v1.6.0 - 12/Sept/2011__
+
 *  changed: willShowPage is now deprecated, use didShowPage. Both now change page when page is 51% visible. Former behavior was leftIndex
 *  changed: pageCount is now only calculated once. If it's 0, you need to call clearCacheForced:YES to reset internal state of PSPDFDocument
 *  changed: iPhone no longer uses dualPage display in landscape, now zooms current page to fullWidth
@@ -35,12 +36,14 @@ __v1.6.0 - 12/Sept/2011__
 *  fixes crash related to too high memory pressure on older devices
 
 __v1.5.3 - 23/Aug/2011__
+
 *  add correct aspect ratio for thumbnails
 *  improve thumbnail switch animation
 *  improve memory use during thumbnail display
 *  improve thumbnail scrolling speed
 
 __v1.5.2 - 23/Aug/2011__
+
 *  add basic compatibility with GCC (LLVM is advised)
 *  renamed button "Single" to "Page"
 *  fixes page navigation for search/outline view
@@ -50,9 +53,11 @@ __v1.5.2 - 23/Aug/2011__
 *  possible bug fix for a "no autorelease pool in place"
 
 __v1.5.1 - 23/Aug/2011__
+
 *  fixes setting of back button when view is pushed non-modally
 
 __v1.5.0 - 23/Aug/2011__
+
 *  add advanced page preload - fully preloads pages in memory for even faster display
 *  API change: PSPDFDocument now has a displayingPdfController attached if displayed. isDisplayed is removed.
 *  improves animation between thumbnails and page view
@@ -63,6 +68,7 @@ __v1.5.0 - 23/Aug/2011__
 *  fixes assertion when viewDidDisappear was not called
 
 __v1.4.3 - 22/Aug/2011__
+
 *  enables page bouncing (allow zooming < 1, bounces back)
 *  add setting for status bar management (leave alone, black, etc)
 *  fixes issue where page index was incremented on first page after multiple rotations
@@ -72,17 +78,20 @@ __v1.4.3 - 22/Aug/2011__
 *  fixes issue where page shadow was not animated on zoomIn/zoomOut
 
 __v1.4.2 - 17/Aug/2011__
+
 *  remove queued cache requests when document cache stop is requested
 *  fixes an assertion "main thread" when rapidly allocating/deallocating PSPDFViewController. Tip: Use the .document property to change documents instead if creating new controllers, it's much less expensive.
 *  fixes incorrect tile setting in scrobble bar
 
 __v1.4.1 - 13/Aug/2011__
+
 *  add optional two-step rendering for more quality
 *  improve scrobble bar marker
 *  fixes annotation handling on first page
 *  fixes page orientation loading on landscape & iPhone
 
 __v1.4.0 - 13/Aug/2011__
+
 *  greatly improves PDF rendering speed!
 *  improves responsiveness of page scrolling while rendering
 *  improves cache timings
@@ -95,11 +104,13 @@ __v1.4.0 - 13/Aug/2011__
 *  other minor bugfixes and improvements
 
 __v1.3.2 - 11/Aug/2011__
+
 *  Add example to append/replace a document
 *  allow changing the document
 *  improve clearCache
 
 __v1.3.1 - 09/Aug/2011__
+
 *  Add optional vertical scrolling (pageScrolling property)
 *  Adds animation for iOS Simulator 
 *  improve thumbnail loading speed
@@ -107,6 +118,7 @@ __v1.3.1 - 09/Aug/2011__
 *  fixes a regression with zoomScale introduced in 1.3
 
 __v1.3 - 08/Aug/2011__
+
 *  Major Update!
 *  add support for pdf link annotations (site links and external links)
 *  add delegate when viewMode is changed
@@ -125,6 +137,7 @@ __v1.3 - 08/Aug/2011__
 *  fixes a rare deadlock
 
 __v1.2.3 - 05/Aug/2011__
+
 *  properly rotate pdfs if they have the /rotated property set
 *  add option to disable outline in document
 *  outline will be cached for faster access 
@@ -133,12 +146,15 @@ __v1.2.3 - 05/Aug/2011__
 *  fixes a bug with caching and invalid page numbers
 
 __v1.2.2 - 05/Aug/2011__
+
 *  fixes a crash with < iOS 4.3
 
 __v1.2.1 - 04/Aug/2011__
+
 *  detect rotation changes when offscreen
 
 __v1.2 - 04/Aug/2011__
+
 *  add EmbeddedExample
 *  allow embedding PSPDFViewController inside other viewControllers
 *  add property to control toolbar settings
@@ -146,6 +162,7 @@ __v1.2 - 04/Aug/2011__
 *  fixes potential crash on rotate
 
 __v1.1 - 03/Aug/2011__
+
 *  add PDF outline parser. If it doesn't work for you, please send me the pdf.
 *  add verbose log level
 *  improve search animation
@@ -153,4 +170,5 @@ __v1.1 - 03/Aug/2011__
 *  fixes some potential crashes in PSPDFCache
 
 __v1.0 - 01/Aug/2011__  
+
 *  First public release
