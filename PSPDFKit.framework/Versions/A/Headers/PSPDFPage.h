@@ -29,6 +29,9 @@
 /// destroys and removes CATiledLayer. Call prior deallocating
 - (void)destroyPage;
 
+/// removes background, saves memory
+- (void)removeBackgroundView;
+
 /// set background image to custom image. used in PSPDFTiledLayer.
 - (void)setBackgroundImage:(UIImage *)image animated:(BOOL)animated;
 

@@ -16,7 +16,7 @@
     PSPDFDocument *document_;
     CALayer *shadowLayer_;
     UIImageView *imageView_;
-    UILabel *sideLabel_;
+    UILabel *siteLabel_;
     NSUInteger page_;
     BOOL shadowEnabled_;
     BOOL showingSiteLabel_;
@@ -35,7 +35,7 @@
 @property(nonatomic, retain) PSPDFDocument *document;
 
 /// site label
-@property(nonatomic, retain) UILabel *sideLabel;
+@property(nonatomic, retain) UILabel *siteLabel;
 
 /// referenced page
 @property(nonatomic, assign) NSUInteger page;
