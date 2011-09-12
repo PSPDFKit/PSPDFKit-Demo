@@ -17,14 +17,12 @@
 #import "AFJSONRequestOperation.h"
 
 @interface PSPDFStoreManager()
-@property (nonatomic, retain) NSMutableArray *magazines;
 @property (nonatomic, retain) NSMutableArray *magazineFolders;
 @property (nonatomic, retain) NSMutableArray *downloadQueue;
 @end
 
 @implementation PSPDFStoreManager
 
-@synthesize magazines = magazines_;
 @synthesize magazineFolders = magazineFolders_;
 @synthesize downloadQueue = downloadQueue_;
 @synthesize delegate = delegate_;
@@ -140,8 +138,6 @@ static char kvoToken; // we need a static address for the kvo token
     return nil;
 }
 
-
-
 - (void)loadMagazinesAvailableFromWeb {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation operationWithRequest:request success:^(id JSON) {
@@ -162,12 +158,12 @@ static char kvoToken; // we need a static address for the kvo token
                     // no magazine found on-disk, create new container
                     magazine = [PSPDFMagazine magazineWithPath:nil];                
                     magazine.available = NO; // not yet available
+                    magazine.uid = uid;
                     [newMagazines addObject:magazine];
                 }
                 magazine.title = title;
                 magazine.url = [urlString length] ? [NSURL URLWithString:urlString] : nil;
                 magazine.imageUrl = [imageUrlString length] ? [NSURL URLWithString:imageUrlString] : nil;
-                magazine.uid = uid;
             }
         }
         [self addMagazinesToStore:newMagazines];
@@ -203,7 +199,9 @@ static char kvoToken; // we need a static address for the kvo token
 // forward memory warning to magazines
 - (void)didReceiveMemoryWarning {
     PSELog(@"memory warning");
-    [magazines_ makeObjectsPerformSelector:@selector(clearCache)];
+    for (PSPDFMagazineFolder *folder in self.magazineFolders) {
+        [folder.magazines makeObjectsPerformSelector:@selector(clearCache)];
+    }
 }
 
 - (void)finishDownload:(PSPDFDownload *)storeDownload {
@@ -218,7 +216,6 @@ static char kvoToken; // we need a static address for the kvo token
 - (id)init {
     if ((self = [super init])) {
         downloadQueue_ = [[NSMutableArray alloc] init];
-        magazines_ = [[NSMutableArray alloc] init];
         
         // register for memory notifications
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -236,7 +233,6 @@ static char kvoToken; // we need a static address for the kvo token
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate_ = nil;
     dispatch_release(magazineFolderQueue_);
-    [magazines_ release];
     [magazineFolders_ release];
     [downloadQueue_ release];
     [super dealloc];
@@ -258,7 +254,6 @@ static char kvoToken; // we need a static address for the kvo token
         }
         
         [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES];
-        [magazines_ removeObject:magazine];
     }
     
     [delegate_ magazineStoreFolderDeleted:magazineFolder];
@@ -294,7 +289,6 @@ static char kvoToken; // we need a static address for the kvo token
 
     // if magazine has no url - delete
     if (!magazine.url) {
-        [magazines_ removeObject:magazine];
         [folder removeMagazine:magazine];
         
         if([folder.magazines count] > 0) {
@@ -363,17 +357,18 @@ static char kvoToken; // we need a static address for the kvo token
     // filter out magazines that are already in array
     NSMutableArray *newMagazines = [NSMutableArray array];
     for (PSPDFMagazine *newMagazine in magazines) {
-        NSArray *newMagazineArray = [self.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@", newMagazine]];
-        if ([newMagazineArray count] == 0) {
-            [newMagazines addObject:newMagazine];
-        }        
+        for (PSPDFMagazineFolder *folder in self.magazineFolders) {
+            NSArray *newMagazineArray = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@", newMagazine]];
+            if ([newMagazineArray count] == 0) {
+                [newMagazines addObject:newMagazine];
+            }        
+        }
     }    
     
     if ([newMagazines count] > 0) {
         [delegate_ magazineStoreBeginUpdate];
         
         for (PSPDFMagazine *magazine in magazines) {
-            [self.magazines addObject:magazine]; // add magazine to store!
             PSPDFMagazineFolder *folder = [self addMagazineToFolder:magazine];
             
             
