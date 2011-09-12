@@ -29,7 +29,8 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-        
+    PSPDFLog(@"Kiosk Example is starting up...");
+    
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
     
