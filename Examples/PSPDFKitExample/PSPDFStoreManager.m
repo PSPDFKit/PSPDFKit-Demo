@@ -63,7 +63,7 @@ static char kvoToken; // we need a static address for the kvo token
                         [contentFolder addMagazine:magazine];
                     }
                 }
-
+                
                 if ([contentFolder.magazines count]) {
                     [folders addObject:contentFolder];
                 }
@@ -105,7 +105,7 @@ static char kvoToken; // we need a static address for the kvo token
         
         firstFolder.magazines = magazineArray;
     }
-        
+    
     return folders;
 }
 
@@ -140,10 +140,9 @@ static char kvoToken; // we need a static address for the kvo token
 - (void)loadMagazinesFromDisk {
     NSMutableArray *magazineFolders = [self searchForMagazineFolders];
     
-    dispatch_async([self magazineFolderQueue], ^{
-        self.magazineFolders = magazineFolders;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync([self magazineFolderQueue], ^{
+            self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
         });
     });
@@ -177,7 +176,6 @@ static char kvoToken; // we need a static address for the kvo token
     if ((self = [super init])) {
         downloadQueue_ = [[NSMutableArray alloc] init];
         magazines_ = [[NSMutableArray alloc] init];
-        magazineFolders_ = [[NSMutableArray alloc] init];
         
         // register for memory notifications
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];

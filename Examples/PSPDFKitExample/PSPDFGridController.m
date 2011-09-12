@@ -145,24 +145,26 @@
 
 - (void)diskDataLoaded {
     // not finished yet? return early.
-    if (![PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders) {
+    if ([[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count] == 0) {
         return;
     }
     
-    // check if we are flattened (no folders) or not
-    NSMutableIndexSet *indexSet;
-    if (kPSPDFStoreManagerPlain) {
-        self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
-        indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.magazineFolder.magazines count])];
-    }else {
-        indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count])]; 
+    // if lastNumbersOfItemsInGridView_ is > 0, grid is already loaded!
+    if(lastNumbersOfItemsInGridView_ == 0) {
+        // check if we are flattened (no folders) or not
+        NSMutableIndexSet *indexSet;
+        if (kPSPDFStoreManagerPlain) {
+            self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
+            indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.magazineFolder.magazines count])];
+        }else {
+            indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count])]; 
+        }
+        // if we're in init, this is nil and just ignored.
+        if ([indexSet count]) {
+            [self.gridView insertItemsAtIndices:indexSet withAnimation:AQGridViewItemAnimationFade];
+            [self.gridView scrollToItemAtIndex:0 atScrollPosition:AQGridViewScrollPositionTop animated:NO];
+        }
     }
-    // if we're in init, this is nil and just ignored
-    if ([indexSet count]) {
-        [self.gridView insertItemsAtIndices:indexSet withAnimation:AQGridViewItemAnimationFade];
-        [self.gridView scrollToItemAtIndex:0 atScrollPosition:AQGridViewScrollPositionTop animated:NO];
-    }
-//    [gridView_ reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -177,9 +179,6 @@
         self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Kiosk" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
-        
-        // call anyway - if store is done before we get initialized, don't fail
-        [self diskDataLoaded];
     }
     return self;
 }
@@ -259,6 +258,9 @@
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
     
+    // call anyway - if store is done before we get initialized, don't fail
+    [self diskDataLoaded];
+    
     // ensure everything is up to date (we could change magazines in other controllers)
     [self.gridView reloadData];
 }
@@ -299,11 +301,15 @@
 }
 
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
+    NSUInteger count;
     if (self.magazineFolder) {
-        return [self.magazineFolder.magazines count];
+        count = [self.magazineFolder.magazines count];
     }else {
-        return [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count];
+        count = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count];
     }
+    
+    lastNumbersOfItemsInGridView_ = count;
+    return count;
 }
 
 - (AQGridViewCell *)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)cellIndex {
