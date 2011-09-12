@@ -30,7 +30,7 @@
 - (void)destroyPage;
 
 /// set background image to custom image. used in PSPDFTiledLayer.
-- (void)setBackgroundImage:(UIImage *)image;
+- (void)setBackgroundImage:(UIImage *)image animated:(BOOL)animated;
 
 /// readonly properties. recreate page to re-set
 @property(nonatomic, assign, readonly) NSUInteger page;

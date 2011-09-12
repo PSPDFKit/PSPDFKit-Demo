@@ -19,9 +19,9 @@ enum {
 
 /// active page mode
 enum {
-    PSPDFPageModeSingle,
+    PSPDFPageModeSingle,   // Default on iPhone.
     PSPDFPageModeDouble,
-    PSPDFPageModeAutomatic // single in portrait, double in landscape. Default.
+    PSPDFPageModeAutomatic // single in portrait, double in landscape. Default on iPad.
 }typedef PSPDFPageMode;
 
 /// active scrolling direction
@@ -55,6 +55,8 @@ enum {
     UIScrollView *pagingScrollView_;
     NSMutableSet *recycledPages_;
     NSMutableSet *visiblePages_;
+    CGFloat lastContentOffset_;
+    BOOL scrolledDown_;
     
     // for rotation event
     NSInteger targetPageAfterRotate_;
@@ -76,15 +78,36 @@ enum {
     UIColor *backgroundColor_;
     CGFloat iPhoneThumbnailSizeReductionFactor_;
     CGFloat pagePadding_;
+    CGSize thumbnailSize_;
+    CGSize thumbnailMargin_;
+    NSUInteger preloadedPagesPerSide_;
     BOOL doublePageModeOnFirstPage_;
     BOOL navigationBarHidden_;
     BOOL scrobbleBarEnabled_;
     BOOL toolbarEnabled_;
     BOOL zoomingSmallDocumentsEnabled_;
     BOOL shadowEnabled_;
+    BOOL pagingEnabled_;
+    BOOL fitWidth_;
     BOOL scrollOnTapPageEndEnabled_;
     BOOL suppressHUDHideOnce_;
     BOOL magazineRectCacheLoaded_;
+    BOOL rotationActive_;
+    BOOL viewVisible_;
+    
+    struct {
+        unsigned int delegateWillDisplayDocument:1;
+        unsigned int delegateDidDisplayDocument:1;
+        unsigned int delegateWillShowPage:1;
+        unsigned int delegateDidShowPage:1;
+        unsigned int delegateDidChangeViewMode:1;
+        unsigned int delegateDidTapOnPage:1;
+        unsigned int delegateDidTapOnAnnotation:1;
+        unsigned int delegateWillLoadPage:1;
+        unsigned int delegateDidLoadPage:1;
+        unsigned int delegateWillUnloadPage:1;
+        unsigned int delegateDidUnloadPage:1;
+    } delegateFlags_;
 }
 
 /// initialize with a document
@@ -144,14 +167,25 @@ enum {
 /// allow zooming of small documents to screen width/height. Defaults to YES.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 
+/// if true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
+/// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
+/// fitWidth is currently not supported for vertical scrolling. This is a know limitation.
+@property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+
 /// page padding width between single/double pages. Defaults to 20.
 @property(nonatomic, assign) CGFloat pagePadding;
+
+/// pages that are kept in pageScrollView after last visible page. Defaults to 0. Don't set too high, needs lots of memory!
+@property(nonatomic, assign) NSUInteger preloadedPagesPerSide;
 
 /// enable/disable shadow
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// saves the popoverController if currently displayed
 @property(nonatomic, retain) UIPopoverController *popoverController;
+
+/// paging scroll view (hosts scollviews for pdf)
+@property(nonatomic, retain, readonly) UIScrollView *pagingScrollView;
 
 /// if not set, we'll use scrollViewTexturedBackgroundColor as default.
 @property(nonatomic, retain) UIColor *backgroundColor;
@@ -169,6 +203,12 @@ enum {
 /// tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
+/// change thumbnail size. Default is 162x200.
+@property(nonatomic, assign) CGSize thumbnailSize;
+
+/// change margin around thumbnails. Defaults to 10x10
+@property(nonatomic, assign) CGSize thumbnailMargin;
+
 /// thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.588
 @property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
 
@@ -185,6 +225,9 @@ enum {
 
 /// if you override PSPDFScrollView, change this.
 - (Class)scrollViewClass;
+
+/// set if you wanna override PSPDFScrobbleBar
+- (Class)scrobbleBarClass;
 
 /// override if you're changing the toolbar to your own
 /// note that the toolbar is only displayed, if PSPDFViewController is inside a UINavigationController!

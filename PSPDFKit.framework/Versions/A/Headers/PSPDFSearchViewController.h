@@ -11,6 +11,7 @@
 @class PSPDFDocument;
 @class PSPDFViewController;
 
+/// simple search controller
 @interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate> {
     PSPDFDocument *document_;
     PSPDFViewController *pdfController_; // weak
@@ -19,9 +20,13 @@
     BOOL showCancel_; // for modal display
 }
 
+/// init
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
+/// different depending on iPhone/iPad
 @property(nonatomic, assign) BOOL showCancel;
+
+/// search bar for controller
 @property(nonatomic, retain, readonly) UISearchBar *searchBar;
 
 @end

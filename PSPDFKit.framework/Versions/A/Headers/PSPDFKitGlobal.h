@@ -9,7 +9,7 @@
 // *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-#define kPSPDFKitHUDTransparency 0.9f
+extern CGFloat kPSPDFKitHUDTransparency;
 
 // return status bar width, orientation corrected, and only on iPad
 CGFloat PSStatusBarHeight(void);
@@ -19,6 +19,18 @@ BOOL PSPDFIsCrappyDevice(void);
 
 /// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 BOOL PSPDFShouldAnimate(void);
+
+/// helper to calculate new rect for specific scale
+CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
+
+/// default time to animate pdf views. Defaults to 0.15
+extern CGFloat kPSPDFKitPDFAnimationDuration;
+
+/// available zoom levels for CATiledLayer. Defaults to 4. Affects PSPDFTilingView.
+/// Setting this too high will result in a memory crash. 4 is a sensible default, you may increase it up to 5.
+/// If set too low, you get pixelerated text. Too high, and the render-process will be invoked *while* zooming,
+/// resulting in text becoming somewhat sharp, then sharp (when the correct zoom level is rendered)
+extern NSUInteger kPSPDFKitZoomLevels;
 
 enum {
     PSPDFLogLevelNothing,
