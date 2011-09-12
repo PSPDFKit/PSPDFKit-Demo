@@ -18,10 +18,16 @@
     PSPDFMagazine *magazine_;
     PSPDFMagazineFolder *magazineFolder_;
     NSMutableSet *observedMagazineDownloads_;
+    
+    // delete feature
+    UIImageView *deleteImage_;
+    BOOL showDeleteImage_;
 }
 
 @property(nonatomic, retain) UIImage *image;
 @property(nonatomic, assign) NSUInteger magazineCount;
+
+@property(nonatomic, assign) BOOL showDeleteImage;
 
 // don't set both
 @property (nonatomic, retain) PSPDFMagazine *magazine;

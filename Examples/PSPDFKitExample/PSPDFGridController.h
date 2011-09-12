@@ -21,6 +21,7 @@
     UIView *magazineView_;
     
     NSUInteger lastNumbersOfItemsInGridView_;
+    BOOL editMode_;
 }
 
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;

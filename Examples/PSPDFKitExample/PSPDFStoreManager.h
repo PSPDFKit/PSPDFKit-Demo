@@ -50,9 +50,10 @@
 
 @property(nonatomic, assign) id<PSPDFStoreManagerDelegate> delegate;
 
-- (void)downloadMagazineWithUrl:(NSURL *)url;
+- (void)downloadMagazine:(PSPDFMagazine *)magazine;
 - (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine;
-- (void)downloadLoadedData:(PSPDFDownload *)storeDownload;
+
+- (void)addMagazinesToStore:(NSArray *)magazines;
 
 // delete
 - (void)deleteMagazine:(PSPDFMagazine *)magazine;

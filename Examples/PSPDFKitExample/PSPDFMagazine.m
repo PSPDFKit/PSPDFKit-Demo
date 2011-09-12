@@ -14,6 +14,9 @@
 
 @synthesize folder = folder_;
 @synthesize downloading = downloading_;
+@synthesize available = available_;
+@synthesize url = url_;
+@synthesize imageUrl = imageUrl_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -22,6 +25,7 @@
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path; {
     NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
     PSPDFMagazine *magazine = [[(PSPDFMagazine *)[[self class] alloc] initWithUrl:url] autorelease];
+    magazine.available = YES;
     return magazine;
 }
 
@@ -35,7 +39,14 @@
 
 - (void)dealloc {
     folder_ = nil;
+    [url_ release];
+    [imageUrl_ release];
     [super dealloc];
+}
+
+- (NSString *)description {
+    NSString *description = [NSString stringWithFormat:@"<PSPDFMagazine uid:%@ pageCount:%d url:%@ basePath:%@, files:%@>", self.uid, [self pageCount], self.url, self.basePath, self.files];
+    return description;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +54,13 @@
 #pragma mark Meta Data
 
 - (UIImage *)coverImage {
-    UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
+    UIImage *coverImage = nil;
+    
+    // basic check if file is available - don't check for pageCount here, it's lazy evaluated.
+    if (self.basePath) {
+        coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
+    }
+    
     return coverImage;
 }
 
@@ -72,7 +89,7 @@
             pt2 = [PSPDFTilingView convertPDFPointToViewPoint:pt2 rect:pageInfo.pageRect rotation:pageInfo.pageRotation pageRect:pageRect];
             
             CGRect linkRectangle = CGRectMake(pt1.x, pt1.y, pt2.x - pt1.x, pt2.y - pt1.y);
-                        
+            
             // add round rect path
             CGFloat radius = 1.f;                         
             CGFloat minx = CGRectGetMinX(linkRectangle), midx = CGRectGetMidX(linkRectangle), maxx = CGRectGetMaxX(linkRectangle); 
@@ -96,11 +113,13 @@
     if (downloading != downloading_) {
         downloading_ = downloading;
         
-        // clear cache, needed to recalculate pageCount
-        [self clearCacheForced:YES];
-        
-        // request coverImage - grid listens for those events
-        [self coverImage];
+        if(!downloading) {
+            // clear cache, needed to recalculate pageCount
+            [self clearCacheForced:YES];
+            
+            // request coverImage - grid listens for those events
+            [self coverImage];
+        }
     }
 }
 

@@ -14,12 +14,14 @@
 #import "PSPDFSettingsController.h"
 #import "PSPDFDownload.h"
 #import "AppDelegate.h"
+#import "PSActionSheet.h"
 
 #import "PSPDFQuickLookViewController.h"
 
 #define kPSPDFGridFadeAnimationDuration 0.3f
 
 @interface PSPDFGridController()
+@property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, retain) UIView *magazineView;
 @property(nonatomic, retain) PSPDFMagazineFolder *magazineFolder;
 @end
@@ -29,6 +31,7 @@
 @synthesize gridView = gridView_;
 @synthesize magazineFolder = magazineFolder_;
 @synthesize magazineView = magazineView_;
+@synthesize editMode = editMode_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -42,19 +45,6 @@
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
     controller.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)] autorelease];
     [self presentModalViewController:navController animated:animated];
-}
-
-- (void)shopButtonPressed {
-    NSArray *urls = [NSArray arrayWithObjects:@"http://manuals.info.apple.com/en_US/ipad_2_user_guide.pdf", 
-                     @"http://manuals.info.apple.com/en_US/Nike_Plus_iPod_User_Guide.pdf", 
-                     @"http://manuals.info.apple.com/en_US/iPhone_4_Finger_Tips.pdf",
-                     @"http://manuals.info.apple.com/en_US/Earphones_UG.pdf",
-                     @"http://manuals.info.apple.com/en_US/iPhone_Bluetooth_Headset_UserGuide.pdf",
-                     @"http://manuals.info.apple.com/en_US/iPhone_4_Dock.pdf",
-                     nil];
-    
-    int dlIndex = random() % [urls count];
-    [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazineWithUrl:[NSURL URLWithString:[urls objectAtIndex:dlIndex]]];
 }
 
 - (void)optionsButtonPressed {
@@ -167,6 +157,34 @@
     }
 }
 
+- (void)editButtonPressed {
+    if (self.isEditMode) {
+        self.editMode = NO;
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+                                                                                   style:UIBarButtonItemStyleBordered
+                                                                                  target:self
+                                                                                  action:@selector(editButtonPressed)] autorelease];    
+        
+    }else {
+        self.editMode = YES;
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
+                                                                                   style:UIBarButtonItemStyleDone
+                                                                                  target:self
+                                                                                  action:@selector(editButtonPressed)] autorelease];    
+    }
+}
+
+- (void)setEditMode:(BOOL)editMode {
+    editMode_ = editMode;
+    
+    NSArray *visibleCells = [self.gridView visibleCells];
+    for (PSPDFImageGridViewCell *cell in visibleCells) {
+        if ([cell isKindOfClass:[PSPDFImageGridViewCell class]]) {
+            cell.showDeleteImage = editMode;
+        }
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSObject
@@ -176,7 +194,7 @@
         self.title = @"PSPDFKit Example";   
         
         // custom back button for smaller wording
-        self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Kiosk" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Kiosk", @"") style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
     }
@@ -204,15 +222,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if(!self.magazineFolder) {
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Download"
-                                                                                  style:UIBarButtonItemStyleBordered
-                                                                                 target:self
-                                                                                 action:@selector(shopButtonPressed)] autorelease];
-        
+    if (!self.magazineFolder) {
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+                                                                                   style:UIBarButtonItemStyleBordered
+                                                                                  target:self
+                                                                                  action:@selector(editButtonPressed)] autorelease];
     }
-    
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Options"
+        
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Options"
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self
                                                                               action:@selector(optionsButtonPressed)] autorelease];
@@ -320,7 +337,6 @@
         CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
         cell = [[[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.f, 0.f, roundf(154.f*thumbnailSizeReductionFactor), roundf(208.f*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier] autorelease];
         cell.selectionGlowColor = [UIColor blueColor];
-        cell.showingSiteLabel = NO;
     }
     
     if (self.magazineFolder) {
@@ -353,16 +369,43 @@
         magazine = [folder firstMagazine];
     }
     
+    AQGridViewCell *cell = [gridView cellForItemAtIndex:gridIndex];
     PSELog(@"Magazine selected: %d %@", gridIndex, magazine);    
-    
-    if ([folder.magazines count] == 1 || self.magazineFolder) {
+
+    if (self.isEditMode) {
+        // unless we have multiselect...
+        BOOL canDelete = YES;
+        NSString *message = nil;
+        if ([folder.magazines count] > 1 && !self.magazineFolder) {
+            message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineMultiple", @""), folder.title, [folder.magazines count]];
+        }else {
+            message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineSingle", @""), magazine.title];
+            canDelete = magazine.isAvailable || magazine.isDownloading;
+        }
+        if (canDelete) {
+            PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
+            deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            [deleteAction setDestructiveButtonWithTitle:NSLocalizedString(@"Delete", @"") block:^{
+                if (self.magazineFolder) {
+                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
+                }else {
+                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
+                }
+            }];
+            [deleteAction setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
+            [deleteAction showFromRect:cell.frame inView:self.view animated:YES];
+        }        
+    }
+    else if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
             [[[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Item is currently downloading."]
                                          message:nil
                                         delegate:nil
                                cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                otherButtonTitles:nil] autorelease] show];
-        }else {
+        } else if(!magazine.isAvailable && !magazine.isDownloading) {
+            [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
+        } else {
             BOOL openSuccess = [self openMagazine:magazine animated:YES cellIndex:gridIndex];
             if (!openSuccess) {
                 [self.gridView deselectItemAtIndex:gridIndex animated:NO];
@@ -385,6 +428,9 @@
             [self.navigationController pushViewController:gridController animated:YES];                
         }
     }
+    
+    // remove selection
+    [self.gridView deselectItemAtIndex:gridIndex animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

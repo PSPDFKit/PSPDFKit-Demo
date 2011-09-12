@@ -25,6 +25,20 @@
     return folder;
 }
 
+// only deregister if delegate belongs to us
+- (void)removeMagazineFolderReferences {
+    for (PSPDFMagazine *magazine in magazines_) {
+        if (magazine.folder == self) {
+            magazine.folder = nil;
+        }
+    }
+}
+
+- (void)addMagazineFolderReferences {
+    for (PSPDFMagazine *magazine in magazines_) {
+        magazine.folder = self;
+    }    
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
@@ -38,9 +52,7 @@
 }
 
 - (void)dealloc {
-    for (PSPDFMagazine *magazine in magazines_) {
-        magazine.folder = nil;
-    }
+    [self removeMagazineFolderReferences];
     [magazines_ release];
     [super dealloc];
 }
@@ -91,6 +103,16 @@
 
 - (void)sortMagazines {
     [magazines_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
+}
+
+- (void)setMagazines:(NSArray *)magazines {
+    if (magazines != magazines_) {
+        [self removeMagazineFolderReferences];
+        [magazines_ release];
+        magazines_ = [magazines mutableCopy];
+        [self addMagazineFolderReferences];
+        [self sortMagazines];
+    }
 }
 
 @end
