@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/// enable to make the view plain, no folders supported
+#define kPSPDFStoreManagerPlain YES
+
+/// notification emitted when magazines were successfully loaded form disk
+#define kPSPDFStoreDiskLoadFinishedNotification @"kPSPDFStoreDiskLoadFinishedNotification"
+
 @class PSPDFMagazine;
 @class PSPDFMagazineFolder;
 @class PSPDFDownload;
@@ -33,6 +39,7 @@
 
 /// store manager, hold magazines and folders
 @interface PSPDFStoreManager : NSObject {
+    dispatch_queue_t magazineFolderQueue_;
     id<PSPDFStoreManagerDelegate> delegate_;
     NSMutableArray *magazines_;
     NSMutableArray *magazineFolders_;  

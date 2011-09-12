@@ -34,6 +34,14 @@ static char kvoToken; // we need a static address for the kvo token
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private - Folder Search
 
+- (dispatch_queue_t)magazineFolderQueue {
+    static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		magazineFolderQueue_ = dispatch_queue_create("com.pspdfkit.store.magazineFolderQueue", NULL);
+	});
+	return magazineFolderQueue_;
+}
+
 // helper for folder search
 - (NSMutableArray *)searchFolder:(NSString *)sampleFolder {
     NSError *error = nil;
@@ -82,6 +90,21 @@ static char kvoToken; // we need a static address for the kvo token
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
     NSString *dirPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"downloads"];
     [folders addObjectsFromArray:[self searchFolder:dirPath]];
+    
+    // flatten hierarchy
+    if (kPSPDFStoreManagerPlain) {
+        NSMutableArray *foldersCopy = [[folders mutableCopy] autorelease];
+        PSPDFMagazineFolder *firstFolder = [foldersCopy objectAtIndex:0];
+        [foldersCopy removeObject:firstFolder];
+        NSMutableArray *magazineArray = [[firstFolder.magazines mutableCopy] autorelease];
+        
+        for (PSPDFMagazineFolder *folder in foldersCopy) {
+            [magazineArray addObjectsFromArray:folder.magazines];
+            [folders removeObject:folder];
+        }
+        
+        firstFolder.magazines = magazineArray;
+    }
         
     return folders;
 }
@@ -104,8 +127,10 @@ static char kvoToken; // we need a static address for the kvo token
         folder = [PSPDFMagazineFolder folderWithTitle:magazine.title];
         [folder addMagazine:magazine];
         NSAssert([folder isKindOfClass:[PSPDFMagazineFolder class]], @"incorrect type");
-        [magazineFolders_ addObject:folder];
-        [magazineFolders_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
+        dispatch_sync_reentrant([self magazineFolderQueue], ^{
+            [magazineFolders_ addObject:folder];
+            [magazineFolders_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
+        });
     }
     
     return folder;
@@ -113,7 +138,24 @@ static char kvoToken; // we need a static address for the kvo token
 
 // load magazines from disk
 - (void)loadMagazinesFromDisk {
-    self.magazineFolders = [self searchForMagazineFolders];
+    NSMutableArray *magazineFolders = [self searchForMagazineFolders];
+    
+    dispatch_async([self magazineFolderQueue], ^{
+        self.magazineFolders = magazineFolders;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
+        });
+    });
+}
+
+- (NSMutableArray *)magazineFolders {
+    __block NSMutableArray *magazineFolders;
+    dispatch_sync_reentrant([self magazineFolderQueue], ^{
+        magazineFolders = [[magazineFolders_ retain] autorelease];
+    });
+    
+    return magazineFolders;
 }
 
 // forward memory warning to magazines
@@ -141,8 +183,10 @@ static char kvoToken; // we need a static address for the kvo token
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc addObserver:self selector:@selector(didReceiveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         
-        // load magazines from disk
-        [self loadMagazinesFromDisk];
+        // load magazines from disk async
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self loadMagazinesFromDisk];
+        });
     }
     return self;
 }
@@ -150,6 +194,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate_ = nil;
+    dispatch_release(magazineFolderQueue_);
     [magazines_ release];
     [magazineFolders_ release];
     [downloadQueue_ release];
@@ -175,8 +220,10 @@ static char kvoToken; // we need a static address for the kvo token
         [magazines_ removeObject:magazine];
     }
     
-    [delegate_ magazineStoreFolderDeleted:magazineFolder];  
-    [magazineFolders_ removeObject:magazineFolder];
+    [delegate_ magazineStoreFolderDeleted:magazineFolder];
+    dispatch_sync_reentrant([self magazineFolderQueue], ^{
+        [magazineFolders_ removeObject:magazineFolder];
+    });
     
     [delegate_ magazineStoreEndUpdate];  
 }
@@ -205,7 +252,9 @@ static char kvoToken; // we need a static address for the kvo token
     if([folder.magazines count] > 0) {
         [delegate_ magazineStoreFolderModified:folder]; // was just modified
     }else {
-        [magazineFolders_ removeObject:folder]; // remove!
+        dispatch_sync_reentrant([self magazineFolderQueue], ^{
+            [magazineFolders_ removeObject:folder]; // remove!
+        });
     }
     
     [delegate_ magazineStoreEndUpdate];
