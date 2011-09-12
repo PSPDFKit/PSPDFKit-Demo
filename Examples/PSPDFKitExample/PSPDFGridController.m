@@ -21,6 +21,7 @@
 
 @interface PSPDFGridController()
 @property(nonatomic, retain) UIView *magazineView;
+@property(nonatomic, retain) PSPDFMagazineFolder *magazineFolder;
 @end
 
 @implementation PSPDFGridController
@@ -108,7 +109,7 @@
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = CGRectMake(0, 0, cellCoords.size.width, cellCoords.size.height);
         
-        UIView *magazineView = [[UIView alloc] initWithFrame:cellCoords];
+        UIView *magazineView = [[[UIView alloc] initWithFrame:cellCoords] autorelease];
         [magazineView addSubview:coverImageView];
         
         /*
@@ -142,6 +143,28 @@
     return YES;
 }
 
+- (void)diskDataLoaded {
+    // not finished yet? return early.
+    if (![PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders) {
+        return;
+    }
+    
+    // check if we are flattened (no folders) or not
+    NSMutableIndexSet *indexSet;
+    if (kPSPDFStoreManagerPlain) {
+        self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
+        indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.magazineFolder.magazines count])];
+    }else {
+        indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count])]; 
+    }
+    // if we're in init, this is nil and just ignored
+    if ([indexSet count]) {
+        [self.gridView insertItemsAtIndices:indexSet withAnimation:AQGridViewItemAnimationFade];
+        [self.gridView scrollToItemAtIndex:0 atScrollPosition:AQGridViewScrollPositionTop animated:NO];
+    }
+//    [gridView_ reloadData];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark NSObject
@@ -152,6 +175,11 @@
         
         // custom back button for smaller wording
         self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Kiosk" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
+        
+        // call anyway - if store is done before we get initialized, don't fail
+        [self diskDataLoaded];
     }
     return self;
 }
@@ -165,6 +193,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [magazineFolder_ release];
     [super dealloc];
 }
@@ -236,6 +265,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    PSPDFLog(@"Grid appeared.");
     
     if (self.magazineView) {
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{

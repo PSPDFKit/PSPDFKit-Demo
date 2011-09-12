@@ -85,7 +85,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
         
         // change statusbar setting to your preferred style
-        //statusBarStyleSetting_ = PSPDFStatusBarDisable;
+        //statusBarStyleSetting_ = PSPDFStatusBarDefaultWhite;
     }    
     return self;
 }
