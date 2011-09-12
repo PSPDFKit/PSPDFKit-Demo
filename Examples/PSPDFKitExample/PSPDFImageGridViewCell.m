@@ -11,10 +11,16 @@
 #import "PSPDFImageGridViewCell.h"
 #import "PSPDFDownload.h"
 #import "PSPDFStoreManager.h"
+#import "UIImageView+AFNetworking.h"
+
+#define kPSPDFKitDownloadingKey @"downloading"
+#define kPSPDFCellAnimationDuration 0.25f
 
 @interface PSPDFImageGridViewCell()
 @property(nonatomic, retain) UIImageView *magazineCounterBadgeImage;
+@property(nonatomic, retain) UIProgressView *progressView;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
+- (void)darkenView:(BOOL)darken animated:(BOOL)animated;
 - (void)updateProgressAnimated:(BOOL)animated;
 @end
 
@@ -24,20 +30,26 @@
 @synthesize magazine = magazine_;
 @synthesize magazineFolder = magazineFolder_;
 @synthesize magazineCounterBadgeImage = magazineCounterBadgeImage_;
+@synthesize showDeleteImage = showDeleteImage_;
+@synthesize progressView = progressView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-- (void)checkMagazineAndObserveIfDownloading:(PSPDFMagazine *)magazine {
+- (void)checkMagazineAndObserveProgressIfDownloading:(PSPDFMagazine *)magazine {
     if (magazine.isDownloading) {
         PSPDFDownload *download = [[PSPDFStoreManager sharedPSPDFStoreManager] downloadObjectForMagazine:magazine];
+        if (!download) {
+            PSPDFLogError(@"failed to find associated download object for %@", magazine);
+            return;
+        }
         [observedMagazineDownloads_ addObject:download];
         [download addObserver:self forKeyPath:@"downloadProgress" options:0 context:nil];
         [self updateProgressAnimated:NO];
     }
 }
 
-- (void)clearObservers {
+- (void)clearProgressObservers {
     // clear all observed magazines
     for (PSPDFDownload *download in observedMagazineDownloads_) {
         [download removeObserver:self forKeyPath:@"downloadProgress"];            
@@ -58,14 +70,15 @@
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
         // uncomment to hide label
-        //showingSiteLabel_ = NO;
+        showingSiteLabel_ = YES;
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [self clearObservers];
+    [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
+    [self clearProgressObservers];
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
     [observedMagazineDownloads_ release];
     [magazine_ release];
@@ -74,6 +87,7 @@
     [progressView_ release];
     [progressViewBackground_ release];
     [magazineCounterBadgeImage_ release];
+    [deleteImage_ release];
     [super dealloc];
 }
 
@@ -93,6 +107,11 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
     if ([keyPath isEqualToString:@"downloadProgress"]) {
         [self updateProgressAnimated:YES];
+    }else if([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
+        // check if magazine needs to be observed (if download progress is active)
+        if (self.magazine.isDownloading && ![observedMagazineDownloads_ containsObject:self.magazine]) {
+            [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
+        }
     }
 }
 
@@ -105,19 +124,34 @@
     }
     
     if (magazine_ != magazine) {
+        [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
         [magazine_ release];
         magazine_ = [magazine retain];
         
         // setup for magazine
         if (magazine) {
+            
+            // add kvo for download property
+            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:nil];
+            
             // add kvo
-            [self checkMagazineAndObserveIfDownloading:magazine];
-
+            [self checkMagazineAndObserveProgressIfDownloading:magazine];
+            
             self.magazineCount = 0;
             self.image = [magazine coverImage];
+            
+            // try to download image
+            if (!self.image && magazine.imageUrl) {
+                [self.imageView setImageWithURL:magazine.imageUrl placeholderImage:nil imageSize:self.imageView.frame.size options:0 block:^(UIImage *image, BOOL cacheUsed) {
+                    [self setImage:image animated:!cacheUsed];
+                }];
+            }
+            
+            // dark out view if it needs to be downloaded
+            [self darkenView:!magazine.isAvailable animated:NO];
         }
         
-        self.sideLabel.text = magazine.title;
+        self.siteLabel.text = magazine.title;
     }
 }
 
@@ -127,12 +161,12 @@
     }
     
     if (magazineFolder_ != magazineFolder) {
-        [self clearObservers];
+        [self clearProgressObservers];
         [magazineFolder_ release];
         magazineFolder_ = [magazineFolder retain];
         
         for (PSPDFMagazine *aMagazine in magazineFolder_.magazines) {
-            [self checkMagazineAndObserveIfDownloading:aMagazine];
+            [self checkMagazineAndObserveProgressIfDownloading:aMagazine];
         }
         
         // setup for folder
@@ -197,7 +231,6 @@
 
 - (void)setImageSize:(CGSize)imageSize {
     [super setImageSize:imageSize];
-    
     [self updateMagazineBadgeFrame];
 }
 
@@ -209,10 +242,11 @@
 - (UIProgressView *)progressView {
     if (!progressView_) {
         progressView_ = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];    
-        CGRect contentFrame = self.contentView.frame;
         CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : roundf(kProgressBarWidth * kiPhoneReductionFactor*1.1f);
         progressView_.frame = CGRectMake(0.f, 0.f, progressViewWidth, 21.f);
-        progressView_.center = CGPointMake(roundf(contentFrame.size.width/2.f), roundf(contentFrame.size.height*10.f/11.f));
+        CGFloat siteLabelHeight = self.isShowingSiteLabel ? self.siteLabel.height : 0.f;
+        progressView_.center = CGPointMake(roundf(self.imageView.size.width/2.f), roundf(self.imageView.size.height*9.f/10.f - siteLabelHeight));
+        progressView_.alpha = 0.f;
         [self.contentView addSubview:progressView_];
     }
     return progressView_;
@@ -221,14 +255,15 @@
 
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
     if(darken && !progressViewBackground_) {
-        progressViewBackground_ = [[UIView alloc] initWithFrame:self.contentView.frame];
+        progressViewBackground_ = [[UIView alloc] initWithFrame:self.imageView.bounds];
+        progressViewBackground_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         progressViewBackground_.backgroundColor = [UIColor blackColor];
         progressViewBackground_.alpha = 0.5f;
     }
     
     if (darken && !progressViewBackground_.superview) {
         progressViewBackground_.alpha = 0.f;
-        [self.contentView addSubview:progressViewBackground_];
+        [self.imageView addSubview:progressViewBackground_];
         [self.contentView bringSubviewToFront:[self progressView]];
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
@@ -255,19 +290,17 @@
 - (void)setProgress:(float)theProgress animated:(BOOL)animated {
     [[self progressView] setProgress:theProgress];
     BOOL shouldDarkenView = theProgress < 1.f;
+    BOOL shouldShowProgress = shouldDarkenView && theProgress > 0.f;
     [self darkenView:shouldDarkenView animated:animated];
     
     // remove progressView
-    if (!shouldDarkenView && progressView_.superview) {
-        if (animated) {
-            [UIView animateWithDuration:0.25 animations:^(void) {
-                self.progressView.alpha = 0.f;
-            } completion:^(BOOL finished) {
-                MCReleaseViewNil(progressView_);
-            }];
-        }else {
-            MCReleaseViewNil(progressView_);
-        }
+    if (!shouldShowProgress && self.progressView.superview) {
+        [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^(void) {
+            self.progressView.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [self.progressView removeFromSuperview];
+            self.progressView = nil;
+        }];
         
         // get magazine and refresh
         PSPDFMagazine *magazine = self.magazine;
@@ -280,9 +313,17 @@
                 }
             }
         }
+    }else if(shouldShowProgress) {
+        [self.contentView bringSubviewToFront:self.progressView];
         
-        // refresh image
-        self.image = [magazine coverImage];
+        // ensure visibility
+        if (self.progressView.alpha == 0.f || !self.progressView.superview) {
+            self.progressView.alpha = 0.f;
+            [self.contentView addSubview:self.progressView];
+            [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^{
+                self.progressView.alpha = 1.f;
+            }];
+        }
     }
 }
 
@@ -293,13 +334,30 @@
     [self.contentView bringSubviewToFront:magazineCounterBadgeImage_];
 }
 
+- (void)setShowDeleteImage:(BOOL)showDeleteImage {
+    if (showDeleteImage != showDeleteImage_) {
+        showDeleteImage_ = showDeleteImage;
+        
+        if (showDeleteImage) {
+            if (!deleteImage_) {
+                deleteImage_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
+                [self.contentView addSubview:deleteImage_];
+            }
+            deleteImage_.frame = CGRectMake(self.imageView.left-10, self.imageView.top-10, 29, 29);
+        }
+        
+        deleteImage_.hidden = !showDeleteImage || (self.magazine && !self.magazine.isAvailable && !self.magazine.isDownloading);
+    } 
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 #pragma mark AQGridViewCell
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    [self clearObservers];
+    [self clearProgressObservers];
+    [self.imageView setImageWithURL:nil];
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;

@@ -44,7 +44,7 @@ typedef enum {
 @property(nonatomic, retain, readonly) NSURL *url;
 
 /// magazine that's being downloaded
-@property(nonatomic, retain, readonly) PSPDFMagazine *magazine;
+@property(nonatomic, retain) PSPDFMagazine *magazine;
 
 @property(nonatomic, assign, readonly) PSPDFStoreDownloadStatus status;
 

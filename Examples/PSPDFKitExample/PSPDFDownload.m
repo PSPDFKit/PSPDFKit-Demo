@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 @interface PSPDFDownload()
-@property(nonatomic, retain) PSPDFMagazine *magazine;
+//@property(nonatomic, retain) PSPDFMagazine *magazine;
 @property(nonatomic, retain) NSURL *url;
 @property(nonatomic, assign) PSPDFStoreDownloadStatus status;
 @property(nonatomic, assign) float downloadProgress;
@@ -61,14 +61,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
+- (NSString *)downloadDirectory {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
+    NSString *downloadDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"downloads"];
+    return downloadDirectory;
+}
+
 - (PSPDFMagazine *)magazine {
     if (!magazine_) {
-        // build potential download path
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
-        NSString *dirPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"downloads"];
-        NSString *fileName = [self.request.url lastPathComponent];
-        dirPath = [dirPath stringByAppendingPathComponent:fileName];
-        self.magazine = [PSPDFMagazine magazineWithPath:dirPath];
+        self.magazine = [[[PSPDFMagazine alloc] init] autorelease];
         magazine_.downloading = YES;
     }
     return magazine_;
@@ -98,8 +99,7 @@
 
 - (void)startDownload {
     NSError *error = nil;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
-    NSString *dirPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"downloads"];
+    NSString *dirPath = [self downloadDirectory];
     NSString *destPath = [dirPath stringByAppendingPathComponent:[self.url lastPathComponent]];  
     
     // create folder
@@ -114,7 +114,7 @@
     [pdfRequest setAllowResumeForFileDownloads:YES];
     [pdfRequest setShowAccurateProgress:YES];
     [pdfRequest setNumberOfTimesToRetryOnTimeout:0];
-    [pdfRequest setTimeOutSeconds:20.0];
+    [pdfRequest setTimeOutSeconds:30.0];
     [pdfRequest setShouldContinueWhenAppEntersBackground:YES];
     [pdfRequest setDownloadDestinationPath:destPath];
     [pdfRequest setDownloadProgressDelegate:self]; // add ui tracking
@@ -124,10 +124,15 @@
         
         if (self.isCancelled) {
             self.status = PSPDFStoreDownloadFailed;
+            self.magazine.downloading = NO;
             return;
         }
         
         self.status = PSPDFStoreDownloadFinished;
+        NSString *fileName = [self.request.url lastPathComponent];
+        NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
+        [self.magazine setFileUrl:[NSURL fileURLWithPath:destinationPath]];
+        self.magazine.available = YES;
         self.magazine.downloading = NO;
     }];
     
@@ -135,12 +140,13 @@
         PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequest.error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
         self.error = pdfRequest.error;
+        self.magazine.downloading = NO;
     }];
     self.status = PSPDFStoreDownloadLoading;
     [pdfRequest startAsynchronous];
     
     self.request = pdfRequest; // save request
-    [[PSPDFStoreManager sharedPSPDFStoreManager] downloadLoadedData:self];
+    [[PSPDFStoreManager sharedPSPDFStoreManager] addMagazinesToStore:[NSArray arrayWithObject:self.magazine]];
 }
 
 - (void)cancelDownload {

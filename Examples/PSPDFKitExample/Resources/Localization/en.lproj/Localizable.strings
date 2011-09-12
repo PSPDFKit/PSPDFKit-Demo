@@ -12,3 +12,6 @@
 "Documents" = "Documents";
 "Page" = "Page";
 "Grid" = "Grid";
+
+"DeleteMagazineSingle" = "Delete %@?";
+"DeleteMagazineMultiple" = "Delete %@? (%d Magazines)";
