@@ -10,6 +10,8 @@
 		78249FB413EAE65F00CC0244 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78249FB313EAE65F00CC0244 /* PSPDFKit.framework */; };
 		7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */; };
 		7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9481402B800008F3AC7 /* SplitMasterViewController.m */; };
+		78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B7B141EC27F00994946 /* MessageUI.framework */; };
+		78727B8F141EC33100994946 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78727B8E141EC33100994946 /* Icon.png */; };
 		78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6C13EAD25B0043F631 /* UIKit.framework */; };
 		78836E6F13EAD25B0043F631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6E13EAD25B0043F631 /* Foundation.framework */; };
 		78836E7113EAD25B0043F631 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E7013EAD25B0043F631 /* CoreGraphics.framework */; };
@@ -43,6 +45,8 @@
 		7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		7840C9471402B800008F3AC7 /* SplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitMasterViewController.h; sourceTree = "<group>"; };
 		7840C9481402B800008F3AC7 /* SplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitMasterViewController.m; sourceTree = "<group>"; };
+		78727B7B141EC27F00994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		78727B8E141EC33100994946 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		78836E6813EAD25B0043F631 /* EmbeddedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmbeddedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78836E6C13EAD25B0043F631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78836E6E13EAD25B0043F631 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */,
 				78BF754B141D380600FF02DF /* MediaPlayer.framework in Frameworks */,
 				78836EA213EAD4A90043F631 /* QuartzCore.framework in Frameworks */,
 				78836EA013EAD49C0043F631 /* CoreText.framework in Frameworks */,
@@ -130,6 +135,7 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78727B7B141EC27F00994946 /* MessageUI.framework */,
 				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
 				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
 				78836E9F13EAD49C0043F631 /* CoreText.framework */,
@@ -185,6 +191,7 @@
 				78BF7539141D37D300FF02DF /* 45-movie-1.png */,
 				78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */,
 				78BF753B141D37D300FF02DF /* star.png */,
+				78727B8E141EC33100994946 /* Icon.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -263,6 +270,7 @@
 				78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */,
 				78BF7544141D37D300FF02DF /* star.png in Resources */,
 				78BF7549141D37DF00FF02DF /* Localizable.strings in Resources */,
+				78727B8F141EC33100994946 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
