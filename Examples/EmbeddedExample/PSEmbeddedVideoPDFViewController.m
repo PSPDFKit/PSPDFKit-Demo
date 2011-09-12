@@ -44,15 +44,18 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController
+
+// disable back button
+- (UIButton *)toolbarBackButton {
+    return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
-    self.title = @"VideoEx"; // keep title
-    
-    // don't show title on iPhone!
-    if (!PSIsIpad()) {
-        self.navigationItem.title = @"";
-    }
+
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {

@@ -111,6 +111,9 @@
 /// array of NSString pdf files. 
 @property(nonatomic, copy, readonly) NSArray *files;
 
+/// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath * files. Overrides all current settings if set.
+@property(nonatomic, retain) NSURL *fileUrl;
+
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to YES.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 

@@ -143,3 +143,6 @@ enum {
 - (void)clearThumbnailMemoryCache;
 
 @end
+
+// helper for non-deadlocking dispatch_sync
+void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);

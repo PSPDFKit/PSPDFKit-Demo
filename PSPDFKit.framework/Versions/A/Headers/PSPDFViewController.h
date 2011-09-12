@@ -7,6 +7,7 @@
 //
 
 #import "AQGridView.h"
+#import <MessageUI/MessageUI.h>
 
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar;
@@ -40,7 +41,7 @@ enum {
 }typedef PSPDFStatusBarStyleSetting;
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
-@interface PSPDFViewController : UIViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
+@interface PSPDFViewController : UIViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, AQGridViewDelegate, AQGridViewDataSource> {
     id<PSPDFViewControllerDelegate> delegate_;
     PSPDFDocument *document_;
     AQGridView *gridView_;
