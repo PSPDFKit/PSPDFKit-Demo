@@ -8,6 +8,8 @@
 
 #import "FirstViewController.h"
 
+#define PSPDFKitExample @"PSPDFKit.pdf"
+
 @implementation FirstViewController
 
 @synthesize pdfController = pdfController_;
@@ -20,9 +22,14 @@
     return [paths objectAtIndex:0];
 }
 
+- (NSString *)samplesFolder {
+    NSString *samplesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+    return samplesFolder;
+}
+
 - (void)copySampleToDocumentsFolder:(NSString *)fileName {
     NSError *error = nil;
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
+    NSString *path = [[self samplesFolder] stringByAppendingPathComponent:fileName];
     NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
@@ -34,7 +41,7 @@
 
 
 - (void)pushView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     pdfController.pageMode = PSPDFPageModeSingle;
@@ -43,11 +50,22 @@
 }
 
 - (void)openModalView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+//    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
+//    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    
+    NSString *path = [[self samplesFolder] stringByAppendingPathComponent:@"pricing.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    [document appendFile:@"availability.pdf"];
+
+    
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     pdfController.pageMode = PSPDFPageModeSingle;
     UINavigationController *navCtrl = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
+    navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    pdfController.pageMode = PSPDFPageModeDouble;
+    pdfController.doublePageModeOnFirstPage = YES;
+    
     [self presentModalViewController:navCtrl animated:YES];
 }
 
@@ -60,15 +78,13 @@
         
         // prepare document to display, copy it do docs folder
         // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
-        [self copySampleToDocumentsFolder:@"PSPDFKit.pdf"];
+        [self copySampleToDocumentsFolder:PSPDFKitExample];
         [self copySampleToDocumentsFolder:@"Developers_Guide_8th.pdf"];
         [self copySampleToDocumentsFolder:@"amazon-dynamo-sosp2007.pdf"];
         
         // add button to push view
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)] autorelease];
-        
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)] autorelease];
-
     }
     return self;
 }
@@ -97,7 +113,7 @@
     
     //self.pdfController.scrobbleBarEnabled = NO;
     
-    self.pdfController.view.frame = CGRectMake(80, 150, 600, 500);
+    self.pdfController.view.frame = CGRectMake(80, 150, 600, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.pdfController.view];
     
@@ -120,7 +136,7 @@
     
     // show how controller can be animated
     self.pdfController.view.layer.opacity = 0.0f;
-    [UIView animateWithDuration:1.f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+    [UIView animateWithDuration:1.f delay:0.25f options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.pdfController.view.layer.opacity = 1.0f;
     } completion:nil];
 }
