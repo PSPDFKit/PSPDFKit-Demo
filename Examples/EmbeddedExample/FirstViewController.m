@@ -109,12 +109,17 @@
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;
     
+    /*
+    self.pdfController.pageScrolling = PSPDFScrollingVertical;
+    self.pdfController.pagePadding = 0.0f;
+    self.pdfController.shadowEnabled = NO;
+    self.pdfController.pageMode = PSPDFPageModeDouble;
+    self.pdfController.doublePageModeOnFirstPage = YES;
     //self.pdfController.scrobbleBarEnabled = NO;
+     */
     
-    self.pdfController.view.frame = CGRectMake(80, 150, 600, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    [self.view addSubview:self.pdfController.view];
-    
+        
     // add a border
     self.pdfController.view.layer.borderColor = [UIColor blueColor].CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
@@ -125,18 +130,34 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.pdfController viewWillAppear:NO];    
+
+    self.pdfController.view.frame = CGRectMake(120, 150, self.view.width - 120*2, PSIsIpad() ? 500 : 200);
+    [self.pdfController viewWillAppear:animated];
+    
+    if (!self.pdfController.view.superview) {
+        [self.view addSubview:self.pdfController.view];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.pdfController viewDidAppear:NO];
+    [self.pdfController viewDidAppear:animated];
     
     // show how controller can be animated
     self.pdfController.view.alpha = 0.0f;
     [UIView animateWithDuration:.25f delay:0.5f options:UIViewAnimationOptionAllowUserInteraction animations:^{
         self.pdfController.view.alpha = 1.0f;
     } completion:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.pdfController viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.pdfController viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {
