@@ -24,6 +24,7 @@
 		7805D033141EC10C003D10D5 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7805D031141EC10C003D10D5 /* delete.png */; };
 		7805D034141EC10C003D10D5 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7805D032141EC10C003D10D5 /* delete@2x.png */; };
 		781384A613D9AF600090CAC1 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 781384A513D9AF600090CAC1 /* Samples */; };
+		7827C0A9141F7B9C00252C31 /* AFURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7827C0A8141F7B9C00252C31 /* AFURLCache.m */; };
 		7834179B13DC96DD009DAEE8 /* PSPDFDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834179A13DC96DD009DAEE8 /* PSPDFDownload.m */; };
 		783417BA13DCAA39009DAEE8 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 783417B213DCAA39009DAEE8 /* ASIHTTPRequest.m */; };
 		783417BB13DCAA39009DAEE8 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 783417B613DCAA39009DAEE8 /* ASIInputStream.m */; };
@@ -98,6 +99,8 @@
 		7805D031141EC10C003D10D5 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		7805D032141EC10C003D10D5 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		781384A513D9AF600090CAC1 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
+		7827C0A7141F7B9C00252C31 /* AFURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLCache.h; sourceTree = "<group>"; };
+		7827C0A8141F7B9C00252C31 /* AFURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLCache.m; sourceTree = "<group>"; };
 		7834179913DC96DD009DAEE8 /* PSPDFDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFDownload.h; sourceTree = "<group>"; };
 		7834179A13DC96DD009DAEE8 /* PSPDFDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFDownload.m; sourceTree = "<group>"; };
 		783417B113DCAA39009DAEE8 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
@@ -210,16 +213,9 @@
 				7805D011141EC0F4003D10D5 /* AFNetworkActivityIndicatorManager.m */,
 				7805D012141EC0F4003D10D5 /* AFRestClient.h */,
 				7805D013141EC0F4003D10D5 /* AFRestClient.m */,
-				7805D014141EC0F4003D10D5 /* NSData+AFNetworking.h */,
-				7805D015141EC0F4003D10D5 /* NSData+AFNetworking.m */,
-				7805D016141EC0F4003D10D5 /* NSMutableURLRequest+AFNetworking.h */,
-				7805D017141EC0F4003D10D5 /* NSMutableURLRequest+AFNetworking.m */,
-				7805D018141EC0F4003D10D5 /* NSString+AFNetworking.h */,
-				7805D019141EC0F4003D10D5 /* NSString+AFNetworking.m */,
-				7805D01A141EC0F4003D10D5 /* UIImage+AFNetworking.h */,
-				7805D01B141EC0F4003D10D5 /* UIImage+AFNetworking.m */,
-				7805D01C141EC0F4003D10D5 /* UIImageView+AFNetworking.h */,
-				7805D01D141EC0F4003D10D5 /* UIImageView+AFNetworking.m */,
+				7827C0A7141F7B9C00252C31 /* AFURLCache.h */,
+				7827C0A8141F7B9C00252C31 /* AFURLCache.m */,
+				7827C0AB141F7BA200252C31 /* Categories */,
 			);
 			name = AFNetworking;
 			path = PSPDFKitExample/AFNetworking/AFNetworking;
@@ -233,6 +229,23 @@
 			);
 			name = JSONKit;
 			path = PSPDFKitExample/JSONKit;
+			sourceTree = "<group>";
+		};
+		7827C0AB141F7BA200252C31 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				7805D014141EC0F4003D10D5 /* NSData+AFNetworking.h */,
+				7805D015141EC0F4003D10D5 /* NSData+AFNetworking.m */,
+				7805D016141EC0F4003D10D5 /* NSMutableURLRequest+AFNetworking.h */,
+				7805D017141EC0F4003D10D5 /* NSMutableURLRequest+AFNetworking.m */,
+				7805D018141EC0F4003D10D5 /* NSString+AFNetworking.h */,
+				7805D019141EC0F4003D10D5 /* NSString+AFNetworking.m */,
+				7805D01A141EC0F4003D10D5 /* UIImage+AFNetworking.h */,
+				7805D01B141EC0F4003D10D5 /* UIImage+AFNetworking.m */,
+				7805D01C141EC0F4003D10D5 /* UIImageView+AFNetworking.h */,
+				7805D01D141EC0F4003D10D5 /* UIImageView+AFNetworking.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		7834179813DC9686009DAEE8 /* Download */ = {
@@ -525,6 +538,7 @@
 				7805D02D141EC0F4003D10D5 /* UIImageView+AFNetworking.m in Sources */,
 				7805D02F141EC0F4003D10D5 /* JSONKit.m in Sources */,
 				78727B73141EC21900994946 /* PSActionSheet.m in Sources */,
+				7827C0A9141F7B9C00252C31 /* AFURLCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
