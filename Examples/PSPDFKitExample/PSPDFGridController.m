@@ -415,7 +415,7 @@
         PSPDFGridController *gridController = [[[PSPDFGridController alloc] initWithMagazineFolder:folder] autorelease];
         
         // a full-page-fade animation doesn't work very well on iPad (under a ux aspect; technically it's fine)
-        if (PSIsIpad()) {
+        if (!PSIsIpad()) {
             CATransition* transition = [CATransition animation];
             transition.duration = kPSPDFGridFadeAnimationDuration;
             transition.type = kCATransitionFade;
