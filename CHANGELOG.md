@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.2 - 13/Sept/2011__
+
+*  fixed: HUD is now black again on disabled status bar
+
 __v1.6.1 - 13/Sept/2011__
 
 *  new: open email sheet per default when detecting mailto: annotation links. (You now need the MessageUI.framework!)
