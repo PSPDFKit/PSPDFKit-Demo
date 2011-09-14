@@ -8,12 +8,20 @@
 
 #import "MinimalExampleAppDelegate.h"
 
+// this is one way of overriding PSPDFViewController. However, subclassing is advised
+@implementation PSPDFViewController (PSPDFMinimalExampleCategoryOverride)
+
+- (UIBarButtonItem *)toolbarBackButton {
+    return nil;
+}
+
+@end
+
 @implementation MinimalExampleAppDelegate
 
 @synthesize window = _window;
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
         
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];

@@ -20,7 +20,6 @@
 		78E6329713DECD7C00F3392F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6329313DECD7C00F3392F /* main.m */; };
 		78E6329A13DECD8400F3392F /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6329913DECD8400F3392F /* PSPDFKit.framework */; };
 		78E6329C13DECD8B00F3392F /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78E6329B13DECD8B00F3392F /* Samples */; };
-		78FB666A13E6A7FE001A8BAC /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78FB666913E6A7FE001A8BAC /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +41,6 @@
 		78E6329513DECD7C00F3392F /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MinimalExample-Prefix.pch"; path = "MinimalExample-ARC/MinimalExample-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		78E6329913DECD8400F3392F /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 		78E6329B13DECD8B00F3392F /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
-		78FB666913E6A7FE001A8BAC /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				78BF7564141D385A00FF02DF /* Localization */,
-				78FB666913E6A7FE001A8BAC /* Icon.png */,
 				78E6329013DECD7C00F3392F /* en.lproj */,
 				78E6329313DECD7C00F3392F /* main.m */,
 				78881B1C141EC35C00CB0739 /* Icon.png */,
@@ -191,7 +188,6 @@
 			files = (
 				78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */,
 				78E6329C13DECD8B00F3392F /* Samples in Resources */,
-				78FB666A13E6A7FE001A8BAC /* Icon.png in Resources */,
 				78BF7568141D385A00FF02DF /* Localizable.strings in Resources */,
 				78881B1D141EC35C00CB0739 /* Icon.png in Resources */,
 			);

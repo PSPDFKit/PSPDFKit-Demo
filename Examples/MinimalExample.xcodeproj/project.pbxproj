@@ -90,10 +90,10 @@
 		78E6A43C13DECE56006000BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */,
 				78727B82141EC2D300994946 /* MessageUI.framework */,
 				78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */,
 				78DEFFA313DECEBF005ABEFD /* CoreText.framework */,
-				78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */,
 				78E6A43D13DECE56006000BB /* UIKit.framework */,
 				78E6A43F13DECE56006000BB /* Foundation.framework */,
 				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
