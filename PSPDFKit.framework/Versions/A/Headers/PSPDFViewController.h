@@ -49,7 +49,7 @@ enum {
     // view states
     UISegmentedControl *viewModeSegment_;
     NSUInteger lastPage_;
-    NSUInteger page_;
+    NSUInteger realPage_;
     UIInterfaceOrientation lastOrientation_;
     
     // paging scrollview
@@ -81,6 +81,7 @@ enum {
     CGFloat pagePadding_;
     CGSize thumbnailSize_;
     CGSize thumbnailMargin_;
+    float maximumZoomScale_;
     NSUInteger preloadedPagesPerSide_;
     BOOL doublePageModeOnFirstPage_;
     BOOL navigationBarHidden_;
@@ -172,6 +173,9 @@ enum {
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
 /// fitWidth is currently not supported for vertical scrolling. This is a know limitation.
 @property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+
+/// maximum zoom scale for the scrollview. Defaults to 5.0. Set before creating the view.
+@property(nonatomic, assign) float maximumZoomScale;
 
 /// page padding width between single/double pages. Defaults to 20.
 @property(nonatomic, assign) CGFloat pagePadding;
