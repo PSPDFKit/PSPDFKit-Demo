@@ -69,7 +69,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page; {
+#define PSPDFLoadingViewTag 225475
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
     self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
 }
 
@@ -81,23 +83,45 @@
 // *** implemented just for your curiosity. you can use that to add custom views (e.g. videos) to the PSPDFScrollView ***
 
 /// called before a pdf page will be loaded and added to the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"willLoadPage: %d", page);
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"didLoadPage: %d", page);    
+    
+    // add loading indicator
+    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    [indicator sizeToFit];
+    [indicator startAnimating];
+    indicator.tag = PSPDFLoadingViewTag;
+    indicator.frame = CGRectMake(floorf((pdfScrollView.compoundView.width - indicator.width)/2), floorf((pdfScrollView.compoundView.height - indicator.height)/2), indicator.width, indicator.height);
+    [pdfScrollView addSubview:indicator];
 }
 
 /// called before a pdf page will be unloaded and removed from the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"willUnloadPage: %d", page);
 }
 
 /// called after pdf page has been unloaded and removed from the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"didUnloadPage: %d", page);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
+    NSLog(@"page %d rendered.", page);
+    
+    // remove loading indicator
+    UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pdfScrollView viewWithTag:PSPDFLoadingViewTag];
+    if (indicator) {
+        [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            indicator.alpha = 0.f;
+        } completion:^(BOOL finished) {
+            [indicator removeFromSuperview];
+        }];
+    }
 }
 
 @end
