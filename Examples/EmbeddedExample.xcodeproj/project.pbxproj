@@ -135,11 +135,11 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
 				78727B7B141EC27F00994946 /* MessageUI.framework */,
 				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
 				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
 				78836E9F13EAD49C0043F631 /* CoreText.framework */,
-				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
 				78836E6C13EAD25B0043F631 /* UIKit.framework */,
 				78836E6E13EAD25B0043F631 /* Foundation.framework */,
 				78836E7013EAD25B0043F631 /* CoreGraphics.framework */,
