@@ -161,5 +161,8 @@
     return NO;
 }
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page {
+    PSELog(@"page %d rendered.", page);
+}
 
 @end

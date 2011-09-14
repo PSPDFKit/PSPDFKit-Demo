@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.4 - 15/Sept/2011__
+
+*  new: didRenderPage-delegate
+
 __v1.6.3 - 14/Sept/2011__
 
 *  new: maximumZoomScale-property is exposed in PSPDFViewController
