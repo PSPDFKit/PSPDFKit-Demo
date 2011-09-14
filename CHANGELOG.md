@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.6.3 - 14/Sept/2011__
+
+*  new: maximumZoomScale-property is exposed in PSPDFViewController
+*  changed: *realPage* is now remembered, not the page used in the UIScrollView. This fixes some problems with wrong page numbers.
+*  fixes situation where page was changed to wrong value after view disappeared, rotated, and reappeared.
+*  fixes option button in example is now touchable again
+*  fixes a bug where HUD was never displayed again when rotating while a popover controller was visible
+*  fixes potential crash where frame get calculated to NaN, leading to a crash on view rotation
+*  fixes problems when compiling with GCC. You really should use LLVM/Clang though.
+
 __v1.6.2 - 13/Sept/2011__
 
 *  fixed: HUD is now black again on disabled status bar
@@ -8,7 +18,7 @@ __v1.6.1 - 13/Sept/2011__
 
 *  new: open email sheet per default when detecting mailto: annotation links. (You now need the MessageUI.framework!)
 *  new: fileUrl property in PSPDFDocument
-*  improve toolbar behavior when setting statusbar to default
+*  improve toolbar behavior when setting status bar to default
 *  fixes memory related crash on older devices
 *  fixes crash when toolbarBackButton is nil
 *  greatly improved KioskExample
