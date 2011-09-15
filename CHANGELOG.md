@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.5 - 15/Sept/2011__
+
+*  fixes a bug where scroll position was remembered between pages when using fitWidth
+
 __v1.6.4 - 15/Sept/2011__
 
 *  new: didRenderPage-delegate
