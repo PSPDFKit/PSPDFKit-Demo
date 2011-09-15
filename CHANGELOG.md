@@ -3,6 +3,7 @@
 __v1.6.4 - 15/Sept/2011__
 
 *  new: didRenderPage-delegate
+*  fixes: crash bug with NaN when started in landscape
 
 __v1.6.3 - 14/Sept/2011__
 

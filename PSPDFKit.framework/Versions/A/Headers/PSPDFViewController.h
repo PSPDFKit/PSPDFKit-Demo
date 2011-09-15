@@ -102,6 +102,7 @@ enum {
         unsigned int delegateDidDisplayDocument:1;
         unsigned int delegateWillShowPage:1;
         unsigned int delegateDidShowPage:1;
+        unsigned int delegateDidRenderPage:1;
         unsigned int delegateDidChangeViewMode:1;
         unsigned int delegateDidTapOnPage:1;
         unsigned int delegateDidTapOnAnnotation:1;

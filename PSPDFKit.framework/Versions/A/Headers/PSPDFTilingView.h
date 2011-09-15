@@ -8,7 +8,7 @@
 
 #import <QuartzCore/CATiledLayer.h>
 
-@class PSPDFDocument, PSPDFPage;
+@class PSPDFDocument, PSPDFPage, PSPDFScrollView;
 
 /// represents the CATiledLayer, the dynamic pdf renderer
 @interface PSPDFTilingView : UIView {
@@ -26,6 +26,9 @@
 
 /// explicitely destroy the layer. actual dealloc may happen in a block, so destroy explicitely.
 - (void)stopTiledRenderingAndRemoveFromSuperlayer;
+
+/// returns attached scrollview (if attached)
+- (PSPDFScrollView *)scrollView;
 
 /// document to display
 @property(nonatomic, retain) PSPDFDocument *document;
