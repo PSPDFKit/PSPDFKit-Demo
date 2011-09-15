@@ -82,12 +82,12 @@
 
 // *** implemented just for your curiosity. you can use that to add custom views (e.g. videos) to the PSPDFScrollView ***
 
-/// called before a pdf page will be loaded and added to the pagingScrollView
+// called before a pdf page will be loaded and added to the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"willLoadPage: %d", page);
 }
 
-/// called after pdf page has been loaded and added to the pagingScrollView
+// called after pdf page has been loaded and added to the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"didLoadPage: %d", page);    
     
@@ -100,12 +100,12 @@
     [pdfScrollView addSubview:indicator];
 }
 
-/// called before a pdf page will be unloaded and removed from the pagingScrollView
+// called before a pdf page will be unloaded and removed from the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"willUnloadPage: %d", page);
 }
 
-/// called after pdf page has been unloaded and removed from the pagingScrollView
+// called after pdf page has been unloaded and removed from the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView {
     NSLog(@"didUnloadPage: %d", page);
 }
