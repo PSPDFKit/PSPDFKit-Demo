@@ -1,0 +1,857 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFViewControllerDelegate Protocol Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFViewControllerDelegate Protocol Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/pdfViewController:didChangeViewMode:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didChangeViewMode:</option>
+	
+	<option value="//api/name/pdfViewController:didDisplayDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didDisplayDocument:</option>
+	
+	<option value="//api/name/pdfViewController:didLoadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didLoadPage:pdfScrollView:</option>
+	
+	<option value="//api/name/pdfViewController:didRenderPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPage:pdfScrollView:</option>
+	
+	<option value="//api/name/pdfViewController:didShowPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowPage:</option>
+	
+	<option value="//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnAnnotation:page:info:coordinates:</option>
+	
+	<option value="//api/name/pdfViewController:didTapOnPage:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnPage:info:coordinates:</option>
+	
+	<option value="//api/name/pdfViewController:didUnloadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didUnloadPage:pdfScrollView:</option>
+	
+	<option value="//api/name/pdfViewController:willDisplayDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willDisplayDocument:</option>
+	
+	<option value="//api/name/pdfViewController:willLoadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willLoadPage:pdfScrollView:</option>
+	
+	<option value="//api/name/pdfViewController:willShowPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willShowPage:</option>
+	
+	<option value="//api/name/pdfViewController:willUnloadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willUnloadPage:pdfScrollView:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didChangeViewMode:">pdfViewController:didChangeViewMode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didDisplayDocument:">pdfViewController:didDisplayDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didLoadPage:pdfScrollView:">pdfViewController:didLoadPage:pdfScrollView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">pdfViewController:didRenderPage:pdfScrollView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowPage:">pdfViewController:didShowPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnPage:info:coordinates:">pdfViewController:didTapOnPage:info:coordinates:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didUnloadPage:pdfScrollView:">pdfViewController:didUnloadPage:pdfScrollView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willDisplayDocument:">pdfViewController:willDisplayDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willLoadPage:pdfScrollView:">pdfViewController:willLoadPage:pdfScrollView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willShowPage:">pdfViewController:willShowPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willUnloadPage:pdfScrollView:">pdfViewController:willUnloadPage:pdfScrollView:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFViewControllerDelegate Protocol Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFViewControllerDelegate Protocol Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFViewControllerDelegate.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>register to this delegate in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>
+Note: page is based of 1 till pageCount</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willDisplayDocument:">&ndash;&nbsp;pdfViewController:willDisplayDocument:</a></code>
+		<span class="tooltip"><p>time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didDisplayDocument:">&ndash;&nbsp;pdfViewController:didDisplayDocument:</a></code>
+		<span class="tooltip"><p>delegate to be notified when pdfController finished loading</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willShowPage:">&ndash;&nbsp;pdfViewController:willShowPage:</a></code>
+		<span class="tooltip"><p>deprecated. called same time as didShowPage</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didShowPage:">&ndash;&nbsp;pdfViewController:didShowPage:</a></code>
+		<span class="tooltip"><p>controller did show/scrolled to a new page (at least 51% of it is visible)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:didRenderPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>page was fully rendered at zoomlevel = 1</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didChangeViewMode:">&ndash;&nbsp;pdfViewController:didChangeViewMode:</a></code>
+		<span class="tooltip"><p>will be called when viewMode changes</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didTapOnPage:info:coordinates:">&ndash;&nbsp;pdfViewController:didTapOnPage:info:coordinates:</a></code>
+		<span class="tooltip"><p>if user tapped within page bounds, this will notify you.
+return YES if this touch was processed by you and need no further checking by PSPDFKit.
+Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only page=1 if the optimization isAspectRatioEqual is enabled.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&ndash;&nbsp;pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></code>
+		<span class="tooltip"><p>delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willLoadPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:willLoadPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>called before a pdf page will be loaded and added to the pagingScrollView</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didLoadPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:didLoadPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>called after pdf page has been loaded and added to the pagingScrollView</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willUnloadPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:willUnloadPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>called before a pdf page will be unloaded and removed from the pagingScrollView</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didUnloadPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:didUnloadPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>called after pdf page has been unloaded and removed from the pagingScrollView</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didChangeViewMode:" title="pdfViewController:didChangeViewMode:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didChangeViewMode:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>will be called when viewMode changes</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didChangeViewMode:(PSPDFViewMode)<em>viewMode</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>will be called when viewMode changes</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didDisplayDocument:" title="pdfViewController:didDisplayDocument:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didDisplayDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>delegate to be notified when pdfController finished loading</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didDisplayDocument:(PSPDFDocument *)<em>document</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>delegate to be notified when pdfController finished loading</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didLoadPage:pdfScrollView:" title="pdfViewController:didLoadPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didLoadPage:pdfScrollView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called after pdf page has been loaded and added to the pagingScrollView</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didLoadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>called after pdf page has been loaded and added to the pagingScrollView</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didRenderPage:pdfScrollView:" title="pdfViewController:didRenderPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didRenderPage:pdfScrollView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>page was fully rendered at zoomlevel = 1</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didRenderPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>page was fully rendered at zoomlevel = 1</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didShowPage:" title="pdfViewController:didShowPage:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didShowPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>controller did show/scrolled to a new page (at least 51% of it is visible)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didShowPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>controller did show/scrolled to a new page (at least 51% of it is visible)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:" title="pdfViewController:didTapOnAnnotation:page:info:coordinates:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didTapOnAnnotation:page:info:coordinates:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnAnnotation:(PSPDFLinkAnnotation *)<em>annotation</em> page:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didTapOnPage:info:coordinates:" title="pdfViewController:didTapOnPage:info:coordinates:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didTapOnPage:info:coordinates:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>if user tapped within page bounds, this will notify you.
+return YES if this touch was processed by you and need no further checking by PSPDFKit.
+Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only page=1 if the optimization isAspectRatioEqual is enabled.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnPage:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>if user tapped within page bounds, this will notify you.
+return YES if this touch was processed by you and need no further checking by PSPDFKit.
+Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only page=1 if the optimization isAspectRatioEqual is enabled.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didUnloadPage:pdfScrollView:" title="pdfViewController:didUnloadPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didUnloadPage:pdfScrollView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called after pdf page has been unloaded and removed from the pagingScrollView</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didUnloadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>called after pdf page has been unloaded and removed from the pagingScrollView</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:willDisplayDocument:" title="pdfViewController:willDisplayDocument:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willDisplayDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willDisplayDocument:(PSPDFDocument *)<em>document</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:willLoadPage:pdfScrollView:" title="pdfViewController:willLoadPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willLoadPage:pdfScrollView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called before a pdf page will be loaded and added to the pagingScrollView</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willLoadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>called before a pdf page will be loaded and added to the pagingScrollView</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:willShowPage:" title="pdfViewController:willShowPage:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willShowPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>deprecated. called same time as didShowPage</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willShowPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>deprecated. called same time as didShowPage</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:willUnloadPage:pdfScrollView:" title="pdfViewController:willUnloadPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willUnloadPage:pdfScrollView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called before a pdf page will be unloaded and removed from the pagingScrollView</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willUnloadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>called before a pdf page will be unloaded and removed from the pagingScrollView</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-09-15)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
