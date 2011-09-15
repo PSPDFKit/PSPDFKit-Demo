@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.8 - 15/Sept/2011__
+
+*  update thumbnail grid when document is changed via property
+
 __v1.6.7 - 15/Sept/2011__
 
 *  improves outline parser, now handles even more pdf variants
