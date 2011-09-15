@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.6.6 - 15/Sept/2011__
+
+*  potential bug fix for concurrent disk operations (NSFileManager is not thread safe!)
+*  fixes positioning problem using the (unsupported) combination of PSPDFScrollingVertical and fitWidth
+
 __v1.6.5 - 15/Sept/2011__
 
 *  fixes a bug where scroll position was remembered between pages when using fitWidth
