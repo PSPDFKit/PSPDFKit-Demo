@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.7 - 15/Sept/2011__
+
+*  improves outline parser, now handles even more pdf variants
+
 __v1.6.6 - 15/Sept/2011__
 
 *  potential bug fix for concurrent disk operations (NSFileManager is not thread safe!)
