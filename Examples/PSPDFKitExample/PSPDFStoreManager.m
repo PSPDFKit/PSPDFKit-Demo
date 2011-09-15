@@ -45,7 +45,8 @@ static char kvoToken; // we need a static address for the kvo token
 // helper for folder search
 - (NSMutableArray *)searchFolder:(NSString *)sampleFolder {
     NSError *error = nil;
-    NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sampleFolder error:&error];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    NSArray *documentContents = [fileManager contentsOfDirectoryAtPath:sampleFolder error:&error];
     NSMutableArray *folders = [NSMutableArray array];
     PSPDFMagazineFolder *rootFolder = [PSPDFMagazineFolder folderWithTitle:[[NSURL fileURLWithPath:sampleFolder] lastPathComponent]];
     
@@ -53,10 +54,10 @@ static char kvoToken; // we need a static address for the kvo token
         // check if target path is a directory (all magazines are in directories)
         NSString *fullPath = [sampleFolder stringByAppendingPathComponent:folder];
         BOOL isDir;
-        if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
+        if ([fileManager fileExistsAtPath:fullPath isDirectory:&isDir]) {
             if (isDir) {
                 PSPDFMagazineFolder *contentFolder = [PSPDFMagazineFolder folderWithTitle:[fullPath lastPathComponent]];
-                NSArray *subDocumentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder error:&error];
+                NSArray *subDocumentContents = [fileManager contentsOfDirectoryAtPath:folder error:&error];
                 for (NSString *afolder in subDocumentContents) {
                     if ([afolder hasSuffix:@"pdf"]) {
                         PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:[folder stringByAppendingPathComponent:afolder]];
@@ -77,6 +78,7 @@ static char kvoToken; // we need a static address for the kvo token
         [folders addObject:rootFolder];
     }
     
+    [fileManager release];
     return folders;
 }
 
