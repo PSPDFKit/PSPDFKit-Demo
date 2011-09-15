@@ -55,7 +55,7 @@
         PSPDFSettingsController *cacheSettingsController = [[[PSPDFSettingsController alloc] init] autorelease];
         if (PSIsIpad()) {
             self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
-            [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+            [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
             [self presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
         }
