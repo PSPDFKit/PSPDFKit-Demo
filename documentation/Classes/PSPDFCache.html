@@ -112,6 +112,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFKitThumbnailCache Methods">PSPDFKitThumbnailCache Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -208,7 +210,7 @@
 	<td class="specification-value">NSCacheDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFCache.h<br />PSPDFCache.m</td>
+	<td class="specification-value">PSPDFCache.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -279,7 +281,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheDocument:startAtPage:size:">&ndash;&nbsp;cacheDocument:startAtPage:size:</a></code>
-		<span class="tooltip"><p>start document caching (update often to improve cache hits)</p></span>
+		<span class="tooltip"><p>start document caching (update often to improve cache hits). Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -379,8 +381,8 @@ if you experience memory issues, set this to zero in your AppDelegate.</p></span
 						</ul>
 						
 						
-						
-						<h3 class="subsubtitle task-title">Other Methods</h3>
+						<a title="PSPDFKitThumbnailCache Methods" name="task_PSPDFKitThumbnailCache Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFKitThumbnailCache Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -390,30 +392,14 @@ if you experience memory issues, set this to zero in your AppDelegate.</p></span
 	</span>
 	
 	
-</li>
-						</ul>
-						
-						
-						
-						<h3 class="subsubtitle task-title">Other Methods</h3>
-
-						<ul class="task-list">
-							<li>
+</li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/imageForDocument:page:size:">&ndash;&nbsp;imageForDocument:page:size:</a></code>
 		<span class="tooltip"><p>load image for a certain document page</p></span>
 	</span>
 	
 	
-</li>
-						</ul>
-						
-						
-						
-						<h3 class="subsubtitle task-title">Other Methods</h3>
-
-						<ul class="task-list">
-							<li>
+</li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/clearThumbnailMemoryCache">&ndash;&nbsp;clearThumbnailMemoryCache</a></code>
 		<span class="tooltip"><p>clear thumbnail memory cache</p></span>
@@ -453,11 +439,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p></span
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>compression strength used. Defaults to 0.8</p>
-	</div>
-	
 	
 	
 	
@@ -492,11 +473,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p></span
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>cache files are saved in a subdirectory of NSCachesDirectory. Defaults to &ldquo;PSPDFKit&rdquo;.</p>
-	</div>
-	
 	
 	
 	
@@ -530,11 +506,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p></span
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>PNG needs ~200% more space, but is both faster in creation, loading and looks nicer. Defaults to NO.</p>
-	</div>
 	
 	
 	
@@ -571,12 +542,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>maximum number of cached documents. Defaults to 1.
-if you experience memory issues, set this to zero in your AppDelegate.</p>
-	</div>
-	
 	
 	
 	
@@ -610,11 +575,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>only relevant in <a href="#//api/name/strategy">strategy</a> PSPDFCacheOnlyThumbnailsAndNearPages</p>
-	</div>
 	
 	
 	
@@ -650,11 +610,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>set up caching <a href="#//api/name/strategy">strategy</a></p>
-	</div>
-	
 	
 	
 	
@@ -689,11 +644,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>defaults to CGSizeMake(200, 400);</p>
-	</div>
-	
 	
 	
 	
@@ -727,11 +677,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>defaults to CGSizeMake(50, 100);</p>
-	</div>
 	
 	
 	
@@ -775,11 +720,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>cache is a singleton</p>
-	</div>
-	
 	
 	
 	
@@ -822,11 +762,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>delegate (uses MAZeroWeakRef to weak/nil out deallocated delegates)</p>
-	</div>
-	
 	
 	
 	
@@ -848,7 +783,7 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>start document caching (update often to improve cache hits)</p>
+		<p>start document caching (update often to improve cache hits). Page starts at 0.</p>
 	</div>		
 	
 	
@@ -860,11 +795,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>start document caching (update often to improve cache hits)</p>
-	</div>
 	
 	
 	
@@ -900,11 +830,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>save image in an NSCache object for specified identifier.</p>
-	</div>
-	
 	
 	
 	
@@ -938,11 +863,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>returns cached image of document. If not found, add to TOP of current caching queue</p>
-	</div>
 	
 	
 	
@@ -978,11 +898,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>returns cached image of document. preload decompresses the image in the background.</p>
-	</div>
-	
 	
 	
 	
@@ -1016,11 +931,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.</p>
-	</div>
 	
 	
 	
@@ -1056,11 +966,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>clear thumbnail memory cache</p>
-	</div>
-	
 	
 	
 	
@@ -1094,11 +999,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>load image for a certain document page</p>
-	</div>
 	
 	
 	
@@ -1134,11 +1034,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>check if document is cached</p>
-	</div>
-	
 	
 	
 	
@@ -1172,11 +1067,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>clear cache</p>
-	</div>
 	
 	
 	
@@ -1212,11 +1102,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>you <strong>can</strong> manually remove delegates, but it&rsquo;s not needed. return YES on success</p>
-	</div>
-	
 	
 	
 	
@@ -1250,11 +1135,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>renders image of a page for spezified size. Used here and in <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p>
-	</div>
 	
 	
 	
@@ -1290,11 +1170,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>save native rendered image, then call delegate. Used from <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p>
-	</div>
-	
 	
 	
 	
@@ -1328,11 +1203,6 @@ if you experience memory issues, set this to zero in your AppDelegate.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>stop document caching</p>
-	</div>
 	
 	
 	

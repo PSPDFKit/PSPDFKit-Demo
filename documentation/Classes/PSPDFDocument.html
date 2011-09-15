@@ -245,7 +245,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFDocument.h<br />PSPDFDocument.m</td>
+	<td class="specification-value">PSPDFDocument.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -539,11 +539,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Link annotation parser class for current document. Readonly.</p>
-	</div>
-	
 	
 	
 	
@@ -577,11 +572,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>annotation link extraction. Defaults to YES.</p>
-	</div>
 	
 	
 	
@@ -617,11 +607,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to YES.</p>
-	</div>
-	
 	
 	
 	
@@ -655,11 +640,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p>
-	</div>
 	
 	
 	
@@ -695,11 +675,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>if document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p>
-	</div>
-	
 	
 	
 	
@@ -733,11 +708,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Text extraction class for current document. Readonly.</p>
-	</div>
 	
 	
 	
@@ -773,11 +743,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for <a href="#//api/name/basePath">basePath</a> * <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p>
-	</div>
-	
 	
 	
 	
@@ -811,11 +776,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>array of NSString pdf <a href="#//api/name/files">files</a>.</p>
-	</div>
 	
 	
 	
@@ -851,11 +811,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>outline/table of contents extraction. disable if no outline available. Defaults to YES.</p>
-	</div>
-	
 	
 	
 	
@@ -889,11 +844,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Outline extraction class for current document. Readonly.</p>
-	</div>
 	
 	
 	
@@ -929,11 +879,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.</p>
-	</div>
-	
 	
 	
 	
@@ -967,11 +912,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>document <a href="#//api/name/title">title</a> as shown in the controller</p>
-	</div>
 	
 	
 	
@@ -1008,12 +948,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
-or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
-	</div>
-	
 	
 	
 	
@@ -1047,11 +981,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>For caching, provide a <strong>UNIQUE</strong> <a href="#//api/name/uid">uid</a> here. (Or clear cache after content changes for same <a href="#//api/name/uid">uid</a>. Appending content is no problem)</p>
-	</div>
 	
 	
 	
@@ -1095,11 +1024,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>initialize empty <a href="PSPDFDocument.html">PSPDFDocument</a></p>
-	</div>
-	
 	
 	
 	
@@ -1134,11 +1058,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>initalize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a></p>
-	</div>
-	
 	
 	
 	
@@ -1172,11 +1091,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>initializes <a href="PSPDFDocument.html">PSPDFDocument</a> with a single file</p>
-	</div>
 	
 	
 	
@@ -1220,11 +1134,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)</p>
-	</div>
-	
 	
 	
 	
@@ -1258,11 +1167,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>override if you want custom <strong>page</strong> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p>
-	</div>
 	
 	
 	
@@ -1298,11 +1202,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>shortcut to clearCacheForced:NO</p>
-	</div>
-	
 	
 	
 	
@@ -1336,11 +1235,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>if you change internal properties (like file count), cache needs to be cleared. Forced clears <strong>everything</strong> and even if doc is currently displayed.</p>
-	</div>
 	
 	
 	
@@ -1376,11 +1270,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates</p>
-	</div>
-	
 	
 	
 	
@@ -1415,11 +1304,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads!</p>
-	</div>
-	
 	
 	
 	
@@ -1453,11 +1337,6 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p>
-	</div>
 	
 	
 	
@@ -1494,12 +1373,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>defaults to nil. can be overridden to provide custom text.
-if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
-	</div>
-	
 	
 	
 	
@@ -1533,11 +1406,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>return pdf page count</p>
-	</div>
 	
 	
 	
@@ -1573,11 +1441,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>cached rotation and aspect ratio data for specific page. Page starts at 0.</p>
-	</div>
-	
 	
 	
 	
@@ -1612,11 +1475,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
-	</div>
-	
 	
 	
 	
@@ -1650,11 +1508,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>returns path for a single page (in case pages are split up). Page starts at 0.</p>
-	</div>
 	
 	
 	
@@ -1691,12 +1544,6 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
-maybe needs a pdf lock if not already cached.</p>
-	</div>
-	
 	
 	
 	
@@ -1730,11 +1577,6 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>rotation for specified page. cached. Page starts at 0.</p>
-	</div>
 	
 	
 	
@@ -1770,11 +1612,6 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>return true if you want drawOverlayRect to be called.</p>
-	</div>
-	
 	
 	
 	
@@ -1808,11 +1645,6 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p>
-	</div>
 	
 	
 	

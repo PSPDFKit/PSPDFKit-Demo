@@ -146,7 +146,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFGlobalLock.h<br />PSPDFGlobalLock.m</td>
+	<td class="specification-value">PSPDFGlobalLock.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -197,7 +197,7 @@ returns nil if currently locked.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageRefWithPath:page:">&ndash;&nbsp;pageRefWithPath:page:</a></code>
-		<span class="tooltip"><p>returns a <a href="#//api/name/page">page</a> reference that is autoreleased, doesn&rsquo;t lock the system.
+		<span class="tooltip"><p>returns a page reference that is autoreleased, doesn&rsquo;t lock the system.
 still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely.</p></span>
 	</span>
 	
@@ -240,7 +240,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/requestClearCacheAndWait:">&ndash;&nbsp;requestClearCacheAndWait:</a></code>
-		<span class="tooltip"><p>clears internal document/<a href="#//api/name/page">page</a> cache. Usually no need to call externally, until you change a already displayed pdf file.</p></span>
+		<span class="tooltip"><p>clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p></span>
 	</span>
 	
 	
@@ -278,11 +278,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>get global singleton.</p>
-	</div>
 	
 	
 	
@@ -326,11 +321,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>free document reference. only use if opened via lockDocumentWithPath</p>
-	</div>
-	
 	
 	
 	
@@ -364,11 +354,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>free lock with CGPDFPageRef</p>
-	</div>
 	
 	
 	
@@ -404,11 +389,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>optain a document reference with real path.</p>
-	</div>
-	
 	
 	
 	
@@ -442,11 +422,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>special lock for your application (e.g. unzip)</p>
-	</div>
 	
 	
 	
@@ -482,11 +457,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a></p>
-	</div>
-	
 	
 	
 	
@@ -508,7 +478,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns a <a href="#//api/name/page">page</a> reference that is autoreleased, doesn&rsquo;t lock the system.
+		<p>returns a page reference that is autoreleased, doesn&rsquo;t lock the system.
 still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely.</p>
 	</div>		
 	
@@ -521,12 +491,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>returns a <a href="#//api/name/page">page</a> reference that is autoreleased, doesn&rsquo;t lock the system.
-still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely.</p>
-	</div>
 	
 	
 	
@@ -549,7 +513,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	<div class="method-subsection brief-description">
-		<p>clears internal document/<a href="#//api/name/page">page</a> cache. Usually no need to call externally, until you change a already displayed pdf file.</p>
+		<p>clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p>
 	</div>		
 	
 	
@@ -561,11 +525,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>clears internal document/<a href="#//api/name/page">page</a> cache. Usually no need to call externally, until you change a already displayed pdf file.</p>
-	</div>
 	
 	
 	
@@ -602,12 +561,6 @@ returns nil if currently locked.</p>
 	
 	
 	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>TRY to lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.
-returns nil if currently locked.</p>
-	</div>
-	
 	
 	
 	
@@ -641,11 +594,6 @@ returns nil if currently locked.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>special global unlock. Use with <a href="#//api/name/lockGlobal">lockGlobal</a>.</p>
-	</div>
 	
 	
 	
