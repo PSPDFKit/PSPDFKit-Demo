@@ -7,11 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- * A simple block-enabled API wrapper on top of UIActionSheet.
- */
+// A simple block-enabled API wrapper on top of UIActionSheet
 @interface PSActionSheet : NSObject <UIActionSheetDelegate> {
-@private
   UIActionSheet *sheet_;
   NSMutableArray *blocks_;
 }
