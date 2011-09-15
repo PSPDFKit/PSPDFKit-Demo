@@ -117,6 +117,7 @@
     self.pdfController.doublePageModeOnFirstPage = YES;
     //self.pdfController.scrobbleBarEnabled = NO;
      */
+    //self.pdfController.viewMode = PSPDFViewModeThumbnails;
     
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
