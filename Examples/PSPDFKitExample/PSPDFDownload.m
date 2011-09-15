@@ -103,9 +103,11 @@
     NSString *destPath = [dirPath stringByAppendingPathComponent:[self.url lastPathComponent]];  
     
     // create folder
-    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&error];
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if (![fileManager fileExistsAtPath:dirPath]) {
+        [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
+    [fileManager release];
     
     PSELog(@"downloading pdf from %@ to %@", self.url, destPath);
     
