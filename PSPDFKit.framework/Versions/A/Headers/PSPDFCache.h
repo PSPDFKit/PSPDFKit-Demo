@@ -84,7 +84,7 @@ enum {
 /// save native rendered image, then call delegate. Used from PSPDFTilingView.
 - (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
 
-/// start document caching (update often to improve cache hits)
+/// start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
 /// stop document caching
