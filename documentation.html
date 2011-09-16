@@ -29,17 +29,15 @@ documentation: current-menu-item current_page_item
     <div id="troubleshooting" class="col-full section">
       <h2 class="section-title">Troubleshooting</h2>
       <p>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.<br>
-	     A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text.</p>
+	     A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text.</p><p></p>
 	  <p>Q: Everything works perfectly, but when I use pdf XYZ, your application crashes (this only happens on the device)<br>
-		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p>
+		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning `drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p><p></p>
 	  <p>Q: Search usually works fine, but it work on pdf XYZ, where it only shows garbage.<br>
-		 A: Your pdf most likely uses Identity-H fonts with or without CMaps. This is something not [yet] supported. We plan on improving the text extraction algorithms in the future, but for now only unicode-saved text can be searched.</p>
+		 A: Your pdf most likely uses Identity-H fonts with or without CMaps. This is something not [yet] supported. We plan on improving the text extraction algorithms in the future, but for now only unicode-saved text can be searched.</p><p></p>
 	  <p>Q: When I use the source, there are compile errors/warnings.<br>
-		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).</p>
+		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).</p><p></p>
 	  <p>Q: Do I need to buy another license to make a second app?<br>
 		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
-	
-      <script src="https://gist.github.com/1117227.js"> </script> 
     </div>
     <div id="features" class="widget col-full section">
       <h2 class="section-title">Example Project Features</h2>
