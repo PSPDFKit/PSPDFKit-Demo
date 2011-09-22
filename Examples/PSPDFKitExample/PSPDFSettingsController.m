@@ -40,7 +40,11 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
                     nil];
         
-        //self.contentSizeForViewInPopover = CGSizeMake(300, 500);
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // set reasonable defaults depending if it's iPad or iPhone
+            pageMode = PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle;
+        });
     }
     return self;
 }
