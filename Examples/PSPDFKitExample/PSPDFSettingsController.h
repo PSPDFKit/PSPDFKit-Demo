@@ -16,6 +16,9 @@
 
 - (id)initWithStyle:(UITableViewStyle)style;
 
+// called on startup to init device specific defaults
++ (void)setupDefaults;
+
 // global settings read by PSPDFGridController
 
 + (PSPDFPageMode)pageMode;
