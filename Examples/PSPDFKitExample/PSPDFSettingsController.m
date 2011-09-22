@@ -27,6 +27,18 @@ static BOOL annotations = YES;
 #define kDocOptionBlockIndex 5
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
++ (void)setupDefaults {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // set reasonable defaults depending if it's iPad or iPhone
+        pageMode = PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle;
+    });
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithStyle:(UITableViewStyle)style; {
@@ -38,13 +50,7 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
                     [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
-                    nil];
-        
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            // set reasonable defaults depending if it's iPad or iPhone
-            pageMode = PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle;
-        });
+                    nil];        
     }
     return self;
 }
@@ -128,7 +134,7 @@ static BOOL annotations = YES;
 - (void)switchChanged:(UISwitch *)cellSwitch {
     UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-
+    
     if (indexPath.section == kOptionBlockIndex) {
         switch (indexPath.row) {
             case 0:

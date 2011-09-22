@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "PSPDFGridController.h"
 #import "PSPDFNavigationController.h"
+#import "PSPDFSettingsController.h"
 #import "AFURLCache.h"
 
 @implementation AppDelegate
@@ -49,6 +50,9 @@
     
     // enable to change anomations (e.g. enable on iPad1)
     //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
+    
+    // setup device specific defaults
+    [PSPDFSettingsController setupDefaults];
     
     // create main grid and show!
     gridController_ = [[PSPDFGridController alloc] init];
