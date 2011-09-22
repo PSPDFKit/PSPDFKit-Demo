@@ -33,9 +33,9 @@
     PSPDFLog(@"Kiosk Example is starting up...");
     
     // setup disk saving url cache
-    AFURLCache *URLCache = [[AFURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
+    AFURLCache *URLCache = [[[AFURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
-                                                             diskPath:[AFURLCache defaultCachePath]];
+                                                             diskPath:[AFURLCache defaultCachePath]] autorelease];
     [NSURLCache setSharedURLCache:URLCache];
 
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
@@ -43,6 +43,9 @@
     
     // enable to see the scrollviews semi-transparent
     //kPSPDFKitDebugScrollViews = YES;
+    
+    // enable to see memory usage
+    //kPSPDFKitDebugMemory = YES;
     
     // enable to change anomations (e.g. enable on iPad1)
     //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
@@ -56,7 +59,7 @@
         
     NSString *cacheFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     PSELog(@"CacheDir: %@", cacheFolder);
-
+    
     // set white status bar style when not on ipad
     if (!PSIsIpad()) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];

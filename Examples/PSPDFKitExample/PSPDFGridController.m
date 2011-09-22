@@ -236,7 +236,7 @@
     
     // use custom view to match background with PSPDFViewController
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
+    UIView *backgroundView = [[[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)] autorelease];
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     backgroundView.opaque = YES;
