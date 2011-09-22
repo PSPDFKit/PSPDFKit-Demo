@@ -300,19 +300,7 @@
         } completion:^(BOOL finished) {
             [self.progressView removeFromSuperview];
             self.progressView = nil;
-        }];
-        
-        // get magazine and refresh
-        PSPDFMagazine *magazine = self.magazine;
-        if (!magazine) {
-            magazine = [self.magazineFolder firstMagazine];
-            for (PSPDFMagazine *aMagazine in self.magazineFolder.magazines) {
-                if (aMagazine.isDownloading) {
-                    magazine = aMagazine;
-                    break;
-                }
-            }
-        }
+        }];        
     }else if(shouldShowProgress) {
         [self.contentView bringSubviewToFront:self.progressView];
         
