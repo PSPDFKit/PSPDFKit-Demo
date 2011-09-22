@@ -92,12 +92,15 @@
     NSLog(@"didLoadPage: %d", page);    
     
     // add loading indicator
-    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    [indicator sizeToFit];
-    [indicator startAnimating];
-    indicator.tag = PSPDFLoadingViewTag;
-    indicator.frame = CGRectMake(floorf((pdfScrollView.compoundView.width - indicator.width)/2), floorf((pdfScrollView.compoundView.height - indicator.height)/2), indicator.width, indicator.height);
-    [pdfScrollView addSubview:indicator];
+        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pdfScrollView viewWithTag:PSPDFLoadingViewTag];
+    if (!indicator) {
+        indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+        [indicator sizeToFit];
+        [indicator startAnimating];
+        indicator.tag = PSPDFLoadingViewTag;
+        indicator.frame = CGRectMake(floorf((pdfScrollView.compoundView.width - indicator.width)/2), floorf((pdfScrollView.compoundView.height - indicator.height)/2), indicator.width, indicator.height);
+        [pdfScrollView addSubview:indicator];
+    }
 }
 
 // called before a pdf page will be unloaded and removed from the pagingScrollView
