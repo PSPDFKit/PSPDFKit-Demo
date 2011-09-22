@@ -147,7 +147,7 @@ static char kvoToken; // we need a static address for the kvo token
         NSMutableArray *newMagazines = [NSMutableArray array];
         for (NSDictionary *dlMagazine in dlMagazines) {
             if (![dlMagazine isKindOfClass:[NSDictionary class]]) {
-                PSPDFLogError(@"Error while parsing magazine JSON!");
+                PSELog(@"Error while parsing magazine JSON - Dictionary expected. Got this instead: %@", dlMagazine);
             }else {
                 // create and fill PSPDFMagazine
                 NSString *title = [dlMagazine objectForKey:@"name"];
