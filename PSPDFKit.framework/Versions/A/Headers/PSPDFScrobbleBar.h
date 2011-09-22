@@ -28,8 +28,11 @@
 /// initialize
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
-/// updates toolbar, realigns page screenshots.
+/// updates toolbar, realigns page screenshots. Registers in the runloop and works later
 - (void)updateToolbar;
+
+/// *instantly* updates toolbar. 
+- (void)updateToolbarForced;
 
 /// updates the page marker. call manually after alpha > 0 !
 - (void)updatePageMarker;
@@ -42,6 +45,5 @@
 
 /// access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images
 @property(nonatomic, retain) UIToolbar *toolbar;
-
 
 @end

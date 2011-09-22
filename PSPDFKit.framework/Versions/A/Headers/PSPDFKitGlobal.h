@@ -6,8 +6,13 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import "PSPDFCache.h"
+
 // *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
+
+// if disabled, kPSPDFKitDebugMemory has no effect.
+#define kPSPDFKitAllowMemoryDebugging
 
 extern CGFloat kPSPDFKitHUDTransparency;
 
@@ -34,7 +39,8 @@ extern NSUInteger kPSPDFKitZoomLevels;
 
 enum {
     PSPDFLogLevelNothing,
-    PSPDFLogLevelError,    
+    PSPDFLogLevelError,   
+    PSPDFLogLevelWarning,
     PSPDFLogLevelInfo,
     PSPDFLogLevelVerbose
 }typedef PSPDFLogLevel;
@@ -55,6 +61,9 @@ extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevic
 // optionally enable scrollbar debugging.
 extern BOOL kPSPDFKitDebugScrollViews;
 
+// enable to track down memory issues
+extern BOOL kPSPDFKitDebugMemory;
+
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define MCReleaseNil(x) [x release], x = nil
 #define MCReleaseViewNil(x) do { [x removeFromSuperview], [x release], x = nil; } while (0)
@@ -67,13 +76,25 @@ extern BOOL kPSPDFKitDebugScrollViews;
 #ifdef kPSPDFKitDebugEnabled
 #define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLog(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogWarning(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelWarning) NSLog((@"Warning: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLogError(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
 #define PSPDFLogVerbose(...)
 #define PSPDFLog(...)
 #define PSPDFLogError(...)
+#define PSPDFLogWarning(...)
 #endif
 
+// object tracker debug helper
+#ifdef kPSPDFKitAllowMemoryDebugging
+#define PSPDFLogMemory(fmt, ...) do { if(kPSPDFKitDebugMemory) NSLog((fmt), ##__VA_ARGS__); }while(0)
+#define PSPDFRegisterObject(object) [[PSPDFCache sharedPSPDFCache] registerObject:object]
+#define PSPDFDeregisterObject(object) [[PSPDFCache sharedPSPDFCache] deregisterObject:object]
+#else
+#define PSPDFLogMemory(fmt, ...)
+#define PSPDFRegisterObject(object)
+#define PSPDFDeregisterObject(object)
+#endif
 
 #define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
 \

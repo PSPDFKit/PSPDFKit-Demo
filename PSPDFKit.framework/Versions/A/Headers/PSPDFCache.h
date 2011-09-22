@@ -55,6 +55,7 @@ enum {
     NSOperationQueue *cacheQueue_;
     NSMutableSet *delegates_;
     NSCache *thumbnailCache_;
+    NSCache *fullPageCache_;
     PSPDFCacheStrategy strategy_;
     NSUInteger numberOfMaximumCachedDocuments_;
     NSUInteger numberOfNearCachedPages_;
@@ -105,9 +106,9 @@ enum {
 /// set up caching strategy
 @property(assign) PSPDFCacheStrategy strategy;
 
-/// maximum number of cached documents. Defaults to 1.
+/// maximum number of cached documents. Default value depends on device.
 /// if you experience memory issues, set this to zero in your AppDelegate.
-@property(assign) NSUInteger numberOfMaximumCachedDocuments;
+@property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 
 /// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages
 @property(assign) NSUInteger numberOfNearCachedPages;
@@ -141,6 +142,15 @@ enum {
 
 /// clear thumbnail memory cache
 - (void)clearThumbnailMemoryCache;
+
+@end
+
+/// used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h
+@interface PSPDFCache (PSPDFDebuggingSupport)
+
+- (void)registerObject:(NSObject *)object;
+- (void)deregisterObject:(NSObject *)object;
+- (void)printStatus;
 
 @end
 
