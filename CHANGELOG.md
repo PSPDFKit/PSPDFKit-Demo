@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.6.9 - 22/Sept/2011__
+
+*  add option do debug memory usage (Instruments isn't always great)
+*  improves memory efficiency on tile drawing, animations
+*  improves performance, lazily creates gridView when first accessed
+*  improves scrobble bar update performance
+*  fixes memory problems on older devices like iPad 1, iPhone 3GS
+*  fixes a problem with unicode files
+*  fixes auto-switch to fitWidth on iPhone when location is default view
+
 __v1.6.8 - 15/Sept/2011__
 
 *  update thumbnail grid when document is changed via property
