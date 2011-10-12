@@ -41,6 +41,13 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
 		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
     </div>
+    <h2 class="section-title">How to report a bug</h2>
+<p>While Apple's devices are magical, my clairvoyant abilities are not. Please provide your environment (Xcode version, Base SDK, iOS Version, Device generation) and the PSPDFKit version. You'll find this in PSPDFKit.framework/Resources/Info.plist.</p>
+<p>Next, a stack trace or even an example project will really help. If you don't get a stack trace ("it just closes"), it's a memory problem, which I may or may not be able to help. Some pdf's are just too large to be rendered on iOS limited 64MB per app limit at all. In this case, you can use Adobe Acrobat or Preview and try to re-save it in a smaller PDF version, which most likely also reduces complexity. Also, enable the global variable kPSPDFKitAllowMemoryDebugging in your AppDelegate to see a detailed log about memory usage. Please copy and send this log with the bug report.</p>
+<p>If you see errors like EXEC_BAD_ACCESS, it's most likely a dangling pointer/memory corruption, which can also be from your app. Be sure to enable NSZombie (in Xcode Edit Scheme... -> Diagnostics -> Enable Zombie Objects and Malloc Stack), so you'll see the object with invalid memory management.</p>
+<p>Note that I can't help if you use outdated technology. Only latest-1 is supported (which currently is Xcode 4.1/4.2 and Base SDK 4.3 or 5.0 - all with Clang Compiler only.)</p>
+<p>In general, because PSPDFKit is widely used, it's pretty damn stable, so be sure to check your app first.</p>
+
     <div id="features" class="widget col-full section">
       <h2 class="section-title">Example Project Features</h2>
       <ul>
