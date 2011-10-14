@@ -16,9 +16,6 @@
 
 extern CGFloat kPSPDFKitHUDTransparency;
 
-// return status bar width, orientation corrected, and only on iPad
-CGFloat PSStatusBarHeight(void);
-
 /// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
 BOOL PSPDFIsCrappyDevice(void);
 
@@ -161,3 +158,4 @@ CGContextShowText(context, [text UTF8String], strlen([text UTF8String]));
 #else
 #define DrawPSPDFKitDemo(context);
 #endif
+
