@@ -1,5 +1,19 @@
 # Changelog
 
+__v1.6.11 - 14/Oct/2011__
+
+*  new: PSPDFKit is now compiled with Xcode 4.2/iOS Base SDK 5.0 (still works with 4.x)
+*  improves compatibility for outline parser; now able to handle rare array/dict destination variants (fixes all destinations = page 1 error)
+*  fixes a rare stack overflow when re-using zoomed scrollviews while scrolling.
+*  fixes a compile problem on older Xcode versions. (It's not officially supported though - use Xcode 4.2 for the best experience!)
+*  fixes a memory problem where iPad1 rarely tries to repaint a page forever
+
+__v1.6.10 - 25/Sept/2011__
+
+*  aspectRatioEqual now defaults to NO. Many customers oversee this and then send me (false) bug reports. Set this to YES for maximum speed if your document has one single aspect ratio (like most magazines should).
+*  scroll to active page in grid view
+*  fixes small offset-error in the scrobble bar
+
 __v1.6.9 - 22/Sept/2011__
 
 *  add option do debug memory usage (Instruments isn't always great)

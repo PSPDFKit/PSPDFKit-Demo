@@ -28,7 +28,7 @@
 /// returns corrected, rotated bounds of pageRect
 @property(nonatomic, assign, readonly) CGRect rotatedPageRect;
 
-/// saved page rotation of current page
+/// saved page rotation of current page. Value between 0 and 270.
 @property(nonatomic, assign) NSUInteger pageRotation;
 
 /// referenced page
