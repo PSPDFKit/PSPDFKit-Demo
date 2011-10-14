@@ -64,6 +64,10 @@
 /// cached rotation and aspect ratio data for specific page. Page starts at 0.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
+/// cached rotation and aspect ratio data for specific page. Page starts at 0.
+/// You can override this if you need to manually change the rotation value of a page.
+- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
+
 /// aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 /// maybe needs a pdf lock if not already cached.
 - (CGRect)rectBoxForPage:(NSUInteger)page;
@@ -114,7 +118,7 @@
 /// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath * files. Overrides all current settings if set.
 @property(nonatomic, retain) NSURL *fileUrl;
 
-/// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to YES.
+/// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 
 /// text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.

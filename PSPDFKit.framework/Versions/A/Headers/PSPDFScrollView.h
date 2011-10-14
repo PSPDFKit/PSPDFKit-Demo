@@ -49,7 +49,7 @@
 /// current displayed page
 @property(nonatomic, assign) NSUInteger page;
 
-// actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
+/// actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
 @property(nonatomic, retain, readonly) UIView *compoundView;
 
 /// if YES, two sites are displayed
