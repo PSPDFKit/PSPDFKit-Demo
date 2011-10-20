@@ -39,6 +39,7 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
 		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).<br>If you get linker errors about missing symbols, be sure that your project includes at least CoreText.framework, QuartzCore.framework, MessageUI.framework, and the linker flag -all_load.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
+		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p>
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
 		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
     </div>
