@@ -142,9 +142,13 @@
             
             // try to download image
             if (!self.image && magazine.imageUrl) {
-                [self.imageView setImageWithURL:magazine.imageUrl placeholderImage:nil imageSize:self.imageView.frame.size options:0 block:^(UIImage *image, BOOL cacheUsed) {
-                    [self setImage:image animated:!cacheUsed];
-                }];
+                
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageUrl cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0];
+                [request setHTTPShouldHandleCookies:NO];
+                [request setHTTPShouldUsePipelining:YES];
+                [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    [self setImage:image animated:NO];
+                } failure:nil];
             }
             
             // dark out view if it needs to be downloaded
