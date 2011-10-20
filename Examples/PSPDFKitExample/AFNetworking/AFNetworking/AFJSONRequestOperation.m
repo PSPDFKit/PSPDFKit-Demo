@@ -21,106 +21,135 @@
 // THE SOFTWARE.
 
 #import "AFJSONRequestOperation.h"
-#import "JSONKit.h"
 
 #include <Availability.h>
 
+#import "JSONKit.h"
+
 static dispatch_queue_t af_json_request_operation_processing_queue;
 static dispatch_queue_t json_request_operation_processing_queue() {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        af_json_request_operation_processing_queue = dispatch_queue_create("com.alamofire.json-request.processing", 0);
-    });
-
+    if (af_json_request_operation_processing_queue == NULL) {
+        af_json_request_operation_processing_queue = dispatch_queue_create("com.alamofire.networking.json-request.processing", 0);
+    }
+    
     return af_json_request_operation_processing_queue;
 }
 
+@interface AFJSONRequestOperation ()
+@property (readwrite, nonatomic, retain) id responseJSON;
+@property (readwrite, nonatomic, retain) NSError *error;
+
++ (NSSet *)defaultAcceptableContentTypes;
++ (NSSet *)defaultAcceptablePathExtensions;
+@end
+
 @implementation AFJSONRequestOperation
+@synthesize responseJSON = _responseJSON;
+@synthesize error = _JSONError;
 
-+ (id)operationWithRequest:(NSURLRequest *)urlRequest                
-                   success:(void (^)(id JSON))success
++ (AFJSONRequestOperation *)JSONRequestOperationWithRequest:(NSURLRequest *)urlRequest
+                                                    success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
+                                                    failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
 {
-    return [self operationWithRequest:urlRequest success:success failure:nil];
-}
-
-+ (id)operationWithRequest:(NSURLRequest *)urlRequest 
-                   success:(void (^)(id JSON))success
-                   failure:(void (^)(NSError *error))failure
-{    
-    return [self operationWithRequest:urlRequest acceptableStatusCodes:[self defaultAcceptableStatusCodes] acceptableContentTypes:[self defaultAcceptableContentTypes] success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        if (success) {
-            success(JSON);
-        }
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
-
-+ (id)operationWithRequest:(NSURLRequest *)urlRequest
-     acceptableStatusCodes:(NSIndexSet *)acceptableStatusCodes
-    acceptableContentTypes:(NSSet *)acceptableContentTypes
-                   success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, id JSON))success
-                   failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))failure
-{
-    return [self operationWithRequest:urlRequest completion:^(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *error) {        
-        if (!error) {
-            BOOL statusCodeAcceptable = [acceptableStatusCodes containsIndex:[response statusCode]];
-            BOOL contentTypeAcceptable = [acceptableContentTypes containsObject:[response MIMEType]];
-            if (!statusCodeAcceptable || !contentTypeAcceptable) {
-                NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
-                [userInfo setValue:[NSHTTPURLResponse localizedStringForStatusCode:[response statusCode]] forKey:NSLocalizedDescriptionKey];
-                [userInfo setValue:[request URL] forKey:NSURLErrorFailingURLErrorKey];
-                
-                error = [[[NSError alloc] initWithDomain:NSURLErrorDomain code:[response statusCode] userInfo:userInfo] autorelease];
-            }
+    AFJSONRequestOperation *operation = [[[self alloc] initWithRequest:urlRequest] autorelease];
+    operation.completionBlock = ^ {
+        if ([operation isCancelled]) {
+            return;
         }
         
-        if (error) {
+        if (operation.error) {
             if (failure) {
-                failure(request, response, error);
-            }
-        } else if ([data length] == 0) {
-            if (success) {
-                success(request, response, nil);
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    failure(operation.request, operation.response, operation.error);
+                });
             }
         } else {
             dispatch_async(json_request_operation_processing_queue(), ^(void) {
-                id JSON = nil;
-                NSError *JSONError = nil;
-#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_4_3
-                if ([NSJSONSerialization class]) {
-                    JSON = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-                } else {
-                    JSON = [[JSONDecoder decoder] objectWithData:data error:&JSONError];
-                }
-#else
-                JSON = [[JSONDecoder decoder] objectWithData:data error:&JSONError];
-#endif
+                id JSON = operation.responseJSON;
                 
-                dispatch_sync(dispatch_get_main_queue(), ^(void) {
-                    if (JSONError) {
+                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    if (operation.error) {
                         if (failure) {
-                            failure(request, response, JSONError);
+                            failure(operation.request, operation.response, operation.error);
                         }
                     } else {
                         if (success) {
-                            success(request, response, JSON);
+                            success(operation.request, operation.response, JSON);
                         }
                     }
-                });
+                }); 
             });
         }
-    }];
-}
-
-+ (NSIndexSet *)defaultAcceptableStatusCodes {
-    return [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
+    };
+    
+    return operation;
 }
 
 + (NSSet *)defaultAcceptableContentTypes {
-    return [NSSet setWithObjects:@"application/json", @"application/x-javascript", @"text/javascript", @"text/x-javascript", @"text/x-json", @"text/json", @"text/plain", nil];
+    return [NSSet setWithObjects:@"application/json", @"text/json", nil];
+}
+
++ (NSSet *)defaultAcceptablePathExtensions {
+    return [NSSet setWithObjects:@"json", nil];
+}
+
+- (id)initWithRequest:(NSURLRequest *)urlRequest {
+    self = [super initWithRequest:urlRequest];
+    if (!self) {
+        return nil;
+    }
+    
+    self.acceptableContentTypes = [[self class] defaultAcceptableContentTypes];
+    
+    return self;
+}
+
+- (void)dealloc {
+    [_responseJSON release];
+    [_JSONError release];
+    [super dealloc];
+}
+
+- (id)responseJSON {
+    if (!_responseJSON && [self isFinished]) {
+        NSError *error = nil;
+
+        if ([self.responseData length] == 0) {
+            self.responseJSON = nil;
+        } else {
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_4_3 || __MAC_OS_X_VERSION_MIN_REQUIRED > __MAC_10_6
+            if ([NSJSONSerialization class]) {
+                self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+            } else {
+                self.responseJSON = [[JSONDecoder decoder] objectWithData:self.responseData error:&error];
+            }
+#else
+            self.responseJSON = [[JSONDecoder decoder] objectWithData:self.responseData error:&error];
+#endif
+        }
+        
+        self.error = error;
+    }
+    
+    return _responseJSON;
+}
+
+#pragma mark - AFHTTPClientOperation
+
++ (BOOL)canProcessRequest:(NSURLRequest *)request {
+    return [[self defaultAcceptableContentTypes] containsObject:[request valueForHTTPHeaderField:@"Accept"]] || [[self defaultAcceptablePathExtensions] containsObject:[[request URL] pathExtension]];
+}
+
++ (AFHTTPRequestOperation *)HTTPRequestOperationWithRequest:(NSURLRequest *)urlRequest
+                                                    success:(void (^)(id object))success 
+                                                    failure:(void (^)(NSHTTPURLResponse *response, NSError *error))failure
+{
+    return [self JSONRequestOperationWithRequest:urlRequest success:^(NSURLRequest __unused *request, NSHTTPURLResponse __unused *response, id JSON) {
+        success(JSON);
+    } failure:^(NSURLRequest __unused *request, NSHTTPURLResponse *response, NSError *error) {
+        failure(response, error);
+    }];
 }
 
 @end
