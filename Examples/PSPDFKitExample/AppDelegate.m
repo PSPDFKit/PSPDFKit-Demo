@@ -10,7 +10,7 @@
 #import "PSPDFGridController.h"
 #import "PSPDFNavigationController.h"
 #import "PSPDFSettingsController.h"
-#import "AFURLCache.h"
+#import "SDURLCache.h"
 
 @implementation AppDelegate
 
@@ -34,9 +34,9 @@
     PSPDFLog(@"Kiosk Example is starting up...");
     
     // setup disk saving url cache
-    AFURLCache *URLCache = [[[AFURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
+    SDURLCache *URLCache = [[[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
-                                                             diskPath:[AFURLCache defaultCachePath]] autorelease];
+                                                             diskPath:[SDURLCache defaultCachePath]] autorelease];
     [NSURLCache setSharedURLCache:URLCache];
 
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError

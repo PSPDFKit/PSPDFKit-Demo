@@ -21,42 +21,55 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "AFURLConnectionOperation.h"
+#import "AFHTTPClient.h"
 
-extern NSString * const AFHTTPOperationDidStartNotification;
-extern NSString * const AFHTTPOperationDidFinishNotification;
-
-@interface AFHTTPRequestOperation : NSOperation {
-@private    
-    NSURLConnection *_connection;
-    NSSet *_runLoopModes;
-    
-    NSURLRequest *_request;
-    NSHTTPURLResponse *_response;
-    
-    NSData *_responseBody;
-    NSMutableData *_dataAccumulator;
-    NSOutputStream *_outputStream;
+/**
+ `AFHTTPRequestOperation` is a subclass of `AFURLConnectionOperation` for requests using the HTTP or HTTPS protocols. It encapsulates the concept of acceptable status codes and content types, which determine the success or failure of a request.
+ */
+@interface AFHTTPRequestOperation : AFURLConnectionOperation <AFHTTPClientOperation> {
+@private
+    NSIndexSet *_acceptableStatusCodes;
+    NSSet *_acceptableContentTypes;
+    NSError *_HTTPError;
 }
 
-@property (nonatomic, retain) NSURLConnection *connection;
-@property (nonatomic, retain) NSSet *runLoopModes;
+///----------------------------------------------
+/// @name Getting HTTP URL Connection Information
+///----------------------------------------------
 
-@property (nonatomic, retain) NSURLRequest *request;
-@property (nonatomic, retain) NSHTTPURLResponse *response;
-@property (nonatomic, retain) NSError *error;
+/**
+ The last HTTP response received by the operation's connection.
+ */
+@property (readonly, nonatomic, retain) NSHTTPURLResponse *response;
 
-@property (nonatomic, retain) NSData *responseBody;
-@property (readonly) NSString *responseString;
 
-+ (id)operationWithRequest:(NSURLRequest *)urlRequest 
-                completion:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSData *data, NSError *error))completion;
+///----------------------------------------------------------
+/// @name Managing And Checking For Acceptable HTTP Responses
+///----------------------------------------------------------
 
-+ (id)operationWithRequest:(NSURLRequest *)urlRequest
-               inputStream:(NSInputStream *)inputStream
-              outputStream:(NSOutputStream *)outputStream
-                completion:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error))completion;
+/**
+ Returns an `NSIndexSet` object containing the ranges of acceptable HTTP status codes. When non-`nil`, the operation will set the `error` property to an error in `AFErrorDomain`. See http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+ 
+ By default, this is the range 200 to 299, inclusive.
+ */
+@property (nonatomic, retain) NSIndexSet *acceptableStatusCodes;
 
-- (void)setUploadProgressBlock:(void (^)(NSUInteger totalBytesWritten, NSUInteger totalBytesExpectedToWrite))block;
-- (void)setDownloadProgressBlock:(void (^)(NSUInteger totalBytesRead, NSUInteger totalBytesExpectedToRead))block;
+/**
+ A Boolean value that corresponds to whether the status code of the response is within the specified set of acceptable status codes. Returns `YES` if `acceptableStatusCodes` is `nil`.
+ */
+@property (readonly) BOOL hasAcceptableStatusCode;
+
+/**
+ Returns an `NSSet` object containing the acceptable MIME types. When non-`nil`, the operation will set the `error` property to an error in `AFErrorDomain`. See http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.17 
+ 
+ By default, this is `nil`.
+ */
+@property (nonatomic, retain) NSSet *acceptableContentTypes;
+
+/**
+ A Boolean value that corresponds to whether the MIME type of the response is among the specified set of acceptable content types. Returns `YES` if `acceptableContentTypes` is `nil`.
+ */
+@property (readonly) BOOL hasAcceptableContentType;
 
 @end
