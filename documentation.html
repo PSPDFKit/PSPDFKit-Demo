@@ -28,20 +28,30 @@ documentation: current-menu-item current_page_item
     </div>
     <div id="troubleshooting" class="col-full section">
       <h2 class="section-title">Troubleshooting</h2>
+
       <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
 	     A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.'</p><br>
+	
 	  <p><b>Q: Everything works perfectly, but when I use pdf XYZ, your application crashes (this only happens on the device)</b><br>
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. While testing, we encountered pdfs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p><br>
+		
 	  <p><b>Q: Search usually works fine, but it work on pdf XYZ, where it only shows garbage.</b><br>
 		 A: Your pdf most likely uses Identity-H fonts with or without CMaps. This is something not [yet] supported. We plan on improving the text extraction algorithms in the future, but for now only unicode-saved text can be searched.</p><br>
+		
 	  <p><b>Q: The pdf is fine in Adobe Acrobat (R), but there are missing images/fonts on the iPad.</b><br>
 		 A: On iOS, the Quartz-Render-Engine is used. While overall very compatible, there are some differences in interpreting the >1000-pages pdf reference. And some newer variants may not be implemented at all. Because Apple shares most of their foundation code, please check your pdf in Preview.app first. If there are rendering problems, open it in Adobe Acrobat and re-save it File -> Save as... -> Reduced Size PDF, and select under "Make compatible with" an earlier pdf version. We had good experiences with 4.0 or 5.0. Note: File size may increase because of the older format.</p><br>
+		
+		<p><b>Q: In Adobe Acrobat, hyperlinks are clickable, but in PSPDFKit, some or all of them are not marked as touch-able.</b><br>
+			A: Adobe Acrobat and to some extend also Preview.app use custom in-text hyperlink detection to create annotations on the fly. This is nothing the PDF references specifies, and is also currently not supported my PSPDFKit. As a workaround, make proper link annotations out of your hyperlinks. This can be accomplished easily with Adobe Acrobat.</p><br>
+		
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
 		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).<br>If you get linker errors about missing symbols, be sure that your project includes at least CoreText.framework, QuartzCore.framework, MessageUI.framework, and the linker flag -all_load.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
+		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
 		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
+		
     </div>
     <div id="bugreporting" class="col-full section">
     <h2 class="section-title">How to report a bug</h2>
