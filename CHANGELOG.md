@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.14 - 22/Oct/2011__
+
+*  fixes bug where delete method of PSPDFCache (removeCacheForDocument) was deleting the whole directory of the pdf instead of just the related files
+
 __v1.6.13 - 22/Oct/2011__
 
 *  removed the zeroing weak reference helper. If you use custom delegates for PSPDFCache, you now need to manually deregister them. Upside: better management of delegates. 
