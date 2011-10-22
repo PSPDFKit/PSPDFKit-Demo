@@ -141,8 +141,8 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 - (void)loadMagazinesAvailableFromWeb {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSArray *dlMagazines = (NSArray *)JSON;
         NSMutableArray *newMagazines = [NSMutableArray array];
         for (NSDictionary *dlMagazine in dlMagazines) {
