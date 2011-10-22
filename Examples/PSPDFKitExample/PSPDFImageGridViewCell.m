@@ -146,7 +146,7 @@
                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageUrl cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0];
                 [request setHTTPShouldHandleCookies:NO];
                 [request setHTTPShouldUsePipelining:YES];
-                [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *aRequest, NSHTTPURLResponse *response, UIImage *image) {
                     [self setImage:image animated:NO];
                 } failure:nil];
             }

@@ -107,7 +107,7 @@ static dispatch_queue_t get_date_formatter_queue() {
     static dispatch_queue_t _dateFormatterQueue;
     static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		_dateFormatterQueue = dispatch_queue_create("com.alamofire.disk-cache.dateformatter", NULL);
+		_dateFormatterQueue = dispatch_queue_create("com.petersteinberger.disk-cache.dateformatter", NULL);
 	});
 	return _dateFormatterQueue;
 }
@@ -116,7 +116,7 @@ static dispatch_queue_t get_disk_cache_queue() {
     static dispatch_once_t onceToken;
     static dispatch_queue_t _diskCacheQueue;
 	dispatch_once(&onceToken, ^{
-		_diskCacheQueue = dispatch_queue_create("com.alamofire.disk-cache.processing", NULL);
+		_diskCacheQueue = dispatch_queue_create("com.petersteinberger.disk-cache.processing", NULL);
 	});
 	return _diskCacheQueue;
 }
@@ -125,7 +125,7 @@ static dispatch_queue_t get_disk_io_queue() {
     static dispatch_queue_t _diskIOQueue;
     static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
-		_diskIOQueue = dispatch_queue_create("com.alamofire.disk-cache.io", NULL);
+		_diskIOQueue = dispatch_queue_create("com.petersteinberger.disk-cache.io", NULL);
 	});
 	return _diskIOQueue;
 }
