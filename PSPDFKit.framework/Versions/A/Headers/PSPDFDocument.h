@@ -7,7 +7,6 @@
 //
 
 #import "PSPDFCache.h"
-#import "PSPDFMAZeroingWeakRef.h"
 
 @class PSPDFDocumentSearcher, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser;
 
