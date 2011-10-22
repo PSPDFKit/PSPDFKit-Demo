@@ -1,3 +1,5 @@
+This is a fork of https://github.com/rs/SDURLCache, heavily changed to fully embrace GCD, drops support for iOS3, much faster than the initial version.
+
 On iPhone OS, Apple did remove on-disk cache support for unknown reason. Some will say it's to save
 flash-drive life, others will arg it's to save disk capacity. As it is explained in the
 NSURLCacheStoragePolicy, the NSURLCacheStorageAllowed constant is always treated as
