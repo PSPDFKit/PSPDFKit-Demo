@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFMAZeroingWeakRef.h"
 
 @class PSPDFDocument, PSPDFTilingView, PSPDFPage, PSPDFViewController;
 
@@ -16,7 +15,7 @@
     PSPDFPage *rightPage_;
     
     PSPDFDocument *document_;
-    PSPDFMAZeroingWeakRef *pdfControllerRef_;
+    PSPDFViewController *pdfController_;
     
     UIView *compoundView_;
     
