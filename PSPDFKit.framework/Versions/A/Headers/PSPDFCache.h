@@ -97,10 +97,10 @@ enum {
 /// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
 
-/// delegate (uses MAZeroWeakRef to weak/nil out deallocated delegates)
+/// register a delegate. don't forget to manually remove it afterwards!
 - (void)addDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
-/// you *can* manually remove delegates, but it's not needed. return YES on success
+/// deregisters a delegate. return YES on success.
 - (BOOL)removeDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
 /// set up caching strategy

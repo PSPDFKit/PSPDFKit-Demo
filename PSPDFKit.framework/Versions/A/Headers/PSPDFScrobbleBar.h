@@ -7,11 +7,10 @@
 //
 
 #import "PSPDFCache.h"
-#import "PSPDFMAZeroingWeakRef.h"
 
 /// Scrobble bar like iBooks
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate> {
-    PSPDFMAZeroingWeakRef *pdfControllerRef_; // PSPDFViewController
+    PSPDFViewController *pdfController_;
     NSUInteger page_;
     NSInteger pageMarkerPage_;
     NSUInteger thumbCount_;
@@ -27,6 +26,9 @@
 
 /// initialize
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
+
+/// pdf controller delegate
+@property(nonatomic, assign) PSPDFViewController *pdfController;
 
 /// updates toolbar, realigns page screenshots. Registers in the runloop and works later
 - (void)updateToolbar;
