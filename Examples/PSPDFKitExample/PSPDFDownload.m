@@ -10,6 +10,7 @@
 #import "ASIHTTPRequest.h"
 #import "PSPDFStoreManager.h"
 #import "AppDelegate.h"
+#include <sys/xattr.h>
 
 @interface PSPDFDownload()
 //@property(nonatomic, retain) PSPDFMagazine *magazine;
@@ -30,6 +31,17 @@
 @synthesize downloadProgress = downloadProgress_;
 @synthesize error = error_;
 @synthesize cancelled = cancelled_;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+// set a flag that the files shouldn't be backuped to iCloud.
+// http://adcdownload.apple.com//ios/ios_5.0.1_beta/iclouddonotbackupattribute.pdf
+- (void)addSkipBackupAttributeToFile:(NSURL *)url {
+    u_int8_t b = 1;
+    setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -133,9 +145,13 @@
         self.status = PSPDFStoreDownloadFinished;
         NSString *fileName = [self.request.url lastPathComponent];
         NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
-        [self.magazine setFileUrl:[NSURL fileURLWithPath:destinationPath]];
+        NSURL *destinationUrl = [NSURL fileURLWithPath:destinationPath];
+        [self.magazine setFileUrl:destinationUrl];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
+        
+        // don't back up the downloaded pdf - iCloud is for self-created files only.
+        [self addSkipBackupAttributeToFile:destinationUrl];
     }];
     
     [pdfRequest setFailedBlock:^(void) {

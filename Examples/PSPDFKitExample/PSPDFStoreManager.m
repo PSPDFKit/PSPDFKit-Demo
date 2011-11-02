@@ -32,7 +32,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(PSPDFStoreManager);
 static char kvoToken; // we need a static address for the kvo token
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private - Folder Search
+#pragma mark - Private 
 
 - (dispatch_queue_t)magazineFolderQueue {
     static dispatch_once_t onceToken;
