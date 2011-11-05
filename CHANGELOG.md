@@ -1,5 +1,12 @@
 # Changelog
 
+__v1.6.15 - 05/Nov/2011__
+
+*  thumbnails are now displayed under the transparent bar, not overlapping
+*  only enable outline if it's enabled and there actually is an outline (no more empty popovers)
+*  mail links are now presented in a form sheet on the iPad
+*  allow show/hide of navigation bar even when zoomed in
+
 __v1.6.14 - 22/Oct/2011__
 
 *  fixes bug where delete method of PSPDFCache (removeCacheForDocument) was deleting the whole directory of the pdf instead of just the related files
