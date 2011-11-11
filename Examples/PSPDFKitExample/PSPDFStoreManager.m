@@ -17,8 +17,8 @@
 #import "AFJSONRequestOperation.h"
 
 @interface PSPDFStoreManager()
-@property (nonatomic, retain) NSMutableArray *magazineFolders;
-@property (nonatomic, retain) NSMutableArray *downloadQueue;
+@property (nonatomic, strong) NSMutableArray *magazineFolders;
+@property (nonatomic, strong) NSMutableArray *downloadQueue;
 @end
 
 @implementation PSPDFStoreManager
@@ -27,9 +27,19 @@
 @synthesize downloadQueue = downloadQueue_;
 @synthesize delegate = delegate_;
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(PSPDFStoreManager);
-
 static char kvoToken; // we need a static address for the kvo token
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - static
+
++ (id)sharedPSPDFStoreManager {
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[self alloc] init];
+    });
+    return _sharedObject;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private 
@@ -78,7 +88,6 @@ static char kvoToken; // we need a static address for the kvo token
         [folders addObject:rootFolder];
     }
     
-    [fileManager release];
     return folders;
 }
 
@@ -95,10 +104,10 @@ static char kvoToken; // we need a static address for the kvo token
     
     // flatten hierarchy
     if (kPSPDFStoreManagerPlain) {
-        NSMutableArray *foldersCopy = [[folders mutableCopy] autorelease];
+        NSMutableArray *foldersCopy = [folders mutableCopy];
         PSPDFMagazineFolder *firstFolder = [foldersCopy objectAtIndex:0];
         [foldersCopy removeObject:firstFolder];
-        NSMutableArray *magazineArray = [[firstFolder.magazines mutableCopy] autorelease];
+        NSMutableArray *magazineArray = [firstFolder.magazines mutableCopy];
         
         for (PSPDFMagazineFolder *folder in foldersCopy) {
             [magazineArray addObjectsFromArray:folder.magazines];
@@ -192,7 +201,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (NSMutableArray *)magazineFolders {
     __block NSMutableArray *magazineFolders;
     dispatch_sync_reentrant([self magazineFolderQueue], ^{
-        magazineFolders = [[magazineFolders_ retain] autorelease];
+        magazineFolders = magazineFolders_;
     });
     
     return magazineFolders;
@@ -235,9 +244,6 @@ static char kvoToken; // we need a static address for the kvo token
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     delegate_ = nil;
     dispatch_release(magazineFolderQueue_);
-    [magazineFolders_ release];
-    [downloadQueue_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -314,34 +320,35 @@ static char kvoToken; // we need a static address for the kvo token
     storeDownload.magazine = magazine;
     
     // use kvo to track status
+    __ps_weak PSPDFDownload *storeDownloadWeak = storeDownload;
     AMBlockToken *token = [storeDownload addObserverForKeyPath:@"status" task:^(id obj, NSDictionary *change) {
-        if (storeDownload.status == PSPDFStoreDownloadFinished) {
-            [self finishDownload:storeDownload];
+        if (storeDownloadWeak.status == PSPDFStoreDownloadFinished) {
+            [self finishDownload:storeDownloadWeak];
             
-            [[[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Download for %@ finished!", storeDownload.magazine.title]
+            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Download for %@ finished!", storeDownloadWeak.magazine.title]
                                          message:nil
                                         delegate:nil
                                cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                               otherButtonTitles:nil] autorelease] show];
+                               otherButtonTitles:nil] show];
             
-        }else if (storeDownload.status == PSPDFStoreDownloadFailed) {
-            if (!storeDownload.isCancelled) {
-                NSString *magazineTitle = [storeDownload.magazine.title length] ? storeDownload.magazine.title : NSLocalizedString(@"Magazine", @"");
+        }else if (storeDownloadWeak.status == PSPDFStoreDownloadFailed) {
+            if (!storeDownloadWeak.isCancelled) {
+                NSString *magazineTitle = [storeDownloadWeak.magazine.title length] ? storeDownloadWeak.magazine.title : NSLocalizedString(@"Magazine", @"");
                 NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ could not be downloaded. Please try again.", @""), magazineTitle];
                 
                 NSString *messageWithError = message;
-                if (storeDownload.error) {
-                    messageWithError = [NSString stringWithFormat:@"%@\n(%@)", message, [storeDownload.error localizedDescription]];
+                if (storeDownloadWeak.error) {
+                    messageWithError = [NSString stringWithFormat:@"%@\n(%@)", message, [storeDownloadWeak.error localizedDescription]];
                 }
                 
-                [[[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Warning"]
+                [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Warning"]
                                              message:messageWithError
                                             delegate:nil
                                    cancelButtonTitle:NSLocalizedString(@"OK", @"")
-                                   otherButtonTitles:nil] autorelease] show];
+                                   otherButtonTitles:nil] show];
                 
             }
-            [self finishDownload:storeDownload];
+            [self finishDownload:storeDownloadWeak];
             
             // delete unfinished magazine
             //[self deleteMagazine:storeDownload.magazine];

@@ -14,11 +14,11 @@
 
 @interface PSPDFDownload()
 //@property(nonatomic, retain) PSPDFMagazine *magazine;
-@property(nonatomic, retain) NSURL *url;
+@property(nonatomic, strong) NSURL *url;
 @property(nonatomic, assign) PSPDFStoreDownloadStatus status;
 @property(nonatomic, assign) float downloadProgress;
 @property(nonatomic, copy) NSError *error;
-@property(nonatomic, retain) ASIHTTPRequest *request;
+@property(nonatomic, strong) ASIHTTPRequest *request;
 @property(nonatomic, assign, getter=isCancelled) BOOL cancelled;
 @end
 
@@ -47,23 +47,19 @@
 #pragma mark - NSObject
 
 + (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url; {
-    PSPDFDownload *pdfDownload = [[[[self class] alloc] initWithURL:url] autorelease];
+    PSPDFDownload *pdfDownload = [[[self class] alloc] initWithURL:url];
     return pdfDownload;
 }
 
 - (id)initWithURL:(NSURL *)url; {
     if ((self = [super init])) {
-        url_ = [url retain];
+        url_ = url;
     }
     return self;
 }
 
 - (void)dealloc {
     [progressView_ removeFromSuperview];
-    [progressView_ release];
-    [request_ release];
-    [url_ release];
-    [super dealloc];
 }
 
 - (NSString *)description {
@@ -81,7 +77,7 @@
 
 - (PSPDFMagazine *)magazine {
     if (!magazine_) {
-        self.magazine = [[[PSPDFMagazine alloc] init] autorelease];
+        self.magazine = [[PSPDFMagazine alloc] init];
         magazine_.downloading = YES;
     }
     return magazine_;
@@ -119,7 +115,6 @@
     if (![fileManager fileExistsAtPath:dirPath]) {
         [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
-    [fileManager release];
     
     PSELog(@"downloading pdf from %@ to %@", self.url, destPath);
     
@@ -154,10 +149,11 @@
         [self addSkipBackupAttributeToFile:destinationUrl];
     }];
     
+    __ps_weak ASIHTTPRequest *pdfRequestWeak = pdfRequest;
     [pdfRequest setFailedBlock:^(void) {
-        PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequest.error localizedDescription]);
+        PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequestWeak.error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
-        self.error = pdfRequest.error;
+        self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;
     }];
     self.status = PSPDFStoreDownloadLoading;

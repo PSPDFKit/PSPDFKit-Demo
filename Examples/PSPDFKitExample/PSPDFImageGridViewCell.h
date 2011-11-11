@@ -24,13 +24,13 @@
     BOOL showDeleteImage_;
 }
 
-@property(nonatomic, retain) UIImage *image;
+@property(nonatomic, strong) UIImage *image;
 @property(nonatomic, assign) NSUInteger magazineCount;
 
 @property(nonatomic, assign) BOOL showDeleteImage;
 
 // don't set both
-@property (nonatomic, retain) PSPDFMagazine *magazine;
-@property (nonatomic, retain) PSPDFMagazineFolder *magazineFolder;
+@property (nonatomic, strong) PSPDFMagazine *magazine;
+@property (nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
 
 @end

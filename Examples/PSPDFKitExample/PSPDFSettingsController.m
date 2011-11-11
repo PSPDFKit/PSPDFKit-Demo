@@ -55,10 +55,6 @@ static BOOL annotations = YES;
     return self;
 }
 
-- (void)dealloc {
-    [content_ release];
-    [super dealloc];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
@@ -188,7 +184,7 @@ static BOOL annotations = YES;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     cell.textLabel.text = [[content_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -207,7 +203,7 @@ static BOOL annotations = YES;
             break;
         case kOptionBlockIndex:
         case kDocOptionBlockIndex: {
-            UISwitch *cellSwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            UISwitch *cellSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
             [cellSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = cellSwitch;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;

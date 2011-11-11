@@ -20,12 +20,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (void)dealloc {
-    [gridController_ release];
-    [window_ release];
-    [navigationController_ release];
-    [super dealloc];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
@@ -34,9 +28,9 @@
     PSPDFLog(@"Kiosk Example is starting up...");
     
     // setup disk saving url cache
-    SDURLCache *URLCache = [[[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
+    SDURLCache *URLCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
-                                                             diskPath:[SDURLCache defaultCachePath]] autorelease];
+                                                             diskPath:[SDURLCache defaultCachePath]];
     [NSURLCache setSharedURLCache:URLCache];
 
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
