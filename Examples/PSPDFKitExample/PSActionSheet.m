@@ -8,14 +8,14 @@
 #import "PSActionSheet.h"
 
 @interface PSActionSheet ()
-@property (nonatomic, retain, readwrite) UIActionSheet *sheet;
+@property (nonatomic, strong) UIActionSheet *sheet;
 @end
 
 @implementation PSActionSheet
 @synthesize sheet = sheet_;
 
 + (id)sheetWithTitle:(NSString *)title {
-  return [[[PSActionSheet alloc] initWithTitle:title] autorelease];
+  return [[PSActionSheet alloc] initWithTitle:title];
 }
 
 
@@ -28,7 +28,6 @@
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
     self.sheet = actionSheet;
-    [actionSheet release];
 
     // Create the blocks storage for handling all button actions
     blocks_ = [[NSMutableArray alloc] init];
@@ -39,9 +38,6 @@
 
 - (void) dealloc {
   self.sheet.delegate = nil;
-  self.sheet = nil;
-  [blocks_ release];
-  [super dealloc];
 }
 
 - (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block {
@@ -62,7 +58,7 @@
   assert([title length] > 0 && "cannot add button with empty title");
 
   if (block) {
-    [blocks_ addObject:[[block copy] autorelease]];
+    [blocks_ addObject:[block copy]];
   }
   else {
     [blocks_ addObject:[NSNull null]];
@@ -76,17 +72,14 @@
 
   // Ensure that the delegate (that's us) survives until the sheet is dismissed.
   // Release occurs in -actionSheet:clickedButtonAtIndex:
-  [self retain];
 }
 
 - (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
   [sheet_ showFromBarButtonItem:item animated:animated];
-  [self retain];
 }
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
   [sheet_ showFromRect:rect inView:view animated:animated];
-  [self retain];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -100,7 +93,6 @@
 
   // Sheet to be dismissed, drop our self reference.
   // Retain occurs in -showInView:
-  [self release];
 }
 
 - (NSUInteger)buttonCount {

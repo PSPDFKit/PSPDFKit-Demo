@@ -20,7 +20,7 @@
 #pragma mark Static
 
 + (PSPDFMagazineFolder *)folderWithTitle:(NSString *)title {
-    PSPDFMagazineFolder *folder = [[[[self class] alloc] init] autorelease];
+    PSPDFMagazineFolder *folder = [[[self class] alloc] init];
     folder.title = title;
     return folder;
 }
@@ -53,8 +53,6 @@
 
 - (void)dealloc {
     [self removeMagazineFolderReferences];
-    [magazines_ release];
-    [super dealloc];
 }
 
 - (NSString *)description {
@@ -108,7 +106,6 @@
 - (void)setMagazines:(NSArray *)magazines {
     if (magazines != magazines_) {
         [self removeMagazineFolderReferences];
-        [magazines_ release];
         magazines_ = [magazines mutableCopy];
         [self addMagazineFolderReferences];
         [self sortMagazines];

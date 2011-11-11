@@ -16,6 +16,6 @@
 }
 
 @property (nonatomic, assign, readonly, getter=isVisible) BOOL visible;
-@property (nonatomic, retain) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIPopoverController *popoverController;
 
 @end

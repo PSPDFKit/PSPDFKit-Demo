@@ -13,7 +13,7 @@
   NSMutableArray *blocks_;
 }
 
-@property (nonatomic, retain, readonly) UIActionSheet *sheet;
+@property (nonatomic, strong, readonly) UIActionSheet *sheet;
 
 + (id)sheetWithTitle:(NSString *)title;
 

@@ -40,14 +40,14 @@
 /// store manager, hold magazines and folders
 @interface PSPDFStoreManager : NSObject {
     dispatch_queue_t magazineFolderQueue_;
-    id<PSPDFStoreManagerDelegate> delegate_;
+    id<PSPDFStoreManagerDelegate> __ps_weak delegate_;
     NSMutableArray *magazineFolders_;  
     NSMutableArray *downloadQueue_;
 }
 
 + (PSPDFStoreManager *)sharedPSPDFStoreManager;
 
-@property(nonatomic, assign) id<PSPDFStoreManagerDelegate> delegate;
+@property(nonatomic, ps_weak) id<PSPDFStoreManagerDelegate> delegate;
 
 - (void)downloadMagazine:(PSPDFMagazine *)magazine;
 - (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine;
@@ -58,7 +58,7 @@
 - (void)deleteMagazine:(PSPDFMagazine *)magazine;
 - (void)deleteMagazineFolder:(PSPDFMagazineFolder *)magazineFolder;
 
-@property (nonatomic, retain, readonly) NSMutableArray *magazineFolders;
-@property (nonatomic, retain, readonly) NSMutableArray *downloadQueue;
+@property (nonatomic, strong, readonly) NSMutableArray *magazineFolders;
+@property (nonatomic, strong, readonly) NSMutableArray *downloadQueue;
 
 @end

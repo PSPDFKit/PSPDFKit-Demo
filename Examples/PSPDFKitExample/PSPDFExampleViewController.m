@@ -22,8 +22,8 @@
 }
 
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
-    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-    controller.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)] autorelease];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
     [self presentModalViewController:navController animated:animated];
 }
 
@@ -32,9 +32,9 @@
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
-        PSPDFSettingsController *cacheSettingsController = [[[PSPDFSettingsController alloc] init] autorelease];
+        PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
         if (PSIsIpad()) {
-            self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:cacheSettingsController] autorelease];
+            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
             [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
             [self presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
@@ -94,7 +94,6 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 - (PSPDFMagazine *)magazine {
@@ -117,10 +116,10 @@
 - (NSArray *)additionalLeftToolbarButtons {
     
     // button width is too high
-    UIBarButtonItem *button = [[[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Options" : @"O"
+    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Options" : @"O"
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
-                                                               action:@selector(optionsButtonPressed:)] autorelease];
+                                                               action:@selector(optionsButtonPressed:)];
     return [NSArray arrayWithObject:button];
 }
 
@@ -129,10 +128,10 @@
 }
 
 - (UIBarButtonItem *)toolbarBackButton; {
-    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Documents" : @"Back"
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Documents" : @"Back"
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
-                                                                   action:@selector(documentButtonPressed)] autorelease];
+                                                                   action:@selector(documentButtonPressed)];
     return backButton;
 }
 
