@@ -16,21 +16,13 @@
 #define SHADOW_RATIO (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT)
 
 - (CAGradientLayer *)shadowAsInverse:(BOOL)inverse {
-    CAGradientLayer *newShadow = [[[CAGradientLayer alloc] init] autorelease];
-    CGRect newShadowFrame =
-    CGRectMake(0.f, 0.f, self.frame.size.width,
-               inverse ? SHADOW_INVERSE_HEIGHT : SHADOW_HEIGHT);
+    CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
+    CGRect newShadowFrame = CGRectMake(0.f, 0.f, self.frame.size.width,inverse ? SHADOW_INVERSE_HEIGHT : SHADOW_HEIGHT);
     newShadow.frame = newShadowFrame;
-    CGColorRef darkColor =
-    [UIColor colorWithRed:0.f green:0.f blue:0.f alpha:
-     inverse ? (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT) * 0.5f : 0.5f].CGColor;
-    CGColorRef lightColor =
-    [self.backgroundColor colorWithAlphaComponent:0.f].CGColor;
-    newShadow.colors =
-    [NSArray arrayWithObjects:
-     (id)(inverse ? lightColor : darkColor),
-     (id)(inverse ? darkColor : lightColor),
-     nil];
+    
+    CGColorRef darkColor = (CGColorRef)CFRetain([UIColor colorWithRed:0.f green:0.f blue:0.f alpha:inverse ? (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT) * 0.5f : 0.5f].CGColor);
+    CGColorRef lightColor = (CGColorRef)CFRetain([self.backgroundColor colorWithAlphaComponent:0.f].CGColor);
+    newShadow.colors = [NSArray arrayWithObjects:(__bridge_transfer id)(inverse ? lightColor : darkColor), (__bridge_transfer id)(inverse ? darkColor : lightColor), nil];
     return newShadow;
 }
 

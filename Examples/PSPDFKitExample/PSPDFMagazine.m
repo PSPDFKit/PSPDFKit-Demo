@@ -24,7 +24,7 @@
 
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path; {
     NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
-    PSPDFMagazine *magazine = [[(PSPDFMagazine *)[[self class] alloc] initWithUrl:url] autorelease];
+    PSPDFMagazine *magazine = [(PSPDFMagazine *)[[self class] alloc] initWithUrl:url];
     magazine.available = YES;
     return magazine;
 }
@@ -39,9 +39,6 @@
 
 - (void)dealloc {
     folder_ = nil;
-    [url_ release];
-    [imageUrl_ release];
-    [super dealloc];
 }
 
 - (NSString *)description {

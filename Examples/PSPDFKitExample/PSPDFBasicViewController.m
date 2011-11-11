@@ -38,8 +38,6 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.popoverController.delegate = nil;
-    [popoverController_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,9 +59,8 @@
     if (popoverController != popoverController_) {
         // hide last popup
         [popoverController_ dismissPopoverAnimated:NO];
-        [popoverController_ autorelease];
         
-        popoverController_ = [popoverController retain];
+        popoverController_ = popoverController;
         popoverController_.delegate = self; // set delegate to be notified when popopver controller closes!
     }
 }

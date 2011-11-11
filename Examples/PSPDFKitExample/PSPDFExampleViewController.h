@@ -10,6 +10,6 @@
 
 @interface PSPDFExampleViewController : PSPDFViewController <PSPDFViewControllerDelegate>
 
-@property (nonatomic, retain, readonly) PSPDFMagazine *magazine;
+@property (nonatomic, strong, readonly) PSPDFMagazine *magazine;
 
 @end

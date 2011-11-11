@@ -11,7 +11,7 @@
 @interface PSPDFMagazine : PSPDFDocument {
     BOOL available_;
     BOOL downloading_;
-    PSPDFMagazineFolder *folder_;
+    PSPDFMagazineFolder *__ps_weak folder_;
     NSURL *url_;
     NSURL *imageUrl_;
 }
@@ -21,13 +21,13 @@
 - (UIImage *)coverImage;
 
 /// magazine folder
-@property(nonatomic, assign) PSPDFMagazineFolder *folder; // weak!
+@property(nonatomic, ps_weak) PSPDFMagazineFolder *folder; // weak!
 
 /// url for downloading the pdf
-@property(nonatomic, retain) NSURL *url;
+@property(nonatomic, strong) NSURL *url;
 
 // url for downloading image
-@property(nonatomic, retain) NSURL *imageUrl;
+@property(nonatomic, strong) NSURL *imageUrl;
 
 /// true if magazine is currently downloading
 @property(nonatomic, assign, getter=isDownloading) BOOL downloading;

@@ -17,8 +17,8 @@
 #define kPSPDFCellAnimationDuration 0.25f
 
 @interface PSPDFImageGridViewCell()
-@property(nonatomic, retain) UIImageView *magazineCounterBadgeImage;
-@property(nonatomic, retain) UIProgressView *progressView;
+@property(nonatomic, strong) UIImageView *magazineCounterBadgeImage;
+@property(nonatomic, strong) UIProgressView *progressView;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated;
 - (void)updateProgressAnimated:(BOOL)animated;
@@ -80,15 +80,6 @@
     [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
     [self clearProgressObservers];
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
-    [observedMagazineDownloads_ release];
-    [magazine_ release];
-    [magazineFolder_ release];
-    [magazineCounter_ release];
-    [progressView_ release];
-    [progressViewBackground_ release];
-    [magazineCounterBadgeImage_ release];
-    [deleteImage_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -125,8 +116,7 @@
     
     if (magazine_ != magazine) {
         [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
-        [magazine_ release];
-        magazine_ = [magazine retain];
+        magazine_ = magazine;
         
         // setup for magazine
         if (magazine) {
@@ -141,14 +131,8 @@
             self.image = [magazine coverImage];
             
             // try to download image
-            if (!self.image && magazine.imageUrl) {
-                
-                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageUrl cachePolicy:NSURLCacheStorageAllowed timeoutInterval:30.0];
-                [request setHTTPShouldHandleCookies:NO];
-                [request setHTTPShouldUsePipelining:YES];
-                [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *aRequest, NSHTTPURLResponse *response, UIImage *image) {
-                    [self setImage:image animated:NO];
-                } failure:nil];
+            if (!self.image && magazine.imageUrl) {           
+                [self.imageView setImageWithURL:magazine.imageUrl];
             }
             
             // dark out view if it needs to be downloaded
@@ -166,8 +150,7 @@
     
     if (magazineFolder_ != magazineFolder) {
         [self clearProgressObservers];
-        [magazineFolder_ release];
-        magazineFolder_ = [magazineFolder retain];
+        magazineFolder_ = magazineFolder;
         
         for (PSPDFMagazine *aMagazine in magazineFolder_.magazines) {
             [self checkMagazineAndObserveProgressIfDownloading:aMagazine];
@@ -198,7 +181,7 @@
 #define kMagazineCountLabelTag 32443
 - (void)setMagazineCount:(NSUInteger)newMagazineCount {
     if (!magazineCounter_) { // lazy creation
-        self.magazineCounterBadgeImage = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]] autorelease];
+        self.magazineCounterBadgeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
         magazineCounterBadgeImage_.opaque = NO;
         magazineCounterBadgeImage_.alpha = 0.9f;
         [self.contentView addSubview:magazineCounterBadgeImage_];
@@ -353,10 +336,12 @@
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;
-    MCReleaseViewNil(progressView_);
-    MCReleaseViewNil(progressView_);
-    MCReleaseViewNil(magazineCounter_);   
-    MCReleaseViewNil(magazineCounterBadgeImage_);
+    [progressView_ removeFromSuperview];
+    progressView_ = nil;
+    [magazineCounter_ removeFromSuperview];
+    magazineCounter_ = nil;
+    [magazineCounterBadgeImage_ removeFromSuperview];
+    magazineCounterBadgeImage_ = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

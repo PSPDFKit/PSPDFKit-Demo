@@ -27,7 +27,7 @@
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
 
-@property(nonatomic, retain) PSPDFGridView *gridView;
-@property(nonatomic, retain, readonly) PSPDFMagazineFolder *magazineFolder;
+@property(nonatomic, strong) PSPDFGridView *gridView;
+@property(nonatomic, strong, readonly) PSPDFMagazineFolder *magazineFolder;
 
 @end
