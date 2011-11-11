@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		78AB3D38146D75D000670352 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AB3D37146D75D000670352 /* Foundation.framework */; };
-		78AB3D3E146D75D000670352 /* vendor_http.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AB3D3D146D75D000670352 /* vendor_http.m */; };
 		78AB3D60146D760E00670352 /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 78AB3D4B146D760E00670352 /* AFHTTPClient.h */; };
 		78AB3D61146D760E00670352 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AB3D4C146D760E00670352 /* AFHTTPClient.m */; };
 		78AB3D62146D760E00670352 /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78AB3D4D146D760E00670352 /* AFHTTPRequestOperation.h */; };
@@ -62,8 +61,6 @@
 		78AB3D34146D75D000670352 /* libvendor-http.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libvendor-http.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		78AB3D37146D75D000670352 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		78AB3D3B146D75D000670352 /* vendor-http-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "vendor-http-Prefix.pch"; sourceTree = "<group>"; };
-		78AB3D3C146D75D000670352 /* vendor_http.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vendor_http.h; sourceTree = "<group>"; };
-		78AB3D3D146D75D000670352 /* vendor_http.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vendor_http.m; sourceTree = "<group>"; };
 		78AB3D4B146D760E00670352 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		78AB3D4C146D760E00670352 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		78AB3D4D146D760E00670352 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -165,8 +162,6 @@
 		78AB3D39146D75D000670352 /* vendor-http */ = {
 			isa = PBXGroup;
 			children = (
-				78AB3D3C146D75D000670352 /* vendor_http.h */,
-				78AB3D3D146D75D000670352 /* vendor_http.m */,
 				78AB3D3A146D75D000670352 /* Supporting Files */,
 			);
 			path = "vendor-http";
@@ -339,7 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AB3D3E146D75D000670352 /* vendor_http.m in Sources */,
 				78AB3D61146D760E00670352 /* AFHTTPClient.m in Sources */,
 				78AB3D63146D760E00670352 /* AFHTTPRequestOperation.m in Sources */,
 				78AB3D65146D760E00670352 /* AFImageCache.m in Sources */,
