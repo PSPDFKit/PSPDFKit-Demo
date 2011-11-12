@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.6.17 - 12/Nov/2011__
+
+*  In search results, "Site" was renamed to "Page" to be consistent with the toolbar. If you use custom localization, you have to rename the entry "Site %d" to "Page %d".
+*  add API call to allow basic text extraction from the search module (magazine.documentSearcher)
+
+__v1.6.16 - 12/Nov/2011__
+
+*  fixes a bug with invalid caching entries when a deleted document is re-downloaded in the same application session (pages suddenly went black)
+*  add a custom lib-project for PSPDFKit; it's now easier than ever to integrate it. Note: you really should use that one - I'll switch over to ARC soon, so a library makes things easier.
+
 __v1.6.15 - 05/Nov/2011__
 
 *  thumbnails are now displayed under the transparent bar, not overlapping
