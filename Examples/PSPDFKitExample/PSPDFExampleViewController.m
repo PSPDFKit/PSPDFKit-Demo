@@ -88,6 +88,11 @@
         
         // change statusbar setting to your preferred style
         //statusBarStyleSetting_ = PSPDFStatusBarDisable;
+        
+        
+        // how to extract text
+        // NSString *pageText = [magazine.documentSearcher textForPage:0];
+        // NSLog(@"text of page 0: %@", pageText);
     }    
     return self;
 }
