@@ -29,17 +29,12 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super init])) {
-        document_ = [document retain];
+        document_ = document;
         
         self.delegate = self;
         self.dataSource = self;
     }
     return self;
-}
-
-- (void)dealloc {
-    [document_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +57,7 @@
  * @result An item conforming to the QLPreviewItem protocol.
  */
 - (id <QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)cellIndex {
-    PSPDFQuickLookMagazineContainer *container = [[[PSPDFQuickLookMagazineContainer alloc] init] autorelease];
+    PSPDFQuickLookMagazineContainer *container = [[PSPDFQuickLookMagazineContainer alloc] init];
     container.document = self.document;
     return container;
 }
