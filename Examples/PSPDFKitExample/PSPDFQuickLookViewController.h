@@ -13,13 +13,13 @@
     PSPDFDocument *document_;
 }
 
-@property(nonatomic, retain, readonly) PSPDFDocument *document;
+@property(nonatomic, strong, readonly) PSPDFDocument *document;
 
 @end
 
 
 @interface PSPDFQuickLookMagazineContainer: NSObject<QLPreviewItem> {
-    PSPDFDocument *document_;
+    __unsafe_unretained PSPDFDocument *document_;
 }
-@property(nonatomic, assign) PSPDFDocument *document;
+@property(nonatomic, unsafe_unretained) PSPDFDocument *document;
 @end
