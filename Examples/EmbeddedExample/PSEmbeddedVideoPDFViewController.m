@@ -47,7 +47,7 @@
 #pragma mark - PSPDFViewController
 
 // disable back button
-- (UIButton *)toolbarBackButton {
+- (UIBarButtonItem *)toolbarBackButton {
     return nil;
 }
 
