@@ -1,16 +1,16 @@
 //
 //  PLActionSheet.h
 //
-//  Created by Landon Fuller on 7/3/09.
-//  Copyright 2009 Plausible Labs Cooperative, Inc.. All rights reserved.
+//  Based on PLActionSheet by Landon Fuller on 7/3/09.
+//  Modified by Peter Steinberger
 //
 
 #import <UIKit/UIKit.h>
 
 // A simple block-enabled API wrapper on top of UIActionSheet
 @interface PSActionSheet : NSObject <UIActionSheetDelegate> {
-  UIActionSheet *sheet_;
-  NSMutableArray *blocks_;
+    UIActionSheet *sheet_;
+    NSMutableArray *blocks_;
 }
 
 @property (nonatomic, strong, readonly) UIActionSheet *sheet;
