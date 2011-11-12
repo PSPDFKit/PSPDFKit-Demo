@@ -58,8 +58,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
+#pragma mark - NSObject
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)aReuseIdentifier {
     if ((self = [super initWithFrame:frame reuseIdentifier:aReuseIdentifier])) {
@@ -83,7 +82,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark KVO
+#pragma mark - KVO
 
 - (void)updateProgressAnimated:(BOOL)animated {
     float progressTotal = 1.f;
@@ -107,7 +106,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Public
+#pragma mark - Public
 
 - (void)setMagazine:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
@@ -326,8 +325,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark AQGridViewCell
+#pragma mark - AQGridViewCell
 
 - (void)prepareForReuse {
     [super prepareForReuse];

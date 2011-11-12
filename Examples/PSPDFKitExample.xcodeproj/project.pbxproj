@@ -186,8 +186,10 @@
 			isa = PBXGroup;
 			children = (
 				78E6325413DEC96700F3392F /* PSPDFKit.framework */,
+				783C77A613D982B100CF7C9D /* Foundation.framework */,
+				783C77A413D982B100CF7C9D /* UIKit.framework */,
+				783C77A813D982B100CF7C9D /* CoreGraphics.framework */,
 				7805D005141EC0E8003D10D5 /* QuickLook.framework */,
-				783417CC13DCB0EF009DAEE8 /* libz.dylib */,
 				78727B75141EC22900994946 /* MessageUI.framework */,
 				783417D213DCB169009DAEE8 /* SystemConfiguration.framework */,
 				783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */,
@@ -195,9 +197,7 @@
 				783C783213D999F300CF7C9D /* CoreText.framework */,
 				783C783013D999ED00CF7C9D /* AVFoundation.framework */,
 				783C782E13D999DE00CF7C9D /* QuartzCore.framework */,
-				783C77A413D982B100CF7C9D /* UIKit.framework */,
-				783C77A613D982B100CF7C9D /* Foundation.framework */,
-				783C77A813D982B100CF7C9D /* CoreGraphics.framework */,
+				783417CC13DCB0EF009DAEE8 /* libz.dylib */,
 				78AB3D44146D75D000670352 /* vendor-http.xcodeproj */,
 			);
 			name = Frameworks;

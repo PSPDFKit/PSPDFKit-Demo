@@ -2,7 +2,7 @@
 //  NSOperationQueue+CWSharedQueue.h
 //
 //  Created by Fredrik Olsson on 2008-10-28.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Fredrik Olsson. All rights reserved.
 //
 
 #ifndef CW_DEFAULT_OPERATION_COUNT
