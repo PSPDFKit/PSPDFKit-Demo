@@ -11,8 +11,7 @@
 #import <dispatch/dispatch.h>
 #import <objc/runtime.h>
 
-@interface AMObserverTrampoline : NSObject
-{
+@interface AMObserverTrampoline : NSObject {
   __weak id observee;
   NSString *keyPath;
   AMBlockTask task;
@@ -28,8 +27,7 @@
 
 static NSString *AMObserverTrampolineContext = @"AMObserverTrampolineContext";
 
-- (AMObserverTrampoline *)initObservingObject:(id)obj keyPath:(NSString *)newKeyPath onQueue:(NSOperationQueue *)newQueue task:(AMBlockTask)newTask
-{
+- (AMObserverTrampoline *)initObservingObject:(id)obj keyPath:(NSString *)newKeyPath onQueue:(NSOperationQueue *)newQueue task:(AMBlockTask)newTask {
   if (!(self = [super init])) return nil;
   task = [newTask copy];
   keyPath = [newKeyPath copy];
@@ -40,8 +38,7 @@ static NSString *AMObserverTrampolineContext = @"AMObserverTrampolineContext";
   return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)aKeyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
+- (void)observeValueForKeyPath:(NSString *)aKeyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if (context == AMObserverTrampolineContext)
   {
     if (queue)
@@ -51,16 +48,14 @@ static NSString *AMObserverTrampolineContext = @"AMObserverTrampolineContext";
   }
 }
 
-- (void)cancelObservation
-{
+- (void)cancelObservation {
   dispatch_once(&cancellationPredicate, ^{
     [(NSObject*)observee removeObserver:self forKeyPath:keyPath];
     observee = nil;
   });
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
   [self cancelObservation];
   [task release];
   [keyPath release];
@@ -73,8 +68,7 @@ static NSString *AMObserverTrampolineContext = @"AMObserverTrampolineContext";
 static NSString *AMObserverMapKey = @"org.andymatuschak.observerMap";
 static dispatch_queue_t AMObserverMutationQueue = NULL;
 
-static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary()
-{
+static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary() {
   static dispatch_once_t queueCreationPredicate = 0;
   dispatch_once(&queueCreationPredicate, ^{
     AMObserverMutationQueue = dispatch_queue_create("org.andymatuschak.observerMutationQueue", 0);
@@ -84,13 +78,11 @@ static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary()
 
 @implementation NSObject (AMBlockObservation)
 
-- (AMBlockToken *)addObserverForKeyPath:(NSString *)keyPath task:(AMBlockTask)task
-{
+- (AMBlockToken *)addObserverForKeyPath:(NSString *)keyPath task:(AMBlockTask)task {
   return [self addObserverForKeyPath:keyPath onQueue:nil task:task];
 }
 
-- (AMBlockToken *)addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(AMBlockTask)task
-{
+- (AMBlockToken *)addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(AMBlockTask)task {
   AMBlockToken *token = [[NSProcessInfo processInfo] globallyUniqueString];
   dispatch_sync(AMObserverMutationQueueCreatingIfNecessary(), ^{
     NSMutableDictionary *dict = objc_getAssociatedObject(self, AMObserverMapKey);
@@ -107,8 +99,7 @@ static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary()
   return token;
 }
 
-- (void)removeObserverWithBlockToken:(AMBlockToken *)token
-{
+- (void)removeObserverWithBlockToken:(AMBlockToken *)token {
   dispatch_sync(AMObserverMutationQueueCreatingIfNecessary(), ^{
     NSMutableDictionary *observationDictionary = objc_getAssociatedObject(self, AMObserverMapKey);
     AMObserverTrampoline *trampoline = [observationDictionary objectForKey:token];

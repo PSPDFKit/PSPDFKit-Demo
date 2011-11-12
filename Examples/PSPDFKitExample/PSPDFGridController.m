@@ -34,8 +34,7 @@
 @synthesize editMode = editMode_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Private
+#pragma mark - Private
 
 - (void)closeModalView {
     [self dismissModalViewControllerAnimated:YES];
@@ -186,8 +185,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
+#pragma mark - NSObject
 
 - (id)init {
     if ((self = [super init])) {
@@ -214,8 +212,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark UIView
+#pragma mark - UIView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -308,8 +305,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark AQGridViewDataSource
+#pragma mark - AQGridViewDataSource
 
 - (CGFloat)thumbnailSizeReductionFactor {
     return PSIsIpad() ? 1.f : 0.588f;
@@ -352,8 +348,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark AQGridViewDelegate
+#pragma mark - AQGridViewDelegate
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)gridIndex {
     PSPDFMagazine *magazine;
@@ -432,8 +427,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark PSPDFStoreManagerDelegate
+#pragma mark - PSPDFStoreManagerDelegate
 
 - (void)magazineStoreBeginUpdate {
     [self.gridView beginUpdates];

@@ -120,9 +120,6 @@ static char kvoToken; // we need a static address for the kvo token
     return folders;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
 // add a magazine to folder, then re-sort it
 - (PSPDFMagazineFolder *)addMagazineToFolder:(PSPDFMagazine *)magazine {
     PSPDFMagazineFolder *folder = [self.magazineFolders lastObject];

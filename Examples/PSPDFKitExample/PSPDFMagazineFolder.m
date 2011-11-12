@@ -16,8 +16,7 @@
 @synthesize title;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Static
+#pragma mark - Static
 
 + (PSPDFMagazineFolder *)folderWithTitle:(NSString *)title {
     PSPDFMagazineFolder *folder = [[[self class] alloc] init];
@@ -41,8 +40,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
+#pragma mark - NSObject
 
 - (id)init {
     if ((self = [super init])) {
@@ -75,8 +73,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Public
+#pragma mark - Public
 
 - (BOOL)isSingleMagazine {
     return [self.magazines count] == 1; 
