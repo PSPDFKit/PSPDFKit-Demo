@@ -6,7 +6,7 @@
   Copyright (c) 2011 Peter Steinberger. All rights reserved.
 */
 "SearchBarPlaceholder" = "Search within Document";
-"Site %d" = "Site %d";
+"Page %d" = "Page %d";
 
 "Close" = "Close";
 "Documents" = "Documents";
