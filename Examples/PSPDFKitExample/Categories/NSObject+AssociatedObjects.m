@@ -10,18 +10,15 @@
 
 @implementation NSObject (AMAssociatedObjects)
 
-- (void)associateValue:(id)value withKey:(void *)key
-{
+- (void)associateValue:(id)value withKey:(void *)key {
 	objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (void)weaklyAssociateValue:(id)value withKey:(void *)key
-{
+- (void)weaklyAssociateValue:(id)value withKey:(void *)key {
 	objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id)associatedValueForKey:(void *)key
-{
+- (id)associatedValueForKey:(void *)key {
 	return objc_getAssociatedObject(self, key);
 }
 

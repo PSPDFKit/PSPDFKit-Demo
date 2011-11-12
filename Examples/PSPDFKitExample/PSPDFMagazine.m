@@ -19,8 +19,7 @@
 @synthesize imageUrl = imageUrl_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark NSObject
+#pragma mark - NSObject
 
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path; {
     NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
@@ -47,8 +46,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark -
-#pragma mark Meta Data
+#pragma mark - Meta Data
 
 - (UIImage *)coverImage {
     UIImage *coverImage = nil;
