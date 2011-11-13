@@ -19,6 +19,7 @@
 @interface PSPDFStoreManager()
 @property (nonatomic, strong) NSMutableArray *magazineFolders;
 @property (nonatomic, strong) NSMutableArray *downloadQueue;
+- (void)updateNewsstandIcon:(PSPDFMagazine *)magazine;
 @end
 
 @implementation PSPDFStoreManager
@@ -267,6 +268,9 @@ static char kvoToken; // we need a static address for the kvo token
     });
     
     [delegate_ magazineStoreEndUpdate];  
+    
+    // ensure set icon is not deleted
+    [self updateNewsstandIcon:nil];
 }
 
 - (void)deleteMagazine:(PSPDFMagazine *)magazine {
@@ -310,6 +314,9 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     [delegate_ magazineStoreEndUpdate];
+    
+    // ensure set icon is not deleted
+    [self updateNewsstandIcon:nil];
 }
 
 - (void)downloadMagazine:(PSPDFMagazine *)magazine; {
@@ -358,6 +365,51 @@ static char kvoToken; // we need a static address for the kvo token
     magazine.downloading = YES;
 }
 
+#define kNewsstandIconUID @"kNewsstandIconUID"
+- (void)updateNewsstandIcon:(PSPDFMagazine *)magazine {
+    
+    // if no magazine is given, find the current
+    if (!magazine) {
+        NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:kNewsstandIconUID];
+        if (uid) {
+            magazine = [self magazineForUid:uid];
+        }
+        
+        // if magazine doesn't exist anymore, choose the first magazine in the list
+        if (!magazine && [self.magazineFolders count]) {
+            magazine = [[self.magazineFolders objectAtIndex:0] firstMagazine];
+        }
+    }
+    
+    // set new icon for newsstand, if newsstand exists
+    if (NSClassFromString(@"NKLibrary") != nil) {
+        UIImage *newsstandCoverImage = nil;
+        
+        // if magazine or coverImage don't exist, the default newsstand icon is used (with sending nil)
+        if (magazine.coverImage) {
+            
+            // example how to create blended cover + overlay
+            /*
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0);
+            [magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
+            [[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
+            newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+             */
+            newsstandCoverImage = magazine.coverImage;
+        }
+        
+        [[UIApplication sharedApplication] setNewsstandIconImage:newsstandCoverImage];
+        
+        // update user defaults
+        if (magazine.uid) {
+            [[NSUserDefaults standardUserDefaults] setObject:magazine.uid forKey:kNewsstandIconUID];
+        }else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kNewsstandIconUID];
+        }
+    } 
+}
+
 - (void)addMagazinesToStore:(NSArray *)magazines {
     
     // filter out magazines that are already in array
@@ -389,6 +441,9 @@ static char kvoToken; // we need a static address for the kvo token
         }
         
         [delegate_ magazineStoreEndUpdate];
+        
+        // update newsstand icon
+        [self updateNewsstandIcon:[newMagazines lastObject]];
     }
 }
 
