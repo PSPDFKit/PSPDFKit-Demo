@@ -23,9 +23,6 @@
 /// configure page container with data
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale;
 
-/// recycle page, removes all set properties, prepare for reuse
-//- (void)prepareForReuse;
-
 /// destroys and removes CATiledLayer. Call prior deallocating
 - (void)destroyPage;
 

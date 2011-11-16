@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.18 - 16/Nov/2011__
+
+*  New: Much, much improved rotation. Now smooth as butter. Enjoy!
+
 __v1.6.17 - 12/Nov/2011__
 
 *  In search results, "Site" was renamed to "Page" to be consistent with the toolbar. If you use custom localization, you have to rename the entry "Site %d" to "Page %d".
