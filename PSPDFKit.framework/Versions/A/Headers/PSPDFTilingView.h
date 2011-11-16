@@ -27,6 +27,9 @@
 /// explicitely destroy the layer. actual dealloc may happen in a block, so destroy explicitely.
 - (void)stopTiledRenderingAndRemoveFromSuperlayer;
 
+/// reset tiled layer, reloads pdf image
+- (void)resetLayer;
+
 /// returns attached scrollview (if attached)
 - (PSPDFScrollView *)scrollView;
 

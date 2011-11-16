@@ -14,26 +14,6 @@
 // if disabled, kPSPDFKitDebugMemory has no effect.
 #define kPSPDFKitAllowMemoryDebugging
 
-extern CGFloat kPSPDFKitHUDTransparency;
-
-/// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
-BOOL PSPDFIsCrappyDevice(void);
-
-/// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
-BOOL PSPDFShouldAnimate(void);
-
-/// helper to calculate new rect for specific scale
-CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
-
-/// default time to animate pdf views. Defaults to 0.15
-extern CGFloat kPSPDFKitPDFAnimationDuration;
-
-/// available zoom levels for CATiledLayer. Defaults to 4. Affects PSPDFTilingView.
-/// Setting this too high will result in a memory crash. 4 is a sensible default, you may increase it up to 5.
-/// If set too low, you get pixelerated text. Too high, and the render-process will be invoked *while* zooming,
-/// resulting in text becoming somewhat sharp, then sharp (when the correct zoom level is rendered)
-extern NSUInteger kPSPDFKitZoomLevels;
-
 enum {
     PSPDFLogLevelNothing,
     PSPDFLogLevelError,   
@@ -45,7 +25,6 @@ enum {
 // set log level.
 extern PSPDFLogLevel kPSPDFKitDebugLogLevel; // defaults to PSPDFLogLevelError
 
-
 /// settings for animation of pages, global
 enum {
     PSPDFAnimateNever,
@@ -55,11 +34,31 @@ enum {
 
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
+/// default time to animate pdf views. Defaults to 0.15
+extern CGFloat kPSPDFKitPDFAnimationDuration;
+
+/// available zoom levels for CATiledLayer. Defaults to 4. Affects PSPDFTilingView.
+/// Setting this too high will result in a memory crash. 4 is a sensible default, you may increase it up to 5.
+/// If set too low, you get pixelerated text. Too high, and the render-process will be invoked *while* zooming,
+/// resulting in text becoming somewhat sharp, then sharp (when the correct zoom level is rendered)
+extern NSUInteger kPSPDFKitZoomLevels;
+
+extern CGFloat kPSPDFKitHUDTransparency;
+
 // optionally enable scrollbar debugging.
 extern BOOL kPSPDFKitDebugScrollViews;
 
 // enable to track down memory issues
 extern BOOL kPSPDFKitDebugMemory;
+
+/// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
+BOOL PSPDFIsCrappyDevice(void);
+
+/// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
+BOOL PSPDFShouldAnimate(void);
+
+/// helper to calculate new rect for specific scale
+CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
 
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define MCReleaseNil(x) [x release], x = nil
