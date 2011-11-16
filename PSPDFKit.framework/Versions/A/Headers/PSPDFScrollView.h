@@ -13,21 +13,19 @@
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate> {
     PSPDFPage *leftPage_;
     PSPDFPage *rightPage_;
-    
     PSPDFDocument *document_;
     PSPDFViewController *pdfController_;
-    
     UIView *compoundView_;
-    
+    NSInteger memoryWarningCounter_;
     NSUInteger page_;
     BOOL dualPageMode_;
+    BOOL rotationActive_;
     BOOL doublePageModeOnFirstPage_;
     BOOL zoomingSmallDocumentsEnabled_;
-    BOOL shadowEnabled_;
     BOOL scrollOnTapPageEndEnabled_;
+    BOOL shadowEnabled_;
     BOOL fitWidth_;
-    
-    NSInteger memoryWarningCounter_;
+    BOOL isShowingRightPage_;
 }
 
 /// display specific document with specified page
@@ -41,6 +39,9 @@
 
 // for memory warning relay
 - (void)didReceiveMemoryWarning;
+
+// internal use for smooth rotations
+- (void)switchPages;
 
 /// weak reference to parent pdfController
 @property(nonatomic, assign) PSPDFViewController *pdfController;
@@ -68,6 +69,9 @@
 
 /// tap on begin/end of page scrolls to previous/next page.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
+
+/// show/hide tiled layer
+@property(nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
 
 /// for subclassing
 - (CGPathRef)renderPaperCurl:(UIView*)imgView;
