@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.6.19 - 16/Nov/2011__
+
+* further small rotation improvement
+
 __v1.6.18 - 16/Nov/2011__
 
 *  New: Much, much improved rotation. Now smooth as butter. Enjoy!
