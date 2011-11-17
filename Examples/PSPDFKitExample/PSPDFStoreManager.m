@@ -105,6 +105,12 @@ static char kvoToken; // we need a static address for the kvo token
     
     // flatten hierarchy
     if (kPSPDFStoreManagerPlain) {
+        // if we don't have any folders, create one
+        if ([folders count] == 0) {
+            PSPDFMagazineFolder *aFolder = [PSPDFMagazineFolder folderWithTitle:@""];
+            [folders addObject:aFolder];
+        }
+
         NSMutableArray *foldersCopy = [folders mutableCopy];
         PSPDFMagazineFolder *firstFolder = [foldersCopy objectAtIndex:0];
         [foldersCopy removeObject:firstFolder];
