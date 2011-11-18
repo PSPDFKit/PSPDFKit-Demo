@@ -106,7 +106,7 @@ enum {
 /// set up caching strategy
 @property(assign) PSPDFCacheStrategy strategy;
 
-/// maximum number of cached documents. Default value depends on device.
+/// maximum number of cached documents. Default value depends on device. Only odd numbers are allowed (1,3,5,...)
 /// if you experience memory issues, set this to zero in your AppDelegate.
 @property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 

@@ -24,7 +24,7 @@
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale;
 
 /// destroys and removes CATiledLayer. Call prior deallocating
-- (void)destroyPage;
+- (void)destroyPageAndRemoveFromView:(BOOL)removeFromView;
 
 /// removes background, saves memory
 - (void)removeBackgroundView;
