@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.6.20 - 18/Nov/2011__
+
+* fixes possible cache-reload loop with page-preload if non-odd values are chosen.
+* fixes a memory leak (regression in 1.6.18)
+
 __v1.6.19 - 16/Nov/2011__
 
 * further small rotation improvement
