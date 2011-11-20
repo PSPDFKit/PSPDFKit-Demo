@@ -71,7 +71,7 @@
         CGColorRef yellow = CGColorCreate(rgbColorSpace, yellowComponents);
         CGContextSetStrokeColorWithColor(context, yellow);
         
-        for (PSPDFLinkAnnotation *linkAnnotation in annotations) {
+        for (PSPDFAnnotation *linkAnnotation in annotations) {
             
             // keynote is creating weird double links; ignore the small "shadow" link
             if (linkAnnotation.pdfRectangle.size.height <= 5) {
