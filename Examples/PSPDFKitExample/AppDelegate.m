@@ -11,6 +11,8 @@
 #import "PSPDFNavigationController.h"
 #import "PSPDFSettingsController.h"
 #import "SDURLCache.h"
+#import "UINavigationBar+PSPDFKit.h"
+
 
 @implementation AppDelegate
 
@@ -36,13 +38,16 @@
     //kPSPDFKitDebugScrollViews = YES;
     
     // enable to see memory usage
-    //kPSPDFKitDebugMemory = YES;
+    kPSPDFKitDebugMemory = YES;
     
     // enable to change anomations (e.g. enable on iPad1)
     //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
     
     // setup device specific defaults
     [PSPDFSettingsController setupDefaults];
+
+    // initialize improved navigation animation
+    [UINavigationBar pspdfkit_swizzleNavigationMethodes];
     
     // create main grid and show!
     gridController_ = [[PSPDFGridController alloc] init];
