@@ -82,6 +82,14 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIView
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    deleteImage_.frame = CGRectMake(self.imageView.left-10, self.imageView.top-10, 29, 29);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - KVO
 
 - (void)updateProgressAnimated:(BOOL)animated {
@@ -317,11 +325,10 @@
                 deleteImage_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
                 [self.contentView addSubview:deleteImage_];
             }
-            deleteImage_.frame = CGRectMake(self.imageView.left-10, self.imageView.top-10, 29, 29);
         }
-        
         deleteImage_.hidden = !showDeleteImage || (self.magazine && !self.magazine.isAvailable && !self.magazine.isDownloading);
-    } 
+        [self setNeedsLayout];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
