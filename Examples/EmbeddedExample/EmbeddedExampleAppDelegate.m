@@ -38,7 +38,8 @@
     SecondViewController *pdfController = [[[SecondViewController alloc] initWithDocument:document] autorelease];
     UINavigationController *secondVC = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
 
-    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit-annotated.pdf"];
+    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:videoPath]];
     PSEmbeddedVideoPDFViewController *videoVC = [[[PSEmbeddedVideoPDFViewController alloc] initWithDocument:videoDocument] autorelease];
     UINavigationController *videoNavC = [[[UINavigationController alloc] initWithRootViewController:videoVC] autorelease];
     

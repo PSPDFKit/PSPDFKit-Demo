@@ -10,9 +10,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface PSEmbeddedVideoPDFViewController : PSPDFViewController <PSPDFViewControllerDelegate> {
-    MPMoviePlayerController *moviePlayer_;
 }
-
-@property(nonatomic, retain) MPMoviePlayerController *moviePlayer;
 
 @end
