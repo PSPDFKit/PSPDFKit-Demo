@@ -87,8 +87,8 @@
 #endif
     
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
-    UINavigationController *pdfNavController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-    pdfNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //UINavigationController *pdfNavController = [[UINavigationController alloc] initWithRootViewController:pdfController];
+    //pdfNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     if (animated) {
         UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
@@ -123,10 +123,10 @@
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
-            [self presentModalViewController:pdfNavController animated:NO];
+            [self.navigationController pushViewController:pdfController animated:NO];
         }];  
     }else {
-        [self presentModalViewController:pdfNavController animated:NO];
+        [self.navigationController pushViewController:pdfController animated:NO];
     }
     
     return YES;
@@ -339,6 +339,9 @@
         cell.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:cellIndex];  
     }
     
+    // set edit mode
+    cell.showDeleteImage = self.isEditMode;
+
     return cell;
 }
 
