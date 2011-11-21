@@ -123,6 +123,25 @@
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
+            
+            // fade for UINavigationBar
+            CATransition* barTransition = [CATransition animation];
+            barTransition.duration = 0.25f;
+            barTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            barTransition.type = kCATransitionFade;
+            barTransition.subtype = kCATransitionFromTop;
+            [self.navigationController.navigationBar.layer addAnimation:barTransition forKey:kCATransition];
+
+            // fade for content
+            /*
+            CATransition* transition = [CATransition animation];
+            transition.duration = 0.1f;
+            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            transition.type = kCATransitionFade;
+            transition.subtype = kCATransitionFromTop;
+            [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+             */
+            
             [self.navigationController pushViewController:pdfController animated:NO];
         }];  
     }else {
@@ -223,11 +242,22 @@
                                                                                   target:self
                                                                                   action:@selector(editButtonPressed)];
     }
-        
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Options"
+    
+    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:@"Options"
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self
                                                                               action:@selector(optionsButtonPressed)];
+    
+    // only show the option button if we're at root (else we hide the back button)
+    if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
+        self.navigationItem.leftBarButtonItem = optionButton;
+    }else {
+        // iOS5 supports easy additional buttons next to a native back button
+        PSPDF_IF_IOS5_OR_GREATER(
+                                 self.navigationItem.leftBarButtonItem = optionButton;
+                                 self.navigationItem.leftItemsSupplementBackButton = YES;
+        );
+    }
     
     // use custom view to match background with PSPDFViewController
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
