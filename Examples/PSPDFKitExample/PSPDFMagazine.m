@@ -59,6 +59,14 @@
     return coverImage;
 }
 
+// example how to manually rotate a page
+/*
+- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef {
+    PSPDFPageInfo *pi = [super pageInfoForPage:page pageRef:pageRef];
+    pi.pageRotation = (pi.pageRotation + 90) % 360;
+    return pi;
+}*/
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocument
 
