@@ -23,7 +23,6 @@
 		783C77B113D982B100CF7C9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77B013D982B100CF7C9D /* main.m */; };
 		783C77B513D982B100CF7C9D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77B413D982B100CF7C9D /* AppDelegate.m */; };
 		783C77DD13D9842E00CF7C9D /* PSPDFMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77D413D9842E00CF7C9D /* PSPDFMagazine.m */; };
-		783C77DE13D9842E00CF7C9D /* PSPDFNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77D613D9842E00CF7C9D /* PSPDFNavigationController.m */; };
 		783C77DF13D9842E00CF7C9D /* PSPDFImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77D813D9842E00CF7C9D /* PSPDFImageGridViewCell.m */; };
 		783C77E013D9842E00CF7C9D /* PSPDFGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77DA13D9842E00CF7C9D /* PSPDFGridController.m */; };
 		783C77E113D9842E00CF7C9D /* PSPDFGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 783C77DC13D9842E00CF7C9D /* PSPDFGridView.m */; };
@@ -91,8 +90,6 @@
 		783C77B413D982B100CF7C9D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		783C77D313D9842E00CF7C9D /* PSPDFMagazine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFMagazine.h; sourceTree = "<group>"; };
 		783C77D413D9842E00CF7C9D /* PSPDFMagazine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFMagazine.m; sourceTree = "<group>"; };
-		783C77D513D9842E00CF7C9D /* PSPDFNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFNavigationController.h; sourceTree = "<group>"; };
-		783C77D613D9842E00CF7C9D /* PSPDFNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFNavigationController.m; sourceTree = "<group>"; };
 		783C77D713D9842E00CF7C9D /* PSPDFImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFImageGridViewCell.h; sourceTree = "<group>"; };
 		783C77D813D9842E00CF7C9D /* PSPDFImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFImageGridViewCell.m; sourceTree = "<group>"; };
 		783C77D913D9842E00CF7C9D /* PSPDFGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFGridController.h; sourceTree = "<group>"; };
@@ -250,8 +247,6 @@
 			children = (
 				78727B71141EC21900994946 /* PSActionSheet.h */,
 				78727B72141EC21900994946 /* PSActionSheet.m */,
-				783C77D513D9842E00CF7C9D /* PSPDFNavigationController.h */,
-				783C77D613D9842E00CF7C9D /* PSPDFNavigationController.m */,
 				783C77DB13D9842E00CF7C9D /* PSPDFGridView.h */,
 				783C77DC13D9842E00CF7C9D /* PSPDFGridView.m */,
 				7892B345141845C100DC5575 /* PSPDFSettingsController.h */,
@@ -412,7 +407,6 @@
 				783C77B113D982B100CF7C9D /* main.m in Sources */,
 				783C77B513D982B100CF7C9D /* AppDelegate.m in Sources */,
 				783C77DD13D9842E00CF7C9D /* PSPDFMagazine.m in Sources */,
-				783C77DE13D9842E00CF7C9D /* PSPDFNavigationController.m in Sources */,
 				783C77DF13D9842E00CF7C9D /* PSPDFImageGridViewCell.m in Sources */,
 				783C77E013D9842E00CF7C9D /* PSPDFGridController.m in Sources */,
 				783C77E113D9842E00CF7C9D /* PSPDFGridView.m in Sources */,
