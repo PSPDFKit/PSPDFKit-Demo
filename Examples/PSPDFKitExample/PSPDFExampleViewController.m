@@ -129,7 +129,7 @@
 }
 
 - (void)documentButtonPressed {
-    [self dismissModalViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (UIBarButtonItem *)toolbarBackButton; {
