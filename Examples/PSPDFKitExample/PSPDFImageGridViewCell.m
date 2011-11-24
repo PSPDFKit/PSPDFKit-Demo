@@ -69,7 +69,7 @@
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
         // uncomment to hide label
-        showingSiteLabel_ = YES;
+        self.showingSiteLabel = YES;
     }
     
     return self;
@@ -211,11 +211,11 @@
 }
 
 - (CALayer *)glowSelectionLayer {
-    return imageView_.layer;
+    return self.imageView.layer;
 }
 
 - (UIImage *)image {
-    return imageView_.image;
+    return self.imageView.image;
 }
 
 - (void)setImage:(UIImage *)anImage {
