@@ -6,8 +6,6 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /// enable to make the view plain, no folders supported
 #define kPSPDFStoreManagerPlain YES
 
