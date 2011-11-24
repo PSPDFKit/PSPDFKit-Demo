@@ -1,12 +1,12 @@
 //
-//  EmbeddedExampleAppDelegate.m
+//  AppDelegate.m
 //  EmbeddedExample
 //
 //  Created by Peter Steinberger on 8/4/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import "EmbeddedExampleAppDelegate.h"
+#import "AppDelegate.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
 #import "PSEmbeddedVideoPDFViewController.h"
@@ -14,7 +14,7 @@
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
 
-@implementation EmbeddedExampleAppDelegate
+@implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
