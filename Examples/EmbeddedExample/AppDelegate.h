@@ -1,5 +1,5 @@
 //
-//  EmbeddedExampleAppDelegate.h
+//  AppDelegate.h
 //  EmbeddedExample
 //
 //  Created by Peter Steinberger on 8/4/11.
@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EmbeddedExampleAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
+#define kDevelopersGuideFileName @"DevelopersGuide.pdf"
+#define kPaperExampleFileName @"amazon-dynamo-sosp2007.pdf"
+#define PSPDFKitExample @"PSPDFKit.pdf"
+
+@interface AppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
