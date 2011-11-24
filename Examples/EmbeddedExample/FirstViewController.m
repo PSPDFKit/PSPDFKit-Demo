@@ -7,8 +7,7 @@
 //
 
 #import "FirstViewController.h"
-
-#define PSPDFKitExample @"PSPDFKit.pdf"
+#import "AppDelegate.h"
 
 @implementation FirstViewController
 
@@ -77,8 +76,8 @@
         // prepare document to display, copy it do docs folder
         // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
         [self copySampleToDocumentsFolder:PSPDFKitExample];
-        [self copySampleToDocumentsFolder:@"Developers_Guide_8th.pdf"];
-        [self copySampleToDocumentsFolder:@"amazon-dynamo-sosp2007.pdf"];
+        [self copySampleToDocumentsFolder:kDevelopersGuideFileName];
+        [self copySampleToDocumentsFolder:kPaperExampleFileName];
         
         // add button to push view
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)] autorelease];
@@ -192,7 +191,7 @@
 #pragma mark - Public
 
 - (IBAction)appendDocument {
-    NSString *docName = @"Developers_Guide_8th.pdf";
+    NSString *docName = kDevelopersGuideFileName;
     PSPDFDocument *document = self.pdfController.document;
     if (![document appendFile:docName]) {
         NSLog(@"Skipping operation: Document already appended.");
@@ -205,7 +204,7 @@
     static BOOL replace = YES;
     if (replace) {
         NSError *error = nil;
-        NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"amazon-dynamo-sosp2007.pdf"];
+        NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPaperExampleFileName];
         NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
         if (![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
             NSLog(@"error while deleting: %@", [error localizedDescription]);
