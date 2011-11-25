@@ -11,11 +11,29 @@
 #import "PSPDFSettingsController.h"
 #import "SDURLCache.h"
 
+// can also be read from Info.plist, etc...
+#define kAppVersionKey @"AppVersion"
+#define kAppVersion 17
 
 @implementation AppDelegate
 
 @synthesize window = window_;
 @synthesize navigationController = navigationController_;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+// it's advised to clear the cache before updating PSPDFKit.
+- (void)clearCacheOnUpgrade {
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:kAppVersionKey] < kAppVersion) {
+        NSLog(@"clearing cache because of new install/upgrade.");
+        [[PSPDFCache sharedPSPDFCache] clearCache]; // thread-safe.
+        
+        // save new version number
+        [[NSUserDefaults standardUserDefaults] setInteger:kAppVersion forKey:kAppVersionKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
@@ -28,7 +46,7 @@
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
                                                              diskPath:[SDURLCache defaultCachePath]];
     [NSURLCache setSharedURLCache:URLCache];
-
+    
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
     
@@ -50,7 +68,7 @@
     window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     window_.rootViewController = navigationController_;
     [window_ makeKeyAndVisible];
-        
+    
     NSString *cacheFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     PSELog(@"CacheDir: %@", cacheFolder);
     
@@ -58,6 +76,11 @@
     if (!PSIsIpad()) {
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     }
+    
+    // after a version upgrade, reset the cache
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self clearCacheOnUpgrade];
+    });
     
     return YES;
 }
