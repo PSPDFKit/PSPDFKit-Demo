@@ -413,15 +413,13 @@ static char kvoToken; // we need a static address for the kvo token
 - (void)addMagazinesToStore:(NSArray *)magazines {
     
     // filter out magazines that are already in array
-    NSMutableArray *newMagazines = [NSMutableArray array];
+    NSMutableArray *newMagazines = [NSMutableArray arrayWithArray:magazines];
     for (PSPDFMagazine *newMagazine in magazines) {
         for (PSPDFMagazineFolder *folder in self.magazineFolders) {
-            NSArray *newMagazineArray = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@", newMagazine]];
-            if ([newMagazineArray count] == 0) {
-                [newMagazines addObject:newMagazine];
-            }        
+            NSArray *foundMagazines = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.uid == %@", newMagazine.uid]];
+            [newMagazines removeObjectsInArray:foundMagazines];
         }
-    }    
+    }
     
     if ([newMagazines count] > 0) {
         [delegate_ magazineStoreBeginUpdate];
