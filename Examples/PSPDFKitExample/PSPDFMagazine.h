@@ -2,19 +2,12 @@
 //  PSPDFMagazine.h
 //  PSPDFKitExample
 //
-//  Created by Peter Steinberger on 7/22/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
 @class PSPDFMagazineFolder;
 
-@interface PSPDFMagazine : PSPDFDocument {
-    BOOL available_;
-    BOOL downloading_;
-    PSPDFMagazineFolder *__ps_weak folder_;
-    NSURL *url_;
-    NSURL *imageUrl_;
-}
+@interface PSPDFMagazine : PSPDFDocument
 
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path;
 

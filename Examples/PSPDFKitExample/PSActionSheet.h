@@ -9,7 +9,6 @@
 
 // A simple block-enabled API wrapper on top of UIActionSheet
 @interface PSActionSheet : NSObject <UIActionSheetDelegate> {
-    UIActionSheet *sheet_;
     NSMutableArray *blocks_;
 }
 

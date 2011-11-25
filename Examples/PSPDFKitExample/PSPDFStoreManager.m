@@ -2,7 +2,6 @@
 //  PSPDFStoreManager.m
 //  PSPDFKitExample
 //
-//  Created by Peter Steinberger on 8/7/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
