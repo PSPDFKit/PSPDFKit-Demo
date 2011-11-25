@@ -130,14 +130,8 @@ static char kvoToken; // we need a static address for the kvo token
 // add a magazine to folder, then re-sort it
 - (PSPDFMagazineFolder *)addMagazineToFolder:(PSPDFMagazine *)magazine {
     PSPDFMagazineFolder *folder = [self.magazineFolders lastObject];
-    
     [folder addMagazine:magazine];
     NSAssert([folder isKindOfClass:[PSPDFMagazineFolder class]], @"incorrect type");
-    dispatch_sync_reentrant([self magazineFolderQueue], ^{
-        [magazineFolders_ addObject:folder];
-        [magazineFolders_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
-    });
-    
     return folder;
 }
 
