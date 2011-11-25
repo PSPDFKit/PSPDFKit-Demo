@@ -2,11 +2,9 @@
 //  PSPDFDownload.h
 //  PSPDFKitExample
 //
-//  Created by Peter Steinberger on 7/24/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
 #import "PSPDFMagazine.h"
 #import "ASIProgressDelegate.h"
@@ -19,13 +17,7 @@ typedef enum {
 } PSPDFStoreDownloadStatus;
 
 @interface PSPDFDownload : NSObject <ASIProgressDelegate> {
-    ASIHTTPRequest *request_;
     UIProgressView *progressView_;
-    PSPDFMagazine  *magazine_;
-    NSURL          *url_;
-    PSPDFStoreDownloadStatus status_;
-    float downloadProgress_;
-    BOOL cancelled_;
 }
 
 /// initialize a new pdf download, autoreleased
