@@ -2,7 +2,6 @@
 //  PSPDFStoreManager.h
 //  PSPDFKitExample
 //
-//  Created by Peter Steinberger on 8/7/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
@@ -38,9 +37,6 @@
 /// store manager, hold magazines and folders
 @interface PSPDFStoreManager : NSObject {
     dispatch_queue_t magazineFolderQueue_;
-    id<PSPDFStoreManagerDelegate> __ps_weak delegate_;
-    NSMutableArray *magazineFolders_;  
-    NSMutableArray *downloadQueue_;
 }
 
 + (PSPDFStoreManager *)sharedPSPDFStoreManager;
