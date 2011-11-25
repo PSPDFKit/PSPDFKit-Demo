@@ -39,6 +39,8 @@
 		78BF7544141D37D300FF02DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753B141D37D300FF02DF /* star.png */; };
 		78BF7549141D37DF00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7546141D37DF00FF02DF /* Localizable.strings */; };
 		78BF754B141D380600FF02DF /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF754A141D380600FF02DF /* MediaPlayer.framework */; };
+		78C22B00148037170092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22AFF148037170092B889 /* ImageIO.framework */; };
+		78C22B031480371C0092B889 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B021480371C0092B889 /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +87,8 @@
 		78BF7547141D37DF00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78BF7548141D37DF00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78BF754A141D380600FF02DF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		78C22AFF148037170092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		78C22B021480371C0092B889 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C22B031480371C0092B889 /* libz.dylib in Frameworks */,
+				78C22B00148037170092B889 /* ImageIO.framework in Frameworks */,
 				78A100AC147C1C0600E67DAC /* MapKit.framework in Frameworks */,
 				78A100A9147C1C0200E67DAC /* CoreLocation.framework in Frameworks */,
 				78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */,
@@ -141,6 +147,8 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78C22B021480371C0092B889 /* libz.dylib */,
+				78C22AFF148037170092B889 /* ImageIO.framework */,
 				78A100AB147C1C0600E67DAC /* MapKit.framework */,
 				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
 				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,

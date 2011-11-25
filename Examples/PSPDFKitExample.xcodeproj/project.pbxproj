@@ -42,6 +42,8 @@
 		7892B347141845C100DC5575 /* PSPDFSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892B346141845C100DC5575 /* PSPDFSettingsController.m */; };
 		78AB3DC5146D764500670352 /* libvendor-http.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AB3D49146D75D100670352 /* libvendor-http.a */; };
 		78BF7555141D382A00FF02DF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7552141D382A00FF02DF /* Localizable.strings */; };
+		78C22AF7148036E90092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22AF6148036E90092B889 /* ImageIO.framework */; };
+		78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78C22AF9148036FF0092B889 /* NightOwl.m4a */; };
 		78D880B013EE3984009ACEB5 /* PSPDFStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */; };
 		78D880B713EE399B009ACEB5 /* NSObject+AssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B413EE399B009ACEB5 /* NSObject+AssociatedObjects.m */; };
 		78D880B813EE399B009ACEB5 /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -118,6 +120,8 @@
 		78AB3D44146D75D000670352 /* vendor-http.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "vendor-http.xcodeproj"; path = "PSPDFKitExample/vendor-http/vendor-http.xcodeproj"; sourceTree = "<group>"; };
 		78BF7553141D382A00FF02DF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78BF7554141D382A00FF02DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78C22AF6148036E90092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		78C22AF9148036FF0092B889 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
 		78D880AE13EE3984009ACEB5 /* PSPDFStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFStoreManager.h; sourceTree = "<group>"; };
 		78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFStoreManager.m; sourceTree = "<group>"; };
 		78D880B313EE399B009ACEB5 /* NSObject+AssociatedObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AssociatedObjects.h"; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78C22AF7148036E90092B889 /* ImageIO.framework in Frameworks */,
 				78E6325513DEC96700F3392F /* PSPDFKit.framework in Frameworks */,
 				78AB3DC5146D764500670352 /* libvendor-http.a in Frameworks */,
 				78727B76141EC22900994946 /* MessageUI.framework in Frameworks */,
@@ -185,6 +190,7 @@
 		783C77A313D982B100CF7C9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78C22AF6148036E90092B889 /* ImageIO.framework */,
 				78FDF908147885B300BE13FC /* MediaPlayer.framework */,
 				78E6325413DEC96700F3392F /* PSPDFKit.framework */,
 				783C77A613D982B100CF7C9D /* Foundation.framework */,
@@ -273,6 +279,7 @@
 		783C782913D9961A00CF7C9D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78C22AF8148036FF0092B889 /* LocalPdfResources */,
 				78BF7551141D382A00FF02DF /* Localization */,
 				7805D031141EC10C003D10D5 /* delete.png */,
 				7805D032141EC10C003D10D5 /* delete@2x.png */,
@@ -299,6 +306,14 @@
 				78BF7552141D382A00FF02DF /* Localizable.strings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		78C22AF8148036FF0092B889 /* LocalPdfResources */ = {
+			isa = PBXGroup;
+			children = (
+				78C22AF9148036FF0092B889 /* NightOwl.m4a */,
+			);
+			path = LocalPdfResources;
 			sourceTree = "<group>";
 		};
 		78D880B213EE399B009ACEB5 /* Categories */ = {
@@ -394,6 +409,7 @@
 				78BF7555141D382A00FF02DF /* Localizable.strings in Resources */,
 				7805D033141EC10C003D10D5 /* delete.png in Resources */,
 				7805D034141EC10C003D10D5 /* delete@2x.png in Resources */,
+				78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
