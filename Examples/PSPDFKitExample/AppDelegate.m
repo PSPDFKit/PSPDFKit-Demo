@@ -34,6 +34,19 @@
     }
 }
 
+// this is an example how to override the few keywords in PSPDFKit.
+// you can also change the contents of the PSPDFKit.bundle, but you need to re-do this after every update
+- (void)addCustomLocalization {
+    // prepare the dictionary structure (here, we only add en, which is the fallback)
+    NSMutableDictionary *localizationDict = [NSMutableDictionary dictionaryWithCapacity:1];
+    NSMutableDictionary *enLocalizationDict = [NSMutableDictionary dictionaryWithCapacity:1];
+    [localizationDict setObject:enLocalizationDict forKey:@"en"];
+    
+    // add localization content
+    [enLocalizationDict setObject:@"Magazines" forKey:@"Documents"];
+    PSPDFSetLocalizationDictionary(localizationDict);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
 
@@ -60,6 +73,9 @@
     
     // setup device specific defaults
     [PSPDFSettingsController setupDefaults];
+    
+    // add custom localization changes
+    [self addCustomLocalization];
     
     // create main grid and show!
     gridController_ = [[PSPDFGridController alloc] init];
