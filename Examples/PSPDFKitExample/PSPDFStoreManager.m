@@ -328,26 +328,26 @@ static char kvoToken; // we need a static address for the kvo token
         if (storeDownloadWeak.status == PSPDFStoreDownloadFinished) {
             [self finishDownload:storeDownloadWeak];
             
-            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Download for %@ finished!", storeDownloadWeak.magazine.title]
+            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Download for %@ finished!"), storeDownloadWeak.magazine.title]
                                          message:nil
                                         delegate:nil
-                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                               cancelButtonTitle:PSPDFLocalize(@"OK")
                                otherButtonTitles:nil] show];
             
         }else if (storeDownloadWeak.status == PSPDFStoreDownloadFailed) {
             if (!storeDownloadWeak.isCancelled) {
                 NSString *magazineTitle = [storeDownloadWeak.magazine.title length] ? storeDownloadWeak.magazine.title : NSLocalizedString(@"Magazine", @"");
-                NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ could not be downloaded. Please try again.", @""), magazineTitle];
+                NSString *message = [NSString stringWithFormat:PSPDFLocalize(@"%@ could not be downloaded. Please try again."), magazineTitle];
                 
                 NSString *messageWithError = message;
                 if (storeDownloadWeak.error) {
                     messageWithError = [NSString stringWithFormat:@"%@\n(%@)", message, [storeDownloadWeak.error localizedDescription]];
                 }
                 
-                [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Warning"]
+                [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Warning")]
                                              message:messageWithError
                                             delegate:nil
-                                   cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                                   cancelButtonTitle:PSPDFLocalize(@"OK")
                                    otherButtonTitles:nil] show];
                 
             }
