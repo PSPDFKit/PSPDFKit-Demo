@@ -22,7 +22,7 @@
 
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
     [self presentModalViewController:navController animated:animated];
 }
 
@@ -132,7 +132,7 @@
 }
 
 - (UIBarButtonItem *)toolbarBackButton; {
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Documents" : @"Back"
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back")
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
                                                                    action:@selector(documentButtonPressed)];

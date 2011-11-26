@@ -41,7 +41,7 @@
 
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Close", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
     [self presentModalViewController:navController animated:animated];
 }
 
@@ -86,12 +86,11 @@
 #endif
     
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
-    //UINavigationController *pdfNavController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-    //pdfNavController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     if (animated) {
         UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
         AQGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
+        cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -99,16 +98,6 @@
         
         UIView *magazineView = [[UIView alloc] initWithFrame:cellCoords];
         [magazineView addSubview:coverImageView];
-        
-        /*
-         CALayer *shadowLayer = magazineView.layer;
-         shadowLayer.shadowColor = [UIColor blackColor].CGColor;
-         shadowLayer.shadowOpacity = 0.7f;
-         shadowLayer.shadowOffset = PSIsIpad() ? CGSizeMake(10.0f, 10.0f) : CGSizeMake(8.0f, 8.0f); 
-         shadowLayer.shadowRadius = 4.0f;
-         shadowLayer.masksToBounds = NO;
-         shadowLayer.shadowPath = [self renderPaperCurl:magazineView];
-         */
         
         coverImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:magazineView];
@@ -130,18 +119,9 @@
             barTransition.type = kCATransitionFade;
             barTransition.subtype = kCATransitionFromTop;
             [self.navigationController.navigationBar.layer addAnimation:barTransition forKey:kCATransition];
-
-            // fade for content
-            /*
-            CATransition* transition = [CATransition animation];
-            transition.duration = 0.1f;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.type = kCATransitionFade;
-            transition.subtype = kCATransitionFromTop;
-            [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-             */
-            
             [self.navigationController pushViewController:pdfController animated:NO];
+            
+            cell.hidden = NO;
         }];  
     }else {
         [self.navigationController pushViewController:pdfController animated:NO];
@@ -177,14 +157,14 @@
 - (void)editButtonPressed {
     if (self.isEditMode) {
         self.editMode = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
                                                                                    style:UIBarButtonItemStyleBordered
                                                                                   target:self
                                                                                   action:@selector(editButtonPressed)];    
         
     }else {
         self.editMode = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Done")
                                                                                    style:UIBarButtonItemStyleDone
                                                                                   target:self
                                                                                   action:@selector(editButtonPressed)];    
@@ -210,7 +190,7 @@
         self.title = @"PSPDFKit Example";   
         
         // custom back button for smaller wording
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Kiosk", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
     }
@@ -236,13 +216,13 @@
     [super viewDidLoad];
     
     if (!self.magazineFolder) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
                                                                                    style:UIBarButtonItemStyleBordered
                                                                                   target:self
                                                                                   action:@selector(editButtonPressed)];
     }
     
-    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:@"Options"
+    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Options")
                                                                                style:UIBarButtonItemStyleBordered
                                                                               target:self
                                                                               action:@selector(optionsButtonPressed)];
@@ -402,31 +382,31 @@
         BOOL canDelete = YES;
         NSString *message = nil;
         if ([folder.magazines count] > 1 && !self.magazineFolder) {
-            message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineMultiple", @""), folder.title, [folder.magazines count]];
+            message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
         }else {
-            message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineSingle", @""), magazine.title];
+            message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
             canDelete = magazine.isAvailable || magazine.isDownloading;
         }
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
             deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:NSLocalizedString(@"Delete", @"") block:^{
+            [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
                 if (self.magazineFolder) {
                     [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
                 }else {
                     [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
                 }
             }];
-            [deleteAction setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
+            [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
             [deleteAction showFromRect:cell.frame inView:self.view animated:YES];
         }        
     }
     else if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
-            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Item is currently downloading."]
+            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Item is currently downloading.")]
                                          message:nil
                                         delegate:nil
-                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                               cancelButtonTitle:PSPDFLocalize(@"OK")
                                otherButtonTitles:nil] show];
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
