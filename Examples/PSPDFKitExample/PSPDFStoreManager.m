@@ -189,6 +189,15 @@ static char kvoToken; // we need a static address for the kvo token
             self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
             
+            // ensure we have thumbnails for all magazines (else they would be lazy-loaded)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                for (PSPDFMagazineFolder *folder in magazineFolders) {
+                    for (PSPDFMagazine *magazine in folder.magazines) {
+                        [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+                    }
+                }
+            });
+            
             // now start web-request
             [self loadMagazinesAvailableFromWeb];
         });
