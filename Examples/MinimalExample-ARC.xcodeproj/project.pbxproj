@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		787024331481C7A5005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 787024321481C7A5005A7792 /* PSPDFKit.bundle */; };
 		78881B1D141EC35C00CB0739 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78881B1C141EC35C00CB0739 /* Icon.png */; };
 		78881B20141EC36700CB0739 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78881B1F141EC36700CB0739 /* MessageUI.framework */; };
 		78C22B14148037750092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B13148037750092B889 /* ImageIO.framework */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		787024321481C7A5005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78881B1C141EC35C00CB0739 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		78881B1F141EC36700CB0739 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78C22B13148037750092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -87,6 +89,7 @@
 		78E6326413DECAF600F3392F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				787024321481C7A5005A7792 /* PSPDFKit.bundle */,
 				78E6329913DECD8400F3392F /* PSPDFKit.framework */,
 				78C22B16148037790092B889 /* libz.dylib */,
 				78C22B18148037870092B889 /* MediaPlayer.framework */,
@@ -188,6 +191,7 @@
 				78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */,
 				78E6329C13DECD8B00F3392F /* Samples in Resources */,
 				78881B1D141EC35C00CB0739 /* Icon.png in Resources */,
+				787024331481C7A5005A7792 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

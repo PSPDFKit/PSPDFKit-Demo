@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
+		7870243E1481C7C2005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7870243D1481C7C2005A7792 /* PSPDFKit.bundle */; };
 		78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B82141EC2D300994946 /* MessageUI.framework */; };
 		78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B081480374A0092B889 /* ImageIO.framework */; };
 		78C22B0C148037520092B889 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0B148037520092B889 /* libz.dylib */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		7870243D1481C7C2005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78727B82141EC2D300994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78C22B081480374A0092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78C22B0B148037520092B889 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -87,16 +89,17 @@
 		78E6A43C13DECE56006000BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78C22B0B148037520092B889 /* libz.dylib */,
+				7870243D1481C7C2005A7792 /* PSPDFKit.bundle */,
+				78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */,
 				78C22B0D1480375A0092B889 /* MediaPlayer.framework */,
 				78C22B081480374A0092B889 /* ImageIO.framework */,
-				78DEFF9E13DECEAD005ABEFD /* PSPDFKit.framework */,
 				78727B82141EC2D300994946 /* MessageUI.framework */,
 				78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */,
 				78DEFFA313DECEBF005ABEFD /* CoreText.framework */,
 				78E6A43D13DECE56006000BB /* UIKit.framework */,
 				78E6A43F13DECE56006000BB /* Foundation.framework */,
 				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
+				78C22B0B148037520092B889 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */,
 				78DEFFA213DECEB6005ABEFD /* Samples in Resources */,
 				7808B4E513E6A7BA005380C8 /* Icon.png in Resources */,
+				7870243E1481C7C2005A7792 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
