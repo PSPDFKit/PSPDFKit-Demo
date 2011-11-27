@@ -169,6 +169,9 @@ static char kvoToken; // we need a static address for the kvo token
                     magazine.uid = uid;
                     [newMagazines addObject:magazine];
                 }
+                
+                // TODO: this is not optimal. The title from used in the web is saved nowhere.
+                // After a restart, the title within the pdf document's metadata is used, or if no title set there, the filename.
                 magazine.title = title;
                 magazine.url = [urlString length] ? [NSURL URLWithString:urlString] : nil;
                 magazine.imageUrl = [imageUrlString length] ? [NSURL URLWithString:imageUrlString] : nil;
