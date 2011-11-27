@@ -10,6 +10,7 @@
 		78249FB413EAE65F00CC0244 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78249FB313EAE65F00CC0244 /* PSPDFKit.framework */; };
 		7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */; };
 		7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9481402B800008F3AC7 /* SplitMasterViewController.m */; };
+		787024421481C7D9005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 787024411481C7D9005A7792 /* PSPDFKit.bundle */; };
 		78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B7B141EC27F00994946 /* MessageUI.framework */; };
 		78727B8F141EC33100994946 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78727B8E141EC33100994946 /* Icon.png */; };
 		78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6C13EAD25B0043F631 /* UIKit.framework */; };
@@ -48,6 +49,7 @@
 		7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		7840C9471402B800008F3AC7 /* SplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitMasterViewController.h; sourceTree = "<group>"; };
 		7840C9481402B800008F3AC7 /* SplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitMasterViewController.m; sourceTree = "<group>"; };
+		787024411481C7D9005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78727B7B141EC27F00994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78727B8E141EC33100994946 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		78836E6813EAD25B0043F631 /* EmbeddedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmbeddedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,11 +146,11 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78C22B021480371C0092B889 /* libz.dylib */,
+				787024411481C7D9005A7792 /* PSPDFKit.bundle */,
+				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
 				78C22AFF148037170092B889 /* ImageIO.framework */,
 				78A100AB147C1C0600E67DAC /* MapKit.framework */,
 				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
-				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
 				78727B7B141EC27F00994946 /* MessageUI.framework */,
 				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
 				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
@@ -156,6 +158,7 @@
 				78836E6C13EAD25B0043F631 /* UIKit.framework */,
 				78836E6E13EAD25B0043F631 /* Foundation.framework */,
 				78836E7013EAD25B0043F631 /* CoreGraphics.framework */,
+				78C22B021480371C0092B889 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */,
 				78BF7544141D37D300FF02DF /* star.png in Resources */,
 				78727B8F141EC33100994946 /* Icon.png in Resources */,
+				787024421481C7D9005A7792 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
