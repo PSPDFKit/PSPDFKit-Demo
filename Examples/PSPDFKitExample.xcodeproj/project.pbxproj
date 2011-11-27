@@ -36,6 +36,7 @@
 		783C783313D999F300CF7C9D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C783213D999F300CF7C9D /* CoreText.framework */; };
 		783C783613D9A55E00CF7C9D /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C783413D9A55E00CF7C9D /* badge.png */; };
 		783C783713D9A55E00CF7C9D /* badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C783513D9A55E00CF7C9D /* badge@2x.png */; };
+		7870242D1481C778005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7870242C1481C778005A7792 /* PSPDFKit.bundle */; };
 		78727B73141EC21900994946 /* PSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78727B72141EC21900994946 /* PSActionSheet.m */; };
 		78727B76141EC22900994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B75141EC22900994946 /* MessageUI.framework */; };
 		788ACD0513E6A23B00689E19 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 788ACD0413E6A23B00689E19 /* Icon.png */; };
@@ -110,6 +111,7 @@
 		783C783213D999F300CF7C9D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		783C783413D9A55E00CF7C9D /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge.png; sourceTree = "<group>"; };
 		783C783513D9A55E00CF7C9D /* badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badge@2x.png"; sourceTree = "<group>"; };
+		7870242C1481C778005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78727B71141EC21900994946 /* PSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSActionSheet.h; sourceTree = "<group>"; };
 		78727B72141EC21900994946 /* PSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSActionSheet.m; sourceTree = "<group>"; };
 		78727B75141EC22900994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -187,9 +189,10 @@
 		783C77A313D982B100CF7C9D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78E6325413DEC96700F3392F /* PSPDFKit.framework */,
+				7870242C1481C778005A7792 /* PSPDFKit.bundle */,
 				78C22AF6148036E90092B889 /* ImageIO.framework */,
 				78FDF908147885B300BE13FC /* MediaPlayer.framework */,
-				78E6325413DEC96700F3392F /* PSPDFKit.framework */,
 				783C77A613D982B100CF7C9D /* Foundation.framework */,
 				783C77A413D982B100CF7C9D /* UIKit.framework */,
 				783C77A813D982B100CF7C9D /* CoreGraphics.framework */,
@@ -397,6 +400,7 @@
 				7805D033141EC10C003D10D5 /* delete.png in Resources */,
 				7805D034141EC10C003D10D5 /* delete@2x.png in Resources */,
 				78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */,
+				7870242D1481C778005A7792 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
