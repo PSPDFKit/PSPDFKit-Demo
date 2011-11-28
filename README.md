@@ -20,6 +20,7 @@ Features
 --------
 * Single or double page view support, including automatic mode that changes on landscape switch.
 
+* Multimedia Annotations (link annotations that start with pspdfkit://, supporting video, audio and web pages)
 * PDF Outline/Table Of Contents parsing & display.
 * Annotations support (Page Links, Web Links).
 * Optional setting to show first page in single mode, everything else in two pages. (magazine style)
@@ -39,7 +40,7 @@ Features
 
 Integration
 -----------
-You can either integrate PSPDFKit as a drop-in framework or just drag the source files into Xcode.
+You can either integrate PSPDFKit as a drop-in framework or just drag the static library project into Xcode (don't forget to add it as a dependency and library).
 
 Open the PSPDFViewController with a simple call:
 
@@ -53,7 +54,7 @@ PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocum
 [self presentModalViewController:pdfController animated:YES];
 ```
 
-See MinimalExample for a working demo. You need at least CoreText and QuartzCore.framework.
+See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC.
 
 Logging
 -------
