@@ -16,10 +16,10 @@ documentation: current-menu-item current_page_item
 	</div>
 	<div id="integration" class="col-full section">
       <h2 class="section-title">Integration</h2>
-      <p>You can either integrate PSPDFKit as a drop-in framework or just drag the source files into Xcode.</p>
+      <p>You can either integrate PSPDFKit as a drop-in framework or just drag the library project into Xcode.</p>
       <p>Open the PSPDFViewController with a simple call:</p>
       <script src="https://gist.github.com/1117224.js"> </script>
-      <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, and the linker flag -all_load (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
+      <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
     </div>
     <div id="logging" class="col-full section">
       <h2 class="section-title">Logging</h2>
