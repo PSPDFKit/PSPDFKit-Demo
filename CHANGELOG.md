@@ -1,13 +1,42 @@
 # Changelog
 
+__v1.7.0 - 28/Nov/2011__
+
+*  PSPDFKit now needs at least Xcode 4.2/Clang 3.0 to compile.
+*  Following new frameworks are required: libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework.
+*  Images are now compressed with JPG. (which is usually faster) If you upgrade, add an initial call to [[PSPDFCache sharedPSPDFCache] clearCache] to remove the png cache. You can control this new behavior or switch back to PNGs with PSPDFCache's useJPGFormat property.
+*  Optionally, when using PNG as cache format, crushing can be enabled, which is slower at writing, but faster at reading later on. (usually a good idea!)
+
+*  New multimedia features! Video can now be easily embedded with a custom pspdfkit:// url in link annotations. Those can be created with Mac Preview.app or Adobe Acrobat. Try for example "pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8" to get the HTTP Live streaming test video.
+
+*  Link annotations are now UIButtons. This allows more interactivity (feedback on touch down), and also changes the default implementation of PSPDFDocument's drawAnnotations function to be empty. Clear the cache after updating, or else you get two borders. You can also return to the old behavior if you return NO on shouldDisplayAnnotation (PSPDFViewControllerDelegate) anytime an annotation of type PSPDFAnnotationTypeLink is sent.
+
+*  Localization is now handled via the PSPDFKit.bundle. You can either change this, or use PSPDFSetLocalizationDictionary to add custom localization.
+
+*  PSPDFLinkAnnotation is renamed to PSPDFAnnotation and adds a new helper function to get the annotation rect.
+*  PSPDFPage is refactored to PSPDFPageView and is now the per-page container for a document page. The delegate methods have been changed to return the corresponding PSPDFPageView. Within PSPDFPageView, you can get the parent scrollview PSPDFScrollView.
+*  PSPDFPageModeAutomatic is now more intelligent and only uses dual page mode if it actually improves reading (e.g. no more dual pages on a landscape-oriented document)
+*  PSPDFKitExample: fixes delete-image positioning in long scroll lists.
+*  new: use PSPDFPageInfo everywhere to allow custom rotation override. (- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef)
+*  new delegate options to allow dynamic annotation creation.
+*  Better size calculation for the toolbar, allows changing titles to longer/shorter words and resizing automatically.
+*  PSPDFDocument now uses the title of the pdf document (if available). You can override this with manually setting a title.
+*  New option "scrollingEnabled" to be able to lock scrolling. (e.g. when remote controlling the pdf)
+*  Improves speed on image pre-caching.
+*  Improves documentation.
+*  Fixes a rotation problem with the last magazine page.
+*  Fixes a bug where scrollPage w/o animation didn't show the page until the user scrolled.
+*  Fixes a potential crash when view was deallocated while popover was opened.
+*  Fixes a deadlock with clearCache.
+
 __v1.6.20 - 18/Nov/2011__
 
-* fixes possible cache-reload loop with page-preload if non-odd values are chosen.
-* fixes a memory leak (regression in 1.6.18)
+*  fixes possible cache-reload loop with page-preload if non-odd values are chosen.
+*  fixes a memory leak (regression in 1.6.18)
 
 __v1.6.19 - 16/Nov/2011__
 
-* further small rotation improvement
+*  further small rotation improvement.
 
 __v1.6.18 - 16/Nov/2011__
 

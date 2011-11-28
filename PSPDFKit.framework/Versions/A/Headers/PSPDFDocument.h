@@ -2,7 +2,6 @@
 //  PSPDFDocument.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 7/20/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
@@ -12,28 +11,7 @@
 
 /// Represents a single, logical, pdf document. (one or many pdf files)
 /// Can be overriden to support custom collections.
-@interface PSPDFDocument : NSObject {
-    NSURL *basePath_;
-    NSMutableArray *files_;
-    NSString *uid_;
-    NSString *title_;
-    
-    BOOL aspectRatioEqual_;
-    BOOL searchEnabled_;
-    BOOL outlineEnabled_;
-    BOOL annotationsEnabled_;
-    BOOL isDestroyed_;
-    BOOL twoStepRenderingEnabled_;
-    NSUInteger pageCount_;
-    NSMutableDictionary *pageInfoCache_;
-    NSMutableDictionary *pageCountCache_;
-    NSMutableDictionary *fileUrlCache_;
-    PSPDFViewController *displayingPdfController_; // weak
-    
-    PSPDFDocumentSearcher *documentSearcher_;
-    PSPDFOutlineParser *outlineParser_;
-    PSPDFAnnotationParser *annotationParser_;
-}
+@interface PSPDFDocument : NSObject
 
 /// initialize empty PSPDFDocument 
 + (PSPDFDocument *)PDFDocument;
@@ -89,7 +67,7 @@
 /// return true if you want drawOverlayRect to be called.
 - (BOOL)shouldDrawOverlayRectForSize:(PSPDFSize)size;
 
-/// can be overridden to draw an overlay on the pdf - will be called from drawing threads!
+/// can be overridden to draw an overlay on the pdf - will be called from drawing threads.
 - (void)drawOverlayRect:(CGRect)rect inContext:(CGContextRef)context forPage:(NSUInteger)page zoomScale:(CGFloat)zoomScale size:(PSPDFSize)size;
 
 /// defaults to nil. can be overridden to provide custom text.
@@ -99,7 +77,10 @@
 /// override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
 - (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
-/// callback to draw annotations. Use tilingView's convertPDFPointToViewPoint to recalculate coordinates
+/// callback to draw annotations. Use tilingView's convertPDFPointToViewPoint to recalculate coordinates.
+// disabled because of PSPDFLinkAnnotation (new as of PSPDFKit 1.7). If you need the old behavior, return NO when a PSPDFLinkAnnotation is created
+// (via shouldDisplayAnnotation).
+// Note: You need to re-create the cache to get rid of the annotation markers.
 - (void)drawAnnotations:(NSArray *)annotations inContext:(CGContextRef)context pageInfo:(PSPDFPageInfo *)pageInfo pageRect:(CGRect)pageRect;
 
 /// document title as shown in the controller
@@ -114,7 +95,7 @@
 /// array of NSString pdf files. 
 @property(nonatomic, copy, readonly) NSArray *files;
 
-/// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath * files. Overrides all current settings if set.
+/// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
 @property(nonatomic, retain) NSURL *fileUrl;
 
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
@@ -131,11 +112,11 @@
 
 /// enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
 /// or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+/// This might be a good idea to turn on when using JPG for caching.
 @property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
 
 /// if document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
 @property(nonatomic, assign) PSPDFViewController *displayingPdfController;
-
 
 /// Text extraction class for current document. Readonly.
 @property(nonatomic, retain, readonly) PSPDFDocumentSearcher *documentSearcher;
@@ -144,6 +125,7 @@
 @property(nonatomic, retain, readonly) PSPDFOutlineParser *outlineParser;
 
 /// Link annotation parser class for current document. Readonly.
+/// Can be overridden to use a subclassed annotation parser.
 @property(nonatomic, retain, readonly) PSPDFAnnotationParser *annotationParser;
 
 @end

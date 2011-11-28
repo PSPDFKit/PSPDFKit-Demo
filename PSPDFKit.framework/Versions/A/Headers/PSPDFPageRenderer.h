@@ -2,7 +2,6 @@
 //  PSPDFPageRenderer.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 8/6/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 //  Based on code by Sorin Nistor. Many, Many thanks!
@@ -16,11 +15,13 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
+@class PSPDFPageInfo;
+
 @interface PSPDFPageRenderer : NSObject
 
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context;
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point;
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom;
-+ (CGRect)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle;
++ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo;
++ (CGRect)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo;
 
 @end

@@ -2,20 +2,21 @@
 //  PSPDFSearchResult.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 7/20/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKit.h"
 
-@interface PSPDFSearchResult : NSObject {
-    PSPDFDocument *document_;
-    NSUInteger pageIndex_;
-    NSString *previewText_;
-}
+/// Search result object.
+@interface PSPDFSearchResult : NSObject
 
+/// Referenced document.
 @property (nonatomic, assign) PSPDFDocument *document;
+
+/// referenced page.
 @property (nonatomic, assign) NSUInteger pageIndex;
+
+/// preview text snippet.
 @property (nonatomic, copy) NSString *previewText;
 
 @end
