@@ -1,14 +1,13 @@
 //
 //  PSPDFAlertView.h
 //
-//  Created by Peter Steinberger on 17.03.10.
+//  Copyright 2011 Peter Steinberger. All rights reserved.
+//
 //  Loosely based on Landon Fullers "Using Blocks", Plausible Labs Cooperative.
 //  http://landonf.bikemonkey.org/code/iphone/Using_Blocks_1.20090704.html
 //
 
 @interface PSPDFAlertView : NSObject <UIAlertViewDelegate> {
-@private
-  UIAlertView *view_;
   NSMutableArray *blocks_;
 }
 

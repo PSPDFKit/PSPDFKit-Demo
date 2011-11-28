@@ -1,0 +1,16 @@
+/* 
+  Localization.strings
+  PSPDFKit
+
+  Copyright (c) 2011 Peter Steinberger. All rights reserved.
+*/
+"Search" = "Volltextsuche";
+"Page %d" = "Seite %d";
+
+"Close" = "Schließen";
+"Documents" = "Dokumente";
+"Page" = "Seite";
+"Grid" = "Grid";
+
+"DeleteMagazineSingle" = "%@ löschen?";
+"DeleteMagazineMultiple" = "%@ löschen? (%d Ausgaben)";

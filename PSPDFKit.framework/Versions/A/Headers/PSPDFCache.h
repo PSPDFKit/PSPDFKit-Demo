@@ -2,16 +2,15 @@
 //  PSPDFCache.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 7/20/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
 @class PSPDFDocument;
 
 enum {
-    PSPDFCacheNothing,
-    PSPDFCacheOnlyThumbnailsAndNearPages,
-    PSPDFCacheOpportunistic
+    PSPDFCacheNothing,                    // no files are saved. (slowest)
+    PSPDFCacheOnlyThumbnailsAndNearPages, // only a few files are saved.
+    PSPDFCacheOpportunistic               // the whole pdf document is converted to images and saved. (fastest)
 }typedef PSPDFCacheStrategy;
 
 enum {
@@ -20,11 +19,16 @@ enum {
     PSPDFSizeTiny        /// tiny is memory-only
 }typedef PSPDFSize;
 
+/// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
 @protocol PSPDFCacheDelegate
+
+/// page has been successfully processed and cached as UIImage.
 - (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size;
+
 @end
 
-/// queue item for the cache
+
+// internal queue item for the cache.
 @interface PSPDFCacheQueuedDocument : NSObject {
     NSString *uid_;
     NSUInteger page_;
@@ -32,48 +36,25 @@ enum {
     BOOL caching_;
 }
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
-
 @property(retain) PSPDFDocument *document;
 @property(assign) NSUInteger page;
 @property(assign) PSPDFSize size;
 @property(assign, getter=isCaching) BOOL caching;
-
 @end
 
-/// renders magazine pages and caches them
-@interface PSPDFCache : NSObject <NSCacheDelegate> {
-    dispatch_queue_t cacheMgmtQueue_;    // syncs adding/releasing queuedItems_/queuedDocuments_
-    dispatch_queue_t fileMgmtQueue_;     // syncs fileMgmtQueue_
-    dispatch_queue_t cacheRequestQueue_;  // syncs access for adding/removing queue requests
-    
-    NSMutableDictionary *cachedFiles_;
-    BOOL cacheFileDictLoaded_;
-    
-    NSMutableArray *queuedItems_;     // PSPDFCacheQueuedDocument
-    NSMutableArray *queuedDocuments_; // PSPDFCacheQueuedDocument
-    NSTimer *cacheTimer_;
-    NSOperationQueue *cacheQueue_;
-    NSMutableSet *delegates_;
-    NSCache *thumbnailCache_;
-    NSCache *fullPageCache_;
-    PSPDFCacheStrategy strategy_;
-    NSUInteger numberOfMaximumCachedDocuments_;
-    NSUInteger numberOfNearCachedPages_;
-    BOOL largeImagesUseJPGFormat_;
-    CGFloat JPGFormatCompression_;
-    CGSize tinySize_;
-    CGSize thumbnailSize_;
-    NSString *cacheDirectory_;
-    NSString *cachedCacheDirectory_;
-}
+/// PSPDFCache is an intelligent cache that pre-renders pdf pages based on a queue.
+/// Various image sizes and formats are supported. The system is designed to take as much memory
+/// as there's available, and free most of it on a memory warning event.
+/// You can manually call clearCache to remove all temporary files and clear the memory caches.
+@interface PSPDFCache : NSObject <NSCacheDelegate> 
 
-/// cache is a singleton
+/// cache is a singleton.
 + (PSPDFCache *)sharedPSPDFCache;
 
-/// check if document is cached
+/// check if document is cached.
 - (BOOL)isImageCachedForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// returns cached image of document. If not found, add to TOP of current caching queue
+/// returns cached image of document. If not found, add to TOP of current caching queue.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// returns cached image of document. preload decompresses the image in the background.
@@ -88,10 +69,10 @@ enum {
 /// start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
-/// stop document caching
+/// stop document caching.
 - (void)stopCachingDocument:(PSPDFDocument *)aDocument;
 
-/// clear cache
+/// clear cache for a specific document, optionally also deletes referenced document files.
 - (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine;
 
 /// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
@@ -103,26 +84,38 @@ enum {
 /// deregisters a delegate. return YES on success.
 - (BOOL)removeDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
-/// set up caching strategy
+/// set up caching strategy.
 @property(assign) PSPDFCacheStrategy strategy;
 
-/// maximum number of cached documents. Default value depends on device. Only odd numbers are allowed (1,3,5,...)
+/// maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,...)
 /// if you experience memory issues, set this to zero in your AppDelegate.
 @property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 
-/// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages
+/// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages.
 @property(assign) NSUInteger numberOfNearCachedPages;
 
-/// PNG needs ~200% more space, but is both faster in creation, loading and looks nicer. Defaults to NO.
-@property(assign) BOOL largeImagesUseJPGFormat;
+/// JPG is almost always faster, and uses less memory (<50% of a PNG, usually). Defaults to YES.
+/// If you have very text-like pages, you might want to set this to NO.
+@property(assign) BOOL useJPGFormat;
 
-/// compression strength used. Defaults to 0.8
+/// Compression strength for JPG. (PNG is lossless)
+/// The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
+/// You can set the document to re-render with PSPDFDocument.twoStepRenderingEnabled = YES.
+/// This will load the pdf and remove any jpg artifacts.
 @property(assign) CGFloat JPGFormatCompression;
 
-/// defaults to CGSizeMake(200, 400);
+/// PNGs can be saved as a crushed variant, which changes the RGB channel and premultiplies alpha,
+/// which results in a slight speed gain. Xcode by default crushes all your PNGs after copying then,
+/// but it needs to be explicitely called on iOS.
+/// This uses libpng, so if you expecience any problems, diasble it. Defaults to YES.
+/// Only used if useJPGFormat is set to NO.
+/// Note: the current implementation may slightly *increase* pdf file size for crushing.
+@property(assign) BOOL crushPNGs;
+
+/// defaults to CGSizeMake(200, 400).
 @property(assign) CGSize thumbnailSize;
 
-/// defaults to CGSizeMake(50, 100);
+/// defaults to CGSizeMake(50, 100).
 @property(assign) CGSize tinySize;
 
 /// cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
@@ -131,28 +124,26 @@ enum {
 @end
 
 
-/// additional thumbnail cache control helper
+/// additional thumbnail cache control helper.
 @interface PSPDFCache (PSPDFKitThumbnailCache)
 
-/// save image in an NSCache object for specified identifier.
+/// save image in an NSCache object for specified identifier. Page starts at 0.
 - (void)cacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// load image for a certain document page
+/// load image for a certain document page. Page starts at 0.
 - (UIImage *)imageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// clear thumbnail memory cache
+/// clear thumbnail memory cache.
 - (void)clearThumbnailMemoryCache;
 
 @end
 
-/// used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h
+/// used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.
 @interface PSPDFCache (PSPDFDebuggingSupport)
-
 - (void)registerObject:(NSObject *)object;
 - (void)deregisterObject:(NSObject *)object;
 - (void)printStatus;
-
 @end
 
-// helper for non-deadlocking dispatch_sync
+// helper for deadlock-free dispatch_sync.
 void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);

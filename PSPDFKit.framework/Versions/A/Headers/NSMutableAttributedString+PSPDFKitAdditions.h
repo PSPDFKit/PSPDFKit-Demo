@@ -2,11 +2,8 @@
 //  NSMutableAttributedString+PSPDFKitAdditions.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 9/14/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
 
 @interface NSMutableAttributedString (PSPDFKitAdditions)
 
