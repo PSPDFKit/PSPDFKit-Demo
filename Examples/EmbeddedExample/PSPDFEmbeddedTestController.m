@@ -1,15 +1,14 @@
 //
-//  FirstViewController.m
+//  PSPDFEmbeddedTestController.m
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/4/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "PSPDFEmbeddedTestController.h"
 #import "AppDelegate.h"
 
-@implementation FirstViewController
+@implementation PSPDFEmbeddedTestController
 
 @synthesize pdfController = pdfController_;
 
