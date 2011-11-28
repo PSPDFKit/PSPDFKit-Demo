@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -46,9 +48,13 @@
 	
 	<option value="//api/name/fitWidth">&nbsp;&nbsp;&nbsp;&nbsp;fitWidth</option>
 	
+	<option value="//api/name/leftPage">&nbsp;&nbsp;&nbsp;&nbsp;leftPage</option>
+	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
 	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
+	
+	<option value="//api/name/rightPage">&nbsp;&nbsp;&nbsp;&nbsp;rightPage</option>
 	
 	<option value="//api/name/rotationActive">&nbsp;&nbsp;&nbsp;&nbsp;rotationActive</option>
 	
@@ -82,6 +88,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -103,9 +111,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fitWidth">fitWidth</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/leftPage">leftPage</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rightPage">rightPage</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotationActive">rotationActive</a></span></li>
 	
@@ -168,6 +180,14 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Scrollview for a single <a href="#//api/name/page">page</a>. Every <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> is embedded in a <a href="PSPDFScrollView.html">PSPDFScrollView</a>.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -182,14 +202,14 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/displayDocument:withPage:">&ndash;&nbsp;displayDocument:withPage:</a></code>
-		<span class="tooltip"><p>display specific document with specified <a href="#//api/name/page">page</a></p></span>
+		<span class="tooltip"><p>display specific document with specified <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/prepareForReuse">&ndash;&nbsp;prepareForReuse</a></code>
-		<span class="tooltip"><p>prepares reuse of internal data</p></span>
+		<span class="tooltip"><p>prepares reuse of internal data.</p></span>
 	</span>
 	
 	
@@ -203,14 +223,14 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
-		<span class="tooltip"><p>weak reference to parent <a href="#//api/name/pdfController">pdfController</a></p></span>
+		<span class="tooltip"><p>weak reference to parent <a href="#//api/name/pdfController">pdfController</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>current displayed <a href="#//api/name/page">page</a></p></span>
+		<span class="tooltip"><p>current displayed <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -224,7 +244,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/dualPageMode">&nbsp;&nbsp;dualPageMode</a></code>
-		<span class="tooltip"><p>if YES, two sites are displayed</p></span>
+		<span class="tooltip"><p>if YES, two sites are displayed.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -238,7 +258,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/zoomingSmallDocumentsEnabled">&nbsp;&nbsp;zoomingSmallDocumentsEnabled</a></code>
-		<span class="tooltip"><p>allow zooming of small documents to screen width/height</p></span>
+		<span class="tooltip"><p>allow zooming of small documents to screen width/height.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -252,7 +272,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
-		<span class="tooltip"><p>enables/disables <a href="#//api/name/page">page</a> shadow</p></span>
+		<span class="tooltip"><p>enables/disables <a href="#//api/name/page">page</a> shadow.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -266,14 +286,28 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationActive">&nbsp;&nbsp;rotationActive</a></code>
-		<span class="tooltip"><p>show/hide tiled layer</p></span>
+		<span class="tooltip"><p>show/hide tiled layer.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/leftPage">&nbsp;&nbsp;leftPage</a></code>
+		<span class="tooltip"><p>left <a href="#//api/name/page">page</a>. Always set.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
+		<span class="tooltip"><p>right <a href="#//api/name/page">page</a>, if doublePageMode is enabled.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/renderPaperCurl:">&ndash;&nbsp;renderPaperCurl:</a></code>
-		<span class="tooltip"><p>for subclassing</p></span>
+		<span class="tooltip"><p>for subclassing &ndash; allows changing the shadow path.</p></span>
 	</span>
 	
 	
@@ -365,7 +399,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if YES, two sites are displayed</p>
+		<p>if YES, two sites are displayed.</p>
 	</div>		
 	
 	
@@ -427,13 +461,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/leftPage" title="leftPage"></a>
+	<h3 class="subsubtitle method-title">leftPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>left <a href="#//api/name/page">page</a>. Always set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFPageView *leftPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/page" title="page"></a>
 	<h3 class="subsubtitle method-title">page</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current displayed <a href="#//api/name/page">page</a></p>
+		<p>current displayed <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
@@ -467,11 +535,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>weak reference to parent <a href="#//api/name/pdfController">pdfController</a></p>
+		<p>weak reference to parent <a href="#//api/name/pdfController">pdfController</a>.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFViewController *pdfController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rightPage" title="rightPage"></a>
+	<h3 class="subsubtitle method-title">rightPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>right <a href="#//api/name/page">page</a>, if doublePageMode is enabled.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFPageView *rightPage</code></div>
 	
 	
 	
@@ -501,7 +603,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>show/hide tiled layer</p>
+		<p>show/hide tiled layer.</p>
 	</div>		
 	
 	
@@ -569,7 +671,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enables/disables <a href="#//api/name/page">page</a> shadow</p>
+		<p>enables/disables <a href="#//api/name/page">page</a> shadow.</p>
 	</div>		
 	
 	
@@ -603,7 +705,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>allow zooming of small documents to screen width/height</p>
+		<p>allow zooming of small documents to screen width/height.</p>
 	</div>		
 	
 	
@@ -647,7 +749,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>display specific document with specified <a href="#//api/name/page">page</a></p>
+		<p>display specific document with specified <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
@@ -681,7 +783,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>prepares reuse of internal data</p>
+		<p>prepares reuse of internal data.</p>
 	</div>		
 	
 	
@@ -749,7 +851,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>for subclassing</p>
+		<p>for subclassing &ndash; allows changing the shadow path.</p>
 	</div>		
 	
 	
@@ -789,7 +891,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

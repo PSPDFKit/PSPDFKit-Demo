@@ -47,11 +47,15 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/annotationsForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:</option>
+	<option value="//api/name/annotationsForPage:filter:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:filter:</option>
 	
-	<option value="//api/name/annotationsForPage:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:pageRef:</option>
+	<option value="//api/name/annotationsForPage:filter:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:filter:pageRef:</option>
+	
+	<option value="//api/name/hasLoadedAnnotationsForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedAnnotationsForPage:</option>
 	
 	<option value="//api/name/initWithDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:</option>
+	
+	<option value="//api/name/parseAnnotationLinkTarget:">&nbsp;&nbsp;&nbsp;&nbsp;- parseAnnotationLinkTarget:</option>
 	
 	
 	
@@ -85,11 +89,15 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:">annotationsForPage:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:filter:">annotationsForPage:filter:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:pageRef:">annotationsForPage:pageRef:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:filter:pageRef:">annotationsForPage:filter:pageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedAnnotationsForPage:">hasLoadedAnnotationsForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:">initWithDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseAnnotationLinkTarget:">parseAnnotationLinkTarget:</a></span></li>
 	
 </ul></li>
 
@@ -145,15 +153,29 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/annotationsForPage:">&ndash;&nbsp;annotationsForPage:</a></code>
+		<code><a href="#//api/name/annotationsForPage:filter:">&ndash;&nbsp;annotationsForPage:filter:</a></code>
 		<span class="tooltip"><p>return annotation array for specified page.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/annotationsForPage:pageRef:">&ndash;&nbsp;annotationsForPage:pageRef:</a></code>
+		<code><a href="#//api/name/annotationsForPage:filter:pageRef:">&ndash;&nbsp;annotationsForPage:filter:pageRef:</a></code>
 		<span class="tooltip"><p>return annotation array for specified page, use already open pageRef</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/parseAnnotationLinkTarget:">&ndash;&nbsp;parseAnnotationLinkTarget:</a></code>
+		<span class="tooltip"><p>parses annotation link target. Override to support custom link prototols.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasLoadedAnnotationsForPage:">&ndash;&nbsp;hasLoadedAnnotationsForPage:</a></code>
+		<span class="tooltip"><p>YES if annotations are loaded for a specific page. Load annotations in a background thread.</p></span>
 	</span>
 	
 	
@@ -222,8 +244,8 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/annotationsForPage:" title="annotationsForPage:"></a>
-	<h3 class="subsubtitle method-title">annotationsForPage:</h3>
+	<a name="//api/name/annotationsForPage:filter:" title="annotationsForPage:filter:"></a>
+	<h3 class="subsubtitle method-title">annotationsForPage:filter:</h3>
 	
 	
 	
@@ -232,7 +254,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em> filter:(PSPDFAnnotationFilter)<em>filter</em></code></div>
 	
 	
 	
@@ -256,8 +278,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/annotationsForPage:pageRef:" title="annotationsForPage:pageRef:"></a>
-	<h3 class="subsubtitle method-title">annotationsForPage:pageRef:</h3>
+	<a name="//api/name/annotationsForPage:filter:pageRef:" title="annotationsForPage:filter:pageRef:"></a>
+	<h3 class="subsubtitle method-title">annotationsForPage:filter:pageRef:</h3>
 	
 	
 	
@@ -266,7 +288,41 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em> filter:(PSPDFAnnotationFilter)<em>filter</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasLoadedAnnotationsForPage:" title="hasLoadedAnnotationsForPage:"></a>
+	<h3 class="subsubtitle method-title">hasLoadedAnnotationsForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>YES if annotations are loaded for a specific page. Load annotations in a background thread.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -323,6 +379,40 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/parseAnnotationLinkTarget:" title="parseAnnotationLinkTarget:"></a>
+	<h3 class="subsubtitle method-title">parseAnnotationLinkTarget:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>parses annotation link target. Override to support custom link prototols.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)parseAnnotationLinkTarget:(PSPDFAnnotation *)<em>annotation</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -336,7 +426,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

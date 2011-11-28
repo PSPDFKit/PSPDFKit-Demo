@@ -50,6 +50,8 @@
 	
 	<option value="//api/name/pdfViewController:didLoadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didLoadPage:pdfScrollView:</option>
 	
+	<option value="//api/name/pdfViewController:didLoadPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didLoadPageView:</option>
+	
 	<option value="//api/name/pdfViewController:didRenderPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPage:pdfScrollView:</option>
 	
 	<option value="//api/name/pdfViewController:didShowPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowPage:</option>
@@ -60,13 +62,17 @@
 	
 	<option value="//api/name/pdfViewController:didUnloadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didUnloadPage:pdfScrollView:</option>
 	
+	<option value="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldDisplayAnnotation:onPageView:</option>
+	
+	<option value="//api/name/pdfViewController:viewForAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:viewForAnnotation:onPageView:</option>
+	
 	<option value="//api/name/pdfViewController:willDisplayDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willDisplayDocument:</option>
 	
 	<option value="//api/name/pdfViewController:willLoadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willLoadPage:pdfScrollView:</option>
 	
-	<option value="//api/name/pdfViewController:willShowPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willShowPage:</option>
-	
 	<option value="//api/name/pdfViewController:willUnloadPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willUnloadPage:pdfScrollView:</option>
+	
+	<option value="//api/name/pdfViewController:willUnloadPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willUnloadPageView:</option>
 	
 	
 	
@@ -102,6 +108,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didLoadPage:pdfScrollView:">pdfViewController:didLoadPage:pdfScrollView:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didLoadPageView:">pdfViewController:didLoadPageView:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">pdfViewController:didRenderPage:pdfScrollView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowPage:">pdfViewController:didShowPage:</a></span></li>
@@ -112,13 +120,17 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didUnloadPage:pdfScrollView:">pdfViewController:didUnloadPage:pdfScrollView:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">pdfViewController:shouldDisplayAnnotation:onPageView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:viewForAnnotation:onPageView:">pdfViewController:viewForAnnotation:onPageView:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willDisplayDocument:">pdfViewController:willDisplayDocument:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willLoadPage:pdfScrollView:">pdfViewController:willLoadPage:pdfScrollView:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willShowPage:">pdfViewController:willShowPage:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willUnloadPage:pdfScrollView:">pdfViewController:willUnloadPage:pdfScrollView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willUnloadPageView:">pdfViewController:willUnloadPageView:</a></span></li>
 	
 </ul></li>
 
@@ -157,8 +169,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>register to this delegate in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>
-Note: page is based of 1 till pageCount</p>
+						<p>register to this delegate in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>. Page is based of 1 till pageCount.</p>
 					</div>
 					
 					
@@ -185,13 +196,6 @@ Note: page is based of 1 till pageCount</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didDisplayDocument:">&ndash;&nbsp;pdfViewController:didDisplayDocument:</a></code>
 		<span class="tooltip"><p>delegate to be notified when pdfController finished loading</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:willShowPage:">&ndash;&nbsp;pdfViewController:willShowPage:</a></code>
-		<span class="tooltip"><p>deprecated. called same time as didShowPage</p></span>
 	</span>
 	
 	
@@ -229,6 +233,36 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&ndash;&nbsp;pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></code>
 		<span class="tooltip"><p>delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&ndash;&nbsp;pdfViewController:shouldDisplayAnnotation:onPageView:</a></code>
+		<span class="tooltip"><p>called before a annotation view is created and added to a page. Defaults to YES if not implemented.
+if NO is returned, viewForAnnotation will not be called.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:viewForAnnotation:onPageView:">&ndash;&nbsp;pdfViewController:viewForAnnotation:onPageView:</a></code>
+		<span class="tooltip"><p>allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.
+If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO and add your annotation view to the pageView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didLoadPageView:">&ndash;&nbsp;pdfViewController:didLoadPageView:</a></code>
+		<span class="tooltip"><p>called after pdf page has been loaded and added to the pagingScrollView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
+		<span class="tooltip"><p>called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
 	</span>
 	
 	
@@ -380,6 +414,40 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pdfViewController:didLoadPageView:" title="pdfViewController:didLoadPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didLoadPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called after pdf page has been loaded and added to the pagingScrollView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didLoadPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pdfViewController:didRenderPage:pdfScrollView:" title="pdfViewController:didRenderPage:pdfScrollView:"></a>
 	<h3 class="subsubtitle method-title">pdfViewController:didRenderPage:pdfScrollView:</h3>
 	
@@ -458,7 +526,7 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnAnnotation:(PSPDFLinkAnnotation *)<em>annotation</em> page:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnAnnotation:(PSPDFAnnotation *)<em>annotation</em> page:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
 	
 	
 	
@@ -552,6 +620,76 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:" title="pdfViewController:shouldDisplayAnnotation:onPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:shouldDisplayAnnotation:onPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>called before a annotation view is created and added to a page. Defaults to YES if not implemented.
+if NO is returned, viewForAnnotation will not be called.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> shouldDisplayAnnotation:(PSPDFAnnotation *)<em>annotation</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:viewForAnnotation:onPageView:" title="pdfViewController:viewForAnnotation:onPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:viewForAnnotation:onPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.
+If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO and add your annotation view to the pageView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIView *)pdfViewController:(PSPDFViewController *)<em>pdfController</em> viewForAnnotation:(PSPDFAnnotation *)<em>annotation</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pdfViewController:willDisplayDocument:" title="pdfViewController:willDisplayDocument:"></a>
 	<h3 class="subsubtitle method-title">pdfViewController:willDisplayDocument:</h3>
 	
@@ -620,17 +758,17 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfViewController:willShowPage:" title="pdfViewController:willShowPage:"></a>
-	<h3 class="subsubtitle method-title">pdfViewController:willShowPage:</h3>
+	<a name="//api/name/pdfViewController:willUnloadPage:pdfScrollView:" title="pdfViewController:willUnloadPage:pdfScrollView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willUnloadPage:pdfScrollView:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>deprecated. called same time as didShowPage</p>
+		<p>called before a pdf page will be unloaded and removed from the pagingScrollView</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willShowPage:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willUnloadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
 	
 	
 	
@@ -654,17 +792,17 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfViewController:willUnloadPage:pdfScrollView:" title="pdfViewController:willUnloadPage:pdfScrollView:"></a>
-	<h3 class="subsubtitle method-title">pdfViewController:willUnloadPage:pdfScrollView:</h3>
+	<a name="//api/name/pdfViewController:willUnloadPageView:" title="pdfViewController:willUnloadPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willUnloadPageView:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called before a pdf page will be unloaded and removed from the pagingScrollView</p>
+		<p>called before a pdf page will be unloaded and removed from the pagingScrollView.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willUnloadPage:(NSUInteger)<em>page</em> pdfScrollView:(PSPDFScrollView *)<em>pdfScrollView</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willUnloadPageView:(PSPDFPageView *)<em>pageView</em></code></div>
 	
 	
 	
@@ -700,7 +838,7 @@ Note that <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> may has only
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

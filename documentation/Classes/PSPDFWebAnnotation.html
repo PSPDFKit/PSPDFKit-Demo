@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFOutlineElement Class Reference</title>
+		<title>PSPDFWebAnnotation Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFOutlineElement Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFWebAnnotation Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,6 +26,8 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,20 +40,13 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/elements">&nbsp;&nbsp;&nbsp;&nbsp;elements</option>
+	<option value="//api/name/shadowsHidden">&nbsp;&nbsp;&nbsp;&nbsp;shadowsHidden</option>
 	
-	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
-	
-	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
+	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
 	
 	
 	
-	
-	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/initWithTitle:page:elements:level:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:page:elements:level:</option>
 	
 	
 	
@@ -62,6 +57,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -75,30 +72,22 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/elements">elements</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowsHidden">shadowsHidden</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
 	
 </ul></li>
 
 
 
 
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:page:elements:level:">initWithTitle:page:elements:level:</a></span></li>
-	
-</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFOutlineElement Class Reference" name="top"></a>
+				<a title="PSPDFWebAnnotation Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -107,7 +96,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFOutlineElement Class Reference</h1>
+						<h1 class="title title-header">PSPDFWebAnnotation Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -115,13 +104,24 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">UIView</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIWebViewDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFOutlineElement.h</td>
+	<td class="specification-value">PSPDFWebAnnotation.h</td>
 </tr>
 						</tbody></table></div>
 					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Encapsulates UIWebView with some additional features</p>
+					</div>
 					
 					
 					
@@ -138,29 +138,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithTitle:page:elements:level:">&ndash;&nbsp;initWithTitle:page:elements:level:</a></code>
-		<span class="tooltip"><p>init</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
-		<span class="tooltip"><p>outline <a href="#//api/name/title">title</a></p></span>
+		<code><a href="#//api/name/shadowsHidden">&nbsp;&nbsp;shadowsHidden</a></code>
+		<span class="tooltip"><p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p><a href="#//api/name/page">page</a> reference</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/elements">&nbsp;&nbsp;elements</a></code>
-		<span class="tooltip"><p>child <a href="#//api/name/elements">elements</a></p></span>
+		<code><a href="#//api/name/webView">&nbsp;&nbsp;webView</a></code>
+		<span class="tooltip"><p>Internal webview used.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -178,17 +164,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/elements" title="elements"></a>
-	<h3 class="subsubtitle method-title">elements</h3>
+	<a name="//api/name/shadowsHidden" title="shadowsHidden"></a>
+	<h3 class="subsubtitle method-title">shadowsHidden</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>child <a href="#//api/name/elements">elements</a></p>
+		<p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) NSArray *elements</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shadowsHidden</code></div>
 	
 	
 	
@@ -205,24 +191,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineElement.h</code><br />
+		<code class="declared-in-ref">PSPDFWebAnnotation.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/page" title="page"></a>
-	<h3 class="subsubtitle method-title">page</h3>
+	<a name="//api/name/webView" title="webView"></a>
+	<h3 class="subsubtitle method-title">webView</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/page">page</a> reference</p>
+		<p>Internal webview used.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) UIWebView *webView</code></div>
 	
 	
 	
@@ -239,41 +225,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineElement.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/title" title="title"></a>
-	<h3 class="subsubtitle method-title">title</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>outline <a href="#//api/name/title">title</a></p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *title</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineElement.h</code><br />
+		<code class="declared-in-ref">PSPDFWebAnnotation.h</code><br />
 	</div>				
 	
 	
@@ -284,46 +236,6 @@
 					
 					
 					
-					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithTitle:page:elements:level:" title="initWithTitle:page:elements:level:"></a>
-	<h3 class="subsubtitle method-title">initWithTitle:page:elements:level:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>init</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em> page:(NSUInteger)<em>page</em> elements:(NSArray *)<em>elements</em> level:(NSUInteger)<em>level</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineElement.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 				</div>

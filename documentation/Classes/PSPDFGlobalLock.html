@@ -49,6 +49,8 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/documentRefWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;- documentRefWithPath:</option>
+	
 	<option value="//api/name/freeWithPDFDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFDocument:</option>
 	
 	<option value="//api/name/freeWithPDFPageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFPageRef:</option>
@@ -100,6 +102,8 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentRefWithPath:">documentRefWithPath:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeWithPDFDocument:">freeWithPDFDocument:</a></span></li>
 	
@@ -190,7 +194,14 @@ returns nil if currently locked.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/lockWithPath:page:">&ndash;&nbsp;lockWithPath:page:</a></code>
-		<span class="tooltip"><p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a></p></span>
+		<span class="tooltip"><p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/documentRefWithPath:">&ndash;&nbsp;documentRefWithPath:</a></code>
+		<span class="tooltip"><p>returns auto-released document reference, doesn&rsquo;t use the lock.</p></span>
 	</span>
 	
 	
@@ -205,7 +216,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/freeWithPDFPageRef:">&ndash;&nbsp;freeWithPDFPageRef:</a></code>
-		<span class="tooltip"><p>free lock with CGPDFPageRef</p></span>
+		<span class="tooltip"><p>free lock with CGPDFPageRef.</p></span>
 	</span>
 	
 	
@@ -219,7 +230,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/freeWithPDFDocument:">&ndash;&nbsp;freeWithPDFDocument:</a></code>
-		<span class="tooltip"><p>free document reference. only use if opened via lockDocumentWithPath</p></span>
+		<span class="tooltip"><p>free document reference. only use if opened via lockDocumentWithPath.</p></span>
 	</span>
 	
 	
@@ -302,13 +313,47 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/documentRefWithPath:" title="documentRefWithPath:"></a>
+	<h3 class="subsubtitle method-title">documentRefWithPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>returns auto-released document reference, doesn&rsquo;t use the lock.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGPDFDocumentRef)documentRefWithPath:(NSURL *)<em>pdfPath</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFGlobalLock.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/freeWithPDFDocument:" title="freeWithPDFDocument:"></a>
 	<h3 class="subsubtitle method-title">freeWithPDFDocument:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>free document reference. only use if opened via lockDocumentWithPath</p>
+		<p>free document reference. only use if opened via lockDocumentWithPath.</p>
 	</div>		
 	
 	
@@ -342,7 +387,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	<div class="method-subsection brief-description">
-		<p>free lock with CGPDFPageRef</p>
+		<p>free lock with CGPDFPageRef.</p>
 	</div>		
 	
 	
@@ -444,7 +489,7 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 	
 	
 	<div class="method-subsection brief-description">
-		<p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a></p>
+		<p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.</p>
 	</div>		
 	
 	
@@ -622,7 +667,7 @@ returns nil if currently locked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

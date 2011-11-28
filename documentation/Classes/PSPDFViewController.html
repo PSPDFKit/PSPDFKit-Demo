@@ -78,6 +78,8 @@
 	
 	<option value="//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;&nbsp;&nbsp;scrollOnTapPageEndEnabled</option>
 	
+	<option value="//api/name/scrollingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;scrollingEnabled</option>
+	
 	<option value="//api/name/shadowEnabled">&nbsp;&nbsp;&nbsp;&nbsp;shadowEnabled</option>
 	
 	<option value="//api/name/statusBarStyleSetting">&nbsp;&nbsp;&nbsp;&nbsp;statusBarStyleSetting</option>
@@ -187,6 +189,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollOnTapPageEndEnabled">scrollOnTapPageEndEnabled</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollingEnabled">scrollingEnabled</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowEnabled">shadowEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/statusBarStyleSetting">statusBarStyleSetting</a></span></li>
@@ -275,7 +279,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The main view controller to display pdfs. Can be displayed in fullscreen or embedded.</p>
+						<p>The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
+When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)</p>
 					</div>
 					
 					
@@ -294,35 +299,35 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithDocument:">&ndash;&nbsp;initWithDocument:</a></code>
-		<span class="tooltip"><p>initialize with a <a href="#//api/name/document">document</a></p></span>
+		<span class="tooltip"><p>initialize with a <a href="#//api/name/document">document</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:">&ndash;&nbsp;scrollToPage:animated:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a></p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:hideHUD:">&ndash;&nbsp;scrollToPage:animated:hideHUD:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD</p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>scroll to next <a href="#//api/name/page">page</a></p></span>
+		<span class="tooltip"><p>scroll to next <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isDualPageMode">&ndash;&nbsp;isDualPageMode</a></code>
-		<span class="tooltip"><p>depending on <a href="#//api/name/pageMode">pageMode</a>, this returns true if two pages are displayed</p></span>
+		<span class="tooltip"><p>depending on <a href="#//api/name/pageMode">pageMode</a>, this returns true if two pages are displayed.</p></span>
 	</span>
 	
 	
@@ -357,7 +362,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>register <a href="#//api/name/delegate">delegate</a> to capture events, change properties</p></span>
+		<span class="tooltip"><p>register <a href="#//api/name/delegate">delegate</a> to capture events, change properties.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -371,35 +376,35 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected</p></span>
+		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, landscape corrected</p></span>
+		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/viewMode">&nbsp;&nbsp;viewMode</a></code>
-		<span class="tooltip"><p>view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails</p></span>
+		<span class="tooltip"><p>view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageMode">&nbsp;&nbsp;pageMode</a></code>
-		<span class="tooltip"><p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble</p></span>
+		<span class="tooltip"><p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageScrolling">&nbsp;&nbsp;pageScrolling</a></code>
-		<span class="tooltip"><p>change scrolling direction. defaults to horizontal scrolling (PSPDFScrollingHorizontal)</p></span>
+		<span class="tooltip"><p>change scrolling direction. defaults to horizontal scrolling. (PSPDFScrollingHorizontal)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -450,21 +455,21 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
-		<span class="tooltip"><p>enable/disable shadow</p></span>
+		<span class="tooltip"><p>enable/disable <a href="#//api/name/page">page</a> shadow.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/popoverController">&nbsp;&nbsp;popoverController</a></code>
-		<span class="tooltip"><p>saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed</p></span>
+		<span class="tooltip"><p>saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagingScrollView">&nbsp;&nbsp;pagingScrollView</a></code>
-		<span class="tooltip"><p>paging scroll view (hosts scollviews for pdf)</p></span>
+		<span class="tooltip"><p>paging scroll view. (hosts scollviews for pdf)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -492,6 +497,13 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/scrollingEnabled">&nbsp;&nbsp;scrollingEnabled</a></code>
+		<span class="tooltip"><p>enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/statusBarStyleSetting">&nbsp;&nbsp;statusBarStyleSetting</a></code>
 		<span class="tooltip"><p>status bar styling. Defaults to PSPDFStatusBarSmartBlack.</p></span>
 	</span>
@@ -514,14 +526,14 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/thumbnailMargin">&nbsp;&nbsp;thumbnailMargin</a></code>
-		<span class="tooltip"><p>change margin around thumbnails. Defaults to 10x10</p></span>
+		<span class="tooltip"><p>change margin around thumbnails. Defaults to 10x10.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/iPhoneThumbnailSizeReductionFactor">&nbsp;&nbsp;iPhoneThumbnailSizeReductionFactor</a></code>
-		<span class="tooltip"><p>thumbnails on iPhone are smaller &ndash; you may change the reduction factor. Defaults to 0.588</p></span>
+		<span class="tooltip"><p>thumbnails on iPhone are smaller &ndash; you may change the reduction factor. Defaults to 0.588.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -535,36 +547,36 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/HUDVisible">&nbsp;&nbsp;HUDVisible</a></code>
-		<span class="tooltip"><p>show or hide HUD controls, titlebar, status bar (iPhone only)</p></span>
+		<span class="tooltip"><p>show or hide HUD controls, titlebar, status bar. (iPhone only)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setHUDVisible:animated:">&ndash;&nbsp;setHUDVisible:animated:</a></code>
-		<span class="tooltip"><p>animated show or hide HUD controls, titlebar, status bar (iPhone only)</p></span>
+		<span class="tooltip"><p>animated show or hide HUD controls, titlebar, status bar. (iPhone only)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollViewClass">&ndash;&nbsp;scrollViewClass</a></code>
-		<span class="tooltip"><p>if you override <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a>, change this.</p></span>
+		<span class="tooltip"><p>Class for creating the scroll view. Set this to your custom subclass if you override <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrobbleBarClass">&ndash;&nbsp;scrobbleBarClass</a></code>
-		<span class="tooltip"><p>set if you wanna override <a href="../Classes/PSPDFScrobbleBar.html">PSPDFScrobbleBar</a></p></span>
+		<span class="tooltip"><p>Class used to create the scrobble bar. Set this to your custom subclass if you override <a href="../Classes/PSPDFScrobbleBar.html">PSPDFScrobbleBar</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/createToolbar">&ndash;&nbsp;createToolbar</a></code>
-		<span class="tooltip"><p>override if you&rsquo;re changing the toolbar to your own
-note that the toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController!</p></span>
+		<span class="tooltip"><p>override if you&rsquo;re changing the toolbar to your own.
+Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController.</p></span>
 	</span>
 	
 	
@@ -588,7 +600,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>show or hide HUD controls, titlebar, status bar (iPhone only)</p>
+		<p>show or hide HUD controls, titlebar, status bar. (iPhone only)</p>
 	</div>		
 	
 	
@@ -656,7 +668,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>register <a href="#//api/name/delegate">delegate</a> to capture events, change properties</p>
+		<p>register <a href="#//api/name/delegate">delegate</a> to capture events, change properties.</p>
 	</div>		
 	
 	
@@ -828,7 +840,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>thumbnails on iPhone are smaller &ndash; you may change the reduction factor. Defaults to 0.588</p>
+		<p>thumbnails on iPhone are smaller &ndash; you may change the reduction factor. Defaults to 0.588.</p>
 	</div>		
 	
 	
@@ -896,7 +908,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected</p>
+		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.</p>
 	</div>		
 	
 	
@@ -930,7 +942,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble</p>
+		<p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble.</p>
 	</div>		
 	
 	
@@ -998,7 +1010,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>change scrolling direction. defaults to horizontal scrolling (PSPDFScrollingHorizontal)</p>
+		<p>change scrolling direction. defaults to horizontal scrolling. (PSPDFScrollingHorizontal)</p>
 	</div>		
 	
 	
@@ -1032,7 +1044,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>paging scroll view (hosts scollviews for pdf)</p>
+		<p>paging scroll view. (hosts scollviews for pdf)</p>
 	</div>		
 	
 	
@@ -1066,7 +1078,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed</p>
+		<p>saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed.</p>
 	</div>		
 	
 	
@@ -1134,7 +1146,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current <a href="#//api/name/page">page</a> displayed, landscape corrected</p>
+		<p>current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.</p>
 	</div>		
 	
 	
@@ -1231,13 +1243,47 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/scrollingEnabled" title="scrollingEnabled"></a>
+	<h3 class="subsubtitle method-title">scrollingEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/shadowEnabled" title="shadowEnabled"></a>
 	<h3 class="subsubtitle method-title">shadowEnabled</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enable/disable shadow</p>
+		<p>enable/disable <a href="#//api/name/page">page</a> shadow.</p>
 	</div>		
 	
 	
@@ -1305,7 +1351,7 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>change margin around thumbnails. Defaults to 10x10</p>
+		<p>change margin around thumbnails. Defaults to 10x10.</p>
 	</div>		
 	
 	
@@ -1407,7 +1453,7 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails</p>
+		<p>view mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails.</p>
 	</div>		
 	
 	
@@ -1485,8 +1531,8 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>override if you&rsquo;re changing the toolbar to your own
-note that the toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController!</p>
+		<p>override if you&rsquo;re changing the toolbar to your own.
+Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController.</p>
 	</div>		
 	
 	
@@ -1520,7 +1566,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initialize with a <a href="#//api/name/document">document</a></p>
+		<p>initialize with a <a href="#//api/name/document">document</a>.</p>
 	</div>		
 	
 	
@@ -1554,7 +1600,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>depending on <a href="#//api/name/pageMode">pageMode</a>, this returns true if two pages are displayed</p>
+		<p>depending on <a href="#//api/name/pageMode">pageMode</a>, this returns true if two pages are displayed.</p>
 	</div>		
 	
 	
@@ -1724,7 +1770,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>set if you wanna override <a href="../Classes/PSPDFScrobbleBar.html">PSPDFScrobbleBar</a></p>
+		<p>Class used to create the scrobble bar. Set this to your custom subclass if you override <a href="../Classes/PSPDFScrobbleBar.html">PSPDFScrobbleBar</a>.</p>
 	</div>		
 	
 	
@@ -1758,7 +1804,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>scroll to next <a href="#//api/name/page">page</a></p>
+		<p>scroll to next <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
@@ -1792,7 +1838,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a></p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
@@ -1826,7 +1872,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD</p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD.</p>
 	</div>		
 	
 	
@@ -1860,7 +1906,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if you override <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a>, change this.</p>
+		<p>Class for creating the scroll view. Set this to your custom subclass if you override <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a>.</p>
 	</div>		
 	
 	
@@ -1894,7 +1940,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 	
 	
 	<div class="method-subsection brief-description">
-		<p>animated show or hide HUD controls, titlebar, status bar (iPhone only)</p>
+		<p>animated show or hide HUD controls, titlebar, status bar. (iPhone only)</p>
 	</div>		
 	
 	
@@ -1934,7 +1980,7 @@ note that the toolbar is only displayed, if <a href="PSPDFViewController.html">P
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

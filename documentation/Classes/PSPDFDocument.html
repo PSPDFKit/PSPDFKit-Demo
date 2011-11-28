@@ -393,7 +393,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&ndash;&nbsp;drawOverlayRect:inContext:forPage:zoomScale:size:</a></code>
-		<span class="tooltip"><p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads!</p></span>
+		<span class="tooltip"><p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.</p></span>
 	</span>
 	
 	
@@ -415,7 +415,7 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p></s
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/drawAnnotations:inContext:pageInfo:pageRect:">&ndash;&nbsp;drawAnnotations:inContext:pageInfo:pageRect:</a></code>
-		<span class="tooltip"><p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates</p></span>
+		<span class="tooltip"><p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates.</p></span>
 	</span>
 	
 	
@@ -450,7 +450,7 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p></s
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
-		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for <a href="#//api/name/basePath">basePath</a> * <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p></span>
+		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -486,7 +486,8 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p></s
 	<span class="tooltip">
 		<code><a href="#//api/name/twoStepRenderingEnabled">&nbsp;&nbsp;twoStepRenderingEnabled</a></code>
 		<span class="tooltip"><p>enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
-or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></span>
+or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+This might be a good idea to turn on when using JPG for caching.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -514,7 +515,8 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
-		<span class="tooltip"><p>Link annotation parser class for current document. Readonly.</p></span>
+		<span class="tooltip"><p>Link annotation parser class for current document. Readonly.
+Can be overridden to use a subclassed annotation parser.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -538,7 +540,8 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Link annotation parser class for current document. Readonly.</p>
+		<p>Link annotation parser class for current document. Readonly.
+Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
@@ -742,7 +745,7 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for <a href="#//api/name/basePath">basePath</a> * <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p>
+		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p>
 	</div>		
 	
 	
@@ -947,7 +950,8 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p></s
 	
 	<div class="method-subsection brief-description">
 		<p>enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
-or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
+or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+This might be a good idea to turn on when using JPG for caching.</p>
 	</div>		
 	
 	
@@ -1269,7 +1273,7 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates</p>
+		<p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates.</p>
 	</div>		
 	
 	
@@ -1303,7 +1307,7 @@ or when displayed embedded. Two-Step rendering is slower. Defaults to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads!</p>
+		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.</p>
 	</div>		
 	
 	
@@ -1720,7 +1724,7 @@ maybe needs a pdf lock if not already cached.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

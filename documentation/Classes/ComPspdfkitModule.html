@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFLinkAnnotation Class Reference</title>
+		<title>ComPspdfkitModule Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFLinkAnnotation Class Reference</h1>
+				<h1 class="hideInXcode">ComPspdfkitModule Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,28 +38,21 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/annotation">&nbsp;&nbsp;&nbsp;&nbsp;annotation</option>
-	
-	<option value="//api/name/button">&nbsp;&nbsp;&nbsp;&nbsp;button</option>
-	
-	<option value="//api/name/hideSmallLinks">&nbsp;&nbsp;&nbsp;&nbsp;hideSmallLinks</option>
-	
-	<option value="//api/name/overspan">&nbsp;&nbsp;&nbsp;&nbsp;overspan</option>
-	
-	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithFrame:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithFrame:</option>
+	<option value="//api/name/PSPDFKitVersion">&nbsp;&nbsp;&nbsp;&nbsp;- PSPDFKitVersion</option>
 	
-	<option value="//api/name/touchDown">&nbsp;&nbsp;&nbsp;&nbsp;- touchDown</option>
+	<option value="//api/name/clearCache:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCache:</option>
 	
-	<option value="//api/name/touchUp">&nbsp;&nbsp;&nbsp;&nbsp;- touchUp</option>
+	<option value="//api/name/setLanguageDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- setLanguageDictionary:</option>
+	
+	<option value="//api/name/setLogLevel:">&nbsp;&nbsp;&nbsp;&nbsp;- setLogLevel:</option>
+	
+	<option value="//api/name/showPDFAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- showPDFAnimated:</option>
 	
 	
 	
@@ -83,29 +76,21 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotation">annotation</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/button">button</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideSmallLinks">hideSmallLinks</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/overspan">overspan</a></span></li>
-	
-</ul></li>
-
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithFrame:">initWithFrame:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PSPDFKitVersion">PSPDFKitVersion</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/touchDown">touchDown</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache:">clearCache:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/touchUp">touchUp</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLanguageDictionary:">setLanguageDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLogLevel:">setLogLevel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showPDFAnimated:">showPDFAnimated:</a></span></li>
 	
 </ul></li>
 
@@ -114,7 +99,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFLinkAnnotation Class Reference" name="top"></a>
+				<a title="ComPspdfkitModule Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -123,7 +108,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFLinkAnnotation Class Reference</h1>
+						<h1 class="title title-header">ComPspdfkitModule Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -131,13 +116,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIButton</td>
-</tr><tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFAnnotationDelegate.html">PSPDFAnnotationDelegate</a></td>
+	<td class="specification-value">TiModule</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFLinkAnnotation.h</td>
+	<td class="specification-value">ComPspdfkitModule.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -147,7 +129,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Displays an <a href="#//api/name/annotation">annotation</a> link.</p>
+						<p>PSPDFKit Titanium Bridge.</p>
 					</div>
 					
 					
@@ -165,50 +147,43 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithFrame:">&ndash;&nbsp;initWithFrame:</a></code>
-		<span class="tooltip"><p>Initialize with frame.</p></span>
+		<code><a href="#//api/name/PSPDFKitVersion">&ndash;&nbsp;PSPDFKitVersion</a></code>
+		<span class="tooltip"><p>Get the version of PSPDFKit. (This is not the version of the module bridge)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/annotation">&nbsp;&nbsp;annotation</a></code>
-		<span class="tooltip"><p>Linked <a href="#//api/name/annotation">annotation</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/button">&nbsp;&nbsp;button</a></code>
-		<span class="tooltip"><p>Embedded UIButton.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/hideSmallLinks">&nbsp;&nbsp;hideSmallLinks</a></code>
-		<span class="tooltip"><p>Option to not mark small targets. (small = width/height &lt; 6) Defaults to YES.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/overspan">&nbsp;&nbsp;overspan</a></code>
-		<span class="tooltip"><p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 4/4.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/touchDown">&ndash;&nbsp;touchDown</a></code>
-		<span class="tooltip"><p>called when <a href="#//api/name/button">button</a> is pressed.</p></span>
+		<code><a href="#//api/name/showPDFAnimated:">&ndash;&nbsp;showPDFAnimated:</a></code>
+		<span class="tooltip"><p>Shows a modal page with the pdf. At least one argument (the pdf name) is needed.
+Argument 2 sets animated to true or false.
+Arumgent 3 can be an array with options for PSPDFViewController.
+See <a href="http://pspdfkit.com/documentation.html">http://pspdfkit.com/documentation.html</a> for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)
+Argument 4 can be an array with options for <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
+Returns a <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> object.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/touchUp">&ndash;&nbsp;touchUp</a></code>
-		<span class="tooltip"><p>called when <a href="#//api/name/button">button</a> is released.</p></span>
+		<code><a href="#//api/name/clearCache:">&ndash;&nbsp;clearCache:</a></code>
+		<span class="tooltip"><p>Clears the whole application cache. No arguments needed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLanguageDictionary:">&ndash;&nbsp;setLanguageDictionary:</a></code>
+		<span class="tooltip"><p>Allows setting custom language additions.
+Accepts a dictionary with language dictionaries mapped to the language string.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLogLevel:">&ndash;&nbsp;setLogLevel:</a></code>
+		<span class="tooltip"><p>Set internal log level. Defaults to 1 (PSPDFLogLevelError).
+PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLogLevelInfo(3), PSPDFLogLevelVerbose(4).</p></span>
 	</span>
 	
 	
@@ -221,148 +196,6 @@
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/annotation" title="annotation"></a>
-	<h3 class="subsubtitle method-title">annotation</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Linked <a href="#//api/name/annotation">annotation</a>.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) PSPDFAnnotation *annotation</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/button" title="button"></a>
-	<h3 class="subsubtitle method-title">button</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Embedded UIButton.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) UIButton *button</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/hideSmallLinks" title="hideSmallLinks"></a>
-	<h3 class="subsubtitle method-title">hideSmallLinks</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Option to not mark small targets. (small = width/height &lt; 6) Defaults to YES.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=shouldHideSmallLinks) BOOL hideSmallLinks</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/overspan" title="overspan"></a>
-	<h3 class="subsubtitle method-title">overspan</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 4/4.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGSize overspan</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
 					
 					
 					
@@ -372,17 +205,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithFrame:" title="initWithFrame:"></a>
-	<h3 class="subsubtitle method-title">initWithFrame:</h3>
+	<a name="//api/name/PSPDFKitVersion" title="PSPDFKitVersion"></a>
+	<h3 class="subsubtitle method-title">PSPDFKitVersion</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize with frame.</p>
+		<p>Get the version of PSPDFKit. (This is not the version of the module bridge)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithFrame:(CGRect)<em>frame</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)PSPDFKitVersion</code></div>
 	
 	
 	
@@ -399,24 +232,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
+		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/touchDown" title="touchDown"></a>
-	<h3 class="subsubtitle method-title">touchDown</h3>
+	<a name="//api/name/clearCache:" title="clearCache:"></a>
+	<h3 class="subsubtitle method-title">clearCache:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called when <a href="#//api/name/button">button</a> is pressed.</p>
+		<p>Clears the whole application cache. No arguments needed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)touchDown</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)clearCache:(id)<em>args</em></code></div>
 	
 	
 	
@@ -433,24 +266,25 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
+		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/touchUp" title="touchUp"></a>
-	<h3 class="subsubtitle method-title">touchUp</h3>
+	<a name="//api/name/setLanguageDictionary:" title="setLanguageDictionary:"></a>
+	<h3 class="subsubtitle method-title">setLanguageDictionary:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called when <a href="#//api/name/button">button</a> is released.</p>
+		<p>Allows setting custom language additions.
+Accepts a dictionary with language dictionaries mapped to the language string.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)touchUp</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setLanguageDictionary:(id)<em>dictionary</em></code></div>
 	
 	
 	
@@ -467,7 +301,81 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
+		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLogLevel:" title="setLogLevel:"></a>
+	<h3 class="subsubtitle method-title">setLogLevel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set internal log level. Defaults to 1 (PSPDFLogLevelError).
+PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLogLevelInfo(3), PSPDFLogLevelVerbose(4).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setLogLevel:(id)<em>logLevel</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showPDFAnimated:" title="showPDFAnimated:"></a>
+	<h3 class="subsubtitle method-title">showPDFAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shows a modal page with the pdf. At least one argument (the pdf name) is needed.
+Argument 2 sets animated to true or false.
+Arumgent 3 can be an array with options for PSPDFViewController.
+See <a href="http://pspdfkit.com/documentation.html">http://pspdfkit.com/documentation.html</a> for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)
+Argument 4 can be an array with options for <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
+Returns a <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)showPDFAnimated:(id)<em>pathArray</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
 	</div>				
 	
 	

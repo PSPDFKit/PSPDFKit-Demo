@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFPage Class Reference</title>
+		<title>PSPDFOutlineViewController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFPage Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFOutlineViewController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,7 +40,7 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
+	<option value="//api/name/outline">&nbsp;&nbsp;&nbsp;&nbsp;outline</option>
 	
 	
 	
@@ -49,13 +49,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/destroyPageAndRemoveFromView:">&nbsp;&nbsp;&nbsp;&nbsp;- destroyPageAndRemoveFromView:</option>
-	
-	<option value="//api/name/displayDocument:page:pageRect:scale:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:page:pageRect:scale:</option>
-	
-	<option value="//api/name/removeBackgroundView">&nbsp;&nbsp;&nbsp;&nbsp;- removeBackgroundView</option>
-	
-	<option value="//api/name/setBackgroundImage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setBackgroundImage:animated:</option>
+	<option value="//api/name/initWithDocument:pdfController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:pdfController:</option>
 	
 	
 	
@@ -81,7 +75,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outline">outline</a></span></li>
 	
 </ul></li>
 
@@ -91,13 +85,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/destroyPageAndRemoveFromView:">destroyPageAndRemoveFromView:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:page:pageRect:scale:">displayDocument:page:pageRect:scale:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeBackgroundView">removeBackgroundView</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBackgroundImage:animated:">setBackgroundImage:animated:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:pdfController:">initWithDocument:pdfController:</a></span></li>
 	
 </ul></li>
 
@@ -106,7 +94,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFPage Class Reference" name="top"></a>
+				<a title="PSPDFOutlineViewController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -115,7 +103,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFPage Class Reference</h1>
+						<h1 class="title title-header">PSPDFOutlineViewController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -123,10 +111,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">UITableViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a></td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFPage.h</td>
+	<td class="specification-value">PSPDFOutlineViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -136,7 +127,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>container for a PDF <a href="#//api/name/page">page</a>.</p>
+						<p>Outline (Table of Contents) parser.</p>
 					</div>
 					
 					
@@ -154,36 +145,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/displayDocument:page:pageRect:scale:">&ndash;&nbsp;displayDocument:page:pageRect:scale:</a></code>
-		<span class="tooltip"><p>configure <a href="#//api/name/page">page</a> container with data</p></span>
+		<code><a href="#//api/name/initWithDocument:pdfController:">&ndash;&nbsp;initWithDocument:pdfController:</a></code>
+		<span class="tooltip"><p>initializes <a href="#//api/name/outline">outline</a> parser with document and pdfController. There is only one <a href="#//api/name/outline">outline</a> per document.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/destroyPageAndRemoveFromView:">&ndash;&nbsp;destroyPageAndRemoveFromView:</a></code>
-		<span class="tooltip"><p>destroys and removes CATiledLayer. Call prior deallocating</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/removeBackgroundView">&ndash;&nbsp;removeBackgroundView</a></code>
-		<span class="tooltip"><p>removes background, saves memory</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setBackgroundImage:animated:">&ndash;&nbsp;setBackgroundImage:animated:</a></code>
-		<span class="tooltip"><p>set background image to custom image. used in <a href="../Classes/PSPDFTiledLayer.html">PSPDFTiledLayer</a>.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>readonly properties. recreate <a href="#//api/name/page">page</a> to re-set</p></span>
+		<code><a href="#//api/name/outline">&nbsp;&nbsp;outline</a></code>
+		<span class="tooltip"><p>Array of PSPDFOutlineElements</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -201,17 +171,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/page" title="page"></a>
-	<h3 class="subsubtitle method-title">page</h3>
+	<a name="//api/name/outline" title="outline"></a>
+	<h3 class="subsubtitle method-title">outline</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>readonly properties. recreate <a href="#//api/name/page">page</a> to re-set</p>
+		<p>Array of PSPDFOutlineElements</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSArray *outline</code></div>
 	
 	
 	
@@ -228,7 +198,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPage.h</code><br />
+		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
 	</div>				
 	
 	
@@ -245,17 +215,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/destroyPageAndRemoveFromView:" title="destroyPageAndRemoveFromView:"></a>
-	<h3 class="subsubtitle method-title">destroyPageAndRemoveFromView:</h3>
+	<a name="//api/name/initWithDocument:pdfController:" title="initWithDocument:pdfController:"></a>
+	<h3 class="subsubtitle method-title">initWithDocument:pdfController:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>destroys and removes CATiledLayer. Call prior deallocating</p>
+		<p>initializes <a href="#//api/name/outline">outline</a> parser with document and pdfController. There is only one <a href="#//api/name/outline">outline</a> per document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)destroyPageAndRemoveFromView:(BOOL)<em>removeFromView</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithDocument:(PSPDFDocument *)<em>document</em> pdfController:(PSPDFViewController *)<em>pdfController</em></code></div>
 	
 	
 	
@@ -272,109 +242,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPage.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/displayDocument:page:pageRect:scale:" title="displayDocument:page:pageRect:scale:"></a>
-	<h3 class="subsubtitle method-title">displayDocument:page:pageRect:scale:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>configure <a href="#//api/name/page">page</a> container with data</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)displayDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> pageRect:(CGRect)<em>pageRect</em> scale:(CGFloat)<em>scale</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPage.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/removeBackgroundView" title="removeBackgroundView"></a>
-	<h3 class="subsubtitle method-title">removeBackgroundView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>removes background, saves memory</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)removeBackgroundView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPage.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/setBackgroundImage:animated:" title="setBackgroundImage:animated:"></a>
-	<h3 class="subsubtitle method-title">setBackgroundImage:animated:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>set background image to custom image. used in <a href="../Classes/PSPDFTiledLayer.html">PSPDFTiledLayer</a>.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)setBackgroundImage:(UIImage *)<em>image</em> animated:(BOOL)<em>animated</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPage.h</code><br />
+		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
 	</div>				
 	
 	
@@ -393,7 +261,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-18)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						
