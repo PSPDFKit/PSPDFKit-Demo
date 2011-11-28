@@ -2,7 +2,6 @@
 //  AppDelegate.h
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/4/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 

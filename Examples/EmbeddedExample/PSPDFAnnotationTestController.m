@@ -1,29 +1,25 @@
 //
-//  PSEmbeddedVideoPDFViewController.m
+//  PSPDFAnnotationTestController.m
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 9/11/11.
 //  Copyright (c) 2011 Peter Steinberger. All rights reserved.
 //
 
-#import "PSEmbeddedVideoPDFViewController.h"
+#import "PSPDFAnnotationTestController.h"
 #import <MapKit/MapKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
-@implementation PSEmbeddedVideoPDFViewController
+@implementation PSPDFAnnotationTestController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"VideoEx" image:[UIImage imageNamed:@"45-movie-1"] tag:4] autorelease];
+        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4] autorelease];
         self.delegate = self; // set PSPDFViewControllerDelegate to self        
     }
     return self;
-}
-
-- (void)dealloc {
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +32,11 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
+
+/// controller did show/scrolled to a new page (at least 51% of it is visible)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
+    NSLog(@"didShowPage:%d", page);
+}
 
 /// called after pdf page has been loaded and added to the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView; {
