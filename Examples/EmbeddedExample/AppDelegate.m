@@ -2,14 +2,13 @@
 //  AppDelegate.m
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/4/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "FirstViewController.h"
-#import "SecondViewController.h"
-#import "PSEmbeddedVideoPDFViewController.h"
+#import "PSPDFEmbeddedTestController.h"
+#import "PSPDFCustomToolbarController.h"
+#import "PSPDFAnnotationTestController.h"
 #import "IntelligentSplitViewController.h"
 #import "SplitTableViewController.h"
 #import "SplitMasterViewController.h"
@@ -30,17 +29,17 @@
     //kPSPDFKitDebugMemory = YES;
     
     // add items to tabbar
-    FirstViewController *firstVC = [[[FirstViewController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
+    PSPDFEmbeddedTestController *firstVC = [[[PSPDFEmbeddedTestController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
     UINavigationController *firstNavVC = [[[UINavigationController alloc] initWithRootViewController:firstVC] autorelease];
     
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"macbook_air_users_guide.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    SecondViewController *pdfController = [[[SecondViewController alloc] initWithDocument:document] autorelease];
+    PSPDFCustomToolbarController *pdfController = [[[PSPDFCustomToolbarController alloc] initWithDocument:document] autorelease];
     UINavigationController *secondVC = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
 
-     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit-annotated.pdf"];
+     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:videoPath]];
-    PSEmbeddedVideoPDFViewController *videoVC = [[[PSEmbeddedVideoPDFViewController alloc] initWithDocument:videoDocument] autorelease];
+    PSPDFAnnotationTestController *videoVC = [[[PSPDFAnnotationTestController alloc] initWithDocument:videoDocument] autorelease];
     UINavigationController *videoNavC = [[[UINavigationController alloc] initWithRootViewController:videoVC] autorelease];
     
     if (PSIsIpad()) {
