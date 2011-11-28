@@ -2,7 +2,6 @@
 //  PSPDFTilingView+Annotations.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 8/6/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 //  Based on code by Sorin Nistor. Many, Many thanks!

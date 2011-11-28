@@ -2,27 +2,29 @@
 //  PSPDFKitGlobal.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 7/21/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFCache.h"
 
-// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
+// version string. use PSPDFVersionString() to get.
+#define kPSPDFKitVersionString @"1.7 Beta"
+
+/// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-// if disabled, kPSPDFKitDebugMemory has no effect.
+/// if disabled, kPSPDFKitDebugMemory has no effect.
 #define kPSPDFKitAllowMemoryDebugging
 
 enum {
-    PSPDFLogLevelNothing,
+    PSPDFLogLevelNothing = 0,
     PSPDFLogLevelError,   
     PSPDFLogLevelWarning,
     PSPDFLogLevelInfo,
     PSPDFLogLevelVerbose
 }typedef PSPDFLogLevel;
 
-// set log level.
+/// set log level.
 extern PSPDFLogLevel kPSPDFKitDebugLogLevel; // defaults to PSPDFLogLevelError
 
 /// settings for animation of pages, global
@@ -45,11 +47,14 @@ extern NSUInteger kPSPDFKitZoomLevels;
 
 extern CGFloat kPSPDFKitHUDTransparency;
 
-// optionally enable scrollbar debugging.
+/// optionally enable scrollbar debugging.
 extern BOOL kPSPDFKitDebugScrollViews;
 
-// enable to track down memory issues
+/// enable to track down memory issues
 extern BOOL kPSPDFKitDebugMemory;
+
+/// improves scroll performance
+extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 
 /// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
 BOOL PSPDFIsCrappyDevice(void);
@@ -60,15 +65,30 @@ BOOL PSPDFShouldAnimate(void);
 /// helper to calculate new rect for specific scale
 CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
 
+// drawing helper
+extern inline void DrawPSPDFKit(CGContextRef context);
+
+/// Get current PSPDFKit version.
+extern NSString *PSPDFVersionString(void);
+
+// Localizes strings.
+extern NSString *PSPDFLocalize(NSString *stringToken);
+
+/// Allows to set a custom dictionary that contains dictionaries with language locales.
+/// Will override localization found in the bundle, if a value is found.
+/// Falls back to "en" if localization key is not found in dictionary.
+extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
+
+// view helper
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define MCReleaseNil(x) [x release], x = nil
 #define MCReleaseViewNil(x) do { [x removeFromSuperview], [x release], x = nil; } while (0)
-
 #define PSAppStatusBarOrientation ([[UIApplication sharedApplication] statusBarOrientation])
 #define PSIsPortrait()  UIInterfaceOrientationIsPortrait(PSAppStatusBarOrientation)
 #define PSIsLandscape() UIInterfaceOrientationIsLandscape(PSAppStatusBarOrientation)
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
+// log helper
 #ifdef kPSPDFKitDebugEnabled
 #define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLog(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
@@ -92,6 +112,7 @@ CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
 #define PSPDFDeregisterObject(object)
 #endif
 
+// synthesize singleton helper
 #define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
 \
 static classname *shared##classname = nil; \
@@ -129,7 +150,6 @@ return self; \
 }
 
 // swapper
-
 #define ps_swap(a,b) {  \
 int c = (a);         \
 (a) = (b);           \
@@ -142,19 +162,46 @@ float c = (a);       \
 (b) = c;             \
 }
 
-// draw demo mode code
-#ifdef kPSPDFKitDemoMode
-#define DrawPSPDFKitDemo(context); \
-NSString *text = @"PSPDFKit DEMO"; \
-NSUInteger fontSize = 30; \
-CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor); \
-CGContextSelectFont(context, "Helvetica-Bold", fontSize, kCGEncodingMacRoman); \
-CGAffineTransform xform = CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0); \
-CGContextSetTextMatrix(context, xform); \
-CGContextSetTextDrawingMode(context, kCGTextFill); \
-CGContextSetTextPosition(context, 30.0f, 30.0f + round(fontSize / 4.0f)); \
-CGContextShowText(context, [text UTF8String], strlen([text UTF8String]));
-#else
-#define DrawPSPDFKitDemo(context);
+// Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html
+#define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name @end \
+@implementation PSPDF_FIX_CATEGORY_BUG_##name @end
+
+// iOS compatibility
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_4_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_4_0 550.32
 #endif
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
+#define PSPDF_IF_IOS4_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_0) \
+{ \
+__VA_ARGS__ \
+}
+#else
+#define PSPDF_IF_IOS4_OR_GREATER(...)
+#endif
+
+#define PSPDF_IF_PRE_IOS4(...)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_4_0)  \
+{ \
+__VA_ARGS__ \
+}
+
+#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_5_0
+#define kCFCoreFoundationVersionNumber_iPhoneOS_5_0 674.0
+#endif
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 50000
+#define PSPDF_IF_IOS5_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_5_0) \
+{ \
+__VA_ARGS__ \
+}
+#else
+#define PSPDF_IF_IOS5_OR_GREATER(...)
+#endif
+
+#define PSPDF_IF_PRE_IOS5(...)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_5_0)  \
+{ \
+__VA_ARGS__ \
+}
 

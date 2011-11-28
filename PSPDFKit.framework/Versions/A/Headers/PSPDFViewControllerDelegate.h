@@ -2,29 +2,27 @@
 //  PSPDFViewControllerDelegate.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 7/14/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-@class PSPDFViewController, PSPDFDocument, PSPDFPageInfo, PSPDFPageCoordinates, PSPDFLinkAnnotation;
+@class PSPDFViewController, PSPDFDocument, PSPDFPageInfo, PSPDFPageCoordinates, PSPDFAnnotation, PSPDFPageView;
 
-/// register to this delegate in PSPDFViewController
-/// Note: page is based of 1 till pageCount
+/// register to this delegate in PSPDFViewController. Page is based of 1 till pageCount.
 @protocol PSPDFViewControllerDelegate <NSObject>
 
 @optional
 
-#pragma global document handling
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma - global document handling
+
 /// time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;
 
 /// delegate to be notified when pdfController finished loading
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
-#pragma events, annotations
-
-/// deprecated. called same time as didShowPage
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page __attribute__((deprecated)); // "use didShowPage instead, same functionality"
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma - events, annotations
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page;
@@ -41,20 +39,42 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
 
 /// delegate for tapping on an annotation. If you don't implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFLinkAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
 
-#pragma detailed control for page loading/unloading
+/// called before a annotation view is created and added to a page. Defaults to YES if not implemented.
+/// if NO is returned, viewForAnnotation will not be called.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
+/// allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.
+/// If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO and add your annotation view to the pageView.
+- (UIView *)pdfViewController:(PSPDFViewController *)pdfController viewForAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma - detailed control for page loading/unloading
+
+/// called after pdf page has been loaded and added to the pagingScrollView.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView;
+
+/// called before a pdf page will be unloaded and removed from the pagingScrollView.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma - deprecated
+
+/// Deprecated. Called at the same time as didShowPage.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page __attribute__((deprecated)); // "use didShowPage instead, same functionality"
 
 /// called before a pdf page will be loaded and added to the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated)); // use the variant with PSPDFPageView instead.
 
 /// called after pdf page has been loaded and added to the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated)); // use the variant with PSPDFPageView instead.
 
 /// called before a pdf page will be unloaded and removed from the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated)); // use the variant with PSPDFPageView instead.
 
 /// called after pdf page has been unloaded and removed from the pagingScrollView
-- (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didUnloadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated)); // use the variant with PSPDFPageView instead.
+
 
 @end

@@ -2,7 +2,6 @@
 //  PSPDFOutlineParser.h
 //  PSPDFKit
 //
-//  Created by Peter Steinberger on 8/2/11.
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
@@ -10,11 +9,7 @@
 
 #define kPSPDFOutlineParserErrorDomain @"kPSPDFOutlineParserErrorDomain"
 
-@interface PSPDFOutlineParser : NSObject {
-    PSPDFDocument *document_;
-    NSMutableDictionary *namedDestinations_;
-    NSArray *outline_;
-}
+@interface PSPDFOutlineParser : NSObject
 
 /// init outline parser with document
 - (id)initWithDocument:(PSPDFDocument *)document;
