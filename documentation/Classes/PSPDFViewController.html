@@ -109,6 +109,8 @@
 	
 	<option value="//api/name/isRightPageInDoublePageNode:">&nbsp;&nbsp;&nbsp;&nbsp;- isRightPageInDoublePageNode:</option>
 	
+	<option value="//api/name/masterViewController">&nbsp;&nbsp;&nbsp;&nbsp;- masterViewController</option>
+	
 	<option value="//api/name/presentModalViewControllerWithCloseButton:">&nbsp;&nbsp;&nbsp;&nbsp;- presentModalViewControllerWithCloseButton:</option>
 	
 	<option value="//api/name/reloadData">&nbsp;&nbsp;&nbsp;&nbsp;- reloadData</option>
@@ -220,6 +222,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isDualPageMode">isDualPageMode</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRightPageInDoublePageNode:">isRightPageInDoublePageNode:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/masterViewController">masterViewController</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentModalViewControllerWithCloseButton:">presentModalViewControllerWithCloseButton:</a></span></li>
 	
@@ -555,6 +559,13 @@ there&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 	<span class="tooltip">
 		<code><a href="#//api/name/setHUDVisible:animated:">&ndash;&nbsp;setHUDVisible:animated:</a></code>
 		<span class="tooltip"><p>animated show or hide HUD controls, titlebar, status bar. (iPhone only)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/masterViewController">&ndash;&nbsp;masterViewController</a></code>
+		<span class="tooltip"><p>returns the topmost active viewcontroller. override if you have a custom setup of viewControllers</p></span>
 	</span>
 	
 	
@@ -1639,6 +1650,40 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)isRightPageInDoublePageNode:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/masterViewController" title="masterViewController"></a>
+	<h3 class="subsubtitle method-title">masterViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>returns the topmost active viewcontroller. override if you have a custom setup of viewControllers</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)masterViewController</code></div>
 	
 	
 	
