@@ -25,10 +25,10 @@
 #pragma - events, annotations
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
 
 /// page was fully rendered at zoomlevel = 1
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView;
 
 /// will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
@@ -61,8 +61,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma - deprecated
 
-/// Deprecated. Called at the same time as didShowPage.
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page __attribute__((deprecated)); // "use didShowPage instead, same functionality"
+/// Deprecated. Use the variant with PSPDFPageView instead.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page  __attribute__((deprecated));
+
+/// Deprecated. Use the variant with PSPDFPageView instead.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated));
 
 /// called before a pdf page will be loaded and added to the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController willLoadPage:(NSUInteger)page pdfScrollView:(PSPDFScrollView *)pdfScrollView __attribute__((deprecated)); // use the variant with PSPDFPageView instead.

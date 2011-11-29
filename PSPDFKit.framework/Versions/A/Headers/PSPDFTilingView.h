@@ -24,6 +24,9 @@
 /// returns attached scrollview. (if attached)
 - (PSPDFScrollView *)scrollView;
 
+/// returns parent pageView (if attached)
+- (PSPDFPageView *)pageView;
+
 /// document to display.
 @property(nonatomic, retain) PSPDFDocument *document;
 

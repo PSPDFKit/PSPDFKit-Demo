@@ -11,7 +11,9 @@
 
 /// Represents a single, logical, pdf document. (one or many pdf files)
 /// Can be overriden to support custom collections.
-@interface PSPDFDocument : NSObject
+@interface PSPDFDocument : NSObject {
+    NSUInteger pageCount_;
+}
 
 /// initialize empty PSPDFDocument 
 + (PSPDFDocument *)PDFDocument;
