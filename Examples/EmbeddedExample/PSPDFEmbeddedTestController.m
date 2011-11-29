@@ -120,7 +120,7 @@
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
     // add a border
-    self.pdfController.view.layer.borderColor = [UIColor blueColor].CGColor;
+    self.pdfController.view.layer.borderColor = [UIColor blackColor].CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
     
     // hide after load (will animate later)
