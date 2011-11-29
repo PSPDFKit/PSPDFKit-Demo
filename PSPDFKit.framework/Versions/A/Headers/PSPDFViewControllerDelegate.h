@@ -22,7 +22,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma - events, annotations
+#pragma - events
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
@@ -37,6 +37,9 @@
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
 /// Note that PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma - annotations
 
 /// delegate for tapping on an annotation. If you don't implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
