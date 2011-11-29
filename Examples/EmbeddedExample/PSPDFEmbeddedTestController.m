@@ -39,7 +39,7 @@
 
 
 - (void)pushView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
     pdfController.pageMode = PSPDFPageModeSingle;
@@ -48,7 +48,7 @@
 }
 
 - (void)openModalView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:PSPDFKitExample];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
@@ -74,7 +74,7 @@
         
         // prepare document to display, copy it do docs folder
         // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
-        [self copySampleToDocumentsFolder:PSPDFKitExample];
+        [self copySampleToDocumentsFolder:kPSPDFKitExample];
         [self copySampleToDocumentsFolder:kDevelopersGuideFileName];
         [self copySampleToDocumentsFolder:kPaperExampleFileName];
         
