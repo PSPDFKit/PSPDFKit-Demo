@@ -9,7 +9,8 @@
 
 #define kDevelopersGuideFileName @"DevelopersGuide.pdf"
 #define kPaperExampleFileName @"amazon-dynamo-sosp2007.pdf"
-#define PSPDFKitExample @"PSPDFKit.pdf"
+#define kMacbookAirFileName @"macbook_air_users_guide.pdf"
+#define kPSPDFKitExample @"PSPDFKit.pdf"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate>
 
