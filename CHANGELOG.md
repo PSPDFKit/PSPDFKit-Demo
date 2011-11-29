@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.7.1 - 29/Nov/2011__
+
+* Fixes a rare crash when encountering non-standardized elements while parsing the Table of Contents.
+
 __v1.7.0 - 28/Nov/2011__
 
 *  PSPDFKit now needs at least Xcode 4.2/Clang 3.0 to compile.
