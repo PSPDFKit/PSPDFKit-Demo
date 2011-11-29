@@ -34,8 +34,8 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
-    NSLog(@"didShowPage:%d", page);
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
+    NSLog(@"didShowPageView: %@", pageView);
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView.
