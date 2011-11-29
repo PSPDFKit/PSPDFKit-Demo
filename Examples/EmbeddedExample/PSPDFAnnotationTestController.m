@@ -17,7 +17,7 @@
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4] autorelease];
-        self.delegate = self; // set PSPDFViewControllerDelegate to self        
+        self.delegate = self; // set PSPDFViewControllerDelegate to self     
     }
     return self;
 }
@@ -35,7 +35,7 @@
 
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowPageView: %@", pageView);
+    NSLog(@"didShowPageView: page:%d", pageView.page);
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView.

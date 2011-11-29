@@ -32,13 +32,14 @@
     PSPDFEmbeddedTestController *firstVC = [[[PSPDFEmbeddedTestController alloc] initWithNibName:@"FirstView" bundle:nil] autorelease];
     UINavigationController *firstNavVC = [[[UINavigationController alloc] initWithRootViewController:firstVC] autorelease];
     
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"macbook_air_users_guide.pdf"];
+    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kMacbookAirFileName];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFCustomToolbarController *pdfController = [[[PSPDFCustomToolbarController alloc] initWithDocument:document] autorelease];
     UINavigationController *secondVC = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
 
-     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:videoPath]];
+    videoDocument.twoStepRenderingEnabled = YES; // we're not using the full screen, so enable sharp re-rendering
     PSPDFAnnotationTestController *videoVC = [[[PSPDFAnnotationTestController alloc] initWithDocument:videoDocument] autorelease];
     UINavigationController *videoNavC = [[[UINavigationController alloc] initWithRootViewController:videoVC] autorelease];
     
