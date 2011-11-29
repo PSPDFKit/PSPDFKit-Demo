@@ -162,6 +162,9 @@ enum {
 
 // ****** functions you may wanna override in subclasses ****
 
+/// returns the topmost active viewcontroller. override if you have a custom setup of viewControllers
+- (UIViewController *)masterViewController;
+
 /// Class for creating the scroll view. Set this to your custom subclass if you override PSPDFScrollView.
 - (Class)scrollViewClass;
 
