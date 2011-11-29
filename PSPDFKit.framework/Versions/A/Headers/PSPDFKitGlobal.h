@@ -8,7 +8,7 @@
 #import "PSPDFCache.h"
 
 // version string. use PSPDFVersionString() to get.
-#define kPSPDFKitVersionString @"1.7.3"
+#define kPSPDFKitVersionString @"1.7.4"
 
 /// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled

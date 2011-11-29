@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.7.4 - 29/Nov/2011__
+
+*  Custom lookup for parent viewcontroller - allows more setups of embedded views.
+*  Fixes a crash related to parsing table of contents.
+
 __v1.7.3 - 29/Nov/2011__
 
 *  Add a log warning that the movie/audio example can crash in the Simulator. Known Apple bug. Doesn't happen on the device.
