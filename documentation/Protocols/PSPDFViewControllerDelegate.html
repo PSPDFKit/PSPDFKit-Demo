@@ -54,7 +54,9 @@
 	
 	<option value="//api/name/pdfViewController:didRenderPage:pdfScrollView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPage:pdfScrollView:</option>
 	
-	<option value="//api/name/pdfViewController:didShowPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowPage:</option>
+	<option value="//api/name/pdfViewController:didRenderPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPageView:</option>
+	
+	<option value="//api/name/pdfViewController:didShowPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowPageView:</option>
 	
 	<option value="//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnAnnotation:page:info:coordinates:</option>
 	
@@ -112,7 +114,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">pdfViewController:didRenderPage:pdfScrollView:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowPage:">pdfViewController:didShowPage:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPageView:">pdfViewController:didRenderPageView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowPageView:">pdfViewController:didShowPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></span></li>
 	
@@ -201,14 +205,14 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:didShowPage:">&ndash;&nbsp;pdfViewController:didShowPage:</a></code>
+		<code><a href="#//api/name/pdfViewController:didShowPageView:">&ndash;&nbsp;pdfViewController:didShowPageView:</a></code>
 		<span class="tooltip"><p>controller did show/scrolled to a new page (at least 51% of it is visible)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:didRenderPage:pdfScrollView:</a></code>
+		<code><a href="#//api/name/pdfViewController:didRenderPageView:">&ndash;&nbsp;pdfViewController:didRenderPageView:</a></code>
 		<span class="tooltip"><p>page was fully rendered at zoomlevel = 1</p></span>
 	</span>
 	
@@ -263,6 +267,13 @@ If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO 
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
 		<span class="tooltip"><p>called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didRenderPage:pdfScrollView:">&ndash;&nbsp;pdfViewController:didRenderPage:pdfScrollView:</a></code>
+		<span class="tooltip"><p>Deprecated. Use the variant with <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> instead.</p></span>
 	</span>
 	
 	
@@ -454,7 +465,7 @@ If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>page was fully rendered at zoomlevel = 1</p>
+		<p>Deprecated. Use the variant with <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> instead.</p>
 	</div>		
 	
 	
@@ -482,8 +493,42 @@ If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO 
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfViewController:didShowPage:" title="pdfViewController:didShowPage:"></a>
-	<h3 class="subsubtitle method-title">pdfViewController:didShowPage:</h3>
+	<a name="//api/name/pdfViewController:didRenderPageView:" title="pdfViewController:didRenderPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didRenderPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>page was fully rendered at zoomlevel = 1</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didRenderPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didShowPageView:" title="pdfViewController:didShowPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didShowPageView:</h3>
 	
 	
 	
@@ -492,7 +537,7 @@ If you want to replace PSPDFKit-Handler, use shouldDisplayAnnotation, return NO 
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didShowPage:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didShowPageView:(PSPDFPageView *)<em>pageView</em></code></div>
 	
 	
 	
