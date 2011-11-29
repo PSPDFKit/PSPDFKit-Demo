@@ -310,7 +310,7 @@
 		78AB3D2B146D75D000670352 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 78AB3D2E146D75D000670352 /* Build configuration list for PBXProject "vendor-http" */;
 			compatibilityVersion = "Xcode 3.2";

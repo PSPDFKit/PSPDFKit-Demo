@@ -74,9 +74,9 @@ extern NSString *PSPDFVersionString(void);
 // Localizes strings.
 extern NSString *PSPDFLocalize(NSString *stringToken);
 
-/// Allows to set a custom dictionary that contains dictionaries with language locales.
-/// Will override localization found in the bundle, if a value is found.
-/// Falls back to "en" if localization key is not found in dictionary.
+// Allows to set a custom dictionary that contains dictionaries with language locales.
+// Will override localization found in the bundle, if a value is found.
+// Falls back to "en" if localization key is not found in dictionary.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 // view helper
