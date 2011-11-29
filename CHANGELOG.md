@@ -1,8 +1,16 @@
 # Changelog
 
+__v1.7.2 - 29/Nov/2011__
+
+*  Changes delegates to return PSPDFView instead of the page: didShowPageView, didRenderPageView.
+*  Improve zoom sharpness. (kPSPDFKitZoomLevels is now set to 5 per default from 4; set back if you experience any memory problems on really big documents.)
+*  Increase tiling size on iPad1/older devices to render faster.
+*  Reduce loading of unneeded pages. Previously happened sometimes after fast scrolling. This also helps when working with delegates.
+*  Fixes a locking race condition when using PSPDFDocument.twoStepRenderingEnabled.
+
 __v1.7.1 - 29/Nov/2011__
 
-* Fixes a rare crash when encountering non-standardized elements while parsing the Table of Contents.
+*  Fixes a rare crash when encountering non-standardized elements while parsing the Table of Contents.
 
 __v1.7.0 - 28/Nov/2011__
 
