@@ -27,21 +27,6 @@ enum {
 
 @end
 
-
-// internal queue item for the cache.
-@interface PSPDFCacheQueuedDocument : NSObject {
-    NSString *uid_;
-    NSUInteger page_;
-    PSPDFSize size_;
-    BOOL caching_;
-}
-+ (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
-@property(retain) PSPDFDocument *document;
-@property(assign) NSUInteger page;
-@property(assign) PSPDFSize size;
-@property(assign, getter=isCaching) BOOL caching;
-@end
-
 /// PSPDFCache is an intelligent cache that pre-renders pdf pages based on a queue.
 /// Various image sizes and formats are supported. The system is designed to take as much memory
 /// as there's available, and free most of it on a memory warning event.
@@ -147,3 +132,15 @@ enum {
 
 // helper for deadlock-free dispatch_sync.
 void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
+
+
+// internal queue item for the cache.
+@interface PSPDFCacheQueuedDocument : NSObject 
+
++ (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
+@property(retain) PSPDFDocument *document;
+@property(assign) NSUInteger page;
+@property(assign) PSPDFSize size;
+@property(assign, getter=isCaching) BOOL caching;
+
+@end

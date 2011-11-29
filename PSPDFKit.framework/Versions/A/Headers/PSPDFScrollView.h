@@ -13,16 +13,13 @@
 /// display specific document with specified page.
 - (void)displayDocument:(PSPDFDocument *)aDocument withPage:(NSUInteger)pageId;
 
-/// prepares reuse of internal data.
-- (void)prepareForReuse;
-
 /// releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
 - (void)releaseDocument;
 
-// for memory warning relay.
+// for memory warning relay. clears up internal resources.
 - (void)didReceiveMemoryWarning;
 
-// internal use for smooth rotations.
+// internal use for smooth rotations. Don't call unless you know exactly whay you're doing.
 - (void)switchPages;
 
 /// weak reference to parent pdfController.

@@ -8,7 +8,7 @@
 #import "PSPDFCache.h"
 
 // version string. use PSPDFVersionString() to get.
-#define kPSPDFKitVersionString @"1.7.2"
+#define kPSPDFKitVersionString @"1.7.3"
 
 /// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
@@ -68,10 +68,13 @@ CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
 // drawing helper
 extern inline void DrawPSPDFKit(CGContextRef context);
 
+/// class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
+extern NSString *kPSPDFCacheClassName;
+
 /// Get current PSPDFKit version.
 extern NSString *PSPDFVersionString(void);
 
-// Localizes strings.
+/// Localizes strings.
 extern NSString *PSPDFLocalize(NSString *stringToken);
 
 // Allows to set a custom dictionary that contains dictionaries with language locales.
