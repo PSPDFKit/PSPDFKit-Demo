@@ -1,5 +1,11 @@
 # Changelog
 
+__v1.7.3 - 29/Nov/2011__
+
+*  Add a log warning that the movie/audio example can crash in the Simulator. Known Apple bug. Doesn't happen on the device.
+*  PSPDFCache can now be subclassed. Use kPSPDFCacheClassName to set the name of your custom subclass.
+*  Fixes a bug where scrollingEnabled was re-enabled after a zoom operation.
+
 __v1.7.2 - 29/Nov/2011__
 
 *  Changes delegates to return PSPDFView instead of the page: didShowPageView, didRenderPageView.
