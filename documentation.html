@@ -1,6 +1,6 @@
 ---
 layout: default
-title: PSPDFKit - Rendering PDF on iOS is hard. PSPFKit fixes that.
+title: PSPDFKit - Documentation.
 index: 
 purchase: 
 documentation: current-menu-item current_page_item
@@ -12,7 +12,7 @@ documentation: current-menu-item current_page_item
   <div id="main" class="col-full">
     <div id="documentation" class="col-full section">
       <h2 class="section-title">Appledoc</h2>
-	 <p><a href="/documentation">All header files inside PSPDFKit are documented and displayed in the appledoc format.</a></p>
+	 <p><a href="/documentation">All public classes and categries inside PSPDFKit are documented and displayed in the appledoc format.</a></p>
 	</div>
 	<div id="integration" class="col-full section">
       <h2 class="section-title">Integration</h2>
@@ -61,13 +61,14 @@ documentation: current-menu-item current_page_item
 	     	As of PSPDFKit 1.7, multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. </p>
 	
 	<p>
-		The system will auto-detect the end correct point. Supported are:
+		The system will auto-detect the correct end correct point. Supported are:
 	</p>
 	
 	<ul>
 		<li>- Video (m3u8, mov, avi, mpg - formats that are supported by iOS)</li>
 		<li>- Audio (mp3, m4a)</li>
 		<li>- Web Pages</li>
+		<li>- Any custom UIView with using the delegate methods</li>		
     </ul>
 
 <p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page.</p>
@@ -75,6 +76,9 @@ documentation: current-menu-item current_page_item
 <p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the bundle path. Supported folders include Bundle, Documents and Cache.</p>
 	
 <p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p>
+
+<p>There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p>
+
     </div>
 
     <div id="titanium" class="col-full section">
