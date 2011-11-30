@@ -9,46 +9,72 @@ documentation: current-menu-item current_page_item
   <h1 class="title col-full">Documentation</h1>
 </div>
 <div id="content" class="col-full">
-  <div id="main" class="col-full">
-    <div id="documentation" class="col-full section">
-      <h2 class="section-title">Appledoc</h2>
+  <strong><div id="main" class="col-full">
+	<div id="documentation" class="col-full section">
+	  <h2 class="section-title">Appledoc</h2>
 	 <p><a href="/documentation">All public classes and categories inside PSPDFKit are documented and displayed in the appledoc format.</a></p>
 	</div>
 	<div id="integration" class="col-full section">
-      <h2 class="section-title">Integration</h2>
-      <p>There are two ways to integrate PSPDFKit: The binary framework, which is basically drop-in and you're good, and adding the PSPDFKit-lib.xcodeproj file as a dependency. You get the PSPDFKit-lib only if you purchased the source code.</p><br>
-      
-      <p>Use the PSPDFKit-lib if possible, this enables easy source code lookup:</p><br>
-      
-      <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
-      
-      <img src="images/project-add.png" alt="Xcode Add Project" width="1024" height="702" style="margin-left:-55px"/>
-      
-      <img src="images/project-settings.png" alt="Xcode Project Settings" width="1014" height="730" style="margin-left:-55px"/>
-            
-      <p>Open the PSPDFViewController with a simple call:</p>
-      <script src="https://gist.github.com/1117224.js"> </script>
-      <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
-    </div>
-    
-    <div id="logging" class="col-full section">
-      <h2 class="section-title">Logging</h2>
-      <p>The log level can be set at runtime, from anywhere in your project. The default log level is PSPDFLogLevelError.</p>
-      <script src="https://gist.github.com/1117227.js"> </script> 
-    </div>
-    
-    <div id="localization" class="col-full section">
-      <h2 class="section-title">Localization</h2>
-      <p>See the PSPDFKit.bundle file for basic translation. It's either inside your PSPDFKit folder or inside PSPDFKit.framework/Resources.<br>Warning! This includes english and german. You need to remove those languages that you don't support; If you keep german then iTunes Connect will show german as a supported language, even if you only have a subset translated.</p>
-      <p>You can also set the translation directly in your application:</p>
+	  <h2 class="section-title">Integration</h2>
+	  <p>There are two ways to integrate PSPDFKit: The binary framework, which is basically drop-in and you're good, and adding the PSPDFKit-lib.xcodeproj file as a dependency. You get the PSPDFKit-lib only if you purchased the source code.</p><br>
+	  
+	  <p>Use the PSPDFKit-lib if possible, this enables easy source code lookup:</p><br>
+	  
+	  <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
+	  
+	  <img src="images/project-add.png" alt="Xcode Add Project" width="1024" height="702" style="margin-left:-55px"/>
+	  
+	  <img src="images/project-settings.png" alt="Xcode Project Settings" width="1014" height="730" style="margin-left:-55px"/>
+			
+	  <p>Open the PSPDFViewController with a simple call:</p>
+	  <script src="https://gist.github.com/1117224.js"> </script>
+	  <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
+	</div>
+	
+	<div id="logging" class="col-full section">
+	  <h2 class="section-title">Logging</h2>
+	  <p>The log level can be set at runtime, from anywhere in your project. The default log level is PSPDFLogLevelError.</p>
+	  <script src="https://gist.github.com/1117227.js"> </script> 
+	</div>
+	
+	<div id="localization" class="col-full section">
+	  <h2 class="section-title">Localization</h2>
+	  <p>See the PSPDFKit.bundle file for basic translation. It's either inside your PSPDFKit folder or inside PSPDFKit.framework/Resources.<br>Warning! This includes english and german. You need to remove those languages that you don't support; If you keep german then iTunes Connect will show german as a supported language, even if you only have a subset translated.</p>
+	  <p>(Set before displaying a PSPDFViewController, AppDelegate is a good place)</p>
 	<script src="https://gist.github.com/1409651.js"> </script>
-    </div>
-    
-    <div id="troubleshooting" class="col-full section">
-      <h2 class="section-title">Troubleshooting</h2>
+	</div>
+	
+	<div id="multimedia-features" class="col-full section">
+	<a name="multimedia"></a>
+			  <h2 class="section-title">Multimedia Overlay Features</h2>
+			 <p>
+			 	As of PSPDFKit 1.7, multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. The system will auto-detect the correct end correct point. Supported are:
+		</p>
+		
+		<ul>
+			<li>- Video (m3u8, mov, avi, mpg - formats that are supported by iOS)</li>
+			<li>- Audio (mp3, m4a)</li>
+			<li>- Web Pages</li>
+			<li>- Any custom UIView with using the delegate methods</li>		
+		</ul><br>
+	
+	<p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page.</p><br>
+	
+	<img src="multimedia-annotations.png" alt="Add annotations in Preview.app" width="879" height="764" style="margin-left:-55px"/>
+	
+	<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the bundle path. Supported folders include Bundle, Documents and Cache.</p><br>
+		
+	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p>
+	
+	<p>There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p>
+	
+		</div>
+	
+	<div id="troubleshooting" class="col-full section">
+	  <h2 class="section-title">Troubleshooting</h2>
 
-      <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
-	     A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.'</p><br>
+	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
+		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.'</p><br>
 	
 	  <p><b>Q: Everything works perfectly, but when I use pdf XYZ, your application crashes (this only happens on the device)</b><br>
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. While testing, we encountered pdfs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p><br>
@@ -70,81 +96,53 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
 		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
 		
-    </div>
-
-    <div id="titanium" class="col-full section">
-			<a name="multimedia"></a>
-	      <h2 class="section-title">Multimedia Overlay Features</h2>
-	     <p>
-	     	As of PSPDFKit 1.7, multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. </p>
+	</div>
 	
-	<p>
-		The system will auto-detect the correct end correct point. Supported are:
-	</p>
-	
-	<ul>
-		<li>- Video (m3u8, mov, avi, mpg - formats that are supported by iOS)</li>
-		<li>- Audio (mp3, m4a)</li>
-		<li>- Web Pages</li>
-		<li>- Any custom UIView with using the delegate methods</li>		
-    </ul>
-
-<p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page.</p>
-
-<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the bundle path. Supported folders include Bundle, Documents and Cache.</p>
-	
-<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p>
-
-<p>There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p>
-
-    </div>
-
-    <div id="titanium" class="col-full section">
+	<div id="titanium" class="col-full section">
 		<a name="appcelerator"></a>
-      <h2 class="section-title">Appcelerator Titanium Module</h2>
-     <p>
-     	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis.<br><br>
-You need to have Xcode 4.2 installed. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<br><br>
-See the in the module included app.js for working example code.
-     </p>
-    </div>
+	  <h2 class="section-title">Appcelerator Titanium Module</h2>
+	 <p>
+	 	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module. See the in the module included app.js for working example code.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis.<br><br>
+You need to have Xcode 4.2 installed. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.
+	 </p>
+	</div>
 
-    <div id="bugreporting" class="col-full section">
-    <h2 class="section-title">How to report a bug</h2>
+	<div id="bugreporting" class="col-full section">
+	<h2 class="section-title">How to report a bug</h2>
 <p>While Apple's devices are magical, my clairvoyant abilities are not. Please provide your environment (Xcode version, Base SDK, iOS Version, Device generation) and the PSPDFKit version. You'll find this in PSPDFKit.framework/Resources/Info.plist.</p>
 <p>Next, a stack trace or even an example project will really help. If you don't get a stack trace ("it just closes"), it's a memory problem, which I may or may not be able to help. Some pdf's are just too large to be rendered on iOS limited 64MB per app limit at all. In this case, you can use Adobe Acrobat or Preview and try to re-save it in a smaller PDF version, which most likely also reduces complexity. Also, enable the global variable kPSPDFKitAllowMemoryDebugging in your AppDelegate to see a detailed log about memory usage. Please copy and send this log with the bug report.</p><br>
 <p>If you see errors like EXEC_BAD_ACCESS, it's most likely a dangling pointer/memory corruption, which can also be from your app. Be sure to enable NSZombie (in Xcode Edit Scheme... -> Diagnostics -> Enable Zombie Objects and Malloc Stack), so you'll see the object with invalid memory management.</p><br>
 <p>Note that I can't help if you use outdated technology. Only latest-1 is supported (which currently is Xcode 4.1/4.2 and Base SDK 4.3 or 5.0 - all with Clang Compiler only.)</p>
 <p>In general, because PSPDFKit is widely used, it's pretty damn stable, so be sure to check your app first.</p>
 </div>
-    <div id="features" class="widget col-full section">
-      <h2 class="section-title">Example Project Features</h2>
-      <ul>
-        <li>
-          <p>Four examples, with ARC and with classical retain/release.</p>
-        </li>
-        <li>
-          <p>Full featured Magazine Kiosk app with JSON shop support.</p>
-        </li>
-        <li>
-          <p>Large file download support, even continues in the background.</p>
-        </li>
-        <li>
-          <p>Loads Magazines from Document folder and displays them in an animated grid.</p>
-        </li>
-        <li>
-          <p>Shows how you extend and implement all features of PSPDFKit.</p>
-        </li>
-        <li>
-          <p>Lets you play around with the various options.</p>
-        </li>
-      </ul>
-      <p>PSPDFKit.framework includes a compiled static library for armv6, armv7 and i386.</p>
-    </div>
-    <div class="fix"></div>
-    <div id="testimonials" class="col-full section">
-      <h2 class="section-title">License</h2>
-      <pre>
+	<div id="features" class="widget col-full section">
+	  <h2 class="section-title">Example Project Features</h2>
+	  <ul>
+		<li>
+		  <p>Four examples, with ARC and with classical retain/release.</p>
+		</li>
+		<li>
+		  <p>Full featured Magazine Kiosk app with JSON shop support.</p>
+		</li>
+		<li>
+		  <p>Large file download support, even continues in the background.</p>
+		</li>
+		<li>
+		  <p>Loads Magazines from Document folder and displays them in an animated grid.</p>
+		</li>
+		<li>
+		  <p>Shows how you extend and implement all features of PSPDFKit.</p>
+		</li>
+		<li>
+		  <p>Lets you play around with the various options.</p>
+		</li>
+	  </ul>
+	  <p>PSPDFKit.framework includes a compiled static library for armv6, armv7 and i386.</p>
+	</div>
+	<div class="fix"></div>
+	<div id="testimonials" class="col-full section">
+	  <h2 class="section-title">License</h2>
+	  <pre>
 <b>Evaluation License</b>
 
 The following license applies to the free trial versions of the software components.
@@ -183,8 +181,9 @@ Redistribution and use of the software is permitted in binary and/or source form
 
 The recipient has purchased a separate, independent license for the software from Peter Steinberger. The redistributed software is governed by that license.
 Any modifications to the software by the licensee are to be marked clearly as such.
-This software is provided by Peter Steinberger "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall Peter Steinberger be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of sue, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.		                </pre>
-    </div>
+This software is provided by Peter Steinberger "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall Peter Steinberger be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of sue, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.						</pre>
+	</div>
   </div>
 </div>
 </div>
+</strong>
