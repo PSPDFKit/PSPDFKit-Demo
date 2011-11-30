@@ -16,9 +16,11 @@ documentation: current-menu-item current_page_item
 	</div>
 	<div id="integration" class="col-full section">
       <h2 class="section-title">Integration</h2>
-      <p>There are two ways to integrate PSPDFKit: The binary framework, which is basically drop-in and you're good, and adding the PSPDFKit-lib.xcodeproj file as a dependency. You only get the PSPDFKit-lib if you purchased the source code.</p><br><br>
+      <p>There are two ways to integrate PSPDFKit: The binary framework, which is basically drop-in and you're good, and adding the PSPDFKit-lib.xcodeproj file as a dependency. You get the PSPDFKit-lib only if you purchased the source code.</p><br>
       
-      <p>Use the PSPDFKit-lib if possible, this enables easy source code lookup. First, copy the PSPDFKit-folder from your download in the same directory as your project xcodeproj file. Second, drag the PSPDFKit-lib.xcodeproj file into your Xcode project, under the "Frameworks" directory.</p>
+      <p>Use the PSPDFKit-lib if possible, this enables easy source code lookup:</p><br>
+      
+      <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
       
       <img src="images/project-add.png" alt="Xcode Add Project" width="1024" height="702" style="margin-left:-55px"/>
       
@@ -28,11 +30,20 @@ documentation: current-menu-item current_page_item
       <script src="https://gist.github.com/1117224.js"> </script>
       <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
     </div>
+    
     <div id="logging" class="col-full section">
       <h2 class="section-title">Logging</h2>
       <p>The log level can be set at runtime, from anywhere in your project. The default log level is PSPDFLogLevelError.</p>
       <script src="https://gist.github.com/1117227.js"> </script> 
     </div>
+    
+    <div id="localization" class="col-full section">
+      <h2 class="section-title">Localization</h2>
+      <p>See the PSPDFKit.bundle file for basic translation. It's either inside your PSPDFKit folder or inside PSPDFKit.framework/Resources.<br>Warning! This includes english and german. You need to remove those languages that you don't support; If you keep german then iTunes Connect will show german as a supported language, even if you only have a subset translated.</p>
+      <p>You can also set the translation directly in your application:</p>
+	<script src="https://gist.github.com/1409651.js"> </script>
+    </div>
+    
     <div id="troubleshooting" class="col-full section">
       <h2 class="section-title">Troubleshooting</h2>
 
