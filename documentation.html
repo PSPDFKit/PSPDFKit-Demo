@@ -41,7 +41,7 @@ documentation: current-menu-item current_page_item
 	
 	<div id="localization" class="col-full section">
 	  <h2 class="section-title">Localization</h2>
-	  <p>See the PSPDFKit.bundle file for basic translation. It's either inside your PSPDFKit folder or inside PSPDFKit.framework/Resources.<br>Warning! This includes english and german. You need to remove those languages that you don't support; If you keep german then iTunes Connect will show german as a supported language, even if you only have a subset translated.</p>
+	  <p>See the PSPDFKit.bundle file for basic translation. It's either inside your PSPDFKit folder or inside PSPDFKit.framework/Resources.<br>Warning! This includes english and german. You need to remove those languages that you don't support; If you keep german then iTunes Connect will show german as a supported language, even if you only have a subset translated.</p><br>
 	  <p>(Set before displaying a PSPDFViewController, AppDelegate is a good place)</p>
 	<script src="https://gist.github.com/1409651.js"> </script>
 	</div>
@@ -51,25 +51,22 @@ documentation: current-menu-item current_page_item
 			  <h2 class="section-title">Multimedia Overlay Features</h2>
 			 <p>
 			 	As of PSPDFKit 1.7, multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. The system will auto-detect the correct end correct point. Supported are:
-		</p>
+		</p><br>
 		
 		<ul>
 			<li>- Video (m3u8, mov, avi, mpg - formats that are supported by iOS)</li>
 			<li>- Audio (mp3, m4a)</li>
 			<li>- Web Pages</li>
-			<li>- Any custom UIView with using the delegate methods</li>		
+			<li>- Any custom UIView with using the delegate methods.</li>		
 		</ul><br>
 	
-	<p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page.</p><br>
+	<p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page. There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p><br>
 	
 	<img src="images/multimedia-annotations.png" alt="Add annotations in Preview.app" width="879" height="764" style="margin-left:-55px"/>
 	
 	<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the bundle path. Supported folders include Bundle, Documents and Cache.</p><br>
 		
 	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p>
-	
-	<p>There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p>
-	
 		</div>
 	
 	<div id="troubleshooting" class="col-full section">
