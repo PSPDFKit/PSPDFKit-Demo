@@ -12,11 +12,20 @@ documentation: current-menu-item current_page_item
   <div id="main" class="col-full">
     <div id="documentation" class="col-full section">
       <h2 class="section-title">Appledoc</h2>
-	 <p><a href="/documentation">All public classes and categries inside PSPDFKit are documented and displayed in the appledoc format.</a></p>
+	 <p><a href="/documentation">All public classes and categories inside PSPDFKit are documented and displayed in the appledoc format.</a></p>
 	</div>
 	<div id="integration" class="col-full section">
       <h2 class="section-title">Integration</h2>
-      <p>You can either integrate PSPDFKit as a drop-in framework or just drag the library project into Xcode.</p>
+      <p>There are two ways to integrate PSPDFKit: The binary framework, which is basically drop-in and you're good, and adding the PSPDFKit-lib.xcodeproj file as a dependency. (You only get the PSPDFKit-lib if you purchased the source code.)</p>
+      
+      <p>Use the PSPDFKit-lib if possible, this enables easy source code lookup. First, copy the PSPDFKit-folder from your download in the same directory as your project xcodeproj file. Second, drag the PSPDFKit-lib.xcodeproj file into your Xcode project, under the "Frameworks" directory.</p>
+      
+      <img src="images/project-add.png" alt="Xcode Add Project" width="1024" height="702"/>
+      
+      <img src="images/project-settings.png" alt="Xcode Add Project" width="1014" height="730"/>
+      
+      <p>Almost done! Add #include "PSPDFKit.h" to any file that uses PSPDFKit.</p>
+      
       <p>Open the PSPDFViewController with a simple call:</p>
       <script src="https://gist.github.com/1117224.js"> </script>
       <p>See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p>
