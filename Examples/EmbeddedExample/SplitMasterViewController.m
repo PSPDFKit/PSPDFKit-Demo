@@ -142,7 +142,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     if (pageView.document) {
         // internally, pages start at 0. But be user-friendly and start at 1.
-        self.title = [NSString stringWithFormat:@"Page %d", pageView.page + 1];    
+        self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];    
     }else {
         self.title = @"No document loaded.";
         [self.pdfController setHUDVisible:NO animated:NO]; // ensure hud is disabled if no document is loaded.
