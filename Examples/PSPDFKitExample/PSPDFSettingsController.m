@@ -18,6 +18,7 @@ static BOOL fitWidth = NO;
 static BOOL pagingEnabled = YES;
 static BOOL scrobbleBar = YES;
 static BOOL aspectRatioEqual = NO;
+static BOOL twoStepRendering = NO;
 static BOOL search = YES;
 static BOOL pdfoutline = YES;
 static BOOL annotations = YES;
@@ -48,7 +49,7 @@ static BOOL annotations = YES;
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
-                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", nil],                    
+                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", @"Two Step Rendering", nil],                    
                     nil];        
     }
     return self;
@@ -115,7 +116,7 @@ static BOOL annotations = YES;
             return @"";
             break;
         case kOptionBlockIndex:
-            return @"If small file zooming is enabled, pdf files will always be shown in full width/height, regardless of the defined CropBox.";
+            return @"If small file zooming is enabled, pdf files will always be shown in full width/height, regardless of the defined CropBox. Two-Step rendering will always redraw the pdf. Useful if your controller is not fullscreen or you have landscape presentations.";
             break;            
         case kDocOptionBlockIndex:
             return @"Usually, you have an equal aspect ratio, which speeds up displaying pdf files quite a bit. Disable if you have pages of different size inside your document.";
@@ -160,6 +161,9 @@ static BOOL annotations = YES;
                 break;
             case 3:
                 aspectRatioEqual = cellSwitch.on;
+                break;
+            case 4:
+                twoStepRendering = cellSwitch.on;
                 break;
             default:
                 break;
@@ -238,6 +242,8 @@ static BOOL annotations = YES;
                     case 3:
                         cellSwitch.on = aspectRatioEqual;
                         break;
+                    case 4:
+                        cellSwitch.on = twoStepRendering;
                     default:
                         break;
                 }        
@@ -325,5 +331,8 @@ static BOOL annotations = YES;
     return annotations;
 }
 
++ (BOOL)twoStepRendering; {
+    return twoStepRendering;
+}
 
 @end
