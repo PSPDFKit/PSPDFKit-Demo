@@ -48,6 +48,7 @@
     self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
     self.magazine.outlineEnabled = [PSPDFSettingsController pdfoutline];
     self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
+    self.magazine.twoStepRenderingEnabled = [PSPDFSettingsController twoStepRendering];
 
     // set global settings from PSPDFCacheSettingsController
     self.doublePageModeOnFirstPage = [PSPDFSettingsController doublePageModeOnFirstPage];

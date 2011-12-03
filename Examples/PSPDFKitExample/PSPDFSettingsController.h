@@ -29,5 +29,6 @@
 + (BOOL)search;
 + (BOOL)pdfoutline;
 + (BOOL)annotations;
++ (BOOL)twoStepRendering;
 
 @end
