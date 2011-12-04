@@ -195,11 +195,11 @@ static char kvoToken; // we need a static address for the kvo token
             // ensure we have thumbnails for all magazines (else they would be lazy-loaded)
             // must run on the main thread, as magazines/magazineFolder can be mutated while running
             dispatch_async(dispatch_get_main_queue(), ^{
-                for (PSPDFMagazineFolder *folder in magazineFolders) {
-                    for (PSPDFMagazine *magazine in folder.magazines) {
+                [magazineFolders enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id folder, NSUInteger idx, BOOL *stop) {
+                    [[folder magazines] enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id magazine, NSUInteger idx2, BOOL *stop2) {
                         [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
-                    }
-                }
+                    }];
+                }];
             });
             
             // now start web-request
