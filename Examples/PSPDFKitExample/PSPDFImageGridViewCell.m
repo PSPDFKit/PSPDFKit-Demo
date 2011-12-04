@@ -145,7 +145,8 @@
             [self darkenView:!magazine.isAvailable animated:NO];
         }
         
-        self.siteLabel.text = magazine.title;
+        self.siteLabel.hidden = YES;
+        //self.siteLabel.text = magazine.title;
     }
 }
 
