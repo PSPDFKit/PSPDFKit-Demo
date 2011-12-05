@@ -36,12 +36,12 @@
 		783C783313D999F300CF7C9D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C783213D999F300CF7C9D /* CoreText.framework */; };
 		783C783613D9A55E00CF7C9D /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C783413D9A55E00CF7C9D /* badge.png */; };
 		783C783713D9A55E00CF7C9D /* badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 783C783513D9A55E00CF7C9D /* badge@2x.png */; };
+		783CD112148D545500B4F3AB /* libvendor-http.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783CD10E148D53AB00B4F3AB /* libvendor-http.a */; };
 		7870242D1481C778005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7870242C1481C778005A7792 /* PSPDFKit.bundle */; };
 		78727B73141EC21900994946 /* PSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78727B72141EC21900994946 /* PSActionSheet.m */; };
 		78727B76141EC22900994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B75141EC22900994946 /* MessageUI.framework */; };
 		788ACD0513E6A23B00689E19 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 788ACD0413E6A23B00689E19 /* Icon.png */; };
 		7892B347141845C100DC5575 /* PSPDFSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892B346141845C100DC5575 /* PSPDFSettingsController.m */; };
-		78AB3DC5146D764500670352 /* libvendor-http.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78AB3D49146D75D100670352 /* libvendor-http.a */; };
 		78C22AF7148036E90092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22AF6148036E90092B889 /* ImageIO.framework */; };
 		78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78C22AF9148036FF0092B889 /* NightOwl.m4a */; };
 		78D880B013EE3984009ACEB5 /* PSPDFStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */; };
@@ -52,16 +52,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		78AB3D48146D75D100670352 /* PBXContainerItemProxy */ = {
+		783CD10D148D53AB00B4F3AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 78AB3D44146D75D000670352 /* vendor-http.xcodeproj */;
+			containerPortal = 783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 78AB3D34146D75D000670352;
 			remoteInfo = "vendor-http";
 		};
-		78AB3DC3146D764200670352 /* PBXContainerItemProxy */ = {
+		783CD110148D545100B4F3AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 78AB3D44146D75D000670352 /* vendor-http.xcodeproj */;
+			containerPortal = 783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 78AB3D33146D75D000670352;
 			remoteInfo = "vendor-http";
@@ -111,6 +111,7 @@
 		783C783213D999F300CF7C9D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		783C783413D9A55E00CF7C9D /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badge.png; sourceTree = "<group>"; };
 		783C783513D9A55E00CF7C9D /* badge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "badge@2x.png"; sourceTree = "<group>"; };
+		783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "vendor-http.xcodeproj"; path = "PSPDFKitExample/vendor-http.xcodeproj"; sourceTree = "<group>"; };
 		7870242C1481C778005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78727B71141EC21900994946 /* PSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSActionSheet.h; sourceTree = "<group>"; };
 		78727B72141EC21900994946 /* PSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSActionSheet.m; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		788ACD0413E6A23B00689E19 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7892B345141845C100DC5575 /* PSPDFSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFSettingsController.h; sourceTree = "<group>"; };
 		7892B346141845C100DC5575 /* PSPDFSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFSettingsController.m; sourceTree = "<group>"; };
-		78AB3D44146D75D000670352 /* vendor-http.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "vendor-http.xcodeproj"; path = "PSPDFKitExample/vendor-http/vendor-http.xcodeproj"; sourceTree = "<group>"; };
 		78C22AF6148036E90092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78C22AF9148036FF0092B889 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
 		78D880AE13EE3984009ACEB5 /* PSPDFStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFStoreManager.h; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78AB3DC5146D764500670352 /* libvendor-http.a in Frameworks */,
 				78E6325513DEC96700F3392F /* PSPDFKit.framework in Frameworks */,
+				783CD112148D545500B4F3AB /* libvendor-http.a in Frameworks */,
 				78C22AF7148036E90092B889 /* ImageIO.framework in Frameworks */,
 				78727B76141EC22900994946 /* MessageUI.framework in Frameworks */,
 				7805D006141EC0E8003D10D5 /* QuickLook.framework in Frameworks */,
@@ -205,7 +205,7 @@
 				783C783013D999ED00CF7C9D /* AVFoundation.framework */,
 				783C782E13D999DE00CF7C9D /* QuartzCore.framework */,
 				783417CC13DCB0EF009DAEE8 /* libz.dylib */,
-				78AB3D44146D75D000670352 /* vendor-http.xcodeproj */,
+				783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -291,10 +291,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		78AB3D45146D75D000670352 /* Products */ = {
+		783CD107148D53AB00B4F3AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78AB3D49146D75D100670352 /* libvendor-http.a */,
+				783CD10E148D53AB00B4F3AB /* libvendor-http.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -334,7 +334,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				78AB3DC4146D764200670352 /* PBXTargetDependency */,
+				783CD111148D545100B4F3AB /* PBXTargetDependency */,
 			);
 			name = PSPDFKitExample;
 			productName = PSPDFKitExample;
@@ -365,8 +365,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 78AB3D45146D75D000670352 /* Products */;
-					ProjectRef = 78AB3D44146D75D000670352 /* vendor-http.xcodeproj */;
+					ProductGroup = 783CD107148D53AB00B4F3AB /* Products */;
+					ProjectRef = 783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -377,11 +377,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		78AB3D49146D75D100670352 /* libvendor-http.a */ = {
+		783CD10E148D53AB00B4F3AB /* libvendor-http.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libvendor-http.a";
-			remoteRef = 78AB3D48146D75D100670352 /* PBXContainerItemProxy */;
+			remoteRef = 783CD10D148D53AB00B4F3AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -433,10 +433,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		78AB3DC4146D764200670352 /* PBXTargetDependency */ = {
+		783CD111148D545100B4F3AB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "vendor-http";
-			targetProxy = 78AB3DC3146D764200670352 /* PBXContainerItemProxy */;
+			targetProxy = 783CD110148D545100B4F3AB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
