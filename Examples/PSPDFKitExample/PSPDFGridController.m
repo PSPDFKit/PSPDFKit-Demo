@@ -60,23 +60,6 @@
     }
 }
 
-/*
- - (CGPathRef)renderPaperCurl:(UIView*)imgView {
- CGSize size = imgView.bounds.size;
- CGFloat curlFactor = 15.0f;
- CGFloat shadowDepth = 5.0f;
- 
- UIBezierPath *path = [UIBezierPath bezierPath];
- [path moveToPoint:CGPointMake(0.0f, 0.0f)];
- [path addLineToPoint:CGPointMake(size.width, 0.0f)];
- [path addLineToPoint:CGPointMake(size.width, size.height + shadowDepth)];
- [path addCurveToPoint:CGPointMake(0.0f, size.height + shadowDepth)
- controlPoint1:CGPointMake(size.width - curlFactor, size.height + shadowDepth - curlFactor)
- controlPoint2:CGPointMake(curlFactor, size.height + shadowDepth - curlFactor)];
- 
- return path.CGPath;
- }*/
-
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
 #ifdef kPSPDFQuickLookEngineEnabled
@@ -86,9 +69,8 @@
 #endif
     
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
-    
-    if (animated) {
-        UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+    UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+    if (animated && coverImage) {
         AQGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
@@ -124,7 +106,7 @@
             cell.hidden = NO;
         }];  
     }else {
-        [self.navigationController pushViewController:pdfController animated:NO];
+        [self.navigationController pushViewController:pdfController animated:animated];
     }
     
     return YES;
