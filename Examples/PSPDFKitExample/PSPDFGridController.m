@@ -106,7 +106,7 @@
             cell.hidden = NO;
         }];  
     }else {
-        [self.navigationController pushViewController:pdfController animated:animated];
+        [self.navigationController pushViewController:pdfController animated:NO];
     }
     
     return YES;
