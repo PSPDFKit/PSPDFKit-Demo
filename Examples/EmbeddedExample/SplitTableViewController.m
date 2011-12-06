@@ -10,7 +10,7 @@
 #import "SplitMasterViewController.h"
 
 @interface SplitTableViewController()
-@property(nonatomic, retain) NSArray *content;
+@property(nonatomic, strong) NSArray *content;
 @end
 
 @implementation SplitTableViewController
@@ -87,9 +87,9 @@
         
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
         
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)] autorelease];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)];
         
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Deselect" style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)] autorelease];        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Deselect" style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)];        
     }
     return self;
 }
@@ -97,8 +97,6 @@
 - (void)dealloc {
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
     masterVC_ = nil;
-    [content_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -132,7 +130,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
     PSPDFDocument *document = [self.content objectAtIndex:indexPath.row];

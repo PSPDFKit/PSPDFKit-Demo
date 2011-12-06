@@ -34,7 +34,6 @@
 		NSLog(@"IntelligentSplitViewController DE-OBSERVING CRASHED: %@ ... error:%@", self.title, [e description]);
 	}
 
-	[super dealloc];
 }
 
 

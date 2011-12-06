@@ -41,7 +41,7 @@
 - (void)pushView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageMode = PSPDFPageModeSingle;
     pdfController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pdfController animated:YES];
@@ -51,9 +51,9 @@
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     
-    PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageMode = PSPDFPageModeSingle;
-    UINavigationController *navCtrl = [[[UINavigationController alloc] initWithRootViewController:pdfController] autorelease];
+    UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:pdfController];
     
     if (!PSIsIpad()) {
         navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -70,7 +70,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Embedded" image:[UIImage imageNamed:@"10-medical"] tag:1] autorelease];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Embedded" image:[UIImage imageNamed:@"10-medical"] tag:1];
         
         // prepare document to display, copy it do docs folder
         // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
@@ -79,16 +79,12 @@
         [self copySampleToDocumentsFolder:kPaperExampleFileName];
         
         // add button to push view
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)] autorelease];
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)] autorelease];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)];
     }
     return self;
 }
 
-- (void)dealloc {
-    [pdfController_ release];
-    [super dealloc];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
@@ -103,7 +99,7 @@
     //NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    self.pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
+    self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;
     

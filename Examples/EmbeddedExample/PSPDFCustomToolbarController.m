@@ -24,7 +24,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"114-balloon"] tag:2] autorelease];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"114-balloon"] tag:2];
         
         // disable default toolbar
         [self setToolbarEnabled:NO];
@@ -36,7 +36,7 @@
         customViewModeSegment_.segmentedControlStyle = UISegmentedControlStyleBar;
         [customViewModeSegment_ addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
         [customViewModeSegment_ sizeToFit];
-        UIBarButtonItem *viewModeButton = [[[UIBarButtonItem alloc] initWithCustomView:customViewModeSegment_] autorelease];
+        UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:customViewModeSegment_];
 
         self.navigationItem.rightBarButtonItem = viewModeButton;
         
@@ -54,8 +54,6 @@
 
 - (void)dealloc {
     self.delegate = nil;
-    [customViewModeSegment_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,7 +86,7 @@
     // add loading indicator
         UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pageView viewWithTag:PSPDFLoadingViewTag];
     if (!indicator) {
-        indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+        indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [indicator sizeToFit];
         [indicator startAnimating];
         indicator.tag = PSPDFLoadingViewTag;

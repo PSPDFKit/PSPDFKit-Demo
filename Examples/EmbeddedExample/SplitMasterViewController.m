@@ -11,8 +11,8 @@
 #define kPSPDFReusePDFViewController YES
 
 @interface SplitMasterViewController() 
-@property(nonatomic, retain) PSPDFViewController *pdfController;
-@property (nonatomic, retain) UIPopoverController *masterPopoverController;
+@property(nonatomic, strong) PSPDFViewController *pdfController;
+@property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @end
 
 // note that it would be much better if we directly use PSPDFViewController,
@@ -28,7 +28,7 @@
 
 - (void)createPdfController {
     self.pdfController.delegate = nil;
-    self.pdfController = [[[PSPDFViewController alloc] init] autorelease];
+    self.pdfController = [[PSPDFViewController alloc] init];
     self.pdfController.delegate = self;
     
     pdfController_.view.frame = self.view.bounds;
@@ -47,10 +47,7 @@
 }
 
 - (void)dealloc {
-    [masterPopoverController_ release];
     pdfController_.delegate = nil;
-    [pdfController_ release];
-    [super dealloc];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
