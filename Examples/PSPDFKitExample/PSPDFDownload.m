@@ -35,7 +35,7 @@
 #pragma mark - Private
 
 // set a flag that the files shouldn't be backuped to iCloud.
-// http://adcdownload.apple.com//ios/ios_5.0.1_beta/iclouddonotbackupattribute.pdf
+// https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 - (void)addSkipBackupAttributeToFile:(NSURL *)url {
     u_int8_t b = 1;
     setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
@@ -69,8 +69,7 @@
 #pragma mark - Public
 
 - (NSString *)downloadDirectory {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
-    NSString *downloadDirectory = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"downloads"];
+    NSString *downloadDirectory = [[PSPDFStoreManager storagePath] stringByAppendingPathComponent:@"downloads"];
     return downloadDirectory;
 }
 
