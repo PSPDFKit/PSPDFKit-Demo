@@ -16,7 +16,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4] autorelease];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self     
     }
     return self;
@@ -67,7 +67,7 @@
             // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
             CGRect frame = [annotation rectForPageRect:pageView.bounds];
             
-            MKMapView *mapView = [[[MKMapView alloc] initWithFrame:frame] autorelease];
+            MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
             [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
             return mapView;
         }

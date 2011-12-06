@@ -11,10 +11,10 @@
 @class  SplitMasterViewController;
 
 @interface SplitTableViewController : UITableViewController <PSPDFCacheDelegate> {
-    SplitMasterViewController *masterVC_;
+    SplitMasterViewController *__unsafe_unretained masterVC_;
     NSArray *content_;
 }
 
-@property(nonatomic, assign) SplitMasterViewController *masterVC;
+@property(nonatomic, unsafe_unretained) SplitMasterViewController *masterVC;
 
 @end
