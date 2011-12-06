@@ -250,7 +250,7 @@ static char kvoToken; // we need a static address for the kvo token
         // since there is no kCFCoreFoundationVersionNumber_iPhoneOS_5_0_1, we have to do it the ugly way
         NSString *version = [[UIDevice currentDevice] systemVersion];
         isModern = ![version isEqualToString:@"5.0.0"] && [version intValue] >= 5;
-        isModern = NO; // To test migration, enable this to "fake" an old system.
+        //isModern = NO; // To test migration, enable this to "fake" an old system.
         //NSLog(@"Modern OS detected, com.apple.MobileBackup is allowed. Using Documents folder."); // log optionally
     });
     return isModern;
