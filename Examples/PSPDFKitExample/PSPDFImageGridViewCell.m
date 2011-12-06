@@ -103,11 +103,15 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
     if ([keyPath isEqualToString:@"downloadProgress"]) {
-        [self updateProgressAnimated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateProgressAnimated:YES];
+        });
     }else if([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
         // check if magazine needs to be observed (if download progress is active)
         if (self.magazine.isDownloading && ![observedMagazineDownloads_ containsObject:self.magazine]) {
-            [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
+            });
         }
     }
 }
