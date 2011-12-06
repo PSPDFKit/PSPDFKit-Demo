@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.7.5 - 01/Dec/2011__
+
+*  Fixes calling the deprecated delegate didShowPage when didShowPageView is not implemented. (thanks Albin)
+
 __v1.7.4 - 29/Nov/2011__
 
 *  Custom lookup for parent viewcontroller - allows more setups of embedded views.
