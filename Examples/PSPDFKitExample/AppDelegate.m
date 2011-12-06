@@ -76,6 +76,14 @@
     
     // add custom localization changes
     [self addCustomLocalization];
+
+    // check if system was updated to iOS 5.0.1 or higher to migrate data (iCloud Backup issue)
+    // WARNING. This should be done async instead - be careful if you hava a large dataset.
+    // See https://developer.apple.com/library/ios/#qa/qa1719/_index.html
+    BOOL migrated = [PSPDFStoreManager checkAndIfNeededMigrateStoragePathBlocking:YES completionBlock:nil];
+    if (migrated) {
+        PSPDFLog(@"Just migrated storage data.");
+    }
     
     // create main grid and show!
     gridController_ = [[PSPDFGridController alloc] init];

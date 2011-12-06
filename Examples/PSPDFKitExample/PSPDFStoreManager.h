@@ -39,7 +39,14 @@
     dispatch_queue_t magazineFolderQueue_;
 }
 
+/// Shared Instance.
 + (PSPDFStoreManager *)sharedPSPDFStoreManager;
+
+/// Helper to migrate data. Use in AppDelegate.
++ (BOOL)checkAndIfNeededMigrateStoragePathBlocking:(BOOL)blocking completionBlock:(void(^)(void))completionBlock;
+
+/// Storage path currently used. (depends on iOS version)
++ (NSString *)storagePath;
 
 @property(nonatomic, ps_weak) id<PSPDFStoreManagerDelegate> delegate;
 
