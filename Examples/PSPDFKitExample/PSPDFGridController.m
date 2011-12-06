@@ -88,8 +88,17 @@
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             CGRect newFrame = self.view.frame;
-            newFrame.origin.y -= self.navigationController.navigationBar.height;
+            newFrame.origin.y -= self.navigationController.navigationBar.height;            
             newFrame.size.height += self.navigationController.navigationBar.height;
+
+            // compensate for transparent statusbar
+            if (!PSIsIpad()) {
+                CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+                CGFloat statusBarHeight = PSIsPortrait() ? statusBarFrame.size.height : statusBarFrame.size.width;
+                newFrame.origin.y -= statusBarHeight;
+                newFrame.size.height += statusBarHeight;
+            }
+
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
