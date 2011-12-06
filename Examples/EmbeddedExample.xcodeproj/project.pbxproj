@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78249FB413EAE65F00CC0244 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78249FB313EAE65F00CC0244 /* PSPDFKit.framework */; };
 		7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */; };
 		7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9481402B800008F3AC7 /* SplitMasterViewController.m */; };
-		787024421481C7D9005A7792 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 787024411481C7D9005A7792 /* PSPDFKit.bundle */; };
 		78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B7B141EC27F00994946 /* MessageUI.framework */; };
 		78727B8F141EC33100994946 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78727B8E141EC33100994946 /* Icon.png */; };
 		78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6C13EAD25B0043F631 /* UIKit.framework */; };
@@ -29,6 +27,8 @@
 		78A100AC147C1C0600E67DAC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A100AB147C1C0600E67DAC /* MapKit.framework */; };
 		78AA95D8147C1350008E1DE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AA95D7147C1350008E1DE4 /* AppDelegate.m */; };
 		78AB1CE414085D820056E688 /* IntelligentSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AB1CE314085D820056E688 /* IntelligentSplitViewController.m */; };
+		78BF20DA148EDC5D00D404AC /* PSPDFKit-ARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BF20D9148EDC5D00D404AC /* PSPDFKit-ARC.framework */; };
+		78BF20DC148EDC6D00D404AC /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BF20DB148EDC6D00D404AC /* PSPDFKit.bundle */; };
 		78BF753C141D37D300FF02DF /* 10-medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7533141D37D300FF02DF /* 10-medical.png */; };
 		78BF753D141D37D300FF02DF /* 10-medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7534141D37D300FF02DF /* 10-medical@2x.png */; };
 		78BF753E141D37D300FF02DF /* 114-balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7535141D37D300FF02DF /* 114-balloon.png */; };
@@ -44,12 +44,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		78249FB313EAE65F00CC0244 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 		7840C9441402B7E9008F3AC7 /* SplitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewController.h; sourceTree = "<group>"; };
 		7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		7840C9471402B800008F3AC7 /* SplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitMasterViewController.h; sourceTree = "<group>"; };
 		7840C9481402B800008F3AC7 /* SplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitMasterViewController.m; sourceTree = "<group>"; };
-		787024411481C7D9005A7792 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78727B7B141EC27F00994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78727B8E141EC33100994946 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		78836E6813EAD25B0043F631 /* EmbeddedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmbeddedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +74,8 @@
 		78AA95D7147C1350008E1DE4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		78AB1CE214085D820056E688 /* IntelligentSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntelligentSplitViewController.h; path = EmbeddedExample/IntelligentSplitViewController.h; sourceTree = SOURCE_ROOT; };
 		78AB1CE314085D820056E688 /* IntelligentSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntelligentSplitViewController.m; path = EmbeddedExample/IntelligentSplitViewController.m; sourceTree = SOURCE_ROOT; };
+		78BF20D9148EDC5D00D404AC /* PSPDFKit-ARC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "PSPDFKit-ARC.framework"; path = "../PSPDFKit-ARC.framework"; sourceTree = "<group>"; };
+		78BF20DB148EDC6D00D404AC /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = "../PSPDFKit-ARC.framework/Versions/A/Resources/PSPDFKit.bundle"; sourceTree = "<group>"; };
 		78BF7533141D37D300FF02DF /* 10-medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical.png"; sourceTree = "<group>"; };
 		78BF7534141D37D300FF02DF /* 10-medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical@2x.png"; sourceTree = "<group>"; };
 		78BF7535141D37D300FF02DF /* 114-balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114-balloon.png"; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */,
 				78836E6F13EAD25B0043F631 /* Foundation.framework in Frameworks */,
 				78836E7113EAD25B0043F631 /* CoreGraphics.framework in Frameworks */,
-				78249FB413EAE65F00CC0244 /* PSPDFKit.framework in Frameworks */,
+				78BF20DA148EDC5D00D404AC /* PSPDFKit-ARC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +146,8 @@
 		78836E6B13EAD25B0043F631 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				787024411481C7D9005A7792 /* PSPDFKit.bundle */,
-				78249FB313EAE65F00CC0244 /* PSPDFKit.framework */,
+				78BF20D9148EDC5D00D404AC /* PSPDFKit-ARC.framework */,
+				78BF20DB148EDC6D00D404AC /* PSPDFKit.bundle */,
 				78C22AFF148037170092B889 /* ImageIO.framework */,
 				78A100AB147C1C0600E67DAC /* MapKit.framework */,
 				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
@@ -276,7 +276,7 @@
 				78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */,
 				78BF7544141D37D300FF02DF /* star.png in Resources */,
 				78727B8F141EC33100994946 /* Icon.png in Resources */,
-				787024421481C7D9005A7792 /* PSPDFKit.bundle in Resources */,
+				78BF20DC148EDC6D00D404AC /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
