@@ -1,5 +1,16 @@
 # Changelog
 
+__v1.8.0 - xx/Dec/2011__
+
+*  Search Highlighting! This feature is still in BETA, but already works with many documents. If it doesn't work for you, you can disable it with changing the searchMode-property in PSPDFDocumentSearcher. We're working hard to improve this. As a bonus, search is now fully async and no longer blocks the main thread.
+
+*  ARC! PSPDFKit now internally uses ARC, which gives a nice performance boost and makes the codebase a lot cleaner. PSPDFKit is still fully compatible with iOS4 upwards, and it doesn't matter if your App uses ARC or not. Note: due to a small problem with the way ARC includes support for iOS4, there now are two frameworks: PSPDFKit.framework and PSPDFKit-ARC.framwork. If your App uses ARC and you need support for iOS4, use PSPDFKit-ARC.framwork, else you need to use PSPDFKit.framework. If you use the PSPDFKit-lib.xcodeproj as a submodule, you don't have to think about this, Xcode is clever enough to not expose this bug here. See more about this at http://pspdfkit.com/documentation.html.
+
+*  Fixes a issue where PSPDFKit would never release an object if annotations were disabled.
+*  Fixes a bug where the outline was calculated too often.
+*  Lots of other small improvements.
+
+
 __v1.7.5 - 01/Dec/2011__
 
 *  Fixes calling the deprecated delegate didShowPage when didShowPageView is not implemented. (thanks Albin)
