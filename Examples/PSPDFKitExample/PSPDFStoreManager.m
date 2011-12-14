@@ -427,7 +427,7 @@ static char kvoToken; // we need a static address for the kvo token
     [self updateNewsstandIcon:nil];
 }
 
-- (void)downloadMagazine:(PSPDFMagazine *)magazine; {
+- (void)downloadMagazine:(PSPDFMagazine *)magazine {
     PSPDFDownload *storeDownload = [PSPDFDownload PDFDownloadWithURL:magazine.url];
     storeDownload.magazine = magazine;
     
