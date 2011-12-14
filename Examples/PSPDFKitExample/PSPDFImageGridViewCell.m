@@ -59,16 +59,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)aReuseIdentifier {
-    if ((self = [super initWithFrame:frame reuseIdentifier:aReuseIdentifier])) {
-        self.selectionStyle = AQGridViewCellSelectionStyleGlow;
-        self.selectionGlowColor = [UIColor blueColor];
-        
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+
         // incomplete downloads stay here
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
         // uncomment to hide label
-        self.showingSiteLabel = YES;
+        self.showingSiteLabel = NO;
     }
     
     return self;
@@ -101,7 +99,7 @@
     [self setProgress:progressTotal animated:animated];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context; {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"downloadProgress"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self updateProgressAnimated:YES];
@@ -148,8 +146,8 @@
             // dark out view if it needs to be downloaded
             [self darkenView:!magazine.isAvailable animated:NO];
         }
-        
-        self.siteLabel.hidden = YES;
+
+        // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
         //self.siteLabel.text = magazine.title;
     }
 }

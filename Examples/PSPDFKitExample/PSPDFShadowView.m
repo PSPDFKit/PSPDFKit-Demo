@@ -95,7 +95,7 @@
 #pragma mark - Public
 
 - (void)setShadowOffset:(CGFloat)shadowOffset {
-    shadowOffset = shadowOffset_;
+    shadowOffset_ = shadowOffset;
     [self setNeedsLayout];
 }
 
