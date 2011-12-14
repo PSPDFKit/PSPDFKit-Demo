@@ -5,6 +5,7 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "PSPDFGridController.h"
 #import "PSPDFImageGridViewCell.h"
 #import "PSPDFMagazine.h"
@@ -14,8 +15,9 @@
 #import "PSPDFDownload.h"
 #import "AppDelegate.h"
 #import "PSActionSheet.h"
-
+#import "PSPDFImageGridViewCell.h"
 #import "PSPDFQuickLookViewController.h"
+#import "PSPDFShadowView.h"
 
 #define kPSPDFGridFadeAnimationDuration 0.3f
 
@@ -23,6 +25,7 @@
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
 @property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
+@property(nonatomic, strong) PSPDFShadowView *backgroundView;
 @end
 
 @implementation PSPDFGridController
@@ -31,6 +34,7 @@
 @synthesize magazineFolder = magazineFolder_;
 @synthesize magazineView = magazineView_;
 @synthesize editMode = editMode_;
+@synthesize backgroundView = backgroudView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -71,9 +75,9 @@
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage) {
-        AQGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
+        GMGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
-        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
+        CGRect cellCoords = [self.gridView.scrollView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = CGRectMake(0, 0, cellCoords.size.width, cellCoords.size.height);
@@ -87,6 +91,10 @@
         baseGridPosition_ = cellCoords;
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+            self.navigationController.navigationBar.alpha = 0.f;
+            backgroudView_.shadowEnabled = NO;
+            self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
+            
             CGRect newFrame = self.view.frame;
             newFrame.origin.y -= self.navigationController.navigationBar.height;            
             newFrame.size.height += self.navigationController.navigationBar.height;
@@ -101,8 +109,7 @@
 
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            
+        } completion:^(BOOL finished) {            
             // fade for UINavigationBar
             CATransition* barTransition = [CATransition animation];
             barTransition.duration = 0.25f;
@@ -127,22 +134,12 @@
         return;
     }
     
-    // if lastNumbersOfItemsInGridView_ is > 0, grid is already loaded!
-    if(lastNumbersOfItemsInGridView_ == 0) {
-        // check if we are flattened (no folders) or not
-        NSMutableIndexSet *indexSet;
-        if (kPSPDFStoreManagerPlain) {
-            self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
-            indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self.magazineFolder.magazines count])];
-        }else {
-            indexSet = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count])]; 
-        }
-        // if we're in init, this is nil and just ignored.
-        if ([indexSet count]) {
-            [self.gridView insertItemsAtIndices:indexSet withAnimation:AQGridViewItemAnimationFade];
-            [self.gridView scrollToItemAtIndex:0 atScrollPosition:AQGridViewScrollPositionTop animated:NO];
-        }
+    // if we're in plain mode, pre-set a folder
+    if (kPSPDFStoreManagerPlain) {
+        self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
     }
+
+    [self.gridView reloadData];
 }
 
 - (void)editButtonPressed {
@@ -163,14 +160,8 @@
 }
 
 - (void)setEditMode:(BOOL)editMode {
-    editMode_ = editMode;
-    
-    NSArray *visibleCells = [self.gridView visibleCells];
-    for (PSPDFImageGridViewCell *cell in visibleCells) {
-        if ([cell isKindOfClass:[PSPDFImageGridViewCell class]]) {
-            cell.showDeleteImage = editMode;
-        }
-    }
+    editMode_ = editMode;    
+    self.gridView.editing = editMode;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +169,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.title = @"PSPDFKit Example";   
+        self.title = @"PSPDFKit Kiosk Example";   
         
         // custom back button for smaller wording
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -203,6 +194,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
+- (void)updateGridForOrientation {
+    gridView_.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 15;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -223,38 +218,39 @@
         self.navigationItem.leftBarButtonItem = optionButton;
     }else {
         // iOS5 supports easy additional buttons next to a native back button
-        PSPDF_IF_IOS5_OR_GREATER(
-                                 self.navigationItem.leftBarButtonItem = optionButton;
-                                 self.navigationItem.leftItemsSupplementBackButton = YES;
-        );
+        PSPDF_IF_IOS5_OR_GREATER(self.navigationItem.leftBarButtonItem = optionButton;
+                                 self.navigationItem.leftItemsSupplementBackButton = YES;);
     }
     
     // use custom view to match background with PSPDFViewController
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
-    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
-    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
-    backgroundView.opaque = YES;
-    [self.view addSubview:backgroundView];
+    self.backgroundView = [[PSPDFShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
+    backgroudView_.shadowOffset = toolbarHeight;
+    backgroudView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    backgroudView_.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    [self.view addSubview:backgroudView_];
     
-    self.gridView = [[PSPDFGridView alloc] initWithFrame:CGRectZero];
+    self.gridView = [[GMGridView alloc] initWithFrame:CGRectZero];
     self.gridView.backgroundColor = [UIColor clearColor];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
-    self.gridView.delegate = self;
-    self.gridView.dataSource = self;  
-    self.gridView.layoutDirection = AQGridViewLayoutDirectionVertical;
-    self.gridView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
+    self.gridView.actionDelegate = self;
+    self.gridView.centerGrid = YES;
+    self.gridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
+    NSUInteger spacing = 20;
+    self.gridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     [self.view addSubview:self.gridView];
     self.gridView.frame = self.view.bounds;
-    [self.gridView reloadData];
+    [self updateGridForOrientation];
+    self.gridView.dataSource = self; // auto-reloads
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    self.gridView.delegate = nil;
+    self.gridView.actionDelegate = nil;
     self.gridView.dataSource = nil;
     self.gridView = nil;
+    self.backgroundView = nil;
 }
 
 // default style
@@ -262,10 +258,6 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
-    
-    if ([self.gridView indexOfSelectedItem] != NSNotFound) {
-        [self.gridView deselectItemAtIndex:[self.gridView indexOfSelectedItem] animated:NO];
-    }
     
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
@@ -279,10 +271,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    PSPDFLog(@"Grid appeared.");
     
     if (self.magazineView) {
-        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+        [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            self.gridView.transform = CGAffineTransformIdentity;
             self.magazineView.frame = baseGridPosition_;
             self.gridView.alpha = 1.0f;
         } completion:^(BOOL finished) {
@@ -297,40 +289,42 @@
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = nil;
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self updateGridForOrientation];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
-- (void)updateGrid; {
+- (void)updateGrid {
     [self.gridView reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - AQGridViewDataSource
+#pragma mark - GMGridViewDataSource
 
-- (CGFloat)thumbnailSizeReductionFactor {
-    return PSIsIpad() ? 1.f : 0.588f;
-}
-
-- (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
+- (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView {    
     NSUInteger count;
     if (self.magazineFolder) {
         count = [self.magazineFolder.magazines count];
     }else {
         count = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count];
     }
-    
-    lastNumbersOfItemsInGridView_ = count;
+
     return count;
 }
 
-- (AQGridViewCell *)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)cellIndex {
-    static NSString *MagazineCellIdentifier = @"PSPDFMagazineCellIdentifier";
+- (CGSize)sizeForItemsInGMGridView:(GMGridView *)gridView {
+    return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(110, 140);
+}
+
+- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
+    CGSize size = [self sizeForItemsInGMGridView:gridView];
     
-    PSPDFImageGridViewCell * cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCellWithIdentifier:MagazineCellIdentifier];
+    PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCell];
     if (!cell) {
-        CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
-        cell = [[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.f, 0.f, roundf(154.f*thumbnailSizeReductionFactor), roundf(208.f*thumbnailSizeReductionFactor)) reuseIdentifier:MagazineCellIdentifier];
-        cell.selectionGlowColor = [UIColor blueColor];
+        cell = [[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
     }
     
     if (self.magazineFolder) {
@@ -341,19 +335,14 @@
     
     // set edit mode
     cell.showDeleteImage = self.isEditMode;
-
+    
     return cell;
 }
 
-- (CGSize)portraitGridCellSizeForGridView:(AQGridView *)aGridView {
-    CGFloat thumbnailSizeReductionFactor = [self thumbnailSizeReductionFactor];
-    return CGSizeMake(roundf(168.f*thumbnailSizeReductionFactor), roundf(224.f*thumbnailSizeReductionFactor));
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - AQGridViewDelegate
+#pragma mark - GMGridViewActionDelegate
 
-- (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)gridIndex {
+- (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)gridIndex {
     PSPDFMagazine *magazine;
     PSPDFMagazineFolder *folder;
     
@@ -365,7 +354,7 @@
         magazine = [folder firstMagazine];
     }
     
-    AQGridViewCell *cell = [gridView cellForItemAtIndex:gridIndex];
+    GMGridViewCell *cell = [gridView cellForItemAtIndex:gridIndex];
     PSELog(@"Magazine selected: %d %@", gridIndex, magazine);    
 
     if (self.isEditMode) {
@@ -402,10 +391,7 @@
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
         } else {
-            BOOL openSuccess = [self openMagazine:magazine animated:YES cellIndex:gridIndex];
-            if (!openSuccess) {
-                [self.gridView deselectItemAtIndex:gridIndex animated:NO];
-            }
+            [self openMagazine:magazine animated:YES cellIndex:gridIndex];
         }
     }else {
         PSPDFGridController *gridController = [[PSPDFGridController alloc] initWithMagazineFolder:folder];
@@ -424,39 +410,32 @@
             [self.navigationController pushViewController:gridController animated:YES];                
         }
     }
-    
-    // remove selection
-    [self.gridView deselectItemAtIndex:gridIndex animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFStoreManagerDelegate
 
-- (void)magazineStoreBeginUpdate {
-    [self.gridView beginUpdates];
-}
-- (void)magazineStoreEndUpdate {
-    [self.gridView endUpdates];
-}
+- (void)magazineStoreBeginUpdate {}
+- (void)magazineStoreEndUpdate {}
 
 - (void)magazineStoreFolderDeleted:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView deleteItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationBottom];
+        [self.gridView removeObjectAtIndex:cellIndex];
     }
 }
 
 - (void)magazineStoreFolderAdded:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView insertItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationTop];
+        [self.gridView insertObjectAtIndex:cellIndex];
     }
 }
 
 - (void)magazineStoreFolderModified:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView reloadItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationFade];  
+        [self.gridView reloadObjectAtIndex:cellIndex];
     }
 }
 
@@ -468,21 +447,21 @@
 - (void)magazineStoreMagazineDeleted:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView deleteItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationFade];  
+        [self.gridView removeObjectAtIndex:cellIndex];
     }    
 }
 
 - (void)magazineStoreMagazineAdded:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView insertItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationFade];  
+        [self.gridView insertObjectAtIndex:cellIndex];
     }        
 }
 
 - (void)magazineStoreMagazineModified:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView reloadItemsAtIndices:[NSIndexSet indexSetWithIndex:cellIndex] withAnimation:AQGridViewItemAnimationFade];  
+        [self.gridView reloadObjectAtIndex:cellIndex];
     }    
 }
 
