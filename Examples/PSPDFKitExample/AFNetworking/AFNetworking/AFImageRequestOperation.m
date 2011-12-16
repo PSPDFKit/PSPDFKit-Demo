@@ -83,10 +83,10 @@ static dispatch_queue_t image_request_operation_processing_queue() {
             return;
         }
         
-        dispatch_async(image_request_operation_processing_queue(), ^(void) {
+        dispatch_async(image_request_operation_processing_queue(), ^{
             if (operation.error) {
                 if (failure) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         failure(operation.request, operation.response, operation.error);
                     });
                 }
@@ -98,7 +98,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
                 }
                 
                 if (success) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         success(operation.request, operation.response, image);
                     });
                 }
@@ -126,10 +126,10 @@ static dispatch_queue_t image_request_operation_processing_queue() {
             return;
         }
         
-        dispatch_async(image_request_operation_processing_queue(), ^(void) {
+        dispatch_async(image_request_operation_processing_queue(), ^{
             if (operation.error) {
                 if (failure) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         failure(operation.request, operation.response, operation.error);
                     });
                 }
@@ -141,7 +141,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
                 }
                 
                 if (success) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         success(operation.request, operation.response, image);
                     });
                 }

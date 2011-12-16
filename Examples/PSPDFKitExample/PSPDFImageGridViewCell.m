@@ -291,7 +291,7 @@
     
     // remove progressView
     if (!shouldShowProgress && self.progressView.superview) {
-        [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^(void) {
+        [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^{
             self.progressView.alpha = 0.f;
         } completion:^(BOOL finished) {
             [self.progressView removeFromSuperview];

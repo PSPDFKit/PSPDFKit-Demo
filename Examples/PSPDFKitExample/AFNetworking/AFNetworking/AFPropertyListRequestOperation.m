@@ -58,15 +58,15 @@ static dispatch_queue_t property_list_request_operation_processing_queue() {
         
         if (operation.error) {
             if (failure) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     failure(operation.request, operation.response, operation.error);
                 });
             }
         } else {
-            dispatch_async(property_list_request_operation_processing_queue(), ^(void) {
+            dispatch_async(property_list_request_operation_processing_queue(), ^{
                 id propertyList = operation.responsePropertyList;
                 
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     if (operation.error) {
                         if (failure) {
                             failure(operation.request, operation.response, operation.error);
