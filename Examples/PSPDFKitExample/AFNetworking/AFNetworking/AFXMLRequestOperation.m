@@ -54,14 +54,14 @@
     
         if (operation.error) {
             if (failure) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     failure(operation.request, operation.response, operation.error);
                 });
             }
         } else {
             NSXMLParser *XMLParser = operation.responseXMLParser;
             if (success) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     success(operation.request, operation.response, XMLParser);
                 });
             }
@@ -84,15 +84,15 @@
         
         if (operation.error) {
             if (failure) {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     failure(operation.request, operation.response, operation.error);
                 });
             }
         } else {
-            dispatch_async(xml_request_operation_processing_queue(), ^(void) {
+            dispatch_async(xml_request_operation_processing_queue(), ^{
                 NSXMLDocument *XMLDocument = operation.responseXMLDocument;
                 if (success) {
-                    dispatch_async(dispatch_get_main_queue(), ^(void) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         success(operation.request, operation.response, XMLDocument);
                     });
                 }

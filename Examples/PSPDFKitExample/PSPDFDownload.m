@@ -126,7 +126,7 @@
     [pdfRequest setDownloadDestinationPath:destPath];
     [pdfRequest setDownloadProgressDelegate:self]; // add ui tracking
     
-    [pdfRequest setCompletionBlock:^(void) {
+    [pdfRequest setCompletionBlock:^{
         PSELog(@"Download finished: %@", self.url);
         
         if (self.isCancelled) {
@@ -148,7 +148,7 @@
     }];
     
     __ps_weak ASIHTTPRequest *pdfRequestWeak = pdfRequest;
-    [pdfRequest setFailedBlock:^(void) {
+    [pdfRequest setFailedBlock:^{
         PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequestWeak.error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
         self.error = pdfRequestWeak.error;
