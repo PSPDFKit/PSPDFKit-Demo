@@ -45,6 +45,10 @@ static NSDateFormatter* CreateDateFormatter(NSString *format) {
 
 @implementation NSCachedURLResponse(NSCoder)
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+// This is an intentional override of the default behavior. Silence the warning.
+
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeDataObject:self.data];
     [coder encodeObject:self.response forKey:@"response"];
@@ -58,6 +62,8 @@ static NSDateFormatter* CreateDateFormatter(NSString *format) {
                          userInfo:[coder decodeObjectForKey:@"userInfo"]
                     storagePolicy:[coder decodeIntForKey:@"storagePolicy"]];
 }
+
+#pragma clang diagnostic pop
 
 @end
 
@@ -545,8 +551,10 @@ static dispatch_queue_t get_disk_io_queue() {
 #pragma mark NSObject
 
 - (void)dealloc {
-    dispatch_source_cancel(_maintenanceTimer);
-    dispatch_release(_maintenanceTimer);
+    if(_maintenanceTimer) {
+        dispatch_source_cancel(_maintenanceTimer);
+        dispatch_release(_maintenanceTimer);
+    }
     [_diskCachePath release], _diskCachePath = nil;
     [_diskCacheInfo release], _diskCacheInfo = nil;
     [super dealloc];
