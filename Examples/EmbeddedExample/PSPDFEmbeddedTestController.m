@@ -37,7 +37,6 @@
     [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];    
 }
 
-
 - (void)pushView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
@@ -85,14 +84,12 @@
     return self;
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     // add pdf controller as subcontroller (iOS4 way, iOS5 has new, better methods for that)

@@ -354,7 +354,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFCacheDelegate
 
-- (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size; {
+- (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size{
     PSPDFMagazine *magazine = self.magazine;
     if (!magazine) {
         magazine = [self.magazineFolder firstMagazine];

@@ -45,12 +45,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-+ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url; {
++ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url {
     PSPDFDownload *pdfDownload = [[[self class] alloc] initWithURL:url];
     return pdfDownload;
 }
 
-- (id)initWithURL:(NSURL *)url; {
+- (id)initWithURL:(NSURL *)url {
     if ((self = [super init])) {
         url_ = url;
     }
@@ -99,7 +99,7 @@
     }
 }
 
-- (void)setProgressDelegate:(id<ASIProgressDelegate>)progressDelegate; {
+- (void)setProgressDelegate:(id<ASIProgressDelegate>)progressDelegate {
     [request_ setDownloadProgressDelegate:progressDelegate];
 }
 

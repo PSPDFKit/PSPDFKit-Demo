@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-+ (PSPDFMagazine *)magazineWithPath:(NSString *)path; {
++ (PSPDFMagazine *)magazineWithPath:(NSString *)path {
     NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
     PSPDFMagazine *magazine = [(PSPDFMagazine *)[[self class] alloc] initWithUrl:url];
     magazine.available = YES;

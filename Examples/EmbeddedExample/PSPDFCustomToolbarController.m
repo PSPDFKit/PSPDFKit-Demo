@@ -39,7 +39,6 @@
         UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:customViewModeSegment_];
 
         self.navigationItem.rightBarButtonItem = viewModeButton;
-        
         self.delegate = self;
         
         // use large thumbnails!
@@ -67,11 +66,9 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 #define PSPDFLoadingViewTag 225475
-
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
     self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
 }
-
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode; {
     [customViewModeSegment_ setSelectedSegmentIndex:(NSUInteger)viewMode];
