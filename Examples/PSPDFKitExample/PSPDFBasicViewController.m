@@ -71,7 +71,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIPopoverController
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController; {
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
     self.popoverController = nil;
 }
 

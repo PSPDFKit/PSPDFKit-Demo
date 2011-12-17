@@ -20,7 +20,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
+- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
     [self presentModalViewController:navController animated:animated];
@@ -132,7 +132,7 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (UIBarButtonItem *)toolbarBackButton; {
+- (UIBarButtonItem *)toolbarBackButton {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back")
                                                                     style:UIBarButtonItemStyleBordered
                                                                    target:self
@@ -144,7 +144,7 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 // time to adjust PSPDFViewController before a PSPDFDocument is displayed
-- (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
 }
 
@@ -160,7 +160,7 @@
 
 // if user tapped within page bounds, this will notify you.
 // return YES if this touch was processed by you and need no further checking by PSPDFKit.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize; {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize {
     PSELog(@"Page %@ tapped at %@.", NSStringFromCGSize(pageSize), NSStringFromCGPoint(point));
     
     // touch not used

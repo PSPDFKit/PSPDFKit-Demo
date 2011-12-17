@@ -43,7 +43,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated; {
+- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
     [self presentModalViewController:navController animated:animated];
@@ -320,7 +320,7 @@
 }
 
 - (CGSize)sizeForItemsInGMGridView:(GMGridView *)gridView {
-    return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(110, 140);
+    return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(82, 120);
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
@@ -343,6 +343,42 @@
     return cell;
 }
 
+- (void)GMGridView:(GMGridView *)gridView deleteItemAtIndex:(NSInteger)index {
+    PSPDFMagazine *magazine;
+    PSPDFMagazineFolder *folder;
+    
+    if (self.magazineFolder) {
+        folder = self.magazineFolder;
+        magazine = [self.magazineFolder.magazines objectAtIndex:index];
+    }else {
+        folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];
+        magazine = [folder firstMagazine];
+    }
+    GMGridViewCell *cell = [gridView cellForItemAtIndex:index];
+
+    BOOL canDelete = YES;
+    NSString *message = nil;
+    if ([folder.magazines count] > 1 && !self.magazineFolder) {
+        message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
+    }else {
+        message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
+        canDelete = magazine.isAvailable || magazine.isDownloading;
+    }
+    if (canDelete) {
+        PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
+        deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
+            if (self.magazineFolder) {
+                [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
+            }else {
+                [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
+            }
+        }];
+        [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+        [deleteAction showFromRect:cell.frame inView:self.view animated:YES];
+    }        
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - GMGridViewActionDelegate
 
@@ -358,34 +394,9 @@
         magazine = [folder firstMagazine];
     }
     
-    GMGridViewCell *cell = [gridView cellForItemAtIndex:gridIndex];
     PSELog(@"Magazine selected: %d %@", gridIndex, magazine);    
 
-    if (self.isEditMode) {
-        // unless we have multiselect...
-        BOOL canDelete = YES;
-        NSString *message = nil;
-        if ([folder.magazines count] > 1 && !self.magazineFolder) {
-            message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
-        }else {
-            message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
-            canDelete = magazine.isAvailable || magazine.isDownloading;
-        }
-        if (canDelete) {
-            PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
-            deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
-                if (self.magazineFolder) {
-                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
-                }else {
-                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
-                }
-            }];
-            [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-            [deleteAction showFromRect:cell.frame inView:self.view animated:YES];
-        }        
-    }
-    else if ([folder.magazines count] == 1 || self.magazineFolder) {
+    if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Item is currently downloading.")]
                                          message:nil
