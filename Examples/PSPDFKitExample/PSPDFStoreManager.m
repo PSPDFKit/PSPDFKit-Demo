@@ -553,7 +553,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
 }
 
-- (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine; {
+- (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine {
     for (PSPDFDownload *aDownload in downloadQueue_) {
         if(aDownload.magazine == magazine) {
             return aDownload;

@@ -41,7 +41,7 @@ static BOOL annotations = YES;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithStyle:(UITableViewStyle)style; {
+- (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         content_ = [[NSArray alloc] initWithObjects:
                     [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
@@ -287,7 +287,7 @@ static BOOL annotations = YES;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (PSPDFPageMode)pageMode; {
++ (PSPDFPageMode)pageMode {
     return pageMode;
 }
 
@@ -295,7 +295,7 @@ static BOOL annotations = YES;
     return pageScrolling;
 }
 
-+ (BOOL)doublePageModeOnFirstPage; {
++ (BOOL)doublePageModeOnFirstPage {
     return doublePageModeOnFirstPage;
 }
 
@@ -303,15 +303,15 @@ static BOOL annotations = YES;
     return zoomingSmallDocumentsEnabled;
 }
 
-+ (BOOL)fitWidth; {
++ (BOOL)fitWidth {
     return fitWidth;
 }
 
-+ (BOOL)pagingEnabled; {
++ (BOOL)pagingEnabled {
     return pagingEnabled;
 }
 
-+ (BOOL)scrobbleBar; {
++ (BOOL)scrobbleBar {
     return scrobbleBar;
 }
 
@@ -319,19 +319,19 @@ static BOOL annotations = YES;
     return aspectRatioEqual;
 }
 
-+ (BOOL)search; {
++ (BOOL)search {
     return search;
 }
 
-+ (BOOL)pdfoutline; {
++ (BOOL)pdfoutline {
     return pdfoutline;
 }
 
-+ (BOOL)annotations; {
++ (BOOL)annotations {
     return annotations;
 }
 
-+ (BOOL)twoStepRendering; {
++ (BOOL)twoStepRendering {
     return twoStepRendering;
 }
 

@@ -19,7 +19,7 @@ static NSOperationQueue* cw_sharedOperationQueue = nil;
   return cw_sharedOperationQueue;
 }
 
-+ (void)setSharedOperationQueue:(NSOperationQueue*)operationQueue; {
++ (void)setSharedOperationQueue:(NSOperationQueue*)operationQueue {
 	if (operationQueue != cw_sharedOperationQueue) {
     cw_sharedOperationQueue = operationQueue;
   }
@@ -30,13 +30,13 @@ static NSOperationQueue* cw_sharedOperationQueue = nil;
 
 @implementation NSObject (CWSharedQueue)
 
-- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg; {
+- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg {
 	NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:aSelector object:arg];
   [[NSOperationQueue sharedOperationQueue] addOperation:operation];
 	return operation;  
 }
 
-- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg dependencies:(NSArray *)dependencies priority:(NSOperationQueuePriority)priority; {
+- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg dependencies:(NSArray *)dependencies priority:(NSOperationQueuePriority)priority {
 	NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:aSelector object:arg];
   [operation setQueuePriority:priority];
   for (NSOperation* dependency in dependencies) {

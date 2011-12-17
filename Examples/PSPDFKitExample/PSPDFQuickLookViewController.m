@@ -44,7 +44,7 @@
  * @param controller The Preview Controller.
  * @result The number of items.
  */
-- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller; {
+- (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
     return 1; // only supported for whole files
     //return [document_.files count];
 }
@@ -64,7 +64,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - QLPreviewControllerDelegate
 
-- (void)previewControllerWillDismiss:(QLPreviewController *)controller; {
+- (void)previewControllerWillDismiss:(QLPreviewController *)controller {
     [self dismissModalViewControllerAnimated:YES];
 }
 
