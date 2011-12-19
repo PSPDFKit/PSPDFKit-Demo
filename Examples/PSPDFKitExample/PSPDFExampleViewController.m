@@ -148,16 +148,6 @@
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowPage:(NSUInteger)page {
-    //PSELog(@"showing page %d", page);
-    
-    // update title!
-    if (PSIsIpad()) {
-        NSString *title = [NSString stringWithFormat:@"%@ %d/%d", self.magazine.title, page, [self.magazine pageCount]];
-        pdfController.title = title;
-    }
-}
-
 // if user tapped within page bounds, this will notify you.
 // return YES if this touch was processed by you and need no further checking by PSPDFKit.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize {
@@ -167,8 +157,8 @@
     return NO;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page {
-    PSELog(@"page %d rendered.", page);
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
+    PSELog(@"page %d rendered.", pageView.page);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
