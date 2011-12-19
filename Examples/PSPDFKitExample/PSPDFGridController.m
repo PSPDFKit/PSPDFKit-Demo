@@ -92,6 +92,11 @@
         [self.view addSubview:magazineView];
         self.magazineView = magazineView;
         baseGridPosition_ = cellCoords;
+
+        // add a smooth status bar transition on the iPhone
+        if (!PSIsIpad()) {
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+        }
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.navigationController.navigationBar.alpha = 0.f;
@@ -261,6 +266,7 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;

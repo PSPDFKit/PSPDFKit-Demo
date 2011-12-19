@@ -17,6 +17,10 @@
 		783417CD13DCB0EF009DAEE8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 783417CC13DCB0EF009DAEE8 /* libz.dylib */; };
 		783417D113DCB10A009DAEE8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */; };
 		783417D313DCB169009DAEE8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783417D213DCB169009DAEE8 /* SystemConfiguration.framework */; };
+		7835F1A8149FD8220027FB8D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1A6149FD8220027FB8D /* settings.png */; };
+		7835F1A9149FD8220027FB8D /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1A7149FD8220027FB8D /* settings@2x.png */; };
+		7835F1B6149FFB0D0027FB8D /* settings_landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1B4149FFB0D0027FB8D /* settings_landscape.png */; };
+		7835F1B7149FFB0D0027FB8D /* settings_landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1B5149FFB0D0027FB8D /* settings_landscape@2x.png */; };
 		783C77A513D982B100CF7C9D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C77A413D982B100CF7C9D /* UIKit.framework */; };
 		783C77A713D982B100CF7C9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C77A613D982B100CF7C9D /* Foundation.framework */; };
 		783C77A913D982B100CF7C9D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783C77A813D982B100CF7C9D /* CoreGraphics.framework */; };
@@ -81,6 +85,10 @@
 		783417CC13DCB0EF009DAEE8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		783417D213DCB169009DAEE8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7835F1A6149FD8220027FB8D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		7835F1A7149FD8220027FB8D /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		7835F1B4149FFB0D0027FB8D /* settings_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings_landscape.png; sourceTree = "<group>"; };
+		7835F1B5149FFB0D0027FB8D /* settings_landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_landscape@2x.png"; sourceTree = "<group>"; };
 		783C77A013D982B100CF7C9D /* PSPDFKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783C77A413D982B100CF7C9D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		783C77A613D982B100CF7C9D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -286,6 +294,10 @@
 				783C783513D9A55E00CF7C9D /* badge@2x.png */,
 				783C782A13D9961B00CF7C9D /* linen_texture_dark.png */,
 				783C782B13D9961B00CF7C9D /* linen_texture_dark@2x.png */,
+				7835F1A6149FD8220027FB8D /* settings.png */,
+				7835F1A7149FD8220027FB8D /* settings@2x.png */,
+				7835F1B4149FFB0D0027FB8D /* settings_landscape.png */,
+				7835F1B5149FFB0D0027FB8D /* settings_landscape@2x.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -409,6 +421,10 @@
 				7805D034141EC10C003D10D5 /* delete@2x.png in Resources */,
 				78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */,
 				78F0E19D1498ECF9007E62E0 /* PSPDFKit.bundle in Resources */,
+				7835F1A8149FD8220027FB8D /* settings.png in Resources */,
+				7835F1A9149FD8220027FB8D /* settings@2x.png in Resources */,
+				7835F1B6149FFB0D0027FB8D /* settings_landscape.png in Resources */,
+				7835F1B7149FFB0D0027FB8D /* settings_landscape@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
