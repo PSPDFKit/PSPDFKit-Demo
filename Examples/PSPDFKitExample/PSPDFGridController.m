@@ -21,6 +21,9 @@
 
 #define kPSPDFGridFadeAnimationDuration 0.3f
 
+// the delete button target is small enough that we don't need to ask for confirmation.
+#define kPSPDFShouldShowDeleteConfirmationDialog NO
+
 @interface PSPDFGridController()
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
@@ -373,24 +376,28 @@
         message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
         canDelete = magazine.isAvailable || magazine.isDownloading;
     }
-    if (canDelete) {
-        PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
-        deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
-            if (self.magazineFolder) {
-                [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
-            }else {
-                [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
-            }
-            // TODO should re-calculate index here.
-            [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
-        }];
-        [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-        CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
-        [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
-    }
     
-    return NO;
+    BOOL deleteItem = canDelete;
+    if (kPSPDFShouldShowDeleteConfirmationDialog) {
+        if (canDelete) {
+            PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
+            deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
+                if (self.magazineFolder) {
+                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
+                }else {
+                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
+                }
+                // TODO should re-calculate index here.
+                [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+            }];
+            [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+            CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
+            [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
+            deleteItem = NO;
+        }
+    }
+    return deleteItem;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
