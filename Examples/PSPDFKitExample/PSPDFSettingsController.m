@@ -45,7 +45,7 @@ static BOOL annotations = YES;
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         content_ = [[NSArray alloc] initWithObjects:
                     [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
-                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertial (like UIWebView)", nil],                    
+                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
