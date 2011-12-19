@@ -337,13 +337,22 @@
         cell.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:cellIndex];  
     }
     
-    // set edit mode
-    cell.showDeleteImage = self.isEditMode;
-    
     return cell;
 }
 
-- (void)GMGridView:(GMGridView *)gridView deleteItemAtIndex:(NSInteger)index {
+- (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {
+    BOOL canDelete;
+    if (!self.magazineFolder) {
+        canDelete = YES;
+    }else {
+        PSPDFMagazine *magazine = [self.magazineFolder.magazines objectAtIndex:index];
+        canDelete = magazine.isAvailable && !magazine.isDownloading;
+    }
+    return canDelete;
+}
+
+
+- (BOOL)GMGridView:(GMGridView *)gridView shouldDeleteItemAtIndex:(NSInteger)index {
     PSPDFMagazine *magazine;
     PSPDFMagazineFolder *folder;
     
@@ -354,7 +363,7 @@
         folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];
         magazine = [folder firstMagazine];
     }
-    GMGridViewCell *cell = [gridView cellForItemAtIndex:index];
+    PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
 
     BOOL canDelete = YES;
     NSString *message = nil;
@@ -373,10 +382,15 @@
             }else {
                 [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
             }
+            // TODO should re-calculate index here.
+            [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
         }];
         [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-        [deleteAction showFromRect:cell.frame inView:self.view animated:YES];
-    }        
+        CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
+        [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
+    }
+    
+    return NO;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -436,21 +450,21 @@
 - (void)magazineStoreFolderDeleted:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView removeObjectAtIndex:cellIndex];
+        [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }
 }
 
 - (void)magazineStoreFolderAdded:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView insertObjectAtIndex:cellIndex];
+        [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }
 }
 
 - (void)magazineStoreFolderModified:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView reloadObjectAtIndex:cellIndex];
+        [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }
 }
 
@@ -462,21 +476,21 @@
 - (void)magazineStoreMagazineDeleted:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView removeObjectAtIndex:cellIndex];
+        [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }    
 }
 
 - (void)magazineStoreMagazineAdded:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView insertObjectAtIndex:cellIndex];
+        [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }        
 }
 
 - (void)magazineStoreMagazineModified:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView reloadObjectAtIndex:cellIndex];
+        [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
     }    
 }
 

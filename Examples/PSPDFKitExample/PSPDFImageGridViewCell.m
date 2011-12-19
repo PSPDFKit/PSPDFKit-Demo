@@ -29,7 +29,6 @@
 @synthesize magazine = magazine_;
 @synthesize magazineFolder = magazineFolder_;
 @synthesize magazineCounterBadgeImage = magazineCounterBadgeImage_;
-@synthesize showDeleteImage = showDeleteImage_;
 @synthesize progressView = progressView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +60,8 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-
+        self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
+        
         // incomplete downloads stay here
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
@@ -83,7 +83,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    deleteImage_.frame = CGRectMake(self.imageView.left-10, self.imageView.top-10, 29, 29);
+    self.deleteButtonOffset = CGPointMake(self.imageView.left-10, self.imageView.top-10);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -318,23 +318,8 @@
     [self.contentView bringSubviewToFront:magazineCounterBadgeImage_];
 }
 
-- (void)setShowDeleteImage:(BOOL)showDeleteImage {
-    if (showDeleteImage != showDeleteImage_) {
-        showDeleteImage_ = showDeleteImage;
-        
-        if (showDeleteImage) {
-            if (!deleteImage_) {
-                deleteImage_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"delete"]];
-                [self.contentView addSubview:deleteImage_];
-            }
-        }
-        deleteImage_.hidden = !showDeleteImage || (self.magazine && !self.magazine.isAvailable && !self.magazine.isDownloading);
-        [self setNeedsLayout];
-    }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - AQGridViewCell
+#pragma mark - GMGridViewCell
 
 - (void)prepareForReuse {
     [super prepareForReuse];
