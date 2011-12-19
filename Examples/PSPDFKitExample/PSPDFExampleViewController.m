@@ -20,10 +20,18 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
+- (void)presentModalViewController:(UIViewController *)controller withCloseButton:(BOOL)withCloseButton animated:(BOOL)animated {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    if (withCloseButton) {
+        controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    }
+    BOOL hasTransparentStatusBar = [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent;
     [self presentModalViewController:navController animated:animated];
+    
+    // darken up the statusbar
+    if (hasTransparentStatusBar) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
+    }
 }
 
 - (void)optionsButtonPressed:(id)sender {
@@ -36,7 +44,7 @@
             self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
             [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
-            [self presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
+            [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
         }
     }
 }
@@ -49,7 +57,7 @@
     self.magazine.outlineEnabled = [PSPDFSettingsController pdfoutline];
     self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
     self.magazine.twoStepRenderingEnabled = [PSPDFSettingsController twoStepRendering];
-
+    
     // set global settings from PSPDFCacheSettingsController
     self.doublePageModeOnFirstPage = [PSPDFSettingsController doublePageModeOnFirstPage];
     self.zoomingSmallDocumentsEnabled = [PSPDFSettingsController zoomingSmallDocumentsEnabled];
@@ -119,12 +127,20 @@
 #pragma mark - PSPDFViewController
 
 - (NSArray *)additionalLeftToolbarButtons {
+    UIBarButtonItem *button;
     
-    // button width is too high
-    UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? @"Options" : @"O"
-                                                                style:UIBarButtonItemStyleBordered
+    PSPDF_IF_PRE_IOS5(button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]      
+                                                                style:UIBarButtonItemStylePlain
                                                                target:self
-                                                               action:@selector(optionsButtonPressed:)];
+                                                               action:@selector(optionsButtonPressed:)];)
+    
+    // on iOS5, we can finally set the landscapeImagePhone
+    PSPDF_IF_IOS5_OR_GREATER(button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
+                                                         landscapeImagePhone:[UIImage imageNamed:@"settings_landscape"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(optionsButtonPressed:)];)
+    
     return [NSArray arrayWithObject:button];
 }
 
@@ -134,9 +150,9 @@
 
 - (UIBarButtonItem *)toolbarBackButton {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back")
-                                                                    style:UIBarButtonItemStyleBordered
-                                                                   target:self
-                                                                   action:@selector(documentButtonPressed)];
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(documentButtonPressed)];
     return backButton;
 }
 
