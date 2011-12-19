@@ -15,13 +15,10 @@
     UILabel *magazineCounter_;
     UIImageView *magazineCounterBadgeImage_;
     NSMutableSet *observedMagazineDownloads_;
-    UIImageView *deleteImage_;
 }
 
 @property(nonatomic, strong) UIImage *image;
 @property(nonatomic, assign) NSUInteger magazineCount;
-
-@property(nonatomic, assign) BOOL showDeleteImage;
 
 // don't set both
 @property (nonatomic, strong) PSPDFMagazine *magazine;
