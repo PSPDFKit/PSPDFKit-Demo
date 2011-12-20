@@ -347,6 +347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 783C77C113D982B100CF7C9D /* Build configuration list for PBXNativeTarget "PSPDFKitExample" */;
 			buildPhases = (
+				789C122A14A0E5A400AE9028 /* ShellScript */,
 				783C779C13D982B100CF7C9D /* Sources */,
 				783C779D13D982B100CF7C9D /* Frameworks */,
 				783C779E13D982B100CF7C9D /* Resources */,
@@ -430,6 +431,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		789C122A14A0E5A400AE9028 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nversion=`$git describe --tags --always`\ncount=`$git log --pretty=format:'' | wc -l`\necho -e \"#define GIT_VERSION $version\\n#define GIT_COMMIT_COUNT $count\" > InfoPlist.h";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		783C779C13D982B100CF7C9D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -490,6 +507,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "./**";
+				INFOPLIST_PREFIX_HEADER = InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -515,6 +534,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "./**";
+				INFOPLIST_PREFIX_HEADER = InfoPlist.h;
+				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
