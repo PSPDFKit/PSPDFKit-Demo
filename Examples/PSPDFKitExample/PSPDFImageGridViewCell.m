@@ -189,7 +189,7 @@
 #define kiPhoneReductionFactor 0.588
 #define kMagazineCountLabelTag 32443
 - (void)setMagazineCount:(NSUInteger)newMagazineCount {
-    if (!magazineCounter_) { // lazy creation
+    if (!magazineCounter_ && newMagazineCount > 1) { // lazy creation
         self.magazineCounterBadgeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
         magazineCounterBadgeImage_.opaque = NO;
         magazineCounterBadgeImage_.alpha = 0.9f;
