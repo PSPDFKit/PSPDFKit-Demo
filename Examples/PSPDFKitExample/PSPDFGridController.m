@@ -282,7 +282,7 @@
     [super viewDidAppear:animated];
     
     if (self.magazineView) {
-        [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.gridView.transform = CGAffineTransformIdentity;
             self.magazineView.frame = baseGridPosition_;
             self.gridView.alpha = 1.0f;
