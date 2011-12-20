@@ -20,20 +20,6 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)presentModalViewController:(UIViewController *)controller withCloseButton:(BOOL)withCloseButton animated:(BOOL)animated {
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    if (withCloseButton) {
-        controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
-    }
-    BOOL hasTransparentStatusBar = [UIApplication sharedApplication].statusBarStyle == UIStatusBarStyleBlackTranslucent;
-    [self presentModalViewController:navController animated:animated];
-    
-    // darken up the statusbar
-    if (hasTransparentStatusBar) {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
-    }
-}
-
 - (void)optionsButtonPressed:(id)sender {
     if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
@@ -92,6 +78,7 @@
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
         
+        // Remains work in progress
         //self.pageTurnEnabled = YES;
         
         // change statusbar setting to your preferred style
