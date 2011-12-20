@@ -52,7 +52,7 @@ documentation: current-menu-item current_page_item
 		</p><br>
 		
 		<ul>
-			<li>- Video (m3u8, mov, avi, mpg - formats that are supported by iOS)</li>
+			<li>- Video (m3u8, mov, avi, mpg, m4v - formats that are supported by iOS)</li>
 			<li>- Audio (mp3, m4a)</li>
 			<li>- Web Pages</li>
 			<li>- Any custom UIView with using the delegate methods.</li>		
@@ -63,6 +63,8 @@ documentation: current-menu-item current_page_item
 	<img src="images/multimedia-annotations.png" alt="Add annotations in Preview.app" width="879" height="764" style="margin-left:-55px"/>
 	
 	<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the bundle path. Supported folders include Bundle, Documents and Cache.</p><br>
+	
+	<p>You can enable autostart with adding the option like here: pspdfkit://[autostart:true]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8</p><br>
 		
 	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p>
 		</div>
@@ -77,7 +79,7 @@ documentation: current-menu-item current_page_item
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. While testing, we encountered pdfs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p><br>
 		
 	  <p><b>Q: Search usually works fine, but it work on pdf XYZ, where it only shows garbage.</b><br>
-		 A: Your pdf most likely uses Identity-H fonts with or without CMaps. This is something not [yet] supported. We plan on improving the text extraction algorithms in the future, but for now only unicode-saved text can be searched.</p><br>
+		 A: Your pdf most likely uses Identity-H fonts with or without CMaps. This is something not [yet] supported. We plan on improving the text extraction algorithms in the future, but for now mostly unicode-saved text can be searched. Search Highlighting is still in beta, so don't expect it to work on every document. We're working on improving it. You can disable highlighting or switch back to classic search via the .documentSearcher class in PSPDFDocument.</p><br>
 		
 	  <p><b>Q: The pdf is fine in Adobe Acrobat (R), but there are missing images/fonts on the iPad.</b><br>
 		 A: On iOS, the Quartz-Render-Engine is used. While overall very compatible, there are some differences in interpreting the >1000-pages pdf reference. And some newer variants may not be implemented at all. Because Apple shares most of their foundation code, please check your pdf in Preview.app first. If there are rendering problems, open it in Adobe Acrobat and re-save it File -> Save as... -> Reduced Size PDF, and select under "Make compatible with" an earlier pdf version. We had good experiences with 4.0 or 5.0. Note: File size may increase because of the older format.<br> If you experience problems with transparency (differences between Apple's rendering engine and Adobe's), it's also worth trying the <i>highest</i> possible version. One customer reported good results using PDF/X4-2008 and Acrobat 8/9 (PDF 1.7).</p><br>
@@ -88,6 +90,10 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
 		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).<br>If you get linker errors about missing symbols, be sure that your project includes at least CoreText.framework, QuartzCore.framework, MessageUI.framework, and the linker flag -all_load.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
+		
+		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
+		      A: To support iOS4 with a non-ARC-project, you need to add the ARC compatibility library libarclite. Drag the two files (one for iOS, one for the Simulator) from the MinimalExample.xcodeproj to your project, or manually search the on your disk: /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a (and /Developer/usr/lib/arc/libarclite_iphonesimulator.a) and drag them into your project.
+		</p>
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
@@ -100,7 +106,7 @@ documentation: current-menu-item current_page_item
 	  <h2 class="section-title">Appcelerator Titanium Module</h2>
 	 <p>
 	 	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module. See the in the module included app.js for working example code.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis.<br><br>
-You need to have Xcode 4.2 installed. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.
+You need to have at least Xcode 4.2 installed. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.
 	 </p>
 	</div>
 
