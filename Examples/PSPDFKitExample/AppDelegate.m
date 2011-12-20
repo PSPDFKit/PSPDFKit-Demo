@@ -50,9 +50,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    PSPDFLog(@"Kiosk Example is starting up...");
-    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // setup disk saving url cache
     SDURLCache *URLCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
@@ -61,6 +59,8 @@
     
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
+    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    PSPDFLog(@"Kiosk Example %@ is starting up... [PSPDFKit Version %@]", appVersion, PSPDFVersionString());
     
     // enable to see the scrollviews semi-transparent
     //kPSPDFKitDebugScrollViews = YES;
