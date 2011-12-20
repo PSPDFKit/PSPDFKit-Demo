@@ -382,7 +382,7 @@
         message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
         canDelete = magazine.isAvailable || magazine.isDownloading;
     }
-    
+        
     if (kPSPDFShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
@@ -401,6 +401,7 @@
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
         }
     }else {
+        canDelete = canDelete; // dummy to fix warning
         [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
     }
 }
