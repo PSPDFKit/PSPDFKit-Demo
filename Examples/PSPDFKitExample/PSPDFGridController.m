@@ -300,6 +300,7 @@
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self updateGridForOrientation];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -360,8 +361,7 @@
     return canDelete;
 }
 
-
-- (BOOL)GMGridView:(GMGridView *)gridView shouldDeleteItemAtIndex:(NSInteger)index {
+- (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index {
     PSPDFMagazine *magazine;
     PSPDFMagazineFolder *folder;
     
@@ -383,7 +383,6 @@
         canDelete = magazine.isAvailable || magazine.isDownloading;
     }
     
-    BOOL deleteItem = canDelete;
     if (kPSPDFShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
@@ -400,10 +399,10 @@
             [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
             CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
-            deleteItem = NO;
         }
+    }else {
+        [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
     }
-    return deleteItem;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
