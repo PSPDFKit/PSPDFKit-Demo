@@ -169,7 +169,7 @@
 
 - (void)setEditMode:(BOOL)editMode {
     editMode_ = editMode;    
-    self.gridView.editing = editMode;
+    [self.gridView setEditing:editMode animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
