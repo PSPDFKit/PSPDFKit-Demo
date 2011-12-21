@@ -5,6 +5,8 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface NSMutableAttributedString (PSPDFKitAdditions)
 
 - (void)pspdfSetFontName:(NSString *)fontName size:(CGFloat)size range:(NSRange)range;

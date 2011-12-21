@@ -5,6 +5,9 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @class PSPDFDocument;
 
 enum {
@@ -56,6 +59,20 @@ enum {
 
 /// stop document caching.
 - (void)stopCachingDocument:(PSPDFDocument *)aDocument;
+
+/// Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
+/// This will finish the current rendering/caching process and then stop the queue.
+/// Set a service Class/Token/Id that is referred with the break. Needed so that multiple services can request a pause.
+/// Throws an exception if the service is nil. Already registered services will be ignored.
+/// Returns YES if the cache was paused, NO if it was already paused.
+/// Thread safe.
+- (BOOL)pauseCachingForService:(id)service;
+
+/// Resumes caching, removes the specific service from the blocker list.
+/// Throws an exception if the service is invalid/not registered.
+/// Returns YES if the service continues running.
+/// Thread safe.
+- (BOOL)resumeCachingForService:(id)service;
 
 /// clear cache for a specific document, optionally also deletes referenced document files.
 - (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine;
@@ -138,7 +155,7 @@ void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 @interface PSPDFCacheQueuedDocument : NSObject 
 
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
-@property(retain) PSPDFDocument *document;
+@property(strong) PSPDFDocument *document;
 @property(assign) NSUInteger page;
 @property(assign) PSPDFSize size;
 @property(assign, getter=isCaching) BOOL caching;

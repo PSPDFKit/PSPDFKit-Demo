@@ -8,6 +8,9 @@
 //  (Copyright 2008 Instinctive Code)
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @interface UIImage (PSPDFKitAdditions)
 
 typedef enum {
