@@ -65,6 +65,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
+// simple example how to re-color the link annotations
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    if ([annotationView isKindOfClass:[PSPDFLinkAnnotationView class]]) {
+        PSPDFLinkAnnotationView *linkAnnotation = (PSPDFLinkAnnotationView *)annotationView;
+        linkAnnotation.borderColor = [[UIColor blueColor] colorWithAlphaComponent:0.7f];
+    }
+}
+
 #define PSPDFLoadingViewTag 225475
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPage:(NSUInteger)page {
     self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", page];    
