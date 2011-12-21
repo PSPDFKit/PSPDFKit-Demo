@@ -92,11 +92,13 @@
 	
 	<option value="//api/name/clearCacheForced:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCacheForced:</option>
 	
-	<option value="//api/name/drawAnnotations:inContext:pageInfo:pageRect:">&nbsp;&nbsp;&nbsp;&nbsp;- drawAnnotations:inContext:pageInfo:pageRect:</option>
-	
 	<option value="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&nbsp;&nbsp;&nbsp;&nbsp;- drawOverlayRect:inContext:forPage:zoomScale:size:</option>
 	
 	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
+	
+	<option value="//api/name/hasPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasPageInfoForPage:</option>
+	
+	<option value="//api/name/nearestPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- nearestPageInfoForPage:</option>
 	
 	<option value="//api/name/pageContentForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageContentForPage:</option>
 	
@@ -196,11 +198,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForced:">clearCacheForced:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawAnnotations:inContext:pageInfo:pageRect:">drawAnnotations:inContext:pageInfo:pageRect:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">drawOverlayRect:inContext:forPage:zoomScale:size:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasPageInfoForPage:">hasPageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nearestPageInfoForPage:">nearestPageInfoForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageContentForPage:">pageContentForPage:</a></span></li>
 	
@@ -327,6 +331,13 @@ Can be overriden to support custom collections.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/hasPageInfoForPage:">&ndash;&nbsp;hasPageInfoForPage:</a></code>
+		<span class="tooltip"><p>Returns YES of pageInfo for page is available</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
 		<span class="tooltip"><p>cached rotation and aspect ratio data for specific page. Page starts at 0.</p></span>
 	</span>
@@ -337,6 +348,13 @@ Can be overriden to support custom collections.</p>
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
 		<span class="tooltip"><p>cached rotation and aspect ratio data for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/nearestPageInfoForPage:">&ndash;&nbsp;nearestPageInfoForPage:</a></code>
+		<span class="tooltip"><p>Makes a search beginning from page 0 for the nearest pageInfo. Does not calculate/block the thread.</p></span>
 	</span>
 	
 	
@@ -401,7 +419,8 @@ maybe needs a pdf lock if not already cached.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageContentForPage:">&ndash;&nbsp;pageContentForPage:</a></code>
 		<span class="tooltip"><p>defaults to nil. can be overridden to provide custom text.
-if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p></span>
+if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
+Note: If you return text here, text highlighting cannot be used for this page.</p></span>
 	</span>
 	
 	
@@ -409,13 +428,6 @@ if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p></s
 	<span class="tooltip">
 		<code><a href="#//api/name/backgroundColorForPage:">&ndash;&nbsp;backgroundColorForPage:</a></code>
 		<span class="tooltip"><p>override if you want custom <strong>page</strong> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/drawAnnotations:inContext:pageInfo:pageRect:">&ndash;&nbsp;drawAnnotations:inContext:pageInfo:pageRect:</a></code>
-		<span class="tooltip"><p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates.</p></span>
 	</span>
 	
 	
@@ -501,21 +513,21 @@ This might be a good idea to turn on when using JPG for caching.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/documentSearcher">&nbsp;&nbsp;documentSearcher</a></code>
-		<span class="tooltip"><p>Text extraction class for current document. Readonly.</p></span>
+		<span class="tooltip"><p>Text extraction class for current document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
-		<span class="tooltip"><p>Outline extraction class for current document. Readonly.</p></span>
+		<span class="tooltip"><p>Outline extraction class for current document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
-		<span class="tooltip"><p>Link annotation parser class for current document. Readonly.
+		<span class="tooltip"><p>Link annotation parser class for current document.
 Can be overridden to use a subclassed annotation parser.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -540,12 +552,12 @@ Can be overridden to use a subclassed annotation parser.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Link annotation parser class for current document. Readonly.
+		<p>Link annotation parser class for current document.
 Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFAnnotationParser *annotationParser</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFAnnotationParser *annotationParser</code></div>
 	
 	
 	
@@ -647,7 +659,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSURL *basePath</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *basePath</code></div>
 	
 	
 	
@@ -681,7 +693,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFViewController *displayingPdfController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *displayingPdfController</code></div>
 	
 	
 	
@@ -711,11 +723,11 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Text extraction class for current document. Readonly.</p>
+		<p>Text extraction class for current document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFDocumentSearcher *documentSearcher</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFDocumentSearcher *documentSearcher</code></div>
 	
 	
 	
@@ -749,7 +761,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSURL *fileUrl</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *fileUrl</code></div>
 	
 	
 	
@@ -847,11 +859,11 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Outline extraction class for current document. Readonly.</p>
+		<p>Outline extraction class for current document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFOutlineParser *outlineParser</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFOutlineParser *outlineParser</code></div>
 	
 	
 	
@@ -1267,40 +1279,6 @@ This might be a good idea to turn on when using JPG for caching.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/drawAnnotations:inContext:pageInfo:pageRect:" title="drawAnnotations:inContext:pageInfo:pageRect:"></a>
-	<h3 class="subsubtitle method-title">drawAnnotations:inContext:pageInfo:pageRect:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>callback to draw annotations. Use tilingView&rsquo;s convertPDFPointToViewPoint to recalculate coordinates.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)drawAnnotations:(NSArray *)<em>annotations</em> inContext:(CGContextRef)<em>context</em> pageInfo:(PSPDFPageInfo *)<em>pageInfo</em> pageRect:(CGRect)<em>pageRect</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocument.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:" title="drawOverlayRect:inContext:forPage:zoomScale:size:"></a>
 	<h3 class="subsubtitle method-title">drawOverlayRect:inContext:forPage:zoomScale:size:</h3>
 	
@@ -1369,6 +1347,74 @@ This might be a good idea to turn on when using JPG for caching.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/hasPageInfoForPage:" title="hasPageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">hasPageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES of pageInfo for page is available</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasPageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/nearestPageInfoForPage:" title="nearestPageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">nearestPageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Makes a search beginning from page 0 for the nearest pageInfo. Does not calculate/block the thread.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)nearestPageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pageContentForPage:" title="pageContentForPage:"></a>
 	<h3 class="subsubtitle method-title">pageContentForPage:</h3>
 	
@@ -1376,7 +1422,8 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>defaults to nil. can be overridden to provide custom text.
-if this returns nil for a site, we&rsquo;ll try to extract text ourselves</p>
+if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
+Note: If you return text here, text highlighting cannot be used for this page.</p>
 	</div>		
 	
 	
@@ -1724,7 +1771,7 @@ maybe needs a pdf lock if not already cached.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

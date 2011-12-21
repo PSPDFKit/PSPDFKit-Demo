@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFWebAnnotation Class Reference</title>
+		<title>GMGridViewActionDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFWebAnnotation Class Reference</h1>
+				<h1 class="hideInXcode">GMGridViewActionDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,15 +36,13 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/shadowsHidden">&nbsp;&nbsp;&nbsp;&nbsp;shadowsHidden</option>
-	
-	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/GMGridView:shouldDeleteItemAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- GMGridView:shouldDeleteItemAtIndex:</option>
 	
 	
 	
@@ -57,8 +53,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -70,24 +64,22 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowsHidden">shadowsHidden</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/GMGridView:shouldDeleteItemAtIndex:">GMGridView:shouldDeleteItemAtIndex:</a></span></li>
 	
 </ul></li>
-
-
-
-
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFWebAnnotation Class Reference" name="top"></a>
+				<a title="GMGridViewActionDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,32 +88,21 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFWebAnnotation Class Reference</h1>
+						<h1 class="title title-header">GMGridViewActionDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
-</tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIWebViewDelegate</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFWebAnnotation.h</td>
+	<td class="specification-value">GMGridView.h</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Encapsulates UIWebView with some additional features</p>
-					</div>
 					
 					
 					
@@ -138,17 +119,10 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/shadowsHidden">&nbsp;&nbsp;shadowsHidden</a></code>
-		<span class="tooltip"><p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p></span>
+		<code><a href="#//api/name/GMGridView:shouldDeleteItemAtIndex:">&ndash;&nbsp;GMGridView:shouldDeleteItemAtIndex:</a></code>
+		<span class="tooltip"><p>Called when the delete-button has been pressed. If not implemented, YES is assumed.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/webView">&nbsp;&nbsp;webView</a></code>
-		<span class="tooltip"><p>Internal webview used.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -159,22 +133,26 @@
 					
 					
 					
+					
+					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/shadowsHidden" title="shadowsHidden"></a>
-	<h3 class="subsubtitle method-title">shadowsHidden</h3>
+	<a name="//api/name/GMGridView:shouldDeleteItemAtIndex:" title="GMGridView:shouldDeleteItemAtIndex:"></a>
+	<h3 class="subsubtitle method-title">GMGridView:shouldDeleteItemAtIndex:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p>
+		<p>Called when the delete-button has been pressed. If not implemented, YES is assumed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shadowsHidden</code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)GMGridView:(GMGridView *)<em>gridView</em> shouldDeleteItemAtIndex:(NSInteger)<em>index</em></code></div>
 	
 	
 	
@@ -191,51 +169,13 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/webView" title="webView"></a>
-	<h3 class="subsubtitle method-title">webView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Internal webview used.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) UIWebView *webView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebAnnotation.h</code><br />
+		<code class="declared-in-ref">GMGridView.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
-					
-					
-					
-					
 					
 					
 				</div>
@@ -248,7 +188,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

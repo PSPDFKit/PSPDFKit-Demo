@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -39,6 +41,8 @@
 	<option value="properties">Properties</option>
 	
 	<option value="//api/name/elements">&nbsp;&nbsp;&nbsp;&nbsp;elements</option>
+	
+	<option value="//api/name/level">&nbsp;&nbsp;&nbsp;&nbsp;level</option>
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
@@ -62,6 +66,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -76,6 +82,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/elements">elements</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/level">level</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
@@ -125,6 +133,14 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Represents a single outline/table of contents element.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -139,28 +155,35 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithTitle:page:elements:level:">&ndash;&nbsp;initWithTitle:page:elements:level:</a></code>
-		<span class="tooltip"><p>init</p></span>
+		<span class="tooltip"><p>Init with <a href="#//api/name/title">title</a>, <a href="#//api/name/page">page</a>, child <a href="#//api/name/elements">elements</a> and deepness <a href="#//api/name/level">level</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
-		<span class="tooltip"><p>outline <a href="#//api/name/title">title</a></p></span>
+		<span class="tooltip"><p>Outline <a href="#//api/name/title">title</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p><a href="#//api/name/page">page</a> reference</p></span>
+		<span class="tooltip"><p>Page reference</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/elements">&nbsp;&nbsp;elements</a></code>
-		<span class="tooltip"><p>child <a href="#//api/name/elements">elements</a></p></span>
+		<span class="tooltip"><p>Child <a href="#//api/name/elements">elements</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/level">&nbsp;&nbsp;level</a></code>
+		<span class="tooltip"><p>Current outline <a href="#//api/name/level">level</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -184,11 +207,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>child <a href="#//api/name/elements">elements</a></p>
+		<p>Child <a href="#//api/name/elements">elements</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) NSArray *elements</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *elements</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineElement.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/level" title="level"></a>
+	<h3 class="subsubtitle method-title">level</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current outline <a href="#//api/name/level">level</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger level</code></div>
 	
 	
 	
@@ -218,7 +275,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/page">page</a> reference</p>
+		<p>Page reference</p>
 	</div>		
 	
 	
@@ -252,11 +309,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>outline <a href="#//api/name/title">title</a></p>
+		<p>Outline <a href="#//api/name/title">title</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain) NSString *title</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *title</code></div>
 	
 	
 	
@@ -296,7 +353,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>init</p>
+		<p>Init with <a href="#//api/name/title">title</a>, <a href="#//api/name/page">page</a>, child <a href="#//api/name/elements">elements</a> and deepness <a href="#//api/name/level">level</a>.</p>
 	</div>		
 	
 	
@@ -336,7 +393,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

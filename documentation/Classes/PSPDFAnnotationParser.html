@@ -40,6 +40,8 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
+	<option value="//api/name/protocolString">&nbsp;&nbsp;&nbsp;&nbsp;protocolString</option>
+	
 	
 	
 	
@@ -50,6 +52,8 @@
 	<option value="//api/name/annotationsForPage:filter:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:filter:</option>
 	
 	<option value="//api/name/annotationsForPage:filter:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:filter:pageRef:</option>
+	
+	<option value="//api/name/createAnnotationViewForAnnotation:frame:">&nbsp;&nbsp;&nbsp;&nbsp;- createAnnotationViewForAnnotation:frame:</option>
 	
 	<option value="//api/name/hasLoadedAnnotationsForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedAnnotationsForPage:</option>
 	
@@ -81,6 +85,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/protocolString">protocolString</a></span></li>
+	
 </ul></li>
 
 
@@ -92,6 +98,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:filter:">annotationsForPage:filter:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:filter:pageRef:">annotationsForPage:filter:pageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createAnnotationViewForAnnotation:frame:">createAnnotationViewForAnnotation:frame:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedAnnotationsForPage:">hasLoadedAnnotationsForPage:</a></span></li>
 	
@@ -181,8 +189,23 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/createAnnotationViewForAnnotation:frame:">&ndash;&nbsp;createAnnotationViewForAnnotation:frame:</a></code>
+		<span class="tooltip"><p>Annotation factory for built-in types.
+Can be overridden, but usually reacting to the various annotation-delegate methods is enough.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
 		<span class="tooltip"><p><a href="#//api/name/document">document</a> for annotation parser. weak.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/protocolString">&nbsp;&nbsp;protocolString</a></code>
+		<span class="tooltip"><p>Change the protocol that&rsquo;s used to parse pspdfkit-additions. Defaults to &lsquo;pspdfkit://&rsquo;.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -210,7 +233,41 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/protocolString" title="protocolString"></a>
+	<h3 class="subsubtitle method-title">protocolString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Change the protocol that&rsquo;s used to parse pspdfkit-additions. Defaults to &lsquo;pspdfkit://&rsquo;.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *protocolString</code></div>
 	
 	
 	
@@ -289,6 +346,41 @@
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em> filter:(PSPDFAnnotationFilter)<em>filter</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/createAnnotationViewForAnnotation:frame:" title="createAnnotationViewForAnnotation:frame:"></a>
+	<h3 class="subsubtitle method-title">createAnnotationViewForAnnotation:frame:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Annotation factory for built-in types.
+Can be overridden, but usually reacting to the various annotation-delegate methods is enough.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)createAnnotationViewForAnnotation:(PSPDFAnnotation *)<em>annotation</em> frame:(CGRect)<em>annotationRect</em></code></div>
 	
 	
 	
@@ -426,7 +518,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

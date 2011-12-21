@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFSearchResult Class Reference</title>
+		<title>PSPDFDocumentProvider Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFSearchResult Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFDocumentProvider Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,19 +40,24 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
-	
-	<option value="//api/name/pageIndex">&nbsp;&nbsp;&nbsp;&nbsp;pageIndex</option>
-	
-	<option value="//api/name/previewText">&nbsp;&nbsp;&nbsp;&nbsp;previewText</option>
-	
-	<option value="//api/name/range">&nbsp;&nbsp;&nbsp;&nbsp;range</option>
-	
-	<option value="//api/name/selection">&nbsp;&nbsp;&nbsp;&nbsp;selection</option>
+	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
 	
 	
 	
 	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/initWithDocumentRef:URL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocumentRef:URL:</option>
+	
+	<option value="//api/name/releaseDocumentRef:">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocumentRef:</option>
+	
+	<option value="//api/name/releasePageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- releasePageRef:</option>
+	
+	<option value="//api/name/requestDocumentRef">&nbsp;&nbsp;&nbsp;&nbsp;- requestDocumentRef</option>
+	
+	<option value="//api/name/requestPageRefForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- requestPageRefForPage:</option>
 	
 	
 	
@@ -78,15 +83,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageIndex">pageIndex</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/previewText">previewText</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/range">range</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selection">selection</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
 	
 </ul></li>
 
@@ -94,12 +91,26 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocumentRef:URL:">initWithDocumentRef:URL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocumentRef:">releaseDocumentRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releasePageRef:">releasePageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestDocumentRef">requestDocumentRef</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestPageRefForPage:">requestPageRefForPage:</a></span></li>
+	
+</ul></li>
+
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFSearchResult Class Reference" name="top"></a>
+				<a title="PSPDFDocumentProvider Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -108,7 +119,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFSearchResult Class Reference</h1>
+						<h1 class="title title-header">PSPDFDocumentProvider Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -119,7 +130,7 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFSearchResult.h</td>
+	<td class="specification-value">PSPDFDocumentProvider.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -129,7 +140,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Search result object.</p>
+						<p>Encapsulates the CoreGraphics-calls to the CGPDF* data providers.
+We need to keep around the document when accessing a CGPDFPage. Retaining the page alone is not enough.</p>
 					</div>
 					
 					
@@ -147,36 +159,43 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>Referenced <a href="#//api/name/document">document</a>.</p></span>
+		<code><a href="#//api/name/initWithDocumentRef:URL:">&ndash;&nbsp;initWithDocumentRef:URL:</a></code>
+		<span class="tooltip"><p>Initializes provider with a document reference.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageIndex">&nbsp;&nbsp;pageIndex</a></code>
-		<span class="tooltip"><p>referenced page.</p></span>
+		<code><a href="#//api/name/requestDocumentRef">&ndash;&nbsp;requestDocumentRef</a></code>
+		<span class="tooltip"><p>Get access to document reference.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/previewText">&nbsp;&nbsp;previewText</a></code>
-		<span class="tooltip"><p>preview text snippet.</p></span>
+		<code><a href="#//api/name/releaseDocumentRef:">&ndash;&nbsp;releaseDocumentRef:</a></code>
+		<span class="tooltip"><p>Return the document reference back to the provider</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/selection">&nbsp;&nbsp;selection</a></code>
-		<span class="tooltip"><p>Text coordinates. May not be set, expensive calculation.</p></span>
+		<code><a href="#//api/name/requestPageRefForPage:">&ndash;&nbsp;requestPageRefForPage:</a></code>
+		<span class="tooltip"><p>Requests a page for the current loaded document. Needs to be returned in releasePageRef.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/range">&nbsp;&nbsp;range</a></code>
-		<span class="tooltip"><p>Range within full page text.</p></span>
+		<code><a href="#//api/name/releasePageRef:">&ndash;&nbsp;releasePageRef:</a></code>
+		<span class="tooltip"><p>Releases a page reference.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
+		<span class="tooltip"><p><a href="#//api/name/URL">URL</a> of the managed document</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -194,17 +213,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/document" title="document"></a>
-	<h3 class="subsubtitle method-title">document</h3>
+	<a name="//api/name/URL" title="URL"></a>
+	<h3 class="subsubtitle method-title">URL</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Referenced <a href="#//api/name/document">document</a>.</p>
+		<p><a href="#//api/name/URL">URL</a> of the managed document</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSURL *URL</code></div>
 	
 	
 	
@@ -221,143 +240,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchResult.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/pageIndex" title="pageIndex"></a>
-	<h3 class="subsubtitle method-title">pageIndex</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>referenced page.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger pageIndex</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchResult.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/previewText" title="previewText"></a>
-	<h3 class="subsubtitle method-title">previewText</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>preview text snippet.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *previewText</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchResult.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/range" title="range"></a>
-	<h3 class="subsubtitle method-title">range</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Range within full page text.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSRange range</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchResult.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/selection" title="selection"></a>
-	<h3 class="subsubtitle method-title">selection</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Text coordinates. May not be set, expensive calculation.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) Selection *selection</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchResult.h</code><br />
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
 	</div>				
 	
 	
@@ -368,6 +251,182 @@
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithDocumentRef:URL:" title="initWithDocumentRef:URL:"></a>
+	<h3 class="subsubtitle method-title">initWithDocumentRef:URL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes provider with a document reference.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithDocumentRef:(CGPDFDocumentRef)<em>documentRef</em> URL:(NSURL *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/releaseDocumentRef:" title="releaseDocumentRef:"></a>
+	<h3 class="subsubtitle method-title">releaseDocumentRef:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the document reference back to the provider</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)releaseDocumentRef:(CGPDFDocumentRef)<em>documentRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/releasePageRef:" title="releasePageRef:"></a>
+	<h3 class="subsubtitle method-title">releasePageRef:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Releases a page reference.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)releasePageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestDocumentRef" title="requestDocumentRef"></a>
+	<h3 class="subsubtitle method-title">requestDocumentRef</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get access to document reference.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGPDFDocumentRef)requestDocumentRef</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/requestPageRefForPage:" title="requestPageRefForPage:"></a>
+	<h3 class="subsubtitle method-title">requestPageRefForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Requests a page for the current loaded document. Needs to be returned in releasePageRef.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)requestPageRefForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>

@@ -49,7 +49,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/documentRefWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;- documentRefWithPath:</option>
+	<option value="//api/name/documentProviderForPath:">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviderForPath:</option>
 	
 	<option value="//api/name/freeWithPDFDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFDocument:</option>
 	
@@ -60,8 +60,6 @@
 	<option value="//api/name/lockGlobal">&nbsp;&nbsp;&nbsp;&nbsp;- lockGlobal</option>
 	
 	<option value="//api/name/lockWithPath:page:">&nbsp;&nbsp;&nbsp;&nbsp;- lockWithPath:page:</option>
-	
-	<option value="//api/name/pageRefWithPath:page:">&nbsp;&nbsp;&nbsp;&nbsp;- pageRefWithPath:page:</option>
 	
 	<option value="//api/name/requestClearCacheAndWait:">&nbsp;&nbsp;&nbsp;&nbsp;- requestClearCacheAndWait:</option>
 	
@@ -103,7 +101,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentRefWithPath:">documentRefWithPath:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviderForPath:">documentProviderForPath:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeWithPDFDocument:">freeWithPDFDocument:</a></span></li>
 	
@@ -114,8 +112,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockGlobal">lockGlobal</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockWithPath:page:">lockWithPath:page:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRefWithPath:page:">pageRefWithPath:page:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestClearCacheAndWait:">requestClearCacheAndWait:</a></span></li>
 	
@@ -200,16 +196,8 @@ returns nil if currently locked.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/documentRefWithPath:">&ndash;&nbsp;documentRefWithPath:</a></code>
-		<span class="tooltip"><p>returns auto-released document reference, doesn&rsquo;t use the lock.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pageRefWithPath:page:">&ndash;&nbsp;pageRefWithPath:page:</a></code>
-		<span class="tooltip"><p>returns a page reference that is autoreleased, doesn&rsquo;t lock the system.
-still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely.</p></span>
+		<code><a href="#//api/name/documentProviderForPath:">&ndash;&nbsp;documentProviderForPath:</a></code>
+		<span class="tooltip"><p>Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef</p></span>
 	</span>
 	
 	
@@ -313,17 +301,17 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/documentRefWithPath:" title="documentRefWithPath:"></a>
-	<h3 class="subsubtitle method-title">documentRefWithPath:</h3>
+	<a name="//api/name/documentProviderForPath:" title="documentProviderForPath:"></a>
+	<h3 class="subsubtitle method-title">documentProviderForPath:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns auto-released document reference, doesn&rsquo;t use the lock.</p>
+		<p>Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGPDFDocumentRef)documentRefWithPath:(NSURL *)<em>pdfPath</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (PSPDFDocumentProvider *)documentProviderForPath:(NSURL *)<em>pdfPath</em></code></div>
 	
 	
 	
@@ -517,41 +505,6 @@ still needs to be returned, we crash if the underlying CGPDFDocumentRef is relea
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pageRefWithPath:page:" title="pageRefWithPath:page:"></a>
-	<h3 class="subsubtitle method-title">pageRefWithPath:page:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>returns a page reference that is autoreleased, doesn&rsquo;t lock the system.
-still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)pageRefWithPath:(NSURL *)<em>pdfPath</em> page:(NSUInteger)<em>page</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGlobalLock.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/requestClearCacheAndWait:" title="requestClearCacheAndWait:"></a>
 	<h3 class="subsubtitle method-title">requestClearCacheAndWait:</h3>
 	
@@ -667,7 +620,7 @@ returns nil if currently locked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

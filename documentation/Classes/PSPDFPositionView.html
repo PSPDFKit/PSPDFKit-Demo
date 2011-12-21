@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>TIPSPDFViewController Class Reference</title>
+		<title>PSPDFPositionView Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">TIPSPDFViewController Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFPositionView Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,13 +38,17 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/label">&nbsp;&nbsp;&nbsp;&nbsp;label</option>
+	
+	<option value="//api/name/labelMargin">&nbsp;&nbsp;&nbsp;&nbsp;labelMargin</option>
+	
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
 	
 	
 	
 	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/closeControllerAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- closeControllerAnimated:</option>
 	
 	
 	
@@ -68,22 +72,26 @@
 
 
 
-
-
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/closeControllerAnimated:">closeControllerAnimated:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/label">label</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/labelMargin">labelMargin</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
 	
 </ul></li>
+
+
+
+
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="TIPSPDFViewController Class Reference" name="top"></a>
+				<a title="PSPDFPositionView Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,7 +100,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">TIPSPDFViewController Class Reference</h1>
+						<h1 class="title title-header">PSPDFPositionView Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -100,10 +108,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> : UIViewController</td>
+	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">TIPSPDFViewController.h</td>
+	<td class="specification-value">PSPDFPositionView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +121,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Subclass of <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> that enables sending events to Appcelerator.</p>
+						<p>Displays the current page position.</p>
 					</div>
 					
 					
@@ -131,10 +139,24 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/closeControllerAnimated:">&ndash;&nbsp;closeControllerAnimated:</a></code>
-		<span class="tooltip"><p>close controller, optionally animated.</p></span>
+		<code><a href="#//api/name/label">&nbsp;&nbsp;label</a></code>
+		<span class="tooltip"><p>UILabel used internally to show the text.</p></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/labelMargin">&nbsp;&nbsp;labelMargin</a></code>
+		<span class="tooltip"><p>Margin that is between the text and this view. Defaults to 5.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Weak reference to the pdf controller. We use KVO for updates.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -145,26 +167,22 @@
 					
 					
 					
-					
-					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/closeControllerAnimated:" title="closeControllerAnimated:"></a>
-	<h3 class="subsubtitle method-title">closeControllerAnimated:</h3>
+	<a name="//api/name/label" title="label"></a>
+	<h3 class="subsubtitle method-title">label</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>close controller, optionally animated.</p>
+		<p>UILabel used internally to show the text.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)closeControllerAnimated:(BOOL)<em>animated</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UILabel *label</code></div>
 	
 	
 	
@@ -181,13 +199,85 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">TIPSPDFViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFPositionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/labelMargin" title="labelMargin"></a>
+	<h3 class="subsubtitle method-title">labelMargin</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Margin that is between the text and this view. Defaults to 5.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat labelMargin</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPositionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Weak reference to the pdf controller. We use KVO for updates.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *pdfController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPositionView.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
+					
+					
+					
+					
 					
 					
 				</div>

@@ -40,7 +40,13 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/clearHighlightsWhenClosed">&nbsp;&nbsp;&nbsp;&nbsp;clearHighlightsWhenClosed</option>
+	
 	<option value="//api/name/searchBar">&nbsp;&nbsp;&nbsp;&nbsp;searchBar</option>
+	
+	<option value="//api/name/searchClassName">&nbsp;&nbsp;&nbsp;&nbsp;searchClassName</option>
+	
+	<option value="//api/name/searchStatus">&nbsp;&nbsp;&nbsp;&nbsp;searchStatus</option>
 	
 	<option value="//api/name/showCancel">&nbsp;&nbsp;&nbsp;&nbsp;showCancel</option>
 	
@@ -77,7 +83,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearHighlightsWhenClosed">clearHighlightsWhenClosed</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchBar">searchBar</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchClassName">searchClassName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchStatus">searchStatus</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showCancel">showCancel</a></span></li>
 	
@@ -118,7 +130,7 @@
 	<td class="specification-value">UITableViewController</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a><br />UISearchBarDelegate<br />UISearchDisplayDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br />UISearchBarDelegate<br />UISearchDisplayDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFSearchViewController.h</td>
@@ -168,6 +180,27 @@
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchStatus">&nbsp;&nbsp;searchStatus</a></code>
+		<span class="tooltip"><p>Current search status. KVO ovserveable.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchClassName">&nbsp;&nbsp;searchClassName</a></code>
+		<span class="tooltip"><p>Set to your custom class if you need to override the search status cell</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearHighlightsWhenClosed">&nbsp;&nbsp;clearHighlightsWhenClosed</a></code>
+		<span class="tooltip"><p>Clears highlights when controller disappeares. Defaults to NO.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -182,6 +215,40 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/clearHighlightsWhenClosed" title="clearHighlightsWhenClosed"></a>
+	<h3 class="subsubtitle method-title">clearHighlightsWhenClosed</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Clears highlights when controller disappeares. Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL clearHighlightsWhenClosed</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/searchBar" title="searchBar"></a>
 	<h3 class="subsubtitle method-title">searchBar</h3>
 	
@@ -192,7 +259,75 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) UISearchBar *searchBar</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UISearchBar *searchBar</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchClassName" title="searchClassName"></a>
+	<h3 class="subsubtitle method-title">searchClassName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set to your custom class if you need to override the search status cell</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *searchClassName</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/searchStatus" title="searchStatus"></a>
+	<h3 class="subsubtitle method-title">searchStatus</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current search status. KVO ovserveable.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) PSPDFSearchStatus searchStatus</code></div>
 	
 	
 	
@@ -306,7 +441,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

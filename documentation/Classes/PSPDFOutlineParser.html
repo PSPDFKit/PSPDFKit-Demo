@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -54,6 +56,8 @@
 	
 	<option value="//api/name/initWithDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:</option>
 	
+	<option value="//api/name/outlineElementForPage:exactPageOnly:">&nbsp;&nbsp;&nbsp;&nbsp;- outlineElementForPage:exactPageOnly:</option>
+	
 	<option value="//api/name/parseDocument">&nbsp;&nbsp;&nbsp;&nbsp;- parseDocument</option>
 	
 	
@@ -65,6 +69,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -95,6 +101,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:">initWithDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineElementForPage:exactPageOnly:">outlineElementForPage:exactPageOnly:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseDocument">parseDocument</a></span></li>
 	
@@ -132,6 +140,14 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Parses the Outline/Table of Contents of a pdf.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -146,28 +162,37 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithDocument:">&ndash;&nbsp;initWithDocument:</a></code>
-		<span class="tooltip"><p>init <a href="#//api/name/outline">outline</a> parser with document</p></span>
+		<span class="tooltip"><p>Init <a href="#//api/name/outline">outline</a> parser with document.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/parseDocument">&ndash;&nbsp;parseDocument</a></code>
-		<span class="tooltip"><p>parse document, return <a href="#//api/name/outline">outline</a> (PSDFOutlineElements)</p></span>
+		<span class="tooltip"><p>Parse document, returns <a href="#//api/name/outline">outline</a> (PSDFOutlineElements)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineElementForPage:exactPageOnly:">&ndash;&nbsp;outlineElementForPage:exactPageOnly:</a></code>
+		<span class="tooltip"><p>Returns single <a href="#//api/name/outline">outline</a> element for specific page.
+if exactPageOnly is set, the <a href="#//api/name/outline">outline</a> will only be returned if it&rsquo;s from the specific page.
+else the last active set <a href="#//api/name/outline">outline</a> will be returned.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outline">&nbsp;&nbsp;outline</a></code>
-		<span class="tooltip"><p>returns cached <a href="#//api/name/outline">outline</a>. starts parsing if <a href="#//api/name/outline">outline</a> is not yet created.</p></span>
+		<span class="tooltip"><p>Returns cached <a href="#//api/name/outline">outline</a>. starts parsing if <a href="#//api/name/outline">outline</a> is not yet created.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/resolveDestNames:documentRef:">+&nbsp;resolveDestNames:documentRef:</a></code>
-		<span class="tooltip"><p>resolves named destination entries, returns dict with name &ndash;> page NSNumber</p></span>
+		<span class="tooltip"><p>Static helper, resolves named destination entries, returns dict with name &ndash;> page NSNumber</p></span>
 	</span>
 	
 	
@@ -191,11 +216,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns cached <a href="#//api/name/outline">outline</a>. starts parsing if <a href="#//api/name/outline">outline</a> is not yet created.</p>
+		<p>Returns cached <a href="#//api/name/outline">outline</a>. starts parsing if <a href="#//api/name/outline">outline</a> is not yet created.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) NSArray *outline</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *outline</code></div>
 	
 	
 	
@@ -233,7 +258,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>resolves named destination entries, returns dict with name &ndash;> page NSNumber</p>
+		<p>Static helper, resolves named destination entries, returns dict with name &ndash;> page NSNumber</p>
 	</div>		
 	
 	
@@ -275,11 +300,47 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>init <a href="#//api/name/outline">outline</a> parser with document</p>
+		<p>Init <a href="#//api/name/outline">outline</a> parser with document.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (id)initWithDocument:(PSPDFDocument *)<em>document</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineElementForPage:exactPageOnly:" title="outlineElementForPage:exactPageOnly:"></a>
+	<h3 class="subsubtitle method-title">outlineElementForPage:exactPageOnly:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns single <a href="#//api/name/outline">outline</a> element for specific page.
+if exactPageOnly is set, the <a href="#//api/name/outline">outline</a> will only be returned if it&rsquo;s from the specific page.
+else the last active set <a href="#//api/name/outline">outline</a> will be returned.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFOutlineElement *)outlineElementForPage:(NSUInteger)<em>page</em> exactPageOnly:(BOOL)<em>exactPageOnly</em></code></div>
 	
 	
 	
@@ -309,7 +370,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>parse document, return <a href="#//api/name/outline">outline</a> (PSDFOutlineElements)</p>
+		<p>Parse document, returns <a href="#//api/name/outline">outline</a> (PSDFOutlineElements)</p>
 	</div>		
 	
 	
@@ -349,7 +410,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

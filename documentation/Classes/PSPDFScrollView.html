@@ -62,6 +62,8 @@
 	
 	<option value="//api/name/shadowEnabled">&nbsp;&nbsp;&nbsp;&nbsp;shadowEnabled</option>
 	
+	<option value="//api/name/shadowStyle">&nbsp;&nbsp;&nbsp;&nbsp;shadowStyle</option>
+	
 	<option value="//api/name/zoomingSmallDocumentsEnabled">&nbsp;&nbsp;&nbsp;&nbsp;zoomingSmallDocumentsEnabled</option>
 	
 	
@@ -73,9 +75,11 @@
 	
 	<option value="//api/name/displayDocument:withPage:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:withPage:</option>
 	
-	<option value="//api/name/releaseDocument">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocument</option>
+	<option value="//api/name/pageView:didTouchUpInsideAnnotationView:">&nbsp;&nbsp;&nbsp;&nbsp;- pageView:didTouchUpInsideAnnotationView:</option>
 	
-	<option value="//api/name/renderPaperCurl:">&nbsp;&nbsp;&nbsp;&nbsp;- renderPaperCurl:</option>
+	<option value="//api/name/pathShadowForView:">&nbsp;&nbsp;&nbsp;&nbsp;- pathShadowForView:</option>
+	
+	<option value="//api/name/releaseDocumentAndCallDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocumentAndCallDelegate:</option>
 	
 	
 	
@@ -92,6 +96,8 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFAnnotationInteraction Methods">PSPDFAnnotationInteraction Methods</a></span></li>
 	
 </ul></li>
 
@@ -123,6 +129,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowEnabled">shadowEnabled</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowStyle">shadowStyle</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zoomingSmallDocumentsEnabled">zoomingSmallDocumentsEnabled</a></span></li>
 	
 </ul></li>
@@ -135,9 +143,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:withPage:">displayDocument:withPage:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocument">releaseDocument</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageView:didTouchUpInsideAnnotationView:">pageView:didTouchUpInsideAnnotationView:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderPaperCurl:">renderPaperCurl:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathShadowForView:">pathShadowForView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocumentAndCallDelegate:">releaseDocumentAndCallDelegate:</a></span></li>
 	
 </ul></li>
 
@@ -192,7 +202,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -204,7 +214,7 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/releaseDocument">&ndash;&nbsp;releaseDocument</a></code>
+		<code><a href="#//api/name/releaseDocumentAndCallDelegate:">&ndash;&nbsp;releaseDocumentAndCallDelegate:</a></code>
 		<span class="tooltip"><p>releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.</p></span>
 	</span>
 	
@@ -267,6 +277,13 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/shadowStyle">&nbsp;&nbsp;shadowStyle</a></code>
+		<span class="tooltip"><p>Style of the <a href="#//api/name/page">page</a> shadow. Defaults to PSPDFShadowStyleFlat. Can be customized with overriding pathShadowForView.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;scrollOnTapPageEndEnabled</a></code>
 		<span class="tooltip"><p>tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>.</p></span>
 	</span>
@@ -295,8 +312,23 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderPaperCurl:">&ndash;&nbsp;renderPaperCurl:</a></code>
+		<code><a href="#//api/name/pathShadowForView:">&ndash;&nbsp;pathShadowForView:</a></code>
 		<span class="tooltip"><p>for subclassing &ndash; allows changing the shadow path.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFAnnotationInteraction Methods" name="task_PSPDFAnnotationInteraction Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFAnnotationInteraction Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageView:didTouchUpInsideAnnotationView:">&ndash;&nbsp;pageView:didTouchUpInsideAnnotationView:</a></code>
+		<span class="tooltip"><p>invoked when the user touches up inside the button associated with the given annotation view with a button</p></span>
 	</span>
 	
 	
@@ -324,7 +356,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) UIView *compoundView</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIView *compoundView</code></div>
 	
 	
 	
@@ -460,7 +492,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFPageView *leftPage</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFPageView *leftPage</code></div>
 	
 	
 	
@@ -528,7 +560,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFViewController *pdfController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *pdfController</code></div>
 	
 	
 	
@@ -562,7 +594,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, retain, readonly) PSPDFPageView *rightPage</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFPageView *rightPage</code></div>
 	
 	
 	
@@ -688,6 +720,40 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/shadowStyle" title="shadowStyle"></a>
+	<h3 class="subsubtitle method-title">shadowStyle</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Style of the <a href="#//api/name/page">page</a> shadow. Defaults to PSPDFShadowStyleFlat. Can be customized with overriding pathShadowForView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFShadowStyle shadowStyle</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/zoomingSmallDocumentsEnabled" title="zoomingSmallDocumentsEnabled"></a>
 	<h3 class="subsubtitle method-title">zoomingSmallDocumentsEnabled</h3>
 	
@@ -766,17 +832,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/releaseDocument" title="releaseDocument"></a>
-	<h3 class="subsubtitle method-title">releaseDocument</h3>
+	<a name="//api/name/pageView:didTouchUpInsideAnnotationView:" title="pageView:didTouchUpInsideAnnotationView:"></a>
+	<h3 class="subsubtitle method-title">pageView:didTouchUpInsideAnnotationView:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.</p>
+		<p>invoked when the user touches up inside the button associated with the given annotation view with a button</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)releaseDocument</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)pageView:(PSPDFPageView *)<em>pageView</em> didTouchUpInsideAnnotationView:(UIView&lt;PSPDFAnnotationView&gt; *)<em>annotationView</em></code></div>
 	
 	
 	
@@ -800,8 +866,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderPaperCurl:" title="renderPaperCurl:"></a>
-	<h3 class="subsubtitle method-title">renderPaperCurl:</h3>
+	<a name="//api/name/pathShadowForView:" title="pathShadowForView:"></a>
+	<h3 class="subsubtitle method-title">pathShadowForView:</h3>
 	
 	
 	
@@ -810,7 +876,41 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGPathRef)renderPaperCurl:(UIView *)<em>imgView</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)pathShadowForView:(UIView *)<em>imgView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/releaseDocumentAndCallDelegate:" title="releaseDocumentAndCallDelegate:"></a>
+	<h3 class="subsubtitle method-title">releaseDocumentAndCallDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)releaseDocumentAndCallDelegate:(BOOL)<em>callDelegate</em></code></div>
 	
 	
 	
@@ -846,7 +946,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

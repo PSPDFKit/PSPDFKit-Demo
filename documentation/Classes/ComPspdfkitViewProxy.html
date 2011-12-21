@@ -44,9 +44,17 @@
 	
 	<option value="//api/name/close:">&nbsp;&nbsp;&nbsp;&nbsp;- close:</option>
 	
+	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;- page</option>
+	
 	<option value="//api/name/scrollToPage:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollToPage:</option>
 	
 	<option value="//api/name/setDidTapOnAnnotationCallback:">&nbsp;&nbsp;&nbsp;&nbsp;- setDidTapOnAnnotationCallback:</option>
+	
+	<option value="//api/name/setLinkAnnotationBorderColor:">&nbsp;&nbsp;&nbsp;&nbsp;- setLinkAnnotationBorderColor:</option>
+	
+	<option value="//api/name/setScrollingEnabled:">&nbsp;&nbsp;&nbsp;&nbsp;- setScrollingEnabled:</option>
+	
+	<option value="//api/name/totalPages">&nbsp;&nbsp;&nbsp;&nbsp;- totalPages</option>
 	
 	
 	
@@ -76,9 +84,17 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/close:">close:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollToPage:">scrollToPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDidTapOnAnnotationCallback:">setDidTapOnAnnotationCallback:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLinkAnnotationBorderColor:">setLinkAnnotationBorderColor:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setScrollingEnabled:">setScrollingEnabled:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/totalPages">totalPages</a></span></li>
 	
 </ul></li>
 
@@ -127,8 +143,22 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/page">&ndash;&nbsp;page</a></code>
+		<span class="tooltip"><p>Returns the current <a href="#//api/name/page">page</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/totalPages">&ndash;&nbsp;totalPages</a></code>
+		<span class="tooltip"><p>Returns total pages count.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:">&ndash;&nbsp;scrollToPage:</a></code>
-		<span class="tooltip"><p>scroll to a specific page. Argument 1 = integer, argument 2 = animated. (optional, defaults to YES)</p></span>
+		<span class="tooltip"><p>scroll to a specific <a href="#//api/name/page">page</a>. Argument 1 = integer, argument 2 = animated. (optional, defaults to YES)</p></span>
 	</span>
 	
 	
@@ -143,6 +173,20 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/setDidTapOnAnnotationCallback:">&ndash;&nbsp;setDidTapOnAnnotationCallback:</a></code>
 		<span class="tooltip"><p>Register a callback for the didTapOnAnnotation event. Return true if you manually use the annotation, else false.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLinkAnnotationBorderColor:">&ndash;&nbsp;setLinkAnnotationBorderColor:</a></code>
+		<span class="tooltip"><p>Exposes a helper to change link annotation color. Set to change.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setScrollingEnabled:">&ndash;&nbsp;setScrollingEnabled:</a></code>
+		<span class="tooltip"><p>Expose the scrollingEnabled property</p></span>
 	</span>
 	
 	
@@ -198,13 +242,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/page" title="page"></a>
+	<h3 class="subsubtitle method-title">page</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the current <a href="#//api/name/page">page</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)page</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitViewProxy.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/scrollToPage:" title="scrollToPage:"></a>
 	<h3 class="subsubtitle method-title">scrollToPage:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>scroll to a specific page. Argument 1 = integer, argument 2 = animated. (optional, defaults to YES)</p>
+		<p>scroll to a specific <a href="#//api/name/page">page</a>. Argument 1 = integer, argument 2 = animated. (optional, defaults to YES)</p>
 	</div>		
 	
 	
@@ -265,6 +343,108 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/setLinkAnnotationBorderColor:" title="setLinkAnnotationBorderColor:"></a>
+	<h3 class="subsubtitle method-title">setLinkAnnotationBorderColor:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Exposes a helper to change link annotation color. Set to change.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setLinkAnnotationBorderColor:(id)<em>arg</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitViewProxy.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setScrollingEnabled:" title="setScrollingEnabled:"></a>
+	<h3 class="subsubtitle method-title">setScrollingEnabled:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Expose the scrollingEnabled property</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setScrollingEnabled:(id)<em>arg</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitViewProxy.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/totalPages" title="totalPages"></a>
+	<h3 class="subsubtitle method-title">totalPages</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns total pages count.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)totalPages</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">ComPspdfkitViewProxy.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -278,7 +458,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						

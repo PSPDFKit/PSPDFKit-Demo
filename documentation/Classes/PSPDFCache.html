@@ -88,11 +88,15 @@
 	
 	<option value="//api/name/isImageCachedForDocument:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- isImageCachedForDocument:page:size:</option>
 	
+	<option value="//api/name/pauseCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- pauseCachingForService:</option>
+	
 	<option value="//api/name/removeCacheForDocument:deleteDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:</option>
 	
 	<option value="//api/name/removeDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDelegate:</option>
 	
 	<option value="//api/name/renderImageForDocument:page:size:pdfPage:">&nbsp;&nbsp;&nbsp;&nbsp;- renderImageForDocument:page:size:pdfPage:</option>
+	
+	<option value="//api/name/resumeCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- resumeCachingForService:</option>
 	
 	<option value="//api/name/saveNativeRenderedImage:document:page:">&nbsp;&nbsp;&nbsp;&nbsp;- saveNativeRenderedImage:document:page:</option>
 	
@@ -174,11 +178,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isImageCachedForDocument:page:size:">isImageCachedForDocument:page:size:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pauseCachingForService:">pauseCachingForService:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:">removeCacheForDocument:deleteDocument:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDelegate:">removeDelegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderImageForDocument:page:size:pdfPage:">renderImageForDocument:page:size:pdfPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resumeCachingForService:">resumeCachingForService:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveNativeRenderedImage:document:page:">saveNativeRenderedImage:document:page:</a></span></li>
 	
@@ -296,6 +304,28 @@ You can manually call <a href="#//api/name/clearCache">clearCache</a> to remove 
 	<span class="tooltip">
 		<code><a href="#//api/name/stopCachingDocument:">&ndash;&nbsp;stopCachingDocument:</a></code>
 		<span class="tooltip"><p>stop document caching.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pauseCachingForService:">&ndash;&nbsp;pauseCachingForService:</a></code>
+		<span class="tooltip"><p>Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
+This will finish the current rendering/caching process and then stop the queue.
+Set a service Class/Token/Id that is referred with the break. Needed so that multiple services can request a pause.
+Throws an exception if the service is nil. Already registered services will be ignored.
+Returns YES if the cache was paused, NO if it was already paused.
+Thread safe.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resumeCachingForService:">&ndash;&nbsp;resumeCachingForService:</a></code>
+		<span class="tooltip"><p>Resumes caching, removes the specific service from the blocker list.
+Throws an exception if the service is invalid/not registered.
+Returns YES if the service continues running.
+Thread safe.</p></span>
 	</span>
 	
 	
@@ -1115,6 +1145,45 @@ If you have very text-like pages, you might want to set this to NO.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pauseCachingForService:" title="pauseCachingForService:"></a>
+	<h3 class="subsubtitle method-title">pauseCachingForService:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
+This will finish the current rendering/caching process and then stop the queue.
+Set a service Class/Token/Id that is referred with the break. Needed so that multiple services can request a pause.
+Throws an exception if the service is nil. Already registered services will be ignored.
+Returns YES if the cache was paused, NO if it was already paused.
+Thread safe.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pauseCachingForService:(id)<em>service</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/removeCacheForDocument:deleteDocument:" title="removeCacheForDocument:deleteDocument:"></a>
 	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:</h3>
 	
@@ -1194,6 +1263,43 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>- (UIImage *)renderImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em> pdfPage:(CGPDFPageRef)<em>pdfPage</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resumeCachingForService:" title="resumeCachingForService:"></a>
+	<h3 class="subsubtitle method-title">resumeCachingForService:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resumes caching, removes the specific service from the blocker list.
+Throws an exception if the service is invalid/not registered.
+Returns YES if the service continues running.
+Thread safe.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)resumeCachingForService:(id)<em>service</em></code></div>
 	
 	
 	
@@ -1297,7 +1403,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-11-29)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						
