@@ -92,7 +92,7 @@
         [self.view addSubview:magazineView];
         self.magazineView = magazineView;
         baseGridPosition_ = cellCoords;
-
+        
         // add a smooth status bar transition on the iPhone
         if (!PSIsIpad()) {
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
@@ -106,7 +106,7 @@
             CGRect newFrame = self.view.frame;
             newFrame.origin.y -= self.navigationController.navigationBar.height;            
             newFrame.size.height += self.navigationController.navigationBar.height;
-
+            
             // compensate for transparent statusbar
             if (!PSIsIpad()) {
                 CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
@@ -114,7 +114,7 @@
                 newFrame.origin.y -= statusBarHeight;
                 newFrame.size.height += statusBarHeight;
             }
-
+            
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {            
@@ -146,7 +146,7 @@
     if (kPSPDFStoreManagerPlain) {
         self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
     }
-
+    
     [self.gridView reloadData];
 }
 
@@ -154,16 +154,16 @@
     if (self.isEditMode) {
         self.editMode = NO;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
-                                                                                   style:UIBarButtonItemStyleBordered
-                                                                                  target:self
-                                                                                  action:@selector(editButtonPressed)];    
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(editButtonPressed)];    
         
     }else {
         self.editMode = YES;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Done")
-                                                                                   style:UIBarButtonItemStyleDone
-                                                                                  target:self
-                                                                                  action:@selector(editButtonPressed)];    
+                                                                                  style:UIBarButtonItemStyleDone
+                                                                                 target:self
+                                                                                 action:@selector(editButtonPressed)];    
     }
 }
 
@@ -211,15 +211,15 @@
     
     if (!self.magazineFolder) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
-                                                                                   style:UIBarButtonItemStyleBordered
-                                                                                  target:self
-                                                                                  action:@selector(editButtonPressed)];
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(editButtonPressed)];
     }
     
     UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Options")
-                                                                               style:UIBarButtonItemStyleBordered
-                                                                              target:self
-                                                                              action:@selector(optionsButtonPressed)];
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(optionsButtonPressed)];
     
     // only show the option button if we're at root (else we hide the back button)
     if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
@@ -325,7 +325,7 @@
     }else {
         count = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count];
     }
-
+    
     return count;
 }
 
@@ -373,7 +373,7 @@
         magazine = [folder firstMagazine];
     }
     PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
-
+    
     BOOL canDelete = YES;
     NSString *message = nil;
     if ([folder.magazines count] > 1 && !self.magazineFolder) {
@@ -382,7 +382,7 @@
         message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
         canDelete = magazine.isAvailable || magazine.isDownloading;
     }
-        
+    
     if (kPSPDFShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
@@ -422,14 +422,14 @@
     }
     
     PSELog(@"Magazine selected: %d %@", gridIndex, magazine);    
-
+    
     if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Item is currently downloading.")]
-                                         message:nil
-                                        delegate:nil
-                               cancelButtonTitle:PSPDFLocalize(@"OK")
-                               otherButtonTitles:nil] show];
+                                        message:nil
+                                       delegate:nil
+                              cancelButtonTitle:PSPDFLocalize(@"OK")
+                              otherButtonTitles:nil] show];
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
         } else {
@@ -463,47 +463,75 @@
 - (void)magazineStoreFolderDeleted:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+        }
     }
 }
 
 - (void)magazineStoreFolderAdded:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+        }
     }
 }
 
 - (void)magazineStoreFolderModified:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
-        [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+        }
     }
 }
 
 - (void)openMagazine:(PSPDFMagazine *)magazine {
     NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-    [self openMagazine:magazine animated:YES cellIndex:cellIndex];
+    if (cellIndex != NSNotFound) {
+        [self openMagazine:magazine animated:YES cellIndex:cellIndex];
+    }else {
+        PSPDFLogWarn(@"index not found for %@", magazine);
+    }
 }
 
 - (void)magazineStoreMagazineDeleted:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazine);
+        }
     }    
 }
 
 - (void)magazineStoreMagazineAdded:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazine);
+        }
     }        
 }
 
 - (void)magazineStoreMagazineModified:(PSPDFMagazine *)magazine {
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        if (cellIndex != NSNotFound) {
+            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            PSPDFLogWarn(@"index not found for %@", magazine);
+        }
     }    
 }
 
