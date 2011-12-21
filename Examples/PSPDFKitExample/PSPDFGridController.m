@@ -466,7 +466,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+            PSELog(@"index not found for %@", magazineFolder);
         }
     }
 }
@@ -477,7 +477,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+            PSELog(@"index not found for %@", magazineFolder);
         }
     }
 }
@@ -488,7 +488,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazineFolder);
+            PSELog(@"index not found for %@", magazineFolder);
         }
     }
 }
@@ -498,7 +498,7 @@
     if (cellIndex != NSNotFound) {
         [self openMagazine:magazine animated:YES cellIndex:cellIndex];
     }else {
-        PSPDFLogWarn(@"index not found for %@", magazine);
+        PSELog(@"index not found for %@", magazine);
     }
 }
 
@@ -508,7 +508,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazine);
+            PSELog(@"index not found for %@", magazine);
         }
     }    
 }
@@ -519,7 +519,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazine);
+            PSELog(@"index not found for %@", magazine);
         }
     }        
 }
@@ -530,7 +530,7 @@
         if (cellIndex != NSNotFound) {
             [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
         }else {
-            PSPDFLogWarn(@"index not found for %@", magazine);
+            PSELog(@"index not found for %@", magazine);
         }
     }    
 }
