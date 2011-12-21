@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		7844A46E14A23437005BA868 /* TouchVersionFile */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 7844A47114A23437005BA868 /* Build configuration list for PBXAggregateTarget "TouchVersionFile" */;
+			buildPhases = (
+				7844A47314A23441005BA868 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = TouchVersionFile;
+			productName = TouchVersionFile;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		7805D002141EC0B8003D10D5 /* NSOperationQueue+CWSharedQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7805D001141EC0B8003D10D5 /* NSOperationQueue+CWSharedQueue.m */; };
 		7805D006141EC0E8003D10D5 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7805D005141EC0E8003D10D5 /* QuickLook.framework */; };
@@ -69,6 +83,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 78AB3D33146D75D000670352;
 			remoteInfo = "vendor-http";
+		};
+		7844A47414A2344A005BA868 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 783C779713D982B100CF7C9D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7844A46E14A23437005BA868;
+			remoteInfo = TouchVersionFile;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -355,6 +376,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				7844A47514A2344A005BA868 /* PBXTargetDependency */,
 				783CD111148D545100B4F3AB /* PBXTargetDependency */,
 			);
 			name = PSPDFKitExample;
@@ -393,6 +415,7 @@
 			projectRoot = "";
 			targets = (
 				783C779F13D982B100CF7C9D /* PSPDFKitExample */,
+				7844A46E14A23437005BA868 /* TouchVersionFile */,
 			);
 		};
 /* End PBXProject section */
@@ -432,6 +455,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7844A47314A23441005BA868 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "touch InfoPlist.h";
+		};
 		789C122A14A0E5A400AE9028 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,6 +514,11 @@
 			isa = PBXTargetDependency;
 			name = "vendor-http";
 			targetProxy = 783CD110148D545100B4F3AB /* PBXContainerItemProxy */;
+		};
+		7844A47514A2344A005BA868 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7844A46E14A23437005BA868 /* TouchVersionFile */;
+			targetProxy = 7844A47414A2344A005BA868 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -589,6 +630,20 @@
 			};
 			name = Release;
 		};
+		7844A46F14A23437005BA868 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7844A47014A23437005BA868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -609,6 +664,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		7844A47114A23437005BA868 /* Build configuration list for PBXAggregateTarget "TouchVersionFile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7844A46F14A23437005BA868 /* Debug */,
+				7844A47014A23437005BA868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
