@@ -5,6 +5,11 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+
+@class PSPDFDocumentProvider;
+
 /// pdf reading needs memory, which is a rare resource. So we lock access very carefully.
 @interface PSPDFGlobalLock : NSObject
 
@@ -18,12 +23,15 @@
 /// lock with path and real pdf page number (starts at 1). Get page via [PSPDFDocument pageNumberForPage:].
 - (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
 
+/// Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
+- (PSPDFDocumentProvider *)documentProviderForPath:(NSURL *)pdfPath;
+
 /// returns auto-released document reference, doesn't use the lock.
-- (CGPDFDocumentRef)documentRefWithPath:(NSURL *)pdfPath; 
+//- (id)documentRefWithPath:(NSURL *)pdfPath;
 
 /// returns a page reference that is autoreleased, doesn't lock the system.
 /// still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely. 
-- (CGPDFPageRef)pageRefWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // DANGER, WILL ROBINSON!
+//- (CGPDFPageRef)pageRefWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // DANGER, WILL ROBINSON!
 
 /// free lock with CGPDFPageRef.
 - (void)freeWithPDFPageRef:(CGPDFPageRef)pdfPage;

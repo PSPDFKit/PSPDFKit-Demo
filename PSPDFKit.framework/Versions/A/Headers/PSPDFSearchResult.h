@@ -5,18 +5,28 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFKit.h"
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
+
+@class Selection, PSPDFDocument;
 
 /// Search result object.
 @interface PSPDFSearchResult : NSObject
 
 /// Referenced document.
-@property (nonatomic, assign) PSPDFDocument *document;
+@property(nonatomic, ps_weak) PSPDFDocument *document;
 
 /// referenced page.
-@property (nonatomic, assign) NSUInteger pageIndex;
+@property(nonatomic, assign) NSUInteger pageIndex;
 
 /// preview text snippet.
-@property (nonatomic, copy) NSString *previewText;
+@property(nonatomic, copy) NSString *previewText;
+
+/// Text coordinates. May not be set, expensive calculation.
+@property(nonatomic, strong) Selection *selection;
+
+/// Range within full page text.
+@property(nonatomic, assign) NSRange range;
 
 @end

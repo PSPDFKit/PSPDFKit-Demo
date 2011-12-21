@@ -5,6 +5,9 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
+
 @class PSPDFDocument;
 
 /// saves various data of a page. Managed within PSPDFDocument.
@@ -29,7 +32,7 @@
 @property(nonatomic, assign) NSUInteger page;
 
 /// referenced document, weak.
-@property(nonatomic, assign) PSPDFDocument *document;
+@property(nonatomic, ps_weak) PSPDFDocument *document;
 
 @end
 

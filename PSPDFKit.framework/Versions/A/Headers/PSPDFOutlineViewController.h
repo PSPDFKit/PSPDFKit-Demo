@@ -5,6 +5,11 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import "PSPDFCache.h"
+
+@class PSPDFDocument, PSPDFViewController;
+
 /// Outline (Table of Contents) parser.
 @interface PSPDFOutlineViewController : UITableViewController <PSPDFCacheDelegate>
 
@@ -12,6 +17,6 @@
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
 /// Array of PSPDFOutlineElements
-@property(nonatomic, retain) NSArray *outline;
+@property(nonatomic, strong) NSArray *outline;
 
 @end

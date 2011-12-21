@@ -20,8 +20,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <CoreText/CoreText.h>
+#import "PSPDFKitGlobal.h"
 
 @class TTTAttributedLabel;
 
@@ -46,17 +47,17 @@ typedef NSAttributedString *(^TTTMutableAttributedStringBlock)(NSMutableAttribut
     CTFramesetterRef _framesetter;
     BOOL _needsFramesetter;
     
-    id <TTTAttributedLabelDelegate> delegate;
+    id <TTTAttributedLabelDelegate> __ps_weak delegate;
     UIDataDetectorTypes _dataDetectorTypes;
     NSArray *_links;
     NSDictionary *_linkAttributes;
     BOOL _userInteractionDisabled;
 }
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, ps_weak) id delegate;
 @property (nonatomic, assign) UIDataDetectorTypes dataDetectorTypes;
-@property (nonatomic, retain) NSDictionary *linkAttributes;
-@property (readonly, nonatomic, retain) NSArray *links;
+@property (nonatomic, strong) NSDictionary *linkAttributes;
+@property (readonly, nonatomic, strong) NSArray *links;
 
 - (void)setText:(id)text afterInheritingLabelAttributesAndConfiguringWithBlock:(TTTMutableAttributedStringBlock)block;
 - (void)setNeedsFramesetter;

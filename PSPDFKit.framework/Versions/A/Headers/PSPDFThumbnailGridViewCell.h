@@ -5,14 +5,16 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PSPDFKit.h"
-#import "AQGridViewCell.h"
+#import "GMGridViewCell.h"
 
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting
 #define kPSPDFShrinkOwnImagesTresholdFactor 1.5
 
 /// Thumbnail cell.
-@interface PSPDFThumbnailGridViewCell : AQGridViewCell <PSPDFCacheDelegate>
+@interface PSPDFThumbnailGridViewCell : GMGridViewCell <PSPDFCacheDelegate>
 
 /// manually set image. use if you override class.
 - (void)setImage:(UIImage *)image animated:(BOOL)animated;
@@ -21,13 +23,13 @@
 - (void)setImageSize:(CGSize)imageSize;
 
 /// internal image view.
-@property(nonatomic, retain) UIImageView *imageView;
+@property(nonatomic, strong) UIImageView *imageView;
 
 /// referenced document.
-@property(nonatomic, retain) PSPDFDocument *document;
+@property(nonatomic, strong) PSPDFDocument *document;
 
 /// site label.
-@property(nonatomic, retain) UILabel *siteLabel;
+@property(nonatomic, strong) UILabel *siteLabel;
 
 /// referenced page.
 @property(nonatomic, assign) NSUInteger page;
@@ -37,5 +39,8 @@
 
 /// enable page label.
 @property(nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
+
+/// Creates the shadow. Subclass to change. Returns a CGPathRef.
+- (id)pathShadowForView:(UIView *)imgView;
 
 @end

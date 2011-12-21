@@ -5,12 +5,17 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
+#import "PSPDFAnnotationView.h"
+
 @class PSPDFDocument, PSPDFAnnotation;
 
 enum {
-    PSPDFAnnotationFilterNone     = 0,       // return all annotations
-    PSPDFAnnotationFilterLink     = 1 << 0,  // return link annotations (web/page)
-    PSPDFAnnotationFilterOverlay  = 1 << 1   // return overlay annotations
+    PSPDFAnnotationFilterNone       = 0,        // all annotations
+    PSPDFAnnotationFilterLink       = 1 << 0,   // link annotations (web/page)
+    PSPDFAnnotationFilterOverlay    = 1 << 1,   // overlay annotations
+    PSPDFAnnotationFilterHighlight  = 1 << 2,   // highlight annotations
 };
 typedef NSUInteger PSPDFAnnotationFilter;
 
@@ -31,7 +36,14 @@ typedef NSUInteger PSPDFAnnotationFilter;
 /// YES if annotations are loaded for a specific page. Load annotations in a background thread.
 - (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
 
+/// Annotation factory for built-in types.
+/// Can be overridden, but usually reacting to the various annotation-delegate methods is enough.
+- (UIView <PSPDFAnnotationView>*)createAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect;
+
 /// document for annotation parser. weak.
-@property(nonatomic, assign, readonly) PSPDFDocument *document;
+@property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
+
+/// Change the protocol that's used to parse pspdfkit-additions. Defaults to 'pspdfkit://'.
+@property(nonatomic, strong) NSString *protocolString;
 
 @end

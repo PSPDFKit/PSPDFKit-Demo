@@ -4,16 +4,13 @@
 //
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
-
+#import <Foundation/Foundation.h>
 #import "PSPDFCache.h"
-
-// version string. use PSPDFVersionString() to get.
-#define kPSPDFKitVersionString @"1.7.4"
 
 /// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-/// if disabled, kPSPDFKitDebugMemory has no effect.
+/// if disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
 
 enum {
@@ -39,8 +36,8 @@ extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevic
 /// default time to animate pdf views. Defaults to 0.15
 extern CGFloat kPSPDFKitPDFAnimationDuration;
 
-/// available zoom levels for CATiledLayer. Defaults to 4. Affects PSPDFTilingView.
-/// Setting this too high will result in a memory crash. 4 is a sensible default, you may increase it up to 5.
+/// available zoom levels for CATiledLayer. Defaults to 4 or 5 on modern devices. Affects PSPDFTilingView.
+/// Setting this too high will result in a memory crash.
 /// If set too low, you get pixelerated text. Too high, and the render-process will be invoked *while* zooming,
 /// resulting in text becoming somewhat sharp, then sharp (when the correct zoom level is rendered)
 extern NSUInteger kPSPDFKitZoomLevels;
@@ -71,6 +68,9 @@ extern inline void DrawPSPDFKit(CGContextRef context);
 /// class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFCacheClassName;
 
+// called within PSPDFViewController to set up good defaults for the global values.
+extern void PSPDFKitInitializeGlobals(void);
+
 /// Get current PSPDFKit version.
 extern NSString *PSPDFVersionString(void);
 
@@ -81,6 +81,17 @@ extern NSString *PSPDFLocalize(NSString *stringToken);
 // Will override localization found in the bundle, if a value is found.
 // Falls back to "en" if localization key is not found in dictionary.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
+
+// use special weak keyword
+#if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
+#define ps_weak weak
+#define __ps_weak __weak
+#define ps_nil(x)
+#elif !defined ps_weak
+#define ps_weak unsafe_unretained
+#define __ps_weak __unsafe_unretained
+#define ps_nil(x) x = nil
+#endif
 
 // view helper
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
@@ -114,43 +125,6 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 #define PSPDFRegisterObject(object)
 #define PSPDFDeregisterObject(object)
 #endif
-
-// synthesize singleton helper
-#define SYNTHESIZE_SINGLETON_FOR_CLASS(classname) \
-\
-static classname *shared##classname = nil; \
-\
-+ (classname *)shared##classname \
-{ \
-static dispatch_once_t pred; \
-dispatch_once(&pred, ^{ shared##classname = [[self alloc] init]; }); \
-return shared##classname; \
-} \
-\
-\
-- (id)copyWithZone:(NSZone *)zone \
-{ \
-return self; \
-} \
-\
-- (id)retain \
-{ \
-return self; \
-} \
-\
-- (NSUInteger)retainCount \
-{ \
-return NSUIntegerMax; \
-} \
-\
-- (oneway void)release \
-{ \
-} \
-\
-- (id)autorelease \
-{ \
-return self; \
-}
 
 // swapper
 #define ps_swap(a,b) {  \

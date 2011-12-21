@@ -5,9 +5,11 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 
-@class PSPDFDocumentSearcher, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser;
+@class PSPDFDocumentSearcher, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController;
 
 /// Represents a single, logical, pdf document. (one or many pdf files)
 /// Can be overriden to support custom collections.
@@ -40,12 +42,18 @@
 /// return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.
 - (NSUInteger)pageNumberForPage:(NSUInteger)page;
 
+/// Returns YES of pageInfo for page is available
+- (BOOL)hasPageInfoForPage:(NSUInteger)page;
+
 /// cached rotation and aspect ratio data for specific page. Page starts at 0.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
 /// cached rotation and aspect ratio data for specific page. Page starts at 0.
 /// You can override this if you need to manually change the rotation value of a page.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
+
+/// Makes a search beginning from page 0 for the nearest pageInfo. Does not calculate/block the thread.
+- (PSPDFPageInfo *)nearestPageInfoForPage:(NSUInteger)page;
 
 /// aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 /// maybe needs a pdf lock if not already cached.
@@ -73,17 +81,12 @@
 - (void)drawOverlayRect:(CGRect)rect inContext:(CGContextRef)context forPage:(NSUInteger)page zoomScale:(CGFloat)zoomScale size:(PSPDFSize)size;
 
 /// defaults to nil. can be overridden to provide custom text.
-/// if this returns nil for a site, we'll try to extract text ourselves
+/// if this returns nil for a site, we'll try to extract text ourselves.
+/// Note: If you return text here, text highlighting cannot be used for this page.
 - (NSString *)pageContentForPage:(NSUInteger)page;
 
 /// override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
 - (UIColor *)backgroundColorForPage:(NSUInteger)page;
-
-/// callback to draw annotations. Use tilingView's convertPDFPointToViewPoint to recalculate coordinates.
-// disabled because of PSPDFLinkAnnotation (new as of PSPDFKit 1.7). If you need the old behavior, return NO when a PSPDFLinkAnnotation is created
-// (via shouldDisplayAnnotation).
-// Note: You need to re-create the cache to get rid of the annotation markers.
-- (void)drawAnnotations:(NSArray *)annotations inContext:(CGContextRef)context pageInfo:(PSPDFPageInfo *)pageInfo pageRect:(CGRect)pageRect;
 
 /// document title as shown in the controller
 @property(nonatomic, copy) NSString *title;
@@ -92,13 +95,13 @@
 @property(nonatomic, copy) NSString *uid;
 
 /// common base path for pdf files. Set to nil to use absolute paths for files.
-@property(nonatomic, retain) NSURL *basePath;
+@property(nonatomic, strong) NSURL *basePath;
 
 /// array of NSString pdf files. 
 @property(nonatomic, copy, readonly) NSArray *files;
 
 /// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
-@property(nonatomic, retain) NSURL *fileUrl;
+@property(nonatomic, strong) NSURL *fileUrl;
 
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
@@ -118,16 +121,16 @@
 @property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
 
 /// if document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
-@property(nonatomic, assign) PSPDFViewController *displayingPdfController;
+@property(nonatomic, ps_weak) PSPDFViewController *displayingPdfController;
 
-/// Text extraction class for current document. Readonly.
-@property(nonatomic, retain, readonly) PSPDFDocumentSearcher *documentSearcher;
+/// Text extraction class for current document.
+@property(nonatomic, strong) PSPDFDocumentSearcher *documentSearcher;
 
-/// Outline extraction class for current document. Readonly.
-@property(nonatomic, retain, readonly) PSPDFOutlineParser *outlineParser;
+/// Outline extraction class for current document.
+@property(nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
-/// Link annotation parser class for current document. Readonly.
+/// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
-@property(nonatomic, retain, readonly) PSPDFAnnotationParser *annotationParser;
+@property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
 
 @end
