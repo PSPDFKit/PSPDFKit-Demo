@@ -7,6 +7,8 @@
 //  http://landonf.bikemonkey.org/code/iphone/Using_Blocks_1.20090704.html
 //
 
+#import <Foundation/Foundation.h>
+
 @interface PSPDFAlertView : NSObject <UIAlertViewDelegate> {
   NSMutableArray *blocks_;
 }
@@ -22,6 +24,6 @@
 - (void)show;
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
 
-@property (nonatomic, retain) UIAlertView *alertView;
+@property (nonatomic, strong) UIAlertView *alertView;
 
 @end

@@ -5,7 +5,10 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <QuartzCore/CATiledLayer.h>
+#import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument, PSPDFPageView, PSPDFScrollView;
 
@@ -28,16 +31,13 @@
 - (PSPDFPageView *)pageView;
 
 /// document to display.
-@property(nonatomic, retain) PSPDFDocument *document;
+@property(nonatomic, strong) PSPDFDocument *document;
 
 /// current page to display.
 @property(nonatomic, assign) NSInteger page;
 
 /// page that hosts the tiling view object.
-@property(nonatomic, assign) PSPDFPageView *pdfPage;
-
-/// currenct rect in which page is rendered.
-@property(nonatomic, assign, readonly) CGRect pageRenderRect;
+@property(nonatomic, ps_weak) PSPDFPageView *pdfPage;
 
 @end
 

@@ -1,15 +1,45 @@
 # Changelog
 
-__v1.8.0 - xx/Dec/2011__
+__v1.8.0 - 21/Dec/2011__
 
-*  Search Highlighting! This feature is still in BETA, but already works with many documents. If it doesn't work for you, you can disable it with changing the searchMode-property in PSPDFDocumentSearcher. We're working hard to improve this. As a bonus, search is now fully async and no longer blocks the main thread.
+*  Search Highlighting! This feature is still in BETA, but already works with many documents. If it doesn't work for you, you can disable it with changing the searchMode-property in PSPDFDocumentSearcher. We're working hard to improve this, it just will take some more time until it works on every document. As a bonus, search is now fully async and no longer blocks the main thread.
 
-*  ARC! PSPDFKit now internally uses ARC, which gives a nice performance boost and makes the codebase a lot cleaner. PSPDFKit is still fully compatible with iOS4 upwards, and it doesn't matter if your App uses ARC or not. Note: due to a small problem with the way ARC includes support for iOS4, there now are two frameworks: PSPDFKit.framework and PSPDFKit-ARC.framwork. If your App uses ARC and you need support for iOS4, use PSPDFKit-ARC.framwork, else you need to use PSPDFKit.framework. If you use the PSPDFKit-lib.xcodeproj as a submodule, you don't have to think about this, Xcode is clever enough to not expose this bug here. See more about this at http://pspdfkit.com/documentation.html.
+*  ARC! PSPDFKit now internally uses ARC, which gives a nice performance boost and makes the codebase a lot cleaner. PSPDFKit is still fully compatible with iOS4 upwards. You need to manually include libarclite.so if you are not using ARC and need compatibility with iOS4. Check the MinimalExample.xcodeproj to see how it's done. (You can drag the two libarclite-libraries directly in your project). If you use the PSPDFKit-lib.xcodeproj as a submodule, you don't have to think about this, Xcode is clever enough to not expose this bug here. See more about this at http://pspdfkit.com/documentation.html.
 
+*  New default shadow for pages. More square, iBooks-like. The previous shadow is available when changing shadowStyle in PSPDFScrollView. The shadow override function has been renamed to pathShadowForView.
+*  New: PSPDFDocument now uses the title set in the pdf as default. Use setTitle to set your own title. Title is now also thread-safe.
+*  New Thumbnail-Framework (removed AQGridView). Faster, better animations, allows more options. Thumbnails are now centered. You can override this behavior with subclassing gridView in PSPDFViewController.
+*  New: HUD-elements are now within hudView, hudView is now a PSPDFHUDView, lazily created.
+*  New: Page position is now displayed like in iBooks at the bottom page (title is now just title)
+*  Changed: Videos don't auto play per default. Change the url to pspdfkit[autoplay:true]://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 to restore the old behavior (or use delegates).
+*  Changed: viewMode does not longer animate per default. Use the new setViewMode:animated: to change it with animation.
+*  Changed: the left section of the toolbar now uses iOS5-style leftToolBarButtons if available; falls back to custom UIToolBar in iOS4.
+*  Shortly pressed link targets are now highlighted with a minimum duration.
+*  Alert is no longer displayed for URLs that can't be opened by the system.
+*  Support detection of "m4v" as video annotation.
+*  Improves performance when caching very large documents.
+*  Expose the borderColor of PSPDFLinkAnnotationView; set in one of the delegates.
+*  Removes a lot of glue code and switches to KVO for many view-related classes (Scrobble Bar)
+*  Add methods to check if PSPDFPageInfo is already available, improves thumbnail speed.
+*  Add generic support to override classes. See the property "overrideClassNames" for details. This replaces "scrollViewClass" and "scrobbleBarClass" and is much more flexible. Just use a key/value pair of NSStrings with default/new class names and your custom subclass will be loaded.
+*  setScrobbleBarEnabled is now animatable.
+*  The protocolString for the multimedia link annotation additions can now be set in PSPDFAnnotationParser (defaults to pspdfkit://).
+*  didTapOnPage is now didTapOnPageView, the former is deprecated.
+*  PSPDFPageCoordinates now show a nice description when printed.
+*  Many deprecated delegate calls have been removed. Check your calls.
+*  Version number is now directly written from the git repository. (PSPDFVersionString() is now more accurate)
+*  When a link annotation is tapped, the HUD no longer shows/hides itself.
+*  HUD show/hide is now instant, as soon as scrolling is started. No more delays.
+*  Scrollbar is now only changed if controller is displayed in full-screen (non-embedded).
 *  Fixes a issue where PSPDFKit would never release an object if annotations were disabled.
 *  Fixes a bug where the outline was calculated too often.
+*  Fixes an issue where the title was re-set when changing the file of a pdf.
+*  Fixes problems with syntax highlighting of some files. Xcode 4.3 works even better; use the beta if you can.
+*  Fixes a bug with video player when auto play is not enabled.
+*  Fixes encoding for mailto: URL handler (%20 spaces and other encoded characters are now properly decoded)
+*  Fixes potential crash with recursive calls to scrollViewDidScroll.
+*  Fixes a rare crash when delegates are changed while being enumerated.
 *  Lots of other small improvements.
-
 
 __v1.7.5 - 01/Dec/2011__
 

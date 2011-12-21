@@ -4,13 +4,24 @@
 
   Copyright (c) 2011 Peter Steinberger. All rights reserved.
 */
-"Search" = "Volltextsuche";
-"Page %d" = "Seite %d";
 
+// toolbar
 "Close" = "Schließen";
 "Documents" = "Dokumente";
 "Page" = "Seite";
+"Page %d" = "Seite %d";
 "Grid" = "Grid";
+"%d of %d" = "%d von %d";
 
+// search
+"Search" = "Dokument durchsuchen";
+"No matches found" = "Keine Treffer gefunden";
+"One match found" = "Einen Treffer gefunden";
+"%d matches found" = "%d Treffer gefunden";
+"Searching..." = "Suchen...";
+"Search Completed" = "Suche abgeschlossen";
+"Search Cancelled" = "Suche abgebrochen";
+
+// for the KioskExample
 "DeleteMagazineSingle" = "%@ löschen?";
 "DeleteMagazineMultiple" = "%@ löschen? (%d Ausgaben)";

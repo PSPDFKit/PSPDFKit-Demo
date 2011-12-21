@@ -5,7 +5,17 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
+
+@protocol PSPDFAnnotationView;
 @class PSPDFDocument, PSPDFTilingView, PSPDFPageView, PSPDFViewController;
+
+enum {
+    PSPDFShadowStyleFlat,   // new default shadow style (1.8+)
+    PSPDFShadowStyleCurl,   // old shadow style (< 1.8)
+}typedef PSPDFShadowStyle;
 
 /// Scrollview for a single page. Every PSPDFPageView is embedded in a PSPDFScrollView.
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate>
@@ -14,7 +24,7 @@
 - (void)displayDocument:(PSPDFDocument *)aDocument withPage:(NSUInteger)pageId;
 
 /// releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
-- (void)releaseDocument;
+- (void)releaseDocumentAndCallDelegate:(BOOL)callDelegate;
 
 // for memory warning relay. clears up internal resources.
 - (void)didReceiveMemoryWarning;
@@ -23,13 +33,13 @@
 - (void)switchPages;
 
 /// weak reference to parent pdfController.
-@property(nonatomic, assign) PSPDFViewController *pdfController;
+@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
 
 /// current displayed page.
 @property(nonatomic, assign) NSUInteger page;
 
 /// actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
-@property(nonatomic, retain, readonly) UIView *compoundView;
+@property(nonatomic, strong, readonly) UIView *compoundView;
 
 /// if YES, two sites are displayed.
 @property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode;
@@ -46,6 +56,9 @@
 /// enables/disables page shadow.
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
+/// Style of the page shadow. Defaults to PSPDFShadowStyleFlat. Can be customized with overriding pathShadowForView.
+@property(nonatomic, assign) PSPDFShadowStyle shadowStyle;
+
 /// tap on begin/end of page scrolls to previous/next page.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
@@ -53,12 +66,20 @@
 @property(nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
 
 /// left page. Always set.
-@property(nonatomic, retain, readonly) PSPDFPageView *leftPage;
+@property(nonatomic, strong, readonly) PSPDFPageView *leftPage;
 
 /// right page, if doublePageMode is enabled.
-@property(nonatomic, retain, readonly) PSPDFPageView *rightPage;
+@property(nonatomic, strong, readonly) PSPDFPageView *rightPage;
 
 /// for subclassing - allows changing the shadow path.
-- (CGPathRef)renderPaperCurl:(UIView*)imgView;
+- (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
+
+@end
+
+/// Define a private interface for annotation views to pass messages back to the controller via the page view
+@interface PSPDFScrollView (PSPDFAnnotationInteraction)
+
+/// invoked when the user touches up inside the button associated with the given annotation view with a button
+- (void)pageView:(PSPDFPageView *)pageView didTouchUpInsideAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView;
 
 @end

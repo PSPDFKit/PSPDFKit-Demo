@@ -14,6 +14,8 @@
 //  2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 //  3. This notice may not be removed or altered from any source distribution.
 //
+#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument;
 
@@ -21,7 +23,8 @@ enum {
     PSPDFAnnotationTypeUndefined,
     PSPDFAnnotationTypeLink,   /// the default page or url link
     PSPDFAnnotationTypePage,
-    PSPDFAnnotationTypeWebUrl,    
+    PSPDFAnnotationTypeWebUrl, 
+    PSPDFAnnotationTypeHighlight,
     PSPDFAnnotationTypeVideo,
     PSPDFAnnotationTypeAudio,
     PSPDFAnnotationTypeBrowser,
@@ -46,10 +49,10 @@ typedef NSUInteger PSPDFAnnotationType;
 @property(nonatomic, assign) NSUInteger pageLinkTarget;
 
 /// link if target is a website.
-@property(nonatomic, retain) NSString *siteLinkTarget;
+@property(nonatomic, strong) NSString *siteLinkTarget;
 
 /// URL for PSPDFAnnotationTypeVideo.
-@property(nonatomic, retain) NSURL *URL;
+@property(nonatomic, strong) NSURL *URL;
 
 /// rectangle of specific annotation.
 @property(nonatomic, assign) CGRect pdfRectangle;
@@ -61,12 +64,21 @@ typedef NSUInteger PSPDFAnnotationType;
 @property(nonatomic, assign) NSUInteger page;
 
 /// corresponding document, weak.
-@property(nonatomic, assign) PSPDFDocument *document;
+@property(nonatomic, ps_weak) PSPDFDocument *document;
 
 /// returns true if the annotation is not of type Page or WebUrl. (>= PSPDFAnnotationTypeFile)
 @property(nonatomic, assign, getter=isOverlayAnnotation) BOOL overlayAnnotation;
 
 /// unique identifier for annotation. calculated.
-@property(nonatomic, retain, readonly) NSString *uid;
+@property(nonatomic, strong, readonly) NSString *uid;
+
+/// arbitary text entered into a PDF writer by the user which is associated with the annotation or nil if there is no text
+@property(nonatomic, strong, readonly) NSString *contents;
+
+/// color associated with the annotation or nil if there is no color
+@property(nonatomic, strong, readonly) UIColor *color;
+
+/// If values between pspdfkit://[...] are set, this will contain those options.
+@property(nonatomic, strong) NSDictionary *options;
 
 @end

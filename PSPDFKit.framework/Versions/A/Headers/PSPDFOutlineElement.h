@@ -5,21 +5,24 @@
 //  Copyright 2011 Peter Steinberger. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
+/// Represents a single outline/table of contents element.
 @interface PSPDFOutlineElement : NSObject
 
-/// init
+/// Init with title, page, child elements and deepness level.
 - (id)initWithTitle:(NSString *)title page:(NSUInteger)page elements:(NSArray *)elements level:(NSUInteger)level;
 
-/// outline title
-@property(nonatomic, retain) NSString *title;
+/// Outline title.
+@property(nonatomic, strong) NSString *title;
 
-/// page reference
+/// Page reference
 @property(nonatomic, assign) NSUInteger page;
 
-/// child elements
-@property(nonatomic, retain, readonly) NSArray *elements;
+/// Child elements.
+@property(nonatomic, strong, readonly) NSArray *elements;
 
-// current outline level
+/// Current outline level.
 @property(nonatomic, assign) NSUInteger level;
 
 @end
