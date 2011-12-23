@@ -251,6 +251,8 @@
     self.gridView.frame = self.view.bounds;
     [self updateGridForOrientation];
     self.gridView.dataSource = self; // auto-reloads
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void)viewDidUnload {
@@ -265,7 +267,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
     // only one delegate at a time (only one grid is displayed at a time)
