@@ -526,14 +526,17 @@
 }
 
 - (void)magazineStoreMagazineAdded:(PSPDFMagazine *)magazine {
-    if (self.magazineFolder) {
-        NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-        if (cellIndex != NSNotFound) {
-            [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
-        }else {
-            PSELog(@"index not found for %@", magazine);
-        }
-    }        
+    [self.gridView reloadData];
+    // TODO: GMGridView has some problems with inserting elements; will be fixed soon.
+    /*
+     if (self.magazineFolder) {
+     NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
+     if (cellIndex != NSNotFound) {
+     [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+     }else {
+     PSELog(@"index not found for %@", magazine);
+     }
+     } */       
 }
 
 - (void)magazineStoreMagazineModified:(PSPDFMagazine *)magazine {
