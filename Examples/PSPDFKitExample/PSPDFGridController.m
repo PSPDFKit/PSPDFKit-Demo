@@ -384,16 +384,20 @@
         canDelete = magazine.isAvailable || magazine.isDownloading;
     }
     
+    PSPDFBasicBlock deleteBlock = ^{
+        if (self.magazineFolder) {
+            [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
+        }else {
+            [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
+        }
+    };
+    
     if (kPSPDFShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
             deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
             [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
-                if (self.magazineFolder) {
-                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
-                }else {
-                    [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
-                }
+                deleteBlock();
                 // TODO should re-calculate index here.
                 [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
             }];
@@ -403,7 +407,13 @@
         }
     }else {
         canDelete = canDelete; // dummy to fix warning
-        [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+        deleteBlock();
+        if (magazine.url) {
+            // magazines with URL can't really be deleted, just delete data & fade to gray.
+            [self.gridView reloadObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+        }else {
+            [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+        }
     }
 }
 
