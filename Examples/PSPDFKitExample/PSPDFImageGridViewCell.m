@@ -222,7 +222,6 @@
 
 - (void)setImage:(UIImage *)anImage {
     [self setImage:anImage animated:NO];
-    [self setNeedsLayout];
 }
 
 - (void)setImageSize:(CGSize)imageSize {
@@ -247,7 +246,6 @@
     }
     return progressView_;
 }
-
 
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
     if(darken && !progressViewBackground_) {
@@ -316,6 +314,9 @@
     
     // ensure magazineCounter is at top
     [self.contentView bringSubviewToFront:magazineCounterBadgeImage_];
+    
+    // recalculate edit button position
+    [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
