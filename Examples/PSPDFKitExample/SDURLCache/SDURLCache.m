@@ -45,8 +45,11 @@ static NSDateFormatter* CreateDateFormatter(NSString *format) {
 
 @implementation NSCachedURLResponse(NSCoder)
 
+// supported by Xcode 4.3 and above
 #pragma clang diagnostic push
+#if __clang_minor__ >= 1
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
+#endif
 // This is an intentional override of the default behavior. Silence the warning.
 
 - (void)encodeWithCoder:(NSCoder *)coder {
