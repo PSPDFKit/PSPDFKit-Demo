@@ -16,6 +16,7 @@
 @synthesize available = available_;
 @synthesize url = url_;
 @synthesize imageUrl = imageUrl_;
+@dynamic deletable;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -23,7 +24,7 @@
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path {
     NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
     PSPDFMagazine *magazine = [(PSPDFMagazine *)[[self class] alloc] initWithUrl:url];
-    magazine.available = YES;
+    magazine.available = YES;    
     return magazine;
 }
 
@@ -65,6 +66,21 @@
     pi.pageRotation = (pi.pageRotation + 90) % 360;
     return pi;
 }*/
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public
+
+- (BOOL)isDeletable {
+    static NSString *bundlePath;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        bundlePath = [[NSBundle mainBundle] bundlePath];
+    });
+
+    // if magazine is within the app bundle, we can't delete it.
+    BOOL deletable = ![[[self pathForPage:0] path] hasPrefix:bundlePath];
+    return deletable;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocument

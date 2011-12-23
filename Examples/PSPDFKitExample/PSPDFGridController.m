@@ -353,10 +353,11 @@
 - (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {
     BOOL canDelete;
     if (!self.magazineFolder) {
-        canDelete = YES;
+        NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
+        canDelete = [fixedMagazines count] == 0;
     }else {
         PSPDFMagazine *magazine = [self.magazineFolder.magazines objectAtIndex:index];
-        canDelete = magazine.isAvailable && !magazine.isDownloading;
+        canDelete = magazine.isAvailable && !magazine.isDownloading && magazine.isDeletable;
     }
     return canDelete;
 }
