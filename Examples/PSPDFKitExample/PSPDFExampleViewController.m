@@ -35,8 +35,9 @@
     }
 }
 
+// Helper for the option pane. You really shouldn't include that in your final app.
+// This is just to show what PSPDFKit can do.
 - (void)globalVarChanged {
-    
     // set global settings for magazine
     self.magazine.searchEnabled = [PSPDFSettingsController search];
     self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
@@ -82,12 +83,7 @@
         //self.pageTurnEnabled = YES;
         
         // change statusbar setting to your preferred style
-        //statusBarStyleSetting_ = PSPDFStatusBarDisable;
-        
-        
-        // how to extract text
-        // NSString *pageText = [magazine.documentSearcher textForPage:0];
-        // NSLog(@"text of page 0: %@", pageText);
+        //statusBarStyleSetting_ = PSPDFStatusBarDisable;        
     }    
     return self;
 }
