@@ -1,5 +1,12 @@
 # Changelog
 
+__v1.8.1 - 23/Dec/2011__
+
+*  UINavigationBar style is now restored when PSPDFViewController is popped back.
+*  Annotation page cache is reset when protocol is changed.
+*  Fixes Xcode Archive problem because of public header files in PSPDFKit-lib.xcodeproj
+*  Fixes a regression with the Web-AlertView-action not working.
+
 __v1.8.0 - 21/Dec/2011__
 
 *  Search Highlighting! This feature is still in BETA, but already works with many documents. If it doesn't work for you, you can disable it with changing the searchMode-property in PSPDFDocumentSearcher. We're working hard to improve this, it just will take some more time until it works on every document. As a bonus, search is now fully async and no longer blocks the main thread.

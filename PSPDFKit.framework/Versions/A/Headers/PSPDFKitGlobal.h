@@ -13,6 +13,9 @@
 /// if disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
 
+// defines a basic void block
+typedef void(^PSPDFBasicBlock)(void);
+
 enum {
     PSPDFLogLevelNothing = 0,
     PSPDFLogLevelError,   
