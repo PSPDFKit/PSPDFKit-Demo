@@ -7,8 +7,10 @@
 
 @class PSPDFMagazine;
 
+/// Customized subclass of PSPDFViewController, adding more HUD buttons.
 @interface PSPDFExampleViewController : PSPDFViewController <PSPDFViewControllerDelegate>
 
+/// Referenced magazine; just a cast to .document.
 @property (nonatomic, strong, readonly) PSPDFMagazine *magazine;
 
 @end
