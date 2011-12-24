@@ -69,7 +69,7 @@
     //kPSPDFKitDebugMemory = YES;
     
     // enable to change anomations (e.g. enable on iPad1)
-    //kPSPDFAnimateOption = PSPDFAnimateEverywhere;
+    kPSPDFAnimateOption = PSPDFAnimateEverywhere;
     
     // setup device specific defaults
     [PSPDFSettingsController setupDefaults];
