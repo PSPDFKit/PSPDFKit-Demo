@@ -212,10 +212,6 @@
     [self updateMagazineBadgeFrame];
 }
 
-- (CALayer *)glowSelectionLayer {
-    return self.imageView.layer;
-}
-
 - (UIImage *)image {
     return self.imageView.image;
 }
