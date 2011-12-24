@@ -374,7 +374,6 @@
         folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];
         magazine = [folder firstMagazine];
     }
-    PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
     
     BOOL canDelete = YES;
     NSString *message = nil;
@@ -382,7 +381,9 @@
         message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
     }else {
         message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
-        canDelete = magazine.isAvailable || magazine.isDownloading;
+        if (kPSPDFShouldShowDeleteConfirmationDialog) {
+            canDelete = magazine.isAvailable || magazine.isDownloading;
+        }
     }
     
     PSPDFBasicBlock deleteBlock = ^{
@@ -403,11 +404,11 @@
                 [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
             }];
             [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+            PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
             CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
         }
     }else {
-        canDelete = canDelete; // dummy to fix warning
         deleteBlock();
         if (magazine.url) {
             // magazines with URL can't really be deleted, just delete data & fade to gray.
