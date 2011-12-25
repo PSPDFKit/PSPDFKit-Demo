@@ -20,9 +20,9 @@ documentation: current-menu-item current_page_item
 	  
 	  <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Also, don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
 	  
-	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4 and not yet using ARC, you need to add libarclite_iphoneos.a and libarclite_iphonesimulator.a (the ARC compatibility library) next to PSPDFKit. It's really easy, check the MinimalExample.xcodeproj - you can just drag the two files to your project, or add them manually. (/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a and /Developer/usr/lib/arc/libarclite_iphonesimulator.a. Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a submodule.</p>
+	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4 and not yet using ARC, you need to add libarclite_iphoneos.a and libarclite_iphonesimulator.a (the ARC compatibility library) next to PSPDFKit. It's really easy, check the MinimalExample.xcodeproj - you can just drag the two files to your project, or add them manually. (/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a and /Developer/usr/lib/arc/libarclite_iphonesimulator.a. Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a submodule.</p><br>
 	  
-	  <p><b>PSPDFKit needs Xcode >= 4.2 and >= Clang LLVM 3.0 to compile. It doesn't work with the old LLVM GCC compiler.</b></p>
+	  <p><b>PSPDFKit needs Xcode &#8805; 4.2 and &#8805; Clang LLVM 3.0 to compile. It doesn't work with the old LLVM GCC compiler.</b></p>
 	  
 	  <img src="images/project-add.png" alt="Xcode Add Project" width="1014" height="702" style="margin-left:-55px"/>
 	  
@@ -92,7 +92,7 @@ documentation: current-menu-item current_page_item
 			A: Adobe Acrobat and to some extend also Preview.app use custom in-text hyperlink detection to create annotations on the fly. This is nothing the PDF references specifies, and is also currently not supported my PSPDFKit. As a workaround, make proper link annotations out of your hyperlinks. This can be accomplished easily with Adobe Acrobat or Preview.app.</p><br>
 		
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
-		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode >=4.1 (with iOS SDK >=4.3) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).<br>If you get linker errors about missing symbols, be sure that your project includes at least CoreText.framework, QuartzCore.framework, MessageUI.framework, and the linker flag -all_load.<br>
+		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode &#8805; 4.2 (with iOS SDK &#8805; 5.0) and LLVM/Clang. It may compile with GCC, but it's not really tested on it. Switch to Clang, it's faster both on compile time *and* emits faster binary code. Also, Xcode 3 is dead (it doesn't run on Lion anymore).<br>If you get linker errors about missing symbols, be sure that your project includes the above listed frameworks and the linker flag -ObjC.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
 		
 		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
