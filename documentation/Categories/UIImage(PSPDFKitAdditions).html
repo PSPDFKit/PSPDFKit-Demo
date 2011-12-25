@@ -40,13 +40,11 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/pspdf_cachedImageForPath:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_cachedImageForPath:</option>
-	
-	<option value="//api/name/pspdf_cachedImageForUrl:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_cachedImageForUrl:</option>
-	
 	<option value="//api/name/pspdf_imageNamed:bundle:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_imageNamed:bundle:</option>
 	
 	<option value="//api/name/pspdf_imageWithContentsOfResolutionIndependentFile:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_imageWithContentsOfResolutionIndependentFile:</option>
+	
+	<option value="//api/name/pspdf_preloadedImageForPath:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_preloadedImageForPath:</option>
 	
 	<option value="//api/name/pspdf_scaleForImageSize:bounds:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_scaleForImageSize:bounds:</option>
 	
@@ -57,9 +55,9 @@
 	
 	<option value="//api/name/initWithContentsOfResolutionIndependentFile_pspdf:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithContentsOfResolutionIndependentFile_pspdf:</option>
 	
-	<option value="//api/name/pspdf_decompressImage">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_decompressImage</option>
-	
 	<option value="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_imageToFitSize:method:honorScaleFactor:</option>
+	
+	<option value="//api/name/pspdf_preloadedImage">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_preloadedImage</option>
 	
 	
 	
@@ -85,13 +83,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_cachedImageForPath:">pspdf_cachedImageForPath:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_cachedImageForUrl:">pspdf_cachedImageForUrl:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageNamed:bundle:">pspdf_imageNamed:bundle:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageWithContentsOfResolutionIndependentFile:">pspdf_imageWithContentsOfResolutionIndependentFile:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_preloadedImageForPath:">pspdf_preloadedImageForPath:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_scaleForImageSize:bounds:">pspdf_scaleForImageSize:bounds:</a></span></li>
 	
@@ -103,9 +99,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithContentsOfResolutionIndependentFile_pspdf:">initWithContentsOfResolutionIndependentFile_pspdf:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_decompressImage">pspdf_decompressImage</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageToFitSize:method:honorScaleFactor:">pspdf_imageToFitSize:method:honorScaleFactor:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_preloadedImage">pspdf_preloadedImage</a></span></li>
 	
 </ul></li>
 
@@ -172,36 +168,29 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pspdf_cachedImageForPath:">+&nbsp;pspdf_cachedImageForPath:</a></code>
-		<span class="tooltip"><p>Loads a custom UIImage that keeps the image cache.</p></span>
+		<code><a href="#//api/name/pspdf_preloadedImageForPath:">+&nbsp;pspdf_preloadedImageForPath:</a></code>
+		<span class="tooltip"><p>Creates a new images that is already preloaded to draw on screen.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pspdf_cachedImageForUrl:">+&nbsp;pspdf_cachedImageForUrl:</a></code>
-		<span class="tooltip"><p>Loads a custom UIImage that keeps the image cache.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pspdf_decompressImage">&ndash;&nbsp;pspdf_decompressImage</a></code>
-		<span class="tooltip"><p>forces a image decompression, can be invoked off-screen in a thread.</p></span>
+		<code><a href="#//api/name/pspdf_preloadedImage">&ndash;&nbsp;pspdf_preloadedImage</a></code>
+		<span class="tooltip"><p>Creates a new image that is optimized for the screen. (ARGB, not ABGR)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pspdf_scaleForImageSize:bounds:">+&nbsp;pspdf_scaleForImageSize:bounds:</a></code>
-		<span class="tooltip"><p>calculates scale for images.</p></span>
+		<span class="tooltip"><p>Calculates scale for images.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pspdf_imageNamed:bundle:">+&nbsp;pspdf_imageNamed:bundle:</a></code>
-		<span class="tooltip"><p>load images from the bundle.</p></span>
+		<span class="tooltip"><p>Load images from the bundle.</p></span>
 	</span>
 	
 	
@@ -221,81 +210,13 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/pspdf_cachedImageForPath:" title="pspdf_cachedImageForPath:"></a>
-	<h3 class="subsubtitle method-title">pspdf_cachedImageForPath:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Loads a custom UIImage that keeps the image cache.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_cachedImageForPath:(NSString *)<em>path</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">UIImage+PSPDFKitAdditions.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/pspdf_cachedImageForUrl:" title="pspdf_cachedImageForUrl:"></a>
-	<h3 class="subsubtitle method-title">pspdf_cachedImageForUrl:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Loads a custom UIImage that keeps the image cache.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_cachedImageForUrl:(NSURL *)<em>url</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">UIImage+PSPDFKitAdditions.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/pspdf_imageNamed:bundle:" title="pspdf_imageNamed:bundle:"></a>
 	<h3 class="subsubtitle method-title">pspdf_imageNamed:bundle:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>load images from the bundle.</p>
+		<p>Load images from the bundle.</p>
 	</div>		
 	
 	
@@ -357,13 +278,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pspdf_preloadedImageForPath:" title="pspdf_preloadedImageForPath:"></a>
+	<h3 class="subsubtitle method-title">pspdf_preloadedImageForPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new images that is already preloaded to draw on screen.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_preloadedImageForPath:(NSString *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIImage+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pspdf_scaleForImageSize:bounds:" title="pspdf_scaleForImageSize:bounds:"></a>
 	<h3 class="subsubtitle method-title">pspdf_scaleForImageSize:bounds:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>calculates scale for images.</p>
+		<p>Calculates scale for images.</p>
 	</div>		
 	
 	
@@ -433,17 +388,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pspdf_decompressImage" title="pspdf_decompressImage"></a>
-	<h3 class="subsubtitle method-title">pspdf_decompressImage</h3>
+	<a name="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:" title="pspdf_imageToFitSize:method:honorScaleFactor:"></a>
+	<h3 class="subsubtitle method-title">pspdf_imageToFitSize:method:honorScaleFactor:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>forces a image decompression, can be invoked off-screen in a thread.</p>
+		<p>Returns a new image that is resize to fitSize.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)pspdf_decompressImage</code></div>
+	<div class="method-subsection method-declaration"><code>- (UIImage *)pspdf_imageToFitSize:(CGSize)<em>fitSize</em> method:(PSPDFImageResizingMethod)<em>resizeMethod</em> honorScaleFactor:(BOOL)<em>honorScaleFactor</em></code></div>
 	
 	
 	
@@ -467,17 +422,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:" title="pspdf_imageToFitSize:method:honorScaleFactor:"></a>
-	<h3 class="subsubtitle method-title">pspdf_imageToFitSize:method:honorScaleFactor:</h3>
+	<a name="//api/name/pspdf_preloadedImage" title="pspdf_preloadedImage"></a>
+	<h3 class="subsubtitle method-title">pspdf_preloadedImage</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns a new image that is resize to fitSize.</p>
+		<p>Creates a new image that is optimized for the screen. (ARGB, not ABGR)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIImage *)pspdf_imageToFitSize:(CGSize)<em>fitSize</em> method:(PSPDFImageResizingMethod)<em>resizeMethod</em> honorScaleFactor:(BOOL)<em>honorScaleFactor</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (UIImage *)pspdf_preloadedImage</code></div>
 	
 	
 	
@@ -513,7 +468,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-23)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-25)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						
