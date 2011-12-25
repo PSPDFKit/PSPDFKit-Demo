@@ -22,6 +22,8 @@ documentation: current-menu-item current_page_item
 	  
 	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4 and not yet using ARC, you need to add libarclite_iphoneos.a and libarclite_iphonesimulator.a (the ARC compatibility library) next to PSPDFKit. It's really easy, check the MinimalExample.xcodeproj - you can just drag the two files to your project, or add them manually. (/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a and /Developer/usr/lib/arc/libarclite_iphonesimulator.a. Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a submodule.</p>
 	  
+	  <p><b>PSPDFKit needs Xcode >= 4.2 and >= Clang LLVM 3.0 to compile. It doesn't work with the old LLVM GCC compiler.</b></p>
+	  
 	  <img src="images/project-add.png" alt="Xcode Add Project" width="1014" height="702" style="margin-left:-55px"/>
 	  
 	  <img src="images/project-settings.png" alt="Xcode Project Settings" width="1014" height="730" style="margin-left:-55px"/>
