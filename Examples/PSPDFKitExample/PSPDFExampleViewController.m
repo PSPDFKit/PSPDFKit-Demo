@@ -102,6 +102,14 @@
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
+    /*
+    // Example how to customize the double page mode switching. 
+    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !PSIsIpad()) {
+        self.pageMode = PSPDFPageModeDouble;
+    }else {
+        self.pageMode = PSPDFPageModeAutomatic;
+    }*/
+    
     // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
     [self.popoverController dismissPopoverAnimated:YES];
 }
