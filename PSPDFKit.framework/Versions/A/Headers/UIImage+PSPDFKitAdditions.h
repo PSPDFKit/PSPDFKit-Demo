@@ -23,26 +23,22 @@ typedef enum {
 /// Returns a new image that is resize to fitSize.
 - (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor;
 
-
 /// Load images via path, looking automatically for a @2x option.
 + (UIImage*)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;
 
 /// Load images via path, looking automatically for a @2x option.
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;
 
-/// Loads a custom UIImage that keeps the image cache.
-+ (UIImage *)pspdf_cachedImageForPath:(NSString *)path;
+/// Creates a new images that is already preloaded to draw on screen.
++ (UIImage *)pspdf_preloadedImageForPath:(NSString *)path;
 
-/// Loads a custom UIImage that keeps the image cache.
-+ (UIImage *)pspdf_cachedImageForUrl:(NSURL *)url;
+/// Creates a new image that is optimized for the screen. (ARGB, not ABGR)
+- (UIImage *)pspdf_preloadedImage;
 
-/// forces a image decompression, can be invoked off-screen in a thread.
-- (void)pspdf_decompressImage;
-
-/// calculates scale for images.
+/// Calculates scale for images.
 + (CGFloat)pspdf_scaleForImageSize:(CGSize)imageSize bounds:(CGSize)boundsSize;
 
-/// load images from the bundle.
+/// Load images from the bundle.
 + (UIImage *)pspdf_imageNamed:(NSString *)imageName bundle:(NSString *)bundleName;
 
 @end

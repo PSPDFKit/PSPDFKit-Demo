@@ -1,5 +1,13 @@
 # Changelog
 
+__v1.8.2 - 25/Dec/2011__
+
+*  Uses better image pre-caching code; now optimizes for RGB screen alignment; smoother scrolling!
+*  Fixes a regression with scrobble bar hiding after animation.
+*  Fixes wrong toolbar offset calculation on iPad in landscape mode.
+*  Various performance optimizations regarding CGPDFDocument, HUD updates, thumbnails, cache creation.
+*  Lazy loading of thumbnails.
+
 __v1.8.1 - 23/Dec/2011__
 
 *  UINavigationBar style is now restored when PSPDFViewController is popped back.
