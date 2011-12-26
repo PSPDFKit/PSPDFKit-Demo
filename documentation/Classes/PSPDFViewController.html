@@ -328,14 +328,14 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:">&ndash;&nbsp;scrollToPage:animated:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>.</p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:hideHUD:">&ndash;&nbsp;scrollToPage:animated:hideHUD:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD.</p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -377,7 +377,7 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageNode:">&ndash;&nbsp;isRightPageInDoublePageNode:</a></code>
-		<span class="tooltip"><p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -413,7 +413,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -421,7 +421,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -436,7 +436,9 @@ This represents the pages in the pdf <a href="#//api/name/document">document</a>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageMode">&nbsp;&nbsp;pageMode</a></code>
-		<span class="tooltip"><p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble.</p></span>
+		<span class="tooltip"><p>Set a PageMode defined in the enum. (Single/Double Pages)
+Reloads the view, unless it is set while rotation is active.
+Thus, one can customize the rotation behavior with animations when set within willAnimate*.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1017,7 +1019,7 @@ This replaces the previous properties &ldquo;scrollViewClass&rdquo; and &ldquo;s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p>
 	</div>		
 	
@@ -1052,7 +1054,9 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="#//api/name/page">page</a> mode: PSPDFPageModeSingle or PSPDFPageModeDouble.</p>
+		<p>Set a PageMode defined in the enum. (Single/Double Pages)
+Reloads the view, unless it is set while rotation is active.
+Thus, one can customize the rotation behavior with animations when set within willAnimate*.</p>
 	</div>		
 	
 	
@@ -1290,7 +1294,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p>
 	</div>		
 	
@@ -1814,7 +1818,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	
 	
 	<div class="method-subsection brief-description">
-		<p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2053,7 +2057,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a>.</p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2087,7 +2091,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD.</p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2229,7 +2233,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-25)</span><br />
+						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
 						
