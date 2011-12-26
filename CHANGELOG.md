@@ -1,5 +1,12 @@
 # Changelog
 
+__v1.8.3 - 26/Dec/2011__
+
+*  Update internally used TTTAttributedString to PSPDFAttributedString; prevent naming conflicts.
+*  Fallback to pdf filename if pdf title is set but empty.
+*  pageMode can now be set while willAnimateRotationToInterfaceOrientation to customize single/double side switching.
+*  Fixes a problem with the document disappearing in certain low memory situations.
+
 __v1.8.2 - 25/Dec/2011__
 
 *  Uses better image pre-caching code; now optimizes for RGB screen alignment; smoother scrolling!

@@ -47,10 +47,10 @@ enum {
 /// initialize with a document.
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-/// control currently displayed page.
+/// control currently displayed page. Page starts at 0.
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
 
-/// control currently displayed page, optionally show/hide the HUD.
+/// control currently displayed page, optionally show/hide the HUD. Page starts at 0.
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
 
 /// scroll to next page.
@@ -99,7 +99,9 @@ enum {
 @property(nonatomic, assign) PSPDFViewMode viewMode;
 - (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
 
-/// page mode: PSPDFPageModeSingle or PSPDFPageModeDouble.
+/// Set a PageMode defined in the enum. (Single/Double Pages)
+/// Reloads the view, unless it is set while rotation is active.
+/// Thus, one can customize the rotation behavior with animations when set within willAnimate*.
 @property(nonatomic, assign) PSPDFPageMode pageMode;
 
 /// change scrolling direction. defaults to horizontal scrolling. (PSPDFScrollingHorizontal)
