@@ -20,11 +20,15 @@
 
 @class PSPDFPageInfo;
 
+/// Low level pdf renderer that correctly renders a page with CropBox/Rotation data into a context.
 @interface PSPDFPageRenderer : NSObject
 
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context;
+
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point;
+
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo;
+
 + (CGRect)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo;
 
 @end
