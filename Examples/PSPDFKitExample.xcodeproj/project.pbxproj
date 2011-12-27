@@ -479,7 +479,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nversion=`$git describe --tags --always`\ncount=`$git log --pretty=format:'' | wc -l`\necho -e \"#define GIT_VERSION $version\\n#define GIT_COMMIT_COUNT $count\" > InfoPlist.h";
+			shellScript = "git=`sh /etc/profile; which git`\nversion=`$git describe --tags --always`\ncount=`$git rev-list --all |wc -l`\necho -e \"#define GIT_VERSION $version\\n#define GIT_COMMIT_COUNT $count\" > InfoPlist.h";
 		};
 /* End PBXShellScriptBuildPhase section */
 
