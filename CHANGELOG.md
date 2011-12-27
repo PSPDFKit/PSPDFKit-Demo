@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.8.4 - 27/Dec/2011__
+
+*  Fixes a problem where search highlights were not displayed.
+*  Updated git version scripts to better work with branches. (git rev-list instead of git log)
+
 __v1.8.3 - 26/Dec/2011__
 
 *  Update internally used TTTAttributedString to PSPDFAttributedString; prevent naming conflicts.
