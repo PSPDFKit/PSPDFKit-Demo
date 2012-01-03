@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>ComPspdfkitModule Class Reference</title>
+		<title>PSPDFPageViewController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">ComPspdfkitModule Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFPageViewController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,21 +38,24 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
+	
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
+	
+	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;scrollView</option>
+	
+	<option value="//api/name/useSolidBackground">&nbsp;&nbsp;&nbsp;&nbsp;useSolidBackground</option>
+	
+	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/PSPDFKitVersion">&nbsp;&nbsp;&nbsp;&nbsp;- PSPDFKitVersion</option>
-	
-	<option value="//api/name/clearCache:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCache:</option>
-	
-	<option value="//api/name/setLanguageDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- setLanguageDictionary:</option>
-	
-	<option value="//api/name/setLogLevel:">&nbsp;&nbsp;&nbsp;&nbsp;- setLogLevel:</option>
-	
-	<option value="//api/name/showPDFAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- showPDFAnimated:</option>
+	<option value="//api/name/initWithPDFController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFController:</option>
 	
 	
 	
@@ -76,21 +79,25 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useSolidBackground">useSolidBackground</a></span></li>
+	
+</ul></li>
+
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PSPDFKitVersion">PSPDFKitVersion</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache:">clearCache:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLanguageDictionary:">setLanguageDictionary:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLogLevel:">setLogLevel:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showPDFAnimated:">showPDFAnimated:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFController:">initWithPDFController:</a></span></li>
 	
 </ul></li>
 
@@ -99,7 +106,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="ComPspdfkitModule Class Reference" name="top"></a>
+				<a title="PSPDFPageViewController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -108,7 +115,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">ComPspdfkitModule Class Reference</h1>
+						<h1 class="title title-header">PSPDFPageViewController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -116,10 +123,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">TiModule</td>
+	<td class="specification-value">UIPageViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIPageViewControllerDataSource<br />UIPageViewControllerDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">ComPspdfkitModule.h</td>
+	<td class="specification-value">PSPDFPageViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -129,7 +139,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>PSPDFKit Titanium Bridge.</p>
+						<p>Implements the iOS5-only pageCurl-style famously presented in iBooks.</p>
 					</div>
 					
 					
@@ -147,45 +157,38 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/PSPDFKitVersion">&ndash;&nbsp;PSPDFKitVersion</a></code>
-		<span class="tooltip"><p>Get the version of PSPDFKit. (This is not the version of the module bridge)</p></span>
+		<code><a href="#//api/name/initWithPDFController:">&ndash;&nbsp;initWithPDFController:</a></code>
+		<span class="tooltip"><p>Create <a href="#//api/name/page">page</a> controller suing the master pdf controller.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/showPDFAnimated:">&ndash;&nbsp;showPDFAnimated:</a></code>
-		<span class="tooltip"><p>Shows a modal page with the pdf. At least one argument (the pdf name) is needed.
-Argument 2 sets animated to true or false.
-Arumgent 3 can be an array with options for PSPDFViewController.
-See <a href="http://pspdfkit.com/documentation.html">http://pspdfkit.com/documentation.html</a> for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)
-Argument 4 can be an array with options for <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
-Returns a <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> object.</p></span>
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Associated <a href="#//api/name/pdfController">pdfController</a> class (hosts the UIPageViewController).</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/clearCache:">&ndash;&nbsp;clearCache:</a></code>
-		<span class="tooltip"><p>Clears the whole application cache. No arguments needed.</p></span>
+		<code><a href="#//api/name/scrollView">&nbsp;&nbsp;scrollView</a></code>
+		<span class="tooltip"><p>Associated scrollview</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setLanguageDictionary:">&ndash;&nbsp;setLanguageDictionary:</a></code>
-		<span class="tooltip"><p>Allows setting custom language additions.
-Accepts a dictionary with language dictionaries mapped to the language string.</p></span>
+		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
+		<span class="tooltip"><p>Set new <a href="#//api/name/page">page</a>.</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setLogLevel:">&ndash;&nbsp;setLogLevel:</a></code>
-		<span class="tooltip"><p>Set internal log level. Defaults to 1 (PSPDFLogLevelError).
-PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLogLevelInfo(3), PSPDFLogLevelVerbose(4).</p></span>
+		<code><a href="#//api/name/useSolidBackground">&nbsp;&nbsp;useSolidBackground</a></code>
+		<span class="tooltip"><p>If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -196,6 +199,148 @@ PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLo
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/page" title="page"></a>
+	<h3 class="subsubtitle method-title">page</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set new <a href="#//api/name/page">page</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) NSUInteger page</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Associated <a href="#//api/name/pdfController">pdfController</a> class (hosts the UIPageViewController).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *pdfController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView" title="scrollView"></a>
+	<h3 class="subsubtitle method-title">scrollView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Associated scrollview</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFPagedScrollView *scrollView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/useSolidBackground" title="useSolidBackground"></a>
+	<h3 class="subsubtitle method-title">useSolidBackground</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL useSolidBackground</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 					
 					
@@ -205,17 +350,17 @@ PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLo
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/PSPDFKitVersion" title="PSPDFKitVersion"></a>
-	<h3 class="subsubtitle method-title">PSPDFKitVersion</h3>
+	<a name="//api/name/initWithPDFController:" title="initWithPDFController:"></a>
+	<h3 class="subsubtitle method-title">initWithPDFController:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Get the version of PSPDFKit. (This is not the version of the module bridge)</p>
+		<p>Create <a href="#//api/name/page">page</a> controller suing the master pdf controller.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)PSPDFKitVersion</code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithPDFController:(PSPDFViewController *)<em>pdfController</em></code></div>
 	
 	
 	
@@ -232,150 +377,7 @@ PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLo
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/clearCache:" title="clearCache:"></a>
-	<h3 class="subsubtitle method-title">clearCache:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Clears the whole application cache. No arguments needed.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)clearCache:(id)<em>args</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/setLanguageDictionary:" title="setLanguageDictionary:"></a>
-	<h3 class="subsubtitle method-title">setLanguageDictionary:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Allows setting custom language additions.
-Accepts a dictionary with language dictionaries mapped to the language string.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)setLanguageDictionary:(id)<em>dictionary</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/setLogLevel:" title="setLogLevel:"></a>
-	<h3 class="subsubtitle method-title">setLogLevel:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Set internal log level. Defaults to 1 (PSPDFLogLevelError).
-PSPDFLogLevelNothing(0), PSPDFLogLevelError(1), PSPDFLogLevelWarning(2), PSPDFLogLevelInfo(3), PSPDFLogLevelVerbose(4).</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)setLogLevel:(id)<em>logLevel</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/showPDFAnimated:" title="showPDFAnimated:"></a>
-	<h3 class="subsubtitle method-title">showPDFAnimated:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Shows a modal page with the pdf. At least one argument (the pdf name) is needed.
-Argument 2 sets animated to true or false.
-Arumgent 3 can be an array with options for PSPDFViewController.
-See <a href="http://pspdfkit.com/documentation.html">http://pspdfkit.com/documentation.html</a> for details. You need to write the numeric equivalent for enumeration values (e.g. PSPDFPageModeDouble has the numeric value of 1)
-Argument 4 can be an array with options for <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
-Returns a <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> object.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)showPDFAnimated:(id)<em>pathArray</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">ComPspdfkitModule.h</code><br />
+		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
 	</div>				
 	
 	
@@ -394,9 +396,9 @@ Returns a <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> 
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
 					</div>
 				</div>

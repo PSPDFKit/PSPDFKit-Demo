@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -68,6 +68,8 @@
 	
 	<option value="//api/name/pageScrolling">&nbsp;&nbsp;&nbsp;&nbsp;pageScrolling</option>
 	
+	<option value="//api/name/pageTurnEnabled">&nbsp;&nbsp;&nbsp;&nbsp;pageTurnEnabled</option>
+	
 	<option value="//api/name/pagingScrollView">&nbsp;&nbsp;&nbsp;&nbsp;pagingScrollView</option>
 	
 	<option value="//api/name/popoverController">&nbsp;&nbsp;&nbsp;&nbsp;popoverController</option>
@@ -113,7 +115,11 @@
 	
 	<option value="//api/name/isDualPageMode">&nbsp;&nbsp;&nbsp;&nbsp;- isDualPageMode</option>
 	
-	<option value="//api/name/isRightPageInDoublePageNode:">&nbsp;&nbsp;&nbsp;&nbsp;- isRightPageInDoublePageNode:</option>
+	<option value="//api/name/isFirstPage">&nbsp;&nbsp;&nbsp;&nbsp;- isFirstPage</option>
+	
+	<option value="//api/name/isLastPage">&nbsp;&nbsp;&nbsp;&nbsp;- isLastPage</option>
+	
+	<option value="//api/name/isRightPageInDoublePageMode:">&nbsp;&nbsp;&nbsp;&nbsp;- isRightPageInDoublePageMode:</option>
 	
 	<option value="//api/name/masterViewController">&nbsp;&nbsp;&nbsp;&nbsp;- masterViewController</option>
 	
@@ -191,6 +197,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageScrolling">pageScrolling</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageTurnEnabled">pageTurnEnabled</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pagingScrollView">pagingScrollView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverController">popoverController</a></span></li>
@@ -237,7 +245,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isDualPageMode">isDualPageMode</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRightPageInDoublePageNode:">isRightPageInDoublePageNode:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isFirstPage">isFirstPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLastPage">isLastPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isRightPageInDoublePageMode:">isRightPageInDoublePageMode:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/masterViewController">masterViewController</a></span></li>
 	
@@ -376,7 +388,7 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/isRightPageInDoublePageNode:">&ndash;&nbsp;isRightPageInDoublePageNode:</a></code>
+		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
 		<span class="tooltip"><p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
 	</span>
 	
@@ -393,6 +405,20 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	<span class="tooltip">
 		<code><a href="#//api/name/visiblePageNumbers">&ndash;&nbsp;visiblePageNumbers</a></code>
 		<span class="tooltip"><p>Return array of currently visible <a href="#//api/name/page">page</a> numbers.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLastPage">&ndash;&nbsp;isLastPage</a></code>
+		<span class="tooltip"><p>YES if we are at the last <a href="#//api/name/page">page</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isFirstPage">&ndash;&nbsp;isFirstPage</a></code>
+		<span class="tooltip"><p>YES if we are at the first <a href="#//api/name/page">page</a></p></span>
 	</span>
 	
 	
@@ -549,6 +575,13 @@ This replaces the previous properties &ldquo;scrollViewClass&rdquo; and &ldquo;s
 	<span class="tooltip">
 		<code><a href="#//api/name/toolbarEnabled">&nbsp;&nbsp;toolbarEnabled</a></code>
 		<span class="tooltip"><p>enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageTurnEnabled">&nbsp;&nbsp;pageTurnEnabled</a></code>
+		<span class="tooltip"><p>enables iBooks-like <a href="#//api/name/page">page</a> turning feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1129,6 +1162,40 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFScrolling pageScrolling</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageTurnEnabled" title="pageTurnEnabled"></a>
+	<h3 class="subsubtitle method-title">pageTurnEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>enables iBooks-like <a href="#//api/name/page">page</a> turning feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isPageTurnEnabled) BOOL pageTurnEnabled</code></div>
 	
 	
 	
@@ -1812,8 +1879,76 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/isRightPageInDoublePageNode:" title="isRightPageInDoublePageNode:"></a>
-	<h3 class="subsubtitle method-title">isRightPageInDoublePageNode:</h3>
+	<a name="//api/name/isFirstPage" title="isFirstPage"></a>
+	<h3 class="subsubtitle method-title">isFirstPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>YES if we are at the first <a href="#//api/name/page">page</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isFirstPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLastPage" title="isLastPage"></a>
+	<h3 class="subsubtitle method-title">isLastPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>YES if we are at the last <a href="#//api/name/page">page</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isLastPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isRightPageInDoublePageMode:" title="isRightPageInDoublePageMode:"></a>
+	<h3 class="subsubtitle method-title">isRightPageInDoublePageMode:</h3>
 	
 	
 	
@@ -1822,7 +1957,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)isRightPageInDoublePageNode:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)isRightPageInDoublePageMode:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -2233,9 +2368,9 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
 					</div>
 				</div>

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -54,6 +54,10 @@
 	
 	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;scrollView</option>
 	
+	<option value="//api/name/shadowEnabled">&nbsp;&nbsp;&nbsp;&nbsp;shadowEnabled</option>
+	
+	<option value="//api/name/updateShadowBlock">&nbsp;&nbsp;&nbsp;&nbsp;updateShadowBlock</option>
+	
 	
 	
 	
@@ -66,6 +70,8 @@
 	<option value="//api/name/displayDocument:page:pageRect:scale:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:page:pageRect:scale:</option>
 	
 	<option value="//api/name/setBackgroundImage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setBackgroundImage:animated:</option>
+	
+	<option value="//api/name/updateShadow">&nbsp;&nbsp;&nbsp;&nbsp;- updateShadow</option>
 	
 	
 	
@@ -105,6 +111,10 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowEnabled">shadowEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateShadowBlock">updateShadowBlock</a></span></li>
+	
 </ul></li>
 
 
@@ -118,6 +128,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:page:pageRect:scale:">displayDocument:page:pageRect:scale:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBackgroundImage:animated:">setBackgroundImage:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateShadow">updateShadow</a></span></li>
 	
 </ul></li>
 
@@ -184,7 +196,7 @@ You can add your own views on top of the UIView (e.g. custom annotations)</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/destroyPageAndRemoveFromView:callDelegate:">&ndash;&nbsp;destroyPageAndRemoveFromView:callDelegate:</a></code>
 		<span class="tooltip"><p>destroys and removes CATiledLayer. Call prior deallocating.
-Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the main thread.</p></span>
+Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thread.</p></span>
 	</span>
 	
 	
@@ -205,7 +217,7 @@ Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Page that is displayed. Readonly.</p></span>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -243,6 +255,27 @@ Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the 
 		<span class="tooltip"><p>If YES, there is no thumbnail flickering if they are available in mem/disk.
 This looks nicer, but is a bit slower as we decompress in main thread.
 Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
+		<span class="tooltip"><p>Enables shadow for a single <a href="#//api/name/page">page</a>. Only useful in combination with pageCurl.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateShadow">&ndash;&nbsp;updateShadow</a></code>
+		<span class="tooltip"><p>Subclass to change shadow behavior.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateShadowBlock">&nbsp;&nbsp;updateShadowBlock</a></code>
+		<span class="tooltip"><p>Set block that is executed within <a href="#//api/name/updateShadow">updateShadow</a> when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -370,7 +403,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page that is displayed. Readonly.</p>
+		<p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p>
 	</div>		
 	
 	
@@ -499,6 +532,74 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/shadowEnabled" title="shadowEnabled"></a>
+	<h3 class="subsubtitle method-title">shadowEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enables shadow for a single <a href="#//api/name/page">page</a>. Only useful in combination with pageCurl.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateShadowBlock" title="updateShadowBlock"></a>
+	<h3 class="subsubtitle method-title">updateShadowBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set block that is executed within <a href="#//api/name/updateShadow">updateShadow</a> when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( PSPDFPageView *pageView ) updateShadowBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -517,7 +618,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	<div class="method-subsection brief-description">
 		<p>destroys and removes CATiledLayer. Call prior deallocating.
-Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the main thread.</p>
+Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thread.</p>
 	</div>		
 	
 	
@@ -612,6 +713,40 @@ Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the 
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/updateShadow" title="updateShadow"></a>
+	<h3 class="subsubtitle method-title">updateShadow</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subclass to change shadow behavior.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)updateShadow</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -625,9 +760,9 @@ Don&rsquo;t set removeFromView to YES if destroy is <strong>not</strong> on the 
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
 					</div>
 				</div>

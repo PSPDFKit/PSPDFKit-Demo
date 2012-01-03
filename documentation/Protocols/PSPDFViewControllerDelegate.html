@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.4 (build 703)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -54,13 +54,19 @@
 	
 	<option value="//api/name/pdfViewController:didRenderPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPageView:</option>
 	
-	<option value="//api/name/pdfViewController:didTapOnPage:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnPage:info:coordinates:</option>
+	<option value="//api/name/pdfViewController:didShowAnnotationView:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowAnnotationView:onPageView:</option>
+	
+	<option value="//api/name/pdfViewController:didShowPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didShowPageView:</option>
+	
+	<option value="//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnAnnotation:page:info:coordinates:</option>
 	
 	<option value="//api/name/pdfViewController:didTapOnPageView:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnPageView:info:coordinates:</option>
 	
 	<option value="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldDisplayAnnotation:onPageView:</option>
 	
 	<option value="//api/name/pdfViewController:willDisplayDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willDisplayDocument:</option>
+	
+	<option value="//api/name/pdfViewController:willShowAnnotationView:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willShowAnnotationView:onPageView:</option>
 	
 	<option value="//api/name/pdfViewController:willUnloadPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:willUnloadPageView:</option>
 	
@@ -102,13 +108,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPageView:">pdfViewController:didRenderPageView:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnPage:info:coordinates:">pdfViewController:didTapOnPage:info:coordinates:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowAnnotationView:onPageView:">pdfViewController:didShowAnnotationView:onPageView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didShowPageView:">pdfViewController:didShowPageView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnPageView:info:coordinates:">pdfViewController:didTapOnPageView:info:coordinates:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">pdfViewController:shouldDisplayAnnotation:onPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willDisplayDocument:">pdfViewController:willDisplayDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willShowAnnotationView:onPageView:">pdfViewController:willShowAnnotationView:onPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:willUnloadPageView:">pdfViewController:willUnloadPageView:</a></span></li>
 	
@@ -149,7 +161,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>register to this delegate in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>. Page is based of 1 till pageCount.</p>
+						<p>Implement this delegate on your UIViewController to get notified by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
 					</div>
 					
 					
@@ -176,6 +188,13 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didDisplayDocument:">&ndash;&nbsp;pdfViewController:didDisplayDocument:</a></code>
 		<span class="tooltip"><p>delegate to be notified when pdfController finished loading</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didShowPageView:">&ndash;&nbsp;pdfViewController:didShowPageView:</a></code>
+		<span class="tooltip"><p>controller did show/scrolled to a new page (at least 51% of it is visible)</p></span>
 	</span>
 	
 	
@@ -212,6 +231,13 @@ if NO is returned, viewForAnnotation will not be called.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:">&ndash;&nbsp;pdfViewController:didTapOnAnnotation:page:info:coordinates:</a></code>
+		<span class="tooltip"><p>Delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:annotationView:forAnnotation:onPageView:">&ndash;&nbsp;pdfViewController:annotationView:forAnnotation:onPageView:</a></code>
 		<span class="tooltip"><p>Returns a pre-generated annotationView that can be modified before being added to the view.
 If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
@@ -221,22 +247,29 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p></
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willShowAnnotationView:onPageView:">&ndash;&nbsp;pdfViewController:willShowAnnotationView:onPageView:</a></code>
+		<span class="tooltip"><p>Invoked prior to the presentation of the annotation view: use this to configure actions etc</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didShowAnnotationView:onPageView:">&ndash;&nbsp;pdfViewController:didShowAnnotationView:onPageView:</a></code>
+		<span class="tooltip"><p>Invoked after animation used to present the annotation view</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didLoadPageView:">&ndash;&nbsp;pdfViewController:didLoadPageView:</a></code>
-		<span class="tooltip"><p>called after pdf page has been loaded and added to the pagingScrollView.</p></span>
+		<span class="tooltip"><p>Called after pdf page has been loaded and added to the pagingScrollView.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
-		<span class="tooltip"><p>called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:didTapOnPage:info:coordinates:">&ndash;&nbsp;pdfViewController:didTapOnPage:info:coordinates:</a></code>
-		<span class="tooltip"><p>allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.</p></span>
+		<span class="tooltip"><p>Called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
 	</span>
 	
 	
@@ -368,7 +401,7 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called after pdf page has been loaded and added to the pagingScrollView.</p>
+		<p>Called after pdf page has been loaded and added to the pagingScrollView.</p>
 	</div>		
 	
 	
@@ -430,17 +463,85 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfViewController:didTapOnPage:info:coordinates:" title="pdfViewController:didTapOnPage:info:coordinates:"></a>
-	<h3 class="subsubtitle method-title">pdfViewController:didTapOnPage:info:coordinates:</h3>
+	<a name="//api/name/pdfViewController:didShowAnnotationView:onPageView:" title="pdfViewController:didShowAnnotationView:onPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didShowAnnotationView:onPageView:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.</p>
+		<p>Invoked after animation used to present the annotation view</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnPage:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didShowAnnotationView:(UIView&lt;PSPDFAnnotationView&gt; *)<em>annotationView</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didShowPageView:" title="pdfViewController:didShowPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didShowPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>controller did show/scrolled to a new page (at least 51% of it is visible)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didShowPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didTapOnAnnotation:page:info:coordinates:" title="pdfViewController:didTapOnAnnotation:page:info:coordinates:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didTapOnAnnotation:page:info:coordinates:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delegate for tapping on an annotation. If you don&rsquo;t implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didTapOnAnnotation:(PSPDFAnnotation *)<em>annotation</em> page:(NSUInteger)<em>page</em> info:(PSPDFPageInfo *)<em>pageInfo</em> coordinates:(PSPDFPageCoordinates *)<em>pageCoordinates</em></code></div>
 	
 	
 	
@@ -569,13 +670,47 @@ if NO is returned, viewForAnnotation will not be called.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pdfViewController:willShowAnnotationView:onPageView:" title="pdfViewController:willShowAnnotationView:onPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:willShowAnnotationView:onPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invoked prior to the presentation of the annotation view: use this to configure actions etc</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> willShowAnnotationView:(UIView&lt;PSPDFAnnotationView&gt; *)<em>annotationView</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pdfViewController:willUnloadPageView:" title="pdfViewController:willUnloadPageView:"></a>
 	<h3 class="subsubtitle method-title">pdfViewController:willUnloadPageView:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called before a pdf page will be unloaded and removed from the pagingScrollView.</p>
+		<p>Called before a pdf page will be unloaded and removed from the pagingScrollView.</p>
 	</div>		
 	
 	
@@ -615,9 +750,9 @@ if NO is returned, viewForAnnotation will not be called.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2011 Peter Steinberger. All rights reserved. (Last updated: 2011-12-27)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.4 (build 703)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
 					</div>
 				</div>
