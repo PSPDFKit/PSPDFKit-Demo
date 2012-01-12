@@ -330,12 +330,12 @@
     return count;
 }
 
-- (CGSize)sizeForItemsInGMGridView:(GMGridView *)gridView {
+- (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation {
     return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(82, 120);
 }
 
 - (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
-    CGSize size = [self sizeForItemsInGMGridView:gridView];
+    CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCell];
     if (!cell) {
