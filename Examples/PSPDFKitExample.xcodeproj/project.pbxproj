@@ -66,6 +66,7 @@
 		78D880B713EE399B009ACEB5 /* NSObject+AssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B413EE399B009ACEB5 /* NSObject+AssociatedObjects.m */; };
 		78D880B813EE399B009ACEB5 /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78F0E19D1498ECF9007E62E0 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E19C1498ECF9007E62E0 /* PSPDFKit.bundle */; };
+		78F5717114DC6BFC00EDBE7C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78F5716F14DC6BFC00EDBE7C /* Localizable.strings */; };
 		78FDF909147885B300BE13FC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FDF908147885B300BE13FC /* MediaPlayer.framework */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +158,8 @@
 		78D880B513EE399B009ACEB5 /* NSObject+BlockObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockObservation.h"; sourceTree = "<group>"; };
 		78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlockObservation.m"; sourceTree = "<group>"; };
 		78F0E19C1498ECF9007E62E0 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
+		78F5717014DC6BFC00EDBE7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		78F5717314DC6C1E00EDBE7C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78FDF908147885B300BE13FC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -319,6 +322,7 @@
 				7835F1A7149FD8220027FB8D /* settings@2x.png */,
 				7835F1B4149FFB0D0027FB8D /* settings_landscape.png */,
 				7835F1B5149FFB0D0027FB8D /* settings_landscape@2x.png */,
+				78F5716F14DC6BFC00EDBE7C /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -449,6 +453,7 @@
 				7835F1A9149FD8220027FB8D /* settings@2x.png in Resources */,
 				7835F1B6149FFB0D0027FB8D /* settings_landscape.png in Resources */,
 				7835F1B7149FFB0D0027FB8D /* settings_landscape@2x.png in Resources */,
+				78F5717114DC6BFC00EDBE7C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +526,18 @@
 			targetProxy = 7844A47414A2344A005BA868 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		78F5716F14DC6BFC00EDBE7C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				78F5717014DC6BFC00EDBE7C /* en */,
+				78F5717314DC6C1E00EDBE7C /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		783C77BF13D982B100CF7C9D /* Debug */ = {
