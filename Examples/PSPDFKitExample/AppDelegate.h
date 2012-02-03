@@ -28,7 +28,7 @@
 
 @class PSPDFGridController;
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
     PSPDFGridController *gridController_;
     UINavigationController *navigationController_;
     UIWindow *window_;
