@@ -1,5 +1,33 @@
 # Changelog
 
+__v1.9.0 - xx/Feb/2012__
+
+*  PageCurl mode. Enable via setting "pageCurlEnabled" to YES. iOS5 only, falls back to scrolling on iOS4.
+*  It's now possible to create a PSPDFDocument with initWithData! (thanks to @0xced)
+*  Add support for pdf passwords! (Thanks to Steven Woolgar, Avatron Software)
+*  Adds support for setting a custom tintColor on the toolbars.
+*  Fixes a problem with PSPDFPageModeAutomatic and portrait/landscape page combinations.
+*  Fixes various problems with __weak when the development target is set to iOS5 only.
+*  Adds additional error checking when a context can't be created due to low memory.
+*  Fixes flaky animations on the Simulator on the grid view.
+*  Improves usage of PSPDFViewController within a SplitViewController (thanks to @0xced).
+*  Removes a leftover NSLog.
+*  Fixes a UID clashing problem with equal file names. Warning! Clear your cache, items will be re-generated in 1.9 (cache directories changed)
+*  Fixes a bug with replacing local directory path with Documents/Cache/Bundle. (thanks to Peter)
+*  Fixes a retain cycle in PSPDFAnnotationParser (thanks to @0xced).
+*  Fixes a retain cycle on UINavigationController (thanks to Chan Kruse).
+*  Fixes a problem where the scrobble bar tracking images were sometimes not updated.
+*  Improves handling of improper PSPDFDocument's that don't have a uid set.
+*  Allow adding of UIButtons to gridview cells.
+*  Added "Cancel" and "Open" to the localization bundle. (mailto: links)
+*  [PSPDFDocument appendFile] now allows adding the same file multiple times.
+*  Setting the files array is now possible in PSPDFDocument.
+*  The cache now uses MD5 to avoid conflicts with files of the same name. (or multiple concatenated files)
+*  Better handling of rendering errors (error objects are returned)
+*  Search controller is now auto-dismissed when tapped on a search result.
+*  PSPDFPositionView more closely resembles iBooks. (thanks to Chan)
+*  Titanium: Add ability to hide the close button.
+
 __v1.8.4 - 27/Dec/2011__
 
 *  Fixes a problem where search highlights were not displayed.
