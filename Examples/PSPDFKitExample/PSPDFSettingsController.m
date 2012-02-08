@@ -18,7 +18,7 @@ static BOOL fitWidth = NO;
 static BOOL pagingEnabled = YES;
 static BOOL scrobbleBar = YES;
 static BOOL aspectRatioEqual = NO;
-static BOOL twoStepRendering = NO;
+static BOOL twoStepRendering = YES;
 static BOOL search = YES;
 static BOOL pdfoutline = YES;
 static BOOL annotations = YES;
@@ -46,7 +46,7 @@ static BOOL pageCurl = YES;
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         content_ = [[NSArray alloc] initWithObjects:
                     [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
-                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", @"PageCurl (like iBooks)", nil],                    
+                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", @"PageCurl (like iBooks, iOS5)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
@@ -197,8 +197,10 @@ static BOOL pageCurl = YES;
             cell.accessoryType = (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
         case 1: {
-            BOOL pageCurlCheck = (indexPath.row == 2 && pageCurl); 
-            BOOL scrollCheck = (indexPath.row == pageScrolling && !pageCurl); 
+            BOOL pageCurlAllowed = YES;
+            PSPDF_IF_PRE_IOS5(pageCurlAllowed = NO;)
+            BOOL pageCurlCheck = (indexPath.row == 2 && pageCurl && pageCurlAllowed);
+            BOOL scrollCheck = (indexPath.row == pageScrolling && (!pageCurl || !pageCurlAllowed)); 
             cell.accessoryType = (pageCurlCheck || scrollCheck) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
         }break;
         case 2:
@@ -270,8 +272,8 @@ static BOOL pageCurl = YES;
             [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
             break;
         case 1:
-            pageScrolling = MIN(indexPath.row, 1); // ignored if pageCurl is enabled
             pageCurl = indexPath.row == 2;
+            pageScrolling = pageCurl ? 0 : indexPath.row; // ignored if pageCurl is enabled
             break;
         case 2:
             pageMode = indexPath.row;
