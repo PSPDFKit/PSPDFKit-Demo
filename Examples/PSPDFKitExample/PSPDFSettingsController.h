@@ -30,5 +30,6 @@
 + (BOOL)pdfoutline;
 + (BOOL)annotations;
 + (BOOL)twoStepRendering;
++ (BOOL)pageCurl;
 
 @end

@@ -22,6 +22,7 @@ static BOOL twoStepRendering = NO;
 static BOOL search = YES;
 static BOOL pdfoutline = YES;
 static BOOL annotations = YES;
+static BOOL pageCurl = YES;
 
 #define kOptionBlockIndex    4
 #define kDocOptionBlockIndex 5
@@ -45,7 +46,7 @@ static BOOL annotations = YES;
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         content_ = [[NSArray alloc] initWithObjects:
                     [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
-                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", nil],                    
+                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", @"PageCurl (like iBooks)", nil],                    
                     [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
                     [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
                     [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
@@ -195,9 +196,11 @@ static BOOL annotations = YES;
         case 0:
             cell.accessoryType = (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
-        case 1:
-            cell.accessoryType = (indexPath.row == pageScrolling) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
-            break;
+        case 1: {
+            BOOL pageCurlCheck = (indexPath.row == 2 && pageCurl); 
+            BOOL scrollCheck = (indexPath.row == pageScrolling && !pageCurl); 
+            cell.accessoryType = (pageCurlCheck || scrollCheck) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
+        }break;
         case 2:
             cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   
             break;
@@ -267,7 +270,8 @@ static BOOL annotations = YES;
             [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
             break;
         case 1:
-            pageScrolling = indexPath.row;
+            pageScrolling = MIN(indexPath.row, 1); // ignored if pageCurl is enabled
+            pageCurl = indexPath.row == 2;
             break;
         case 2:
             pageMode = indexPath.row;
@@ -333,6 +337,10 @@ static BOOL annotations = YES;
 
 + (BOOL)twoStepRendering {
     return twoStepRendering;
+}
+
++ (BOOL)pageCurl {
+    return pageCurl;
 }
 
 @end
