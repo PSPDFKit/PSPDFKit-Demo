@@ -2,7 +2,7 @@ Evaluation License
 ------------------
 The following license applies to the free trial versions of the software components.
 
-Copyright (c) 2011, Peter Steinberger
+Copyright (c) 2012, Peter Steinberger
 
 All rights reserved.
 
@@ -23,7 +23,7 @@ Commercial Development License
 ------------------------------
 The following license applies to software components purchased and paid for in full.
 
-Copyright (c) 2011, Peter Steinberger
+Copyright (c) 2012, Peter Steinberger
 
 All rights reserved.
 
