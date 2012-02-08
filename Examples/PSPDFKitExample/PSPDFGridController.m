@@ -115,6 +115,12 @@
                 newFrame.size.height += statusBarHeight;
             }
             
+            // animation needs to be different if we are in pageCurl mode
+            if (pdfController.pageCurlEnabled && [pdfController isDualPageMode]) {
+                newFrame.size.width /= 2;
+                newFrame.origin.x += newFrame.size.width;
+            }
+            
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {            
@@ -446,7 +452,31 @@
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
         } else {
-            [self openMagazine:magazine animated:YES cellIndex:gridIndex];
+            if (magazine.isLocked) {
+                PSPDF_IF_IOS5_OR_GREATER(
+                // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
+                PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"PDF Document Password"];
+                alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                [alertView setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+                __ps_weak PSPDFAlertView *weakAlertView = alertView;
+                [alertView addButtonWithTitle:PSPDFLocalize(@"Open") block:^{
+                    NSString *password = [weakAlertView.alertView textFieldAtIndex:0].text;
+                    BOOL success = [magazine unlockWithPassword:password];
+                    
+                    if (success) {
+                        magazine.password = password;                    
+                        [self openMagazine:magazine animated:YES cellIndex:gridIndex];
+                    }else {
+                        PSPDFAlertView *alert = [PSPDFAlertView alertWithTitle:@"Failed to unlock PDF"];
+                        [alert show];
+                    }
+                }];
+                [alertView show];
+                )
+            }
+            else {
+                [self openMagazine:magazine animated:YES cellIndex:gridIndex];
+            }
         }
     }else {
         PSPDFGridController *gridController = [[PSPDFGridController alloc] initWithMagazineFolder:folder];
