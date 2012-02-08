@@ -45,7 +45,7 @@ You can either integrate PSPDFKit as a drop-in framework or just drag the static
 Open the PSPDFViewController with a simple call:
 
 ``` objective-c
-// create the PSPDFDocument (container for one or multiple pdfs)
+// create the PSPDFDocument (container for one or multiple PDFs)
 NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Sample.pdf"];
 PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
 
