@@ -50,7 +50,7 @@
     self.zoomingSmallDocumentsEnabled = [PSPDFSettingsController zoomingSmallDocumentsEnabled];
     self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
     self.fitWidth = [PSPDFSettingsController fitWidth];
-    //self.pagingEnabled = [PSPDFSettingsController pagingEnabled];
+    self.pageCurlEnabled = [PSPDFSettingsController pageCurl];
     
     NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFSettingsController pageMode];
@@ -78,9 +78,9 @@
         
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
-        
-        // Remains work in progress
-        //self.pageTurnEnabled = YES;
+                
+        // 1.9 feature
+        //self.tintColor = [UIColor orangeColor];
         
         // change statusbar setting to your preferred style
         //statusBarStyleSetting_ = PSPDFStatusBarDisable;        
