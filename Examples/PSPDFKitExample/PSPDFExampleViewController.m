@@ -165,7 +165,7 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    PSELog(@"page %d rendered.", pageView.page);
+    //PSELog(@"page %d rendered.", pageView.page);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
