@@ -146,6 +146,18 @@ static char kvoToken; // we need a static address for the kvo token
     return nil;
 }
 
+- (PSPDFMagazine *)magazineForFileName:(NSString *)fileName {
+    for (PSPDFMagazineFolder *folder in self.magazineFolders) {
+        for (PSPDFMagazine *magazine in folder.magazines) {
+            if ([magazine.files count] && [[magazine.files objectAtIndex:0] isEqualToString:fileName]) {
+                return magazine;
+            }
+        }
+    }
+    
+    return nil;
+}
+
 - (void)loadMagazinesAvailableFromWeb {
     NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -159,14 +171,14 @@ static char kvoToken; // we need a static address for the kvo token
                 NSString *title = [dlMagazine objectForKey:@"name"];
                 NSString *urlString = [dlMagazine objectForKey:@"url"];
                 NSString *imageUrlString = [dlMagazine objectForKey:@"image"];
-                NSString *uid = [urlString lastPathComponent]; // we use fileName as uid - be sure to make it unique!
+                NSString *fileName = [urlString lastPathComponent]; // we use fileName as our way to map files to files on disk - be sure to make it unique!
                 
-                PSPDFMagazine *magazine = [self magazineForUid:uid];
+                PSPDFMagazine *magazine = [self magazineForFileName:fileName];
                 if (!magazine) {
                     // no magazine found on-disk, create new container
                     magazine = [PSPDFMagazine magazineWithPath:nil];                
                     magazine.available = NO; // not yet available
-                    magazine.uid = uid;
+//                    magazine.uid = uid;
                     [newMagazines addObject:magazine];
                 }
                 
