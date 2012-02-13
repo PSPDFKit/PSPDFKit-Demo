@@ -80,7 +80,7 @@
     if (animated && coverImage) {
         GMGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
-        CGRect cellCoords = [self.gridView.scrollView convertRect:cell.frame toView:self.view];
+        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = CGRectMake(0, 0, cellCoords.size.width, cellCoords.size.height);
