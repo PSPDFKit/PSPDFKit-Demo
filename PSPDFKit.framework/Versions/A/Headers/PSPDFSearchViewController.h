@@ -44,6 +44,9 @@ enum {
 /// Clears highlights when controller disappeares. Defaults to NO.
 @property(nonatomic, assign) BOOL clearHighlightsWhenClosed;
 
+/// If presented within a popoverController, it can be accessed here.
+@property(nonatomic, ps_weak) UIPopoverController *popoverController;
+
 // Updates the search result cell. Can be subclassed.
 - (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 

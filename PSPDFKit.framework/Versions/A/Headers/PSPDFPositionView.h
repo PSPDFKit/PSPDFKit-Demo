@@ -21,6 +21,6 @@
 @property(nonatomic, assign) CGFloat labelMargin;
 
 /// Weak reference to the pdf controller. We use KVO for updates.
-@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property(nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 @end

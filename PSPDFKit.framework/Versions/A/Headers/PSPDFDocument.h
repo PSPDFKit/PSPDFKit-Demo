@@ -20,13 +20,18 @@
 /// initialize empty PSPDFDocument 
 + (PSPDFDocument *)PDFDocument;
 
-/// initalize PSPDFDocument with distinct path and an array of files
+/// initialize PSPDFDocument with data
++ (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
+
+/// initialize PSPDFDocument with distinct path and an array of files.
+/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.
 + (PSPDFDocument *)PDFDocumentWithBaseUrl:(NSURL *)baseUrl files:(NSArray *)files;
 
 /// initializes PSPDFDocument with a single file
 + (PSPDFDocument *)PDFDocumentWithUrl:(NSURL *)url;
 
 - (id)init;
+- (id)initWithData:(NSData *)data;
 - (id)initWithUrl:(NSURL *)url;
 - (id)initWithBaseUrl:(NSURL *)basePath files:(NSArray *)files;
 
@@ -88,6 +93,23 @@
 /// override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
 - (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
+/// Passes a password to unlock encrypted documents.
+/// If the password is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+/// If you attempt to unlock an already unlocked document, one of the following occurs:
+/// If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The password string is ignored.
+/// If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the password
+/// string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.
+- (BOOL)unlockWithPassword:(NSString*)password;
+
+/// Do the PDF digital right allow for printing?
+@property (nonatomic, readonly) BOOL allowsPrinting;
+
+/// Was the PDF file encryted at file creation time?
+@property (nonatomic, readonly) BOOL isEncrypted;
+
+/// Has the PDF file been unlocked? (is it still locked?).
+@property (nonatomic, readonly) BOOL isLocked;
+
 /// document title as shown in the controller
 @property(nonatomic, copy) NSString *title;
 
@@ -97,11 +119,20 @@
 /// common base path for pdf files. Set to nil to use absolute paths for files.
 @property(nonatomic, strong) NSURL *basePath;
 
-/// array of NSString pdf files. 
-@property(nonatomic, copy, readonly) NSArray *files;
+/// array of NSString pdf files. If basePath is set, this will be combined with the file name.
+/// If basePath is not set, add the full path (as NSString) to the files.
+/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.`
+@property(nonatomic, copy) NSArray *files;
 
 /// usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
+/// nil if the document was initialized with initWithData:
 @property(nonatomic, strong) NSURL *fileUrl;
+
+/// set a base password to be used for all files in this document (if the document is PDF encrypted).
+@property(nonatomic, copy) NSString* password;
+
+/// PDF data when initialized with initWithData: otherwise nil
+@property(nonatomic, copy, readonly) NSData *data;
 
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
@@ -120,8 +151,9 @@
 /// This might be a good idea to turn on when using JPG for caching.
 @property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
 
-/// if document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
-@property(nonatomic, ps_weak) PSPDFViewController *displayingPdfController;
+/// if document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching. 
+// note: doesn't use weak as this could lead to background deallocation of the controller.
+@property(nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController;
 
 /// Text extraction class for current document.
 @property(nonatomic, strong) PSPDFDocumentSearcher *documentSearcher;

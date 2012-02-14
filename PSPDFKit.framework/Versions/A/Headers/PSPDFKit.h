@@ -29,6 +29,9 @@
 #import "PSPDFPageInfo.h"
 #import "PSPDFHUDView.h"
 #import "PSPDFPositionView.h"
+#import "PSPDFPagedScrollView.h"
+#import "PSPDFPageViewController.h"
+#import "PSPDFSinglePageViewController.h"
 
 // search
 #define kPSPDFSearchMinimumLength 3
