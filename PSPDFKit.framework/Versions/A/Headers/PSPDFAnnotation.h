@@ -26,6 +26,7 @@ enum {
     PSPDFAnnotationTypeWebUrl, 
     PSPDFAnnotationTypeHighlight,
     PSPDFAnnotationTypeVideo,
+    PSPDFAnnotationTypeYouTube,
     PSPDFAnnotationTypeAudio,
     PSPDFAnnotationTypeBrowser,
     PSPDFAnnotationTypeCustom  /// any annotation format that is not recognized is custom, calling the delegate viewForAnnotation:

@@ -7,6 +7,8 @@
 
 // toolbar
 "Close" = "Schließen";
+"Cancel" = "Abbrechen";
+"Open" = "Öffnen";
 "Documents" = "Dokumente";
 "Page" = "Seite";
 "Page %d" = "Seite %d";

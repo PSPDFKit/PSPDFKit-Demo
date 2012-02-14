@@ -13,6 +13,15 @@
 /// if disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
 
+extern NSString *const kPSPDFErrorDomain;
+
+enum {
+    PSPDFErrorCodePageInvalid = 100,
+    PSPDFErrorCodeUnableToOpenPDF = 200,
+    PSPDFErrorCodeUnknown = 900,    
+}typedef PSPDFErrorCode;
+
+
 // defines a basic void block
 typedef void(^PSPDFBasicBlock)(void);
 
