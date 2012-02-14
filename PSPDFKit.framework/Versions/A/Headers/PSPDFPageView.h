@@ -48,4 +48,16 @@
 /// Defaults to NO. (behavior in PSPPDFKit < 1.8.2 was YES)
 @property(nonatomic, assign) BOOL loadThumbnailsOnMainThread;
 
+/// Enables shadow for a single page. Only useful in combination with pageCurl.
+@property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
+
+/// Set default shadowOpacity. Defaults to 0.7.
+@property(nonatomic, assign) float shadowOpacity;
+
+/// Subclass to change shadow behavior.
+- (void)updateShadow;
+
+/// Set block that is executed within updateShadow when isShadowEnabled = YES.
+@property(nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
+
 @end

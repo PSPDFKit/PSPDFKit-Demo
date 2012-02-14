@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-@class PSPDFDocumentProvider;
+@class PSPDFDocument, PSPDFDocumentProvider;
 
 /// pdf reading needs memory, which is a rare resource. So we lock access very carefully.
 @interface PSPDFGlobalLock : NSObject
@@ -16,31 +16,19 @@
 /// get global singleton.
 + (PSPDFGlobalLock *)sharedPSPDFGlobalLock;
 
-/// TRY to lock with path and real pdf page number (starts at 1). Get page via [PSPDFDocument pageNumberForPage:].
+/// TRY to lock with document and logical page number (starts at 0).
 /// returns nil if currently locked.
-- (CGPDFPageRef)tryLockWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // returns early
+- (CGPDFPageRef)tryLockWithDocument:(PSPDFDocument *)document page:(NSUInteger)page error:(NSError **)error; // returns early
 
-/// lock with path and real pdf page number (starts at 1). Get page via [PSPDFDocument pageNumberForPage:].
-- (CGPDFPageRef)lockWithPath:(NSURL *)pdfPath page:(NSUInteger)page;    // waits
+/// lock with document and logical page number (starts at 0).
+- (CGPDFPageRef)lockWithDocument:(PSPDFDocument *)document page:(NSUInteger)page error:(NSError **)error;    // waits
 
-/// Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
-- (PSPDFDocumentProvider *)documentProviderForPath:(NSURL *)pdfPath;
-
-/// returns auto-released document reference, doesn't use the lock.
-//- (id)documentRefWithPath:(NSURL *)pdfPath;
-
-/// returns a page reference that is autoreleased, doesn't lock the system.
-/// still needs to be returned, we crash if the underlying CGPDFDocumentRef is released prematurely. 
-//- (CGPDFPageRef)pageRefWithPath:(NSURL *)pdfPath page:(NSUInteger)page; // DANGER, WILL ROBINSON!
+/// Get a DocumentProvider for a certain document and page. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
+/// Returns nil if neither data nor a pdfPath is set in document
+- (PSPDFDocumentProvider *)documentProviderForDocument:(PSPDFDocument *)document page:(NSUInteger)page;
 
 /// free lock with CGPDFPageRef.
 - (void)freeWithPDFPageRef:(CGPDFPageRef)pdfPage;
-
-/// optain a document reference with real path.
-- (CGPDFDocumentRef)lockDocumentWithPath:(NSURL *)pdfPath;
-
-/// free document reference. only use if opened via lockDocumentWithPath.
-- (void)freeWithPDFDocument:(CGPDFDocumentRef)pdfDocument;
 
 /// special lock for your application (e.g. unzip)
 // use this if you perform an operation in background that needs lots of memory.

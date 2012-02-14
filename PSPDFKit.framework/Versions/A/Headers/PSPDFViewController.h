@@ -10,7 +10,7 @@
 #import "PSPDFKitGlobal.h"
 
 @protocol PSPDFViewControllerDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, GMGridView;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, GMGridView, PSPDFPageViewController;
 
 /// current active view mode.
 enum {
@@ -61,6 +61,7 @@ enum {
 
 /// depending on pageMode, this returns true if two pages are displayed.
 - (BOOL)isDualPageMode;
+- (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 /// show a modal view controller with automatically added close button on the left side.
 - (void)presentModalViewController:(UIViewController *)controller withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
@@ -72,7 +73,7 @@ enum {
 - (void)reloadDataAndScrollToPage:(NSUInteger)page;
 
 /// checks if the current page is on the right side, when in double page mode. Page starts at 0.
-- (BOOL)isRightPageInDoublePageNode:(NSUInteger)page;
+- (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
 
 /// Return the pageView for a given page. Returns nil if page is not initalized (e.g. page is not visible.)
 /// Usually, using the delegates is a better idea to get the current page.
@@ -81,8 +82,14 @@ enum {
 /// Return array of currently visible page numbers.
 - (NSArray *)visiblePageNumbers;
 
+/// YES if we are at the last page
+- (BOOL)isLastPage;
+
+/// YES if we are at the first page
+- (BOOL)isFirstPage;
+
 /// register delegate to capture events, change properties.
-@property(nonatomic, ps_weak) id<PSPDFViewControllerDelegate> delegate;
+@property(nonatomic, ps_weak) IBOutlet id<PSPDFViewControllerDelegate> delegate;
 
 /// document that will be displayed.
 @property(nonatomic, strong) PSPDFDocument *document;
@@ -139,6 +146,9 @@ enum {
 /// if not set, we'll use scrollViewTexturedBackgroundColor as default.
 @property(nonatomic, strong) UIColor *backgroundColor;
 
+/// Set global toolbar tint color. Overrides defaults. Default is nil (depends on statusBarStyleSetting)
+@property(nonatomic, strong) UIColor *tintColor;
+
 /// enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Animatable.
 /// there's some more logic involved, e.g. is the default white statusbar not hidden on a HUD change.
 @property(nonatomic, assign, getter=isScrobbleBarEnabled) BOOL scrobbleBarEnabled;
@@ -153,6 +163,10 @@ enum {
 
 /// enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
+
+/// enables iBooks-like page curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
+/// Note: doesn't work well with non-equal sized documents. Use scrolling if you have such complex documents.
+@property(nonatomic, assign, getter=isPageCurlEnabled) BOOL pageCurlEnabled;
 
 /// enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
 @property(nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;

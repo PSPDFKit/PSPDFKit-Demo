@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.9.0 - xx/Feb/2012__
+__v1.9.0 - 13/Feb/2012__
 
 *  PageCurl mode. Enable via setting "pageCurlEnabled" to YES. iOS5 only, falls back to scrolling on iOS4.
 *  It's now possible to create a PSPDFDocument with initWithData! (thanks to @0xced)
@@ -17,16 +17,29 @@ __v1.9.0 - xx/Feb/2012__
 *  Fixes a retain cycle in PSPDFAnnotationParser (thanks to @0xced).
 *  Fixes a retain cycle on UINavigationController (thanks to Chan Kruse).
 *  Fixes a problem where the scrobble bar tracking images were sometimes not updated.
+*  Fixes a rare race condition where rendering could get stuck.
 *  Improves handling of improper PSPDFDocument's that don't have a uid set.
 *  Allow adding of UIButtons to gridview cells.
 *  Added "Cancel" and "Open" to the localization bundle. (mailto: links)
-*  [PSPDFDocument appendFile] now allows adding the same file multiple times.
 *  Setting the files array is now possible in PSPDFDocument.
 *  The cache now uses MD5 to avoid conflicts with files of the same name. (or multiple concatenated files)
 *  Better handling of rendering errors (error objects are returned)
 *  Search controller is now auto-dismissed when tapped on a search result.
 *  PSPDFPositionView more closely resembles iBooks. (thanks to Chan)
+*  PDF cache generation is no no longer stopped in the viewWillDisappear event (only on dealloc, or when document is changed)
 *  Titanium: Add ability to hide the close button.
+
+Note: For pageCurl, Apple's UIPageViewController is used. This class is pretty new and still buggy.
+I had to apply some private API fixes to make it work. Those calls are obfuscated and AppStore-safe.
+
+If you have any reasons to absolutely don't use those workarounds, you can add 
+_PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API_ in the preprocessor defines.  (only in the source code variant)
+This will also disable the pageCurl feature as the controller will crash pretty fast when my patches are not applied.
+
+Don't worry about this, I have several apps in the store that use such workarounds where needed, it never was a problem.
+Also, I reported those bugs to Apple and will keep track of the fixes,
+and remove my workarounds for newer iOS versions if they fix the problem.
+
 
 __v1.8.4 - 27/Dec/2011__
 

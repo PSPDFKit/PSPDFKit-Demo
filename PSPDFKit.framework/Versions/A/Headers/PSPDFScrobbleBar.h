@@ -16,7 +16,7 @@
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// pdf controller delegate.
-@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property(nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// updates toolbar, realigns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbar;
