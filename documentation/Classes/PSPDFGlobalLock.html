@@ -49,21 +49,17 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/documentProviderForPath:">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviderForPath:</option>
-	
-	<option value="//api/name/freeWithPDFDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFDocument:</option>
+	<option value="//api/name/documentProviderForDocument:page:">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviderForDocument:page:</option>
 	
 	<option value="//api/name/freeWithPDFPageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFPageRef:</option>
 	
-	<option value="//api/name/lockDocumentWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;- lockDocumentWithPath:</option>
-	
 	<option value="//api/name/lockGlobal">&nbsp;&nbsp;&nbsp;&nbsp;- lockGlobal</option>
 	
-	<option value="//api/name/lockWithPath:page:">&nbsp;&nbsp;&nbsp;&nbsp;- lockWithPath:page:</option>
+	<option value="//api/name/lockWithDocument:page:error:">&nbsp;&nbsp;&nbsp;&nbsp;- lockWithDocument:page:error:</option>
 	
 	<option value="//api/name/requestClearCacheAndWait:">&nbsp;&nbsp;&nbsp;&nbsp;- requestClearCacheAndWait:</option>
 	
-	<option value="//api/name/tryLockWithPath:page:">&nbsp;&nbsp;&nbsp;&nbsp;- tryLockWithPath:page:</option>
+	<option value="//api/name/tryLockWithDocument:page:error:">&nbsp;&nbsp;&nbsp;&nbsp;- tryLockWithDocument:page:error:</option>
 	
 	<option value="//api/name/unlockGlobal">&nbsp;&nbsp;&nbsp;&nbsp;- unlockGlobal</option>
 	
@@ -101,21 +97,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviderForPath:">documentProviderForPath:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeWithPDFDocument:">freeWithPDFDocument:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviderForDocument:page:">documentProviderForDocument:page:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeWithPDFPageRef:">freeWithPDFPageRef:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockDocumentWithPath:">lockDocumentWithPath:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockGlobal">lockGlobal</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockWithPath:page:">lockWithPath:page:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lockWithDocument:page:error:">lockWithDocument:page:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestClearCacheAndWait:">requestClearCacheAndWait:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tryLockWithPath:page:">tryLockWithPath:page:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tryLockWithDocument:page:error:">tryLockWithDocument:page:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unlockGlobal">unlockGlobal</a></span></li>
 	
@@ -181,23 +173,24 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/tryLockWithPath:page:">&ndash;&nbsp;tryLockWithPath:page:</a></code>
-		<span class="tooltip"><p>TRY to lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.
+		<code><a href="#//api/name/tryLockWithDocument:page:error:">&ndash;&nbsp;tryLockWithDocument:page:error:</a></code>
+		<span class="tooltip"><p>TRY to lock with document and logical page number (starts at 0).
 returns nil if currently locked.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/lockWithPath:page:">&ndash;&nbsp;lockWithPath:page:</a></code>
-		<span class="tooltip"><p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.</p></span>
+		<code><a href="#//api/name/lockWithDocument:page:error:">&ndash;&nbsp;lockWithDocument:page:error:</a></code>
+		<span class="tooltip"><p>lock with document and logical page number (starts at 0).</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/documentProviderForPath:">&ndash;&nbsp;documentProviderForPath:</a></code>
-		<span class="tooltip"><p>Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef</p></span>
+		<code><a href="#//api/name/documentProviderForDocument:page:">&ndash;&nbsp;documentProviderForDocument:page:</a></code>
+		<span class="tooltip"><p>Get a DocumentProvider for a certain document and page. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
+Returns nil if neither data nor a pdfPath is set in document</p></span>
 	</span>
 	
 	
@@ -205,20 +198,6 @@ returns nil if currently locked.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/freeWithPDFPageRef:">&ndash;&nbsp;freeWithPDFPageRef:</a></code>
 		<span class="tooltip"><p>free lock with CGPDFPageRef.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/lockDocumentWithPath:">&ndash;&nbsp;lockDocumentWithPath:</a></code>
-		<span class="tooltip"><p>optain a document reference with real path.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/freeWithPDFDocument:">&ndash;&nbsp;freeWithPDFDocument:</a></code>
-		<span class="tooltip"><p>free document reference. only use if opened via lockDocumentWithPath.</p></span>
 	</span>
 	
 	
@@ -301,51 +280,18 @@ returns nil if currently locked.</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/documentProviderForPath:" title="documentProviderForPath:"></a>
-	<h3 class="subsubtitle method-title">documentProviderForPath:</h3>
+	<a name="//api/name/documentProviderForDocument:page:" title="documentProviderForDocument:page:"></a>
+	<h3 class="subsubtitle method-title">documentProviderForDocument:page:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Get a DocumentProvider for a certain path. Use this to get CGPDFDocumentRef and/or CGPDFPageRef</p>
+		<p>Get a DocumentProvider for a certain document and page. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
+Returns nil if neither data nor a pdfPath is set in document</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (PSPDFDocumentProvider *)documentProviderForPath:(NSURL *)<em>pdfPath</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGlobalLock.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/freeWithPDFDocument:" title="freeWithPDFDocument:"></a>
-	<h3 class="subsubtitle method-title">freeWithPDFDocument:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>free document reference. only use if opened via lockDocumentWithPath.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)freeWithPDFDocument:(CGPDFDocumentRef)<em>pdfDocument</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (PSPDFDocumentProvider *)documentProviderForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -403,40 +349,6 @@ returns nil if currently locked.</p></span>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/lockDocumentWithPath:" title="lockDocumentWithPath:"></a>
-	<h3 class="subsubtitle method-title">lockDocumentWithPath:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>optain a document reference with real path.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (CGPDFDocumentRef)lockDocumentWithPath:(NSURL *)<em>pdfPath</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGlobalLock.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/lockGlobal" title="lockGlobal"></a>
 	<h3 class="subsubtitle method-title">lockGlobal</h3>
 	
@@ -471,17 +383,17 @@ returns nil if currently locked.</p></span>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/lockWithPath:page:" title="lockWithPath:page:"></a>
-	<h3 class="subsubtitle method-title">lockWithPath:page:</h3>
+	<a name="//api/name/lockWithDocument:page:error:" title="lockWithDocument:page:error:"></a>
+	<h3 class="subsubtitle method-title">lockWithDocument:page:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.</p>
+		<p>lock with document and logical page number (starts at 0).</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)lockWithPath:(NSURL *)<em>pdfPath</em> page:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)lockWithDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> error:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -539,18 +451,18 @@ returns nil if currently locked.</p></span>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/tryLockWithPath:page:" title="tryLockWithPath:page:"></a>
-	<h3 class="subsubtitle method-title">tryLockWithPath:page:</h3>
+	<a name="//api/name/tryLockWithDocument:page:error:" title="tryLockWithDocument:page:error:"></a>
+	<h3 class="subsubtitle method-title">tryLockWithDocument:page:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>TRY to lock with path and real pdf page number (starts at 1). Get page via <a href="../Classes/PSPDFDocument.html#//api/name/pageNumberForPage:">[PSPDFDocument pageNumberForPage:]</a>.
+		<p>TRY to lock with document and logical page number (starts at 0).
 returns nil if currently locked.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)tryLockWithPath:(NSURL *)<em>pdfPath</em> page:(NSUInteger)<em>page</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)tryLockWithDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> error:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -620,7 +532,7 @@ returns nil if currently locked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-02-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

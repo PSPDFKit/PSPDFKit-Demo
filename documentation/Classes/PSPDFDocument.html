@@ -40,6 +40,8 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/allowsPrinting">&nbsp;&nbsp;&nbsp;&nbsp;allowsPrinting</option>
+	
 	<option value="//api/name/annotationParser">&nbsp;&nbsp;&nbsp;&nbsp;annotationParser</option>
 	
 	<option value="//api/name/annotationsEnabled">&nbsp;&nbsp;&nbsp;&nbsp;annotationsEnabled</option>
@@ -47,6 +49,8 @@
 	<option value="//api/name/aspectRatioEqual">&nbsp;&nbsp;&nbsp;&nbsp;aspectRatioEqual</option>
 	
 	<option value="//api/name/basePath">&nbsp;&nbsp;&nbsp;&nbsp;basePath</option>
+	
+	<option value="//api/name/data">&nbsp;&nbsp;&nbsp;&nbsp;data</option>
 	
 	<option value="//api/name/displayingPdfController">&nbsp;&nbsp;&nbsp;&nbsp;displayingPdfController</option>
 	
@@ -56,9 +60,15 @@
 	
 	<option value="//api/name/files">&nbsp;&nbsp;&nbsp;&nbsp;files</option>
 	
+	<option value="//api/name/isEncrypted">&nbsp;&nbsp;&nbsp;&nbsp;isEncrypted</option>
+	
+	<option value="//api/name/isLocked">&nbsp;&nbsp;&nbsp;&nbsp;isLocked</option>
+	
 	<option value="//api/name/outlineEnabled">&nbsp;&nbsp;&nbsp;&nbsp;outlineEnabled</option>
 	
 	<option value="//api/name/outlineParser">&nbsp;&nbsp;&nbsp;&nbsp;outlineParser</option>
+	
+	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
 	
 	<option value="//api/name/searchEnabled">&nbsp;&nbsp;&nbsp;&nbsp;searchEnabled</option>
 	
@@ -76,6 +86,8 @@
 	<option value="//api/name/PDFDocument">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocument</option>
 	
 	<option value="//api/name/PDFDocumentWithBaseUrl:files:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithBaseUrl:files:</option>
+	
+	<option value="//api/name/PDFDocumentWithData:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithData:</option>
 	
 	<option value="//api/name/PDFDocumentWithUrl:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithUrl:</option>
 	
@@ -120,6 +132,8 @@
 	
 	<option value="//api/name/thumbnailPathForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- thumbnailPathForPage:</option>
 	
+	<option value="//api/name/unlockWithPassword:">&nbsp;&nbsp;&nbsp;&nbsp;- unlockWithPassword:</option>
+	
 	
 	
 </select>
@@ -144,6 +158,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowsPrinting">allowsPrinting</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationParser">annotationParser</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsEnabled">annotationsEnabled</a></span></li>
@@ -151,6 +167,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/aspectRatioEqual">aspectRatioEqual</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/basePath">basePath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/data">data</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayingPdfController">displayingPdfController</a></span></li>
 	
@@ -160,9 +178,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/files">files</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEncrypted">isEncrypted</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLocked">isLocked</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineEnabled">outlineEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineParser">outlineParser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchEnabled">searchEnabled</a></span></li>
 	
@@ -181,6 +205,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocument">PDFDocument</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithBaseUrl:files:">PDFDocumentWithBaseUrl:files:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithData:">PDFDocumentWithData:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithUrl:">PDFDocumentWithUrl:</a></span></li>
 	
@@ -225,6 +251,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldDrawOverlayRectForSize:">shouldDrawOverlayRectForSize:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/thumbnailPathForPage:">thumbnailPathForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a></span></li>
 	
 </ul></li>
 
@@ -289,8 +317,16 @@ Can be overriden to support custom collections.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/PDFDocumentWithData:">+&nbsp;PDFDocumentWithData:</a></code>
+		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with <a href="#//api/name/data">data</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithBaseUrl:files:">+&nbsp;PDFDocumentWithBaseUrl:files:</a></code>
-		<span class="tooltip"><p>initalize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a></p></span>
+		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.</p></span>
 	</span>
 	
 	
@@ -311,7 +347,7 @@ Can be overriden to support custom collections.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>returns path for a single page (in case pages are split up). Page starts at 0.</p></span>
+		<span class="tooltip"><p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -325,7 +361,7 @@ Can be overriden to support custom collections.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
-		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
+		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -339,14 +375,14 @@ Can be overriden to support custom collections.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio data for specific page. Page starts at 0.</p></span>
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio data for specific page. Page starts at 0.
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -361,7 +397,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -369,7 +405,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>rotation for specified page. cached. Page starts at 0.</p></span>
+		<span class="tooltip"><p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -433,6 +469,39 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/unlockWithPassword:">&ndash;&nbsp;unlockWithPassword:</a></code>
+		<span class="tooltip"><p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
+If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+If you attempt to unlock an already unlocked document, one of the following occurs:
+If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
+string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allowsPrinting">&nbsp;&nbsp;allowsPrinting</a></code>
+		<span class="tooltip"><p>Do the PDF digital right allow for printing?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEncrypted">&nbsp;&nbsp;isEncrypted</a></code>
+		<span class="tooltip"><p>Was the PDF file encryted at file creation time?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLocked">&nbsp;&nbsp;isLocked</a></code>
+		<span class="tooltip"><p>Has the PDF file been unlocked? (is it still locked?).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
 		<span class="tooltip"><p>document <a href="#//api/name/title">title</a> as shown in the controller</p></span>
 	</span>
@@ -455,14 +524,31 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/files">&nbsp;&nbsp;files</a></code>
-		<span class="tooltip"><p>array of NSString pdf <a href="#//api/name/files">files</a>.</p></span>
+		<span class="tooltip"><p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
-		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p></span>
+		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+nil if the document was initialized with initWithData:</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/password">&nbsp;&nbsp;password</a></code>
+		<span class="tooltip"><p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
+		<span class="tooltip"><p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -544,6 +630,40 @@ Can be overridden to use a subclassed annotation parser.</p></span>
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/allowsPrinting" title="allowsPrinting"></a>
+	<h3 class="subsubtitle method-title">allowsPrinting</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do the PDF digital right allow for printing?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL allowsPrinting</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/annotationParser" title="annotationParser"></a>
@@ -683,6 +803,40 @@ Can be overridden to use a subclassed annotation parser.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/data" title="data"></a>
+	<h3 class="subsubtitle method-title">data</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSData *data</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/displayingPdfController" title="displayingPdfController"></a>
 	<h3 class="subsubtitle method-title">displayingPdfController</h3>
 	
@@ -693,7 +847,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *displayingPdfController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController</code></div>
 	
 	
 	
@@ -757,7 +911,8 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.</p>
+		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+nil if the document was initialized with initWithData:</p>
 	</div>		
 	
 	
@@ -791,11 +946,81 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>array of NSString pdf <a href="#//api/name/files">files</a>.</p>
+		<p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSArray *files</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *files</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEncrypted" title="isEncrypted"></a>
+	<h3 class="subsubtitle method-title">isEncrypted</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Was the PDF file encryted at file creation time?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isEncrypted</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLocked" title="isLocked"></a>
+	<h3 class="subsubtitle method-title">isLocked</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Has the PDF file been unlocked? (is it still locked?).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isLocked</code></div>
 	
 	
 	
@@ -864,6 +1089,40 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFOutlineParser *outlineParser</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/password" title="password"></a>
+	<h3 class="subsubtitle method-title">password</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *password</code></div>
 	
 	
 	
@@ -1073,11 +1332,46 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initalize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a></p>
+		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithBaseUrl:(NSURL *)<em>baseUrl</em> files:(NSArray *)<em>files</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFDocumentWithData:" title="PDFDocumentWithData:"></a>
+	<h3 class="subsubtitle method-title">PDFDocumentWithData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with <a href="#//api/name/data">data</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithData:(NSData *)<em>data</em></code></div>
 	
 	
 	
@@ -1491,7 +1785,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio data for specific page. Page starts at 0.</p>
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1525,7 +1819,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio data for specific page. Page starts at 0.
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
@@ -1560,7 +1854,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
+		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1594,7 +1888,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns path for a single page (in case pages are split up). Page starts at 0.</p>
+		<p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1628,7 +1922,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -1663,7 +1957,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>rotation for specified page. cached. Page starts at 0.</p>
+		<p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1758,6 +2052,45 @@ maybe needs a pdf lock if not already cached.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/unlockWithPassword:" title="unlockWithPassword:"></a>
+	<h3 class="subsubtitle method-title">unlockWithPassword:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
+If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+If you attempt to unlock an already unlocked document, one of the following occurs:
+If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
+string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)unlockWithPassword:(NSString *)<em>password</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -1771,7 +2104,7 @@ maybe needs a pdf lock if not already cached.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-01-03)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-02-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
