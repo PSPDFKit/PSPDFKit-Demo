@@ -178,7 +178,6 @@ static char kvoToken; // we need a static address for the kvo token
                     // no magazine found on-disk, create new container
                     magazine = [PSPDFMagazine magazineWithPath:nil];                
                     magazine.available = NO; // not yet available
-//                    magazine.uid = uid;
                     [newMagazines addObject:magazine];
                 }
                 
@@ -309,13 +308,13 @@ static char kvoToken; // we need a static address for the kvo token
                 NSError *error = nil;
                 NSArray *directoryContents = [fileManager contentsOfDirectoryAtPath:legacyPath error:&error];
                 if (!directoryContents) {
-                    NSLog(@"Error while getting contents of directory: %@.", [error localizedDescription]);
+                    PSPDFLogWarning(@"Error while getting contents of directory: %@.", [error localizedDescription]);
                 }
                 for (NSString *file in directoryContents) {
                     NSString *targetPath = [modernPath stringByAppendingPathComponent:file];
                     if(![fileManager moveItemAtPath:[legacyPath stringByAppendingPathComponent:file]
                                              toPath:targetPath error:&error]) {
-                        NSLog(@"Error while moving %@ from path %@ to %@.", file, legacyPath, modernPath);
+                        PSPDFLogWarning(@"Error while moving %@ from path %@ to %@.", file, legacyPath, modernPath);
                         // just continue with next file - can't do much about this.
                     }else {
                         // apply the new attribute to the file/folder (no need to put it on every file, a parent folder will do)
