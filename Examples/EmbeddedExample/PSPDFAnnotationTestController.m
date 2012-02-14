@@ -17,7 +17,8 @@
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
-        self.delegate = self; // set PSPDFViewControllerDelegate to self     
+        self.delegate = self; // set PSPDFViewControllerDelegate to self
+        self.pageCurlEnabled = YES;
     }
     return self;
 }
@@ -33,9 +34,29 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
+/// time to adjust PSPDFViewController before a PSPDFDocument is displayed
+- (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
+    NSLog(@"willDisplayDocument: %@", document);    
+}
+
+/// delegate to be notified when pdfController finished loading
+- (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document {
+    NSLog(@"didDisplayDocument: %@", document);
+}
+
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     NSLog(@"didShowPageView: page:%d", pageView.page);
+}
+
+/// page was fully rendered at zoomlevel = 1
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
+    NSLog(@"didRenderPageView: page:%d", pageView.page);    
+}
+
+/// will be called when viewMode changes
+- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
+    NSLog(@"didChangeViewMode: %d", viewMode);        
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView.
@@ -46,6 +67,14 @@
 /// called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView; {
     NSLog(@"willUnloadPageView: page:%d", pageView.page);
+}
+
+/// if user tapped within page bounds, this will notify you.
+/// return YES if this touch was processed by you and need no further checking by PSPDFKit.
+/// Note that PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
+    NSLog(@"didTapOnPageView: page:%d", pageView.page);
+    return NO;
 }
 
 - (UIView *)pdfViewController:(PSPDFViewController *)pdfController viewForAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
@@ -73,6 +102,16 @@
         }
     }
     return nil;
+}
+
+/// Invoked prior to the presentation of the annotation view: use this to configure actions etc
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    NSLog(@"willShowAnnotationView: %@ page:%d", annotationView, pageView.page);
+}
+
+/// Invoked after animation used to present the annotation view
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
 }
 
 @end
