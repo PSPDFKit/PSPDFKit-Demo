@@ -88,7 +88,6 @@
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)];
-        
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Deselect" style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)];        
     }
     return self;
