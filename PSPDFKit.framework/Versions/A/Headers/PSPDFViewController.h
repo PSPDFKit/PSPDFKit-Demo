@@ -59,6 +59,12 @@ enum {
 // scroll to previous page.
 - (BOOL)scrollToPreviousPageAnimated:(BOOL)animated;
 
+/// Scrolls to a specific rect on the current page. No effect if zoom is at 1.0.
+- (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;
+
+/// Zooms to a specific rect, optionally animated.
+- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
+
 /// depending on pageMode, this returns true if two pages are displayed.
 - (BOOL)isDualPageMode;
 - (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
@@ -191,7 +197,7 @@ enum {
 /// show or hide HUD controls, titlebar, status bar. (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
 
-/// animated show or hide HUD controls, titlebar, status bar. (iPhone only)
+/// animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
 ////////////////////////////////////////// functions you may wanna override in subclasses //////////////////////////////////////////

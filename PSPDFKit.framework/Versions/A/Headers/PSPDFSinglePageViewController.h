@@ -14,7 +14,7 @@
 /// displays a single pdf page.
 @interface PSPDFSinglePageViewController : UIViewController
 
-/// create page controller suing the master pdf controller
+/// create single page controller using the master pdf controller and a page. Does not has a scrollView in place.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController page:(NSUInteger)page;
 
 /// attached pdfController
