@@ -484,7 +484,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nversion=`$git describe --tags --always`\ncount=`$git rev-list --all |wc -l`\necho -e \"#define GIT_VERSION $version\\n#define GIT_COMMIT_COUNT $count\" > InfoPlist.h";
+			shellScript = "git=`sh /etc/profile; which git`\ngitdir=`$git rev-parse --git-dir 2> /dev/null`\n\n# only modify git version if a git directory is present\nif [ $gitdir != \"\" ]; then\n`rm InfoPlist.h 2> /dev/null`\nversion=`$git describe --tags --always`\ncount=`$git rev-list --all |wc -l`\necho -e \"#define GIT_VERSION @\\\"$version\\\"\\n#define GIT_COMMIT_COUNT $count\" > InfoPlist.h\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
