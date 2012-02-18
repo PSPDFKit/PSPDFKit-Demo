@@ -7,7 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFCache.h"
 
-/// *completely* disables logging. not advised. use kPSPDFKitDebugLogLevel instead.
+/// *completely* disables logging. not advised. use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
 /// if disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
@@ -34,7 +34,7 @@ enum {
 }typedef PSPDFLogLevel;
 
 /// set log level.
-extern PSPDFLogLevel kPSPDFKitDebugLogLevel; // defaults to PSPDFLogLevelError
+extern PSPDFLogLevel kPSPDFLogLevel; // defaults to PSPDFLogLevelError
 
 /// settings for animation of pages, global
 enum {
@@ -116,10 +116,10 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 // log helper
 #ifdef kPSPDFKitDebugEnabled
-#define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLog(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLogWarning(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelWarning) NSLog((@"Warning: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLogError(fmt, ...) do { if(kPSPDFKitDebugLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLog(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogWarning(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelWarning) NSLog((@"Warning: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogError(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
 #define PSPDFLogVerbose(...)
 #define PSPDFLog(...)

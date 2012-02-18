@@ -1,5 +1,19 @@
 # Changelog
 
+__v1.9.1 - 17/Feb/2012__
+
+*  Allow scrolling to a specific rect and zooming:
+   see scrollRectToVisible:(CGRect)rect animated:(BOOL)animated and (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
+*  PSPDFAnnotationParser now allows setting custom annotations. (to complement or override pdf annotations)
+*  New annotation type: Image. (jpg, png, tiff and all other formats supported by UIImage)
+*  Better handling of situations with nil documents or documents where the actual file is missing.
+*  Better alignment of the scrobble bar position image.
+*  Add "mp4" as supported audio filetype.
+*  Fixes ignored scrollingEnabled on PSPDFPageViewController.
+*  Fixes event delegation in the Titanium module.
+*  Fixes the method isFirstPage (checked for page = 1, but we start at page 0).
+*  Renamed kPSPDFKitDebugLogLevel -> kPSPDFLogLevel.
+
 __v1.9.0 - 13/Feb/2012__
 
 *  PageCurl mode. Enable via setting "pageCurlEnabled" to YES. iOS5 only, falls back to scrolling on iOS4.
