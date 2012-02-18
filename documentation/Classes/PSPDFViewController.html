@@ -133,6 +133,8 @@
 	
 	<option value="//api/name/reloadDataAndScrollToPage:">&nbsp;&nbsp;&nbsp;&nbsp;- reloadDataAndScrollToPage:</option>
 	
+	<option value="//api/name/scrollRectToVisible:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollRectToVisible:animated:</option>
+	
 	<option value="//api/name/scrollToNextPageAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollToNextPageAnimated:</option>
 	
 	<option value="//api/name/scrollToPage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- scrollToPage:animated:</option>
@@ -144,6 +146,8 @@
 	<option value="//api/name/updateGridForOrientation">&nbsp;&nbsp;&nbsp;&nbsp;- updateGridForOrientation</option>
 	
 	<option value="//api/name/visiblePageNumbers">&nbsp;&nbsp;&nbsp;&nbsp;- visiblePageNumbers</option>
+	
+	<option value="//api/name/zoomToRect:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- zoomToRect:animated:</option>
 	
 	
 	
@@ -265,6 +269,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reloadDataAndScrollToPage:">reloadDataAndScrollToPage:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollRectToVisible:animated:">scrollRectToVisible:animated:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollToNextPageAnimated:">scrollToNextPageAnimated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollToPage:animated:">scrollToPage:animated:</a></span></li>
@@ -276,6 +282,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateGridForOrientation">updateGridForOrientation</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/visiblePageNumbers">visiblePageNumbers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zoomToRect:animated:">zoomToRect:animated:</a></span></li>
 	
 </ul></li>
 
@@ -344,14 +352,14 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:">&ndash;&nbsp;scrollToPage:animated:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:hideHUD:">&ndash;&nbsp;scrollToPage:animated:hideHUD:</a></code>
-		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p></span>
+		<span class="tooltip"><p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -359,6 +367,20 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
 		<span class="tooltip"><p>scroll to next <a href="#//api/name/page">page</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollRectToVisible:animated:">&ndash;&nbsp;scrollRectToVisible:animated:</a></code>
+		<span class="tooltip"><p>Scrolls to a specific rect on the current <a href="#//api/name/page">page</a>. No effect if zoom is at 1.0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/zoomToRect:animated:">&ndash;&nbsp;zoomToRect:animated:</a></code>
+		<span class="tooltip"><p>Zooms to a specific rect, optionally animated.</p></span>
 	</span>
 	
 	
@@ -393,7 +415,7 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
+		<span class="tooltip"><p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -443,7 +465,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<span class="tooltip"><p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -451,7 +473,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -651,7 +673,7 @@ HUD is created in viewDidLoad. Subclass or use KVO to add your custom views when
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setHUDVisible:animated:">&ndash;&nbsp;setHUDVisible:animated:</a></code>
-		<span class="tooltip"><p>animated show or hide HUD controls, titlebar, status bar. (iPhone only)</p></span>
+		<span class="tooltip"><p>animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)</p></span>
 	</span>
 	
 	
@@ -1064,7 +1086,7 @@ This replaces the previous properties &ldquo;scrollViewClass&rdquo; and &ldquo;s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<p>current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p>
 	</div>		
 	
@@ -1374,7 +1396,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p>
 	</div>		
 	
@@ -2000,7 +2022,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	
 	
 	<div class="method-subsection brief-description">
-		<p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
+		<p>checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2199,6 +2221,40 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/scrollRectToVisible:animated:" title="scrollRectToVisible:animated:"></a>
+	<h3 class="subsubtitle method-title">scrollRectToVisible:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Scrolls to a specific rect on the current <a href="#//api/name/page">page</a>. No effect if zoom is at 1.0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)scrollRectToVisible:(CGRect)<em>rect</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/scrollToNextPageAnimated:" title="scrollToNextPageAnimated:"></a>
 	<h3 class="subsubtitle method-title">scrollToNextPageAnimated:</h3>
 	
@@ -2239,7 +2295,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2273,7 +2329,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p>
+		<p>control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2307,7 +2363,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>animated show or hide HUD controls, titlebar, status bar. (iPhone only)</p>
+		<p>animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)</p>
 	</div>		
 	
 	
@@ -2402,6 +2458,40 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/zoomToRect:animated:" title="zoomToRect:animated:"></a>
+	<h3 class="subsubtitle method-title">zoomToRect:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Zooms to a specific rect, optionally animated.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)zoomToRect:(CGRect)<em>rect</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -2415,7 +2505,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-02-13)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-02-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFPageViewController Class Reference</title>
+		<title>PSPDFImageAnnotation Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFPageViewController Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFImageAnnotation Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,22 +40,13 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
+	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
 	
-	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
-	
-	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;scrollView</option>
-	
-	<option value="//api/name/useSolidBackground">&nbsp;&nbsp;&nbsp;&nbsp;useSolidBackground</option>
+	<option value="//api/name/imageView">&nbsp;&nbsp;&nbsp;&nbsp;imageView</option>
 	
 	
 	
 	
-	
-	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/initWithPDFController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFController:</option>
 	
 	
 	
@@ -81,32 +72,22 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useSolidBackground">useSolidBackground</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageView">imageView</a></span></li>
 	
 </ul></li>
 
 
 
 
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFController:">initWithPDFController:</a></span></li>
-	
-</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFPageViewController Class Reference" name="top"></a>
+				<a title="PSPDFImageAnnotation Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -115,7 +96,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFPageViewController Class Reference</h1>
+						<h1 class="title title-header">PSPDFImageAnnotation Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -123,13 +104,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIPageViewController</td>
+	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIPageViewControllerDataSource<br />UIPageViewControllerDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFAnnotationView.html">PSPDFAnnotationView</a></td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFPageViewController.h</td>
+	<td class="specification-value">PSPDFImageAnnotation.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -139,8 +120,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Implements the iOS5-only pageCurl-style famously presented in iBooks.
-Note: doesn&rsquo;t work well with non-equal sized documents.</p>
+						<p>Shows a single UIImageView.</p>
 					</div>
 					
 					
@@ -158,36 +138,15 @@ Note: doesn&rsquo;t work well with non-equal sized documents.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithPDFController:">&ndash;&nbsp;initWithPDFController:</a></code>
-		<span class="tooltip"><p>Create <a href="#//api/name/page">page</a> controller using the master pdf controller.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
-		<span class="tooltip"><p>Associated <a href="#//api/name/pdfController">pdfController</a> class (hosts the UI<a href="../Classes/PageViewController.html">PageViewController</a>).</p></span>
+		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
+		<span class="tooltip"><p>Image <a href="#//api/name/URL">URL</a> (to a local resource)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/scrollView">&nbsp;&nbsp;scrollView</a></code>
-		<span class="tooltip"><p>Associated scrollview</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Set new <a href="#//api/name/page">page</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/useSolidBackground">&nbsp;&nbsp;useSolidBackground</a></code>
-		<span class="tooltip"><p>If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.</p></span>
+		<code><a href="#//api/name/imageView">&nbsp;&nbsp;imageView</a></code>
+		<span class="tooltip"><p>Direct access to the ImageView.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -205,17 +164,17 @@ Note: doesn&rsquo;t work well with non-equal sized documents.</p>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/page" title="page"></a>
-	<h3 class="subsubtitle method-title">page</h3>
+	<a name="//api/name/URL" title="URL"></a>
+	<h3 class="subsubtitle method-title">URL</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set new <a href="#//api/name/page">page</a>.</p>
+		<p>Image <a href="#//api/name/URL">URL</a> (to a local resource)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *URL</code></div>
 	
 	
 	
@@ -232,24 +191,24 @@ Note: doesn&rsquo;t work well with non-equal sized documents.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFImageAnnotation.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfController" title="pdfController"></a>
-	<h3 class="subsubtitle method-title">pdfController</h3>
+	<a name="//api/name/imageView" title="imageView"></a>
+	<h3 class="subsubtitle method-title">imageView</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Associated <a href="#//api/name/pdfController">pdfController</a> class (hosts the UI<a href="../Classes/PageViewController.html">PageViewController</a>).</p>
+		<p>Direct access to the ImageView.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *pdfController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIImageView *imageView</code></div>
 	
 	
 	
@@ -266,75 +225,7 @@ Note: doesn&rsquo;t work well with non-equal sized documents.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/scrollView" title="scrollView"></a>
-	<h3 class="subsubtitle method-title">scrollView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Associated scrollview</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFPagedScrollView *scrollView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/useSolidBackground" title="useSolidBackground"></a>
-	<h3 class="subsubtitle method-title">useSolidBackground</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL useSolidBackground</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFImageAnnotation.h</code><br />
 	</div>				
 	
 	
@@ -345,46 +236,6 @@ Note: doesn&rsquo;t work well with non-equal sized documents.</p>
 					
 					
 					
-					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithPDFController:" title="initWithPDFController:"></a>
-	<h3 class="subsubtitle method-title">initWithPDFController:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Create <a href="#//api/name/page">page</a> controller using the master pdf controller.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)initWithPDFController:(PSPDFViewController *)<em>pdfController</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 				</div>
