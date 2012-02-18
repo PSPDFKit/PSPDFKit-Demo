@@ -15,7 +15,7 @@
 /// Note: doesn't work well with non-equal sized documents.
 @interface PSPDFPageViewController : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-/// Create page controller suing the master pdf controller.
+/// Create page controller using the master pdf controller.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// Associated pdfController class (hosts the UIPageViewController).
