@@ -58,7 +58,7 @@
     [NSURLCache setSharedURLCache:URLCache];
     
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
-    kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
+    kPSPDFLogLevel = PSPDFLogLevelInfo;
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     PSPDFLog(@"Kiosk Example %@ is starting up... [PSPDFKit Version %@]", appVersion, PSPDFVersionString());
     
