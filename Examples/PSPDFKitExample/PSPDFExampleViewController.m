@@ -169,7 +169,9 @@
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
-    BOOL handled;
+    BOOL handled = NO;
+    
+    /*
     if (annotation.type == PSPDFAnnotationTypeHighlight) {
         [[[UIAlertView alloc] initWithTitle:PSPDFLocalize(@"Tapped highlight!") 
                                     message:annotation.contents
@@ -179,7 +181,7 @@
         handled = YES;
     } else {
         handled = NO;
-    }
+    }*/
     
     return handled;
 }
