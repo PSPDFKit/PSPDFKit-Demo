@@ -59,6 +59,7 @@
     
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFLogLevel = PSPDFLogLevelInfo;
+    //kPSPDFLogLevel = PSPDFLogLevelVerbose;
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     PSPDFLog(@"Kiosk Example %@ is starting up... [PSPDFKit Version %@]", appVersion, PSPDFVersionString());
     
@@ -106,21 +107,6 @@
     });
     
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
 }
 
 @end
