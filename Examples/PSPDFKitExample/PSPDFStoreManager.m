@@ -378,7 +378,7 @@ static char kvoToken; // we need a static address for the kvo token
             [downloadObject cancelDownload];
         }
         
-        [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES];
+        [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
     }
     
     [delegate_ magazineStoreFolderDeleted:magazineFolder];
@@ -413,7 +413,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     // clear everything
-    [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES];
+    [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
 
     // if magazine has no url - delete
     if (!magazine.url) {
