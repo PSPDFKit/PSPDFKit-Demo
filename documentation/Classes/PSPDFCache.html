@@ -90,7 +90,7 @@
 	
 	<option value="//api/name/pauseCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- pauseCachingForService:</option>
 	
-	<option value="//api/name/removeCacheForDocument:deleteDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:</option>
+	<option value="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:waitUntilDone:</option>
 	
 	<option value="//api/name/removeDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDelegate:</option>
 	
@@ -180,7 +180,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pauseCachingForService:">pauseCachingForService:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:">removeCacheForDocument:deleteDocument:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">removeCacheForDocument:deleteDocument:waitUntilDone:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDelegate:">removeDelegate:</a></span></li>
 	
@@ -296,7 +296,7 @@ You can manually call <a href="#//api/name/clearCache">clearCache</a> to remove 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheDocument:startAtPage:size:">&ndash;&nbsp;cacheDocument:startAtPage:size:</a></code>
-		<span class="tooltip"><p>start document caching (update often to improve cache hits). Page starts at 0.</p></span>
+		<span class="tooltip"><p>start document caching (update often to improve cache hits). <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -331,8 +331,9 @@ Thread safe.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/removeCacheForDocument:deleteDocument:">&ndash;&nbsp;removeCacheForDocument:deleteDocument:</a></code>
-		<span class="tooltip"><p>clear cache for a specific document, optionally also deletes referenced document files.</p></span>
+		<code><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&ndash;&nbsp;removeCacheForDocument:deleteDocument:waitUntilDone:</a></code>
+		<span class="tooltip"><p>clear cache for a specific document, optionally also deletes referenced document files.
+This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p></span>
 	</span>
 	
 	
@@ -441,14 +442,14 @@ Note: the current implementation may slightly <em>increase</em> pdf file size fo
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheImage:document:page:size:">&ndash;&nbsp;cacheImage:document:page:size:</a></code>
-		<span class="tooltip"><p>save image in an NSCache object for specified identifier. Page starts at 0.</p></span>
+		<span class="tooltip"><p>save image in an NSCache object for specified identifier. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/imageForDocument:page:size:">&ndash;&nbsp;imageForDocument:page:size:</a></code>
-		<span class="tooltip"><p>load image for a certain document page. Page starts at 0.</p></span>
+		<span class="tooltip"><p>load image for a certain document page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -879,7 +880,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>start document caching (update often to improve cache hits). Page starts at 0.</p>
+		<p>start document caching (update often to improve cache hits). <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -913,7 +914,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>save image in an NSCache object for specified identifier. Page starts at 0.</p>
+		<p>save image in an NSCache object for specified identifier. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1083,7 +1084,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>load image for a certain document page. Page starts at 0.</p>
+		<p>load image for a certain document page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1184,17 +1185,18 @@ Thread safe.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/removeCacheForDocument:deleteDocument:" title="removeCacheForDocument:deleteDocument:"></a>
-	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:</h3>
+	<a name="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:" title="removeCacheForDocument:deleteDocument:waitUntilDone:"></a>
+	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:waitUntilDone:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>clear cache for a specific document, optionally also deletes referenced document files.</p>
+		<p>clear cache for a specific document, optionally also deletes referenced document files.
+This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteMagazine</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteMagazine</em> waitUntilDone:(BOOL)<em>wait</em></code></div>
 	
 	
 	
@@ -1403,7 +1405,7 @@ Thread safe.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-02-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-01)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
