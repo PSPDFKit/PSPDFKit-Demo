@@ -1,5 +1,15 @@
 # Changelog
 
+
+__v1.9.2 - 1/Mar/2012__
+
+*  pageCurl can now be invoked from the edge of the device, even if the file is smaller. Previously, the gesture was not recognized when it wasn't started within the page view.
+*  The incomplete support for text highlighting has been disabled.
+*  removeCacheForDocument now has an additional parameter waitUntilDone. The previous behavior was NO,
+   so just set NO if you use this and upgrade from an earlier release.
+*  Fixes a potential cache-loop, where the device would constantly try to load new images.
+*  Adds a sanity check for loading images, fixes a rare issue with images not showing up.
+
 __v1.9.1 - 17/Feb/2012__
 
 *  Allow scrolling to a specific rect and zooming:
