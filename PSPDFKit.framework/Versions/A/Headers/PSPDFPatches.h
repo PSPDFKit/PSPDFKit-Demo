@@ -10,3 +10,7 @@
 void pspdf_patchUIKit(void);
 
 void pspdf_swizzle(Class c, SEL orig, SEL new);
+
+#ifndef _PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API_
+void pspdf_endDisableIfcAutorotation(id this, SEL this_cmd);
+#endif

@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.9.3 - 1/Mar/2012__
+
+*  Improves precision and stepping of the scrobbleBar. Now it's guaranteed that the first&last page are shown, and the matching between finger and page position is better.
+*  Fixes a problem where sometimes page 1 should be displayed, but isn't in pageCurl mode.
+*  Hide warnings for rotation overflow that UIPageViewController sometimes emits.
 
 __v1.9.2 - 1/Mar/2012__
 
