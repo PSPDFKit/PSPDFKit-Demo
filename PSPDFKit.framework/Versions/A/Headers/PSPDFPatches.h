@@ -8,3 +8,5 @@
 
 // needs to be called early. 
 void pspdf_patchUIKit(void);
+
+void pspdf_swizzle(Class c, SEL orig, SEL new);

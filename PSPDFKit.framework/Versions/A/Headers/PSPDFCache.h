@@ -75,7 +75,11 @@ enum {
 - (BOOL)resumeCachingForService:(id)service;
 
 /// clear cache for a specific document, optionally also deletes referenced document files.
-- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine;
+/// This usually performs asyncronously. If you need this call to be blocking until it's done, set wait to YES.
+- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine waitUntilDone:(BOOL)wait;
+
+// deprecated. Use removeCacheForDocument with waitUntilDone instead.
+- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine __attribute__((deprecated("Use the call with waitUntilDone instead.")));
 
 /// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
@@ -158,6 +162,7 @@ void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 @property(strong) PSPDFDocument *document;
 @property(assign) NSUInteger page;
 @property(assign) PSPDFSize size;
+@property(strong) NSMutableSet *pagesCached; // used to remember what pages already were attempted to be cached.
 @property(assign, getter=isCaching) BOOL caching;
 
 @end
