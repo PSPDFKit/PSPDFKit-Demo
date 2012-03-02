@@ -57,5 +57,7 @@
 			<string>UINewsstandBindingEdgeLeft</string>
 		</dict>
 	</dict>
+	<key>UIViewEdgeAntialiasing</key>
+	<false/>
 </dict>
 </plist>
