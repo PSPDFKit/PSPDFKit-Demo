@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.9.4 - 4/Mar/2012__
+
+*  Fixes a regression from 1.9.3 on single page documents.
+
 __v1.9.3 - 1/Mar/2012__
 
 *  Improves precision and stepping of the scrobbleBar. Now it's guaranteed that the first&last page are shown, and the matching between finger and page position is better.
