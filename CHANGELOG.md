@@ -1,5 +1,14 @@
 # Changelog
 
+__v1.9.5 - 5/Mar/2012__
+
+*  Further tweaks on the scrobbleBar, improves handler in landscape mode. (thanks to @0xced)
+*  Fixes a problem with pageCurl and the animation on the first page (thanks to Randy Becker)
+*  Fixes an issue where double-tapping would zoom beyond maximum zoom scale. (thanks to Randy Becker)
+*  Fixes issue where status bar style was not restored after dismissing while in landscape orientation. (thanks to Randy Becker)
+*  Fixes some remote image display issues in the PSPDFKit Kiosk Example.
+*  Fixes a regression with opening password protected pdf's.
+
 __v1.9.4 - 4/Mar/2012__
 
 *  Fixes a regression from 1.9.3 on single page documents.
