@@ -473,6 +473,8 @@
                 }];
                 [alertView show];
                 )
+                
+                PSPDF_IF_PRE_IOS5([[[UIAlertView alloc] initWithTitle:@"" message:@"Opening password protected PDFs is not implemented on iOS4." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];)
             }
             else {
                 [self openMagazine:magazine animated:YES cellIndex:gridIndex];
