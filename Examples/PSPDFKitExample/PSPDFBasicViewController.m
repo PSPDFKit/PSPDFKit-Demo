@@ -47,10 +47,6 @@
     [super viewWillDisappear:animated];  
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 
@@ -62,10 +58,6 @@
         popoverController_ = popoverController;
         popoverController_.delegate = self; // set delegate to be notified when popopver controller closes!
     }
-}
-
-- (BOOL)isVisible {
-    return self.view.window != nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
