@@ -52,13 +52,16 @@ documentation: current-menu-item current_page_item
 	<a name="multimedia"></a>
 			  <h2 class="section-title">Multimedia Overlay Features</h2>
 			 <p>
-			 	As of PSPDFKit 1.7, multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. The system will auto-detect the correct end correct point. Supported are:
+			 	Multimedia annotations are supported. Those can be created with Mac Preview.app or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. The system will auto-detect the correct end correct point. Supported are:
 		</p><br>
 		
 		<ul>
 			<li>- Video (m3u8, mov, avi, mpg, m4v - formats that are supported by iOS)</li>
-			<li>- Audio (mp3, m4a)</li>
-			<li>- Web Pages</li>
+			<li>- YouTube. The system tries to fetch the mp4 url, if you want to omit that, add [legacy:YES] as option. (e.g. pspdfkit://[legacy:YES]youtube.com/watch?v=0DSCFQcR08E)</li>			
+			<li>- Audio (mp3, m4a, mp4)</li>
+			<li>- Images (jpg, png, tiff, tif, bmp)</li>			
+			<li>- Inline Web Pages</li>
+			<li>- Modal Web Pages (e.g. pspdfkit://[modal:YES,size:500x500]http://apple.com. Size is optional and only honored on iPad. Inline Web Browser can also enabled with changing <a href="/documentation/Classes/PSPDFViewController.html#//api/name/linkAction">linkAction in PSPDFViewController</a>.</li>
 			<li>- Any custom UIView with using the delegate methods.</li>		
 		</ul><br>
 	
