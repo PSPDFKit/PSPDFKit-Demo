@@ -7,9 +7,7 @@
 
 #define kDismissActivePopover @"kDismissActivePopover"
 
-@interface PSPDFBasicViewController : UIViewController <UIPopoverControllerDelegate>
-
-@property (nonatomic, assign, readonly, getter=isVisible) BOOL visible;
+@interface PSPDFBasicViewController : PSPDFBaseViewController <UIPopoverControllerDelegate>
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
