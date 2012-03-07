@@ -55,6 +55,7 @@
 
 // annotations
 #import "PSPDFAlertView.h"
+#import "PSPDFActionSheet.h"
 #import "PSPDFTilingView+Annotations.h"
 #import "PSPDFAnnotationParser.h"
 #import "PSPDFAnnotation.h"

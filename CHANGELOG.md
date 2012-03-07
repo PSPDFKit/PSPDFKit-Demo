@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.9.6 - 6/Mar/2012__
+
+*  New Inline Browser: PSPDFWebViewController. Annotations can be styled like pspdfkit://[modal:YES,size:500x500]apple.com or pspdfkit://[modal:YES]https://gmail.com.
+*  New property in PSPDFViewController: linkAction. Decides the default action for PDF links (alert, safari, inline browser)
+*  Add PSPDFStatusBarIgnore to completely disable any changes to the status bar.
+*  Automatically close the Table of Contents controller when the user tapped on a cell.
+*  Fixes sometimes missing data in the pageView didShowPage-delegate when using pageCurl mode.
+*  Fixes (another) issue where status bar style was not restored after dismissing while in landscape orientation.
+*  Fixes a severe memory leak with pageCurl mode.
+
 __v1.9.5 - 5/Mar/2012__
 
 *  Further tweaks on the scrobbleBar, improves handler in landscape mode. (thanks to @0xced)
