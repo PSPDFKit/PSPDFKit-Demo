@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFPagedScrollView Class Reference</title>
+		<title>PSPDFWebViewController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFPagedScrollView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFWebViewController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -40,16 +38,21 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/pageController">&nbsp;&nbsp;&nbsp;&nbsp;pageController</option>
+	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
 	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/modalWebViewWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;+ modalWebViewWithURL:</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithPageViewController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPageViewController:</option>
+	<option value="//api/name/initWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:</option>
 	
 	
 	
@@ -60,8 +63,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -75,17 +76,23 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageController">pageController</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
 	
 </ul></li>
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modalWebViewWithURL:">modalWebViewWithURL:</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPageViewController:">initWithPageViewController:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:">initWithURL:</a></span></li>
 	
 </ul></li>
 
@@ -94,7 +101,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFPagedScrollView Class Reference" name="top"></a>
+				<a title="PSPDFWebViewController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -103,7 +110,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFPagedScrollView Class Reference</h1>
+						<h1 class="title title-header">PSPDFWebViewController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -111,21 +118,16 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> : UIScrollView</td>
+	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIWebViewDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFPagedScrollView.h</td>
+	<td class="specification-value">PSPDFWebViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>ScrollView used in pageCurl mode. iOS5 only.</p>
-					</div>
 					
 					
 					
@@ -142,15 +144,22 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithPageViewController:">&ndash;&nbsp;initWithPageViewController:</a></code>
-		<span class="tooltip"><p>Initializes the PagedScrollView with a <a href="#//api/name/pageController">pageController</a>.</p></span>
+		<code><a href="#//api/name/modalWebViewWithURL:">+&nbsp;modalWebViewWithURL:</a></code>
+		<span class="tooltip"><p>Use this to get a UINavigationController with a Done-Button.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageController">&nbsp;&nbsp;pageController</a></code>
-		<span class="tooltip"><p>References the <a href="#//api/name/pageController">pageController</a></p></span>
+		<code><a href="#//api/name/initWithURL:">&ndash;&nbsp;initWithURL:</a></code>
+		<span class="tooltip"><p>Creates a new <a href="PSPDFWebViewController.html">PSPDFWebViewController</a> with the specified URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/webView">&nbsp;&nbsp;webView</a></code>
+		<span class="tooltip"><p>Internal webview used.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -168,17 +177,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/pageController" title="pageController"></a>
-	<h3 class="subsubtitle method-title">pageController</h3>
+	<a name="//api/name/webView" title="webView"></a>
+	<h3 class="subsubtitle method-title">webView</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>References the <a href="#//api/name/pageController">pageController</a></p>
+		<p>Internal webview used.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFPageViewController *pageController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIWebView *webView</code></div>
 	
 	
 	
@@ -195,7 +204,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPagedScrollView.h</code><br />
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
 	</div>				
 	
 	
@@ -205,24 +214,22 @@
 					
 					
 					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithPageViewController:" title="initWithPageViewController:"></a>
-	<h3 class="subsubtitle method-title">initWithPageViewController:</h3>
+	<a name="//api/name/modalWebViewWithURL:" title="modalWebViewWithURL:"></a>
+	<h3 class="subsubtitle method-title">modalWebViewWithURL:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initializes the PagedScrollView with a <a href="#//api/name/pageController">pageController</a>.</p>
+		<p>Use this to get a UINavigationController with a Done-Button.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithPageViewController:(PSPDFPageViewController *)<em>pageController</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (UINavigationController *)modalWebViewWithURL:(NSURL *)<em>URL</em></code></div>
 	
 	
 	
@@ -239,7 +246,49 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPagedScrollView.h</code><br />
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithURL:" title="initWithURL:"></a>
+	<h3 class="subsubtitle method-title">initWithURL:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a new <a href="PSPDFWebViewController.html">PSPDFWebViewController</a> with the specified URL.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithURL:(NSURL *)<em>URL</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
 	</div>				
 	
 	

@@ -48,6 +48,8 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
+	<option value="//api/name/modal">&nbsp;&nbsp;&nbsp;&nbsp;modal</option>
+	
 	<option value="//api/name/options">&nbsp;&nbsp;&nbsp;&nbsp;options</option>
 	
 	<option value="//api/name/overlayAnnotation">&nbsp;&nbsp;&nbsp;&nbsp;overlayAnnotation</option>
@@ -59,6 +61,8 @@
 	<option value="//api/name/pdfRectangle">&nbsp;&nbsp;&nbsp;&nbsp;pdfRectangle</option>
 	
 	<option value="//api/name/siteLinkTarget">&nbsp;&nbsp;&nbsp;&nbsp;siteLinkTarget</option>
+	
+	<option value="//api/name/size">&nbsp;&nbsp;&nbsp;&nbsp;size</option>
 	
 	<option value="//api/name/type">&nbsp;&nbsp;&nbsp;&nbsp;type</option>
 	
@@ -109,6 +113,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modal">modal</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/options">options</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/overlayAnnotation">overlayAnnotation</a></span></li>
@@ -120,6 +126,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfRectangle">pdfRectangle</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/siteLinkTarget">siteLinkTarget</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/size">size</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/type">type</a></span></li>
 	
@@ -298,6 +306,20 @@ Custom annotation links are supported to add multimedia elements.</p>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/modal">&nbsp;&nbsp;modal</a></code>
+		<span class="tooltip"><p>Indicator if &ldquo;modal&rdquo; is set in <a href="#//api/name/options">options</a>. Will add &ldquo;modal&rdquo; to <a href="#//api/name/options">options</a> if setModal is used.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/size">&nbsp;&nbsp;size</a></code>
+		<span class="tooltip"><p>Tries to extract a <a href="#//api/name/size">size</a> out of <a href="#//api/name/options">options</a> &ldquo;size&rdquo;. Returns CGSizeZero if conversion fails.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -425,6 +447,40 @@ Custom annotation links are supported to add multimedia elements.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/modal" title="modal"></a>
+	<h3 class="subsubtitle method-title">modal</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Indicator if &ldquo;modal&rdquo; is set in <a href="#//api/name/options">options</a>. Will add &ldquo;modal&rdquo; to <a href="#//api/name/options">options</a> if setModal is used.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isModal) BOOL modal</code></div>
 	
 	
 	
@@ -652,6 +708,40 @@ Custom annotation links are supported to add multimedia elements.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/size" title="size"></a>
+	<h3 class="subsubtitle method-title">size</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tries to extract a <a href="#//api/name/size">size</a> out of <a href="#//api/name/options">options</a> &ldquo;size&rdquo;. Returns CGSizeZero if conversion fails.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGSize size</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/type" title="type"></a>
 	<h3 class="subsubtitle method-title">type</h3>
 	
@@ -844,7 +934,7 @@ Custom annotation links are supported to add multimedia elements.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-05)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-06)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
