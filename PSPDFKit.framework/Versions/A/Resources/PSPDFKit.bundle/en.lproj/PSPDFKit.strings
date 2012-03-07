@@ -2,7 +2,7 @@
   Localization.strings
   PSPDFKit
  
-  Copyright (c) 2011 Peter Steinberger. All rights reserved.
+  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 */
 
 // toolbar
@@ -14,6 +14,7 @@
 "Page %d" = "Page %d";
 "Grid" = "Grid";
 "%d of %d" = "%d of %d";
+"Done" = "Done";
 
 // search
 "Search" = "Search Document";
@@ -23,6 +24,11 @@
 "Searching..." = "Searching...";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
+
+// inline browser
+"Copy Link" = "Copy Link";
+"Open in Safari" = "Open in Safari";
+"Mail Link to this Page" = "Mail Link to this Page";
 
 // for the KioskExample
 "DeleteMagazineSingle" = "Delete %@?";
