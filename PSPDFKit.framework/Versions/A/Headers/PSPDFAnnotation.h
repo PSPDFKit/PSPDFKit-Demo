@@ -83,4 +83,10 @@ typedef NSUInteger PSPDFAnnotationType;
 /// If values between pspdfkit://[...] are set, this will contain those options.
 @property(nonatomic, strong) NSDictionary *options;
 
+/// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.
+@property(nonatomic, assign, getter=isModal) BOOL modal;
+
+/// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
+@property(nonatomic, assign) CGSize size;
+
 @end

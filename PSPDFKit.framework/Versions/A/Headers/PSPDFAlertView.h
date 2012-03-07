@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /// Helper to add block features to UIAlertView.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.

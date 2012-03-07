@@ -8,11 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFBaseViewController.h"
 
 @class PSPDFViewController, PSPDFScrollView, PSPDFPageView;
 
 /// displays a single pdf page.
-@interface PSPDFSinglePageViewController : UIViewController
+@interface PSPDFSinglePageViewController : PSPDFBaseViewController
 
 /// create single page controller using the master pdf controller and a page. Does not has a scrollView in place.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController page:(NSUInteger)page;
