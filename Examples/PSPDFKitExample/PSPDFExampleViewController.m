@@ -164,8 +164,12 @@
     return NO;
 }
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
+    PSELog(@"page %d showed. (document: %@)", pageView.page, pageView.document.title);    
+}
+
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    //PSELog(@"page %d rendered.", pageView.page);
+    PSELog(@"page %d rendered. (document: %@)", pageView.page, pageView.document.title);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
