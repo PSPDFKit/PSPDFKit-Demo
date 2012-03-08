@@ -185,11 +185,8 @@
 - (IBAction)appendDocument {
     NSString *docName = kDevelopersGuideFileName;
     PSPDFDocument *document = self.pdfController.document;
-    if (![document appendFile:docName]) {
-        NSLog(@"Skipping operation: Document already appended.");
-    }else {
-        [self.pdfController reloadData];
-    }
+    [document appendFile:docName];
+    [self.pdfController reloadData];
 }
 
 - (void)replaceFile {
