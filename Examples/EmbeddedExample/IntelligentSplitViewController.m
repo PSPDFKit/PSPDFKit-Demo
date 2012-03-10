@@ -27,7 +27,7 @@
         // TODO: find a way to hook into their gesture recognizers to create a dependency.
         // If this doesn't compile for you, please update to Xcode 4.3.1 (needs iOS5.1 SDK)
         if ([self respondsToSelector:@selector(setPresentsWithGesture:)]) {
-            self.presentsWithGesture = NO;
+            [self setPresentsWithGesture:NO];
         }
 	}
 	return self;
