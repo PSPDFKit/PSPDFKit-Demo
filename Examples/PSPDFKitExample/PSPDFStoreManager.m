@@ -509,7 +509,7 @@ static char kvoToken; // we need a static address for the kvo token
             
             // example how to create blended cover + overlay
             /*
-            UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0);
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0f);
             [magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
             [[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
             newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
