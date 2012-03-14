@@ -100,11 +100,11 @@ documentation: current-menu-item current_page_item
 		
 		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
 		      A: To support iOS4 with a non-ARC-project, you need to add the ARC compatibility library libarclite. Drag the two files (one for iOS, one for the Simulator) from the MinimalExample.xcodeproj to your project, or manually search the on your disk: /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a (and /Developer/usr/lib/arc/libarclite_iphonesimulator.a) and drag them into your project.
-		</p>
+		</p><br>
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 	  <p><b>Q: Do I need to buy another license to make a second app?</b><br>
-		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p>
+		 A: No, the license is per developer seat. If you sell your source code to a 3rd party, you need another license. If you just build more apps yourself, it's fine.</p><br>
 
 <p><b>Q: How do I change the link-color of pdf annotation links?</b><br>
 	 A: Use <a href="http://pspdfkit.com/documentation/Protocols/PSPDFViewControllerDelegate.html">PSPDFViewControllerDelegate</a> like this:
