@@ -42,11 +42,11 @@
 	
 	<option value="//api/name/borderColor">&nbsp;&nbsp;&nbsp;&nbsp;borderColor</option>
 	
-	<option value="//api/name/button">&nbsp;&nbsp;&nbsp;&nbsp;button</option>
-	
 	<option value="//api/name/cornerRadius">&nbsp;&nbsp;&nbsp;&nbsp;cornerRadius</option>
 	
 	<option value="//api/name/hideSmallLinks">&nbsp;&nbsp;&nbsp;&nbsp;hideSmallLinks</option>
+	
+	<option value="//api/name/highlightBackgroundColor">&nbsp;&nbsp;&nbsp;&nbsp;highlightBackgroundColor</option>
 	
 	<option value="//api/name/overspan">&nbsp;&nbsp;&nbsp;&nbsp;overspan</option>
 	
@@ -61,7 +61,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/touchDown">&nbsp;&nbsp;&nbsp;&nbsp;- touchDown</option>
+	<option value="//api/name/flashBackground">&nbsp;&nbsp;&nbsp;&nbsp;- flashBackground</option>
 	
 	<option value="//api/name/touchUp">&nbsp;&nbsp;&nbsp;&nbsp;- touchUp</option>
 	
@@ -91,11 +91,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/borderColor">borderColor</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/button">button</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cornerRadius">cornerRadius</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideSmallLinks">hideSmallLinks</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/highlightBackgroundColor">highlightBackgroundColor</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/overspan">overspan</a></span></li>
 	
@@ -111,7 +111,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/touchDown">touchDown</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flashBackground">flashBackground</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/touchUp">touchUp</a></span></li>
 	
@@ -139,7 +139,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIButton</td>
+	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
 	<td class="specification-value"><a href="../Protocols/PSPDFAnnotationView.html">PSPDFAnnotationView</a></td>
@@ -173,16 +173,30 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/flashBackground">&ndash;&nbsp;flashBackground</a></code>
+		<span class="tooltip"><p>Flash background, show that annotation was touched.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/borderColor">&nbsp;&nbsp;borderColor</a></code>
-		<span class="tooltip"><p>Convenience setter for the <a href="#//api/name/borderColor">borderColor</a>. If you need more control use <a href="#//api/name/button">button</a>.layer.*.
-Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</p></span>
+		<span class="tooltip"><p>Convenience setter for the <a href="#//api/name/borderColor">borderColor</a>. If you need more control use button.layer.*.
+Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (google-link-blue)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/highlightBackgroundColor">&nbsp;&nbsp;highlightBackgroundColor</a></code>
+		<span class="tooltip"><p>Color that is displayed when a touch on the link is detected. Defaults to a dark gray.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cornerRadius">&nbsp;&nbsp;cornerRadius</a></code>
-		<span class="tooltip"><p>Roundness of the border. Defaults to 5.</p></span>
+		<span class="tooltip"><p>Roundness of the border. Defaults to 4.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -196,14 +210,7 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pressedColor">&nbsp;&nbsp;pressedColor</a></code>
-		<span class="tooltip"><p>Color to fill when the <a href="#//api/name/button">button</a> is pressed. Defaults to gray.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/button">&nbsp;&nbsp;button</a></code>
-		<span class="tooltip"><p>Embedded UIButton.</p></span>
+		<span class="tooltip"><p>Color to fill when the button is pressed. Defaults to gray.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -217,21 +224,14 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/overspan">&nbsp;&nbsp;overspan</a></code>
-		<span class="tooltip"><p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 5/5.</p></span>
+		<span class="tooltip"><p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 15/15. Overspan is not visible.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/touchDown">&ndash;&nbsp;touchDown</a></code>
-		<span class="tooltip"><p>called when <a href="#//api/name/button">button</a> is pressed.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/touchUp">&ndash;&nbsp;touchUp</a></code>
-		<span class="tooltip"><p>called when <a href="#//api/name/button">button</a> is released.</p></span>
+		<span class="tooltip"><p>Called when the annotation fires. Can be used for subclassing.</p></span>
 	</span>
 	
 	
@@ -255,46 +255,12 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Convenience setter for the <a href="#//api/name/borderColor">borderColor</a>. If you need more control use <a href="#//api/name/button">button</a>.layer.*.
-Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</p>
+		<p>Convenience setter for the <a href="#//api/name/borderColor">borderColor</a>. If you need more control use button.layer.*.
+Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (google-link-blue)</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *borderColor</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFLinkAnnotationView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/button" title="button"></a>
-	<h3 class="subsubtitle method-title">button</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Embedded UIButton.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIButton *button</code></div>
 	
 	
 	
@@ -324,7 +290,7 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Roundness of the border. Defaults to 5.</p>
+		<p>Roundness of the border. Defaults to 4.</p>
 	</div>		
 	
 	
@@ -386,13 +352,47 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/highlightBackgroundColor" title="highlightBackgroundColor"></a>
+	<h3 class="subsubtitle method-title">highlightBackgroundColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Color that is displayed when a touch on the link is detected. Defaults to a dark gray.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *highlightBackgroundColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFLinkAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/overspan" title="overspan"></a>
 	<h3 class="subsubtitle method-title">overspan</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 5/5.</p>
+		<p>Increases touch target by <a href="#//api/name/overspan">overspan</a> pixel. Defaults to 15/15. Overspan is not visible.</p>
 	</div>		
 	
 	
@@ -426,7 +426,7 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Color to fill when the <a href="#//api/name/button">button</a> is pressed. Defaults to gray.</p>
+		<p>Color to fill when the button is pressed. Defaults to gray.</p>
 	</div>		
 	
 	
@@ -498,17 +498,17 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/touchDown" title="touchDown"></a>
-	<h3 class="subsubtitle method-title">touchDown</h3>
+	<a name="//api/name/flashBackground" title="flashBackground"></a>
+	<h3 class="subsubtitle method-title">flashBackground</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called when <a href="#//api/name/button">button</a> is pressed.</p>
+		<p>Flash background, show that annotation was touched.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)touchDown</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)flashBackground</code></div>
 	
 	
 	
@@ -538,7 +538,7 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called when <a href="#//api/name/button">button</a> is released.</p>
+		<p>Called when the annotation fires. Can be used for subclassing.</p>
 	</div>		
 	
 	
@@ -578,7 +578,7 @@ Defaults to [UIColor colorWithRed:1.f green:1.f blue:0.f alpha:0.5f] (yellow).</
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-06)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-14)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

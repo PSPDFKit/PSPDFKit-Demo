@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFWebViewController Class Reference</title>
+		<title>NSString(PSPDFAdditions) Category Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFWebViewController Class Reference</h1>
+				<h1 class="hideInXcode">NSString(PSPDFAdditions) Category Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -36,25 +36,13 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/popoverController">&nbsp;&nbsp;&nbsp;&nbsp;popoverController</option>
-	
-	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
-	
-	
-	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/modalWebViewWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;+ modalWebViewWithURL:</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:</option>
+	<option value="//api/name/pspdf_escapedString">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_escapedString</option>
 	
 	
 	
@@ -76,27 +64,13 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverController">popoverController</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
-	
-</ul></li>
 
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modalWebViewWithURL:">modalWebViewWithURL:</a></span></li>
-	
-</ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:">initWithURL:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_escapedString">pspdf_escapedString</a></span></li>
 	
 </ul></li>
 
@@ -105,7 +79,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFWebViewController Class Reference" name="top"></a>
+				<a title="NSString(PSPDFAdditions) Category Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -114,21 +88,15 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFWebViewController Class Reference</h1>
+						<h1 class="title title-header">NSString(PSPDFAdditions) Category Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
-</tr><tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIWebViewDelegate</td>
-</tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFWebViewController.h</td>
+	<td class="specification-value">PSPDFAnnotationParser.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -148,31 +116,10 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/modalWebViewWithURL:">+&nbsp;modalWebViewWithURL:</a></code>
-		<span class="tooltip"><p>Use this to get a UINavigationController with a Done-Button.</p></span>
+		<code><a href="#//api/name/pspdf_escapedString">&ndash;&nbsp;pspdf_escapedString</a></code>
+		<span class="tooltip"><p>Escapes a string to be RFC 3986 conform. (<a href="http://tools.ietf.org/html/rfc3986">http://tools.ietf.org/html/rfc3986</a>#section-2.2)</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithURL:">&ndash;&nbsp;initWithURL:</a></code>
-		<span class="tooltip"><p>Creates a new <a href="PSPDFWebViewController.html">PSPDFWebViewController</a> with the specified URL.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/webView">&nbsp;&nbsp;webView</a></code>
-		<span class="tooltip"><p>Internal webview used.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/popoverController">&nbsp;&nbsp;popoverController</a></code>
-		<span class="tooltip"><p>Access popover controller, if attached.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -183,121 +130,7 @@
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/popoverController" title="popoverController"></a>
-	<h3 class="subsubtitle method-title">popoverController</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Access popover controller, if attached.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIPopoverController *popoverController</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/webView" title="webView"></a>
-	<h3 class="subsubtitle method-title">webView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Internal webview used.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIWebView *webView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
-					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/modalWebViewWithURL:" title="modalWebViewWithURL:"></a>
-	<h3 class="subsubtitle method-title">modalWebViewWithURL:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Use this to get a UINavigationController with a Done-Button.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (UINavigationController *)modalWebViewWithURL:(NSURL *)<em>URL</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 					
@@ -306,17 +139,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithURL:" title="initWithURL:"></a>
-	<h3 class="subsubtitle method-title">initWithURL:</h3>
+	<a name="//api/name/pspdf_escapedString" title="pspdf_escapedString"></a>
+	<h3 class="subsubtitle method-title">pspdf_escapedString</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Creates a new <a href="PSPDFWebViewController.html">PSPDFWebViewController</a> with the specified URL.</p>
+		<p>Escapes a string to be RFC 3986 conform. (<a href="http://tools.ietf.org/html/rfc3986">http://tools.ietf.org/html/rfc3986</a>#section-2.2)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithURL:(NSURL *)<em>URL</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSString *)pspdf_escapedString</code></div>
 	
 	
 	
@@ -333,7 +166,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationParser.h</code><br />
 	</div>				
 	
 	

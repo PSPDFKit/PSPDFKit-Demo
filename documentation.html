@@ -21,6 +21,7 @@ documentation: current-menu-item current_page_item
 	  <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Also, don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
 	  
 	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4 and not yet using ARC, you need to add libarclite_iphoneos.a and libarclite_iphonesimulator.a (the ARC compatibility library) next to PSPDFKit. It's really easy, check the MinimalExample.xcodeproj - you can just drag the two files to your project, or add them manually. (/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a and /Developer/usr/lib/arc/libarclite_iphonesimulator.a. Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a subproject.</p><br>
+	  <p>You also need to weak-link the UIKit.framework to be compatible with iOS4.</p><br>
 	  
 	  <p><b>PSPDFKit needs Xcode &#8805; 4.3.1, iOS Base SDK &#8805; 5.1 and &#8805; Clang LLVM 3.1 to compile. It doesn't work with the old LLVM GCC compiler.</b></p>
 	  

@@ -78,6 +78,8 @@
 	
 	<option value="//api/name/uid">&nbsp;&nbsp;&nbsp;&nbsp;uid</option>
 	
+	<option value="//api/name/valid">&nbsp;&nbsp;&nbsp;&nbsp;valid</option>
+	
 	
 	
 	
@@ -96,6 +98,8 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/URLForFileIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- URLForFileIndex:</option>
+	
 	<option value="//api/name/appendFile:">&nbsp;&nbsp;&nbsp;&nbsp;- appendFile:</option>
 	
 	<option value="//api/name/backgroundColorForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- backgroundColorForPage:</option>
@@ -105,6 +109,8 @@
 	<option value="//api/name/clearCacheForced:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCacheForced:</option>
 	
 	<option value="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&nbsp;&nbsp;&nbsp;&nbsp;- drawOverlayRect:inContext:forPage:zoomScale:size:</option>
+	
+	<option value="//api/name/fileIndexForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileIndexForPage:</option>
 	
 	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
 	
@@ -196,6 +202,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uid">uid</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valid">valid</a></span></li>
+	
 </ul></li>
 
 
@@ -216,6 +224,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URLForFileIndex:">URLForFileIndex:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appendFile:">appendFile:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/backgroundColorForPage:">backgroundColorForPage:</a></span></li>
@@ -225,6 +235,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForced:">clearCacheForced:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">drawOverlayRect:inContext:forPage:zoomScale:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileIndexForPage:">fileIndexForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
 	
@@ -325,8 +337,7 @@ Can be overriden to support custom collections.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithBaseUrl:files:">+&nbsp;PDFDocumentWithBaseUrl:files:</a></code>
-		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.
-Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.</p></span>
+		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p></span>
 	</span>
 	
 	
@@ -340,14 +351,29 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/appendFile:">&ndash;&nbsp;appendFile:</a></code>
-		<span class="tooltip"><p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)</p></span>
+		<span class="tooltip"><p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>returns path for a single page (in case pages are split up). Page starts at 0.</p></span>
+		<span class="tooltip"><p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileIndexForPage:">&ndash;&nbsp;fileIndexForPage:</a></code>
+		<span class="tooltip"><p>Returns position of the internal file array.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URLForFileIndex:">&ndash;&nbsp;URLForFileIndex:</a></code>
+		<span class="tooltip"><p>Returns the URL corresponding to the fileIndex</p></span>
 	</span>
 	
 	
@@ -361,7 +387,7 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
-		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
+		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -375,14 +401,14 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -397,7 +423,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -405,7 +431,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>rotation for specified page. cached. Page starts at 0.</p></span>
+		<span class="tooltip"><p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -478,6 +504,13 @@ If the document is unlocked with only user permissions, unlockWithPassword attem
 string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valid">&nbsp;&nbsp;valid</a></code>
+		<span class="tooltip"><p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -642,7 +675,7 @@ Can be overridden to use a subclassed annotation parser.</p></span>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL allowsPrinting</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL allowsPrinting</code></div>
 	
 	
 	
@@ -986,7 +1019,7 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isEncrypted</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL isEncrypted</code></div>
 	
 	
 	
@@ -1020,7 +1053,7 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) BOOL isLocked</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL isLocked</code></div>
 	
 	
 	
@@ -1283,6 +1316,40 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/valid" title="valid"></a>
+	<h3 class="subsubtitle method-title">valid</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly, getter=isValid) BOOL valid</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -1332,8 +1399,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.
-Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.</p>
+		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p>
 	</div>		
 	
 	
@@ -1437,17 +1503,52 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/URLForFileIndex:" title="URLForFileIndex:"></a>
+	<h3 class="subsubtitle method-title">URLForFileIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the URL corresponding to the fileIndex</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)URLForFileIndex:(NSInteger)<em>fileIndex</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/appendFile:" title="appendFile:"></a>
 	<h3 class="subsubtitle method-title">appendFile:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)</p>
+		<p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)appendFile:(NSString *)<em>file</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)appendFile:(NSString *)<em>file</em></code></div>
 	
 	
 	
@@ -1584,6 +1685,40 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)drawOverlayRect:(CGRect)<em>rect</em> inContext:(CGContextRef)<em>context</em> forPage:(NSUInteger)<em>page</em> zoomScale:(CGFloat)<em>zoomScale</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileIndexForPage:" title="fileIndexForPage:"></a>
+	<h3 class="subsubtitle method-title">fileIndexForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns position of the internal file array.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSInteger)fileIndexForPage:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -1785,7 +1920,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1819,7 +1954,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
@@ -1854,7 +1989,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
+		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1888,7 +2023,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns path for a single page (in case pages are split up). Page starts at 0.</p>
+		<p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -1922,7 +2057,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -1957,7 +2092,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>rotation for specified page. cached. Page starts at 0.</p>
+		<p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2104,7 +2239,7 @@ string. If the string fails, the document maintains its user permissions. In eit
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-06)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-14)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
