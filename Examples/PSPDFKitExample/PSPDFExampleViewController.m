@@ -78,6 +78,9 @@
         
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
+        
+        // use inline browser for pdf links
+        self.linkAction = PSPDFLinkActionInlineBrowser;
                 
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
