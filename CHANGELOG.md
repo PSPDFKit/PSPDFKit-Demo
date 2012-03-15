@@ -1,5 +1,10 @@
 # Changelog
 
+__v1.9.8 - 14/Mar/2012__
+
+*  Fixed a minor regression regarding scrobble bar updating.
+*  Fixed issue where frame could be non-centered in pageCurl mode with some landscape documents when the app starts up in landscape mode.
+
 __v1.9.7 - 14/Mar/2012__
 
 *  PSPDFKit is now compiled with Xcode 4.3.1 and iOS SDK 5.1. Please upgrade. (It is still backwards compatible down to iOS 4.0.)
