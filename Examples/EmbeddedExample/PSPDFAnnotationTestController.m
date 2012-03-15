@@ -19,6 +19,7 @@
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageCurlEnabled = YES;
+        self.tintColor = [UIColor orangeColor];
     }
     return self;
 }
