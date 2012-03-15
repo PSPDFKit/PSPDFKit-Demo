@@ -30,4 +30,7 @@ typedef NSUInteger PSPDFWebViewControllerAvailableActions;
 /// Internal webview used.
 @property(nonatomic, strong, readonly) UIWebView *webView;
 
+/// Access popover controller, if attached.
+@property(nonatomic, strong) UIPopoverController *popoverController;
+
 @end

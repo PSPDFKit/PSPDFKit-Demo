@@ -24,7 +24,6 @@
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
 /// initialize PSPDFDocument with distinct path and an array of files.
-/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.
 + (PSPDFDocument *)PDFDocumentWithBaseUrl:(NSURL *)baseUrl files:(NSArray *)files;
 
 /// initializes PSPDFDocument with a single file
@@ -36,10 +35,17 @@
 - (id)initWithBaseUrl:(NSURL *)basePath files:(NSArray *)files;
 
 /// appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if basePath is nil)
-- (BOOL)appendFile:(NSString *)file;
+/// Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
+- (void)appendFile:(NSString *)file;
 
 /// returns path for a single page (in case pages are split up). Page starts at 0.
 - (NSURL *)pathForPage:(NSUInteger)page;
+
+/// Returns position of the internal file array.
+- (NSInteger)fileIndexForPage:(NSUInteger)page;
+
+/// Returns the URL corresponding to the fileIndex
+- (NSURL *)URLForFileIndex:(NSInteger)fileIndex;
 
 /// return pdf page count
 - (NSUInteger)pageCount;
@@ -101,14 +107,17 @@
 /// string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.
 - (BOOL)unlockWithPassword:(NSString*)password;
 
+/// Returns YES if the document is valid (if it has at least one page)
+@property(nonatomic, assign, readonly, getter=isValid) BOOL valid;
+
 /// Do the PDF digital right allow for printing?
-@property (nonatomic, readonly) BOOL allowsPrinting;
+@property(nonatomic, assign, readonly) BOOL allowsPrinting;
 
 /// Was the PDF file encryted at file creation time?
-@property (nonatomic, readonly) BOOL isEncrypted;
+@property(nonatomic, assign, readonly) BOOL isEncrypted;
 
 /// Has the PDF file been unlocked? (is it still locked?).
-@property (nonatomic, readonly) BOOL isLocked;
+@property(nonatomic, assign, readonly) BOOL isLocked;
 
 /// document title as shown in the controller
 @property(nonatomic, copy) NSString *title;
