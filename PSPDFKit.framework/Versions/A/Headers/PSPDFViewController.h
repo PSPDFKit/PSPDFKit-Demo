@@ -237,6 +237,15 @@ enum {
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;
 
+enum {
+    PSPDFIconTypeOutline,
+    PSPDFIconTypePage,
+    PSPDFIconTypeThumbnails
+}typedef PSPDFIconType;
+
+/// Generates in-code images on the fly.
+- (UIImage *)iconForType:(PSPDFIconType)iconType;
+
 // called from scrollviews
 - (void)showControls;
 - (void)hideControls;
