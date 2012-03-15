@@ -1,5 +1,11 @@
 # Changelog
 
+__v1.9.9 - 15/Mar/2012__
+
+*  Icons! (changed outline icon, and replaced "Page" and "Grid" with icons)
+*  Outline controller now has a title on the iPad.
+*  Fixes a regression where the toolbar color was not correctly restored on the iPhone when modal controller were used.
+
 __v1.9.8 - 14/Mar/2012__
 
 *  Fixed a minor regression regarding scrobble bar updating.
