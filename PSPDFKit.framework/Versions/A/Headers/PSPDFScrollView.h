@@ -75,11 +75,3 @@ enum {
 - (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
 
 @end
-
-/// Define a private interface for annotation views to pass messages back to the controller via the page view
-@interface PSPDFScrollView (PSPDFAnnotationInteraction)
-
-/// invoked when the user touches up inside the button associated with the given annotation view with a button
-- (void)pageView:(PSPDFPageView *)pageView didTouchUpInsideAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView;
-
-@end

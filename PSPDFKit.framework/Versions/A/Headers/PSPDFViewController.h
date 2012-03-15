@@ -209,9 +209,12 @@ enum {
 /// Animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
-/// Set the default link action. Default is PSPDFLinkActionAlertView.
+/// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
 /// Note: if modal is set in the link, this property has no effect.
 @property(nonatomic, assign) PSPDFLinkActionSetting linkAction;
+
+/// Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
+@property(nonatomic, assign) CGFloat annotationAnimationDuration;
 
 ////////////////////////////////////////// functions you may wanna override in subclasses //////////////////////////////////////////
 

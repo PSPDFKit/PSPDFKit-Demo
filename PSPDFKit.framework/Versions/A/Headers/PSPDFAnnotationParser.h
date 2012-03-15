@@ -57,4 +57,17 @@ typedef NSUInteger PSPDFAnnotationFilter;
 /// Change the protocol that's used to parse pspdfkit-additions. Defaults to 'pspdfkit://'.
 @property(nonatomic, strong) NSString *protocolString;
 
+/// Customizes the behavior of createAnnotationViewForAnnotation.
+/// There might be some issues with text highlights for certain documents.
+/// This is *disabled* per default.
+@property(nonatomic, assign) BOOL createTextHighlightAnnotations;
+
+@end
+
+
+@interface NSString (PSPDFAdditions)
+
+/// Escapes a string to be RFC 3986 conform. (http://tools.ietf.org/html/rfc3986#section-2.2)
+- (NSString *)pspdf_escapedString;
+
 @end

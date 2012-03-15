@@ -1,5 +1,34 @@
 # Changelog
 
+__v1.9.7 - 14/Mar/2012__
+
+*  PSPDFKit is now compiled with Xcode 4.3.1 and iOS SDK 5.1. Please upgrade. (It is still backwards compatible down to iOS 4.0.)
+*  Allow adding the same file multiple times to PSPDFDocument.
+*  Links are now blue and have a higher alpha factor. (old color was yellow and more obtrusive)
+*  The animation duration of annotations is now customizable. See annotationAnimationDuration property in PSPDFViewController.
+*  Link elements are not shown with exact metrics, and touches are tested for over-span area. Also, over-span area is now 15pixel per default. (old was 5)
+*  Link elements now don't interfere with double/triple taps and only fire if those gestures failed.
+*  Link elements no longer use an internal UIButton. (they are now handled by a global UITapGestureRecognizer)
+*  Annotations are not size-limited to the actual document, no more "bleeding-out" of links.
+*  Minimum size for embedded browser is now 200x200. (fixes missing Done button)
+*  Inline browser can now also be displayed within a popover, using pspdfkit://[popover:YES,size:500x500]apple.com
+*  Text highlighting is still disabled by default, but can be enabled with the new property createTextHighlightAnnotations in PSPDFAnnotationParser.
+*  Fixes an issue where the navigation bar was restored too soon. Let me know if this change breaks behavior on your app.
+   (The navigationBar is now restored in viewDidDisappear instead of viewWillDisappear, and also will be set in viewWillAppear)
+*  Support tintColor property for inline browser.
+*  Better support for invalid documents (that have no pages.) HUD can't be hidden while a document is invalid. UI buttons are disabled.
+*  Fixes problem where link taps were not recognized on the site edges, advancing to the next/prev page instead in pageCurl mode.
+*  Fixes issue where scrollOnTapPageEndEnabled setting was not honored in pageCurl mode.
+*  Fixes a problem where the embedded mail sheet sometimes couldn't be closed.
+*  Fixes a problem where touch coordinates on annotations where always in the frame center instead of the actual tap position.
+*  Fixes a problem where adding items to the cache would sometimes spawn too much threads.
+*  Fixes a potential crash in the inline browser.
+*  Fixes a potential crash with accessing invalid memory on pageCurl deallocation.
+*  Fixes a issue where certain URLs within pdf annotations were not correctly escaped.
+*  Fixes a situation where the thumbnail grid could become invisible when rapidly switched while scrolling.
+*  Fixes an issue where the HUD was hidden after a page rotate (which should not be the case)
+*  Fixes weird animation with the navigationController toolbar when opening the inline browser modally.
+
 __v1.9.6 - 6/Mar/2012__
 
 *  New Inline Browser: PSPDFWebViewController. Annotations can be styled like pspdfkit://[modal:YES,size:500x500]apple.com or pspdfkit://[modal:YES]https://gmail.com.
