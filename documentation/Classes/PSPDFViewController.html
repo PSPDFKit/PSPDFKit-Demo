@@ -187,6 +187,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties">Properties</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Appearance Properties">Appearance Properties</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Subclassing Helpers">Subclassing Helpers</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFInternal Methods">PSPDFInternal Methods</a></span></li>
@@ -390,14 +392,14 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:">&ndash;&nbsp;scrollToPage:animated:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:hideHUD:">&ndash;&nbsp;scrollToPage:animated:hideHUD:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -528,7 +530,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -637,7 +639,7 @@ There&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -645,12 +647,49 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/preloadedPagesPerSide">&nbsp;&nbsp;preloadedPagesPerSide</a></code>
+		<span class="tooltip"><p>Pages that are kept in pageScrollView after last visible <a href="#//api/name/page">page</a>. Defaults to 0. Don&rsquo;t set too high, needs lots of memory!</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollingEnabled">&nbsp;&nbsp;scrollingEnabled</a></code>
+		<span class="tooltip"><p>Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;scrollOnTapPageEndEnabled</a></code>
+		<span class="tooltip"><p>Tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>. Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/linkAction">&nbsp;&nbsp;linkAction</a></code>
+		<span class="tooltip"><p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
+Note: if modal is set in the link, this property has no effect.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Appearance Properties" name="task_Appearance Properties"></a>
+						<h3 class="subsubtitle task-title">Appearance Properties</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageMode">&nbsp;&nbsp;pageMode</a></code>
 		<span class="tooltip"><p>Set a PageMode defined in the enum. (Single/Double Pages)
@@ -682,6 +721,14 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pageCurlEnabled">&nbsp;&nbsp;pageCurlEnabled</a></code>
+		<span class="tooltip"><p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
+Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/fitWidth">&nbsp;&nbsp;fitWidth</a></code>
 		<span class="tooltip"><p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
@@ -699,14 +746,7 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagePadding">&nbsp;&nbsp;pagePadding</a></code>
-		<span class="tooltip"><p>Page padding width between single/double pages. Defaults to 20.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/preloadedPagesPerSide">&nbsp;&nbsp;preloadedPagesPerSide</a></code>
-		<span class="tooltip"><p>Pages that are kept in pageScrollView after last visible <a href="#//api/name/page">page</a>. Defaults to 0. Don&rsquo;t set too high, needs lots of memory!</p></span>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> padding width between single/double pages. Defaults to 20.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -714,6 +754,14 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	<span class="tooltip">
 		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
 		<span class="tooltip"><p>Enable/disable <a href="#//api/name/page">page</a> shadow.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/statusBarStyleSetting">&nbsp;&nbsp;statusBarStyleSetting</a></code>
+		<span class="tooltip"><p>Status bar styling. Defaults to PSPDFStatusBarSmartBlack.
+If controller is used embedded (in a non-fullscreen way), this setting has no effect.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -728,44 +776,6 @@ iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to
 	<span class="tooltip">
 		<code><a href="#//api/name/tintColor">&nbsp;&nbsp;tintColor</a></code>
 		<span class="tooltip"><p>Set global toolbar tint color. Overrides defaults. Default is nil (depends on <a href="#//api/name/statusBarStyleSetting">statusBarStyleSetting</a>)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pageCurlEnabled">&nbsp;&nbsp;pageCurlEnabled</a></code>
-		<span class="tooltip"><p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
-Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/scrollingEnabled">&nbsp;&nbsp;scrollingEnabled</a></code>
-		<span class="tooltip"><p>Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/statusBarStyleSetting">&nbsp;&nbsp;statusBarStyleSetting</a></code>
-		<span class="tooltip"><p>Status bar styling. Defaults to PSPDFStatusBarSmartBlack.
-If controller is used embedded (in a non-fullscreen way), this setting has no effect.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;scrollOnTapPageEndEnabled</a></code>
-		<span class="tooltip"><p>Tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>. Defaults to YES.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/linkAction">&nbsp;&nbsp;linkAction</a></code>
-		<span class="tooltip"><p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
-Note: if modal is set in the link, this property has no effect.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1271,7 +1281,7 @@ This replaces the previous properties &ldquo;scrollViewClass&rdquo; and &ldquo;s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p>
 	</div>		
 	
@@ -1377,7 +1387,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page padding width between single/double pages. Defaults to 20.</p>
+		<p><a href="../Classes/Page.html">Page</a> padding width between single/double pages. Defaults to 20.</p>
 	</div>		
 	
 	
@@ -1581,7 +1591,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p>
 	</div>		
 	
@@ -2207,7 +2217,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
+		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2480,7 +2490,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2514,7 +2524,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
