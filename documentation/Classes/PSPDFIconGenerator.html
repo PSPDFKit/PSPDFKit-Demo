@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFWebAnnotationView Class Reference</title>
+		<title>PSPDFIconGenerator Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFWebAnnotationView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFIconGenerator Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,15 +38,18 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/shadowsHidden">&nbsp;&nbsp;&nbsp;&nbsp;shadowsHidden</option>
-	
-	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/sharedGenerator">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedGenerator</option>
 	
 	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/iconForType:">&nbsp;&nbsp;&nbsp;&nbsp;- iconForType:</option>
 	
 	
 	
@@ -70,24 +73,28 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowsHidden">shadowsHidden</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedGenerator">sharedGenerator</a></span></li>
 	
 </ul></li>
 
 
 
-
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iconForType:">iconForType:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFWebAnnotationView Class Reference" name="top"></a>
+				<a title="PSPDFIconGenerator Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,7 +103,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFWebAnnotationView Class Reference</h1>
+						<h1 class="title title-header">PSPDFIconGenerator Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -104,13 +111,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
-</tr><tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFAnnotationView.html">PSPDFAnnotationView</a><br />UIWebViewDelegate</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFWebAnnotationView.h</td>
+	<td class="specification-value">PSPDFIconGenerator.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -120,7 +124,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Encapsulates UIWebView with some additional features</p>
+						<p>Generates various Icons on the fly and caches them for later use.</p>
 					</div>
 					
 					
@@ -138,17 +142,17 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/shadowsHidden">&nbsp;&nbsp;shadowsHidden</a></code>
-		<span class="tooltip"><p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p></span>
+		<code><a href="#//api/name/sharedGenerator">+&nbsp;sharedGenerator</a></code>
+		<span class="tooltip"><p>Access singleton. Note: can be overridden with changing global kPSPDFIconGeneratorClassName.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/webView">&nbsp;&nbsp;webView</a></code>
-		<span class="tooltip"><p>Internal webview used.</p></span>
+		<code><a href="#//api/name/iconForType:">&ndash;&nbsp;iconForType:</a></code>
+		<span class="tooltip"><p>Generates in-code images on the fly. Cached, Thread-safe.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li>
 						</ul>
@@ -159,22 +163,24 @@
 					
 					
 					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/shadowsHidden" title="shadowsHidden"></a>
-	<h3 class="subsubtitle method-title">shadowsHidden</h3>
+	<a name="//api/name/sharedGenerator" title="sharedGenerator"></a>
+	<h3 class="subsubtitle method-title">sharedGenerator</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>A boolean value that controls whether the web view draws shadows around the outside of its content.</p>
+		<p>Access singleton. Note: can be overridden with changing global kPSPDFIconGeneratorClassName.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shadowsHidden</code></div>
+	<div class="method-subsection method-declaration"><code>+ (PSPDFIconGenerator *)sharedGenerator</code></div>
 	
 	
 	
@@ -191,41 +197,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebAnnotationView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/webView" title="webView"></a>
-	<h3 class="subsubtitle method-title">webView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Internal webview used.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIWebView *webView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFWebAnnotationView.h</code><br />
+		<code class="declared-in-ref">PSPDFIconGenerator.h</code><br />
 	</div>				
 	
 	
@@ -235,7 +207,45 @@
 					
 					
 					
-					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/iconForType:" title="iconForType:"></a>
+	<h3 class="subsubtitle method-title">iconForType:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generates in-code images on the fly. Cached, Thread-safe.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)iconForType:(PSPDFIconType)<em>iconType</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFIconGenerator.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
