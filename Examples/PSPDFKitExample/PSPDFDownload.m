@@ -126,6 +126,7 @@
     [pdfRequest setDownloadDestinationPath:destPath];
     [pdfRequest setDownloadProgressDelegate:self]; // add ui tracking
     
+    __ps_weak ASIHTTPRequest *pdfRequestWeak = pdfRequest;
     [pdfRequest setCompletionBlock:^{
         PSELog(@"Download finished: %@", self.url);
         
@@ -145,14 +146,15 @@
         
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         [self addSkipBackupAttributeToFile:destinationUrl];
+        [pdfRequestWeak setCompletionBlock:nil]; // clear out completion block
     }];
     
-    __ps_weak ASIHTTPRequest *pdfRequestWeak = pdfRequest;
     [pdfRequest setFailedBlock:^{
         PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequestWeak.error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
         self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;
+        [pdfRequestWeak setFailedBlock:nil]; // clear out failed block
     }];
     self.status = PSPDFStoreDownloadLoading;
     [pdfRequest startAsynchronous];
