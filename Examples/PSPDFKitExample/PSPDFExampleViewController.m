@@ -86,7 +86,8 @@
         //self.tintColor = [UIColor orangeColor];
         
         // change statusbar setting to your preferred style
-        //statusBarStyleSetting_ = PSPDFStatusBarDisable;        
+        //self.statusBarStyleSetting = PSPDFStatusBarDisable;
+        //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
     }    
     return self;
 }
