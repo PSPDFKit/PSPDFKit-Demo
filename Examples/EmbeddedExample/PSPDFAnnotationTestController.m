@@ -20,6 +20,7 @@
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageCurlEnabled = YES;
         self.tintColor = [UIColor orangeColor];
+        self.printEnabled = YES;
     }
     return self;
 }
