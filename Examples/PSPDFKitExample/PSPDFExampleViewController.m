@@ -81,6 +81,9 @@
         
         // use inline browser for pdf links
         self.linkAction = PSPDFLinkActionInlineBrowser;
+        
+        // 1.9.10 feature
+        self.printEnabled = YES;
                 
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
