@@ -83,7 +83,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.deleteButtonOffset = CGPointMake(self.imageView.left-10, self.imageView.top-10);
+    self.deleteButtonOffset = CGPointMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,8 +235,8 @@
         progressView_ = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];    
         CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : roundf(kProgressBarWidth * kiPhoneReductionFactor*1.1f);
         progressView_.frame = CGRectMake(0.f, 0.f, progressViewWidth, 21.f);
-        CGFloat siteLabelHeight = self.isShowingSiteLabel ? self.siteLabel.height : 0.f;
-        progressView_.center = CGPointMake(roundf(self.imageView.size.width/2.f), roundf(self.imageView.size.height*9.f/10.f - siteLabelHeight));
+        CGFloat siteLabelHeight = self.isShowingSiteLabel ? self.siteLabel.frame.size.width : 0.f;
+        progressView_.center = CGPointMake(roundf(self.imageView.frame.size.width/2.f), roundf(self.imageView.frame.size.height*9.f/10.f - siteLabelHeight));
         progressView_.alpha = 0.f;
         [self.contentView addSubview:progressView_];
     }

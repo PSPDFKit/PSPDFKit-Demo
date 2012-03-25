@@ -123,7 +123,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.pdfController.view.frame = CGRectMake(120, 150, self.view.width - 120*2, PSIsIpad() ? 500 : 200);
+    self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
     [self.pdfController viewWillAppear:animated];
     
     if (!self.pdfController.view.superview) {
