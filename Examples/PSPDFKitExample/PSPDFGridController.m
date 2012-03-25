@@ -104,8 +104,8 @@
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
             
             CGRect newFrame = self.view.frame;
-            newFrame.origin.y -= self.navigationController.navigationBar.height;            
-            newFrame.size.height += self.navigationController.navigationBar.height;
+            newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;            
+            newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
             
             // compensate for transparent statusbar
             if (!PSIsIpad()) {
