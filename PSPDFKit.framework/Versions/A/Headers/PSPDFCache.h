@@ -77,10 +77,7 @@ enum {
 
 /// clear cache for a specific document, optionally also deletes referenced document files.
 /// This usually performs asyncronously. If you need this call to be blocking until it's done, set wait to YES.
-- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine waitUntilDone:(BOOL)wait;
-
-// deprecated. Use removeCacheForDocument with waitUntilDone instead.
-- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteMagazine __attribute__((deprecated("Use the call with waitUntilDone instead.")));
+- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteDocument waitUntilDone:(BOOL)wait;
 
 /// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;

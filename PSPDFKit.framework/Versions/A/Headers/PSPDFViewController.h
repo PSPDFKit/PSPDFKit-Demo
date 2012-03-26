@@ -91,7 +91,7 @@ enum {
 
 /// @name Thumbnail View
 
-/// View mode: PSPDFViewModeMagazine or PSPDFViewModeThumbnails.
+/// View mode: PSPDFViewModeDocument or PSPDFViewModeThumbnails.
 @property(nonatomic, assign) PSPDFViewMode viewMode;
 - (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
 
