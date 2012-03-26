@@ -78,7 +78,7 @@
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage) {
-        GMGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
+        PSPDFGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
@@ -244,13 +244,13 @@
     backgroudView_.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     [self.view addSubview:backgroudView_];
     
-    self.gridView = [[GMGridView alloc] initWithFrame:CGRectZero];
+    self.gridView = [[PSPDFGridView alloc] initWithFrame:CGRectZero];
     self.gridView.backgroundColor = [UIColor clearColor];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.actionDelegate = self;
     self.gridView.centerGrid = YES;
-    self.gridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
+    self.gridView.layoutStrategy = [PSPDFGridViewLayoutStrategyFactory strategyFromType:PSPDFGridViewLayoutVertical];
     NSUInteger spacing = 20;
     self.gridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
     [self.view addSubview:self.gridView];
@@ -323,9 +323,9 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - GMGridViewDataSource
+#pragma mark - PSPDFGridViewDataSource
 
-- (NSInteger)numberOfItemsInGMGridView:(GMGridView *)gridView {    
+- (NSInteger)numberOfItemsInPSPDFGridView:(PSPDFGridView *)gridView {    
     NSUInteger count;
     if (self.magazineFolder) {
         count = [self.magazineFolder.magazines count];
@@ -336,12 +336,12 @@
     return count;
 }
 
-- (CGSize)GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation {
+- (CGSize)PSPDFGridView:(PSPDFGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation {
     return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(82, 120);
 }
 
-- (GMGridViewCell *)GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
-    CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+- (PSPDFGridViewCell *)PSPDFGridView:(PSPDFGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
+    CGSize size = [self PSPDFGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
     
     PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCell];
     if (!cell) {
@@ -357,7 +357,7 @@
     return cell;
 }
 
-- (BOOL)GMGridView:(GMGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {
+- (BOOL)PSPDFGridView:(PSPDFGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {
     BOOL canDelete;
     if (!self.magazineFolder) {
         NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
@@ -369,7 +369,7 @@
     return canDelete;
 }
 
-- (void)GMGridView:(GMGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index {
+- (void)PSPDFGridView:(PSPDFGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index {
     PSPDFMagazine *magazine;
     PSPDFMagazineFolder *folder;
     
@@ -407,7 +407,7 @@
             [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
                 deleteBlock();
                 // TODO should re-calculate index here.
-                [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+                [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
             }];
             [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
             PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
@@ -418,17 +418,17 @@
         deleteBlock();
         if (magazine.url) {
             // magazines with URL can't really be deleted, just delete data & fade to gray.
-            [self.gridView reloadObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView reloadObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
-            [self.gridView removeObjectAtIndex:index withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
         }
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - GMGridViewActionDelegate
+#pragma mark - PSPDFGridViewActionDelegate
 
-- (void)GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)gridIndex {
+- (void)PSPDFGridView:(PSPDFGridView *)gridView didTapOnItemAtIndex:(NSInteger)gridIndex {
     PSPDFMagazine *magazine;
     PSPDFMagazineFolder *folder;
     
@@ -509,7 +509,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView removeObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
             PSELog(@"index not found for %@", magazineFolder);
         }
@@ -520,7 +520,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView insertObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
             PSELog(@"index not found for %@", magazineFolder);
         }
@@ -531,7 +531,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
             PSELog(@"index not found for %@", magazineFolder);
         }
@@ -551,7 +551,7 @@
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
-            [self.gridView removeObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView removeObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
             PSELog(@"index not found for %@", magazine);
         }
@@ -560,12 +560,12 @@
 
 - (void)magazineStoreMagazineAdded:(PSPDFMagazine *)magazine {
     [self.gridView reloadData];
-    // TODO: GMGridView has some problems with inserting elements; will be fixed soon.
+    // TODO: PSPDFGridView has some problems with inserting elements; will be fixed soon.
     /*
      if (self.magazineFolder) {
      NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
      if (cellIndex != NSNotFound) {
-     [self.gridView insertObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+     [self.gridView insertObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
      }else {
      PSELog(@"index not found for %@", magazine);
      }
@@ -576,7 +576,7 @@
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
-            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:GMGridViewItemAnimationFade];
+            [self.gridView reloadObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
             PSELog(@"index not found for %@", magazine);
         }
