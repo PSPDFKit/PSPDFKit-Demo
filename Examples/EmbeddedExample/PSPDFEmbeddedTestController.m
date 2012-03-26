@@ -2,7 +2,7 @@
 //  PSPDFEmbeddedTestController.m
 //  EmbeddedExample
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFEmbeddedTestController.h"

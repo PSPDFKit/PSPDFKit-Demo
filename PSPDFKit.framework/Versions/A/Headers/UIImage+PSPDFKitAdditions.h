@@ -4,7 +4,7 @@
 //
 //  Created by Matt Gemmell on 20/08/2008.
 //  Heavily fixed and modified by Peter Steinberger
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //  (Copyright 2008 Instinctive Code)
 //
 
