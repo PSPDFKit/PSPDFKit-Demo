@@ -1,12 +1,12 @@
 //
-//  GMGridView-Constants.h
-//  GMGridView
+//  PSPDFGridViewCell.h
+//  PSPDFGridView
 //
-//  Created by Gulam Moledina on 11-12-14.
+//  Created by Gulam Moledina on 11-10-22.
 //  Copyright (c) 2011 GMoledina.ca. All rights reserved.
 //
-//  Latest code can be found on GitHub: https://github.com/gmoledina/GMGridView
-// 
+//  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
+//
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
@@ -26,38 +26,22 @@
 //  THE SOFTWARE.
 //
 
+#import <UIKit/UIKit.h>
 
-#ifndef GMGridView_GMGridView_Constants_h
-#define GMGridView_GMGridView_Constants_h
+@interface PSPDFGridViewCell : UIView
 
+@property (nonatomic, strong) UIView *contentView;         // The contentView - default is nil
+@property (nonatomic, strong) UIImage *deleteButtonIcon;   // Delete button image
+@property (nonatomic) CGPoint deleteButtonOffset;          // Delete button offset relative to the origin
+@property (nonatomic, strong) NSString *reuseIdentifier;
 
-//
-// ARC on iOS 4 and 5 
-//
+/// Override to release custom data before cell is reused.
+- (void)prepareForReuse;
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (GM_DONT_USE_ARC_WEAK_FEATURE)
+@end
 
-#define gm_weak   weak
-#define __gm_weak __weak
-#define gm_nil(x)
+@interface UIView (PSPDFGridViewAdditions)
 
+- (void)pspdf_shakeStatus:(BOOL)enabled;
 
-#else
-
-#define gm_weak   unsafe_unretained
-#define __gm_weak __unsafe_unretained
-#define gm_nil(x) x = nil
-
-#endif
-
-
-//
-// Code specific
-//
-
-#define GMGV_INVALID_POSITION -1
-
-
-
-
-#endif
+@end

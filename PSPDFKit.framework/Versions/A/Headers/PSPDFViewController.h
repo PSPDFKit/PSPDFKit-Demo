@@ -11,7 +11,7 @@
 #import "PSPDFKitGlobal.h"
 
 @protocol PSPDFViewControllerDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, GMGridView, PSPDFPageViewController;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController;
 
 /// current active view mode.
 enum {
@@ -159,6 +159,9 @@ enum {
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
 
+/// Controls if the thumbnail view toggle is displayed or not. Defaults to YES.
+@property(nonatomic, assign, getter=isViewModeControlVisible) BOOL viewModeControlVisible;
+
 
 /// @name Properties
 
@@ -267,7 +270,7 @@ enum {
 - (void)updateToolbars;
 
 /// Setup the grid view. Call [super gridView] and modify it for your needs
-- (GMGridView *)gridView;
+- (PSPDFGridView *)gridView;
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;
