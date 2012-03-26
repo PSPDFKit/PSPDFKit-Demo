@@ -316,7 +316,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - GMGridViewCell
+#pragma mark - PSPDFGridViewCell
 
 - (void)prepareForReuse {
     [super prepareForReuse];
