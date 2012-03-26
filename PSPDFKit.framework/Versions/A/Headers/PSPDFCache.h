@@ -46,6 +46,7 @@ enum {
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// returns cached image of document. preload decompresses the image in the background.
+/// Note: if useJPGTurbo is enabled, preload is always YES.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
 /// renders image of a page for spezified size. Used here and in PSPDFTilingView.
@@ -110,13 +111,8 @@ enum {
 /// This will load the pdf and remove any jpg artifacts.
 @property(assign) CGFloat JPGFormatCompression;
 
-/// PNGs can be saved as a crushed variant, which changes the RGB channel and premultiplies alpha,
-/// which results in a slight speed gain. Xcode by default crushes all your PNGs after copying then,
-/// but it needs to be explicitely called on iOS.
-/// This uses libpng, so if you expecience any problems, diasble it. Defaults to YES.
-/// Only used if useJPGFormat is set to NO.
-/// Note: the current implementation may slightly *increase* pdf file size for crushing.
-@property(assign) BOOL crushPNGs;
+/// Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10
+@property(assign) BOOL useJPGTurbo;
 
 /// defaults to CGSizeMake(200, 400).
 @property(assign) CGSize thumbnailSize;

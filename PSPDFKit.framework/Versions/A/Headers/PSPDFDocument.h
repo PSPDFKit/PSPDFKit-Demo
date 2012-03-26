@@ -107,6 +107,9 @@
 /// string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.
 - (BOOL)unlockWithPassword:(NSString*)password;
 
+/// Returs a files array with the base path already added (if there is one)
+- (NSArray *)filesWithBasePath;
+
 /// Returns YES if the document is valid (if it has at least one page)
 @property(nonatomic, assign, readonly, getter=isValid) BOOL valid;
 
@@ -149,7 +152,8 @@
 /// text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.
 @property(nonatomic, assign, getter=isSearchEnabled) BOOL searchEnabled;
 
-/// outline/table of contents extraction. disable if no outline available. Defaults to YES.
+/// Show icon for Outline/Table of Contents extraction. Defaults to YES.
+/// Note: if there ToC is empty or contains only one item, it will be ignored by PSPDFViewController.
 @property(nonatomic, assign, getter=isOutlineEnabled) BOOL outlineEnabled;
 
 /// annotation link extraction. Defaults to YES.
