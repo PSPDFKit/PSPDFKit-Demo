@@ -1,11 +1,11 @@
 //
-//  GMGridViewCell+Extended.h
-//  GMGridView
+//  PSPDFGridViewCell+Extended.h
+//  PSPDFGridView
 //
 //  Created by Gulam Moledina on 11-10-22.
 //  Copyright (c) 2011 GMoledina.ca. All rights reserved.
 //
-//  Latest code can be found on GitHub: https://github.com/gmoledina/GMGridView
+//  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,17 +27,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GMGridView-Constants.h"
-#import "GMGridView.h"
-#import "GMGridViewCell.h"
+#import "PSPDFGridView.h"
+#import "PSPDFGridViewCell.h"
+#import "PSPDFKitGlobal.h"
 
-typedef void (^GMGridViewCellDeleteBlock)(GMGridViewCell*);
+typedef void (^PSPDFGridViewCellDeleteBlock)(PSPDFGridViewCell*);
 
 //////////////////////////////////////////////////////////////
-#pragma mark - Interface GMGridViewCell (Extended)
+#pragma mark - Interface PSPDFGridViewCell (Extended)
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewCell () 
+@interface PSPDFGridViewCell () 
 
 @property (nonatomic, strong) UIView *fullSizeView;
 @property (nonatomic, assign) CGSize fullSize;
@@ -48,10 +48,10 @@ typedef void (^GMGridViewCellDeleteBlock)(GMGridViewCell*);
 @property (nonatomic, getter=isEditing) BOOL editing;
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated;
 
-@property (nonatomic, copy) GMGridViewCellDeleteBlock deleteBlock;
+@property (nonatomic, copy) PSPDFGridViewCellDeleteBlock deleteBlock;
 
 @property (nonatomic, assign) UIViewAutoresizing defaultFullsizeViewResizingMask;
-@property (nonatomic, gm_weak) UIButton *deleteButton;
+@property (nonatomic, ps_weak) UIButton *deleteButton;
 
 - (void)prepareForReuse;
 - (void)shake:(BOOL)on; // shakes the contentView only, not the fullsize one

@@ -1,11 +1,11 @@
 //
-//  GMGridViewLayoutStrategy.h
-//  GMGridView
+//  PSPDFGridViewLayoutStrategy.h
+//  PSPDFGridView
 //
 //  Created by Gulam Moledina on 11-10-28.
 //  Copyright (c) 2011 GMoledina.ca. All rights reserved.
 //
-//  Latest code can be found on GitHub: https://github.com/gmoledina/GMGridView
+//  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
 // 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,17 +28,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "GMGridView-Constants.h"
 
-@protocol GMGridViewLayoutStrategy;
+@protocol PSPDFGridViewLayoutStrategy;
 
 
 typedef enum {
-    GMGridViewLayoutVertical = 0,
-    GMGridViewLayoutHorizontal,
-    GMGridViewLayoutHorizontalPagedLTR,   // LTR: left to right
-    GMGridViewLayoutHorizontalPagedTTB    // TTB: top to bottom
-} GMGridViewLayoutStrategyType;
+    PSPDFGridViewLayoutVertical = 0,
+    PSPDFGridViewLayoutHorizontal,
+    PSPDFGridViewLayoutHorizontalPagedLTR,   // LTR: left to right
+    PSPDFGridViewLayoutHorizontalPagedTTB    // TTB: top to bottom
+} PSPDFGridViewLayoutStrategyType;
 
 
 
@@ -46,9 +45,9 @@ typedef enum {
 #pragma mark - Strategy Factory
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutStrategyFactory : NSObject
+@interface PSPDFGridViewLayoutStrategyFactory : NSObject
 
-+ (id<GMGridViewLayoutStrategy>)strategyFromType:(GMGridViewLayoutStrategyType)type;
++ (id<PSPDFGridViewLayoutStrategy>)strategyFromType:(PSPDFGridViewLayoutStrategyType)type;
 
 @end
 
@@ -57,11 +56,11 @@ typedef enum {
 #pragma mark - The strategy protocol
 //////////////////////////////////////////////////////////////
 
-@protocol GMGridViewLayoutStrategy <NSObject>
+@protocol PSPDFGridViewLayoutStrategy <NSObject>
 
 + (BOOL)requiresEnablingPaging;
 
-- (GMGridViewLayoutStrategyType)type;
+- (PSPDFGridViewLayoutStrategyType)type;
 
 // Setup
 - (void)setupItemSize:(CGSize)itemSize andItemSpacing:(NSInteger)spacing withMinEdgeInsets:(UIEdgeInsets)edgeInsets andCenteredGrid:(BOOL)centered;
@@ -83,11 +82,11 @@ typedef enum {
 #pragma mark - Strategy Base class
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutStrategyBase : NSObject
+@interface PSPDFGridViewLayoutStrategyBase : NSObject
 {
     @protected
     // All of these vars should be set in the init method
-    GMGridViewLayoutStrategyType _type;
+    PSPDFGridViewLayoutStrategyType _type;
     
     // All of these vars should be set in the setup method of the child class
     CGSize _itemSize;
@@ -102,7 +101,7 @@ typedef enum {
     CGSize _contentSize;
 }
 
-@property (nonatomic, readonly) GMGridViewLayoutStrategyType type;
+@property (nonatomic, readonly) PSPDFGridViewLayoutStrategyType type;
 
 @property (nonatomic, readonly) CGSize itemSize;
 @property (nonatomic, readonly) NSInteger itemSpacing;
@@ -126,7 +125,7 @@ typedef enum {
 #pragma mark - Vertical strategy
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutVerticalStrategy : GMGridViewLayoutStrategyBase <GMGridViewLayoutStrategy>
+@interface PSPDFGridViewLayoutVerticalStrategy : PSPDFGridViewLayoutStrategyBase <PSPDFGridViewLayoutStrategy>
 {
     @protected
     NSInteger _numberOfItemsPerRow;
@@ -140,7 +139,7 @@ typedef enum {
 #pragma mark - Horizontal strategy
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutHorizontalStrategy : GMGridViewLayoutStrategyBase <GMGridViewLayoutStrategy>
+@interface PSPDFGridViewLayoutHorizontalStrategy : PSPDFGridViewLayoutStrategyBase <PSPDFGridViewLayoutStrategy>
 {
     @protected
     NSInteger _numberOfItemsPerColumn;
@@ -155,7 +154,7 @@ typedef enum {
 #pragma mark - Horizontal Paged strategy (LTR behavior)
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutHorizontalPagedStrategy : GMGridViewLayoutHorizontalStrategy
+@interface PSPDFGridViewLayoutHorizontalPagedStrategy : PSPDFGridViewLayoutHorizontalStrategy
 {
     @protected
     NSInteger _numberOfItemsPerRow;
@@ -180,7 +179,7 @@ typedef enum {
 #pragma mark - Horizontal Paged Left to Right strategy
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutHorizontalPagedLTRStrategy : GMGridViewLayoutHorizontalPagedStrategy
+@interface PSPDFGridViewLayoutHorizontalPagedLTRStrategy : PSPDFGridViewLayoutHorizontalPagedStrategy
 
 @end
 
@@ -188,6 +187,6 @@ typedef enum {
 #pragma mark - Horizontal Paged Top To Bottom strategy
 //////////////////////////////////////////////////////////////
 
-@interface GMGridViewLayoutHorizontalPagedTTBStrategy : GMGridViewLayoutHorizontalPagedStrategy
+@interface PSPDFGridViewLayoutHorizontalPagedTTBStrategy : PSPDFGridViewLayoutHorizontalPagedStrategy
 
 @end

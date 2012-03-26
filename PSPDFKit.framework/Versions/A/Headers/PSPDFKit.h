@@ -44,8 +44,8 @@
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailGridViewCell.h"
 #import "UIImage+PSPDFKitAdditions.h"
-#import "GMGridView.h"
-#import "GMGridViewLayoutStrategies.h"
+#import "PSPDFGridView.h"
+#import "PSPDFGridViewLayoutStrategies.h"
 
 // outline
 #import "PSPDFOutlineParser.h"

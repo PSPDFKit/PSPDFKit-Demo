@@ -8,13 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "PSPDFKit.h"
-#import "GMGridViewCell.h"
+#import "PSPDFGridViewCell.h"
 
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting
 #define kPSPDFShrinkOwnImagesTresholdFactor 1.5
 
 /// Thumbnail cell.
-@interface PSPDFThumbnailGridViewCell : GMGridViewCell <PSPDFCacheDelegate>
+@interface PSPDFThumbnailGridViewCell : PSPDFGridViewCell <PSPDFCacheDelegate>
 
 /// manually set image. use if you override class.
 - (void)setImage:(UIImage *)image animated:(BOOL)animated;
