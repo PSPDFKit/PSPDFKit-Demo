@@ -1,7 +1,7 @@
 //
 //  PSPDFAlertView.h
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 //  Loosely based on Landon Fullers "Using Blocks", Plausible Labs Cooperative.
 //  http://landonf.bikemonkey.org/code/iphone/Using_Blocks_1.20090704.html

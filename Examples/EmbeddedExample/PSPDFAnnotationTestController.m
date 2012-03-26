@@ -2,7 +2,7 @@
 //  PSPDFAnnotationTestController.m
 //  EmbeddedExample
 //
-//  Copyright (c) 2011 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFAnnotationTestController.h"

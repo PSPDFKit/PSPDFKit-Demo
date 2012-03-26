@@ -2,7 +2,7 @@
 //  PSPDFCustomToolbarController.h
 //  EmbeddedExample
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 /// Example to show how to add a custom toolbar.
