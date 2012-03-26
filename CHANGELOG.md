@@ -2,6 +2,7 @@
 
 __v1.9.10 - 26/Mar/2012__
 
+*  Greatly improved performance on zooming with the new iPad (and the iPhone4).
 *  Add support for printing! It's disabled by default. Use printEnabled in PSPDFViewController. (thanks to Cédric Luthi)
 *  Add support for Open In...! It's disabled by default. Use openInEnabled in PSPDFViewController.
 *  Improved, collapsable outline view. (Minor API changes for PSPDFOutlineParser)
@@ -11,6 +12,8 @@ __v1.9.10 - 26/Mar/2012__
 *  Removes the UIView+Sizes category, that was not prefixed.
 *  Remove custom PNG compression, performance wasn't good enough.
 *  Internal GMGridView is now prefixed.
+*  Disable implicit shadow animation when grid cell size changes.
+*  Fixes a bug regarding slow rotation on the new iPad.
 *  Fixes a bug where sometimes a pdf document wasn't unlocked correctly.
 *  Fixes a potential problem where search/table of contents doesn't actually change the page on the iPhone.
 *  Fixes some problems with Type2 Fonts on search.
