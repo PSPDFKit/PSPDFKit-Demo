@@ -13,16 +13,22 @@
 /// Init with title, page, child elements and deepness level.
 - (id)initWithTitle:(NSString *)title page:(NSUInteger)page elements:(NSArray *)elements level:(NSUInteger)level;
 
+/// Returns all elements + flattened subelements
+- (NSArray *)flattenedChildren;
+
 /// Outline title.
 @property(nonatomic, strong) NSString *title;
 
-/// Page reference
+/// Page reference.
 @property(nonatomic, assign) NSUInteger page;
 
 /// Child elements.
-@property(nonatomic, strong, readonly) NSArray *elements;
+@property(nonatomic, strong, readonly) NSArray *children;
 
 /// Current outline level.
 @property(nonatomic, assign) NSUInteger level;
+
+/// Expansion state of current outline element.
+@property(nonatomic, assign, getter=isExpanded) BOOL expanded;
 
 @end

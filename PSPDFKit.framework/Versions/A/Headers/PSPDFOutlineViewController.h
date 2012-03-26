@@ -17,7 +17,7 @@
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
 /// Array of PSPDFOutlineElements
-@property(nonatomic, strong) NSArray *outline;
+@property(nonatomic, strong) PSPDFOutlineElement *outline;
 
 /// If presented within a popoverController, it can be accessed here.
 @property(nonatomic, ps_weak) UIPopoverController *popoverController;

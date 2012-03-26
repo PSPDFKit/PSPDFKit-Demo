@@ -19,6 +19,7 @@
 - (id)initWithPageViewController:(PSPDFPageViewController *)pageController;
 
 /// References the pageController
-@property(nonatomic, ps_weak, readonly) PSPDFPageViewController *pageController;
+// atomic, might be accessed from a background thread during deallocation
+@property(strong, readonly) PSPDFPageViewController *pageController;
 
 @end

@@ -30,10 +30,13 @@ typedef enum {
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;
 
 /// Creates a new images that is already preloaded to draw on screen.
-+ (UIImage *)pspdf_preloadedImageForPath:(NSString *)path;
++ (UIImage *)pspdf_preloadedImageWithContentsOfFile:(NSString *)path;
 
 /// Creates a new image that is optimized for the screen. (ARGB, not ABGR)
 - (UIImage *)pspdf_preloadedImage;
+
+/// Creates a new image that is eventually decompressed using libjpeg-turbo.
++ (UIImage *)pspdf_preloadedImageWithContentsOfFile:(NSString *)imagePath useJPGTurbo:(BOOL)useJPGTurbo;
 
 /// Calculates scale for images.
 + (CGFloat)pspdf_scaleForImageSize:(CGSize)imageSize bounds:(CGSize)boundsSize;
