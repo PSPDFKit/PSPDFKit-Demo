@@ -7,6 +7,7 @@ __v1.9.10 - 26/Mar/2012__
 *  Improved, collapsable outline view. (Minor API changes for PSPDFOutlineParser)
 *  Improved speed with using libjpeg-turbo. Enabled by default.
 *  PSPDFStatusBarIgnore is now a flag, so the status bar style (which infers the navigation bar style) can now been set and then marked as ignore.
+*  New property viewModeControlVisible, that shows/hides the toolbar view toggle.
 *  Removes the UIView+Sizes category, that was not prefixed.
 *  Remove custom PNG compression, performance wasn't good enough.
 *  Internal GMGridView is now prefixed.
