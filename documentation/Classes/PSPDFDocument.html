@@ -112,6 +112,8 @@
 	
 	<option value="//api/name/fileIndexForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileIndexForPage:</option>
 	
+	<option value="//api/name/filesWithBasePath">&nbsp;&nbsp;&nbsp;&nbsp;- filesWithBasePath</option>
+	
 	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
 	
 	<option value="//api/name/hasPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasPageInfoForPage:</option>
@@ -238,6 +240,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileIndexForPage:">fileIndexForPage:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/filesWithBasePath">filesWithBasePath</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasPageInfoForPage:">hasPageInfoForPage:</a></span></li>
@@ -359,7 +363,7 @@ Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p><
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>returns path for a single page (in case pages are split up). Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -387,7 +391,7 @@ Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p><
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
-		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -401,14 +405,14 @@ Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p><
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -423,7 +427,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -431,7 +435,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>rotation for specified page. cached. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -502,6 +506,13 @@ If you attempt to unlock an already unlocked document, one of the following occu
 If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
 If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
 string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/filesWithBasePath">&ndash;&nbsp;filesWithBasePath</a></code>
+		<span class="tooltip"><p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p></span>
 	</span>
 	
 	
@@ -602,7 +613,8 @@ nil if the document was initialized with initWithData:</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineEnabled">&nbsp;&nbsp;outlineEnabled</a></code>
-		<span class="tooltip"><p>outline/table of contents extraction. disable if no outline available. Defaults to YES.</p></span>
+		<span class="tooltip"><p>Show icon for Outline/Table of Contents extraction. Defaults to YES.
+Note: if there ToC is empty or contains only one item, it will be ignored by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1083,7 +1095,8 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	
 	
 	<div class="method-subsection brief-description">
-		<p>outline/table of contents extraction. disable if no outline available. Defaults to YES.</p>
+		<p>Show icon for Outline/Table of Contents extraction. Defaults to YES.
+Note: if there ToC is empty or contains only one item, it will be ignored by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
 	</div>		
 	
 	
@@ -1742,6 +1755,40 @@ Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/filesWithBasePath" title="filesWithBasePath"></a>
+	<h3 class="subsubtitle method-title">filesWithBasePath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)filesWithBasePath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/fillCache" title="fillCache"></a>
 	<h3 class="subsubtitle method-title">fillCache</h3>
 	
@@ -1920,7 +1967,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -1954,7 +2001,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
@@ -1989,7 +2036,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2023,7 +2070,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>returns path for a single page (in case pages are split up). Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2057,7 +2104,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -2092,7 +2139,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>rotation for specified page. cached. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -2239,7 +2286,7 @@ string. If the string fails, the document maintains its user permissions. In eit
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-20)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

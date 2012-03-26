@@ -44,8 +44,6 @@
 	
 	<option value="//api/name/cacheDirectory">&nbsp;&nbsp;&nbsp;&nbsp;cacheDirectory</option>
 	
-	<option value="//api/name/crushPNGs">&nbsp;&nbsp;&nbsp;&nbsp;crushPNGs</option>
-	
 	<option value="//api/name/numberOfMaximumCachedDocuments">&nbsp;&nbsp;&nbsp;&nbsp;numberOfMaximumCachedDocuments</option>
 	
 	<option value="//api/name/numberOfNearCachedPages">&nbsp;&nbsp;&nbsp;&nbsp;numberOfNearCachedPages</option>
@@ -57,6 +55,8 @@
 	<option value="//api/name/tinySize">&nbsp;&nbsp;&nbsp;&nbsp;tinySize</option>
 	
 	<option value="//api/name/useJPGFormat">&nbsp;&nbsp;&nbsp;&nbsp;useJPGFormat</option>
+	
+	<option value="//api/name/useJPGTurbo">&nbsp;&nbsp;&nbsp;&nbsp;useJPGTurbo</option>
 	
 	
 	
@@ -132,8 +132,6 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheDirectory">cacheDirectory</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/crushPNGs">crushPNGs</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfMaximumCachedDocuments">numberOfMaximumCachedDocuments</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfNearCachedPages">numberOfNearCachedPages</a></span></li>
@@ -145,6 +143,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tinySize">tinySize</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useJPGFormat">useJPGFormat</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useJPGTurbo">useJPGTurbo</a></span></li>
 	
 </ul></li>
 
@@ -275,7 +275,8 @@ You can manually call <a href="#//api/name/clearCache">clearCache</a> to remove 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cachedImageForDocument:page:size:preload:">&ndash;&nbsp;cachedImageForDocument:page:size:preload:</a></code>
-		<span class="tooltip"><p>returns cached image of document. preload decompresses the image in the background.</p></span>
+		<span class="tooltip"><p>returns cached image of document. preload decompresses the image in the background.
+Note: if <a href="#//api/name/useJPGTurbo">useJPGTurbo</a> is enabled, preload is always YES.</p></span>
 	</span>
 	
 	
@@ -400,13 +401,8 @@ This will load the pdf and remove any jpg artifacts.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/crushPNGs">&nbsp;&nbsp;crushPNGs</a></code>
-		<span class="tooltip"><p>PNGs can be saved as a crushed variant, which changes the RGB channel and premultiplies alpha,
-which results in a slight speed gain. Xcode by default crushes all your PNGs after copying then,
-but it needs to be explicitely called on iOS.
-This uses libpng, so if you expecience any problems, diasble it. Defaults to YES.
-Only used if <a href="#//api/name/useJPGFormat">useJPGFormat</a> is set to NO.
-Note: the current implementation may slightly <em>increase</em> pdf file size for crushing.</p></span>
+		<code><a href="#//api/name/useJPGTurbo">&nbsp;&nbsp;useJPGTurbo</a></code>
+		<span class="tooltip"><p>Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -522,45 +518,6 @@ This will load the pdf and remove any jpg artifacts.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *cacheDirectory</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFCache.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/crushPNGs" title="crushPNGs"></a>
-	<h3 class="subsubtitle method-title">crushPNGs</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>PNGs can be saved as a crushed variant, which changes the RGB channel and premultiplies alpha,
-which results in a slight speed gain. Xcode by default crushes all your PNGs after copying then,
-but it needs to be explicitely called on iOS.
-This uses libpng, so if you expecience any problems, diasble it. Defaults to YES.
-Only used if <a href="#//api/name/useJPGFormat">useJPGFormat</a> is set to NO.
-Note: the current implementation may slightly <em>increase</em> pdf file size for crushing.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (assign) BOOL crushPNGs</code></div>
 	
 	
 	
@@ -789,6 +746,40 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/useJPGTurbo" title="useJPGTurbo"></a>
+	<h3 class="subsubtitle method-title">useJPGTurbo</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) BOOL useJPGTurbo</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -982,7 +973,8 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns cached image of document. preload decompresses the image in the background.</p>
+		<p>returns cached image of document. preload decompresses the image in the background.
+Note: if <a href="#//api/name/useJPGTurbo">useJPGTurbo</a> is enabled, preload is always YES.</p>
 	</div>		
 	
 	
@@ -1196,7 +1188,7 @@ This usually performs asyncronously. If you need this call to be blocking until 
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteMagazine</em> waitUntilDone:(BOOL)<em>wait</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteDocument</em> waitUntilDone:(BOOL)<em>wait</em></code></div>
 	
 	
 	
@@ -1405,7 +1397,7 @@ Thread safe.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-20)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
