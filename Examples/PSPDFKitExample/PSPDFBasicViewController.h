@@ -2,7 +2,7 @@
 //  PSPDFBasicViewController.h
 //  PSPDFKitExample
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #define kDismissActivePopover @"kDismissActivePopover"

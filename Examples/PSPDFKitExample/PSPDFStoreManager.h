@@ -2,7 +2,7 @@
 //  PSPDFStoreManager.h
 //  PSPDFKitExample
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 /// enable to make the view plain, no folders supported

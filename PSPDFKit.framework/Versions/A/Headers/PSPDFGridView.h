@@ -3,7 +3,7 @@
 //  PSPDFGridView
 //
 //  Created by Gulam Moledina on 11-10-09.
-//  Copyright (C) 2011 by Gulam Moledina.
+//  Copyright (C) 2011-2012 by Gulam Moledina.
 //
 //  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
 // 

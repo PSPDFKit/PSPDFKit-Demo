@@ -2,7 +2,7 @@
 //  PSPDFPageRenderer.h
 //  PSPDFKit
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 //  Based on code by Sorin Nistor. Many, Many thanks!
 //  Copyright (c) 2011 Sorin Nistor. All rights reserved. This software is provided 'as-is', without any express or implied warranty.
