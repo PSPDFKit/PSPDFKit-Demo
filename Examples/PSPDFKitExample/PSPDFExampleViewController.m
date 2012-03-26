@@ -21,13 +21,12 @@
 }
 
 - (void)optionsButtonPressed:(id)sender {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
-        [self.popoverController dismissPopoverAnimated:YES];
-        self.popoverController = nil;
-    }else {
+    if(![self checkAndDismissPopoverForViewControllerClass:[PSPDFSettingsController class] animated:YES]) {
+        [self checkAndDismissPopoverForViewControllerClass:nil animated:NO]; // close print/open in
         PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
         if (PSIsIpad()) {
             self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
+            self.popoverController.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
             [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
             [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
@@ -84,6 +83,7 @@
         
         // 1.9.10 feature
         self.printEnabled = YES;
+        self.openInEnabled = YES;
                 
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
