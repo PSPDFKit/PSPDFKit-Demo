@@ -1,5 +1,20 @@
 # Changelog
 
+__v1.9.10 - 26/Mar/2012__
+
+*  Add support for printing! It's disabled by default. Use printEnabled in PSPDFViewController. (thanks to Cédric Luthi)
+*  Add support for Open In...! It's disabled by default. Use openInEnabled in PSPDFViewController.
+*  Improved, collapsable outline view. (Minor API changes for PSPDFOutlineParser)
+*  Improved speed with using libjpeg-turbo. Enabled by default.
+*  PSPDFStatusBarIgnore is now a flag, so the status bar style (which infers the navigation bar style) can now been set and then marked as ignore.
+*  Removes the UIView+Sizes category, that was not prefixed.
+*  Remove custom PNG compression, performance wasn't good enough.
+*  Internal GMGridView is now prefixed.
+*  Fixes a bug where sometimes a pdf document wasn't unlocked correctly.
+*  Fixes a potential problem where search/table of contents doesn't actually change the page on the iPhone.
+*  Fixes some problems with Type2 Fonts on search.
+*  Fixes a rare crash when rotating while a video is being displayed.
+
 __v1.9.9 - 15/Mar/2012__
 
 *  Icons! (changed outline icon, and replaced "Page" and "Grid" with icons)

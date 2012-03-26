@@ -7,11 +7,15 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFCache.h"
 
-/// *completely* disables logging. not advised. use kPSPDFLogLevel instead.
+/// *completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-/// if disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
+/// If disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
+
+/// If enabled, this shows some additional log data for specific features to track time.
+/// This should only be enabled for debugging.
+//#define kPSPDFBenchmark
 
 extern NSString *const kPSPDFErrorDomain;
 
@@ -79,6 +83,9 @@ extern inline void DrawPSPDFKit(CGContextRef context);
 
 /// class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFCacheClassName;
+
+/// class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
+extern NSString *kPSPDFIconGeneratorClassName;
 
 // called within PSPDFViewController to set up good defaults for the global values.
 extern void PSPDFKitInitializeGlobals(void);

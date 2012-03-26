@@ -26,7 +26,7 @@
 - (PSPDFOutlineElement *)outlineElementForPage:(NSUInteger)page exactPageOnly:(BOOL)exactPageOnly;
 
 /// Returns cached outline. starts parsing if outline is not yet created.
-@property(nonatomic, strong, readonly) NSArray *outline;
+@property(nonatomic, strong, readonly) PSPDFOutlineElement *outline;
 
 /// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
 + (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;

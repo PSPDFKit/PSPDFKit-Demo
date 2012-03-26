@@ -24,7 +24,6 @@
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFCache.h"
 #import "PSPDFTransparentToolbar.h"
-#import "UIView+PSSizes.h"
 #import "PSPDFPageRenderer.h"
 #import "PSPDFPageInfo.h"
 #import "PSPDFHUDView.h"
