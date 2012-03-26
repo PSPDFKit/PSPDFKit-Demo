@@ -10,14 +10,14 @@
 
 @class PSPDFMagazineFolder;
 
-@interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, GMGridViewActionDelegate, GMGridViewDataSource> {    
+@interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, PSPDFGridViewActionDelegate, PSPDFGridViewDataSource> {    
     CGRect baseGridPosition_;
 }
 
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
 
-@property(nonatomic, strong) GMGridView *gridView;
+@property(nonatomic, strong) PSPDFGridView *gridView;
 @property(nonatomic, strong, readonly) PSPDFMagazineFolder *magazineFolder;
 
 @end
