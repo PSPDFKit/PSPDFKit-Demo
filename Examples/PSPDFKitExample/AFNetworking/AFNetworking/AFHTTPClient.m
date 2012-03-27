@@ -162,6 +162,7 @@ NSString * AFQueryStringFromParametersWithEncoding(NSDictionary *parameters, NSS
     return [[AFQueryStringComponentsFromKeyAndValueWithEncoding(nil, parameters, stringEncoding) valueForKeyPath:@"description"] componentsJoinedByString:@"&"];
 }
 
+AFQueryStringComponent * AFQueryStringComponentFromKeyAndValueWithEncoding(id key, id value, NSStringEncoding stringEncoding);
 AFQueryStringComponent * AFQueryStringComponentFromKeyAndValueWithEncoding(id key, id value, NSStringEncoding stringEncoding) {
     return [[[AFQueryStringComponent alloc] initWithKey:AFURLEncodedStringFromStringWithEncoding([key description], stringEncoding) value:AFURLEncodedStringFromStringWithEncoding([value description], stringEncoding)] autorelease];
 }
