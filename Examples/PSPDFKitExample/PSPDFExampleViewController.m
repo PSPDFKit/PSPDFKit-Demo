@@ -176,7 +176,7 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    PSELog(@"page %d showed. (document: %@)", pageView.page, pageView.document.title);    
+    PSELog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);    
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
