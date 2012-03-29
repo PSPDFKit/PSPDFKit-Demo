@@ -273,6 +273,13 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    // ensure our navigation bar is visible. PSPDFKit restores the properties,
+    // but since we're doing a custom fade-out on the navigationBar alpha, 
+    // we also have to restore this properly.
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.navigationController.navigationBar.alpha = 1.f;
+    }];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     
     // only one delegate at a time (only one grid is displayed at a time)
