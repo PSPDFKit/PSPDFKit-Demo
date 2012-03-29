@@ -46,6 +46,8 @@
 	
 	<option value="//api/name/backgroundColor">&nbsp;&nbsp;&nbsp;&nbsp;backgroundColor</option>
 	
+	<option value="//api/name/clipToPageBoundaries">&nbsp;&nbsp;&nbsp;&nbsp;clipToPageBoundaries</option>
+	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
 	<option value="//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;&nbsp;&nbsp;doublePageModeOnFirstPage</option>
@@ -216,6 +218,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationAnimationDuration">annotationAnimationDuration</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/backgroundColor">backgroundColor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clipToPageBoundaries">clipToPageBoundaries</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
@@ -659,7 +663,8 @@ There&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>Document that will be displayed.</p></span>
+		<span class="tooltip"><p>Document that will be displayed.
+Note: has simple support to also accepts an NSString, the bundle path then will be used.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -766,7 +771,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageCurlEnabled">&nbsp;&nbsp;pageCurlEnabled</a></code>
-		<span class="tooltip"><p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
+		<span class="tooltip"><p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -777,6 +782,14 @@ Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if y
 		<span class="tooltip"><p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
 <a href="#//api/name/fitWidth">fitWidth</a> is currently not supported for vertical scrolling. This is a know limitation.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clipToPageBoundaries">&nbsp;&nbsp;clipToPageBoundaries</a></code>
+		<span class="tooltip"><p>PageCurl mode only: clips the <a href="#//api/name/page">page</a> to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
+Usually you want this, unless your <a href="#//api/name/document">document</a> is variable sized.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1024,13 +1037,49 @@ This also supports UIDocumentInteractionController and UIPrintInteractionControl
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/clipToPageBoundaries" title="clipToPageBoundaries"></a>
+	<h3 class="subsubtitle method-title">clipToPageBoundaries</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PageCurl mode only: clips the <a href="#//api/name/page">page</a> to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
+Usually you want this, unless your <a href="#//api/name/document">document</a> is variable sized.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL clipToPageBoundaries</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/document" title="document"></a>
 	<h3 class="subsubtitle method-title">document</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Document that will be displayed.</p>
+		<p>Document that will be displayed.
+Note: has simple support to also accepts an NSString, the bundle path then will be used.</p>
 	</div>		
 	
 	
@@ -1413,7 +1462,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
+		<p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.</p>
 	</div>		
 	
@@ -2971,7 +3020,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-26)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						

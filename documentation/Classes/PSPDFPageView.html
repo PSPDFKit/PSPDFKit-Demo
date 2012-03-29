@@ -48,11 +48,11 @@
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
+	
 	<option value="//api/name/pdfScale">&nbsp;&nbsp;&nbsp;&nbsp;pdfScale</option>
 	
 	<option value="//api/name/pdfView">&nbsp;&nbsp;&nbsp;&nbsp;pdfView</option>
-	
-	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;scrollView</option>
 	
 	<option value="//api/name/shadowEnabled">&nbsp;&nbsp;&nbsp;&nbsp;shadowEnabled</option>
 	
@@ -69,7 +69,9 @@
 	
 	<option value="//api/name/destroyPageAndRemoveFromView:callDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- destroyPageAndRemoveFromView:callDelegate:</option>
 	
-	<option value="//api/name/displayDocument:page:pageRect:scale:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:page:pageRect:scale:</option>
+	<option value="//api/name/displayDocument:page:pageRect:scale:pdfController:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:page:pageRect:scale:pdfController:</option>
+	
+	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView</option>
 	
 	<option value="//api/name/setBackgroundImage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setBackgroundImage:animated:</option>
 	
@@ -107,11 +109,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfScale">pdfScale</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfView">pdfView</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowEnabled">shadowEnabled</a></span></li>
 	
@@ -129,7 +131,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/destroyPageAndRemoveFromView:callDelegate:">destroyPageAndRemoveFromView:callDelegate:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:page:pageRect:scale:">displayDocument:page:pageRect:scale:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:page:pageRect:scale:pdfController:">displayDocument:page:pageRect:scale:pdfController:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBackgroundImage:animated:">setBackgroundImage:animated:</a></span></li>
 	
@@ -191,7 +195,7 @@ You can add your own views on top of the UIView (e.g. custom annotations)</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/displayDocument:page:pageRect:scale:">&ndash;&nbsp;displayDocument:page:pageRect:scale:</a></code>
+		<code><a href="#//api/name/displayDocument:page:pageRect:scale:pdfController:">&ndash;&nbsp;displayDocument:page:pageRect:scale:pdfController:</a></code>
 		<span class="tooltip"><p>configure <a href="#//api/name/page">page</a> container with data.</p></span>
 	</span>
 	
@@ -213,8 +217,17 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/scrollView">&nbsp;&nbsp;scrollView</a></code>
-		<span class="tooltip"><p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)</p></span>
+		<code><a href="#//api/name/scrollView">&ndash;&nbsp;scrollView</a></code>
+		<span class="tooltip"><p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)
+Note: this only lets you access the <a href="#//api/name/scrollView">scrollView</a> if it&rsquo;s in the view hiararchy.
+If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrollView</a> which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Access <a href="#//api/name/pdfController">pdfController</a></p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -442,6 +455,40 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Access <a href="#//api/name/pdfController">pdfController</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFViewController *pdfController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pdfScale" title="pdfScale"></a>
 	<h3 class="subsubtitle method-title">pdfScale</h3>
 	
@@ -487,40 +534,6 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFTilingView *pdfView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/scrollView" title="scrollView"></a>
-	<h3 class="subsubtitle method-title">scrollView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFScrollView *scrollView</code></div>
 	
 	
 	
@@ -691,8 +704,8 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/displayDocument:page:pageRect:scale:" title="displayDocument:page:pageRect:scale:"></a>
-	<h3 class="subsubtitle method-title">displayDocument:page:pageRect:scale:</h3>
+	<a name="//api/name/displayDocument:page:pageRect:scale:pdfController:" title="displayDocument:page:pageRect:scale:pdfController:"></a>
+	<h3 class="subsubtitle method-title">displayDocument:page:pageRect:scale:pdfController:</h3>
 	
 	
 	
@@ -701,7 +714,43 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)displayDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> pageRect:(CGRect)<em>pageRect</em> scale:(CGFloat)<em>scale</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)displayDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> pageRect:(CGRect)<em>pageRect</em> scale:(CGFloat)<em>scale</em> pdfController:(PSPDFViewController *)<em>pdfController</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/scrollView" title="scrollView"></a>
+	<h3 class="subsubtitle method-title">scrollView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)
+Note: this only lets you access the <a href="#//api/name/scrollView">scrollView</a> if it&rsquo;s in the view hiararchy.
+If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrollView</a> which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFScrollView *)scrollView</code></div>
 	
 	
 	
@@ -805,7 +854,7 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-26)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-03-28)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
