@@ -12,12 +12,11 @@
 		78692EEB15147284009BC996 /* libarclite_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78692EEA15147284009BC996 /* libarclite_iphonesimulator.a */; };
 		78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B82141EC2D300994946 /* MessageUI.framework */; };
 		78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B081480374A0092B889 /* ImageIO.framework */; };
-		78C22B0C148037520092B889 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0B148037520092B889 /* libz.dylib */; };
 		78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0D1480375A0092B889 /* MediaPlayer.framework */; };
 		78DEFFA213DECEB6005ABEFD /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78DEFFA113DECEB6005ABEFD /* Samples */; };
 		78DEFFA413DECEBF005ABEFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFFA313DECEBF005ABEFD /* CoreText.framework */; };
 		78DEFFA613DECEC3005ABEFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */; };
-		78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43D13DECE56006000BB /* UIKit.framework */; };
+		78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43D13DECE56006000BB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43F13DECE56006000BB /* Foundation.framework */; };
 		78E6A44213DECE56006000BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A44113DECE56006000BB /* CoreGraphics.framework */; };
 		78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6A44613DECE56006000BB /* InfoPlist.strings */; };
@@ -33,7 +32,6 @@
 		78692EEA15147284009BC996 /* libarclite_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libarclite_iphonesimulator.a; path = MinimalExample/libarclite_iphonesimulator.a; sourceTree = "<group>"; };
 		78727B82141EC2D300994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78C22B081480374A0092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		78C22B0B148037520092B889 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		78C22B0D1480375A0092B889 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		78DEFFA113DECEB6005ABEFD /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
 		78DEFFA313DECEBF005ABEFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -58,7 +56,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */,
-				78C22B0C148037520092B889 /* libz.dylib in Frameworks */,
 				78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */,
 				78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */,
 				78DEFFA613DECEC3005ABEFD /* QuartzCore.framework in Frameworks */,
@@ -104,7 +101,6 @@
 				78E6A43D13DECE56006000BB /* UIKit.framework */,
 				78E6A43F13DECE56006000BB /* Foundation.framework */,
 				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
-				78C22B0B148037520092B889 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
