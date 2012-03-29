@@ -68,8 +68,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)magazine {
-    if ((self = [super initWithDocument:magazine])) {
+- (id)initWithDocument:(PSPDFDocument *)document {
+    if ((self = [super initWithDocument:document])) {
         self.delegate = self;
         
         // initally update vars
@@ -84,6 +84,10 @@
         // 1.9.10 feature
         self.printEnabled = YES;
         self.openInEnabled = YES;
+        
+        // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
+        CGFloat variance = [document aspectRatioVariance];
+        self.clipToPageBoundaries = variance < 0.2f;
                 
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
@@ -164,7 +168,7 @@
 
 // if user tapped within page bounds, this will notify you.
 // return YES if this touch was processed by you and need no further checking by PSPDFKit.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPage:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize {
     PSELog(@"Page %@ tapped at %@.", NSStringFromCGSize(pageSize), NSStringFromCGPoint(point));
     
     // touch not used
