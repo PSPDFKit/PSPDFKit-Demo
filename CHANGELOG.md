@@ -1,5 +1,18 @@
 # Changelog
 
+__v1.9.11 - 28/Mar/2012__
+
+*  Add more control for pageCurl, allows disabling the page clipping. (better for variable sized documents)
+*  New method on PSPDFDocument: aspectRatioVariance. Allows easy checks if the document is uniformly sized or not (might be a mixture of portrait/landscape pages)
+   There is example code in PSPDFExampleViewController.m that shows how this can be combined for dynamic view adaption.
+*  Support for Storyboarding! You can create a segway to a PSPDFViewController and even pre-set the document within Interface Builder.
+   There now is a new example called "StoryboardExample" that shows how this can be used. (iOS5 only)
+*  Note: if you use IB to create the document, you just use a String. Supported path expansions are Documents, Cache, Bundle. Leave blank for Bundle.
+*  Changes to navigationBar property restoration - now animates and also restores alpha/hidden/tintColor. Let me know if this breaks something in your app!
+*  Fixes a potential crash with a controller deallocation on a background thread.
+*  Fixes a potential crash when searching the last page in double page mode.
+*  Fixes a regression introduced in 1.9.10 regarding a KVO deallocation warning.
+
 __v1.9.10 - 26/Mar/2012__
 
 *  Greatly improved performance on zooming with the new iPad (and the iPhone4).
