@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="NqT-5v-tcw">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+    </dependencies>
+    <scenes>
+        <!--Table View Controller - Storyboard Example-->
+        <scene sceneID="ziH-O4-qot">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UDc-ia-w3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="Hud-gb-uQI" customClass="PSTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="edK-4h-PhD">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="ajx-jW-lw2">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="1dl-3m-0F9" style="IBUITableViewCellStyleDefault" id="A2r-3a-tl3">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="DevelopersGuide.pdf" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1dl-3m-0F9">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <mutableAttributedString key="userComments">
+                                            <!--asdfsadf-->
+                                            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGREVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCA8T
+GiQlJiwwODk8P1UkbnVsbNMJCgsMDQ5cTlNBdHRyaWJ1dGVzViRjbGFzc1hOU1N0cmluZ4AEgA2AAtIK
+EBESWU5TLnN0cmluZ4ADWGFzZGZzYWRm0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc18QD05TTXV0YWJs
+ZVN0cmluZ6MWGBlYTlNTdHJpbmdYTlNPYmplY3TTChscHR4hV05TLmtleXNaTlMub2JqZWN0c4AMoh8g
+gAWABqIiI4AHgAlfEBBOU1BhcmFncmFwaFN0eWxlVk5TRm9udNMnCigpKitaTlNUYWJTdG9wc1tOU0Fs
+aWdubWVudIAAgAgQBNIUFS0uXxAQTlNQYXJhZ3JhcGhTdHlsZaIvGV8QEE5TUGFyYWdyYXBoU3R5bGXU
+CjEyMzQ1NjdWTlNOYW1lVk5TU2l6ZVhOU2ZGbGFnc4ALgAojQCgAAAAAAAAQEFlIZWx2ZXRpY2HSFBU6
+O1ZOU0ZvbnSiOhnSFBU9PlxOU0RpY3Rpb25hcnmiPRnSFBVAQV8QGU5TTXV0YWJsZUF0dHJpYnV0ZWRT
+dHJpbmejQkMZXxAZTlNNdXRhYmxlQXR0cmlidXRlZFN0cmluZ18QEk5TQXR0cmlidXRlZFN0cmluZ18Q
+D05TS2V5ZWRBcmNoaXZlctFGR1Ryb290gAEACAARABoAIwAtADIANwBGAEwAUwBgAGcAcAByAHQAdgB7
+AIUAhwCQAJUAoACpALsAvwDIANEA2ADgAOsA7QDwAPIA9AD3APkA+wEOARUBHAEnATMBNQE3ATkBPgFR
+AVQBZwFwAXcBfgGHAYkBiwGUAZYBoAGlAawBrwG0AcEBxAHJAeUB6QIFAhoCLAIvAjQAAAAAAAACAQAA
+AAAAAABIAAAAAAAAAAAAAAAAAAACNg
+</mutableData>
+                                        </mutableAttributedString>
+                                        <connections>
+                                            <segue destination="17C-3B-iSi" kind="push" id="Dvw-pC-hTV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="rBb-YJ-0iQ" style="IBUITableViewCellStyleDefault" id="mhd-Ww-Vlx">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="PSPDFKit.pdf" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rBb-YJ-0iQ">
+                                                    <rect key="frame" x="10" y="0.0" width="260" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="17C-3B-iSi" kind="push" id="xYX-th-SEQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Storyboard Example" id="Gmw-hg-iGW"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="357" y="377"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QfA-B8-l8a">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xUN-Mx-hwl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="17C-3B-iSi" customClass="PSPDFViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iUr-7g-SaG">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="pageCurlEnabled" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <navigationItem key="navigationItem" id="iQo-oL-zGS"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="803" y="377"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TVD-RK-WgK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1n-Z3-0ad" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="NqT-5v-tcw" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="si0-Km-ZV8">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Hud-gb-uQI" kind="relationship" relationship="rootViewController" id="wgY-wU-QJv"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-79" y="377"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="PSPDFBaseViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSPDFBaseViewController.h"/>
+        </class>
+        <class className="PSPDFViewController" superclassName="PSPDFBaseViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSPDFViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="xYX-th-SEQ"/>
+    </inferredMetricsTieBreakers>
+</document>
