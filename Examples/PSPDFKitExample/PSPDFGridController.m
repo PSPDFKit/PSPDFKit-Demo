@@ -26,6 +26,7 @@
 
 @interface PSPDFGridController() {
     NSUInteger animationCellIndex_;
+    BOOL animationDualWithPageCurl_;
 }
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
@@ -69,6 +70,29 @@
     }
 }
 
+// calculates where the document view will be on screen
+- (CGRect)magazinePageCoordinatesWithDualPageCurl:(BOOL)dualPageCurl {
+    CGRect newFrame = self.view.frame;
+    newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;            
+    newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
+    
+    // compensate for transparent statusbar
+    if (!PSIsIpad()) {
+        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+        CGFloat statusBarHeight = PSIsPortrait() ? statusBarFrame.size.height : statusBarFrame.size.width;
+        newFrame.origin.y -= statusBarHeight;
+        newFrame.size.height += statusBarHeight;
+    }
+    
+    // animation needs to be different if we are in pageCurl mode
+    if (dualPageCurl) {
+        newFrame.size.width /= 2;
+        newFrame.origin.x += newFrame.size.width;
+    }
+
+    return newFrame;
+}
+
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
 #ifdef kPSPDFQuickLookEngineEnabled
@@ -105,24 +129,8 @@
             backgroudView_.shadowEnabled = NO;
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
             
-            CGRect newFrame = self.view.frame;
-            newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;            
-            newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
-            
-            // compensate for transparent statusbar
-            if (!PSIsIpad()) {
-                CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-                CGFloat statusBarHeight = PSIsPortrait() ? statusBarFrame.size.height : statusBarFrame.size.width;
-                newFrame.origin.y -= statusBarHeight;
-                newFrame.size.height += statusBarHeight;
-            }
-            
-            // animation needs to be different if we are in pageCurl mode
-            if (pdfController.pageCurlEnabled && [pdfController isDualPageMode]) {
-                newFrame.size.width /= 2;
-                newFrame.origin.x += newFrame.size.width;
-            }
-            
+            animationDualWithPageCurl_ = pdfController.pageCurlEnabled && [pdfController isDualPageMode];
+            CGRect newFrame = [self magazinePageCoordinatesWithDualPageCurl:animationDualWithPageCurl_];
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {            
@@ -316,6 +324,9 @@
             // we can't remember those, because the device might has been rotated.
             CGRect absoluteCellRect = [self.gridView cellForItemAtIndex:animationCellIndex_].frame;
             CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
+            
+            // 
+            self.magazineView.frame = [self magazinePageCoordinatesWithDualPageCurl:animationDualWithPageCurl_ && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
             
             // start animation!
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
