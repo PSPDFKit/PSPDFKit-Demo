@@ -24,12 +24,6 @@
 /// reset tiled layer, reloads pdf image.
 - (void)resetLayer;
 
-/// returns attached scrollview. (if attached)
-- (PSPDFScrollView *)scrollView;
-
-/// returns parent pageView (if attached)
-- (PSPDFPageView *)pageView;
-
 /// document to display.
 @property(nonatomic, strong) PSPDFDocument *document;
 
@@ -37,7 +31,13 @@
 @property(nonatomic, assign) NSInteger page;
 
 /// page that hosts the tiling view object.
-@property(nonatomic, ps_weak) PSPDFPageView *pdfPage;
+@property(nonatomic, ps_weak) PSPDFPageView *pageView;
+
+/// Set with the zoomScale of the parent scrollView.
+@property(nonatomic, assign) CGFloat zoomScale;
+
+/// Set from controller parent;
+@property(nonatomic, assign) BOOL fitWidth;
 
 @end
 

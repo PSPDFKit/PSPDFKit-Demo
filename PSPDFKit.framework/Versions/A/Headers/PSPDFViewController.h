@@ -169,6 +169,7 @@ enum {
 @property(nonatomic, ps_weak) IBOutlet id<PSPDFViewControllerDelegate> delegate;
 
 /// Document that will be displayed.
+/// Note: has simple support to also accepts an NSString, the bundle path then will be used.
 @property(nonatomic, strong) PSPDFDocument *document;
 
 /// Current page displayed, not landscape corrected. To change page, use scrollToPage.
@@ -217,7 +218,7 @@ enum {
 /// Allow zooming of small documents to screen width/height. Defaults to YES.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 
-/// Enables iBooks-like page curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Since PSPDFKit 1.9.
+/// Enables iBooks-like page curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 /// Note: doesn't work well with non-equal sized documents. Use scrolling if you have such complex documents.
 @property(nonatomic, assign, getter=isPageCurlEnabled) BOOL pageCurlEnabled;
 
@@ -225,6 +226,10 @@ enum {
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
 /// fitWidth is currently not supported for vertical scrolling. This is a know limitation.
 @property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+
+/// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
+/// Usually you want this, unless your document is variable sized.
+@property(nonatomic, assign) BOOL clipToPageBoundaries;
 
 /// Maximum zoom scale for the scrollview. Defaults to 5.0. Set before creating the view.
 @property(nonatomic, assign) float maximumZoomScale;
