@@ -101,6 +101,11 @@ extern NSString *PSPDFLocalize(NSString *stringToken);
 // Falls back to "en" if localization key is not found in dictionary.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
+/// Resolves paths like "Documents" or "Bundle" to their real path. 
+/// If no name is found, the bundle string is always attached.
+extern NSString *PSPDFResolvePathNames(NSString *path);
+extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString);
+
 // use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak

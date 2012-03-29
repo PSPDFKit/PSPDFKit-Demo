@@ -38,6 +38,9 @@ typedef enum {
 /// Creates a new image that is eventually decompressed using libjpeg-turbo.
 + (UIImage *)pspdf_preloadedImageWithContentsOfFile:(NSString *)imagePath useJPGTurbo:(BOOL)useJPGTurbo;
 
+/// Creates a new image that is eventually decompressed using libjpeg-turbo.
++ (UIImage *)pspdf_preloadedImageWithData:(NSData *)data useJPGTurbo:(BOOL)useJPGTurbo;
+
 /// Calculates scale for images.
 + (CGFloat)pspdf_scaleForImageSize:(CGSize)imageSize bounds:(CGSize)boundsSize;
 

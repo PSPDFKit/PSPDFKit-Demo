@@ -107,6 +107,11 @@
 /// string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.
 - (BOOL)unlockWithPassword:(NSString*)password;
 
+/// Scan the whole document and analyzes if the aspect ratio is equal or not.
+/// If this returns 0 or a very small value, it's perfectly suitable for pageCurl.
+/// Note: this might take a second on larger documents, as the page structure needs to be parsed.
+- (CGFloat)aspectRatioVariance;
+
 /// Returs a files array with the base path already added (if there is one)
 - (NSArray *)filesWithBasePath;
 
