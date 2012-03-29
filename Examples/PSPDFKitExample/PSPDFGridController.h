@@ -10,9 +10,7 @@
 
 @class PSPDFMagazineFolder;
 
-@interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, PSPDFGridViewActionDelegate, PSPDFGridViewDataSource> {    
-    CGRect baseGridPosition_;
-}
+@interface PSPDFGridController : PSPDFBasicViewController <PSPDFStoreManagerDelegate, PSPDFGridViewActionDelegate, PSPDFGridViewDataSource>
 
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
