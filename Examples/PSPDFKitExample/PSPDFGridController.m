@@ -24,7 +24,9 @@
 // the delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
 
-@interface PSPDFGridController()
+@interface PSPDFGridController() {
+    NSUInteger animationCellIndex_;
+}
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
 @property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
@@ -91,7 +93,7 @@
         coverImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:magazineView];
         self.magazineView = magazineView;
-        baseGridPosition_ = cellCoords;
+        animationCellIndex_ = cellIndex;
         
         // add a smooth status bar transition on the iPhone
         if (!PSIsIpad()) {
@@ -289,21 +291,42 @@
     [self diskDataLoaded];
     
     // ensure everything is up to date (we could change magazines in other controllers)
+    [self updateGridForOrientation];
     [self.gridView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    // animate back to grid cell?
     if (self.magazineView) {
-        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+        
+        // if something changed, just don't animate.
+        if (animationCellIndex_ >= [self.magazineFolder.magazines count]) {
             self.gridView.transform = CGAffineTransformIdentity;
-            self.magazineView.frame = baseGridPosition_;
             self.gridView.alpha = 1.0f;
-        } completion:^(BOOL finished) {
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
-        }];
+        }else {
+            
+            // ensure object is visible
+            [self.gridView scrollToObjectAtIndex:animationCellIndex_ atScrollPosition:PSPDFGridViewScrollPositionMiddle animated:NO];
+            
+            // convert the coordinates into view coordinate system
+            // we can't remember those, because the device might has been rotated.
+            CGRect absoluteCellRect = [self.gridView cellForItemAtIndex:animationCellIndex_].frame;
+            CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
+            
+            // start animation!
+            [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+                self.gridView.transform = CGAffineTransformIdentity;
+                self.magazineView.frame = relativeCellRect;
+                self.gridView.alpha = 1.0f;
+            } completion:^(BOOL finished) {
+                [self.magazineView removeFromSuperview];
+                self.magazineView = nil;
+            }];
+        }
     }
 }
 
