@@ -88,6 +88,12 @@
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         CGFloat variance = [document aspectRatioVariance];
         self.clipToPageBoundaries = variance < 0.2f;
+        
+        // tries to restore the last page
+        NSInteger lastPage = [[NSUserDefaults standardUserDefaults] integerForKey:self.document.uid];
+        if (lastPage >= 0 && lastPage < self.document.pageCount) {
+            [self scrollToPage:[self landscapePage:lastPage] animated:NO];
+        }
                 
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
@@ -100,6 +106,9 @@
 }
 
 - (void)dealloc {
+    // remember the last page!
+    [[NSUserDefaults standardUserDefaults] setInteger:self.realPage forKey:self.document.uid];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
