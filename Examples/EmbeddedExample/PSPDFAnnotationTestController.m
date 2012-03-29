@@ -21,6 +21,7 @@
         self.pageCurlEnabled = YES;
         self.tintColor = [UIColor orangeColor];
         self.printEnabled = YES;
+        self.openInEnabled = YES;
     }
     return self;
 }
