@@ -2,7 +2,7 @@ Evaluation License
 ------------------
 The following license applies to the free trial versions of the software components.
 
-Copyright (c) 2012, Peter Steinberger
+Copyright (c) 2010-2012, Peter Steinberger
 
 All rights reserved.
 
@@ -23,8 +23,7 @@ Commercial Development License
 ------------------------------
 The following license applies to software components purchased and paid for in full.
 
-Copyright (c) 2012, Peter Steinberger
-
+Copyright (c) 2010-2012, Peter Steinberger
 All rights reserved.
 
 Redistribution and use of this software is permitted in binary form under the following conditions:
@@ -37,10 +36,12 @@ Redistribution and use of this software is permitted in binary form under the fo
 * The license has not been terminated by licensee.
 * The licensee has separately licensed the required "iOS SDK" software from Apple Inc.
 
+You agree that with purchasing the software you allow Peter Steinberger to list your company and/or company products on the PSPDFKit website. If you do not agree to this, an additional fee can be paid to remove this right.
+
+The license your purchased, unless otherwise negotiated, is valid for one bundle identifier, thus one iOS application.
 
 Redistribution and use of the software is permitted in binary and/or source form under the following conditions:
 
-* The recipient has purchased a separate, independent license for the software from Peter Steinberger. The redistributed software is governed by that license.
-* Any modifications to the software by the licensee are to be marked clearly as such.
-
+The recipient has purchased a separate, independent license for the software from Peter Steinberger. The redistributed software is governed by that license.
+Any modifications to the software by the licensee are to be marked clearly as such.
 This software is provided by Peter Steinberger "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall Peter Steinberger be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of sue, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
