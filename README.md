@@ -18,8 +18,9 @@ __[Check out the homepage for a screencast, purchase informations and the full f
 
 Features
 --------
+* Page-curl support like in iBooks
+* Multimedia annotations support (using link annotations and the pspdfkit:// url scheme. Video, audio and web browser support
 * Single or double page view support, including automatic mode that changes on landscape switch.
-
 * Multimedia Annotations (link annotations that start with pspdfkit://, supporting video, audio and web pages)
 * PDF Outline/Table Of Contents parsing & display.
 * Annotations support (Page Links, Web Links).
@@ -37,47 +38,6 @@ Features
 * Logical PDF container, lets you combine multiple PDFs into one big pdf.
 * Fully customizable interface: You can disable features like search, thumbnails or the whole HUD and replace it with your own.
 * Highly Multi-Threaded. Grand Central Dispatch is used throughout the framework to ensure maximum speed, and use every core available.
-
-Integration
------------
-You can either integrate PSPDFKit as a drop-in framework or just drag the static library project into Xcode (don't forget to add it as a dependency and library).
-
-Open the PSPDFViewController with a simple call:
-
-``` objective-c
-// create the PSPDFDocument (container for one or multiple PDFs)
-NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Sample.pdf"];
-PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-
-// open view controller
-PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:magazine] autorelease];
-[self presentModalViewController:pdfController animated:YES];
-```
-
-See MinimalExample for a working demo. You need at least CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flag -ObjC.
-
-Logging
--------
-The log level can be set at runtime, from anywhere in your project. The default log level is PSPDFLogLevelError.
-
-``` objective-c
-kPSPDFKitDebugLogLevel = PSPDFLogLevelInfo;
-// Available Log Levels: PSPDFLogLevelNothing, PSPDFLogLevelError, PSPDFLogLevelInfo
-```
-
-Example Project Features
-------------------------
-* Two minimal examples, with ARC and with classical retain/release.
-
-* Full featured magazine kiosk app.
-* Large file download support, even continues in the background.
-* Loads magazines from document folder and displays them in an animated grid.
-* Shows how you extend and implement all features of PSPDFKit.
-* Lets you play around with the cache settings.
-
-* Embedding Example (how to use PSPDFKit within another UIViewController)
-
-PSPDFKit.framework includes the compiled static library for armv6, armv7 and i386.
 
 Licensing
 ---------
