@@ -177,8 +177,8 @@
 
 // if user tapped within page bounds, this will notify you.
 // return YES if this touch was processed by you and need no further checking by PSPDFKit.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(NSUInteger)page atPoint:(CGPoint)point pageSize:(CGSize)pageSize {
-    PSELog(@"Page %@ tapped at %@.", NSStringFromCGSize(pageSize), NSStringFromCGPoint(point));
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
+    PSELog(@"Page %d tapped at %@.", pageView.page, pageCoordinates);
     
     // touch not used
     return NO;
