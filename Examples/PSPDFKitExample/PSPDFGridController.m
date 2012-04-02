@@ -219,7 +219,7 @@
 #pragma mark - UIView
 
 - (void)updateGridForOrientation {
-    gridView_.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 15;
+    gridView_.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 14;
 }
 
 - (void)viewDidLoad {
