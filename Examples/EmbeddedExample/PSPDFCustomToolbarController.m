@@ -16,7 +16,7 @@
     UISegmentedControl *viewMode = (UISegmentedControl *)sender;
     NSUInteger selectedSegment = viewMode.selectedSegmentIndex;
     NSLog(@"selected segment index: %d", selectedSegment);
-    self.viewMode = selectedSegment == 0 ? PSPDFViewModeDocument : PSPDFViewModeThumbnails;  
+    [self setViewMode:selectedSegment == 0 ? PSPDFViewModeDocument : PSPDFViewModeThumbnails animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
