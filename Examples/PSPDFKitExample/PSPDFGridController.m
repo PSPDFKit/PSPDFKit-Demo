@@ -318,7 +318,11 @@
         }else {
             
             // ensure object is visible
-            [self.gridView scrollToObjectAtIndex:animationCellIndex_ atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
+            BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:animationCellIndex_ partly:YES];
+            if (!isCellVisible) {
+                [self.gridView scrollToObjectAtIndex:animationCellIndex_ atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
+                [self.gridView layoutSubviews]; // ensure cells are laid out
+            };
             
             // convert the coordinates into view coordinate system
             // we can't remember those, because the device might has been rotated.
