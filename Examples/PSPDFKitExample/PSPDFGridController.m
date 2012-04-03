@@ -31,7 +31,7 @@
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
 @property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
-@property(nonatomic, strong) PSPDFShadowView *backgroundView;
+@property(nonatomic, strong) PSPDFShadowView *shadowView;
 @end
 
 @implementation PSPDFGridController
@@ -40,7 +40,7 @@
 @synthesize magazineFolder = magazineFolder_;
 @synthesize magazineView = magazineView_;
 @synthesize editMode = editMode_;
-@synthesize backgroundView = backgroudView_;
+@synthesize shadowView = shadowView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -89,7 +89,7 @@
         newFrame.size.width /= 2;
         newFrame.origin.x += newFrame.size.width;
     }
-
+    
     return newFrame;
 }
 
@@ -126,7 +126,7 @@
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.navigationController.navigationBar.alpha = 0.f;
-            backgroudView_.shadowEnabled = NO;
+            shadowView_.shadowEnabled = NO;
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
             
             animationDualWithPageCurl_ = pdfController.pageCurlEnabled && [pdfController isDualPageMode];
@@ -245,15 +245,23 @@
         PSPDF_IF_IOS5_OR_GREATER(self.navigationItem.leftBarButtonItem = optionButton;
                                  self.navigationItem.leftItemsSupplementBackButton = YES;);
     }
+
+    // add global shadow
+    CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
+    self.shadowView = [[PSPDFShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
+    shadowView_.shadowOffset = toolbarHeight;
+    shadowView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    shadowView_.backgroundColor = [UIColor clearColor];
+    shadowView_.userInteractionEnabled = NO;
+    [self.view addSubview:shadowView_];
     
     // use custom view to match background with PSPDFViewController
-    CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
-    self.backgroundView = [[PSPDFShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
-    backgroudView_.shadowOffset = toolbarHeight;
-    backgroudView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    backgroudView_.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
-    [self.view addSubview:backgroudView_];
+    UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
+    backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;    
+    backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    [self.view insertSubview:backgroundTextureView belowSubview:shadowView_];
     
+    // init grid
     self.gridView = [[PSPDFGridView alloc] initWithFrame:CGRectZero];
     self.gridView.backgroundColor = [UIColor clearColor];
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -263,11 +271,10 @@
     self.gridView.layoutStrategy = [PSPDFGridViewLayoutStrategyFactory strategyFromType:PSPDFGridViewLayoutVertical];
     NSUInteger spacing = 20;
     self.gridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
-    [self.view addSubview:self.gridView];
+    [self.view insertSubview:self.gridView belowSubview:shadowView_];
     self.gridView.frame = self.view.bounds;
     [self updateGridForOrientation];
     self.gridView.dataSource = self; // auto-reloads
-    
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
@@ -276,7 +283,7 @@
     self.gridView.actionDelegate = nil;
     self.gridView.dataSource = nil;
     self.gridView = nil;
-    self.backgroundView = nil;
+    self.shadowView = nil;
 }
 
 // default style
@@ -291,6 +298,7 @@
         self.navigationController.navigationBar.alpha = 1.f;
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    shadowView_.shadowEnabled = YES;
     
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
@@ -499,12 +507,12 @@
         } else {
             if (magazine.isLocked) {
                 PSPDF_IF_IOS5_OR_GREATER(
-                // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
-                PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"PDF Document Password"];
-                alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-                [alertView setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-                __ps_weak PSPDFAlertView *weakAlertView = alertView;
-                [alertView addButtonWithTitle:PSPDFLocalize(@"Open") block:^{
+                                         // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
+                                         PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"PDF Document Password"];
+                                         alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                                         [alertView setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+                                         __ps_weak PSPDFAlertView *weakAlertView = alertView;
+                                         [alertView addButtonWithTitle:PSPDFLocalize(@"Open") block:^{
                     NSString *password = [weakAlertView.alertView textFieldAtIndex:0].text;
                     BOOL success = [magazine unlockWithPassword:password];
                     
@@ -516,8 +524,8 @@
                         [alert show];
                     }
                 }];
-                [alertView show];
-                )
+                                         [alertView show];
+                                         )
                 
                 PSPDF_IF_PRE_IOS5([[[UIAlertView alloc] initWithTitle:@"" message:@"Opening password protected PDFs is not implemented on iOS4." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];)
             }
