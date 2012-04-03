@@ -71,9 +71,6 @@ typedef NSUInteger PSPDFAnnotationType;
 /// returns true if the annotation is not of type Page or WebUrl. (>= PSPDFAnnotationTypeFile)
 @property(nonatomic, assign, getter=isOverlayAnnotation) BOOL overlayAnnotation;
 
-/// unique identifier for annotation. calculated.
-@property(nonatomic, strong, readonly) NSString *uid;
-
 /// arbitary text entered into a PDF writer by the user which is associated with the annotation or nil if there is no text
 @property(nonatomic, strong, readonly) NSString *contents;
 
