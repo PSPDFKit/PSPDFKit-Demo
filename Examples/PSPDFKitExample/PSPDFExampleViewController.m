@@ -11,6 +11,11 @@
 #import "PSPDFSettingsController.h"
 #import "PSPDFGridController.h"
 
+@interface PSPDFExampleViewController () {
+    BOOL hasLoadedLastPage_;
+}
+@end
+
 @implementation PSPDFExampleViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,12 +94,6 @@
         CGFloat variance = [document aspectRatioVariance];
         self.clipToPageBoundaries = variance < 0.2f;
         
-        // tries to restore the last page
-        NSInteger lastPage = [[NSUserDefaults standardUserDefaults] integerForKey:self.document.uid];
-        if (lastPage >= 0 && lastPage < self.document.pageCount) {
-            [self scrollToPage:[self landscapePage:lastPage] animated:NO];
-        }
-                
         // 1.9 feature
         //self.tintColor = [UIColor orangeColor];
         
@@ -106,9 +105,7 @@
 }
 
 - (void)dealloc {
-    // remember the last page!
-    [[NSUserDefaults standardUserDefaults] setInteger:self.realPage forKey:self.document.uid];
-    
+    [[NSUserDefaults standardUserDefaults] setInteger:self.realPage forKey:self.document.uid]; // remember last page
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -119,16 +116,29 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // tries to restore the last page
+    if (!hasLoadedLastPage_) {
+        hasLoadedLastPage_ = YES;
+        NSInteger lastPage = [[NSUserDefaults standardUserDefaults] integerForKey:self.document.uid];
+        if (lastPage >= 0 && lastPage < self.document.pageCount) {
+            [self scrollToPage:lastPage animated:YES];
+        }
+    }
+}
+
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     
     /*
-    // Example how to customize the double page mode switching. 
-    if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !PSIsIpad()) {
-        self.pageMode = PSPDFPageModeDouble;
-    }else {
-        self.pageMode = PSPDFPageModeAutomatic;
-    }*/
+     // Example how to customize the double page mode switching. 
+     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !PSIsIpad()) {
+     self.pageMode = PSPDFPageModeDouble;
+     }else {
+     self.pageMode = PSPDFPageModeAutomatic;
+     }*/
     
     // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
     [self.popoverController dismissPopoverAnimated:YES];
@@ -140,17 +150,19 @@
 - (NSArray *)additionalLeftToolbarButtons {
     UIBarButtonItem *button;
     
-    PSPDF_IF_PRE_IOS5(button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]      
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(optionsButtonPressed:)];)
-    
     // on iOS5, we can finally set the landscapeImagePhone
-    PSPDF_IF_IOS5_OR_GREATER(button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
-                                                         landscapeImagePhone:[UIImage imageNamed:@"settings_landscape"]
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(optionsButtonPressed:)];)
+    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_5_0) {
+        button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]      
+                                                  style:UIBarButtonItemStylePlain
+                                                 target:self
+                                                 action:@selector(optionsButtonPressed:)];
+    }else {
+        button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
+                                    landscapeImagePhone:[UIImage imageNamed:@"settings_landscape"]
+                                                  style:UIBarButtonItemStylePlain
+                                                 target:self
+                                                 action:@selector(optionsButtonPressed:)];
+    }
     
     return [NSArray arrayWithObject:button];
 }
