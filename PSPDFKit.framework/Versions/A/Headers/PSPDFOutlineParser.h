@@ -31,4 +31,8 @@
 /// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
 + (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;
 
+/// Remembers the first visible outline element.
+/// Used to remember the position in PSPDFOutlineViewController.
+@property(nonatomic, assign) NSUInteger firstVisibleElement;
+
 @end

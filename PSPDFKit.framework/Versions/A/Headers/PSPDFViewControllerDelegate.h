@@ -39,7 +39,9 @@
 
 /// if user tapped within page bounds, this will notify you.
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
-/// Note that PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
+/// Note: PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
+/// Note: Before using this, you might consider just adding custom UIView's on top of a PSPDFPageView.
+/// Note: Will not send events when thumbnailView is visible.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
 
 /* annotations */

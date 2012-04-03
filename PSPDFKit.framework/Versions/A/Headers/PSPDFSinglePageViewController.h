@@ -10,7 +10,11 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFBaseViewController.h"
 
-@class PSPDFViewController, PSPDFScrollView, PSPDFPageView;
+@class PSPDFViewController, PSPDFScrollView, PSPDFPageView, PSPDFSinglePageViewController;
+
+@protocol PSPDFSinglePageViewControllerDelegate <NSObject>
+- (void)pspdfSinglePageViewControllerWillDealloc:(PSPDFSinglePageViewController *)singlePageViewController;
+@end
 
 /// displays a single pdf page.
 @interface PSPDFSinglePageViewController : PSPDFBaseViewController
@@ -29,5 +33,7 @@
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
 @property(nonatomic, assign) BOOL useSolidBackground;
+
+@property(nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end

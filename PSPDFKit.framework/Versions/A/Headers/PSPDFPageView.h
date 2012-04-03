@@ -16,7 +16,7 @@
 @interface PSPDFPageView : UIView 
 
 /// configure page container with data.
-- (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale pdfController:(PSPDFViewController *)pdfController;
+- (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations pdfController:(PSPDFViewController *)pdfController;
 
 /// destroys and removes CATiledLayer. Call prior deallocating.
 /// Don't set removeFromView to YES if destroy is *not* on the main thread.
@@ -29,6 +29,9 @@
 /// Note: this only lets you access the scrollView if it's in the view hiararchy.
 /// If we use pageCurl mode, we have a global scrollView which can be accessed with pdfController.pagingScrollView
 - (PSPDFScrollView *)scrollView;
+
+/// Returns an array of UIView <PSPDFAnnotationView> objects currently in the view hierarchy.
+- (NSArray *)visibleAnnotationViews;
 
 /// Access pdfController
 @property(nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;

@@ -2,7 +2,7 @@
 //  PSPDFGridView.h
 //  PSPDFGridView
 //
-//  Created by Gulam Moledina on 11-10-09.
+//  Created by Gulam Moledina on 11-10-09, modified by Peter Steinberger.
 //  Copyright (C) 2011-2012 by Gulam Moledina.
 //
 //  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
@@ -59,9 +59,7 @@ typedef enum
     PSPDFGridViewItemAnimationScroll = 1<<7 // scroll to the item before showing the animation
 } PSPDFGridViewItemAnimation;
 
-//////////////////////////////////////////////////////////////
 #pragma mark Interface PSPDFGridView
-//////////////////////////////////////////////////////////////
 
 @interface PSPDFGridView : UIScrollView
 
@@ -87,14 +85,13 @@ typedef enum
 @property (nonatomic) CFTimeInterval minimumPressDuration;            // Default is 0.2; if set to 0, the view wont be scrollable
 @property (nonatomic) BOOL showFullSizeViewWithAlphaWhenTransforming; // Default is YES - not working right now
 
-@property (nonatomic, readonly) UIScrollView *scrollView __attribute__((deprecated)); // The grid now inherits directly from UIScrollView
-
 // Reusable cells
 - (PSPDFGridViewCell *)dequeueReusableCell;                              // Should be called in PSPDFGridView:cellForItemAtIndex: to reuse a cell
 - (PSPDFGridViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
 // Cells
 - (PSPDFGridViewCell *)cellForItemAtIndex:(NSInteger)position;           // Might return nil if cell not loaded yet
+- (BOOL)isCellVisibleAtIndex:(NSInteger)index partly:(BOOL)partly;
 
 // Actions
 - (void)reloadData;
@@ -113,10 +110,7 @@ typedef enum
 
 @end
 
-
-//////////////////////////////////////////////////////////////
 #pragma mark Protocol PSPDFGridViewDataSource
-//////////////////////////////////////////////////////////////
 
 @protocol PSPDFGridViewDataSource <NSObject>
 
