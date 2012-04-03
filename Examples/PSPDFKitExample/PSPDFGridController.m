@@ -367,7 +367,11 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [PSPDFStoreManager sharedPSPDFStoreManager].delegate = nil;
+    
+    // only deregister if not attached to anything else
+    if ([PSPDFStoreManager sharedPSPDFStoreManager].delegate == self) {
+        [PSPDFStoreManager sharedPSPDFStoreManager].delegate = nil;
+    }
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
