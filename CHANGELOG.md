@@ -1,5 +1,22 @@
 # Changelog
 
+__v1.9.12 - 2/Apr/2012__
+
+*  Thumbnails now smoothy animate to fullscreen and back. (new setViewMode animation instead of the classic fade)
+*  Fullscreen video is now properly supported with pageCurl. (with the exception of YouTube)
+*  Annotation views are now reused -> better performance.
+*  The outline controller now remembers the last position and doesn't scroll back to top on re-opening.
+*  Hide HUD when switching to fullscreen-mode with videos.
+*  Don't allow touching multiple links at the same time.
+*  Transition between view modes are now less expensive and don't need view reloading. Also, zoom value is kept.
+*  The pageInfo view now animates. (Page x of y)
+*  The grid now properly honors minEdgeInsets on scrolling.
+*  Thumbnail page info is now a nice rounded label.
+*  Fixes partly missing search highlighting on the iPhone.
+*  Fixes a few calculation errors regarding didTapOnPageView & the PSPDFPageCoordinates variable.
+*  Fixes a problem where caching sometimes was suspended and got stuck on old devices.
+*  Free more memory if PSPDFViewController is not visible.
+
 __v1.9.11 - 28/Mar/2012__
 
 *  Add more control for pageCurl, allows disabling the page clipping. (better for variable sized documents)

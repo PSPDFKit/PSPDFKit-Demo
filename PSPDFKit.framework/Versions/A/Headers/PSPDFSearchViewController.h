@@ -50,10 +50,4 @@ enum {
 // Updates the search result cell. Can be subclassed.
 - (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
-// Clears the highlight views. Can be subclassed.
-- (void)clearHighlightedSearchResults;
-
-// Adds the highlight views. Can be subclassed.
-- (void)addHighlightSearchResults:(NSArray *)searchResults;
-
 @end

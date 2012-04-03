@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFBaseViewController.h"
 #import "PSPDFKitGlobal.h"
+#import "PSPDFDocumentSearcher.h"
 
 @protocol PSPDFViewControllerDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult;
 
 /// current active view mode.
 enum {
@@ -51,7 +52,7 @@ enum {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <UIScrollViewDelegate, UIPopoverControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, PSPDFSearchDelegate>
 
 /// @name Initialization
 
@@ -294,5 +295,14 @@ enum {
 /// Note: if viewControllerClass is nil, the popover will always be dismissed, as long as it exists.
 /// This also supports UIDocumentInteractionController and UIPrintInteractionController.
 - (BOOL)checkAndDismissPopoverForViewControllerClass:(Class)viewControllerClass animated:(BOOL)animated;
+
+// Clears the highlight views. Can be subclassed.
+- (void)clearHighlightedSearchResults;
+
+// Adds the highlight views. Can be subclassed.
+- (void)addHighlightSearchResults:(NSArray *)searchResults;
+
+// Animates a certain search highlight. Can be subclassed.
+- (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
 
 @end

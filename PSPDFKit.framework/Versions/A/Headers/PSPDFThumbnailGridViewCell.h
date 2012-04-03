@@ -13,6 +13,8 @@
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting
 #define kPSPDFShrinkOwnImagesTresholdFactor 1.5
 
+@class PSPDFRoundedLabel;
+
 /// Thumbnail cell.
 @interface PSPDFThumbnailGridViewCell : PSPDFGridViewCell <PSPDFCacheDelegate>
 
@@ -29,7 +31,7 @@
 @property(nonatomic, strong) PSPDFDocument *document;
 
 /// site label.
-@property(nonatomic, strong) UILabel *siteLabel;
+@property(nonatomic, strong) PSPDFRoundedLabel *siteLabel;
 
 /// referenced page.
 @property(nonatomic, assign) NSUInteger page;
@@ -42,5 +44,13 @@
 
 /// Creates the shadow. Subclass to change. Returns a CGPathRef.
 - (id)pathShadowForView:(UIView *)imgView;
+
+@end
+
+/// Simple rounded label.
+@interface PSPDFRoundedLabel : UILabel
+
+@property (nonatomic, assign) NSInteger cornerRadius;
+@property (nonatomic, strong) UIColor *rectColor;
 
 @end

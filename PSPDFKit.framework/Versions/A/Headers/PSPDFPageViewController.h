@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFViewController, PSPDFPagedScrollView;
+@class PSPDFViewController, PSPDFPagedScrollView, PSPDFSinglePageViewController;
 
 /// Implements the iOS5-only pageCurl-style famously presented in iBooks.
 /// Note: doesn't work well with non-equal sized documents.

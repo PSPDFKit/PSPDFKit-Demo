@@ -39,6 +39,7 @@
 - (void)appendFile:(NSString *)file;
 
 /// returns path for a single page (in case pages are split up). Page starts at 0.
+/// Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.
 - (NSURL *)pathForPage:(NSUInteger)page;
 
 /// Returns position of the internal file array.
