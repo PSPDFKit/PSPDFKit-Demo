@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFImageAnnotation Class Reference</title>
+		<title>PSPDFAnnotationCache Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFImageAnnotation Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFAnnotationCache Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,15 +36,17 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
-	
-	<option value="//api/name/imageView">&nbsp;&nbsp;&nbsp;&nbsp;imageView</option>
 	
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/clearAllObjects">&nbsp;&nbsp;&nbsp;&nbsp;- clearAllObjects</option>
+	
+	<option value="//api/name/dequeueViewFromCacheForAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- dequeueViewFromCacheForAnnotation:</option>
+	
+	<option value="//api/name/recycleAnnotationView:">&nbsp;&nbsp;&nbsp;&nbsp;- recycleAnnotationView:</option>
 	
 	
 	
@@ -57,8 +57,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -70,24 +68,26 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearAllObjects">clearAllObjects</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageView">imageView</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dequeueViewFromCacheForAnnotation:">dequeueViewFromCacheForAnnotation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/recycleAnnotationView:">recycleAnnotationView:</a></span></li>
 	
 </ul></li>
-
-
-
-
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFImageAnnotation Class Reference" name="top"></a>
+				<a title="PSPDFAnnotationCache Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -96,7 +96,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFImageAnnotation Class Reference</h1>
+						<h1 class="title title-header">PSPDFAnnotationCache Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -104,24 +104,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
-</tr><tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFAnnotationView.html">PSPDFAnnotationView</a></td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFImageAnnotation.h</td>
+	<td class="specification-value">PSPDFAnnotationCache.h</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Shows a single UIImageView.</p>
-					</div>
 					
 					
 					
@@ -138,17 +127,25 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
-		<span class="tooltip"><p>Image <a href="#//api/name/URL">URL</a> (to a local resource)</p></span>
+		<code><a href="#//api/name/recycleAnnotationView:">&ndash;&nbsp;recycleAnnotationView:</a></code>
+		<span class="tooltip"><p>Enqueues a annotationView for later reuse</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/imageView">&nbsp;&nbsp;imageView</a></code>
-		<span class="tooltip"><p>Direct access to the ImageView.</p></span>
+		<code><a href="#//api/name/dequeueViewFromCacheForAnnotation:">&ndash;&nbsp;dequeueViewFromCacheForAnnotation:</a></code>
+		<span class="tooltip"><p>Dequeues an annotation view, if available from the cache.
+If there&rsquo;s a match with the current annotation, this view is picked in favor of a random cached view.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearAllObjects">&ndash;&nbsp;clearAllObjects</a></code>
+		<span class="tooltip"><p>Clears all cached objects</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -159,22 +156,26 @@
 					
 					
 					
+					
+					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/URL" title="URL"></a>
-	<h3 class="subsubtitle method-title">URL</h3>
+	<a name="//api/name/clearAllObjects" title="clearAllObjects"></a>
+	<h3 class="subsubtitle method-title">clearAllObjects</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Image <a href="#//api/name/URL">URL</a> (to a local resource)</p>
+		<p>Clears all cached objects</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *URL</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)clearAllObjects</code></div>
 	
 	
 	
@@ -191,24 +192,25 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFImageAnnotation.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationCache.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/imageView" title="imageView"></a>
-	<h3 class="subsubtitle method-title">imageView</h3>
+	<a name="//api/name/dequeueViewFromCacheForAnnotation:" title="dequeueViewFromCacheForAnnotation:"></a>
+	<h3 class="subsubtitle method-title">dequeueViewFromCacheForAnnotation:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Direct access to the ImageView.</p>
+		<p>Dequeues an annotation view, if available from the cache.
+If there&rsquo;s a match with the current annotation, this view is picked in favor of a random cached view.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIImageView *imageView</code></div>
+	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)dequeueViewFromCacheForAnnotation:(PSPDFAnnotation *)<em>annotation</em></code></div>
 	
 	
 	
@@ -225,17 +227,47 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFImageAnnotation.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/recycleAnnotationView:" title="recycleAnnotationView:"></a>
+	<h3 class="subsubtitle method-title">recycleAnnotationView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enqueues a annotationView for later reuse</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)recycleAnnotationView:(id&lt;PSPDFAnnotationView&gt;)<em>annotationView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationCache.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
-					
-					
-					
-					
 					
 					
 				</div>
