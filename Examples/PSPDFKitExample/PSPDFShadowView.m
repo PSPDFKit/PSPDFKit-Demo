@@ -10,7 +10,6 @@
 
 @interface PSPDFShadowView() {
     CAGradientLayer *originShadow_;
-    BOOL shadowEnabled_;
 }
 @end
 
@@ -74,7 +73,7 @@
         }
         
         [CATransaction begin];
-        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        [CATransaction setDisableActions:YES];
         
         // Stretch and place the origin shadow
         CGRect originShadowFrame = originShadow_.frame;
