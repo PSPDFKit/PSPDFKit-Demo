@@ -245,7 +245,7 @@
         PSPDF_IF_IOS5_OR_GREATER(self.navigationItem.leftBarButtonItem = optionButton;
                                  self.navigationItem.leftItemsSupplementBackButton = YES;);
     }
-
+    
     // add global shadow
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSPDFShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
@@ -297,8 +297,20 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 1.f;
     }];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     shadowView_.shadowEnabled = YES;
+    
+    // if navigationBar is offset, we're fixing that.
+    if (self.navigationController.navigationBar) {
+        CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
+        CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+        if (navigationBarFrame.origin.y <= statusBarFrame.origin.y) {
+            // compensate rotation
+            navigationBarFrame.origin.y = fminf(statusBarFrame.size.height, statusBarFrame.size.width);
+            self.navigationController.navigationBar.frame = navigationBarFrame;
+        }
+    }
     
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
