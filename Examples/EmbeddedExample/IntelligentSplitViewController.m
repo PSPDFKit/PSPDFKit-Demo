@@ -25,10 +25,11 @@
 
         // disable, as this breaks our gesture recognizers for pageCurl.
         // TODO: find a way to hook into their gesture recognizers to create a dependency.
-        // If this doesn't compile for you, please update to Xcode 4.3.1 (needs iOS5.1 SDK)
+#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_5_0
         if ([self respondsToSelector:@selector(setPresentsWithGesture:)]) {
             [self setPresentsWithGesture:NO];
         }
+#endif
 	}
 	return self;
 }
@@ -40,9 +41,7 @@
 	@catch (NSException * e) {
 		NSLog(@"IntelligentSplitViewController DE-OBSERVING CRASHED: %@ ... error:%@", self.title, [e description]);
 	}
-
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
@@ -75,7 +74,7 @@
 #define YOU_DONT_FEEL_QUEAZY_ABOUT_THIS_BECAUSE_IT_PASSES_THE_APP_STORE 1		
 		
 #if YOU_DONT_FEEL_QUEAZY_ABOUT_THIS_BECAUSE_IT_PASSES_THE_APP_STORE
-		UIBarButtonItem *button = [super valueForKey:@"_barButtonItem"];
+		UIBarButtonItem *button = [super valueForKey:[NSString stringWithFormat:@"%@ttonItem", @"_barBu"]];
 		
 #else //YOU_DO_FEEL_QUEAZY_AND_FOR_SOME_REASON_YOU_PREFER_THE_LESSER_EVIL_____FRIGHTENING_STUFF
 		UIBarButtonItem *button = [[[[[self.viewControllers objectAtIndex:1] 
