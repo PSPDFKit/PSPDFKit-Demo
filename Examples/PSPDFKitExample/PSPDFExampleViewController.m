@@ -95,7 +95,8 @@
         self.clipToPageBoundaries = variance < 0.2f;
         
         // 1.9 feature
-        //self.tintColor = [UIColor orangeColor];
+        //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
+        //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
         
         // change statusbar setting to your preferred style
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
