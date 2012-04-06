@@ -82,9 +82,7 @@
 }
 
 - (void)setStatus:(PSPDFStoreDownloadStatus)aStatus {
-    [self willChangeValueForKey:@"status"];
     status_ = aStatus;
-    [self didChangeValueForKey:@"status"];
     
     // remove progress view, animated
     if (progressView_ && (status_ == PSPDFStoreDownloadFinished || status_ == PSPDFStoreDownloadFailed)) {
