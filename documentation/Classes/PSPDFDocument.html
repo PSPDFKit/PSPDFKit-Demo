@@ -160,6 +160,24 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_File Access / Modification">File Access / Modification</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Page Info Data">Page Info Data</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Caching">Caching</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PDF Drawing">PDF Drawing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PDF Search">PDF Search</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Design and hints for PSPDFViewController">Design and hints for PSPDFViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Password Protection and Security">Password Protection and Security</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Attached Parser for Outline, Annotations">Attached Parser for Outline, Annotations</a></span></li>
+	
 </ul></li>
 
 
@@ -324,8 +342,8 @@ Can be overriden to support custom collections.</p>
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						
-						
+						<a title="Initialization" name="task_Initialization"></a>
+						<h3 class="subsubtitle task-title">Initialization</h3>
 
 						<ul class="task-list">
 							<li>
@@ -356,7 +374,15 @@ Can be overriden to support custom collections.</p>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="File Access / Modification" name="task_File Access / Modification"></a>
+						<h3 class="subsubtitle task-title">File Access / Modification</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/appendFile:">&ndash;&nbsp;appendFile:</a></code>
 		<span class="tooltip"><p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
@@ -387,6 +413,73 @@ Note: uses fileIndexForPage and URLForFileIndex internally. Override those inste
 	
 	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/thumbnailPathForPage:">&ndash;&nbsp;thumbnailPathForPage:</a></code>
+		<span class="tooltip"><p>return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/filesWithBasePath">&ndash;&nbsp;filesWithBasePath</a></code>
+		<span class="tooltip"><p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/basePath">&nbsp;&nbsp;basePath</a></code>
+		<span class="tooltip"><p>common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/files">&nbsp;&nbsp;files</a></code>
+		<span class="tooltip"><p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
+		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+nil if the document was initialized with initWithData:</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
+		<span class="tooltip"><p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
+		<span class="tooltip"><p>document <a href="#//api/name/title">title</a> as shown in the controller</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uid">&nbsp;&nbsp;uid</a></code>
+		<span class="tooltip"><p>For caching, provide a <em>UNIQUE</em> <a href="#//api/name/uid">uid</a> here. (Or clear cache after content changes for same <a href="#//api/name/uid">uid</a>. Appending content is no problem)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Page Info Data" name="task_Page Info Data"></a>
+						<h3 class="subsubtitle task-title">Page Info Data</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageCount">&ndash;&nbsp;pageCount</a></code>
 		<span class="tooltip"><p>return pdf page count</p></span>
@@ -446,6 +539,23 @@ maybe needs a pdf lock if not already cached.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/aspectRatioVariance">&ndash;&nbsp;aspectRatioVariance</a></code>
+		<span class="tooltip"><p>Scan the whole document and analyzes if the aspect ratio is equal or not.
+If this returns 0 or a very small value, it&rsquo;s perfectly suitable for pageCurl.
+Note: this might take a second on larger documents, as the page structure needs to be parsed.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Caching" name="task_Caching"></a>
+						<h3 class="subsubtitle task-title">Caching</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
 		<code><a href="#//api/name/clearCacheForced:">&ndash;&nbsp;clearCacheForced:</a></code>
 		<span class="tooltip"><p>if you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p></span>
 	</span>
@@ -465,14 +575,15 @@ maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/thumbnailPathForPage:">&ndash;&nbsp;thumbnailPathForPage:</a></code>
-		<span class="tooltip"><p>return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p></span>
-	</span>
-	
-	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="PDF Drawing" name="task_PDF Drawing"></a>
+						<h3 class="subsubtitle task-title">PDF Drawing</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shouldDrawOverlayRectForSize:">&ndash;&nbsp;shouldDrawOverlayRectForSize:</a></code>
 		<span class="tooltip"><p>return true if you want drawOverlayRect to be called.</p></span>
@@ -482,11 +593,20 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&ndash;&nbsp;drawOverlayRect:inContext:forPage:zoomScale:size:</a></code>
-		<span class="tooltip"><p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.</p></span>
+		<span class="tooltip"><p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="PDF Search" name="task_PDF Search"></a>
+						<h3 class="subsubtitle task-title">PDF Search</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageContentForPage:">&ndash;&nbsp;pageContentForPage:</a></code>
 		<span class="tooltip"><p>defaults to nil. can be overridden to provide custom text.
@@ -495,120 +615,20 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Design and hints for PSPDFViewController" name="task_Design and hints for PSPDFViewController"></a>
+						<h3 class="subsubtitle task-title">Design and hints for PSPDFViewController</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/backgroundColorForPage:">&ndash;&nbsp;backgroundColorForPage:</a></code>
 		<span class="tooltip"><p>override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/unlockWithPassword:">&ndash;&nbsp;unlockWithPassword:</a></code>
-		<span class="tooltip"><p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
-If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
-If you attempt to unlock an already unlocked document, one of the following occurs:
-If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
-If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
-string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/aspectRatioVariance">&ndash;&nbsp;aspectRatioVariance</a></code>
-		<span class="tooltip"><p>Scan the whole document and analyzes if the aspect ratio is equal or not.
-If this returns 0 or a very small value, it&rsquo;s perfectly suitable for pageCurl.
-Note: this might take a second on larger documents, as the page structure needs to be parsed.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/filesWithBasePath">&ndash;&nbsp;filesWithBasePath</a></code>
-		<span class="tooltip"><p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/valid">&nbsp;&nbsp;valid</a></code>
-		<span class="tooltip"><p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/allowsPrinting">&nbsp;&nbsp;allowsPrinting</a></code>
-		<span class="tooltip"><p>Do the PDF digital right allow for printing?</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/isEncrypted">&nbsp;&nbsp;isEncrypted</a></code>
-		<span class="tooltip"><p>Was the PDF file encryted at file creation time?</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/isLocked">&nbsp;&nbsp;isLocked</a></code>
-		<span class="tooltip"><p>Has the PDF file been unlocked? (is it still locked?).</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
-		<span class="tooltip"><p>document <a href="#//api/name/title">title</a> as shown in the controller</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/uid">&nbsp;&nbsp;uid</a></code>
-		<span class="tooltip"><p>For caching, provide a <em>UNIQUE</em> <a href="#//api/name/uid">uid</a> here. (Or clear cache after content changes for same <a href="#//api/name/uid">uid</a>. Appending content is no problem)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/basePath">&nbsp;&nbsp;basePath</a></code>
-		<span class="tooltip"><p>common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/files">&nbsp;&nbsp;files</a></code>
-		<span class="tooltip"><p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
-If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
-Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
-		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
-nil if the document was initialized with initWithData:</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/password">&nbsp;&nbsp;password</a></code>
-		<span class="tooltip"><p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
-		<span class="tooltip"><p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -662,7 +682,70 @@ This might be a good idea to turn on when using JPG for caching.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li>
+						</ul>
+						
+						
+						<a title="Password Protection and Security" name="task_Password Protection and Security"></a>
+						<h3 class="subsubtitle task-title">Password Protection and Security</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unlockWithPassword:">&ndash;&nbsp;unlockWithPassword:</a></code>
+		<span class="tooltip"><p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
+If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+If you attempt to unlock an already unlocked document, one of the following occurs:
+If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
+string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
+	</span>
+	
+	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/password">&nbsp;&nbsp;password</a></code>
+		<span class="tooltip"><p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valid">&nbsp;&nbsp;valid</a></code>
+		<span class="tooltip"><p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allowsPrinting">&nbsp;&nbsp;allowsPrinting</a></code>
+		<span class="tooltip"><p>Do the PDF digital right allow for printing?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEncrypted">&nbsp;&nbsp;isEncrypted</a></code>
+		<span class="tooltip"><p>Was the PDF file encryted at file creation time?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLocked">&nbsp;&nbsp;isLocked</a></code>
+		<span class="tooltip"><p>Has the PDF file been unlocked? (is it still locked?).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Attached Parser for Outline, Annotations" name="task_Attached Parser for Outline, Annotations"></a>
+						<h3 class="subsubtitle task-title">Attached Parser for Outline, Annotations</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
 		<span class="tooltip"><p>Outline extraction class for current document.</p></span>
@@ -1743,7 +1826,8 @@ Note: this might take a second on larger documents, as the page structure needs 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.</p>
+		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p>
 	</div>		
 	
 	
@@ -2337,7 +2421,7 @@ string. If the string fails, the document maintains its user permissions. In eit
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-04-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-04-07)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
