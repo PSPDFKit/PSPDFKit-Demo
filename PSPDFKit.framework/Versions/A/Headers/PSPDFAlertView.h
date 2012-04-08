@@ -14,6 +14,8 @@
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
 @interface PSPDFAlertView : NSObject
 
+/// @name Initialization
+
 /// Create alertview with title, no message.
 + (PSPDFAlertView *)alertWithTitle:(NSString *)title;
 
@@ -23,6 +25,9 @@
 /// Default initializer.
 - (id)initWithTitle:(NSString *)title message:(NSString *)message;
 
+
+/// @name Adding Buttons
+
 /// Add a cancel button. (use only once!)
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
 
@@ -31,6 +36,9 @@
 
 /// Show AlerView.
 - (void)show;
+
+
+/// @name Dismiss / Internal Access
 
 /// Dismisses AlertView, calls clock ode set at buttonIndex.
 - (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;

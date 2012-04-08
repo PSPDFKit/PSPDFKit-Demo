@@ -14,11 +14,6 @@
 /// Note: The YouTube plugin doesn't show up in the Simulator. Test on the device!
 @interface PSPDFYouTubeAnnotationView : UIView <PSPDFAnnotationView>
 
-/// Init with YouTube URL and desired frame.
-/// Note: When we have to fall back to UIWebView, the frame cannot be changed later on.
-/// Enable showNativeFirst to first show an empty MPMoviePlayerController.
-- (id)initWithYouTubeURL:(NSURL *)youTubeURL frame:(CGRect)frame annotation:(PSPDFAnnotation *)annotation showNativeFirst:(BOOL)showNativeFirst;
-
 /// Keep a reference at the annotation
 @property(nonatomic, strong) PSPDFAnnotation *annotation;
 

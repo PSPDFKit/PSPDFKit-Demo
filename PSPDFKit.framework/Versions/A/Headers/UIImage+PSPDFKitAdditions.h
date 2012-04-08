@@ -47,4 +47,7 @@ typedef enum {
 /// Load images from the bundle.
 + (UIImage *)pspdf_imageNamed:(NSString *)imageName bundle:(NSString *)bundleName;
 
+/// Tint an image.
+- (UIImage *)pdpdf_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
+
 @end
