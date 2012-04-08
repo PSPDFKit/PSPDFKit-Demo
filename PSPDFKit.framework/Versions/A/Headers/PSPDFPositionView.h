@@ -11,7 +11,8 @@
 
 @class PSPDFViewController;
 
-/// Displays the current page position.
+/// Displays the current page position at the bottom of the screen.
+/// This class connects to the pdfController via KVO.
 @interface PSPDFPositionView : UIView
 
 /// UILabel used internally to show the text.

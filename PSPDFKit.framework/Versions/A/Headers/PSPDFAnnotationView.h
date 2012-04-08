@@ -17,8 +17,14 @@
 /// Represented annotation this object is presenting.
 @property(nonatomic, retain) PSPDFAnnotation *annotation;
 
+/// page will be displayed. only available in pageCurl mode.
+- (void)willShowPage:(NSUInteger)page;
+
 /// page is displayed.
 - (void)didShowPage:(NSUInteger)page;
+
+/// page will be hidden. only available in pageCurl mode.
+- (void)willHidePage:(NSUInteger)page;
 
 /// page is hidden.
 - (void)didHidePage:(NSUInteger)page;
