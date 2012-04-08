@@ -8,11 +8,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "PSPDFCache.h"
-#import "PSPDFKitGlobal.h"
 
 @class PSPDFViewController;
 
 /// Scrobble bar like in iBooks.
+/// This class connects to the pdfController via KVO.
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// pdf controller delegate.

@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.9.13 - 7/Apr/2012__
+
+*  Zooming out (triple tap) doesn't scroll down the document anymore, only moves the zoom level to 1.0.
+*  Better handling of light/dark tintColors.
+*  ScrobbleBar is now colored like the navigationBar. (check for HUD changes/regressions in your app!)
+*  The status bar now moves to the default color on the iPhone for ToC/Search views.
+*  Fixes an alignment problem with the thumbnail animation.
+*  Disable user interaction for very small links, that are not shown anyway.
+*  YouTube videos now rotate and resize correctly.
+
 __v1.9.12 - 2/Apr/2012__
 
 *  Thumbnails now smoothy animate to fullscreen and back. (new setViewMode animation instead of the classic fade)

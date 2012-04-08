@@ -106,6 +106,9 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 extern NSString *PSPDFResolvePathNames(NSString *path);
 extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString);
 
+/// Queries subviews for a specific class prefix. Usually used for subview-hacking/workarounds.
+UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
+
 // use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak

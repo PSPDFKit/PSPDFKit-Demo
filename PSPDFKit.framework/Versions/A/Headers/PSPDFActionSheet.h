@@ -12,8 +12,13 @@
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
 @interface PSPDFActionSheet : NSObject
 
+/// @name Inititalization
+
 /// Default initializer.
 - (id)initWithTitle:(NSString *)title;
+
+
+/// @name Adding Buttons
 
 /// Adds a cancel button. Use only once.
 - (void)setCancelButtonWithTitle:(NSString *) title block:(void (^)()) block;
@@ -24,12 +29,17 @@
 /// Add regular button.
 - (void)addButtonWithTitle:(NSString *) title block:(void (^)()) block;
 
-/// Show ActionSheet.
+
+/// @name Show ActionSheet
+
 - (void)showInView:(UIView *)view;
 - (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated;
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
 - (void)showFromToolbar:(UIToolbar *)toolbar;
 - (void)showFromTabBar:(UITabBar *)tabbar;
+
+
+/// @name Properties and destroy
 
 /// Count the buttons.
 - (NSUInteger)buttonCount;
