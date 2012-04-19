@@ -37,7 +37,7 @@
         [customViewModeSegment_ addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
         [customViewModeSegment_ sizeToFit];
         UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:customViewModeSegment_];
-
+        
         self.navigationItem.rightBarButtonItem = viewModeButton;
         self.delegate = self;
         
@@ -47,7 +47,7 @@
         
         // don't forget to also set the large size in PSPDFCache!
         [PSPDFCache sharedPSPDFCache].thumbnailSize = thumbnailSize;
-   }
+    }
     return self;
 }
 
@@ -89,7 +89,7 @@
     NSLog(@"didLoadPageView: %@", pageView);    
     
     // add loading indicator
-        UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pageView viewWithTag:PSPDFLoadingViewTag];
+    UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pageView viewWithTag:PSPDFLoadingViewTag];
     if (!indicator) {
         indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [indicator sizeToFit];

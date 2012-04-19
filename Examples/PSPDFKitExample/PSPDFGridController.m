@@ -513,7 +513,7 @@
     
     if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
-            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Item is currently downloading.")]
+            [[[UIAlertView alloc] initWithTitle:PSPDFLocalize(@"Item is currently downloading.")
                                         message:nil
                                        delegate:nil
                               cancelButtonTitle:PSPDFLocalize(@"OK")
