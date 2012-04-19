@@ -464,7 +464,7 @@ static char kvoToken; // we need a static address for the kvo token
                     messageWithError = [NSString stringWithFormat:@"%@\n(%@)", message, [storeDownloadWeak.error localizedDescription]];
                 }
                 
-                [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Warning")]
+                [[[UIAlertView alloc] initWithTitle:PSPDFLocalize(@"Warning")
                                              message:messageWithError
                                             delegate:nil
                                    cancelButtonTitle:PSPDFLocalize(@"OK")
