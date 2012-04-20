@@ -37,6 +37,9 @@
 /// will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
 
+/// will be called after a *programatically* animated page change only.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(PSPDFScrollView *)scrollView;
+
 /// if user tapped within page bounds, this will notify you.
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
 /// Note: PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
