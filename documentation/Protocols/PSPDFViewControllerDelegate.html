@@ -50,6 +50,8 @@
 	
 	<option value="//api/name/pdfViewController:didDisplayDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didDisplayDocument:</option>
 	
+	<option value="//api/name/pdfViewController:didEndPageScrollingAnimation:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didEndPageScrollingAnimation:</option>
+	
 	<option value="//api/name/pdfViewController:didLoadPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didLoadPageView:</option>
 	
 	<option value="//api/name/pdfViewController:didRenderPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPageView:</option>
@@ -103,6 +105,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didChangeViewMode:">pdfViewController:didChangeViewMode:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didDisplayDocument:">pdfViewController:didDisplayDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didEndPageScrollingAnimation:">pdfViewController:didEndPageScrollingAnimation:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didLoadPageView:">pdfViewController:didLoadPageView:</a></span></li>
 	
@@ -209,6 +213,13 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didChangeViewMode:">&ndash;&nbsp;pdfViewController:didChangeViewMode:</a></code>
 		<span class="tooltip"><p>will be called when viewMode changes</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didEndPageScrollingAnimation:">&ndash;&nbsp;pdfViewController:didEndPageScrollingAnimation:</a></code>
+		<span class="tooltip"><p>will be called after a <em>programatically</em> animated page change only.</p></span>
 	</span>
 	
 	
@@ -374,6 +385,40 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didDisplayDocument:(PSPDFDocument *)<em>document</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didEndPageScrollingAnimation:" title="pdfViewController:didEndPageScrollingAnimation:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didEndPageScrollingAnimation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>will be called after a <em>programatically</em> animated page change only.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didEndPageScrollingAnimation:(PSPDFScrollView *)<em>scrollView</em></code></div>
 	
 	
 	
