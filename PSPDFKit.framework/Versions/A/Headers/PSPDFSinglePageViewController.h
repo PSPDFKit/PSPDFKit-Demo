@@ -38,4 +38,7 @@
 /// Delegate (usually connected to a PSPDFPageViewController)
 @property(nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
 
+/// Ensures that the page has been layouted. Returns YES if no work has been performed, NO if we layouted the pageView.
+- (BOOL)ensurePageIsLayouted;
+
 @end
