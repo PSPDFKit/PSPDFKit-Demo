@@ -120,12 +120,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // tries to restore the last page
+    // try to restore the last page
     if (!hasLoadedLastPage_) {
         hasLoadedLastPage_ = YES;
         NSInteger lastPage = [[NSUserDefaults standardUserDefaults] integerForKey:self.document.uid];
         if (lastPage >= 0 && lastPage < self.document.pageCount) {
-            [self scrollToPage:lastPage animated:YES];
+            // animation with pageCurl form first page looks weird, so don't animated here.
+            BOOL shouldAnimate = !self.pageCurlEnabled;
+            [self scrollToPage:lastPage animated:shouldAnimate];
         }
     }
 }
