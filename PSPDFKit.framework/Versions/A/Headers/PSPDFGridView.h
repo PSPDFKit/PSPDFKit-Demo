@@ -4,8 +4,6 @@
 //
 //  Created by Gulam Moledina on 11-10-09, modified by Peter Steinberger.
 //  Copyright (C) 2011-2012 by Gulam Moledina.
-//
-//  Latest code can be found on GitHub: https://github.com/gmoledina/PSPDFGridView
 // 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

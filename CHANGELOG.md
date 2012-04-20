@@ -1,5 +1,20 @@
 # Changelog
 
+__v1.9.14 - 20/Apr/2012__
+
+*  Adds support for Xcode 4.4 DP3.
+*  Show document back button even if PSPDFViewController is embedded in a childViewController.
+*  Doesn't try to restore the navigation bar if we're the only view on the navigation stack.
+*  Allow PSPDFSearchHighlightView to be compatible with overrideClassNames-subclassing.
+*  Works around some broken annotations that don't have "http" as protocol listed (just www.google.com)
+*  PSPDFPageView now has convertViewPointToPDFPoint / convertPDFPointToViewPoint for easier annotation calculation.
+*  There are also some new PSPDFConvert* methods in PSPDFKitGlobal that replace the PSPDFTiledView+ categories. (API change)
+*  YouTube embeds finally support the autostart option. (Note: This might be flaky on very slow connections)
+*  Fixes a big where some documents would "shiver" due to a 1-pixel rounding bug.
+*  Fixes a regression with KVO-observing viewMode.
+*  Fixes a UI glitch with animated pageScrolling on pageCurl if invoked very early in the view build hierarchy.
+*  Fixes a problem where video was playing while in thumbnail mode.
+
 __v1.9.13 - 7/Apr/2012__
 
 *  Zooming out (triple tap) doesn't scroll down the document anymore, only moves the zoom level to 1.0.
