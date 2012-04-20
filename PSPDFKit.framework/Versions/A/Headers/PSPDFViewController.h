@@ -221,6 +221,8 @@ enum {
 
 /// Enables iBooks-like page curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 /// Note: doesn't work well with non-equal sized documents. Use scrolling if you have such complex documents.
+/// Note: You might wanna disable this on the iPad1, because this is more memory hungry than classic scrolling.
+/// You can use pageCurlEnabled = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
 @property(nonatomic, assign, getter=isPageCurlEnabled) BOOL pageCurlEnabled;
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.

@@ -109,6 +109,21 @@ extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString)
 /// Queries subviews for a specific class prefix. Usually used for subview-hacking/workarounds.
 UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
+/// Convert a view point to a pdf point. bounds is from the view (usually PSPDFPageView.bounds)
+CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+/// Convert a pdf point to a view point.
+CGPoint PSPDFConvertPDFPointToViewPoint(CGPoint pdfPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+/// Convert a pdf rect to a normalized view rect.
+CGRect PSPDFConvertPDFRectToViewRect(CGRect pdfRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+/// Convert a view rect to a normalized pdf rect
+CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+/// Normalizes a rect. PDF rect's might have negative width/height, this turns them around.
+CGRect PSPDFNormalizeRect(CGRect rect);
+
 // use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak

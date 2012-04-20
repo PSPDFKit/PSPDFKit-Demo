@@ -25,6 +25,17 @@
 - (void)destroyPageAndRemoveFromView:(BOOL)removeFromView callDelegate:(BOOL)callDelegate;
 
 
+/// @name Coordinate calculations
+
+/// Convert a view point to the corresponding pdf point.
+/// pageBounds usually is PSPDFPageView bounds.
+- (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint;
+
+/// Convert a pdf point to the corresponding view point.
+/// pageBounds usually is PSPDFPageView bounds.
+- (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint;
+
+
 /// @name Accessors
 
 /// Access parent PSPDFScrollView if available. (zoom controller)

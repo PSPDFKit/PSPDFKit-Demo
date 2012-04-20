@@ -11,6 +11,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Note: If you see an error like "Terminating app due to uncaught exception 'NSInvalidArgumentException"
+// you've missed adding the linker flag -ObjC.
+
 @interface UIImage (PSPDFKitAdditions)
 
 typedef enum {
