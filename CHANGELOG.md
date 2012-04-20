@@ -1,5 +1,11 @@
 # Changelog
 
+__v1.9.15 - 20/Apr/2012__
+
+*  New delegate: pdfViewController:didEndPageScrollingAnimation: to detect if a scroll animation has been finished.
+   This will only be called if scrollToPage:animated: is used with animated:YES. (not for manual user scrolling)
+*  Additional safeguards have been put in place so that videos don't start playing in the background while scrolling quickly.
+
 __v1.9.14 - 20/Apr/2012__
 
 *  Adds support for Xcode 4.4 DP3.
