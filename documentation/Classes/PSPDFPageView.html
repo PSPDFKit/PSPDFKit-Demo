@@ -67,6 +67,10 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/convertPDFPointToViewPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- convertPDFPointToViewPoint:</option>
+	
+	<option value="//api/name/convertViewPointToPDFPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- convertViewPointToPDFPoint:</option>
+	
 	<option value="//api/name/destroyPageAndRemoveFromView:callDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- destroyPageAndRemoveFromView:callDelegate:</option>
 	
 	<option value="//api/name/displayDocument:page:pageRect:scale:delayPageAnnotations:pdfController:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:page:pageRect:scale:delayPageAnnotations:pdfController:</option>
@@ -96,6 +100,8 @@
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Show / Destroy a document">Show / Destroy a document</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Coordinate calculations">Coordinate calculations</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Accessors">Accessors</a></span></li>
 	
@@ -138,6 +144,10 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/convertPDFPointToViewPoint:">convertPDFPointToViewPoint:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/convertViewPointToPDFPoint:">convertViewPointToPDFPoint:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/destroyPageAndRemoveFromView:callDelegate:">destroyPageAndRemoveFromView:callDelegate:</a></span></li>
 	
@@ -224,6 +234,30 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 						</ul>
 						
 						
+						<a title="Coordinate calculations" name="task_Coordinate calculations"></a>
+						<h3 class="subsubtitle task-title">Coordinate calculations</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
+		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
+pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
+		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
+pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
 						<a title="Accessors" name="task_Accessors"></a>
 						<h3 class="subsubtitle task-title">Accessors</h3>
 
@@ -254,7 +288,7 @@ If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrol
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Page that is displayed. Readonly.</p></span>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -470,7 +504,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page that is displayed. Readonly.</p>
+		<p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p>
 	</div>		
 	
 	
@@ -712,6 +746,76 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/convertPDFPointToViewPoint:" title="convertPDFPointToViewPoint:"></a>
+	<h3 class="subsubtitle method-title">convertPDFPointToViewPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convert a pdf point to the corresponding view point.
+pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGPoint)convertPDFPointToViewPoint:(CGPoint)<em>pdfPoint</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/convertViewPointToPDFPoint:" title="convertViewPointToPDFPoint:"></a>
+	<h3 class="subsubtitle method-title">convertViewPointToPDFPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convert a view point to the corresponding pdf point.
+pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGPoint)convertViewPointToPDFPoint:(CGPoint)<em>viewPoint</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/destroyPageAndRemoveFromView:callDelegate:" title="destroyPageAndRemoveFromView:callDelegate:"></a>
 	<h3 class="subsubtitle method-title">destroyPageAndRemoveFromView:callDelegate:</h3>
 	
@@ -931,7 +1035,7 @@ If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrol
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-04-07)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-04-20)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
