@@ -524,19 +524,19 @@
             if (magazine.isLocked) {
                 PSPDF_IF_IOS5_OR_GREATER(
                                          // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
-                                         PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"PDF Document Password"];
+                                         PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"Password Protected PDF" message:magazine.title];
                                          alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
                                          [alertView setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
                                          __ps_weak PSPDFAlertView *weakAlertView = alertView;
                                          [alertView addButtonWithTitle:PSPDFLocalize(@"Open") block:^{
                     NSString *password = [weakAlertView.alertView textFieldAtIndex:0].text;
                     BOOL success = [magazine unlockWithPassword:password];
-                    
                     if (success) {
                         magazine.password = password;                    
                         [self openMagazine:magazine animated:YES cellIndex:gridIndex];
                     }else {
-                        PSPDFAlertView *alert = [PSPDFAlertView alertWithTitle:@"Failed to unlock PDF"];
+                        PSPDFAlertView *alert = [PSPDFAlertView alertWithTitle:@"Failed to unlock the document."];
+                        [alert setCancelButtonWithTitle:PSPDFLocalize(@"OK") block:nil];
                         [alert show];
                     }
                 }];
