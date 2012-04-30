@@ -1,0 +1,389 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38F8154B3E4F00507A74 /* UIKit.framework */; };
+		781A38FB154B3E4F00507A74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38FA154B3E4F00507A74 /* Foundation.framework */; };
+		781A38FD154B3E4F00507A74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38FC154B3E4F00507A74 /* CoreGraphics.framework */; };
+		781A3903154B3E4F00507A74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 781A3901154B3E4F00507A74 /* InfoPlist.strings */; };
+		781A3905154B3E4F00507A74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3904154B3E4F00507A74 /* main.m */; };
+		781A3909154B3E4F00507A74 /* PSPDFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */; };
+		781A392E154B3E9100507A74 /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3928154B3E8200507A74 /* libPSPDFKit.a */; };
+		781A3930154B3E9500507A74 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A392F154B3E9500507A74 /* CoreText.framework */; };
+		781A3932154B3E9800507A74 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3931154B3E9800507A74 /* MessageUI.framework */; };
+		781A3934154B3E9D00507A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3933154B3E9D00507A74 /* AVFoundation.framework */; };
+		781A3936154B3EA100507A74 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3935154B3EA100507A74 /* MediaPlayer.framework */; };
+		781A3938154B3EA400507A74 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3937154B3EA400507A74 /* CoreMedia.framework */; };
+		781A393A154B3EA700507A74 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3939154B3EA700507A74 /* ImageIO.framework */; };
+		781A393C154B3EAB00507A74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A393B154B3EAB00507A74 /* QuartzCore.framework */; };
+		781A3965154B43F300507A74 /* PSPDFTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */; };
+		781A398C154B495400507A74 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 781A398B154B495400507A74 /* Samples */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		781A3927154B3E8200507A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 780B4169146E7DAB00DF07F1;
+			remoteInfo = PSPDFKit;
+		};
+		781A3929154B3E8200507A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7824B14114A20A990053639E;
+			remoteInfo = "PSPDFKit-Demo";
+		};
+		781A392C154B3E8D00507A74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
+			remoteInfo = PSPDFKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		781A38F4154B3E4F00507A74 /* TabbedExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabbedExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		781A38F8154B3E4F00507A74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		781A38FA154B3E4F00507A74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		781A38FC154B3E4F00507A74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		781A3900154B3E4F00507A74 /* TabbedExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TabbedExample-Info.plist"; sourceTree = "<group>"; };
+		781A3902154B3E4F00507A74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		781A3904154B3E4F00507A74 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		781A3906154B3E4F00507A74 /* TabbedExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TabbedExample-Prefix.pch"; sourceTree = "<group>"; };
+		781A3907154B3E4F00507A74 /* PSPDFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSPDFAppDelegate.h; sourceTree = "<group>"; };
+		781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFAppDelegate.m; sourceTree = "<group>"; };
+		781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PSPDFKit-lib.xcodeproj"; path = "../../PSPDFKit/PSPDFKit-lib.xcodeproj"; sourceTree = "<group>"; };
+		781A392F154B3E9500507A74 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		781A3931154B3E9800507A74 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		781A3933154B3E9D00507A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		781A3935154B3EA100507A74 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		781A3937154B3EA400507A74 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		781A3939154B3EA700507A74 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		781A393B154B3EAB00507A74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		781A3963154B43F300507A74 /* PSPDFTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFTabbedExampleViewController.h; sourceTree = "<group>"; };
+		781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTabbedExampleViewController.m; sourceTree = "<group>"; };
+		781A398B154B495400507A74 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		781A38F1154B3E4F00507A74 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				781A393C154B3EAB00507A74 /* QuartzCore.framework in Frameworks */,
+				781A393A154B3EA700507A74 /* ImageIO.framework in Frameworks */,
+				781A3938154B3EA400507A74 /* CoreMedia.framework in Frameworks */,
+				781A3936154B3EA100507A74 /* MediaPlayer.framework in Frameworks */,
+				781A3934154B3E9D00507A74 /* AVFoundation.framework in Frameworks */,
+				781A3932154B3E9800507A74 /* MessageUI.framework in Frameworks */,
+				781A3930154B3E9500507A74 /* CoreText.framework in Frameworks */,
+				781A392E154B3E9100507A74 /* libPSPDFKit.a in Frameworks */,
+				781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */,
+				781A38FB154B3E4F00507A74 /* Foundation.framework in Frameworks */,
+				781A38FD154B3E4F00507A74 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		781A38E9154B3E4F00507A74 = {
+			isa = PBXGroup;
+			children = (
+				781A38FE154B3E4F00507A74 /* TabbedExample */,
+				781A38F7154B3E4F00507A74 /* Frameworks */,
+				781A38F5154B3E4F00507A74 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		781A38F5154B3E4F00507A74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				781A38F4154B3E4F00507A74 /* TabbedExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		781A38F7154B3E4F00507A74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */,
+				781A393D154B3EBD00507A74 /* System */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		781A38FE154B3E4F00507A74 /* TabbedExample */ = {
+			isa = PBXGroup;
+			children = (
+				781A3907154B3E4F00507A74 /* PSPDFAppDelegate.h */,
+				781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */,
+				781A3963154B43F300507A74 /* PSPDFTabbedExampleViewController.h */,
+				781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */,
+				781A398B154B495400507A74 /* Samples */,
+				781A38FF154B3E4F00507A74 /* Supporting Files */,
+			);
+			path = TabbedExample;
+			sourceTree = "<group>";
+		};
+		781A38FF154B3E4F00507A74 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				781A3900154B3E4F00507A74 /* TabbedExample-Info.plist */,
+				781A3901154B3E4F00507A74 /* InfoPlist.strings */,
+				781A3904154B3E4F00507A74 /* main.m */,
+				781A3906154B3E4F00507A74 /* TabbedExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		781A391F154B3E8200507A74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				781A3928154B3E8200507A74 /* libPSPDFKit.a */,
+				781A392A154B3E8200507A74 /* libPSPDFKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		781A393D154B3EBD00507A74 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				781A393B154B3EAB00507A74 /* QuartzCore.framework */,
+				781A3939154B3EA700507A74 /* ImageIO.framework */,
+				781A3937154B3EA400507A74 /* CoreMedia.framework */,
+				781A3935154B3EA100507A74 /* MediaPlayer.framework */,
+				781A3933154B3E9D00507A74 /* AVFoundation.framework */,
+				781A3931154B3E9800507A74 /* MessageUI.framework */,
+				781A392F154B3E9500507A74 /* CoreText.framework */,
+				781A38F8154B3E4F00507A74 /* UIKit.framework */,
+				781A38FA154B3E4F00507A74 /* Foundation.framework */,
+				781A38FC154B3E4F00507A74 /* CoreGraphics.framework */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		781A38F3154B3E4F00507A74 /* TabbedExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 781A3917154B3E4F00507A74 /* Build configuration list for PBXNativeTarget "TabbedExample" */;
+			buildPhases = (
+				781A38F0154B3E4F00507A74 /* Sources */,
+				781A38F1154B3E4F00507A74 /* Frameworks */,
+				781A38F2154B3E4F00507A74 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				781A392D154B3E8D00507A74 /* PBXTargetDependency */,
+			);
+			name = TabbedExample;
+			productName = TabbedExample;
+			productReference = 781A38F4154B3E4F00507A74 /* TabbedExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		781A38EB154B3E4F00507A74 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = PSPDF;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Peter Steinberger";
+			};
+			buildConfigurationList = 781A38EE154B3E4F00507A74 /* Build configuration list for PBXProject "TabbedExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 781A38E9154B3E4F00507A74;
+			productRefGroup = 781A38F5154B3E4F00507A74 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 781A391F154B3E8200507A74 /* Products */;
+					ProjectRef = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				781A38F3154B3E4F00507A74 /* TabbedExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		781A3928154B3E8200507A74 /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = 781A3927154B3E8200507A74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		781A392A154B3E8200507A74 /* libPSPDFKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPSPDFKit.a;
+			remoteRef = 781A3929154B3E8200507A74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		781A38F2154B3E4F00507A74 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				781A3903154B3E4F00507A74 /* InfoPlist.strings in Resources */,
+				781A398C154B495400507A74 /* Samples in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		781A38F0154B3E4F00507A74 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				781A3905154B3E4F00507A74 /* main.m in Sources */,
+				781A3909154B3E4F00507A74 /* PSPDFAppDelegate.m in Sources */,
+				781A3965154B43F300507A74 /* PSPDFTabbedExampleViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		781A392D154B3E8D00507A74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PSPDFKit;
+			targetProxy = 781A392C154B3E8D00507A74 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		781A3901154B3E4F00507A74 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				781A3902154B3E4F00507A74 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		781A3915154B3E4F00507A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../../**";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		781A3916154B3E4F00507A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "../../**";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		781A3918154B3E4F00507A74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TabbedExample/TabbedExample-Prefix.pch";
+				INFOPLIST_FILE = "TabbedExample/TabbedExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		781A3919154B3E4F00507A74 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TabbedExample/TabbedExample-Prefix.pch";
+				INFOPLIST_FILE = "TabbedExample/TabbedExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		781A38EE154B3E4F00507A74 /* Build configuration list for PBXProject "TabbedExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				781A3915154B3E4F00507A74 /* Debug */,
+				781A3916154B3E4F00507A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		781A3917154B3E4F00507A74 /* Build configuration list for PBXNativeTarget "TabbedExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				781A3918154B3E4F00507A74 /* Debug */,
+				781A3919154B3E4F00507A74 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 781A38EB154B3E4F00507A74 /* Project object */;
+}

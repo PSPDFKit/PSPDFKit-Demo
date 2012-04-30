@@ -90,6 +90,9 @@
         self.printEnabled = YES;
         self.openInEnabled = YES;
         
+        // 1.9.16 feature
+        self.sendViaEmailEnabled = YES;
+        
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         CGFloat variance = [document aspectRatioVariance];
         self.clipToPageBoundaries = variance < 0.2f;
