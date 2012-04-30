@@ -1,5 +1,20 @@
 # Changelog
 
+__v1.9.16 - 29/Apr/2012__
+
+*  New class PSPDFTabbedViewController, to show multiple PSPDFDocuments with a top tab bar. iOS5 only.
+*  New feature: sendViaEmail: allows sending the pdf as an attachment.
+*  New delegate: delegateDidEndZooming:atScale to detect user/animated zooming.
+*  New property: useParentNavigationBar, if you embed the PSPDFViewController.
+*  Add support for punycode characters in pdf URLs (like http://➡.ws/鞰齒)
+*  Show URL in embedded browser title bar, until page is loaded with the real title.
+*  If PDF is password protected, don't try to read the metadata until it is unlocked.
+*  PSPDFDocument now implements the <NSCopying> protocol.
+*  Fixes a problem where links with hash bangs (like https://twitter.com/#!/) where incorrectly escaped.
+*  Fixes opening certain password protected files.
+*  Fixes unlockWithPassword always returning YES, even with an incorrect password.
+*  Titanium: New min SDK is 2.0.1.GA2.
+
 __v1.9.15 - 20/Apr/2012__
 
 *  New delegate: pdfViewController:didEndPageScrollingAnimation: to detect if a scroll animation has been finished.
