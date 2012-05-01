@@ -13,7 +13,6 @@
 		781A3903154B3E4F00507A74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 781A3901154B3E4F00507A74 /* InfoPlist.strings */; };
 		781A3905154B3E4F00507A74 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3904154B3E4F00507A74 /* main.m */; };
 		781A3909154B3E4F00507A74 /* PSPDFAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */; };
-		781A392E154B3E9100507A74 /* libPSPDFKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3928154B3E8200507A74 /* libPSPDFKit.a */; };
 		781A3930154B3E9500507A74 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A392F154B3E9500507A74 /* CoreText.framework */; };
 		781A3932154B3E9800507A74 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3931154B3E9800507A74 /* MessageUI.framework */; };
 		781A3934154B3E9D00507A74 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A3933154B3E9D00507A74 /* AVFoundation.framework */; };
@@ -23,31 +22,9 @@
 		781A393C154B3EAB00507A74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A393B154B3EAB00507A74 /* QuartzCore.framework */; };
 		781A3965154B43F300507A74 /* PSPDFTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */; };
 		781A398C154B495400507A74 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 781A398B154B495400507A74 /* Samples */; };
+		78E5F655154F33620084C0F1 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E5F654154F33620084C0F1 /* PSPDFKit.framework */; };
+		78E5F657154F336C0084C0F1 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78E5F656154F336C0084C0F1 /* PSPDFKit.bundle */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		781A3927154B3E8200507A74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 780B4169146E7DAB00DF07F1;
-			remoteInfo = PSPDFKit;
-		};
-		781A3929154B3E8200507A74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7824B14114A20A990053639E;
-			remoteInfo = "PSPDFKit-Demo";
-		};
-		781A392C154B3E8D00507A74 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 780B4168146E7DAB00DF07F1;
-			remoteInfo = PSPDFKit;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		781A38F4154B3E4F00507A74 /* TabbedExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabbedExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +37,6 @@
 		781A3906154B3E4F00507A74 /* TabbedExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TabbedExample-Prefix.pch"; sourceTree = "<group>"; };
 		781A3907154B3E4F00507A74 /* PSPDFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSPDFAppDelegate.h; sourceTree = "<group>"; };
 		781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSPDFAppDelegate.m; sourceTree = "<group>"; };
-		781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "PSPDFKit-lib.xcodeproj"; path = "../../PSPDFKit/PSPDFKit-lib.xcodeproj"; sourceTree = "<group>"; };
 		781A392F154B3E9500507A74 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		781A3931154B3E9800507A74 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		781A3933154B3E9D00507A74 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +47,8 @@
 		781A3963154B43F300507A74 /* PSPDFTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFTabbedExampleViewController.h; sourceTree = "<group>"; };
 		781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFTabbedExampleViewController.m; sourceTree = "<group>"; };
 		781A398B154B495400507A74 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
+		78E5F654154F33620084C0F1 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
+		78E5F656154F336C0084C0F1 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +63,10 @@
 				781A3934154B3E9D00507A74 /* AVFoundation.framework in Frameworks */,
 				781A3932154B3E9800507A74 /* MessageUI.framework in Frameworks */,
 				781A3930154B3E9500507A74 /* CoreText.framework in Frameworks */,
-				781A392E154B3E9100507A74 /* libPSPDFKit.a in Frameworks */,
 				781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */,
 				781A38FB154B3E4F00507A74 /* Foundation.framework in Frameworks */,
 				781A38FD154B3E4F00507A74 /* CoreGraphics.framework in Frameworks */,
+				78E5F655154F33620084C0F1 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +93,8 @@
 		781A38F7154B3E4F00507A74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */,
+				78E5F656154F336C0084C0F1 /* PSPDFKit.bundle */,
+				78E5F654154F33620084C0F1 /* PSPDFKit.framework */,
 				781A393D154B3EBD00507A74 /* System */,
 			);
 			name = Frameworks;
@@ -143,15 +122,6 @@
 				781A3906154B3E4F00507A74 /* TabbedExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		781A391F154B3E8200507A74 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				781A3928154B3E8200507A74 /* libPSPDFKit.a */,
-				781A392A154B3E8200507A74 /* libPSPDFKit.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		781A393D154B3EBD00507A74 /* System */ = {
@@ -185,7 +155,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				781A392D154B3E8D00507A74 /* PBXTargetDependency */,
 			);
 			name = TabbedExample;
 			productName = TabbedExample;
@@ -212,35 +181,12 @@
 			mainGroup = 781A38E9154B3E4F00507A74;
 			productRefGroup = 781A38F5154B3E4F00507A74 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 781A391F154B3E8200507A74 /* Products */;
-					ProjectRef = 781A391E154B3E8200507A74 /* PSPDFKit-lib.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				781A38F3154B3E4F00507A74 /* TabbedExample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		781A3928154B3E8200507A74 /* libPSPDFKit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPSPDFKit.a;
-			remoteRef = 781A3927154B3E8200507A74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		781A392A154B3E8200507A74 /* libPSPDFKit.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPSPDFKit.a;
-			remoteRef = 781A3929154B3E8200507A74 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		781A38F2154B3E4F00507A74 /* Resources */ = {
@@ -249,6 +195,7 @@
 			files = (
 				781A3903154B3E4F00507A74 /* InfoPlist.strings in Resources */,
 				781A398C154B495400507A74 /* Samples in Resources */,
+				78E5F657154F336C0084C0F1 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,14 +213,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		781A392D154B3E8D00507A74 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PSPDFKit;
-			targetProxy = 781A392C154B3E8D00507A74 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		781A3901154B3E4F00507A74 /* InfoPlist.strings */ = {
@@ -308,7 +247,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "../../**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -330,7 +268,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "../../**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
@@ -343,6 +280,10 @@
 		781A3918154B3E4F00507A74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TabbedExample/TabbedExample-Prefix.pch";
 				INFOPLIST_FILE = "TabbedExample/TabbedExample-Info.plist";
@@ -354,6 +295,10 @@
 		781A3919154B3E4F00507A74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TabbedExample/TabbedExample-Prefix.pch";
 				INFOPLIST_FILE = "TabbedExample/TabbedExample-Info.plist";
