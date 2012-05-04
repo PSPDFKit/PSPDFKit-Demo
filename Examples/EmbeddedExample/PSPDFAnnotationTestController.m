@@ -26,6 +26,15 @@
     return self;
 }
 
+/*
+ // example that shows how to dynamically switch between pageCurl and scrolling;
+ don't change the property within willRotateToInterfaceOrientation.
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    
+    self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
+}*/
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
