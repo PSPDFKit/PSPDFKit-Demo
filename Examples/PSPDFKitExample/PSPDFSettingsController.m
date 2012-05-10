@@ -8,9 +8,15 @@
 #import "PSPDFSettingsController.h"
 #import <UIKit/UIKit.h>
 
+#define _(string) NSLocalizedString(string, @"")
+@interface PSPDFSettingsController(){
+    NSArray *content_;
+}
+@end
+
 @implementation PSPDFSettingsController
 
-static PSPDFPageMode pageMode = PSPDFPageModeAutomatic;
+static PSPDFPageMode pageMode;
 static PSPDFScrolling pageScrolling = PSPDFScrollingHorizontal;
 static BOOL doublePageModeOnFirstPage = NO;
 static BOOL zoomingSmallDocumentsEnabled = YES;
@@ -20,7 +26,7 @@ static BOOL scrobbleBar = YES;
 static BOOL aspectRatioEqual = NO;
 static BOOL twoStepRendering = NO;
 static BOOL search = YES;
-static BOOL pdfoutline = YES;
+static BOOL pdfOutline = YES;
 static BOOL annotations = YES;
 static BOOL pageCurl = YES;
 
@@ -30,27 +36,25 @@ static BOOL pageCurl = YES;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (void)setupDefaults {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // set reasonable defaults depending if it's iPad or iPhone
-        pageMode = PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle;
-    });
+// perform a appropriate choice of defaults.
+__attribute__((constructor)) static void setupDefaults(void) {
+    pageMode = PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+        self.title = _(@"Options");
+        
         content_ = [[NSArray alloc] initWithObjects:
-                    [NSArray arrayWithObjects:@"Disable Cache", @"Thumbnails & near Pages", @"Cache Opportunistic", nil], 
-                    [NSArray arrayWithObjects:@"Horizontal (Magazine style)", @"Vertical (like UIWebView)", @"PageCurl (like iBooks, iOS5)", nil],                    
-                    [NSArray arrayWithObjects:@"Single Page", @"Double Pages", @"Automatic on Rotation", nil], 
-                    [NSArray arrayWithObjects:@"Single First Page", @"Always Two Pages", nil],
-                    [NSArray arrayWithObjects:@"Zoom small files", @"Zoom to width", @"Scrobblebar", nil], // @"Paging Enabled"
-                    [NSArray arrayWithObjects:@"Search", @"Outline", @"Annotations", @"AspectRatio Equal", @"Two Step Rendering", nil],                    
+                    [NSArray arrayWithObjects:_(@"No Disk Cache"), _(@"Thumbnails & near Pages"), _(@"Cache everything"), nil],
+                    [NSArray arrayWithObjects:_(@"Horizontal (Magazine style)"), _(@"Vertical (like UIWebView)"), _(@"PageCurl (like iBooks, iOS5)"), nil],
+                    [NSArray arrayWithObjects:_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation"), nil],
+                    [NSArray arrayWithObjects:_(@"Single First Page (Cover)"), _(@"No Cover Page"), nil],
+                    [NSArray arrayWithObjects:_(@"Zoom small files"), _(@"Zoom to width"), _(@"Scrobblebar (Thumbs"), nil], // @"Paging Enabled"
+                    [NSArray arrayWithObjects:_(@"Search"), _(@"Outline"), _(@"Annotations"), _(@"AspectRatio Equal"), _(@"Two Step Rendering"), nil],                    
                     nil];        
     }
     return self;
@@ -59,10 +63,6 @@ static BOOL pageCurl = YES;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -79,22 +79,22 @@ static BOOL pageCurl = YES;
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"Cache";
+            return _(@"Cache");
             break;
         case 1:
-            return @"Scrolling";
+            return _(@"Scrolling");
             break;
         case 2:
-            return @"PSPDFViewController Display";
+            return _(@"PSPDFViewController Display");
             break;
         case 3:
-            return @"Double Page Mode";
+            return _(@"Double Page Mode");
             break;
         case kOptionBlockIndex:
-            return @"";
+            return _(@"");
             break;            
         case kDocOptionBlockIndex:
-            return @"PSPDFDocument";
+            return _(@"PSPDFDocument");
             break;            
         default:
             return @"";
@@ -105,7 +105,7 @@ static BOOL pageCurl = YES;
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return @"Cache Settings are global, more aggressive settings need more disk memory.";
+            return _(@"Cache Settings are global, more aggressive settings need more disk memory.");
             break;
         case 1:
             return @"";
@@ -117,10 +117,10 @@ static BOOL pageCurl = YES;
             return @"";
             break;
         case kOptionBlockIndex:
-            return @"If small file zooming is enabled, pdf files will always be shown in full width/height, regardless of the defined CropBox. Two-Step rendering will always redraw the pdf. Useful if your controller is not fullscreen or you have landscape presentations.";
+            return _(@"If small file zooming is enabled, pdf files will always be shown in full width/height, regardless of the defined CropBox. Two-Step rendering will always redraw the pdf. Useful if your controller is not fullscreen or you have landscape presentations.");
             break;            
         case kDocOptionBlockIndex:
-            return @"Usually, you have an equal aspect ratio, which speeds up displaying pdf files quite a bit. Disable if you have pages of different size inside your document.";
+            return _(@"Usually, you have an equal aspect ratio, which speeds up displaying pdf files quite a bit. Disable if you have pages of different size inside your document.");
             break;            
         default:
             return @"";
@@ -155,7 +155,7 @@ static BOOL pageCurl = YES;
                 search = cellSwitch.on;
                 break;
             case 1:
-                pdfoutline = cellSwitch.on;
+                pdfOutline = cellSwitch.on;
                 break;
             case 2:
                 annotations = cellSwitch.on;
@@ -239,7 +239,7 @@ static BOOL pageCurl = YES;
                         cellSwitch.on = search;
                         break;
                     case 1:
-                        cellSwitch.on = pdfoutline;
+                        cellSwitch.on = pdfOutline;
                         break;
                     case 2:
                         cellSwitch.on = annotations;
@@ -293,56 +293,18 @@ static BOOL pageCurl = YES;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (PSPDFPageMode)pageMode {
-    return pageMode;
-}
-
-+ (PSPDFScrolling)pageScrolling {
-    return pageScrolling;
-}
-
-+ (BOOL)doublePageModeOnFirstPage {
-    return doublePageModeOnFirstPage;
-}
-
-+ (BOOL)zoomingSmallDocumentsEnabled {
-    return zoomingSmallDocumentsEnabled;
-}
-
-+ (BOOL)fitWidth {
-    return fitWidth;
-}
-
-+ (BOOL)pagingEnabled {
-    return pagingEnabled;
-}
-
-+ (BOOL)scrobbleBar {
-    return scrobbleBar;
-}
-
-+ (BOOL)aspectRatioEqual {
-    return aspectRatioEqual;
-}
-
-+ (BOOL)search {
-    return search;
-}
-
-+ (BOOL)pdfoutline {
-    return pdfoutline;
-}
-
-+ (BOOL)annotations {
-    return annotations;
-}
-
-+ (BOOL)twoStepRendering {
-    return twoStepRendering;
-}
-
-+ (BOOL)pageCurl {
-    return pageCurl;
-}
++ (PSPDFPageMode)pageMode { return pageMode;}
++ (PSPDFScrolling)pageScrolling { return pageScrolling; }
++ (BOOL)doublePageModeOnFirstPage { return doublePageModeOnFirstPage; }
++ (BOOL)zoomingSmallDocumentsEnabled { return zoomingSmallDocumentsEnabled; }
++ (BOOL)fitWidth { return fitWidth; }
++ (BOOL)pagingEnabled { return pagingEnabled; }
++ (BOOL)scrobbleBar { return scrobbleBar; }
++ (BOOL)aspectRatioEqual { return aspectRatioEqual; }
++ (BOOL)search { return search; }
++ (BOOL)pdfOutline { return pdfOutline; }
++ (BOOL)annotations { return annotations; }
++ (BOOL)twoStepRendering { return twoStepRendering; }
++ (BOOL)pageCurl { return pageCurl; }
 
 @end
