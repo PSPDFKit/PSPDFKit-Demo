@@ -45,7 +45,7 @@
     // set global settings for magazine
     self.magazine.searchEnabled = [PSPDFSettingsController search];
     self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
-    self.magazine.outlineEnabled = [PSPDFSettingsController pdfoutline];
+    self.magazine.outlineEnabled = [PSPDFSettingsController pdfOutline];
     self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
     self.magazine.twoStepRenderingEnabled = [PSPDFSettingsController twoStepRendering];
     
