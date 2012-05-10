@@ -71,10 +71,7 @@
     
     // enable to change anomations (e.g. enable on iPad1)
     kPSPDFAnimateOption = PSPDFAnimateEverywhere;
-    
-    // setup device specific defaults
-    [PSPDFSettingsController setupDefaults];
-    
+        
     // add custom localization changes
     [self addCustomLocalization];
 
