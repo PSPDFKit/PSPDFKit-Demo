@@ -9,7 +9,42 @@
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+@interface PSPDFAnnotationTestController () {
+    NSTimer *autoplayTimer_;
+    BOOL autoplay_;
+}
+@end
+
 @implementation PSPDFAnnotationTestController
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Autoplay feature
+
+- (void)updatePlayButton {
+    UIBarButtonItem *additionalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:(autoplay_ ?UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay) target:self action:@selector(playPauseAction:)];
+    self.additionalRightToolbarButtons = [NSArray arrayWithObject:additionalButton];
+}
+
+// sample implementaton how to automatically advance to the next page
+- (void)advanceToNextPage {
+    if ([self isLastPage]) {
+        [self scrollToPage:0 animated:YES];
+    }else {
+        [self scrollToNextPageAnimated:YES];
+    }
+}
+
+- (IBAction)playPauseAction:(id)sender {
+    if (!autoplay_) {
+        autoplay_ = YES;
+        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+        [self updatePlayButton];
+    }else {
+        autoplay_ = NO;
+        [autoplayTimer_ invalidate];
+        [self updatePlayButton];
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -22,6 +57,9 @@
         self.tintColor = [UIColor orangeColor];
         self.printEnabled = YES;
         self.openInEnabled = YES;
+        
+        // add extra button, example autoplay feature
+        [self updatePlayButton];
     }
     return self;
 }
@@ -29,11 +67,11 @@
 /*
  // example that shows how to dynamically switch between pageCurl and scrolling;
  don't change the property within willRotateToInterfaceOrientation.
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    
-    self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
-}*/
+ - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+ [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+ 
+ self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
+ }*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
@@ -96,7 +134,7 @@
         // parse annotation data
         NSString *mapData = [annotation.siteLinkTarget stringByReplacingOccurrencesOfString:@"map://" withString:@""];
         NSArray *token = [mapData componentsSeparatedByString:@","];
-
+        
         // ensure we have token count of 4 (latitude, longitude, span la, span lo)
         if ([token count] == 4) {
             CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[token objectAtIndex:0] doubleValue],
