@@ -12,8 +12,3 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @end
-
-// overridden PSPDFViewController to change back button
-@interface PSMinimalExamplePDFViewController : PSPDFViewController
-
-@end

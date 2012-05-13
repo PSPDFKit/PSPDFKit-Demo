@@ -18,8 +18,3 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @end
-
-// overridden PSPDFViewController to change back button
-@interface PSMinimalExamplePDFViewController : PSPDFViewController
-
-@end
