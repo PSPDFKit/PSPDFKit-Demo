@@ -57,6 +57,7 @@
         self.tintColor = [UIColor orangeColor];
         self.printEnabled = YES;
         self.openInEnabled = YES;
+        self.linkAction = PSPDFLinkActionInlineBrowser;
         
         // add extra button, example autoplay feature
         [self updatePlayButton];
