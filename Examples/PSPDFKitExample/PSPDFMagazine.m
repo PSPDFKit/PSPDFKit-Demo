@@ -48,12 +48,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Meta Data
 
-- (UIImage *)coverImage {
+- (UIImage *)coverImageForSize:(CGSize)size {
     UIImage *coverImage = nil;
     
     // basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.basePath) {
         coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
+    }
+    
+    // draw a custom, centered lock image if the magazine is password protected.
+    if (self.isLocked) {
+        if (!CGSizeEqualToSize(size, CGSizeZero)) {
+            UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
+            [[UIColor colorWithWhite:0.9 alpha:1.f] setFill];
+            CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
+            UIImage *lockImage = [UIImage imageNamed:@"lock"];
+            [lockImage drawAtPoint:CGPointMake(floorf((size.width-lockImage.size.width)/2), floorf((size.height-lockImage.size.height)/2))];
+            coverImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
     }
     
     return coverImage;
@@ -94,7 +107,7 @@
             [self clearCacheForced:YES];
             
             // request coverImage - grid listens for those events
-            [self coverImage];
+            [self coverImageForSize:CGSizeZero];
         }
     }
 }
