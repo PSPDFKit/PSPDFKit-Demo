@@ -136,7 +136,7 @@
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
             
             self.magazineCount = 0;
-            self.image = [magazine coverImage];
+            self.image = [magazine coverImageForSize:self.frame.size];
             
             // try to download image
             if (!self.image && magazine.imageUrl) {           
@@ -177,7 +177,7 @@
                     break;
                 }
             }
-            self.image = [coverMagazine coverImage];
+            self.image = [coverMagazine coverImageForSize:self.frame.size];
         }
     }
 }

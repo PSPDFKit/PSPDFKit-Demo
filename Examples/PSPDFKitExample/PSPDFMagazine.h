@@ -15,7 +15,7 @@
 
 /// Returns the coverImage, which is the first page of the magazine.
 /// Here we download that from the web to have sth to show before the pdf is available.
-- (UIImage *)coverImage;
+- (UIImage *)coverImageForSize:(CGSize)size;
 
 /// Magazine folder. Weak to break the retain cycle.
 @property(nonatomic, ps_weak) PSPDFMagazineFolder *folder; // weak!

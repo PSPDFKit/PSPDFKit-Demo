@@ -56,6 +56,8 @@
 		783CD112148D545500B4F3AB /* libvendor-http.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 783CD10E148D53AB00B4F3AB /* libvendor-http.a */; };
 		78727B73141EC21900994946 /* PSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 78727B72141EC21900994946 /* PSActionSheet.m */; };
 		78727B76141EC22900994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B75141EC22900994946 /* MessageUI.framework */; };
+		787EBEA5155FD25100B507E0 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EBEA3155FD25100B507E0 /* lock.png */; };
+		787EBEA6155FD25100B507E0 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 787EBEA4155FD25100B507E0 /* lock@2x.png */; };
 		788ACD0513E6A23B00689E19 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 788ACD0413E6A23B00689E19 /* Icon.png */; };
 		7892B347141845C100DC5575 /* PSPDFSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7892B346141845C100DC5575 /* PSPDFSettingsController.m */; };
 		78A933F41498F8F1003C78EB /* PSPDFShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A933F31498F8F1003C78EB /* PSPDFShadowView.m */; };
@@ -143,6 +145,8 @@
 		78727B71141EC21900994946 /* PSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSActionSheet.h; sourceTree = "<group>"; };
 		78727B72141EC21900994946 /* PSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSActionSheet.m; sourceTree = "<group>"; };
 		78727B75141EC22900994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		787EBEA3155FD25100B507E0 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = EmbeddedExample/Resources/lock.png; sourceTree = SOURCE_ROOT; };
+		787EBEA4155FD25100B507E0 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "EmbeddedExample/Resources/lock@2x.png"; sourceTree = SOURCE_ROOT; };
 		788ACD0413E6A23B00689E19 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		7892B345141845C100DC5575 /* PSPDFSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFSettingsController.h; sourceTree = "<group>"; };
 		7892B346141845C100DC5575 /* PSPDFSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFSettingsController.m; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 				7835F1A7149FD8220027FB8D /* settings@2x.png */,
 				7835F1B4149FFB0D0027FB8D /* settings_landscape.png */,
 				7835F1B5149FFB0D0027FB8D /* settings_landscape@2x.png */,
+				787EBEA3155FD25100B507E0 /* lock.png */,
+				787EBEA4155FD25100B507E0 /* lock@2x.png */,
 				78F5716F14DC6BFC00EDBE7C /* Localizable.strings */,
 			);
 			path = Resources;
@@ -454,6 +460,8 @@
 				7835F1B6149FFB0D0027FB8D /* settings_landscape.png in Resources */,
 				7835F1B7149FFB0D0027FB8D /* settings_landscape@2x.png in Resources */,
 				78F5717114DC6BFC00EDBE7C /* Localizable.strings in Resources */,
+				787EBEA5155FD25100B507E0 /* lock.png in Resources */,
+				787EBEA6155FD25100B507E0 /* lock@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
