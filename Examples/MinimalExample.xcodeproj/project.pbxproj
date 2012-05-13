@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
-		78692EE31514713E009BC996 /* libarclite_iphoneos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78692EE21514713E009BC996 /* libarclite_iphoneos.a */; };
-		78692EEB15147284009BC996 /* libarclite_iphonesimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78692EEA15147284009BC996 /* libarclite_iphonesimulator.a */; };
 		78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B82141EC2D300994946 /* MessageUI.framework */; };
 		78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B081480374A0092B889 /* ImageIO.framework */; };
 		78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0D1480375A0092B889 /* MediaPlayer.framework */; };
@@ -28,8 +26,6 @@
 
 /* Begin PBXFileReference section */
 		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		78692EE21514713E009BC996 /* libarclite_iphoneos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libarclite_iphoneos.a; path = Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a; sourceTree = DEVELOPER_DIR; };
-		78692EEA15147284009BC996 /* libarclite_iphonesimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libarclite_iphonesimulator.a; path = MinimalExample/libarclite_iphonesimulator.a; sourceTree = "<group>"; };
 		78727B82141EC2D300994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78C22B081480374A0092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78C22B0D1480375A0092B889 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -64,8 +60,6 @@
 				78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */,
 				78E6A44213DECE56006000BB /* CoreGraphics.framework in Frameworks */,
 				78F0E1B41498ED51007E62E0 /* PSPDFKit.framework in Frameworks */,
-				78692EE31514713E009BC996 /* libarclite_iphoneos.a in Frameworks */,
-				78692EEB15147284009BC996 /* libarclite_iphonesimulator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +125,6 @@
 		78F0E1B51498ED55007E62E0 /* PSPDFKit */ = {
 			isa = PBXGroup;
 			children = (
-				78692EEA15147284009BC996 /* libarclite_iphonesimulator.a */,
-				78692EE21514713E009BC996 /* libarclite_iphoneos.a */,
 				78F0E1AF1498ED50007E62E0 /* PSPDFKit.bundle */,
 				78F0E1B01498ED50007E62E0 /* PSPDFKit.framework */,
 			);
@@ -165,7 +157,7 @@
 		78E6A43013DECE56006000BB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 78E6A43313DECE56006000BB /* Build configuration list for PBXProject "MinimalExample" */;
@@ -291,6 +283,10 @@
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc\"",
 					"\"$(SRCROOT)/MinimalExample\"",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = MinimalEx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -313,6 +309,10 @@
 					/Developer/usr/lib/arc,
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc\"",
 					"\"$(SRCROOT)/MinimalExample\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-fobjc-arc",
 				);
 				PRODUCT_NAME = MinimalEx;
 				WRAPPER_EXTENSION = app;
