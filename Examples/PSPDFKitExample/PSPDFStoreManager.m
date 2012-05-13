@@ -505,7 +505,7 @@ static char kvoToken; // we need a static address for the kvo token
         UIImage *newsstandCoverImage = nil;
         
         // if magazine or coverImage don't exist, the default newsstand icon is used (with sending nil)
-        if (magazine.coverImage) {
+        if ([magazine coverImageForSize:CGSizeZero]) {
             
             // example how to create blended cover + overlay
             /*
@@ -515,7 +515,7 @@ static char kvoToken; // we need a static address for the kvo token
             newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
              */
-            newsstandCoverImage = magazine.coverImage;
+            newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedPSPDFCache].thumbnailSize];
         }
         
         [[UIApplication sharedApplication] setNewsstandIconImage:newsstandCoverImage];
