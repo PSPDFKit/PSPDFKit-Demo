@@ -99,7 +99,8 @@
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;
-    
+    self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
+
     /*
     self.pdfController.pageScrolling = PSPDFScrollingVertical;
     self.pdfController.pagePadding = 0.0f;
