@@ -12,20 +12,16 @@
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    // create the PSPDFViewController
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
-    
     PSPDFViewController *pdfController = [[PSMinimalExamplePDFViewController alloc] initWithDocument:document];
-     pdfController.pageCurlEnabled = YES;
-    [pdfController scrollToPage:[pdfController landscapePage:5] animated:NO];
-    //	pdfController.pageMode = PSPDFPageModeDouble;
-
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-    self.window.rootViewController = navController;
+    pdfController.pageCurlEnabled = YES;
     
-    self.window.backgroundColor = [UIColor blackColor];
+    // create window and set as rootViewController
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:pdfController];
     [self.window makeKeyAndVisible];
     return YES;
 }
