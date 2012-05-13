@@ -20,11 +20,10 @@
     PSPDFDocument *document4 = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:[samplesPath stringByAppendingPathComponent:@"DevelopersGuide.pdf"]]];
 
     NSArray *documents = [NSArray arrayWithObjects:document1, document2, document3, document4, nil];
-    PSPDFTabbedExampleViewController *tabbedViewController = [[PSPDFTabbedExampleViewController alloc] initWithDocuments:documents pdfViewController:nil];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:tabbedViewController];
+    PSPDFTabbedExampleViewController *tabbedController = [[PSPDFTabbedExampleViewController alloc] initWithDocuments:documents pdfViewController:nil];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navController;
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:tabbedController];
     [self.window makeKeyAndVisible];
     return YES;
 }
