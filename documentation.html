@@ -87,6 +87,9 @@ documentation: current-menu-item current_page_item
 	<p><b>Q: I can't download the package anymore!</b><br>
 	 A: I had to update the links. Please replace the part in your private link "http://petersteinberger.com/assets/" with "http://download.pspdfkit.com" and it will work again.</p><br>
 
+<p><b>Q: I purchased PSPDFKit. Where can I download the latest version?</b><br>
+ A: Use the link you got in your initial purchase email, it always points to the latest stable version available. (You might need to update the links if it's an older purchase, see above)</p><br>
+
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
 		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.'</p><br>
 	
@@ -112,7 +115,7 @@ documentation: current-menu-item current_page_item
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 <p><b>Q: Do I need to buy another license to make a second app?</b><br>
-	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for an all-in license, contact us if interested.</p>
+	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for an all-in license, contact us if interested.</p><br>
 
 <p><b>Q: How do I change the link-color of pdf annotation links?</b><br>
 	 A: Use <a href="http://pspdfkit.com/documentation/Protocols/PSPDFViewControllerDelegate.html">PSPDFViewControllerDelegate</a> like this:
