@@ -8,30 +8,28 @@
 #import "PSPDFPlayButtonItem.h"
 
 @implementation PSPDFPlayButtonItem {
-    UIButton *playButton_;
+    PSPDFTransparentToolbar *toolbar_;
     NSTimer *autoplayTimer_;
     BOOL autoplay_;
 }
 
-- (UIButton *)playButton {
-    if (!playButton_) {
-        playButton_ = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        playButton_.showsTouchWhenHighlighted = YES;
-        [playButton_ addTarget:self action:@selector(playPauseAction:) forControlEvents:UIControlEventTouchUpInside];
+- (UIToolbar *)toolbar {
+    if (!toolbar_) {
+        toolbar_ = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
         [self updatePlayButton];
     }
-    return playButton_;
+    return toolbar_;
 }
 
 - (UIView *)customView {
-    return self.playButton;
+    return self.toolbar;
 }
 
 - (void)updatePlayButton {
-    // Don't use kitImageNamed in shipping code!
-    UIImage *playImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPlay.png"];
-    UIImage *pauseImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPause.png"];
-    [self.playButton setImage:autoplay_ ? pauseImage : playImage forState:UIControlStateNormal];
+    UIBarButtonSystemItem systemItem = autoplay_ ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:self action:@selector(playPauseAction:)];
+    [self.toolbar setItems:[NSArray arrayWithObjects:flexibleSpace, barButtonItem, flexibleSpace, nil] animated:YES];
 }
 
 - (void)playPauseAction:(id)sender {
