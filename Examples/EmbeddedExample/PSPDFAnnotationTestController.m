@@ -6,24 +6,11 @@
 //
 
 #import "PSPDFAnnotationTestController.h"
+#import "PSPDFPlayButtonItem.h"
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface PSPDFAnnotationTestController () {
-    NSTimer *autoplayTimer_;
-    BOOL autoplay_;
-}
-@end
-
 @implementation PSPDFAnnotationTestController
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Autoplay feature
-
-- (void)updatePlayButton {
-    UIBarButtonItem *additionalButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:(autoplay_ ?UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay) target:self action:@selector(playPauseAction:)];
-    self.additionalRightToolbarButtons = [NSArray arrayWithObject:additionalButton];
-}
 
 // sample implementaton how to automatically advance to the next page
 - (void)advanceToNextPage {
@@ -34,20 +21,8 @@
     }
 }
 
-- (IBAction)playPauseAction:(id)sender {
-    if (!autoplay_) {
-        autoplay_ = YES;
-        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
-        [self updatePlayButton];
-    }else {
-        autoplay_ = NO;
-        [autoplayTimer_ invalidate];
-        [self updatePlayButton];
-    }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
+#pragma mark - PSPDFViewController
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
@@ -55,12 +30,9 @@
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageCurlEnabled = YES;
         self.tintColor = [UIColor orangeColor];
-        self.printEnabled = YES;
-        self.openInEnabled = YES;
+        PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
+        self.rightBarButtonItems = [NSArray arrayWithObjects:playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
         self.linkAction = PSPDFLinkActionInlineBrowser;
-        
-        // add extra button, example autoplay feature
-        [self updatePlayButton];
     }
     return self;
 }

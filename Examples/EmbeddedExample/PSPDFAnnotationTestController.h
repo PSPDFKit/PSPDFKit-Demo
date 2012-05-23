@@ -6,7 +6,6 @@
 //
 
 /// Example to show the multimedia annotation features.
-@interface PSPDFAnnotationTestController : PSPDFViewController <PSPDFViewControllerDelegate> {
-}
+@interface PSPDFAnnotationTestController : PSPDFViewController <PSPDFViewControllerDelegate>
 
 @end
