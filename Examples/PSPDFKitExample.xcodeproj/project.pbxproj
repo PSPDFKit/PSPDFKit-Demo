@@ -67,6 +67,8 @@
 		78D880B013EE3984009ACEB5 /* PSPDFStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880AF13EE3984009ACEB5 /* PSPDFStoreManager.m */; };
 		78D880B713EE399B009ACEB5 /* NSObject+AssociatedObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B413EE399B009ACEB5 /* NSObject+AssociatedObjects.m */; };
 		78D880B813EE399B009ACEB5 /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		78EA417F156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA417C156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.m */; };
+		78EA4180156D9DA80077B255 /* PSPDFSettingsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA417E156D9DA80077B255 /* PSPDFSettingsBarButtonItem.m */; };
 		78F0E19D1498ECF9007E62E0 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E19C1498ECF9007E62E0 /* PSPDFKit.bundle */; };
 		78F5717114DC6BFC00EDBE7C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78F5716F14DC6BFC00EDBE7C /* Localizable.strings */; };
 		78FDF909147885B300BE13FC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FDF908147885B300BE13FC /* MediaPlayer.framework */; };
@@ -161,6 +163,10 @@
 		78D880B413EE399B009ACEB5 /* NSObject+AssociatedObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AssociatedObjects.m"; sourceTree = "<group>"; };
 		78D880B513EE399B009ACEB5 /* NSObject+BlockObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockObservation.h"; sourceTree = "<group>"; };
 		78D880B613EE399B009ACEB5 /* NSObject+BlockObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlockObservation.m"; sourceTree = "<group>"; };
+		78EA417B156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFCustomCloseBarButtomItem.h; sourceTree = "<group>"; };
+		78EA417C156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFCustomCloseBarButtomItem.m; sourceTree = "<group>"; };
+		78EA417D156D9DA80077B255 /* PSPDFSettingsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFSettingsBarButtonItem.h; sourceTree = "<group>"; };
+		78EA417E156D9DA80077B255 /* PSPDFSettingsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFSettingsBarButtonItem.m; sourceTree = "<group>"; };
 		78F0E19C1498ECF9007E62E0 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		78F5717014DC6BFC00EDBE7C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78F5717314DC6C1E00EDBE7C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -286,6 +292,10 @@
 		783C77EC13D986C400CF7C9D /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				78EA417B156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.h */,
+				78EA417C156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.m */,
+				78EA417D156D9DA80077B255 /* PSPDFSettingsBarButtonItem.h */,
+				78EA417E156D9DA80077B255 /* PSPDFSettingsBarButtonItem.m */,
 				78727B71141EC21900994946 /* PSActionSheet.h */,
 				78727B72141EC21900994946 /* PSActionSheet.m */,
 				78A933F21498F8F1003C78EB /* PSPDFShadowView.h */,
@@ -517,6 +527,8 @@
 				7805D002141EC0B8003D10D5 /* NSOperationQueue+CWSharedQueue.m in Sources */,
 				78727B73141EC21900994946 /* PSActionSheet.m in Sources */,
 				78A933F41498F8F1003C78EB /* PSPDFShadowView.m in Sources */,
+				78EA417F156D9DA80077B255 /* PSPDFCustomCloseBarButtomItem.m in Sources */,
+				78EA4180156D9DA80077B255 /* PSPDFSettingsBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

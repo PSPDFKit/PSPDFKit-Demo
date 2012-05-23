@@ -18,8 +18,8 @@
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageCurlEnabled = YES;
-    pdfController.toolbarBackButton = nil;
-    
+    pdfController.leftBarButtonItems = nil;
+
     // create window and set as rootViewController
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:pdfController];

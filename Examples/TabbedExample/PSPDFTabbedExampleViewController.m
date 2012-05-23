@@ -15,7 +15,7 @@
 - (id)initWithDocuments:(NSArray *)documents pdfViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithDocuments:documents pdfViewController:pdfViewController])) {
         self.pdfViewController.pageCurlEnabled = YES;
-        self.pdfViewController.toolbarBackButton = nil;
+        self.pdfViewController.leftBarButtonItems = nil;
     }
     return self;
 }
