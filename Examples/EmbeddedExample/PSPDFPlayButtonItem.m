@@ -13,6 +13,7 @@
     BOOL autoplay_;
 }
 
+// a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
 - (UIToolbar *)toolbar {
     if (!toolbar_) {
         toolbar_ = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
@@ -37,7 +38,7 @@
     
     if (!autoplay_) {
         autoplay_ = YES;
-        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self.pdfViewController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfViewController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     }else {
         autoplay_ = NO;
