@@ -8,9 +8,6 @@
 //  In a nutshell, you can use this, just attribute this class to me in your thank you notes or about box.
 //
 
-#import <UIKit/UIKit.h>
-
-
 @interface IntelligentSplitViewController : UISplitViewController {
 
 }
