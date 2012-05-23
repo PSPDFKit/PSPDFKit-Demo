@@ -26,16 +26,19 @@
 }
 
 - (void)optionsButtonPressed:(id)sender {
-    if(![self checkAndDismissPopoverForViewControllerClass:[PSPDFSettingsController class] animated:YES]) {
-        [self checkAndDismissPopoverForViewControllerClass:nil animated:NO]; // close print/open in
-        PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
-        if (PSIsIpad()) {
-            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
-            self.popoverController.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
-            [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }else {
-            [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
-        }
+    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
+        return;
+    }
+    
+    PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
+    if (PSIsIpad()) {
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
+        self.popoverController.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
+        [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }else {
+        [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
     }
 }
 
@@ -43,9 +46,7 @@
 // This is just to show what PSPDFKit can do.
 - (void)globalVarChanged {
     // set global settings for magazine
-    self.magazine.searchEnabled = [PSPDFSettingsController search];
     self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
-    self.magazine.outlineEnabled = [PSPDFSettingsController pdfOutline];
     self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
     self.magazine.twoStepRenderingEnabled = [PSPDFSettingsController twoStepRendering];
     
@@ -55,6 +56,20 @@
     self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
     self.fitWidth = [PSPDFSettingsController fitWidth];
     self.pageCurlEnabled = [PSPDFSettingsController pageCurl];
+    //self.pageCurlDirectionLeftToRight = YES;
+    
+    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
+    if ([PSPDFSettingsController pdfOutline]) {
+        [rightBarButtonItems addObject:self.outlineButtonItem];
+    }
+    if ([PSPDFSettingsController search]) {
+        [rightBarButtonItems addObject:self.searchButtonItem];
+    }
+    [rightBarButtonItems addObject:self.viewModeButtonItem];
+    self.rightBarButtonItems = rightBarButtonItems;
+    
+    // define additional buttons with an action icon
+    self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonItem, self.openInButtonItem, self.emailButtonItem, nil];
     
     NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFSettingsController pageMode];
@@ -86,12 +101,8 @@
         // use inline browser for pdf links
         self.linkAction = PSPDFLinkActionInlineBrowser;
         
-        // 1.9.10 feature
-        self.printEnabled = YES;
-        self.openInEnabled = YES;
-        
-        // 1.9.16 feature
-        self.sendViaEmailEnabled = YES;
+        // 1.10 feature: replaces printEnabled, openInEnabled
+        self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, nil];
         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         CGFloat variance = [document aspectRatioVariance];
