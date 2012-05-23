@@ -100,7 +100,7 @@
     [self presentModalViewController:previewController animated:YES];
     return YES;
 #endif
-    
+        
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage) {
