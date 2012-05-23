@@ -17,6 +17,7 @@
 - (UIToolbar *)toolbar {
     if (!toolbar_) {
         toolbar_ = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+        toolbar_.tintColor = self.pdfViewController.tintColor;
         [self updatePlayButton];
     }
     return toolbar_;
