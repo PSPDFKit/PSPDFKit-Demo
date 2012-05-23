@@ -258,7 +258,7 @@ static char kvoToken; // we need a static address for the kvo token
     static BOOL isModern;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        // since there is no kCFCoreFoundationVersionNumber_iPhoneOS_5_0_1, we have to do it the ugly way
+        // since there is no kCFCoreFoundationVersionNumber_iOS_5_0_1, we have to do it the ugly way
         NSString *version = [[UIDevice currentDevice] systemVersion];
         isModern = ![version isEqualToString:@"5.0.0"] && [version intValue] >= 5;
         //isModern = NO; // To test migration, enable this to "fake" an old system.

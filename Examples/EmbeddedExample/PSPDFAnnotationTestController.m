@@ -29,10 +29,14 @@
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageCurlEnabled = YES;
+        self.linkAction = PSPDFLinkActionInlineBrowser;
+        self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
         self.tintColor = [UIColor orangeColor];
+
+        self.leftBarButtonItems = nil; // hide close button
+
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
         self.rightBarButtonItems = [NSArray arrayWithObjects:playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
-        self.linkAction = PSPDFLinkActionInlineBrowser;
     }
     return self;
 }
@@ -45,14 +49,6 @@
  
  self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
  }*/
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewController
-
-// disable back button
-- (UIBarButtonItem *)toolbarBackButton {
-    return nil;
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
