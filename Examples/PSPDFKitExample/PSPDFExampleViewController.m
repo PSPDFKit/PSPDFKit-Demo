@@ -10,6 +10,8 @@
 #import "PSPDFMagazine.h"
 #import "PSPDFSettingsController.h"
 #import "PSPDFGridController.h"
+#import "PSPDFCustomCloseBarButtomItem.h"
+#import "PSPDFSettingsBarButtonItem.h"
 
 @interface PSPDFExampleViewController () {
     BOOL hasLoadedLastPage_;
@@ -107,7 +109,16 @@
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         CGFloat variance = [document aspectRatioVariance];
         self.clipToPageBoundaries = variance < 0.2f;
-        
+
+        // replace the closeBarButtomItem with a custom subclass
+        self.overrideClassNames = [NSDictionary dictionaryWithObjectsAndKeys:[PSPDFCustomCloseBarButtomItem class], [PSPDFCloseBarButtonItem class], nil];
+
+        // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
+
+        PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
+
+        self.leftBarButtonItems = [NSArray arrayWithObjects:self.closeButtonItem, settingsButtomItem, nil];
+
         // 1.9 feature
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
         //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
@@ -159,41 +170,6 @@
     
     // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
     [self.popoverController dismissPopoverAnimated:YES];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewController
-
-- (NSArray *)additionalLeftToolbarButtons {
-    UIBarButtonItem *button;
-    
-    // on iOS5, we can finally set the landscapeImagePhone
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_5_0) {
-        button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]      
-                                                  style:UIBarButtonItemStylePlain
-                                                 target:self
-                                                 action:@selector(optionsButtonPressed:)];
-    }else {
-        button = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
-                                    landscapeImagePhone:[UIImage imageNamed:@"settings_landscape"]
-                                                  style:UIBarButtonItemStylePlain
-                                                 target:self
-                                                 action:@selector(optionsButtonPressed:)];
-    }
-    
-    return [NSArray arrayWithObject:button];
-}
-
-- (void)documentButtonPressed {
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-- (UIBarButtonItem *)toolbarBackButton {
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back")
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(documentButtonPressed)];
-    return backButton;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
