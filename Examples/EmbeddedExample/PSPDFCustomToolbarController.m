@@ -45,7 +45,7 @@
         self.thumbnailSize = CGSizeMake(300, 300);
         
         // don't forget to also set the large size in PSPDFCache!
-        [PSPDFCache sharedPSPDFCache].thumbnailSize = thumbnailSize;
+        [PSPDFCache sharedPSPDFCache].thumbnailSize = self.thumbnailSize;
     }
     return self;
 }
