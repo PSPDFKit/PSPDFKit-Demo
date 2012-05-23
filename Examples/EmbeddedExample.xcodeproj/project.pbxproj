@@ -113,7 +113,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7840C9431402B7CF008F3AC7 /* SplitView */ = {
+		7840C9431402B7CF008F3AC7 /* Tab 3 (SplitView) */ = {
 			isa = PBXGroup;
 			children = (
 				78AB1CE214085D820056E688 /* IntelligentSplitViewController.h */,
@@ -123,7 +123,7 @@
 				7840C9471402B800008F3AC7 /* SplitMasterViewController.h */,
 				7840C9481402B800008F3AC7 /* SplitMasterViewController.m */,
 			);
-			name = SplitView;
+			name = "Tab 3 (SplitView)";
 			sourceTree = "<group>";
 		};
 		78836E5D13EAD25B0043F631 = {
@@ -147,16 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				78F0E1BF1498ED8A007E62E0 /* PSPDFKit */,
-				78C22AFF148037170092B889 /* ImageIO.framework */,
-				78A100AB147C1C0600E67DAC /* MapKit.framework */,
-				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
-				78727B7B141EC27F00994946 /* MessageUI.framework */,
-				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
-				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
-				78836E9F13EAD49C0043F631 /* CoreText.framework */,
-				78836E6C13EAD25B0043F631 /* UIKit.framework */,
-				78836E6E13EAD25B0043F631 /* Foundation.framework */,
-				78836E7013EAD25B0043F631 /* CoreGraphics.framework */,
+				78EA40F9156D59690077B255 /* System */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -164,17 +155,14 @@
 		78836E7213EAD25B0043F631 /* EmbeddedExample */ = {
 			isa = PBXGroup;
 			children = (
+				78EA40F5156D59120077B255 /* Tab1 (Embedded Controller) */,
+				78EA40F7156D591E0077B255 /* Tab 2 (Custom Toolbar) */,
+				7840C9431402B7CF008F3AC7 /* Tab 3 (SplitView) */,
+				78EA40F8156D59310077B255 /* Tab 4 (Annotations, Autoplay) */,
 				78AA95D6147C1350008E1DE4 /* AppDelegate.h */,
 				78AA95D7147C1350008E1DE4 /* AppDelegate.m */,
-				788BEEAF14842699005670BD /* PSPDFAnnotationTestController.h */,
-				788BEEB014842699005670BD /* PSPDFAnnotationTestController.m */,
-				788BEEB114842699005670BD /* PSPDFCustomToolbarController.h */,
-				788BEEB214842699005670BD /* PSPDFCustomToolbarController.m */,
-				DA5F61ED156D20EF00B11285 /* PSPDFPlayButtonItem.h */,
-				DA5F61EE156D20EF00B11285 /* PSPDFPlayButtonItem.m */,
-				788BEEB314842699005670BD /* PSPDFEmbeddedTestController.h */,
-				788BEEB414842699005670BD /* PSPDFEmbeddedTestController.m */,
-				7840C9431402B7CF008F3AC7 /* SplitView */,
+				78836E7E13EAD25B0043F631 /* MainWindow.xib */,
+				78836E8713EAD25B0043F631 /* FirstView.xib */,
 				78836E9D13EAD2FF0043F631 /* Samples */,
 				78BF7532141D37D300FF02DF /* Resources */,
 				78836E7313EAD25B0043F631 /* Supporting Files */,
@@ -185,8 +173,6 @@
 		78836E7313EAD25B0043F631 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				78836E7E13EAD25B0043F631 /* MainWindow.xib */,
-				78836E8713EAD25B0043F631 /* FirstView.xib */,
 				78836E7413EAD25B0043F631 /* EmbeddedExample-Info.plist */,
 				78836E7813EAD25B0043F631 /* main.m */,
 				78836E7A13EAD25B0043F631 /* EmbeddedExample-Prefix.pch */,
@@ -209,6 +195,52 @@
 				78727B8E141EC33100994946 /* Icon.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		78EA40F5156D59120077B255 /* Tab1 (Embedded Controller) */ = {
+			isa = PBXGroup;
+			children = (
+				788BEEB314842699005670BD /* PSPDFEmbeddedTestController.h */,
+				788BEEB414842699005670BD /* PSPDFEmbeddedTestController.m */,
+			);
+			name = "Tab1 (Embedded Controller)";
+			sourceTree = "<group>";
+		};
+		78EA40F7156D591E0077B255 /* Tab 2 (Custom Toolbar) */ = {
+			isa = PBXGroup;
+			children = (
+				788BEEB114842699005670BD /* PSPDFCustomToolbarController.h */,
+				788BEEB214842699005670BD /* PSPDFCustomToolbarController.m */,
+			);
+			name = "Tab 2 (Custom Toolbar)";
+			sourceTree = "<group>";
+		};
+		78EA40F8156D59310077B255 /* Tab 4 (Annotations, Autoplay) */ = {
+			isa = PBXGroup;
+			children = (
+				788BEEAF14842699005670BD /* PSPDFAnnotationTestController.h */,
+				788BEEB014842699005670BD /* PSPDFAnnotationTestController.m */,
+				DA5F61ED156D20EF00B11285 /* PSPDFPlayButtonItem.h */,
+				DA5F61EE156D20EF00B11285 /* PSPDFPlayButtonItem.m */,
+			);
+			name = "Tab 4 (Annotations, Autoplay)";
+			sourceTree = "<group>";
+		};
+		78EA40F9156D59690077B255 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				78C22AFF148037170092B889 /* ImageIO.framework */,
+				78A100AB147C1C0600E67DAC /* MapKit.framework */,
+				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
+				78727B7B141EC27F00994946 /* MessageUI.framework */,
+				78BF754A141D380600FF02DF /* MediaPlayer.framework */,
+				78836EA113EAD4A90043F631 /* QuartzCore.framework */,
+				78836E9F13EAD49C0043F631 /* CoreText.framework */,
+				78836E6C13EAD25B0043F631 /* UIKit.framework */,
+				78836E6E13EAD25B0043F631 /* Foundation.framework */,
+				78836E7013EAD25B0043F631 /* CoreGraphics.framework */,
+			);
+			name = System;
 			sourceTree = "<group>";
 		};
 		78F0E1BF1498ED8A007E62E0 /* PSPDFKit */ = {
