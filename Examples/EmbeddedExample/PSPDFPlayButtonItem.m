@@ -7,8 +7,7 @@
 
 #import "PSPDFPlayButtonItem.h"
 
-@implementation PSPDFPlayButtonItem
-{
+@implementation PSPDFPlayButtonItem {
     UIButton *playButton_;
     NSTimer *autoplayTimer_;
     BOOL autoplay_;
@@ -30,8 +29,8 @@
 
 - (void)updatePlayButton {
     // Don't use kitImageNamed in shipping code!
-    UIImage *playImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPlay.png"];
-    UIImage *pauseImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPause.png"];
+    UIImage *playImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPlay"];
+    UIImage *pauseImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPause"];
     [self.playButton setImage:autoplay_ ? pauseImage : playImage forState:UIControlStateNormal];
 }
 
