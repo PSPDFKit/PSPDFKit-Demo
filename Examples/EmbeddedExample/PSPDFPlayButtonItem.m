@@ -29,8 +29,8 @@
 
 - (void)updatePlayButton {
     // Don't use kitImageNamed in shipping code!
-    UIImage *playImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPlay"];
-    UIImage *pauseImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPause"];
+    UIImage *playImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPlay.png"];
+    UIImage *pauseImage = [UIImage performSelector:@selector(kitImageNamed:) withObject:@"UIButtonBarPause.png"];
     [self.playButton setImage:autoplay_ ? pauseImage : playImage forState:UIControlStateNormal];
 }
 
