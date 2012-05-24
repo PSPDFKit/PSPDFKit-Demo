@@ -2,16 +2,12 @@
 //  SplitTableViewController.h
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/22/11.
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 @class  SplitMasterViewController;
 
-@interface SplitTableViewController : UITableViewController <PSPDFCacheDelegate> {
-    SplitMasterViewController *__unsafe_unretained masterVC_;
-    NSArray *content_;
-}
+@interface SplitTableViewController : UITableViewController <PSPDFCacheDelegate>
 
 @property(nonatomic, unsafe_unretained) SplitMasterViewController *masterVC;
 
