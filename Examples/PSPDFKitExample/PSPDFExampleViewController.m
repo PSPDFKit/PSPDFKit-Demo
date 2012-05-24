@@ -10,7 +10,6 @@
 #import "PSPDFMagazine.h"
 #import "PSPDFSettingsController.h"
 #import "PSPDFGridController.h"
-#import "PSPDFCustomCloseBarButtomItem.h"
 #import "PSPDFSettingsBarButtonItem.h"
 
 @interface PSPDFExampleViewController () {
@@ -110,14 +109,11 @@
         CGFloat variance = [document aspectRatioVariance];
         self.clipToPageBoundaries = variance < 0.2f;
 
-        // replace the closeBarButtomItem with a custom subclass
-        self.overrideClassNames = [NSDictionary dictionaryWithObjectsAndKeys:[PSPDFCustomCloseBarButtomItem class], [PSPDFCloseBarButtonItem class], nil];
-
         // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-
+        NSString *closeTitle = PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back");
+        UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
-
-        self.leftBarButtonItems = [NSArray arrayWithObjects:self.closeButtonItem, settingsButtomItem, nil];
+        self.leftBarButtonItems = [NSArray arrayWithObjects:closeButtonItem, settingsButtomItem, nil];
 
         // 1.9 feature
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
@@ -137,6 +133,10 @@
 
 - (PSPDFMagazine *)magazine {
     return (PSPDFMagazine *)self.document;
+}
+
+- (void)close:(id)sender {
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
