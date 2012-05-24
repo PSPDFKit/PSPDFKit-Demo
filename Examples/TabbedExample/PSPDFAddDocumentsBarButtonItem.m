@@ -21,6 +21,10 @@
     return PSPDFLocalize(@"Add Documents");
 }
 
+// override implementation so that we are *always* enabled.
+- (void)updateBarButtonItem {
+}
+
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
     PSPDFDocumentSelectorController *documentsController = [[PSPDFDocumentSelectorController alloc] init];
     documentsController.delegate = self;
@@ -39,7 +43,7 @@
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfViewController.parentViewController;
 
     // add new document, and set as current
-    NSMutableArray *newDocuments = [tabbedViewController.documents mutableCopy];
+    NSMutableArray *newDocuments = [tabbedViewController.documents mutableCopy] ?: [NSMutableArray array];
     [newDocuments addObject:document];
     tabbedViewController.documents = newDocuments;
     tabbedViewController.visibleDocument = document;
