@@ -10,6 +10,10 @@
 
 @implementation PSPDFSettingsBarButtonItem
 
+- (UIBarButtonItemStyle)itemStyle {
+    return UIBarButtonItemStyleBordered;
+}
+
 - (UIImage *)image {
     return [UIImage imageNamed:@"settings"];
 }
