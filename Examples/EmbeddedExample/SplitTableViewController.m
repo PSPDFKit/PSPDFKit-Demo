@@ -32,7 +32,7 @@
         NSString *fullPath = [sampleFolder stringByAppendingPathComponent:folder];
         BOOL isDir;
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
-            if (!isDir && [fullPath hasSuffix:@"pdf"]) {
+            if (!isDir && [[fullPath lowercaseString] hasSuffix:@"pdf"]) {
                 PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:fullPath isDirectory:NO]];
                 document.aspectRatioEqual = NO; // let them calculate!
                 [folders addObject:document];
