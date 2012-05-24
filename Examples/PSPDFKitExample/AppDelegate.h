@@ -21,9 +21,6 @@
 #define PSELog(...)
 #endif
 
-#define _(s) NSLocalizedString(s,s)
-#define XAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
-
 #define kPSPDFMagazineJSONURL @"http://pspdfkit.com/magazines.json"
 
 @class PSPDFGridController;

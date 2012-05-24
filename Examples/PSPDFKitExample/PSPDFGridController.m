@@ -164,14 +164,14 @@
 - (void)editButtonPressed {
     if (self.isEditMode) {
         self.editMode = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
                                                                                   style:UIBarButtonItemStyleBordered
                                                                                  target:self
                                                                                  action:@selector(editButtonPressed)];    
         
     }else {
         self.editMode = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Done")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
                                                                                   style:UIBarButtonItemStyleDone
                                                                                  target:self
                                                                                  action:@selector(editButtonPressed)];    
@@ -191,7 +191,7 @@
         self.title = @"PSPDFKit Kiosk Example";   
         
         // custom back button for smaller wording
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Kiosk", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
     }
@@ -221,13 +221,13 @@
     [super viewDidLoad];
     
     if (!self.magazineFolder) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Edit")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
                                                                                   style:UIBarButtonItemStyleBordered
                                                                                  target:self
                                                                                  action:@selector(editButtonPressed)];
     }
     
-    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Options")
+    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Options", @"")
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self
                                                                     action:@selector(optionsButtonPressed)];
@@ -448,9 +448,9 @@
     BOOL canDelete = YES;
     NSString *message = nil;
     if ([folder.magazines count] > 1 && !self.magazineFolder) {
-        message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
+        message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineMultiple", @""), folder.title, [folder.magazines count]];
     }else {
-        message = [NSString stringWithFormat:PSPDFLocalize(@"DeleteMagazineSingle"), magazine.title];
+        message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineSingle", @""), magazine.title];
         if (kPSPDFShouldShowDeleteConfirmationDialog) {
             canDelete = magazine.isAvailable || magazine.isDownloading;
         }
@@ -468,12 +468,12 @@
         if (canDelete) {
             PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
             deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:PSPDFLocalize(@"Delete") block:^{
+            [deleteAction setDestructiveButtonWithTitle:NSLocalizedString(@"Delete", @"") block:^{
                 deleteBlock();
                 // TODO should re-calculate index here.
                 [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
             }];
-            [deleteAction setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+            [deleteAction setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
             PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
             CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
@@ -508,10 +508,10 @@
     
     if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
-            [[[UIAlertView alloc] initWithTitle:PSPDFLocalize(@"Item is currently downloading.")
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Item is currently downloading.", @"")
                                         message:nil
                                        delegate:nil
-                              cancelButtonTitle:PSPDFLocalize(@"OK")
+                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
                               otherButtonTitles:nil] show];
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
@@ -521,9 +521,9 @@
                                          // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
                                          PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"Password Protected PDF" message:magazine.title];
                                          alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-                                         [alertView setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
+                                         [alertView setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
                                          __ps_weak PSPDFAlertView *weakAlertView = alertView;
-                                         [alertView addButtonWithTitle:PSPDFLocalize(@"Open") block:^{
+                                         [alertView addButtonWithTitle:NSLocalizedString(@"Open", @"") block:^{
                     NSString *password = [weakAlertView.alertView textFieldAtIndex:0].text;
                     BOOL success = [magazine unlockWithPassword:password];
                     if (success) {
@@ -531,7 +531,7 @@
                         [self openMagazine:magazine animated:YES cellIndex:gridIndex];
                     }else {
                         PSPDFAlertView *alert = [PSPDFAlertView alertWithTitle:@"Failed to unlock the document."];
-                        [alert setCancelButtonWithTitle:PSPDFLocalize(@"OK") block:nil];
+                        [alert setCancelButtonWithTitle:NSLocalizedString(@"OK", @"") block:nil];
                         [alert show];
                     }
                 }];
