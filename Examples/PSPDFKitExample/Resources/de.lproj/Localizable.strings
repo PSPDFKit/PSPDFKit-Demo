@@ -7,3 +7,9 @@
  Note: To be able to translate MFMailComposeViewController, this file needs to be in the language you support.
  see http://stackoverflow.com/questions/1321281/mfmailcomposeviewcontroller-in-other-languages
  */
+
+"Documents" = "Dokumente";
+"Done" = "Fertig";
+
+"DeleteMagazineSingle" = "%@ löschen?";
+"DeleteMagazineMultiple" = "%@ löschen? (%d Ausgaben)";
