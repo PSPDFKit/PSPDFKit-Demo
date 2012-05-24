@@ -22,10 +22,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-- (void)closeModalView {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (void)optionsButtonPressed:(id)sender {
     if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
