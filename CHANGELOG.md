@@ -12,7 +12,6 @@ self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonI
 If you're looking to e.g. remove the search feature, set a new rightBarButtonItems array that excludes the searchButtonItem.
 
 Likewise, the functions additionalLeftToolbarButtons, magazineButton and toolbarBackButton have been unified to self.leftBarButtonItems.
-See the various examples how to subclass PSPDFBarButtonItem to customize the close button or add custom barButtons.
 
 *** Resolving pdf link paths has changed. (API change)
 Previously, if no marker like "Documents" or "Bundle" was found, we resolved to the bundle.
