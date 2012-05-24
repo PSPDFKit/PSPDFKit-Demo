@@ -26,10 +26,7 @@ This version changes resolving the link to the actual position of the pdf file. 
 *  Add support for puny code characters in pdf URLs (like http://➡.ws/鞰齒)
 *  Show URL in embedded browser title bar, until page is loaded with the real title.
 *  If PDF is password protected, don't try to read the metadata until it is unlocked.
-*  PSPDFDocument now implements the <NSCopying> protocol.
-*  Expose moreAction/printAction/openInAction/searchAction/outlineAction to be able to implement a custom toolbar.
-*  New property additionalRightToolbarButtons, as an easy way to add additional toolbar buttons.
-*  Changes toolbarBackButton to a property that can be changed.
+*  PSPDFDocument now implements <NSCopying> and <NSCoding> protocols.
 *  Add new helper in PSPDFKitGlobal: PSPDFScaleForSizeWithinSize.
 *  Fixes a problem where links with hash bangs (like https://twitter.com/#!/) where incorrectly escaped.
 *  Fixes opening certain password protected files.
