@@ -24,6 +24,8 @@
 		781A398C154B495400507A74 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 781A398B154B495400507A74 /* Samples */; };
 		78E5F655154F33620084C0F1 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E5F654154F33620084C0F1 /* PSPDFKit.framework */; };
 		78E5F657154F336C0084C0F1 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78E5F656154F336C0084C0F1 /* PSPDFKit.bundle */; };
+		78EA41D1156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA41CE156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m */; };
+		78EA41D2156E421D0077B255 /* PSPDFDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA41D0156E421D0077B255 /* PSPDFDocumentSelectorController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,10 @@
 		781A398B154B495400507A74 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
 		78E5F654154F33620084C0F1 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 		78E5F656154F336C0084C0F1 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
+		78EA41CD156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFAddDocumentsBarButtonItem.h; sourceTree = "<group>"; };
+		78EA41CE156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFAddDocumentsBarButtonItem.m; sourceTree = "<group>"; };
+		78EA41CF156E421D0077B255 /* PSPDFDocumentSelectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFDocumentSelectorController.h; sourceTree = "<group>"; };
+		78EA41D0156E421D0077B255 /* PSPDFDocumentSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFDocumentSelectorController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,10 @@
 				781A3908154B3E4F00507A74 /* PSPDFAppDelegate.m */,
 				781A3963154B43F300507A74 /* PSPDFTabbedExampleViewController.h */,
 				781A3964154B43F300507A74 /* PSPDFTabbedExampleViewController.m */,
+				78EA41CD156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.h */,
+				78EA41CE156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m */,
+				78EA41CF156E421D0077B255 /* PSPDFDocumentSelectorController.h */,
+				78EA41D0156E421D0077B255 /* PSPDFDocumentSelectorController.m */,
 				781A398B154B495400507A74 /* Samples */,
 				781A38FF154B3E4F00507A74 /* Supporting Files */,
 			);
@@ -209,6 +219,8 @@
 				781A3905154B3E4F00507A74 /* main.m in Sources */,
 				781A3909154B3E4F00507A74 /* PSPDFAppDelegate.m in Sources */,
 				781A3965154B43F300507A74 /* PSPDFTabbedExampleViewController.m in Sources */,
+				78EA41D1156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m in Sources */,
+				78EA41D2156E421D0077B255 /* PSPDFDocumentSelectorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
