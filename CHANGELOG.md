@@ -34,6 +34,7 @@ This version changes resolving the link to the actual position of the pdf file. 
 *  Fixes a problem where the search delegates where called after canceling the operation.
 *  Fixes a problem where the page wasn't re-rendered if it was changed while zoom was active.
 *  Fixes a problem where the tile wasn't updated after setting document to nil.it
+*  Fixed a rare condition where a lock wasn't released in PSPDFGlobalLock.
 *  Some internal reorganization and optimizations. Let me know if something broke on your side.
 *  Titanium: New min SDK is 2.0.1.GA2.
 
