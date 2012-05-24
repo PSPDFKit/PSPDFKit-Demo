@@ -30,7 +30,7 @@
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageCurlEnabled = YES;
         self.linkAction = PSPDFLinkActionInlineBrowser;
-        self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
+        //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
         self.tintColor = [UIColor orangeColor];
 
         self.leftBarButtonItems = nil; // hide close button
