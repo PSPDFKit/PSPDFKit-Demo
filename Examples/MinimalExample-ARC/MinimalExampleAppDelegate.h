@@ -5,8 +5,6 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 // if you use PSPDFKit.framework
 #import <PSPDFKit/PSPDFKit.h>
 
