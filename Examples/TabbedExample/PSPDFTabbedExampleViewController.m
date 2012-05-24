@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFTabbedExampleViewController.h"
+#import "PSPDFAddDocumentsBarButtonItem.h"
 
 @implementation PSPDFTabbedExampleViewController
 
@@ -15,7 +16,9 @@
 - (id)initWithDocuments:(NSArray *)documents pdfViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithDocuments:documents pdfViewController:pdfViewController])) {
         self.pdfViewController.pageCurlEnabled = YES;
-        self.pdfViewController.leftBarButtonItems = nil;
+
+        PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
+        self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
     }
     return self;
 }
