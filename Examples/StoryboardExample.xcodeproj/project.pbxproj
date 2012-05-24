@@ -154,7 +154,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PS;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 7837701A1523F2870089F0A8 /* Build configuration list for PBXProject "StoryboardExample" */;

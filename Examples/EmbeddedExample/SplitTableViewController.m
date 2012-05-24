@@ -2,7 +2,6 @@
 //  SplitTableViewController.m
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/22/11.
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
@@ -81,14 +80,14 @@
     if ((self = [super init])) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
-        self.title = @"Files";
+        self.title = NSLocalizedString(@"Files", @"");
         
         content_ = [[self filesFromSampleDir] copy];
         
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
         
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cycle" style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Deselect" style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)];        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cycle", @"") style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Deselect", @"") style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)];
     }
     return self;
 }
