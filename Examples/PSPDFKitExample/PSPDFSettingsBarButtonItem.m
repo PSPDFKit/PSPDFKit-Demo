@@ -14,7 +14,7 @@
     return [UIImage imageNamed:@"settings"];
 }
 
-- (UIImage *)imageLandscape {
+- (UIImage *)landscapeImagePhone {
     return [UIImage imageNamed:@"settings_landscape"];
 }
 
