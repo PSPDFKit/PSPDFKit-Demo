@@ -13,21 +13,39 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-#define kPSPDFTabbedDocumentsKey @"kPSPDFTabbedDocumentsKey"
-#define kPSPDFTabbedVisibleDocumentKey @"kPSPDFTabbedVisibleDocumentKey"
+#define kPSPDFTabbedDocumentsPersistKey @"kPSPDFTabbedDocumentsPersistKey"
 
 - (void)restoreState {
-    NSLog(@"restoring state");
-
-    self.documents = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFTabbedDocumentsKey];
-    self.visibleDocument = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFTabbedVisibleDocumentKey];
+    NSData *archiveData = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFTabbedDocumentsPersistKey];
+    NSDictionary *persistDict = nil;
+    if (archiveData) {
+        NSLog(@"restoring state.");
+        @try {
+            // This method raises an NSInvalidArchiveOperationException if data is not a valid archive.
+            persistDict = [NSKeyedUnarchiver unarchiveObjectWithData:archiveData];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Failed to restore persist state: %@", exception);
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPSPDFTabbedDocumentsPersistKey];
+        }
+    }
+    if (persistDict) {
+        self.documents = [persistDict objectForKey:NSStringFromSelector(@selector(documents))];
+        self.visibleDocument = [persistDict objectForKey:NSStringFromSelector(@selector(visibleDocument))];
+    }
 }
 
 - (void)persistState {
-    NSLog(@"persisting state");
-
-    [[NSUserDefaults standardUserDefaults] setObject:self.documents forKey:kPSPDFTabbedDocumentsKey];
-    [[NSUserDefaults standardUserDefaults] setObject:self.visibleDocument forKey:kPSPDFTabbedVisibleDocumentKey];
+    NSLog(@"persisting state.");
+    NSMutableDictionary *persistDict = [NSMutableDictionary dictionaryWithCapacity:2];
+    if (self.documents) {
+        [persistDict setObject:self.documents forKey:NSStringFromSelector(@selector(documents))];
+    }
+    if (self.visibleDocument) {
+        [persistDict setObject:self.visibleDocument forKey:NSStringFromSelector(@selector(visibleDocument))];
+    }
+    NSData *archive = [NSKeyedArchiver archivedDataWithRootObject:persistDict];
+    [[NSUserDefaults standardUserDefaults] setObject:archive forKey:kPSPDFTabbedDocumentsPersistKey];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
