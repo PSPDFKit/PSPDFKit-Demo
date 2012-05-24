@@ -23,7 +23,7 @@
 }
 
 - (NSString *)actionName {
-    return PSPDFLocalize(@"Options");
+    return NSLocalizedString(@"Options", @"");
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {

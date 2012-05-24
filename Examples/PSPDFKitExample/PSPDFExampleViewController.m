@@ -106,7 +106,7 @@
         self.clipToPageBoundaries = variance < 0.2f;
 
         // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-        NSString *closeTitle = PSIsIpad() ? PSPDFLocalize(@"Documents") : PSPDFLocalize(@"Back");
+        NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
         UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
         self.leftBarButtonItems = [NSArray arrayWithObjects:closeButtonItem, settingsButtomItem, nil];

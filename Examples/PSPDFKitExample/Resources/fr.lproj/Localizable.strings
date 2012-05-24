@@ -9,7 +9,7 @@
  */
 
 "Documents" = "Documents";
-"Done" = "Done";
+"Done" = "OK";
 
-"DeleteMagazineSingle" = "Delete %@?";
-"DeleteMagazineMultiple" = "Delete %@? (%d Magazines)";
+"DeleteMagazineSingle" = "Effacer %@?";
+"DeleteMagazineMultiple" = "Effacer %@? (%d magazines)";
