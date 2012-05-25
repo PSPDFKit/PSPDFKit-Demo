@@ -99,7 +99,12 @@
         self.linkAction = PSPDFLinkActionInlineBrowser;
         
         // 1.10 feature: replaces printEnabled, openInEnabled
-        self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, nil];
+        if (PSIsIpad()) {
+            self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, nil];
+        }else {
+            self.rightBarButtonItems = [NSArray arrayWithObjects:self.searchButtonItem, self.viewModeButtonItem, nil];
+            self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem, nil];
+        }
         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         CGFloat variance = [document aspectRatioVariance];
@@ -109,7 +114,23 @@
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
         UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
+
         self.leftBarButtonItems = [NSArray arrayWithObjects:closeButtonItem, settingsButtomItem, nil];
+
+        // restore viewState
+        if ([self.document isValid]) {
+            NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.uid];
+            @try {
+                if (viewStateData) {
+                    PSPDFViewState *viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
+                    [self restoreDocumentViewState:viewState animated:NO];
+                }
+            }
+            @catch (NSException *exception) {
+                NSLog(@"Failed to load saved viewState: %@", exception);
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.uid];
+            }
+        }
 
         // 1.9 feature
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
@@ -123,7 +144,11 @@
 }
 
 - (void)dealloc {
-    [[NSUserDefaults standardUserDefaults] setInteger:self.realPage forKey:self.document.uid]; // remember last page
+    // save current viewState
+    if ([self.document isValid]) {
+        NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self documentViewState]];
+        [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.uid];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -137,21 +162,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    // try to restore the last page
-    if (!hasLoadedLastPage_) {
-        hasLoadedLastPage_ = YES;
-        NSInteger lastPage = [[NSUserDefaults standardUserDefaults] integerForKey:self.document.uid];
-        if (lastPage >= 0 && lastPage < self.document.pageCount) {
-            // animation with pageCurl form first page looks weird, so don't animated here.
-            BOOL shouldAnimate = !self.pageCurlEnabled;
-            [self scrollToPage:lastPage animated:shouldAnimate];
-        }
-    }
-}
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
