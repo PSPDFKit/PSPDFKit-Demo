@@ -1,0 +1,15 @@
+//
+//  PSPDFMoreBarButtonItem.h
+//  PSPDFKit
+//
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//
+
+#import "PSPDFBarButtonItem.h"
+
+@interface PSPDFMoreBarButtonItem : PSPDFBarButtonItem <UIActionSheetDelegate>
+
+/// Saves the actionSheet if currently displayed.
+@property (nonatomic, strong) UIActionSheet *actionSheet;
+
+@end

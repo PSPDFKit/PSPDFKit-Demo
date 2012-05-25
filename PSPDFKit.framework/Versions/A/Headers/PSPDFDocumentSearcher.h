@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFSearchOperation.h"
 
 @class PSPDFDocument;
 
@@ -27,14 +28,8 @@
 
 @end
 
-enum {
-    PSPDFSearchLegacy,                    // this is basically legacy mode, very fast, does not parse CMaps.
-    PSPDFSearchAdvanced,                  // more advanced text extraction. (slower)
-    PSPDFSearchAdvancedWithHighlighting   // additionally, search results will be highlighted.
-}typedef PSPDFSearchMode;
-
 /// Manages search operations for a specific document.
-@interface PSPDFDocumentSearcher : NSObject <PSPDFSearchDelegate>
+@interface PSPDFDocumentSearcher : NSObject <PSPDFSearchOperationDelegate>
 
 /// Initialize with the document;
 - (id)initWithDocument:(PSPDFDocument *)document;

@@ -63,11 +63,3 @@ typedef NSUInteger PSPDFAnnotationFilter;
 @property(nonatomic, assign) BOOL createTextHighlightAnnotations;
 
 @end
-
-
-@interface NSString (PSPDFAdditions)
-
-/// Escapes a string to be RFC 3986 conform. (http://tools.ietf.org/html/rfc3986#section-2.2)
-- (NSString *)pspdf_escapedString;
-
-@end

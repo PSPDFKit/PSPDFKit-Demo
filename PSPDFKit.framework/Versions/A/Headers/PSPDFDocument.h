@@ -13,7 +13,7 @@
 
 /// Represents a single, logical, pdf document. (one or many pdf files)
 /// Can be overriden to support custom collections.
-@interface PSPDFDocument : NSObject {
+@interface PSPDFDocument : NSObject <NSCopying, NSCoding> {
     NSUInteger pageCount_;
 }
 
@@ -153,13 +153,6 @@
 /// if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 
-/// text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.
-@property(nonatomic, assign, getter=isSearchEnabled) BOOL searchEnabled;
-
-/// Show icon for Outline/Table of Contents extraction. Defaults to YES.
-/// Note: if there ToC is empty or contains only one item, it will be ignored by PSPDFViewController.
-@property(nonatomic, assign, getter=isOutlineEnabled) BOOL outlineEnabled;
-
 /// annotation link extraction. Defaults to YES.
 @property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
 
@@ -210,5 +203,8 @@
 /// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
 @property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
+
+/// Page labels (NSString) for the current document.
+@property(nonatomic, readonly) NSArray *pageLabels;
 
 @end

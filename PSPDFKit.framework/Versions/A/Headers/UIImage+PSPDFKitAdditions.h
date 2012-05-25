@@ -2,10 +2,7 @@
 //  UIImage+PSPDFKitAdditions.h
 //  PSPDFKit
 //
-//  Created by Matt Gemmell on 20/08/2008.
-//  Heavily fixed and modified by Peter Steinberger
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
-//  (Copyright 2008 Instinctive Code)
 //
 
 #import <Foundation/Foundation.h>
@@ -43,9 +40,6 @@ typedef enum {
 
 /// Creates a new image that is eventually decompressed using libjpeg-turbo.
 + (UIImage *)pspdf_preloadedImageWithData:(NSData *)data useJPGTurbo:(BOOL)useJPGTurbo;
-
-/// Calculates scale for images.
-+ (CGFloat)pspdf_scaleForImageSize:(CGSize)imageSize bounds:(CGSize)boundsSize;
 
 /// Load images from the bundle.
 + (UIImage *)pspdf_imageNamed:(NSString *)imageName bundle:(NSString *)bundleName;
