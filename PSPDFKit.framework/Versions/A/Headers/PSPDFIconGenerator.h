@@ -15,7 +15,8 @@ enum {
     PSPDFIconTypeBackArrow,
     PSPDFIconTypeBackArrowSmall,
     PSPDFIconTypeForwardArrow,
-    PSPDFIconTypePrint
+    PSPDFIconTypePrint,
+    PSPDFIconTypeEmail
 }typedef PSPDFIconType;
 
 /// Generates various Icons on the fly and caches them for later use.

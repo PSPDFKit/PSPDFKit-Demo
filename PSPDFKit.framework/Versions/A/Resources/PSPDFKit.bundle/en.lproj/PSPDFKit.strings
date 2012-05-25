@@ -5,17 +5,25 @@
   Copyright (c) 2012 Peter Steinberger. All rights reserved.
 */
 
-// toolbar
+// general
 "Close" = "Close";
 "Cancel" = "Cancel";
 "Open" = "Open";
-"Documents" = "Documents";
-"Page %d" = "Page %d";
+
+// toolbar
+"Outline" = "Outline";
+"Search" = "Search";
+"Email" = "Email";
+"Open in..." = "Open in...";
+"Print" = "Print";
+
+// page
 "%d of %d" = "%d of %d";
-"Done" = "Done";
+"%@ (%d of %d)" = "%@ (%d of %d)";
 
 // search
-"Search" = "Search Document";
+"Page %d" = "Page %d";
+"Search Document" = "Search Document";
 "No matches found" = "No matches found";
 "One match found" = "One match found";
 "%d matches found" = "%d matches found";
@@ -27,7 +35,3 @@
 "Copy Link" = "Copy Link";
 "Open in Safari" = "Open in Safari";
 "Mail Link to this Page" = "Mail Link to this Page";
-
-// for the KioskExample
-"DeleteMagazineSingle" = "Delete %@?";
-"DeleteMagazineMultiple" = "Delete %@? (%d Magazines)";

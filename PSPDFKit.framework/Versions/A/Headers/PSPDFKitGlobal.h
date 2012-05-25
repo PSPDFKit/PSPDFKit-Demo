@@ -75,8 +75,8 @@ BOOL PSPDFIsCrappyDevice(void);
 /// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 BOOL PSPDFShouldAnimate(void);
 
-/// helper to calculate new rect for specific scale
-CGSize PSPDFSizeForScale(CGRect rect, CGFloat scale);
+/// helper to calculate new size for specific scale and size.
+CGSize PSPDFSizeForScale(CGSize rect, CGFloat scale);
 
 // drawing helper
 extern inline void DrawPSPDFKit(CGContextRef context);
@@ -102,12 +102,21 @@ extern NSString *PSPDFLocalize(NSString *stringToken);
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 /// Resolves paths like "Documents" or "Bundle" to their real path. 
-/// If no name is found, the bundle string is always attached.
-extern NSString *PSPDFResolvePathNames(NSString *path);
-extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString);
+/// If no name is found, the bundle string is always attached, unless fallbackPath is set.
+extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
+extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath);
+
+/// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to yes. Defaults to NO.
+extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
 
 /// Queries subviews for a specific class prefix. Usually used for subview-hacking/workarounds.
 UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
+
+/// Returns scale to fit a size within another size.
+CGFloat PSPDFScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
+
+/// Returns scale to fit a size within another size, with optional zooming.
+CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize boundsSize, BOOL zoomMinimalSize, BOOL fitWidth);
 
 /// Convert a view point to a pdf point. bounds is from the view (usually PSPDFPageView.bounds)
 CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
@@ -186,12 +195,12 @@ float c = (a);       \
 @implementation PSPDF_FIX_CATEGORY_BUG_##name @end
 
 // iOS compatibility
-#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_4_0
-#define kCFCoreFoundationVersionNumber_iPhoneOS_4_0 550.32
+#ifndef kCFCoreFoundationVersionNumber_iOS_4_0
+#define kCFCoreFoundationVersionNumber_iOS_4_0 550.32
 #endif
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
 #define PSPDF_IF_IOS4_OR_GREATER(...) \
-if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_4_0) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_4_0) \
 { \
 __VA_ARGS__ \
 }
@@ -200,17 +209,17 @@ __VA_ARGS__ \
 #endif
 
 #define PSPDF_IF_PRE_IOS4(...)  \
-if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_4_0)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_4_0)  \
 { \
 __VA_ARGS__ \
 }
 
-#ifndef kCFCoreFoundationVersionNumber_iPhoneOS_5_0
-#define kCFCoreFoundationVersionNumber_iPhoneOS_5_0 674.0
+#ifndef kCFCoreFoundationVersionNumber_iOS_5_0
+#define kCFCoreFoundationVersionNumber_iOS_5_0 674.0
 #endif
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 50000
 #define PSPDF_IF_IOS5_OR_GREATER(...) \
-if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iPhoneOS_5_0) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) \
 { \
 __VA_ARGS__ \
 }
@@ -219,7 +228,7 @@ __VA_ARGS__ \
 #endif
 
 #define PSPDF_IF_PRE_IOS5(...)  \
-if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_5_0)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0)  \
 { \
 __VA_ARGS__ \
 }

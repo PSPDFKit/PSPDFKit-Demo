@@ -5,12 +5,11 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-// ARC is compatible with iOS 4.0 upwards, but you need at least Xcode 4.2 with Clang LLVM 3.0 to compile it.
+// ARC is compatible with iOS 4.0 upwards, but you need a modern Xcode.
 #if !defined(__clang__) || __clang_major__ < 3
-#error This project must be compiled with ARC (Xcode 4.2+ with LLVM 3.0 and above)
+#error This project must be compiled with ARC (Xcode 4.3.2+ with LLVM 3.1 and above)
 #endif
 
-// general
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFGlobalLock.h"
@@ -31,6 +30,8 @@
 #import "PSPDFPagedScrollView.h"
 #import "PSPDFPageViewController.h"
 #import "PSPDFSinglePageViewController.h"
+#import "PSPDFTabbedViewController.h"
+#import "PSPDFViewState.h"
 
 // search
 #define kPSPDFSearchMinimumLength 3
@@ -43,9 +44,9 @@
 // thumbnails
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailGridViewCell.h"
-#import "UIImage+PSPDFKitAdditions.h"
 #import "PSPDFGridView.h"
 #import "PSPDFGridViewLayoutStrategies.h"
+#import "UIImage+PSPDFKitAdditions.h"
 
 // outline
 #import "PSPDFOutlineParser.h"
@@ -62,3 +63,7 @@
 #import "PSPDFHighlightAnnotationView.h"
 #import "PSPDFVideoAnnotationView.h"
 #import "PSPDFWebAnnotationView.h"
+#import "PSPDFWebViewController.h"
+
+// toolbar
+#import "PSPDFBarButtonItem.h"

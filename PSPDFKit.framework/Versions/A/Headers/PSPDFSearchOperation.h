@@ -9,7 +9,25 @@
 #import "PSPDFDocumentSearcher.h"
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument;
+@class PSPDFDocument, PSPDFSearchOperation;
+
+enum {
+    PSPDFSearchLegacy,                    // this is basically legacy mode, very fast, does not parse CMaps.
+    PSPDFSearchAdvanced,                  // more advanced text extraction. (slower)
+    PSPDFSearchAdvancedWithHighlighting   // additionally, search results will be highlighted.
+}typedef PSPDFSearchMode;
+
+/// Get updates while the search operation is running.
+@protocol PSPDFSearchOperationDelegate <NSObject>
+
+/// Called when search is started. 
+- (void)willStartSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchString isFullSearch:(BOOL)isFullSearch;
+
+/// Search was updated, a new page has been scanned
+- (void)didUpdateSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchString newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page;
+
+@end
+
 
 /// Search operation. Created within PSPDFDocumentSearcher.
 @interface PSPDFSearchOperation : NSOperation
@@ -39,7 +57,7 @@
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
 /// Search delegate. Will be retained as long as the operation runs.    
-@property(nonatomic, ps_weak) id<PSPDFSearchDelegate> delegate;
+@property(nonatomic, ps_weak) id<PSPDFSearchOperationDelegate> delegate;
 
 /// Set the searchMode for the active search.
 @property(nonatomic, assign) PSPDFSearchMode searchMode;

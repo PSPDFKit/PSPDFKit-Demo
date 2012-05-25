@@ -5,21 +5,29 @@
   Copyright (c) 2012 Peter Steinberger. All rights reserved.
 */
 
-// toolbar
+// general
 "Close" = "Schließen";
 "Cancel" = "Abbrechen";
 "Open" = "Öffnen";
-"Documents" = "Dokumente";
-"Page %d" = "Seite %d";
+
+// toolbar
+"Outline" = "Outline";
+"Search" = "Suchen";
+"Email" = "E-Mail";
+"Open in..." = "Öffnen in …";
+"Print" = "Drucken";
+
+// page
 "%d of %d" = "%d von %d";
-"Done" = "Fertig";
+"%@ (%d of %d)" = "%@ (%d von %d)";
 
 // search
-"Search" = "Dokument durchsuchen";
+"Page %d" = "Seite %d";
+"Search Document" = "Dokument durchsuchen";
 "No matches found" = "Keine Treffer gefunden";
 "One match found" = "Einen Treffer gefunden";
 "%d matches found" = "%d Treffer gefunden";
-"Searching..." = "Suchen...";
+"Searching..." = "Suchen …";
 "Search Completed" = "Suche abgeschlossen";
 "Search Cancelled" = "Suche abgebrochen";
 
@@ -27,7 +35,3 @@
 "Copy Link" = "Link kopieren";
 "Open in Safari" = "In Safari öffnen";
 "Mail Link to this Page" = "Link zu dieser Seite mailen";
-
-// for the KioskExample
-"DeleteMagazineSingle" = "%@ löschen?";
-"DeleteMagazineMultiple" = "%@ löschen? (%d Ausgaben)";
