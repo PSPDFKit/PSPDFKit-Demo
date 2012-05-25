@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFOutlineViewController Class Reference</title>
+		<title>PSPDFLabelParser Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFOutlineViewController Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFLabelParser Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -40,7 +38,7 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/outline">&nbsp;&nbsp;&nbsp;&nbsp;outline</option>
+	<option value="//api/name/labels">&nbsp;&nbsp;&nbsp;&nbsp;labels</option>
 	
 	
 	
@@ -49,7 +47,9 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithDocument:pdfController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:pdfController:</option>
+	<option value="//api/name/initWithDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:</option>
+	
+	<option value="//api/name/parseDocument">&nbsp;&nbsp;&nbsp;&nbsp;- parseDocument</option>
 	
 	
 	
@@ -60,8 +60,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -75,7 +73,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outline">outline</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/labels">labels</a></span></li>
 	
 </ul></li>
 
@@ -85,7 +83,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:pdfController:">initWithDocument:pdfController:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:">initWithDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseDocument">parseDocument</a></span></li>
 	
 </ul></li>
 
@@ -94,7 +94,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFOutlineViewController Class Reference" name="top"></a>
+				<a title="PSPDFLabelParser Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -103,7 +103,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFOutlineViewController Class Reference</h1>
+						<h1 class="title title-header">PSPDFLabelParser Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -111,21 +111,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UITableViewController</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFOutlineViewController.h</td>
+	<td class="specification-value">PSPDFLabelParser.h</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Outline (Table of Contents) parser.</p>
-					</div>
 					
 					
 					
@@ -142,15 +134,22 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithDocument:pdfController:">&ndash;&nbsp;initWithDocument:pdfController:</a></code>
-		<span class="tooltip"><p>initializes <a href="#//api/name/outline">outline</a> parser with document and pdfController. There is only one <a href="#//api/name/outline">outline</a> per document.</p></span>
+		<code><a href="#//api/name/initWithDocument:">&ndash;&nbsp;initWithDocument:</a></code>
+		<span class="tooltip"><p>Init label parser with document.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/outline">&nbsp;&nbsp;outline</a></code>
-		<span class="tooltip"><p>Array of PSPDFOutlineElements</p></span>
+		<code><a href="#//api/name/parseDocument">&ndash;&nbsp;parseDocument</a></code>
+		<span class="tooltip"><p>Parse document, returns <a href="#//api/name/labels">labels</a> (NSStrings)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/labels">&nbsp;&nbsp;labels</a></code>
+		<span class="tooltip"><p>Returns cached <a href="#//api/name/labels">labels</a>. Starts parsing if <a href="#//api/name/labels">labels</a> are not yet created.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -168,17 +167,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/outline" title="outline"></a>
-	<h3 class="subsubtitle method-title">outline</h3>
+	<a name="//api/name/labels" title="labels"></a>
+	<h3 class="subsubtitle method-title">labels</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Array of PSPDFOutlineElements</p>
+		<p>Returns cached <a href="#//api/name/labels">labels</a>. Starts parsing if <a href="#//api/name/labels">labels</a> are not yet created.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFOutlineElement *outline</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *labels</code></div>
 	
 	
 	
@@ -195,7 +194,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFLabelParser.h</code><br />
 	</div>				
 	
 	
@@ -212,17 +211,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithDocument:pdfController:" title="initWithDocument:pdfController:"></a>
-	<h3 class="subsubtitle method-title">initWithDocument:pdfController:</h3>
+	<a name="//api/name/initWithDocument:" title="initWithDocument:"></a>
+	<h3 class="subsubtitle method-title">initWithDocument:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initializes <a href="#//api/name/outline">outline</a> parser with document and pdfController. There is only one <a href="#//api/name/outline">outline</a> per document.</p>
+		<p>Init label parser with document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithDocument:(PSPDFDocument *)<em>document</em> pdfController:(PSPDFViewController *)<em>pdfController</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithDocument:(PSPDFDocument *)<em>document</em></code></div>
 	
 	
 	
@@ -239,7 +238,41 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFLabelParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/parseDocument" title="parseDocument"></a>
+	<h3 class="subsubtitle method-title">parseDocument</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Parse document, returns <a href="#//api/name/labels">labels</a> (NSStrings)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)parseDocument</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFLabelParser.h</code><br />
 	</div>				
 	
 	

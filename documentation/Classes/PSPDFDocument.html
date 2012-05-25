@@ -64,13 +64,11 @@
 	
 	<option value="//api/name/isLocked">&nbsp;&nbsp;&nbsp;&nbsp;isLocked</option>
 	
-	<option value="//api/name/outlineEnabled">&nbsp;&nbsp;&nbsp;&nbsp;outlineEnabled</option>
-	
 	<option value="//api/name/outlineParser">&nbsp;&nbsp;&nbsp;&nbsp;outlineParser</option>
 	
-	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
+	<option value="//api/name/pageLabels">&nbsp;&nbsp;&nbsp;&nbsp;pageLabels</option>
 	
-	<option value="//api/name/searchEnabled">&nbsp;&nbsp;&nbsp;&nbsp;searchEnabled</option>
+	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
 	
 	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
 	
@@ -210,13 +208,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLocked">isLocked</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineEnabled">outlineEnabled</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineParser">outlineParser</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageLabels">pageLabels</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchEnabled">searchEnabled</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
 	
@@ -317,6 +313,9 @@
 						<tr>
 	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFDocument.h</td>
@@ -639,21 +638,6 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/searchEnabled">&nbsp;&nbsp;searchEnabled</a></code>
-		<span class="tooltip"><p>text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/outlineEnabled">&nbsp;&nbsp;outlineEnabled</a></code>
-		<span class="tooltip"><p>Show icon for Outline/Table of Contents extraction. Defaults to YES.
-Note: if there ToC is empty or contains only one item, it will be ignored by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/annotationsEnabled">&nbsp;&nbsp;annotationsEnabled</a></code>
 		<span class="tooltip"><p>annotation link extraction. Defaults to YES.</p></span>
 	</span>
@@ -757,6 +741,13 @@ string. If the string fails, the document maintains its user permissions. In eit
 		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
 		<span class="tooltip"><p>Link annotation parser class for current document.
 Can be overridden to use a subclassed annotation parser.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageLabels">&nbsp;&nbsp;pageLabels</a></code>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1186,41 +1177,6 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/outlineEnabled" title="outlineEnabled"></a>
-	<h3 class="subsubtitle method-title">outlineEnabled</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Show icon for Outline/Table of Contents extraction. Defaults to YES.
-Note: if there ToC is empty or contains only one item, it will be ignored by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isOutlineEnabled) BOOL outlineEnabled</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocument.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/outlineParser" title="outlineParser"></a>
 	<h3 class="subsubtitle method-title">outlineParser</h3>
 	
@@ -1255,17 +1211,17 @@ Note: if there ToC is empty or contains only one item, it will be ignored by <a 
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/password" title="password"></a>
-	<h3 class="subsubtitle method-title">password</h3>
+	<a name="//api/name/pageLabels" title="pageLabels"></a>
+	<h3 class="subsubtitle method-title">pageLabels</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
+		<p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *password</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray *pageLabels</code></div>
 	
 	
 	
@@ -1289,17 +1245,17 @@ Note: if there ToC is empty or contains only one item, it will be ignored by <a 
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/searchEnabled" title="searchEnabled"></a>
-	<h3 class="subsubtitle method-title">searchEnabled</h3>
+	<a name="//api/name/password" title="password"></a>
+	<h3 class="subsubtitle method-title">password</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>text extraction is not possible for all pdfs. disable search if not working. Defaults to YES.</p>
+		<p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isSearchEnabled) BOOL searchEnabled</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *password</code></div>
 	
 	
 	
@@ -2421,7 +2377,7 @@ string. If the string fails, the document maintains its user permissions. In eit
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-04-20)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-25)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
