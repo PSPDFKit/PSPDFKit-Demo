@@ -2,40 +2,49 @@
 
 __v1.10.0 - 25/May/2012__
 
-*** New toolbar handling (API change)
-The properties searchEnabled, outlineEnabled, printEnabled, openInEnabled, viewModeControlVisible
-have been replaced by a much more flexible system based on the PSPDFBarButtonItem class.
+This will probably be the last major release in the 1.x branch.
+Work on 2.x is already underway, with a focus on text selection and annotations.
 
-Toolbar customization is now much more flexible.
-For example, to add those features under the "action" icon as a menu, use this:
-self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonItem, self.openInButtonItem, self.emailButtonItem, nil];
-If you're looking to e.g. remove the search feature, set a new rightBarButtonItems array that excludes the searchButtonItem.
+This release has some API-breaking changes:
 
-Likewise, the functions additionalLeftToolbarButtons, magazineButton and toolbarBackButton have been unified to self.leftBarButtonItems.
+* New toolbar handling (breaking API change)
+  The properties searchEnabled, outlineEnabled, printEnabled, openInEnabled, viewModeControlVisible
+  have been replaced by a much more flexible system based on the PSPDFBarButtonItem class.
 
-*** Resolving pdf link paths has changed. (API change)
-Previously, if no marker like "Documents" or "Bundle" was found, we resolved to the bundle.
-This version changes resolving the link to the actual position of the pdf file. If you need the old behavior, you can set PSPDFResolvePathNamesEnableLegacyBehavior to YES or use a custom subclass of the PSPDFAnnotationParser.
+  For example, to add those features under the "action" icon as a menu, use this:
+  self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonItem, self.openInButtonItem, self.emailButtonItem, nil];
+  If you're looking to e.g. remove the search feature, set a new rightBarButtonItems array that excludes the searchButtonItem.
 
-*  New class PSPDFTabbedViewController, to show multiple PSPDFDocuments with a top tab bar. iOS5 only.
-*  New feature: sendViaEmail: allows sending the pdf as an attachment.
-*  New delegate: delegateDidEndZooming:atScale to detect user/animated zooming.
-*  New property: useParentNavigationBar, if you embed the PSPDFViewController.
+  Likewise, the functions additionalLeftToolbarButtons, magazineButton and toolbarBackButton have been unified to self.leftBarButtonItems.
+  If you want to replace the default closeButton with your own, just create your own UIBarButtonItem
+  and set it to self.leftBarButtonItems = [NSArray arrayWithObject:customCloseBarButtonItem];
+
+* Resolving pdf link paths has changed. (breaking API change)
+  Previously, if no marker like "Documents" or "Bundle" was found, we resolved to the bundle.
+  This version changes resolving the link to the actual position of the pdf file.
+  If you need the old behavior, you can set PSPDFResolvePathNamesEnableLegacyBehavior to YES or use a custom subclass of the PSPDFAnnotationParser.
+
+*  New class PSPDFTabbedViewController, to show multiple PSPDFDocuments with a top tab bar. iOS5 only. (includes new TabbedExample)
+*  New feature: PDF page labels are parsed. (e.g. roman letters or custom names; displayed in the PSPDFPositionView and the thumbnail label)
+*  New feature: send via Email: allows sending the pdf as an attachment. (see emailButtonItem in PSPDFViewController)
+*  New feature: PSPDFViewState allows persisting/restoring of a certain document position (including page, position, zoom level).
+   See documentViewState and restoreDocumentViewState:animated: in PSPDFViewController.
+*  Add support for puny code characters in pdf URLs (like http://➡.ws/鞰齒). This uses the IDNSDK.
+*  New property: useParentNavigationBar, if you embed the PSPDFViewController using iOS5 containment and still want to populate the navigationBar.
 *  New property: pageCurlDirectionLeftToRight to allow a backwards pagination. (for LTR oriented documents)
-*  Add support for puny code characters in pdf URLs (like http://➡.ws/鞰齒)
-*  Show URL in embedded browser title bar, until page is loaded with the real title.
-*  If PDF is password protected, don't try to read the metadata until it is unlocked.
-*  PSPDFDocument now implements <NSCopying> and <NSCoding> protocols.
-*  Add new helper in PSPDFKitGlobal: PSPDFScaleForSizeWithinSize.
+*  New delegate: delegateDidEndZooming:atScale to detect user/animated zooming.
+*  UI Improvement: Show URL in embedded browser title bar, until page is loaded with the real title.
+*  General: Add french localization in PSPDFKit.bundle.
+*  Core: PSPDFDocument now implements <NSCopying> and <NSCoding> protocols.
 *  Fixes a problem where links with hash bangs (like https://twitter.com/#!/) where incorrectly escaped.
 *  Fixes opening certain password protected files.
 *  Fixes unlockWithPassword always returning YES, even with an incorrect password.
-*  Fixes a crash regarding pageCurl and custom orientations on the iPhone. It's now possible to set UpsideDown orientation on the iPhone as well (although that's not the preferred way Apple would do it - UpsideDown should only be enabled on the iPad). All provided view controllers (( "<PSPDFSinglePageViewController: 0x88ccbe0>" )) must support the pending interface orientation (UIInterfaceOrientationPortraitUpsideDown)
+*  Fixes a crash regarding pageCurl and UpsideDown orientation on the iPhone.
 *  Fixes a problem where the search delegates where called after canceling the operation.
 *  Fixes a problem where the page wasn't re-rendered if it was changed while zoom was active.
-*  Fixes a problem where the tile wasn't updated after setting document to nil.it
-*  Fixed a rare condition where a lock wasn't released in PSPDFGlobalLock.
-*  Some internal reorganization and optimizations. Let me know if something broke on your side.
+*  Fixes a problem where the tile wasn't updated after setting document to nil.
+*  Fixes a problem where under rare conditions a spinlock wasn't released in PSPDFGlobalLock.
+*  Adds support for Xcode 4.4 DP4. Due to an already acknowledged Apple linker bug. Xcode 4.4 DP5 is currently broken. (Xcode 4.3.2 is still recommended)
 *  Titanium: New min SDK is 2.0.1.GA2.
 
 __v1.9.15 - 20/Apr/2012__
