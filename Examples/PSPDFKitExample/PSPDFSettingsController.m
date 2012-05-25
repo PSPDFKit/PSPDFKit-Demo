@@ -53,7 +53,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
                     [NSArray arrayWithObjects:_(@"Horizontal (Magazine style)"), _(@"Vertical (like UIWebView)"), _(@"PageCurl (like iBooks, iOS5)"), nil],
                     [NSArray arrayWithObjects:_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation"), nil],
                     [NSArray arrayWithObjects:_(@"Single First Page (Cover)"), _(@"No Cover Page"), nil],
-                    [NSArray arrayWithObjects:_(@"Zoom small files"), _(@"Zoom to width"), _(@"Scrobblebar (Thumbs"), nil], // @"Paging Enabled"
+                    [NSArray arrayWithObjects:_(@"Zoom small files"), _(@"Zoom to width"), _(@"Scrobblebar"), nil], // @"Paging Enabled"
                     [NSArray arrayWithObjects:_(@"Search"), _(@"Outline"), _(@"Annotations"), _(@"AspectRatio Equal"), _(@"Two Step Rendering"), nil],                    
                     nil];        
     }
