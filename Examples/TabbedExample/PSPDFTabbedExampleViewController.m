@@ -21,6 +21,15 @@
         self.enableAutomaticStatePersistance = YES;
         [self restoreState];
 
+        // merge docments with current state
+        NSMutableArray *newDocuments = [self.documents mutableCopy];
+        for (PSPDFDocument *document in documents) {
+            if (![self.documents containsObject:document]) {
+                [newDocuments addObject:document];
+            }
+        }
+        self.documents = newDocuments;
+
         PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
         self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
     }
