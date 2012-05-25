@@ -6,9 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFCache.h"
 
-@class PSPDFDocument, PSPDFViewController;
+@class PSPDFDocument, PSPDFViewController, PSPDFOutlineElement;
 
 /// Outline (Table of Contents) parser.
 @interface PSPDFOutlineViewController : UITableViewController
@@ -18,8 +17,5 @@
 
 /// Array of PSPDFOutlineElements
 @property(nonatomic, strong) PSPDFOutlineElement *outline;
-
-/// If presented within a popoverController, it can be accessed here.
-@property(nonatomic, ps_weak) UIPopoverController *popoverController;
 
 @end

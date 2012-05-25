@@ -37,8 +37,11 @@
 /// will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
 
-/// will be called after a *programatically* animated page change only.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(PSPDFScrollView *)scrollView;
+/// will be called after a *programatically* animated page change.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(UIScrollView *)scrollView;
+
+/// will be called after zoom level has been changed, either programatically or manually.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
 /// if user tapped within page bounds, this will notify you.
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
