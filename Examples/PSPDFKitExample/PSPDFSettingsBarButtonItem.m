@@ -11,7 +11,7 @@
 @implementation PSPDFSettingsBarButtonItem
 
 - (UIBarButtonItemStyle)itemStyle {
-    return UIBarButtonItemStyleBordered;
+    return UIBarButtonItemStylePlain;
 }
 
 - (UIImage *)image {
