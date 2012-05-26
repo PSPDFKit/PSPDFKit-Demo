@@ -24,7 +24,7 @@ typedef enum {
 + (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url;
 
 /// initialize a new pdf download
-- (id)initWithURL:(NSURL *)url;
+- (id)initWithURL:(NSURL *)URL;
 
 /// start download
 - (void)startDownload;
@@ -32,10 +32,10 @@ typedef enum {
 /// cancel running download
 - (void)cancelDownload;
 
-/// download url
-@property(nonatomic, strong, readonly) NSURL *url;
+/// download URL.
+@property(nonatomic, strong, readonly) NSURL *URL;
 
-/// magazine that's being downloaded
+/// magazine that's being downloaded.
 @property(nonatomic, strong) PSPDFMagazine *magazine;
 
 @property(nonatomic, assign, readonly) PSPDFStoreDownloadStatus status;

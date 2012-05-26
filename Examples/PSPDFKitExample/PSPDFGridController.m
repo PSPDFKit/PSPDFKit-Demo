@@ -480,7 +480,7 @@
         }
     }else {
         deleteBlock();
-        if (magazine.url) {
+        if (magazine.URL) {
             // magazines with URL can't really be deleted, just delete data & fade to gray.
             [self.gridView reloadObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
