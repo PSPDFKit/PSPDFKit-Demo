@@ -20,11 +20,11 @@
 /// Magazine folder. Weak to break the retain cycle.
 @property(nonatomic, ps_weak) PSPDFMagazineFolder *folder; // weak!
 
-/// Url for downloading the pdf.
-@property(nonatomic, strong) NSURL *url;
+/// URL for downloading the pdf.
+@property(nonatomic, strong) NSURL *URL;
 
-// Url for downloading image.
-@property(nonatomic, strong) NSURL *imageUrl;
+// URL for downloading image.
+@property(nonatomic, strong) NSURL *imageURL;
 
 /// UES if magazine is currently downloading.
 @property(nonatomic, assign, getter=isDownloading) BOOL downloading;

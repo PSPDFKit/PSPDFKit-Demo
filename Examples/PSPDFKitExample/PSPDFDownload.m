@@ -13,7 +13,7 @@
 
 @interface PSPDFDownload()
 //@property(nonatomic, retain) PSPDFMagazine *magazine;
-@property(nonatomic, strong) NSURL *url;
+@property(nonatomic, strong) NSURL *URL;
 @property(nonatomic, assign) PSPDFStoreDownloadStatus status;
 @property(nonatomic, assign) float downloadProgress;
 @property(nonatomic, copy) NSError *error;
@@ -23,7 +23,7 @@
 
 @implementation PSPDFDownload
 
-@synthesize url = url_;
+@synthesize URL = URL_;
 @synthesize magazine = magazine_;
 @synthesize request = request_;
 @synthesize status = status_;
@@ -45,14 +45,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-+ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url {
-    PSPDFDownload *pdfDownload = [[[self class] alloc] initWithURL:url];
++ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)URL {
+    PSPDFDownload *pdfDownload = [[[self class] alloc] initWithURL:URL];
     return pdfDownload;
 }
 
-- (id)initWithURL:(NSURL *)url {
+- (id)initWithURL:(NSURL *)URL {
     if ((self = [super init])) {
-        url_ = url;
+        URL_ = URL;
     }
     return self;
 }
@@ -104,7 +104,7 @@
 - (void)startDownload {
     NSError *error = nil;
     NSString *dirPath = [self downloadDirectory];
-    NSString *destPath = [dirPath stringByAppendingPathComponent:[self.url lastPathComponent]];  
+    NSString *destPath = [dirPath stringByAppendingPathComponent:[self.URL lastPathComponent]];
     
     // create folder
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -112,10 +112,10 @@
         [fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&error];
     }
     
-    PSELog(@"downloading pdf from %@ to %@", self.url, destPath);
+    PSELog(@"downloading pdf from %@ to %@", self.URL, destPath);
     
     // create request
-    ASIHTTPRequest *pdfRequest = [ASIHTTPRequest requestWithURL:self.url];
+    ASIHTTPRequest *pdfRequest = [ASIHTTPRequest requestWithURL:self.URL];
     [pdfRequest setAllowResumeForFileDownloads:YES];
     [pdfRequest setShowAccurateProgress:YES];
     [pdfRequest setNumberOfTimesToRetryOnTimeout:0];
@@ -126,7 +126,7 @@
     
     __ps_weak ASIHTTPRequest *pdfRequestWeak = pdfRequest;
     [pdfRequest setCompletionBlock:^{
-        PSELog(@"Download finished: %@", self.url);
+        PSELog(@"Download finished: %@", self.URL);
         
         if (self.isCancelled) {
             self.status = PSPDFStoreDownloadFailed;
@@ -137,18 +137,18 @@
         self.status = PSPDFStoreDownloadFinished;
         NSString *fileName = [self.request.url lastPathComponent];
         NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
-        NSURL *destinationUrl = [NSURL fileURLWithPath:destinationPath];
-        [self.magazine setFileUrl:destinationUrl];
+        NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
+        [self.magazine setFileURL:destinationURL];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
         
         // don't back up the downloaded pdf - iCloud is for self-created files only.
-        [self addSkipBackupAttributeToFile:destinationUrl];
+        [self addSkipBackupAttributeToFile:destinationURL];
         [pdfRequestWeak setCompletionBlock:nil]; // clear out completion block
     }];
     
     [pdfRequest setFailedBlock:^{
-        PSELog(@"Download failed: %@. reason:%@", self.url, [pdfRequestWeak.error localizedDescription]);
+        PSELog(@"Download failed: %@. reason:%@", self.URL, [pdfRequestWeak.error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
         self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;

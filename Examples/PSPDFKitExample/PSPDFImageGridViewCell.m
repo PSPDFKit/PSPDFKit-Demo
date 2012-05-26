@@ -139,8 +139,8 @@
             self.image = [magazine coverImageForSize:self.frame.size];
             
             // try to download image
-            if (!self.image && magazine.imageUrl) {           
-                [self.imageView setImageWithURL:magazine.imageUrl];
+            if (!self.image && magazine.imageURL) {
+                [self.imageView setImageWithURL:magazine.imageURL];
             }
             
             // dark out view if it needs to be downloaded
