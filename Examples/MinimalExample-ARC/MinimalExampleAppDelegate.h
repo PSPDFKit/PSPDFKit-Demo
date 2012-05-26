@@ -6,10 +6,10 @@
 //
 
 // if you use PSPDFKit.framework
-#import <PSPDFKit/PSPDFKit.h>
+//#import <PSPDFKit/PSPDFKit.h>
 
 // if you use PSPDFKit-lib.xcodeproj
-//#import "PSPDFKit.h"
+#import "PSPDFKit.h"
 
 @interface MinimalExampleAppDelegate : UIResponder <UIApplicationDelegate>
 
