@@ -2,7 +2,7 @@
 //  MinimalExampleAppDelegate.m
 //  MinimalExample
 //
-//  Copyright 2011 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #import "MinimalExampleAppDelegate.h"
@@ -15,7 +15,7 @@
     
     // create the PSPDFViewController
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageCurlEnabled = YES;
     pdfController.linkAction = PSPDFLinkActionInlineBrowser;

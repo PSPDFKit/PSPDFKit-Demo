@@ -14,17 +14,17 @@
 @synthesize folder = folder_;
 @synthesize downloading = downloading_;
 @synthesize available = available_;
-@synthesize url = url_;
-@synthesize imageUrl = imageUrl_;
+@synthesize URL = URL_;
+@synthesize imageURL = imageURL_;
 @dynamic deletable;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 + (PSPDFMagazine *)magazineWithPath:(NSString *)path {
-    NSURL *url = path ? [NSURL fileURLWithPath:path] : nil;
-    PSPDFMagazine *magazine = [(PSPDFMagazine *)[[self class] alloc] initWithUrl:url];
-    magazine.available = YES;    
+    NSURL *URL = path ? [NSURL fileURLWithPath:path] : nil;
+    PSPDFMagazine *magazine = [(PSPDFMagazine *)[[self class] alloc] initWithURL:URL];
+    magazine.available = YES;
     return magazine;
 }
 
@@ -41,7 +41,7 @@
 }
 
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"<PSPDFMagazine uid:%@ pageCount:%d url:%@ basePath:%@, files:%@>", self.uid, [self pageCount], self.url, self.basePath, self.files];
+    NSString *description = [NSString stringWithFormat:@"<%@ uid:%@ pageCount:%d URL:%@ basePath:%@, files:%@>", NSStringFromClass([self class]), self.uid, [self pageCount], self.URL, self.basePath, self.files];
     return description;
 }
 

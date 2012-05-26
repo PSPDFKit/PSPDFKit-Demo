@@ -169,7 +169,7 @@ static char kvoToken; // we need a static address for the kvo token
                 // create and fill PSPDFMagazine
                 NSString *title = [dlMagazine objectForKey:@"name"];
                 NSString *urlString = [dlMagazine objectForKey:@"url"];
-                NSString *imageUrlString = [dlMagazine objectForKey:@"image"];
+                NSString *imageURLString = [dlMagazine objectForKey:@"image"];
                 NSString *fileName = [urlString lastPathComponent]; // we use fileName as our way to map files to files on disk - be sure to make it unique!
                 
                 PSPDFMagazine *magazine = [self magazineForFileName:fileName];
@@ -183,8 +183,8 @@ static char kvoToken; // we need a static address for the kvo token
                 // TODO: this is not optimal. The title from used in the web is saved nowhere.
                 // After a restart, the title within the pdf document's metadata is used, or if no title set there, the filename.
                 magazine.title = title;
-                magazine.url = [urlString length] ? [NSURL URLWithString:urlString] : nil;
-                magazine.imageUrl = [imageUrlString length] ? [NSURL URLWithString:imageUrlString] : nil;
+                magazine.URL = [urlString length] ? [NSURL URLWithString:urlString] : nil;
+                magazine.imageURL = [imageURLString length] ? [NSURL URLWithString:imageURLString] : nil;
             }
         }
         [self addMagazinesToStore:newMagazines];
@@ -399,7 +399,7 @@ static char kvoToken; // we need a static address for the kvo token
     PSPDFMagazineFolder *folder = magazine.folder;
     
     // first notify, then delete from the backing store
-    if (!magazine.url) {
+    if (!magazine.URL) {
         [delegate_ magazineStoreMagazineDeleted:magazine];
 
         if ([folder.magazines count] == 1) {
@@ -417,7 +417,7 @@ static char kvoToken; // we need a static address for the kvo token
     [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
 
     // if magazine has no url - delete
-    if (!magazine.url) {
+    if (!magazine.URL) {
         [folder removeMagazine:magazine];
         
         if([folder.magazines count] > 0) {
@@ -440,7 +440,7 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 - (void)downloadMagazine:(PSPDFMagazine *)magazine {
-    PSPDFDownload *storeDownload = [PSPDFDownload PDFDownloadWithURL:magazine.url];
+    PSPDFDownload *storeDownload = [PSPDFDownload PDFDownloadWithURL:magazine.URL];
     storeDownload.magazine = magazine;
     
     // use kvo to track status
