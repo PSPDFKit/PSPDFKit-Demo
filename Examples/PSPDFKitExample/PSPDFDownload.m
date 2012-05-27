@@ -138,7 +138,6 @@
         NSString *fileName = [self.request.url lastPathComponent];
         NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
         NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
-        [self.magazine setFileURL:destinationURL];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
         
