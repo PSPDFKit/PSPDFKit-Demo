@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.10.1 - 28/May/2012__
+
+*  Fixes a regression regarding pageCurl mode and activated isFittingWidth.
+
 __v1.10.0 - 25/May/2012__
 
 This will probably be the last major release in the 1.x branch.
