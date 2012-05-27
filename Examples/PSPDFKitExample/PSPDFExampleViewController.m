@@ -184,6 +184,11 @@
 // time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+
+    // show pdf title and fileURL
+    if (![document.title isEqualToString:[document.fileURL lastPathComponent]]) {
+        self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
+    }
 }
 
 // if user tapped within page bounds, this will notify you.
