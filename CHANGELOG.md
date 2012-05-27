@@ -35,7 +35,7 @@ This release has some API-breaking changes:
 *  New delegate: delegateDidEndZooming:atScale to detect user/animated zooming.
 *  UI Improvement: Show URL in embedded browser title bar, until page is loaded with the real title.
 *  General: Add french localization in PSPDFKit.bundle.
-*  Core: PSPDFDocument now implements <NSCopying> and <NSCoding> protocols.
+*  Core: PSPDFDocument now implements NSCopying and NSCoding protocols.
 *  Fixes a problem where links with hash bangs (like https://twitter.com/#!/) where incorrectly escaped.
 *  Fixes opening certain password protected files.
 *  Fixes unlockWithPassword always returning YES, even with an incorrect password.
