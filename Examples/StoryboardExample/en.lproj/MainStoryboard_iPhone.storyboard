@@ -35,24 +35,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <mutableAttributedString key="userComments">
-                                            <!--asdfsadf-->
-                                            <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGREVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCA8T
-GiQlJiwwODk8P1UkbnVsbNMJCgsMDQ5cTlNBdHRyaWJ1dGVzViRjbGFzc1hOU1N0cmluZ4AEgA2AAtIK
-EBESWU5TLnN0cmluZ4ADWGFzZGZzYWRm0hQVFhdaJGNsYXNzbmFtZVgkY2xhc3Nlc18QD05TTXV0YWJs
-ZVN0cmluZ6MWGBlYTlNTdHJpbmdYTlNPYmplY3TTChscHR4hV05TLmtleXNaTlMub2JqZWN0c4AMoh8g
-gAWABqIiI4AHgAlfEBBOU1BhcmFncmFwaFN0eWxlVk5TRm9udNMnCigpKitaTlNUYWJTdG9wc1tOU0Fs
-aWdubWVudIAAgAgQBNIUFS0uXxAQTlNQYXJhZ3JhcGhTdHlsZaIvGV8QEE5TUGFyYWdyYXBoU3R5bGXU
-CjEyMzQ1NjdWTlNOYW1lVk5TU2l6ZVhOU2ZGbGFnc4ALgAojQCgAAAAAAAAQEFlIZWx2ZXRpY2HSFBU6
-O1ZOU0ZvbnSiOhnSFBU9PlxOU0RpY3Rpb25hcnmiPRnSFBVAQV8QGU5TTXV0YWJsZUF0dHJpYnV0ZWRT
-dHJpbmejQkMZXxAZTlNNdXRhYmxlQXR0cmlidXRlZFN0cmluZ18QEk5TQXR0cmlidXRlZFN0cmluZ18Q
-D05TS2V5ZWRBcmNoaXZlctFGR1Ryb290gAEACAARABoAIwAtADIANwBGAEwAUwBgAGcAcAByAHQAdgB7
-AIUAhwCQAJUAoACpALsAvwDIANEA2ADgAOsA7QDwAPIA9AD3APkA+wEOARUBHAEnATMBNQE3ATkBPgFR
-AVQBZwFwAXcBfgGHAYkBiwGUAZYBoAGlAawBrwG0AcEBxAHJAeUB6QIFAhoCLAIvAjQAAAAAAAACAQAA
-AAAAAABIAAAAAAAAAAAAAAAAAAACNg
-</mutableData>
-                                        </mutableAttributedString>
                                         <connections>
                                             <segue destination="17C-3B-iSi" kind="push" id="Dvw-pC-hTV"/>
                                         </connections>
