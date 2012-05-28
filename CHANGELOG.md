@@ -3,6 +3,8 @@
 __v1.10.1 - 28/May/2012__
 
 *  Fixes a regression regarding pageCurl mode and activated isFittingWidth.
+*  Fixes a regression regarding the viewModeButtonItem not being displayed correctly on appcelerator.
+*  Fixes a leak in PSPDFActionSheet.
 
 __v1.10.0 - 25/May/2012__
 
