@@ -6,7 +6,6 @@
 //
 
 #import "PSAppDelegate.h"
-#import <PSPDFKit/PSPDFKit.h>
 
 @implementation PSAppDelegate
 

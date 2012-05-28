@@ -6,7 +6,6 @@
 //
 
 #import "PSTableViewController.h"
-#import <PSPDFKit/PSPDFKit.h>
 
 @implementation PSTableViewController
 
