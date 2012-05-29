@@ -66,7 +66,7 @@
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
         // uncomment to hide label
-        self.showingSiteLabel = NO;
+        self.showingSiteLabel = YES;
     }
     
     return self;
@@ -148,7 +148,7 @@
         }
 
         // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
-        //self.siteLabel.text = magazine.title;
+        self.siteLabel.text = magazine.title;
     }
 }
 
