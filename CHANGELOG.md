@@ -7,6 +7,7 @@ __v1.10.1 - 29/May/2012__
 *  Improvement: Don't reload frame if we're in the middle of view disappearing.
 *  Improvement: Use default white statusBar with inline browser on iPhone.
 *  Improves the document<->thumbnail transition with certain non-uniformed sized documents and pageCurl mode.
+*  Fixes a case where the PSPDFPositionView wasn't correctly laid out. 
 *  Fixes a problem where the close button was disabled when no document was set.
 *  Fixes a regression regarding pageCurl mode and activated isFittingWidth.
 *  Fixes a regression regarding the viewModeButtonItem not being displayed correctly on appcelerator.

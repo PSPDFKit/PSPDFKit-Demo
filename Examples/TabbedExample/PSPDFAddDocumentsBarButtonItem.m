@@ -47,8 +47,6 @@
     [newDocuments addObject:document];
     tabbedViewController.documents = newDocuments;
     tabbedViewController.visibleDocument = document;
-
-    [PSPDFBarButtonItem dismissPopoverAnimated:YES];
 }
 
 @end
