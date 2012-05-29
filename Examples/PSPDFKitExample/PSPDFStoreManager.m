@@ -170,7 +170,7 @@ static char kvoToken; // we need a static address for the kvo token
                 NSString *title = [dlMagazine objectForKey:@"name"];
                 NSString *urlString = [dlMagazine objectForKey:@"url"];
                 NSString *imageUrlString = [dlMagazine objectForKey:@"image"];
-                if (imageUrlString) {
+                if ([imageUrlString length] == 0) {
                     // if no image key is set, try same location as the pdf, but with jpg ending.
                     imageUrlString = [urlString stringByReplacingOccurrencesOfString:@".pdf" withString:@".jpg" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [urlString length])];
                 }
