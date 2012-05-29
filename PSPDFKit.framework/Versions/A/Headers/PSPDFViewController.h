@@ -220,14 +220,25 @@ enum {
 /// Default button in leftToolbarButtonItems if view is presented modally.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *closeButtonItem;
 
-/// Default button items included by default in rightToolbarButtonItems
+// Default button items included by default in rightToolbarButtonItems
+
+/// Show Outline/Table Of Contents (if available in the PDF)
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *outlineButtonItem;
+/// Enable Search.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *searchButtonItem;
+/// Document/Thumbnail toggle.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *viewModeButtonItem;
 
-/// Default button items not included by default
+
+// Default button items not included by default
+
+/// Print feature. Only displayed if document is allowed to be printed.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *printButtonItem;
+
+/// Shows the Open In... iOS dialog. Only works with single-file/data pdf's.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *openInButtonItem;
+
+/// Send current pdf via email. Only works with single-file/data pdf's.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *emailButtonItem;
 
 /// Bar button items displayed at the left of the toolbar
@@ -237,7 +248,7 @@ enum {
 
 /// Bar button items displayed at the right of the toolbar
 /// Must be UIBarButtonItem or PSPDFBarButtonItem instances
-/// Defaults to (outlineButtonItem, searchButtonItem, viewModeButtonItem)
+/// Defaults to [NSArray arrayWithObjects:self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
 @property(nonatomic, strong) NSArray *rightBarButtonItems;
 
 /// Displayed at the left of the rightBarButtonItems inside an action sheet
@@ -327,6 +338,12 @@ enum {
 - (void)createToolbar;
 
 - (void)updateToolbars;
+
+/// UIBarButtonItem doesn't support calculation of it's width, so we have to approximate.
+/// This allows you to change the minimum width if the heuristics fail.
+/// Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].
+@property(nonatomic, assign) CGFloat minLeftToolbarWidth;
+@property(nonatomic, assign) CGFloat minRightToolbarWidth;
 
 /// Setup the grid view. Call [super gridView] and modify it to your needs.
 - (PSPDFGridView *)gridView;

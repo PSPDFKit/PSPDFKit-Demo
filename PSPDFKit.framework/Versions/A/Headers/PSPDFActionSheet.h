@@ -44,11 +44,11 @@
 /// Count the buttons.
 - (NSUInteger)buttonCount;
 
-/// Clears all blocks, breaks reatain cycle. Automatically called once a button has been pressed.
+/// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.
 - (void)destroy;
 
 /// Internal actionSheet.
-@property (nonatomic, retain, readonly) UIActionSheet *actionSheet;
+@property (nonatomic, strong, readonly) UIActionSheet *actionSheet;
 
 // Delegate. weak reference, relays events
 @property (nonatomic, assign) id<UIActionSheetDelegate> delegate;
