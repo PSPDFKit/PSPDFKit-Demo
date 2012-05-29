@@ -158,7 +158,7 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 - (void)loadMagazinesAvailableFromWeb {
-    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
+    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
     AFJSONRequestOperation *operation = [PSPDFJSONDownloadOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSArray *dlMagazines = (NSArray *)JSON;
         NSMutableArray *newMagazines = [NSMutableArray array];
@@ -170,6 +170,10 @@ static char kvoToken; // we need a static address for the kvo token
                 NSString *title = [dlMagazine objectForKey:@"name"];
                 NSString *urlString = [dlMagazine objectForKey:@"url"];
                 NSString *imageUrlString = [dlMagazine objectForKey:@"image"];
+                if (imageUrlString) {
+                    // if no image key is set, try same location as the pdf, but with jpg ending.
+                    imageUrlString = [urlString stringByReplacingOccurrencesOfString:@".pdf" withString:@".jpg" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [urlString length])];
+                }
                 NSString *fileName = [urlString lastPathComponent]; // we use fileName as our way to map files to files on disk - be sure to make it unique!
                 
                 PSPDFMagazine *magazine = [self magazineForFileName:fileName];
