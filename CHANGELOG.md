@@ -1,5 +1,19 @@
 # Changelog
 
+__v1.10.1 - 29/May/2012__
+
+*  Improvement: Better handle toolbar buttons when a too long title is set. (now exposing minLeftToolbarWidth, minRightToolbarWidth)
+*  Improvement: sometimes the NavigationBar was restored even if it wasn't needed.
+*  Improvement: Don't reload frame if we're in the middle of view disappearing.
+*  Improvement: Use default white statusBar with inline browser on iPhone.
+*  Improves the document<->thumbnail transition with certain non-uniformed sized documents and pageCurl mode.
+*  Fixes a problem where the close button was disabled when no document was set.
+*  Fixes a regression regarding pageCurl mode and activated isFittingWidth.
+*  Fixes a regression regarding the viewModeButtonItem not being displayed correctly on appcelerator.
+*  Fixes a problem where under certain conditions a landscape->portrait rotation
+   in pageCurl mode on the last page performed a scroll to the first page.
+*  Fixes a leak in PSPDFActionSheet.
+
 __v1.10.0 - 25/May/2012__
 
 This will probably be the last major release in the 1.x branch.

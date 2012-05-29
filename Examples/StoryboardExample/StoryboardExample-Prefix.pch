@@ -11,4 +11,11 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+#ifndef PSPDFKIT_USE_SOURCE
+    #import <PSPDFKit/PSPDFKit.h>
+#else
+    #import "PSPDFKit.h"
+#endif
+
 #endif
