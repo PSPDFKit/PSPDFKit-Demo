@@ -11,6 +11,4 @@
 
 @property (nonatomic, strong, readonly) UISegmentedControl *viewModeSegment;
 
-- (void)updateView;
-
 @end
