@@ -37,8 +37,13 @@
         [customViewModeSegment_ addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
         [customViewModeSegment_ sizeToFit];
         UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:customViewModeSegment_];
-        
-        self.navigationItem.rightBarButtonItem = viewModeButton;
+
+        // rightBarButtonItems is iOS5 only
+        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
+            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:viewModeButton, self.printButtonItem, self.searchButtonItem, nil];
+        }else {
+            self.navigationItem.rightBarButtonItem = viewModeButton;
+        }
         self.delegate = self;
         
         // use large thumbnails!
