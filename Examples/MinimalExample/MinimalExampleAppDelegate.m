@@ -17,7 +17,7 @@
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[[PSPDFViewController alloc] initWithDocument:document] autorelease];
-    pdfController.toolbarBackButton = nil;
+    pdfController.leftBarButtonItems = nil;
     
     // create window and set as rootViewController
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
