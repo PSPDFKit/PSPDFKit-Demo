@@ -102,6 +102,13 @@
 
     PSPDFDocument *document = [content_ objectAtIndex:indexPath.row];
     [delegate_ PDFDocumentSelectorController:self didSelectDocument:document];
+
+    // hide controller
+    if (PSIsIpad()) {
+        [PSPDFBarButtonItem dismissPopoverAnimated:YES];
+    }else {
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
