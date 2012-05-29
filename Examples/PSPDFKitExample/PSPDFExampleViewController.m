@@ -208,4 +208,12 @@
     return handled;
 }
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    PSELog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    PSELog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+}
+
 @end
