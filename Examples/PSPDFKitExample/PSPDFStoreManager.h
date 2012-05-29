@@ -5,8 +5,6 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import "AFJSONRequestOperation.h"
-
 /// enable to make the view plain, no folders supported
 #define kPSPDFStoreManagerPlain YES
 
@@ -64,7 +62,4 @@
 @property (nonatomic, strong, readonly) NSMutableArray *magazineFolders;
 @property (nonatomic, strong, readonly) NSMutableArray *downloadQueue;
 
-@end
-
-@interface PSPDFJSONDownloadOperation : AFJSONRequestOperation
 @end
