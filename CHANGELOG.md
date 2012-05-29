@@ -3,6 +3,7 @@
 __v1.10.2 - 29/May/2012__
 
 *  The default linkAction is now PSPDFLinkActionInlineBrowser (changed from PSPDFLinkActionAlertView).
+*  Fixes a bug where the new pdf path resolving function sometimes returned invalid strings.
 *  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
 
