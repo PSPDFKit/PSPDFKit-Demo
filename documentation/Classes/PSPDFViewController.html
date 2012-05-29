@@ -72,6 +72,8 @@
 	
 	<option value="//api/name/maximumZoomScale">&nbsp;&nbsp;&nbsp;&nbsp;maximumZoomScale</option>
 	
+	<option value="//api/name/minLeftToolbarWidth">&nbsp;&nbsp;&nbsp;&nbsp;minLeftToolbarWidth</option>
+	
 	<option value="//api/name/navigationBarHidden">&nbsp;&nbsp;&nbsp;&nbsp;navigationBarHidden</option>
 	
 	<option value="//api/name/openInButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;openInButtonItem</option>
@@ -268,6 +270,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/linkAction">linkAction</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maximumZoomScale">maximumZoomScale</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minLeftToolbarWidth">minLeftToolbarWidth</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationBarHidden">navigationBarHidden</a></span></li>
 	
@@ -840,7 +844,7 @@ Defaults to (<a href="#//api/name/closeButtonItem">closeButtonItem</a>) if view 
 		<code><a href="#//api/name/rightBarButtonItems">&nbsp;&nbsp;rightBarButtonItems</a></code>
 		<span class="tooltip"><p>Bar button items displayed at the right of the toolbar
 Must be UIBarButtonItem or <a href="../Classes/PSPDFBarButtonItem.html">PSPDFBarButtonItem</a> instances
-Defaults to (<a href="#//api/name/outlineButtonItem">outlineButtonItem</a>, <a href="#//api/name/searchButtonItem">searchButtonItem</a>, <a href="#//api/name/viewModeButtonItem">viewModeButtonItem</a>)</p></span>
+Defaults to [NSArray arrayWithObjects:self.<a href="#//api/name/searchButtonItem">searchButtonItem</a>, self.<a href="#//api/name/outlineButtonItem">outlineButtonItem</a>, self.<a href="#//api/name/viewModeButtonItem">viewModeButtonItem</a>, nil];</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1023,6 +1027,15 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/minLeftToolbarWidth">&nbsp;&nbsp;minLeftToolbarWidth</a></code>
+		<span class="tooltip"><p>UIBarButtonItem doesn&rsquo;t support calculation of it&rsquo;s width, so we have to approximate.
+This allows you to change the minimum width if the heuristics fail.
+Note: this is changed everytime you change left/rightBarButtonItems/<a href="#//api/name/document">document</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -1628,6 +1641,42 @@ Note: if modal is set in the link, this property has no effect.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/minLeftToolbarWidth" title="minLeftToolbarWidth"></a>
+	<h3 class="subsubtitle method-title">minLeftToolbarWidth</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UIBarButtonItem doesn&rsquo;t support calculation of it&rsquo;s width, so we have to approximate.
+This allows you to change the minimum width if the heuristics fail.
+Note: this is changed everytime you change left/rightBarButtonItems/<a href="#//api/name/document">document</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat minLeftToolbarWidth</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/navigationBarHidden" title="navigationBarHidden"></a>
 	<h3 class="subsubtitle method-title">navigationBarHidden</h3>
 	
@@ -2190,7 +2239,7 @@ This represents the pages in the pdf <a href="#//api/name/document">document</a>
 	<div class="method-subsection brief-description">
 		<p>Bar button items displayed at the right of the toolbar
 Must be UIBarButtonItem or <a href="../Classes/PSPDFBarButtonItem.html">PSPDFBarButtonItem</a> instances
-Defaults to (<a href="#//api/name/outlineButtonItem">outlineButtonItem</a>, <a href="#//api/name/searchButtonItem">searchButtonItem</a>, <a href="#//api/name/viewModeButtonItem">viewModeButtonItem</a>)</p>
+Defaults to [NSArray arrayWithObjects:self.<a href="#//api/name/searchButtonItem">searchButtonItem</a>, self.<a href="#//api/name/outlineButtonItem">outlineButtonItem</a>, self.<a href="#//api/name/viewModeButtonItem">viewModeButtonItem</a>, nil];</p>
 	</div>		
 	
 	
@@ -3541,7 +3590,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-25)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
 						
