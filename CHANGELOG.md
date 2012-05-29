@@ -1,5 +1,11 @@
 # Changelog
 
+__v1.10.2 - 29/May/2012__
+
+*  The default linkAction is now PSPDFLinkActionInlineBrowser (changed from PSPDFLinkActionAlertView).
+*  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
+*  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
+
 __v1.10.1 - 29/May/2012__
 
 *  Improvement: Better handle toolbar buttons when a too long title is set. (now exposing minLeftToolbarWidth, minRightToolbarWidth)
