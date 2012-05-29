@@ -16,6 +16,7 @@
     // create the PSPDFViewController
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    //[document appendFile:@"DevelopersGuide.pdf"];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageCurlEnabled = YES;
     pdfController.linkAction = PSPDFLinkActionInlineBrowser;
