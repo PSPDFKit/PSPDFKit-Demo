@@ -1033,7 +1033,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 		<code><a href="#//api/name/minLeftToolbarWidth">&nbsp;&nbsp;minLeftToolbarWidth</a></code>
 		<span class="tooltip"><p>UIBarButtonItem doesn&rsquo;t support calculation of it&rsquo;s width, so we have to approximate.
 This allows you to change the minimum width if the heuristics fail.
-Note: this is changed everytime you change left/rightBarButtonItems/<a href="#//api/name/document">document</a></p></span>
+Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1649,7 +1649,7 @@ Note: if modal is set in the link, this property has no effect.</p>
 	<div class="method-subsection brief-description">
 		<p>UIBarButtonItem doesn&rsquo;t support calculation of it&rsquo;s width, so we have to approximate.
 This allows you to change the minimum width if the heuristics fail.
-Note: this is changed everytime you change left/rightBarButtonItems/<a href="#//api/name/document">document</a></p>
+Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].</p>
 	</div>		
 	
 	
