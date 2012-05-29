@@ -2,10 +2,15 @@
 
 __v1.10.2 - 29/May/2012__
 
+*  New delegates: willShowViewController:animated: and didShowViewController:animated:.
 *  PageLabel on thumbnails is now width-limited to the maximal image size.
 *  The default linkAction is now PSPDFLinkActionInlineBrowser (changed from PSPDFLinkActionAlertView).
 *  The openIn action is now displayed in the iOS Simulator, but a UIAlertView shows that this feature only works on a real device.
+*  PSPDFOutlineElement now implements NSCopying and NSCoding.
 *  Page labels now work with documents containing multiple files.
+*  Removed the searchClassName property in PSPDFSearchViewController. Use the overrideClassNames in PSPDFViewController to change this.
+*  Renamed showCancel to showsCancelButton in PSPDFSearchViewController.
+*  searchBar in PSPDFSearchViewController is now created in init, not viewDidLoad (so you can easily customize it)
 *  Fixes a bug where the new pdf path resolving function sometimes returned invalid strings.
 *  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
