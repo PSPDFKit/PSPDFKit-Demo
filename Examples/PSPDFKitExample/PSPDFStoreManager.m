@@ -13,7 +13,6 @@
 #import "NSObject+BlockObservation.h"
 #import "NSObject+AssociatedObjects.h"
 #import "NSOperationQueue+CWSharedQueue.h"
-#import "AFJSONRequestOperation.h"
 #include <sys/xattr.h>
 
 @interface PSPDFStoreManager()
@@ -160,7 +159,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (void)loadMagazinesAvailableFromWeb {
     NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    AFJSONRequestOperation *operation = [PSPDFJSONDownloadOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSArray *dlMagazines = (NSArray *)JSON;
         NSMutableArray *newMagazines = [NSMutableArray array];
         for (NSDictionary *dlMagazine in dlMagazines) {
@@ -189,8 +188,10 @@ static char kvoToken; // we need a static address for the kvo token
             }
         }
         [self addMagazinesToStore:newMagazines];
-    } failure:nil];
-    
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        PSELog(@"Failed to download JSON: %@", error);
+    }];
+
     [[NSOperationQueue sharedOperationQueue] addOperation:operation];
 }
 
@@ -574,3 +575,11 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 @end
+
+// Subclass to allow text/plain JSON downloads. (A lot of servers mess that up)
+@implementation PSPDFJSONDownloadOperation
++ (NSSet *)acceptableContentTypes {
+    return [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", nil];
+}
+@end
+
