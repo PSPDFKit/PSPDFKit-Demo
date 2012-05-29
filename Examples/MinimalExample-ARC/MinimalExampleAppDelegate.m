@@ -18,7 +18,8 @@
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageCurlEnabled = YES;
-    pdfController.leftBarButtonItems = nil;
+    pdfController.linkAction = PSPDFLinkActionInlineBrowser;
+    pdfController.leftBarButtonItems = nil; // hide close button
 
     // create window and set as rootViewController
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
