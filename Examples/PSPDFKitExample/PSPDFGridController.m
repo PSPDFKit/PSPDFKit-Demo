@@ -27,6 +27,7 @@
 @interface PSPDFGridController() {
     NSUInteger animationCellIndex_;
     BOOL animationDualWithPageCurl_;
+    BOOL _animateViewWillAppearWithFade;
 }
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
@@ -84,8 +85,18 @@
         newFrame.size.width /= 2;
         newFrame.origin.x += newFrame.size.width;
     }
-    
+
     return newFrame;
+}
+
+// simple fade transition that can be added on a layer
+- (CATransition *)fadeTransition {
+    CATransition *fadeTransition = [CATransition animation];
+    fadeTransition.duration = 0.25f;
+    fadeTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    fadeTransition.type = kCATransitionFade;
+    fadeTransition.subtype = kCATransitionFromTop;
+    return fadeTransition;
 }
 
 // open magazine with nice animation
@@ -95,10 +106,10 @@
     [self presentModalViewController:previewController animated:YES];
     return YES;
 #endif
-        
+    
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
-    if (animated && coverImage) {
+    if (animated && coverImage && !magazine.isLocked) {
         PSPDFGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
@@ -129,18 +140,17 @@
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {            
-            // fade for UINavigationBar
-            CATransition* barTransition = [CATransition animation];
-            barTransition.duration = 0.25f;
-            barTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            barTransition.type = kCATransitionFade;
-            barTransition.subtype = kCATransitionFromTop;
-            [self.navigationController.navigationBar.layer addAnimation:barTransition forKey:kCATransition];
+            [self.navigationController.navigationBar.layer addAnimation:[self fadeTransition] forKey:kCATransition];
             [self.navigationController pushViewController:pdfController animated:NO];
             
             cell.hidden = NO;
         }];  
     }else {
+        if (animated) {
+            // add fake data so that we animate back
+            _animateViewWillAppearWithFade = YES;
+            [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+        }
         [self.navigationController pushViewController:pdfController animated:NO];
     }
     
@@ -316,6 +326,11 @@
     // ensure everything is up to date (we could change magazines in other controllers)
     [self updateGridForOrientation];
     [self.gridView reloadData];
+
+    if (_animateViewWillAppearWithFade) {
+        [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+        _animateViewWillAppearWithFade = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -328,10 +343,10 @@
         if (animationCellIndex_ >= [self.magazineFolder.magazines count]) {
             self.gridView.transform = CGAffineTransformIdentity;
             self.gridView.alpha = 1.0f;
+            [self.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            
             // ensure object is visible
             BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:animationCellIndex_ partly:YES];
             if (!isCellVisible) {
@@ -516,33 +531,7 @@
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
         } else {
-            if (magazine.isLocked) {
-                PSPDF_IF_IOS5_OR_GREATER(
-                                         // opening password protected pdf only works on iOS5 here, for convenience of the UIAlertView.alertViewStyle
-                                         PSPDFAlertView *alertView = [PSPDFAlertView alertWithTitle:@"Password Protected PDF" message:magazine.title];
-                                         alertView.alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-                                         [alertView setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
-                                         __ps_weak PSPDFAlertView *weakAlertView = alertView;
-                                         [alertView addButtonWithTitle:NSLocalizedString(@"Open", @"") block:^{
-                    NSString *password = [weakAlertView.alertView textFieldAtIndex:0].text;
-                    BOOL success = [magazine unlockWithPassword:password];
-                    if (success) {
-                        magazine.password = password;                    
-                        [self openMagazine:magazine animated:YES cellIndex:gridIndex];
-                    }else {
-                        PSPDFAlertView *alert = [PSPDFAlertView alertWithTitle:@"Failed to unlock the document."];
-                        [alert setCancelButtonWithTitle:NSLocalizedString(@"OK", @"") block:nil];
-                        [alert show];
-                    }
-                }];
-                                         [alertView show];
-                                         )
-                
-                PSPDF_IF_PRE_IOS5([[[UIAlertView alloc] initWithTitle:@"" message:@"Opening password protected PDFs is not implemented on iOS4." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];)
-            }
-            else {
-                [self openMagazine:magazine animated:YES cellIndex:gridIndex];
-            }
+            [self openMagazine:magazine animated:YES cellIndex:gridIndex];
         }
     }else {
         PSPDFGridController *gridController = [[PSPDFGridController alloc] initWithMagazineFolder:folder];
