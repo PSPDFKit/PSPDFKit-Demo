@@ -2,9 +2,11 @@
 
 __v2.0.0 - 1/August/2012__
 
-* Text selection!
-* API changes. Lots of things got renamed or changes (Url -> URL)
-* navigationBar title is no longer set on every page change.
+*  Text selection.
+*  Smart Zoom.
+*  Adobe DRM detection.
+*  API changes. Lots of things got renamed or changes (Url -> URL)
+*  navigationBar title is no longer set on every page change.
 
 
 __v1.10.1 - 29/May/2012__
