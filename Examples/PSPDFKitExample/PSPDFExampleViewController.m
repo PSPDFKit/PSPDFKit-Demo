@@ -116,6 +116,7 @@
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
 
         self.leftBarButtonItems = [NSArray arrayWithObjects:closeButtonItem, settingsButtomItem, nil];
+        self.barButtonItemsAlwaysEnabled = [NSArray arrayWithObject:closeButtonItem];
 
         // restore viewState
         if ([self.document isValid]) {
