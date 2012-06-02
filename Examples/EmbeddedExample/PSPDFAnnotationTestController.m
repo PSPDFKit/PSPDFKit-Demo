@@ -133,4 +133,19 @@
     NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
 }
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+
+    // example how to intercept PSPDFSearchViewController and change the barStyle to black
+    if ([viewController isKindOfClass:[PSPDFSearchViewController class]]) {
+        PSPDFSearchViewController *searchController = (PSPDFSearchViewController *)viewController;
+        searchController.searchBar.barStyle = UIBarStyleBlack;
+        searchController.searchBar.tintColor = [UIColor blackColor];
+    }
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+}
+
 @end
