@@ -105,7 +105,7 @@
         
         if(!downloading) {
             // clear cache, needed to recalculate pageCount
-            [self clearCacheForced:YES];
+            [self clearCache];
             
             // request coverImage - grid listens for those events
             [self coverImageForSize:CGSizeZero];
