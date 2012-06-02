@@ -178,6 +178,14 @@
     [self.popoverController dismissPopoverAnimated:YES];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+    // Example to show how to only allow pageCurl in landscape mode.
+    // Don't change this property in willAnimate* or bad things will happen.
+    // self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
@@ -211,6 +219,14 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
     BOOL handled = NO;
     return handled;
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    PSELog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    PSELog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
 }
 
 @end

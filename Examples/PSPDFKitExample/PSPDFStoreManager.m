@@ -13,6 +13,7 @@
 #import "NSObject+BlockObservation.h"
 #import "NSObject+AssociatedObjects.h"
 #import "NSOperationQueue+CWSharedQueue.h"
+#import "AFJSONRequestOperation.h"
 #include <sys/xattr.h>
 
 @interface PSPDFStoreManager()
@@ -37,6 +38,9 @@ static char kvoToken; // we need a static address for the kvo token
     __strong static id _sharedObject = nil;
     dispatch_once(&pred, ^{
         _sharedObject = [[self alloc] init];
+
+        // allow plain text in JSON downloader class, fixes servers that don't know about JSON.
+        [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
     });
     return _sharedObject;
 }
@@ -158,8 +162,8 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 - (void)loadMagazinesAvailableFromWeb {
-    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL]];
-    AFJSONRequestOperation *operation = [PSPDFJSONDownloadOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSArray *dlMagazines = (NSArray *)JSON;
         NSMutableArray *newMagazines = [NSMutableArray array];
         for (NSDictionary *dlMagazine in dlMagazines) {
@@ -170,6 +174,10 @@ static char kvoToken; // we need a static address for the kvo token
                 NSString *title = [dlMagazine objectForKey:@"name"];
                 NSString *urlString = [dlMagazine objectForKey:@"url"];
                 NSString *imageURLString = [dlMagazine objectForKey:@"image"];
+                if ([imageURLString length] == 0) {
+                    // if no image key is set, try same location as the pdf, but with jpg ending.
+                    imageURLString = [urlString stringByReplacingOccurrencesOfString:@".pdf" withString:@".jpg" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [urlString length])];
+                }
                 NSString *fileName = [urlString lastPathComponent]; // we use fileName as our way to map files to files on disk - be sure to make it unique!
                 
                 PSPDFMagazine *magazine = [self magazineForFileName:fileName];
@@ -575,11 +583,3 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 @end
-
-// Subclass to allow text/plain JSON downloads. (A lot of servers mess that up)
-@implementation PSPDFJSONDownloadOperation
-+ (NSSet *)acceptableContentTypes {
-    return [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", nil];
-}
-@end
-
