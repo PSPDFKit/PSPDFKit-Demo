@@ -2,7 +2,8 @@
 
 __v1.10.2 - 4/Jun/2012__
 
-*  New delegates: willShowViewController:animated: and didShowViewController:animated:.
+*  New controller delegates: willShowViewController:animated: and didShowViewController:animated:.
+*  New HUD visibility delegates: willShowHUD:/didShowHUD:/willHideHUD:/didHideHUD:
 *  PageLabel on thumbnails is now width-limited to the maximal image size.
 *  The default linkAction is now PSPDFLinkActionInlineBrowser (changed from PSPDFLinkActionAlertView).
 *  The openIn action is now displayed in the iOS Simulator, but a UIAlertView shows that this feature only works on a real device.
