@@ -11,6 +11,13 @@
 @implementation PSPDFTabbedExampleViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)clearAll {
+    [self removeDocuments:self.documents animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
@@ -20,9 +27,13 @@
         self.enableAutomaticStatePersistance = YES;
 
         // on iPhone, we want a backButton here.
+        UIBarButtonItem *clearAllButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearAll)];
         if (PSIsIpad()) {
             PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
-            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
+            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObjects:addDocumentsButton, clearAllButton, nil];
+        }else {
+            self.navigationItem.leftItemsSupplementBackButton = YES;
+            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
         }
     }
     return self;
