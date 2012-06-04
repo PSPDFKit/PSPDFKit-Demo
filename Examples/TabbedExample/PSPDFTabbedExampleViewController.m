@@ -30,8 +30,11 @@
         }
         self.documents = newDocuments;
 
-        PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
-        self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
+        // on iPhone, we want a backButton here.
+        if (PSIsIpad()) {
+            PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
+            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
+        }
     }
     return self;
 }
