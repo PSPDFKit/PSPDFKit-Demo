@@ -16,6 +16,8 @@ __v1.10.2 - 4/Jun/2012__
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
 *  Fixes a bug where the position of the initial page view could be smaller than the view in landscape mode.
 *  Fixes a bug where the the titleView wasn't used to calculate the toolbarWidths.
+*  Fixes a bug where the TabbedViewController's selected tab wasn't correctly updated when setting visibleDocument.
+ * Fixes a bug where the TabbedViewController-preference enableAutomaticStatePersistance wasn't always honored.
 
 __v1.10.1 - 29/May/2012__
 
