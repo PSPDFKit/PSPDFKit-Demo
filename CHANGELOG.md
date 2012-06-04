@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.10.2 - 29/May/2012__
+__v1.10.2 - 4/Jun/2012__
 
 *  New delegates: willShowViewController:animated: and didShowViewController:animated:.
 *  PageLabel on thumbnails is now width-limited to the maximal image size.
@@ -15,6 +15,7 @@ __v1.10.2 - 29/May/2012__
 *  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
 *  Fixes a bug where the position of the initial page view could be smaller than the view in landscape mode.
+*  Fixes a bug where the the titleView wasn't used to calculate the toolbarWidths.
 
 __v1.10.1 - 29/May/2012__
 
