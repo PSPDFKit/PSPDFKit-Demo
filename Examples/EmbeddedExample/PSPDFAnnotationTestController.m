@@ -148,4 +148,24 @@
     NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
 }
 
+/// HUD will be displayed.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowHUD:(BOOL)animated {
+    NSLog(@"willShowHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD was displayed (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowHUD:(BOOL)animated {
+    NSLog(@"didShowHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD will be hidden.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willHideHUD:(BOOL)animated {
+    NSLog(@"willHideHudAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD was hidden (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated {
+    NSLog(@"didHideHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
 @end
