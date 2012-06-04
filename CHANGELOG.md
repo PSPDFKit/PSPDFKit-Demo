@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.10.2 - 4/Jun/2012__
+__v1.10.2 - 5/Jun/2012__
 
 *  New controller delegates: willShowViewController:animated: and didShowViewController:animated:.
 *  New HUD visibility delegates: willShowHUD:/didShowHUD:/willHideHUD:/didHideHUD:
@@ -12,6 +12,7 @@ __v1.10.2 - 4/Jun/2012__
 *  Removed the searchClassName property in PSPDFSearchViewController. Use the overrideClassNames in PSPDFViewController to change this.
 *  Renamed showCancel to showsCancelButton in PSPDFSearchViewController.
 *  searchBar in PSPDFSearchViewController is now created in init, not viewDidLoad (so you can easily customize it)
+*  Added new API items for PSPDFTabbedViewController and changed the API to initialize the controller. (You can also just use init)
 *  Fixes a bug where the new pdf path resolving function sometimes returned invalid strings.
 *  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
