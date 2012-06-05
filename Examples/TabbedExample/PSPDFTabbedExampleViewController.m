@@ -11,27 +11,30 @@
 @implementation PSPDFTabbedExampleViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)clearAll {
+    [self removeDocuments:self.documents animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocuments:(NSArray *)documents pdfViewController:(PSPDFViewController *)pdfViewController {
-    if ((self = [super initWithDocuments:documents pdfViewController:pdfViewController])) {
-        self.pdfViewController.pageCurlEnabled = YES;
-
-        // enable automatic peristance and retore the last state
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
+    if ((self = [super initWithPDFViewController:pdfViewController])) {
+        
+        // enable automatic peristance and restore the last state
         self.enableAutomaticStatePersistance = YES;
-        [self restoreState];
 
-        // merge docments with current state
-        NSMutableArray *newDocuments = [self.documents mutableCopy];
-        for (PSPDFDocument *document in documents) {
-            if (![self.documents containsObject:document]) {
-                [newDocuments addObject:document];
-            }
+        // on iPhone, we want a backButton here.
+        UIBarButtonItem *clearAllButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearAll)];
+        if (PSIsIpad()) {
+            PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
+            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObjects:addDocumentsButton, clearAllButton, nil];
+        }else {
+            self.navigationItem.leftItemsSupplementBackButton = YES;
+            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
         }
-        self.documents = newDocuments;
-
-        PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
-        self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:addDocumentsButton];
     }
     return self;
 }
@@ -39,15 +42,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFTabbedViewControllerDelegate
 
-- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeDocumentSet:(NSArray *)newDocuments {
-    NSLog(@"willChangeDocumentSet: %@", newDocuments);
+- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeDocuments:(NSArray *)newDocuments {
+    NSLog(@"willChangeDocuments: %@", newDocuments);
     
     // return YES to allow the change
     return YES;
 }
 
-- (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeDocumentSet:(NSArray *)oldDocuments {
-    NSLog(@"didChangeDocumentSet: %@ (old)", oldDocuments);
+- (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeDocuments:(NSArray *)oldDocuments {
+    NSLog(@"didChangeDocuments: %@ (old)", oldDocuments);
 }
 
 - (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeVisibleDocument:(PSPDFDocument *)newDocument {

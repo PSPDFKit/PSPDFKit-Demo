@@ -53,4 +53,8 @@
 - (id)presentModalOrInPopover:(UIViewController *)viewController sender:(id)sender;
 - (void)dismissModalOrPopoverAnimated:(BOOL)animated;
 
+/// Peaks into certain Apple classes to get the internal UIPopoverController.
+/// Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
++ (UIPopoverController *)popoverControllerForObject:(id)object;
+
 @end

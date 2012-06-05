@@ -8,9 +8,10 @@ __v2.0.0 - 1/August/2012__
 *  API changes. Lots of things got renamed or changes (Url -> URL)
 *  navigationBar title is no longer set on every page change.
 
-__v1.10.2 - 29/May/2012__
+__v1.10.2 - 5/Jun/2012__
 
-*  New delegates: willShowViewController:animated: and didShowViewController:animated:.
+*  New controller delegates: willShowViewController:animated: and didShowViewController:animated:.
+*  New HUD visibility delegates: shouldShowHUD/shouldHideHUD/willShowHUD:/didShowHUD:/willHideHUD:/didHideHUD:
 *  PageLabel on thumbnails is now width-limited to the maximal image size.
 *  The default linkAction is now PSPDFLinkActionInlineBrowser (changed from PSPDFLinkActionAlertView).
 *  The openIn action is now displayed in the iOS Simulator, but a UIAlertView shows that this feature only works on a real device.
@@ -19,10 +20,17 @@ __v1.10.2 - 29/May/2012__
 *  Removed the searchClassName property in PSPDFSearchViewController. Use the overrideClassNames in PSPDFViewController to change this.
 *  Renamed showCancel to showsCancelButton in PSPDFSearchViewController.
 *  searchBar in PSPDFSearchViewController is now created in init, not viewDidLoad (so you can easily customize it)
+*  Added new API items for PSPDFTabbedViewController and changed the API to initialize the controller. (You can also just use init)
+*  On PSPDFDocument.title, the ".pdf" ending is now automatically removed.
+*  New property in PSPDFViewController: loadThumbnailsOnMainThread. (Moved from PSPDFPageView, new default is YES)
+*  Fixes a short black gap when loading the document under certain conditions w/o pageCurl-mode.
 *  Fixes a bug where the new pdf path resolving function sometimes returned invalid strings.
 *  Fixes a bug where changing left/rightBarButtonItems needed an additional call to updateToolbar to work. This is now implicit.
 *  Fixes a bug where nilling out left/rightBarButtonItems after the controller has been displayed didm't correctly update the navigationBar.
 *  Fixes a bug where the position of the initial page view could be smaller than the view in landscape mode.
+*  Fixes a bug where the the titleView wasn't used to calculate the toolbarWidths.
+*  Fixes a bug where the TabbedViewController's selected tab wasn't correctly updated when setting visibleDocument.
+ * Fixes a bug where the TabbedViewController-preference enableAutomaticStatePersistance wasn't always honored.
 
 __v1.10.1 - 29/May/2012__
 
