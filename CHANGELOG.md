@@ -8,6 +8,10 @@ __v2.0.0 - 1/August/2012__
 *  API changes. Lots of things got renamed or changes (Url -> URL)
 *  navigationBar title is no longer set on every page change.
 
+__v1.10.3 - x/Jun/2012__
+
+*  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
+
 __v1.10.2 - 5/Jun/2012__
 
 *  New controller delegates: willShowViewController:animated: and didShowViewController:animated:.
