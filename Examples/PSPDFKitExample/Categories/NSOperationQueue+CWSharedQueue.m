@@ -11,39 +11,19 @@
 
 static NSOperationQueue* cw_sharedOperationQueue = nil;
 
-+ (NSOperationQueue*)sharedOperationQueue {
-	if (cw_sharedOperationQueue == nil) {
-    cw_sharedOperationQueue = [[NSOperationQueue alloc] init];
-    [cw_sharedOperationQueue setMaxConcurrentOperationCount:CW_DEFAULT_OPERATION_COUNT];
-  }
++ (NSOperationQueue *)sharedOperationQueue {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cw_sharedOperationQueue = [[NSOperationQueue alloc] init];
+        [cw_sharedOperationQueue setMaxConcurrentOperationCount:CW_DEFAULT_OPERATION_COUNT];
+    });
   return cw_sharedOperationQueue;
 }
 
-+ (void)setSharedOperationQueue:(NSOperationQueue*)operationQueue {
++ (void)setSharedOperationQueue:(NSOperationQueue *)operationQueue {
 	if (operationQueue != cw_sharedOperationQueue) {
     cw_sharedOperationQueue = operationQueue;
   }
-}
-
-@end
-
-
-@implementation NSObject (CWSharedQueue)
-
-- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg {
-	NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:aSelector object:arg];
-  [[NSOperationQueue sharedOperationQueue] addOperation:operation];
-	return operation;  
-}
-
-- (NSInvocationOperation*)performSelectorInBackgroundQueue:(SEL)aSelector withObject:(id)arg dependencies:(NSArray *)dependencies priority:(NSOperationQueuePriority)priority {
-	NSInvocationOperation* operation = [[NSInvocationOperation alloc] initWithTarget:self selector:aSelector object:arg];
-  [operation setQueuePriority:priority];
-  for (NSOperation* dependency in dependencies) {
-   	[operation addDependency:dependency]; 
-  }
-  [[NSOperationQueue sharedOperationQueue] addOperation:operation];
-	return operation;  
 }
 
 @end

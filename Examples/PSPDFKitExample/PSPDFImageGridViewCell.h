@@ -11,12 +11,7 @@
 @class PSPDFMagazine, PSPDFMagazineFolder;
 
 /// Cell for pdf magazines. Adds support for deleting.
-@interface PSPDFImageGridViewCell : PSPDFThumbnailGridViewCell {
-    UIView *progressViewBackground_;
-    UILabel *magazineCounter_;
-    UIImageView *magazineCounterBadgeImage_;
-    NSMutableSet *observedMagazineDownloads_;
-}
+@interface PSPDFImageGridViewCell : PSPDFThumbnailGridViewCell
 
 /// Relays image to internal image of PSPDFThumbnailGridViewCell.
 @property(nonatomic, strong) UIImage *image;
