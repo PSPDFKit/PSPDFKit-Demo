@@ -19,7 +19,7 @@
 /// Set magazineCount badge for a PSPDFMagazineFolder.
 @property(nonatomic, assign) NSUInteger magazineCount;
 
-// don't set both
+// Cell may contain a magazine or a folder. don't set both.
 @property (nonatomic, strong) PSPDFMagazine *magazine;
 @property (nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
 
