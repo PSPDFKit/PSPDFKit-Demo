@@ -6,12 +6,8 @@
 //
 
 #import "PSPDFAddDocumentsBarButtonItem.h"
-#import "PSPDFDocumentSelectorController.h"
 
-@interface PSPDFAddDocumentsBarButtonItem () <PSPDFDocumentSelectorControllerDelegate>
-@end
-
-@implementation PSPDFAddDocumentsBarButtonItem
+@implementation PSPDFAddDocumentsBarButtonItem 
 
 - (UIBarButtonSystemItem)systemItem {
     return UIBarButtonSystemItemAdd;
@@ -22,8 +18,7 @@
 }
 
 // override implementation so that we are *always* enabled.
-- (void)updateBarButtonItem {
-}
+- (void)updateBarButtonItem {}
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
     PSPDFDocumentSelectorController *documentsController = [[PSPDFDocumentSelectorController alloc] init];
@@ -43,9 +38,7 @@
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfViewController.parentViewController;
 
     // add new document, and set as current
-    NSMutableArray *newDocuments = [tabbedViewController.documents mutableCopy] ?: [NSMutableArray array];
-    [newDocuments addObject:document];
-    tabbedViewController.documents = newDocuments;
+    [tabbedViewController addDocuments:[NSArray arrayWithObject:document] atIndex:NSUIntegerMax animated:YES];
     tabbedViewController.visibleDocument = document;
 }
 

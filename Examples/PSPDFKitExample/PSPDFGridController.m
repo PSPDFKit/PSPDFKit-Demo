@@ -416,7 +416,7 @@
 }
 
 - (CGSize)PSPDFGridView:(PSPDFGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    return PSIsIpad() ? CGSizeMake(170, 220) : CGSizeMake(82, 120);
+    return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
 }
 
 - (PSPDFGridViewCell *)PSPDFGridView:(PSPDFGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {

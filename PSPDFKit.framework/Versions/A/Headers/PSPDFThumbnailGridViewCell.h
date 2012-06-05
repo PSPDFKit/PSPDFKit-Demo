@@ -31,10 +31,13 @@
 @property(nonatomic, strong) PSPDFDocument *document;
 
 /// site label.
-@property(nonatomic, strong) PSPDFRoundedLabel *siteLabel;
+@property(nonatomic, strong) UILabel *siteLabel;
 
 /// referenced page.
 @property(nonatomic, assign) NSUInteger page;
+
+/// Allow a margin. Defaults to 0,0,0,0.
+@property(nonatomic, assign) UIEdgeInsets edgeInsets;
 
 /// enables thumbnail shadow. defaults to YES.
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
@@ -44,6 +47,11 @@
 
 /// Creates the shadow. Subclass to change. Returns a CGPathRef.
 - (id)pathShadowForView:(UIView *)imgView;
+
+/// Internal static queue for thumbnail parsing.
++ (NSOperationQueue *)thumbnailQueue;
+
+- (void)updateSiteLabel;
 
 @end
 

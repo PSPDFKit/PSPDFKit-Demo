@@ -17,13 +17,13 @@
 @synthesize delegate = delegate_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
+#pragma mark - Static
 
-- (NSArray *)filesFromSampleDir {
++ (NSArray *)documentsFromDirectory:(NSString *)directoryName {
     NSMutableArray *folders = [NSMutableArray array];
 
     NSError *error = nil;
-    NSString *sampleFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+    NSString *sampleFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:directoryName];
     NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sampleFolder error:&error];
 
     for (NSString *folder in documentContents) {
@@ -49,7 +49,7 @@
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
         self.title = NSLocalizedString(@"Files", @"");
 
-        content_ = [[self filesFromSampleDir] copy];
+        content_ = [[[self class] documentsFromDirectory:@"Samples"] copy];
 
         [[PSPDFCache sharedPSPDFCache] addDelegate:self];
     }

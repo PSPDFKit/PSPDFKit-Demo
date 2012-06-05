@@ -9,13 +9,17 @@
 
 @protocol PSPDFTabBarViewDelegate, PSPDFTabBarViewDataSource;
 
-@interface PSPDFTabBarView : UIView
+/// The TabBar used in PSPDFTabbedViewController
+@interface PSPDFTabBarView : UIView <UIScrollViewDelegate>
 
 /// Reload all tabs.
 - (void)reloadData;
 
-/// Scrolls to a certain tab and selects it, animatable.
+/// Selects a certain tab, animatable.
 - (void)selectTabAtIndex:(NSUInteger)index animated:(BOOL)animated;
+
+/// Scrolls to a certain tab, animatable.
+- (void)scrollToTabAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
 /// Currently selected tab index. May return NSNotFound if no tabs are loaded.
 @property(nonatomic, readonly) NSUInteger selectedTabIndex;
@@ -23,15 +27,15 @@
 @property(nonatomic, assign) IBOutlet id<PSPDFTabBarViewDelegate> delegate;
 @property(nonatomic, assign) IBOutlet id<PSPDFTabBarViewDataSource> dataSource;
 
-//@property(nonatomic,assign) UIEdgeInsets buttonInsets;
-
 @end
 
+/// The TabBar delegate.
 @protocol PSPDFTabBarViewDelegate <NSObject>
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectTabAtIndex:(NSUInteger)index;
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectCloseButtonOfTabAtIndex:(NSUInteger)index;
 @end
 
+/// The TabBar dataSource.
 @protocol PSPDFTabBarViewDataSource <NSObject>
 - (NSInteger)numberOfTabsInTabBarView:(PSPDFTabBarView *)tabBarView;
 - (NSString *)tabBarView:(PSPDFTabBarView *)tabBarView titleForTabAtIndex:(NSUInteger)index;

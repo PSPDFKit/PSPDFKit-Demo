@@ -11,11 +11,22 @@
 #import "PSPDFDownload.h"
 #import "PSPDFStoreManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSOperationQueue+CWSharedQueue.h"
 
 #define kPSPDFKitDownloadingKey @"downloading"
 #define kPSPDFCellAnimationDuration 0.25f
 
-@interface PSPDFImageGridViewCell()
+@interface PSPDFImageGridViewCell() {
+    __block NSOperation *imageLoadOperation_;
+    UIImage *magazineOperationImage_;
+    NSString *magazineTitle_;
+    CGRect defaultFrame_;
+    
+    UIView *progressViewBackground_;
+    UILabel *magazineCounter_;
+    UIImageView *magazineCounterBadgeImage_;
+    NSMutableSet *observedMagazineDownloads_;
+}
 @property(nonatomic, strong) UIImageView *magazineCounterBadgeImage;
 @property(nonatomic, strong) UIProgressView *progressView;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
@@ -60,6 +71,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
+        defaultFrame_ = frame;
         self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
         
         // incomplete downloads stay here
@@ -67,6 +79,8 @@
         
         // uncomment to hide label
         self.showingSiteLabel = YES;
+
+        self.edgeInsets = UIEdgeInsetsMake(0, 0, 10, 0);
     }
     
     return self;
@@ -84,6 +98,39 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.deleteButtonOffset = CGPointMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10);
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    defaultFrame_ = frame;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFThumbnailGridViewCell
+
+// override to change label (default is within the image, has rounded borders)
+- (void)updateSiteLabel {
+    if (self.isShowingSiteLabel && !self.siteLabel.superview) {
+        UILabel *siteLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        siteLabel.backgroundColor = [UIColor clearColor];
+        siteLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
+        siteLabel.shadowColor = [UIColor blackColor];
+        siteLabel.shadowOffset = CGSizeMake(0, 1);
+        siteLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        siteLabel.textAlignment = UITextAlignmentCenter;
+        siteLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
+        self.siteLabel = siteLabel;
+        [self.contentView addSubview:siteLabel];
+    }else if(!self.isShowingSiteLabel && self.siteLabel.superview) {
+        [self.siteLabel removeFromSuperview];
+    }
+    
+    // calculate new frame and position correct
+    self.siteLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
+
+    if (self.siteLabel.superview) {
+        [self.contentView bringSubviewToFront:self.siteLabel];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,19 +183,42 @@
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
             
             self.magazineCount = 0;
-            self.image = [magazine coverImageForSize:self.frame.size];
             
-            // try to download image
-            if (!self.image && magazine.imageURL) {
-                [self.imageView setImageWithURL:magazine.imageURL];
-            }
+            __block NSBlockOperation *imageLoadOperation = [NSBlockOperation blockOperationWithBlock:^{
+                if (!imageLoadOperation.isCancelled) {
+                    magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
+                }
+                if (!imageLoadOperation.isCancelled) {
+                    // try to download image
+                    if (!self.image && magazine.imageURL) {           
+                        [self.imageView setImageWithURL:magazine.imageURL];
+                    }
+                }
+                // also may be slow, parsing the title from PDF metadata.
+                magazineTitle_ = magazine.title;
+                
+                if (!imageLoadOperation.isCancelled) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        if(!imageLoadOperation.isCancelled) {
+                            // animating this is too expensive.
+                            [self setImage:magazineOperationImage_ animated:NO];
+                            self.siteLabel.text = magazineTitle_;
+                        }
+                    });
+                }
+            }];
+            [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
+            imageLoadOperation_ = imageLoadOperation;
             
             // dark out view if it needs to be downloaded
             [self darkenView:!magazine.isAvailable animated:NO];
         }
-
+        
         // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
-        self.siteLabel.text = magazine.title;
+        NSString *siteLabelText = [[magazine fileURL] lastPathComponent];
+        siteLabelText = [siteLabelText stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [siteLabelText length])];
+        self.siteLabel.text = siteLabelText;
+        [self updateSiteLabel];
     }
 }
 
@@ -321,7 +391,10 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     [self clearProgressObservers];
-    [self.imageView setImageWithURL:nil];
+    [imageLoadOperation_ cancel];
+    [self.imageView cancelImageRequestOperation];
+    self.imageView.image = nil;
+    [self setImageSize:defaultFrame_.size];
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;

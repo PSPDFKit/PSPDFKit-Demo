@@ -70,11 +70,6 @@
 /// set background image to custom image. used in PSPDFTiledLayer.
 - (void)setBackgroundImage:(UIImage *)image animated:(BOOL)animated;
 
-/// If YES, there is no thumbnail flickering if they are available in mem/disk.
-/// This looks nicer, but is a bit slower as we decompress in main thread.
-/// Defaults to NO. (behavior in PSPPDFKit < 1.8.2 was YES)
-@property(nonatomic, assign) BOOL loadThumbnailsOnMainThread;
-
 
 /// @name Shadow settings
 

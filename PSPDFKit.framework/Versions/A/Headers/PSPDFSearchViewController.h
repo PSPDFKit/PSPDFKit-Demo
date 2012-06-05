@@ -10,9 +10,7 @@
 #import "PSPDFAttributedLabel.h"
 #import "PSPDFDocumentSearcher.h"
 #import "PSPDFCache.h"
-
-// used in UITableViewCell
-#define kPSPDFAttributedLabelTag 25633
+#import "PSPDFViewController.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 
@@ -24,27 +22,27 @@ enum {
 }typedef PSPDFSearchStatus;
 
 /// pdf search controller.
-@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFSearchDelegate>
+@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFSearchDelegate, PSPDFStatusBarStyleHint>
 
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
 /// different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
-@property(nonatomic, assign) BOOL showCancel;
+/// Note: this is set from PSPDFViewController in presentModalViewController:withCloseButton:animated.
+@property(nonatomic, assign) BOOL showsCancelButton;
 
 /// search bar for controller.
+/// You can change attributes (e.g. barStyle) but don't change the delegate!
 @property(nonatomic, strong, readonly) UISearchBar *searchBar;
 
 /// Current search status. KVO ovserveable.
 @property(nonatomic, assign, readonly) PSPDFSearchStatus searchStatus;
 
-/// Set to your custom class if you need to override the search status cell
-@property(nonatomic, copy) NSString *searchClassName;
-
 /// Clears highlights when controller disappeares. Defaults to NO.
 @property(nonatomic, assign) BOOL clearHighlightsWhenClosed;
 
 // Updates the search result cell. Can be subclassed.
+// To customize the label search the subvies for the PSPDFAttributedLabel class.
 - (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
 @end

@@ -50,6 +50,12 @@
  self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
  }*/
 
+// override minimum width to make all buttons clickable on iPhone.
+- (void)updateToolbars {
+    self.minRightToolbarWidth = self.view.bounds.size.width;
+    [super updateToolbars];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
@@ -146,6 +152,26 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
     NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+}
+
+/// HUD will be displayed.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowHUD:(BOOL)animated {
+    NSLog(@"willShowHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD was displayed (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowHUD:(BOOL)animated {
+    NSLog(@"didShowHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD will be hidden.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willHideHUD:(BOOL)animated {
+    NSLog(@"willHideHudAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+/// HUD was hidden (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated {
+    NSLog(@"didHideHUDAnimated: %@", animated ? @"YES" : @"NO");
 }
 
 @end
