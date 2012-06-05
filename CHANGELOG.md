@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.10.3 - x/Jun/2012__
+
+*  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
+
 __v1.10.2 - 5/Jun/2012__
 
 *  New controller delegates: willShowViewController:animated: and didShowViewController:animated:.
