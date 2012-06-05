@@ -11,11 +11,22 @@
 #import "PSPDFDownload.h"
 #import "PSPDFStoreManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSOperationQueue+CWSharedQueue.h"
 
 #define kPSPDFKitDownloadingKey @"downloading"
 #define kPSPDFCellAnimationDuration 0.25f
 
-@interface PSPDFImageGridViewCell()
+@interface PSPDFImageGridViewCell() {
+    __block NSOperation *imageLoadOperation_;
+    UIImage *magazineOperationImage_;
+    NSString *magazineTitle_;
+    CGRect defaultFrame_;
+    
+    UIView *progressViewBackground_;
+    UILabel *magazineCounter_;
+    UIImageView *magazineCounterBadgeImage_;
+    NSMutableSet *observedMagazineDownloads_;
+}
 @property(nonatomic, strong) UIImageView *magazineCounterBadgeImage;
 @property(nonatomic, strong) UIProgressView *progressView;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
@@ -60,6 +71,7 @@
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
+        defaultFrame_ = frame;
         self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
         
         // incomplete downloads stay here
@@ -84,6 +96,11 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.deleteButtonOffset = CGPointMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10);
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    defaultFrame_ = frame;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,19 +153,38 @@
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
             
             self.magazineCount = 0;
-            self.image = [magazine coverImageForSize:self.frame.size];
             
-            // try to download image
-            if (!self.image && magazine.imageUrl) {           
-                [self.imageView setImageWithURL:magazine.imageUrl];
-            }
+            __block NSBlockOperation *imageLoadOperation = [NSBlockOperation blockOperationWithBlock:^{
+                if (!imageLoadOperation.isCancelled) {
+                    magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
+                }
+                if (!imageLoadOperation.isCancelled) {
+                    // try to download image
+                    if (!self.image && magazine.imageUrl) {           
+                        [self.imageView setImageWithURL:magazine.imageUrl];
+                    }
+                }
+                // also may be slow, parsing the title from PDF metadata.
+                magazineTitle_ = magazine.title;
+            }];
+            imageLoadOperation.completionBlock = ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    if(!imageLoadOperation.isCancelled) {
+                        self.image = magazineOperationImage_;
+                        self.siteLabel.text = magazineTitle_;
+                    }
+                });
+            };
+            [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
+            imageLoadOperation_ = imageLoadOperation;
             
             // dark out view if it needs to be downloaded
             [self darkenView:!magazine.isAvailable animated:NO];
         }
-
+        
         // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
-        self.siteLabel.text = magazine.title;
+        self.siteLabel.text = [[magazine fileUrl] lastPathComponent];
+        [self updateSiteLabel];
     }
 }
 
@@ -321,7 +357,10 @@
 - (void)prepareForReuse {
     [super prepareForReuse];
     [self clearProgressObservers];
-    [self.imageView setImageWithURL:nil];
+    [imageLoadOperation_ cancel];
+    [self.imageView cancelImageRequestOperation];
+    self.imageView.image = nil;
+    [self setImageSize:defaultFrame_.size];
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;
