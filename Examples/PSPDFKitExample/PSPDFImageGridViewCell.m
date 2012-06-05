@@ -108,6 +108,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFThumbnailGridViewCell
 
+// override to change label (default is within the image, has rounded borders)
 - (void)updateSiteLabel {
     if (self.isShowingSiteLabel && !self.siteLabel.superview) {
         UILabel *siteLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -117,7 +118,7 @@
         siteLabel.shadowOffset = CGSizeMake(0, 1);
         siteLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
         siteLabel.textAlignment = UITextAlignmentCenter;
-        siteLabel.font = [UIFont boldSystemFontOfSize:16];
+        siteLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
         self.siteLabel = siteLabel;
         [self.contentView addSubview:siteLabel];
     }else if(!self.isShowingSiteLabel && self.siteLabel.superview) {
@@ -127,19 +128,10 @@
     // calculate new frame and position correct
     self.siteLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
 
-    /*
-    // limit width!
-    CGRect labelRect = siteLabel_.frame; labelRect.size.width = MIN(labelRect.size.width, self.imageView.frame.size.width - siteLabel_.cornerRadius*2); siteLabel_.frame = labelRect;
-    
-    CGFloat siteLabelWidth = siteLabel_.frame.size.width + 20.f;
-    siteLabel_.frame = CGRectIntegral(CGRectMake(self.imageView.frame.origin.x + (self.imageView.frame.size.width-siteLabelWidth)/2, self.imageView.frame.origin.y+self.imageView.frame.size.height-kPSPDFThumbnailLabelHeight-5.f, siteLabelWidth, kPSPDFThumbnailLabelHeight));
-     */
-    
     if (self.siteLabel.superview) {
         [self.contentView bringSubviewToFront:self.siteLabel];
     }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - KVO
@@ -223,7 +215,9 @@
         }
         
         // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
-        self.siteLabel.text = [[magazine fileUrl] lastPathComponent];
+        NSString *siteLabelText = [[magazine fileUrl] lastPathComponent];
+        siteLabelText = [siteLabelText stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [siteLabelText length])];
+        self.siteLabel.text = siteLabelText;
         [self updateSiteLabel];
     }
 }
