@@ -196,7 +196,7 @@ enum {
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
-/// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
+/// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 /// Note: if modal is set in the link, this property has no effect.
 @property(nonatomic, assign) PSPDFLinkActionSetting linkAction;
 
@@ -235,7 +235,7 @@ enum {
 /// Print feature. Only displayed if document is allowed to be printed.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *printButtonItem;
 
-/// Shows the Open In... iOS dialog. Only works with single-file/data pdf's.
+/// Shows the Open In... iOS dialog. Only works with single-file pdf's.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *openInButtonItem;
 
 /// Send current pdf via email. Only works with single-file/data pdf's.
@@ -318,6 +318,9 @@ enum {
 /// Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
 @property(nonatomic, assign) CGFloat annotationAnimationDuration;
 
+/// Defaults to YES. Set to NO for faster page-scrolling, but may flash white even if there are thumbnails supplied.
+@property(nonatomic, assign) BOOL loadThumbnailsOnMainThread;
+
 
 /// @name Subclassing Helpers
 
@@ -338,6 +341,9 @@ enum {
 - (void)createToolbar;
 
 - (void)updateToolbars;
+
+/// Return rect of the content view area excluding translucent toolbar/statusbar.
+- (CGRect)contentRect;
 
 /// UIBarButtonItem doesn't support calculation of it's width, so we have to approximate.
 /// This allows you to change the minimum width if the heuristics fail.
@@ -369,4 +375,9 @@ enum {
 // Animates a certain search highlight. Can be subclassed.
 - (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
 
+@end
+
+// Allows better guessing of the status bar style.
+@protocol PSPDFStatusBarStyleHint <NSObject>
+- (UIStatusBarStyle)preferredStatusBarStyle;
 @end

@@ -10,17 +10,17 @@
 
 @class PSPDFDocument;
 
-enum {
+typedef enum {
     PSPDFCacheNothing,                    // no files are saved. (slowest)
     PSPDFCacheOnlyThumbnailsAndNearPages, // only a few files are saved.
     PSPDFCacheOpportunistic               // the whole pdf document is converted to images and saved. (fastest)
-}typedef PSPDFCacheStrategy;
+}PSPDFCacheStrategy;
 
-enum {
+typedef enum {
     PSPDFSizeNative,     /// single page portrait device screen size
     PSPDFSizeThumbnail,  /// defined as above in kPSPDFThumbnailSize
     PSPDFSizeTiny        /// tiny is memory-only
-}typedef PSPDFSize;
+}PSPDFSize;
 
 /// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
 @protocol PSPDFCacheDelegate
@@ -88,7 +88,8 @@ enum {
 /// deregisters a delegate. return YES on success.
 - (BOOL)removeDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
-/// set up caching strategy.
+/// Set up the caching strategy.
+/// Defaults to PSPDFCacheOpportunistic.
 @property(assign) PSPDFCacheStrategy strategy;
 
 /// maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,...)
@@ -111,10 +112,12 @@ enum {
 /// Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10
 @property(assign) BOOL useJPGTurbo;
 
-/// defaults to CGSizeMake(200, 400).
+/// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
+/// Defaults to CGSizeMake(200, 400).
 @property(assign) CGSize thumbnailSize;
 
-/// defaults to CGSizeMake(50, 100).
+/// The size of the images used in the scrobble bar.
+/// Defaults to CGSizeMake(50, 100).
 @property(assign) CGSize tinySize;
 
 /// cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".

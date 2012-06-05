@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 
 /// Represents a single outline/table of contents element.
-@interface PSPDFOutlineElement : NSObject
+@interface PSPDFOutlineElement : NSObject <NSCopying, NSCoding>
 
 /// Init with title, page, child elements and deepness level.
-- (id)initWithTitle:(NSString *)title page:(NSUInteger)page elements:(NSArray *)elements level:(NSUInteger)level;
+- (id)initWithTitle:(NSString *)title page:(NSUInteger)page children:(NSArray *)children level:(NSUInteger)level;
 
 /// Returns all elements + flattened subelements
 - (NSArray *)flattenedChildren;
