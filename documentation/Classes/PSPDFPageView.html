@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -43,8 +43,6 @@
 	<option value="//api/name/backgroundImageView">&nbsp;&nbsp;&nbsp;&nbsp;backgroundImageView</option>
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
-	
-	<option value="//api/name/loadThumbnailsOnMainThread">&nbsp;&nbsp;&nbsp;&nbsp;loadThumbnailsOnMainThread</option>
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
@@ -120,8 +118,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/backgroundImageView">backgroundImageView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadThumbnailsOnMainThread">loadThumbnailsOnMainThread</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
@@ -242,7 +238,7 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 	<span class="tooltip">
 		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
 		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
-pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -250,7 +246,7 @@ pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
 		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
-pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -266,8 +262,8 @@ pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollView">&ndash;&nbsp;scrollView</a></code>
 		<span class="tooltip"><p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)
-Note: this only lets you access the <a href="#//api/name/scrollView">scrollView</a> if it&rsquo;s in the view hiararchy.
-If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrollView</a> which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p></span>
+Note: this only lets you access the scrollView if it&rsquo;s in the view hiararchy.
+If we use pageCurl mode, we have a global scrollView which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p></span>
 	</span>
 	
 	
@@ -281,7 +277,7 @@ If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrol
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
-		<span class="tooltip"><p>Access <a href="#//api/name/pdfController">pdfController</a></p></span>
+		<span class="tooltip"><p>Access pdfController</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -335,15 +331,6 @@ If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrol
 	</span>
 	
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loadThumbnailsOnMainThread">&nbsp;&nbsp;loadThumbnailsOnMainThread</a></code>
-		<span class="tooltip"><p>If YES, there is no thumbnail flickering if they are available in mem/disk.
-This looks nicer, but is a bit slower as we decompress in main thread.
-Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
 </li>
 						</ul>
 						
@@ -362,7 +349,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shadowOpacity">&nbsp;&nbsp;shadowOpacity</a></code>
-		<span class="tooltip"><p>Set default <a href="#//api/name/shadowOpacity">shadowOpacity</a>. Defaults to 0.7.</p></span>
+		<span class="tooltip"><p>Set default shadowOpacity. Defaults to 0.7.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -462,42 +449,6 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p></span>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/loadThumbnailsOnMainThread" title="loadThumbnailsOnMainThread"></a>
-	<h3 class="subsubtitle method-title">loadThumbnailsOnMainThread</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>If YES, there is no thumbnail flickering if they are available in mem/disk.
-This looks nicer, but is a bit slower as we decompress in main thread.
-Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL loadThumbnailsOnMainThread</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/page" title="page"></a>
 	<h3 class="subsubtitle method-title">page</h3>
 	
@@ -538,7 +489,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Access <a href="#//api/name/pdfController">pdfController</a></p>
+		<p>Access pdfController</p>
 	</div>		
 	
 	
@@ -674,7 +625,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set default <a href="#//api/name/shadowOpacity">shadowOpacity</a>. Defaults to 0.7.</p>
+		<p>Set default shadowOpacity. Defaults to 0.7.</p>
 	</div>		
 	
 	
@@ -753,7 +704,7 @@ Defaults to NO. (behavior in PSPPDFKit &lt; 1.8.2 was YES)</p>
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a pdf point to the corresponding view point.
-pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -788,7 +739,7 @@ pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a view point to the corresponding pdf point.
-pageBounds usually is <a href="PSPDFPageView.html">PSPDFPageView</a> bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -892,8 +843,8 @@ Don&rsquo;t set removeFromView to YES if destroy is <em>not</em> on the main thr
 	
 	<div class="method-subsection brief-description">
 		<p>Access parent <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if available. (zoom controller)
-Note: this only lets you access the <a href="#//api/name/scrollView">scrollView</a> if it&rsquo;s in the view hiararchy.
-If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrollView</a> which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p>
+Note: this only lets you access the scrollView if it&rsquo;s in the view hiararchy.
+If we use pageCurl mode, we have a global scrollView which can be accessed with <a href="#//api/name/pdfController">pdfController</a>.pagingScrollView</p>
 	</div>		
 	
 	
@@ -1035,9 +986,9 @@ If we use pageCurl mode, we have a global <a href="#//api/name/scrollView">scrol
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

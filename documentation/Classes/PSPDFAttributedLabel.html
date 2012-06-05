@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -203,11 +203,11 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p><a href="PSPDFAttributedLabel.html"><code>PSPDFAttributedLabel</code></a> is a drop-in replacement for <code>UILabel</code> that supports <code>NSAttributedString</code>, as well as automatically-detected and manually-added <a href="#//api/name/links">links</a> to URLs, addresses, phone numbers, and dates.</p>
+						<p><code>PSPDFAttributedLabel</code> is a drop-in replacement for <code>UILabel</code> that supports <code>NSAttributedString</code>, as well as automatically-detected and manually-added <a href="#//api/name/links">links</a> to URLs, addresses, phone numbers, and dates.</p>
 
-<h1>Differences Between <a href="PSPDFAttributedLabel.html"><code>PSPDFAttributedLabel</code></a> and <code>UILabel</code></h1>
+<h1>Differences Between <code>PSPDFAttributedLabel</code> and <code>UILabel</code></h1>
 
-<p>For the most part, <a href="PSPDFAttributedLabel.html"><code>PSPDFAttributedLabel</code></a> behaves just like <code>UILabel</code>. The following are notable exceptions, in which <a href="PSPDFAttributedLabel.html"><code>PSPDFAttributedLabel</code></a> properties may act differently:</p>
+<p>For the most part, <code>PSPDFAttributedLabel</code> behaves just like <code>UILabel</code>. The following are notable exceptions, in which <code>PSPDFAttributedLabel</code> properties may act differently:</p>
 
 <ul>
 <li><code>text</code> &ndash; This property now takes an <code>id</code> type argument, which can either be a kind of <code>NSString</code> or <code>NSAttributedString</code> (mutable or immutable in both cases)</li>
@@ -233,7 +233,7 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>The receiver&rsquo;s <a href="#//api/name/delegate">delegate</a>.</p></span>
+		<span class="tooltip"><p>The receiver&rsquo;s delegate.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -255,7 +255,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/links">&nbsp;&nbsp;links</a></code>
-		<span class="tooltip"><p>An array of <code>NSTextCheckingResult</code> objects for <a href="#//api/name/links">links</a> detected or manually added to the label text.</p></span>
+		<span class="tooltip"><p>An array of <code>NSTextCheckingResult</code> objects for links detected or manually added to the label text.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -431,7 +431,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p>You must specify <a href="#//api/name/dataDetectorTypes"><code>dataDetectorTypes</code></a> before setting the <code>text</code>, with either <a href="#//api/name/setText:"><code>setText:</code></a> or <a href="#//api/name/setText:afterInheritingLabelAttributesAndConfiguringWithBlock:"><code>setText:afterInheritingLabelAttributesAndConfiguringWithBlock:</code></a>.</p></div>
+		<div class="warning"><p><strong>Warning:</strong> You must specify <code>dataDetectorTypes</code> before setting the <code>text</code>, with either <a href="#//api/name/setText:"><code>setText:</code></a> or <a href="#//api/name/setText:afterInheritingLabelAttributesAndConfiguringWithBlock:"><code>setText:afterInheritingLabelAttributesAndConfiguringWithBlock:</code></a>.</p></div>
 	</div>
 	
 	
@@ -455,11 +455,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The receiver&rsquo;s <a href="#//api/name/delegate">delegate</a>.</p>
+		<p>The receiver&rsquo;s delegate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;PSPDFAttributedLabelDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) id&lt;&gt; delegate</code></div>
 	
 	
 	
@@ -470,7 +470,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>@discussion A <a href="PSPDFAttributedLabel.html"><code>PSPDFAttributedLabel</code></a> <a href="#//api/name/delegate">delegate</a> responds to messages sent by tapping on <a href="#//api/name/links">links</a> in the label. You can use the <a href="#//api/name/delegate">delegate</a> to respond to <a href="#//api/name/links">links</a> referencing a URL, address, phone number, date, or date with a specified time zone and duration.</p>
+		<p>@discussion A <code>PSPDFAttributedLabel</code> delegate responds to messages sent by tapping on <a href="#//api/name/links">links</a> in the label. You can use the delegate to respond to <a href="#//api/name/links">links</a> referencing a URL, address, phone number, date, or date with a specified time zone and duration.</p>
 	</div>
 	
 	
@@ -611,7 +611,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<div class="warning"><p>You must specify <a href="#//api/name/linkAttributes"><code>linkAttributes</code></a> before setting autodecting or manually-adding <a href="#//api/name/links">links</a> for these attributes to be applied.</p></div>
+		<div class="warning"><p><strong>Warning:</strong> You must specify <code>linkAttributes</code> before setting autodecting or manually-adding <a href="#//api/name/links">links</a> for these attributes to be applied.</p></div>
 	</div>
 	
 	
@@ -635,7 +635,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>An array of <code>NSTextCheckingResult</code> objects for <a href="#//api/name/links">links</a> detected or manually added to the label text.</p>
+		<p>An array of <code>NSTextCheckingResult</code> objects for links detected or manually added to the label text.</p>
 	</div>		
 	
 	
@@ -1116,7 +1116,7 @@
 			<dt><em>text</em></dt>
 			<dd><p>An <code>NSString</code> or <code>NSAttributedString</code> object to be displayed by the label. If the specified text is an <code>NSString</code>, the label will display the text like a <code>UILabel</code>, inheriting the text styles of the label. If the specified text is an <code>NSAttributedString</code>, the label text styles will be overridden by the styles specified in the attributed string.</p>
 
-<p>@discussion This method overrides <code>UILabel </code>setText:<code></code> to accept both <code>NSString</code> and <code>NSAttributedString</code> objects. This string is <code>nil</code> by default.</p></dd>
+<p>@discussion This method overrides <code>UILabel -setText:</code> to accept both <code>NSString</code> and <code>NSAttributedString</code> objects. This string is <code>nil</code> by default.</p></dd>
 		</dl>
 		
 	</div>
@@ -1205,9 +1205,9 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

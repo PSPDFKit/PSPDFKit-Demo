@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -52,6 +52,8 @@
 	
 	<option value="//api/name/closeButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;closeButtonItem</option>
 	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
 	<option value="//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;&nbsp;&nbsp;doublePageModeOnFirstPage</option>
@@ -64,11 +66,11 @@
 	
 	<option value="//api/name/iPhoneThumbnailSizeReductionFactor">&nbsp;&nbsp;&nbsp;&nbsp;iPhoneThumbnailSizeReductionFactor</option>
 	
-	<option value="//api/name/id">&nbsp;&nbsp;&nbsp;&nbsp;id</option>
-	
 	<option value="//api/name/leftBarButtonItems">&nbsp;&nbsp;&nbsp;&nbsp;leftBarButtonItems</option>
 	
 	<option value="//api/name/linkAction">&nbsp;&nbsp;&nbsp;&nbsp;linkAction</option>
+	
+	<option value="//api/name/loadThumbnailsOnMainThread">&nbsp;&nbsp;&nbsp;&nbsp;loadThumbnailsOnMainThread</option>
 	
 	<option value="//api/name/maximumZoomScale">&nbsp;&nbsp;&nbsp;&nbsp;maximumZoomScale</option>
 	
@@ -140,6 +142,8 @@
 	
 	
 	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/contentRect">&nbsp;&nbsp;&nbsp;&nbsp;- contentRect</option>
 	
 	<option value="//api/name/createToolbar">&nbsp;&nbsp;&nbsp;&nbsp;- createToolbar</option>
 	
@@ -251,6 +255,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/closeButtonItem">closeButtonItem</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doublePageModeOnFirstPage">doublePageModeOnFirstPage</a></span></li>
@@ -263,11 +269,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iPhoneThumbnailSizeReductionFactor">iPhoneThumbnailSizeReductionFactor</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/id">id</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/leftBarButtonItems">leftBarButtonItems</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/linkAction">linkAction</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadThumbnailsOnMainThread">loadThumbnailsOnMainThread</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maximumZoomScale">maximumZoomScale</a></span></li>
 	
@@ -340,6 +346,8 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contentRect">contentRect</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createToolbar">createToolbar</a></span></li>
 	
@@ -466,14 +474,14 @@ When embedded, be sure to correctly relay the viewController calls of viewWillAp
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:">&ndash;&nbsp;scrollToPage:animated:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPage:animated:hideHUD:">&ndash;&nbsp;scrollToPage:animated:hideHUD:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -592,7 +600,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/popoverController">&nbsp;&nbsp;popoverController</a></code>
-		<span class="tooltip"><p>Saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed.</p></span>
+		<span class="tooltip"><p>Saves the popoverController if currently displayed.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -621,7 +629,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -715,7 +723,7 @@ There&rsquo;s some more logic involved, e.g. is the default white statusbar not 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/id">&nbsp;&nbsp;id</a></code>
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
 		<span class="tooltip"><p>Register delegate to capture events, change properties.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -731,15 +739,15 @@ Note: has simple support to also accepts an NSString, the bundle path then will 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
-e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p></span>
+		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
+e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double page mode. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -768,7 +776,7 @@ This represents the pages in the pdf <a href="#//api/name/document">document</a>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/linkAction">&nbsp;&nbsp;linkAction</a></code>
-		<span class="tooltip"><p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
+		<span class="tooltip"><p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 Note: if modal is set in the link, this property has no effect.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -819,7 +827,7 @@ Note: if modal is set in the link, this property has no effect.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/openInButtonItem">&nbsp;&nbsp;openInButtonItem</a></code>
-		<span class="tooltip"><p>Shows the Open In&hellip; iOS dialog. Only works with single-file/data pdf&rsquo;s.</p></span>
+		<span class="tooltip"><p>Shows the Open In&hellip; iOS dialog. Only works with single-file pdf&rsquo;s.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -901,8 +909,8 @@ Thus, one can customize the rotation behavior with animations when set within wi
 		<span class="tooltip"><p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.
 Note: You might wanna disable this on the iPad1, because this is more memory hungry than classic scrolling.
-You can use <a href="#//api/name/pageCurlEnabled">pageCurlEnabled</a> = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
-If you change the property dynamically depending on the screen orientation, don&rsquo;t use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an inval<a href="#//api/name/id">id</a> state.</p></span>
+You can use pageCurlEnabled = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
+If you change the property dynamically depending on the screen orientation, don&rsquo;t use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an invalid state.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -919,7 +927,7 @@ Note: doesn&rsquo;t re-order <a href="#//api/name/document">document</a> pages. 
 		<code><a href="#//api/name/fitWidth">&nbsp;&nbsp;fitWidth</a></code>
 		<span class="tooltip"><p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
-<a href="#//api/name/fitWidth">fitWidth</a> is currently not supported for vertical scrolling. This is a know limitation.</p></span>
+fitWidth is currently not supported for vertical scrolling. This is a know limitation.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -941,7 +949,7 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagePadding">&nbsp;&nbsp;pagePadding</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> padding width between single/double pages. Defaults to 20.</p></span>
+		<span class="tooltip"><p>Page padding width between single/double pages. Defaults to 20.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -977,7 +985,7 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/navigationBarHidden">&nbsp;&nbsp;navigationBarHidden</a></code>
-		<span class="tooltip"><p>The navigationBar is animated. Check this to get the proper value, even if navigationBar.<a href="#//api/name/navigationBarHidden">navigationBarHidden</a> is not yet set (but will be in the animation block)</p></span>
+		<span class="tooltip"><p>The navigationBar is animated. Check this to get the proper value, even if navigationBar.navigationBarHidden is not yet set (but will be in the animation block)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -985,6 +993,13 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationAnimationDuration">&nbsp;&nbsp;annotationAnimationDuration</a></code>
 		<span class="tooltip"><p>Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadThumbnailsOnMainThread">&nbsp;&nbsp;loadThumbnailsOnMainThread</a></code>
+		<span class="tooltip"><p>Defaults to YES. Set to NO for faster page-scrolling, but may flash white even if there are thumbnails supplied.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1024,7 +1039,14 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	<span class="tooltip">
 		<code><a href="#//api/name/createToolbar">&ndash;&nbsp;createToolbar</a></code>
 		<span class="tooltip"><p>override if you&rsquo;re changing the toolbar to your own.
-Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController.</p></span>
+Note: The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/contentRect">&ndash;&nbsp;contentRect</a></code>
+		<span class="tooltip"><p>Return rect of the content view area excluding translucent toolbar/statusbar.</p></span>
 	</span>
 	
 	
@@ -1047,7 +1069,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/updateGridForOrientation">&ndash;&nbsp;updateGridForOrientation</a></code>
-		<span class="tooltip"><p>Can be subclassed to update gr<a href="#//api/name/id">id</a> spacing.</p></span>
+		<span class="tooltip"><p>Can be subclassed to update grid spacing.</p></span>
 	</span>
 	
 	
@@ -1294,6 +1316,40 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register delegate to capture events, change properties.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) IBOutlet id&lt;&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/document" title="document"></a>
 	<h3 class="subsubtitle method-title">document</h3>
 	
@@ -1405,7 +1461,7 @@ Note: has simple support to also accepts an NSString, the bundle path then will 
 	<div class="method-subsection brief-description">
 		<p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
-<a href="#//api/name/fitWidth">fitWidth</a> is currently not supported for vertical scrolling. This is a know limitation.</p>
+fitWidth is currently not supported for vertical scrolling. This is a know limitation.</p>
 	</div>		
 	
 	
@@ -1502,40 +1558,6 @@ HUD is created in viewDidLoad. Subclass or use KVO to add your custom views when
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/id" title="id"></a>
-	<h3 class="subsubtitle method-title">id</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Register delegate to capture events, change properties.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) IBOutlet&lt;&gt; id</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/leftBarButtonItems" title="leftBarButtonItems"></a>
 	<h3 class="subsubtitle method-title">leftBarButtonItems</h3>
 	
@@ -1578,12 +1600,46 @@ Defaults to (<a href="#//api/name/closeButtonItem">closeButtonItem</a>) if view 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionAlertView.
+		<p>Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 Note: if modal is set in the link, this property has no effect.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFLinkActionSetting linkAction</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loadThumbnailsOnMainThread" title="loadThumbnailsOnMainThread"></a>
+	<h3 class="subsubtitle method-title">loadThumbnailsOnMainThread</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defaults to YES. Set to NO for faster page-scrolling, but may flash white even if there are thumbnails supplied.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL loadThumbnailsOnMainThread</code></div>
 	
 	
 	
@@ -1683,7 +1739,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The navigationBar is animated. Check this to get the proper value, even if navigationBar.<a href="#//api/name/navigationBarHidden">navigationBarHidden</a> is not yet set (but will be in the animation block)</p>
+		<p>The navigationBar is animated. Check this to get the proper value, even if navigationBar.navigationBarHidden is not yet set (but will be in the animation block)</p>
 	</div>		
 	
 	
@@ -1717,7 +1773,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Shows the Open In&hellip; iOS dialog. Only works with single-file/data pdf&rsquo;s.</p>
+		<p>Shows the Open In&hellip; iOS dialog. Only works with single-file pdf&rsquo;s.</p>
 	</div>		
 	
 	
@@ -1820,8 +1876,8 @@ e.g. add an entry of [PSPDFScrollView class] / [MyCustomPSPDFScrollViewSubclass 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, not landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
-e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double <a href="#//api/name/page">page</a> mode. KVO observable.</p>
+		<p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
+e.g. if you have 50 pages, you get 25/26 &ldquo;dual pages&rdquo; when in double page mode. KVO observable.</p>
 	</div>		
 	
 	
@@ -1893,8 +1949,8 @@ Note: doesn&rsquo;t re-order <a href="#//api/name/document">document</a> pages. 
 		<p>Enables iBooks-like <a href="#//api/name/page">page</a> curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
 Note: doesn&rsquo;t work well with non-equal sized documents. Use scrolling if you have such complex documents.
 Note: You might wanna disable this on the iPad1, because this is more memory hungry than classic scrolling.
-You can use <a href="#//api/name/pageCurlEnabled">pageCurlEnabled</a> = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
-If you change the property dynamically depending on the screen orientation, don&rsquo;t use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an inval<a href="#//api/name/id">id</a> state.</p>
+You can use pageCurlEnabled = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
+If you change the property dynamically depending on the screen orientation, don&rsquo;t use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an invalid state.</p>
 	</div>		
 	
 	
@@ -1964,7 +2020,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> padding width between single/double pages. Defaults to 20.</p>
+		<p>Page padding width between single/double pages. Defaults to 20.</p>
 	</div>		
 	
 	
@@ -2066,7 +2122,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Saves the <a href="#//api/name/popoverController">popoverController</a> if currently displayed.</p>
+		<p>Saves the popoverController if currently displayed.</p>
 	</div>		
 	
 	
@@ -2202,7 +2258,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0. KVO observable.</p>
 	</div>		
 	
@@ -2723,6 +2779,40 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/contentRect" title="contentRect"></a>
+	<h3 class="subsubtitle method-title">contentRect</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return rect of the content view area excluding translucent toolbar/statusbar.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGRect)contentRect</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/createToolbar" title="createToolbar"></a>
 	<h3 class="subsubtitle method-title">createToolbar</h3>
 	
@@ -2730,7 +2820,7 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	
 	<div class="method-subsection brief-description">
 		<p>override if you&rsquo;re changing the toolbar to your own.
-Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDFViewController</a> is inside a UINavigationController.</p>
+Note: The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.</p>
 	</div>		
 	
 	
@@ -3002,7 +3092,7 @@ Note: The toolbar is only displayed, if <a href="PSPDFViewController.html">PSPDF
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3312,7 +3402,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3346,7 +3436,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>, optionally show/hide the HUD. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3482,7 +3572,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Can be subclassed to update gr<a href="#//api/name/id">id</a> spacing.</p>
+		<p>Can be subclassed to update grid spacing.</p>
 	</div>		
 	
 	
@@ -3590,9 +3680,9 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

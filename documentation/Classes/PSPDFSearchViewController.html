@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -44,11 +44,9 @@
 	
 	<option value="//api/name/searchBar">&nbsp;&nbsp;&nbsp;&nbsp;searchBar</option>
 	
-	<option value="//api/name/searchClassName">&nbsp;&nbsp;&nbsp;&nbsp;searchClassName</option>
-	
 	<option value="//api/name/searchStatus">&nbsp;&nbsp;&nbsp;&nbsp;searchStatus</option>
 	
-	<option value="//api/name/showCancel">&nbsp;&nbsp;&nbsp;&nbsp;showCancel</option>
+	<option value="//api/name/showsCancelButton">&nbsp;&nbsp;&nbsp;&nbsp;showsCancelButton</option>
 	
 	
 	
@@ -87,11 +85,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchBar">searchBar</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchClassName">searchClassName</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchStatus">searchStatus</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showCancel">showCancel</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showsCancelButton">showsCancelButton</a></span></li>
 	
 </ul></li>
 
@@ -130,7 +126,7 @@
 	<td class="specification-value">UITableViewController</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br />UISearchBarDelegate<br />UISearchDisplayDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br />PSPDFStatusBarStyleHint<br />UISearchBarDelegate<br />UISearchDisplayDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFSearchViewController.h</td>
@@ -168,15 +164,17 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/showCancel">&nbsp;&nbsp;showCancel</a></code>
-		<span class="tooltip"><p>different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)</p></span>
+		<code><a href="#//api/name/showsCancelButton">&nbsp;&nbsp;showsCancelButton</a></code>
+		<span class="tooltip"><p>different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
+Note: this is set from <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> in presentModalViewController:withCloseButton:animated.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/searchBar">&nbsp;&nbsp;searchBar</a></code>
-		<span class="tooltip"><p>search bar for controller.</p></span>
+		<span class="tooltip"><p>search bar for controller.
+You can change attributes (e.g. barStyle) but don&rsquo;t change the delegate!</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -184,13 +182,6 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/searchStatus">&nbsp;&nbsp;searchStatus</a></code>
 		<span class="tooltip"><p>Current search status. KVO ovserveable.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/searchClassName">&nbsp;&nbsp;searchClassName</a></code>
-		<span class="tooltip"><p>Set to your custom class if you need to override the search status cell</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -255,45 +246,12 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>search bar for controller.</p>
+		<p>search bar for controller.
+You can change attributes (e.g. barStyle) but don&rsquo;t change the delegate!</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UISearchBar *searchBar</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/searchClassName" title="searchClassName"></a>
-	<h3 class="subsubtitle method-title">searchClassName</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Set to your custom class if you need to override the search status cell</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *searchClassName</code></div>
 	
 	
 	
@@ -351,17 +309,18 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/showCancel" title="showCancel"></a>
-	<h3 class="subsubtitle method-title">showCancel</h3>
+	<a name="//api/name/showsCancelButton" title="showsCancelButton"></a>
+	<h3 class="subsubtitle method-title">showsCancelButton</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)</p>
+		<p>different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
+Note: this is set from <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> in presentModalViewController:withCloseButton:animated.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL showCancel</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL showsCancelButton</code></div>
 	
 	
 	
@@ -441,9 +400,9 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

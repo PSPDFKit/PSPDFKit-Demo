@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFDocumentProvider Class Reference</title>
+		<title>PSPDFTabbedViewControllerDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFDocumentProvider Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFTabbedViewControllerDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,26 +38,19 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
-	
-	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithDocumentRef:URL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocumentRef:URL:</option>
+	<option value="//api/name/tabbedPDFController:didChangeDocuments:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:didChangeDocuments:</option>
 	
-	<option value="//api/name/releaseDocumentRef:">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocumentRef:</option>
+	<option value="//api/name/tabbedPDFController:didChangeVisibleDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:didChangeVisibleDocument:</option>
 	
-	<option value="//api/name/releasePageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- releasePageRef:</option>
+	<option value="//api/name/tabbedPDFController:willChangeDocuments:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:willChangeDocuments:</option>
 	
-	<option value="//api/name/requestDocumentRef">&nbsp;&nbsp;&nbsp;&nbsp;- requestDocumentRef</option>
-	
-	<option value="//api/name/requestPageRefForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- requestPageRefForPage:</option>
+	<option value="//api/name/tabbedPDFController:willChangeVisibleDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:willChangeVisibleDocument:</option>
 	
 	
 	
@@ -81,27 +74,19 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
-	
-</ul></li>
-
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocumentRef:URL:">initWithDocumentRef:URL:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:didChangeDocuments:">tabbedPDFController:didChangeDocuments:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocumentRef:">releaseDocumentRef:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:didChangeVisibleDocument:">tabbedPDFController:didChangeVisibleDocument:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releasePageRef:">releasePageRef:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:willChangeDocuments:">tabbedPDFController:willChangeDocuments:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestDocumentRef">requestDocumentRef</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestPageRefForPage:">requestPageRefForPage:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:willChangeVisibleDocument:">tabbedPDFController:willChangeVisibleDocument:</a></span></li>
 	
 </ul></li>
 
@@ -110,7 +95,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFDocumentProvider Class Reference" name="top"></a>
+				<a title="PSPDFTabbedViewControllerDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -119,18 +104,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFDocumentProvider Class Reference</h1>
+						<h1 class="title title-header">PSPDFTabbedViewControllerDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
+	<td class="specification-title">Conforms to</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFDocumentProvider.h</td>
+	<td class="specification-value">PSPDFTabbedViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -140,8 +125,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Encapsulates the CoreGraphics-calls to the CGPDF* data providers.
-We need to keep around the document when accessing a CG<a href="../Classes/PDFPage.html">PDFPage</a>. Retaining the page alone is not enough.</p>
+						<p>Delegate for the <a href="../Classes/PSPDFTabbedViewController.html">PSPDFTabbedViewController</a>.</p>
 					</div>
 					
 					
@@ -159,45 +143,31 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithDocumentRef:URL:">&ndash;&nbsp;initWithDocumentRef:URL:</a></code>
-		<span class="tooltip"><p>Initializes provider with a document reference.</p></span>
+		<code><a href="#//api/name/tabbedPDFController:willChangeDocuments:">&ndash;&nbsp;tabbedPDFController:willChangeDocuments:</a></code>
+		<span class="tooltip"><p>Will be called when the documents array changes.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/requestDocumentRef">&ndash;&nbsp;requestDocumentRef</a></code>
-		<span class="tooltip"><p>Get access to document reference.</p></span>
+		<code><a href="#//api/name/tabbedPDFController:didChangeDocuments:">&ndash;&nbsp;tabbedPDFController:didChangeDocuments:</a></code>
+		<span class="tooltip"><p>Will be called after the documents array changed.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/releaseDocumentRef:">&ndash;&nbsp;releaseDocumentRef:</a></code>
-		<span class="tooltip"><p>Return the document reference back to the provider</p></span>
+		<code><a href="#//api/name/tabbedPDFController:willChangeVisibleDocument:">&ndash;&nbsp;tabbedPDFController:willChangeVisibleDocument:</a></code>
+		<span class="tooltip"><p>Will be called when the visibleDocument changes.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/requestPageRefForPage:">&ndash;&nbsp;requestPageRefForPage:</a></code>
-		<span class="tooltip"><p>Requests a page for the current loaded document. Needs to be returned in releasePageRef.</p></span>
+		<code><a href="#//api/name/tabbedPDFController:didChangeVisibleDocument:">&ndash;&nbsp;tabbedPDFController:didChangeVisibleDocument:</a></code>
+		<span class="tooltip"><p>Will be called after the visibleDocument changed.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/releasePageRef:">&ndash;&nbsp;releasePageRef:</a></code>
-		<span class="tooltip"><p>Releases a page reference.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/URL">&nbsp;&nbsp;URL</a></code>
-		<span class="tooltip"><p>URL of the managed document</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -208,46 +178,6 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/URL" title="URL"></a>
-	<h3 class="subsubtitle method-title">URL</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>URL of the managed document</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSURL *URL</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
 					
 					
 					
@@ -257,17 +187,17 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithDocumentRef:URL:" title="initWithDocumentRef:URL:"></a>
-	<h3 class="subsubtitle method-title">initWithDocumentRef:URL:</h3>
+	<a name="//api/name/tabbedPDFController:didChangeDocuments:" title="tabbedPDFController:didChangeDocuments:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:didChangeDocuments:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initializes provider with a document reference.</p>
+		<p>Will be called after the documents array changed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithDocumentRef:(CGPDFDocumentRef)<em>documentRef</em> URL:(NSURL *)<em>URL</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> didChangeDocuments:(NSArray *)<em>oldDocuments</em></code></div>
 	
 	
 	
@@ -284,24 +214,24 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/releaseDocumentRef:" title="releaseDocumentRef:"></a>
-	<h3 class="subsubtitle method-title">releaseDocumentRef:</h3>
+	<a name="//api/name/tabbedPDFController:didChangeVisibleDocument:" title="tabbedPDFController:didChangeVisibleDocument:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:didChangeVisibleDocument:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return the document reference back to the provider</p>
+		<p>Will be called after the visibleDocument changed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)releaseDocumentRef:(CGPDFDocumentRef)<em>documentRef</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> didChangeVisibleDocument:(PSPDFDocument *)<em>oldDocument</em></code></div>
 	
 	
 	
@@ -318,24 +248,24 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/releasePageRef:" title="releasePageRef:"></a>
-	<h3 class="subsubtitle method-title">releasePageRef:</h3>
+	<a name="//api/name/tabbedPDFController:willChangeDocuments:" title="tabbedPDFController:willChangeDocuments:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:willChangeDocuments:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Releases a page reference.</p>
+		<p>Will be called when the documents array changes.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)releasePageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> willChangeDocuments:(NSArray *)<em>newDocuments</em></code></div>
 	
 	
 	
@@ -352,24 +282,24 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/requestDocumentRef" title="requestDocumentRef"></a>
-	<h3 class="subsubtitle method-title">requestDocumentRef</h3>
+	<a name="//api/name/tabbedPDFController:willChangeVisibleDocument:" title="tabbedPDFController:willChangeVisibleDocument:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:willChangeVisibleDocument:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Get access to document reference.</p>
+		<p>Will be called when the visibleDocument changes.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGPDFDocumentRef)requestDocumentRef</code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> willChangeVisibleDocument:(PSPDFDocument *)<em>newDocument</em></code></div>
 	
 	
 	
@@ -386,41 +316,7 @@ We need to keep around the document when accessing a CG<a href="../Classes/PDFPa
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/requestPageRefForPage:" title="requestPageRefForPage:"></a>
-	<h3 class="subsubtitle method-title">requestPageRefForPage:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Requests a page for the current loaded document. Needs to be returned in releasePageRef.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (CGPDFPageRef)requestPageRefForPage:(NSUInteger)<em>page</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
 	</div>				
 	
 	

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -66,8 +66,6 @@
 	
 	<option value="//api/name/outlineParser">&nbsp;&nbsp;&nbsp;&nbsp;outlineParser</option>
 	
-	<option value="//api/name/pageLabels">&nbsp;&nbsp;&nbsp;&nbsp;pageLabels</option>
-	
 	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
 	
 	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
@@ -108,6 +106,8 @@
 	
 	<option value="//api/name/clearCacheForced:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCacheForced:</option>
 	
+	<option value="//api/name/documentProviders">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviders</option>
+	
 	<option value="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&nbsp;&nbsp;&nbsp;&nbsp;- drawOverlayRect:inContext:forPage:zoomScale:size:</option>
 	
 	<option value="//api/name/fileIndexForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileIndexForPage:</option>
@@ -127,6 +127,8 @@
 	<option value="//api/name/pageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:</option>
 	
 	<option value="//api/name/pageInfoForPage:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:pageRef:</option>
+	
+	<option value="//api/name/pageLabelForPage:substituteWithPlainLabel:">&nbsp;&nbsp;&nbsp;&nbsp;- pageLabelForPage:substituteWithPlainLabel:</option>
 	
 	<option value="//api/name/pageNumberForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageNumberForPage:</option>
 	
@@ -210,8 +212,6 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineParser">outlineParser</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageLabels">pageLabels</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
@@ -254,6 +254,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForced:">clearCacheForced:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviders">documentProviders</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">drawOverlayRect:inContext:forPage:zoomScale:size:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileIndexForPage:">fileIndexForPage:</a></span></li>
@@ -273,6 +275,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:">pageInfoForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:pageRef:">pageInfoForPage:pageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">pageLabelForPage:substituteWithPlainLabel:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageNumberForPage:">pageNumberForPage:</a></span></li>
 	
@@ -348,28 +352,28 @@ Can be overriden to support custom collections.</p>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocument">+&nbsp;PDFDocument</a></code>
-		<span class="tooltip"><p>initialize empty <a href="PSPDFDocument.html">PSPDFDocument</a></p></span>
+		<span class="tooltip"><p>Initialize empty PSPDFDocument</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithData:">+&nbsp;PDFDocumentWithData:</a></code>
-		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with <a href="#//api/name/data">data</a></p></span>
+		<span class="tooltip"><p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with <a href="#//api/name/data">data</a></p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithBaseUrl:files:">+&nbsp;PDFDocumentWithBaseUrl:files:</a></code>
-		<span class="tooltip"><p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p></span>
+		<span class="tooltip"><p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithUrl:">+&nbsp;PDFDocumentWithUrl:</a></code>
-		<span class="tooltip"><p>initializes <a href="PSPDFDocument.html">PSPDFDocument</a> with a single file</p></span>
+		<span class="tooltip"><p>Initializes PS<a href="#//api/name/PDFDocument">PDFDocument</a> with a single file</p></span>
 	</span>
 	
 	
@@ -384,16 +388,17 @@ Can be overriden to support custom collections.</p>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/appendFile:">&ndash;&nbsp;appendFile:</a></code>
-		<span class="tooltip"><p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
-Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p></span>
+		<span class="tooltip"><p>Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
+Do not mix .<a href="#//api/name/data">data</a> and <a href="#//api/name/files">files</a> &ndash; this call will be ignored when <a href="#//api/name/data">data</a> is set.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>returns path for a single page (in case pages are split up). Page starts at 0.
-Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p></span>
+		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
+Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p></span>
 	</span>
 	
 	
@@ -414,7 +419,7 @@ Note: uses fileIndexForPage and URLForFileIndex internally. Override those inste
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/thumbnailPathForPage:">&ndash;&nbsp;thumbnailPathForPage:</a></code>
-		<span class="tooltip"><p>return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p></span>
+		<span class="tooltip"><p>Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p></span>
 	</span>
 	
 	
@@ -428,15 +433,15 @@ Note: uses fileIndexForPage and URLForFileIndex internally. Override those inste
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/basePath">&nbsp;&nbsp;basePath</a></code>
-		<span class="tooltip"><p>common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
+		<span class="tooltip"><p>Common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/files">&nbsp;&nbsp;files</a></code>
-		<span class="tooltip"><p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
-If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
+		<span class="tooltip"><p>Array of NSString pdf files. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the files.
 Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -444,7 +449,7 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
-		<span class="tooltip"><p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+		<span class="tooltip"><p>Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
 nil if the document was initialized with initWithData:</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -452,21 +457,23 @@ nil if the document was initialized with initWithData:</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
-		<span class="tooltip"><p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p></span>
+		<span class="tooltip"><p>PDF data when initialized with initWithData: otherwise nil</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
-		<span class="tooltip"><p>document <a href="#//api/name/title">title</a> as shown in the controller</p></span>
+		<span class="tooltip"><p>Document title as shown in the controller.
+If this is not set, the framework tries to extract the title from the PDF meta<a href="#//api/name/data">data</a>.
+If there&rsquo;s no meta<a href="#//api/name/data">data</a>, the fileName is used. &ldquo;.pdf&rdquo; endings will be removed either way.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/uid">&nbsp;&nbsp;uid</a></code>
-		<span class="tooltip"><p>For caching, provide a <em>UNIQUE</em> <a href="#//api/name/uid">uid</a> here. (Or clear cache after content changes for same <a href="#//api/name/uid">uid</a>. Appending content is no problem)</p></span>
+		<span class="tooltip"><p>For caching, provide a <em>UNIQUE</em> uid here. (Or clear cache after content changes for same uid. Appending content is no problem)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -481,14 +488,14 @@ nil if the document was initialized with initWithData:</p></span>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageCount">&ndash;&nbsp;pageCount</a></code>
-		<span class="tooltip"><p>return pdf page count</p></span>
+		<span class="tooltip"><p>Return pdf page count</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
-		<span class="tooltip"><p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -502,14 +509,14 @@ nil if the document was initialized with initWithData:</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -524,7 +531,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -532,7 +539,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>rotation for specified page. cached. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -556,21 +563,21 @@ Note: this might take a second on larger documents, as the page structure needs 
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/clearCacheForced:">&ndash;&nbsp;clearCacheForced:</a></code>
-		<span class="tooltip"><p>if you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p></span>
+		<span class="tooltip"><p>If you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/clearCache">&ndash;&nbsp;clearCache</a></code>
-		<span class="tooltip"><p>shortcut to clearCacheForced:NO</p></span>
+		<span class="tooltip"><p>Shortcut to clearCacheForced:NO</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fillCache">&ndash;&nbsp;fillCache</a></code>
-		<span class="tooltip"><p>creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p></span>
+		<span class="tooltip"><p>Creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p></span>
 	</span>
 	
 	
@@ -585,14 +592,14 @@ Note: this might take a second on larger documents, as the page structure needs 
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shouldDrawOverlayRectForSize:">&ndash;&nbsp;shouldDrawOverlayRectForSize:</a></code>
-		<span class="tooltip"><p>return true if you want drawOverlayRect to be called.</p></span>
+		<span class="tooltip"><p>Return true if you want drawOverlayRect to be called.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&ndash;&nbsp;drawOverlayRect:inContext:forPage:zoomScale:size:</a></code>
-		<span class="tooltip"><p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+		<span class="tooltip"><p>Can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
 Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p></span>
 	</span>
 	
@@ -608,7 +615,7 @@ Note: most of the time you might be better off using custom UIViews and adding t
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageContentForPage:">&ndash;&nbsp;pageContentForPage:</a></code>
-		<span class="tooltip"><p>defaults to nil. can be overridden to provide custom text.
+		<span class="tooltip"><p>Can be overridden to provide custom text. Defaults to nil.
 if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
 Note: If you return text here, text highlighting cannot be used for this page.</p></span>
 	</span>
@@ -625,28 +632,28 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/backgroundColorForPage:">&ndash;&nbsp;backgroundColorForPage:</a></code>
-		<span class="tooltip"><p>override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p></span>
+		<span class="tooltip"><p>Override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/aspectRatioEqual">&nbsp;&nbsp;aspectRatioEqual</a></code>
-		<span class="tooltip"><p>if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p></span>
+		<span class="tooltip"><p>If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationsEnabled">&nbsp;&nbsp;annotationsEnabled</a></code>
-		<span class="tooltip"><p>annotation link extraction. Defaults to YES.</p></span>
+		<span class="tooltip"><p>Annotation link extraction. Defaults to YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/twoStepRenderingEnabled">&nbsp;&nbsp;twoStepRenderingEnabled</a></code>
-		<span class="tooltip"><p>enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
+		<span class="tooltip"><p>Enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
 or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
 This might be a good idea to turn on when using JPG for caching.</p></span>
 	</span>
@@ -655,7 +662,7 @@ This might be a good idea to turn on when using JPG for caching.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/displayingPdfController">&nbsp;&nbsp;displayingPdfController</a></code>
-		<span class="tooltip"><p>if document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p></span>
+		<span class="tooltip"><p>If document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -680,7 +687,7 @@ This might be a good idea to turn on when using JPG for caching.</p></span>
 		<span class="tooltip"><p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
 If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
 If you attempt to unlock an already unlocked document, one of the following occurs:
-If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
 If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
 string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
 	</span>
@@ -689,14 +696,14 @@ string. If the string fails, the document maintains its user permissions. In eit
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/password">&nbsp;&nbsp;password</a></code>
-		<span class="tooltip"><p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
+		<span class="tooltip"><p>Set a base password to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/valid">&nbsp;&nbsp;valid</a></code>
-		<span class="tooltip"><p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p></span>
+		<span class="tooltip"><p>Returns YES if the document is valid (if it has at least one page)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -731,6 +738,13 @@ string. If the string fails, the document maintains its user permissions. In eit
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/documentProviders">&ndash;&nbsp;documentProviders</a></code>
+		<span class="tooltip"><p>Get an array of documentProviers to easily manage documents with multiple <a href="#//api/name/files">files</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
 		<span class="tooltip"><p>Outline extraction class for current document.</p></span>
 	</span>
@@ -746,10 +760,12 @@ Can be overridden to use a subclassed annotation parser.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageLabels">&nbsp;&nbsp;pageLabels</a></code>
-		<span class="tooltip"><p>Page labels (NSString) for the current document.</p></span>
+		<code><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">&ndash;&nbsp;pageLabelForPage:substituteWithPlainLabel:</a></code>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+Might be nil if PageLabels isn&rsquo;t set in the PDF.
+If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li>
 						</ul>
@@ -840,7 +856,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>annotation link extraction. Defaults to YES.</p>
+		<p>Annotation link extraction. Defaults to YES.</p>
 	</div>		
 	
 	
@@ -874,7 +890,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p>
+		<p>If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p>
 	</div>		
 	
 	
@@ -908,7 +924,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p>
+		<p>Common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p>
 	</div>		
 	
 	
@@ -942,7 +958,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>PDF <a href="#//api/name/data">data</a> when initialized with initWithData: otherwise nil</p>
+		<p>PDF data when initialized with initWithData: otherwise nil</p>
 	</div>		
 	
 	
@@ -976,7 +992,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p>
+		<p>If document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p>
 	</div>		
 	
 	
@@ -1044,7 +1060,7 @@ Can be overridden to use a subclassed annotation parser.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+		<p>Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
 nil if the document was initialized with initWithData:</p>
 	</div>		
 	
@@ -1079,8 +1095,8 @@ nil if the document was initialized with initWithData:</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>array of NSString pdf <a href="#//api/name/files">files</a>. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
-If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the <a href="#//api/name/files">files</a>.
+		<p>Array of NSString pdf files. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the files.
 Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p>
 	</div>		
 	
@@ -1211,47 +1227,13 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pageLabels" title="pageLabels"></a>
-	<h3 class="subsubtitle method-title">pageLabels</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Page labels (NSString) for the current document.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray *pageLabels</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocument.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/password" title="password"></a>
 	<h3 class="subsubtitle method-title">password</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>set a base <a href="#//api/name/password">password</a> to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
+		<p>Set a base password to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
 	</div>		
 	
 	
@@ -1285,7 +1267,9 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	
 	
 	<div class="method-subsection brief-description">
-		<p>document <a href="#//api/name/title">title</a> as shown in the controller</p>
+		<p>Document title as shown in the controller.
+If this is not set, the framework tries to extract the title from the PDF meta<a href="#//api/name/data">data</a>.
+If there&rsquo;s no meta<a href="#//api/name/data">data</a>, the fileName is used. &ldquo;.pdf&rdquo; endings will be removed either way.</p>
 	</div>		
 	
 	
@@ -1319,7 +1303,7 @@ Note: it&rsquo;s currently not possible to add the file multiple times, this wil
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
+		<p>Enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
 or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
 This might be a good idea to turn on when using JPG for caching.</p>
 	</div>		
@@ -1355,7 +1339,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>For caching, provide a <em>UNIQUE</em> <a href="#//api/name/uid">uid</a> here. (Or clear cache after content changes for same <a href="#//api/name/uid">uid</a>. Appending content is no problem)</p>
+		<p>For caching, provide a <em>UNIQUE</em> uid here. (Or clear cache after content changes for same uid. Appending content is no problem)</p>
 	</div>		
 	
 	
@@ -1389,7 +1373,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns YES if the document is <a href="#//api/name/valid">valid</a> (if it has at least one page)</p>
+		<p>Returns YES if the document is valid (if it has at least one page)</p>
 	</div>		
 	
 	
@@ -1431,7 +1415,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initialize empty <a href="PSPDFDocument.html">PSPDFDocument</a></p>
+		<p>Initialize empty PSPDFDocument</p>
 	</div>		
 	
 	
@@ -1465,7 +1449,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p>
+		<p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p>
 	</div>		
 	
 	
@@ -1499,7 +1483,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initialize <a href="PSPDFDocument.html">PSPDFDocument</a> with <a href="#//api/name/data">data</a></p>
+		<p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with <a href="#//api/name/data">data</a></p>
 	</div>		
 	
 	
@@ -1533,7 +1517,7 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initializes <a href="PSPDFDocument.html">PSPDFDocument</a> with a single file</p>
+		<p>Initializes PS<a href="#//api/name/PDFDocument">PDFDocument</a> with a single file</p>
 	</div>		
 	
 	
@@ -1609,8 +1593,9 @@ This might be a good idea to turn on when using JPG for caching.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
-Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.</p>
+		<p>Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
+Do not mix .<a href="#//api/name/data">data</a> and <a href="#//api/name/files">files</a> &ndash; this call will be ignored when <a href="#//api/name/data">data</a> is set.</p>
 	</div>		
 	
 	
@@ -1680,7 +1665,7 @@ Note: this might take a second on larger documents, as the page structure needs 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p>
+		<p>Override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p>
 	</div>		
 	
 	
@@ -1714,7 +1699,7 @@ Note: this might take a second on larger documents, as the page structure needs 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>shortcut to clearCacheForced:NO</p>
+		<p>Shortcut to clearCacheForced:NO</p>
 	</div>		
 	
 	
@@ -1748,11 +1733,45 @@ Note: this might take a second on larger documents, as the page structure needs 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p>
+		<p>If you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)clearCacheForced:(BOOL)<em>forced</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/documentProviders" title="documentProviders"></a>
+	<h3 class="subsubtitle method-title">documentProviders</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get an array of documentProviers to easily manage documents with multiple <a href="#//api/name/files">files</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)documentProviders</code></div>
 	
 	
 	
@@ -1782,7 +1801,7 @@ Note: this might take a second on larger documents, as the page structure needs 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+		<p>Can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
 Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p>
 	</div>		
 	
@@ -1885,7 +1904,7 @@ Note: most of the time you might be better off using custom UIViews and adding t
 	
 	
 	<div class="method-subsection brief-description">
-		<p>creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p>
+		<p>Creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p>
 	</div>		
 	
 	
@@ -1987,7 +2006,7 @@ Note: most of the time you might be better off using custom UIViews and adding t
 	
 	
 	<div class="method-subsection brief-description">
-		<p>defaults to nil. can be overridden to provide custom text.
+		<p>Can be overridden to provide custom text. Defaults to nil.
 if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
 Note: If you return text here, text highlighting cannot be used for this page.</p>
 	</div>		
@@ -2023,7 +2042,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return pdf page count</p>
+		<p>Return pdf page count</p>
 	</div>		
 	
 	
@@ -2057,7 +2076,7 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2091,12 +2110,48 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)<em>page</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageLabelForPage:substituteWithPlainLabel:" title="pageLabelForPage:substituteWithPlainLabel:"></a>
+	<h3 class="subsubtitle method-title">pageLabelForPage:substituteWithPlainLabel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+Might be nil if PageLabels isn&rsquo;t set in the PDF.
+If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pageLabelForPage:(NSUInteger)<em>page</em> substituteWithPlainLabel:(BOOL)<em>substite</em></code></div>
 	
 	
 	
@@ -2126,7 +2181,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
+		<p>Return pdf page number. this may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2160,8 +2215,8 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns path for a single page (in case pages are split up). Page starts at 0.
-Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p>
+		<p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
+Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p>
 	</div>		
 	
 	
@@ -2195,7 +2250,7 @@ Note: uses fileIndexForPage and URLForFileIndex internally. Override those inste
 	
 	
 	<div class="method-subsection brief-description">
-		<p>aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+		<p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -2230,7 +2285,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>rotation for specified page. cached. Page starts at 0.</p>
+		<p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -2264,7 +2319,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return true if you want drawOverlayRect to be called.</p>
+		<p>Return true if you want drawOverlayRect to be called.</p>
 	</div>		
 	
 	
@@ -2298,7 +2353,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p>
+		<p>Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p>
 	</div>		
 	
 	
@@ -2335,7 +2390,7 @@ maybe needs a pdf lock if not already cached.</p>
 		<p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
 If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
 If you attempt to unlock an already unlocked document, one of the following occurs:
-If the document is unlocked with full owner permissions, <a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a> does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
 If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
 string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p>
 	</div>		
@@ -2377,9 +2432,9 @@ string. If the string fails, the document maintains its user permissions. In eit
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

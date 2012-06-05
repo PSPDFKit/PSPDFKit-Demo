@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -42,6 +42,8 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
+	<option value="//api/name/edgeInsets">&nbsp;&nbsp;&nbsp;&nbsp;edgeInsets</option>
+	
 	<option value="//api/name/imageView">&nbsp;&nbsp;&nbsp;&nbsp;imageView</option>
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
@@ -53,6 +55,11 @@
 	<option value="//api/name/siteLabel">&nbsp;&nbsp;&nbsp;&nbsp;siteLabel</option>
 	
 	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/thumbnailQueue">&nbsp;&nbsp;&nbsp;&nbsp;+ thumbnailQueue</option>
 	
 	
 	
@@ -91,6 +98,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/edgeInsets">edgeInsets</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageView">imageView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
@@ -104,6 +113,12 @@
 </ul></li>
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/thumbnailQueue">thumbnailQueue</a></span></li>
+	
+</ul></li>
 
 
 
@@ -195,7 +210,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>referenced <a href="#//api/name/document">document</a>.</p></span>
+		<span class="tooltip"><p>referenced document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -209,7 +224,14 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>referenced <a href="#//api/name/page">page</a>.</p></span>
+		<span class="tooltip"><p>referenced page.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/edgeInsets">&nbsp;&nbsp;edgeInsets</a></code>
+		<span class="tooltip"><p>Allow a margin. Defaults to 0,0,0,0.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -234,6 +256,13 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/thumbnailQueue">+&nbsp;thumbnailQueue</a></code>
+		<span class="tooltip"><p>Internal static queue for thumbnail parsing.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -254,11 +283,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced <a href="#//api/name/document">document</a>.</p>
+		<p>referenced document.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFThumbnailGridViewCell.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/edgeInsets" title="edgeInsets"></a>
+	<h3 class="subsubtitle method-title">edgeInsets</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allow a margin. Defaults to 0,0,0,0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) UIEdgeInsets edgeInsets</code></div>
 	
 	
 	
@@ -322,7 +385,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced <a href="#//api/name/page">page</a>.</p>
+		<p>referenced page.</p>
 	</div>		
 	
 	
@@ -428,7 +491,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFRoundedLabel *siteLabel</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UILabel *siteLabel</code></div>
 	
 	
 	
@@ -454,6 +517,46 @@
 					</div>
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/thumbnailQueue" title="thumbnailQueue"></a>
+	<h3 class="subsubtitle method-title">thumbnailQueue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Internal static queue for thumbnail parsing.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSOperationQueue *)thumbnailQueue</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFThumbnailGridViewCell.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -576,9 +679,9 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -59,11 +59,17 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithDocuments:pdfViewController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocuments:pdfViewController:</option>
+	<option value="//api/name/addDocuments:atIndex:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- addDocuments:atIndex:animated:</option>
+	
+	<option value="//api/name/initWithPDFViewController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFViewController:</option>
 	
 	<option value="//api/name/persistState">&nbsp;&nbsp;&nbsp;&nbsp;- persistState</option>
 	
+	<option value="//api/name/removeDocuments:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDocuments:animated:</option>
+	
 	<option value="//api/name/restoreState">&nbsp;&nbsp;&nbsp;&nbsp;- restoreState</option>
+	
+	<option value="//api/name/restoreStateAndMergeWithDocuments:">&nbsp;&nbsp;&nbsp;&nbsp;- restoreStateAndMergeWithDocuments:</option>
 	
 	
 	
@@ -109,11 +115,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocuments:pdfViewController:">initWithDocuments:pdfViewController:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDocuments:atIndex:animated:">addDocuments:atIndex:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFViewController:">initWithPDFViewController:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/persistState">persistState</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDocuments:animated:">removeDocuments:animated:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/restoreState">restoreState</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/restoreStateAndMergeWithDocuments:">restoreStateAndMergeWithDocuments:</a></span></li>
 	
 </ul></li>
 
@@ -170,18 +182,11 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithDocuments:pdfViewController:">&ndash;&nbsp;initWithDocuments:pdfViewController:</a></code>
-		<span class="tooltip"><p>Initialize the controller with a bunch of <a href="#//api/name/documents">documents</a>.
+		<code><a href="#//api/name/initWithPDFViewController:">&ndash;&nbsp;initWithPDFViewController:</a></code>
+		<span class="tooltip"><p>Initialize the controller.
 Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to use a subclass. If nil, a default instance will be created.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/documents">&nbsp;&nbsp;documents</a></code>
-		<span class="tooltip"><p>Documents that are currently loaded.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -192,6 +197,32 @@ Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to us
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/documents">&nbsp;&nbsp;documents</a></code>
+		<span class="tooltip"><p>Documents that are currently loaded.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addDocuments:atIndex:animated:">&ndash;&nbsp;addDocuments:atIndex:animated:</a></code>
+		<span class="tooltip"><p>Add one or multiple <a href="#//api/name/documents">documents</a> to the <a href="#//api/name/documents">documents</a> array at the specified index.
+Documents that are already within <a href="#//api/name/documents">documents</a> (or are equal to those) are ignored.
+If index is invalid or NSUIntegerMax they&rsquo;re appended at the end.
+Note: animated is a placeholder, doesn&rsquo;t yet animate.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeDocuments:animated:">&ndash;&nbsp;removeDocuments:animated:</a></code>
+		<span class="tooltip"><p>Removes one or multiple <a href="#//api/name/documents">documents</a> to the <a href="#//api/name/documents">documents</a> array.
+Documents that are not in the <a href="#//api/name/documents">documents</a> array will be ignored.
+Note: animated is a placeholder, doesn&rsquo;t yet animate.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
 		<span class="tooltip"><p>Delegate to capture events.</p></span>
 	</span>
@@ -199,23 +230,8 @@ Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to us
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController">&nbsp;&nbsp;pdfViewController</a></code>
-		<span class="tooltip"><p>The embedded PDFViewController. Access to customize the properties.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/enableAutomaticStatePersistance">&nbsp;&nbsp;enableAutomaticStatePersistance</a></code>
 		<span class="tooltip"><p>Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/statePersistanceKey">&nbsp;&nbsp;statePersistanceKey</a></code>
-		<span class="tooltip"><p>Defaults to kPSPDFTabbedDocumentsPersistKey.
-Change if you use multiple instances of <a href="PSPDFTabbedViewController.html">PSPDFTabbedViewController</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -229,9 +245,32 @@ Change if you use multiple instances of <a href="PSPDFTabbedViewController.html"
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/restoreState">&ndash;&nbsp;restoreState</a></code>
-		<span class="tooltip"><p>Restores state from NSUserDefaults. Returns YES on success.</p></span>
+		<span class="tooltip"><p>Restores state from NSUserDefaults. Returns YES on success.
+Will set the <a href="#//api/name/visibleDocument">visibleDocument</a> that is saved in the state.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/restoreStateAndMergeWithDocuments:">&ndash;&nbsp;restoreStateAndMergeWithDocuments:</a></code>
+		<span class="tooltip"><p>Restores the state and merges with new <a href="#//api/name/documents">documents</a>. First document in the array will be <a href="#//api/name/visibleDocument">visibleDocument</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/statePersistanceKey">&nbsp;&nbsp;statePersistanceKey</a></code>
+		<span class="tooltip"><p>Defaults to kPSPDFTabbedDocumentsPersistKey.
+Change if you use multiple instances of PSPDFTabbedViewController.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController">&nbsp;&nbsp;pdfViewController</a></code>
+		<span class="tooltip"><p>The embedded PDFViewController. Access to customize the properties.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -257,7 +296,7 @@ Change if you use multiple instances of <a href="PSPDFTabbedViewController.html"
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFTabbedViewControllerDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;&gt; delegate</code></div>
 	
 	
 	
@@ -359,7 +398,7 @@ Change if you use multiple instances of <a href="PSPDFTabbedViewController.html"
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFViewController *pdfViewController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFViewController *pdfViewController</code></div>
 	
 	
 	
@@ -390,7 +429,7 @@ Change if you use multiple instances of <a href="PSPDFTabbedViewController.html"
 	
 	<div class="method-subsection brief-description">
 		<p>Defaults to kPSPDFTabbedDocumentsPersistKey.
-Change if you use multiple instances of <a href="PSPDFTabbedViewController.html">PSPDFTabbedViewController</a>.</p>
+Change if you use multiple instances of PSPDFTabbedViewController.</p>
 	</div>		
 	
 	
@@ -462,18 +501,55 @@ Change if you use multiple instances of <a href="PSPDFTabbedViewController.html"
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithDocuments:pdfViewController:" title="initWithDocuments:pdfViewController:"></a>
-	<h3 class="subsubtitle method-title">initWithDocuments:pdfViewController:</h3>
+	<a name="//api/name/addDocuments:atIndex:animated:" title="addDocuments:atIndex:animated:"></a>
+	<h3 class="subsubtitle method-title">addDocuments:atIndex:animated:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize the controller with a bunch of <a href="#//api/name/documents">documents</a>.
+		<p>Add one or multiple <a href="#//api/name/documents">documents</a> to the <a href="#//api/name/documents">documents</a> array at the specified index.
+Documents that are already within <a href="#//api/name/documents">documents</a> (or are equal to those) are ignored.
+If index is invalid or NSUIntegerMax they&rsquo;re appended at the end.
+Note: animated is a placeholder, doesn&rsquo;t yet animate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addDocuments:(NSArray *)<em>documents</em> atIndex:(NSUInteger)<em>index</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithPDFViewController:" title="initWithPDFViewController:"></a>
+	<h3 class="subsubtitle method-title">initWithPDFViewController:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize the controller.
 Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to use a subclass. If nil, a default instance will be created.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithDocuments:(NSArray *)<em>documents</em> pdfViewController:(PSPDFViewController *)<em>pdfViewController</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithPDFViewController:(PSPDFViewController *)<em>pdfViewController</em></code></div>
 	
 	
 	
@@ -531,17 +607,88 @@ Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to us
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/removeDocuments:animated:" title="removeDocuments:animated:"></a>
+	<h3 class="subsubtitle method-title">removeDocuments:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Removes one or multiple <a href="#//api/name/documents">documents</a> to the <a href="#//api/name/documents">documents</a> array.
+Documents that are not in the <a href="#//api/name/documents">documents</a> array will be ignored.
+Note: animated is a placeholder, doesn&rsquo;t yet animate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeDocuments:(NSArray *)<em>documents</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/restoreState" title="restoreState"></a>
 	<h3 class="subsubtitle method-title">restoreState</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Restores state from NSUserDefaults. Returns YES on success.</p>
+		<p>Restores state from NSUserDefaults. Returns YES on success.
+Will set the <a href="#//api/name/visibleDocument">visibleDocument</a> that is saved in the state.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)restoreState</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/restoreStateAndMergeWithDocuments:" title="restoreStateAndMergeWithDocuments:"></a>
+	<h3 class="subsubtitle method-title">restoreStateAndMergeWithDocuments:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Restores the state and merges with new <a href="#//api/name/documents">documents</a>. First document in the array will be <a href="#//api/name/visibleDocument">visibleDocument</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)restoreStateAndMergeWithDocuments:(NSArray *)<em>documents</em></code></div>
 	
 	
 	
@@ -577,9 +724,9 @@ Set a custom <a href="#//api/name/pdfViewController">pdfViewController</a> to us
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>

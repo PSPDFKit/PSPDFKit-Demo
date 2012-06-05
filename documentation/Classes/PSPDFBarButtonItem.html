@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 752)" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -36,6 +36,11 @@
 	
 	
 	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/popoverControllerForObject:">&nbsp;&nbsp;&nbsp;&nbsp;+ popoverControllerForObject:</option>
 	
 	
 	
@@ -81,6 +86,12 @@
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverControllerForObject:">popoverControllerForObject:</a></span></li>
+	
+</ul></li>
 
 
 
@@ -162,7 +173,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/customView">&ndash;&nbsp;customView</a></code>
-		<span class="tooltip"><p>Implement <a href="#//api/name/customView">customView</a>, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p></span>
+		<span class="tooltip"><p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p></span>
 	</span>
 	
 	
@@ -176,7 +187,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/actionName">&ndash;&nbsp;actionName</a></code>
-		<span class="tooltip"><p>Always implement <a href="#//api/name/actionName">actionName</a> in your subclass.</p></span>
+		<span class="tooltip"><p>Always implement actionName in your subclass.</p></span>
 	</span>
 	
 	
@@ -219,6 +230,14 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/popoverControllerForObject:">+&nbsp;popoverControllerForObject:</a></code>
+		<span class="tooltip"><p>Peaks into certain Apple classes to get the internal UIPopoverController.
+Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -229,6 +248,47 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/popoverControllerForObject:" title="popoverControllerForObject:"></a>
+	<h3 class="subsubtitle method-title">popoverControllerForObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Peaks into certain Apple classes to get the internal UIPopoverController.
+Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIPopoverController *)popoverControllerForObject:(id)<em>object</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -243,7 +303,7 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Always implement <a href="#//api/name/actionName">actionName</a> in your subclass.</p>
+		<p>Always implement actionName in your subclass.</p>
 	</div>		
 	
 	
@@ -277,7 +337,7 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Implement <a href="#//api/name/customView">customView</a>, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p>
+		<p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p>
 	</div>		
 	
 	
@@ -559,9 +619,9 @@ Defaults to enabled, as long as a document is set and valid on pdfViewController
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-05-29)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-05)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 752)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
 					</div>
 				</div>
