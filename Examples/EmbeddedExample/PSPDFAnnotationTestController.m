@@ -50,6 +50,12 @@
  self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
  }*/
 
+// override minimum width to make all buttons clickable on iPhone.
+- (void)updateToolbars {
+    self.minRightToolbarWidth = self.view.bounds.size.width;
+    [super updateToolbars];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
