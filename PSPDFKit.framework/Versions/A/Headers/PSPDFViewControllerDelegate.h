@@ -78,6 +78,31 @@
 /// Called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
 
+/// Called before we show a controller modally or in a popover. Allows last minute modifications.
+/// The embeddedInController is either a UINavigationController, a UIPopoverController or nil.
+/// viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+
+/// Called after the controller has been fully displayed. iOS5 only. Isn't called for UIPopoverController's.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+
+/// Return NO to stop the HUD change event.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowHUD:(BOOL)animated;
+
+/// HUD will be displayed.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowHUD:(BOOL)animated;
+/// HUD was displayed (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowHUD:(BOOL)animated;
+
+/// Return NO to stop the HUD change event.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldHideHUD:(BOOL)animated;
+
+/// HUD will be hidden.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willHideHUD:(BOOL)animated;
+/// HUD was hidden (called after the animation finishes)
+- (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated;
+
+
 /* deprecated */
 
 // Deprecated. Allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.

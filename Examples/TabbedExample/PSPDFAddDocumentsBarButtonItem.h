@@ -5,6 +5,9 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-@interface PSPDFAddDocumentsBarButtonItem : PSPDFBarButtonItem
+#import "PSPDFDocumentSelectorController.h"
+
+/// Sample subclass for PSPDFBarButtonItem. Shows/hides the PSPDFDocumentSelectorController.
+@interface PSPDFAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSelectorControllerDelegate>
 
 @end

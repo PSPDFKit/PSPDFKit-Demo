@@ -17,6 +17,10 @@
 /// Shows all documents available in the Sample directory.
 @interface PSPDFDocumentSelectorController : UITableViewController
 
+/// Returns an array of PSPDFDocument's found in the "directoryName" directory.
++ (NSArray *)documentsFromDirectory:(NSString *)directoryName;
+
+/// Delegate to get the didSelect event.
 @property (nonatomic, weak) id<PSPDFDocumentSelectorControllerDelegate> delegate;
 
 @end
