@@ -79,6 +79,8 @@
         
         // uncomment to hide label
         self.showingSiteLabel = YES;
+
+        self.edgeInsets = UIEdgeInsetsMake(0, 0, 10, 0);
     }
     
     return self;
@@ -102,6 +104,42 @@
     [super setFrame:frame];
     defaultFrame_ = frame;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFThumbnailGridViewCell
+
+- (void)updateSiteLabel {
+    if (self.isShowingSiteLabel && !self.siteLabel.superview) {
+        UILabel *siteLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        siteLabel.backgroundColor = [UIColor clearColor];
+        siteLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
+        siteLabel.shadowColor = [UIColor blackColor];
+        siteLabel.shadowOffset = CGSizeMake(0, 1);
+        siteLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        siteLabel.textAlignment = UITextAlignmentCenter;
+        siteLabel.font = [UIFont boldSystemFontOfSize:16];
+        self.siteLabel = siteLabel;
+        [self.contentView addSubview:siteLabel];
+    }else if(!self.isShowingSiteLabel && self.siteLabel.superview) {
+        [self.siteLabel removeFromSuperview];
+    }
+    
+    // calculate new frame and position correct
+    self.siteLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
+
+    /*
+    // limit width!
+    CGRect labelRect = siteLabel_.frame; labelRect.size.width = MIN(labelRect.size.width, self.imageView.frame.size.width - siteLabel_.cornerRadius*2); siteLabel_.frame = labelRect;
+    
+    CGFloat siteLabelWidth = siteLabel_.frame.size.width + 20.f;
+    siteLabel_.frame = CGRectIntegral(CGRectMake(self.imageView.frame.origin.x + (self.imageView.frame.size.width-siteLabelWidth)/2, self.imageView.frame.origin.y+self.imageView.frame.size.height-kPSPDFThumbnailLabelHeight-5.f, siteLabelWidth, kPSPDFThumbnailLabelHeight));
+     */
+    
+    if (self.siteLabel.superview) {
+        [self.contentView bringSubviewToFront:self.siteLabel];
+    }
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - KVO
@@ -166,15 +204,17 @@
                 }
                 // also may be slow, parsing the title from PDF metadata.
                 magazineTitle_ = magazine.title;
+                
+                if (!imageLoadOperation.isCancelled) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        if(!imageLoadOperation.isCancelled) {
+                            // animating this is too expensive.
+                            [self setImage:magazineOperationImage_ animated:NO];
+                            self.siteLabel.text = magazineTitle_;
+                        }
+                    });
+                }
             }];
-            imageLoadOperation.completionBlock = ^{
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    if(!imageLoadOperation.isCancelled) {
-                        self.image = magazineOperationImage_;
-                        self.siteLabel.text = magazineTitle_;
-                    }
-                });
-            };
             [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
             imageLoadOperation_ = imageLoadOperation;
             
