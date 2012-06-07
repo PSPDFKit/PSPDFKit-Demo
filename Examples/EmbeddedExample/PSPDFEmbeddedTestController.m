@@ -39,7 +39,7 @@
 
 - (void)pushView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageMode = PSPDFPageModeSingle;
     pdfController.hidesBottomBarWhenPushed = YES;
@@ -48,7 +48,7 @@
 
 - (void)openModalView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageMode = PSPDFPageModeSingle;
@@ -95,7 +95,7 @@
     // add pdf controller as subcontroller (iOS4 way, iOS5 has new, better methods for that)
     //NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;
@@ -228,7 +228,7 @@
     
     // create new document
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     
     // if we mix documents, they sure have different aspect ratios. This is a bit slower though.w
     document.aspectRatioEqual = NO;

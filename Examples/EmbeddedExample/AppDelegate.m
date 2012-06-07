@@ -33,12 +33,12 @@
     UINavigationController *firstNavVC = [[UINavigationController alloc] initWithRootViewController:firstVC];
     
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kMacbookAirFileName];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFCustomToolbarController *pdfController = [[PSPDFCustomToolbarController alloc] initWithDocument:document];
     UINavigationController *secondVC = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
      NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:videoPath]];
+    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:videoPath]];
     videoDocument.twoStepRenderingEnabled = YES; // we're not using the full screen, so enable sharp re-rendering
     PSPDFAnnotationTestController *videoVC = [[PSPDFAnnotationTestController alloc] initWithDocument:videoDocument];
     UINavigationController *videoNavC = [[UINavigationController alloc] initWithRootViewController:videoVC];
