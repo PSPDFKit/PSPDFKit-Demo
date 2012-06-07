@@ -32,9 +32,9 @@
         self.linkAction = PSPDFLinkActionInlineBrowser;
         //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
         self.tintColor = [UIColor orangeColor];
-
+        
         self.leftBarButtonItems = nil; // hide close button
-
+        
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
         self.rightBarButtonItems = [NSArray arrayWithObjects:playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
     }
@@ -104,26 +104,29 @@
 
 - (UIView *)pdfViewController:(PSPDFViewController *)pdfController viewForAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
     
-    // example how to add a MapView with the url protocol map://lat,long,latspan,longspan
-    if (annotation.type == PSPDFAnnotationTypeCustom && [annotation.siteLinkTarget hasPrefix:@"map://"]) {
-        // parse annotation data
-        NSString *mapData = [annotation.siteLinkTarget stringByReplacingOccurrencesOfString:@"map://" withString:@""];
-        NSArray *token = [mapData componentsSeparatedByString:@","];
-        
-        // ensure we have token count of 4 (latitude, longitude, span la, span lo)
-        if ([token count] == 4) {
-            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[token objectAtIndex:0] doubleValue],
-                                                                         [[token objectAtIndex:1] doubleValue]);
+    if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
+        PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
+        // example how to add a MapView with the url protocol map://lat,long,latspan,longspan
+        if (linkAnnotation.linkType == PSPDFLinkAnnotationCustom && [linkAnnotation.siteLinkTarget hasPrefix:@"map://"]) {
+            // parse annotation data
+            NSString *mapData = [linkAnnotation.siteLinkTarget stringByReplacingOccurrencesOfString:@"map://" withString:@""];
+            NSArray *token = [mapData componentsSeparatedByString:@","];
             
-            MKCoordinateSpan span = MKCoordinateSpanMake([[token objectAtIndex:2] doubleValue],
-                                                         [[token objectAtIndex:3] doubleValue]);
-            
-            // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
-            CGRect frame = [annotation rectForPageRect:pageView.bounds];
-            
-            MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
-            [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
-            return mapView;
+            // ensure we have token count of 4 (latitude, longitude, span la, span lo)
+            if ([token count] == 4) {
+                CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[token objectAtIndex:0] doubleValue],
+                                                                             [[token objectAtIndex:1] doubleValue]);
+                
+                MKCoordinateSpan span = MKCoordinateSpanMake([[token objectAtIndex:2] doubleValue],
+                                                             [[token objectAtIndex:3] doubleValue]);
+                
+                // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
+                CGRect frame = [annotation rectForPageRect:pageView.bounds];
+                
+                MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
+                [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
+                return mapView;
+            }
         }
     }
     return nil;
@@ -141,7 +144,7 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
     NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
-
+    
     // example how to intercept PSPDFSearchViewController and change the barStyle to black
     if ([viewController isKindOfClass:[PSPDFSearchViewController class]]) {
         PSPDFSearchViewController *searchController = (PSPDFSearchViewController *)viewController;
