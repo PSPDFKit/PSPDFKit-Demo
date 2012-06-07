@@ -12,9 +12,13 @@
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+    kPSPDFLogLevel = PSPDFLogLevelVerbose;
     
     // create the PSPDFViewController
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+//    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"annotations.pdf"];
+    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"highlight-test.pdf"];
+
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     NSLog(@"isEncryped:%d", document.isEncrypted);
     //[document appendFile:@"DevelopersGuide.pdf"];
