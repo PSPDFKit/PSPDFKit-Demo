@@ -152,5 +152,13 @@ This software is licensed under the BSD open source license. For more
 information visit www.opensource.org.
 
 ------------------------------------------------------------------------------------------
+
+PSPDFKit uses PDFKitten.
+
+Copyright (c) 2011-2012 Marcus Hedenström.
+
+This software is provided as is, meaning that we are not responsible for the results of its use.
+
+------------------------------------------------------------------------------------------
 The Demo project may includes a video called "big_buck_bunny.mp4",
 this is the first minute from the cc-by licenced “open movie” http://www.bigbuckbunny.org/.
