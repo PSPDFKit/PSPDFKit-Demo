@@ -16,7 +16,6 @@
 @synthesize available = available_;
 @synthesize URL = URL_;
 @synthesize imageURL = imageURL_;
-@dynamic deletable;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
