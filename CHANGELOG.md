@@ -4,6 +4,7 @@ __v1.10.3 - x/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
 *  Add some improvements to caching algorithm, adds cacheThumbnailsForDocument to preload a document.
+*  Ensures that email attachments will end with ".pdf".
 *  Fixes a bug where the the pageIndex on thumbnails are off-by-one.
 *  Fixes a bug where annotationEnabled wasn't correctly restored when using NSCoding on PSPDFDocument.
 *  Fixed a problem where delegates where called too often for the initial reloadData event.
