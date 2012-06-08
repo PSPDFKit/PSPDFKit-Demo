@@ -195,7 +195,7 @@
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
 
     // show pdf title and fileURL
-    if (![document.title isEqualToString:[document.fileURL lastPathComponent]]) {
+    if (PSIsIpad() && ![document.title isEqualToString:[document.fileURL lastPathComponent]]) {
         self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
     }
 }
