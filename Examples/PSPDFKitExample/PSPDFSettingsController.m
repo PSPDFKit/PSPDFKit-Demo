@@ -49,12 +49,12 @@ __attribute__((constructor)) static void setupDefaults(void) {
         self.title = _(@"Options");
         
         content_ = [[NSArray alloc] initWithObjects:
-                    [NSArray arrayWithObjects:_(@"No Disk Cache"), _(@"Thumbnails & near Pages"), _(@"Cache everything"), nil],
-                    [NSArray arrayWithObjects:_(@"Horizontal (Magazine style)"), _(@"Vertical (like UIWebView)"), _(@"PageCurl (like iBooks, iOS5)"), nil],
-                    [NSArray arrayWithObjects:_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation"), nil],
-                    [NSArray arrayWithObjects:_(@"Single First Page (Cover)"), _(@"No Cover Page"), nil],
-                    [NSArray arrayWithObjects:_(@"Zoom small files"), _(@"Zoom to width"), _(@"Scrobblebar"), nil], // @"Paging Enabled"
-                    [NSArray arrayWithObjects:_(@"Search"), _(@"Outline"), _(@"Annotations"), _(@"AspectRatio Equal"), _(@"Two Step Rendering"), nil],                    
+                    @[_(@"No Disk Cache"), _(@"Thumbnails & near Pages"), _(@"Cache everything")],
+                    @[_(@"Horizontal (Magazine style)"), _(@"Vertical (like UIWebView)"), _(@"PageCurl (like iBooks, iOS5)")],
+                    @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
+                    @[_(@"Single First Page (Cover)"), _(@"No Cover Page")],
+                    @[_(@"Zoom small files"), _(@"Zoom to width"), _(@"Scrobblebar")], // @"Paging Enabled"
+                    @[_(@"Search"), _(@"Outline"), _(@"Annotations"), _(@"AspectRatio Equal"), _(@"Two Step Rendering")],                    
                     nil];        
     }
     return self;
@@ -180,7 +180,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[content_ objectAtIndex:section] count];
+    return [content_[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,7 +191,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = [[content_ objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.text = content_[indexPath.section][indexPath.row];
     switch (indexPath.section) {
         case 0:
             cell.accessoryType = (indexPath.row == [PSPDFCache sharedPSPDFCache].strategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;   

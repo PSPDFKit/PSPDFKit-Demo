@@ -86,7 +86,7 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     // Run the button's block
     if (buttonIndex >= 0 && buttonIndex < [blocks_ count]) {
-        id obj = [blocks_ objectAtIndex:buttonIndex];
+        id obj = blocks_[buttonIndex];
         if (![obj isEqual:[NSNull null]]) {
             ((void (^)())obj)();
         }

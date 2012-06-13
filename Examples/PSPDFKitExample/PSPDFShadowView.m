@@ -52,9 +52,9 @@
     UIColor *darkColor = [UIColor colorWithRed:0.f green:0.f blue:0.f alpha:inverse ? (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT) * 0.5f : 0.5f];
 
     if (inverse) {
-        newShadow.colors = [NSArray arrayWithObjects:(__bridge id)lightColor.CGColor, (__bridge id)darkColor.CGColor, nil];
+        newShadow.colors = @[(__bridge id)lightColor.CGColor, (__bridge id)darkColor.CGColor];
     }else {
-        newShadow.colors = [NSArray arrayWithObjects:(__bridge id)darkColor.CGColor, (__bridge id)lightColor.CGColor, nil];
+        newShadow.colors = @[(__bridge id)darkColor.CGColor, (__bridge id)lightColor.CGColor];
     }
     return newShadow;
 }
@@ -68,7 +68,7 @@
             originShadow_ = [self shadowAsInverse:NO];
             [self.layer insertSublayer:originShadow_ atIndex:9999];
         }
-        else if (![[self.layer.sublayers objectAtIndex:0] isEqual:originShadow_]) {
+        else if (![(self.layer.sublayers)[0] isEqual:originShadow_]) {
             [self.layer insertSublayer:originShadow_ atIndex:9999];
         }
         

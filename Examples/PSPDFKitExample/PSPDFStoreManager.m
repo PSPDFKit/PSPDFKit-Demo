@@ -114,7 +114,7 @@ static char kvoToken; // we need a static address for the kvo token
         }
 
         NSMutableArray *foldersCopy = [folders mutableCopy];
-        PSPDFMagazineFolder *firstFolder = [foldersCopy objectAtIndex:0];
+        PSPDFMagazineFolder *firstFolder = foldersCopy[0];
         [foldersCopy removeObject:firstFolder];
         NSMutableArray *magazineArray = [firstFolder.magazines mutableCopy];
         
@@ -152,7 +152,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (PSPDFMagazine *)magazineForFileName:(NSString *)fileName {
     for (PSPDFMagazineFolder *folder in self.magazineFolders) {
         for (PSPDFMagazine *magazine in folder.magazines) {
-            if ([magazine.files count] && [[magazine.files objectAtIndex:0] isEqualToString:fileName]) {
+            if ([magazine.files count] && [(magazine.files)[0] isEqualToString:fileName]) {
                 return magazine;
             }
         }
@@ -171,9 +171,9 @@ static char kvoToken; // we need a static address for the kvo token
                 PSELog(@"Error while parsing magazine JSON - Dictionary expected. Got this instead: %@", dlMagazine);
             }else {
                 // create and fill PSPDFMagazine
-                NSString *title = [dlMagazine objectForKey:@"name"];
-                NSString *urlString = [dlMagazine objectForKey:@"url"];
-                NSString *imageURLString = [dlMagazine objectForKey:@"image"];
+                NSString *title = dlMagazine[@"name"];
+                NSString *urlString = dlMagazine[@"url"];
+                NSString *imageURLString = dlMagazine[@"image"];
                 if ([imageURLString length] == 0) {
                     // if no image key is set, try same location as the pdf, but with jpg ending.
                     imageURLString = [urlString stringByReplacingOccurrencesOfString:@".pdf" withString:@".jpg" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [urlString length])];
@@ -259,7 +259,7 @@ static char kvoToken; // we need a static address for the kvo token
 /// Returns the legacy storage path, used when the com.apple.MobileBackup file attribute is not available.
 + (NSString *)legacyStoragePath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    return [paths objectAtIndex:0];
+    return paths[0];
 }
 
 /// Returns YES if system supports com.apple.MobileBackup file attribute, marks files/folders as not iCloud-backupable.
@@ -289,7 +289,7 @@ static char kvoToken; // we need a static address for the kvo token
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if ([self isBackupXAttributeAvailable]) {
-            storagePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+            storagePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         }else {
             storagePath = [self legacyStoragePath];
             // mark that we use the legazy storage.
@@ -505,7 +505,7 @@ static char kvoToken; // we need a static address for the kvo token
         
         // if magazine doesn't exist anymore, choose the first magazine in the list
         if (!magazine && [self.magazineFolders count]) {
-            magazine = [[self.magazineFolders objectAtIndex:0] firstMagazine];
+            magazine = [(self.magazineFolders)[0] firstMagazine];
         }
     }
     
