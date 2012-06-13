@@ -40,10 +40,10 @@
     // prepare the dictionary structure (here, we only add en, which is the fallback)
     NSMutableDictionary *localizationDict = [NSMutableDictionary dictionaryWithCapacity:1];
     NSMutableDictionary *enLocalizationDict = [NSMutableDictionary dictionaryWithCapacity:1];
-    [localizationDict setObject:enLocalizationDict forKey:@"en"];
+    localizationDict[@"en"] = enLocalizationDict;
     
     // add localization content
-    [enLocalizationDict setObject:@"Magazines" forKey:@"Documents"];
+    enLocalizationDict[@"Documents"] = @"Magazines";
     PSPDFSetLocalizationDictionary(localizationDict);
 }
 
@@ -90,7 +90,7 @@
     window_.rootViewController = navigationController_;
     [window_ makeKeyAndVisible];
     
-    NSString *cacheFolder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *cacheFolder = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     PSELog(@"CacheDir: %@", cacheFolder);
     
     // set white status bar style when not on ipad

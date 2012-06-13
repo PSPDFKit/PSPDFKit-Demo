@@ -32,7 +32,7 @@
     PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
     if (PSIsIpad()) {
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
-        self.popoverController.passthroughViews = [NSArray arrayWithObject:self.navigationController.navigationBar];
+        self.popoverController.passthroughViews = @[self.navigationController.navigationBar];
         [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }else {
         [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
@@ -66,7 +66,7 @@
     self.rightBarButtonItems = rightBarButtonItems;
     
     // define additional buttons with an action icon
-    self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonItem, self.openInButtonItem, self.emailButtonItem, nil];
+    self.additionalRightBarButtonItems = @[self.printButtonItem, self.openInButtonItem, self.emailButtonItem];
     
     NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFSettingsController pageMode];
@@ -100,10 +100,10 @@
         
         // 1.10 feature: replaces printEnabled, openInEnabled
         if (PSIsIpad()) {
-            self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, nil];
+            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem];
         }else {
-            self.rightBarButtonItems = [NSArray arrayWithObjects:self.searchButtonItem, self.viewModeButtonItem, nil];
-            self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem, nil];
+            self.rightBarButtonItems = @[self.searchButtonItem, self.viewModeButtonItem];
+            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem];
         }
         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
@@ -115,8 +115,8 @@
         UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
 
-        self.leftBarButtonItems = [NSArray arrayWithObjects:closeButtonItem, settingsButtomItem, nil];
-        self.barButtonItemsAlwaysEnabled = [NSArray arrayWithObject:closeButtonItem];
+        self.leftBarButtonItems = @[closeButtonItem, settingsButtomItem];
+        self.barButtonItemsAlwaysEnabled = @[closeButtonItem];
 
         // restore viewState
         if ([self.document isValid]) {

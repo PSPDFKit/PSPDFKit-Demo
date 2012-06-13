@@ -243,7 +243,7 @@
                                                                     action:@selector(optionsButtonPressed)];
     
     // only show the option button if we're at root (else we hide the back button)
-    if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
+    if ((self.navigationController.viewControllers)[0] == self) {
         self.navigationItem.leftBarButtonItem = optionButton;
     }else {
         // iOS5 supports easy additional buttons next to a native back button
@@ -428,9 +428,9 @@
     }
     
     if (self.magazineFolder) {
-        cell.magazine = (PSPDFMagazine *)[self.magazineFolder.magazines objectAtIndex:cellIndex];
+        cell.magazine = (PSPDFMagazine *)(self.magazineFolder.magazines)[cellIndex];
     }else {
-        cell.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:cellIndex];  
+        cell.magazineFolder = ([PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders)[cellIndex];  
     }
     
     return cell;
@@ -442,7 +442,7 @@
         NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
         canDelete = [fixedMagazines count] == 0;
     }else {
-        PSPDFMagazine *magazine = [self.magazineFolder.magazines objectAtIndex:index];
+        PSPDFMagazine *magazine = (self.magazineFolder.magazines)[index];
         canDelete = magazine.isAvailable && !magazine.isDownloading && magazine.isDeletable;
     }
     return canDelete;
@@ -454,9 +454,9 @@
     
     if (self.magazineFolder) {
         folder = self.magazineFolder;
-        magazine = [self.magazineFolder.magazines objectAtIndex:index];
+        magazine = (self.magazineFolder.magazines)[index];
     }else {
-        folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:index];
+        folder = ([PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders)[index];
         magazine = [folder firstMagazine];
     }
     
@@ -513,9 +513,9 @@
     
     if (self.magazineFolder) {
         folder = self.magazineFolder;
-        magazine = [self.magazineFolder.magazines objectAtIndex:gridIndex];
+        magazine = (self.magazineFolder.magazines)[gridIndex];
     }else {
-        folder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders objectAtIndex:gridIndex];
+        folder = ([PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders)[gridIndex];
         magazine = [folder firstMagazine];
     }
     

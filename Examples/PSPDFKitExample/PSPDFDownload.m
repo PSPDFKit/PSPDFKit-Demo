@@ -157,7 +157,7 @@
     [pdfRequest startAsynchronous];
     
     self.request = pdfRequest; // save request
-    [[PSPDFStoreManager sharedPSPDFStoreManager] addMagazinesToStore:[NSArray arrayWithObject:self.magazine]];
+    [[PSPDFStoreManager sharedPSPDFStoreManager] addMagazinesToStore:@[self.magazine]];
 }
 
 - (void)cancelDownload {

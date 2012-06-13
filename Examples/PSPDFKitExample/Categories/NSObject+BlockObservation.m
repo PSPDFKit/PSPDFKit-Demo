@@ -93,7 +93,7 @@ static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary() {
       [dict release];
     }
     AMObserverTrampoline *trampoline = [[AMObserverTrampoline alloc] initObservingObject:self keyPath:keyPath onQueue:queue task:task];
-    [dict setObject:trampoline forKey:token];
+    dict[token] = trampoline;
     [trampoline release];
   });
   return token;
@@ -102,7 +102,7 @@ static dispatch_queue_t AMObserverMutationQueueCreatingIfNecessary() {
 - (void)removeObserverWithBlockToken:(AMBlockToken *)token {
   dispatch_sync(AMObserverMutationQueueCreatingIfNecessary(), ^{
     NSMutableDictionary *observationDictionary = objc_getAssociatedObject(self, AMObserverMapKey);
-    AMObserverTrampoline *trampoline = [observationDictionary objectForKey:token];
+    AMObserverTrampoline *trampoline = observationDictionary[token];
     if (!trampoline)
     {
       NSLog(@"[NSObject(AMBlockObservation) removeObserverWithBlockToken]: Ignoring attempt to remove non-existent observer on %@ for token %@.", self, token);
