@@ -79,7 +79,7 @@
 }
 
 - (PSPDFMagazine *)firstMagazine {
-    PSPDFMagazine *firstMagazine = [self.magazines count] ? [self.magazines objectAtIndex:0] : nil; 
+    PSPDFMagazine *firstMagazine = [self.magazines count] ? (self.magazines)[0] : nil; 
     return firstMagazine;
 }
 
@@ -96,7 +96,7 @@
 }
 
 - (void)sortMagazines {
-    [magazines_ sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
+    [magazines_ sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
 }
 
 - (void)setMagazines:(NSArray *)magazines {
