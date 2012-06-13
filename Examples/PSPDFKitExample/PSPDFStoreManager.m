@@ -230,7 +230,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (NSMutableArray *)magazineFolders {
     __block NSMutableArray *magazineFolders;
-    dispatch_sync_reentrant([self magazineFolderQueue], ^{
+    pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
         magazineFolders = magazineFolders_;
     });
     
@@ -391,7 +391,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     [delegate_ magazineStoreFolderDeleted:magazineFolder];
-    dispatch_sync_reentrant([self magazineFolderQueue], ^{
+    pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
         [magazineFolders_ removeObject:magazineFolder];
     });
     
@@ -431,7 +431,7 @@ static char kvoToken; // we need a static address for the kvo token
         if([folder.magazines count] > 0) {
             [delegate_ magazineStoreFolderModified:folder]; // was just modified
         }else {
-            dispatch_sync_reentrant([self magazineFolderQueue], ^{
+            pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
                 [magazineFolders_ removeObject:folder]; // remove!
             });
         }
