@@ -229,20 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				78F0E19E1498ECFE007E62E0 /* PSPDFKit */,
-				78C22AF6148036E90092B889 /* ImageIO.framework */,
-				78FDF908147885B300BE13FC /* MediaPlayer.framework */,
-				783C77A613D982B100CF7C9D /* Foundation.framework */,
-				783C77A413D982B100CF7C9D /* UIKit.framework */,
-				783C77A813D982B100CF7C9D /* CoreGraphics.framework */,
-				7805D005141EC0E8003D10D5 /* QuickLook.framework */,
-				78727B75141EC22900994946 /* MessageUI.framework */,
-				783417D213DCB169009DAEE8 /* SystemConfiguration.framework */,
-				783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */,
-				783417CA13DCB0B1009DAEE8 /* CFNetwork.framework */,
-				783C783213D999F300CF7C9D /* CoreText.framework */,
-				783C783013D999ED00CF7C9D /* AVFoundation.framework */,
-				783C782E13D999DE00CF7C9D /* QuartzCore.framework */,
-				781732EB15242DAC00A7CD4C /* libz.dylib */,
+				786C2A661589394F009FC689 /* System */,
 				783CD106148D53AB00B4F3AB /* vendor-http.xcodeproj */,
 			);
 			name = Frameworks;
@@ -344,6 +331,27 @@
 				783CD10E148D53AB00B4F3AB /* libvendor-http.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		786C2A661589394F009FC689 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				78C22AF6148036E90092B889 /* ImageIO.framework */,
+				78FDF908147885B300BE13FC /* MediaPlayer.framework */,
+				783C77A613D982B100CF7C9D /* Foundation.framework */,
+				783C77A413D982B100CF7C9D /* UIKit.framework */,
+				783C77A813D982B100CF7C9D /* CoreGraphics.framework */,
+				7805D005141EC0E8003D10D5 /* QuickLook.framework */,
+				78727B75141EC22900994946 /* MessageUI.framework */,
+				783417D213DCB169009DAEE8 /* SystemConfiguration.framework */,
+				783417D013DCB10A009DAEE8 /* MobileCoreServices.framework */,
+				783417CA13DCB0B1009DAEE8 /* CFNetwork.framework */,
+				783C783213D999F300CF7C9D /* CoreText.framework */,
+				783C783013D999ED00CF7C9D /* AVFoundation.framework */,
+				783C782E13D999DE00CF7C9D /* QuartzCore.framework */,
+				781732EB15242DAC00A7CD4C /* libz.dylib */,
+			);
+			name = System;
 			sourceTree = "<group>";
 		};
 		78C22AF8148036FF0092B889 /* LocalPdfResources */ = {
