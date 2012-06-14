@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFDocumentSearcher.h"
+#import "PSPDFTextSearch.h"
 #import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument, PSPDFSearchOperation;
@@ -29,7 +29,7 @@ enum {
 @end
 
 
-/// Search operation. Created within PSPDFDocumentSearcher.
+/// Search operation. Created within PSPDFTextSearch.
 @interface PSPDFSearchOperation : NSOperation
 
 /// Initialize with Document reference and searchText.

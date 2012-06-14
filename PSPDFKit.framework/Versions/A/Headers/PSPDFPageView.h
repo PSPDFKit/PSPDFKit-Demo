@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFScrollView, PSPDFTilingView, PSPDFDocument, PSPDFViewController;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFTilingView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView;
 
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
@@ -35,6 +35,12 @@
 /// pageBounds usually is PSPDFPageView bounds.
 - (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint;
 
+/// Convert a view rect to the corresponding pdf rect.
+- (CGRect)convertViewRectToPDFRect:(CGRect)viewRect;
+
+/// Convert a pdf rect to the corresponding view rect
+- (CGRect)convertPDFRectToViewRect:(CGRect)pdfRect;
+
 
 /// @name Accessors
 
@@ -59,10 +65,19 @@
 @property(nonatomic, assign, readonly) CGFloat pdfScale;
 
 /// CATiledLayer subview. Not visible while rotation. Readonly.
-@property(nonatomic, strong, readonly) PSPDFTilingView *pdfView;
+@property(nonatomic, strong, readonly) PSPDFTilingView *tilingView;
 
 /// UIImageView subview. Beneath the PSPDFTilingView. Readonly.
 @property(nonatomic, strong, readonly) UIImageView *backgroundImageView;
+
+/// Access the selectionView.
+@property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
+
+/// Shortcut to access the textParser corresponding to the current page.
+@property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
+
+/// Shortcut to access the current boxRect of the set page.
+@property(nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
 
 
 /// @name Advanced Settings and Methods

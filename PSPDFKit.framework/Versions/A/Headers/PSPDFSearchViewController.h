@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "PSPDFAttributedLabel.h"
-#import "PSPDFDocumentSearcher.h"
+#import "PSPDFTextSearch.h"
 #import "PSPDFCache.h"
 #import "PSPDFViewController.h"
 

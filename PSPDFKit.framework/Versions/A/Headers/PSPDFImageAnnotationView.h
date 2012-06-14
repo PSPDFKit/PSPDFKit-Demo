@@ -6,10 +6,10 @@
 //  Thanks to Niklas Saers / Trifork A/S for the contribution.
 //
 
-#import "PSPDFAnnotationView.h"
+#import "PSPDFLinkAnnotationBaseView.h"
 
 /// Shows a single UIImageView.
-@interface PSPDFImageAnnotation : UIView <PSPDFAnnotationView>
+@interface PSPDFImageAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Image URL (to a local resource)
 @property(nonatomic, strong) NSURL *URL;

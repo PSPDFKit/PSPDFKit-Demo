@@ -10,7 +10,8 @@
 #import <MessageUI/MessageUI.h>
 #import "PSPDFBaseViewController.h"
 #import "PSPDFKitGlobal.h"
-#import "PSPDFDocumentSearcher.h"
+#import "PSPDFTextSearch.h"
+#import "PSPDFPasswordView.h"
 
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
@@ -53,7 +54,7 @@ enum {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <UIScrollViewDelegate, UIPopoverControllerDelegate, PSPDFSearchDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization
 
@@ -150,8 +151,13 @@ enum {
 /// @name HUD Controls
 
 /// View that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
-/// HUD is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
+/// hudView is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
 @property(nonatomic, strong, readonly) PSPDFHUDView *hudView;
+
+/// Content view. Use this if you want to add any always-visible UI elements.
+/// Created in viewDidLoad. contentView is behind hudView but always visible.
+/// ContentView does NOT overlay the navigationBar/statusBar, even if that one is transparent.
+@property(nonatomic, strong, readonly) PSPDFHUDView *contentView;
 
 /// Show or hide HUD controls, titlebar, status bar. (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
@@ -195,6 +201,11 @@ enum {
 
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
+
+/// Allows text selection. Defaults to YES.
+/// Note: This implies that the PDF file actually contains text glypths.
+/// Sometimes text is represented via embedded images or vectors, in that case we can't select it.
+@property(nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 
 /// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 /// Note: if modal is set in the link, this property has no effect.
@@ -256,6 +267,9 @@ enum {
 /// If [additionalRightToolbarButtonItems count] == 1 then no action sheet is displayed
 @property(nonatomic, strong) NSArray *additionalRightBarButtonItems; // defaults to nil
 
+/// Add your custom UIBarButtonItems so that they won't be automatically enabed/disabed.
+/// Note: You really want to add yout custom close/back button there, else the user might get stuck!
+@property(nonatomic, strong) NSArray *barButtonItemsAlwaysEnabled;
 
 /// @name Appearance Properties
 
@@ -349,10 +363,12 @@ enum {
 /// This allows you to change the minimum width if the heuristics fail.
 /// Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].
 @property(nonatomic, assign) CGFloat minLeftToolbarWidth;
+
+/// Allows to change the minimum width of the right toolbar. Set this within updateToolbars.
 @property(nonatomic, assign) CGFloat minRightToolbarWidth;
 
 /// Setup the grid view. Call [super gridView] and modify it to your needs.
-- (PSPDFGridView *)gridView;
+- (UIScrollView *)gridView;
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;

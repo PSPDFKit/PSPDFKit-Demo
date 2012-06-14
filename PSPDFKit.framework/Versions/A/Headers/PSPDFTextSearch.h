@@ -14,7 +14,7 @@
 /// Search status delegate. All delegates are guarranteed to be called within the main thread.
 @protocol PSPDFSearchDelegate <NSObject>
 
-/// Called when search is started. 
+/// Called when search is started.
 - (void)willStartSearchForString:(NSString *)searchString isFullSearch:(BOOL)isFullSearch;
 
 /// Search was updated, a new page has been scanned
@@ -29,12 +29,12 @@
 @end
 
 /// Manages search operations for a specific document.
-@interface PSPDFDocumentSearcher : NSObject <PSPDFSearchOperationDelegate>
+@interface PSPDFTextSearch : NSObject <PSPDFSearchOperationDelegate>
 
 /// Initialize with the document;
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-/// Searches for text occurence. If document was not yet parsed, it will be now. 
+/// Searches for text occurence. If document was not yet parsed, it will be now.
 - (void)searchForString:(NSString *)searchText;
 
 /// Searches for text occurence, selection property is added to sites in visiblePages.
@@ -61,7 +61,7 @@
 /// The document that is searched.
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
-/// Search delegate. Will be retained as long as the operation runs.    
+/// Search delegate. Will be retained as long as the operation runs.
 @property(nonatomic, ps_weak) id<PSPDFSearchDelegate> delegate;
 
 @end

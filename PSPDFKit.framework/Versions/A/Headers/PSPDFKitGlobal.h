@@ -70,13 +70,10 @@ extern BOOL kPSPDFKitDebugMemory;
 extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 
 /// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
-BOOL PSPDFIsCrappyDevice(void);
+extern BOOL PSPDFIsCrappyDevice(void);
 
 /// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
-BOOL PSPDFShouldAnimate(void);
-
-/// helper to calculate new size for specific scale and size.
-CGSize PSPDFSizeForScale(CGSize rect, CGFloat scale);
+extern BOOL PSPDFShouldAnimate(void);
 
 // drawing helper
 extern inline void DrawPSPDFKit(CGContextRef context);
@@ -87,11 +84,11 @@ extern NSString *kPSPDFCacheClassName;
 /// class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFIconGeneratorClassName;
 
-// called within PSPDFViewController to set up good defaults for the global values.
-extern void PSPDFKitInitializeGlobals(void);
-
 /// Get current PSPDFKit version.
 extern NSString *PSPDFVersionString(void);
+
+/// Access the PSPDFKit.bundle.
+extern NSBundle *PSPDFKitBundle(void);
 
 /// Localizes strings.
 extern NSString *PSPDFLocalize(NSString *stringToken);
@@ -110,28 +107,10 @@ extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString,
 extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
 
 /// Queries subviews for a specific class prefix. Usually used for subview-hacking/workarounds.
-UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
+extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
-/// Returns scale to fit a size within another size.
-CGFloat PSPDFScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
-
-/// Returns scale to fit a size within another size, with optional zooming.
-CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize boundsSize, BOOL zoomMinimalSize, BOOL fitWidth);
-
-/// Convert a view point to a pdf point. bounds is from the view (usually PSPDFPageView.bounds)
-CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-/// Convert a pdf point to a view point.
-CGPoint PSPDFConvertPDFPointToViewPoint(CGPoint pdfPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-/// Convert a pdf rect to a normalized view rect.
-CGRect PSPDFConvertPDFRectToViewRect(CGRect pdfRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-/// Convert a view rect to a normalized pdf rect
-CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-/// Normalizes a rect. PDF rect's might have negative width/height, this turns them around.
-CGRect PSPDFNormalizeRect(CGRect rect);
+// helper for deadlock-free dispatch_sync.
+extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
 // use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
@@ -233,3 +212,22 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0)  \
 __VA_ARGS__ \
 }
 
+
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_0
+#define kCFCoreFoundationVersionNumber_iOS_6_0 690.0
+#endif
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
+#define PSPDF_IF_IOS6_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_6_0) \
+{ \
+__VA_ARGS__ \
+}
+#else
+#define PSPDF_IF_IOS6_OR_GREATER(...)
+#endif
+
+#define PSPDF_IF_PRE_IOS6(...)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0)  \
+{ \
+__VA_ARGS__ \
+}
