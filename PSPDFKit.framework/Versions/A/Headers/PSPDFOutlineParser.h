@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class PSPDFOutlineElement;
+@class PSPDFOutlineElement, PSPDFDocumentProvider;
 
 #define kPSPDFOutlineParserErrorDomain @"kPSPDFOutlineParserErrorDomain"
 
@@ -15,10 +15,10 @@
 @interface PSPDFOutlineParser : NSObject
 
 /// Init outline parser with document.
-- (id)initWithDocument:(PSPDFDocument *)document;
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Parse document, returns outline (PSDFOutlineElements)
-- (NSArray *)parseDocument;
+/// Parse (partial) document, returns outline (PSDFOutlineElements)
+- (NSArray *)parseOutline;
 
 /// Returns single outline element for specific page.
 /// if exactPageOnly is set, the outline will only be returned if it's from the specific page.

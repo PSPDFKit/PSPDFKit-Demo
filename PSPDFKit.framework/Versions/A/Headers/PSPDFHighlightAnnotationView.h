@@ -7,10 +7,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "PSPDFAnnotationView.h"
+#import "PSPDFLinkAnnotationBaseView.h"
 
 /// Display a tappable highlight annotation.
-@interface PSPDFHighlightAnnotationView : UIView <PSPDFAnnotationView>
+@interface PSPDFHighlightAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Embedded UIButton.
 @property(nonatomic, strong, readonly) UIButton *button;

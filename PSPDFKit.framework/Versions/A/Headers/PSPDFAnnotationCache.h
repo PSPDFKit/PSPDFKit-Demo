@@ -18,7 +18,7 @@
 
 /// Dequeues an annotation view, if available from the cache.
 /// If there's a match with the current annotation, this view is picked in favor of a random cached view.
-- (UIView <PSPDFAnnotationView>*)dequeueViewFromCacheForAnnotation:(PSPDFAnnotation *)annotation;
+- (UIView <PSPDFAnnotationView>*)dequeueViewFromCacheForAnnotation:(PSPDFAnnotation *)annotation class:(Class)annotationViewClass;
 
 /// Clears all cached objects
 - (void)clearAllObjects;

@@ -4,86 +4,128 @@
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 // 
-//  Rect-Parsing code partially based on code by Sorin Nistor. Thanks!
-//  Copyright (c) 2011-2012 Sorin Nistor. All rights reserved. This software is provided 'as-is', without any express or implied warranty.
-//  In no event will the authors be held liable for any damages arising from the use of this software.
-//  Permission is granted to anyone to use this software for any purpose, including commercial applications,
-//  and to alter it and redistribute it freely, subject to the following restrictions:
-//  1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software.
-//     If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-//  2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-//  3. This notice may not be removed or altered from any source distribution.
-//
+
 #import <Foundation/Foundation.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFConverter.h"
+#import "UIColor+PSPDFKitAdditions.h"
 
 @class PSPDFDocument;
 
-enum {
-    PSPDFAnnotationTypeUndefined,
-    PSPDFAnnotationTypeLink,   /// the default page or url link
-    PSPDFAnnotationTypePage,
-    PSPDFAnnotationTypeWebUrl, 
-    PSPDFAnnotationTypeHighlight,
-    PSPDFAnnotationTypeVideo,
-    PSPDFAnnotationTypeYouTube,
-    PSPDFAnnotationTypeAudio,
-    PSPDFAnnotationTypeImage,    
-    PSPDFAnnotationTypeBrowser,
-    PSPDFAnnotationTypeCustom  /// any annotation format that is not recognized is custom, calling the delegate viewForAnnotation:
-};
-typedef NSUInteger PSPDFAnnotationType;
+// Annotations defined after the PDF standard.
+typedef enum {
+    PSPDFAnnotationTypeUndefined = 0,      // any annotation whose type couldn't be recognized.
+    PSPDFAnnotationTypeLink      = 1 << 1,
+    PSPDFAnnotationTypeHighlight = 1 << 2, // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
+    PSPDFAnnotationTypeText      = 1 << 5,
+    PSPDFAnnotationTypeInk       = 1 << 6,
+    PSPDFAnnotationTypeShape     = 1 << 7,
+    PSPDFAnnotationTypeLine      = 1 << 8,
+    PSPDFAnnotationTypeNote      = 1 << 9,
+    PSPDFAnnotationTypeAll       = PSPDFAnnotationTypeLink | PSPDFAnnotationTypeHighlight | PSPDFAnnotationTypeText | PSPDFAnnotationTypeInk | PSPDFAnnotationTypeShape | PSPDFAnnotationTypeLine | PSPDFAnnotationTypeNote
+}PSPDFAnnotationType;
 
-/// Defines a pdf annotation (only page/link is parsed right now).
-/// Custom annotation links are supported to add multimedia elements.
-@interface PSPDFAnnotation : NSObject
+/// Defines a PDF annotation.
+/// PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
+/// Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
+@interface PSPDFAnnotation : NSObject <NSCoding, NSCopying> {
+    UIColor *_color;
+    CGRect _boundingBox;
+    int _popupIndex;
+    int _indexOnPage;
+    float _alpha;
+}
 
-/// initalize with dictionary, parsing happens here. dict is not saved.
-- (id)initWithPDFDictionary:(CGPDFDictionaryRef)annotationDictionary;
+/// Returns the annotation type strings that are supported. Implemented in each subclass.
++ (NSArray *)supportedTypes;
 
-/// check if point is inside link.
+/// Used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
+/// Implement this in your subclass.
+- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
+
+/// Initialize annotation with the corresponding PDF dictionary. Call from subclass.
+- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
+
+/// Check if point is inside annotation area.
 - (BOOL)hitTest:(CGPoint)point;
 
-/// calculates the exact annotation position in the current page.
+/// Calculates the exact annotation position in the current page.
 - (CGRect)rectForPageRect:(CGRect)pageRect;
 
-/// link if target is a page if siteLinkTarget is nil.
-@property(nonatomic, assign) NSUInteger pageLinkTarget;
+- (NSComparisonResult)compareByPositionOnPage:(PSPDFAnnotation *)otherAnnotation;
+- (CGRect)rectFromPDFArray:(CGPDFArrayRef)array;
+- (NSArray *)rectsFromQuadPointsInArray:(CGPDFArrayRef)quadPointsArray;
 
-/// link if target is a website.
-@property(nonatomic, strong) NSString *siteLinkTarget;
+/// Draw current annotation in context.
+- (void)drawInContext:(CGContextRef)context;
 
-/// URL for PSPDFAnnotationTypeVideo.
-@property(nonatomic, strong) NSURL *URL;
+/// Returns NSData string represnetation in the PDF Standard.
+- (NSData *)pdfDataRepresentation;
+
+/// Current annotation type. 
+@property(nonatomic, assign, readonly) PSPDFAnnotationType type;
+
+/// Annotation type string as defined in the PDF.
+@property(nonatomic, strong, readonly) NSString *typeString;
+
+/// Alpha value of the annotation color.
+@property (nonatomic, assign) float alpha;
+
+/// Color associated with the annotation or nil if there is no color.
+/// Note: use .alpha for transparency, not the alpha value in color.
+@property(nonatomic, strong) UIColor *color;
+
+/// Color with added alpha value.
+@property(nonatomic, strong, readonly) UIColor *colorWithAlpha;
+
+/// Optional. Various annotation types may contain text.
+@property(nonatomic, strong) NSString *contents;
+
+/// Border Line Width (only used in certain annotations)
+@property (nonatomic, assign) float lineWidth;
+
+@property(nonatomic, assign) int indexOnPage;
+
+/// Some annotations may have a popupIndex. Defaults to -1.
+@property(nonatomic, assign) int popupIndex;
+
+/// Annotation may already be deleted locally, but not written back.
+@property(nonatomic, assign, getter=isDeleted) BOOL deleted;
 
 /// rectangle of specific annotation.
-@property(nonatomic, assign) CGRect pdfRectangle;
-
-/// current annotation type.
-@property(nonatomic, assign) PSPDFAnnotationType type;
+@property(nonatomic, assign) CGRect boundingBox;
 
 /// page for current annotation.
 @property(nonatomic, assign) NSUInteger page;
 
+/// If this annotation isn't backed by the PDF, it's dirty by default.
+/// After the annotation has been written to the file, this will be reset until the annotation has been changed.
+@property(nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
+
 /// corresponding document, weak.
 @property(nonatomic, ps_weak) PSPDFDocument *document;
 
-/// returns true if the annotation is not of type Page or WebUrl. (>= PSPDFAnnotationTypeFile)
-@property(nonatomic, assign, getter=isOverlayAnnotation) BOOL overlayAnnotation;
+@end
 
-/// arbitary text entered into a PDF writer by the user which is associated with the annotation or nil if there is no text
-@property(nonatomic, strong, readonly) NSString *contents;
 
-/// color associated with the annotation or nil if there is no color
-@property(nonatomic, strong, readonly) UIColor *color;
+@interface PSPDFAnnotation (PSPDFAnnotationWriting)
 
-/// If values between pspdfkit://[...] are set, this will contain those options.
-@property(nonatomic, strong) NSDictionary *options;
+// PDF rect string representation (/Rect [%f %f %f %f])
+- (NSString *)pdfRectString;
 
-/// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.
-@property(nonatomic, assign, getter=isModal) BOOL modal;
+// Color string representation (/C [%f %f %f])
+- (NSString *)pdfColorString;
 
-/// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
-@property(nonatomic, assign) CGSize size;
+// Color string representation (/C [%f %f %f] /CA %f)
+- (NSString *)pdfColorWithAlphaString;
+
+// Appends escaped contents data if contents length is > 0.
+- (void)appendEscapedContents:(NSMutableData *)pdfData;
+
+// Converts an array of NSValue-CGRect's into an array of CGRect-NSString's.
++ (NSArray *)stringsFromRectsArray:(NSArray *)rects;
+
+// Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
++ (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
 
 @end

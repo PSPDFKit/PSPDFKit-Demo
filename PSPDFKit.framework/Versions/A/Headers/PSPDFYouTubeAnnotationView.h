@@ -7,12 +7,13 @@
 
 #import "PSPDFAnnotationView.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "PSPDFLinkAnnotationBaseView.h"
 
 @class PSPDFVideoAnnotationView, PSPDFAnnotation;
 
 /// Uses MPMoviePlayerController whenever possible, else falls back to the UIWebView YouTube plugin.
 /// Note: The YouTube plugin doesn't show up in the Simulator. Test on the device!
-@interface PSPDFYouTubeAnnotationView : UIView <PSPDFAnnotationView>
+@interface PSPDFYouTubeAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Keep a reference at the annotation
 @property(nonatomic, strong) PSPDFAnnotation *annotation;

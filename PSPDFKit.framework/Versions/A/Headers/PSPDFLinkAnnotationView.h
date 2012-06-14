@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFAnnotationView.h"
 #import "PSPDFKitGlobal.h"
+#import "PSPDFLinkAnnotationBaseView.h"
 
 @protocol PSPDFLinkAnnotationViewDelegate;
+@class PSPDFLinkAnnotation;
 
 /// Displays an annotation link.
-@interface PSPDFLinkAnnotationView : UIView <PSPDFAnnotationView>
+@interface PSPDFLinkAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Flash background, show that annotation was touched.
 - (void)flashBackground;

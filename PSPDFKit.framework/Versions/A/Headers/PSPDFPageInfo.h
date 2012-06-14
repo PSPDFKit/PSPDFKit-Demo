@@ -10,29 +10,29 @@
 
 @class PSPDFDocument;
 
-/// saves various data of a page. Managed within PSPDFDocument.
+/// Represents a PDF page. Managed within PSPDFDocument.
 @interface PSPDFPageInfo : NSObject
 
-/// autoreleased object with page and rotation.
-+ (id)pageInfoWithRect:(CGRect)rect rotation:(NSUInteger)rotation;
-
 /// init object with page and rotation.
-- (id)initWithRect:(CGRect)rect rotation:(NSUInteger)rotation;
+- (id)initWithPage:(NSUInteger)page rect:(CGRect)pageRect rotation:(NSInteger)rotation document:(PSPDFDocument *)document;
 
 /// saved aspect ratio of current page.
-@property(nonatomic, assign) CGRect pageRect;
+@property(nonatomic, assign, readonly) CGRect pageRect;
 
 /// returns corrected, rotated bounds of pageRect.
 @property(nonatomic, assign, readonly) CGRect rotatedPageRect;
 
 /// saved page rotation of current page. Value between 0 and 270.
-@property(nonatomic, assign) NSUInteger pageRotation;
+@property(nonatomic, assign, readonly) NSUInteger pageRotation;
+
+/// Page transform matrix.
+@property(nonatomic, assign, readonly) CGAffineTransform pageRotationTransform;
 
 /// referenced page.
-@property(nonatomic, assign) NSUInteger page;
+@property(nonatomic, assign, readonly) NSUInteger page;
 
 /// referenced document, weak.
-@property(nonatomic, ps_weak) PSPDFDocument *document;
+@property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
 @end
 

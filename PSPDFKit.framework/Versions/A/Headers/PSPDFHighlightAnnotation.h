@@ -1,0 +1,33 @@
+//
+//  HighlightAnnotation.h
+//  PSPDFKit
+//
+//  Copyright 2012 Peter Steinberger. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "PSPDFAnnotation.h"
+
+typedef enum {
+    PSPDFHighlightAnnotationUnknown,
+    PSPDFHighlightAnnotationHighlight,
+    PSPDFHighlightAnnotationUnderline,
+    PSPDFHighlightAnnotationStrikeOut
+} PSPDFHighlightAnnotationType;
+
+/// Text Highlight Annotation (Highlight, StrikeOut, Underline)
+@interface PSPDFHighlightAnnotation : PSPDFAnnotation
+
+/// Highlight subtype.
+@property (nonatomic, assign) PSPDFHighlightAnnotationType highlightType;
+
+/// Coordinates for highlight annotation.
+@property (nonatomic, strong) NSArray *rects;
+
+- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
+
+- (id)initWithType:(PSPDFHighlightAnnotationType)annotationType;
+
+- (void)setType:(PSPDFHighlightAnnotationType)annotationType withDefaultColor:(BOOL)useDefaultColor;
+
+@end
