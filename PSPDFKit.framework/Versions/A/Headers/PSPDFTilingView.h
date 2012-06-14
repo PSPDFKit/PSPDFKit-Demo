@@ -22,7 +22,7 @@
 - (void)stopTiledRenderingAndRemoveFromSuperlayer;
 
 /// reset tiled layer, reloads pdf image.
-- (void)resetLayer;
+- (void)redrawView;
 
 /// document to display.
 @property(nonatomic, strong) PSPDFDocument *document;

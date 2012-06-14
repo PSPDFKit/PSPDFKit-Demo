@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "PSPDFAnnotationView.h"
+#import "PSPDFLinkAnnotationBaseView.h"
 
 /// Displays audio/movie annotations with an embedded MPMoviePlayerController.
-@interface PSPDFVideoAnnotationView : UIView <PSPDFAnnotationView>
+@interface PSPDFVideoAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Movie url. (can be local, or external)
 @property(nonatomic, strong) NSURL *URL;

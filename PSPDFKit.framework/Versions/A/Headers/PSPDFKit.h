@@ -12,6 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"
 #import "PSPDFViewController.h"
 #import "PSPDFViewControllerDelegate.h"
@@ -32,10 +33,13 @@
 #import "PSPDFSinglePageViewController.h"
 #import "PSPDFTabbedViewController.h"
 #import "PSPDFViewState.h"
+#import "PSPDFPasswordView.h"
+#import "PSPDFAlertView.h"
+#import "PSPDFActionSheet.h"
 
 // search
 #define kPSPDFSearchMinimumLength 3
-#import "PSPDFDocumentSearcher.h"
+#import "PSPDFTextSearch.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 #import "PSPDFSearchHighlightView.h"
@@ -54,10 +58,15 @@
 #import "PSPDFOutlineViewController.h"
 
 // annotations
-#import "PSPDFAlertView.h"
-#import "PSPDFActionSheet.h"
 #import "PSPDFAnnotationParser.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFHighlightAnnotation.h"
+#import "PSPDFFreeTextAnnotation.h"
+#import "PSPDFTextAnnotation.h"
+#import "PSPDFInkAnnotation.h"
+#import "PSPDFLineAnnotation.h"
+#import "PSPDFLinkAnnotation.h"
+#import "PSPDFShapeAnnotation.h"
 #import "PSPDFAnnotationView.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"

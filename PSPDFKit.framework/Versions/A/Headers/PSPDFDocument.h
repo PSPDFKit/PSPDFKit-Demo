@@ -9,7 +9,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 
-@class PSPDFDocumentSearcher, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController;
+@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider;
 
 /// Represents a single, logical, pdf document. (one or many pdf files)
 /// Can be overriden to support custom collections.
@@ -26,15 +26,15 @@
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.
-+ (PSPDFDocument *)PDFDocumentWithBaseUrl:(NSURL *)baseUrl files:(NSArray *)files;
++ (PSPDFDocument *)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
 /// Initializes PSPDFDocument with a single file
-+ (PSPDFDocument *)PDFDocumentWithUrl:(NSURL *)url;
++ (PSPDFDocument *)PDFDocumentWithURL:(NSURL *)URL;
 
 - (id)init;
 - (id)initWithData:(NSData *)data;
-- (id)initWithUrl:(NSURL *)url;
-- (id)initWithBaseUrl:(NSURL *)basePath files:(NSArray *)files;
+- (id)initWithURL:(NSURL *)URL;
+- (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
 
 
 /// @name File Access / Modification
@@ -70,7 +70,7 @@
 
 /// Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
 /// nil if the document was initialized with initWithData:
-@property(nonatomic, strong) NSURL *fileUrl;
+@property(nonatomic, strong) NSURL *fileURL;
 
 /// PDF data when initialized with initWithData: otherwise nil
 @property(nonatomic, copy, readonly) NSData *data;
@@ -83,6 +83,16 @@
 /// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
 @property(nonatomic, copy) NSString *uid;
 
+/// @name Annotations
+
+/// Can PDF annotations be embedded?
+/// Note: only evaluates the first file if multiple files are set.
+@property(nonatomic, assign, readonly) BOOL canEmbedAnnotations;
+
+/// Saves changed annotations back into the PDF sources (files/data).
+/// Returns NO if annotations cannot be embedded. Then most likely error is set.
+/// Returns YES if there are no annotations that have the dirty flag set.
+- (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
 /// @name Page Info Data
 
@@ -120,10 +130,9 @@
 
 /// @name Caching
 
-/// If you change internal properties (like file count), cache needs to be cleared. Forced clears *everything* and even if doc is currently displayed.
-- (void)clearCacheForced:(BOOL)forced;
-
-/// Shortcut to clearCacheForced:NO
+/// Call if you change referenced pdf files outside.
+/// Clear the pageCount, pageRects, outline cache, text parser, ...
+/// This is called implicitely if you change the files array or append a file.
 - (void)clearCache;
 
 /// Creates internal cache for faster display. override to provide custom caching. usually called in a thread.
@@ -168,9 +177,6 @@
 // note: doesn't use weak as this could lead to background deallocation of the controller.
 @property(nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController;
 
-/// Text extraction class for current document.
-@property(nonatomic, strong) PSPDFDocumentSearcher *documentSearcher;
-
 
 /// @name Password Protection and Security
 
@@ -183,31 +189,59 @@
 - (BOOL)unlockWithPassword:(NSString *)password;
 
 /// Set a base password to be used for all files in this document (if the document is PDF encrypted).
+/// Note: relays the password to all files in the .files array.
 @property(nonatomic, copy) NSString *password;
 
 /// Returns YES if the document is valid (if it has at least one page)
 @property(nonatomic, assign, readonly, getter=isValid) BOOL valid;
 
 /// Do the PDF digital right allow for printing?
+/// Note: only evaluates the first file if multiple files are set.
 @property(nonatomic, assign, readonly) BOOL allowsPrinting;
 
 /// Was the PDF file encryted at file creation time?
+/// Note: only evaluates the first file if multiple files are set.
 @property(nonatomic, assign, readonly) BOOL isEncrypted;
 
+/// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
+/// See "Adobe LifeCycle DRM, http://www.adobe.com/products/livecycle/rightsmanagement
+/// Note: only evaluates the first file if multiple files are set.
+@property(nonatomic, assign, readonly) NSString *encryptionFilter;
+
 /// Has the PDF file been unlocked? (is it still locked?).
+/// Note: only evaluates the first file if multiple files are set.
 @property(nonatomic, assign, readonly) BOOL isLocked;
 
+/// A flag that indicates whether copying text is allowed
+/// Note: only evaluates the first file if multiple files are set.
+@property (nonatomic, assign, readonly) BOOL allowsCopying;
 
-/// @name Attached Parser for Outline, Annotations
+
+/// @name Attached Parsers
+
+/// Return a textParser for the specific document page.
+- (PSPDFTextParser *)textParserForPage:(NSUInteger)page;
+
+/// Text extraction class for current document.
+@property(nonatomic, strong) PSPDFTextSearch *textSearch;
+
+/// Get the document provider for a specific page.
+- (PSPDFDocumentProvider *)documentProviderForPage:(NSUInteger)page;
 
 /// Get an array of documentProviers to easily manage documents with multiple files.
-- (NSArray *)documentProviders;
+@property(nonatomic, strong, readonly) NSArray *documentProviders;
+
+/// Document Parser is per file, so might return the same parser for different pages.
+/// (But we need to check as a PSPDFDocument can contain multiple files)
+- (PSPDFDocumentParser *)documentParserForPage:(NSUInteger)page;
 
 /// Outline extraction class for current document.
+/// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
 /// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
+/// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
 
 /// Page labels (NSString) for the current document.
