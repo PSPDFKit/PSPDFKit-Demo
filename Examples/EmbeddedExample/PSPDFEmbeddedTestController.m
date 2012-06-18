@@ -6,11 +6,12 @@
 //
 
 #import "PSPDFEmbeddedTestController.h"
+#import "PSPDFLegacyEmbeddedViewController.h"
 #import "AppDelegate.h"
 
 @implementation PSPDFEmbeddedTestController
 
-@synthesize pdfController = pdfController_;
+@synthesize pdfController = _pdfController;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -33,7 +34,6 @@
     if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
         NSLog(@"error while deleting: %@", [error localizedDescription]);
     }
-    
     [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];    
 }
 
@@ -94,11 +94,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    // add pdf controller as subcontroller (iOS4 way, iOS5 has new, better methods for that)
-    //NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
+    self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
@@ -109,77 +109,43 @@
     self.pdfController.shadowEnabled = NO;
     self.pdfController.pageMode = PSPDFPageModeDouble;
     self.pdfController.doublePageModeOnFirstPage = YES;
-    //self.pdfController.scrobbleBarEnabled = NO;
+    self.pdfController.scrobbleBarEnabled = NO;
+    self.pdfController.viewMode = PSPDFViewModeThumbnails;
      */
-    //self.pdfController.viewMode = PSPDFViewModeThumbnails;
-    
-    self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+    // This example is for iOS5 upards. See LegacyEmbbededViewController for the old, iOS4 way.
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
+        [self addChildViewController:self.pdfController];
+        [self.view addSubview:self.pdfController.view];
+        [self.pdfController didMoveToParentViewController:self];
+    }
         
     // add a border
     self.pdfController.view.layer.borderColor = [UIColor blackColor].CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
-    
-    // hide after load (will animate later)
-    self.pdfController.view.alpha = 0.0f;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
-    [self.pdfController viewWillAppear:animated];
-    
-    if (!self.pdfController.view.superview) {
-        [self.view addSubview:self.pdfController.view];
-    }
+    // initially hide view, as we wanna animate on it!
+    self.pdfController.view.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.pdfController viewDidAppear:animated];
-    
+
     // show how controller can be animated
-    self.pdfController.view.alpha = 0.0f;
-    [UIView animateWithDuration:.25f delay:0.5f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-        self.pdfController.view.alpha = 1.0f;
-    } completion:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.pdfController viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self.pdfController viewDidDisappear:animated];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    
-    // remove subcontroller
-    [self.pdfController viewWillDisappear:NO];
-    [self.pdfController.view removeFromSuperview];
-    [self.pdfController viewDidDisappear:NO];
-    self.pdfController = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView transitionWithView:self.pdfController.view duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:^{
+            self.pdfController.view.hidden = NO;
+        } completion:^(BOOL finished) {
+        }];
+    });
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
-// relay rotation events
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self.pdfController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];    
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self.pdfController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self.pdfController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -196,7 +162,7 @@
     static BOOL replace = YES;
     if (replace) {
         NSError *error = nil;
-        NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPaperExampleFileName];
+        NSString *path = [[self samplesFolder] stringByAppendingPathComponent:kPaperExampleFileName];
         NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
         if (![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
             NSLog(@"error while deleting: %@", [error localizedDescription]);
@@ -242,8 +208,14 @@
     self.pdfController.document = document;
 }
 
-- (void)clearCache {
+- (IBAction)clearCache {
     [[PSPDFCache sharedPSPDFCache] clearCache];
+}
+
+- (IBAction)oldContainmentTest {
+    PSPDFLegacyEmbeddedViewController *legacy = [[PSPDFLegacyEmbeddedViewController alloc] init];
+    UINavigationController *legacyContainer = [[UINavigationController alloc] initWithRootViewController:legacy];
+    [self presentViewController:legacyContainer animated:YES completion:NULL];
 }
 
 @end
