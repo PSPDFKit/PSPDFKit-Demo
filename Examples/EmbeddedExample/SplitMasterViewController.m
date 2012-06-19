@@ -20,7 +20,7 @@
 // this technique is used to test fast creation/destroying of the viewController
 @implementation SplitMasterViewController
 
-@synthesize pdfController = pdfController_;
+@synthesize pdfController = _pdfController;
 @synthesize masterPopoverController = masterPopoverController_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -32,9 +32,9 @@
     self.pdfController.delegate = self;
     self.pdfController.pageCurlEnabled = YES;
     
-    pdfController_.view.frame = self.view.bounds;
-    [[pdfController_ view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    //[pdfController_ setPageMode:PSPDFPageModeSingle];
+    _pdfController.view.frame = self.view.bounds;
+    [[_pdfController view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    //[_pdfController setPageMode:PSPDFPageModeSingle];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@
 }
 
 - (void)dealloc {
-    pdfController_.delegate = nil;
+    _pdfController.delegate = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,9 +107,9 @@
     
     // if controller is already displayed, destroy it first
     if (self.pdfController) {
-        [pdfController_ viewWillDisappear:NO];
-        [pdfController_.view removeFromSuperview];
-        [pdfController_ viewDidAppear:NO];
+        [_pdfController viewWillDisappear:NO];
+        [_pdfController.view removeFromSuperview];
+        [_pdfController viewDidAppear:NO];
     }
     
         [self createPdfController];

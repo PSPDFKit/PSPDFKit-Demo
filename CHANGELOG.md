@@ -8,9 +8,17 @@ __v2.0.0 - 1/August/2012__
 *  API changes. Lots of things got renamed or changes (Url -> URL)
 *  navigationBar title is no longer set on every page change.
 
-__v1.10.3 - x/Jun/2012__
+__v1.10.3 - 19/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
+*  Add some improvements to caching algorithm, adds cacheThumbnailsForDocument to preload a document.
+*  Ensures that email attachments will end with ".pdf".
+*  Fixes a UI issue where the transition between content and thumbnails was sometimes incorrect on zoomed-in content.
+*  Fixes a bug where the the pageIndex on thumbnails are off-by-one.
+*  Fixes a bug where annotationEnabled wasn't correctly restored when using NSCoding on PSPDFDocument.
+*  Fixed a problem where delegates where called too often for the initial reloadData event.
+*  Fixes a potential crash on low-memory situations.
+*  Fixes a potential crash with pageCurl mode and device rotations.
 
 __v1.10.2 - 5/Jun/2012__
 

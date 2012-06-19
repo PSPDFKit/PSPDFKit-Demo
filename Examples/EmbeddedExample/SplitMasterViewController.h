@@ -7,7 +7,7 @@
 //
 
 @interface SplitMasterViewController : UIViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate> {
-    PSPDFViewController *pdfController_;
+    PSPDFViewController *_pdfController;
     UIPopoverController *masterPopoverController_;
 }
 
