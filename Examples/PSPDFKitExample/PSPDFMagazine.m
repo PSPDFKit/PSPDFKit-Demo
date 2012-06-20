@@ -56,16 +56,18 @@
     }
     
     // draw a custom, centered lock image if the magazine is password protected.
-    if (self.isLocked) {
-        if (!CGSizeEqualToSize(size, CGSizeZero)) {
-            UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
-            [[UIColor colorWithWhite:0.9 alpha:1.f] setFill];
-            CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
-            UIImage *lockImage = [UIImage imageNamed:@"lock"];
-            CGSize lockImageTargetSize = PSPDFSizeForScale(lockImage.size, 0.6);
-            [lockImage drawInRect:(CGRect){.origin={floorf((size.width-lockImageTargetSize.width)/2), floorf((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
-            coverImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
+    @autoreleasepool {
+        if (self.isLocked) {
+            if (!CGSizeEqualToSize(size, CGSizeZero)) {
+                UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
+                [[UIColor colorWithWhite:0.9 alpha:1.f] setFill];
+                CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
+                UIImage *lockImage = [UIImage imageNamed:@"lock"];
+                CGSize lockImageTargetSize = PSPDFSizeForScale(lockImage.size, 0.6);
+                [lockImage drawInRect:(CGRect){.origin={floorf((size.width-lockImageTargetSize.width)/2), floorf((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
+                coverImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            }
         }
     }
     
@@ -74,11 +76,11 @@
 
 // example how to manually rotate a page
 /*
-- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef {
-    PSPDFPageInfo *pi = [super pageInfoForPage:page pageRef:pageRef];
-    pi.pageRotation = (pi.pageRotation + 90) % 360;
-    return pi;
-}*/
+ - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef {
+ PSPDFPageInfo *pi = [super pageInfoForPage:page pageRef:pageRef];
+ pi.pageRotation = (pi.pageRotation + 90) % 360;
+ return pi;
+ }*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
@@ -89,7 +91,7 @@
     dispatch_once(&onceToken, ^{
         bundlePath = [[NSBundle mainBundle] bundlePath];
     });
-
+    
     // if magazine is within the app bundle, we can't delete it.
     BOOL deletable = ![[[self pathForPage:0] path] hasPrefix:bundlePath];
     return deletable;

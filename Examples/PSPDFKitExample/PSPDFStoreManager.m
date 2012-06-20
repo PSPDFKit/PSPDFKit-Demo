@@ -83,8 +83,10 @@ static char kvoToken; // we need a static address for the kvo token
                     [folders addObject:contentFolder];
                 }
             }else if([[fullPath lowercaseString] hasSuffix:@"pdf"]) {
-                PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:fullPath];
-                [rootFolder addMagazine:magazine];
+                @autoreleasepool {
+                    PSPDFMagazine *magazine = [PSPDFMagazine magazineWithPath:fullPath];
+                    [rootFolder addMagazine:magazine];
+                }
             }
         }
     }
