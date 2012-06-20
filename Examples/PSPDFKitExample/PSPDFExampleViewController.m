@@ -35,7 +35,7 @@
         self.popoverController.passthroughViews = @[self.navigationController.navigationBar];
         [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }else {
-        [self presentModalViewController:cacheSettingsController withCloseButton:YES animated:YES];
+        [self presentModalViewController:cacheSettingsController embeddedInNavigationController:YES withCloseButton:YES animated:YES];
     }
 }
 
