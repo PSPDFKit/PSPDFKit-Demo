@@ -16,6 +16,7 @@
 
 @interface MinimalExampleAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) PSPDFViewController *pdfController;
+@property(strong, nonatomic) UIWindow *window;
 
 @end
