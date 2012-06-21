@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7832DB4A1592BD5200360F42 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7832DB491592BD5200360F42 /* libz.dylib */; };
+		7832DB531592BD7B00360F42 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7832DB521592BD7B00360F42 /* PSPDFKit.bundle */; };
 		783770251523F2870089F0A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770241523F2870089F0A8 /* UIKit.framework */; };
 		783770271523F2870089F0A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770261523F2870089F0A8 /* Foundation.framework */; };
 		783770291523F2870089F0A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770281523F2870089F0A8 /* CoreGraphics.framework */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7832DB491592BD5200360F42 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7832DB521592BD7B00360F42 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		783770201523F2870089F0A8 /* StoryboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783770241523F2870089F0A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		783770261523F2870089F0A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7832DB4A1592BD5200360F42 /* libz.dylib in Frameworks */,
 				783771371523F3C60089F0A8 /* MessageUI.framework in Frameworks */,
 				783771351523F3C20089F0A8 /* MediaPlayer.framework in Frameworks */,
 				783771331523F3B80089F0A8 /* QuartzCore.framework in Frameworks */,
@@ -66,6 +71,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7832DB4C1592BD5E00360F42 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				7832DB491592BD5200360F42 /* libz.dylib */,
+				783771361523F3C60089F0A8 /* MessageUI.framework */,
+				783771341523F3C20089F0A8 /* MediaPlayer.framework */,
+				783771321523F3B80089F0A8 /* QuartzCore.framework */,
+				783771301523F3AE0089F0A8 /* CoreText.framework */,
+				783770241523F2870089F0A8 /* UIKit.framework */,
+				783770261523F2870089F0A8 /* Foundation.framework */,
+				783770281523F2870089F0A8 /* CoreGraphics.framework */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		7832DB731592BDAB00360F42 /* PSPDFKit */ = {
+			isa = PBXGroup;
+			children = (
+				7832DB521592BD7B00360F42 /* PSPDFKit.bundle */,
+				7837717215240DD10089F0A8 /* PSPDFKit.framework */,
+			);
+			name = PSPDFKit;
+			sourceTree = "<group>";
+		};
 		783770151523F2870089F0A8 = {
 			isa = PBXGroup;
 			children = (
@@ -89,14 +118,8 @@
 		783770231523F2870089F0A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7837717215240DD10089F0A8 /* PSPDFKit.framework */,
-				783771361523F3C60089F0A8 /* MessageUI.framework */,
-				783771341523F3C20089F0A8 /* MediaPlayer.framework */,
-				783771321523F3B80089F0A8 /* QuartzCore.framework */,
-				783771301523F3AE0089F0A8 /* CoreText.framework */,
-				783770241523F2870089F0A8 /* UIKit.framework */,
-				783770261523F2870089F0A8 /* Foundation.framework */,
-				783770281523F2870089F0A8 /* CoreGraphics.framework */,
+				7832DB731592BDAB00360F42 /* PSPDFKit */,
+				7832DB4C1592BD5E00360F42 /* System */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,6 +206,7 @@
 				783770381523F2870089F0A8 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7837703B1523F2870089F0A8 /* MainStoryboard_iPad.storyboard in Resources */,
 				7837712F1523F34C0089F0A8 /* Samples in Resources */,
+				7832DB531592BD7B00360F42 /* PSPDFKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
