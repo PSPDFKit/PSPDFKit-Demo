@@ -24,10 +24,6 @@
 
 @implementation PSPDFStoreManager
 
-@synthesize magazineFolders = magazineFolders_;
-@synthesize downloadQueue = downloadQueue_;
-@synthesize delegate = delegate_;
-
 static char kvoToken; // we need a static address for the kvo token
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,7 +229,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (NSMutableArray *)magazineFolders {
     __block NSMutableArray *magazineFolders;
     pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
-        magazineFolders = magazineFolders_;
+        magazineFolders = _magazineFolders;
     });
     
     return magazineFolders;
@@ -249,7 +245,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (void)finishDownload:(PSPDFDownload *)storeDownload {
     [storeDownload removeObserverWithBlockToken:[storeDownload associatedValueForKey:&kvoToken]];
-    [downloadQueue_ removeObject:storeDownload];
+    [_downloadQueue removeObject:storeDownload];
 }
 
 /// Set a flag that the files shouldn't be backuped to iCloud.
@@ -354,7 +350,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        downloadQueue_ = [[NSMutableArray alloc] init];
+        _downloadQueue = [[NSMutableArray alloc] init];
         
         // register for memory notifications
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -370,7 +366,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    delegate_ = nil;
+    _delegate = nil;
     dispatch_release(magazineFolderQueue_);
 }
 
@@ -378,10 +374,10 @@ static char kvoToken; // we need a static address for the kvo token
 #pragma mark - Public
 
 - (void)deleteMagazineFolder:(PSPDFMagazineFolder *)magazineFolder {
-    [delegate_ magazineStoreBeginUpdate];
+    [_delegate magazineStoreBeginUpdate];
     
     for (PSPDFMagazine *magazine in magazineFolder.magazines) {
-        [delegate_ magazineStoreMagazineDeleted:magazine];
+        [_delegate magazineStoreMagazineDeleted:magazine];
         
         // cancel eventual download!
         if (magazine.isDownloading) {
@@ -392,28 +388,28 @@ static char kvoToken; // we need a static address for the kvo token
         [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
     }
     
-    [delegate_ magazineStoreFolderDeleted:magazineFolder];
+    [_delegate magazineStoreFolderDeleted:magazineFolder];
     pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
-        [magazineFolders_ removeObject:magazineFolder];
+        [_magazineFolders removeObject:magazineFolder];
     });
     
-    [delegate_ magazineStoreEndUpdate];  
+    [_delegate magazineStoreEndUpdate];  
     
     // ensure set icon is not deleted
     [self updateNewsstandIcon:nil];
 }
 
 - (void)deleteMagazine:(PSPDFMagazine *)magazine {
-    [delegate_ magazineStoreBeginUpdate];
+    [_delegate magazineStoreBeginUpdate];
 
     PSPDFMagazineFolder *folder = magazine.folder;
     
     // first notify, then delete from the backing store
     if (!magazine.URL) {
-        [delegate_ magazineStoreMagazineDeleted:magazine];
+        [_delegate magazineStoreMagazineDeleted:magazine];
 
         if ([folder.magazines count] == 1) {
-            [delegate_ magazineStoreFolderDeleted:folder];
+            [_delegate magazineStoreFolderDeleted:folder];
         }
     }
     
@@ -431,19 +427,19 @@ static char kvoToken; // we need a static address for the kvo token
         [folder removeMagazine:magazine];
         
         if([folder.magazines count] > 0) {
-            [delegate_ magazineStoreFolderModified:folder]; // was just modified
+            [_delegate magazineStoreFolderModified:folder]; // was just modified
         }else {
             pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
-                [magazineFolders_ removeObject:folder]; // remove!
+                [_magazineFolders removeObject:folder]; // remove!
             });
         }
     }else {
         // just set availability to now - needs redownloading!
         magazine.available = NO;
-        [delegate_ magazineStoreMagazineModified:magazine];
+        [_delegate magazineStoreMagazineModified:magazine];
     }
     
-    [delegate_ magazineStoreEndUpdate];
+    [_delegate magazineStoreEndUpdate];
     
     // ensure set icon is not deleted
     [self updateNewsstandIcon:nil];
@@ -490,7 +486,7 @@ static char kvoToken; // we need a static address for the kvo token
     }];
     
     [storeDownload associateValue:token withKey:&kvoToken];
-    [downloadQueue_ addObject:storeDownload];  
+    [_downloadQueue addObject:storeDownload];  
     [storeDownload startDownload];
     magazine.downloading = YES;
 }
@@ -552,7 +548,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     if ([newMagazines count] > 0) {
-        [delegate_ magazineStoreBeginUpdate];
+        [_delegate magazineStoreBeginUpdate];
         
         for (PSPDFMagazine *magazine in magazines) {
             PSPDFMagazineFolder *folder = [self addMagazineToFolder:magazine];
@@ -560,15 +556,15 @@ static char kvoToken; // we need a static address for the kvo token
             
             // folder fresh or updated?
             if ([folder.magazines count] == 1) {
-                [delegate_ magazineStoreFolderAdded:folder];
+                [_delegate magazineStoreFolderAdded:folder];
             }else {
-                [delegate_ magazineStoreFolderModified:folder]; 
+                [_delegate magazineStoreFolderModified:folder]; 
             }
             
-            [delegate_ magazineStoreMagazineAdded:magazine];    
+            [_delegate magazineStoreMagazineAdded:magazine];    
         }
         
-        [delegate_ magazineStoreEndUpdate];
+        [_delegate magazineStoreEndUpdate];
         
         // update newsstand icon
         [self updateNewsstandIcon:[newMagazines lastObject]];
@@ -576,7 +572,7 @@ static char kvoToken; // we need a static address for the kvo token
 }
 
 - (PSPDFDownload *)downloadObjectForMagazine:(PSPDFMagazine *)magazine {
-    for (PSPDFDownload *aDownload in downloadQueue_) {
+    for (PSPDFDownload *aDownload in _downloadQueue) {
         if(aDownload.magazine == magazine) {
             return aDownload;
         }

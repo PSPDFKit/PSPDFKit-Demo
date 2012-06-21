@@ -25,8 +25,8 @@
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
 
 @interface PSPDFGridController() {
-    NSUInteger animationCellIndex_;
-    BOOL animationDualWithPageCurl_;
+    NSUInteger _animationCellIndex;
+    BOOL _animationDualWithPageCurl;
     BOOL _animateViewWillAppearWithFade;
 }
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
@@ -36,12 +36,6 @@
 @end
 
 @implementation PSPDFGridController
-
-@synthesize gridView = gridView_;
-@synthesize magazineFolder = magazineFolder_;
-@synthesize magazineView = magazineView_;
-@synthesize editMode = editMode_;
-@synthesize shadowView = shadowView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -123,7 +117,7 @@
         coverImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.view addSubview:magazineView];
         self.magazineView = magazineView;
-        animationCellIndex_ = cellIndex;
+        _animationCellIndex = cellIndex;
         
         // add a smooth status bar transition on the iPhone
         if (!PSIsIpad()) {
@@ -132,11 +126,11 @@
         
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.navigationController.navigationBar.alpha = 0.f;
-            shadowView_.shadowEnabled = NO;
+            _shadowView.shadowEnabled = NO;
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
             
-            animationDualWithPageCurl_ = pdfController.pageCurlEnabled && [pdfController isDualPageMode];
-            CGRect newFrame = [self magazinePageCoordinatesWithDualPageCurl:animationDualWithPageCurl_];
+            _animationDualWithPageCurl = pdfController.pageCurlEnabled && [pdfController isDualPageMode];
+            CGRect newFrame = [self magazinePageCoordinatesWithDualPageCurl:_animationDualWithPageCurl];
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {            
@@ -189,7 +183,7 @@
 }
 
 - (void)setEditMode:(BOOL)editMode {
-    editMode_ = editMode;    
+    _editMode = editMode;
     [self.gridView setEditing:editMode animated:YES];
 }
 
@@ -211,7 +205,7 @@
 - (id)initWithMagazineFolder:(PSPDFMagazineFolder *)aMagazineFolder {
     if ((self = [self init])) {
         self.title = aMagazineFolder.title;
-        magazineFolder_ = aMagazineFolder;
+        _magazineFolder = aMagazineFolder;
     }
     return self;
 }
@@ -224,7 +218,7 @@
 #pragma mark - UIView
 
 - (void)updateGridForOrientation {
-    gridView_.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 14;
+    _gridView.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 14;
 }
 
 - (void)viewDidLoad {
@@ -254,17 +248,17 @@
     // add global shadow
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSPDFShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
-    shadowView_.shadowOffset = toolbarHeight;
-    shadowView_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    shadowView_.backgroundColor = [UIColor clearColor];
-    shadowView_.userInteractionEnabled = NO;
-    [self.view addSubview:shadowView_];
+    _shadowView.shadowOffset = toolbarHeight;
+    _shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _shadowView.backgroundColor = [UIColor clearColor];
+    _shadowView.userInteractionEnabled = NO;
+    [self.view addSubview:_shadowView];
     
     // use custom view to match background with PSPDFViewController
     UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
     backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;    
     backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
-    [self.view insertSubview:backgroundTextureView belowSubview:shadowView_];
+    [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
     
     // init grid
     self.gridView = [[PSPDFGridView alloc] initWithFrame:CGRectZero];
@@ -276,7 +270,7 @@
     self.gridView.layoutStrategy = [PSPDFGridViewLayoutStrategyFactory strategyFromType:PSPDFGridViewLayoutVertical];
     NSUInteger spacing = 20;
     self.gridView.minEdgeInsets = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
-    [self.view insertSubview:self.gridView belowSubview:shadowView_];
+    [self.view insertSubview:self.gridView belowSubview:_shadowView];
     self.gridView.frame = self.view.bounds;
     [self updateGridForOrientation];
     self.gridView.dataSource = self; // auto-reloads
@@ -304,7 +298,7 @@
     }];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    shadowView_.shadowEnabled = YES;
+    _shadowView.shadowEnabled = YES;
     
     // if navigationBar is offset, we're fixing that.
     if (self.navigationController.navigationBar) {
@@ -340,7 +334,7 @@
     if (self.magazineView) {
         
         // if something changed, just don't animate.
-        if (animationCellIndex_ >= [self.magazineFolder.magazines count]) {
+        if (_animationCellIndex >= [self.magazineFolder.magazines count]) {
             self.gridView.transform = CGAffineTransformIdentity;
             self.gridView.alpha = 1.0f;
             [self.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
@@ -348,19 +342,19 @@
             self.magazineView = nil;
         }else {
             // ensure object is visible
-            BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:animationCellIndex_ partly:YES];
+            BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:_animationCellIndex partly:YES];
             if (!isCellVisible) {
-                [self.gridView scrollToObjectAtIndex:animationCellIndex_ atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
+                [self.gridView scrollToObjectAtIndex:_animationCellIndex atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
                 [self.gridView layoutSubviews]; // ensure cells are laid out
             };
             
             // convert the coordinates into view coordinate system
             // we can't remember those, because the device might has been rotated.
-            CGRect absoluteCellRect = [self.gridView cellForItemAtIndex:animationCellIndex_].frame;
+            CGRect absoluteCellRect = [self.gridView cellForItemAtIndex:_animationCellIndex].frame;
             CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
             
             // 
-            self.magazineView.frame = [self magazinePageCoordinatesWithDualPageCurl:animationDualWithPageCurl_ && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
+            self.magazineView.frame = [self magazinePageCoordinatesWithDualPageCurl:_animationDualWithPageCurl && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
             
             // start animation!
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{

@@ -8,7 +8,7 @@
 @class PSPDFMagazine;
 
 @interface PSPDFMagazineFolder : NSObject {
-    NSMutableArray *magazines_;
+    NSMutableArray *_magazines;
 }
 
 + (PSPDFMagazineFolder *)folderWithTitle:(NSString *)title;

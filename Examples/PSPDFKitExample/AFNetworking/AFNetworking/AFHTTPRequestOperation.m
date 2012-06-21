@@ -120,12 +120,6 @@ NSString * AFCreateIncompleteDownloadDirectoryPath(void) {
 @end
 
 @implementation AFHTTPRequestOperation
-@synthesize HTTPError = _HTTPError;
-@synthesize responseFilePath = _responseFilePath;
-@synthesize successCallbackQueue = _successCallbackQueue;
-@synthesize failureCallbackQueue = _failureCallbackQueue;
-@synthesize totalContentLength = _totalContentLength;
-@synthesize offsetContentLength = _offsetContentLength;
 @dynamic request;
 @dynamic response;
 

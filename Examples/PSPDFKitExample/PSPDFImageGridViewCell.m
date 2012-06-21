@@ -24,7 +24,7 @@
     
     UIView *progressViewBackground_;
     UILabel *magazineCounter_;
-    UIImageView *magazineCounterBadgeImage_;
+    UIImageView *_magazineCounterBadgeImage;
     NSMutableSet *observedMagazineDownloads_;
 }
 @property(nonatomic, strong) UIImageView *magazineCounterBadgeImage;
@@ -35,12 +35,6 @@
 @end
 
 @implementation PSPDFImageGridViewCell
-
-@synthesize magazineCount = magazineCount_;
-@synthesize magazine = magazine_;
-@synthesize magazineFolder = magazineFolder_;
-@synthesize magazineCounterBadgeImage = magazineCounterBadgeImage_;
-@synthesize progressView = progressView_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -87,7 +81,7 @@
 }
 
 - (void)dealloc {
-    [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
+    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
     [self clearProgressObservers];
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
 }
@@ -169,9 +163,9 @@
         self.magazineFolder = nil;
     }
     
-    if (magazine_ != magazine) {
-        [magazine_ removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
-        magazine_ = magazine;
+    if (_magazine != magazine) {
+        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
+        _magazine = magazine;
         
         // setup for magazine
         if (magazine) {
@@ -227,11 +221,11 @@
         self.magazine = nil;
     }
     
-    if (magazineFolder_ != magazineFolder) {
+    if (_magazineFolder != magazineFolder) {
         [self clearProgressObservers];
-        magazineFolder_ = magazineFolder;
+        _magazineFolder = magazineFolder;
         
-        for (PSPDFMagazine *aMagazine in magazineFolder_.magazines) {
+        for (PSPDFMagazine *aMagazine in _magazineFolder.magazines) {
             [self checkMagazineAndObserveProgressIfDownloading:aMagazine];
         }
         
@@ -253,7 +247,7 @@
 }
 
 - (void)updateMagazineBadgeFrame {
-    magazineCounterBadgeImage_.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 50, 50);
+    _magazineCounterBadgeImage.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 50, 50);
 }
 
 #define kiPhoneReductionFactor 0.588
@@ -261,9 +255,9 @@
 - (void)setMagazineCount:(NSUInteger)newMagazineCount {
     if (!magazineCounter_ && newMagazineCount > 1) { // lazy creation
         self.magazineCounterBadgeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
-        magazineCounterBadgeImage_.opaque = NO;
-        magazineCounterBadgeImage_.alpha = 0.9f;
-        [self.contentView addSubview:magazineCounterBadgeImage_];
+        _magazineCounterBadgeImage.opaque = NO;
+        _magazineCounterBadgeImage.alpha = 0.9f;
+        [self.contentView addSubview:_magazineCounterBadgeImage];
         
         magazineCounter_ = [[UILabel alloc] init];
         magazineCounter_.font = [UIFont boldSystemFontOfSize:20];
@@ -273,12 +267,12 @@
         magazineCounter_.backgroundColor = [UIColor clearColor];
         magazineCounter_.frame = CGRectMake(1, 1, 25, 25);
         magazineCounter_.textAlignment = UITextAlignmentCenter;
-        [magazineCounterBadgeImage_ addSubview:magazineCounter_];
+        [_magazineCounterBadgeImage addSubview:magazineCounter_];
     }
     
     magazineCounter_.text = [NSString stringWithFormat:@"%d", newMagazineCount];
     magazineCounter_.hidden = newMagazineCount < 2;
-    magazineCounterBadgeImage_.hidden = newMagazineCount < 2;
+    _magazineCounterBadgeImage.hidden = newMagazineCount < 2;
     [self updateMagazineBadgeFrame];
 }
 
@@ -301,16 +295,16 @@
 #define kProgressBarTag 32553
 #define kProgressBarWidth 110
 - (UIProgressView *)progressView {
-    if (!progressView_) {
-        progressView_ = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];    
+    if (!_progressView) {
+        _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
         CGFloat progressViewWidth = PSIsIpad() ? kProgressBarWidth : roundf(kProgressBarWidth * kiPhoneReductionFactor*1.1f);
-        progressView_.frame = CGRectMake(0.f, 0.f, progressViewWidth, 21.f);
+        _progressView.frame = CGRectMake(0.f, 0.f, progressViewWidth, 21.f);
         CGFloat siteLabelHeight = self.isShowingSiteLabel ? self.siteLabel.frame.size.width : 0.f;
-        progressView_.center = CGPointMake(roundf(self.imageView.frame.size.width/2.f), roundf(self.imageView.frame.size.height*9.f/10.f - siteLabelHeight));
-        progressView_.alpha = 0.f;
-        [self.contentView addSubview:progressView_];
+        _progressView.center = CGPointMake(roundf(self.imageView.frame.size.width/2.f), roundf(self.imageView.frame.size.height*9.f/10.f - siteLabelHeight));
+        _progressView.alpha = 0.f;
+        [self.contentView addSubview:_progressView];
     }
-    return progressView_;
+    return _progressView;
 }
 
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
@@ -379,7 +373,7 @@
     [super setImage:image animated:animated];
     
     // ensure magazineCounter is at top
-    [self.contentView bringSubviewToFront:magazineCounterBadgeImage_];
+    [self.contentView bringSubviewToFront:_magazineCounterBadgeImage];
     
     // recalculate edit button position
     [self setNeedsLayout];
@@ -398,12 +392,12 @@
     [self darkenView:NO animated:NO];
     self.magazine = nil;
     self.magazineFolder = nil;
-    [progressView_ removeFromSuperview];
-    progressView_ = nil;
+    [_progressView removeFromSuperview];
+    _progressView = nil;
     [magazineCounter_ removeFromSuperview];
     magazineCounter_ = nil;
-    [magazineCounterBadgeImage_ removeFromSuperview];
-    magazineCounterBadgeImage_ = nil;
+    [_magazineCounterBadgeImage removeFromSuperview];
+    _magazineCounterBadgeImage = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

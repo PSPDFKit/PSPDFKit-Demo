@@ -9,7 +9,6 @@
 #import "PSPDFQuickLookViewController.h"
 
 @implementation PSPDFQuickLookMagazineContainer
-@synthesize document = document_;
 
 // add QLPreviewItem feature to a category
 - (NSURL *)previewItemURL {
@@ -21,14 +20,12 @@
 
 @implementation PSPDFQuickLookViewController
 
-@synthesize document = document_;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super init])) {
-        document_ = document;
+        _document = document;
         
         self.delegate = self;
         self.dataSource = self;
@@ -46,7 +43,7 @@
  */
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
     return 1; // only supported for whole files
-    //return [document_.files count];
+    //return [_document.files count];
 }
 
 /*!

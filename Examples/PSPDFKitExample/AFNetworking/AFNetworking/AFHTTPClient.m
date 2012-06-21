@@ -121,9 +121,7 @@ NSString * AFURLEncodedStringFromStringWithEncoding(NSString *string, NSStringEn
 
 @end
 
-@implementation AFQueryStringComponent 
-@synthesize key = _key;
-@synthesize value = _value;
+@implementation AFQueryStringComponent
 
 - (id)initWithKey:(id)key value:(id)value {
     self = [super init];
@@ -239,17 +237,6 @@ static NSString * AFPropertyListStringFromParameters(NSDictionary *parameters) {
 @end
 
 @implementation AFHTTPClient
-@synthesize baseURL = _baseURL;
-@synthesize stringEncoding = _stringEncoding;
-@synthesize parameterEncoding = _parameterEncoding;
-@synthesize registeredHTTPOperationClassNames = _registeredHTTPOperationClassNames;
-@synthesize defaultHeaders = _defaultHeaders;
-@synthesize operationQueue = _operationQueue;
-#ifdef _SYSTEMCONFIGURATION_H
-@synthesize networkReachability = _networkReachability;
-@synthesize networkReachabilityStatus = _networkReachabilityStatus;
-@synthesize networkReachabilityStatusBlock = _networkReachabilityStatusBlock;
-#endif
 
 + (AFHTTPClient *)clientWithBaseURL:(NSURL *)url {
     return [[[self alloc] initWithBaseURL:url] autorelease];

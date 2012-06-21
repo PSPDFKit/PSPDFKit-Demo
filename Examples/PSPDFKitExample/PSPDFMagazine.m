@@ -11,12 +11,6 @@
 
 @implementation PSPDFMagazine
 
-@synthesize folder = folder_;
-@synthesize downloading = downloading_;
-@synthesize available = available_;
-@synthesize URL = URL_;
-@synthesize imageURL = imageURL_;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -36,7 +30,7 @@
 }
 
 - (void)dealloc {
-    folder_ = nil;
+    _folder = nil;
 }
 
 - (NSString *)description {
@@ -101,8 +95,8 @@
 #pragma mark - PSPDFDocument
 
 - (void)setDownloading:(BOOL)downloading {
-    if (downloading != downloading_) {
-        downloading_ = downloading;
+    if (downloading != _downloading) {
+        _downloading = downloading;
         
         if(!downloading) {
             // clear cache, needed to recalculate pageCount
