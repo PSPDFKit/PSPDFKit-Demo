@@ -286,8 +286,11 @@ enum {
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
-/// fitWidth is currently not supported for vertical scrolling. This is a know limitation.
+/// fitWidth is currently not supported for vertical scrolling or pageCurl mode.
 @property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+
+/// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitWidth is enabled. If NO, new pages will start at the page top position.
+@property(nonatomic, assign) BOOL fixedVerticalPositionForFitWidthMode;
 
 /// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
