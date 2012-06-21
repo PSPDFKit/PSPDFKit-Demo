@@ -772,9 +772,4 @@ static dispatch_queue_t get_disk_io_queue() {
     [super dealloc];
 }
 
-@synthesize minCacheInterval = _minCacheInterval;
-@synthesize ignoreMemoryOnlyStoragePolicy = _ignoreMemoryOnlyStoragePolicy;
-@synthesize diskCachePath = _diskCachePath;
-@synthesize diskCacheInfo = _diskCacheInfo;
-
 @end

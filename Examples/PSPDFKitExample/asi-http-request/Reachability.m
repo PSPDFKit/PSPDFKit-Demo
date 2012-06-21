@@ -168,8 +168,6 @@ static void logReachabilityFlags_(const char *name, int line, SCNetworkReachabil
 
 @implementation Reachability
 
-@synthesize key = key_;
-
 // Preclude direct access to ivars.
 + (BOOL) accessInstanceVariablesDirectly {
 	

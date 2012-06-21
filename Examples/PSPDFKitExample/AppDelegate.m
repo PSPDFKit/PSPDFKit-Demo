@@ -16,9 +16,6 @@
 
 @implementation AppDelegate
 
-@synthesize window = window_;
-@synthesize navigationController = navigationController_;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
@@ -85,10 +82,10 @@
     
     // create main grid and show!
     gridController_ = [[PSPDFGridController alloc] init];
-    navigationController_ = [[UINavigationController alloc] initWithRootViewController:gridController_];
-    window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    window_.rootViewController = navigationController_;
-    [window_ makeKeyAndVisible];
+    _navigationController = [[UINavigationController alloc] initWithRootViewController:gridController_];
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _window.rootViewController = _navigationController;
+    [_window makeKeyAndVisible];
     
     NSString *cacheFolder = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     PSELog(@"CacheDir: %@", cacheFolder);

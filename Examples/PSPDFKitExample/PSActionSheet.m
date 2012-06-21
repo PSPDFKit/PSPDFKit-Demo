@@ -12,7 +12,6 @@
 @end
 
 @implementation PSActionSheet
-@synthesize sheet = sheet_;
 
 + (id)sheetWithTitle:(NSString *)title {
     return [[PSActionSheet alloc] initWithTitle:title];
@@ -43,24 +42,24 @@
     assert([title length] > 0 && "sheet destructive button title must not be empty");
     
     [self addButtonWithTitle:title block:block];
-    sheet_.destructiveButtonIndex = (sheet_.numberOfButtons - 1);
+    _sheet.destructiveButtonIndex = (_sheet.numberOfButtons - 1);
 }
 
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block {
     assert([title length] > 0 && "sheet cancel button title must not be empty");
     
     [self addButtonWithTitle:title block:block];
-    sheet_.cancelButtonIndex = (sheet_.numberOfButtons - 1);
+    _sheet.cancelButtonIndex = (_sheet.numberOfButtons - 1);
 }
 
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block {
     assert([title length] > 0 && "cannot add button with empty title");
     [blocks_ addObject:block ? [block copy] : [NSNull null]];
-    [sheet_ addButtonWithTitle:title];
+    [_sheet addButtonWithTitle:title];
 }
 
 - (void)showInView:(UIView *)view {
-    [sheet_ showInView:view];
+    [_sheet showInView:view];
     
     // Ensure that the delegate (that's us) survives until the sheet is dismissed.
     // Release occurs in -actionSheet:clickedButtonAtIndex:
@@ -68,7 +67,7 @@
 }
 
 - (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated {
-    [sheet_ showFromBarButtonItem:item animated:animated];
+    [_sheet showFromBarButtonItem:item animated:animated];
 
     // Ensure that the delegate (that's us) survives until the sheet is dismissed.
     // Release occurs in -actionSheet:clickedButtonAtIndex:
@@ -76,7 +75,7 @@
 }
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated {
-    [sheet_ showFromRect:rect inView:view animated:animated];
+    [_sheet showFromRect:rect inView:view animated:animated];
 
     // Ensure that the delegate (that's us) survives until the sheet is dismissed.
     // Release occurs in -actionSheet:clickedButtonAtIndex:

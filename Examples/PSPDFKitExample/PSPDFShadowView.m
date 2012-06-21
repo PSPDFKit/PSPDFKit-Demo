@@ -9,28 +9,25 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface PSPDFShadowView() {
-    CAGradientLayer *originShadow_;
+    CAGradientLayer *_originShadow;
 }
 @end
 
 @implementation PSPDFShadowView
-
-@synthesize shadowEnabled = shadowEnabled_;
-@synthesize shadowOffset = shadowOffset_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)init {
     if ((self = [super init])) {
-        shadowEnabled_ = YES;
+        _shadowEnabled = YES;
     }
     return self;
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self  = [super initWithFrame:frame])) {
-        shadowEnabled_ = YES;
+        _shadowEnabled = YES;
     }
     return self;
 }
@@ -64,28 +61,28 @@
     
     if (self.isShadowEnabled) {
         // Construct the origin shadow if needed
-        if (!originShadow_) {
-            originShadow_ = [self shadowAsInverse:NO];
-            [self.layer insertSublayer:originShadow_ atIndex:9999];
+        if (!_originShadow) {
+            _originShadow = [self shadowAsInverse:NO];
+            [self.layer insertSublayer:_originShadow atIndex:9999];
         }
-        else if (![(self.layer.sublayers)[0] isEqual:originShadow_]) {
-            [self.layer insertSublayer:originShadow_ atIndex:9999];
+        else if (![(self.layer.sublayers)[0] isEqual:_originShadow]) {
+            [self.layer insertSublayer:_originShadow atIndex:9999];
         }
         
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
         
         // Stretch and place the origin shadow
-        CGRect originShadowFrame = originShadow_.frame;
+        CGRect originShadowFrame = _originShadow.frame;
         originShadowFrame.size.width = self.frame.size.width;
-        originShadowFrame.origin.y = shadowOffset_;
-        originShadow_.frame = originShadowFrame;
+        originShadowFrame.origin.y = _shadowOffset;
+        _originShadow.frame = originShadowFrame;
         
         [CATransaction commit];
     }else {
-        if (originShadow_) {
-            [originShadow_ removeFromSuperlayer];
-            originShadow_ = nil;
+        if (_originShadow) {
+            [_originShadow removeFromSuperlayer];
+            _originShadow = nil;
         }
     }
 }
@@ -94,12 +91,12 @@
 #pragma mark - Public
 
 - (void)setShadowOffset:(CGFloat)shadowOffset {
-    shadowOffset_ = shadowOffset;
+    _shadowOffset = shadowOffset;
     [self setNeedsLayout];
 }
 
 - (void)setShadowEnabled:(BOOL)shadowEnabled {
-    shadowEnabled_ = shadowEnabled;
+    _shadowEnabled = shadowEnabled;
     [self setNeedsLayout];
 }
 

@@ -16,7 +16,7 @@
 
 
 @interface PSPDFQuickLookMagazineContainer: NSObject<QLPreviewItem> {
-    __ps_weak PSPDFDocument *document_;
+    __ps_weak PSPDFDocument *_document;
 }
 @property(nonatomic, ps_weak) PSPDFDocument *document;
 @end

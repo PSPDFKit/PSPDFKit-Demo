@@ -124,26 +124,7 @@ static inline BOOL AFStateTransitionIsValid(AFOperationState fromState, AFOperat
 @end
 
 @implementation AFURLConnectionOperation
-@synthesize state = _state;
-@synthesize cancelled = _cancelled;
-@synthesize connection = _connection;
-@synthesize runLoopModes = _runLoopModes;
-@synthesize request = _request;
-@synthesize response = _response;
-@synthesize error = _error;
-@synthesize responseData = _responseData;
-@synthesize responseString = _responseString;
-@synthesize totalBytesRead = _totalBytesRead;
 @dynamic inputStream;
-@synthesize outputStream = _outputStream;
-@synthesize backgroundTaskIdentifier = _backgroundTaskIdentifier;
-@synthesize uploadProgress = _uploadProgress;
-@synthesize downloadProgress = _downloadProgress;
-@synthesize authenticationAgainstProtectionSpace = _authenticationAgainstProtectionSpace;
-@synthesize authenticationChallenge = _authenticationChallenge;
-@synthesize cacheResponse = _cacheResponse;
-@synthesize redirectResponse = _redirectResponse;
-@synthesize lock = _lock;
 
 + (void)networkRequestThreadEntryPoint:(id)__unused object {
     do {

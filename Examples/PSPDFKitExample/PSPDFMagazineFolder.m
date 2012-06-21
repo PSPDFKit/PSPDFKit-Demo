@@ -11,9 +11,6 @@
 
 @implementation PSPDFMagazineFolder
 
-@synthesize magazines = magazines_;
-@synthesize title;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
@@ -25,7 +22,7 @@
 
 // only deregister if delegate belongs to us
 - (void)removeMagazineFolderReferences {
-    for (PSPDFMagazine *magazine in magazines_) {
+    for (PSPDFMagazine *magazine in _magazines) {
         if (magazine.folder == self) {
             magazine.folder = nil;
         }
@@ -33,7 +30,7 @@
 }
 
 - (void)addMagazineFolderReferences {
-    for (PSPDFMagazine *magazine in magazines_) {
+    for (PSPDFMagazine *magazine in _magazines) {
         magazine.folder = self;
     }    
 }
@@ -43,7 +40,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        magazines_ = [[NSMutableArray alloc] init];
+        _magazines = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -84,25 +81,25 @@
 }
 
 - (void)addMagazine:(PSPDFMagazine *)magazine {
-    [magazines_ addObject:magazine];
+    [_magazines addObject:magazine];
     magazine.folder = self;
     [self sortMagazines];
 }
 
 - (void)removeMagazine:(PSPDFMagazine *)magazine {
     magazine.folder = nil;
-    [magazines_ removeObject:magazine];
+    [_magazines removeObject:magazine];
     [self sortMagazines];
 }
 
 - (void)sortMagazines {
-    [magazines_ sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
+    [_magazines sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
 }
 
 - (void)setMagazines:(NSArray *)magazines {
-    if (magazines != magazines_) {
+    if (magazines != _magazines) {
         [self removeMagazineFolderReferences];
-        magazines_ = [magazines mutableCopy];
+        _magazines = [magazines mutableCopy];
         [self addMagazineFolderReferences];
         [self sortMagazines];
     }

@@ -23,14 +23,6 @@
 
 @implementation PSPDFDownload
 
-@synthesize URL = URL_;
-@synthesize magazine = magazine_;
-@synthesize request = request_;
-@synthesize status = status_;
-@synthesize downloadProgress = downloadProgress_;
-@synthesize error = error_;
-@synthesize cancelled = cancelled_;
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
@@ -52,7 +44,7 @@
 
 - (id)initWithURL:(NSURL *)URL {
     if ((self = [super init])) {
-        URL_ = URL;
+        _URL = URL;
     }
     return self;
 }
@@ -74,18 +66,18 @@
 }
 
 - (PSPDFMagazine *)magazine {
-    if (!magazine_) {
+    if (!_magazine) {
         self.magazine = [[PSPDFMagazine alloc] init];
-        magazine_.downloading = YES;
+        _magazine.downloading = YES;
     }
-    return magazine_;
+    return _magazine;
 }
 
 - (void)setStatus:(PSPDFStoreDownloadStatus)aStatus {
-    status_ = aStatus;
+    _status = aStatus;
     
     // remove progress view, animated
-    if (progressView_ && (status_ == PSPDFStoreDownloadFinished || status_ == PSPDFStoreDownloadFailed)) {
+    if (progressView_ && (_status == PSPDFStoreDownloadFinished || _status == PSPDFStoreDownloadFailed)) {
         [UIView animateWithDuration:0.25 delay:0 options:0 animations:^{
             progressView_.alpha = 0.f;
         } completion:^(BOOL finished) {
@@ -98,7 +90,7 @@
 }
 
 - (void)setProgressDelegate:(id<ASIProgressDelegate>)progressDelegate {
-    [request_ setDownloadProgressDelegate:progressDelegate];
+    [_request setDownloadProgressDelegate:progressDelegate];
 }
 
 - (void)startDownload {
@@ -162,7 +154,7 @@
 
 - (void)cancelDownload {
     self.cancelled = YES;
-    [request_ cancel];
+    [_request cancel];
 }
 
 - (void)setProgress:(float)theProgress {
