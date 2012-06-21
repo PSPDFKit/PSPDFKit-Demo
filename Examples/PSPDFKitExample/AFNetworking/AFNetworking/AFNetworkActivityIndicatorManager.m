@@ -37,9 +37,6 @@ static NSTimeInterval const kAFNetworkActivityIndicatorInvisibilityDelay = 0.25;
 @end
 
 @implementation AFNetworkActivityIndicatorManager
-@synthesize activityCount = _activityCount;
-@synthesize activityIndicatorVisibilityTimer = _activityIndicatorVisibilityTimer;
-@synthesize enabled = _enabled;
 @dynamic networkActivityIndicatorVisible;
 
 + (AFNetworkActivityIndicatorManager *)sharedManager {
