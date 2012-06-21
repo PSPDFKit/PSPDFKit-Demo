@@ -34,7 +34,7 @@
 /// Shows a interface to enter a password for locked/encrypted pdf's.
 @interface PSPDFPasswordView : UIView <UITextFieldDelegate>
 
-- (void)becomeFirstResponder;
+- (BOOL)becomeFirstResponder;
 
 /// Document. Can be changed.
 @property(nonatomic, ps_weak) PSPDFDocument *document;

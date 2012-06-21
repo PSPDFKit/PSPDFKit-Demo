@@ -136,7 +136,7 @@ enum {
 - (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
 
 /// Show a modal view controller with automatically added close button on the left side.
-- (void)presentModalViewController:(UIViewController *)controller withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
+- (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
 
 /// Return array of currently visible page numbers.
 - (NSArray *)visiblePageNumbers;
@@ -300,8 +300,11 @@ enum {
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
-/// fitWidth is currently not supported for vertical scrolling. This is a know limitation.
+/// fitWidth is currently not supported for vertical scrolling or pageCurl mode.
 @property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+
+/// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitWidth is enabled. If NO, new pages will start at the page top position.
+@property(nonatomic, assign) BOOL fixedVerticalPositionForFitWidthMode;
 
 /// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
@@ -331,10 +334,6 @@ enum {
 
 /// Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
 @property(nonatomic, assign) CGFloat annotationAnimationDuration;
-
-/// Defaults to YES. Set to NO for faster page-scrolling, but may flash white even if there are thumbnails supplied.
-@property(nonatomic, assign) BOOL loadThumbnailsOnMainThread;
-
 
 /// @name Subclassing Helpers
 

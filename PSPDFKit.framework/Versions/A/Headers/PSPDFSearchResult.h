@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
-@class Selection, PSPDFDocument;
+@class PSPDFWord, PSPDFDocument;
 
 /// Search result object.
 @interface PSPDFSearchResult : NSObject
@@ -24,7 +24,7 @@
 @property(nonatomic, copy) NSString *previewText;
 
 /// Text coordinates. May not be set, expensive calculation.
-@property(nonatomic, strong) Selection *selection;
+@property(nonatomic, strong) PSPDFWord *selection;
 
 /// Range within full page text.
 @property(nonatomic, assign) NSRange range;

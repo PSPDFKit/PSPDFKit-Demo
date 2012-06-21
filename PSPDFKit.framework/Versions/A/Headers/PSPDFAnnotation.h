@@ -39,6 +39,9 @@ typedef enum {
 /// Returns the annotation type strings that are supported. Implemented in each subclass.
 + (NSArray *)supportedTypes;
 
+/// Use this to create custom user annotations. 
+- (id)initWithType:(PSPDFAnnotationType)annotationType;
+
 /// Used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
 /// Implement this in your subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
@@ -66,7 +69,8 @@ typedef enum {
 @property(nonatomic, assign, readonly) PSPDFAnnotationType type;
 
 /// Annotation type string as defined in the PDF.
-@property(nonatomic, strong, readonly) NSString *typeString;
+/// Usually read from the annotDict. Don't change this unless you know what you're doing.
+@property(nonatomic, copy) NSString *typeString;
 
 /// Alpha value of the annotation color.
 @property (nonatomic, assign) float alpha;
@@ -100,7 +104,7 @@ typedef enum {
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.
-@property(nonatomic, assign, readonly, getter=isDirty) BOOL dirty;
+@property(nonatomic, assign, getter=isDirty) BOOL dirty;
 
 /// corresponding document, weak.
 @property(nonatomic, ps_weak) PSPDFDocument *document;
