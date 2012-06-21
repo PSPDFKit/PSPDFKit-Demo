@@ -53,7 +53,6 @@
     self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
     self.fitWidth = [PSPDFSettingsController fitWidth];
     self.pageCurlEnabled = [PSPDFSettingsController pageCurl];
-    //self.pageCurlDirectionLeftToRight = YES;
     
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
     if ([PSPDFSettingsController pdfOutline]) {
