@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
+		785152461592B76D00430E1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 785152451592B76D00430E1C /* libz.dylib */; };
 		78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B82141EC2D300994946 /* MessageUI.framework */; };
 		78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B081480374A0092B889 /* ImageIO.framework */; };
 		78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0D1480375A0092B889 /* MediaPlayer.framework */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		785152451592B76D00430E1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		78727B82141EC2D300994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		78C22B081480374A0092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		78C22B0D1480375A0092B889 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				785152461592B76D00430E1C /* libz.dylib in Frameworks */,
 				78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */,
 				78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */,
 				78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */,
@@ -66,6 +69,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		785152481592B77C00430E1C /* System */ = {
+			isa = PBXGroup;
+			children = (
+				785152451592B76D00430E1C /* libz.dylib */,
+				78C22B0D1480375A0092B889 /* MediaPlayer.framework */,
+				78C22B081480374A0092B889 /* ImageIO.framework */,
+				78727B82141EC2D300994946 /* MessageUI.framework */,
+				78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */,
+				78DEFFA313DECEBF005ABEFD /* CoreText.framework */,
+				78E6A43D13DECE56006000BB /* UIKit.framework */,
+				78E6A43F13DECE56006000BB /* Foundation.framework */,
+				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
 		78E6A42E13DECE56006000BB = {
 			isa = PBXGroup;
 			children = (
@@ -87,14 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				78F0E1B51498ED55007E62E0 /* PSPDFKit */,
-				78C22B0D1480375A0092B889 /* MediaPlayer.framework */,
-				78C22B081480374A0092B889 /* ImageIO.framework */,
-				78727B82141EC2D300994946 /* MessageUI.framework */,
-				78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */,
-				78DEFFA313DECEBF005ABEFD /* CoreText.framework */,
-				78E6A43D13DECE56006000BB /* UIKit.framework */,
-				78E6A43F13DECE56006000BB /* Foundation.framework */,
-				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
+				785152481592B77C00430E1C /* System */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
