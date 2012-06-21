@@ -15,7 +15,7 @@
 + (void)dismissPopoverAnimated:(BOOL)animated;
 + (BOOL)isPopoverVisible;
 
-/// Init with pdfController reference (later calls presentModalViewController:withCloseButton:animated:)
+/// Init with pdfController reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
 @property (nonatomic, ps_weak, readonly) PSPDFViewController *pdfViewController;

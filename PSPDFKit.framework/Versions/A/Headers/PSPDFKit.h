@@ -18,7 +18,6 @@
 #import "PSPDFViewControllerDelegate.h"
 #import "PSPDFDocument.h"
 #import "PSPDFPageView.h"
-#import "PSPDFTilingView.h"
 #import "PSPDFScrollView.h"
 #import "PSPDFGlobalLock.h"
 #import "PSPDFDocumentProvider.h"
@@ -43,7 +42,6 @@
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 #import "PSPDFSearchHighlightView.h"
-#import "PSPDFSimpleTextExtractor.h"
 
 // thumbnails
 #import "PSPDFScrobbleBar.h"

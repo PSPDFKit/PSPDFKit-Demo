@@ -13,6 +13,8 @@
 /// Parses the PDF structure and supports writing annotations
 @interface PSPDFDocumentParser : NSObject
 
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+
 /// Parses the PDF XRef table.
 - (void)parseDocument;
 
