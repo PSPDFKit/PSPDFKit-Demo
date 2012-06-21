@@ -249,4 +249,24 @@
 /// If substituteWithPlainLabel is set to YES then this always returns a valid string.
 - (NSString *)pageLabelForPage:(NSUInteger)page substituteWithPlainLabel:(BOOL)substite;
 
+
+/// @name Page Rendering
+
+// PDF rendering options
+extern NSString *kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
+extern NSString *kPSPDFPageColor;             // Multiplies a color used to color a page.
+extern NSString *kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
+extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
+
+/// Renders the page or a part of it with default display settings into a new image.
+/// @param fullSize		 The size of the page, in pixels, if it was rendered without clipping
+/// @param clippedToRect A rectangle, relative to fullSize, that specifies the area of the page that should be rendered
+/// @param annotations   Annotations that should be rendered with the view
+/// @param options       Dictionary with options that modify the render process.
+/// @returns			A new UIImage with the rendered page content
+- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+/// Draw a page into a specified context
+- (void)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
 @end

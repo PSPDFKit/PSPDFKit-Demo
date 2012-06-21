@@ -28,7 +28,7 @@ enum {
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
 /// different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
-/// Note: this is set from PSPDFViewController in presentModalViewController:withCloseButton:animated.
+/// Note: this is set from PSPDFViewController in presentModalViewController:embeddedInNavigationController:withCloseButton:animated.
 @property(nonatomic, assign) BOOL showsCancelButton;
 
 /// search bar for controller.

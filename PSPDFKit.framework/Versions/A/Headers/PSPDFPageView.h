@@ -8,12 +8,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
+#import "PSPDFRenderer.h"
 
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFTilingView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFTilingView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation;
 
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
-@interface PSPDFPageView : UIView
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate>
 
 /// @name Show / Destroy a document
 
@@ -64,11 +65,17 @@
 /// Calculated scale. Readonly.
 @property(nonatomic, assign, readonly) CGFloat pdfScale;
 
-/// CATiledLayer subview. Not visible while rotation. Readonly.
-@property(nonatomic, strong, readonly) PSPDFTilingView *tilingView;
+/// UIImageView subview showing the whole document. Readonly.
+@property(nonatomic, strong, readonly) UIImageView *contentView;
 
-/// UIImageView subview. Beneath the PSPDFTilingView. Readonly.
-@property(nonatomic, strong, readonly) UIImageView *backgroundImageView;
+/// UIImageView for the zoomed in state. Readonly.
+@property(nonatomic, strong, readonly) UIImageView *renderView;
+
+/// Size used for the zoomed-in part. Should always be bigger than the screen.
+@property(nonatomic, assign) CGSize renderSize;
+
+/// Temporarily suspend rendering updates to the renderView. 
+@property(nonatomic, assign) BOOL suspendUpdate;
 
 /// Access the selectionView.
 @property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
@@ -97,7 +104,31 @@
 /// Subclass to change shadow behavior.
 - (void)updateShadow;
 
+// Redraw the renderView
+- (void)updateRenderView;
+
+// Redraw renderView and contentView (TODO)
+- (void)updateView;
+
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
 @property(nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
+
+@end
+
+@interface PSPDFPageView (PSPDFAnnotationMenu)
+
+@property(nonatomic, strong, readonly) PSPDFAnnotation *selectedAnnotation;
+
+// Process a tap, we might have an annotation underneath.
+// Returns YES if the tap has been handled, NO if not.
+- (BOOL)handleTap:(UITapGestureRecognizer *)tapGesture;
+
+// Returns available UIMenuItem for the current annotation.
+// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
+- (NSArray *)menuItemsForAnnotation:(PSPDFAnnotation *)annotation;
+
+// Called when a annotation was found ad the tapped location.
+// This will call menuItemsForAnnotation to show a UIMenuController.
+- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
 
 @end

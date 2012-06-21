@@ -12,9 +12,8 @@
 @class PSPDFDocument, PSPDFSearchOperation;
 
 enum {
-    PSPDFSearchLegacy,                    // this is basically legacy mode, very fast, does not parse CMaps.
-    PSPDFSearchAdvanced,                  // more advanced text extraction. (slower)
-    PSPDFSearchAdvancedWithHighlighting   // additionally, search results will be highlighted.
+    PSPDFBasicSearch,           
+    PSPDFSearchWithHighlighting
 }typedef PSPDFSearchMode;
 
 /// Get updates while the search operation is running.

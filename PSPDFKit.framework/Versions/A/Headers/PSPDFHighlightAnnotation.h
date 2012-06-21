@@ -9,7 +9,7 @@
 #import "PSPDFAnnotation.h"
 
 typedef enum {
-    PSPDFHighlightAnnotationUnknown,
+    PSPDFHighlightAnnotationUnknown = 0,
     PSPDFHighlightAnnotationHighlight,
     PSPDFHighlightAnnotationUnderline,
     PSPDFHighlightAnnotationStrikeOut

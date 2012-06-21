@@ -16,40 +16,40 @@
 @class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFTextAnnotation, PSPDFLoupeView, TextNoteView, Annotation;
 
 @interface PSPDFSelectionView : UIView {
-	PSPDFPageView *__ps_weak pageView;
+	PSPDFPageView *__ps_weak _pageView;
 
-	UIImageView *startHandle;
-	UIImageView *endHandle;
+	UIImageView *_startHandle;
+	UIImageView *_endHandle;
 
-	UIView *startDelimiter;
-	UIView *endDelimiter;
+	UIView *_startDelimiter;
+	UIView *_endDelimiter;
 
-	CGPoint startPoint;
-	CGPoint endPoint;
+	CGPoint _startPoint;
+	CGPoint _endPoint;
 
-	int draggingHandle;			//-1 for not dragging, 0 for start handle, 1 for end handle
+	int _draggingHandle;			//-1 for not dragging, 0 for start handle, 1 for end handle
 
-	UIView *firstLineView;
-	UIView *lastLineView;
-	UIView *bodyView;
+	UIView *_firstLineView;
+	UIView *_lastLineView;
+	UIView *_bodyView;
 
-	PSPDFLoupeView *loupeView;
-	UIView *wordSelectionView;
+	PSPDFLoupeView *_loupeView;
+	UIView *_wordSelectionView;
 
-	UIView *inkSelectionView;
-	PSPDFHighlightAnnotation *selectedAnnotation;
-	CGRect menuTargetRect;
+	UIView *_inkSelectionView;
+	PSPDFHighlightAnnotation *_selectedAnnotation;
+	CGRect _menuTargetRect;
 
-	NSMutableArray *textNoteViews;
+	NSMutableArray *_textNoteViews;
 
-	UIView *linkHighlightView;
+	UIView *_linkHighlightView;
 
-	CGPoint newNotePoint;
+	CGPoint _newNotePoint;
 //	TextNoteView *draggingTextNoteView;
 
-	BOOL selectedHighlightAnnotationHasText;
+	BOOL _selectedHighlightAnnotationHasText;
 
-	CGPoint pageAnalysisStartLocation;
+	CGPoint _pageAnalysisStartLocation;
 }
 
 @property (nonatomic, strong) NSArray *selectedGlyphs;
