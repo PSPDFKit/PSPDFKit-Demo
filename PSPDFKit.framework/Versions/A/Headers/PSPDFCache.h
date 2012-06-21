@@ -23,10 +23,16 @@ typedef enum {
 }PSPDFSize;
 
 /// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
-@protocol PSPDFCacheDelegate
+@protocol PSPDFCacheDelegate <NSObject>
 
-/// page has been successfully processed and cached as UIImage.
+/// Page has been successfully processed and cached as UIImage.
 - (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size;
+
+/// TODO actually I'd like to make the first optional as well, but that would mean more respondsToSelector-ish checks
+@optional
+
+/// All pages of the document that needed caching have been processed.
+- (void)didFinishCachingDocument:(PSPDFDocument *)document;
 
 @end
 
@@ -39,7 +45,10 @@ typedef enum {
 /// cache is a singleton.
 + (PSPDFCache *)sharedPSPDFCache;
 
-/// check if document is cached.
+/// Check if all pages of a document are cached.
+- (BOOL)isDocumentCached:(PSPDFDocument *)document size:(PSPDFSize)size;
+
+/// Check if an individual page of a document is cached.
 - (BOOL)isImageCachedForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// returns cached image of document. If not found, add to TOP of current caching queue.
@@ -57,6 +66,17 @@ typedef enum {
 
 /// start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
+
+/// Creates caches for both thumbnails and tiny images. This, together with PSPDFDocument.loadThumbnailsOnMainThread,
+/// will ensure that the user doesn’t see any white pages when showing the document to the user.
+///
+/// Preloading the cache for PSPDFSizeNative would not be efficient. These images tend to become large in data size,
+/// which would in turn trigger the OS’ cache cleaning sooner.
+///
+/// Note that PSPDFViewController will cache images in PSPDFSizeNative.
+///
+/// Returns wether or not any preloading has to be done.
+- (BOOL)cacheThumbnailsForDocument:(PSPDFDocument *)aDocument;
 
 /// stop document caching.
 - (void)stopCachingDocument:(PSPDFDocument *)aDocument;
@@ -112,6 +132,10 @@ typedef enum {
 /// Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10
 @property(assign) BOOL useJPGTurbo;
 
+/// The interpolation level applied to thumbnail and tiny images.
+/// Defaults to kCGInterpolationHigh.
+@property(assign) CGInterpolationQuality downscaleInterpolationQuality;
+
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
 /// Defaults to CGSizeMake(200, 400).
 @property(assign) CGSize thumbnailSize;
@@ -156,7 +180,7 @@ void dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 @property(strong) PSPDFDocument *document;
-@property(assign) NSUInteger page;
+@property(assign) NSUInteger page; // the page index from where caching should start
 @property(assign) PSPDFSize size;
 @property(strong) NSMutableSet *pagesCached; // used to remember what pages already were attempted to be cached.
 @property(assign, getter=isCaching) BOOL caching;
