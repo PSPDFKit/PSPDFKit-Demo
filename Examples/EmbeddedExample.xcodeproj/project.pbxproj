@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7832DB431592BCE500360F42 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7832DB421592BCE500360F42 /* libz.dylib */; };
 		7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */; };
 		7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9481402B800008F3AC7 /* SplitMasterViewController.m */; };
 		78727B7C141EC27F00994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B7B141EC27F00994946 /* MessageUI.framework */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7832DB421592BCE500360F42 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7840C9441402B7E9008F3AC7 /* SplitTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitTableViewController.h; sourceTree = "<group>"; };
 		7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		7840C9471402B800008F3AC7 /* SplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitMasterViewController.h; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7832DB431592BCE500360F42 /* libz.dylib in Frameworks */,
 				78C22B00148037170092B889 /* ImageIO.framework in Frameworks */,
 				78A100AC147C1C0600E67DAC /* MapKit.framework in Frameworks */,
 				78A100A9147C1C0200E67DAC /* CoreLocation.framework in Frameworks */,
@@ -234,6 +237,7 @@
 		78EA40F9156D59690077B255 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				7832DB421592BCE500360F42 /* libz.dylib */,
 				78C22AFF148037170092B889 /* ImageIO.framework */,
 				78A100AB147C1C0600E67DAC /* MapKit.framework */,
 				78A100A8147C1C0200E67DAC /* CoreLocation.framework */,
