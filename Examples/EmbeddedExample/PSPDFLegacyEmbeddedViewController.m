@@ -22,7 +22,7 @@
 }
 
 - (void)closeModalController {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
