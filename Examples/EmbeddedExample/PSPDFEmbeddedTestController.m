@@ -241,7 +241,7 @@
 - (IBAction)oldContainmentTest {
     PSPDFLegacyEmbeddedViewController *legacy = [[PSPDFLegacyEmbeddedViewController alloc] init];
     UINavigationController *legacyContainer = [[UINavigationController alloc] initWithRootViewController:legacy];
-    [self presentViewController:legacyContainer animated:YES completion:NULL];
+    [self presentModalViewController:legacyContainer animated:YES];
 }
 
 @end
