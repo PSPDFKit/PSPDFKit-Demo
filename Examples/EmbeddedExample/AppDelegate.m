@@ -33,7 +33,11 @@
     UINavigationController *firstNavVC = [[UINavigationController alloc] initWithRootViewController:firstVC];
     
     NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kMacbookAirFileName];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+
+    // example how to use nsdata
+    NSData *data = [NSData dataWithContentsOfMappedFile:path];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:data];
+
     PSPDFCustomToolbarController *pdfController = [[PSPDFCustomToolbarController alloc] initWithDocument:document];
     UINavigationController *secondVC = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
