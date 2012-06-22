@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.10.3 - 21/Jun/2012__
+__v1.10.3 - 22/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
 *  Add some improvements to caching algorithm, adds cacheThumbnailsForDocument to preload a document.
@@ -12,6 +12,8 @@ __v1.10.3 - 21/Jun/2012__
 *  Fixed a problem where delegates where called too often for the initial reloadData event.
 *  Fixes a potential crash on low-memory situations.
 *  Fixes a potential crash with pageCurl mode and device rotations.
+*  Fixes a crash when using a NSData-provided PSPDFDocument with no metadata title and using the sendViaEmail feature.
+*  Fixes a issue with MPMoviePlayer disappearing during fullscreen-animation.
 
 __v1.10.2 - 5/Jun/2012__
 
