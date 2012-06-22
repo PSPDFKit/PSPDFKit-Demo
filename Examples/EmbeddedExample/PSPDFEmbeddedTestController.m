@@ -48,7 +48,7 @@
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.additionalRightBarButtonItems = [NSArray arrayWithObjects:pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem, nil];
     pdfController.pageMode = PSPDFPageModeSingle;
-    pdfController.hidesBottomBarWhenPushed = YES;
+    //pdfController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pdfController animated:YES];
 }
 
