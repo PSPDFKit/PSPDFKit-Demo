@@ -40,7 +40,7 @@
 
         // rightBarButtonItems is iOS5 only
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
-            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:viewModeButton, self.printButtonItem, self.searchButtonItem, nil];
+            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, nil];
         }else {
             self.navigationItem.rightBarButtonItem = viewModeButton;
         }
