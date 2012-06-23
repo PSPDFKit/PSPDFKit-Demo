@@ -2,6 +2,7 @@
 
 __v1.10.4 - x/Jun/2012__
 
+*  Improve tap change speed and touch area of PSPDFTabbedViewController.
 *  Another possible bugfix for UIPageViewController rotation changes.
 
 __v1.10.3 - 22/Jun/2012__
