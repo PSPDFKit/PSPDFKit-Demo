@@ -99,14 +99,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"DevelopersGuide.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
-    self.pdfController.pageMode = PSPDFPageModeSingle;
+    //self.pdfController.pageMode = PSPDFPageModeSingle;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
+    self.pdfController.pageCurlEnabled = YES;
+    self.pdfController.scrollOnTapPageEndEnabled = NO;
     
     /*
      self.pdfController.pageScrolling = PSPDFScrollingVertical;
@@ -126,11 +128,9 @@
         _testAnimationViewController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self addChildViewController:_testAnimationViewController];
         _testAnimationViewController.view.frame = self.pdfController.view.frame;
+        _testAnimationViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.view addSubview:_testAnimationViewController.view];
         [_testAnimationViewController didMoveToParentViewController:self];
-        
-        //[self.view addSubview:self.pdfController.view];
-        //[self.pdfController didMoveToParentViewController:self];
     }
     
     // add a border
@@ -154,7 +154,7 @@
             
             if (_testAnimationViewController.parentViewController) {
                 self.pdfController.view.hidden = NO;
-                
+                self.pdfController.view.frame = _testAnimationViewController.view.frame;
                 // example how to use transitionFromViewController. However, transitionWithView looks far better.
                 [self transitionFromViewController:_testAnimationViewController toViewController:self.pdfController duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:NULL completion:^(BOOL finished) {
                     [self.pdfController didMoveToParentViewController:self];
