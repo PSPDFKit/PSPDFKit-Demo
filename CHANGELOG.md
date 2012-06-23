@@ -1,5 +1,9 @@
 # Changelog
 
+__v1.10.4 - x/Jun/2012__
+
+*  Another possible bugfix for UIPageViewController rotation changes.
+
 __v1.10.3 - 22/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
