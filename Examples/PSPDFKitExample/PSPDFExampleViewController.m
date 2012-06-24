@@ -42,6 +42,8 @@
 // Helper for the option pane. You really shouldn't include that in your final app.
 // This is just to show what PSPDFKit can do.
 - (void)globalVarChanged {
+    PSPDFViewState *viewState = [self documentViewState];
+
     // set global settings for magazine
     self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
     self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
@@ -67,18 +69,12 @@
     // define additional buttons with an action icon
     self.additionalRightBarButtonItems = @[self.printButtonItem, self.openInButtonItem, self.emailButtonItem];
     
-    NSUInteger page = [self landscapePage:self.page];
     self.pageMode = [PSPDFSettingsController pageMode];
     self.pageScrolling = [PSPDFSettingsController pageScrolling];
     
-    // reload scrollview
-    [self reloadDataAndScrollToPage:page];
-    
-    // update toolbar
-    if ([self isViewLoaded]) {
-        [self createToolbar];        
-        [self updateToolbars];
-    }
+    // reload scrollview and restore viewState
+    [self reloadData];
+    [self restoreDocumentViewState:viewState animated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,8 +102,13 @@
         }
         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
-        CGFloat variance = [document aspectRatioVariance];
-        self.clipToPageBoundaries = variance < 0.2f;
+        // use a dispatch thread because calculating the aspectRatioVariance is expensive.
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            CGFloat variance = [document aspectRatioVariance];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.clipToPageBoundaries = variance < 0.2f;
+            });
+        });
 
         // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
