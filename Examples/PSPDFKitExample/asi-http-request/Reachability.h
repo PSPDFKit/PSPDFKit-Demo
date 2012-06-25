@@ -136,9 +136,6 @@ extern NSString *const kLocalWiFiConnection;
 extern NSString *const kReachabilityChangedNotification;
 
 @interface Reachability: NSObject {
-	
-@private
-	NSString                *key_;
 	SCNetworkReachabilityRef reachabilityRef;
 
 }

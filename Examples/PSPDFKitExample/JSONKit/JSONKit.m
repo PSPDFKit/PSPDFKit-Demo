@@ -744,7 +744,9 @@ static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) 
   NSParameterAssert((objects != NULL) && (count <= capacity));
   if((objectsPtr     == NULL)  && (NSMaxRange(range) > 0UL))   { [NSException raise:NSRangeException format:@"*** -[%@ %@]: pointer to objects array is NULL but range length is %u", NSStringFromClass([self class]), NSStringFromSelector(_cmd), NSMaxRange(range)];        }
   if((range.location >  count) || (NSMaxRange(range) > count)) { [NSException raise:NSRangeException format:@"*** -[%@ %@]: index (%u) beyond bounds (%u)",                          NSStringFromClass([self class]), NSStringFromSelector(_cmd), NSMaxRange(range), count]; }
+#ifndef __clang_analyzer__
   memcpy(objectsPtr, objects + range.location, range.length * sizeof(id));
+#endif
 }
 
 - (id)objectAtIndex:(NSUInteger)objectIndex
