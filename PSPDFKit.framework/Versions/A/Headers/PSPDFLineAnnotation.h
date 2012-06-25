@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
 	PSPDFLineEndTypeNone,
 	PSPDFLineEndTypeSquare,
 	PSPDFLineEndTypeCircle,
@@ -19,7 +19,7 @@ typedef enum {
 	PSPDFLineEndTypeReverseOpenArrow,
 	PSPDFLineEndTypeReverseClosedArrow,
 	PSPDFLineEndTypeSlash
-} PSPDFLineEndType;
+};
 
 @interface PSPDFLineAnnotation : PSPDFAnnotation
 

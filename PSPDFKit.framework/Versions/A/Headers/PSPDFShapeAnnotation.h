@@ -8,11 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFShapeAnnotationType) {
     PSPDFShapeAnnotationUnknown,
     PSPDFShapeAnnotationSquare,
     PSPDFShapeAnnotationCircle
-} PSPDFShapeAnnotationType;
+};
 
 /// PDF Shape Annotation.
 @interface PSPDFShapeAnnotation : PSPDFAnnotation

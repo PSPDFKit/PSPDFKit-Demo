@@ -29,15 +29,12 @@
 
 @protocol PSPDFGridViewLayoutStrategy;
 
-
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFGridViewLayoutStrategyType) {
     PSPDFGridViewLayoutVertical = 0,
     PSPDFGridViewLayoutHorizontal,
     PSPDFGridViewLayoutHorizontalPagedLTR,   // LTR: left to right
     PSPDFGridViewLayoutHorizontalPagedTTB    // TTB: top to bottom
-} PSPDFGridViewLayoutStrategyType;
-
-
+} ;
 
 //////////////////////////////////////////////////////////////
 #pragma mark - Strategy Factory

@@ -14,12 +14,12 @@
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
     PSPDFSearchIdle,
     PSPDFSearchActive,
     PSPDFSearchFinished,
     PSPDFSearchCancelled
-}typedef PSPDFSearchStatus;
+};
 
 /// pdf search controller.
 @interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFSearchDelegate, PSPDFStatusBarStyleHint>

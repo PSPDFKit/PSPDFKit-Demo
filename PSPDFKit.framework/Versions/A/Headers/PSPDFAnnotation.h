@@ -13,7 +13,7 @@
 @class PSPDFDocument;
 
 // Annotations defined after the PDF standard.
-typedef enum {
+typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeUndefined = 0,      // any annotation whose type couldn't be recognized.
     PSPDFAnnotationTypeLink      = 1 << 1,
     PSPDFAnnotationTypeHighlight = 1 << 2, // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
@@ -23,7 +23,7 @@ typedef enum {
     PSPDFAnnotationTypeLine      = 1 << 8,
     PSPDFAnnotationTypeNote      = 1 << 9,
     PSPDFAnnotationTypeAll       = PSPDFAnnotationTypeLink | PSPDFAnnotationTypeHighlight | PSPDFAnnotationTypeText | PSPDFAnnotationTypeInk | PSPDFAnnotationTypeShape | PSPDFAnnotationTypeLine | PSPDFAnnotationTypeNote
-}PSPDFAnnotationType;
+};
 
 /// Defines a PDF annotation.
 /// PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
@@ -48,6 +48,9 @@ typedef enum {
 
 /// Initialize annotation with the corresponding PDF dictionary. Call from subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
+
+/// To edit annotations, you need to make a copy and delete the original.
+- (PSPDFAnnotation *)copyAndDeleteOriginalIfNeeded;
 
 /// Check if point is inside annotation area.
 - (BOOL)hitTest:(CGPoint)point;

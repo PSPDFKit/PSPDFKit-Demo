@@ -10,7 +10,7 @@
 
 // PSPDFKit has some custom sub-sets of the PSPDFAnnotationTypeLink
 // that can be resolved to video, audio, image or browser views.
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationPage = 0,
     PSPDFLinkAnnotationWebURL,
     PSPDFLinkAnnotationVideo,
@@ -19,7 +19,7 @@ typedef enum {
     PSPDFLinkAnnotationImage,
     PSPDFLinkAnnotationBrowser,
     PSPDFLinkAnnotationCustom  /// any annotation format that is not recognized is custom, calling the delegate viewForAnnotation:
-} PSPDFLinkAnnotationType;
+};
 
 /// PDF Link Annotation (Page links, Web links, PSPDFKit custom links)
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
