@@ -19,33 +19,33 @@
 
 extern NSString *const kPSPDFErrorDomain;
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeUnknown = 900,    
-}typedef PSPDFErrorCode;
+};
 
 
 // defines a basic void block
 typedef void(^PSPDFBasicBlock)(void);
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
     PSPDFLogLevelNothing = 0,
     PSPDFLogLevelError,   
     PSPDFLogLevelWarning,
     PSPDFLogLevelInfo,
     PSPDFLogLevelVerbose
-}typedef PSPDFLogLevel;
+};
 
 /// set log level.
 extern PSPDFLogLevel kPSPDFLogLevel; // defaults to PSPDFLogLevelError
 
 /// settings for animation of pages, global
-enum {
+typedef NS_ENUM(NSInteger, PSPDFAnimate) {
     PSPDFAnimateNever,
     PSPDFAnimateModernDevices,
     PSPDFAnimateEverywhere
-}typedef PSPDFAnimate;
+};
 
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 

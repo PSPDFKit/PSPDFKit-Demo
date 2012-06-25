@@ -13,12 +13,12 @@
 
 @interface UIImage (PSPDFKitAdditions)
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
     PSPDFImageResizeCrop,	// analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
     PSPDFImageResizeCropStart,
     PSPDFImageResizeCropEnd,
     PSPDFImageResizeScale	// analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
-} PSPDFImageResizingMethod;
+};
 
 /// Returns a new image that is resize to fitSize.
 - (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor;

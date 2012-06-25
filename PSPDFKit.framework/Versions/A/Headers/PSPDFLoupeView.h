@@ -7,19 +7,22 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum LoupeViewMode {
+typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 	PSPDFLoupeViewModeCircular,
 	PSPDFLoupeViewModeDetailTop,
 	PSPDFLoupeViewModeDetailBottom
-} PSPDFLoupeViewMode;
+};
 
-
+/// Represents a loupe, modeled like the loupe used in UIKit.
 @interface PSPDFLoupeView : UIView
 
+/// Designated initializer.
 - (id)initWithReferenceView:(UIView *)referenceView;
 
+/// Loupe detail mode.
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
 
+/// Target size.
 @property (nonatomic, assign) CGSize targetSize;
 
 @end

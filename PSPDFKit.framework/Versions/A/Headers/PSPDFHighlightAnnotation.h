@@ -8,12 +8,12 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
     PSPDFHighlightAnnotationUnknown = 0,
     PSPDFHighlightAnnotationHighlight,
     PSPDFHighlightAnnotationUnderline,
     PSPDFHighlightAnnotationStrikeOut
-} PSPDFHighlightAnnotationType;
+};
 
 /// Text Highlight Annotation (Highlight, StrikeOut, Underline)
 @interface PSPDFHighlightAnnotation : PSPDFAnnotation

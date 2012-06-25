@@ -11,10 +11,10 @@
 
 @class PSPDFDocument, PSPDFSearchOperation;
 
-enum {
-    PSPDFBasicSearch,           
+typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
+    PSPDFBasicSearch,
     PSPDFSearchWithHighlighting
-}typedef PSPDFSearchMode;
+};
 
 /// Get updates while the search operation is running.
 @protocol PSPDFSearchOperationDelegate <NSObject>

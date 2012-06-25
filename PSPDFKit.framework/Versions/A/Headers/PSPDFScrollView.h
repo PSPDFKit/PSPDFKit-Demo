@@ -12,10 +12,10 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFDocument, PSPDFTilingView, PSPDFPageView, PSPDFViewController;
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
     PSPDFShadowStyleFlat,   // new default shadow style (1.8+)
     PSPDFShadowStyleCurl,   // old shadow style (< 1.8)
-}typedef PSPDFShadowStyle;
+};
 
 /// Scrollview for a single page. Every PSPDFPageView is embedded in a PSPDFScrollView.
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate>
@@ -62,9 +62,6 @@ enum {
 /// tap on begin/end of page scrolls to previous/next page.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
-/// show/hide tiled layer.
-@property(nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
-
 /// left page. Always set.
 @property(nonatomic, strong, readonly) PSPDFPageView *leftPage;
 
@@ -73,5 +70,22 @@ enum {
 
 /// for subclassing - allows changing the shadow path.
 - (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
+
+@end
+
+@interface PSPDFScrollView (PSPDFSubclassing)
+
+// Gesture recognizers to sync with your own recognizers.
+@property(nonatomic, strong, readonly) UITapGestureRecognizer *singleTapGesture;
+@property(nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
+@property(nonatomic, strong, readonly) UITapGestureRecognizer *tripleTapGesture;
+@property(nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
+
+@end
+
+@interface PSPDFScrollView (PSPDFInternal)
+
+/// Used for improved rotation handling.
+@property(nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
 
 @end

@@ -17,40 +17,40 @@
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
 
 /// current active view mode.
-enum {
+typedef NS_ENUM(NSInteger, PSPDFViewMode) {
     PSPDFViewModeDocument,
     PSPDFViewModeThumbnails
-}typedef PSPDFViewMode;
+};
 
 /// active page mode.
-enum {
+typedef NS_ENUM(NSInteger, PSPDFPageMode) {
     PSPDFPageModeSingle,   // Default on iPhone.
     PSPDFPageModeDouble,
     PSPDFPageModeAutomatic // single in portrait, double in landscape if the document's height > width. Default on iPad.
-}typedef PSPDFPageMode;
+};
 
 /// active scrolling direction.
-enum {
+typedef NS_ENUM(NSInteger, PSPDFScrolling) {
     PSPDFScrollingHorizontal, // default
     PSPDFScrollingVertical
-}typedef PSPDFScrolling;
+};
 
 /// status bar style. (old status will be restored regardless of the style chosen)
-enum {
+typedef NS_ENUM(NSInteger, PSPDFStatusBarStyleSetting) {
     PSPDFStatusBarInherit,            /// don't change status bar style, but show/hide statusbar on HUD events
     PSPDFStatusBarSmartBlack,         /// use UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
     PSPDFStatusBarBlackOpaque,        /// Opaque Black everywhere
     PSPDFStatusBarDefaultWhite,       /// Switch to default (white) statusbar
     PSPDFStatusBarDisable,            /// never show status bar
     PSPDFStatusBarIgnore = 0x100      /// causes this class to ignore the statusbar entirely.
-}typedef PSPDFStatusBarStyleSetting;
+};
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
     PSPDFLinkActionNone,         /// Link actions are ignored..
     PSPDFLinkActionAlertView,    /// Link actions open an AlertView.
     PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
     PSPDFLinkActionInlineBrowser /// Link actions open in an inline browser.
-}typedef PSPDFLinkActionSetting;
+};
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)

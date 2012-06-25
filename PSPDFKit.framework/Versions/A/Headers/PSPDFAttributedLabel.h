@@ -26,11 +26,11 @@
 /**
  Vertical alignment for text in a label whose bounds are larger than its text bounds
  */
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
     PSPDFAttributedLabelVerticalAlignmentCenter   = 0,
     PSPDFAttributedLabelVerticalAlignmentTop      = 1,
     PSPDFAttributedLabelVerticalAlignmentBottom   = 2,
-} PSPDFAttributedLabelVerticalAlignment;
+};
 
 @protocol PSPDFAttributedLabelDelegate;
 

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFRectAlignment) {
     PSPDFRectAlignCenter = 0,
     PSPDFRectAlignTop,
     PSPDFRectAlignTopLeft,
@@ -18,7 +18,6 @@ enum {
     PSPDFRectAlignBottomRight,
     PSPDFRectAlignRight
 };
-typedef NSUInteger PSPDFRectAlignment;
 
 /// Returns scale to fit a size within another size.
 CGFloat PSPDFScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
