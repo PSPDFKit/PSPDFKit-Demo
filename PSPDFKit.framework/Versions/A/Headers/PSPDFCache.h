@@ -10,17 +10,17 @@
 
 @class PSPDFDocument;
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFCacheStrategy) {
     PSPDFCacheNothing,                    // no files are saved. (slowest)
     PSPDFCacheOnlyThumbnailsAndNearPages, // only a few files are saved.
     PSPDFCacheOpportunistic               // the whole pdf document is converted to images and saved. (fastest)
-}PSPDFCacheStrategy;
+};
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFSize) {
     PSPDFSizeNative,     /// single page portrait device screen size
     PSPDFSizeThumbnail,  /// defined as above in kPSPDFThumbnailSize
     PSPDFSizeTiny        /// tiny is memory-only
-}PSPDFSize;
+};
 
 /// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
 @protocol PSPDFCacheDelegate <NSObject>

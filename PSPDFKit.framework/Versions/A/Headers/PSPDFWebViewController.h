@@ -9,13 +9,12 @@
 #import "PSPDFViewController.h"
 #import "PSPDFBaseViewController.h"
 
-enum {
+typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsNone             = 0,
     PSPDFWebViewControllerAvailableActionsOpenInSafari     = 1 << 0,
     PSPDFWebViewControllerAvailableActionsMailLink         = 1 << 1,
     PSPDFWebViewControllerAvailableActionsCopyLink         = 1 << 2
 };
-typedef NSUInteger PSPDFWebViewControllerAvailableActions;
 
 @interface PSPDFWebViewController : PSPDFBaseViewController <UIWebViewDelegate>
 

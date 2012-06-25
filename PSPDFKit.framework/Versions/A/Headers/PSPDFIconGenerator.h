@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-enum {
+typedef NS_ENUM(NSInteger, PSPDFIconType) {
     PSPDFIconTypeOutline,
     PSPDFIconTypePage,
     PSPDFIconTypeThumbnails,
@@ -17,7 +17,7 @@ enum {
     PSPDFIconTypeForwardArrow,
     PSPDFIconTypePrint,
     PSPDFIconTypeEmail
-}typedef PSPDFIconType;
+};
 
 /// Generates various Icons on the fly and caches them for later use.
 @interface PSPDFIconGenerator : NSObject

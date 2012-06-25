@@ -36,26 +36,23 @@
 @protocol PSPDFGridViewTransformationDelegate;
 @protocol PSPDFGridViewLayoutStrategy;
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, PSPDFGridViewStyle) {
     PSPDFGridViewStylePush = 0,
     PSPDFGridViewStyleSwap
-} PSPDFGridViewStyle;
+};
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, PSPDFGridViewScrollPosition) {
 	PSPDFGridViewScrollPositionNone,
 	PSPDFGridViewScrollPositionTop,
 	PSPDFGridViewScrollPositionMiddle,
 	PSPDFGridViewScrollPositionBottom
-} PSPDFGridViewScrollPosition;
+};
 
-typedef enum
-{
+typedef NS_ENUM(NSInteger, PSPDFGridViewItemAnimation) {
     PSPDFGridViewItemAnimationNone = 0,
     PSPDFGridViewItemAnimationFade,
     PSPDFGridViewItemAnimationScroll = 1<<7 // scroll to the item before showing the animation
-} PSPDFGridViewItemAnimation;
+};
 
 #pragma mark Interface PSPDFGridView
 
