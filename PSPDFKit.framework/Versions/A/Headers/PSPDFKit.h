@@ -60,7 +60,7 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFHighlightAnnotation.h"
 #import "PSPDFFreeTextAnnotation.h"
-#import "PSPDFTextAnnotation.h"
+#import "PSPDFNoteAnnotation.h"
 #import "PSPDFInkAnnotation.h"
 #import "PSPDFLineAnnotation.h"
 #import "PSPDFLinkAnnotation.h"

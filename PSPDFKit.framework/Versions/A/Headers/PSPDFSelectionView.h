@@ -13,7 +13,7 @@
 #define SelectionViewLinkTappedNotification		@"SelectionViewLinkTappedNotification"
 #define SelectionViewStartedDrawingNotification	@"SelectionViewStartedDrawingNotification"
 
-@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFTextAnnotation, PSPDFLoupeView, TextNoteView, Annotation;
+@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, TextNoteView, Annotation;
 
 @interface PSPDFSelectionView : UIView {
 	PSPDFPageView *__ps_weak _pageView;

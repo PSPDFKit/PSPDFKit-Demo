@@ -1,5 +1,5 @@
 //
-//  TextAnnotation.h
+//  PSPDFNoteAnnotation.h
 //  PSPDFKit
 //
 //  Copyright 2012 Peter Steinberger. All rights reserved.
@@ -8,8 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
-/// PDF Text (Note) Annotation.
-@interface PSPDFTextAnnotation : PSPDFAnnotation
+/// PDF Note (Text) Annotation.
+@interface PSPDFNoteAnnotation : PSPDFAnnotation
 
 /// Icon name.
 @property (nonatomic, strong) NSString *iconName;

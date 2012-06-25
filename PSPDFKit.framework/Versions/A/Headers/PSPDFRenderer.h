@@ -31,7 +31,7 @@
 
 @property(nonatomic, readonly) NSUInteger page;
 @property(nonatomic, readonly) PSPDFDocument *document;
-@property(nonatomic, strong) id delegate;
+@property(nonatomic, strong) id<PSPDFRenderDelegate> delegate;
 @property(nonatomic, readonly) CGSize fullSize;
 @property(nonatomic, readonly) CGRect clipRect;
 @property(nonatomic, readonly) float zoomScale;
