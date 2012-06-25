@@ -17,7 +17,7 @@
     
     // create the PSPDFViewController
     _pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
-    _pdfController.pageCurlEnabled = YES;
+    _pdfController.pageCurlEnabled = NO;
     _pdfController.linkAction = PSPDFLinkActionInlineBrowser;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
@@ -30,7 +30,7 @@
     
     // copy file into documents - needed to allow writing annotatons.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSString *fileName = @"chinese0.pdf";
+        NSString *fileName = @"annotations.pdf";
         
         NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];

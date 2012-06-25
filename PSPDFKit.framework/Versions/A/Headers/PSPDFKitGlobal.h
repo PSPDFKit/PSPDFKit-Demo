@@ -100,8 +100,9 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 /// Resolves paths like "Documents" or "Bundle" to their real path. 
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
+/// resolveUnknownDocumentBlock gets called if a token is found that isn't recognized.
 extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
-extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath);
+extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath, NSString *(^resolveUnknownPathBlock)(NSString *unknownPath));
 
 /// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to yes. Defaults to NO.
 extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
@@ -193,6 +194,7 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_4_0)  \
 __VA_ARGS__ \
 }
 
+// iOS 5.1 = 690.0
 #ifndef kCFCoreFoundationVersionNumber_iOS_5_0
 #define kCFCoreFoundationVersionNumber_iOS_5_0 674.0
 #endif
@@ -214,7 +216,7 @@ __VA_ARGS__ \
 
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_6_0
-#define kCFCoreFoundationVersionNumber_iOS_6_0 690.0
+#define kCFCoreFoundationVersionNumber_iOS_6_0 785.0
 #endif
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
 #define PSPDF_IF_IOS6_OR_GREATER(...) \
@@ -227,7 +229,7 @@ __VA_ARGS__ \
 #endif
 
 #define PSPDF_IF_PRE_IOS6(...)  \
-if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || __IPHONE_OS_VERSION_MAX_ALLOWED < 60000)  \
 { \
 __VA_ARGS__ \
 }

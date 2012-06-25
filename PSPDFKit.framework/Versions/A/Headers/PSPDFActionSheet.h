@@ -10,7 +10,7 @@
 
 /// Helper to add block features to UIActionSheet.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
-@interface PSPDFActionSheet : NSObject
+@interface PSPDFActionSheet : UIActionSheet
 
 /// @name Inititalization
 
@@ -21,23 +21,13 @@
 /// @name Adding Buttons
 
 /// Adds a cancel button. Use only once.
-- (void)setCancelButtonWithTitle:(NSString *) title block:(void (^)()) block;
+- (void)setCancelButtonWithTitle:(NSString *) title block:(void (^)())block;
 
 /// Adds a destructive button. Use only once.
-- (void)setDestructiveButtonWithTitle:(NSString *) title block:(void (^)()) block;
+- (void)setDestructiveButtonWithTitle:(NSString *) title block:(void (^)())block;
 
 /// Add regular button.
-- (void)addButtonWithTitle:(NSString *) title block:(void (^)()) block;
-
-
-/// @name Show ActionSheet
-
-- (void)showInView:(UIView *)view;
-- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated;
-- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
-- (void)showFromToolbar:(UIToolbar *)toolbar;
-- (void)showFromTabBar:(UITabBar *)tabbar;
-
+- (void)addButtonWithTitle:(NSString *) title block:(void (^)())block;
 
 /// @name Properties and destroy
 
@@ -47,10 +37,7 @@
 /// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.
 - (void)destroy;
 
-/// Internal actionSheet.
-@property (nonatomic, strong, readonly) UIActionSheet *actionSheet;
-
-// Delegate. weak reference, relays events
-@property (nonatomic, assign) id<UIActionSheetDelegate> delegate;
+/// Call block when actionsheet gets dismissed.
+- (void)setDestroyBlock:(void (^)())block;
 
 @end
