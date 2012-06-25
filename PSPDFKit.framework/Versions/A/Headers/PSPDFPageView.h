@@ -21,10 +21,8 @@
 /// configure page container with data.
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations pdfController:(PSPDFViewController *)pdfController;
 
-/// destroys and removes CATiledLayer. Call prior deallocating.
-/// Don't set removeFromView to YES if destroy is *not* on the main thread.
-- (void)destroyPageAndRemoveFromView:(BOOL)removeFromView callDelegate:(BOOL)callDelegate;
-
+/// Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.
+- (void)prepareForReuse;
 
 /// @name Coordinate calculations
 
@@ -130,5 +128,11 @@
 // Called when a annotation was found ad the tapped location.
 // This will call menuItemsForAnnotation to show a UIMenuController.
 - (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
+
+@end
+
+@interface PSPDFPageView (PSPDFScrollViewDelegateExtensions)
+
+- (void)pspdf_scrollView:(UIScrollView *)scrollView willZoomToScale:(float)scale animated:(BOOL)animated;
 
 @end

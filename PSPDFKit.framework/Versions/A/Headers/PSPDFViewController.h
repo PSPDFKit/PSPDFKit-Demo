@@ -193,6 +193,10 @@ enum {
 /// This represents the pages in the pdf document, starting at 0. KVO observable.
 @property(nonatomic, assign, readonly) NSUInteger realPage;
 
+/// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
+/// NO will perform a generic zoom into the tap area. Defauts to YES.
+@property(nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
+
 /// Pages that are kept in pageScrollView after last visible page. Defaults to 0. Don't set too high, needs lots of memory!
 @property(nonatomic, assign) NSUInteger preloadedPagesPerSide;
 

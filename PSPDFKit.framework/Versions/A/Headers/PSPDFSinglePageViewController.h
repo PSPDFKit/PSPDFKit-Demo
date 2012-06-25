@@ -14,7 +14,11 @@
 
 /// Companion protocol to show when the controller will be deallocated.
 @protocol PSPDFSinglePageViewControllerDelegate <NSObject>
+
+- (void)pspdfSinglePageViewControllerReadyForReuse:(PSPDFSinglePageViewController *)singlePageViewController;
+
 - (void)pspdfSinglePageViewControllerWillDealloc:(PSPDFSinglePageViewController *)singlePageViewController;
+
 @end
 
 /// Displays a single pdf page. Only useful in conjunction with PSPDFPageViewController.
@@ -23,6 +27,9 @@
 /// create single page controller using the master pdf controller and a page. Does not has a scrollView in place.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController page:(NSUInteger)page;
 
+/// Clear internal state, prepare to be used again.
+- (void)prepareForReuse;
+
 /// attached pdfController.
 @property(nonatomic, ps_weak) PSPDFViewController *pdfController;
 
@@ -30,7 +37,7 @@
 @property(nonatomic, strong, readonly) PSPDFPageView *pageView;
 
 /// current visible page.
-@property(nonatomic, assign, readonly) NSUInteger page;
+@property(nonatomic, assign) NSUInteger page;
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
 @property(nonatomic, assign) BOOL useSolidBackground;

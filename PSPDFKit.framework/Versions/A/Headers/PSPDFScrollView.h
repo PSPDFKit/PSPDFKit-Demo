@@ -24,7 +24,7 @@ enum {
 - (void)displayDocument:(PSPDFDocument *)aDocument withPage:(NSUInteger)pageId;
 
 /// releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
-- (void)releaseDocumentAndCallDelegate:(BOOL)callDelegate;
+- (void)releaseDocument;
 
 // for memory warning relay. clears up internal resources.
 - (void)didReceiveMemoryWarning;
