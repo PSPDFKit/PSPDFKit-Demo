@@ -1,8 +1,8 @@
 # Changelog
 
-__v1.10.4 - x/Jun/2012__
+__v1.10.4 - xx/Jun/2012__
 
-*  New delegate: resolveCustomAnnotationPathToken.
+*  New delegates: shouldScrollToPage, resolveCustomAnnotationPathToken.
 *  If annotation is set to a file and this file doesn't exist, annotation type will be set to undefined.
 *  Improve tap change speed and touch area of PSPDFTabbedViewController.
 *  Another possible bugfix for UIPageViewController rotation changes.
