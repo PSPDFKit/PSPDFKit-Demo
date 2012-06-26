@@ -28,6 +28,19 @@
 
 /// Add regular button.
 - (void)addButtonWithTitle:(NSString *) title block:(void (^)())block;
+<<<<<<< HEAD
+=======
+
+
+/// @name Show ActionSheet
+
+- (void)showInView:(UIView *)view;
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated;
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated;
+- (void)showFromToolbar:(UIToolbar *)toolbar;
+- (void)showFromTabBar:(UITabBar *)tabbar;
+
+>>>>>>> devel
 
 /// @name Properties and destroy
 
@@ -39,5 +52,14 @@
 
 /// Call block when actionsheet gets dismissed.
 - (void)setDestroyBlock:(void (^)())block;
+<<<<<<< HEAD
+=======
+
+/// Internal actionSheet.
+@property (nonatomic, strong, readonly) UIActionSheet *actionSheet;
+
+// Delegate. weak reference, relays events
+@property (nonatomic, assign) id<UIActionSheetDelegate> delegate;
+>>>>>>> devel
 
 @end

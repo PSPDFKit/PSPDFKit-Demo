@@ -142,6 +142,15 @@
     NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
 }
 
+/// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
+- (NSString *)pdfViewController:(PSPDFViewController *)pdfController resolveCustomAnnotationPathToken:(NSString *)pathToken {
+    NSString *resolvedPath = nil;
+    if ([pathToken isEqualToString:@"Books"]) {
+        resolvedPath = [[NSBundle mainBundle] bundlePath];
+    }
+    return resolvedPath;
+}
+
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
     NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
     

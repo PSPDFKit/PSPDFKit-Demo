@@ -132,7 +132,15 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
 // Converts an array of NSValue-CGRect's into an array of CGRect-NSString's.
 + (NSArray *)stringsFromRectsArray:(NSArray *)rects;
 
+<<<<<<< HEAD
 // Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
 + (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
+=======
+/// Indicator if "popover" is set in options. Will add "popover" to options if setPopover is used.
+@property(nonatomic, assign, getter=isPopover) BOOL popover;
+
+/// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
+@property(nonatomic, assign) CGSize size;
+>>>>>>> devel
 
 @end
