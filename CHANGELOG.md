@@ -8,6 +8,13 @@ __v2.0.0 - 1/August/2012__
 *  API changes. Lots of things got renamed or changes (Url -> URL)
 *  navigationBar title is no longer set on every page change.
 
+__v1.10.4 - xx/Jun/2012__
+
+*  New delegates: shouldScrollToPage, resolveCustomAnnotationPathToken.
+*  If annotation is set to a file and this file doesn't exist, annotation type will be set to undefined.
+*  Improve tap change speed and touch area of PSPDFTabbedViewController.
+*  Another possible bugfix for UIPageViewController rotation changes.
+
 __v1.10.3 - 22/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)
