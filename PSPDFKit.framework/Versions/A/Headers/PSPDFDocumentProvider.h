@@ -105,3 +105,10 @@
 @property(nonatomic, strong, readonly) PSPDFLabelParser *labelParser;
 
 @end
+
+@interface PSPDFDocumentProvider (PSPDFInternal)
+
+// We need to allow writing to data to change annotations.
+@property(nonatomic, strong) NSData *data;
+
+@end

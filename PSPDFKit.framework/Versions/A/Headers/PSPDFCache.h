@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument;
 
@@ -58,11 +59,12 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Note: if useJPGTurbo is enabled, preload is always YES.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
-/// renders image of a page for spezified size. Used here and in PSPDFTilingView.
+/// renders image of a page for spezified size.
 - (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size pdfPage:(CGPDFPageRef)pdfPage;
 
-/// save native rendered image, then call delegate. Used from PSPDFTilingView.
-- (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
+// TODO was used in tiling view
+/// save native rendered image, then call delegate.
+//- (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
 
 /// start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;

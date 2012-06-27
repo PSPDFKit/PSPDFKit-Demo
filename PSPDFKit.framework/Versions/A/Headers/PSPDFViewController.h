@@ -65,10 +65,10 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 /// @name Page Scrolling and Zooming
 
 /// Control currently displayed page. Page starts at 0.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
 
 /// Control currently displayed page, optionally show/hide the HUD. Page starts at 0.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
 
 /// Scroll to next page.
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;

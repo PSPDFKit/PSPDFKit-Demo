@@ -10,7 +10,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderer.h"
 
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFTilingView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation;
 
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
@@ -105,7 +105,7 @@
 // Redraw the renderView
 - (void)updateRenderView;
 
-// Redraw renderView and contentView (TODO)
+// Redraw renderView and contentView
 - (void)updateView;
 
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
@@ -119,7 +119,10 @@
 
 // Process a tap, we might have an annotation underneath.
 // Returns YES if the tap has been handled, NO if not.
-- (BOOL)handleTap:(UITapGestureRecognizer *)tapGesture;
+- (BOOL)singleTap:(UITapGestureRecognizer *)recognizer;
+
+// Handle long press, potentially relay to subviews
+- (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 
 // Returns available UIMenuItem for the current annotation.
 // To extend this, selectors for UIMenuItem need to be implemented in a subclass.
