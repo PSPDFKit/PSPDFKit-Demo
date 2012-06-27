@@ -93,7 +93,10 @@ documentation: current-menu-item current_page_item
 
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
 		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.'</p><br>
-	
+		 
+<p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
+	 A: To support iOS 4.3, you need to weak-link UIKit. See the part "Integration".'</p><br>
+		 
 	  <p><b>Q: Everything works perfectly, but when I use pdf XYZ, your application crashes (this only happens on the device)</b><br>
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some pdf are just _too complicated_ for iOS - meaning drawing is too complex, taking too much memory. There is a hard limit of 64MB for every application, and you most likely get killed by the system before getting that much anyway. While testing, we encountered pdfs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector stuff, many times simple re-saving it in Preview.app solves many issues.</p><br>
 		
