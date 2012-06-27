@@ -24,7 +24,6 @@ static BOOL fitWidth = NO;
 static BOOL pagingEnabled = YES;
 static BOOL scrobbleBar = YES;
 static BOOL aspectRatioEqual = NO;
-static BOOL twoStepRendering = NO;
 static BOOL search = YES;
 static BOOL pdfOutline = YES;
 static BOOL annotations = YES;
@@ -163,9 +162,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
             case 3:
                 aspectRatioEqual = cellSwitch.on;
                 break;
-            case 4:
-                twoStepRendering = cellSwitch.on;
-                break;
             default:
                 break;
         }        
@@ -247,8 +243,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
                     case 3:
                         cellSwitch.on = aspectRatioEqual;
                         break;
-                    case 4:
-                        cellSwitch.on = twoStepRendering;
                     default:
                         break;
                 }        
@@ -304,7 +298,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
 + (BOOL)search { return search; }
 + (BOOL)pdfOutline { return pdfOutline; }
 + (BOOL)annotations { return annotations; }
-+ (BOOL)twoStepRendering { return twoStepRendering; }
 + (BOOL)pageCurl { return pageCurl; }
 
 @end
