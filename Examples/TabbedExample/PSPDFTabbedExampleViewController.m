@@ -20,10 +20,10 @@ const char *clearAllActionSheetToken;
     // ensure we correctly shwow/hide the sheet
     PSPDFActionSheet *actionSheet = objc_getAssociatedObject(sender, clearAllActionSheetToken);
     if (actionSheet) {
-        [actionSheet.actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
+        [actionSheet dismissWithClickedButtonIndex:-1 animated:YES];
     }else {
-        actionSheet = [[PSPDFActionSheet alloc] initWithTitle:PSPDFLocalize(@"Clear all Tabs?")];
-        [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Clear All") block:^{
+        actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
+        [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Clear All Tabs") block:^{
             [self removeDocuments:self.documents animated:YES];
         }];
         [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
