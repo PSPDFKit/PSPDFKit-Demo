@@ -10,36 +10,42 @@
 #import "PSPDFKitGlobal.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFDocument, PSPDFTilingView, PSPDFPageView, PSPDFViewController;
+@class PSPDFDocument, PSPDFPageView, PSPDFViewController, PSPDFLoupeView;
 
 typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
-    PSPDFShadowStyleFlat,   // new default shadow style (1.8+)
-    PSPDFShadowStyleCurl,   // old shadow style (< 1.8)
+    PSPDFShadowStyleFlat,   // flat  shadow style (Default)
+    PSPDFShadowStyleCurl,   // curled shadow style
 };
 
 /// Scrollview for a single page. Every PSPDFPageView is embedded in a PSPDFScrollView.
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate>
 
 /// display specific document with specified page.
-- (void)displayDocument:(PSPDFDocument *)aDocument withPage:(NSUInteger)pageId;
+- (void)displayDocument:(PSPDFDocument *)document withPage:(NSUInteger)page;
 
 /// releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
 - (void)releaseDocument;
 
-// for memory warning relay. clears up internal resources.
-- (void)didReceiveMemoryWarning;
+/// current displayed page.
+@property(nonatomic, assign) NSUInteger page;
 
-// internal use for smooth rotations. Don't call unless you know exactly whay you're doing.
-- (void)switchPages;
+/// Associated document.
+@property(nonatomic, strong, readonly) PSPDFDocument *document;
 
 /// weak reference to parent pdfController.
 @property(nonatomic, ps_weak) PSPDFViewController *pdfController;
 
-/// current displayed page.
-@property(nonatomic, assign) NSUInteger page;
+/// left page. Always set. Not used if pageCurlEnabled.
+@property(nonatomic, strong, readonly) PSPDFPageView *leftPage;
 
-/// actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
-@property(nonatomic, strong, readonly) UIView *compoundView;
+/// right page, if doublePageMode is enabled. Not used if pageCurlEnabled.
+@property(nonatomic, strong, readonly) PSPDFPageView *rightPage;
+
+/// Style of the page shadow. Defaults to PSPDFShadowStyleFlat. Can be customized with overriding pathShadowForView.
+@property(nonatomic, assign) PSPDFShadowStyle shadowStyle;
+
+
+/// @name Mirrored properties from PSPDFViewController
 
 /// if YES, two sites are displayed.
 @property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode;
@@ -56,36 +62,48 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// enables/disables page shadow.
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
-/// Style of the page shadow. Defaults to PSPDFShadowStyleFlat. Can be customized with overriding pathShadowForView.
-@property(nonatomic, assign) PSPDFShadowStyle shadowStyle;
-
 /// tap on begin/end of page scrolls to previous/next page.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
-
-/// left page. Always set.
-@property(nonatomic, strong, readonly) PSPDFPageView *leftPage;
-
-/// right page, if doublePageMode is enabled.
-@property(nonatomic, strong, readonly) PSPDFPageView *rightPage;
-
-/// for subclassing - allows changing the shadow path.
-- (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
 
 @end
 
 @interface PSPDFScrollView (PSPDFSubclassing)
 
 // Gesture recognizers to sync with your own recognizers.
+// Don't change the delegate or things will break.
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *singleTapGesture;
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *tripleTapGesture;
 @property(nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
 
+- (void)singleTapped:(UITapGestureRecognizer *)recognizer;
+- (void)doubleTapped:(UITapGestureRecognizer *)recognizer;
+- (void)tripleTapped:(UITapGestureRecognizer *)recognizer;
+- (void)longPress:(UILongPressGestureRecognizer *)recognizer;
+
+// Allows changing the shadow path.
+- (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
+
 @end
 
 @interface PSPDFScrollView (PSPDFInternal)
 
-/// Used for improved rotation handling.
+// View that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
+@property(nonatomic, strong, readonly) UIView *compoundView;
+
+/// Global loupe view.
+@property(nonatomic, strong, readonly) PSPDFLoupeView *loupeView;
+
+// Used for improved rotation handling.
 @property(nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
+
+// for memory warning relay. clears up internal resources.
+- (void)didReceiveMemoryWarning;
+
+// internal use for smooth rotations. Don't call unless you know exactly whay you're doing.
+- (void)switchPages;
+
+// Return the actual PSPDFPageView behind point.
+- (PSPDFPageView *)pageViewForPoint:(CGPoint)point;
 
 @end

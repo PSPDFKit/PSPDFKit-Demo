@@ -5,13 +5,18 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 #import <Foundation/Foundation.h>
-#import "PSPDFCache.h"
 
 /// *completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
 /// If disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
+
+// newer runtimes define this, here's a fallback for the iOS5 SDK.
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) _type _name; enum
+#define NS_OPTIONS(_type, _name) _type _name; enum
+#endif
 
 /// If enabled, this shows some additional log data for specific features to track time.
 /// This should only be enabled for debugging.
@@ -51,12 +56,6 @@ extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevic
 
 /// default time to animate pdf views. Defaults to 0.15
 extern CGFloat kPSPDFKitPDFAnimationDuration;
-
-/// available zoom levels for CATiledLayer. Defaults to 4 or 5 on modern devices. Affects PSPDFTilingView.
-/// Setting this too high will result in a memory crash.
-/// If set too low, you get pixelerated text. Too high, and the render-process will be invoked *while* zooming,
-/// resulting in text becoming somewhat sharp, then sharp (when the correct zoom level is rendered)
-extern NSUInteger kPSPDFKitZoomLevels;
 
 extern CGFloat kPSPDFKitHUDTransparency;
 
@@ -134,6 +133,7 @@ extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatc
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
 // log helper
+#import "PSPDFCache.h"
 #ifdef kPSPDFKitDebugEnabled
 #define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLog(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
@@ -245,4 +245,3 @@ __VA_ARGS__ \
 
 @end
 #endif
-

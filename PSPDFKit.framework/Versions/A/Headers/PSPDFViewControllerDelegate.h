@@ -28,6 +28,9 @@
 
 /* events */
 
+/// Control scrolling to pages. Not implementing this will return YES.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page;
+
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
 
