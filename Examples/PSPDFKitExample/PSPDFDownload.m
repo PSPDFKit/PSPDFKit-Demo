@@ -126,13 +126,13 @@
             return;
         }
         
-        self.status = PSPDFStoreDownloadFinished;
         NSString *fileName = [self.request.url lastPathComponent];
         NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
         NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
-        
+        self.status = PSPDFStoreDownloadFinished;
+
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         [self addSkipBackupAttributeToFile:destinationURL];
         [pdfRequestWeak setCompletionBlock:nil]; // clear out completion block
