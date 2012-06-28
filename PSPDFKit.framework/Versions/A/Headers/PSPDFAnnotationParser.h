@@ -5,11 +5,10 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFKitGlobal.h"
-#import "PSPDFAnnotationView.h"
 #import "PSPDFAnnotation.h"
 
+@protocol PSPDFAnnotationView;
 @class PSPDFDocumentProvider;
 
 /// Parses and saves annotations for each page in a PDF.

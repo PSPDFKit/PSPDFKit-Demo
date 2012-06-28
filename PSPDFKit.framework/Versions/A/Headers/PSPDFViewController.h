@@ -5,11 +5,9 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "PSPDFBaseViewController.h"
 #import "PSPDFKitGlobal.h"
+#import "PSPDFBaseViewController.h"
 #import "PSPDFTextSearch.h"
 #import "PSPDFPasswordView.h"
 

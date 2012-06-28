@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 @protocol PSPDFTabBarViewDelegate, PSPDFTabBarViewDataSource;
 
@@ -23,6 +23,9 @@
 
 /// Currently selected tab index. May return NSNotFound if no tabs are loaded.
 @property(nonatomic, readonly) NSUInteger selectedTabIndex;
+
+/// Minimum tab width. Defaults to 0.
+@property(nonatomic, assign) CGFloat minTabWidth;
 
 @property(nonatomic, assign) IBOutlet id<PSPDFTabBarViewDelegate> delegate;
 @property(nonatomic, assign) IBOutlet id<PSPDFTabBarViewDataSource> dataSource;

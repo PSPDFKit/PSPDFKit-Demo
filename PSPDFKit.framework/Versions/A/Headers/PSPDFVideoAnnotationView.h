@@ -5,15 +5,14 @@
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "PSPDFLinkAnnotationBaseView.h"
 
 /// Displays audio/movie annotations with an embedded MPMoviePlayerController.
 @interface PSPDFVideoAnnotationView : PSPDFLinkAnnotationBaseView
 
-/// Movie url. (can be local, or external)
+/// Movie URL. (can be local, or external)
 @property(nonatomic, strong) NSURL *URL;
 
 /// YES to enable auto-start as soon as the view is loaded. Defaults to NO.

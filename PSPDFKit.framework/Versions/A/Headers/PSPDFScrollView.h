@@ -5,8 +5,6 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
 @protocol PSPDFAnnotationView;

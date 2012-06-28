@@ -7,7 +7,7 @@
 //  Special thanks to Cédric Luthi for providing the code.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument;
 

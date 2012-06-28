@@ -24,7 +24,6 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
 #import "PSPDFGridViewCell.h"
 #import "PSPDFKitGlobal.h"
 

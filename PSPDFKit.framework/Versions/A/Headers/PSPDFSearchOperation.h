@@ -5,9 +5,8 @@
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "PSPDFTextSearch.h"
 #import "PSPDFKitGlobal.h"
+#import "PSPDFTextSearch.h"
 
 @class PSPDFDocument, PSPDFSearchOperation;
 

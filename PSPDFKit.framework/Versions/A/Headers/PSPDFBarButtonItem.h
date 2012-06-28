@@ -6,7 +6,6 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import <UIKit/UIKit.h>
 
 @class PSPDFViewController;
 
