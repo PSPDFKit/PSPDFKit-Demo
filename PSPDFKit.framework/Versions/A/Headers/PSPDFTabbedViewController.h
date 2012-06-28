@@ -5,10 +5,11 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
+#import "PSPDFKitGlobal.h"
 #import "PSPDFBaseViewController.h"
 #import "PSPDFDocument.h"
 
-@class PSPDFTabbedViewController;
+@class PSPDFTabbedViewController, PSPDFTabBarView;
 
 /// Delegate for the PSPDFTabbedViewController.
 @protocol PSPDFTabbedViewControllerDelegate <NSObject>
@@ -72,7 +73,13 @@
 /// Change if you use multiple instances of PSPDFTabbedViewController.
 @property(nonatomic, copy) NSString *statePersistanceKey;
 
+/// Minimum tab width. Defaults to 100.
+@property(nonatomic, assign) CGFloat minTabWidth;
+
 /// The embedded PDFViewController. Access to customize the properties.
 @property(nonatomic, strong, readonly) PSPDFViewController *pdfViewController;
+
+/// Tab bar view.
+@property(nonatomic, strong, readonly) PSPDFTabBarView *tabBar;
 
 @end

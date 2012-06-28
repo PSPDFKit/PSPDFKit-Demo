@@ -2,11 +2,10 @@
 //  NSURL+PSPDFUnicodeURL.h
 //  PSPDFKit
 //
-//  Created by Sean Heber on 4/22/10, 
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 @interface NSURL (PSPDFUnicodeURL)
 

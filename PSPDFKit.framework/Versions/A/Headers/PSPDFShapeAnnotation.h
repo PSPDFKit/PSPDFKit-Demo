@@ -5,7 +5,6 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
 typedef NS_ENUM(NSInteger, PSPDFShapeAnnotationType) {

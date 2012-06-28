@@ -5,9 +5,7 @@
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
+#import "PSPDFKitGlobal.h"
 
 @interface UIColor (PSPDFKitAdditions)
 

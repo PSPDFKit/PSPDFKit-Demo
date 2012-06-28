@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 @interface PSPDFTabBarCloseButton : UIButton
 @end
@@ -21,5 +21,8 @@
 
 /// Show or hide the close button.
 @property(nonatomic, assign) BOOL showCloseButton;
+
+/// Minimum tab width. Defaults to 0.
+@property(nonatomic, assign) CGFloat minTabWidth;
 
 @end

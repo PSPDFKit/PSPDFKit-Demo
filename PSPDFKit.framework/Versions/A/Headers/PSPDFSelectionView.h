@@ -5,7 +5,6 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import <AVFoundation/AVFoundation.h>
 #import "PSPDFKitGlobal.h"
@@ -78,35 +77,7 @@
 
 - (void)updateSelectionHandleSize;
 
-//debugging
+// debugging
 - (void)showTextFlowData:(BOOL)show animated:(BOOL)animated;
-
-/*
-- (NSArray *)reduceGlyphsToColumn:(NSArray *)glyphs;
-- (BOOL)handleTap:(UITapGestureRecognizer *)recognizer;
-- (void)reloadTextAnnotationsWithPage:(PDFPage *)pdfPage;
-- (void)editTextAnnotation:(TextAnnotation *)annotation;
-- (void)showMenuForSelectedAnnotation:(UIGestureRecognizer *)recognizer;
-- (void)editNote:(TextNoteView *)noteView withKeyboard:(BOOL)showKeyboard;
-- (void)editSound:(TextNoteView *)soundView;
-- (void)updateInkSelectionWithLocation:(CGPoint)location;
-- (LinkAnnotation *)linkAtTouchLocation:(CGPoint)location;
-- (void)openLink:(LinkAnnotation *)link atTouchLocation:(CGPoint)location;
-- (CGRect)frameForAnnotation:(Annotation *)annotation;
-- (CGRect)rectForSheetWithLink:(LinkAnnotation *)link withTouchLocation:(CGPoint)location;
-- (void)changeHighlightColor:(PSPDFColor)color;
-- (void)changeUnderlineColor:(PSPDFColor)color;
-- (void)changeStrikeOutColor:(PSPDFColor)color;
-- (void)moveHandle:(UILongPressGestureRecognizer *)recognizer;
-- (void)updateWordSelectionWithLocation:(CGPoint)location;
-- (void)updateMenu;
-- (void)addAnnotationWithType:(NSString *)annotationType;
-- (void)addNote:(id)sender;
-- (void)addSound:(id)sender;
-- (void)selectClosestWordToPoint:(CGPoint)location;
-- (CGRect)convertRectFromPageCoordinates:(CGRect)rect;
-- (void)selectInkAnnotation:(PSPDFInkAnnotation *)annotation;
-- (void)showInkMenu:(UITapGestureRecognizer *)recognizer;
-*/
 
 @end

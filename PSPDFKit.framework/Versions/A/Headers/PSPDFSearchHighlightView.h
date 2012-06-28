@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFAnnotationView.h"
+
 @class PSPDFSearchResult;
 
 /// Highlight view used to show where the search keyword is within the document.

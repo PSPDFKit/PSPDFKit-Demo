@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationView.h"
 
 @class PSPDFLinkAnnotation;

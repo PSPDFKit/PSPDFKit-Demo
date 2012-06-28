@@ -5,8 +5,7 @@
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 #import "PSPDFLinkAnnotationBaseView.h"
 
 /// Display a tappable highlight annotation.

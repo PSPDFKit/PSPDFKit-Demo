@@ -6,8 +6,8 @@
 //
 
 // ARC is compatible with iOS 4.0 upwards, but you need a modern Xcode.
-#if !defined(__clang__) || __clang_major__ < 3
-#error This project must be compiled with ARC (Xcode 4.3.2+ with LLVM 3.1 and above)
+#if !defined(__clang__) || __clang_major__ < 4
+#error This project must be compiled with ARC (Xcode 4.4+ with LLVM 4 and above)
 #endif
 
 #import <UIKit/UIKit.h>

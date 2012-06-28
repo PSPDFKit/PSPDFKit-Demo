@@ -5,6 +5,8 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
 
 /// *completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled

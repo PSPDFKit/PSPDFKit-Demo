@@ -5,6 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
+#import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationView.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "PSPDFLinkAnnotationBaseView.h"

@@ -5,7 +5,7 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 /// Represents a word. Formed out of (usually) multiple glyphs.
 @interface PSPDFWord : NSObject

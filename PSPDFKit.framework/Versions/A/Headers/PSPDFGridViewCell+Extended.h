@@ -24,7 +24,6 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFGridView.h"
 #import "PSPDFGridViewCell.h"
 #import "PSPDFKitGlobal.h"

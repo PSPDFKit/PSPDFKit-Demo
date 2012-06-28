@@ -5,7 +5,6 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFAnnotation.h"
 
 // PSPDFKit has some custom sub-sets of the PSPDFAnnotationTypeLink

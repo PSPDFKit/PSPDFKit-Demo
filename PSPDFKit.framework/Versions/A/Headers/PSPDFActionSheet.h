@@ -5,8 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 /// Helper to add block features to UIActionSheet.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.

@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 // Add support to replace images as the selection changes.
 @interface PSPDFSegmentedControl : UISegmentedControl
