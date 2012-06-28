@@ -36,6 +36,8 @@
 
 @implementation PSPDFImageGridViewCell
 
+static void *kPSPDFKVOToken;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
@@ -47,7 +49,7 @@
             return;
         }
         [observedMagazineDownloads_ addObject:download];
-        [download addObserver:self forKeyPath:@"downloadProgress" options:0 context:nil];
+        [download addObserver:self forKeyPath:@"downloadProgress" options:0 context:kPSPDFKVOToken];
         [self updateProgressAnimated:NO];
     }
 }
@@ -55,9 +57,9 @@
 - (void)clearProgressObservers {
     // clear all observed magazines
     for (PSPDFDownload *download in observedMagazineDownloads_) {
-        [download removeObserver:self forKeyPath:@"downloadProgress"];            
+        [download removeObserver:self forKeyPath:@"downloadProgress" context:kPSPDFKVOToken];
     }
-    [observedMagazineDownloads_ removeAllObjects];    
+    [observedMagazineDownloads_ removeAllObjects];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +83,7 @@
 }
 
 - (void)dealloc {
-    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
+    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
     [self clearProgressObservers];
     [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
 }
@@ -141,17 +143,21 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"downloadProgress"]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self updateProgressAnimated:YES];
-        });
-    }else if([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
-        // check if magazine needs to be observed (if download progress is active)
-        if (self.magazine.isDownloading && ![observedMagazineDownloads_ containsObject:self.magazine]) {
+    if (context == kPSPDFKVOToken) {
+        if ([keyPath isEqualToString:@"downloadProgress"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
+                [self updateProgressAnimated:YES];
             });
+        }else if([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
+            // check if magazine needs to be observed (if download progress is active)
+            if (self.magazine.isDownloading && ![observedMagazineDownloads_ containsObject:self.magazine]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
+                });
+            }
         }
+    }else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -164,7 +170,7 @@
     }
     
     if (_magazine != magazine) {
-        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey];
+        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
         _magazine = magazine;
         
         // setup for magazine
