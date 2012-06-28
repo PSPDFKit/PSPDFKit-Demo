@@ -5,7 +5,6 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationView.h"
 

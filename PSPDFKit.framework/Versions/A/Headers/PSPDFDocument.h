@@ -5,30 +5,27 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 
 @class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider;
 
-/// Represents a single, logical, pdf document. (one or many pdf files)
+/// Represents a single, logical, PDF document. (one or many PDF files)
 /// Can be overriden to support custom collections.
-@interface PSPDFDocument : NSObject <NSCopying, NSCoding> {
-    NSUInteger pageCount_;
-}
+@interface PSPDFDocument : NSObject <NSCopying, NSCoding>
 
 /// @name Initialization
 
-/// Initialize empty PSPDFDocument
+/// Initialize empty PSPDFDocument.
 + (PSPDFDocument *)PDFDocument;
 
-/// Initialize PSPDFDocument with data
+/// Initialize PSPDFDocument with data.
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.
 + (PSPDFDocument *)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
-/// Initializes PSPDFDocument with a single file
+/// Initialize PSPDFDocument with a single file.
 + (PSPDFDocument *)PDFDocumentWithURL:(NSURL *)URL;
 
 - (id)init;
@@ -40,8 +37,7 @@
 /// @name File Access / Modification
 
 /// Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if basePath is nil)
-/// Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
-/// Do not mix .data and files - this call will be ignored when data is set.
+/// Adding the same file multiple times is allowed.
 - (void)appendFile:(NSString *)file;
 
 /// Returns path for a single page (in case pages are split up). Page starts at 0.
@@ -54,9 +50,6 @@
 /// Returns the URL corresponding to the fileIndex
 - (NSURL *)URLForFileIndex:(NSInteger)fileIndex;
 
-/// Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
-- (NSURL *)thumbnailPathForPage:(NSUInteger)page;
-
 /// Returs a files array with the base path already added (if there is one)
 - (NSArray *)filesWithBasePath;
 
@@ -68,7 +61,7 @@
 /// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.`
 @property(nonatomic, copy) NSArray *files;
 
-/// Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
+/// Usually, you have one single file URL representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
 /// nil if the document was initialized with initWithData:
 @property(nonatomic, strong) NSURL *fileURL;
 
@@ -139,28 +132,7 @@
 - (void)fillCache;
 
 
-/// @name PDF Drawing
-
-/// Return true if you want drawOverlayRect to be called.
-- (BOOL)shouldDrawOverlayRectForSize:(PSPDFSize)size;
-
-/// Can be overridden to draw an overlay on the pdf - will be called from drawing threads.
-/// Note: most of the time you might be better off using custom UIViews and adding them on PSPDFPageView via the delegates.
-- (void)drawOverlayRect:(CGRect)rect inContext:(CGContextRef)context forPage:(NSUInteger)page zoomScale:(CGFloat)zoomScale size:(PSPDFSize)size;
-
-
-/// @name PDF Search
-
-/// Can be overridden to provide custom text. Defaults to nil.
-/// if this returns nil for a site, we'll try to extract text ourselves.
-/// Note: If you return text here, text highlighting cannot be used for this page.
-- (NSString *)pageContentForPage:(NSUInteger)page;
-
-
 /// @name Design and hints for PSPDFViewController
-
-/// Override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
-- (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
 /// If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
@@ -168,13 +140,8 @@
 /// Annotation link extraction. Defaults to YES.
 @property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
 
-/// Enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
-/// or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
-/// This might be a good idea to turn on when using JPG for caching.
-@property(nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled;
-
 /// If document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
-// note: doesn't use weak as this could lead to background deallocation of the controller.
+// Note: doesn't use weak as this could lead to background deallocation of the controller.
 @property(nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController;
 
 
@@ -250,7 +217,7 @@
 - (NSString *)pageLabelForPage:(NSUInteger)page substituteWithPlainLabel:(BOOL)substite;
 
 
-/// @name Page Rendering
+/// @name PDF Page Rendering
 
 // PDF rendering options
 extern NSString *kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
@@ -266,7 +233,26 @@ extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
 /// @returns			A new UIImage with the rendered page content
 - (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
-/// Draw a page into a specified context
+/// Draw a page into a specified context.
 - (void)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+/// Will be called within renderPage:inContex: but before options like inversion are applied.
+/// Note: most of the time you might be better off using custom UIViews and adding them on PSPDFPageView via the delegates.
+- (void)drawOverlayForPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+@end
+
+@interface PSPDFDocument (PSPDFSubclassing)
+
+/// Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
+- (NSURL *)thumbnailPathForPage:(NSUInteger)page;
+
+/// Can be overridden to provide custom text. Defaults to nil.
+/// if this returns nil for a site, we'll try to extract text ourselves.
+/// Note: If you return text here, text highlighting cannot be used for this page.
+- (NSString *)pageContentForPage:(NSUInteger)page;
+
+/// Override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.
+- (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
 @end

@@ -1,11 +1,12 @@
 //
 //  PSPDFWebViewController.h
-//  PSPDFKitExample
+//  PSPDFKit
 //
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Parts of this code is based on https://github.com/samvermette/SVWebViewController.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 #import "PSPDFViewController.h"
 #import "PSPDFBaseViewController.h"
 

@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 /// Represents a certain view state (document position, zoom) of a PSPDFDocument.
 @interface PSPDFViewState : NSObject <NSCoding, NSCopying>

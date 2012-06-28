@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "PSPDFKitGlobal.h"
 
 /**
  Vertical alignment for text in a label whose bounds are larger than its text bounds

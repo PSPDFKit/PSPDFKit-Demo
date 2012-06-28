@@ -5,7 +5,7 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 #import <CoreText/CoreText.h>
 
 @interface PSPDFFontInfo : NSObject {
@@ -28,21 +28,5 @@
 
 + (NSDictionary *)glyphNames;
 + (NSDictionary *)standardFontWidths;
-
-@end
-
-
-@interface PDFSimpleFontInfo : PSPDFFontInfo {
-	CGFloat widths[256];
-}
-
-+ (NSArray *)baseArrayForEncoding:(CFStringEncoding)stringEncoding;
-
-@end
-
-
-@interface PDFCompositeFontInfo : PSPDFFontInfo {
-	CGFloat widths[65536];
-}
 
 @end

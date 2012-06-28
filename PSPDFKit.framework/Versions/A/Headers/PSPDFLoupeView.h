@@ -5,7 +5,7 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
 
 typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 	PSPDFLoupeViewModeCircular,

@@ -5,9 +5,7 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "PSPDFKit.h"
+#import "PSPDFKitGlobal.h"
 #import "PSPDFGridViewCell.h"
 
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting

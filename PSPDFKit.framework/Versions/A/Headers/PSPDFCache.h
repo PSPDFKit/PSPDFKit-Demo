@@ -5,8 +5,6 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument;
@@ -14,7 +12,7 @@
 typedef NS_ENUM(NSInteger, PSPDFCacheStrategy) {
     PSPDFCacheNothing,                    // no files are saved. (slowest)
     PSPDFCacheOnlyThumbnailsAndNearPages, // only a few files are saved.
-    PSPDFCacheOpportunistic               // the whole pdf document is converted to images and saved. (fastest)
+    PSPDFCacheOpportunistic               // the whole PDF document is converted to images and saved. (fastest)
 };
 
 typedef NS_ENUM(NSInteger, PSPDFSize) {
@@ -29,7 +27,6 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Page has been successfully processed and cached as UIImage.
 - (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size;
 
-/// TODO actually I'd like to make the first optional as well, but that would mean more respondsToSelector-ish checks
 @optional
 
 /// All pages of the document that needed caching have been processed.
@@ -127,7 +124,6 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 
 /// Compression strength for JPG. (PNG is lossless)
 /// The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
-/// You can set the document to re-render with PSPDFDocument.twoStepRenderingEnabled = YES.
 /// This will load the pdf and remove any jpg artifacts.
 @property(assign) CGFloat JPGFormatCompression;
 

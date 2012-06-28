@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PSPDFKitGlobal.h"
 
 /// Represents multiple words forming a text block. (e.g. a Column)
 @interface PSPDFTextBlock : NSObject
