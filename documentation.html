@@ -20,8 +20,8 @@ documentation: current-menu-item current_page_item
 	  
 	  <p>If you're using the PSPDFKit.framework, you don't need to add a User Header Search Path or a Target Dependency. Also, don't forget to add the PSPDFKit.bundle inside PSPDFKit.framework/Resources.</p>
 	  
-	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4 and not yet using ARC, you need to add the linker flag -fobjc-arc so that libarclite gets linked. (the ARC compatibility library) Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a subproject.</p><br>
-	  <p>You also need to weak-link the UIKit.framework to be compatible with iOS4.</p>
+	  <p>If you are using the PSPDFKit.framework binary version, still need to support iOS4.3 and not yet using ARC, you need to add the linker flag -fobjc-arc so that libarclite gets linked. (the ARC compatibility library) Xcode is clever enough to figure this out automatically when you're using the PSPDFKit-lib.xcodeproj as a subproject.</p><br>
+	  <p>You also need to weak-link the UIKit.framework to be compatible with iOS4.3.</p>
 	  <p>Be sure to add the file ACKNOWLEDGEMENTS to your app resources to value the 3rd party licenses.</p><br>
 	  
 	  <p><b>PSPDFKit needs Xcode &#8805; >= 4.3.2, iOS Base SDK &#8805; >= 5.1 and &#8805; Clang LLVM >= 3.1 to compile. It doesn't work with the old LLVM GCC compiler.</b></p>
@@ -114,7 +114,7 @@ documentation: current-menu-item current_page_item
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
 		
 		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
-		      A: To support iOS4 with a non-ARC-project, you need to add the ARC compatibility library libarclite. Drag the two files (one for iOS, one for the Simulator) from the MinimalExample.xcodeproj to your project, or manually search the on your disk: /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a (and /Developer/usr/lib/arc/libarclite_iphonesimulator.a) and drag them into your project.
+		      A: To support iOS4.3 with a non-ARC-project, you need to add the ARC compatibility library libarclite. Drag the two files (one for iOS, one for the Simulator) from the MinimalExample.xcodeproj to your project, or manually search the on your disk: /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a (and /Developer/usr/lib/arc/libarclite_iphonesimulator.a) and drag them into your project.
 		</p><br>
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
