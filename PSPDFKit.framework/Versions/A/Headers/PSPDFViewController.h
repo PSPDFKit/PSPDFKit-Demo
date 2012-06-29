@@ -64,10 +64,10 @@ enum {
 /// @name Page Scrolling and Zooming
 
 /// Control currently displayed page. Page starts at 0.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
 
 /// Control currently displayed page, optionally show/hide the HUD. Page starts at 0.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
 
 /// Scroll to next page.
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;
@@ -217,7 +217,7 @@ enum {
  
 */
 
-/// Default button in leftToolbarButtonItems if view is presented modally.
+/// Default button in leftBarButtonItems if view is presented modally.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *closeButtonItem;
 
 // Default button items included by default in rightToolbarButtonItems
@@ -332,8 +332,8 @@ enum {
 @property(nonatomic, strong) NSDictionary *overrideClassNames;
 
 /// If embedded via iOS5 viewController containment, set this to true to allow this controller
-/// to access the parent navigationBar to add custom buttons.
-/// Has no effect if toolbarEnabled is false or there's no parentViewController.
+/// to access the parent navigationBar/navigationController to add custom buttons.
+/// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.
 @property(nonatomic, assign) BOOL useParentNavigationBar;
 
 /// returns the topmost active viewcontroller. override if you have a custom setup of viewControllers
