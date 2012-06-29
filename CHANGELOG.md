@@ -7,6 +7,7 @@ __v1.10.4 - xx/Jun/2012__
 *  Improve tap change speed and touch area of PSPDFTabbedViewController.
 *  Another possible bugfix for UIPageViewController rotation changes.
 *  Don't change navigationController if embedded into a parentViewController on default. (See useParentNavigationBar).
+*  Allow to subclass PSPDFPageView via the overrideClassNames property in PSPDFViewController.
 
 __v1.10.3 - 22/Jun/2012__
 
