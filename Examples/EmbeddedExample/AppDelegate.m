@@ -43,7 +43,6 @@
 
     NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPSPDFKitExample];
     PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:videoPath]];
-    videoDocument.twoStepRenderingEnabled = YES; // we're not using the full screen, so enable sharp re-rendering
     PSPDFAnnotationTestController *videoVC = [[PSPDFAnnotationTestController alloc] initWithDocument:videoDocument];
     UINavigationController *videoNavC = [[UINavigationController alloc] initWithRootViewController:videoVC];
     

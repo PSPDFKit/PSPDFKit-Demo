@@ -36,7 +36,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
     NSString *documentFolder = [paths objectAtIndex:0];
     NSString *path = [documentFolder stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     self.pdfController.pageMode = PSPDFPageModeSingle;

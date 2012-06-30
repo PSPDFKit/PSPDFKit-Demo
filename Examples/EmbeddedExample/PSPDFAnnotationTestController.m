@@ -28,7 +28,7 @@
     if ((self = [super initWithDocument:document])) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
-        self.pageCurlEnabled = YES;
+        self.pageTransition = PSPDFPageCurlTransition;
         self.linkAction = PSPDFLinkActionInlineBrowser;
         //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
         self.tintColor = [UIColor orangeColor];
