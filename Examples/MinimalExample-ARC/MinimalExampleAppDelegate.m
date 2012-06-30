@@ -17,7 +17,7 @@
     
     // create the PSPDFViewController
     _pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
-    _pdfController.pageCurlEnabled = NO;
+    _pdfController.pageTransition = PSPDFPageScrollPerPageTransition;
     _pdfController.linkAction = PSPDFLinkActionInlineBrowser;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];

@@ -39,38 +39,51 @@
     }
 }
 
-// Helper for the option pane. You really shouldn't include that in your final app.
-// This is just to show what PSPDFKit can do.
+// This is to present the most common features of PSPDFKit.
+// iOS is all about choosing the right options for the user. You really shouldn't ship that.
 - (void)globalVarChanged {
     PSPDFViewState *viewState = [self documentViewState];
+    NSDictionary *settings = [PSPDFSettingsController settings];
+    self.pageTransition = [settings[NSStringFromSelector(@selector(pageTransition))] integerValue];
+    self.pageScrolling = [settings[NSStringFromSelector(@selector(pageScrolling))] integerValue];
+    self.pageMode = [settings[NSStringFromSelector(@selector(pageMode))] integerValue];
+    self.linkAction = [settings[NSStringFromSelector(@selector(linkAction))] integerValue];
+    self.doublePageModeOnFirstPage = [settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] boolValue];
+    self.zoomingSmallDocumentsEnabled = [settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] boolValue];
+    self.fitWidth = [settings[NSStringFromSelector(@selector(isFittingWidth))] boolValue];
+    self.scrobbleBarEnabled =  [settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] boolValue];
+    self.positionViewEnabled = [settings[NSStringFromSelector(@selector(isPositionViewEnabled))] boolValue];
+    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
+    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
+    self.scrollOnTapPageEndEnabled = [settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] boolValue];
+    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
+    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
 
-    // set global settings for magazine
-    self.magazine.annotationsEnabled = [PSPDFSettingsController annotations];
-    self.magazine.aspectRatioEqual = [PSPDFSettingsController aspectRatioEqual];
-    
-    // set global settings from PSPDFCacheSettingsController
-    self.doublePageModeOnFirstPage = [PSPDFSettingsController doublePageModeOnFirstPage];
-    self.zoomingSmallDocumentsEnabled = [PSPDFSettingsController zoomingSmallDocumentsEnabled];
-    self.scrobbleBarEnabled = [PSPDFSettingsController scrobbleBar];
-    self.fitWidth = [PSPDFSettingsController fitWidth];
-    self.pageCurlEnabled = [PSPDFSettingsController pageCurl];
-    
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-    if ([PSPDFSettingsController pdfOutline]) {
+    if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.outlineButtonItem];
     }
-    if ([PSPDFSettingsController search]) {
+    if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.searchButtonItem];
     }
-    [rightBarButtonItems addObject:self.viewModeButtonItem];
+    if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.viewModeButtonItem];
+    }
     self.rightBarButtonItems = rightBarButtonItems;
-    
+
     // define additional buttons with an action icon
-    self.additionalRightBarButtonItems = @[self.printButtonItem, self.openInButtonItem, self.emailButtonItem];
-    
-    self.pageMode = [PSPDFSettingsController pageMode];
-    self.pageScrolling = [PSPDFSettingsController pageScrolling];
-    
+    NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
+    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.printButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.openInButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.emailButtonItem];
+    }
+    self.additionalRightBarButtonItems = additionalRightBarButtonItems;
+
     // reload scrollview and restore viewState
     [self reloadData];
     [self restoreDocumentViewState:viewState animated:NO];
