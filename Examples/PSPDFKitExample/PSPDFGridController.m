@@ -76,7 +76,8 @@
     // compensate for transparent statusbar
     if (!PSIsIpad()) {
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-        CGFloat statusBarHeight = PSIsPortrait() ? statusBarFrame.size.height : statusBarFrame.size.width;
+        BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
         newFrame.origin.y -= statusBarHeight;
         newFrame.size.height += statusBarHeight;
     }
@@ -136,7 +137,7 @@
             _shadowView.shadowEnabled = NO;
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
 
-            _animationDualWithPageCurl = pdfController.pageCurlEnabled && [pdfController isDualPageMode];
+            _animationDualWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDualPageMode];
             CGRect newFrame = [self magazinePageCoordinatesWithDualPageCurl:_animationDualWithPageCurl];
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
