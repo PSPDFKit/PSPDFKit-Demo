@@ -30,7 +30,7 @@
     self.pdfController.delegate = nil;
     self.pdfController = [[PSPDFViewController alloc] init];
     self.pdfController.delegate = self;
-    self.pdfController.pageCurlEnabled = YES;
+    self.pdfController.pageTransition = PSPDFPageCurlTransition;
     
     _pdfController.view.frame = self.view.bounds;
     [[_pdfController view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
