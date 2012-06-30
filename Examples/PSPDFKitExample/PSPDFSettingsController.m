@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define _(string) NSLocalizedString(string, @"")
+#define PSString(string) NSStringFromSelector(@selector(string))
 @interface PSPDFSettingsController() {
     NSArray *_content;
     NSArray *_contentSubtitle;
@@ -35,27 +36,29 @@ static NSMutableDictionary *_settings;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
++ (NSDictionary *)settings { return _settings; }
+
 // perform a appropriate choice of defaults.
 __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
-        _settings[NSStringFromSelector(@selector(pageMode))] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[NSStringFromSelector(@selector(isFittingWidth))] = PSIsIpad() ? @NO : @YES;
-        _settings[NSStringFromSelector(@selector(linkAction))] = @(PSPDFLinkActionInlineBrowser);
-        _settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isPositionViewEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] = @YES;
-        _settings[NSStringFromSelector(@selector(viewModeButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(searchButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(outlineButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(printButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(openInButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(emailButtonItem))] = @YES;
-        _settings[NSStringFromSelector(@selector(viewModeButtonItem))] = @YES;
+        _settings[PSString(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+        _settings[PSString(isFittingWidth)] = PSIsIpad() ? @NO : @YES;
+        _settings[PSString(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+        _settings[PSString(isScrobbleBarEnabled)] = @YES;
+        _settings[PSString(isZoomingSmallDocumentsEnabled)] = @YES;
+        _settings[PSString(isPositionViewEnabled)] = @YES;
+        _settings[PSString(isScrobbleBarEnabled)] = @YES;
+        _settings[PSString(isTextSelectionEnabled)] = @YES;
+        _settings[PSString(isSmartZoomEnabled)] = @YES;
+        _settings[PSString(isScrollOnTapPageEndEnabled)] = @YES;
+        _settings[PSString(viewModeButtonItem)] = @YES;
+        _settings[PSString(searchButtonItem)] = @YES;
+        _settings[PSString(outlineButtonItem)] = @YES;
+        _settings[PSString(printButtonItem)] = @YES;
+        _settings[PSString(openInButtonItem)] = @YES;
+        _settings[PSString(emailButtonItem)] = @YES;
+        _settings[PSString(viewModeButtonItem)] = @YES;
     }
 }
 
@@ -65,7 +68,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Options");
-
         _content = @[
         @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)"), _(@"Page Flip (Flipboard)")],
         @[_(@"Horizontal"), _(@"Vertical")],
@@ -76,7 +78,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
         ];
-
         _contentSubtitle = @[
         @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition"), _(@"PSPDFPageFlipTransition")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
@@ -87,9 +88,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
-
         _sectionTitle = @[_(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
-
         _sectionFooter = @[_(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // dual page mode
@@ -134,59 +133,30 @@ __attribute__((constructor)) static void setupDefaults(void) {
 }
 
 - (void)switchChanged:(UISwitch *)cellSwitch {
-    UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)cellSwitch.superview];
+    NSValue *value = @(cellSwitch.on);
     switch (indexPath.section) {
         case PSPDFGeneralSettings:
             switch (indexPath.row) {
-                case 0:
-                    _settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] = @(cellSwitch.on);
-                    break;
-                case 1:
-                    _settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] = @(cellSwitch.on);
-                    break;
-                case 2:
-                    _settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] = @(cellSwitch.on);
-                    break;
-                case 3:
-                    _settings[NSStringFromSelector(@selector(isFittingWidth))] = @(cellSwitch.on);
-                    break;
-                case 4:
-                    _settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] = @(cellSwitch.on);
-                    break;
-                case 5:
-                    _settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] = @(cellSwitch.on);
-                    break;
-                case 6:
-                    _settings[NSStringFromSelector(@selector(isPositionViewEnabled))] = @(cellSwitch.on);
-                    break;
+                case 0: _settings[PSString(isSmartZoomEnabled)] = value; break;
+                case 1: _settings[PSString(isTextSelectionEnabled)] = value; break;
+                case 2: _settings[PSString(isZoomingSmallDocumentsEnabled)] = value; break;
+                case 3: _settings[PSString(isFittingWidth)] = value; break;
+                case 5: _settings[PSString(isScrobbleBarEnabled)] = value; break;
+                case 6: _settings[PSString(isPositionViewEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
             switch (indexPath.row) {
-                case 0:
-                    _settings[NSStringFromSelector(@selector(searchButtonItem))] = @(cellSwitch.on);
-                    break;
-                case 1:
-                    _settings[NSStringFromSelector(@selector(outlineButtonItem))] = @(cellSwitch.on);
-                    break;
-                case 2:
-                    _settings[NSStringFromSelector(@selector(printButtonItem))] = @(cellSwitch.on);
-                    break;
-                case 3:
-                    _settings[NSStringFromSelector(@selector(openInButtonItem))] = @(cellSwitch.on);
-                    break;
-                case 4:
-                    _settings[NSStringFromSelector(@selector(emailButtonItem))] = @(cellSwitch.on);
-                    break;
-                case 5:
-                    _settings[NSStringFromSelector(@selector(viewModeButtonItem))] = @(cellSwitch.on);
-                    break;
+                case 0: _settings[PSString(searchButtonItem)] = value; break;
+                case 1: _settings[PSString(outlineButtonItem)] = value; break;
+                case 2: _settings[PSString(printButtonItem)] = value; break;
+                case 3: _settings[PSString(openInButtonItem)] = value; break;
+                case 4: _settings[PSString(emailButtonItem)] = value; break;
+                case 5: _settings[PSString(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
-        default:
-            break;
+        default: break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
 }
@@ -213,79 +183,53 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: {
-            PSPDFPageTransition pageTransition = [_settings[NSStringFromSelector(@selector(pageTransition))] integerValue];
+            PSPDFPageTransition pageTransition = [_settings[PSString(pageTransition)] integerValue];
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
-            PSPDFScrollDirection scrollDirection = [_settings[NSStringFromSelector(@selector(scrollDirection))] integerValue];
+            PSPDFScrollDirection scrollDirection = [_settings[PSString(scrollDirection)] integerValue];
             cell.accessoryType = (indexPath.row == scrollDirection) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageModeSettings: {
-            PSPDFPageMode pageMode = [_settings[NSStringFromSelector(@selector(pageMode))] integerValue];
+            PSPDFPageMode pageMode = [_settings[PSString(pageMode)] integerValue];
             cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCoverSettings: {
-            BOOL hasCoverPage = [_settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] integerValue];
+            BOOL hasCoverPage = [_settings[PSString(isDoublePageModeOnFirstPage)] integerValue];
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFGeneralSettings: {
             switch (indexPath.row) {
-                case 0:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
-                    break;
-                case 1:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
-                case 2:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] boolValue];
-                    break;
-                case 3:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isFittingWidth))] boolValue];
-                    break;
-                case 4:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] boolValue];
-                    break;
-                case 5:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] boolValue];
-                    break;
-                case 6:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(isPositionViewEnabled))] boolValue];
-                    break;
+                case 0: cellSwitch.on = [_settings[PSString(isSmartZoomEnabled)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[PSString(isTextSelectionEnabled)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[PSString(isZoomingSmallDocumentsEnabled)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[PSString(isFittingWidth)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[PSString(isScrollOnTapPageEndEnabled)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[PSString(isScrobbleBarEnabled)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[PSString(isPositionViewEnabled)] boolValue]; break;
                 default: break;
             }break;
         }break;
         case PSPDFToolbarSettings: {
             switch (indexPath.row) {
-                case 0:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue];
-                    break;
-                case 1:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue];
-                    break;
-                case 2:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(printButtonItem))] boolValue];
-                    break;
-                case 3:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue];
-                    break;
-                case 4:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue];
-                    break;
-                case 5:
-                    cellSwitch.on = [_settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue];
-                    break;
+                case 0: cellSwitch.on = [_settings[PSString(searchButtonItem)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[PSString(outlineButtonItem)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[PSString(printButtonItem)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[PSString(openInButtonItem)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[PSString(emailButtonItem)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[PSString(viewModeButtonItem)] boolValue]; break;
                 default: break;
             }break;
         }break;
         case PSPDFLinkActionSettings: {
-            PSPDFLinkAction linkAction = [_settings[NSStringFromSelector(@selector(linkAction))] integerValue];
+            PSPDFLinkAction linkAction = [_settings[PSString(linkAction)] integerValue];
             cell.accessoryType = (indexPath.row == linkAction) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCacheSettings: {
             PSPDFCacheStrategy cacheStrategy = [PSPDFCache sharedPSPDFCache].strategy;
             cell.accessoryType = (indexPath.row == cacheStrategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
-        default:
-            break;
+        default:break;
     }
     return cell;
 }
@@ -295,36 +239,19 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case PSPDFPageTransitionSettings:
-            _settings[NSStringFromSelector(@selector(pageTransition))] = @(indexPath.row);
-            break;
-        case PSPDFScrollDirectionSettings:
-            _settings[NSStringFromSelector(@selector(scrollDirection))] = @(indexPath.row);
-            break;
-        case PSPDFPageModeSettings:
-            _settings[NSStringFromSelector(@selector(pageMode))] = @(indexPath.row);
-            break;
-        case PSPDFCoverSettings:
-            _settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] = @(indexPath.row == 1);
-            break;
-        case PSPDFLinkActionSettings:
-            _settings[NSStringFromSelector(@selector(linkAction))] = @(indexPath.row);
-            break;
+        case PSPDFPageTransitionSettings: _settings[PSString(pageTransition)] = @(indexPath.row); break;
+        case PSPDFScrollDirectionSettings: _settings[PSString(scrollDirection)] = @(indexPath.row); break;
+        case PSPDFPageModeSettings: _settings[PSString(pageMode)] = @(indexPath.row); break;
+        case PSPDFCoverSettings: _settings[PSString(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
+        case PSPDFLinkActionSettings: _settings[PSString(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
             [[PSPDFCache sharedPSPDFCache] clearCache];
             [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
             break;
-        default:
-            break;
+        default: break;
     }
-
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Static
-
-+ (NSDictionary *)settings { return _settings; }
 
 @end
