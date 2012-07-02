@@ -45,6 +45,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[PSString(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
         _settings[PSString(isFittingWidth)] = PSIsIpad() ? @NO : @YES;
         _settings[PSString(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+        _settings[PSString(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[PSString(isScrobbleBarEnabled)] = @YES;
         _settings[PSString(isZoomingSmallDocumentsEnabled)] = @YES;
         _settings[PSString(isPositionViewEnabled)] = @YES;
