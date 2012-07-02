@@ -182,21 +182,21 @@
 - (void)requestStarted:(ASIHTTPRequest *)request
 {
 	if ([self requestDidStartSelector]) {
-		[[self delegate] performSelector:[self requestDidStartSelector] withObject:request];
+		[self.delegate performSelector:[self requestDidStartSelector] withObject:request];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSDictionary *)responseHeaders
 {
 	if ([self requestDidReceiveResponseHeadersSelector]) {
-		[[self delegate] performSelector:[self requestDidReceiveResponseHeadersSelector] withObject:request withObject:responseHeaders];
+		[self.delegate performSelector:[self requestDidReceiveResponseHeadersSelector] withObject:request withObject:responseHeaders];
 	}
 }
 
 - (void)request:(ASIHTTPRequest *)request willRedirectToURL:(NSURL *)newURL
 {
 	if ([self requestWillRedirectSelector]) {
-		[[self delegate] performSelector:[self requestWillRedirectSelector] withObject:request withObject:newURL];
+		[self.delegate performSelector:[self requestWillRedirectSelector] withObject:request withObject:newURL];
 	}
 }
 
@@ -204,11 +204,11 @@
 {
 	[self setRequestsCount:[self requestsCount]-1];
 	if ([self requestDidFinishSelector]) {
-		[[self delegate] performSelector:[self requestDidFinishSelector] withObject:request];
+		[self.delegate performSelector:[self requestDidFinishSelector] withObject:request];
 	}
 	if ([self requestsCount] == 0) {
 		if ([self queueDidFinishSelector]) {
-			[[self delegate] performSelector:[self queueDidFinishSelector] withObject:self];
+			[self.delegate performSelector:[self queueDidFinishSelector] withObject:self];
 		}
 	}
 }
@@ -217,11 +217,11 @@
 {
 	[self setRequestsCount:[self requestsCount]-1];
 	if ([self requestDidFailSelector]) {
-		[[self delegate] performSelector:[self requestDidFailSelector] withObject:request];
+		[self.delegate performSelector:[self requestDidFailSelector] withObject:request];
 	}
 	if ([self requestsCount] == 0) {
 		if ([self queueDidFinishSelector]) {
-			[[self delegate] performSelector:[self queueDidFinishSelector] withObject:self];
+			[self.delegate performSelector:[self queueDidFinishSelector] withObject:self];
 		}
 	}
 	if ([self shouldCancelAllRequestsOnFailure] && [self requestsCount] > 0) {
@@ -261,15 +261,15 @@
 // Since this queue takes over as the delegate for all requests it contains, it should forward authorisation requests to its own delegate
 - (void)authenticationNeededForRequest:(ASIHTTPRequest *)request
 {
-	if ([[self delegate] respondsToSelector:@selector(authenticationNeededForRequest:)]) {
-		[[self delegate] performSelector:@selector(authenticationNeededForRequest:) withObject:request];
+	if ([self.delegate respondsToSelector:@selector(authenticationNeededForRequest:)]) {
+		[self.delegate performSelector:@selector(authenticationNeededForRequest:) withObject:request];
 	}
 }
 
 - (void)proxyAuthenticationNeededForRequest:(ASIHTTPRequest *)request
 {
-	if ([[self delegate] respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
-		[[self delegate] performSelector:@selector(proxyAuthenticationNeededForRequest:) withObject:request];
+	if ([self.delegate respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
+		[self.delegate performSelector:@selector(proxyAuthenticationNeededForRequest:) withObject:request];
 	}
 }
 
@@ -280,21 +280,21 @@
 
 	// If the delegate implements this, the request will stop to wait for credentials
 	if (selector == @selector(authenticationNeededForRequest:)) {
-		if ([[self delegate] respondsToSelector:@selector(authenticationNeededForRequest:)]) {
+		if ([self.delegate respondsToSelector:@selector(authenticationNeededForRequest:)]) {
 			return YES;
 		}
 		return NO;
 
 	// If the delegate implements this, the request will to wait for credentials
 	} else if (selector == @selector(proxyAuthenticationNeededForRequest:)) {
-		if ([[self delegate] respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
+		if ([self.delegate respondsToSelector:@selector(proxyAuthenticationNeededForRequest:)]) {
 			return YES;
 		}
 		return NO;
 
 	// If the delegate implements requestWillRedirectSelector, the request will stop to allow the delegate to change the url
 	} else if (selector == @selector(request:willRedirectToURL:)) {
-		if ([self requestWillRedirectSelector] && [[self delegate] respondsToSelector:[self requestWillRedirectSelector]]) {
+		if ([self requestWillRedirectSelector] && [self.delegate respondsToSelector:[self requestWillRedirectSelector]]) {
 			return YES;
 		}
 		return NO;
@@ -307,7 +307,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
 	ASINetworkQueue *newQueue = [[[self class] alloc] init];
-	[newQueue setDelegate:[self delegate]];
+	[newQueue setDelegate:self.delegate];
 	[newQueue setRequestDidStartSelector:[self requestDidStartSelector]];
 	[newQueue setRequestWillRedirectSelector:[self requestWillRedirectSelector]];
 	[newQueue setRequestDidReceiveResponseHeadersSelector:[self requestDidReceiveResponseHeadersSelector]];

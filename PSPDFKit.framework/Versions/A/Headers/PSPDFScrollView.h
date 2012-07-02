@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode;
 
 /// shows first document page alone. Not relevant in PSPDFPageModeSinge.
-@property(nonatomic, assign) BOOL doublePageModeOnFirstPage;
+@property(nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
 
 /// allow zooming of small documents to screen width/height.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
@@ -71,12 +71,10 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 // Don't change the delegate or things will break.
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *singleTapGesture;
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
-@property(nonatomic, strong, readonly) UITapGestureRecognizer *tripleTapGesture;
 @property(nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
 
 - (void)singleTapped:(UITapGestureRecognizer *)recognizer;
 - (void)doubleTapped:(UITapGestureRecognizer *)recognizer;
-- (void)tripleTapped:(UITapGestureRecognizer *)recognizer;
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer;
 
 // Allows changing the shadow path.

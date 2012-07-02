@@ -10,6 +10,9 @@
 
 @class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation;
 
+/// Send this event to hide any selections, menus or other interactive page elements.
+extern NSString *kPSPDFHidePageHUDElements;
+
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 @interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate>
