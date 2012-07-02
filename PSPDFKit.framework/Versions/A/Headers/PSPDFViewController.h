@@ -14,23 +14,32 @@
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
 
-/// current active view mode.
+/// Current active view mode.
 typedef NS_ENUM(NSInteger, PSPDFViewMode) {
     PSPDFViewModeDocument,
     PSPDFViewModeThumbnails
 };
 
-/// active page mode.
+/// Active page mode.
 typedef NS_ENUM(NSInteger, PSPDFPageMode) {
     PSPDFPageModeSingle,   // Default on iPhone.
     PSPDFPageModeDouble,
     PSPDFPageModeAutomatic // single in portrait, double in landscape if the document's height > width. Default on iPad.
 };
 
-/// active scrolling direction.
-typedef NS_ENUM(NSInteger, PSPDFScrolling) {
-    PSPDFScrollingHorizontal, // default
-    PSPDFScrollingVertical
+/// Page Transition. Can be scrolling or something more fancy.
+typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
+    PSPDFPageScrollPerPageTransition,     // default mode for iOS4. Has one scrollView per page.
+
+    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView.
+    PSPDFPageCurlTransition,              // replaces pageCurlEnabled.
+    PSPDFPageFlipTransition               // Flipboard-like; new in PSPDFKit v2.
+};
+
+/// Active scrolling direction. Only relevant for scrolling page transitions.
+typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
+    PSPDFScrollDirectionHorizontal, // default
+    PSPDFScrollDirectionVertical
 };
 
 /// status bar style. (old status will be restored regardless of the style chosen)
@@ -43,7 +52,7 @@ typedef NS_ENUM(NSInteger, PSPDFStatusBarStyleSetting) {
     PSPDFStatusBarIgnore = 0x100      /// causes this class to ignore the statusbar entirely.
 };
 
-typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
+typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
     PSPDFLinkActionNone,         /// Link actions are ignored..
     PSPDFLinkActionAlertView,    /// Link actions open an AlertView.
     PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
@@ -98,19 +107,6 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 - (void)reloadDataAndScrollToPage:(NSUInteger)page;
 
 
-/// @name Thumbnail View
-
-/// View mode: PSPDFViewModeDocument or PSPDFViewModeThumbnails.
-@property(nonatomic, assign) PSPDFViewMode viewMode;
-- (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
-
-/// Change thumbnail size. Default is 170x220.
-@property(nonatomic, assign) CGSize thumbnailSize;
-
-/// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.
-@property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
-
-
 /// @name Class Accessors
 
 /// Return the pageView for a given page. Returns nil if page is not initalized (e.g. page is not visible.)
@@ -163,6 +159,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 /// Animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
+/// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
+@property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
+
 /// Enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Animatable.
 /// There's some more logic involved, e.g. is the default white statusbar not hidden on a HUD change.
 @property(nonatomic, assign, getter=isScrobbleBarEnabled) BOOL scrobbleBarEnabled;
@@ -170,9 +169,18 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 /// Enables/Disables the bottom document site position overlay. Defaults to YES. Animatable. Will be added to the hudView.
 @property(nonatomic, assign, getter=isPositionViewEnabled) BOOL positionViewEnabled;
 
-/// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
-@property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
 
+/// @name Thumbnail View
+
+/// View mode: PSPDFViewModeDocument or PSPDFViewModeThumbnails.
+@property(nonatomic, assign) PSPDFViewMode viewMode;
+- (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
+
+/// Change thumbnail size. Default is 170x220.
+@property(nonatomic, assign) CGSize thumbnailSize;
+
+/// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.
+@property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
 
 /// @name Properties
 
@@ -195,9 +203,6 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 /// NO will perform a generic zoom into the tap area. Defauts to YES.
 @property(nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
 
-/// Pages that are kept in pageScrollView after last visible page. Defaults to 0. Don't set too high, needs lots of memory!
-@property(nonatomic, assign) NSUInteger preloadedPagesPerSide;
-
 /// Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
 @property(nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
 
@@ -211,7 +216,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 
 /// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 /// Note: if modal is set in the link, this property has no effect.
-@property(nonatomic, assign) PSPDFLinkActionSetting linkAction;
+@property(nonatomic, assign) PSPDFLinkAction linkAction;
 
 
 /// @name Toolbar button items
@@ -280,21 +285,29 @@ typedef NS_ENUM(NSInteger, PSPDFLinkActionSetting) {
 /// Thus, one can customize the rotation behavior with animations when set within willAnimate*.
 @property(nonatomic, assign) PSPDFPageMode pageMode;
 
-/// Change scrolling direction. defaults to horizontal scrolling. (PSPDFScrollingHorizontal)
-@property(nonatomic, assign) PSPDFScrolling pageScrolling;
+/**
+    Defines the page transition. Replaces pageCurlEnabled; allows more modes.
+    
+    Note about PSPDFPageCurlTransition:
+    PageCurl needs iOS5 and above and will fall back to default scrolling on iOS4.
+    PageCurl is more memory intensive; you might wanna disable this on an iPad1.
+    (e.g. with using the PSPSDIsCrappyDevice() to check for modern devices)
+
+    If you change the property dynamically depending on the screen orientation, don't use
+    willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
+    else the controller will get in an invalid state.
+*/
+@property(nonatomic, assign) PSPDFPageTransition pageTransition;
+
+/// Change scrolling direction. defaults to horizontal scrolling. (PSPDFScrollDirectionHorizontal)
+/// Only relevant for scrolling page transitions.
+@property(nonatomic, assign) PSPDFScrollDirection pageScrolling;
 
 /// Shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
 @property(nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
 
 /// Allow zooming of small documents to screen width/height. Defaults to YES.
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
-
-/// Enables iBooks-like page curl feature. Works only with iOS5 or later. Falls back to default scrolling on iOS4. Defaults to NO.
-/// Note: doesn't work well with non-equal sized documents. Use scrolling if you have such complex documents.
-/// Note: You might wanna disable this on the iPad1, because this is more memory hungry than classic scrolling.
-/// You can use pageCurlEnabled = !PSPSDIsCrappyDevice(); which will return YES for older devices only.
-/// If you change the property dynamically depending on the screen orientation, don't use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an invalid state.
-@property(nonatomic, assign, getter=isPageCurlEnabled) BOOL pageCurlEnabled;
 
 /// For Left-To-Right documents, this sets the pagecurl to go backwards. Defaults to NO.
 /// Note: doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
