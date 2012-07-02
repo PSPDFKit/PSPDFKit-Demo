@@ -1934,8 +1934,8 @@ static NSOperationQueue *sharedQueue = nil;
 		return;
 	}
 
-	if([[self delegate] respondsToSelector:@selector(requestRedirected:)]){
-		[[self delegate] performSelector:@selector(requestRedirected:) withObject:self];
+	if([self.delegate respondsToSelector:@selector(requestRedirected:)]){
+		[self.delegate performSelector:@selector(requestRedirected:) withObject:self];
 	}
 
 	#if NS_BLOCKS_AVAILABLE
@@ -2647,7 +2647,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 	// If we have a delegate, we'll see if it can handle proxyAuthenticationNeededForRequest:.
 	// Otherwise, we'll try the queue (if this request is part of one) and it will pass the message on to its own delegate
-	id authenticationDelegate = [self delegate];
+	id authenticationDelegate = self.delegate;
 	if (!authenticationDelegate) {
 		authenticationDelegate = [self queue];
 	}
@@ -2674,7 +2674,7 @@ static NSOperationQueue *sharedQueue = nil;
 /* ALWAYS CALLED ON MAIN THREAD! */
 - (void)askDelegateForProxyCredentials
 {
-	id authenticationDelegate = [self delegate];
+	id authenticationDelegate = self.delegate;
 	if (!authenticationDelegate) {
 		authenticationDelegate = [self queue];
 	}
@@ -2698,7 +2698,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 	// If we have a delegate, we'll see if it can handle proxyAuthenticationNeededForRequest:.
 	// Otherwise, we'll try the queue (if this request is part of one) and it will pass the message on to its own delegate
-	id authenticationDelegate = [self delegate];
+	id authenticationDelegate = self.delegate;
 	if (!authenticationDelegate) {
 		authenticationDelegate = [self queue];
 	}
@@ -2724,7 +2724,7 @@ static NSOperationQueue *sharedQueue = nil;
 /* ALWAYS CALLED ON MAIN THREAD! */
 - (void)askDelegateForCredentials
 {
-	id authenticationDelegate = [self delegate];
+	id authenticationDelegate = self.delegate;
 	if (!authenticationDelegate) {
 		authenticationDelegate = [self queue];
 	}
@@ -3210,7 +3210,7 @@ static NSOperationQueue *sharedQueue = nil;
 
 	// Here we perform an initial check to see if either the delegate or the queue wants to be asked about the redirect, because if not we should redirect straight away
 	// We will check again on the main thread later
-	BOOL needToAskDelegateAboutRedirect = (([self delegate] && [[self delegate] respondsToSelector:[self willRedirectSelector]]) || ([self queue] && [[self queue] respondsToSelector:@selector(request:willRedirectToURL:)]));
+	BOOL needToAskDelegateAboutRedirect = ((self.delegate && [self.delegate respondsToSelector:[self willRedirectSelector]]) || ([self queue] && [[self queue] respondsToSelector:@selector(request:willRedirectToURL:)]));
 
 	[[self cancelledLock] unlock];
 
@@ -3307,7 +3307,7 @@ static NSOperationQueue *sharedQueue = nil;
 		}
 		
 		BOOL dataWillBeHandledExternally = NO;
-		if ([[self delegate] respondsToSelector:[self didReceiveDataSelector]]) {
+		if ([self.delegate respondsToSelector:[self didReceiveDataSelector]]) {
 			dataWillBeHandledExternally = YES;
 		}
 		#if NS_BLOCKS_AVAILABLE
@@ -4042,7 +4042,7 @@ static NSOperationQueue *sharedQueue = nil;
 {
 	// Don't forget - this will return a retained copy!
 	ASIHTTPRequest *newRequest = [[[self class] alloc] initWithURL:[self url]];
-	[newRequest setDelegate:[self delegate]];
+	[newRequest setDelegate:self.delegate];
 	[newRequest setRequestMethod:[self requestMethod]];
 	[newRequest setPostBody:[self postBody]];
 	[newRequest setShouldStreamPostDataFromDisk:[self shouldStreamPostDataFromDisk]];
