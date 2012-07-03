@@ -98,9 +98,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor lightGrayColor];
-    
+
+    // Example to test CGDataProvider support.
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:dataProvider];
+    CGDataProviderRelease(dataProvider);
+//    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
