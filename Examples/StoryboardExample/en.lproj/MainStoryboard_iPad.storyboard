@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="hn0-BY-afL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2546" systemVersion="12A256" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="hn0-BY-afL">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1497"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -66,7 +65,9 @@
                     <navigationItem key="navigationItem" id="vbI-Ga-GtN"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="document" value="Samples/DevelopersGuide.pdf"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="pageCurlEnabled" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="pageTransition">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="linkAction">
                             <real key="value" value="3"/>
                         </userDefinedRuntimeAttribute>
@@ -76,17 +77,6 @@
             <point key="canvasLocation" x="445" y="32"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="PSPDFBaseViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSPDFBaseViewController.h"/>
-        </class>
-        <class className="PSPDFViewController" superclassName="PSPDFBaseViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSPDFViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
