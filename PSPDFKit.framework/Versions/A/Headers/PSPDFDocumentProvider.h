@@ -19,11 +19,17 @@
 /// Initalize with NSData. (can be memory or mapped data)
 - (id)initWithData:(NSData *)data document:(PSPDFDocument *)document;
 
+/// Initalize with CGDataProviderRef. (can be used for dynamic decryption)
+- (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
+
 /// Referenced NSURL. If this is set, data is nil.
 @property(nonatomic, strong, readonly) NSURL *fileURL;
 
 /// Referenced NSData. If this is set, fileURL is nil.
 @property(nonatomic, strong, readonly) NSData *data;
+
+/// Referenced dataProvider. (if data is set, or directly)
+@property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
 
 /// Weak-linked parent document.
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;

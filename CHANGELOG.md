@@ -5,7 +5,7 @@ __v2.0.0 - XX/August/2012__
 Note: PSPDFKit v2 is still alpha quality, expect bugs.
 You need at least Xcode 4.4 to compile. (Xcode 4.4/4.5 run both fine on Lion, Mountain Lion is not needed.)
 Xcode 4.4 will be released this month, before the final release of PSPDFKit v2.
-PSPDFKitv2 will be compatible with iOS 4.3 upwards. (NOT 4.2, I plan to drop armv6 support)
+PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 
 *  Text selection! (Includes Copy, Dictionary, Wikipedia support)
 *  Annotations draw support: FreeText, Note, Ink, Shape, Line, Highlight.
@@ -19,6 +19,7 @@ PSPDFKitv2 will be compatible with iOS 4.3 upwards. (NOT 4.2, I plan to drop arm
 *  Even better view reuse. PSPDFPageView is now reused, scrolling is even smoother.
 *  Internal modernization; literals, subscripting, NS_ENUM, UICollectionView usage (if available)
 *  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
+*  PSPDFDocument can now be initialized with a CGDataProviderRef.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - xx/Jun/2012__
