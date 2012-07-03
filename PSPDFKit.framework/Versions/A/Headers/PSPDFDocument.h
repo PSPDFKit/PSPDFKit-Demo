@@ -22,6 +22,9 @@
 /// Initialize PSPDFDocument with data.
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
+/// Initialize PSPDFDocument with a dataProvider.
++ (PSPDFDocument *)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
+
 /// Initialize PSPDFDocument with distinct path and an array of files.
 + (PSPDFDocument *)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
@@ -30,6 +33,7 @@
 
 - (id)init;
 - (id)initWithData:(NSData *)data;
+- (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
 - (id)initWithURL:(NSURL *)URL;
 - (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
 
@@ -65,8 +69,11 @@
 /// nil if the document was initialized with initWithData:
 @property(nonatomic, strong) NSURL *fileURL;
 
-/// PDF data when initialized with initWithData: otherwise nil
+/// PDF data when initialized with initWithData: otherwise nil.
 @property(nonatomic, copy, readonly) NSData *data;
+
+/// PDF dataProvider (can be used to dynamically decrypt a document)
+@property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
 
 /// Document title as shown in the controller.
 /// If this is not set, the framework tries to extract the title from the PDF metadata.

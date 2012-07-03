@@ -121,8 +121,10 @@ typedef void(^PSPDFBasicBlock)(void);
 
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
-#define ps_swap(a,b) { int c = (a); (a) = (b); (b) = c; }
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
+
+#define PSPDF_KEYPATH(object, property) ((void)(NO && ((void)object.property, NO)), @#property)
+#define PSPDF_KEYPATH_SELF(property) PSPDF_KEYPATH(self, property)
 
 // log helper
 #import "PSPDFCache.h"
@@ -185,6 +187,10 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #define PSPDF_IF_SIMULATOR(...)
 #define PSPDF_IF_NOT_SIMULATOR(...) { __VA_ARGS__ }
 #endif
+
+@interface NSArray (PSPDFArrayAccess)
+- (id)ps_firstObject;
+@end
 
 // Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html
 #define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name @end \

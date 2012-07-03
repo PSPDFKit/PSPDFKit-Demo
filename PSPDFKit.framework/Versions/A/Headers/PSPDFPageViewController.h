@@ -6,25 +6,15 @@
 //
 
 #import "PSPDFKitGlobal.h"
-
-@class PSPDFViewController, PSPDFPagedScrollView, PSPDFSinglePageViewController;
+#import "PSPDFTransitionViewController.h"
 
 /// Implements the iOS5-only pageCurl-style famously presented in iBooks.
-/// Note: doesn't work well with non-equal sized documents.
-@interface PSPDFPageViewController : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+/// Note: Due to the nature of the animation, it doesn't look well with non-equal sized documents.
+@interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionViewControllerDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-/// Create page controller using the master pdf controller.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+- (id)initWithTransitionController:(PSPDFTransitionViewController *)transitionController;
 
-/// Associated pdfController class (hosts the UIPageViewController).
-@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
-
-/// Associated scrollview
-@property(nonatomic, ps_weak) PSPDFPagedScrollView *scrollView;
-
-/// Set new page.
-@property(nonatomic, assign) NSUInteger page;
-- (void)setPage:(NSUInteger)page animated:(BOOL)animated;
+@property(nonatomic, ps_weak) PSPDFTransitionViewController *transitionController;
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
 @property(nonatomic, assign) BOOL useSolidBackground;
