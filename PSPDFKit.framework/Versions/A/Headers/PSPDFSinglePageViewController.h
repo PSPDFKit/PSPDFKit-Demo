@@ -10,7 +10,7 @@
 
 @class PSPDFViewController, PSPDFScrollView, PSPDFPageView, PSPDFSinglePageViewController;
 
-/// Companion protocol to show when the controller will be deallocated.
+/// Delegate protocol to show when the controller will be deallocated.
 @protocol PSPDFSinglePageViewControllerDelegate <NSObject>
 
 - (void)pspdfSinglePageViewControllerReadyForReuse:(PSPDFSinglePageViewController *)singlePageViewController;

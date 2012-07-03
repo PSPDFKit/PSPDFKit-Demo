@@ -14,6 +14,15 @@
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
 
+/// Page Transition. Can be scrolling or something more fancy.
+typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
+    PSPDFPageScrollPerPageTransition,     // default mode for iOS4. Has one scrollView per page.
+
+    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView.
+    PSPDFPageCurlTransition,              // replaces pageCurlEnabled.
+    PSPDFPageFlipTransition               // Flipboard-like; new in PSPDFKit v2. EXPERIMENTAL!
+};
+
 /// Current active view mode.
 typedef NS_ENUM(NSInteger, PSPDFViewMode) {
     PSPDFViewModeDocument,
@@ -25,15 +34,6 @@ typedef NS_ENUM(NSInteger, PSPDFPageMode) {
     PSPDFPageModeSingle,   // Default on iPhone.
     PSPDFPageModeDouble,
     PSPDFPageModeAutomatic // single in portrait, double in landscape if the document's height > width. Default on iPad.
-};
-
-/// Page Transition. Can be scrolling or something more fancy.
-typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
-    PSPDFPageScrollPerPageTransition,     // default mode for iOS4. Has one scrollView per page.
-
-    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView.
-    PSPDFPageCurlTransition,              // replaces pageCurlEnabled.
-    PSPDFPageFlipTransition               // Flipboard-like; new in PSPDFKit v2.
 };
 
 /// Active scrolling direction. Only relevant for scrolling page transitions.
@@ -61,7 +61,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIScrollViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization
 
@@ -235,7 +235,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
  
 */
 
-/// Default button in leftToolbarButtonItems if view is presented modally.
+/// Default button in leftBarButtonItems if view is presented modally.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *closeButtonItem;
 
 // Default button items included by default in rightToolbarButtonItems
@@ -357,8 +357,8 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 @property(nonatomic, strong) NSDictionary *overrideClassNames;
 
 /// If embedded via iOS5 viewController containment, set this to true to allow this controller
-/// to access the parent navigationBar to add custom buttons.
-/// Has no effect if toolbarEnabled is false or there's no parentViewController.
+/// to access the parent navigationBar/navigationController to add custom buttons.
+/// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.
 @property(nonatomic, assign) BOOL useParentNavigationBar;
 
 /// returns the topmost active viewcontroller. override if you have a custom setup of viewControllers
