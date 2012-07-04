@@ -287,7 +287,7 @@
 		78836E5F13EAD25B0043F631 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 78836E6213EAD25B0043F631 /* Build configuration list for PBXProject "EmbeddedExample" */;
