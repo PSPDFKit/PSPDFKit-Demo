@@ -178,7 +178,7 @@
 		78E6325813DECAF600F3392F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 78E6325B13DECAF600F3392F /* Build configuration list for PBXProject "MinimalExample-ARC" */;
