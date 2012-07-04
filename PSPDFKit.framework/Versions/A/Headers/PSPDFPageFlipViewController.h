@@ -7,12 +7,10 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFFlipViewController.h"
-#import "PSPDFTransitionViewController.h"
+#import "PSPDFTransitionHelper.h"
 
-@interface PSPDFPageFlipViewController : PSPDFFlipViewController<PSPDFTransitionViewControllerDelegate, PSPDFFlipViewControllerDelegate, PSPDFFlipViewControllerDataSource>
+@interface PSPDFPageFlipViewController : PSPDFFlipViewController<PSPDFTransitionProtocol>
 
-- (id)initWithTransitionController:(PSPDFTransitionViewController *)transitionController;
-
-@property(nonatomic, ps_weak) PSPDFTransitionViewController *transitionController;
+- (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 @end

@@ -7,17 +7,16 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFScrollView.h"
-
-@class PSPDFTransitionViewController;
+#import "PSPDFTransitionProtocol.h"
 
 /// ScrollView used in pageCurl mode. iOS5 only.
 @interface PSPDFPagedScrollView : PSPDFScrollView
 
-/// Initializes the PagedScrollView with a transitionController.
-- (id)initWithTransitionViewController:(PSPDFTransitionViewController *)pageController;
+/// Initializes the PagedScrollView with a viewController.
+- (id)initWithTransitionViewController:(UIViewController<PSPDFTransitionProtocol> *)viewController;
 
 /// References the pageController
 // atomic, might be accessed from a background thread during deallocation
-@property(strong, readonly) PSPDFTransitionViewController *transitionController;
+@property(strong, readonly) UIViewController<PSPDFTransitionProtocol> *contentController;
 
 @end
