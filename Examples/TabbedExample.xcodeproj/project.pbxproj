@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38F8154B3E4F00507A74 /* UIKit.framework */; };
+		781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38F8154B3E4F00507A74 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		781A38FB154B3E4F00507A74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38FA154B3E4F00507A74 /* Foundation.framework */; };
 		781A38FD154B3E4F00507A74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 781A38FC154B3E4F00507A74 /* CoreGraphics.framework */; };
 		781A3903154B3E4F00507A74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 781A3901154B3E4F00507A74 /* InfoPlist.strings */; };
@@ -64,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */,
 				7832DB401592BCD200360F42 /* libz.dylib in Frameworks */,
 				781A393C154B3EAB00507A74 /* QuartzCore.framework in Frameworks */,
 				781A393A154B3EA700507A74 /* ImageIO.framework in Frameworks */,
@@ -72,7 +73,6 @@
 				781A3934154B3E9D00507A74 /* AVFoundation.framework in Frameworks */,
 				781A3932154B3E9800507A74 /* MessageUI.framework in Frameworks */,
 				781A3930154B3E9500507A74 /* CoreText.framework in Frameworks */,
-				781A38F9154B3E4F00507A74 /* UIKit.framework in Frameworks */,
 				781A38FB154B3E4F00507A74 /* Foundation.framework in Frameworks */,
 				781A38FD154B3E4F00507A74 /* CoreGraphics.framework in Frameworks */,
 				78E5F655154F33620084C0F1 /* PSPDFKit.framework in Frameworks */,
