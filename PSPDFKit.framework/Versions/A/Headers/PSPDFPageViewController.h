@@ -6,15 +6,13 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFTransitionViewController.h"
+#import "PSPDFTransitionHelper.h"
 
 /// Implements the iOS5-only pageCurl-style famously presented in iBooks.
 /// Note: Due to the nature of the animation, it doesn't look well with non-equal sized documents.
-@interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionViewControllerDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionProtocol, PSPDFTransitionHelperDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-- (id)initWithTransitionController:(PSPDFTransitionViewController *)transitionController;
-
-@property(nonatomic, ps_weak) PSPDFTransitionViewController *transitionController;
+- (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
 @property(nonatomic, assign) BOOL useSolidBackground;

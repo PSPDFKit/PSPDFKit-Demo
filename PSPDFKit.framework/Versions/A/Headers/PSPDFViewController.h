@@ -390,6 +390,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 // called from scrollviews
 - (void)showControls;
 - (void)hideControls;
+- (void)hideControlsAndPageElements; // hide additional elements like page selection
 - (void)toggleControls;
 - (NSUInteger)landscapePage:(NSUInteger)aPage;
 
