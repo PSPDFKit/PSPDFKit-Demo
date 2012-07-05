@@ -259,6 +259,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Send current pdf via email. Only works with single-file/data pdf's.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *emailButtonItem;
 
+/// Show the annotation menu.
+@property(nonatomic, strong, readonly) PSPDFBarButtonItem *annotationButtonItem;
+
 /// Bar button items displayed at the left of the toolbar
 /// Must be UIBarButtonItem or PSPDFBarButtonItem instances
 /// Defaults to (closeButtonItem) if view is presented modally.
@@ -266,7 +269,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// Bar button items displayed at the right of the toolbar
 /// Must be UIBarButtonItem or PSPDFBarButtonItem instances
-/// Defaults to [NSArray arrayWithObjects:self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
+/// Defaults to @[self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 @property(nonatomic, strong) NSArray *rightBarButtonItems;
 
 /// Displayed at the left of the rightBarButtonItems inside an action sheet
