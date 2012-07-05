@@ -60,6 +60,12 @@ extern void PSPDFRGBtoHSB(float r, float g, float b, float *h, float *s, float *
 /// Convert from HSB to RGB colorspace
 extern void PSPDFHSBtoRGB(float *r, float *g, float *b, float h, float s, float v);
 
+/// Convert points to a spline path.
+extern UIBezierPath *PSPDFSplinePathFromPoints(CGPoint p1, CGPoint p2, CGPoint p3, CGPoint p4, int divisions);
+
+/// Convert point array to a bezier path.
+UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray, CGFloat lineWidth);
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 extern inline NSString *PSPDFCopyStringFromPDFDict(NSString *key, CGPDFDictionaryRef pdfDict);
