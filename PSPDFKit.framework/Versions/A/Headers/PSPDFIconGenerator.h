@@ -15,7 +15,8 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
     PSPDFIconTypeBackArrowSmall,
     PSPDFIconTypeForwardArrow,
     PSPDFIconTypePrint,
-    PSPDFIconTypeEmail
+    PSPDFIconTypeEmail,
+    PSPDFIconTypeAnnotations
 };
 
 /// Generates various Icons on the fly and caches them for later use.

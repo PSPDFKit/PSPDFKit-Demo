@@ -17,5 +17,8 @@
 /// Searches for the "C" entry in the CGPDFDictionaryRef and calls initWithCGPDFArray.
 - (id)initWithCGPDFDictionary:(CGPDFDictionaryRef)dictionaryRef;
 
+- (UIColor *)pspdf_colorByMultiplyingByRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
+
+- (UIColor *)pspdf_colorByMultiplyingBy:(CGFloat)value;
 
 @end
