@@ -22,6 +22,8 @@
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
     _pdfController.leftBarButtonItems = @[saveButton];
+
+    _pdfController.rightBarButtonItems = @[_pdfController.annotationButtonItem, _pdfController.searchButtonItem, _pdfController.outlineButtonItem, _pdfController.viewModeButtonItem];
     
     // create window and set as rootViewController
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
