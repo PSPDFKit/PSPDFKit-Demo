@@ -8,6 +8,7 @@ __v1.10.4 - x/Jul/2012__
 *  Another possible bugfix for UIPageViewController rotation changes.
 *  Don't change navigationController if embedded into a parentViewController on default. (See useParentNavigationBar).
 *  Allow to subclass PSPDFPageView via the overrideClassNames property in PSPDFViewController.
+*  Allow parsing of PDF outlines with party invalid information.
 *  Fixes a case where some link annotations were not correctly parsed.
 
 __v1.10.3 - 22/Jun/2012__
