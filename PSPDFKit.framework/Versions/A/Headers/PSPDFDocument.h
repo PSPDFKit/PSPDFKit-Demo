@@ -80,6 +80,13 @@
 /// If there's no metadata, the fileName is used. ".pdf" endings will be removed either way.
 @property(nonatomic, copy) NSString *title;
 
+/// Access the PDF metadata of the first PDF document.
+/// A PDF might not have any metadata at all.
+/// See kPSPDFMetadataKeyTitle and the following defines for keys that might be set.
+/// It's possible that there are keys that don't have a PSPDFKit define.
+/// Loop the dictionary to find them all.
+@property(nonatomic, strong, readonly) NSDictionary *metadata;
+
 /// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
 @property(nonatomic, copy) NSString *uid;
 
@@ -211,12 +218,12 @@
 
 /// Outline extraction class for current document.
 /// Note: Only returns the parser for the first PDF file.
-@property(nonatomic, strong) PSPDFOutlineParser *outlineParser;
+@property(nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
 
 /// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
 /// Note: Only returns the parser for the first PDF file.
-@property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
+@property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
 
 /// Page labels (NSString) for the current document.
 /// Might be nil if PageLabels isn't set in the PDF.
@@ -251,6 +258,10 @@ extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
 
 @interface PSPDFDocument (PSPDFSubclassing)
 
+/// Set to a different class to use PSPDFDocumentProvider subclasses.
+/// Do not set anything different than PSPDFDocumentProvider or a subclass of it.
+@property(atomic, strong) Class documentProviderClass;
+
 /// Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
 - (NSURL *)thumbnailPathForPage:(NSUInteger)page;
 
@@ -263,3 +274,15 @@ extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
 - (UIColor *)backgroundColorForPage:(NSUInteger)page;
 
 @end
+
+// metadata keys.
+extern NSString *const kPSPDFMetadataKeyTitle;
+extern NSString *const kPSPDFMetadataKeyAuthor;
+extern NSString *const kPSPDFMetadataKeySubject;
+extern NSString *const kPSPDFMetadataKeySubject;
+extern NSString *const kPSPDFMetadataKeyKeywords;
+extern NSString *const kPSPDFMetadataKeyCreator;
+extern NSString *const kPSPDFMetadataKeyProducer;
+extern NSString *const kPSPDFMetadataKeyCreationDate;
+extern NSString *const kPSPDFMetadataKeyModDate;
+extern NSString *const kPSPDFMetadataKeyTrapped;
