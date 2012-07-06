@@ -97,16 +97,20 @@
 @property(nonatomic, copy, readonly) NSString *title;
 
 /// Outline extraction class for current PDF.
-@property(nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
+/// Lazy initialized. Can be subclassed or set externally.
+@property(nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
 /// PDF parser that lists the PDF XRef structure and writes annotations.
-@property(nonatomic, strong, readonly) PSPDFDocumentParser *documentParser;
+/// Lazy initialized. Can be subclassed or set externally.
+@property(nonatomic, strong) PSPDFDocumentParser *documentParser;
 
 /// Link annotation parser class for current PDF.
-@property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
+/// Lazy initialized. Can be subclassed or set externally.
+@property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
 
 /// Page labels found in the current PDF.
-@property(nonatomic, strong, readonly) PSPDFLabelParser *labelParser;
+/// Lazy initialized. Can be subclassed or set externally.
+@property(nonatomic, strong) PSPDFLabelParser *labelParser;
 
 @end
 
