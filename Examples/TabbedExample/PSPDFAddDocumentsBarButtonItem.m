@@ -35,7 +35,7 @@
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)PDFDocumentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
-    PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfViewController.parentViewController;
+    PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
 
     // add new document, and set as current
     [tabbedViewController addDocuments:[NSArray arrayWithObject:document] atIndex:NSUIntegerMax animated:YES];
