@@ -206,6 +206,16 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
 @property(nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
 
+/// Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
+/// This is useful if you want to invoke a "drawing mode". (e.g. Ink Annotation drawing)
+/// This also blocks programatically calls to scrollToPage.
+/// Note: This might be disabled after a reloadData. 
+@property(nonatomic, assign, getter=isViewLockEnabled) BOOL viewLockEnabled;
+
+/// Locks the current set rotation. Defaults to NO.
+/// If set to false, it invokes a attemptRotationToDeviceOrientation (iOS5 and above)
+@property(nonatomic, assign, getter=isRotationLockEnabled) BOOL rotationLockEnabled;
+
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
@@ -227,12 +237,10 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
  You can now build your own toolbar with much less hassle.
  For example, to add those features under the "action" icon as a menu, use this:
- self.additionalRightBarButtonItems = [NSArray arrayWithObjects:self.printButtonItem, self.openInButtonItem, self.emailButtonItem, nil];
+ self.additionalRightBarButtonItems = @[self.printButtonItem, self.openInButtonItem, self.emailButtonItem];
  
  You can change the button with using the subclassing system: (e.g. if you are looking for toolbarBackButton)
- overrideClassNames = [NSDictionary dictionaryWithObject:[MyCustomButtonSubclass Class]
-                                                  forKey:[PSPDFCloseBarButtonItem class]]
- 
+ overrideClassNames = @[[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]]; 
 */
 
 /// Default button in leftBarButtonItems if view is presented modally.

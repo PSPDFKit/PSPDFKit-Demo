@@ -66,7 +66,7 @@ extern UIBezierPath *PSPDFSplinePathFromPoints(CGPoint p1, CGPoint p2, CGPoint p
 /// Convert point array to a bezier path.
 UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray, CGFloat lineWidth);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 
 extern inline NSString *PSPDFCopyStringFromPDFDict(NSString *key, CGPDFDictionaryRef pdfDict);
 extern inline NSString *PSPDFCopyNameFromPDFDict(NSString *key, CGPDFDictionaryRef pdfDict);

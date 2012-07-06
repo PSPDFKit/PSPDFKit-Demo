@@ -71,12 +71,18 @@ extern NSString *kPSPDFHidePageHUDElements;
 @property(nonatomic, strong, readonly) UIImageView *renderView;
 
 /// Size used for the zoomed-in part. Should always be bigger than the screen.
+/// This is set to a good default already. You shound't need to touch this.
 @property(nonatomic, assign) CGSize renderSize;
 
 /// Temporarily suspend rendering updates to the renderView. 
 @property(nonatomic, assign) BOOL suspendUpdate;
 
-/// Access the selectionView.
+/// Current CGRect of the part of the page that's visible. Screen coordinate space.
+/// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
+/// this will show the TARGET rect, not the one that's currently animating.
+@property(nonatomic, assign, readonly) CGRect visibleRect;
+
+/// Access the selectionView (handles text selection).
 @property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
 
 /// Shortcut to access the textParser corresponding to the current page.
@@ -106,7 +112,7 @@ extern NSString *kPSPDFHidePageHUDElements;
 // Redraw the renderView
 - (void)updateRenderView;
 
-// Redraw renderView and contentView
+// Redraw renderView and contentView.
 - (void)updateView;
 
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
