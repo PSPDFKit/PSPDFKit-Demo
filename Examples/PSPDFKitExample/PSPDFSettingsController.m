@@ -55,6 +55,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[PSString(isScrollOnTapPageEndEnabled)] = @YES;
         _settings[PSString(viewModeButtonItem)] = @YES;
         _settings[PSString(searchButtonItem)] = @YES;
+        _settings[PSString(annotationButtonItem)] = @YES;
         _settings[PSString(outlineButtonItem)] = @YES;
         _settings[PSString(printButtonItem)] = @YES;
         _settings[PSString(openInButtonItem)] = @YES;
@@ -85,7 +86,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
         @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitWidth"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
-        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"viewModeButtonItem")],
+        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
@@ -154,7 +155,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 2: _settings[PSString(printButtonItem)] = value; break;
                 case 3: _settings[PSString(openInButtonItem)] = value; break;
                 case 4: _settings[PSString(emailButtonItem)] = value; break;
-                case 5: _settings[PSString(viewModeButtonItem)] = value; break;
+                case 5: _settings[PSString(annotationButtonItem)] = value; break;
+                case 6: _settings[PSString(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
         default: break;
@@ -218,7 +220,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 2: cellSwitch.on = [_settings[PSString(printButtonItem)] boolValue]; break;
                 case 3: cellSwitch.on = [_settings[PSString(openInButtonItem)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[PSString(emailButtonItem)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[PSString(viewModeButtonItem)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[PSString(annotationButtonItem)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[PSString(viewModeButtonItem)] boolValue]; break;
                 default: break;
             }break;
         }break;
