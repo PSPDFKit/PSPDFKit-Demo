@@ -60,6 +60,9 @@
     self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
 
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
+    if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.annotationButtonItem];
+    }
     if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.outlineButtonItem];
     }
