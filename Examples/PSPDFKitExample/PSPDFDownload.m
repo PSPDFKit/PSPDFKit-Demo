@@ -54,7 +54,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<PSPDFDownload: %@ progress:%f", self.magazine.title, self.downloadProgress];
+    return [NSString stringWithFormat:@"<%@: %@ progress:%f", NSStringFromClass([self class]), self.magazine.title, self.downloadProgress];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
