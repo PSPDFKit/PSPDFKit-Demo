@@ -17,8 +17,8 @@
 - (UIToolbar *)toolbar {
     if (!toolbar_) {
         toolbar_ = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        toolbar_.barStyle = self.pdfViewController.navigationController.navigationBar.barStyle;
-        toolbar_.tintColor = self.pdfViewController.tintColor;
+        toolbar_.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
+        toolbar_.tintColor = self.pdfController.tintColor;
         [self updatePlayButton];
     }
     return toolbar_;
@@ -40,7 +40,7 @@
     
     if (!autoplay_) {
         autoplay_ = YES;
-        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfViewController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     }else {
         autoplay_ = NO;
