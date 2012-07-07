@@ -50,7 +50,7 @@
 }
 
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"<PSPDFMagazineFolder %@, %d magazines>", self.title, [self.magazines count]];
+    NSString *description = [NSString stringWithFormat:@"<%@ %@, %d magazines>", NSStringFromClass([self class]), self.title, [self.magazines count]];
     return description;
 }
 
