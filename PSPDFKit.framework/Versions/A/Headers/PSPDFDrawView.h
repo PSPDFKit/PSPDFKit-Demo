@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface PSPDFDrawView : UIView
 
