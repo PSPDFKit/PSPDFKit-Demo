@@ -1,15 +1,11 @@
 //
-//  IntelligentSplitViewController.h
-//  From TexLege by Gregory S. Combs
+//  SplitMasterViewController.m
+//  EmbeddedExample
 //
-//  Released under the Creative Commons Attribution 3.0 Unported License
-//  Please see the included license page for more information.
-//
-//  In a nutshell, you can use this, just attribute this class to me in your thank you notes or about box.
+//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Original code by Gregory S. Combs, Creative Commons Attribution 3.0 Unported License.
 //
 
-@interface IntelligentSplitViewController : UISplitViewController {
-
-}
+@interface IntelligentSplitViewController : UISplitViewController
 
 @end
