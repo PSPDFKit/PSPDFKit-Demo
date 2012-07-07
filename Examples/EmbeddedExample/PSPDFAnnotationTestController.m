@@ -36,7 +36,7 @@
         self.leftBarButtonItems = nil; // hide close button
         
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
-        self.rightBarButtonItems = [NSArray arrayWithObjects:playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem, nil];
+        self.rightBarButtonItems = @[playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
     }
     return self;
 }

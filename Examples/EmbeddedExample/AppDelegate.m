@@ -56,10 +56,10 @@
         UINavigationController *hostNavVC = [[UINavigationController alloc] initWithRootViewController:hostVC];
         tableVC.masterVC = hostVC;
         splitVC.delegate = hostVC;
-        splitVC.viewControllers = [NSArray arrayWithObjects:tableNavVC, hostNavVC, nil];
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, splitVC, videoNavC, nil] animated:NO];
+        splitVC.viewControllers = @[tableNavVC, hostNavVC];
+        [self.tabBarController setViewControllers:@[firstNavVC, secondVC, splitVC, videoNavC] animated:NO];
     }else { 
-        [self.tabBarController setViewControllers:[NSArray arrayWithObjects:firstNavVC, secondVC, videoNavC, nil] animated:NO];
+        [self.tabBarController setViewControllers:@[firstNavVC, secondVC, videoNavC] animated:NO];
     }
     
     [self.window makeKeyAndVisible];

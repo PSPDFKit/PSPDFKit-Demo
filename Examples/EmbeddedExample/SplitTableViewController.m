@@ -156,7 +156,7 @@
         for (PSPDFDocument *aDocument in self.content) {
             if (document == aDocument) {
                 NSUInteger index = [content_ indexOfObject:document];
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                 break;
             }
         }
