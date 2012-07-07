@@ -10,6 +10,7 @@
 "Cancel" = "Abbrechen";
 "Open" = "Öffnen";
 "Untitled" = "Unbenannt";
+"File Not Found" = "Datei nicht gefunden";
 
 // toolbar
 "Outline" = "Outline";

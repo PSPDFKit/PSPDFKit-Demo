@@ -10,6 +10,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFTextSearch.h"
 #import "PSPDFPasswordView.h"
+#import "PSPDFOutlineViewController.h"
 
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
@@ -61,7 +62,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization
 

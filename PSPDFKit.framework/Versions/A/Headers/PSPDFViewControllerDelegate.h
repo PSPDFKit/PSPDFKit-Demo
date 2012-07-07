@@ -18,6 +18,10 @@
 
 /* global document handling */
 
+/// Allow/disallow document setting.
+/// Can be useful if you e.g. want to block the opening of a different document reference via a outline entry.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSetDocument:(PSPDFDocument *)document;
+
 /// time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;
 
@@ -43,6 +47,10 @@
 
 /// will be called after zoom level has been changed, either programatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
+
+/// Return a PSPDFDocument for a relative path.
+/// If this is unimplemented, we try to find the PDF ourself with using the current document's basePath.
+- (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
 /// if user tapped within page bounds, this will notify you.
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
