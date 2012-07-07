@@ -11,7 +11,7 @@
 @interface PSPDFOutlineElement : NSObject <NSCopying, NSCoding>
 
 /// Init with title, page, child elements and deepness level.
-- (id)initWithTitle:(NSString *)title page:(NSUInteger)page children:(NSArray *)children level:(NSUInteger)level;
+- (id)initWithTitle:(NSString *)title page:(NSUInteger)page relativePath:(NSString *)relativePath children:(NSArray *)children level:(NSUInteger)level;
 
 /// Returns all elements + flattened subelements
 - (NSArray *)flattenedChildren;
@@ -21,6 +21,9 @@
 
 /// Page reference.
 @property(nonatomic, assign) NSUInteger page;
+
+/// Set if outline to a different PDF document. Path is relative to current document.
+@property(nonatomic, copy) NSString *relativePath;
 
 /// Child elements.
 @property(nonatomic, strong, readonly) NSArray *children;

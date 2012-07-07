@@ -7,15 +7,24 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument, PSPDFViewController, PSPDFOutlineElement;
+@class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement;
 
-/// Outline (Table of Contents) parser.
+/// Delegate for the PSPDFOutlineViewController.
+@protocol PSPDFOutlineViewControllerDelegate <NSObject>
+
+/// Called when we tapped on a cell in the outlinController.
+- (void)outlineController:(PSPDFOutlineViewController *)outlineController didTapAtElement:(PSPDFOutlineElement *)outlineElement;
+
+@end
+
+/// Outline (Table of Contents) view conroller.
 @interface PSPDFOutlineViewController : UITableViewController
 
-/// initializes outline parser with document and pdfController. There is only one outline per document.
-- (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
+/// Designated initializer.
+- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
 
-/// Array of PSPDFOutlineElements
-@property(nonatomic, strong) PSPDFOutlineElement *outline;
+@property(nonatomic, ps_weak) id<PSPDFOutlineViewControllerDelegate> delegate;
+
+@property(nonatomic, ps_weak) PSPDFDocument *document;
 
 @end

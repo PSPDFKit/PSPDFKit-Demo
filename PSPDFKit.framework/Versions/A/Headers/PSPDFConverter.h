@@ -68,8 +68,8 @@ UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray, CGFloat lineWidth);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-extern inline NSString *PSPDFCopyStringFromPDFDict(NSString *key, CGPDFDictionaryRef pdfDict);
-extern inline NSString *PSPDFCopyNameFromPDFDict(NSString *key, CGPDFDictionaryRef pdfDict);
+extern inline NSString *PSPDFCopyStringFromPDFDict(CGPDFDictionaryRef pdfDict, NSString *key);
+extern inline NSString *PSPDFCopyNameFromPDFDict(CGPDFDictionaryRef pdfDict, NSString *key);
 
 /// Convert a single pdf object to the corresponding CoreFoundation-object.
 extern inline id PSPDFCopyPDFObject(CGPDFObjectRef objectRef);
