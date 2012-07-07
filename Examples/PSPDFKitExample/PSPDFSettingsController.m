@@ -43,24 +43,24 @@ __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
         _settings[PSString(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[PSString(isFittingWidth)] = PSIsIpad() ? @NO : @YES;
+        _settings[PSString(isFittingWidth)] = PSIsIpad() ? @(NO) : @(YES);
         _settings[PSString(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[PSString(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
-        _settings[PSString(isScrobbleBarEnabled)] = @YES;
-        _settings[PSString(isZoomingSmallDocumentsEnabled)] = @YES;
-        _settings[PSString(isPositionViewEnabled)] = @YES;
-        _settings[PSString(isScrobbleBarEnabled)] = @YES;
-        _settings[PSString(isTextSelectionEnabled)] = @YES;
-        _settings[PSString(isSmartZoomEnabled)] = @YES;
-        _settings[PSString(isScrollOnTapPageEndEnabled)] = @YES;
-        _settings[PSString(viewModeButtonItem)] = @YES;
-        _settings[PSString(searchButtonItem)] = @YES;
-        _settings[PSString(annotationButtonItem)] = @YES;
-        _settings[PSString(outlineButtonItem)] = @YES;
-        _settings[PSString(printButtonItem)] = @YES;
-        _settings[PSString(openInButtonItem)] = @YES;
-        _settings[PSString(emailButtonItem)] = @YES;
-        _settings[PSString(viewModeButtonItem)] = @YES;
+        _settings[PSString(isScrobbleBarEnabled)] = @(YES);
+        _settings[PSString(isZoomingSmallDocumentsEnabled)] = @(YES);
+        _settings[PSString(isPositionViewEnabled)] = @(YES);
+        _settings[PSString(isScrobbleBarEnabled)] = @(YES);
+        _settings[PSString(isTextSelectionEnabled)] = @(YES);
+        _settings[PSString(isSmartZoomEnabled)] = @(YES);
+        _settings[PSString(isScrollOnTapPageEndEnabled)] = @(YES);
+        _settings[PSString(viewModeButtonItem)] = @(YES);
+        _settings[PSString(searchButtonItem)] = @(YES);
+        _settings[PSString(annotationButtonItem)] = @(YES);
+        _settings[PSString(outlineButtonItem)] = @(YES);
+        _settings[PSString(printButtonItem)] = @(YES);
+        _settings[PSString(openInButtonItem)] = @(YES);
+        _settings[PSString(emailButtonItem)] = @(YES);
+        _settings[PSString(viewModeButtonItem)] = @(YES);
     }
 }
 
@@ -190,7 +190,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
-            PSPDFScrollDirection scrollDirection = [_settings[PSString(scrollDirection)] integerValue];
+            PSPDFScrollDirection scrollDirection = [_settings[PSString(pageScrolling)] integerValue];
             cell.accessoryType = (indexPath.row == scrollDirection) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageModeSettings: {
@@ -244,7 +244,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: _settings[PSString(pageTransition)] = @(indexPath.row); break;
-        case PSPDFScrollDirectionSettings: _settings[PSString(scrollDirection)] = @(indexPath.row); break;
+        case PSPDFScrollDirectionSettings: _settings[PSString(pageScrolling)] = @(indexPath.row); break;
         case PSPDFPageModeSettings: _settings[PSString(pageMode)] = @(indexPath.row); break;
         case PSPDFCoverSettings: _settings[PSString(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
         case PSPDFLinkActionSettings: _settings[PSString(linkAction)] = @(indexPath.row); break;
