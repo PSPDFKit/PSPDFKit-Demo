@@ -2,14 +2,10 @@
 //  SplitMasterViewController.h
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/22/11.
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-@interface SplitMasterViewController : UIViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate> {
-    PSPDFViewController *_pdfController;
-    UIPopoverController *masterPopoverController_;
-}
+@interface SplitMasterViewController : PSPDFViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate>
 
 - (void)displayDocument:(PSPDFDocument *)document;
 

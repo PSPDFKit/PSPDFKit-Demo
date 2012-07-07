@@ -2,16 +2,12 @@
 //  SplitMasterViewController.m
 //  EmbeddedExample
 //
-//  Created by Peter Steinberger on 8/22/11.
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #import "SplitMasterViewController.h"
 
-#define kPSPDFReusePDFViewController YES
-
-@interface SplitMasterViewController() 
-@property(nonatomic, strong) PSPDFViewController *pdfController;
+@interface SplitMasterViewController()
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @end
 
@@ -20,75 +16,19 @@
 // this technique is used to test fast creation/destroying of the viewController
 @implementation SplitMasterViewController
 
-@synthesize pdfController = _pdfController;
-@synthesize masterPopoverController = masterPopoverController_;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)createPdfController {
-    self.pdfController.delegate = nil;
-    self.pdfController = [[PSPDFViewController alloc] init];
-    self.pdfController.delegate = self;
-    self.pdfController.pageTransition = PSPDFPageCurlTransition;
-    
-    _pdfController.view.frame = self.view.bounds;
-    [[_pdfController view] setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    //[_pdfController setPageMode:PSPDFPageModeSingle];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)init {
     if ((self = [super init])) {
-        self.title = @"Embedded PSPDFViewController";
+        self.delegate = self;
+        self.leftBarButtonItems = @[];
+        self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
     }
     return self;
 }
 
-- (void)dealloc {
-    _pdfController.delegate = nil;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIView
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self createPdfController];
-
-    if (self.pdfController) {
-        [self.view addSubview:self.pdfController.view];
-    }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [self.pdfController viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    [self.pdfController viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    [self.pdfController viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-    [self.pdfController viewDidDisappear:animated];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
 - (void)displayDocument:(PSPDFDocument *)document; {
@@ -98,28 +38,11 @@
         [self.masterPopoverController dismissPopoverAnimated:YES];
     } 
     
-    // if reusing is active (advised), create controller only once
-    if (kPSPDFReusePDFViewController) {
-        if (!self.pdfController) {
-            [self createPdfController];
-        }
-    }else {
-    
-    // if controller is already displayed, destroy it first
-    if (self.pdfController) {
-        [_pdfController viewWillDisappear:NO];
-        [_pdfController.view removeFromSuperview];
-        [_pdfController viewDidAppear:NO];
-    }
-    
-        [self createPdfController];
-    }
-    
     // anyway, set document
-    self.pdfController.document = document;
+    self.document = document;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
@@ -134,7 +57,7 @@
     self.masterPopoverController = nil;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
@@ -143,7 +66,7 @@
         self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];    
     }else {
         self.title = @"No document loaded.";
-        [self.pdfController setHUDVisible:NO animated:NO]; // ensure hud is disabled if no document is loaded.
+        [self setHUDVisible:NO animated:NO]; // ensure hud is disabled if no document is loaded.
     }
 }
 
