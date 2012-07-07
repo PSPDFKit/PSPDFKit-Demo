@@ -32,7 +32,7 @@
     UIBarButtonSystemItem systemItem = autoplay_ ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:self action:@selector(playPauseAction:)];
-    [self.toolbar setItems:[NSArray arrayWithObjects:flexibleSpace, barButtonItem, flexibleSpace, nil] animated:YES];
+    [self.toolbar setItems:@[flexibleSpace, barButtonItem, flexibleSpace] animated:YES];
 }
 
 - (void)playPauseAction:(id)sender {

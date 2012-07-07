@@ -31,7 +31,7 @@
         self.statusBarStyleSetting = PSPDFStatusBarInherit;
         
         // add custom controls to our toolbar
-        customViewModeSegment_ = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @""), nil]];
+        customViewModeSegment_ = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
         customViewModeSegment_.selectedSegmentIndex = 0;
         customViewModeSegment_.segmentedControlStyle = UISegmentedControlStyleBar;
         [customViewModeSegment_ addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
@@ -40,7 +40,7 @@
 
         // rightBarButtonItems is iOS5 only
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
-            self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, nil];
+            self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem];
         }else {
             self.navigationItem.rightBarButtonItem = viewModeButton;
         }
