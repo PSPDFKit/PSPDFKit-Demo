@@ -4,34 +4,26 @@
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
-//  Based on code by Sorin Nistor. Many, Many thanks!
-//  Copyright (c) 2011 Sorin Nistor. All rights reserved. This software is provided 'as-is', without any express or implied warranty.
-//  In no event will the authors be held liable for any damages arising from the use of this software.
-//  Permission is granted to anyone to use this software for any purpose, including commercial applications,
-//  and to alter it and redistribute it freely, subject to the following restrictions:
-//  1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software.
-//     If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
-//  2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
-//  3. This notice may not be removed or altered from any source distribution.
-//
 
 #import "PSPDFKitGlobal.h"
 
 @class PSPDFPageInfo;
 
-/// Low level pdf renderer that correctly renders a page with CropBox/Rotation data into a context.
+// PDF rendering options. kPSPDFIgnoreDisplaySettings is only honored when using the renderImageForPage method in PSPDFDocument.
+extern NSString *kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
+extern NSString *kPSPDFPageColor;             // Multiplies a color used to color a page.
+extern NSString *kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
+extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
+extern NSString *kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
+
+/// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
 
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context;
+/// Renders a page inside a rectangle. Set context CTM and ClipRect to control rendering.
+/// Returns the renderingRectangle.
++ (CGRect)renderPageRef:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point;
-
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo;
-
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo interpolationQuality:(CGInterpolationQuality)interpolationQuality;
-
-+ (CGRect)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo;
-
-+ (CGRect)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo interpolationQuality:(CGInterpolationQuality)interpolationQuality;
+/// Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.
++ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 @end
