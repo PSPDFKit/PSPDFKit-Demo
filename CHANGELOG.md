@@ -13,6 +13,7 @@ PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 *  Smart Zoom. (Text blocks are discovered and zoomed onto on a double-tap)
 *  Adobe DRM detection (They are just marked as not viewable, instead of showing garbage)
 *  Inline password view. (Before, just a black screen was shown)
+*  PDF rendering indicator. (see pdfController.renderAnimationEnabled)
 *  API changes. Lots of things got renamed or changes (Url -> URL)
 *  navigationBar title is no longer set on every page change.
 *  Delegates are now called correctly (only once instead of multiple times) in pageCurl mode.
@@ -21,6 +22,8 @@ PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 *  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
 *  PSPDFDocument can now be initialized with a CGDataProviderRef.
 *  Support for Table Of Contents (Outline) linking to other PDF documents.
+*  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
+*  The search controller now dynamically updates its size based on the content height.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - x/Jul/2012__

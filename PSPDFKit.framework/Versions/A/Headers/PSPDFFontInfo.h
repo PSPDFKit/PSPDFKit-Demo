@@ -6,8 +6,8 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import <CoreText/CoreText.h>
 
+// Encapsulates a PDF font.
 @interface PSPDFFontInfo : NSObject {
 	CGFloat _ascent;
 	CGFloat _descent;

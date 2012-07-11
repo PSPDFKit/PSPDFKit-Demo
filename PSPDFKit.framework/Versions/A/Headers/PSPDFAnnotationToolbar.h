@@ -10,9 +10,19 @@
 
 @class PSPDFViewController;
 
+typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
+    PSPDFAnnotationToolbarNone,
+    PSPDFAnnotationToolbarComment,
+    PSPDFAnnotationToolbarHighlight,
+    PSPDFAnnotationToolbarStrikeOut,
+    PSPDFAnnotationToolbarUnderline,
+    PSPDFAnnotationToolbarDraw
+};
+
 /// To edit annotations, a new toolbar will be overlayed.
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate>
 
+/// Designated initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// Show the toolbar in target rect. Rect should be the same height as the toolbar. (44px)
@@ -21,7 +31,11 @@
 /// Hide the toolbar.
 - (void)hideToolbarAnimated:(BOOL)animated;
 
+/// Attached pdfController.
 @property(nonatomic, ps_weak) PSPDFViewController *pdfController;
+
+/// Active annotation toolbar mode.
+@property(nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode;
 
 @end
 
