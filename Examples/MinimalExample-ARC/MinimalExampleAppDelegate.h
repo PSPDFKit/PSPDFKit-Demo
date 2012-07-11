@@ -14,7 +14,7 @@
 #import "PSPDFKit.h"
 #endif
 
-@interface MinimalExampleAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MinimalExampleAppDelegate : UIResponder <UIApplicationDelegate, PSPDFViewControllerDelegate>
 
 @property(strong, nonatomic) PSPDFViewController *pdfController;
 @property(strong, nonatomic) UIWindow *window;
