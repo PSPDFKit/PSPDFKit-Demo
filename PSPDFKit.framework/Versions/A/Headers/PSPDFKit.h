@@ -37,7 +37,6 @@
 #import "PSPDFActionSheet.h"
 
 // search
-#define kPSPDFSearchMinimumLength 3
 #import "PSPDFTextSearch.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"

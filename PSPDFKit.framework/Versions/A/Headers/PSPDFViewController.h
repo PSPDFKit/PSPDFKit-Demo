@@ -127,6 +127,10 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 - (BOOL)isDualPageMode;
 - (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
+// we have certain cases where even in double page situations one page has to be displayed
+// (e.g. cover page; last page)
+- (BOOL)isDualPageModeForPage:(NSUInteger)page;
+
 /// Checks if the current page is on the right side, when in double page mode. Page starts at 0.
 - (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
 
@@ -169,6 +173,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// Enables/Disables the bottom document site position overlay. Defaults to YES. Animatable. Will be added to the hudView.
 @property(nonatomic, assign, getter=isPositionViewEnabled) BOOL positionViewEnabled;
+
+/// If YES, shows a decent UIActivityIndicator on the top right while page is rendering. Defaults to YES.
+@property(nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 
 
 /// @name Thumbnail View

@@ -1,5 +1,5 @@
 //
-//  PSPDFPDFPageView.h
+//  PSPDFPageView.h
 //  PSPDFKit
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderer.h"
 
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
 extern NSString *kPSPDFHidePageHUDElements;
@@ -16,6 +16,10 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 @interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate>
+
+/// Designated initializer.
+/// Note: We already need pdfController at this stage to check the classOverride table.
+- (id)initWithFrame:(CGRect)frame pdfController:(PSPDFViewController *)pdfController;
 
 /// @name Show / Destroy a document
 
@@ -77,6 +81,9 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Temporarily suspend rendering updates to the renderView. 
 @property(nonatomic, assign) BOOL suspendUpdate;
 
+/// Is view currently rendering (either contentView or renderView)
+@property(nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
+
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
 /// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
 /// this will show the TARGET rect, not the one that's currently animating.
@@ -117,6 +124,9 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
 @property(nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
+
+/// Access the render status view that is displayed on top of a page while we are rendering.
+@property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
 
 @end
 
