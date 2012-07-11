@@ -19,6 +19,7 @@
     _pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
     _pdfController.pageTransition = PSPDFPageScrollPerPageTransition;
     _pdfController.linkAction = PSPDFLinkActionInlineBrowser;
+    _pdfController.delegate = self;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
     _pdfController.leftBarButtonItems = @[saveButton];
@@ -33,7 +34,8 @@
     // copy file into documents - needed to allow writing annotatons.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSString *fileName = @"annotations.pdf";
-        
+        //NSString *fileName = @"word lorem ipsum Type3.pdf";
+
         NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSString *newPath = [docsFolder stringByAppendingPathComponent:fileName];
@@ -65,4 +67,11 @@
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewControllerDelegate
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
+    NSString *text = [pageView.document.textSearch textForPage:0];
+    NSLog(@"text: %@", text);
+}
 @end
