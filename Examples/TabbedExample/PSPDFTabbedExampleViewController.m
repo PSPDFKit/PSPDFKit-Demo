@@ -60,8 +60,8 @@ const char *clearAllActionSheetToken;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFTabbedViewControllerDelegate
 
-- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeDocuments:(NSArray *)newDocuments {
-    NSLog(@"willChangeDocuments: %@", newDocuments);
+- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController shouldChangeDocuments:(NSArray *)newDocuments {
+    NSLog(@"shouldChangeDocuments: %@", newDocuments);
     
     // return YES to allow the change
     return YES;
