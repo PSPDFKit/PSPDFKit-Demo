@@ -104,8 +104,6 @@
 	
 	<option value="//api/name/positionViewEnabled">&nbsp;&nbsp;&nbsp;&nbsp;positionViewEnabled</option>
 	
-	<option value="//api/name/preloadedPagesPerSide">&nbsp;&nbsp;&nbsp;&nbsp;preloadedPagesPerSide</option>
-	
 	<option value="//api/name/printButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;printButtonItem</option>
 	
 	<option value="//api/name/realPage">&nbsp;&nbsp;&nbsp;&nbsp;realPage</option>
@@ -308,8 +306,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverController">popoverController</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/positionViewEnabled">positionViewEnabled</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/preloadedPagesPerSide">preloadedPagesPerSide</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/printButtonItem">printButtonItem</a></span></li>
 	
@@ -758,13 +754,6 @@ This represents the pages in the pdf <a href="#//api/name/document">document</a>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/preloadedPagesPerSide">&nbsp;&nbsp;preloadedPagesPerSide</a></code>
-		<span class="tooltip"><p>Pages that are kept in pageScrollView after last visible <a href="#//api/name/page">page</a>. Defaults to 0. Don&rsquo;t set too high, needs lots of memory!</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/scrollingEnabled">&nbsp;&nbsp;scrollingEnabled</a></code>
 		<span class="tooltip"><p>Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.</p></span>
 	</span>
@@ -796,7 +785,7 @@ Note: if modal is set in the link, this property has no effect.</p></span>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/closeButtonItem">&nbsp;&nbsp;closeButtonItem</a></code>
-		<span class="tooltip"><p>Default button in leftToolbarButtonItems if view is presented modally.</p></span>
+		<span class="tooltip"><p>Default button in <a href="#//api/name/leftBarButtonItems">leftBarButtonItems</a> if view is presented modally.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1034,8 +1023,8 @@ e.g. add an entry of [PSPDFScrollView class] / [MyCustomPSPDFScrollViewSubclass 
 	<span class="tooltip">
 		<code><a href="#//api/name/useParentNavigationBar">&nbsp;&nbsp;useParentNavigationBar</a></code>
 		<span class="tooltip"><p>If embedded via iOS5 viewController containment, set this to true to allow this controller
-to access the parent navigationBar to add custom buttons.
-Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is false or there&rsquo;s no parentViewController.</p></span>
+to access the parent navigationBar/navigationController to add custom buttons.
+Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is false or there&rsquo;s no parentViewController. Defaults to NO.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1299,7 +1288,7 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Default button in leftToolbarButtonItems if view is presented modally.</p>
+		<p>Default button in <a href="#//api/name/leftBarButtonItems">leftBarButtonItems</a> if view is presented modally.</p>
 	</div>		
 	
 	
@@ -2229,40 +2218,6 @@ Thus, one can customize the rotation behavior with animations when set within wi
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/preloadedPagesPerSide" title="preloadedPagesPerSide"></a>
-	<h3 class="subsubtitle method-title">preloadedPagesPerSide</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Pages that are kept in pageScrollView after last visible <a href="#//api/name/page">page</a>. Defaults to 0. Don&rsquo;t set too high, needs lots of memory!</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger preloadedPagesPerSide</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/printButtonItem" title="printButtonItem"></a>
 	<h3 class="subsubtitle method-title">printButtonItem</h3>
 	
@@ -2683,8 +2638,8 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	
 	<div class="method-subsection brief-description">
 		<p>If embedded via iOS5 viewController containment, set this to true to allow this controller
-to access the parent navigationBar to add custom buttons.
-Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is false or there&rsquo;s no parentViewController.</p>
+to access the parent navigationBar/navigationController to add custom buttons.
+Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is false or there&rsquo;s no parentViewController. Defaults to NO.</p>
 	</div>		
 	
 	
@@ -3451,7 +3406,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)scrollToPage:(NSUInteger)<em>page</em> animated:(BOOL)<em>animated</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)scrollToPage:(NSUInteger)<em>page</em> animated:(BOOL)<em>animated</em></code></div>
 	
 	
 	
@@ -3485,7 +3440,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)scrollToPage:(NSUInteger)<em>page</em> animated:(BOOL)<em>animated</em> hideHUD:(BOOL)<em>hideHUD</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)scrollToPage:(NSUInteger)<em>page</em> animated:(BOOL)<em>animated</em> hideHUD:(BOOL)<em>hideHUD</em></code></div>
 	
 	
 	
@@ -3725,7 +3680,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-22)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

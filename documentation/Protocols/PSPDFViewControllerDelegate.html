@@ -72,9 +72,13 @@
 	
 	<option value="//api/name/pdfViewController:didTapOnPageView:info:coordinates:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didTapOnPageView:info:coordinates:</option>
 	
+	<option value="//api/name/pdfViewController:resolveCustomAnnotationPathToken:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:resolveCustomAnnotationPathToken:</option>
+	
 	<option value="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldDisplayAnnotation:onPageView:</option>
 	
 	<option value="//api/name/pdfViewController:shouldHideHUD:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldHideHUD:</option>
+	
+	<option value="//api/name/pdfViewController:shouldScrollToPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldScrollToPage:</option>
 	
 	<option value="//api/name/pdfViewController:shouldShowHUD:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldShowHUD:</option>
 	
@@ -146,9 +150,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnPageView:info:coordinates:">pdfViewController:didTapOnPageView:info:coordinates:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:resolveCustomAnnotationPathToken:">pdfViewController:resolveCustomAnnotationPathToken:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">pdfViewController:shouldDisplayAnnotation:onPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldHideHUD:">pdfViewController:shouldHideHUD:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldScrollToPage:">pdfViewController:shouldScrollToPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldShowHUD:">pdfViewController:shouldShowHUD:</a></span></li>
 	
@@ -233,6 +241,13 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:shouldScrollToPage:">&ndash;&nbsp;pdfViewController:shouldScrollToPage:</a></code>
+		<span class="tooltip"><p>Control scrolling to pages. Not implementing this will return YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didShowPageView:">&ndash;&nbsp;pdfViewController:didShowPageView:</a></code>
 		<span class="tooltip"><p>controller did show/scrolled to a new page (at least 51% of it is visible)</p></span>
 	</span>
@@ -298,6 +313,13 @@ if NO is returned, viewForAnnotation will not be called.</p></span>
 		<span class="tooltip"><p>Returns a pre-generated annotationView that can be modified before being added to the view.
 If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
 To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:resolveCustomAnnotationPathToken:">&ndash;&nbsp;pdfViewController:resolveCustomAnnotationPathToken:</a></code>
+		<span class="tooltip"><p>Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.</p></span>
 	</span>
 	
 	
@@ -887,6 +909,40 @@ Note: Will not send events when thumbnailView is visible.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pdfViewController:resolveCustomAnnotationPathToken:" title="pdfViewController:resolveCustomAnnotationPathToken:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:resolveCustomAnnotationPathToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pdfViewController:(PSPDFViewController *)<em>pdfController</em> resolveCustomAnnotationPathToken:(NSString *)<em>pathToken</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:" title="pdfViewController:shouldDisplayAnnotation:onPageView:"></a>
 	<h3 class="subsubtitle method-title">pdfViewController:shouldDisplayAnnotation:onPageView:</h3>
 	
@@ -933,6 +989,40 @@ if NO is returned, viewForAnnotation will not be called.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> shouldHideHUD:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:shouldScrollToPage:" title="pdfViewController:shouldScrollToPage:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:shouldScrollToPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Control scrolling to pages. Not implementing this will return YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pdfViewController:(PSPDFViewController *)<em>pdfController</em> shouldScrollToPage:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -1208,7 +1298,7 @@ viewController is of type id because controller like UIPrntInteractionController
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-06-22)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
