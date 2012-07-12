@@ -20,79 +20,6 @@
 @implementation PSPDFExampleViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)optionsButtonPressed:(id)sender {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
-        [self.popoverController dismissPopoverAnimated:YES];
-        self.popoverController = nil;
-        return;
-    }
-    
-    PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
-    if (PSIsIpad()) {
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
-        self.popoverController.passthroughViews = @[self.navigationController.navigationBar];
-        [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }else {
-        [self presentModalViewController:cacheSettingsController embeddedInNavigationController:YES withCloseButton:YES animated:YES];
-    }
-}
-
-// This is to present the most common features of PSPDFKit.
-// iOS is all about choosing the right options for the user. You really shouldn't ship that.
-- (void)globalVarChanged {
-    PSPDFViewState *viewState = [self documentViewState];
-    NSDictionary *settings = [PSPDFSettingsController settings];
-    self.pageTransition = [settings[NSStringFromSelector(@selector(pageTransition))] integerValue];
-    self.pageScrolling = [settings[NSStringFromSelector(@selector(pageScrolling))] integerValue];
-    self.pageMode = [settings[NSStringFromSelector(@selector(pageMode))] integerValue];
-    self.linkAction = [settings[NSStringFromSelector(@selector(linkAction))] integerValue];
-    self.doublePageModeOnFirstPage = [settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] boolValue];
-    self.zoomingSmallDocumentsEnabled = [settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] boolValue];
-    self.fitWidth = [settings[NSStringFromSelector(@selector(isFittingWidth))] boolValue];
-    self.scrobbleBarEnabled =  [settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] boolValue];
-    self.positionViewEnabled = [settings[NSStringFromSelector(@selector(isPositionViewEnabled))] boolValue];
-    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
-    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
-    self.scrollOnTapPageEndEnabled = [settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] boolValue];
-    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
-    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
-
-    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-    if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.annotationButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.outlineButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.searchButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.viewModeButtonItem];
-    }
-    self.rightBarButtonItems = rightBarButtonItems;
-
-    // define additional buttons with an action icon
-    NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
-    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.printButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.openInButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.emailButtonItem];
-    }
-    self.additionalRightBarButtonItems = additionalRightBarButtonItems;
-
-    // reload scrollview and restore viewState
-    [self reloadData];
-    [self restoreDocumentViewState:viewState animated:NO];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithDocument:(PSPDFDocument *)document {
@@ -139,7 +66,7 @@
             @try {
                 if (viewStateData) {
                     PSPDFViewState *viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
-                    [self restoreDocumentViewState:viewState animated:NO];
+                    [self setViewState:viewState animated:NO];
                 }
             }
             @catch (NSException *exception) {
@@ -162,7 +89,7 @@
 - (void)dealloc {
     // save current viewState
     if ([self.document isValid]) {
-        NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self documentViewState]];
+        NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self viewState]];
         [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.uid];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -202,6 +129,80 @@
     // self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)optionsButtonPressed:(id)sender {
+    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
+        return;
+    }
+
+    PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
+    if (PSIsIpad()) {
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
+        self.popoverController.passthroughViews = @[self.navigationController.navigationBar];
+        [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }else {
+        [self presentModalViewController:cacheSettingsController embeddedInNavigationController:YES withCloseButton:YES animated:YES];
+    }
+}
+
+// This is to present the most common features of PSPDFKit.
+// iOS is all about choosing the right options for the user. You really shouldn't ship that.
+- (void)globalVarChanged {
+    PSPDFViewState *viewState = [self viewState];
+    NSDictionary *settings = [PSPDFSettingsController settings];
+    self.pageTransition = [settings[NSStringFromSelector(@selector(pageTransition))] integerValue];
+    self.pageScrolling = [settings[NSStringFromSelector(@selector(pageScrolling))] integerValue];
+    self.pageMode = [settings[NSStringFromSelector(@selector(pageMode))] integerValue];
+    self.linkAction = [settings[NSStringFromSelector(@selector(linkAction))] integerValue];
+    self.doublePageModeOnFirstPage = [settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] boolValue];
+    self.zoomingSmallDocumentsEnabled = [settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] boolValue];
+    self.fitWidth = [settings[NSStringFromSelector(@selector(isFittingWidth))] boolValue];
+    self.scrobbleBarEnabled =  [settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] boolValue];
+    self.positionViewEnabled = [settings[NSStringFromSelector(@selector(isPositionViewEnabled))] boolValue];
+    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
+    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
+    self.scrollOnTapPageEndEnabled = [settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] boolValue];
+    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
+    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
+
+    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
+    if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.annotationButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.outlineButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.searchButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
+        [rightBarButtonItems addObject:self.viewModeButtonItem];
+    }
+    self.rightBarButtonItems = rightBarButtonItems;
+
+    // define additional buttons with an action icon
+    NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
+    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.printButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.openInButtonItem];
+    }
+    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.emailButtonItem];
+    }
+    self.additionalRightBarButtonItems = additionalRightBarButtonItems;
+
+    // reload scrollview and restore viewState
+    [self reloadData];
+    [self setViewState:viewState animated:NO];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
@@ -235,6 +236,12 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
     PSELog(@"page %d rendered. (document: %@)", pageView.page, pageView.document.title);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
+    if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
+        [pageView.selectionView showTextFlowData:YES animated:NO];
+    }
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
