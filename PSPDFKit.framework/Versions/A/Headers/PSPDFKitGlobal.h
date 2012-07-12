@@ -104,6 +104,9 @@ extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
 /// Queries subviews for a specific class prefix. Usually used for subview-querying.
 extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
+/// Removes the ".pdf" or a cased derivation of it from the fileName, if it exists.
+extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
+
 // helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 

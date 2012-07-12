@@ -65,6 +65,9 @@
 - (void)showLoupe;
 - (void)hideLoupe;
 
+/// Updates the UIMenuController if there is a selection.
+- (void)updateMenu;
+
 /// Clears the current selection.
 - (void)discardSelection;
 

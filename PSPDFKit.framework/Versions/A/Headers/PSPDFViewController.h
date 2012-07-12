@@ -19,7 +19,7 @@
 typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
     PSPDFPageScrollPerPageTransition,     // default mode for iOS4. Has one scrollView per page.
 
-    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView.
+    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView. TODO.
     PSPDFPageCurlTransition,              // replaces pageCurlEnabled.
     PSPDFPageFlipTransition               // Flipboard-like; new in PSPDFKit v2. EXPERIMENTAL!
 };
@@ -67,21 +67,28 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// @name Initialization
 
 /// Initialize with a document.
+/// Document can be nil. In this case, just the background is displayed and the HUD stays visible.
+/// Also supports creation via initWithCoder to allow usage in Storyboards.
 - (id)initWithDocument:(PSPDFDocument *)document;
 
 
 /// @name Page Scrolling and Zooming
 
+/// Current page displayed, not landscape corrected. To change page, use scrollToPage.
+/// e.g. if you have 50 pages, you get 25/26 "dual pages" when in double page mode.
+@property(nonatomic, assign, readonly) NSUInteger page;
+
+/// Current page displayed, landscape corrected. To change page, use scrollToPage.
+/// This represents the pages in the pdf document, starting at 0.
+@property(nonatomic, assign, readonly) NSUInteger realPage;
+
 /// Control currently displayed page. Page starts at 0.
-- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+- (BOOL)setPage:(NSUInteger)page animated:(BOOL)animated;
 
-/// Control currently displayed page, optionally show/hide the HUD. Page starts at 0.
-- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD;
-
-/// Scroll to next page.
+/// Scroll to next page. Will potentiall advance two pages in DualPage mode.
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;
 
-/// Scroll to previous page.
+/// Scroll to previous page. Will potentiall decrease two pages in DualPage mode.
 - (BOOL)scrollToPreviousPageAnimated:(BOOL)animated;
 
 /// Scrolls to a specific rect on the current page. No effect if zoom is at 1.0.
@@ -92,77 +99,34 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Zooms to a specific rect, optionally animated.
 - (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
 
-/// Save view state (page/zoom/position)
-- (PSPDFViewState *)documentViewState;
+/// Saves the view state into a serializable object. (page/zoom/position/HUD)
+@property(nonatomic, strong) PSPDFViewState *viewState;
+- (void)setViewState:(PSPDFViewState *)viewState animated:(BOOL)animated;
 
-/// Restore view state (page/zoom/position)
-/// Note: restoring a certain zoomscale/rect is currently not animatable.
-- (void)restoreDocumentViewState:(PSPDFViewState *)viewState animated:(BOOL)animated;
-
-/// @name Reloading Content
-
-/// Reload scrollview. Call if you manually change the view width/height or some property inside PSPDFDocument. Usually not needed.
-- (void)reloadData;
-
-/// Reload scrollview, scroll to specified page.
-- (void)reloadDataAndScrollToPage:(NSUInteger)page;
-
-
-/// @name Class Accessors
-
-/// Return the pageView for a given page. Returns nil if page is not initalized (e.g. page is not visible.)
-/// Usually, using the delegates is a better idea to get the current page.
-- (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
-
-/// Saves the popoverController if currently displayed.
-@property(nonatomic, strong) UIPopoverController *popoverController;
-
-/// Paging scroll view. (hosts scollviews for pdf)
-@property(nonatomic, strong, readonly) UIScrollView *pagingScrollView;
-
-
-/// @name Helpers
-
-/// Depending on pageMode, this returns true if two pages are displayed.
-- (BOOL)isDualPageMode;
-- (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
-// we have certain cases where even in double page situations one page has to be displayed
-// (e.g. cover page; last page)
-- (BOOL)isDualPageModeForPage:(NSUInteger)page;
-
-/// Checks if the current page is on the right side, when in double page mode. Page starts at 0.
-- (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
-
-/// Show a modal view controller with automatically added close button on the left side.
-- (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
-
-/// Return array of currently visible page numbers.
-- (NSArray *)visiblePageNumbers;
-
-/// YES if we are at the last page
-- (BOOL)isLastPage;
-
-/// YES if we are at the first page
-- (BOOL)isFirstPage;
+/// Recreates the content view hierarchy. Usually automatically invoked if you change certain properties (like document, pageTransition).
+- (IBAction)reloadData;
 
 
 /// @name HUD Controls
-
-/// View that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
-/// hudView is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
-@property(nonatomic, strong, readonly) PSPDFHUDView *hudView;
 
 /// Content view. Use this if you want to add any always-visible UI elements.
 /// Created in viewDidLoad. contentView is behind hudView but always visible.
 /// ContentView does NOT overlay the navigationBar/statusBar, even if that one is transparent.
 @property(nonatomic, strong, readonly) PSPDFHUDView *contentView;
 
+/// View that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
+/// hudView is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
+@property(nonatomic, strong, readonly) PSPDFHUDView *hudView;
+
 /// Show or hide HUD controls, titlebar, status bar. (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
-
-/// Animated show or hide HUD controls, titlebar, status bar. (status bar fade is iPhone only)
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
+
+// TODO: remove those. Called from scrollviews
+- (void)showControls;
+- (void)hideControls;
+- (void)hideControlsAndPageElements; /// Hide additional elements like page selection.
+- (void)toggleControls;
 
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
@@ -178,18 +142,6 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 @property(nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 
 
-/// @name Thumbnail View
-
-/// View mode: PSPDFViewModeDocument or PSPDFViewModeThumbnails.
-@property(nonatomic, assign) PSPDFViewMode viewMode;
-- (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
-
-/// Change thumbnail size. Default is 170x220.
-@property(nonatomic, assign) CGSize thumbnailSize;
-
-/// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.
-@property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
-
 /// @name Properties
 
 /// Register delegate to capture events, change properties.
@@ -198,14 +150,6 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Document that will be displayed.
 /// Note: has simple support to also accepts an NSString, the bundle path then will be used.
 @property(nonatomic, strong) PSPDFDocument *document;
-
-/// Current page displayed, not landscape corrected. To change page, use scrollToPage.
-/// e.g. if you have 50 pages, you get 25/26 "dual pages" when in double page mode. KVO observable.
-@property(nonatomic, assign, readonly) NSUInteger page;
-
-/// Current page displayed, landscape corrected. To change page, use scrollToPage.
-/// This represents the pages in the pdf document, starting at 0. KVO observable.
-@property(nonatomic, assign, readonly) NSUInteger realPage;
 
 /// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
 /// NO will perform a generic zoom into the tap area. Defauts to YES.
@@ -231,6 +175,11 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Note: This implies that the PDF file actually contains text glypths.
 /// Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 @property(nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
+
+/// If embedded via iOS5 viewController containment, set this to true to allow this controller
+/// to access the parent navigationBar/navigationController to add custom buttons.
+/// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.
+@property(nonatomic, assign) BOOL useParentNavigationBar;
 
 /// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 /// Note: if modal is set in the link, this property has no effect.
@@ -296,6 +245,15 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Add your custom UIBarButtonItems so that they won't be automatically enabed/disabed.
 /// Note: You really want to add yout custom close/back button there, else the user might get stuck!
 @property(nonatomic, strong) NSArray *barButtonItemsAlwaysEnabled;
+
+/// UIBarButtonItem doesn't support calculation of it's width, so we have to approximate.
+/// This allows you to change the minimum width if the heuristics fail.
+/// Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].
+@property(nonatomic, assign) CGFloat minLeftToolbarWidth;
+
+/// Allows to change the minimum width of the right toolbar. Set this within updateToolbars.
+@property(nonatomic, assign) CGFloat minRightToolbarWidth;
+
 
 /// @name Appearance Properties
 
@@ -369,63 +327,105 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
 @property(nonatomic, assign) CGFloat annotationAnimationDuration;
 
-/// @name Subclassing Helpers
 
-/// Use this to use specific subclass names instead of the default PSPDF* classes.
-/// e.g. add an entry of [PSPDFScrollView class] / [MyCustomPSPDFScrollViewSubclass class] as key/value pair to use the custom subclass.
-@property(nonatomic, strong) NSDictionary *overrideClassNames;
+/// @name Class Accessors
 
-/// If embedded via iOS5 viewController containment, set this to true to allow this controller
-/// to access the parent navigationBar/navigationController to add custom buttons.
-/// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.
-@property(nonatomic, assign) BOOL useParentNavigationBar;
+/// Return the pageView for a given page. Returns nil if page is not initalized (e.g. page is not visible.)
+/// Usually, using the delegates is a better idea to get the current page.
+- (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
-/// returns the topmost active viewcontroller. override if you have a custom setup of viewControllers
+/// Saves the popoverController if currently displayed.
+@property(nonatomic, strong) UIPopoverController *popoverController;
+
+/// Paging scroll view. (hosts scollviews for pdf)
+@property(nonatomic, strong, readonly) UIScrollView *pagingScrollView;
+
+
+/// @name Thumbnail View
+
+/// View mode: PSPDFViewModeDocument or PSPDFViewModeThumbnails.
+@property(nonatomic, assign) PSPDFViewMode viewMode;
+- (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
+
+/// The UIGridView/PSPDFGridView thumbnail view.
+@property(nonatomic, strong, readonly) UIScrollView *gridView;
+
+/// Change thumbnail size. Default is 170x220.
+@property(nonatomic, assign) CGSize thumbnailSize;
+
+/// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.
+@property(nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;
+
+
+/// @name Helpers
+
+/// Depending on pageMode, this returns true if two pages are displayed.
+- (BOOL)isDualPageMode;
+- (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
+
+// we have certain cases where even in double page situations one page has to be displayed
+// (e.g. cover page; last page)
+- (BOOL)isDualPageModeForPage:(NSUInteger)page;
+
+/// Checks if the current page is on the right side, when in double page mode. Page starts at 0.
+- (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;
+
+/// Show a modal view controller with automatically added close button on the left side.
+- (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
+
+/// Return an NSNumber-array of currently visible page numbers.
+- (NSArray *)visiblePageNumbers;
+
+/// YES if we are at the last page.
+- (BOOL)isLastPage;
+
+/// YES if we are at the first page.
+- (BOOL)isFirstPage;
+
+/// Returns the topmost active viewcontroller.
+/// Override if you have a custom setup of viewControllers.
 - (UIViewController *)masterViewController;
 
-/// override if you're changing the toolbar to your own.
-/// Note: The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.
+@end
+
+
+@interface PSPDFViewController (SubclassingSupport)
+
+/// Use this to use specific subclass names instead of the default PSPDF* classes.
+/// e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
+/// Throws an exception if the overriding class is not a subclass of the overridden class.
+@property(nonatomic, strong) NSDictionary *overrideClassNames;
+
+/// Override if you're changing the toolbar to your own.
+/// The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.
 - (void)createToolbar;
-
 - (void)updateToolbars;
-
-/// Return rect of the content view area excluding translucent toolbar/statusbar.
-- (CGRect)contentRect;
-
-/// UIBarButtonItem doesn't support calculation of it's width, so we have to approximate.
-/// This allows you to change the minimum width if the heuristics fail.
-/// Note: Set this in your subclass within updateToolbars, then call [super updateToolbars].
-@property(nonatomic, assign) CGFloat minLeftToolbarWidth;
-
-/// Allows to change the minimum width of the right toolbar. Set this within updateToolbars.
-@property(nonatomic, assign) CGFloat minRightToolbarWidth;
-
-/// Setup the grid view. Call [super gridView] and modify it to your needs.
-- (UIScrollView *)gridView;
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;
 
-// called from scrollviews
-- (void)showControls;
-- (void)hideControls;
-- (void)hideControlsAndPageElements; // hide additional elements like page selection
-- (void)toggleControls;
-- (NSUInteger)landscapePage:(NSUInteger)aPage;
-
 /// Manually return the desired UI status bar style (default is evaluated via app status bar style)
 - (UIStatusBarStyle)statusBarStyle;
 
-// Clears the highlight views. Can be subclassed.
+// Clears the highlight views.
 - (void)clearHighlightedSearchResults;
 
-// Adds the highlight views. Can be subclassed.
+// Adds the highlight views.
 - (void)addHighlightSearchResults:(NSArray *)searchResults;
 
-// Animates a certain search highlight. Can be subclassed.
+// Animates a certain search highlight.
 - (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
 
 @end
+
+
+@interface PSPDFViewController (Deprecated)
+
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated __attribute__((deprecated("Deprecated. Use setPage:animated: instead.")));
+- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD __attribute__((deprecated("Deprecated. Use setPage:animated: and setHUD:animated: instead.")));
+
+@end
+
 
 // Allows better guessing of the status bar style.
 @protocol PSPDFStatusBarStyleHint <NSObject>
