@@ -19,7 +19,7 @@
 }
 
 - (NSString *)actionName {
-    return NSLocalizedString(@"Metadata", @"");
+    return NSLocalizedString(@"?", @"");
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
