@@ -28,6 +28,9 @@
 
 /* events */
 
+/// Control scrolling to pages. Not implementing this will return YES.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page;
+
 /// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
 
@@ -63,6 +66,9 @@
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
 /// To get the targeted rect use [annotation rectForPageRect:pageView.bounds];
 - (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
+/// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
+- (NSString *)pdfViewController:(PSPDFViewController *)pdfController resolveCustomAnnotationPathToken:(NSString *)pathToken; // return nil if unknown.
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
