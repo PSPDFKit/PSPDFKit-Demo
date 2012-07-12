@@ -1,6 +1,6 @@
 # Changelog
 
-__v1.10.4 - x/Jul/2012__
+__v1.10.4 - 12/Jul/2012__
 
 *  New delegates: shouldScrollToPage, resolveCustomAnnotationPathToken.
 *  If annotation is set to a file and this file doesn't exist, annotation type will be set to undefined.
@@ -9,6 +9,7 @@ __v1.10.4 - x/Jul/2012__
 *  Don't change navigationController if embedded into a parentViewController on default. (See useParentNavigationBar).
 *  Allow to subclass PSPDFPageView via the overrideClassNames property in PSPDFViewController.
 *  Allow parsing of PDF outlines with party invalid information.
+*  Removed preloadedPagesPerSide. Changing this turned out to not bring any noticable performance benfits.
 *  Fixes a case where some link annotations were not correctly parsed.
 
 __v1.10.3 - 22/Jun/2012__
