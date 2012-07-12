@@ -14,9 +14,7 @@
 #import "PSPDFSettingsController.h"
 #import "PSPDFDownload.h"
 #import "AppDelegate.h"
-#import "PSActionSheet.h"
 #import "PSPDFImageGridViewCell.h"
-#import "PSPDFQuickLookViewController.h"
 #import "PSPDFShadowView.h"
 
 #define kPSPDFGridFadeAnimationDuration 0.3f
@@ -108,12 +106,6 @@
 
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
-#ifdef kPSPDFQuickLookEngineEnabled
-    PSPDFQuickLookViewController *previewController = [[[PSPDFQuickLookViewController alloc] initWithDocument:magazine] autorelease];
-    [self presentModalViewController:previewController animated:YES];
-    return YES;
-#endif
-
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage && !magazine.isLocked) {
@@ -513,8 +505,8 @@
 
     if (kPSPDFShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
-            PSActionSheet *deleteAction = [PSActionSheet sheetWithTitle:message];
-            deleteAction.sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
+            deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
             [deleteAction setDestructiveButtonWithTitle:NSLocalizedString(@"Delete", @"") block:^{
                 deleteBlock();
                 // TODO should re-calculate index here.
