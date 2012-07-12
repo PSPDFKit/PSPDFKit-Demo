@@ -27,7 +27,8 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
-    return [self presentModalOrInPopover:[[PSPDFSettingsController alloc] init] sender:sender];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[PSPDFSettingsController new]];
+    return [self presentModalOrInPopover:navController sender:sender];
 }
 
 - (void)dismissAnimated:(BOOL)animated {
