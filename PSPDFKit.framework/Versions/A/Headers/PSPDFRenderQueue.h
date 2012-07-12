@@ -1,5 +1,5 @@
 //
-//  PSPDFRenderer.h
+//  PSPDFRenderQueue.h
 //  PSPDFKit
 //
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
@@ -7,20 +7,20 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument, PSPDFRenderJob, PSPDFRenderer;
+@class PSPDFDocument, PSPDFRenderJob, PSPDFRenderQueue;
 
 // Implement this delegate to get rendered pages.
 @protocol PSPDFRenderDelegate <NSObject>
 
-- (void)renderer:(PSPDFRenderer *)renderer jobDidFinish:(PSPDFRenderJob *)job;
+- (void)renderQueue:(PSPDFRenderQueue *)renderQueue jobDidFinish:(PSPDFRenderJob *)job;
 
 @end
 
 /// Render Queue. Does not cache. Used for rendering pages/page parts in PSPDFPageView.
-@interface PSPDFRenderer : NSObject
+@interface PSPDFRenderQueue : NSObject
 
-/// Cache is a singleton.
-+ (PSPDFRenderer *)sharedPSPDFRenderer;
+/// Render Queue is a singleton.
++ (PSPDFRenderQueue *)sharedPSPDFRenderQueue;
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 - (void)requestRenderedImageForDocument:(PSPDFDocument *)document forPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options delegate:(id<PSPDFRenderDelegate>)delegate;

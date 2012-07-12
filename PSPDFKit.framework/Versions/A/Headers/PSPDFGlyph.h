@@ -28,10 +28,6 @@
 /// Compare with second glyph on the X position.
 - (NSComparisonResult)compareByXPosition:(PSPDFGlyph *)glyph;
 
-- (CGRect)frameInView:(UIView *)pageView withPageRect:(CGRect)pageRect;
-
-- (CGRect)frameInBounds:(CGRect)pageBounds withPageRect:(CGRect)pageRect;
-
 - (BOOL)isOnSameLineAs:(PSPDFGlyph *)glyph;
 
 @property(nonatomic, assign, readonly) CGFloat fontHeight;
