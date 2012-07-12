@@ -57,12 +57,12 @@
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
-        PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[PSPDFSettingsController new]];
         if (PSIsIpad()) {
-            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
+            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
             [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
-            [self presentModalViewControllerWithCloseButton:cacheSettingsController animated:YES];
+            [self presentModalViewControllerWithCloseButton:navController animated:YES];
         }
     }
 }
