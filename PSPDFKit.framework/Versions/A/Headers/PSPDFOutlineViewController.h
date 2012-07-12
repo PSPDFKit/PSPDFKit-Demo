@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement;
+@class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement, PSPDFOutlineCell;
 
 /// Delegate for the PSPDFOutlineViewController.
 @protocol PSPDFOutlineViewControllerDelegate <NSObject>
@@ -23,8 +23,22 @@
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
 
+/// Allow to long-press to copy the title. Defaults to YES.
+@property(nonatomic, assign) BOOL allowCopy;
+
 @property(nonatomic, ps_weak) id<PSPDFOutlineViewControllerDelegate> delegate;
 
 @property(nonatomic, ps_weak) PSPDFDocument *document;
+
+@end
+
+
+@interface PSPDFOutlineViewController (Subclassing)
+
+// subclass if you change the default cell height of 44 pixels.
+- (void)updatePopoverSize;
+
+// Cell delegate - expand/shrink content.
+- (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;
 
 @end

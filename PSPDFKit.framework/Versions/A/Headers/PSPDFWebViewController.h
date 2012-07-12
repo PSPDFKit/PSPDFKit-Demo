@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsCopyLink         = 1 << 2
 };
 
+/// Inline Web Browser.
 @interface PSPDFWebViewController : PSPDFBaseViewController <UIWebViewDelegate>
 
 /// Use this to get a UINavigationController with a Done-Button.
