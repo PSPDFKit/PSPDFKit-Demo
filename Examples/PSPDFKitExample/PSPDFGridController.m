@@ -52,8 +52,13 @@
     [self presentModalViewController:navController animated:animated];
 }
 
-- (void)optionsButtonPressed {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
+// toggle the options/settings button.
+- (void)optionsButtonPressed {    
+    UIViewController *contentController = self.popoverController.contentViewController;
+    if ([contentController isKindOfClass:[UINavigationController class]]) {
+        contentController = [(UINavigationController *)contentController topViewController];
+    }
+    if ([contentController isKindOfClass:[PSPDFSettingsController class]]) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
