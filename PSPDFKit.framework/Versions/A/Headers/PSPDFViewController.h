@@ -187,9 +187,6 @@ enum {
 /// This represents the pages in the pdf document, starting at 0. KVO observable.
 @property(nonatomic, assign, readonly) NSUInteger realPage;
 
-/// Pages that are kept in pageScrollView after last visible page. Defaults to 0. Don't set too high, needs lots of memory!
-@property(nonatomic, assign) NSUInteger preloadedPagesPerSide;
-
 /// Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
 @property(nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
 
