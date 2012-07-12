@@ -1,5 +1,17 @@
 # Changelog
 
+__v1.10.4 - 12/Jul/2012__
+
+*  New delegates: shouldScrollToPage, resolveCustomAnnotationPathToken.
+*  If annotation is set to a file and this file doesn't exist, annotation type will be set to undefined.
+*  Improve tap change speed and touch area of PSPDFTabbedViewController.
+*  Another possible bugfix for UIPageViewController rotation changes.
+*  Don't change navigationController if embedded into a parentViewController on default. (See useParentNavigationBar).
+*  Allow to subclass PSPDFPageView via the overrideClassNames property in PSPDFViewController.
+*  Allow parsing of PDF outlines with party invalid information.
+*  Removed preloadedPagesPerSide. Changing this turned out to not bring any noticable performance benfits.
+*  Fixes a case where some link annotations were not correctly parsed.
+
 __v1.10.3 - 22/Jun/2012__
 
 *  New property in PSPDFCache: downscaleInterpolationQuality (to control the thumbnail quality)

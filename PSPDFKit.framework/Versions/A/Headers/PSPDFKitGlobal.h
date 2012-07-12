@@ -103,8 +103,9 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 /// Resolves paths like "Documents" or "Bundle" to their real path. 
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
+/// resolveUnknownDocumentBlock gets called if a token is found that isn't recognized.
 extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
-extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath);
+extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath, NSString *(^resolveUnknownPathBlock)(NSString *unknownPath));
 
 /// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to yes. Defaults to NO.
 extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
