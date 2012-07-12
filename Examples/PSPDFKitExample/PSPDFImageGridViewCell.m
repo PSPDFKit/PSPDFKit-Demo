@@ -214,9 +214,7 @@ static void *kPSPDFKVOToken;
             [self darkenView:!magazine.isAvailable animated:NO];
         }
         
-        // uncommented until we find a better caching solution - finding the title from pdf metadata is slow
-        NSString *siteLabelText = [[magazine fileURL] lastPathComponent];
-        siteLabelText = [siteLabelText stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch | NSBackwardsSearch range:NSMakeRange(0, [siteLabelText length])];
+        NSString *siteLabelText = PSPDFStripPDFFileType([[magazine fileURL] lastPathComponent]);
         self.siteLabel.text = siteLabelText;
         [self updateSiteLabel];
     }
