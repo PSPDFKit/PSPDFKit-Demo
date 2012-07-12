@@ -15,7 +15,7 @@
 // sample implementaton how to automatically advance to the next page
 - (void)advanceToNextPage {
     if ([self isLastPage]) {
-        [self scrollToPage:0 animated:YES];
+        [self setPage:0 animated:YES];
     }else {
         [self scrollToNextPageAnimated:YES];
     }
@@ -49,12 +49,6 @@
  
  self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
  }*/
-
-// override minimum width to make all buttons clickable on iPhone.
-- (void)updateToolbars {
-    self.minRightToolbarWidth = self.view.bounds.size.width;
-    [super updateToolbars];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
