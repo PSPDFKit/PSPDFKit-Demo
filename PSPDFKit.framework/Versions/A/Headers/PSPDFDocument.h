@@ -273,7 +273,7 @@ extern NSString *kPSPDFGlyphs, *kPSPDFWords, *kPSPDFTextBlocks, *kPSPDFAnnotatio
 
 @end
 
-@interface PSPDFDocument (PSPDFSubclassing)
+@interface PSPDFDocument (Subclassing)
 
 /// Set to a different class to use PSPDFDocumentProvider subclasses.
 /// Do not set anything different than PSPDFDocumentProvider or a subclass of it.
@@ -303,3 +303,9 @@ extern NSString *const kPSPDFMetadataKeyProducer;
 extern NSString *const kPSPDFMetadataKeyCreationDate;
 extern NSString *const kPSPDFMetadataKeyModDate;
 extern NSString *const kPSPDFMetadataKeyTrapped;
+
+@interface PSPDFDocument (Deprecated)
+
++ (PSPDFDocument *)PDFDocumentWithUrl:(NSURL *)URL  __attribute__((deprecated("Deprecated. Use PDFDocumentWithURL:")));
+
+@end
