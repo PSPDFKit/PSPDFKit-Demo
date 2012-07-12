@@ -11,6 +11,7 @@
 #import "PSPDFSettingsController.h"
 #import "PSPDFGridController.h"
 #import "PSPDFSettingsBarButtonItem.h"
+#import "PSPDFMetadataBarButtonItem.h"
 
 @interface PSPDFExampleViewController () {
     BOOL hasLoadedLastPage_;
@@ -56,8 +57,9 @@
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
         UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSPDFSettingsBarButtonItem *settingsButtomItem = [[PSPDFSettingsBarButtonItem alloc] initWithPDFViewController:self];
-
-        self.leftBarButtonItems = @[closeButtonItem, settingsButtomItem];
+        PSPDFMetadataBarButtonItem *metadataButtonItem = [[PSPDFMetadataBarButtonItem alloc] initWithPDFViewController:self];
+        
+        self.leftBarButtonItems = PSIsIpad() ? @[closeButtonItem, settingsButtomItem, metadataButtonItem] : @[closeButtonItem, settingsButtomItem];
         self.barButtonItemsAlwaysEnabled = @[closeButtonItem];
 
         // restore viewState
@@ -133,23 +135,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-- (void)optionsButtonPressed:(id)sender {
-    if ([self.popoverController.contentViewController isKindOfClass:[PSPDFSettingsController class]]) {
-        [self.popoverController dismissPopoverAnimated:YES];
-        self.popoverController = nil;
-        return;
-    }
-
-    PSPDFSettingsController *cacheSettingsController = [[PSPDFSettingsController alloc] init];
-    if (PSIsIpad()) {
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:cacheSettingsController];
-        self.popoverController.passthroughViews = @[self.navigationController.navigationBar];
-        [self.popoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }else {
-        [self presentModalViewController:cacheSettingsController embeddedInNavigationController:YES withCloseButton:YES animated:YES];
-    }
-}
-
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
 - (void)globalVarChanged {
@@ -216,7 +201,8 @@
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
 
     // show pdf title and fileURL
-    if (PSIsIpad() && ![document.title isEqualToString:[document.fileURL lastPathComponent]]) {
+    NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
+    if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
         self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
     }
 }
