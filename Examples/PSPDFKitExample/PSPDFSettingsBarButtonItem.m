@@ -16,11 +16,11 @@
 
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    return PSIsIpad() ? nil : [UIImage imageNamed:@"settings"];
+    return [UIImage imageNamed:@"settings"];
 }
 
 - (UIImage *)landscapeImagePhone {
-    return PSIsIpad() ? nil : [UIImage imageNamed:@"settings_landscape"];
+    return [UIImage imageNamed:@"settings_landscape"];
 }
 
 - (NSString *)actionName {
