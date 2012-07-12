@@ -19,6 +19,8 @@
 @end
 
 typedef NS_ENUM(NSInteger, PSPDFSettings) {
+    PSPDFOpenAPIButton,
+    PSPDFShowConfigButton,
     PSPDFPageTransitionSettings,
     PSPDFScrollDirectionSettings,
     PSPDFPageModeSettings,
@@ -26,7 +28,8 @@ typedef NS_ENUM(NSInteger, PSPDFSettings) {
     PSPDFGeneralSettings,
     PSPDFToolbarSettings,
     PSPDFLinkActionSettings,
-    PSPDFCacheSettings
+    PSPDFCacheSettings,
+    PSPDFDebugSettings
 };
 
 @implementation PSPDFSettingsController
@@ -71,6 +74,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Options");
         _content = @[
+        @[_(@"Open Documentation")], @[_(@"Show Current Configuration")],
         @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)"), _(@"Page Flip (Flipboard)")],
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
@@ -79,8 +83,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"View Mode")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
+        @[_(@"Show Text Blocks")],
         ];
-        _contentSubtitle = @[
+        _contentSubtitle = @[@[@""], @[@""],
         @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition"), _(@"PSPDFPageFlipTransition")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
@@ -89,16 +94,18 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
+        @[_(@"(Feature of PSPDFSelectionView)")],
         ];
-        _sectionTitle = @[_(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
-        _sectionFooter = @[_(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
+        _sectionTitle = @[@"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache"), _(@"Debug")];
+        _sectionFooter = @[@"", @"", _(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // dual page mode
         _(@"Relevant for dual page mode."),
         _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
         _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
         _(@"Default is PSPDFLinkActionInlineBrowser."),
-        _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
+        _(@"Cache everything is usually the preferred choice. Cache settings are global."),
+        _(@"See PSPDFKitGlobal.h for more debugging options.")];
     }
     return self;
 }
@@ -159,6 +166,11 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 6: _settings[PSString(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
+        case PSPDFDebugSettings:
+            switch (indexPath.row) {
+                case 0: _settings[@"showTextBlocks"] = value; break;
+                default: break;
+            }break;
         default: break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
@@ -177,7 +189,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     cell.detailTextLabel.text = _contentSubtitle[indexPath.section][indexPath.row];
 
     UISwitch *cellSwitch = nil;
-    if (indexPath.section == PSPDFGeneralSettings || indexPath.section == PSPDFToolbarSettings) {
+    if (indexPath.section == PSPDFGeneralSettings || indexPath.section == PSPDFToolbarSettings || indexPath.section == PSPDFDebugSettings) {
         cellSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
         [cellSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = cellSwitch;
@@ -233,6 +245,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
             PSPDFCacheStrategy cacheStrategy = [PSPDFCache sharedPSPDFCache].strategy;
             cell.accessoryType = (indexPath.row == cacheStrategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
+        case PSPDFDebugSettings: {
+            cellSwitch.on = [_settings[@"showTextBlocks"] boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        }break;
         default:break;
     }
     return cell;
@@ -243,6 +258,12 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
+        case PSPDFOpenAPIButton: {
+            PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); return;)
+            UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
+            [self presentModalViewController:webController animated:YES];
+        }break;
+        case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFPageTransitionSettings: _settings[PSString(pageTransition)] = @(indexPath.row); break;
         case PSPDFScrollDirectionSettings: _settings[PSString(pageScrolling)] = @(indexPath.row); break;
         case PSPDFPageModeSettings: _settings[PSString(pageMode)] = @(indexPath.row); break;
@@ -256,6 +277,44 @@ __attribute__((constructor)) static void setupDefaults(void) {
     }
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Show Config Button
+
+- (void)showConfigButton {
+    NSString *pdfName = @"Document.pdf";
+    if ([[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController] isKindOfClass:[PSPDFViewController class]]) {
+        PSPDFViewController *pdfController = (PSPDFViewController *)[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController];
+        pdfName = [pdfController.document.fileURL lastPathComponent];
+    }
+
+    UIViewController *configViewController = [PSPDFBaseViewController new];
+    UITextView *configView = [UITextView new];
+    configView.font = [UIFont fontWithName:@"Courier" size:14];
+    NSMutableString *codeString = [NSMutableString string];
+    [codeString appendFormat:@"PSPDFDocument *pdfDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@\"%@\"]]]\n\nPSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:pdfDocument];\n\n// Config properies. Use the enum values instead.\n// This is only for debugging.\n", pdfName];
+    [_settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([key hasPrefix:@"is"]) {
+            key = [key substringFromIndex:2];
+            key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringToIndex:1] lowercaseString]];
+            obj = [obj boolValue] ? @"YES" : @"NO";
+        }
+        [codeString appendFormat:@"pdfController.%@ = %@;\n", key, obj];
+    }];
+    [codeString appendString:@"\n// Presenting the controller\nUINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];\n[self presentViewController:navController animated:YES completion:NULL];"];
+    configView.text = codeString;
+    configView.editable = NO;
+    configViewController.view = configView;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
+    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
+    navController.title = _(@"Current ");
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentModalViewController:navController animated:YES];
+}
+
+- (void)closeModalView {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 @end
