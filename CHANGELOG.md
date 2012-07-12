@@ -23,7 +23,7 @@ PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 *  PSPDFDocument can now be initialized with a CGDataProviderRef.
 *  Support for Table Of Contents (Outline) linking to other PDF documents.
 *  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
-*  The search controller now dynamically updates its size based on the content height.
+*  The search/outline controllers now dynamically update their size based on the content height.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - x/Jul/2012__
