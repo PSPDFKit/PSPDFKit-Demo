@@ -6,7 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFRenderer.h"
+#import "PSPDFRenderQueue.h"
 
 @class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
 
@@ -15,11 +15,13 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
+/// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
 @interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
 - (id)initWithFrame:(CGRect)frame pdfController:(PSPDFViewController *)pdfController;
+
 
 /// @name Show / Destroy a document
 
@@ -29,7 +31,56 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.
 - (void)prepareForReuse;
 
+
+/// @name Internal views and rendering
+
+// Redraw the renderView
+- (void)updateRenderView;
+
+// Redraw renderView and contentView.
+- (void)updateView;
+
+/// UIImageView subview showing the whole document. Readonly.
+@property(nonatomic, strong, readonly) UIImageView *contentView;
+
+/// UIImageView for the zoomed in state. Readonly.
+@property(nonatomic, strong, readonly) UIImageView *renderView;
+
+/// Size used for the zoomed-in part. Should always be bigger than the screen.
+/// This is set to a good default already. You shound't need to touch this.
+@property(nonatomic, assign) CGSize renderSize;
+
+/// Calculated scale. Readonly.
+@property(nonatomic, assign, readonly) CGFloat pdfScale;
+
+/// Temporarily suspend rendering updates to the renderView.
+@property(nonatomic, assign) BOOL suspendUpdate;
+
+/// Is view currently rendering (either contentView or renderView)
+@property(nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
+
+/// Current CGRect of the part of the page that's visible. Screen coordinate space.
+/// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
+/// this will show the TARGET rect, not the one that's currently animating.
+@property(nonatomic, assign, readonly) CGRect visibleRect;
+
+/// Access the selectionView. (handles text selection)
+@property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
+
+/// Access the render status view that is displayed on top of a page while we are rendering.
+@property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
+
+/// Shortcut to access the textParser corresponding to the current page.
+@property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
+
+
 /// @name Coordinate calculations
+
+/// Find objects at the current view point. See PSPDFDocument for more details.
+- (NSDictionary *)objectsAtViewPoint:(CGPoint)pdfPoint options:(NSDictionary *)options;
+
+/// Find objects at the current view rect. See PSPDFDocument for more details.
+- (NSDictionary *)objectsAtViewRect:(CGRect)pdfRect options:(NSDictionary *)options;
 
 /// Convert a view point to the corresponding pdf point.
 /// pageBounds usually is PSPDFPageView bounds.
@@ -65,44 +116,8 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Document that is displayed. Readonly.
 @property(nonatomic, strong, readonly) PSPDFDocument *document;
 
-/// Calculated scale. Readonly.
-@property(nonatomic, assign, readonly) CGFloat pdfScale;
-
-/// UIImageView subview showing the whole document. Readonly.
-@property(nonatomic, strong, readonly) UIImageView *contentView;
-
-/// UIImageView for the zoomed in state. Readonly.
-@property(nonatomic, strong, readonly) UIImageView *renderView;
-
-/// Size used for the zoomed-in part. Should always be bigger than the screen.
-/// This is set to a good default already. You shound't need to touch this.
-@property(nonatomic, assign) CGSize renderSize;
-
-/// Temporarily suspend rendering updates to the renderView. 
-@property(nonatomic, assign) BOOL suspendUpdate;
-
-/// Is view currently rendering (either contentView or renderView)
-@property(nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
-
-/// Current CGRect of the part of the page that's visible. Screen coordinate space.
-/// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
-/// this will show the TARGET rect, not the one that's currently animating.
-@property(nonatomic, assign, readonly) CGRect visibleRect;
-
-/// Access the selectionView (handles text selection).
-@property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
-
-/// Shortcut to access the textParser corresponding to the current page.
-@property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
-
 /// Shortcut to access the current boxRect of the set page.
 @property(nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
-
-
-/// @name Advanced Settings and Methods
-
-/// set background image to custom image. used in PSPDFTiledLayer.
-- (void)setBackgroundImage:(UIImage *)image animated:(BOOL)animated;
 
 
 /// @name Shadow settings
@@ -116,20 +131,13 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Subclass to change shadow behavior.
 - (void)updateShadow;
 
-// Redraw the renderView
-- (void)updateRenderView;
-
-// Redraw renderView and contentView.
-- (void)updateView;
-
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
 @property(nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
 
-/// Access the render status view that is displayed on top of a page while we are rendering.
-@property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
-
 @end
 
+
+// Extensions to handle annotations.
 @interface PSPDFPageView (PSPDFAnnotationMenu)
 
 @property(nonatomic, strong, readonly) PSPDFAnnotation *selectedAnnotation;
@@ -151,6 +159,8 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 @end
 
+
+// Entends the UIScrollViewDelegate.
 @interface PSPDFPageView (PSPDFScrollViewDelegateExtensions)
 
 - (void)pspdf_scrollView:(UIScrollView *)scrollView willZoomToScale:(float)scale animated:(BOOL)animated;

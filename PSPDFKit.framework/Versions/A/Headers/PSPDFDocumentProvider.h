@@ -9,6 +9,17 @@
 
 @class PSPDFTextSearch, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument;
 
+/// Delegate for writing annotations.
+@protocol PSPDFDocumentProviderDelegate <NSObject>
+
+/// Called before we append data to a PDF. Return NO to stop writing annotations.
+- (BOOL)documentProvider:(PSPDFDocumentProvider *)documentProvider shouldAppendData:(NSData *)data;
+
+// Called after the write is completed.
+- (void)documentProvider:(PSPDFDocumentProvider *)documentProvider didAppendData:(NSData *)data;
+
+@end
+
 /// A PSPDFDocument consists of one or multiple PSPDFDocumentProvider's.
 /// Note: This class is used within PSPDFDocument and should not be instantiated externally.
 @interface PSPDFDocumentProvider : NSObject
@@ -33,6 +44,9 @@
 
 /// Weak-linked parent document.
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
+
+/// Delegate for writing annotations.
+@property(nonatomic, ps_weak) id<PSPDFDocumentProviderDelegate> delegate;
 
 /// Access the CGPDFDocumentRef and locks the internal document. 
 ///

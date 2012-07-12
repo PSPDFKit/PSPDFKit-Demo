@@ -249,6 +249,28 @@
 
 //- (void)drawOverlayForPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
+
+/// @name Object Finder
+
+// options
+extern NSString *kPSPDFObjectsText;        // Include Text.
+extern NSString *kPSPDFObjectsFullWords;   // Always return full PSPDFWords. Implies kPSPDFObjectsText.
+extern NSString *kPSPDFObjectsRespectTextBlocks; // Don't jump to a different text block than the first one enountered in the pdfRect. Implies kPSPDFObjectsText.
+extern NSString *kPSPDFObjectsAnnotations; // Include annotations.
+
+// Output categories
+extern NSString *kPSPDFGlyphs, *kPSPDFWords, *kPSPDFTextBlocks, *kPSPDFAnnotations;
+
+/// Find objects at the current PDF point.
+/// If options is nil, we assume kPSPDFObjectsText and kPSPDFObjectsFullWords.
+/// Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)
+- (NSDictionary *)objectsAtPDFPoint:(CGPoint)pdfPoint page:(NSUInteger)page options:(NSDictionary *)options;
+
+/// Find objects at the current PDF rect.
+/// If options is nil, we assume kPSPDFObjectsText, kPSPDFObjectsFullWords and kPSPDFObjectsRespectTextBlocks.
+/// Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)
+- (NSDictionary *)objectsAtPDFRect:(CGRect)pdfRect page:(NSUInteger)page options:(NSDictionary *)options;
+
 @end
 
 @interface PSPDFDocument (PSPDFSubclassing)

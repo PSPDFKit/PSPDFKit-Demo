@@ -9,6 +9,7 @@
 
 @class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation, PDFPage;
 
+/// Parses the text of a PDF page.
 @interface PSPDFTextParser : NSObject
 
 @property (nonatomic, readonly) CGPDFPageRef page;
