@@ -11,15 +11,16 @@
 @implementation PSPDFSettingsBarButtonItem
 
 - (UIBarButtonItemStyle)itemStyle {
-    return UIBarButtonItemStylePlain;
+    return PSIsIpad() ? UIBarButtonItemStyleBordered : UIBarButtonItemStylePlain;
 }
 
+// on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    return [UIImage imageNamed:@"settings"];
+    return PSIsIpad() ? nil : [UIImage imageNamed:@"settings"];
 }
 
 - (UIImage *)landscapeImagePhone {
-    return [UIImage imageNamed:@"settings_landscape"];
+    return PSIsIpad() ? nil : [UIImage imageNamed:@"settings_landscape"];
 }
 
 - (NSString *)actionName {
