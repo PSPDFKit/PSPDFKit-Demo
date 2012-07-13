@@ -4,7 +4,6 @@ __v2.0.0 - XX/August/2012__
 
 Note: PSPDFKit v2 is still alpha quality, expect bugs.
 You need at least Xcode 4.4 to compile. (Xcode 4.4/4.5 run both fine on Lion, Mountain Lion is not needed.)
-Xcode 4.4 will be released in July, before the final release of PSPDFKit v2.
 PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 
 *  Text selection! (Includes Copy, Dictionary, Wikipedia support)
@@ -24,6 +23,8 @@ PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 *  Support for Table Of Contents (Outline) linking to other PDF documents.
 *  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
 *  The search/outline controllers now dynamically update their size based on the content height.
+*  Page Content/Background Color/Inversion can now be changed to modify rendering.
+*  PSPDFViewController can now programatically invoke a search via searchForString:animated:.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - x/Jul/2012__
