@@ -42,7 +42,7 @@
     if((self = [super init])) {
         _document = document;
         self.title = [document.fileURL lastPathComponent];
-        self.contentSizeForViewInPopover = CGSizeMake(400, [self.document.metadata count] * 44);
+        self.contentSizeForViewInPopover = CGSizeMake(350, [self.document.metadata count] * 44);
     }
     return self;
 }
@@ -52,7 +52,15 @@
 
 - (NSString *)metadataForRow:(NSUInteger)row {
     NSArray *sortedKeys = [[self.document.metadata allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    return self.document.metadata[sortedKeys[row]];
+    NSString *metadata = self.document.metadata[sortedKeys[row]];
+    if (![metadata isKindOfClass:[NSString class]]) {
+        if ([metadata isKindOfClass:[NSArray class]]) {
+            metadata = [(NSArray *)metadata componentsJoinedByString:@", "];
+        }else {
+            metadata = [metadata description];
+        }
+    }
+    return metadata;
 }
 
 - (NSString *)metadataKeyForRow:(NSUInteger)row {
