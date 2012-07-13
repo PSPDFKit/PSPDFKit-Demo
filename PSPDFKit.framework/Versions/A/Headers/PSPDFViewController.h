@@ -106,6 +106,30 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Recreates the content view hierarchy. Usually automatically invoked if you change certain properties (like document, pageTransition).
 - (IBAction)reloadData;
 
+/// Opens the PSPDFSearchViewController with the searchString.
+- (void)searchForString:(NSString *)searchText animated:(BOOL)animated;
+
+
+/// @name Page Rendering
+
+/* 
+ Changing those settings will affect PDF rendering.
+ Currently the PDF cache still does not yet honor those settings.
+ You need to manually call [self reloadData] after changing those properites.
+*/
+
+/// Change the PDF content opacity. Defaults to 1 (100%)
+@property(nonatomic, assign) CGFloat renderContentOpacity;
+
+/// Multiplies a color to the PDF background color.
+/// Does not change anything if the pge color is black.
+/// This is useful to ease reading on mostly white documents. Defaults to [UIColor whiteColor]. (white)
+/// Can not be set to nil.
+@property(nonatomic, strong) UIColor *renderBackgroundColor;
+
+/// Inverts PDF rendering. Useful for people that need additional accessibility. 
+@property(nonatomic, assign) BOOL renderInvertEnabled;
+
 
 /// @name HUD Controls
 
@@ -292,17 +316,17 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
-/// fitWidth is currently not supported for vertical scrolling or pageCurl mode.
-@property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+/// fitToWidthEnabled is currently not supported for vertical scrolling or pageCurl mode.
+@property(nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
 
-/// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitWidth is enabled. If NO, new pages will start at the page top position.
-@property(nonatomic, assign) BOOL fixedVerticalPositionForFitWidthMode;
+/// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitToWidthEnabled is enabled. If NO, new pages will start at the page top position.
+@property(nonatomic, assign) BOOL fixedVerticalPositionForfitToWidthEnabledMode;
 
 /// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
 @property(nonatomic, assign) BOOL clipToPageBoundaries;
 
-/// Maximum zoom scale for the scrollview. Defaults to 5.0. Set before creating the view.
+/// Maximum zoom scale for the scrollview. Defaults to 8.0. Set before creating the view.
 @property(nonatomic, assign) float maximumZoomScale;
 
 /// Page padding width between single/double pages. Defaults to 20.
