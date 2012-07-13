@@ -12,4 +12,7 @@
 // Settings are saved within the dictionary.
 + (NSDictionary *)settings;
 
+// converts is* strings to regular strings.
++ (NSString *)setterKeyForGetter:(NSString *)getter;
+
 @end
