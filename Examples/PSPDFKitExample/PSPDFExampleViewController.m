@@ -148,20 +148,11 @@
 - (void)globalVarChanged {
     PSPDFViewState *viewState = [self viewState];
     NSDictionary *settings = [PSPDFSettingsController settings];
-    self.pageTransition = [settings[NSStringFromSelector(@selector(pageTransition))] integerValue];
-    self.pageScrolling = [settings[NSStringFromSelector(@selector(pageScrolling))] integerValue];
-    self.pageMode = [settings[NSStringFromSelector(@selector(pageMode))] integerValue];
-    self.linkAction = [settings[NSStringFromSelector(@selector(linkAction))] integerValue];
-    self.doublePageModeOnFirstPage = [settings[NSStringFromSelector(@selector(isDoublePageModeOnFirstPage))] boolValue];
-    self.zoomingSmallDocumentsEnabled = [settings[NSStringFromSelector(@selector(isZoomingSmallDocumentsEnabled))] boolValue];
-    self.fitWidth = [settings[NSStringFromSelector(@selector(isFittingWidth))] boolValue];
-    self.scrobbleBarEnabled =  [settings[NSStringFromSelector(@selector(isScrobbleBarEnabled))] boolValue];
-    self.positionViewEnabled = [settings[NSStringFromSelector(@selector(isPositionViewEnabled))] boolValue];
-    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
-    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
-    self.scrollOnTapPageEndEnabled = [settings[NSStringFromSelector(@selector(isScrollOnTapPageEndEnabled))] boolValue];
-    self.smartZoomEnabled = [settings[NSStringFromSelector(@selector(isSmartZoomEnabled))] boolValue];
-    self.textSelectionEnabled = [settings[NSStringFromSelector(@selector(isTextSelectionEnabled))] boolValue];
+    [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if (![key hasSuffix:@"ButtonItem"]) {
+            [self setValue:obj forKey:[PSPDFSettingsController setterKeyForGetter:key]];
+        }
+    }];
 
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
     if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {

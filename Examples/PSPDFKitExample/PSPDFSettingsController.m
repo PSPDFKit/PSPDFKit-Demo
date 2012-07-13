@@ -15,12 +15,20 @@
     NSArray *_contentSubtitle;
     NSArray *_sectionTitle;
     NSArray *_sectionFooter;
+    UISegmentedControl *_contentOpacityControl;
+	UISegmentedControl *_paperColorControl;
+    NSArray *_paperColors;
 }
 @end
 
 typedef NS_ENUM(NSInteger, PSPDFSettings) {
     PSPDFOpenAPIButton,
     PSPDFShowConfigButton,
+    PSPDFTextReflow,
+    PSPDFDebugSettings,
+    PSPDFDisplaySettings,
+    PSPDFPaperColor,
+    PSPDFPaperOpacity,
     PSPDFPageTransitionSettings,
     PSPDFScrollDirectionSettings,
     PSPDFPageModeSettings,
@@ -28,8 +36,7 @@ typedef NS_ENUM(NSInteger, PSPDFSettings) {
     PSPDFGeneralSettings,
     PSPDFToolbarSettings,
     PSPDFLinkActionSettings,
-    PSPDFCacheSettings,
-    PSPDFDebugSettings
+    PSPDFCacheSettings
 };
 
 @implementation PSPDFSettingsController
@@ -46,7 +53,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
         _settings[PSString(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[PSString(isFittingWidth)] = PSIsIpad() ? @(NO) : @(YES);
+        _settings[PSString(isFitToWidthEnabled)] = PSIsIpad() ? @(NO) : @(YES);
         _settings[PSString(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[PSString(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[PSString(isScrobbleBarEnabled)] = @(YES);
@@ -64,6 +71,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[PSString(openInButtonItem)] = @(YES);
         _settings[PSString(emailButtonItem)] = @(YES);
         _settings[PSString(viewModeButtonItem)] = @(YES);
+        _settings[PSString(renderBackgroundColor)] = [UIColor whiteColor];
+        _settings[PSString(renderContentOpacity)] = @(1.f);
     }
 }
 
@@ -74,7 +83,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Options");
         _content = @[
-        @[_(@"Open Documentation")], @[_(@"Show Current Configuration")],
+        @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")],
+        @[_(@"Show Text Blocks")],
+        @[_(@"Invert")], @[_(@"")], @[_(@"")],
         @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)"), _(@"Page Flip (Flipboard)")],
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
@@ -83,31 +94,71 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"View Mode")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
-        @[_(@"Show Text Blocks")],
         ];
-        _contentSubtitle = @[@[@""], @[@""],
+        _contentSubtitle = @[@[@""], @[@""], @[@""],
+        @[_(@"(See PSPDFSelectionView)")],
+        @[@""], @[@""], @[@""],
         @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition"), _(@"PSPDFPageFlipTransition")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
-        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitWidth"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
+        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
         @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
-        @[_(@"(Feature of PSPDFSelectionView)")],
         ];
-        _sectionTitle = @[@"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache"), _(@"Debug")];
-        _sectionFooter = @[@"", @"", _(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
+        _sectionTitle = @[@"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionFooter = @[@"", @"", @"", _(@"See PSPDFKitGlobal.h for more debugging options."),
+        _(@"Useful to easy readability of white documents."),
+        _(@"Paper Color"),
+        _(@"PDF Opacity"),
+        _(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // dual page mode
         _(@"Relevant for dual page mode."),
         _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
         _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
         _(@"Default is PSPDFLinkActionInlineBrowser."),
-        _(@"Cache everything is usually the preferred choice. Cache settings are global."),
-        _(@"See PSPDFKitGlobal.h for more debugging options.")];
+        _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
+
+        _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"100%", @"90%", @"80%", @"70%", @"60%", nil]];
+		[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
+
+        _paperColors = @[[UIColor whiteColor],
+            // 1-4: sepia, light to dark
+            [UIColor colorWithRed:0.980 green:0.976 blue:0.949 alpha:1.0],
+            [UIColor colorWithRed:0.965 green:0.957 blue:0.906 alpha:1.0],
+            [UIColor colorWithRed:0.953 green:0.941 blue:0.871 alpha:1.0],
+            [UIColor colorWithRed:0.937 green:0.922 blue:0.831 alpha:1.0],
+            // 5-7: gray, light to dark
+            [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0],
+            [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0],
+            [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0]];
+
+        NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:[_paperColors count]];
+        [_paperColors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [imageArray addObject:[self imageWithColor:obj]];
+        }];
+        _paperColorControl = [[UISegmentedControl alloc] initWithItems:imageArray];
+        [_paperColorControl addTarget:self action:@selector(paperColorChanged:) forControlEvents:UIControlEventValueChanged];
+
     }
     return self;
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGSize imageSize = CGSizeMake(20, 20);
+    UIImage *renderedImage = nil;
+    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [color setFill];
+    [[UIColor blackColor] setStroke];
+    CGContextSetLineWidth(context, 1.f);
+    CGContextFillRect(context, (CGRect){.size=imageSize});
+    CGContextStrokeRect(context, (CGRect){.size=imageSize});
+    renderedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return renderedImage;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +171,22 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return PSIsIpad() ? YES : interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)paperColorChanged:(id)sender {
+	int paperColorIndex = [sender selectedSegmentIndex];
+    _settings[PSString(renderBackgroundColor)] = _paperColors[paperColorIndex];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
+}
+
+- (void)contentOpacityChanged:(id)sender {
+	int opacityIndex = [sender selectedSegmentIndex];
+	float opacity = 1.0 - ((float)opacityIndex * 0.1);
+    _settings[PSString(renderContentOpacity)] = @(opacity);
+    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +217,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 0: _settings[PSString(isSmartZoomEnabled)] = value; break;
                 case 1: _settings[PSString(isTextSelectionEnabled)] = value; break;
                 case 2: _settings[PSString(isZoomingSmallDocumentsEnabled)] = value; break;
-                case 3: _settings[PSString(isFittingWidth)] = value; break;
+                case 3: _settings[PSString(isFitToWidthEnabled)] = value; break;
                 case 5: _settings[PSString(isScrobbleBarEnabled)] = value; break;
                 case 6: _settings[PSString(isPositionViewEnabled)] = value; break;
                 default: break;
@@ -171,6 +238,12 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 0: _settings[@"showTextBlocks"] = value; break;
                 default: break;
             }break;
+        case PSPDFDisplaySettings: {
+            switch (indexPath.row) {
+                case 0: _settings[PSString(renderInvertEnabled)] = value; break;
+                default: break;
+            }break;
+        }break;
         default: break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
@@ -189,11 +262,24 @@ __attribute__((constructor)) static void setupDefaults(void) {
     cell.detailTextLabel.text = _contentSubtitle[indexPath.section][indexPath.row];
 
     UISwitch *cellSwitch = nil;
-    if (indexPath.section == PSPDFGeneralSettings || indexPath.section == PSPDFToolbarSettings || indexPath.section == PSPDFDebugSettings) {
+    if (indexPath.section == PSPDFGeneralSettings || indexPath.section == PSPDFToolbarSettings || indexPath.section == PSPDFDebugSettings || (indexPath.section == PSPDFDisplaySettings && indexPath.row == 0)) {
         cellSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
         [cellSwitch addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = cellSwitch;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+
+    if (indexPath.section == PSPDFPaperColor) {
+        _paperColorControl.frame = CGRectMake(9, 0, 302, 46);
+        UIColor *paperColor = _settings[PSString(renderBackgroundColor)];
+        _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
+        [cell addSubview:_paperColorControl];
+    }
+    else if (indexPath.section == PSPDFPaperOpacity) {
+        _contentOpacityControl.frame = CGRectMake(9, 0, 302, 46);
+        NSUInteger index = roundf((1 - [_settings[PSString(renderContentOpacity)] floatValue]) * 10);
+        _contentOpacityControl.selectedSegmentIndex = index;
+        [cell addSubview:_contentOpacityControl];
     }
 
     switch (indexPath.section) {
@@ -218,7 +304,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 0: cellSwitch.on = [_settings[PSString(isSmartZoomEnabled)] boolValue]; break;
                 case 1: cellSwitch.on = [_settings[PSString(isTextSelectionEnabled)] boolValue]; break;
                 case 2: cellSwitch.on = [_settings[PSString(isZoomingSmallDocumentsEnabled)] boolValue]; break;
-                case 3: cellSwitch.on = [_settings[PSString(isFittingWidth)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[PSString(isFitToWidthEnabled)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[PSString(isScrollOnTapPageEndEnabled)] boolValue]; break;
                 case 5: cellSwitch.on = [_settings[PSString(isScrobbleBarEnabled)] boolValue]; break;
                 case 6: cellSwitch.on = [_settings[PSString(isPositionViewEnabled)] boolValue]; break;
@@ -246,7 +332,16 @@ __attribute__((constructor)) static void setupDefaults(void) {
             cell.accessoryType = (indexPath.row == cacheStrategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFDebugSettings: {
-            cellSwitch.on = [_settings[@"showTextBlocks"] boolValue] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+            switch (indexPath.row) {
+                case 0: cellSwitch.on = [_settings[@"showTextBlocks"] boolValue]; break;
+                default: break;
+            }break;
+        }break;
+        case PSPDFDisplaySettings: {
+            switch (indexPath.row) {
+                case 0: cellSwitch.on = [_settings[PSString(renderInvertEnabled)] boolValue]; break;
+                default: break;
+            }break;
         }break;
         default:break;
     }
@@ -259,11 +354,12 @@ __attribute__((constructor)) static void setupDefaults(void) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case PSPDFOpenAPIButton: {
-            PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); return;)
+            PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); break;)
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
             [self presentModalViewController:webController animated:YES];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
+        case PSPDFTextReflow: [self showTextReflowController]; break;
         case PSPDFPageTransitionSettings: _settings[PSString(pageTransition)] = @(indexPath.row); break;
         case PSPDFScrollDirectionSettings: _settings[PSString(pageScrolling)] = @(indexPath.row); break;
         case PSPDFPageModeSettings: _settings[PSString(pageMode)] = @(indexPath.row); break;
@@ -282,10 +378,18 @@ __attribute__((constructor)) static void setupDefaults(void) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Show Config Button
 
+- (PSPDFViewController *)currentPDFController {
+    PSPDFViewController *pdfController = nil;
+    if ([[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController] isKindOfClass:[PSPDFViewController class]]) {
+        pdfController = (PSPDFViewController *)[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController];
+    }
+    return pdfController;
+}
+
 - (void)showConfigButton {
     NSString *pdfName = @"Document.pdf";
-    if ([[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController] isKindOfClass:[PSPDFViewController class]]) {
-        PSPDFViewController *pdfController = (PSPDFViewController *)[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController];
+    PSPDFViewController *pdfController = [self currentPDFController];
+    if (pdfController.document.fileURL) {
         pdfName = [pdfController.document.fileURL lastPathComponent];
     }
 
@@ -296,8 +400,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     [codeString appendFormat:@"PSPDFDocument *pdfDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@\"%@\"]]]\n\nPSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:pdfDocument];\n\n// Config properies. Use the enum values instead.\n// This is only for debugging.\n", pdfName];
     [_settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:@"is"]) {
-            key = [key substringFromIndex:2];
-            key = [key stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[key substringToIndex:1] lowercaseString]];
+            key = [[self class] setterKeyForGetter:key];
             obj = [obj boolValue] ? @"YES" : @"NO";
         }
         [codeString appendFormat:@"pdfController.%@ = %@;\n", key, obj];
@@ -315,6 +418,35 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 - (void)closeModalView {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)showTextReflowController {
+    PSPDFViewController *pdfController = [self currentPDFController];
+    if (!pdfController.document) {
+        return;
+    }
+
+    UIViewController *configViewController = [PSPDFBaseViewController new];
+    UITextView *configView = [UITextView new];
+    configView.text = [pdfController.document textParserForPage:pdfController.page].text;
+    configView.editable = NO;
+    configView.font = [UIFont systemFontOfSize:15];
+    configViewController.view = configView;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
+    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
+    navController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
+    [self presentModalViewController:navController animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
++ (NSString *)setterKeyForGetter:(NSString *)getter {
+    if ([getter hasPrefix:@"is"]) {
+        getter = [getter substringFromIndex:2];
+        getter = [getter stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[[getter substringToIndex:1] lowercaseString]];
+    }
+    return getter;
 }
 
 @end
