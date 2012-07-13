@@ -129,6 +129,14 @@
     // Example to show how to only allow pageCurl in landscape mode.
     // Don't change this property in willAnimate* or bad things will happen.
     // self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+
+    if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
+    for(NSNumber *number in [self visiblePageNumbers]) {
+        PSPDFPageView *pageView = [self pageViewForPage:[number unsignedIntegerValue]];
+            [pageView.selectionView showTextFlowData:NO animated:NO];
+            [pageView.selectionView showTextFlowData:YES animated:NO];
+        }
+    }
 }
 
 
@@ -226,6 +234,7 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
+        [pageView.selectionView showTextFlowData:NO animated:NO];
         [pageView.selectionView showTextFlowData:YES animated:NO];
     }
 }
