@@ -149,7 +149,7 @@
     PSPDFViewState *viewState = [self viewState];
     NSDictionary *settings = [PSPDFSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (![key hasSuffix:@"ButtonItem"]) {
+        if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
             [self setValue:obj forKey:[PSPDFSettingsController setterKeyForGetter:key]];
         }
     }];
@@ -216,7 +216,11 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    PSELog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);    
+    PSELog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
+
+    if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
+        [pageView.selectionView showTextFlowData:YES animated:NO];
+    }
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
@@ -226,7 +230,6 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
         [pageView.selectionView showTextFlowData:NO animated:NO];
-        [pageView.selectionView showTextFlowData:YES animated:NO];
     }
 }
 
