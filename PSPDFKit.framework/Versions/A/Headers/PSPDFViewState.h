@@ -20,6 +20,6 @@
 @property(nonatomic, assign) NSUInteger page;
 
 /// Show the HUD.
-@property(nonatomic, assign) BOOL showHUD;
+@property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
 
 @end
