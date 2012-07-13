@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PSPDFRectAlignment) {
 CGFloat PSPDFScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
 
 /// Returns scale to fit a size within another size, with optional zooming.
-CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize boundsSize, BOOL zoomMinimalSize, BOOL fitWidth);
+CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize boundsSize, BOOL zoomMinimalSize, BOOL fitToWidthEnabled);
 
 /// helper to calculate new size for specific scale and size.
 CGSize PSPDFSizeForScale(CGSize size, CGFloat scale);
@@ -78,7 +78,7 @@ extern inline id PSPDFCopyPDFObject(CGPDFObjectRef objectRef);
 extern inline id PSPDFCopyPDFObjectOrNSNull(CGPDFObjectRef objectRef);
 
 /// Converts a CGPDFDictionary into a NSDictionary.
-extern NSDictionary *PSPDFCopyPDFDictionary(CGPDFDictionaryRef pdfDict);
+extern NSDictionary *PSPDFConvertPDFDictionary(CGPDFDictionaryRef pdfDict);
 
 /// Converts a CGPDFArray into an NSArray.
 extern NSArray *PSPDFCopyPDFArray(CGPDFArrayRef pdfArray);

@@ -39,6 +39,7 @@
 
 // search
 #import "PSPDFTextSearch.h"
+#import "PSPDFTextParser.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 #import "PSPDFSearchHighlightView.h"

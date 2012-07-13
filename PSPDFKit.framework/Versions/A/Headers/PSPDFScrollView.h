@@ -60,7 +60,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @property(nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height)
-@property(nonatomic, assign, getter=isFittingWidth) BOOL fitWidth;
+@property(nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
 
 /// Enables/disables page shadow.
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;

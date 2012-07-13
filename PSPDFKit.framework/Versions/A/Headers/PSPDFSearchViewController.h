@@ -26,6 +26,9 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
+/// Current searchText.
+@property(nonatomic, copy) NSString *searchText;
+
 /// different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
 /// Note: this is set from PSPDFViewController in presentModalViewController:embeddedInNavigationController:withCloseButton:animated.
 @property(nonatomic, assign) BOOL showsCancelButton;
