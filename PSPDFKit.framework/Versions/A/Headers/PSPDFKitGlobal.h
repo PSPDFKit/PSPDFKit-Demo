@@ -4,17 +4,18 @@
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
+
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
 
-/// *completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
+/// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
 /// If disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
 
-// newer runtimes define this, here's a fallback for the iOS5 SDK.
+// Newer runtimes define this, here's a fallback for the iOS5 SDK.
 #ifndef NS_ENUM
 #define NS_ENUM(_type, _name) _type _name; enum
 #define NS_OPTIONS(_type, _name) _type _name; enum
@@ -32,6 +33,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeUnknown = 900,    
 };
 
+/// Log level defines.
 typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
     PSPDFLogLevelNothing = 0,
     PSPDFLogLevelError,   
@@ -41,7 +43,7 @@ typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
 };
 extern PSPDFLogLevel kPSPDFLogLevel; // defaults to PSPDFLogLevelError
 
-/// settings for animation of pages, global
+/// Settings for animation of pages, global
 typedef NS_ENUM(NSInteger, PSPDFAnimate) {
     PSPDFAnimateNever,
     PSPDFAnimateModernDevices,
@@ -49,33 +51,33 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
 };
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
-/// default time to animate pdf views. Defaults to 0.15
+/// Default time to animate pdf views. Defaults to 0.15
 extern CGFloat kPSPDFKitPDFAnimationDuration;
 
 extern CGFloat kPSPDFKitHUDTransparency;
 
-/// evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
+/// Evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 extern BOOL PSPDFShouldAnimate(void);
 
-/// optionally enable scrollbar debugging.
+/// Optionally enable scrollbar debugging.
 extern BOOL kPSPDFKitDebugScrollViews;
 
-/// enable to track down memory issues
+/// Enable to track down memory issues.
 extern BOOL kPSPDFKitDebugMemory;
 
-/// improves scroll performance
+/// Improves scroll performance.
 extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 
-/// detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
+/// Detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
 extern BOOL PSPDFIsCrappyDevice(void);
 
-// drawing helper
+// Drawing helper.
 extern inline void DrawPSPDFKit(CGContextRef context);
 
-/// class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
+/// Class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFCacheClassName;
 
-/// class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
+/// Class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFIconGeneratorClassName;
 
 /// Get current PSPDFKit version.
@@ -107,13 +109,13 @@ extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 /// Removes the ".pdf" or a cased derivation of it from the fileName, if it exists.
 extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
 
-// helper for deadlock-free dispatch_sync.
+// Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
-// defines a basic void block
+// Defines a basic void block
 typedef void(^PSPDFBasicBlock)(void);
 
-// use special weak keyword
+// Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak
 #define __ps_weak __weak
@@ -130,7 +132,7 @@ typedef void(^PSPDFBasicBlock)(void);
 #define PSPDF_KEYPATH(object, property) ((void)(NO && ((void)object.property, NO)), @#property)
 #define PSPDF_KEYPATH_SELF(property) PSPDF_KEYPATH(self, property)
 
-// log helper
+// Log helper
 #import "PSPDFCache.h"
 #ifdef kPSPDFKitDebugEnabled
 #define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
@@ -144,7 +146,7 @@ typedef void(^PSPDFBasicBlock)(void);
 #define PSPDFLogWarning(...)
 #endif
 
-// object tracker debug helper
+// Object tracker debug helper
 #ifdef kPSPDFKitAllowMemoryDebugging
 #define PSPDFLogMemory(fmt, ...) do { if(kPSPDFKitDebugMemory) NSLog((fmt), ##__VA_ARGS__); }while(0)
 #define PSPDFRegisterObject(object) [[PSPDFCache sharedPSPDFCache] registerObject:object]
