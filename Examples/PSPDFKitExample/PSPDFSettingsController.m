@@ -11,6 +11,7 @@
 #define _(string) NSLocalizedString(string, @"")
 #define PSString(string) NSStringFromSelector(@selector(string))
 @interface PSPDFSettingsController() {
+    BOOL _isSettingUpCells;
     NSArray *_content;
     NSArray *_contentSubtitle;
     NSArray *_sectionTitle;
@@ -177,12 +178,14 @@ __attribute__((constructor)) static void setupDefaults(void) {
 #pragma mark - Private
 
 - (void)paperColorChanged:(id)sender {
+    if (_isSettingUpCells) return;
 	int paperColorIndex = [sender selectedSegmentIndex];
     _settings[PSString(renderBackgroundColor)] = _paperColors[paperColorIndex];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
 - (void)contentOpacityChanged:(id)sender {
+    if (_isSettingUpCells) return;
 	int opacityIndex = [sender selectedSegmentIndex];
 	float opacity = 1.0 - ((float)opacityIndex * 0.1);
     _settings[PSString(renderContentOpacity)] = @(opacity);
@@ -251,6 +254,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    _isSettingUpCells = YES;
     NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%d", indexPath.section];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -345,6 +349,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         }break;
         default:break;
     }
+    _isSettingUpCells = NO;
     return cell;
 }
 
