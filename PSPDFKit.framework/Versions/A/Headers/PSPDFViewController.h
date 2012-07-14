@@ -175,6 +175,22 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// Note: has simple support to also accepts an NSString, the bundle path then will be used.
 @property(nonatomic, strong) PSPDFDocument *document;
 
+/** 
+    Set margin for document pages. Defaults to UIEdgeInsetsZero.
+    Margin is extra space for your (always visible) UI elements.
+    Content will be moved accordingly.
+    Area outside margin does not receive touch events, or is shown while zooming.
+ */
+@property(nonatomic, assign) UIEdgeInsets margin;
+
+/**
+    Padding for document pages. Defaults to CGSizeZero.
+    Padding is space that is displayed around the document.
+    (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
+    When changing padding; the touch area is still fully active.
+ */
+@property(nonatomic, assign) CGSize padding;
+
 /// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
 /// NO will perform a generic zoom into the tap area. Defauts to YES.
 @property(nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
