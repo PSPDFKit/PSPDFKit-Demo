@@ -84,6 +84,9 @@ documentation: current-menu-item current_page_item
 	
 	<div id="troubleshooting" class="col-full section">
 	  <h2 class="section-title">Troubleshooting</h2>
+	  
+	  <p><b>Q: How do I determine what version of PSPDFKit I am using?</b><br>
+	   A: Open the file Info.plist in PSPDFKit.framework/Versions/A/Resources and look for CFBundleShortVersionString. Alternatively, you can query the version at runtime with calling PSPDFVersionString().</p><br>
 
 	<p><b>Q: I can't download the package anymore!</b><br>
 	 A: I had to update the links. Please replace the part in your private link "http://petersteinberger.com/assets/" with "http://download.pspdfkit.com" and it will work again.</p><br>
@@ -114,7 +117,7 @@ documentation: current-menu-item current_page_item
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
 		
 		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
-		      A: To support iOS4.3 with a non-ARC-project, you need to add the ARC compatibility library libarclite. Drag the two files (one for iOS, one for the Simulator) from the MinimalExample.xcodeproj to your project, or manually search the on your disk: /Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc/libarclite_iphoneos.a (and /Developer/usr/lib/arc/libarclite_iphonesimulator.a) and drag them into your project.
+		      A: To support iOS4.3 with a non-ARC-project, you need to add the linker flag -fobjc-arc in the project settings.
 		</p><br>
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
