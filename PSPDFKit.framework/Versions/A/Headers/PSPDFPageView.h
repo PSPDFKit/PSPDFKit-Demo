@@ -34,11 +34,16 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 /// @name Internal views and rendering
 
-// Redraw the renderView
+/// Redraw the renderView
 - (void)updateRenderView;
 
-// Redraw renderView and contentView.
+/// Redraw renderView and contentView.
 - (void)updateView;
+
+/// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
+/// Call manually to speed up rendering.
+/// Has no effect if called multiple times.
+- (void)loadPageAnnotationsAnimated:(BOOL)animated;
 
 /// UIImageView subview showing the whole document. Readonly.
 @property(nonatomic, strong, readonly) UIImageView *contentView;
