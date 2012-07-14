@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define _(string) NSLocalizedString(string, @"")
-#define PSString(string) NSStringFromSelector(@selector(string))
+#define StringSEL(string) NSStringFromSelector(@selector(string))
 @interface PSPDFSettingsController() {
     BOOL _isSettingUpCells;
     NSArray *_content;
@@ -53,27 +53,27 @@ static NSMutableDictionary *_settings;
 __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
-        _settings[PSString(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[PSString(isFitToWidthEnabled)] = PSIsIpad() ? @(NO) : @(YES);
-        _settings[PSString(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[PSString(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
-        _settings[PSString(isScrobbleBarEnabled)] = @(YES);
-        _settings[PSString(isZoomingSmallDocumentsEnabled)] = @(YES);
-        _settings[PSString(isPositionViewEnabled)] = @(YES);
-        _settings[PSString(isScrobbleBarEnabled)] = @(YES);
-        _settings[PSString(isTextSelectionEnabled)] = @(YES);
-        _settings[PSString(isSmartZoomEnabled)] = @(YES);
-        _settings[PSString(isScrollOnTapPageEndEnabled)] = @(YES);
-        _settings[PSString(viewModeButtonItem)] = @(YES);
-        _settings[PSString(searchButtonItem)] = @(YES);
-        _settings[PSString(annotationButtonItem)] = @(YES);
-        _settings[PSString(outlineButtonItem)] = @(YES);
-        _settings[PSString(printButtonItem)] = @(YES);
-        _settings[PSString(openInButtonItem)] = @(YES);
-        _settings[PSString(emailButtonItem)] = @(YES);
-        _settings[PSString(viewModeButtonItem)] = @(YES);
-        _settings[PSString(renderBackgroundColor)] = [UIColor whiteColor];
-        _settings[PSString(renderContentOpacity)] = @(1.f);
+        _settings[StringSEL(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+        _settings[StringSEL(isFitToWidthEnabled)] = PSIsIpad() ? @(NO) : @(YES);
+        _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
+        _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
+        _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
+        _settings[StringSEL(isPositionViewEnabled)] = @(YES);
+        _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
+        _settings[StringSEL(isTextSelectionEnabled)] = @(YES);
+        _settings[StringSEL(isSmartZoomEnabled)] = @(YES);
+        _settings[StringSEL(isScrollOnTapPageEndEnabled)] = @(YES);
+        _settings[StringSEL(viewModeButtonItem)] = @(YES);
+        _settings[StringSEL(searchButtonItem)] = @(YES);
+        _settings[StringSEL(annotationButtonItem)] = @(YES);
+        _settings[StringSEL(outlineButtonItem)] = @(YES);
+        _settings[StringSEL(printButtonItem)] = @(YES);
+        _settings[StringSEL(openInButtonItem)] = @(YES);
+        _settings[StringSEL(emailButtonItem)] = @(YES);
+        _settings[StringSEL(viewModeButtonItem)] = @(YES);
+        _settings[StringSEL(renderBackgroundColor)] = [UIColor whiteColor];
+        _settings[StringSEL(renderContentOpacity)] = @(1.f);
     }
 }
 
@@ -180,7 +180,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
 - (void)paperColorChanged:(id)sender {
     if (_isSettingUpCells) return;
 	int paperColorIndex = [sender selectedSegmentIndex];
-    _settings[PSString(renderBackgroundColor)] = _paperColors[paperColorIndex];
+    _settings[StringSEL(renderBackgroundColor)] = _paperColors[paperColorIndex];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
@@ -188,7 +188,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     if (_isSettingUpCells) return;
 	int opacityIndex = [sender selectedSegmentIndex];
 	float opacity = 1.0 - ((float)opacityIndex * 0.1);
-    _settings[PSString(renderContentOpacity)] = @(opacity);
+    _settings[StringSEL(renderContentOpacity)] = @(opacity);
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
@@ -217,23 +217,23 @@ __attribute__((constructor)) static void setupDefaults(void) {
     switch (indexPath.section) {
         case PSPDFGeneralSettings:
             switch (indexPath.row) {
-                case 0: _settings[PSString(isSmartZoomEnabled)] = value; break;
-                case 1: _settings[PSString(isTextSelectionEnabled)] = value; break;
-                case 2: _settings[PSString(isZoomingSmallDocumentsEnabled)] = value; break;
-                case 3: _settings[PSString(isFitToWidthEnabled)] = value; break;
-                case 5: _settings[PSString(isScrobbleBarEnabled)] = value; break;
-                case 6: _settings[PSString(isPositionViewEnabled)] = value; break;
+                case 0: _settings[StringSEL(isSmartZoomEnabled)] = value; break;
+                case 1: _settings[StringSEL(isTextSelectionEnabled)] = value; break;
+                case 2: _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = value; break;
+                case 3: _settings[StringSEL(isFitToWidthEnabled)] = value; break;
+                case 5: _settings[StringSEL(isScrobbleBarEnabled)] = value; break;
+                case 6: _settings[StringSEL(isPositionViewEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
             switch (indexPath.row) {
-                case 0: _settings[PSString(searchButtonItem)] = value; break;
-                case 1: _settings[PSString(outlineButtonItem)] = value; break;
-                case 2: _settings[PSString(printButtonItem)] = value; break;
-                case 3: _settings[PSString(openInButtonItem)] = value; break;
-                case 4: _settings[PSString(emailButtonItem)] = value; break;
-                case 5: _settings[PSString(annotationButtonItem)] = value; break;
-                case 6: _settings[PSString(viewModeButtonItem)] = value; break;
+                case 0: _settings[StringSEL(searchButtonItem)] = value; break;
+                case 1: _settings[StringSEL(outlineButtonItem)] = value; break;
+                case 2: _settings[StringSEL(printButtonItem)] = value; break;
+                case 3: _settings[StringSEL(openInButtonItem)] = value; break;
+                case 4: _settings[StringSEL(emailButtonItem)] = value; break;
+                case 5: _settings[StringSEL(annotationButtonItem)] = value; break;
+                case 6: _settings[StringSEL(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -243,7 +243,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
             }break;
         case PSPDFDisplaySettings: {
             switch (indexPath.row) {
-                case 0: _settings[PSString(renderInvertEnabled)] = value; break;
+                case 0: _settings[StringSEL(renderInvertEnabled)] = value; break;
                 default: break;
             }break;
         }break;
@@ -275,60 +275,60 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
     if (indexPath.section == PSPDFPaperColor) {
         _paperColorControl.frame = CGRectMake(9, 0, 302, 46);
-        UIColor *paperColor = _settings[PSString(renderBackgroundColor)];
+        UIColor *paperColor = _settings[StringSEL(renderBackgroundColor)];
         _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
         [cell addSubview:_paperColorControl];
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
         _contentOpacityControl.frame = CGRectMake(9, 0, 302, 46);
-        NSUInteger index = roundf((1 - [_settings[PSString(renderContentOpacity)] floatValue]) * 10);
+        NSUInteger index = roundf((1 - [_settings[StringSEL(renderContentOpacity)] floatValue]) * 10);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
     }
 
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: {
-            PSPDFPageTransition pageTransition = [_settings[PSString(pageTransition)] integerValue];
+            PSPDFPageTransition pageTransition = [_settings[StringSEL(pageTransition)] integerValue];
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
-            PSPDFScrollDirection scrollDirection = [_settings[PSString(pageScrolling)] integerValue];
+            PSPDFScrollDirection scrollDirection = [_settings[StringSEL(pageScrolling)] integerValue];
             cell.accessoryType = (indexPath.row == scrollDirection) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageModeSettings: {
-            PSPDFPageMode pageMode = [_settings[PSString(pageMode)] integerValue];
+            PSPDFPageMode pageMode = [_settings[StringSEL(pageMode)] integerValue];
             cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCoverSettings: {
-            BOOL hasCoverPage = [_settings[PSString(isDoublePageModeOnFirstPage)] integerValue];
+            BOOL hasCoverPage = [_settings[StringSEL(isDoublePageModeOnFirstPage)] integerValue];
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFGeneralSettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[PSString(isSmartZoomEnabled)] boolValue]; break;
-                case 1: cellSwitch.on = [_settings[PSString(isTextSelectionEnabled)] boolValue]; break;
-                case 2: cellSwitch.on = [_settings[PSString(isZoomingSmallDocumentsEnabled)] boolValue]; break;
-                case 3: cellSwitch.on = [_settings[PSString(isFitToWidthEnabled)] boolValue]; break;
-                case 4: cellSwitch.on = [_settings[PSString(isScrollOnTapPageEndEnabled)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[PSString(isScrobbleBarEnabled)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[PSString(isPositionViewEnabled)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[StringSEL(isSmartZoomEnabled)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[StringSEL(isTextSelectionEnabled)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[StringSEL(isZoomingSmallDocumentsEnabled)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[StringSEL(isFitToWidthEnabled)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[StringSEL(isScrollOnTapPageEndEnabled)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[StringSEL(isScrobbleBarEnabled)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[StringSEL(isPositionViewEnabled)] boolValue]; break;
                 default: break;
             }break;
         }break;
         case PSPDFToolbarSettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[PSString(searchButtonItem)] boolValue]; break;
-                case 1: cellSwitch.on = [_settings[PSString(outlineButtonItem)] boolValue]; break;
-                case 2: cellSwitch.on = [_settings[PSString(printButtonItem)] boolValue]; break;
-                case 3: cellSwitch.on = [_settings[PSString(openInButtonItem)] boolValue]; break;
-                case 4: cellSwitch.on = [_settings[PSString(emailButtonItem)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[PSString(annotationButtonItem)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[PSString(viewModeButtonItem)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[StringSEL(searchButtonItem)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[StringSEL(outlineButtonItem)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[StringSEL(printButtonItem)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[StringSEL(openInButtonItem)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[StringSEL(emailButtonItem)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[StringSEL(annotationButtonItem)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
                 default: break;
             }break;
         }break;
         case PSPDFLinkActionSettings: {
-            PSPDFLinkAction linkAction = [_settings[PSString(linkAction)] integerValue];
+            PSPDFLinkAction linkAction = [_settings[StringSEL(linkAction)] integerValue];
             cell.accessoryType = (indexPath.row == linkAction) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCacheSettings: {
@@ -343,7 +343,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         }break;
         case PSPDFDisplaySettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[PSString(renderInvertEnabled)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[StringSEL(renderInvertEnabled)] boolValue]; break;
                 default: break;
             }break;
         }break;
@@ -365,11 +365,11 @@ __attribute__((constructor)) static void setupDefaults(void) {
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFTextReflow: [self showTextReflowController]; break;
-        case PSPDFPageTransitionSettings: _settings[PSString(pageTransition)] = @(indexPath.row); break;
-        case PSPDFScrollDirectionSettings: _settings[PSString(pageScrolling)] = @(indexPath.row); break;
-        case PSPDFPageModeSettings: _settings[PSString(pageMode)] = @(indexPath.row); break;
-        case PSPDFCoverSettings: _settings[PSString(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
-        case PSPDFLinkActionSettings: _settings[PSString(linkAction)] = @(indexPath.row); break;
+        case PSPDFPageTransitionSettings: _settings[StringSEL(pageTransition)] = @(indexPath.row); break;
+        case PSPDFScrollDirectionSettings: _settings[StringSEL(pageScrolling)] = @(indexPath.row); break;
+        case PSPDFPageModeSettings: _settings[StringSEL(pageMode)] = @(indexPath.row); break;
+        case PSPDFCoverSettings: _settings[StringSEL(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
+        case PSPDFLinkActionSettings: _settings[StringSEL(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
             [[PSPDFCache sharedPSPDFCache] clearCache];
             [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
