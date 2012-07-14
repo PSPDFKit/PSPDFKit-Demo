@@ -6,9 +6,5 @@
 //
 //  *** Compile this file without ARC! ***
 
-// Applies patches so that UIPageViewController doesn't crash. Needs to be called early.
-// Also adds removeObserver:forKeyPath:context on iOS 4.3
-void pspdf_applyRuntimePatches(void);
-
-// Helper to swizzle things.
-void pspdf_swizzle(Class c, SEL orig, SEL new);
+// Helper to add a method and swizzle the selectors.
+void pspdf_replaceMethod(Class aClass, SEL orig, SEL newSel, IMP impl);
