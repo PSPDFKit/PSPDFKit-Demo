@@ -11,7 +11,7 @@
 @implementation PSPDFSettingsBarButtonItem
 
 - (UIBarButtonItemStyle)itemStyle {
-    return PSIsIpad() ? UIBarButtonItemStyleBordered : UIBarButtonItemStylePlain;
+    return UIBarButtonItemStylePlain;
 }
 
 // on iPad, we use a string (as there's more space)
