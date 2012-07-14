@@ -5,62 +5,39 @@
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <MessageUI/MessageUI.h>
-#import <AVFoundation/AVFoundation.h>
 #import "PSPDFKitGlobal.h"
 
 #define SelectionViewLinkTappedNotification		@"SelectionViewLinkTappedNotification"
 #define SelectionViewStartedDrawingNotification	@"SelectionViewStartedDrawingNotification"
 
-@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, TextNoteView, Annotation;
+@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView;
 
-@interface PSPDFSelectionView : UIView {
-	PSPDFPageView *__ps_weak _pageView;
+/// Handles the text and annotation selection.
+@interface PSPDFSelectionView : UIView
 
-	UIImageView *_startHandle;
-	UIImageView *_endHandle;
+/// Currently selected glyphs.
+@property(nonatomic, strong) NSArray *selectedGlyphs;
 
-	UIView *_startDelimiter;
-	UIView *_endDelimiter;
+/// Currently selected text.
+@property(nonatomic, strong) NSString *selectedText;
 
-	CGPoint _startPoint;
-	CGPoint _endPoint;
+/// Currently selected text, optimized for searching
+@property(nonatomic, strong, readonly) NSString *trimmedSelectedText;
 
-	int _draggingHandle;			//-1 for not dragging, 0 for start handle, 1 for end handle
+//@property (nonatomic, strong) PSPDFWord *wordSelection;
 
-	UIView *_firstLineView;
-	UIView *_lastLineView;
-	UIView *_bodyView;
-
-	PSPDFLoupeView *_loupeView;
-	UIView *_wordSelectionView;
-
-	UIView *_inkSelectionView;
-	PSPDFHighlightAnnotation *_selectedAnnotation;
-	CGRect _menuTargetRect;
-
-	NSMutableArray *_textNoteViews;
-
-	UIView *_linkHighlightView;
-
-	CGPoint _newNotePoint;
-//	TextNoteView *draggingTextNoteView;
-
-	BOOL _selectedHighlightAnnotationHasText;
-
-	CGPoint _pageAnalysisStartLocation;
-}
-
-@property (nonatomic, strong) NSArray *selectedGlyphs;
-@property (nonatomic, strong) NSString *selectedText;
-@property (nonatomic, strong) PSPDFWord *wordSelection;
 @property (nonatomic, strong) PSPDFInkAnnotation *selectedInk;
-@property (nonatomic, ps_weak) PSPDFPageView *pageView;
+
 @property (nonatomic, strong) PSPDFHighlightAnnotation *selectedAnnotation;
+
+/// Loupe View for text selection.
 @property (nonatomic, strong) PSPDFLoupeView *loupeView;
-@property (nonatomic, strong) PSPDFLinkAnnotation *selectedLink;
-@property (nonatomic, strong) TextNoteView *draggingTextNoteView;
-@property (nonatomic, assign) CGPoint newNotePoint;
+
+//@property (nonatomic, assign) CGPoint newNotePoint;
+
+/// Associated PSPDFPageView.
+@property (nonatomic, ps_weak) PSPDFPageView *pageView;
+
 
 - (void)showLoupe;
 - (void)hideLoupe;
