@@ -17,7 +17,7 @@
 /// Init with pdfController reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
-@property (nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;
+@property (nonatomic, unsafe_unretained, readonly) PSPDFViewController *pdfController;
 
 /// Implement customView, image or systemItem in your subclass. Falls back to actionName.
 - (UIView *)customView;
