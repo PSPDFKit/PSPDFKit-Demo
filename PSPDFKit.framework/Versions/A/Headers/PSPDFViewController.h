@@ -43,19 +43,26 @@ typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
     PSPDFScrollDirectionVertical
 };
 
-/// status bar style. (old status will be restored regardless of the style chosen)
+/// Status bar style. (old status will be restored regardless of the style chosen)
 typedef NS_ENUM(NSInteger, PSPDFStatusBarStyleSetting) {
-    PSPDFStatusBarInherit,            /// don't change status bar style, but show/hide statusbar on HUD events
-    PSPDFStatusBarSmartBlack,         /// use UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
+    PSPDFStatusBarInherit,            /// Don't change status bar style, but show/hide statusbar on HUD events
+    PSPDFStatusBarSmartBlack,         /// Use UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
     PSPDFStatusBarBlackOpaque,        /// Opaque Black everywhere
-    PSPDFStatusBarDefaultWhite,       /// Switch to default (white) statusbar
-    PSPDFStatusBarDisable,            /// never show status bar
-    PSPDFStatusBarIgnore = 0x100      /// causes this class to ignore the statusbar entirely.
+    PSPDFStatusBarDefault,            /// Default statusbar (white on iPhone/black on iPad)
+    PSPDFStatusBarDisable,            /// Never show status bar
+    PSPDFStatusBarIgnore = 0x100      /// Causes this class to ignore the statusbar entirely.
 };
 
+typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
+    PSPDFHUDViewAlways,               /// Always show the HUD.
+    PSPDFHUDViewAutomatic,            /// Show HUD on touch and first/last page.
+    PSPDFHUDViewNever                 /// Never show the HUD.
+};
+
+/// Default action for PDF link annotations.
 typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
-    PSPDFLinkActionNone,         /// Link actions are ignored..
-    PSPDFLinkActionAlertView,    /// Link actions open an AlertView.
+    PSPDFLinkActionNone,         /// Link actions are ignored.
+    PSPDFLinkActionAlertView,    /// Link actions open an UIAlertView.
     PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
     PSPDFLinkActionInlineBrowser /// Link actions open in an inline browser.
 };
@@ -133,23 +140,27 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// @name HUD Controls
 
-/// Content view. Use this if you want to add any always-visible UI elements.
-/// Created in viewDidLoad. contentView is behind hudView but always visible.
-/// ContentView does NOT overlay the navigationBar/statusBar, even if that one is transparent.
-@property(nonatomic, strong, readonly) PSPDFHUDView *contentView;
-
 /// View that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
-/// hudView is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
-@property(nonatomic, strong, readonly) PSPDFHUDView *hudView;
+/// HUDView is created in viewDidLoad. Subclass or use KVO to add your custom views when this changes.
+@property(nonatomic, strong, readonly) PSPDFHUDView *HUDView;
+
+/// Manages the show/hide mode of the HUD view. Defaults to PSPDFHUDViewAutomatic.
+/// Note: this does not affect manually setting HUDVisible.
+/// If your statusbar setting is set to PSPDFStatusBarDefault; the HUD will be non-opaque and thus stay visible always.
+/// HUD will not change when changing this mode. Use setHUDVisible:animated:.
+@property(nonatomic, assign) PSPDFHUDViewMode HUDViewMode;
 
 /// Show or hide HUD controls, titlebar, status bar. (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
 - (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
-// TODO: remove those. Called from scrollviews
+/// Show the HUD. Respects HUDViewMode.
 - (void)showControls;
+/// Hide the HUD. Respects HUDViewMode.
 - (void)hideControls;
-- (void)hideControlsAndPageElements; /// Hide additional elements like page selection.
+/// Hide the HUD (respects HUDViewMode) and additional elements like page selection.
+- (void)hideControlsAndPageElements;
+/// Toggles the HUD. Respects HUDViewMode.
 - (void)toggleControls;
 
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
@@ -164,6 +175,11 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// If YES, shows a decent UIActivityIndicator on the top right while page is rendering. Defaults to YES.
 @property(nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
+
+/// Content view. Use this if you want to add any always-visible UI elements.
+/// Created in viewDidLoad. contentView is behind hudView but always visible.
+/// ContentView does NOT overlay the navigationBar/statusBar, even if that one is transparent.
+@property(nonatomic, strong, readonly) PSPDFHUDView *contentView;
 
 
 /// @name Properties
@@ -438,8 +454,8 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 /// Override if you're changing the toolbar to your own.
 /// The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.
-- (void)createToolbar;
-- (void)updateToolbars;
+- (void)createToolbarAnimated:(BOOL)animated;
+- (void)updateToolbarsAnimated:(BOOL)animated;
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;

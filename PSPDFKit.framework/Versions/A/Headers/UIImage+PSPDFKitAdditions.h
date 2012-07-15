@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 };
 
 /// Returns a new image that is resize to fitSize.
-- (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor;
+- (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor opaque:(BOOL)opaque;
 
 /// Load images via path, looking automatically for a @2x option.
 + (UIImage*)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;

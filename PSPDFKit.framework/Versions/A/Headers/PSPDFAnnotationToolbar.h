@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 - (void)showToolbarInRect:(CGRect)rect animated:(BOOL)animated;
 
 /// Hide the toolbar.
-- (void)hideToolbarAnimated:(BOOL)animated;
+- (void)hideToolbarAnimated:(BOOL)animated completion:(PSPDFBasicBlock)completionBlock;
 
 /// Attached pdfController.
 @property(nonatomic, ps_weak) PSPDFViewController *pdfController;
