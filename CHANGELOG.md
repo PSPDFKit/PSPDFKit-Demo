@@ -25,6 +25,8 @@ PSPDFKit v2 will be compatible with iOS 4.3 upwards.
 *  The search/outline controllers now dynamically update their size based on the content height.
 *  Page Content/Background Color/Inversion can now be changed to modify rendering.
 *  PSPDFViewController can now programatically invoke a search via searchForString:animated:.
+*  PSPDFViewController now has a margin and a padding property to add custom margin/padding on the pdf view.
+*  PSPDFViewController now has a HUDViewMode property to fine-tune the HUD.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - x/Jul/2012__
