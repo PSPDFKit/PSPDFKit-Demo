@@ -40,8 +40,8 @@
         if (PSIsIpad()) {
             self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem];
         }else {
-            self.rightBarButtonItems = @[self.searchButtonItem, self.viewModeButtonItem];
-            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem];
+            self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
+            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem, self.searchButtonItem];
         }
         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
@@ -79,7 +79,7 @@
 
         // 1.9 feature
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
-        //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
+        //self.statusBarStyleSetting = PSPDFStatusBarDefault;
         
         // change statusbar setting to your preferred style
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
