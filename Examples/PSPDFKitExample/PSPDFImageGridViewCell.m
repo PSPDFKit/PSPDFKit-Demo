@@ -176,10 +176,10 @@ static void *kPSPDFKVOToken;
         // setup for magazine
         if (magazine) {
             
-            // add kvo for download property
-            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:nil];
+            // add KVO for download property
+            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:kPSPDFKVOToken];
             
-            // add kvo
+            // add KVO
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
             
             self.magazineCount = 0;
@@ -188,16 +188,20 @@ static void *kPSPDFKVOToken;
                 if (!imageLoadOperation.isCancelled) {
                     magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
                 }
+                BOOL imageLoadedFromWeb = NO;
                 if (!imageLoadOperation.isCancelled) {
                     // try to download image
-                    if (!self.image && magazine.imageURL) {           
-                        [self.imageView setImageWithURL:magazine.imageURL];
+                    if (!self.image && magazine.imageURL) {
+                        imageLoadedFromWeb = YES;
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            [self.imageView setImageWithURL:magazine.imageURL];
+                        });
                     }
                 }
                 // also may be slow, parsing the title from PDF metadata.
                 magazineTitle_ = magazine.title;
                 
-                if (!imageLoadOperation.isCancelled) {
+                if (!imageLoadOperation.isCancelled && !imageLoadedFromWeb) {
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         if(!imageLoadOperation.isCancelled) {
                             // animating this is too expensive.
@@ -322,7 +326,7 @@ static void *kPSPDFKVOToken;
     if (darken && !progressViewBackground_.superview) {
         progressViewBackground_.alpha = 0.f;
         [self.imageView addSubview:progressViewBackground_];
-        [self.contentView bringSubviewToFront:[self progressView]];
+        [self.contentView bringSubviewToFront:_progressView];
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
                 progressViewBackground_.alpha = 0.5f;                        
