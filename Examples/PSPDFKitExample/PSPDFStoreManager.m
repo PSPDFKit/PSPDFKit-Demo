@@ -454,12 +454,14 @@ static char kvoToken; // we need a static address for the kvo token
     AMBlockToken *token = [storeDownload addObserverForKeyPath:@"status" task:^(id obj, NSDictionary *change) {
         if (storeDownloadWeak.status == PSPDFStoreDownloadFinished) {
             [self finishDownload:storeDownloadWeak];
-            
+
+            /*
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Download for %@ finished!", @""), storeDownloadWeak.magazine.title]
                                          message:nil
                                         delegate:nil
                                cancelButtonTitle:NSLocalizedString(@"OK", @"")
                                otherButtonTitles:nil] show];
+             */
             
         }else if (storeDownloadWeak.status == PSPDFStoreDownloadFailed) {
             if (!storeDownloadWeak.isCancelled) {
