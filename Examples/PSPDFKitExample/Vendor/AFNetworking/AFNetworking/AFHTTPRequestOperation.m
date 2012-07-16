@@ -56,7 +56,11 @@ NSSet * AFContentTypesFromHTTPHeader(NSString *string) {
 
 static void AFSwizzleClassMethodWithClassAndSelectorUsingBlock(Class klass, SEL selector, void *block) {
     Method originalMethod = class_getClassMethod(klass, selector);
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
     IMP implementation = imp_implementationWithBlock(block);
+#else
+    IMP implementation = imp_implementationWithBlock((__bridge id)block);
+#endif
     class_replaceMethod(objc_getMetaClass([NSStringFromClass(klass) UTF8String]), selector, implementation, method_getTypeEncoding(originalMethod));
 }
 
