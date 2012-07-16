@@ -49,7 +49,7 @@ static void *kPSPDFKVOToken;
             return;
         }
         [observedMagazineDownloads_ addObject:download];
-        [download addObserver:self forKeyPath:@"downloadProgress" options:0 context:kPSPDFKVOToken];
+        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:kPSPDFKVOToken];
         [self updateProgressAnimated:NO];
     }
 }
@@ -57,7 +57,7 @@ static void *kPSPDFKVOToken;
 - (void)clearProgressObservers {
     // clear all observed magazines
     for (PSPDFDownload *download in observedMagazineDownloads_) {
-        [download removeObserver:self forKeyPath:@"downloadProgress" context:kPSPDFKVOToken];
+        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:kPSPDFKVOToken];
     }
     [observedMagazineDownloads_ removeAllObjects];
 }
@@ -73,9 +73,7 @@ static void *kPSPDFKVOToken;
         // incomplete downloads stay here
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
         
-        // uncomment to hide label
         self.showingSiteLabel = YES;
-
         self.edgeInsets = UIEdgeInsetsMake(0, 0, 10, 0);
     }
     
@@ -144,7 +142,7 @@ static void *kPSPDFKVOToken;
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == kPSPDFKVOToken) {
-        if ([keyPath isEqualToString:@"downloadProgress"]) {
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(downloadProgress))]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
@@ -189,7 +187,7 @@ static void *kPSPDFKVOToken;
                     magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
                 }
                 BOOL imageLoadedFromWeb = NO;
-                if (!imageLoadOperation.isCancelled) {
+                if (!magazineOperationImage_ && !imageLoadOperation.isCancelled) {
                     // try to download image
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
@@ -219,7 +217,8 @@ static void *kPSPDFKVOToken;
         }
         
         NSString *siteLabelText = PSPDFStripPDFFileType([[magazine fileURL] lastPathComponent]);
-        self.siteLabel.text = siteLabelText;
+        [self updateSiteLabel]; // create lazily
+        self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
         [self updateSiteLabel];
     }
 }
