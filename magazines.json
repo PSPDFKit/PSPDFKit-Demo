@@ -10,5 +10,9 @@
     {
         "name": "FASHION MONTHLY",
         "url": "http://pspdfkit.com/jsonsample/fashion.pdf"
+    },
+    {
+        "name": "Hacker Monthly 20",
+        "url": "http://pspdfkit.com/jsonsample/hackermonthly-issue020-ipad.pdf"
     }
 ]
