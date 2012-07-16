@@ -219,7 +219,13 @@
     PSELog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
 
     if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
-        [pageView.selectionView showTextFlowData:YES animated:NO];
+        NSUInteger realPage = self.realPage;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [[self.document textParserForPage:realPage] parse];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [pageView.selectionView showTextFlowData:YES animated:NO];
+            });
+        });
     }
 }
 
