@@ -21,4 +21,10 @@
 
 - (UIColor *)pspdf_colorByMultiplyingBy:(CGFloat)value;
 
+/// Returns name of the current color (compared against an internal database)
+- (NSString *)pspdf_closestAnnotationColorName;
+
+/// Return name closest compared to dictionary 'colorNames'
+- (NSString *)pspdf_closestColorNameFromSelection:(NSDictionary *)colorNames;
+
 @end

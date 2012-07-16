@@ -20,8 +20,8 @@ typedef NS_ENUM(NSInteger, PSPDFTextLineBorder) {
 @property (nonatomic, ps_weak, readonly) PSPDFTextLine *prevLine;
 @property (nonatomic, ps_weak, readonly) PSPDFTextLine *nextLine;
 
-- (void)setNextLineIfCloserDistance:(PSPDFTextLine *)nextLine;
-- (void)setPrevLineIfCloserDistance:(PSPDFTextLine *)prevLine;
+void PSPDFSetNextLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *nextLine);
+void PSPDFSetPrevLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *prevLine);
 
 @property(nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
 

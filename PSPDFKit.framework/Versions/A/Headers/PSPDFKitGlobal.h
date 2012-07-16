@@ -124,6 +124,13 @@ typedef void(^PSPDFBasicBlock)(void);
 #define __ps_weak __unsafe_unretained
 #endif
 
+// imp_implementationWithBlock changed it's type in iOS6.
+#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
+#define PSBlockImplCast (__bridge void *)
+#else
+#define PSBlockImplCast
+#endif
+
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
