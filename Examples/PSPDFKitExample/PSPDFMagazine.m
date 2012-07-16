@@ -29,10 +29,6 @@
     return self;
 }
 
-- (void)dealloc {
-    _folder = nil;
-}
-
 - (NSString *)description {
     NSString *description = [NSString stringWithFormat:@"<%@ uid:%@ pageCount:%d URL:%@ basePath:%@, files:%@>", NSStringFromClass([self class]), self.uid, [self pageCount], self.URL, self.basePath, self.files];
     return description;
