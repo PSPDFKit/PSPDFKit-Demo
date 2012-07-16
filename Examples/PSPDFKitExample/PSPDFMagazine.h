@@ -26,7 +26,7 @@
 // URL for downloading image.
 @property(nonatomic, strong) NSURL *imageURL;
 
-/// UES if magazine is currently downloading.
+/// YES if magazine is currently downloading.
 @property(nonatomic, assign, getter=isDownloading) BOOL downloading;
 
 /// YES if magazine is on-disk and/or sucessfully downloaded.

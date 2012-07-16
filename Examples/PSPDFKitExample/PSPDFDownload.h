@@ -5,44 +5,42 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import "ASIHTTPRequest.h"
 #import "PSPDFMagazine.h"
-#import "ASIProgressDelegate.h"
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
     PSPDFStoreDownloadIdle,
     PSPDFStoreDownloadLoading,
     PSPDFStoreDownloadFinished,
     PSPDFStoreDownloadFailed,
-} PSPDFStoreDownloadStatus;
+};
 
-@interface PSPDFDownload : NSObject <ASIProgressDelegate> {
-    UIProgressView *progressView_;
-}
+@interface PSPDFDownload : NSObject
 
-/// initialize a new pdf download, autoreleased
-+ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)url;
+/// Initialize a new PDF download.
++ (PSPDFDownload *)PDFDownloadWithURL:(NSURL *)URL;
 
-/// initialize a new pdf download
+/// Initialize a new PDF download.
 - (id)initWithURL:(NSURL *)URL;
 
-/// start download
+/// Start download.
 - (void)startDownload;
 
-/// cancel running download
+/// Cancel running download.
 - (void)cancelDownload;
 
-/// download URL.
-@property(nonatomic, strong, readonly) NSURL *URL;
-
-/// magazine that's being downloaded.
-@property(nonatomic, strong) PSPDFMagazine *magazine;
-
+/// Current download status.
 @property(nonatomic, assign, readonly) PSPDFStoreDownloadStatus status;
 
+/// Current download progress.
 @property(nonatomic, assign, readonly) float downloadProgress;
 
-@property(nonatomic, copy, readonly) NSError *error;
+/// Download URL.
+@property(nonatomic, strong, readonly) NSURL *URL;
+
+/// Magazine that's being downloaded.
+@property(nonatomic, strong) PSPDFMagazine *magazine;
+
+@property(nonatomic, strong, readonly) NSError *error;
 
 @property(nonatomic, assign, readonly, getter=isCancelled) BOOL cancelled;
 

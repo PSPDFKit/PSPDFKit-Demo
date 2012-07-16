@@ -52,6 +52,7 @@
     SDURLCache *URLCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
                                                              diskPath:[SDURLCache defaultCachePath]];
+    URLCache.ignoreMemoryOnlyStoragePolicy = YES;
     [NSURLCache setSharedURLCache:URLCache];
     
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
