@@ -71,9 +71,6 @@ extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 /// Detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
 extern BOOL PSPDFIsCrappyDevice(void);
 
-// Drawing helper.
-extern inline void DrawPSPDFKit(CGContextRef context);
-
 /// Class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFCacheClassName;
 
@@ -103,17 +100,14 @@ extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString,
 /// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to YES. Defaults to NO.
 extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
 
-/// Queries subviews for a specific class prefix. Usually used for subview-querying.
-extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
-
 /// Removes the ".pdf" or a cased derivation of it from the fileName, if it exists.
 extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
 
+/// Queries subviews for a specific class prefix. Usually used for subview-querying.
+extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
+
 // Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
-
-// Defines a basic void block
-typedef void(^PSPDFBasicBlock)(void);
 
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
@@ -122,13 +116,6 @@ typedef void(^PSPDFBasicBlock)(void);
 #elif !defined ps_weak
 #define ps_weak unsafe_unretained
 #define __ps_weak __unsafe_unretained
-#endif
-
-// imp_implementationWithBlock changed it's type in iOS6.
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-#define PSBlockImplCast (__bridge void *)
-#else
-#define PSBlockImplCast
 #endif
 
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
@@ -210,6 +197,7 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 @implementation PSPDF_FIX_CATEGORY_BUG_##name @end
 
 // Add support for subscripting to the iOS 5 SDK.
+// See http://petersteinberger.com/blog/2012/using-subscripting-with-Xcode-4_4-and-iOS-4_3
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
 @interface NSObject (PSPDFSubscriptingSupport)
 
