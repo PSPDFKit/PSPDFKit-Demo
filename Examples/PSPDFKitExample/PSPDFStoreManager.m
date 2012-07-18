@@ -209,7 +209,8 @@ static char kvoToken; // we need a static address for the kvo token
         dispatch_sync([self magazineFolderQueue], ^{
             self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
-            
+
+            /*
             // ensure we have thumbnails for all magazines (else they would be lazy-loaded)
             // must run on the main thread, as magazines/magazineFolder can be mutated while running
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -219,6 +220,7 @@ static char kvoToken; // we need a static address for the kvo token
                     }];
                 }];
             });
+             */
             
             // now start web-request
             [self loadMagazinesAvailableFromWeb];
@@ -233,14 +235,6 @@ static char kvoToken; // we need a static address for the kvo token
     });
     
     return magazineFolders;
-}
-
-// forward memory warning to magazines
-- (void)didReceiveMemoryWarning {
-    PSELog(@"memory warning");
-    for (PSPDFMagazineFolder *folder in self.magazineFolders) {
-        [folder.magazines makeObjectsPerformSelector:@selector(clearCache)];
-    }
 }
 
 - (void)finishDownload:(PSPDFDownload *)storeDownload {
