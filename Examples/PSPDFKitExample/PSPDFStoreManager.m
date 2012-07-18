@@ -201,6 +201,8 @@ static char kvoToken; // we need a static address for the kvo token
     [[NSOperationQueue sharedOperationQueue] addOperation:operation];
 }
 
+- (void)didReceiveMemoryWarning {} // NOP
+
 // load magazines from disk
 - (void)loadMagazinesFromDisk {
     NSMutableArray *magazineFolders = [self searchForMagazineFolders];
