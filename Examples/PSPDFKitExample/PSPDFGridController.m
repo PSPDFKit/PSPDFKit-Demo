@@ -106,6 +106,12 @@
 
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+
+    // speed up displaying with parsing several things PSPDFViewController needs.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [magazine fillCache];
+    });
+
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
     UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage && !magazine.isLocked) {
