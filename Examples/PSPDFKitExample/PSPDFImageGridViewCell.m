@@ -21,7 +21,7 @@
     UIImage *magazineOperationImage_;
     NSString *magazineTitle_;
     CGRect defaultFrame_;
-    
+
     UIView *progressViewBackground_;
     UILabel *magazineCounter_;
     UIImageView *_magazineCounterBadgeImage;
@@ -37,6 +37,17 @@
 @implementation PSPDFImageGridViewCell
 
 static void *kPSPDFKVOToken;
+
+void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block);
+void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
+    if (block) {
+        if ([NSThread isMainThread]) {
+            block();
+        }else {
+            dispatch_async(dispatch_get_main_queue(), block);
+        }
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
@@ -69,14 +80,14 @@ static void *kPSPDFKVOToken;
     if ((self = [super initWithFrame:frame])) {
         defaultFrame_ = frame;
         self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
-        
+
         // incomplete downloads stay here
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
-        
+
         self.showingSiteLabel = YES;
         self.edgeInsets = UIEdgeInsetsMake(0, 0, 10, 0);
     }
-    
+
     return self;
 }
 
@@ -118,7 +129,7 @@ static void *kPSPDFKVOToken;
     }else if(!self.isShowingSiteLabel && self.siteLabel.superview) {
         [self.siteLabel removeFromSuperview];
     }
-    
+
     // calculate new frame and position correct
     self.siteLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
 
@@ -132,11 +143,11 @@ static void *kPSPDFKVOToken;
 
 - (void)updateProgressAnimated:(BOOL)animated {
     float progressTotal = 1.f;
-    
+
     if ([observedMagazineDownloads_ count]) {
         progressTotal = [[observedMagazineDownloads_ valueForKeyPath:@"@avg.downloadProgress"] floatValue];
     }
-    
+
     [self setProgress:progressTotal animated:animated];
 }
 
@@ -166,22 +177,22 @@ static void *kPSPDFKVOToken;
     if (self.magazineFolder) {
         self.magazineFolder = nil;
     }
-    
+
     if (_magazine != magazine) {
         [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
         _magazine = magazine;
-        
+
         // setup for magazine
         if (magazine) {
-            
+
             // add KVO for download property
             [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:kPSPDFKVOToken];
-            
+
             // add KVO
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
-            
+
             self.magazineCount = 0;
-            
+
             __block NSBlockOperation *imageLoadOperation = [NSBlockOperation blockOperationWithBlock:^{
                 if (!imageLoadOperation.isCancelled) {
                     magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
@@ -191,16 +202,17 @@ static void *kPSPDFKVOToken;
                     // try to download image
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
-                        dispatch_async(dispatch_get_main_queue(), ^{
+                        PSPDFDispatchIfNotOnMainThread(^{
                             [self.imageView setImageWithURL:magazine.imageURL];
                         });
                     }
                 }
+
                 // also may be slow, parsing the title from PDF metadata.
                 magazineTitle_ = magazine.title;
-                
+
                 if (!imageLoadOperation.isCancelled && !imageLoadedFromWeb) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    PSPDFDispatchIfNotOnMainThread(^{
                         if(!imageLoadOperation.isCancelled) {
                             // animating this is too expensive.
                             [self setImage:magazineOperationImage_ animated:NO];
@@ -209,13 +221,17 @@ static void *kPSPDFKVOToken;
                     });
                 }
             }];
-            [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
-            imageLoadOperation_ = imageLoadOperation;
-            
+            if (self.immediatelyLoadCellImages) {
+                [imageLoadOperation start]; // start directly.
+            }else {
+                [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
+                imageLoadOperation_ = imageLoadOperation;
+            }
+
             // dark out view if it needs to be downloaded
             [self darkenView:!magazine.isAvailable animated:NO];
         }
-        
+
         NSString *siteLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updateSiteLabel]; // create lazily
         self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
@@ -227,20 +243,20 @@ static void *kPSPDFKVOToken;
     if (self.magazine) {
         self.magazine = nil;
     }
-    
+
     if (_magazineFolder != magazineFolder) {
         [self clearProgressObservers];
         _magazineFolder = magazineFolder;
-        
+
         for (PSPDFMagazine *aMagazine in _magazineFolder.magazines) {
             [self checkMagazineAndObserveProgressIfDownloading:aMagazine];
         }
-        
+
         // setup for folder
         if (magazineFolder) {
             NSUInteger magazineCount = [magazineFolder.magazines count];
             self.magazineCount = magazineCount;
-            
+
             PSPDFMagazine *coverMagazine = [magazineFolder firstMagazine];
             for (PSPDFMagazine *aMagazine in magazineFolder.magazines) {
                 if (aMagazine.isDownloading) {
@@ -265,7 +281,7 @@ static void *kPSPDFKVOToken;
         _magazineCounterBadgeImage.opaque = NO;
         _magazineCounterBadgeImage.alpha = 0.9f;
         [self.contentView addSubview:_magazineCounterBadgeImage];
-        
+
         magazineCounter_ = [[UILabel alloc] init];
         magazineCounter_.font = [UIFont boldSystemFontOfSize:20];
         magazineCounter_.textColor = [UIColor whiteColor];
@@ -276,7 +292,7 @@ static void *kPSPDFKVOToken;
         magazineCounter_.textAlignment = UITextAlignmentCenter;
         [_magazineCounterBadgeImage addSubview:magazineCounter_];
     }
-    
+
     magazineCounter_.text = [NSString stringWithFormat:@"%d", newMagazineCount];
     magazineCounter_.hidden = newMagazineCount < 2;
     _magazineCounterBadgeImage.hidden = newMagazineCount < 2;
@@ -321,29 +337,29 @@ static void *kPSPDFKVOToken;
         progressViewBackground_.backgroundColor = [UIColor blackColor];
         progressViewBackground_.alpha = 0.5f;
     }
-    
+
     if (darken && !progressViewBackground_.superview) {
         progressViewBackground_.alpha = 0.f;
         [self.imageView addSubview:progressViewBackground_];
         [self.contentView bringSubviewToFront:_progressView];
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
-                progressViewBackground_.alpha = 0.5f;                        
+                progressViewBackground_.alpha = 0.5f;
             }];
         }else {
-            progressViewBackground_.alpha = 0.5f;                                    
+            progressViewBackground_.alpha = 0.5f;
         }
     }else if(!darken && progressViewBackground_.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
-                progressViewBackground_.alpha = 0.f;                                    
+                progressViewBackground_.alpha = 0.f;
             } completion:^(BOOL finished) {
                 if (finished) {
                     [progressViewBackground_ removeFromSuperview];
                 }
             }];
         }else {
-            [progressViewBackground_ removeFromSuperview];            
+            [progressViewBackground_ removeFromSuperview];
         }
     }
 }
@@ -353,7 +369,7 @@ static void *kPSPDFKVOToken;
     BOOL shouldDarkenView = theProgress < 1.f;
     BOOL shouldShowProgress = shouldDarkenView && theProgress > 0.f;
     [self darkenView:shouldDarkenView animated:animated];
-    
+
     // remove progressView
     if (!shouldShowProgress && self.progressView.superview) {
         [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^{
@@ -361,10 +377,10 @@ static void *kPSPDFKVOToken;
         } completion:^(BOOL finished) {
             [self.progressView removeFromSuperview];
             self.progressView = nil;
-        }];        
+        }];
     }else if(shouldShowProgress) {
         [self.contentView bringSubviewToFront:self.progressView];
-        
+
         // ensure visibility
         if (self.progressView.alpha == 0.f || !self.progressView.superview) {
             self.progressView.alpha = 0.f;
@@ -378,10 +394,10 @@ static void *kPSPDFKVOToken;
 
 - (void)setImage:(UIImage *)image animated:(BOOL)animated {
     [super setImage:image animated:animated];
-    
+
     // ensure magazineCounter is at top
     [self.contentView bringSubviewToFront:_magazineCounterBadgeImage];
-    
+
     // recalculate edit button position
     [self setNeedsLayout];
 }
@@ -415,10 +431,10 @@ static void *kPSPDFKVOToken;
     if (!magazine) {
         magazine = [self.magazineFolder firstMagazine];
     }
-    
+
     if (magazine == document && page == 0 && size == PSPDFSizeThumbnail) {
         [self setImage:cachedImage animated:YES];
-    }    
+    }
 }
 
 @end
