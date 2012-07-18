@@ -191,7 +191,7 @@ static void *kPSPDFKVOToken;
                     // try to download image
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
-                        dispatch_sync(dispatch_get_main_queue(), ^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
                             [self.imageView setImageWithURL:magazine.imageURL];
                         });
                     }
@@ -200,7 +200,7 @@ static void *kPSPDFKVOToken;
                 magazineTitle_ = magazine.title;
                 
                 if (!imageLoadOperation.isCancelled && !imageLoadedFromWeb) {
-                    dispatch_sync(dispatch_get_main_queue(), ^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         if(!imageLoadOperation.isCancelled) {
                             // animating this is too expensive.
                             [self setImage:magazineOperationImage_ animated:NO];
@@ -216,7 +216,7 @@ static void *kPSPDFKVOToken;
             [self darkenView:!magazine.isAvailable animated:NO];
         }
         
-        NSString *siteLabelText = PSPDFStripPDFFileType([[magazine fileURL] lastPathComponent]);
+        NSString *siteLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updateSiteLabel]; // create lazily
         self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
         [self updateSiteLabel];
