@@ -20,7 +20,10 @@
 @property(nonatomic, assign) NSUInteger magazineCount;
 
 // Cell may contain a magazine or a folder. don't set both.
-@property (nonatomic, strong) PSPDFMagazine *magazine;
-@property (nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
+@property(nonatomic, strong) PSPDFMagazine *magazine;
+@property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
+
+// If set to YES, image is loaded synchronously, not via threads.
+@property(nonatomic, assign) BOOL immediatelyLoadCellImages;
 
 @end

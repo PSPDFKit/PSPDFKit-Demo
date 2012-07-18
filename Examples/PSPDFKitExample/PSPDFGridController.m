@@ -28,6 +28,7 @@
     BOOL _animationDualWithPageCurl;
     BOOL _animateViewWillAppearWithFade;
 }
+@property(nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property(nonatomic, strong) UIView *magazineView;
 @property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
@@ -342,12 +343,11 @@
     // only one delegate at a time (only one grid is displayed at a time)
     [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
 
-    // call anyway - if store is done before we get initialized, don't fail
-    [self diskDataLoaded];
-
     // ensure everything is up to date (we could change magazines in other controllers)
+    self.immediatelyLoadCellImages = YES;
     [self updateGridForOrientation];
-    [self.gridView reloadData];
+    [self diskDataLoaded]; // also reloads the grid
+    self.immediatelyLoadCellImages = NO;
 
     if (_animateViewWillAppearWithFade) {
         [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
@@ -457,6 +457,7 @@
         cell = [[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
     }
 
+    cell.immediatelyLoadCellImages = self.immediatelyLoadCellImages;
     if (self.magazineFolder) {
         cell.magazine = _filteredData[cellIndex];
     }else {
@@ -501,7 +502,7 @@
         }
     }
 
-    PSPDFBasicBlock deleteBlock = ^{
+    dispatch_block_t deleteBlock = ^{
         if (self.magazineFolder) {
             [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
         }else {
