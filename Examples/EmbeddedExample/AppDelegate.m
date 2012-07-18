@@ -67,3 +67,12 @@
 }
 
 @end
+
+@implementation UINavigationController (PSPDFKeyboardDismiss)
+
+// Fixes a behavior of UIModalPresentationFormSheet
+// http://stackoverflow.com/questions/3372333/ipad-keyboard-will-not-dismiss-if-modal-view-controller-presentation-style-is-ui
+- (BOOL)disablesAutomaticKeyboardDismissal {
+    return NO;
+}
+@end
