@@ -116,10 +116,10 @@ extern NSString *kPSPDFHidePageHUDElements;
 @property(nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;
 
 /// Page that is displayed. Readonly.
-@property(nonatomic, assign, readonly) NSUInteger page;
+@property(atomic, assign, readonly) NSUInteger page;
 
 /// Document that is displayed. Readonly.
-@property(nonatomic, strong, readonly) PSPDFDocument *document;
+@property(atomic, strong, readonly) PSPDFDocument *document;
 
 /// Shortcut to access the current boxRect of the set page.
 @property(nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;

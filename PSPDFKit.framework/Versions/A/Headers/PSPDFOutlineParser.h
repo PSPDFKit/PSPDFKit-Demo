@@ -17,7 +17,8 @@
 /// Init outline parser with document.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Parse (partial) document, returns outline (PSDFOutlineElements)
+/// Parse (partial) document, returns and sets outline (PSDFOutlineElements)
+/// Only parses outline once. Thread safe.
 - (NSArray *)parseOutline;
 
 /// Returns single outline element for specific page.

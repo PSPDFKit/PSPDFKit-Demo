@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// You can manually call clearCache to remove all temporary files and clear the memory caches.
 @interface PSPDFCache : NSObject <NSCacheDelegate> 
 
-/// cache is a singleton.
+/// The cache is a singleton.
 + (PSPDFCache *)sharedPSPDFCache;
 
 /// Check if all pages of a document are cached.
@@ -49,21 +49,21 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Check if an individual page of a document is cached.
 - (BOOL)isImageCachedForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// returns cached image of document. If not found, add to TOP of current caching queue.
+/// Returns cached image of document. If not found, add to TOP of current caching queue.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// returns cached image of document. preload decompresses the image in the background.
+/// Returns cached image of document. preload decompresses the image in the background.
 /// Note: if useJPGTurbo is enabled, preload is always YES.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
-/// renders image of a page for spezified size.
+/// Renders image of a page for specified size.
 - (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size pdfPage:(CGPDFPageRef)pdfPage;
 
 // TODO was used in tiling view
 /// save native rendered image, then call delegate.
 //- (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
 
-/// start document caching (update often to improve cache hits). Page starts at 0.
+/// Start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
 /// Creates caches for both thumbnails and tiny images. This, together with PSPDFDocument.loadThumbnailsOnMainThread,
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Returns wether or not any preloading has to be done.
 - (BOOL)cacheThumbnailsForDocument:(PSPDFDocument *)aDocument;
 
-/// stop document caching.
+/// Stop document caching.
 - (void)stopCachingDocument:(PSPDFDocument *)aDocument;
 
 /// Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
@@ -94,28 +94,28 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Thread safe.
 - (BOOL)resumeCachingForService:(id)service;
 
-/// clear cache for a specific document, optionally also deletes referenced document files.
+/// Clear cache for a specific document, optionally also deletes referenced document files.
 /// This usually performs asyncronously. If you need this call to be blocking until it's done, set wait to YES.
 - (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteDocument waitUntilDone:(BOOL)wait;
 
-/// clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
+/// Clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
 
-/// register a delegate. don't forget to manually remove it afterwards!
+/// Register a delegate. don't forget to manually remove it afterwards!
 - (void)addDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
-/// deregisters a delegate. return YES on success.
+/// Deregisters a delegate. return YES on success.
 - (BOOL)removeDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
 /// Set up the caching strategy.
 /// Defaults to PSPDFCacheOpportunistic.
 @property(assign) PSPDFCacheStrategy strategy;
 
-/// maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,...)
-/// if you experience memory issues, set this to zero in your AppDelegate.
+/// Maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,...)
+/// If you experience memory issues, set this to zero in your AppDelegate.
 @property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 
-/// only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages.
+/// Only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages.
 @property(assign) NSUInteger numberOfNearCachedPages;
 
 /// JPG is almost always faster, and uses less memory (<50% of a PNG, usually). Defaults to YES.
@@ -142,7 +142,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Defaults to CGSizeMake(50, 100).
 @property(assign) CGSize tinySize;
 
-/// cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
+/// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
 @property(nonatomic, copy) NSString *cacheDirectory;
 
 @end
@@ -151,18 +151,18 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// additional thumbnail cache control helper.
 @interface PSPDFCache (PSPDFKitThumbnailCache)
 
-/// save image in an NSCache object for specified identifier. Page starts at 0.
+/// Save image in an NSCache object for specified identifier. Page starts at 0.
 - (void)cacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// load image for a certain document page. Page starts at 0.
+/// Load image for a certain document page. Page starts at 0.
 - (UIImage *)imageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// clear thumbnail memory cache.
+/// Clear thumbnail memory cache.
 - (void)clearThumbnailMemoryCache;
 
 @end
 
-/// used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.
+/// Used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.
 @interface PSPDFCache (PSPDFDebuggingSupport)
 - (void)registerObject:(NSObject *)object;
 - (void)deregisterObject:(NSObject *)object;
@@ -170,7 +170,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @end
 
 
-// internal queue item for the cache.
+// Internal queue item for the cache.
 @interface PSPDFCacheQueuedDocument : NSObject 
 
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
