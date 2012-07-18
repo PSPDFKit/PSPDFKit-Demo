@@ -14,6 +14,10 @@
 
 @implementation PSPDFMetadataBarButtonItem
 
+- (BOOL)isAvailable {
+    return [self.pdfController.document.metadata count] > 0;
+}
+
 - (UIBarButtonItemStyle)itemStyle {
     return UIBarButtonItemStylePlain;
 }
