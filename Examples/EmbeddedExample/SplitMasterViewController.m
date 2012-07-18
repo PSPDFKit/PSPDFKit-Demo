@@ -23,7 +23,7 @@
     if ((self = [super init])) {
         self.delegate = self;
         self.leftBarButtonItems = @[];
-        self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
+        self.statusBarStyleSetting = PSPDFStatusBarDefault;
     }
     return self;
 }
