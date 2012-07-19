@@ -42,7 +42,7 @@
     
     // basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.basePath) {
-        coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
+        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
     }
     
     // draw a custom, centered lock image if the magazine is password protected.

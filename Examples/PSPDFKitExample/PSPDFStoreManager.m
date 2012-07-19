@@ -29,16 +29,16 @@ static char kvoToken; // we need a static address for the kvo token
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - static
 
-+ (id)sharedPSPDFStoreManager {
++ (id)sharedStoreManager {
     static dispatch_once_t pred = 0;
-    __strong static id _sharedObject = nil;
+    __strong static PSPDFStoreManager *_sharedStoreManager = nil;
     dispatch_once(&pred, ^{
-        _sharedObject = [[self alloc] init];
+        _sharedStoreManager = [self new];
 
         // allow plain text in JSON downloader class, fixes servers that don't know about JSON.
         [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
     });
-    return _sharedObject;
+    return _sharedStoreManager;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ static char kvoToken; // we need a static address for the kvo token
             dispatch_async(dispatch_get_main_queue(), ^{
                 [magazineFolders enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id folder, NSUInteger idx, BOOL *stop) {
                     [[folder magazines] enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id magazine, NSUInteger idx2, BOOL *stop2) {
-                        [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+                        [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
                     }];
                 }];
             });
@@ -381,7 +381,7 @@ static char kvoToken; // we need a static address for the kvo token
             [downloadObject cancelDownload];
         }
         
-        [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
+        [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
     }
     
     [_delegate magazineStoreFolderDeleted:magazineFolder];
@@ -416,7 +416,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     // clear everything
-    [[PSPDFCache sharedPSPDFCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
+    [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
 
     // if magazine has no url - delete
     if (!magazine.URL) {
@@ -520,7 +520,7 @@ static char kvoToken; // we need a static address for the kvo token
             newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
              */
-            newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedPSPDFCache].thumbnailSize];
+            newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedCache].thumbnailSize];
         }
         
         [[UIApplication sharedApplication] setNewsstandIconImage:newsstandCoverImage];

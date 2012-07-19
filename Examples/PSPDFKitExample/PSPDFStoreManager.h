@@ -34,13 +34,13 @@
 
 @end
 
-/// store manager, hold magazines and folders
+/// Store manager, hold magazines and folders
 @interface PSPDFStoreManager : NSObject {
     dispatch_queue_t magazineFolderQueue_;
 }
 
 /// Shared Instance.
-+ (PSPDFStoreManager *)sharedPSPDFStoreManager;
++ (PSPDFStoreManager *)sharedStoreManager;
 
 /// Helper to migrate data. Use in AppDelegate.
 + (BOOL)checkAndIfNeededMigrateStoragePathBlocking:(BOOL)blocking completionBlock:(void(^)(void))completionBlock;
@@ -55,7 +55,7 @@
 
 - (void)addMagazinesToStore:(NSArray *)magazines;
 
-// delete
+// Delete
 - (void)deleteMagazine:(PSPDFMagazine *)magazine;
 - (void)deleteMagazineFolder:(PSPDFMagazineFolder *)magazineFolder;
 
