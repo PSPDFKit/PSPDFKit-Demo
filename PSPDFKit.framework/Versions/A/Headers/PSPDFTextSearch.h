@@ -57,6 +57,11 @@
 /// Defaults to PSPDFSearchAdvancedWithHighlighting.
 @property(nonatomic, assign) PSPDFSearchMode searchMode;
 
+/// Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch
+/// With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
+/// See NSString comparison documentation for details.
+@property(nonatomic, assign) NSStringCompareOptions compareOptions;
+
 /// The document that is searched.
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
