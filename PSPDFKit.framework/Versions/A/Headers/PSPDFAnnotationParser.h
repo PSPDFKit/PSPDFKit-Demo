@@ -14,17 +14,17 @@
 /// Parses and saves annotations for each page in a PDF.
 @interface PSPDFAnnotationParser : NSObject
 
-/// init annotation parser
+/// Init annotation parser.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// return annotation array for specified page.
+/// Return annotation array for specified page.
 /// Note: fetching annotations may take a while. You can do this in a background thread.
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
-/// return annotation array for specified page, use already open pageRef
+/// Return annotation array for specified page, use already open pageRef.
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type pageRef:(CGPDFPageRef)pageRef;
 
-/// parses annotation link target. Override to support custom link prototols.
+/// Parses annotation link target. Override to support custom link protocols.
 - (void)parseAnnotationLinkTarget:(PSPDFAnnotation *)annotation;
 
 /// YES if annotations are loaded for a specific page. Load annotations in a background thread.
