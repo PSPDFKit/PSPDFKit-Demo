@@ -25,7 +25,7 @@
 @interface PSPDFGridController() <UISearchBarDelegate> {
     NSArray *_filteredData;
     NSUInteger _animationCellIndex;
-    BOOL _animationDualWithPageCurl;
+    BOOL _animationDoubleWithPageCurl;
     BOOL _animateViewWillAppearWithFade;
 }
 @property(nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
@@ -72,7 +72,7 @@
 }
 
 // calculates where the document view will be on screen
-- (CGRect)magazinePageCoordinatesWithDualPageCurl:(BOOL)dualPageCurl {
+- (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
     CGRect newFrame = self.view.frame;
     newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;
     newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
@@ -87,7 +87,7 @@
     }
 
     // animation needs to be different if we are in pageCurl mode
-    if (dualPageCurl) {
+    if (doublePageCurl) {
         newFrame.size.width /= 2;
         newFrame.origin.x += newFrame.size.width;
     }
@@ -141,8 +141,8 @@
             _shadowView.shadowEnabled = NO;
             self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
 
-            _animationDualWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDualPageMode];
-            CGRect newFrame = [self magazinePageCoordinatesWithDualPageCurl:_animationDualWithPageCurl];
+            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
+            CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
             magazineView.frame = newFrame;
             self.gridView.alpha = 0.0f;
         } completion:^(BOOL finished) {
@@ -382,7 +382,7 @@
             CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
 
             //
-            self.magazineView.frame = [self magazinePageCoordinatesWithDualPageCurl:_animationDualWithPageCurl && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
+            self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
 
             // start animation!
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
