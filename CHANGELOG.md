@@ -2,18 +2,19 @@
 
 __v2.0.0 - XX/August/2012__
 
-Note: PSPDFKit v2 is still alpha quality, expect bugs.
+Note: PSPDFKit v2 is beta quality, expect bugs.
 You need at least Xcode 4.4 to compile. (Xcode 4.4/4.5 run both fine on Lion, Mountain Lion is not needed.)
-PSPDFKit v2 will be compatible with iOS 4.3 upwards.
+PSPDFKit v2 will be compatible with iOS 4.3 upwards. (armv7, i386)
 
 *  Text selection! (Includes Copy, Dictionary, Wikipedia support)
 *  Annotations draw support: FreeText, Note, Ink, Shape, Line, Highlight.
 *  Annotation edit support: Highlights. (Ink, Note will follow)
 *  Smart Zoom. (Text blocks are discovered and zoomed onto on a double-tap)
+*  Greatly improved Search. Faster, parses more font styles, compatible with international characters (chinese, turkish, arabic, ...)
 *  Adobe DRM detection (They are just marked as not viewable, instead of showing garbage)
-*  Inline password view. (Before, just a black screen was shown)
+*  Inline password view. (Before, just a empty screen was shown when document wasn't unlocked.)
 *  PDF rendering indicator. (see pdfController.renderAnimationEnabled)
-*  API changes. Lots of things got renamed or changes (Url -> URL)
+*  API changes. Lots of things got renamed or changed. (e.g. Url -> URL)
 *  navigationBar title is no longer set on every page change.
 *  Delegates are now called correctly (only once instead of multiple times) in pageCurl mode.
 *  Even better view reuse. PSPDFPageView is now reused, scrolling is even smoother.
