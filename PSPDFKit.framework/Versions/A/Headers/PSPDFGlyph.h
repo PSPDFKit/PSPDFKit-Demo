@@ -22,6 +22,9 @@
 /// Used font info.
 @property (nonatomic, strong) PSPDFFontInfo *font;
 
+// Set if after this glyph a \n is there.
+@property (nonatomic, assign) BOOL lineBreaker;
+
 /// Index set on the Glyph.
 @property (nonatomic, assign) int indexOnPage;
 
@@ -33,5 +36,8 @@
 @property(nonatomic, assign, readonly) CGFloat fontHeight;
 
 - (BOOL)isOnSameLineSegmentAs:(PSPDFGlyph *)glyph;
+
+// Global helper to convert glyphs to rects.
+NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRect *boundingBox);
 
 @end

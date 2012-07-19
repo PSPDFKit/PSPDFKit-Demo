@@ -7,6 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFDrawView.h"
+#import "PSPDFSelectionView.h"
 
 @class PSPDFViewController;
 
@@ -20,7 +21,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 };
 
 /// To edit annotations, a new toolbar will be overlayed.
-@interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate>
+@interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
 
 /// Designated initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;

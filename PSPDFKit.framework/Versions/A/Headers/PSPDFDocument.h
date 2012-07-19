@@ -23,6 +23,7 @@
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with a dataProvider.
+/// Note: You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
 + (PSPDFDocument *)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.
@@ -275,9 +276,14 @@ extern NSString *kPSPDFGlyphs, *kPSPDFWords, *kPSPDFTextBlocks, *kPSPDFAnnotatio
 
 @interface PSPDFDocument (Subclassing)
 
-/// Set to a different class to use PSPDFDocumentProvider subclasses.
-/// Do not set anything different than PSPDFDocumentProvider or a subclass of it.
-@property(atomic, strong) Class documentProviderClass;
+/// Use this to use specific subclasses instead of the default PSPDF* classes.
+/// e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] as key/value pair to use the custom subclass. (MyCustomAnnotationParser must be a subclass of PSPDFAnnotationParser)
+/// Throws an exception if the overriding class is not a subclass of the overridden class.
+/// Note: does not get serialized when saved to disk.
+@property(nonatomic, strong) NSDictionary *overrideClassNames;
+
+/// Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
+- (PSPDFDocumentProvider *)didCreateDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
 - (NSURL *)thumbnailPathForPage:(NSUInteger)page;

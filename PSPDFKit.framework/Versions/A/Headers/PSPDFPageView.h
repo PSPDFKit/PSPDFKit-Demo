@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderQueue.h"
 
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
 extern NSString *kPSPDFHidePageHUDElements;
@@ -70,7 +70,7 @@ extern NSString *kPSPDFHidePageHUDElements;
 @property(nonatomic, assign, readonly) CGRect visibleRect;
 
 /// Access the selectionView. (handles text selection)
-@property(nonatomic, strong, readonly) PSPDFSelectionView *selectionView;
+@property(nonatomic, strong, readonly) PSPDFTextSelectionView *selectionView;
 
 /// Access the render status view that is displayed on top of a page while we are rendering.
 @property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
@@ -79,13 +79,7 @@ extern NSString *kPSPDFHidePageHUDElements;
 @property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
 
 
-/// @name Coordinate calculations
-
-/// Find objects at the current view point. See PSPDFDocument for more details.
-- (NSDictionary *)objectsAtViewPoint:(CGPoint)pdfPoint options:(NSDictionary *)options;
-
-/// Find objects at the current view rect. See PSPDFDocument for more details.
-- (NSDictionary *)objectsAtViewRect:(CGRect)pdfRect options:(NSDictionary *)options;
+/// @name Coordinate calculations and object fetching
 
 /// Convert a view point to the corresponding pdf point.
 /// pageBounds usually is PSPDFPageView bounds.
@@ -101,6 +95,11 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Convert a pdf rect to the corresponding view rect
 - (CGRect)convertPDFRectToViewRect:(CGRect)pdfRect;
 
+/// Get the glyphs/words on a specific page.
+- (NSDictionary *)objectsAtPoint:(CGPoint)pdfPoint options:(NSDictionary *)options;
+
+/// Get the glyphs/words on a specific rect.
+- (NSDictionary *)objectsAtRect:(CGRect)pdfRect options:(NSDictionary *)options;
 
 /// @name Accessors
 
@@ -161,6 +160,9 @@ extern NSString *kPSPDFHidePageHUDElements;
 // Called when a annotation was found ad the tapped location.
 // This will call menuItemsForAnnotation to show a UIMenuController.
 - (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
+
+// Helper to add a custom annotation to the view.
+- (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 @end
 

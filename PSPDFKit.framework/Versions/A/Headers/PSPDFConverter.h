@@ -54,6 +54,9 @@ CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSUInteger
 /// Normalizes a rect. PDF rect's might have negative width/height, this turns them around.
 inline CGRect PSPDFNormalizeRect(CGRect rect);
 
+/// Builds a rect out of two CGPoints.
+inline CGRect PSPDFCGRectFromPoints(CGPoint p1, CGPoint p2);
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 /// Convert RGB to HSV colorspace
