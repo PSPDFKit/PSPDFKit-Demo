@@ -108,15 +108,15 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
-        _sectionTitle = @[@"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Dual Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionTitle = @[@"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
         _sectionFooter = @[@"", @"", @"", _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
         _(@"Content Opacity"),
         _(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
-        _(@""), // dual page mode
-        _(@"Relevant for dual page mode."),
+        _(@""), // double page mode
+        _(@"Relevant for double page mode."),
         _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
         _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
         _(@"Default is PSPDFLinkActionInlineBrowser."),
