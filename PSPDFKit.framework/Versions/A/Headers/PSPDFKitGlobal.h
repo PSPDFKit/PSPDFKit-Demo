@@ -143,8 +143,8 @@ extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatc
 // Object tracker debug helper
 #ifdef kPSPDFKitAllowMemoryDebugging
 #define PSPDFLogMemory(fmt, ...) do { if(kPSPDFKitDebugMemory) NSLog((fmt), ##__VA_ARGS__); }while(0)
-#define PSPDFRegisterObject(object) [[PSPDFCache sharedPSPDFCache] registerObject:object]
-#define PSPDFDeregisterObject(object) [[PSPDFCache sharedPSPDFCache] deregisterObject:object]
+#define PSPDFRegisterObject(object) [[PSPDFCache sharedCache] registerObject:object]
+#define PSPDFDeregisterObject(object) [[PSPDFCache sharedCache] deregisterObject:object]
 #else
 #define PSPDFLogMemory(fmt, ...)
 #define PSPDFRegisterObject(object)

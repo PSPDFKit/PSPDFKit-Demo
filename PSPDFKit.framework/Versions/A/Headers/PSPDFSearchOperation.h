@@ -57,7 +57,10 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 /// Search delegate. Will be retained as long as the operation runs.    
 @property(nonatomic, ps_weak) id<PSPDFSearchOperationDelegate> delegate;
 
-/// Set the searchMode for the active search.
+/// Set the searchMode for the search.
 @property(nonatomic, assign) PSPDFSearchMode searchMode;
+
+/// Set compareOptions for the search.
+@property(nonatomic, assign) NSStringCompareOptions compareOptions;
 
 @end

@@ -20,7 +20,7 @@
 @interface PSPDFRenderQueue : NSObject
 
 /// Render Queue is a singleton.
-+ (PSPDFRenderQueue *)sharedPSPDFRenderQueue;
++ (PSPDFRenderQueue *)sharedRenderQueue;
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 - (void)requestRenderedImageForDocument:(PSPDFDocument *)document forPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options delegate:(id<PSPDFRenderDelegate>)delegate;

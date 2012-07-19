@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @interface PSPDFCache : NSObject <NSCacheDelegate> 
 
 /// The cache is a singleton.
-+ (PSPDFCache *)sharedPSPDFCache;
++ (PSPDFCache *)sharedCache;
 
 /// Check if all pages of a document are cached.
 - (BOOL)isDocumentCached:(PSPDFDocument *)document size:(PSPDFSize)size;
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// This usually performs asyncronously. If you need this call to be blocking until it's done, set wait to YES.
 - (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteDocument waitUntilDone:(BOOL)wait;
 
-/// Clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.
+/// Clear whole (disk) cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
 
 /// Register a delegate. don't forget to manually remove it afterwards!
@@ -157,8 +157,14 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Load image for a certain document page. Page starts at 0.
 - (UIImage *)imageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
-/// Clear thumbnail memory cache.
-- (void)clearThumbnailMemoryCache;
+/// Clear memory cache.
+- (void)clearMemoryCache;
+
+@end
+
+@interface PSPDFCache (Deprecated)
+
++ (PSPDFCache *)sharedPSPDFCache __attribute__((deprecated("Deprecated. Use sharedCache instead.")));
 
 @end
 

@@ -8,6 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderQueue.h"
 
+@protocol PSPDFAnnotationView;
 @class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
@@ -44,6 +45,10 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Call manually to speed up rendering.
 /// Has no effect if called multiple times.
 - (void)loadPageAnnotationsAnimated:(BOOL)animated;
+
+/// If annotations are already loaded, and the annotation is a view, access it here.
+/// (Most PDF annotations are actually rendered into the page; except PSPDFLinkAnntotations and all derivates (video, etc) and PSPDFNoteAnnotation)
+- (UIView<PSPDFAnnotationView> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView subview showing the whole document. Readonly.
 @property(nonatomic, strong, readonly) UIImageView *contentView;
