@@ -23,7 +23,7 @@
 - (void)clearCacheOnUpgrade {
     if ([[NSUserDefaults standardUserDefaults] integerForKey:kAppVersionKey] < kAppVersion) {
         NSLog(@"clearing cache because of new install/upgrade.");
-        [[PSPDFCache sharedPSPDFCache] clearCache]; // thread-safe.
+        [[PSPDFCache sharedCache] clearCache]; // thread-safe.
         
         // save new version number
         [[NSUserDefaults standardUserDefaults] setInteger:kAppVersion forKey:kAppVersionKey];

@@ -54,7 +54,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)checkMagazineAndObserveProgressIfDownloading:(PSPDFMagazine *)magazine {
     if (magazine.isDownloading) {
-        PSPDFDownload *download = [[PSPDFStoreManager sharedPSPDFStoreManager] downloadObjectForMagazine:magazine];
+        PSPDFDownload *download = [[PSPDFStoreManager sharedStoreManager] downloadObjectForMagazine:magazine];
         if (!download) {
             PSPDFLogError(@"failed to find associated download object for %@", magazine);
             return;
@@ -94,7 +94,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)dealloc {
     [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
     [self clearProgressObservers];
-    [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
+    [[PSPDFCache sharedCache] removeDelegate:self];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

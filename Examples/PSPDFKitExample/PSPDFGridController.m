@@ -114,7 +114,7 @@
     });
 
     PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
-    UIImage *coverImage = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
     if (animated && coverImage && !magazine.isLocked) {
         PSPDFGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
         cell.hidden = YES;
@@ -165,13 +165,13 @@
 
 - (void)diskDataLoaded {
     // not finished yet? return early.
-    if ([[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders count] == 0) {
+    if ([[PSPDFStoreManager sharedStoreManager].magazineFolders count] == 0) {
         return;
     }
 
     // if we're in plain mode, pre-set a folder
     if (kPSPDFStoreManagerPlain) {
-        self.magazineFolder = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders lastObject];
+        self.magazineFolder = [[PSPDFStoreManager sharedStoreManager].magazineFolders lastObject];
     }
 
     [self.gridView reloadData];
@@ -341,7 +341,7 @@
     }
 
     // only one delegate at a time (only one grid is displayed at a time)
-    [PSPDFStoreManager sharedPSPDFStoreManager].delegate = self;
+    [PSPDFStoreManager sharedStoreManager].delegate = self;
 
     // ensure everything is up to date (we could change magazines in other controllers)
     self.immediatelyLoadCellImages = YES;
@@ -401,8 +401,8 @@
     [super viewWillDisappear:animated];
 
     // only deregister if not attached to anything else
-    if ([PSPDFStoreManager sharedPSPDFStoreManager].delegate == self) {
-        [PSPDFStoreManager sharedPSPDFStoreManager].delegate = nil;
+    if ([PSPDFStoreManager sharedStoreManager].delegate == self) {
+        [PSPDFStoreManager sharedStoreManager].delegate = nil;
     }
 }
 
@@ -430,7 +430,7 @@
     if (self.magazineFolder) {
         _filteredData = self.magazineFolder.magazines;
     }else {
-        _filteredData = [PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders;
+        _filteredData = [PSPDFStoreManager sharedStoreManager].magazineFolders;
     }
 
     NSString *searchString = _searchBar.text;
@@ -487,7 +487,7 @@
         folder = self.magazineFolder;
         magazine = (self.magazineFolder.magazines)[index];
     }else {
-        folder = ([PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders)[index];
+        folder = ([PSPDFStoreManager sharedStoreManager].magazineFolders)[index];
         magazine = [folder firstMagazine];
     }
 
@@ -504,9 +504,9 @@
 
     dispatch_block_t deleteBlock = ^{
         if (self.magazineFolder) {
-            [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazine:magazine];
+            [[PSPDFStoreManager sharedStoreManager] deleteMagazine:magazine];
         }else {
-            [[PSPDFStoreManager sharedPSPDFStoreManager] deleteMagazineFolder:folder];
+            [[PSPDFStoreManager sharedStoreManager] deleteMagazineFolder:folder];
         }
     };
 
@@ -560,7 +560,7 @@
                               cancelButtonTitle:NSLocalizedString(@"OK", @"")
                               otherButtonTitles:nil] show];
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
-            [[PSPDFStoreManager sharedPSPDFStoreManager] downloadMagazine:magazine];
+            [[PSPDFStoreManager sharedStoreManager] downloadMagazine:magazine];
         } else {
             [self openMagazine:magazine animated:YES cellIndex:gridIndex];
         }
@@ -591,7 +591,7 @@
 
 - (void)magazineStoreFolderDeleted:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [[PSPDFStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.gridView removeObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
@@ -602,7 +602,7 @@
 
 - (void)magazineStoreFolderAdded:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [[PSPDFStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.gridView insertObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {
@@ -613,7 +613,7 @@
 
 - (void)magazineStoreFolderModified:(PSPDFMagazineFolder *)magazineFolder {
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSPDFStoreManager sharedPSPDFStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [[PSPDFStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.gridView reloadObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
         }else {

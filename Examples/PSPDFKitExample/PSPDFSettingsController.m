@@ -332,7 +332,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
             cell.accessoryType = (indexPath.row == linkAction) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCacheSettings: {
-            PSPDFCacheStrategy cacheStrategy = [PSPDFCache sharedPSPDFCache].strategy;
+            PSPDFCacheStrategy cacheStrategy = [PSPDFCache sharedCache].strategy;
             cell.accessoryType = (indexPath.row == cacheStrategy) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFDebugSettings: {
@@ -371,8 +371,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         case PSPDFCoverSettings: _settings[StringSEL(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
         case PSPDFLinkActionSettings: _settings[StringSEL(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
-            [[PSPDFCache sharedPSPDFCache] clearCache];
-            [PSPDFCache sharedPSPDFCache].strategy = indexPath.row;
+            [[PSPDFCache sharedCache] clearCache];
+            [PSPDFCache sharedCache].strategy = indexPath.row;
             break;
         default: break;
     }

@@ -119,8 +119,8 @@
         self.status = PSPDFStoreDownloadFinished;
 
         // start crunching!
-        [[PSPDFCache sharedPSPDFCache] cacheDocument:self.magazine startAtPage:0 size:PSPDFSizeNative];
-        [[PSPDFCache sharedPSPDFCache] cacheThumbnailsForDocument:self.magazine];
+        [[PSPDFCache sharedCache] cacheDocument:self.magazine startAtPage:0 size:PSPDFSizeNative];
+        [[PSPDFCache sharedCache] cacheThumbnailsForDocument:self.magazine];
 
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         [self addSkipBackupAttributeToFile:destinationURL];
@@ -137,7 +137,7 @@
     [pdfRequest start];
 
     self.request = pdfRequest; // save request
-    [[PSPDFStoreManager sharedPSPDFStoreManager] addMagazinesToStore:@[self.magazine]];
+    [[PSPDFStoreManager sharedStoreManager] addMagazinesToStore:@[self.magazine]];
 }
 
 - (void)cancelDownload {
