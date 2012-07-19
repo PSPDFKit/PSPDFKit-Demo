@@ -18,7 +18,7 @@
 #import "PSPDFViewControllerDelegate.h"
 #import "PSPDFDocument.h"
 #import "PSPDFPageView.h"
-#import "PSPDFSelectionView.h"
+#import "PSPDFTextSelectionView.h"
 #import "PSPDFScrollView.h"
 #import "PSPDFGlobalLock.h"
 #import "PSPDFDocumentProvider.h"

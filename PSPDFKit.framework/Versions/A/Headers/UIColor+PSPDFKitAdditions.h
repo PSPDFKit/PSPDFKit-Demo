@@ -27,4 +27,8 @@
 /// Return name closest compared to dictionary 'colorNames'
 - (NSString *)pspdf_closestColorNameFromSelection:(NSDictionary *)colorNames;
 
+/// Color that matches the system color for selection.
++ (UIColor *)pspdf_selectionColor;
++ (CGFloat)pspdf_selectionAlpha;
+
 @end

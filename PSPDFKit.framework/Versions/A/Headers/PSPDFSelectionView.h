@@ -2,62 +2,39 @@
 //  PSPDFSelectionView.h
 //  PSPDFKit
 //
-//  Copyright 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
 
-#define SelectionViewLinkTappedNotification		@"SelectionViewLinkTappedNotification"
-#define SelectionViewStartedDrawingNotification	@"SelectionViewStartedDrawingNotification"
+@class PSPDFSelectionView;
 
-@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView;
+@protocol PSPDFSelectionViewDelegate <NSObject>
 
-/// Handles the text and annotation selection.
+@optional
+
+/// called before we start selecting. No further delegates will be called for the following touch events until filter is lifted and started again if we return NO here. (touchesBegan)
+- (BOOL)selectionView:(PSPDFSelectionView *)selectionView shouldStartSelectionAtPoint:(CGPoint)point;
+
+/// Rect is updated. (touchesMoved)
+- (void)selectionView:(PSPDFSelectionView *)selectionView updateSelectedRect:(CGRect)rect;
+
+/// Called when a rect was selected successfully. (touchesEnded)
+- (void)selectionView:(PSPDFSelectionView *)selectionView finishedWithSelectedRect:(CGRect)rect;
+
+/// Called when rect selection was cancelled. (touchesCancelled)
+- (void)selectionView:(PSPDFSelectionView *)selectionView cancelledWithSelectedRect:(CGRect)rect;
+
+@end
+
+// Captures touches and marks text as selected for annotations.
+// (Does use instant-select, not long-presses like PSPDFSelectionView)
 @interface PSPDFSelectionView : UIView
 
-/// Currently selected glyphs.
-@property(nonatomic, strong) NSArray *selectedGlyphs;
+/// Designated initializer
+- (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFSelectionViewDelegate>)delegate;
 
-/// Currently selected text.
-@property(nonatomic, strong) NSString *selectedText;
-
-/// Currently selected text, optimized for searching
-@property(nonatomic, strong, readonly) NSString *trimmedSelectedText;
-
-//@property (nonatomic, strong) PSPDFWord *wordSelection;
-
-@property (nonatomic, strong) PSPDFInkAnnotation *selectedInk;
-
-@property (nonatomic, strong) PSPDFHighlightAnnotation *selectedAnnotation;
-
-/// Loupe View for text selection.
-@property (nonatomic, strong) PSPDFLoupeView *loupeView;
-
-//@property (nonatomic, assign) CGPoint newNotePoint;
-
-/// Associated PSPDFPageView.
-@property (nonatomic, ps_weak) PSPDFPageView *pageView;
-
-
-- (void)showLoupe;
-- (void)hideLoupe;
-
-/// Updates the UIMenuController if there is a selection.
-- (void)updateMenu;
-
-/// Clears the current selection.
-- (void)discardSelection;
-
-- (BOOL)hasSelection;
-
-- (void)discardInkSelection;
-
-- (void)longPress:(UILongPressGestureRecognizer *)recognizer;
-- (BOOL)shouldHandleLongPressWithRecognizer:(UILongPressGestureRecognizer *)recognizer;
-
-- (void)updateSelectionHandleSize;
-
-// debugging
-- (void)showTextFlowData:(BOOL)show animated:(BOOL)animated;
+/// Selection View delegate.
+@property(nonatomic, ps_weak) id<PSPDFSelectionViewDelegate> delegate;
 
 @end
