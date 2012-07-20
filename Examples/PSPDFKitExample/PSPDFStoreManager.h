@@ -36,7 +36,7 @@
 
 /// Store manager, hold magazines and folders
 @interface PSPDFStoreManager : NSObject {
-    dispatch_queue_t magazineFolderQueue_;
+    dispatch_queue_t _magazineFolderQueue;
 }
 
 /// Shared Instance.
