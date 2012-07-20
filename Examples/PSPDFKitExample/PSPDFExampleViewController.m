@@ -221,7 +221,7 @@
     if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
         NSUInteger realPage = self.realPage;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            [[self.document textParserForPage:realPage] parse];
+            [self.document textParserForPage:realPage];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [pageView.selectionView showTextFlowData:YES animated:NO];
             });
