@@ -1,0 +1,39 @@
+/* 
+  Localization.strings
+  PSPDFKit
+ 
+  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+*/
+
+// general
+"Close" = "Fermer";
+"Cancel" = "Annuler";
+"Open" = "Ouvrir";
+"Untitled" = "Untitled";
+"File Not Found" = "File Not Found";
+
+// toolbar
+"Outline" = "Plan";
+"Search" = "Rechercher";
+"Email" = "E-mail";
+"Open in..." = "Ouvrir dans…";
+"Print" = "Imprimer";
+
+// page
+"%d of %d" = "%d sur %d";
+"%@ (%d of %d)" = "%@ (%d sur %d)";
+
+// search
+"Page %d" = "Page %d";
+"Search Document" = "Recherche";
+"No matches found" = "Aucun résultat";
+"One match found" = "Un résultat trouvé";
+"%d matches found" = "%d résultats trouvés";
+"Searching..." = "Recherche…";
+"Search Completed" = "Recherche terminée";
+"Search Cancelled" = "Recherche annulée";
+
+// inline browser
+"Copy Link" = "Copier le lien";
+"Open in Safari" = "Ouvrir dans Safari";
+"Mail Link to this Page" = "Envoyer cette adresse URL";

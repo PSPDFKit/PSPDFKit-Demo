@@ -7,32 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7832DB4A1592BD5200360F42 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7832DB491592BD5200360F42 /* libz.dylib */; };
-		7832DB531592BD7B00360F42 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7832DB521592BD7B00360F42 /* PSPDFKit.bundle */; };
 		783770251523F2870089F0A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770241523F2870089F0A8 /* UIKit.framework */; };
 		783770271523F2870089F0A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770261523F2870089F0A8 /* Foundation.framework */; };
-		783770291523F2870089F0A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783770281523F2870089F0A8 /* CoreGraphics.framework */; };
 		7837702F1523F2870089F0A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7837702D1523F2870089F0A8 /* InfoPlist.strings */; };
 		783770311523F2870089F0A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 783770301523F2870089F0A8 /* main.m */; };
 		783770351523F2870089F0A8 /* PSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 783770341523F2870089F0A8 /* PSAppDelegate.m */; };
 		783770381523F2870089F0A8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783770361523F2870089F0A8 /* MainStoryboard_iPhone.storyboard */; };
 		7837703B1523F2870089F0A8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783770391523F2870089F0A8 /* MainStoryboard_iPad.storyboard */; };
 		7837712F1523F34C0089F0A8 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7837712E1523F34C0089F0A8 /* Samples */; };
-		783771311523F3AE0089F0A8 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783771301523F3AE0089F0A8 /* CoreText.framework */; };
-		783771331523F3B80089F0A8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783771321523F3B80089F0A8 /* QuartzCore.framework */; };
-		783771351523F3C20089F0A8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783771341523F3C20089F0A8 /* MediaPlayer.framework */; };
-		783771371523F3C60089F0A8 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 783771361523F3C60089F0A8 /* MessageUI.framework */; };
 		783771711524016B0089F0A8 /* PSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783771701524016B0089F0A8 /* PSTableViewController.m */; };
-		7837717315240DD10089F0A8 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7837717215240DD10089F0A8 /* PSPDFKit.framework */; };
+		78BE322B15B8E15B00FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE322515B8E15B00FBB125 /* PSPDFKit.framework */; };
+		78BE322C15B8E15C00FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE322715B8E15B00FBB125 /* ACKNOWLEDGEMENTS */; };
+		78BE322D15B8E15C00FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE322815B8E15B00FBB125 /* LICENSE */; };
+		78BE322E15B8E15C00FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE322915B8E15B00FBB125 /* PSPDFKit.bundle */; };
+		78BE322F15B8E15C00FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE322A15B8E15B00FBB125 /* PSPDFKit.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7832DB491592BD5200360F42 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		7832DB521592BD7B00360F42 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
 		783770201523F2870089F0A8 /* StoryboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783770241523F2870089F0A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		783770261523F2870089F0A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		783770281523F2870089F0A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7837702C1523F2870089F0A8 /* StoryboardExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StoryboardExample-Info.plist"; sourceTree = "<group>"; };
 		7837702E1523F2870089F0A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		783770301523F2870089F0A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,13 +36,13 @@
 		783770371523F2870089F0A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		7837703A1523F2870089F0A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		7837712E1523F34C0089F0A8 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
-		783771301523F3AE0089F0A8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		783771321523F3B80089F0A8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		783771341523F3C20089F0A8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		783771361523F3C60089F0A8 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7837716F1524016B0089F0A8 /* PSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSTableViewController.h; sourceTree = "<group>"; };
 		783771701524016B0089F0A8 /* PSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSTableViewController.m; sourceTree = "<group>"; };
-		7837717215240DD10089F0A8 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
+		78BE322515B8E15B00FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		78BE322715B8E15B00FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
+		78BE322815B8E15B00FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		78BE322915B8E15B00FBB125 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
+		78BE322A15B8E15B00FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7832DB4A1592BD5200360F42 /* libz.dylib in Frameworks */,
-				783771371523F3C60089F0A8 /* MessageUI.framework in Frameworks */,
-				783771351523F3C20089F0A8 /* MediaPlayer.framework in Frameworks */,
-				783771331523F3B80089F0A8 /* QuartzCore.framework in Frameworks */,
-				783771311523F3AE0089F0A8 /* CoreText.framework in Frameworks */,
 				783770251523F2870089F0A8 /* UIKit.framework in Frameworks */,
 				783770271523F2870089F0A8 /* Foundation.framework in Frameworks */,
-				783770291523F2870089F0A8 /* CoreGraphics.framework in Frameworks */,
-				7837717315240DD10089F0A8 /* PSPDFKit.framework in Frameworks */,
+				78BE322B15B8E15B00FBB125 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,25 +62,10 @@
 		7832DB4C1592BD5E00360F42 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				7832DB491592BD5200360F42 /* libz.dylib */,
-				783771361523F3C60089F0A8 /* MessageUI.framework */,
-				783771341523F3C20089F0A8 /* MediaPlayer.framework */,
-				783771321523F3B80089F0A8 /* QuartzCore.framework */,
-				783771301523F3AE0089F0A8 /* CoreText.framework */,
 				783770241523F2870089F0A8 /* UIKit.framework */,
 				783770261523F2870089F0A8 /* Foundation.framework */,
-				783770281523F2870089F0A8 /* CoreGraphics.framework */,
 			);
 			name = System;
-			sourceTree = "<group>";
-		};
-		7832DB731592BDAB00360F42 /* PSPDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				7832DB521592BD7B00360F42 /* PSPDFKit.bundle */,
-				7837717215240DD10089F0A8 /* PSPDFKit.framework */,
-			);
-			name = PSPDFKit;
 			sourceTree = "<group>";
 		};
 		783770151523F2870089F0A8 = {
@@ -118,7 +91,7 @@
 		783770231523F2870089F0A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7832DB731592BDAB00360F42 /* PSPDFKit */,
+				78BE322415B8E15B00FBB125 /* PSPDFKit.embeddedframework */,
 				7832DB4C1592BD5E00360F42 /* System */,
 			);
 			name = Frameworks;
@@ -148,6 +121,27 @@
 				783770321523F2870089F0A8 /* StoryboardExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78BE322415B8E15B00FBB125 /* PSPDFKit.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				78BE322515B8E15B00FBB125 /* PSPDFKit.framework */,
+				78BE322615B8E15B00FBB125 /* Resources */,
+			);
+			name = PSPDFKit.embeddedframework;
+			path = ../PSPDFKit.embeddedframework;
+			sourceTree = "<group>";
+		};
+		78BE322615B8E15B00FBB125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78BE322715B8E15B00FBB125 /* ACKNOWLEDGEMENTS */,
+				78BE322815B8E15B00FBB125 /* LICENSE */,
+				78BE322915B8E15B00FBB125 /* PSPDFKit.bundle */,
+				78BE322A15B8E15B00FBB125 /* PSPDFKit.xcconfig */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,7 +200,10 @@
 				783770381523F2870089F0A8 /* MainStoryboard_iPhone.storyboard in Resources */,
 				7837703B1523F2870089F0A8 /* MainStoryboard_iPad.storyboard in Resources */,
 				7837712F1523F34C0089F0A8 /* Samples in Resources */,
-				7832DB531592BD7B00360F42 /* PSPDFKit.bundle in Resources */,
+				78BE322C15B8E15C00FBB125 /* ACKNOWLEDGEMENTS in Resources */,
+				78BE322D15B8E15C00FBB125 /* LICENSE in Resources */,
+				78BE322E15B8E15C00FBB125 /* PSPDFKit.bundle in Resources */,
+				78BE322F15B8E15C00FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,12 +299,12 @@
 		};
 		783770421523F2870089F0A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE322A15B8E15B00FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryboardExample/StoryboardExample-Prefix.pch";
 				INFOPLIST_FILE = "StoryboardExample/StoryboardExample-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -315,12 +312,12 @@
 		};
 		783770431523F2870089F0A8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE322A15B8E15B00FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "../**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StoryboardExample/StoryboardExample-Prefix.pch";
 				INFOPLIST_FILE = "StoryboardExample/StoryboardExample-Info.plist";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,8 +9,8 @@
 
 @implementation MinimalExampleAppDelegate
 
-@synthesize window = _window;
-@synthesize pdfController = _pdfController;
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //kPSPDFLogLevel = PSPDFLogLevelVerbose;

@@ -7,7 +7,10 @@
 
 #import "PSPDFAddDocumentsBarButtonItem.h"
 
-@implementation PSPDFAddDocumentsBarButtonItem 
+@implementation PSPDFAddDocumentsBarButtonItem
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFBarButtonItem
 
 - (UIBarButtonSystemItem)systemItem {
     return UIBarButtonSystemItemAdd;
@@ -31,7 +34,7 @@
     [self dismissModalOrPopoverAnimated:animated];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)PDFDocumentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {

@@ -14,9 +14,34 @@
 
 @implementation PSPDFDocumentSelectorController
 
-@synthesize delegate = delegate_;
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+- (id)init {
+    if ((self = [super initWithStyle:UITableViewStylePlain])) {
+        self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
+        self.title = NSLocalizedString(@"Files", @"");
+
+        content_ = [[[self class] documentsFromDirectory:@"Samples"] copy];
+
+        [[PSPDFCache sharedCache] addDelegate:self];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [[PSPDFCache sharedCache] removeDelegate:self];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIViewController
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    BOOL shouldAutorotate = PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    return shouldAutorotate;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
 + (NSArray *)documentsFromDirectory:(NSString *)directoryName {
@@ -41,34 +66,7 @@
     return folders;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
-
-- (id)init {
-    if ((self = [super initWithStyle:UITableViewStylePlain])) {
-        self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
-        self.title = NSLocalizedString(@"Files", @"");
-
-        content_ = [[[self class] documentsFromDirectory:@"Samples"] copy];
-
-        [[PSPDFCache sharedPSPDFCache] addDelegate:self];
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [[PSPDFCache sharedPSPDFCache] removeDelegate:self];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIViewController
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    BOOL shouldAutorotate = PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-    return shouldAutorotate;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,19 +87,19 @@
 
     PSPDFDocument *document = [content_ objectAtIndex:indexPath.row];
     cell.textLabel.text = document.title;
-    cell.imageView.image = [[PSPDFCache sharedPSPDFCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];
+    cell.imageView.image = [[PSPDFCache sharedCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];
 
     return cell;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"pressed index %d", indexPath.row);
 
     PSPDFDocument *document = [content_ objectAtIndex:indexPath.row];
-    [delegate_ PDFDocumentSelectorController:self didSelectDocument:document];
+    [_delegate PDFDocumentSelectorController:self didSelectDocument:document];
 
     // hide controller
     if (PSIsIpad()) {
@@ -111,7 +109,7 @@
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFCacheDelegate
 
 - (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size; {
