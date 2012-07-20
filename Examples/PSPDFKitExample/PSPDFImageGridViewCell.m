@@ -193,12 +193,15 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
             self.magazineCount = 0;
 
-            __block NSBlockOperation *imageLoadOperation = [NSBlockOperation blockOperationWithBlock:^{
-                if (!imageLoadOperation.isCancelled) {
+            NSBlockOperation *imageLoadOperation = [NSBlockOperation new];
+            __ps_weak NSBlockOperation *weakImageLoadOperation = imageLoadOperation;
+            [imageLoadOperation addExecutionBlock:^{
+                NSBlockOperation *strongImageLoadOperation = weakImageLoadOperation;
+                if (!strongImageLoadOperation.isCancelled) {
                     magazineOperationImage_ = [magazine coverImageForSize:self.frame.size];
                 }
                 BOOL imageLoadedFromWeb = NO;
-                if (!magazineOperationImage_ && !imageLoadOperation.isCancelled) {
+                if (!magazineOperationImage_ && !strongImageLoadOperation.isCancelled) {
                     // try to download image
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
@@ -211,9 +214,9 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 // also may be slow, parsing the title from PDF metadata.
                 magazineTitle_ = magazine.title;
 
-                if (!imageLoadOperation.isCancelled && !imageLoadedFromWeb) {
+                if (!strongImageLoadOperation.isCancelled && !imageLoadedFromWeb) {
                     PSPDFDispatchIfNotOnMainThread(^{
-                        if(!imageLoadOperation.isCancelled) {
+                        if(!strongImageLoadOperation.isCancelled) {
                             // animating this is too expensive.
                             [self setImage:magazineOperationImage_ animated:NO];
                             self.siteLabel.text = magazineTitle_;
@@ -221,6 +224,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                     });
                 }
             }];
+            
             if (self.immediatelyLoadCellImages) {
                 [imageLoadOperation start]; // start directly.
             }else {
