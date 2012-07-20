@@ -44,14 +44,6 @@ static char kvoToken; // we need a static address for the kvo token
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private 
 
-- (dispatch_queue_t)magazineFolderQueue {
-    static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		magazineFolderQueue_ = dispatch_queue_create("com.pspdfkit.store.magazineFolderQueue", NULL);
-	});
-	return magazineFolderQueue_;
-}
-
 // helper for folder search
 - (NSMutableArray *)searchFolder:(NSString *)sampleFolder {
     NSError *error = nil;
@@ -208,7 +200,7 @@ static char kvoToken; // we need a static address for the kvo token
     NSMutableArray *magazineFolders = [self searchForMagazineFolders];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        dispatch_sync([self magazineFolderQueue], ^{
+        pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
             self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
 
@@ -232,7 +224,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (NSMutableArray *)magazineFolders {
     __block NSMutableArray *magazineFolders;
-    pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
+    pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
         magazineFolders = _magazineFolders;
     });
     
@@ -346,6 +338,7 @@ static char kvoToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
+        _magazineFolderQueue = dispatch_queue_create("com.pspdfkit.store.magazineFolderQueue", NULL);
         _downloadQueue = [[NSMutableArray alloc] init];
         
         // register for memory notifications
@@ -363,7 +356,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _delegate = nil;
-    dispatch_release(magazineFolderQueue_);
+    dispatch_release(_magazineFolderQueue);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -385,7 +378,7 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     [_delegate magazineStoreFolderDeleted:magazineFolder];
-    pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
+    dispatch_barrier_sync(_magazineFolderQueue, ^{
         [_magazineFolders removeObject:magazineFolder];
     });
     
@@ -425,7 +418,7 @@ static char kvoToken; // we need a static address for the kvo token
         if([folder.magazines count] > 0) {
             [_delegate magazineStoreFolderModified:folder]; // was just modified
         }else {
-            pspdf_dispatch_sync_reentrant([self magazineFolderQueue], ^{
+            dispatch_barrier_sync(_magazineFolderQueue, ^{
                 [_magazineFolders removeObject:folder]; // remove!
             });
         }
