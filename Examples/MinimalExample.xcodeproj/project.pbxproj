@@ -8,44 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
-		785152461592B76D00430E1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 785152451592B76D00430E1C /* libz.dylib */; };
-		78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78727B82141EC2D300994946 /* MessageUI.framework */; };
-		78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B081480374A0092B889 /* ImageIO.framework */; };
-		78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B0D1480375A0092B889 /* MediaPlayer.framework */; };
+		78BE31D915B8DE6700FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */; };
+		78BE31DA15B8DE6700FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */; };
+		78BE31DB15B8DE6700FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D615B8DE6700FBB125 /* LICENSE */; };
+		78BE31DC15B8DE6700FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */; };
+		78BE31DD15B8DE6700FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */; };
 		78DEFFA213DECEB6005ABEFD /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78DEFFA113DECEB6005ABEFD /* Samples */; };
-		78DEFFA413DECEBF005ABEFD /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFFA313DECEBF005ABEFD /* CoreText.framework */; };
-		78DEFFA613DECEC3005ABEFD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */; };
 		78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43D13DECE56006000BB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43F13DECE56006000BB /* Foundation.framework */; };
-		78E6A44213DECE56006000BB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A44113DECE56006000BB /* CoreGraphics.framework */; };
 		78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6A44613DECE56006000BB /* InfoPlist.strings */; };
 		78E6A44A13DECE56006000BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44913DECE56006000BB /* main.m */; };
 		78E6A44E13DECE56006000BB /* MinimalExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */; };
-		78F0E1B31498ED51007E62E0 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E1AF1498ED50007E62E0 /* PSPDFKit.bundle */; };
-		78F0E1B41498ED51007E62E0 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E1B01498ED50007E62E0 /* PSPDFKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		785152451592B76D00430E1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		78727B82141EC2D300994946 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		78C22B081480374A0092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		78C22B0D1480375A0092B889 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
+		78BE31D615B8DE6700FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
+		78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78DEFFA113DECEB6005ABEFD /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
-		78DEFFA313DECEBF005ABEFD /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78E6A43913DECE56006000BB /* MinimalEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E6A43D13DECE56006000BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78E6A43F13DECE56006000BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		78E6A44113DECE56006000BB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		78E6A44513DECE56006000BB /* MinimalExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MinimalExample-Info.plist"; sourceTree = "<group>"; };
 		78E6A44713DECE56006000BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		78E6A44913DECE56006000BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		78E6A44B13DECE56006000BB /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalExample-Prefix.pch"; sourceTree = "<group>"; };
 		78E6A44C13DECE56006000BB /* MinimalExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinimalExampleAppDelegate.h; sourceTree = "<group>"; };
 		78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinimalExampleAppDelegate.m; sourceTree = "<group>"; };
-		78F0E1AF1498ED50007E62E0 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
-		78F0E1B01498ED50007E62E0 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,16 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				785152461592B76D00430E1C /* libz.dylib in Frameworks */,
-				78C22B0E1480375A0092B889 /* MediaPlayer.framework in Frameworks */,
-				78C22B091480374A0092B889 /* ImageIO.framework in Frameworks */,
-				78727B83141EC2D300994946 /* MessageUI.framework in Frameworks */,
-				78DEFFA613DECEC3005ABEFD /* QuartzCore.framework in Frameworks */,
-				78DEFFA413DECEBF005ABEFD /* CoreText.framework in Frameworks */,
 				78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */,
 				78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */,
-				78E6A44213DECE56006000BB /* CoreGraphics.framework in Frameworks */,
-				78F0E1B41498ED51007E62E0 /* PSPDFKit.framework in Frameworks */,
+				78BE31D915B8DE6700FBB125 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,17 +57,31 @@
 		785152481592B77C00430E1C /* System */ = {
 			isa = PBXGroup;
 			children = (
-				785152451592B76D00430E1C /* libz.dylib */,
-				78C22B0D1480375A0092B889 /* MediaPlayer.framework */,
-				78C22B081480374A0092B889 /* ImageIO.framework */,
-				78727B82141EC2D300994946 /* MessageUI.framework */,
-				78DEFFA513DECEC3005ABEFD /* QuartzCore.framework */,
-				78DEFFA313DECEBF005ABEFD /* CoreText.framework */,
 				78E6A43D13DECE56006000BB /* UIKit.framework */,
 				78E6A43F13DECE56006000BB /* Foundation.framework */,
-				78E6A44113DECE56006000BB /* CoreGraphics.framework */,
 			);
 			name = System;
+			sourceTree = "<group>";
+		};
+		78BE31D215B8DE6700FBB125 /* PSPDFKit.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */,
+				78BE31D415B8DE6700FBB125 /* Resources */,
+			);
+			name = PSPDFKit.embeddedframework;
+			path = ../../Products/PSPDFKit.embeddedframework;
+			sourceTree = "<group>";
+		};
+		78BE31D415B8DE6700FBB125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */,
+				78BE31D615B8DE6700FBB125 /* LICENSE */,
+				78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */,
+				78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		78E6A42E13DECE56006000BB = {
@@ -105,7 +104,7 @@
 		78E6A43C13DECE56006000BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F0E1B51498ED55007E62E0 /* PSPDFKit */,
+				78BE31D215B8DE6700FBB125 /* PSPDFKit.embeddedframework */,
 				785152481592B77C00430E1C /* System */,
 			);
 			name = Frameworks;
@@ -132,15 +131,6 @@
 				78E6A44B13DECE56006000BB /* MinimalExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		78F0E1B51498ED55007E62E0 /* PSPDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				78F0E1AF1498ED50007E62E0 /* PSPDFKit.bundle */,
-				78F0E1B01498ED50007E62E0 /* PSPDFKit.framework */,
-			);
-			name = PSPDFKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,7 +188,10 @@
 				78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */,
 				78DEFFA213DECEB6005ABEFD /* Samples in Resources */,
 				7808B4E513E6A7BA005380C8 /* Icon.png in Resources */,
-				78F0E1B31498ED51007E62E0 /* PSPDFKit.bundle in Resources */,
+				78BE31DA15B8DE6700FBB125 /* ACKNOWLEDGEMENTS in Resources */,
+				78BE31DB15B8DE6700FBB125 /* LICENSE in Resources */,
+				78BE31DC15B8DE6700FBB125 /* PSPDFKit.bundle in Resources */,
+				78BE31DD15B8DE6700FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,13 +236,11 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -263,14 +254,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -279,26 +268,12 @@
 		};
 		78E6A46013DECE56006000BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/..\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "../PSPDFKit.embeddedframework/**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample/MinimalExample-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "MinimalExample/MinimalExample-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc,
-					/Developer/usr/lib/arc,
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc\"",
-					"\"$(SRCROOT)/MinimalExample\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-fobjc-arc",
-				);
 				PRODUCT_NAME = MinimalEx;
 				WRAPPER_EXTENSION = app;
 			};
@@ -306,26 +281,12 @@
 		};
 		78E6A46113DECE56006000BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/..\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "../PSPDFKit.embeddedframework/**";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample/MinimalExample-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "MinimalExample/MinimalExample-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc,
-					/Developer/usr/lib/arc,
-					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/lib/arc\"",
-					"\"$(SRCROOT)/MinimalExample\"",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-fobjc-arc",
-				);
 				PRODUCT_NAME = MinimalEx;
 				WRAPPER_EXTENSION = app;
 			};

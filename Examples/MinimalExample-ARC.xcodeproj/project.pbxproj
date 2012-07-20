@@ -7,36 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7851523E1592B72A00430E1C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7851523D1592B72A00430E1C /* libz.dylib */; };
 		78881B1D141EC35C00CB0739 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78881B1C141EC35C00CB0739 /* Icon.png */; };
-		78881B20141EC36700CB0739 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78881B1F141EC36700CB0739 /* MessageUI.framework */; };
-		78C22B14148037750092B889 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B13148037750092B889 /* ImageIO.framework */; };
-		78C22B19148037870092B889 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C22B18148037870092B889 /* MediaPlayer.framework */; };
+		78BE321615B8E11000FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE321015B8E11000FBB125 /* PSPDFKit.framework */; };
+		78BE321715B8E11000FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */; };
+		78BE321815B8E11000FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321315B8E11000FBB125 /* LICENSE */; };
+		78BE321915B8E11000FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321415B8E11000FBB125 /* PSPDFKit.bundle */; };
+		78BE321A15B8E11000FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */; };
 		78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326513DECAF600F3392F /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78E6326813DECAF600F3392F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326713DECAF600F3392F /* Foundation.framework */; };
-		78E6326A13DECAF600F3392F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326913DECAF600F3392F /* CoreGraphics.framework */; };
-		78E6328113DECC4000F3392F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6328013DECC4000F3392F /* CoreText.framework */; };
-		78E6328313DECC4600F3392F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6328213DECC4600F3392F /* QuartzCore.framework */; };
 		78E6328F13DECD7300F3392F /* MinimalExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */; };
 		78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6329113DECD7C00F3392F /* InfoPlist.strings */; };
 		78E6329713DECD7C00F3392F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6329313DECD7C00F3392F /* main.m */; };
 		78E6329C13DECD8B00F3392F /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78E6329B13DECD8B00F3392F /* Samples */; };
-		78F0E1C21498ED9D007E62E0 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0E1C01498ED9D007E62E0 /* PSPDFKit.bundle */; };
-		78F0E1C31498ED9D007E62E0 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78F0E1C11498ED9D007E62E0 /* PSPDFKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7851523D1592B72A00430E1C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		78881B1C141EC35C00CB0739 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
-		78881B1F141EC36700CB0739 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		78C22B13148037750092B889 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
-		78C22B18148037870092B889 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		78BE321015B8E11000FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
+		78BE321315B8E11000FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		78BE321415B8E11000FBB125 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
+		78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78E6326113DECAF600F3392F /* MinimalARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalARC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78E6326513DECAF600F3392F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		78E6326713DECAF600F3392F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		78E6326913DECAF600F3392F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		78E6328013DECC4000F3392F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		78E6328213DECC4600F3392F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		78E6328D13DECD7300F3392F /* MinimalExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MinimalExampleAppDelegate.h; path = "MinimalExample-ARC/MinimalExampleAppDelegate.h"; sourceTree = SOURCE_ROOT; };
 		78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MinimalExampleAppDelegate.m; path = "MinimalExample-ARC/MinimalExampleAppDelegate.m"; sourceTree = SOURCE_ROOT; };
 		78E6329213DECD7C00F3392F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -44,8 +38,6 @@
 		78E6329413DECD7C00F3392F /* MinimalExample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MinimalExample-Info.plist"; path = "MinimalExample-ARC/MinimalExample-Info.plist"; sourceTree = SOURCE_ROOT; };
 		78E6329513DECD7C00F3392F /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MinimalExample-Prefix.pch"; path = "MinimalExample-ARC/MinimalExample-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		78E6329B13DECD8B00F3392F /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
-		78F0E1C01498ED9D007E62E0 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PSPDFKit.bundle; path = ../PSPDFKit.framework/Versions/A/Resources/PSPDFKit.bundle; sourceTree = "<group>"; };
-		78F0E1C11498ED9D007E62E0 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PSPDFKit.framework; path = ../PSPDFKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,16 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7851523E1592B72A00430E1C /* libz.dylib in Frameworks */,
-				78C22B19148037870092B889 /* MediaPlayer.framework in Frameworks */,
-				78C22B14148037750092B889 /* ImageIO.framework in Frameworks */,
-				78881B20141EC36700CB0739 /* MessageUI.framework in Frameworks */,
-				78E6328313DECC4600F3392F /* QuartzCore.framework in Frameworks */,
-				78E6328113DECC4000F3392F /* CoreText.framework in Frameworks */,
 				78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */,
 				78E6326813DECAF600F3392F /* Foundation.framework in Frameworks */,
-				78E6326A13DECAF600F3392F /* CoreGraphics.framework in Frameworks */,
-				78F0E1C31498ED9D007E62E0 /* PSPDFKit.framework in Frameworks */,
+				78BE321615B8E11000FBB125 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,17 +57,31 @@
 		785152401592B73300430E1C /* System */ = {
 			isa = PBXGroup;
 			children = (
-				7851523D1592B72A00430E1C /* libz.dylib */,
-				78C22B18148037870092B889 /* MediaPlayer.framework */,
-				78C22B13148037750092B889 /* ImageIO.framework */,
-				78881B1F141EC36700CB0739 /* MessageUI.framework */,
-				78E6328213DECC4600F3392F /* QuartzCore.framework */,
-				78E6328013DECC4000F3392F /* CoreText.framework */,
 				78E6326513DECAF600F3392F /* UIKit.framework */,
 				78E6326713DECAF600F3392F /* Foundation.framework */,
-				78E6326913DECAF600F3392F /* CoreGraphics.framework */,
 			);
 			name = System;
+			sourceTree = "<group>";
+		};
+		78BE320F15B8E11000FBB125 /* PSPDFKit.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				78BE321015B8E11000FBB125 /* PSPDFKit.framework */,
+				78BE321115B8E11000FBB125 /* Resources */,
+			);
+			name = PSPDFKit.embeddedframework;
+			path = ../PSPDFKit.embeddedframework;
+			sourceTree = "<group>";
+		};
+		78BE321115B8E11000FBB125 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */,
+				78BE321315B8E11000FBB125 /* LICENSE */,
+				78BE321415B8E11000FBB125 /* PSPDFKit.bundle */,
+				78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		78E6325613DECAF600F3392F = {
@@ -105,7 +104,7 @@
 		78E6326413DECAF600F3392F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78F0E1C41498EDA4007E62E0 /* PSPDFKit */,
+				78BE320F15B8E11000FBB125 /* PSPDFKit.embeddedframework */,
 				785152401592B73300430E1C /* System */,
 			);
 			name = Frameworks;
@@ -142,15 +141,6 @@
 			name = en.lproj;
 			path = "MinimalExample-ARC/en.lproj";
 			sourceTree = SOURCE_ROOT;
-		};
-		78F0E1C41498EDA4007E62E0 /* PSPDFKit */ = {
-			isa = PBXGroup;
-			children = (
-				78F0E1C01498ED9D007E62E0 /* PSPDFKit.bundle */,
-				78F0E1C11498ED9D007E62E0 /* PSPDFKit.framework */,
-			);
-			name = PSPDFKit;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -207,7 +197,10 @@
 				78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */,
 				78E6329C13DECD8B00F3392F /* Samples in Resources */,
 				78881B1D141EC35C00CB0739 /* Icon.png in Resources */,
-				78F0E1C21498ED9D007E62E0 /* PSPDFKit.bundle in Resources */,
+				78BE321715B8E11000FBB125 /* ACKNOWLEDGEMENTS in Resources */,
+				78BE321815B8E11000FBB125 /* LICENSE in Resources */,
+				78BE321915B8E11000FBB125 /* PSPDFKit.bundle in Resources */,
+				78BE321A15B8E11000FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,13 +246,11 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -274,14 +265,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -290,15 +279,11 @@
 		};
 		78E6327A13DECAF600F3392F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../..\"",
-					"\"$(SRCROOT)/..\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
 				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;
@@ -307,15 +292,11 @@
 		};
 		78E6327B13DECAF600F3392F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../..\"",
-					"\"$(SRCROOT)/..\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
 				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;

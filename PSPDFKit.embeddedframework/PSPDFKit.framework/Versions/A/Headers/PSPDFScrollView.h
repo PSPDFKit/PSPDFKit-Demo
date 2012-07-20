@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// @name Mirrored properties from PSPDFViewController
 
 /// If YES, two sites are displayed.
-@property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode;
+@property (nonatomic, assign, getter=isDoublePageMode) BOOL doublePageMode;
 
 /// Shows first document page alone. Not relevant in PSPDFPageModeSinge.
 @property(nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;

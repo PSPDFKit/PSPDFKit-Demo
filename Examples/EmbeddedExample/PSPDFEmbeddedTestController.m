@@ -261,14 +261,14 @@
     document.aspectRatioEqual = NO;
     
     // we have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
-    [[PSPDFCache sharedPSPDFCache] clearCache];
+    [[PSPDFCache sharedCache] clearCache];
     
     // set document on active controller
     self.pdfController.document = document;
 }
 
 - (IBAction)clearCache {
-    [[PSPDFCache sharedPSPDFCache] clearCache];
+    [[PSPDFCache sharedCache] clearCache];
 }
 
 - (IBAction)oldContainmentTest {
