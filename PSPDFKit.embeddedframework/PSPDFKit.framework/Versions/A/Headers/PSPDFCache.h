@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Check if all pages of a document are cached.
 - (BOOL)isDocumentCached:(PSPDFDocument *)document size:(PSPDFSize)size;
 
-/// Check if an individual page of a document is cached.
+/// Check if an individouble page of a document is cached.
 - (BOOL)isImageCachedForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// Returns cached image of document. If not found, add to TOP of current caching queue.

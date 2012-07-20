@@ -9,6 +9,9 @@
 
 @implementation PSTableViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIViewController
+
 // We don't have enough semantics to tell with just IB that we do want to use the content of the table cells, so we add some additional logic.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // only apply this if our destination is a PSPDFViewController.

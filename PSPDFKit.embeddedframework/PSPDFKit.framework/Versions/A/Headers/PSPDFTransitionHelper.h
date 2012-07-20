@@ -19,7 +19,7 @@
 
 - (NSArray *)viewControllers;
 
-- (void)transitionHelper:(PSPDFTransitionHelper *)transitionHelper changedToPage:(NSUInteger)page dualPageMode:(BOOL)dualPageMode forwardTransition:(BOOL)forwardTransition animated:(BOOL)animated;
+- (void)transitionHelper:(PSPDFTransitionHelper *)transitionHelper changedToPage:(NSUInteger)page doublePageMode:(BOOL)doublePageMode forwardTransition:(BOOL)forwardTransition animated:(BOOL)animated;
 
 @end
 
@@ -45,7 +45,7 @@
 
 - (PSPDFSinglePageViewController *)singlePageControllerForPage:(NSUInteger)page;
 
-- (NSUInteger)fixPageNumberForDoublePageMode:(NSUInteger)page forceDualPageMode:(BOOL)forceDualPageMode;
+- (NSUInteger)fixPageNumberForDoublePageMode:(NSUInteger)page forceDoublePageMode:(BOOL)forceDualPageMode;
 
 - (PSPDFSinglePageViewController *)viewControllerAfterViewController:(UIViewController *)viewController;
 - (PSPDFSinglePageViewController *)viewControllerBeforeViewController:(UIViewController *)viewController;

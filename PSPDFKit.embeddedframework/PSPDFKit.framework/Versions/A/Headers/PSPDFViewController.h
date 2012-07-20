@@ -82,7 +82,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// @name Page Scrolling and Zooming
 
 /// Current page displayed, not landscape corrected. To change page, use scrollToPage.
-/// e.g. if you have 50 pages, you get 25/26 "dual pages" when in double page mode.
+/// e.g. if you have 50 pages, you get 25/26 "double pages" when in double page mode.
 @property(nonatomic, assign, readonly) NSUInteger page;
 
 /// Current page displayed, landscape corrected. To change page, use scrollToPage.
@@ -416,12 +416,12 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 /// @name Helpers
 
 /// Depending on pageMode, this returns true if two pages are displayed.
-- (BOOL)isDualPageMode;
-- (BOOL)isDualPageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
+- (BOOL)isDoublePageMode;
+- (BOOL)isDoublePageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 // we have certain cases where even in double page situations one page has to be displayed
 // (e.g. cover page; last page)
-- (BOOL)isDualPageModeForPage:(NSUInteger)page;
+- (BOOL)isDoublePageModeForPage:(NSUInteger)page;
 
 /// Checks if the current page is on the right side, when in double page mode. Page starts at 0.
 - (BOOL)isRightPageInDoublePageMode:(NSUInteger)page;

@@ -11,7 +11,8 @@
 
 @implementation PSPDFAppDelegate
 
-@synthesize window = window_;
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -38,7 +39,7 @@
     return YES;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)PDFDocumentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
