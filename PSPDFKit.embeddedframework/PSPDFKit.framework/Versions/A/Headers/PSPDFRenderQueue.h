@@ -34,6 +34,9 @@
 /// Returns the currently rendered renderJob.
 - (PSPDFRenderJob *)currentRenderJob;
 
+/// Return how many jobs are currently queued.
+- (NSUInteger)numberOfQueuedJobs;
+
 @end
 
 @interface PSPDFRenderJob : NSObject
@@ -47,7 +50,5 @@
 @property(nonatomic, strong, readonly) NSDictionary *options;
 @property(nonatomic, strong) id<PSPDFRenderDelegate> delegate;
 @property(nonatomic, strong) UIImage *renderedImage;
-
-- (id)initWithDocument:(PSPDFDocument *)document forPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options delegate:(id<PSPDFRenderDelegate>)delegate;
 
 @end
