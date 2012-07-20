@@ -6,6 +6,10 @@ Note: PSPDFKit v2 is beta quality, expect bugs.
 You need at least Xcode 4.4 to compile. (Xcode 4.4/4.5 run both fine on Lion, Mountain Lion is not needed.)
 PSPDFKit v2 will be compatible with iOS 4.3 upwards. (armv7, i386)
 
+The installation has been simplified. You now just drop the "PSPDFKit.embeddedframework" container into your project.
+Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: http://cl.ly/image/1e1I2Z2e1D3F
+(Select your project (top left), select project again in the PROJECT/TARGETS tree, select Info, then change in "Based on Configuration file" from None to PSPDFKit.)
+
 *  Text selection! (Includes Copy, Dictionary, Wikipedia support)
 *  Annotations draw support: FreeText, Note, Ink, Shape, Line, Highlight.
 *  Annotation edit support: Highlights. (Ink, Note will follow)
