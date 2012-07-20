@@ -32,18 +32,7 @@
         
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
-        
-        // use inline browser for pdf links
-        self.linkAction = PSPDFLinkActionInlineBrowser;
-        
-        // 1.10 feature: replaces printEnabled, openInEnabled
-        if (PSIsIpad()) {
-            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem];
-        }else {
-            self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
-            self.additionalRightBarButtonItems = @[self.openInButtonItem, self.printButtonItem, self.emailButtonItem, self.outlineButtonItem, self.searchButtonItem];
-        }
-        
+                        
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // use a dispatch thread because calculating the aspectRatioVariance is expensive.
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -158,11 +147,13 @@
     if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.annotationButtonItem];
     }
-    if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.outlineButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
-        [rightBarButtonItems addObject:self.searchButtonItem];
+    if (PSIsIpad()) {
+        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+            [rightBarButtonItems addObject:self.outlineButtonItem];
+        }
+        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+            [rightBarButtonItems addObject:self.searchButtonItem];
+        }
     }
     if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
@@ -179,6 +170,14 @@
     }
     if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
         [additionalRightBarButtonItems addObject:self.emailButtonItem];
+    }
+    if (!PSIsIpad()) {
+        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.outlineButtonItem];
+        }
+        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.searchButtonItem];
+        }
     }
     self.additionalRightBarButtonItems = additionalRightBarButtonItems;
 
