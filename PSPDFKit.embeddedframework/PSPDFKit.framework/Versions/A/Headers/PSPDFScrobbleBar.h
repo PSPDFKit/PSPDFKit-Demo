@@ -10,26 +10,27 @@
 
 @class PSPDFViewController;
 
-/// Scrobble bar like in iBooks.
+/// ScrobbleBar, similar to iBooks.
 /// This class connects to the pdfController via KVO.
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
-/// pdf controller delegate.
+/// PDF controller delegate.
 @property(nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
-/// updates toolbar, realigns page screenshots. Registers in the runloop and works later.
+/// Updates toolbar, realigns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbar;
 
-/// *instantly* updates toolbar.
+/// *Instantly* updates toolbar.
 - (void)updateToolbarForced;
 
-/// updates the page marker. call manually after alpha > 0 !
+/// Updates the page marker. call manually after alpha > 0 !
 - (void)updatePageMarker;
 
-/// current selected page.
+/// Current selected page.
 @property(nonatomic, assign) NSUInteger page;
 
-/// access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images.
+/// Access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images.
+/// Alpha is set to 0.7, can be changed.
 @property(nonatomic, strong) UIToolbar *toolbar;
 
 @end

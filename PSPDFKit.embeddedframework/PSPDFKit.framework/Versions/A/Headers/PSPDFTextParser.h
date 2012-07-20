@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation, PDFPage;
+@class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation;
 
 /// Parses the text of a PDF page.
 @interface PSPDFTextParser : NSObject
@@ -24,34 +24,6 @@
 /// List of detected text blocks.
 @property(nonatomic, strong, readonly) NSArray *textBlocks;
 
-// Referenced page
-@property (nonatomic, readonly) CGPDFPageRef page;
-
-
-@property (nonatomic, strong) NSMutableDictionary *fonts;
-
-@property (nonatomic, readonly) BOOL parsed;
-
-@property (nonatomic, strong) NSMutableArray *graphicsStateStack;
-
-@property (nonatomic, strong) PSPDFGraphicsState *graphicsState;
-
-@property (nonatomic, assign) int formXObjectRecursionDepth;
-
 - (id)initWithPDFPage:(CGPDFPageRef)p;
-
-- (CGPDFOperatorTableRef)operatorTable;
-
-- (void)parse;
-- (void)parseWithPage:(PDFPage *)pdfPage;
-
-- (NSString *)textForHighlightAnnotation:(PSPDFHighlightAnnotation *)annotation;
-
-@end
-
-@interface PDFXObjectStream : NSObject
-
-@property (nonatomic, assign) CGPDFStreamRef stream;
-@property (nonatomic, strong) NSString *name;
 
 @end
