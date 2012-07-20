@@ -36,3 +36,9 @@
 - (void)requestClearCacheAndWait:(BOOL)wait;
 
 @end
+
+@interface PSPDFGlobalLock (Internal)
+
+@property(nonatomic, assign) BOOL hasOpenDocumentRef;
+
+@end

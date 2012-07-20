@@ -133,4 +133,6 @@
 // We need to allow writing to data to change annotations.
 @property(nonatomic, strong) NSData *data;
 
+@property(nonatomic, assign, readonly) BOOL hasOpenDocumentRef;
+
 @end

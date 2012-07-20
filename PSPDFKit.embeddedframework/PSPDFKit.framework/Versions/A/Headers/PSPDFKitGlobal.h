@@ -30,6 +30,7 @@ extern NSString *const kPSPDFErrorDomain;
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
+    PSPDFErrorCodeDocumentLocked = 300,
     PSPDFErrorCodeUnknown = 900,    
 };
 
@@ -51,10 +52,8 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
 };
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
-/// Default time to animate pdf views. Defaults to 0.15
+/// Default time to animate pdf views. Defaults to 0.1. Only animates from thumbnail to sharp page, and only on modern devices.
 extern CGFloat kPSPDFKitPDFAnimationDuration;
-
-extern CGFloat kPSPDFKitHUDTransparency;
 
 /// Evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 extern BOOL PSPDFShouldAnimate(void);
