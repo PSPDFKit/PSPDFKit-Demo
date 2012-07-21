@@ -56,4 +56,8 @@
 /// Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
 + (UIPopoverController *)popoverControllerForObject:(id)object;
 
+/// Subclass this to build a complete custom action.
+/// By default, this calls present/dismissAnimated.
+- (void)action:(PSPDFBarButtonItem *)sender;
+
 @end
