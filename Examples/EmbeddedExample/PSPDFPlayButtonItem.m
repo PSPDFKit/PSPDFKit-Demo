@@ -8,20 +8,20 @@
 #import "PSPDFPlayButtonItem.h"
 
 @implementation PSPDFPlayButtonItem {
-    PSPDFTransparentToolbar *toolbar_;
-    NSTimer *autoplayTimer_;
-    BOOL autoplay_;
+    PSPDFTransparentToolbar *_toolbar;
+    NSTimer *_autoplayTimer;
+    BOOL _autoplay;
 }
 
 // a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
 - (UIToolbar *)toolbar {
-    if (!toolbar_) {
-        toolbar_ = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        toolbar_.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
-        toolbar_.tintColor = self.pdfController.tintColor;
+    if (!_toolbar) {
+        _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+        _toolbar.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
+        _toolbar.tintColor = self.pdfController.tintColor;
         [self updatePlayButton];
     }
-    return toolbar_;
+    return _toolbar;
 }
 
 - (UIView *)customView {
@@ -29,7 +29,7 @@
 }
 
 - (void)updatePlayButton {
-    UIBarButtonSystemItem systemItem = autoplay_ ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+    UIBarButtonSystemItem systemItem = _autoplay ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:self action:@selector(playPauseAction:)];
     [self.toolbar setItems:@[flexibleSpace, barButtonItem, flexibleSpace] animated:YES];
@@ -38,13 +38,13 @@
 - (void)playPauseAction:(id)sender {
     [PSPDFBarButtonItem dismissPopoverAnimated:NO];
     
-    if (!autoplay_) {
-        autoplay_ = YES;
-        autoplayTimer_ = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+    if (!_autoplay) {
+        _autoplay = YES;
+        _autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     }else {
-        autoplay_ = NO;
-        [autoplayTimer_ invalidate];
+        _autoplay = NO;
+        [_autoplayTimer invalidate];
         [self updatePlayButton];
     }
 }

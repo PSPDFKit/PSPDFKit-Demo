@@ -24,11 +24,12 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"114-balloon"] tag:2];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
         
         // disable default toolbar
         [self setToolbarEnabled:NO];
         self.statusBarStyleSetting = PSPDFStatusBarInherit;
+        self.renderAnimationEnabled = NO; // custom implementation here
         
         // add custom controls to our toolbar
         customViewModeSegment_ = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];

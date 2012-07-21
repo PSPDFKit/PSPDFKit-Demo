@@ -32,7 +32,7 @@
     PSPDFEmbeddedTestController *firstVC = [[PSPDFEmbeddedTestController alloc] initWithNibName:@"FirstView" bundle:nil];
     UINavigationController *firstNavVC = [[UINavigationController alloc] initWithRootViewController:firstVC];
     
-    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kMacbookAirFileName];
+    NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kHackerMagazineExample];
 
     // example how to use nsdata
     NSData *data = [NSData dataWithContentsOfMappedFile:path];
@@ -41,15 +41,15 @@
     PSPDFCustomToolbarController *pdfController = [[PSPDFCustomToolbarController alloc] initWithDocument:document];
     UINavigationController *secondVC = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
-    NSString *videoPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *videoDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:videoPath]];
-    PSPDFAnnotationTestController *videoVC = [[PSPDFAnnotationTestController alloc] initWithDocument:videoDocument];
+    NSString *hackerPath = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kHackerMagazineExample];
+    PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:hackerPath]];
+    PSPDFAnnotationTestController *videoVC = [[PSPDFAnnotationTestController alloc] initWithDocument:hackerDocument];
     UINavigationController *videoNavC = [[UINavigationController alloc] initWithRootViewController:videoVC];
     
     if (PSIsIpad()) {
         // create and configure splitview
         IntelligentSplitViewController *splitVC = [[IntelligentSplitViewController alloc] init];
-        splitVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"44-shoebox"] tag:3];
+        splitVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"shoebox"] tag:3];
         SplitTableViewController *tableVC = [[SplitTableViewController alloc] init];
         UINavigationController *tableNavVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
         SplitMasterViewController *hostVC = [[SplitMasterViewController alloc] init];

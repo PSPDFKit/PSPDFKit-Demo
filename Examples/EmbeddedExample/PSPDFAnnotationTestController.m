@@ -7,6 +7,7 @@
 
 #import "PSPDFAnnotationTestController.h"
 #import "PSPDFPlayButtonItem.h"
+#import "PSPDFSelectionZoomBarButtonItem.h"
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -26,17 +27,19 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"45-movie-1"] tag:4];
+        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"movie"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageTransition = PSPDFPageCurlTransition;
         self.linkAction = PSPDFLinkActionInlineBrowser;
-        //self.statusBarStyleSetting = PSPDFStatusBarDefaultWhite;
+        self.statusBarStyleSetting = PSPDFStatusBarDefault;
         self.tintColor = [UIColor orangeColor];
+        self.maximumZoomScale = 100; // as we have the selection zoom-in tool
         
         self.leftBarButtonItems = nil; // hide close button
         
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
-        self.rightBarButtonItems = @[playButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+        PSPDFSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSPDFSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
+        self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
     }
     return self;
 }

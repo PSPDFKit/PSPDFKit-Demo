@@ -7,8 +7,8 @@
 
 #define kDevelopersGuideFileName @"DevelopersGuide.pdf"
 #define kPaperExampleFileName @"amazon-dynamo-sosp2007.pdf"
-#define kMacbookAirFileName @"macbook_air_users_guide.pdf"
 #define kPSPDFKitExample @"PSPDFKit.pdf"
+#define kHackerMagazineExample @"hackermonthly12.pdf"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
