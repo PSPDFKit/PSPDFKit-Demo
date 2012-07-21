@@ -9,6 +9,21 @@
 /* Begin PBXBuildFile section */
 		7840C9461402B7E9008F3AC7 /* SplitTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */; };
 		7840C9491402B800008F3AC7 /* SplitMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7840C9481402B800008F3AC7 /* SplitMasterViewController.m */; };
+		7850664215BAC52E00E6679E /* balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663815BAC52E00E6679E /* balloon.png */; };
+		7850664315BAC52E00E6679E /* balloon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663915BAC52E00E6679E /* balloon@2x.png */; };
+		7850664415BAC52E00E6679E /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663A15BAC52E00E6679E /* lock.png */; };
+		7850664515BAC52E00E6679E /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663B15BAC52E00E6679E /* lock@2x.png */; };
+		7850664615BAC52E00E6679E /* medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663C15BAC52E00E6679E /* medical.png */; };
+		7850664715BAC52E00E6679E /* medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663D15BAC52E00E6679E /* medical@2x.png */; };
+		7850664815BAC52E00E6679E /* movie.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663E15BAC52E00E6679E /* movie.png */; };
+		7850664915BAC52E00E6679E /* movie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850663F15BAC52E00E6679E /* movie@2x.png */; };
+		7850664A15BAC52E00E6679E /* shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850664015BAC52E00E6679E /* shoebox.png */; };
+		7850664B15BAC52E00E6679E /* shoebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850664115BAC52E00E6679E /* shoebox@2x.png */; };
+		7850665F15BADD3900E6679E /* eye-deactivate.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850665B15BADD3900E6679E /* eye-deactivate.png */; };
+		7850666015BADD3900E6679E /* eye-deactivate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850665C15BADD3900E6679E /* eye-deactivate@2x.png */; };
+		7850666115BADD3900E6679E /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850665D15BADD3900E6679E /* eye.png */; };
+		7850666215BADD3900E6679E /* eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7850665E15BADD3900E6679E /* eye@2x.png */; };
+		7850666615BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7850666515BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.m */; };
 		78727B8F141EC33100994946 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78727B8E141EC33100994946 /* Icon.png */; };
 		78836E6D13EAD25B0043F631 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6C13EAD25B0043F631 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		78836E6F13EAD25B0043F631 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78836E6E13EAD25B0043F631 /* Foundation.framework */; };
@@ -28,14 +43,6 @@
 		78BE31EE15B8DEB500FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31E915B8DEB500FBB125 /* PSPDFKit.xcconfig */; };
 		78BE324D15B8E2F600FBB125 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE324C15B8E2F600FBB125 /* MapKit.framework */; };
 		78BE324F15B8E30F00FBB125 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE324E15B8E30F00FBB125 /* CoreLocation.framework */; };
-		78BF753C141D37D300FF02DF /* 10-medical.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7533141D37D300FF02DF /* 10-medical.png */; };
-		78BF753D141D37D300FF02DF /* 10-medical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7534141D37D300FF02DF /* 10-medical@2x.png */; };
-		78BF753E141D37D300FF02DF /* 114-balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7535141D37D300FF02DF /* 114-balloon.png */; };
-		78BF753F141D37D300FF02DF /* 114-balloon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7536141D37D300FF02DF /* 114-balloon@2x.png */; };
-		78BF7540141D37D300FF02DF /* 44-shoebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7537141D37D300FF02DF /* 44-shoebox.png */; };
-		78BF7541141D37D300FF02DF /* 44-shoebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */; };
-		78BF7542141D37D300FF02DF /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF7539141D37D300FF02DF /* 45-movie-1.png */; };
-		78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */; };
 		78BF7544141D37D300FF02DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753B141D37D300FF02DF /* star.png */; };
 		78D5959D158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5959B158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m */; };
 		DA5F61EF156D20EF00B11285 /* PSPDFPlayButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5F61EE156D20EF00B11285 /* PSPDFPlayButtonItem.m */; };
@@ -46,6 +53,22 @@
 		7840C9451402B7E9008F3AC7 /* SplitTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitTableViewController.m; sourceTree = "<group>"; };
 		7840C9471402B800008F3AC7 /* SplitMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitMasterViewController.h; sourceTree = "<group>"; };
 		7840C9481402B800008F3AC7 /* SplitMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitMasterViewController.m; sourceTree = "<group>"; };
+		7850663815BAC52E00E6679E /* balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = balloon.png; sourceTree = "<group>"; };
+		7850663915BAC52E00E6679E /* balloon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "balloon@2x.png"; sourceTree = "<group>"; };
+		7850663A15BAC52E00E6679E /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
+		7850663B15BAC52E00E6679E /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@2x.png"; sourceTree = "<group>"; };
+		7850663C15BAC52E00E6679E /* medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medical.png; sourceTree = "<group>"; };
+		7850663D15BAC52E00E6679E /* medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medical@2x.png"; sourceTree = "<group>"; };
+		7850663E15BAC52E00E6679E /* movie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movie.png; sourceTree = "<group>"; };
+		7850663F15BAC52E00E6679E /* movie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movie@2x.png"; sourceTree = "<group>"; };
+		7850664015BAC52E00E6679E /* shoebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoebox.png; sourceTree = "<group>"; };
+		7850664115BAC52E00E6679E /* shoebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoebox@2x.png"; sourceTree = "<group>"; };
+		7850665B15BADD3900E6679E /* eye-deactivate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye-deactivate.png"; sourceTree = "<group>"; };
+		7850665C15BADD3900E6679E /* eye-deactivate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye-deactivate@2x.png"; sourceTree = "<group>"; };
+		7850665D15BADD3900E6679E /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
+		7850665E15BADD3900E6679E /* eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eye@2x.png"; sourceTree = "<group>"; };
+		7850666415BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFSelectionZoomBarButtonItem.h; sourceTree = "<group>"; };
+		7850666515BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFSelectionZoomBarButtonItem.m; sourceTree = "<group>"; };
 		78727B8E141EC33100994946 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFKitExample/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		78836E6813EAD25B0043F631 /* EmbeddedEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmbeddedEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78836E6C13EAD25B0043F631 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -73,14 +96,6 @@
 		78BE31E915B8DEB500FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78BE324C15B8E2F600FBB125 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		78BE324E15B8E30F00FBB125 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		78BF7533141D37D300FF02DF /* 10-medical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical.png"; sourceTree = "<group>"; };
-		78BF7534141D37D300FF02DF /* 10-medical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "10-medical@2x.png"; sourceTree = "<group>"; };
-		78BF7535141D37D300FF02DF /* 114-balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114-balloon.png"; sourceTree = "<group>"; };
-		78BF7536141D37D300FF02DF /* 114-balloon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "114-balloon@2x.png"; sourceTree = "<group>"; };
-		78BF7537141D37D300FF02DF /* 44-shoebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "44-shoebox.png"; sourceTree = "<group>"; };
-		78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "44-shoebox@2x.png"; sourceTree = "<group>"; };
-		78BF7539141D37D300FF02DF /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1.png"; sourceTree = "<group>"; };
-		78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1@2x.png"; sourceTree = "<group>"; };
 		78BF753B141D37D300FF02DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		78D5959B158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFLegacyEmbeddedViewController.m; sourceTree = "<group>"; };
 		78D5959C158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFLegacyEmbeddedViewController.h; sourceTree = "<group>"; };
@@ -195,14 +210,20 @@
 		78BF7532141D37D300FF02DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				78BF7533141D37D300FF02DF /* 10-medical.png */,
-				78BF7534141D37D300FF02DF /* 10-medical@2x.png */,
-				78BF7535141D37D300FF02DF /* 114-balloon.png */,
-				78BF7536141D37D300FF02DF /* 114-balloon@2x.png */,
-				78BF7537141D37D300FF02DF /* 44-shoebox.png */,
-				78BF7538141D37D300FF02DF /* 44-shoebox@2x.png */,
-				78BF7539141D37D300FF02DF /* 45-movie-1.png */,
-				78BF753A141D37D300FF02DF /* 45-movie-1@2x.png */,
+				7850665B15BADD3900E6679E /* eye-deactivate.png */,
+				7850665C15BADD3900E6679E /* eye-deactivate@2x.png */,
+				7850665D15BADD3900E6679E /* eye.png */,
+				7850665E15BADD3900E6679E /* eye@2x.png */,
+				7850663815BAC52E00E6679E /* balloon.png */,
+				7850663915BAC52E00E6679E /* balloon@2x.png */,
+				7850663A15BAC52E00E6679E /* lock.png */,
+				7850663B15BAC52E00E6679E /* lock@2x.png */,
+				7850663C15BAC52E00E6679E /* medical.png */,
+				7850663D15BAC52E00E6679E /* medical@2x.png */,
+				7850663E15BAC52E00E6679E /* movie.png */,
+				7850663F15BAC52E00E6679E /* movie@2x.png */,
+				7850664015BAC52E00E6679E /* shoebox.png */,
+				7850664115BAC52E00E6679E /* shoebox@2x.png */,
 				78BF753B141D37D300FF02DF /* star.png */,
 				78727B8E141EC33100994946 /* Icon.png */,
 			);
@@ -232,6 +253,8 @@
 		78EA40F8156D59310077B255 /* Tab 4 (Annotations, Autoplay) */ = {
 			isa = PBXGroup;
 			children = (
+				7850666415BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.h */,
+				7850666515BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.m */,
 				788BEEAF14842699005670BD /* PSPDFAnnotationTestController.h */,
 				788BEEB014842699005670BD /* PSPDFAnnotationTestController.m */,
 				DA5F61ED156D20EF00B11285 /* PSPDFPlayButtonItem.h */,
@@ -306,20 +329,26 @@
 				78836E8013EAD25B0043F631 /* MainWindow.xib in Resources */,
 				78836E8913EAD25B0043F631 /* FirstView.xib in Resources */,
 				78836E9E13EAD2FF0043F631 /* Samples in Resources */,
-				78BF753C141D37D300FF02DF /* 10-medical.png in Resources */,
-				78BF753D141D37D300FF02DF /* 10-medical@2x.png in Resources */,
-				78BF753E141D37D300FF02DF /* 114-balloon.png in Resources */,
-				78BF753F141D37D300FF02DF /* 114-balloon@2x.png in Resources */,
-				78BF7540141D37D300FF02DF /* 44-shoebox.png in Resources */,
-				78BF7541141D37D300FF02DF /* 44-shoebox@2x.png in Resources */,
-				78BF7542141D37D300FF02DF /* 45-movie-1.png in Resources */,
-				78BF7543141D37D300FF02DF /* 45-movie-1@2x.png in Resources */,
 				78BF7544141D37D300FF02DF /* star.png in Resources */,
 				78727B8F141EC33100994946 /* Icon.png in Resources */,
 				78BE31EB15B8DEB500FBB125 /* ACKNOWLEDGEMENTS in Resources */,
 				78BE31EC15B8DEB500FBB125 /* LICENSE in Resources */,
 				78BE31ED15B8DEB500FBB125 /* PSPDFKit.bundle in Resources */,
 				78BE31EE15B8DEB500FBB125 /* PSPDFKit.xcconfig in Resources */,
+				7850664215BAC52E00E6679E /* balloon.png in Resources */,
+				7850664315BAC52E00E6679E /* balloon@2x.png in Resources */,
+				7850664415BAC52E00E6679E /* lock.png in Resources */,
+				7850664515BAC52E00E6679E /* lock@2x.png in Resources */,
+				7850664615BAC52E00E6679E /* medical.png in Resources */,
+				7850664715BAC52E00E6679E /* medical@2x.png in Resources */,
+				7850664815BAC52E00E6679E /* movie.png in Resources */,
+				7850664915BAC52E00E6679E /* movie@2x.png in Resources */,
+				7850664A15BAC52E00E6679E /* shoebox.png in Resources */,
+				7850664B15BAC52E00E6679E /* shoebox@2x.png in Resources */,
+				7850665F15BADD3900E6679E /* eye-deactivate.png in Resources */,
+				7850666015BADD3900E6679E /* eye-deactivate@2x.png in Resources */,
+				7850666115BADD3900E6679E /* eye.png in Resources */,
+				7850666215BADD3900E6679E /* eye@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +369,7 @@
 				788BEEB714842699005670BD /* PSPDFEmbeddedTestController.m in Sources */,
 				DA5F61EF156D20EF00B11285 /* PSPDFPlayButtonItem.m in Sources */,
 				78D5959D158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m in Sources */,
+				7850666615BADD4100E6679E /* PSPDFSelectionZoomBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
