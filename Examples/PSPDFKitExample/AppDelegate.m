@@ -58,8 +58,8 @@
     // uncomment to enable PSPDFKitLogging. Defaults to PSPDFLogLevelError
     kPSPDFLogLevel = PSPDFLogLevelInfo;
     //kPSPDFLogLevel = PSPDFLogLevelVerbose;
-    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    PSPDFLog(@"Kiosk Example %@ is starting up... [PSPDFKit Version %@]", appVersion, PSPDFVersionString());
+    NSString *appVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"@" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSLog(@"Kiosk Example %@ starting up... [%@]", appVersion, PSPDFVersionString());
     
     // enable to see the scrollviews semi-transparent
     //kPSPDFKitDebugScrollViews = YES;
@@ -89,7 +89,7 @@
     [_window makeKeyAndVisible];
     
     NSString *cacheFolder = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
-    PSELog(@"CacheDir: %@", cacheFolder);
+    NSLog(@"CacheDir: %@", cacheFolder);
     
     // set white status bar style when not on ipad
     if (!PSIsIpad()) {
