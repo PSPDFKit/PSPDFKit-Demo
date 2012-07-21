@@ -89,4 +89,4 @@ extern inline id PSPDFCopyPDFObjectOrNSNull(CGPDFObjectRef objectRef);
 extern NSDictionary *PSPDFConvertPDFDictionary(CGPDFDictionaryRef pdfDict);
 
 /// Converts a CGPDFArray into an NSArray.
-extern NSArray *PSPDFCopyPDFArray(CGPDFArrayRef pdfArray);
+extern NSArray *PSPDFConvertPDFArray(CGPDFArrayRef pdfArray);
