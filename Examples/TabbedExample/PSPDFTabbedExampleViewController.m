@@ -31,7 +31,11 @@ const char *clearAllActionSheetToken;
             objc_removeAssociatedObjects(sender);
         };
         objc_setAssociatedObject(sender, clearAllActionSheetToken, actionSheet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [actionSheet showFromBarButtonItem:sender animated:YES];
+        if (PSIsIpad()) {
+            [actionSheet showFromBarButtonItem:sender animated:YES];
+        }else {
+            [actionSheet showInView:self.view];
+        }
     }
 }
 
@@ -50,8 +54,8 @@ const char *clearAllActionSheetToken;
             PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
             self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObjects:addDocumentsButton, clearAllButton, nil];
         }else {
-            self.navigationItem.leftItemsSupplementBackButton = YES;
             self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
+            self.navigationItem.leftItemsSupplementBackButton = YES;
         }
     }
     return self;
