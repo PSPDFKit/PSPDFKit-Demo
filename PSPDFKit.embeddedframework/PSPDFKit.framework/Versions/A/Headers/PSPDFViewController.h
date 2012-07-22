@@ -11,6 +11,7 @@
 #import "PSPDFTextSearch.h"
 #import "PSPDFPasswordView.h"
 #import "PSPDFOutlineViewController.h"
+#import "PSPDFTransitionProtocol.h"
 
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
@@ -65,6 +66,15 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
     PSPDFLinkActionAlertView,    /// Link actions open an UIAlertView.
     PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
     PSPDFLinkActionInlineBrowser /// Link actions open in an inline browser.
+};
+
+// Customize how a single page should be displayed.
+typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
+    PSPDFPageRenderingThumbailThenFullPage, // load cached page async
+    PSPDFPageRenderingFullPage,             // load cached page async, no upscaled thumb
+    PSPDFPageRenderingFullPageBlocking,     // load cached page directly
+    PSPDFPageRenderingThumbnailThenRender,  // don't use cached page but thumb
+    PSPDFPageRenderingRender                // don't use cached page nor thumb
 };
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
@@ -206,6 +216,16 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
     When changing padding; the touch area is still fully active.
  */
 @property(nonatomic, assign) CGSize padding;
+
+/**
+    This manages how the PDF image cache (thumbnail, full page) is used.
+
+    PSPDFPageRenderingFullPageBlocking is a great option for PSPDFPageCurlTransition.
+    Note: PSPDFPageRenderingModeFullPageBlocking will disable certain page scroll animations.
+    
+    Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.
+ */
+@property(nonatomic, assign) PSPDFPageRenderingMode renderingMode;
 
 /// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
 /// NO will perform a generic zoom into the tap area. Defauts to YES.
@@ -471,6 +491,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 // Animates a certain search highlight.
 - (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
+
+/// Access internal UIViewController for displaying the PDF content
+@property(nonatomic, strong, readonly) UIViewController<PSPDFTransitionProtocol> *pageTransitionController;
 
 @end
 

@@ -11,6 +11,7 @@
 
 @class PSPDFViewController, PSPDFPageView, PSPDFPagingScrollView;
 
+/// Basic magazine-like side scrolling.
 @interface PSPDFPagingViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
 
 /// Designated initializer.
@@ -25,10 +26,15 @@
 /// Page padding width between single/double pages.
 @property(nonatomic, assign) CGFloat pagePadding;
 
+/// Access visible page numbers or a PSPDFPageView
 - (NSArray *)visiblePageNumbers;
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
+/// Set Page, animated.
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
+
+/// Explicirelt reload the view.
+- (void)reloadData;
 
 @end
 

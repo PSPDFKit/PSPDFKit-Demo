@@ -27,4 +27,9 @@
 // Associated scrollview. Might be nil if transition doesn't support zooming.
 @property(nonatomic, ps_weak) PSPDFPagedScrollView *scrollView;
 
+@optional
+
+/// Return array of pageViews. (performance optimization)
+- (NSArray *)visiblePageViews;
+
 @end
