@@ -30,174 +30,13 @@
 }
 @property(nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
 @property(nonatomic, assign, getter=isEditMode) BOOL editMode;
-@property(nonatomic, strong) UIView *magazineView;
+@property(nonatomic, strong) UIImageView *magazineView;
 @property(nonatomic, strong) PSPDFMagazineFolder *magazineFolder;
 @property(nonatomic, strong) PSPDFShadowView *shadowView;
 @property(nonatomic, strong) UISearchBar *searchBar;
 @end
 
 @implementation PSPDFGridController
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)closeModalView {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
-    [self presentModalViewController:navController animated:animated];
-}
-
-// toggle the options/settings button.
-- (void)optionsButtonPressed {    
-    UIViewController *contentController = self.popoverController.contentViewController;
-    if ([contentController isKindOfClass:[UINavigationController class]]) {
-        contentController = [(UINavigationController *)contentController topViewController];
-    }
-    if ([contentController isKindOfClass:[PSPDFSettingsController class]]) {
-        [self.popoverController dismissPopoverAnimated:YES];
-        self.popoverController = nil;
-    }else {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[PSPDFSettingsController new]];
-        if (PSIsIpad()) {
-            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
-            [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }else {
-            [self presentModalViewControllerWithCloseButton:navController animated:YES];
-        }
-    }
-}
-
-// calculates where the document view will be on screen
-- (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
-    CGRect newFrame = self.view.frame;
-    newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;
-    newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
-
-    // compensate for transparent statusbar
-    if (!PSIsIpad()) {
-        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-        BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
-        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
-        newFrame.origin.y -= statusBarHeight;
-        newFrame.size.height += statusBarHeight;
-    }
-
-    // animation needs to be different if we are in pageCurl mode
-    if (doublePageCurl) {
-        newFrame.size.width /= 2;
-        newFrame.origin.x += newFrame.size.width;
-    }
-
-    return newFrame;
-}
-
-// simple fade transition that can be added on a layer
-- (CATransition *)fadeTransition {
-    CATransition *fadeTransition = [CATransition animation];
-    fadeTransition.duration = 0.25f;
-    fadeTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    fadeTransition.type = kCATransitionFade;
-    fadeTransition.subtype = kCATransitionFromTop;
-    return fadeTransition;
-}
-
-// open magazine with nice animation
-- (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
-
-    // speed up displaying with parsing several things PSPDFViewController needs.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [magazine fillCache];
-    });
-
-    PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
-    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
-    if (animated && coverImage && !magazine.isLocked) {
-        PSPDFGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
-        cell.hidden = YES;
-        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
-        UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
-        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        coverImageView.frame = CGRectMake(0, 0, cellCoords.size.width, cellCoords.size.height);
-
-        UIView *magazineView = [[UIView alloc] initWithFrame:cellCoords];
-        [magazineView addSubview:coverImageView];
-
-        coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.view addSubview:magazineView];
-        self.magazineView = magazineView;
-        _animationCellIndex = cellIndex;
-
-        // add a smooth status bar transition on the iPhone
-        if (!PSIsIpad()) {
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-        }
-
-        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
-            self.navigationController.navigationBar.alpha = 0.f;
-            _shadowView.shadowEnabled = NO;
-            self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
-
-            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
-            CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
-            magazineView.frame = newFrame;
-            self.gridView.alpha = 0.0f;
-        } completion:^(BOOL finished) {
-            [self.navigationController.navigationBar.layer addAnimation:[self fadeTransition] forKey:kCATransition];
-            [self.navigationController pushViewController:pdfController animated:NO];
-
-            cell.hidden = NO;
-        }];
-    }else {
-        if (animated) {
-            // add fake data so that we animate back
-            _animateViewWillAppearWithFade = YES;
-            [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
-        }
-        [self.navigationController pushViewController:pdfController animated:NO];
-    }
-
-    return YES;
-}
-
-- (void)diskDataLoaded {
-    // not finished yet? return early.
-    if ([[PSPDFStoreManager sharedStoreManager].magazineFolders count] == 0) {
-        return;
-    }
-
-    // if we're in plain mode, pre-set a folder
-    if (kPSPDFStoreManagerPlain) {
-        self.magazineFolder = [[PSPDFStoreManager sharedStoreManager].magazineFolders lastObject];
-    }
-
-    [self.gridView reloadData];
-}
-
-- (void)editButtonPressed {
-    if (self.isEditMode) {
-        self.editMode = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
-                                                                                  style:UIBarButtonItemStyleBordered
-                                                                                 target:self
-                                                                                 action:@selector(editButtonPressed)];
-
-    }else {
-        self.editMode = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
-                                                                                  style:UIBarButtonItemStyleDone
-                                                                                 target:self
-                                                                                 action:@selector(editButtonPressed)];
-    }
-}
-
-- (void)setEditMode:(BOOL)editMode {
-    _editMode = editMode;
-    [self.gridView setEditing:editMode animated:YES];
-}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -228,7 +67,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIView
+#pragma mark - UIViewController
 
 - (void)updateGridForOrientation {
     _gridView.itemSpacing = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? 28 : 14;
@@ -388,6 +227,7 @@
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
                 self.gridView.transform = CGAffineTransformIdentity;
                 self.magazineView.frame = relativeCellRect;
+                [[self.magazineView.subviews lastObject] setAlpha:0.f];
                 self.gridView.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 [self.magazineView removeFromSuperview];
@@ -421,6 +261,186 @@
 
 - (void)updateGrid {
     [self.gridView reloadData];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)closeModalView {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
+    [self presentModalViewController:navController animated:animated];
+}
+
+// toggle the options/settings button.
+- (void)optionsButtonPressed {
+    UIViewController *contentController = self.popoverController.contentViewController;
+    if ([contentController isKindOfClass:[UINavigationController class]]) {
+        contentController = [(UINavigationController *)contentController topViewController];
+    }
+    if ([contentController isKindOfClass:[PSPDFSettingsController class]]) {
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
+    }else {
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[PSPDFSettingsController new]];
+        if (PSIsIpad()) {
+            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
+            [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }else {
+            [self presentModalViewControllerWithCloseButton:navController animated:YES];
+        }
+    }
+}
+
+// calculates where the document view will be on screen
+- (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
+    CGRect newFrame = self.view.frame;
+    newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;
+    newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
+
+    // compensate for transparent statusbar
+    if (!PSIsIpad()) {
+        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
+        BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
+        newFrame.origin.y -= statusBarHeight;
+        newFrame.size.height += statusBarHeight;
+    }
+
+    // animation needs to be different if we are in pageCurl mode
+    if (doublePageCurl) {
+        newFrame.size.width /= 2;
+        newFrame.origin.x += newFrame.size.width;
+    }
+
+    return newFrame;
+}
+
+// simple fade transition that can be added on a layer
+- (CATransition *)fadeTransition {
+    CATransition *fadeTransition = [CATransition animation];
+    fadeTransition.duration = 0.25f;
+    fadeTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    fadeTransition.type = kCATransitionFade;
+    fadeTransition.subtype = kCATransitionFromTop;
+    return fadeTransition;
+}
+
+// open magazine with nice animation
+- (BOOL)openMagazine:(PSPDFMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+
+    // speed up displaying with parsing several things PSPDFViewController needs.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [magazine fillCache];
+    });
+
+    PSPDFExampleViewController *pdfController = [[PSPDFExampleViewController alloc] initWithDocument:magazine];
+
+    // try to get full-size image, if that fails try thumbnail.
+    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeNative];
+    if (!coverImage) {
+        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
+    }
+    
+    if (animated && coverImage && !magazine.isLocked) {
+        PSPDFGridViewCell *cell = [self.gridView cellForItemAtIndex:cellIndex];
+        cell.hidden = YES;
+        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
+        UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
+        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        coverImageView.frame = cellCoords;
+
+        coverImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self.view addSubview:coverImageView];
+        self.magazineView = coverImageView;
+        _animationCellIndex = cellIndex;
+
+        // add a smooth status bar transition on the iPhone
+        if (!PSIsIpad()) {
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+        }
+
+        // if we have a different page, fade to that page.
+        UIImageView *targetPageImageView = nil;
+        if (pdfController.realPage != 0 && !pdfController.isDoublePageMode) {
+            UIImage *targetPageImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:pdfController.realPage size:PSPDFSizeNative];
+            if (targetPageImage) {
+                targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
+                targetPageImageView.frame = self.magazineView.bounds;
+                targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+                targetPageImageView.alpha = 0.f;
+                [self.magazineView addSubview:targetPageImageView];
+            }
+        }
+
+        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
+            self.navigationController.navigationBar.alpha = 0.f;
+            _shadowView.shadowEnabled = NO;
+            self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
+
+            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
+            CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
+            coverImageView.frame = newFrame;
+            targetPageImageView.alpha = 1.f;
+
+            self.gridView.alpha = 0.0f;
+
+        } completion:^(BOOL finished) {
+            [self.navigationController.navigationBar.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+            [self.navigationController pushViewController:pdfController animated:NO];
+
+            cell.hidden = NO;
+        }];
+    }else {
+        if (animated) {
+            // add fake data so that we animate back
+            _animateViewWillAppearWithFade = YES;
+            [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+        }
+        [self.navigationController pushViewController:pdfController animated:NO];
+    }
+
+    return YES;
+}
+
+- (void)diskDataLoaded {
+    // not finished yet? return early.
+    if ([[PSPDFStoreManager sharedStoreManager].magazineFolders count] == 0) {
+        return;
+    }
+
+    // if we're in plain mode, pre-set a folder
+    if (kPSPDFStoreManagerPlain) {
+        self.magazineFolder = [[PSPDFStoreManager sharedStoreManager].magazineFolders lastObject];
+    }
+
+    [self.gridView reloadData];
+}
+
+- (void)editButtonPressed {
+    if (self.isEditMode) {
+        self.editMode = NO;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(editButtonPressed)];
+
+    }else {
+        self.editMode = YES;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
+                                                                                  style:UIBarButtonItemStyleDone
+                                                                                 target:self
+                                                                                 action:@selector(editButtonPressed)];
+    }
+}
+
+- (void)setEditMode:(BOOL)editMode {
+    _editMode = editMode;
+    [self.gridView setEditing:editMode animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
