@@ -32,6 +32,7 @@ Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: h
 *  PSPDFViewController can now programatically invoke a search via searchForString:animated:.
 *  PSPDFViewController now has a margin and a padding property to add custom margin/padding on the pdf view.
 *  PSPDFViewController now has a HUDViewMode property to fine-tune the HUD.
+*  PSPDFViewController now has a renderingMode property; fine-tune cache/thumbnail view usage. PSPDFPageRenderingFullPageBlocking is *great *for pageCurl mode.
 *  Add overrideClassNames to PSPDFDocument.
 *  Lots of other minor and major changes.
 
