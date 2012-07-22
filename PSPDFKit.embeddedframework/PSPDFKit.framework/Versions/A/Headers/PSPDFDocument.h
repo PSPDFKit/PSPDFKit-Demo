@@ -81,6 +81,10 @@
 /// If there's no metadata, the fileName is used. ".pdf" endings will be removed either way.
 @property(nonatomic, copy) NSString *title;
 
+/// Title might need to parse the file and is potentially slow.
+/// Use this to check if title is loaded and access title in a thread if not.
+@property(nonatomic, assign, readonly, getter=isTitleLoaded) BOOL titleLoaded;
+
 /// Access the PDF metadata of the first PDF document.
 /// A PDF might not have any metadata at all.
 /// See kPSPDFMetadataKeyTitle and the following defines for keys that might be set.
@@ -104,7 +108,8 @@
 
 /// @name Page Info Data
 
-/// Return pdf page count
+/// Return pdf page count.
+/// Might need file operations to parse the document (slow)
 - (NSUInteger)pageCount;
 
 /// Return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.
@@ -175,6 +180,7 @@
 @property(nonatomic, copy) NSString *password;
 
 /// Returns YES if the document is valid (if it has at least one page)
+/// Might need file operations to parse the document (slow)
 @property(nonatomic, assign, readonly, getter=isValid) BOOL valid;
 
 /// Do the PDF digital right allow for printing?
@@ -236,7 +242,7 @@
 
 /// Renders the page or a part of it with default display settings into a new image.
 /// @param fullSize		 The size of the page, in pixels, if it was rendered without clipping
-/// @param clippedToRect A rectangle, relative to fullSize, that specifies the area of the page that should be rendered
+/// @param clippedToRect A rectangle, relative to fullSize, that specifies the area of the page that should be rendered. CGRectZero = automatic.
 /// @param annotations   Annotations that should be rendered with the view
 /// @param options       Dictionary with options that modify the render process (see PSPDFPageRenderer)
 /// @returns			A new UIImage with the rendered page content
