@@ -103,8 +103,11 @@
 
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
-/// Access the PDF metadata.
+/// Access the PDF metadata. (might be a slow operation)
 @property(nonatomic, strong, readonly) NSDictionary *metadata;
+
+/// Return YES if metadata is already parsed.
+@property(nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
 
 /// Access the PDF title. (".pdf" will be trunicated)
 /// Note: if there's no title in the PDF metadata, the file name will be used.

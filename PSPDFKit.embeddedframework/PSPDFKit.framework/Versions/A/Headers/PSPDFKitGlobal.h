@@ -191,6 +191,12 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 - (id)ps_firstObject;
 @end
 
+// Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.
+// Only available with source code in DEBUG mode.
+@interface PSPDFHangDetector : NSObject
++ (void)startHangDetector;
+@end
+
 // Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html
 #define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name @end \
 @implementation PSPDF_FIX_CATEGORY_BUG_##name @end

@@ -9,6 +9,11 @@
 
 @class PSPDFDocument, PSPDFRenderJob, PSPDFRenderQueue;
 
+// Extension to options; set this to make PSPDFRenderQueue to auto-fetch the annotations
+// of the type that'ss specified in this option.
+// Will be ignored if annotations is not nil.
+extern NSString *kPSPDFAnnotationAutoFetchTypes;
+
 // Implement this delegate to get rendered pages.
 @protocol PSPDFRenderDelegate <NSObject>
 
@@ -23,10 +28,12 @@
 + (PSPDFRenderQueue *)sharedRenderQueue;
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
+/// For options, see PSPDFPageRender.
 - (void)requestRenderedImageForDocument:(PSPDFDocument *)document forPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options delegate:(id<PSPDFRenderDelegate>)delegate;
 
 /// Cancels all queued render-calls.
-- (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate;
+/// Async will perform on the next thread. (don't use async in dealloc)
+- (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate async:(BOOL)async;
 
 /// Returns YES if currently a RenderJob is scheduled or running for delegate.
 - (BOOL)hasRenderJobsForDelegate:(id<PSPDFRenderDelegate>)delegate;
