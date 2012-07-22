@@ -63,6 +63,9 @@
     }
     
     [self.window makeKeyAndVisible];
+
+    [PSPDFHangDetector startHangDetector];
+
     return YES;
 }
 
