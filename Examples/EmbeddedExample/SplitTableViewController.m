@@ -22,11 +22,11 @@
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
         self.title = NSLocalizedString(@"Files", @"");
-        
+
         _content = [[self filesFromSampleDir] copy];
-        
+
         [[PSPDFCache sharedCache] addDelegate:self];
-        
+
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cycle", @"") style:UIBarButtonItemStylePlain target:self action:@selector(cycleAction)];
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Deselect", @"") style:UIBarButtonItemStylePlain target:self action:@selector(deselectAction)];
     }
@@ -43,14 +43,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     /*
-    // ensure we have an initial selection [perform late, wait for master VC to load]
-    if (![self.tableView indexPathForSelectedRow]) {
-        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-        [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-    } */   
+     // ensure we have an initial selection [perform late, wait for master VC to load]
+     if (![self.tableView indexPathForSelectedRow]) {
+     NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+     [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+     [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+     } */
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -82,14 +82,14 @@
 - (void)cycleAction {
     [[PSPDFCache sharedCache] clearCache];
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         for (int i = 0; i < [_content count]; i++) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
                 [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
             });
-            [NSThread sleepForTimeInterval:0.1];
+            //[NSThread sleepForTimeInterval:0.1];
         }
 
         // and back up!
@@ -99,7 +99,7 @@
                 [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
                 [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
             });
-            [NSThread sleepForTimeInterval:0.05];
+           // [NSThread sleepForTimeInterval:0.05];
         }
     });
 }
@@ -116,21 +116,36 @@
     return [self.content count];
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"SplitTableViewCell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+
     PSPDFDocument *document = [self.content objectAtIndex:indexPath.row];
-    cell.textLabel.text = document.title;
-    cell.imageView.image = [[PSPDFCache sharedCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];    
+    if (document.isTitleLoaded) {
+        cell.textLabel.text = document.title;
+    }else {
+        NSString *tempTitle = PSPDFStripPDFFileType([document.files ps_firstObject]);
+        cell.textLabel.text = tempTitle;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            [document metadata]; // load title and metadata
+            if (![document.title isEqualToString:tempTitle]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if([tableView cellForRowAtIndexPath:indexPath] == cell) {
+                        cell.textLabel.text = document.title;
+                    }
+                });
+            }
+        });
+    }
+    cell.imageView.image = [[PSPDFCache sharedCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];
 
     return cell;
 }
@@ -140,7 +155,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"pressed index %d", indexPath.row);
-    
+
     PSPDFDocument *document = [self.content objectAtIndex:indexPath.row];
     [self.masterVC displayDocument:document];
 }
@@ -153,7 +168,7 @@
         for (PSPDFDocument *aDocument in self.content) {
             if (document == aDocument) {
                 NSUInteger index = [_content indexOfObject:document];
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 break;
             }
         }
