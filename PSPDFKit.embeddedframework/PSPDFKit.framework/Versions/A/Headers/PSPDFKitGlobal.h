@@ -165,7 +165,7 @@ if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) { 
 if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0) { __VA_ARGS__ }
 
 #ifndef kCFCoreFoundationVersionNumber_iOS_6_0
-#define kCFCoreFoundationVersionNumber_iOS_6_0 785.0
+#define kCFCoreFoundationVersionNumber_iOS_6_0 788.0
 #endif
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
 #define PSPDF_IF_IOS6_OR_GREATER(...) \

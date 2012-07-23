@@ -495,6 +495,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Access internal UIViewController for displaying the PDF content
 @property(nonatomic, strong, readonly) UIViewController<PSPDFTransitionProtocol> *pageTransitionController;
 
+// Return rect of the content view area excluding translucent toolbar/statusbar.
+- (CGRect)contentRect;
+
 @end
 
 
