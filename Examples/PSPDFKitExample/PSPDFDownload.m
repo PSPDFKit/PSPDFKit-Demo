@@ -8,7 +8,7 @@
 #import "PSPDFDownload.h"
 #import "PSPDFStoreManager.h"
 #import "AppDelegate.h"
-#import "AFNetworking/AFNetworking/AFHTTPRequestOperation.h"
+#import "AFNetworking/AFHTTPRequestOperation.h"
 #import "AFDownloadRequestOperation/AFDownloadRequestOperation.h"
 #include <sys/xattr.h>
 
