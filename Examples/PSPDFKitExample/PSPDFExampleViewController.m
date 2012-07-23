@@ -154,6 +154,9 @@
         if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
             [rightBarButtonItems addObject:self.searchButtonItem];
         }
+        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
+            [rightBarButtonItems addObject:self.bookmarkButtonItem];
+        }
     }
     if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
@@ -177,6 +180,9 @@
         }
         if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
             [additionalRightBarButtonItems addObject:self.searchButtonItem];
+        }
+        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
         }
     }
     self.additionalRightBarButtonItems = additionalRightBarButtonItems;
