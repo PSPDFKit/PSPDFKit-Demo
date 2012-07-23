@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
-/// Current searchText.
+/// Current searchText. If set, keyboard is not shown
 @property(nonatomic, copy) NSString *searchText;
 
 /// different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
