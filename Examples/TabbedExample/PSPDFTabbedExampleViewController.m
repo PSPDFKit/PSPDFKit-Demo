@@ -57,6 +57,13 @@ const char *clearAllActionSheetToken;
             self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
             self.navigationItem.leftItemsSupplementBackButton = YES;
         }
+
+        // iOS6B3 has a strange bug where the backButton is not clockable (has a width of 0)
+        PSPDF_IF_IOS6_OR_GREATER(NSMutableArray *leftBarButtonItems = [NSMutableArray arrayWithArray:self.pdfViewController.leftBarButtonItems];
+                                 [leftBarButtonItems insertObject:self.pdfViewController.closeButtonItem atIndex:0];
+                                 self.pdfViewController.leftBarButtonItems = leftBarButtonItems;
+                                 self.navigationItem.leftItemsSupplementBackButton = NO;
+                                 )
     }
     return self;
 }
