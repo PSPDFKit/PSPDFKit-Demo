@@ -69,6 +69,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(viewModeButtonItem)] = @(YES);
         _settings[StringSEL(searchButtonItem)] = @(YES);
         _settings[StringSEL(annotationButtonItem)] = @(YES);
+        _settings[StringSEL(bookmarkButtonItem)] = @(YES);
         _settings[StringSEL(outlineButtonItem)] = @(YES);
         _settings[StringSEL(printButtonItem)] = @(YES);
         _settings[StringSEL(openInButtonItem)] = @(YES);
@@ -109,7 +110,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
         @[_(@"PSPDFPageRenderingThumbailThenFullPage"), _(@"PSPDFPageRenderingFullPage"), _(@"PSPDFPageRenderingFullPageBlocking"), _(@"PSPDFPageRenderingThumbnailThenRender"), _(@"PSPDFPageRenderingRender")],
         @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
-        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"viewModeButtonItem")],
+        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheOnlyThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
@@ -239,7 +240,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 3: _settings[StringSEL(openInButtonItem)] = value; break;
                 case 4: _settings[StringSEL(emailButtonItem)] = value; break;
                 case 5: _settings[StringSEL(annotationButtonItem)] = value; break;
-                case 6: _settings[StringSEL(viewModeButtonItem)] = value; break;
+                case 6: _settings[StringSEL(bookmarkButtonItem)] = value; break;
+                case 7: _settings[StringSEL(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -333,7 +335,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
                 case 3: cellSwitch.on = [_settings[StringSEL(openInButtonItem)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[StringSEL(emailButtonItem)] boolValue]; break;
                 case 5: cellSwitch.on = [_settings[StringSEL(annotationButtonItem)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[StringSEL(bookmarkButtonItem)] boolValue]; break;
+                case 7: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
                 default: break;
             }break;
         }break;
