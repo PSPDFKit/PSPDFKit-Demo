@@ -371,6 +371,7 @@
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;
+                targetPageImageView.contentMode = UIViewContentModeScaleAspectFit;
                 targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
                 targetPageImageView.alpha = 0.f;
                 [self.magazineView addSubview:targetPageImageView];
