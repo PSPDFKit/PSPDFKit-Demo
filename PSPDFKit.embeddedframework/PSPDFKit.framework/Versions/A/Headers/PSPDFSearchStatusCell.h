@@ -8,6 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFSearchViewController.h"
 
+/// Cell that is used to display the search status.
 @interface PSPDFSearchStatusCell : UITableViewCell
 
 /// Updates the cell with the number of new search results.

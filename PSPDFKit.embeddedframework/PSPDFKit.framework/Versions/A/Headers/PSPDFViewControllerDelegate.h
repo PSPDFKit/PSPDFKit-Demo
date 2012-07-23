@@ -22,37 +22,53 @@
 /// Can be useful if you e.g. want to block the opening of a different document reference via a outline entry.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSetDocument:(PSPDFDocument *)document;
 
-/// time to adjust PSPDFViewController before a PSPDFDocument is displayed
+/// Time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;
 
-/// delegate to be notified when pdfController finished loading
+/// Delegate to be notified when pdfController finished loading
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
-/* events */
+/* Events */
+
+// Note: If you need more scroll events, subclass PSPDFScrollView and relay your custom scroll events. Don't forget calling super though.
 
 /// Control scrolling to pages. Not implementing this will return YES.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page;
 
-/// controller did show/scrolled to a new page (at least 51% of it is visible)
+/// Controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
 
-/// page was fully rendered at zoomlevel = 1
+/// Page was fully rendered at zoomlevel = 1
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView;
 
-/// will be called when viewMode changes
+/// Will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
 
-/// will be called after a *programatically* animated page change.
+/** Will be called after page rect has been dragged.
+    If decelerate is YES, this will be called again after deceleration is complete.
+    velocity/targetContentOffset are only available in iOS5+.
+ 
+    You can also change the target with changing targetContentOffset.
+ 
+    This delegate combines following scrollViewDelegates:
+    - scrollViewWillEndDragging (iOS5) / scrollViewDidEndDragging (iOS4)
+    - scrollViewDidEndDecelerating
+
+    Note: be careful to not dereference a nil pointer in targetContentOffset.
+ */
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
+
+/// Will be called after zooming animation is complete.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(UIScrollView *)scrollView;
 
-/// will be called after zoom level has been changed, either programatically or manually.
+/// Will be called after zoom level has been changed, either programatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
 /// Return a PSPDFDocument for a relative path.
 /// If this is unimplemented, we try to find the PDF ourself with using the current document's basePath.
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
-/// if user tapped within page bounds, this will notify you.
+/// If user tapped within page bounds, this will notify you.
 /// return YES if this touch was processed by you and need no further checking by PSPDFKit.
 /// Note: PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
 /// Note: Before using this, you might consider just adding custom UIView's on top of a PSPDFPageView.
@@ -61,7 +77,7 @@
 
 /* annotations */
 
-/// called before a annotation view is created and added to a page. Defaults to YES if not implemented.
+/// Called before a annotation view is created and added to a page. Defaults to YES if not implemented.
 /// if NO is returned, viewForAnnotation will not be called.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
