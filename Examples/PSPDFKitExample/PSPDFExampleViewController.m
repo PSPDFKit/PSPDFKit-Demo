@@ -244,11 +244,20 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
-    PSELog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+    PSELog(@"willShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
-    PSELog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
+    PSELog(@"didShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    CGPoint targetOffsetPoint = targetContentOffset ? *targetContentOffset : CGPointZero;
+    PSELog(@"didEndPageDraggingwillDecelerate:%@ velocity:%@ targetContentOffset:%@.", decelerate ? @"YES" : @"NO", NSStringFromCGPoint(velocity), NSStringFromCGPoint(targetOffsetPoint));
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale {
+    PSELog(@"didEndPageDraggingAtScale: %f", scale);
 }
 
 @end
