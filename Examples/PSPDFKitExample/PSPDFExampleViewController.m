@@ -211,12 +211,19 @@
     }
 }
 
-// if user tapped within page bounds, this will notify you.
-// return YES if this touch was processed by you and need no further checking by PSPDFKit.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
-    PSELog(@"Page %d tapped at %@.", pageView.page, pageCoordinates);
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint {
+    NSLog(@"didTapOnAnnotation:%@ annotationPoint:%@ annotationView:%@ pageView:%@ viewPoint:%@", annotation, NSStringFromCGPoint(annotationPoint), annotationView, pageView, NSStringFromCGPoint(viewPoint));
+    BOOL handled = NO;
+    return handled;
+}
+
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint {
     
-    // touch not used
+    CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
+    CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
+    NSLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
+
+    // touch not used.
     return NO;
 }
 
@@ -242,11 +249,6 @@
     if ([[PSPDFSettingsController settings][@"showTextBlocks"] boolValue]) {
         [pageView.selectionView showTextFlowData:NO animated:NO];
     }
-}
-
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
-    BOOL handled = NO;
-    return handled;
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
