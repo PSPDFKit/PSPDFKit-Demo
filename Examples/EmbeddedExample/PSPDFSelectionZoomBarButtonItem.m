@@ -34,6 +34,10 @@
     return _toolbar;
 }
 
+- (BOOL)isAvailable {
+    return self.pdfController.viewMode == PSPDFViewModeDocument;
+}
+
 - (UIView *)customView {
     return self.toolbar;
 }
@@ -44,12 +48,6 @@
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:buttonItem style:UIBarButtonItemStylePlain target:self action:@selector(selectionZoomAction:)];
     [self.toolbar setItems:@[flexibleSpace, barButtonItem, flexibleSpace] animated:YES];
 }
-
-/*
-
-- (UIImage *)image {
-    return [UIImage imageNamed:@"eye"];
-}*/
 
 - (BOOL)cleanup {
     if (_selectionView) {

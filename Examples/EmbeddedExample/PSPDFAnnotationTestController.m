@@ -39,7 +39,7 @@
         
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
         PSPDFSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSPDFSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
-        self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+        self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.bookmarkButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
     }
     return self;
 }
