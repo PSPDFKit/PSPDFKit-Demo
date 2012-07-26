@@ -223,8 +223,30 @@
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
     NSLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
 
-    // touch not used.
-    return NO;
+    
+    return NO; // touch not used.
+}
+
+NSString *PSPDFGestureStateToString(UIGestureRecognizerState state);
+NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
+    switch (state) {
+        case UIGestureRecognizerStateBegan:     return @"Began";
+        case UIGestureRecognizerStateChanged:   return @"Changed";
+        case UIGestureRecognizerStateEnded:     return @"Ended";
+        case UIGestureRecognizerStateCancelled: return @"Cancelled";
+        case UIGestureRecognizerStateFailed:    return @"Failed";
+        case UIGestureRecognizerStatePossible:  return @"Possible";
+        default: return @"";
+    }
+}
+
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {
+
+    CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
+    CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
+    NSLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSPDFGestureStateToString(gestureRecognizer.state));
+
+    return NO; // touch not used.
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
