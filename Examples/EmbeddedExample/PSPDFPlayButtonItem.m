@@ -13,6 +13,10 @@
     BOOL _autoplay;
 }
 
+- (BOOL)isAvailable {
+    return self.pdfController.viewMode == PSPDFViewModeDocument;
+}
+
 // a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
 - (UIToolbar *)toolbar {
     if (!_toolbar) {
