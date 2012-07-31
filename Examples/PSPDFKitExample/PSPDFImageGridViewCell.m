@@ -79,7 +79,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         defaultFrame_ = frame;
-        self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
+        //self.deleteButtonIcon = [UIImage imageNamed:@"delete"];
 
         // incomplete downloads stay here
         observedMagazineDownloads_ = [[NSMutableSet alloc] init];
@@ -102,7 +102,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.deleteButtonOffset = CGPointMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10);
+    //self.deleteButtonOffset = CGPointMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10);
 }
 
 - (void)setFrame:(CGRect)frame {
