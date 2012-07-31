@@ -20,58 +20,6 @@
 @synthesize pdfController = _pdfController;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (NSString *)documentsFolder {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
-    return [paths objectAtIndex:0];
-}
-
-- (NSString *)samplesFolder {
-    NSString *samplesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
-    return samplesFolder;
-}
-
-- (void)copySampleToDocumentsFolder:(NSString *)fileName {
-    NSError *error = nil;
-    NSString *path = [[self samplesFolder] stringByAppendingPathComponent:fileName];
-    NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
-        NSLog(@"error while deleting: %@", [error localizedDescription]);
-    }
-    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];    
-}
-
-- (void)pushView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.additionalRightBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
-    //pdfController.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:pdfController animated:YES];
-}
-
-- (void)openModalView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
-    
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.pageMode = PSPDFPageModeSingle;
-    pdfController.additionalRightBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
-    UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:pdfController];
-    
-    if (!PSIsIpad()) {
-        navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    }else {
-        navCtrl.modalPresentationStyle = UIModalPresentationFormSheet;
-        pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
-    }
-    
-    [self presentModalViewController:navCtrl animated:YES];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
@@ -275,6 +223,58 @@
     PSPDFLegacyEmbeddedViewController *legacy = [[PSPDFLegacyEmbeddedViewController alloc] init];
     UINavigationController *legacyContainer = [[UINavigationController alloc] initWithRootViewController:legacy];
     [self presentModalViewController:legacyContainer animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (NSString *)documentsFolder {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [paths objectAtIndex:0];
+}
+
+- (NSString *)samplesFolder {
+    NSString *samplesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+    return samplesFolder;
+}
+
+- (void)copySampleToDocumentsFolder:(NSString *)fileName {
+    NSError *error = nil;
+    NSString *path = [[self samplesFolder] stringByAppendingPathComponent:fileName];
+    NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
+        NSLog(@"error while deleting: %@", [error localizedDescription]);
+    }
+    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];
+}
+
+- (void)pushView {
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.additionalRightBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
+    //pdfController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:pdfController animated:YES];
+}
+
+- (void)openModalView {
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
+    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.pageMode = PSPDFPageModeSingle;
+    pdfController.additionalRightBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
+    UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:pdfController];
+
+    if (!PSIsIpad()) {
+        navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }else {
+        navCtrl.modalPresentationStyle = UIModalPresentationFormSheet;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
+    }
+
+    [self presentModalViewController:navCtrl animated:YES];
 }
 
 @end
