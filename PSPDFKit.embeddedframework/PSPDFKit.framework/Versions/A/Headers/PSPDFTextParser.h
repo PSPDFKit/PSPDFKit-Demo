@@ -9,6 +9,9 @@
 
 @class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation;
 
+// Enable to log state while parsing.
+extern BOOL kPSPDFTextParserDebugLogEnabled;
+
 /// Parses the text of a PDF page.
 @interface PSPDFTextParser : NSObject
 

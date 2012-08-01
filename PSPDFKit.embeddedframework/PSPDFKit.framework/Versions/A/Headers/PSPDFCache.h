@@ -11,7 +11,8 @@
 
 typedef NS_ENUM(NSInteger, PSPDFCacheStrategy) {
     PSPDFCacheNothing,                    // no files are saved. (slowest)
-    PSPDFCacheOnlyThumbnailsAndNearPages, // only a few files are saved.
+    PSPDFCacheThumbnails,                 // only thumbnails.
+    PSPDFCacheThumbnailsAndNearPages,     // only a few files are saved.
     PSPDFCacheOpportunistic               // the whole PDF document is converted to images and saved. (fastest)
 };
 
@@ -115,7 +116,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// If you experience memory issues, set this to zero in your AppDelegate.
 @property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 
-/// Only relevant in strategy PSPDFCacheOnlyThumbnailsAndNearPages.
+/// Only relevant in strategy PSPDFCacheThumbnailsAndNearPages.
 @property(assign) NSUInteger numberOfNearCachedPages;
 
 /// JPG is almost always faster, and uses less memory (<50% of a PNG, usually). Defaults to YES.
