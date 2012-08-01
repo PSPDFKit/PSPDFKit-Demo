@@ -1,0 +1,1649 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFCache Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFCache Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/JPGFormatCompression">&nbsp;&nbsp;&nbsp;&nbsp;JPGFormatCompression</option>
+	
+	<option value="//api/name/cacheDirectory">&nbsp;&nbsp;&nbsp;&nbsp;cacheDirectory</option>
+	
+	<option value="//api/name/downscaleInterpolationQuality">&nbsp;&nbsp;&nbsp;&nbsp;downscaleInterpolationQuality</option>
+	
+	<option value="//api/name/numberOfMaximumCachedDocuments">&nbsp;&nbsp;&nbsp;&nbsp;numberOfMaximumCachedDocuments</option>
+	
+	<option value="//api/name/numberOfNearCachedPages">&nbsp;&nbsp;&nbsp;&nbsp;numberOfNearCachedPages</option>
+	
+	<option value="//api/name/strategy">&nbsp;&nbsp;&nbsp;&nbsp;strategy</option>
+	
+	<option value="//api/name/thumbnailSize">&nbsp;&nbsp;&nbsp;&nbsp;thumbnailSize</option>
+	
+	<option value="//api/name/tinySize">&nbsp;&nbsp;&nbsp;&nbsp;tinySize</option>
+	
+	<option value="//api/name/useJPGFormat">&nbsp;&nbsp;&nbsp;&nbsp;useJPGFormat</option>
+	
+	<option value="//api/name/useJPGTurbo">&nbsp;&nbsp;&nbsp;&nbsp;useJPGTurbo</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/sharedPSPDFCache">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedPSPDFCache</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- addDelegate:</option>
+	
+	<option value="//api/name/cacheDocument:startAtPage:size:">&nbsp;&nbsp;&nbsp;&nbsp;- cacheDocument:startAtPage:size:</option>
+	
+	<option value="//api/name/cacheImage:document:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- cacheImage:document:page:size:</option>
+	
+	<option value="//api/name/cacheThumbnailsForDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- cacheThumbnailsForDocument:</option>
+	
+	<option value="//api/name/cachedImageForDocument:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- cachedImageForDocument:page:size:</option>
+	
+	<option value="//api/name/cachedImageForDocument:page:size:preload:">&nbsp;&nbsp;&nbsp;&nbsp;- cachedImageForDocument:page:size:preload:</option>
+	
+	<option value="//api/name/clearCache">&nbsp;&nbsp;&nbsp;&nbsp;- clearCache</option>
+	
+	<option value="//api/name/clearThumbnailMemoryCache">&nbsp;&nbsp;&nbsp;&nbsp;- clearThumbnailMemoryCache</option>
+	
+	<option value="//api/name/imageForDocument:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForDocument:page:size:</option>
+	
+	<option value="//api/name/isDocumentCached:size:">&nbsp;&nbsp;&nbsp;&nbsp;- isDocumentCached:size:</option>
+	
+	<option value="//api/name/isImageCachedForDocument:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- isImageCachedForDocument:page:size:</option>
+	
+	<option value="//api/name/pauseCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- pauseCachingForService:</option>
+	
+	<option value="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:waitUntilDone:</option>
+	
+	<option value="//api/name/removeDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDelegate:</option>
+	
+	<option value="//api/name/renderImageForDocument:page:size:pdfPage:">&nbsp;&nbsp;&nbsp;&nbsp;- renderImageForDocument:page:size:pdfPage:</option>
+	
+	<option value="//api/name/resumeCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- resumeCachingForService:</option>
+	
+	<option value="//api/name/saveNativeRenderedImage:document:page:">&nbsp;&nbsp;&nbsp;&nbsp;- saveNativeRenderedImage:document:page:</option>
+	
+	<option value="//api/name/stopCachingDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- stopCachingDocument:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFKitThumbnailCache Methods">PSPDFKitThumbnailCache Methods</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/JPGFormatCompression">JPGFormatCompression</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheDirectory">cacheDirectory</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downscaleInterpolationQuality">downscaleInterpolationQuality</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfMaximumCachedDocuments">numberOfMaximumCachedDocuments</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfNearCachedPages">numberOfNearCachedPages</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/strategy">strategy</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/thumbnailSize">thumbnailSize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tinySize">tinySize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useJPGFormat">useJPGFormat</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useJPGTurbo">useJPGTurbo</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedPSPDFCache">sharedPSPDFCache</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addDelegate:">addDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheDocument:startAtPage:size:">cacheDocument:startAtPage:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheImage:document:page:size:">cacheImage:document:page:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheThumbnailsForDocument:">cacheThumbnailsForDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachedImageForDocument:page:size:">cachedImageForDocument:page:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachedImageForDocument:page:size:preload:">cachedImageForDocument:page:size:preload:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache">clearCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearThumbnailMemoryCache">clearThumbnailMemoryCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForDocument:page:size:">imageForDocument:page:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isDocumentCached:size:">isDocumentCached:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isImageCachedForDocument:page:size:">isImageCachedForDocument:page:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pauseCachingForService:">pauseCachingForService:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">removeCacheForDocument:deleteDocument:waitUntilDone:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDelegate:">removeDelegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderImageForDocument:page:size:pdfPage:">renderImageForDocument:page:size:pdfPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resumeCachingForService:">resumeCachingForService:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveNativeRenderedImage:document:page:">saveNativeRenderedImage:document:page:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stopCachingDocument:">stopCachingDocument:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFCache Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFCache Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCacheDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFCache.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>PSPDFCache is an intelligent cache that pre-renders pdf pages based on a queue.
+Various image sizes and formats are supported. The system is designed to take as much memory
+as there&rsquo;s available, and free most of it on a memory warning event.
+You can manually call <a href="#//api/name/clearCache">clearCache</a> to remove all temporary files and clear the memory caches.
+additional thumbnail cache control helper.
+used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/sharedPSPDFCache">+&nbsp;sharedPSPDFCache</a></code>
+		<span class="tooltip"><p>cache is a singleton.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isDocumentCached:size:">&ndash;&nbsp;isDocumentCached:size:</a></code>
+		<span class="tooltip"><p>Check if all pages of a document are cached.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isImageCachedForDocument:page:size:">&ndash;&nbsp;isImageCachedForDocument:page:size:</a></code>
+		<span class="tooltip"><p>Check if an individual page of a document is cached.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachedImageForDocument:page:size:">&ndash;&nbsp;cachedImageForDocument:page:size:</a></code>
+		<span class="tooltip"><p>returns cached image of document. If not found, add to TOP of current caching queue.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cachedImageForDocument:page:size:preload:">&ndash;&nbsp;cachedImageForDocument:page:size:preload:</a></code>
+		<span class="tooltip"><p>returns cached image of document. preload decompresses the image in the background.
+Note: if <a href="#//api/name/useJPGTurbo">useJPGTurbo</a> is enabled, preload is always YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderImageForDocument:page:size:pdfPage:">&ndash;&nbsp;renderImageForDocument:page:size:pdfPage:</a></code>
+		<span class="tooltip"><p>renders image of a page for spezified size. Used here and in <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/saveNativeRenderedImage:document:page:">&ndash;&nbsp;saveNativeRenderedImage:document:page:</a></code>
+		<span class="tooltip"><p>save native rendered image, then call delegate. Used from <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheDocument:startAtPage:size:">&ndash;&nbsp;cacheDocument:startAtPage:size:</a></code>
+		<span class="tooltip"><p>start document caching (update often to improve cache hits). Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheThumbnailsForDocument:">&ndash;&nbsp;cacheThumbnailsForDocument:</a></code>
+		<span class="tooltip"><p>Creates caches for both thumbnails and tiny images. This, together with <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.loadThumbnailsOnMainThread,
+will ensure that the user doesn’t see any white pages when showing the document to the user.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stopCachingDocument:">&ndash;&nbsp;stopCachingDocument:</a></code>
+		<span class="tooltip"><p>stop document caching.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pauseCachingForService:">&ndash;&nbsp;pauseCachingForService:</a></code>
+		<span class="tooltip"><p>Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
+This will finish the current rendering/caching process and then stop the queue.
+Set a service Class/Token/Id that is referred with the break. Needed so that multiple services can request a pause.
+Throws an exception if the service is nil. Already registered services will be ignored.
+Returns YES if the cache was paused, NO if it was already paused.
+Thread safe.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/resumeCachingForService:">&ndash;&nbsp;resumeCachingForService:</a></code>
+		<span class="tooltip"><p>Resumes caching, removes the specific service from the blocker list.
+Throws an exception if the service is invalid/not registered.
+Returns YES if the service continues running.
+Thread safe.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&ndash;&nbsp;removeCacheForDocument:deleteDocument:waitUntilDone:</a></code>
+		<span class="tooltip"><p>clear cache for a specific document, optionally also deletes referenced document files.
+This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearCache">&ndash;&nbsp;clearCache</a></code>
+		<span class="tooltip"><p>clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addDelegate:">&ndash;&nbsp;addDelegate:</a></code>
+		<span class="tooltip"><p>register a delegate. don&rsquo;t forget to manually remove it afterwards!</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeDelegate:">&ndash;&nbsp;removeDelegate:</a></code>
+		<span class="tooltip"><p>deregisters a delegate. return YES on success.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/strategy">&nbsp;&nbsp;strategy</a></code>
+		<span class="tooltip"><p>Set up the caching strategy.
+Defaults to PSPDFCacheOpportunistic.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numberOfMaximumCachedDocuments">&nbsp;&nbsp;numberOfMaximumCachedDocuments</a></code>
+		<span class="tooltip"><p>maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,&hellip;)
+if you experience memory issues, set this to zero in your AppDelegate.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numberOfNearCachedPages">&nbsp;&nbsp;numberOfNearCachedPages</a></code>
+		<span class="tooltip"><p>only relevant in <a href="#//api/name/strategy">strategy</a> PSPDFCacheOnlyThumbnailsAndNearPages.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/useJPGFormat">&nbsp;&nbsp;useJPGFormat</a></code>
+		<span class="tooltip"><p>JPG is almost always faster, and uses less memory (&lt;50% of a PNG, usually). Defaults to YES.
+If you have very text-like pages, you might want to set this to NO.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/JPGFormatCompression">&nbsp;&nbsp;JPGFormatCompression</a></code>
+		<span class="tooltip"><p>Compression strength for JPG. (PNG is lossless)
+The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
+You can set the document to re-render with <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.twoStepRenderingEnabled = YES.
+This will load the pdf and remove any jpg artifacts.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/useJPGTurbo">&nbsp;&nbsp;useJPGTurbo</a></code>
+		<span class="tooltip"><p>Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/downscaleInterpolationQuality">&nbsp;&nbsp;downscaleInterpolationQuality</a></code>
+		<span class="tooltip"><p>The interpolation level applied to thumbnail and tiny images.
+Defaults to kCGInterpolationHigh.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/thumbnailSize">&nbsp;&nbsp;thumbnailSize</a></code>
+		<span class="tooltip"><p>The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
+Defaults to CGSizeMake(200, 400).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tinySize">&nbsp;&nbsp;tinySize</a></code>
+		<span class="tooltip"><p>The size of the images used in the scrobble bar.
+Defaults to CGSizeMake(50, 100).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheDirectory">&nbsp;&nbsp;cacheDirectory</a></code>
+		<span class="tooltip"><p>cache files are saved in a subdirectory of NSCachesDirectory. Defaults to &ldquo;PSPDFKit&rdquo;.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFKitThumbnailCache Methods" name="task_PSPDFKitThumbnailCache Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFKitThumbnailCache Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cacheImage:document:page:size:">&ndash;&nbsp;cacheImage:document:page:size:</a></code>
+		<span class="tooltip"><p>save image in an NSCache object for specified identifier. Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageForDocument:page:size:">&ndash;&nbsp;imageForDocument:page:size:</a></code>
+		<span class="tooltip"><p>load image for a certain document page. Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearThumbnailMemoryCache">&ndash;&nbsp;clearThumbnailMemoryCache</a></code>
+		<span class="tooltip"><p>clear thumbnail memory cache.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/JPGFormatCompression" title="JPGFormatCompression"></a>
+	<h3 class="subsubtitle method-title">JPGFormatCompression</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Compression strength for JPG. (PNG is lossless)
+The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
+You can set the document to re-render with <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.twoStepRenderingEnabled = YES.
+This will load the pdf and remove any jpg artifacts.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) CGFloat JPGFormatCompression</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheDirectory" title="cacheDirectory"></a>
+	<h3 class="subsubtitle method-title">cacheDirectory</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>cache files are saved in a subdirectory of NSCachesDirectory. Defaults to &ldquo;PSPDFKit&rdquo;.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *cacheDirectory</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/downscaleInterpolationQuality" title="downscaleInterpolationQuality"></a>
+	<h3 class="subsubtitle method-title">downscaleInterpolationQuality</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The interpolation level applied to thumbnail and tiny images.
+Defaults to kCGInterpolationHigh.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) CGInterpolationQuality downscaleInterpolationQuality</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numberOfMaximumCachedDocuments" title="numberOfMaximumCachedDocuments"></a>
+	<h3 class="subsubtitle method-title">numberOfMaximumCachedDocuments</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,&hellip;)
+if you experience memory issues, set this to zero in your AppDelegate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numberOfNearCachedPages" title="numberOfNearCachedPages"></a>
+	<h3 class="subsubtitle method-title">numberOfNearCachedPages</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>only relevant in <a href="#//api/name/strategy">strategy</a> PSPDFCacheOnlyThumbnailsAndNearPages.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) NSUInteger numberOfNearCachedPages</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/strategy" title="strategy"></a>
+	<h3 class="subsubtitle method-title">strategy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set up the caching strategy.
+Defaults to PSPDFCacheOpportunistic.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) PSPDFCacheStrategy strategy</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/thumbnailSize" title="thumbnailSize"></a>
+	<h3 class="subsubtitle method-title">thumbnailSize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
+Defaults to CGSizeMake(200, 400).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) CGSize thumbnailSize</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tinySize" title="tinySize"></a>
+	<h3 class="subsubtitle method-title">tinySize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The size of the images used in the scrobble bar.
+Defaults to CGSizeMake(50, 100).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) CGSize tinySize</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/useJPGFormat" title="useJPGFormat"></a>
+	<h3 class="subsubtitle method-title">useJPGFormat</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>JPG is almost always faster, and uses less memory (&lt;50% of a PNG, usually). Defaults to YES.
+If you have very text-like pages, you might want to set this to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) BOOL useJPGFormat</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/useJPGTurbo" title="useJPGTurbo"></a>
+	<h3 class="subsubtitle method-title">useJPGTurbo</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (assign) BOOL useJPGTurbo</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/sharedPSPDFCache" title="sharedPSPDFCache"></a>
+	<h3 class="subsubtitle method-title">sharedPSPDFCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>cache is a singleton.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFCache *)sharedPSPDFCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addDelegate:" title="addDelegate:"></a>
+	<h3 class="subsubtitle method-title">addDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>register a delegate. don&rsquo;t forget to manually remove it afterwards!</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addDelegate:(id&lt;PSPDFCacheDelegate&gt;)<em>aDelegate</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheDocument:startAtPage:size:" title="cacheDocument:startAtPage:size:"></a>
+	<h3 class="subsubtitle method-title">cacheDocument:startAtPage:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>start document caching (update often to improve cache hits). Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cacheDocument:(PSPDFDocument *)<em>aDocument</em> startAtPage:(NSUInteger)<em>startPage</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheImage:document:page:size:" title="cacheImage:document:page:size:"></a>
+	<h3 class="subsubtitle method-title">cacheImage:document:page:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>save image in an NSCache object for specified identifier. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cacheImage:(UIImage *)<em>image</em> document:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cacheThumbnailsForDocument:" title="cacheThumbnailsForDocument:"></a>
+	<h3 class="subsubtitle method-title">cacheThumbnailsForDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates caches for both thumbnails and tiny images. This, together with <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.loadThumbnailsOnMainThread,
+will ensure that the user doesn’t see any white pages when showing the document to the user.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)cacheThumbnailsForDocument:(PSPDFDocument *)<em>aDocument</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Preloading the cache for PSPDFSizeNative would not be efficient. These images tend to become large in data size,
+which would in turn trigger the OS’ cache cleaning sooner.</p>
+
+<p>Note that <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> will cache images in PSPDFSizeNative.</p>
+
+<p>Returns wether or not any preloading has to be done.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cachedImageForDocument:page:size:" title="cachedImageForDocument:page:size:"></a>
+	<h3 class="subsubtitle method-title">cachedImageForDocument:page:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>returns cached image of document. If not found, add to TOP of current caching queue.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)cachedImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/cachedImageForDocument:page:size:preload:" title="cachedImageForDocument:page:size:preload:"></a>
+	<h3 class="subsubtitle method-title">cachedImageForDocument:page:size:preload:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>returns cached image of document. preload decompresses the image in the background.
+Note: if <a href="#//api/name/useJPGTurbo">useJPGTurbo</a> is enabled, preload is always YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)cachedImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em> preload:(BOOL)<em>preload</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearCache" title="clearCache"></a>
+	<h3 class="subsubtitle method-title">clearCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>clear whole cache directory. May lock until related async tasks are finished. Can be called from any thread.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)clearCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearThumbnailMemoryCache" title="clearThumbnailMemoryCache"></a>
+	<h3 class="subsubtitle method-title">clearThumbnailMemoryCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>clear thumbnail memory cache.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)clearThumbnailMemoryCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/imageForDocument:page:size:" title="imageForDocument:page:size:"></a>
+	<h3 class="subsubtitle method-title">imageForDocument:page:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>load image for a certain document page. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)imageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isDocumentCached:size:" title="isDocumentCached:size:"></a>
+	<h3 class="subsubtitle method-title">isDocumentCached:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if all pages of a document are cached.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isDocumentCached:(PSPDFDocument *)<em>document</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isImageCachedForDocument:page:size:" title="isImageCachedForDocument:page:size:"></a>
+	<h3 class="subsubtitle method-title">isImageCachedForDocument:page:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if an individual page of a document is cached.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isImageCachedForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pauseCachingForService:" title="pauseCachingForService:"></a>
+	<h3 class="subsubtitle method-title">pauseCachingForService:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Request that caching takes a break. Helpful when you want to perform other high-cpu tasks.
+This will finish the current rendering/caching process and then stop the queue.
+Set a service Class/Token/Id that is referred with the break. Needed so that multiple services can request a pause.
+Throws an exception if the service is nil. Already registered services will be ignored.
+Returns YES if the cache was paused, NO if it was already paused.
+Thread safe.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)pauseCachingForService:(id)<em>service</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:" title="removeCacheForDocument:deleteDocument:waitUntilDone:"></a>
+	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:waitUntilDone:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>clear cache for a specific document, optionally also deletes referenced document files.
+This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteDocument</em> waitUntilDone:(BOOL)<em>wait</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeDelegate:" title="removeDelegate:"></a>
+	<h3 class="subsubtitle method-title">removeDelegate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>deregisters a delegate. return YES on success.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)removeDelegate:(id&lt;PSPDFCacheDelegate&gt;)<em>aDelegate</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderImageForDocument:page:size:pdfPage:" title="renderImageForDocument:page:size:pdfPage:"></a>
+	<h3 class="subsubtitle method-title">renderImageForDocument:page:size:pdfPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>renders image of a page for spezified size. Used here and in <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)renderImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em> pdfPage:(CGPDFPageRef)<em>pdfPage</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/resumeCachingForService:" title="resumeCachingForService:"></a>
+	<h3 class="subsubtitle method-title">resumeCachingForService:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Resumes caching, removes the specific service from the blocker list.
+Throws an exception if the service is invalid/not registered.
+Returns YES if the service continues running.
+Thread safe.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)resumeCachingForService:(id)<em>service</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/saveNativeRenderedImage:document:page:" title="saveNativeRenderedImage:document:page:"></a>
+	<h3 class="subsubtitle method-title">saveNativeRenderedImage:document:page:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>save native rendered image, then call delegate. Used from <a href="../Classes/PSPDFTilingView.html">PSPDFTilingView</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)saveNativeRenderedImage:(UIImage *)<em>image</em> document:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/stopCachingDocument:" title="stopCachingDocument:"></a>
+	<h3 class="subsubtitle method-title">stopCachingDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>stop document caching.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)stopCachingDocument:(PSPDFDocument *)<em>aDocument</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-08-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
