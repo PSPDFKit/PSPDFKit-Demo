@@ -18,7 +18,6 @@
 		78BE31FC15B8DF7500FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31F715B8DF7500FBB125 /* ACKNOWLEDGEMENTS */; };
 		78BE31FD15B8DF7500FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31F815B8DF7500FBB125 /* LICENSE */; };
 		78BE31FE15B8DF7500FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31F915B8DF7500FBB125 /* PSPDFKit.bundle */; };
-		78BE31FF15B8DF7500FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31FA15B8DF7500FBB125 /* PSPDFKit.xcconfig */; };
 		78EA41D1156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA41CE156E421D0077B255 /* PSPDFAddDocumentsBarButtonItem.m */; };
 		78EA41D2156E421D0077B255 /* PSPDFDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78EA41D0156E421D0077B255 /* PSPDFDocumentSelectorController.m */; };
 /* End PBXBuildFile section */
@@ -202,7 +201,6 @@
 				78BE31FC15B8DF7500FBB125 /* ACKNOWLEDGEMENTS in Resources */,
 				78BE31FD15B8DF7500FBB125 /* LICENSE in Resources */,
 				78BE31FE15B8DF7500FBB125 /* PSPDFKit.bundle in Resources */,
-				78BE31FF15B8DF7500FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
