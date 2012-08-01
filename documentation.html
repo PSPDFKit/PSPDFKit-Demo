@@ -122,13 +122,15 @@ documentation: current-menu-item current_page_item
 		
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There are some private APIs that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 <p><b>Q: Do I need to buy another license to make a second app?</b><br>
-	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for an all-in license, contact us if interested.</p><br>
+	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for a custom license, contact us if interested.</p><br>
 
 <p><b>Q: How do I change the link-color of pdf annotation links?</b><br>
 	 A: Use <a href="http://pspdfkit.com/documentation/Protocols/PSPDFViewControllerDelegate.html">PSPDFViewControllerDelegate</a> like this:
 	 <script src="https://gist.github.com/2034768.js?file=gistfile1.m"></script>
 	 </p>
-		 
+	 
+<p><b>Q: I am looking for following features: adjust PDF text size/font style/ page margins.</b><br>
+	 A: Due to the nature of PDF, features like "Adjust PDF text size" are extremely hard, if not impossible at all.  Not even Adobe Acrobat has such features. In PDF you don't have "text" like you would think you have. You have a bunch of random characters or vectors where you (most of the time) are able to get the unicode value out. And with applying some algorithms you might can detect what  word is. You are probably looking into HTML/ePub, where you can change such values.</p><br>
 		
 	</div>
 	
