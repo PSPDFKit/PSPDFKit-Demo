@@ -1,0 +1,2527 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFDocument Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFDocument Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/allowsPrinting">&nbsp;&nbsp;&nbsp;&nbsp;allowsPrinting</option>
+	
+	<option value="//api/name/annotationParser">&nbsp;&nbsp;&nbsp;&nbsp;annotationParser</option>
+	
+	<option value="//api/name/annotationsEnabled">&nbsp;&nbsp;&nbsp;&nbsp;annotationsEnabled</option>
+	
+	<option value="//api/name/aspectRatioEqual">&nbsp;&nbsp;&nbsp;&nbsp;aspectRatioEqual</option>
+	
+	<option value="//api/name/basePath">&nbsp;&nbsp;&nbsp;&nbsp;basePath</option>
+	
+	<option value="//api/name/data">&nbsp;&nbsp;&nbsp;&nbsp;data</option>
+	
+	<option value="//api/name/displayingPdfController">&nbsp;&nbsp;&nbsp;&nbsp;displayingPdfController</option>
+	
+	<option value="//api/name/documentSearcher">&nbsp;&nbsp;&nbsp;&nbsp;documentSearcher</option>
+	
+	<option value="//api/name/fileUrl">&nbsp;&nbsp;&nbsp;&nbsp;fileUrl</option>
+	
+	<option value="//api/name/files">&nbsp;&nbsp;&nbsp;&nbsp;files</option>
+	
+	<option value="//api/name/isEncrypted">&nbsp;&nbsp;&nbsp;&nbsp;isEncrypted</option>
+	
+	<option value="//api/name/isLocked">&nbsp;&nbsp;&nbsp;&nbsp;isLocked</option>
+	
+	<option value="//api/name/outlineParser">&nbsp;&nbsp;&nbsp;&nbsp;outlineParser</option>
+	
+	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
+	
+	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
+	
+	<option value="//api/name/twoStepRenderingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;twoStepRenderingEnabled</option>
+	
+	<option value="//api/name/uid">&nbsp;&nbsp;&nbsp;&nbsp;uid</option>
+	
+	<option value="//api/name/valid">&nbsp;&nbsp;&nbsp;&nbsp;valid</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/PDFDocument">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocument</option>
+	
+	<option value="//api/name/PDFDocumentWithBaseUrl:files:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithBaseUrl:files:</option>
+	
+	<option value="//api/name/PDFDocumentWithData:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithData:</option>
+	
+	<option value="//api/name/PDFDocumentWithUrl:">&nbsp;&nbsp;&nbsp;&nbsp;+ PDFDocumentWithUrl:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/URLForFileIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- URLForFileIndex:</option>
+	
+	<option value="//api/name/appendFile:">&nbsp;&nbsp;&nbsp;&nbsp;- appendFile:</option>
+	
+	<option value="//api/name/aspectRatioVariance">&nbsp;&nbsp;&nbsp;&nbsp;- aspectRatioVariance</option>
+	
+	<option value="//api/name/backgroundColorForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- backgroundColorForPage:</option>
+	
+	<option value="//api/name/clearCache">&nbsp;&nbsp;&nbsp;&nbsp;- clearCache</option>
+	
+	<option value="//api/name/clearCacheForced:">&nbsp;&nbsp;&nbsp;&nbsp;- clearCacheForced:</option>
+	
+	<option value="//api/name/documentProviders">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviders</option>
+	
+	<option value="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&nbsp;&nbsp;&nbsp;&nbsp;- drawOverlayRect:inContext:forPage:zoomScale:size:</option>
+	
+	<option value="//api/name/fileIndexForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileIndexForPage:</option>
+	
+	<option value="//api/name/filesWithBasePath">&nbsp;&nbsp;&nbsp;&nbsp;- filesWithBasePath</option>
+	
+	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
+	
+	<option value="//api/name/hasPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasPageInfoForPage:</option>
+	
+	<option value="//api/name/nearestPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- nearestPageInfoForPage:</option>
+	
+	<option value="//api/name/pageContentForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageContentForPage:</option>
+	
+	<option value="//api/name/pageCount">&nbsp;&nbsp;&nbsp;&nbsp;- pageCount</option>
+	
+	<option value="//api/name/pageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:</option>
+	
+	<option value="//api/name/pageInfoForPage:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:pageRef:</option>
+	
+	<option value="//api/name/pageLabelForPage:substituteWithPlainLabel:">&nbsp;&nbsp;&nbsp;&nbsp;- pageLabelForPage:substituteWithPlainLabel:</option>
+	
+	<option value="//api/name/pageNumberForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageNumberForPage:</option>
+	
+	<option value="//api/name/pathForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pathForPage:</option>
+	
+	<option value="//api/name/rectBoxForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- rectBoxForPage:</option>
+	
+	<option value="//api/name/rotationForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- rotationForPage:</option>
+	
+	<option value="//api/name/shouldDrawOverlayRectForSize:">&nbsp;&nbsp;&nbsp;&nbsp;- shouldDrawOverlayRectForSize:</option>
+	
+	<option value="//api/name/thumbnailPathForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- thumbnailPathForPage:</option>
+	
+	<option value="//api/name/unlockWithPassword:">&nbsp;&nbsp;&nbsp;&nbsp;- unlockWithPassword:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_File Access / Modification">File Access / Modification</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Page Info Data">Page Info Data</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Caching">Caching</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PDF Drawing">PDF Drawing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PDF Search">PDF Search</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Design and hints for PSPDFViewController">Design and hints for PSPDFViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Password Protection and Security">Password Protection and Security</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Attached Parser for Outline, Annotations">Attached Parser for Outline, Annotations</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowsPrinting">allowsPrinting</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationParser">annotationParser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsEnabled">annotationsEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/aspectRatioEqual">aspectRatioEqual</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/basePath">basePath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/data">data</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayingPdfController">displayingPdfController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentSearcher">documentSearcher</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileUrl">fileUrl</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/files">files</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEncrypted">isEncrypted</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLocked">isLocked</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineParser">outlineParser</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/twoStepRenderingEnabled">twoStepRenderingEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uid">uid</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valid">valid</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocument">PDFDocument</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithBaseUrl:files:">PDFDocumentWithBaseUrl:files:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithData:">PDFDocumentWithData:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFDocumentWithUrl:">PDFDocumentWithUrl:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URLForFileIndex:">URLForFileIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/appendFile:">appendFile:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/aspectRatioVariance">aspectRatioVariance</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/backgroundColorForPage:">backgroundColorForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache">clearCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCacheForced:">clearCacheForced:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviders">documentProviders</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">drawOverlayRect:inContext:forPage:zoomScale:size:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileIndexForPage:">fileIndexForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/filesWithBasePath">filesWithBasePath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasPageInfoForPage:">hasPageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nearestPageInfoForPage:">nearestPageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageContentForPage:">pageContentForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageCount">pageCount</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:">pageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:pageRef:">pageInfoForPage:pageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">pageLabelForPage:substituteWithPlainLabel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageNumberForPage:">pageNumberForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathForPage:">pathForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rectBoxForPage:">rectBoxForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotationForPage:">rotationForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldDrawOverlayRectForSize:">shouldDrawOverlayRectForSize:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/thumbnailPathForPage:">thumbnailPathForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFDocument Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFDocument Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFDocument.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Represents a single, logical, pdf document. (one or many pdf <a href="#//api/name/files">files</a>)
+Can be overriden to support custom collections.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Initialization" name="task_Initialization"></a>
+						<h3 class="subsubtitle task-title">Initialization</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/PDFDocument">+&nbsp;PDFDocument</a></code>
+		<span class="tooltip"><p>Initialize empty PSPDFDocument</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/PDFDocumentWithData:">+&nbsp;PDFDocumentWithData:</a></code>
+		<span class="tooltip"><p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with <a href="#//api/name/data">data</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/PDFDocumentWithBaseUrl:files:">+&nbsp;PDFDocumentWithBaseUrl:files:</a></code>
+		<span class="tooltip"><p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/PDFDocumentWithUrl:">+&nbsp;PDFDocumentWithUrl:</a></code>
+		<span class="tooltip"><p>Initializes PS<a href="#//api/name/PDFDocument">PDFDocument</a> with a single file</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="File Access / Modification" name="task_File Access / Modification"></a>
+						<h3 class="subsubtitle task-title">File Access / Modification</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/appendFile:">&ndash;&nbsp;appendFile:</a></code>
+		<span class="tooltip"><p>Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
+Do not mix .<a href="#//api/name/data">data</a> and <a href="#//api/name/files">files</a> &ndash; this call will be ignored when <a href="#//api/name/data">data</a> is set.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
+		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileIndexForPage:">&ndash;&nbsp;fileIndexForPage:</a></code>
+		<span class="tooltip"><p>Returns position of the internal file array.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URLForFileIndex:">&ndash;&nbsp;URLForFileIndex:</a></code>
+		<span class="tooltip"><p>Returns the URL corresponding to the fileIndex</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/thumbnailPathForPage:">&ndash;&nbsp;thumbnailPathForPage:</a></code>
+		<span class="tooltip"><p>Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/filesWithBasePath">&ndash;&nbsp;filesWithBasePath</a></code>
+		<span class="tooltip"><p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/basePath">&nbsp;&nbsp;basePath</a></code>
+		<span class="tooltip"><p>Common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/files">&nbsp;&nbsp;files</a></code>
+		<span class="tooltip"><p>Array of NSString pdf files. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the files.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileUrl">&nbsp;&nbsp;fileUrl</a></code>
+		<span class="tooltip"><p>Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+nil if the document was initialized with initWithData:</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
+		<span class="tooltip"><p>PDF data when initialized with initWithData: otherwise nil</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/title">&nbsp;&nbsp;title</a></code>
+		<span class="tooltip"><p>Document title as shown in the controller.
+If this is not set, the framework tries to extract the title from the PDF meta<a href="#//api/name/data">data</a>.
+If there&rsquo;s no meta<a href="#//api/name/data">data</a>, the fileName is used. &ldquo;.pdf&rdquo; endings will be removed either way.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/uid">&nbsp;&nbsp;uid</a></code>
+		<span class="tooltip"><p>For caching, provide a <em>UNIQUE</em> uid here. (Or clear cache after content changes for same uid. Appending content is no problem)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Page Info Data" name="task_Page Info Data"></a>
+						<h3 class="subsubtitle task-title">Page Info Data</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageCount">&ndash;&nbsp;pageCount</a></code>
+		<span class="tooltip"><p>Return pdf page count</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
+		<span class="tooltip"><p>Return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasPageInfoForPage:">&ndash;&nbsp;hasPageInfoForPage:</a></code>
+		<span class="tooltip"><p>Returns YES of pageInfo for page is available</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+You can override this if you need to manually change the rotation value of a page.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/nearestPageInfoForPage:">&ndash;&nbsp;nearestPageInfoForPage:</a></code>
+		<span class="tooltip"><p>Makes a search beginning from page 0 for the nearest pageInfo. Does not calculate/block the thread.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
+		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+maybe needs a pdf lock if not already cached.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
+		<span class="tooltip"><p>Rotation for specified page. cached. Page starts at 0.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/aspectRatioVariance">&ndash;&nbsp;aspectRatioVariance</a></code>
+		<span class="tooltip"><p>Scan the whole document and analyzes if the aspect ratio is equal or not.
+If this returns 0 or a very small value, it&rsquo;s perfectly suitable for pageCurl.
+Note: this might take a second on larger documents, as the page structure needs to be parsed.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Caching" name="task_Caching"></a>
+						<h3 class="subsubtitle task-title">Caching</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearCacheForced:">&ndash;&nbsp;clearCacheForced:</a></code>
+		<span class="tooltip"><p>If you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/clearCache">&ndash;&nbsp;clearCache</a></code>
+		<span class="tooltip"><p>Shortcut to clearCacheForced:NO</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fillCache">&ndash;&nbsp;fillCache</a></code>
+		<span class="tooltip"><p>Creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PDF Drawing" name="task_PDF Drawing"></a>
+						<h3 class="subsubtitle task-title">PDF Drawing</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldDrawOverlayRectForSize:">&ndash;&nbsp;shouldDrawOverlayRectForSize:</a></code>
+		<span class="tooltip"><p>Return true if you want drawOverlayRect to be called.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:">&ndash;&nbsp;drawOverlayRect:inContext:forPage:zoomScale:size:</a></code>
+		<span class="tooltip"><p>Can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PDF Search" name="task_PDF Search"></a>
+						<h3 class="subsubtitle task-title">PDF Search</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageContentForPage:">&ndash;&nbsp;pageContentForPage:</a></code>
+		<span class="tooltip"><p>Can be overridden to provide custom text. Defaults to nil.
+if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
+Note: If you return text here, text highlighting cannot be used for this page.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Design and hints for PSPDFViewController" name="task_Design and hints for PSPDFViewController"></a>
+						<h3 class="subsubtitle task-title">Design and hints for PSPDFViewController</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/backgroundColorForPage:">&ndash;&nbsp;backgroundColorForPage:</a></code>
+		<span class="tooltip"><p>Override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/aspectRatioEqual">&nbsp;&nbsp;aspectRatioEqual</a></code>
+		<span class="tooltip"><p>If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/annotationsEnabled">&nbsp;&nbsp;annotationsEnabled</a></code>
+		<span class="tooltip"><p>Annotation link extraction. Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/twoStepRenderingEnabled">&nbsp;&nbsp;twoStepRenderingEnabled</a></code>
+		<span class="tooltip"><p>Enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
+or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+This might be a good idea to turn on when using JPG for caching.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/displayingPdfController">&nbsp;&nbsp;displayingPdfController</a></code>
+		<span class="tooltip"><p>If document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/documentSearcher">&nbsp;&nbsp;documentSearcher</a></code>
+		<span class="tooltip"><p>Text extraction class for current document.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Password Protection and Security" name="task_Password Protection and Security"></a>
+						<h3 class="subsubtitle task-title">Password Protection and Security</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unlockWithPassword:">&ndash;&nbsp;unlockWithPassword:</a></code>
+		<span class="tooltip"><p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
+If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+If you attempt to unlock an already unlocked document, one of the following occurs:
+If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
+string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/password">&nbsp;&nbsp;password</a></code>
+		<span class="tooltip"><p>Set a base password to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valid">&nbsp;&nbsp;valid</a></code>
+		<span class="tooltip"><p>Returns YES if the document is valid (if it has at least one page)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allowsPrinting">&nbsp;&nbsp;allowsPrinting</a></code>
+		<span class="tooltip"><p>Do the PDF digital right allow for printing?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEncrypted">&nbsp;&nbsp;isEncrypted</a></code>
+		<span class="tooltip"><p>Was the PDF file encryted at file creation time?</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLocked">&nbsp;&nbsp;isLocked</a></code>
+		<span class="tooltip"><p>Has the PDF file been unlocked? (is it still locked?).</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Attached Parser for Outline, Annotations" name="task_Attached Parser for Outline, Annotations"></a>
+						<h3 class="subsubtitle task-title">Attached Parser for Outline, Annotations</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/documentProviders">&ndash;&nbsp;documentProviders</a></code>
+		<span class="tooltip"><p>Get an array of documentProviers to easily manage documents with multiple <a href="#//api/name/files">files</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
+		<span class="tooltip"><p>Outline extraction class for current document.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
+		<span class="tooltip"><p>Link annotation parser class for current document.
+Can be overridden to use a subclassed annotation parser.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">&ndash;&nbsp;pageLabelForPage:substituteWithPlainLabel:</a></code>
+		<span class="tooltip"><p>Page labels (NSString) for the current document.
+Might be nil if PageLabels isn&rsquo;t set in the PDF.
+If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/allowsPrinting" title="allowsPrinting"></a>
+	<h3 class="subsubtitle method-title">allowsPrinting</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Do the PDF digital right allow for printing?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL allowsPrinting</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/annotationParser" title="annotationParser"></a>
+	<h3 class="subsubtitle method-title">annotationParser</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Link annotation parser class for current document.
+Can be overridden to use a subclassed annotation parser.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFAnnotationParser *annotationParser</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/annotationsEnabled" title="annotationsEnabled"></a>
+	<h3 class="subsubtitle method-title">annotationsEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Annotation link extraction. Defaults to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/aspectRatioEqual" title="aspectRatioEqual"></a>
+	<h3 class="subsubtitle method-title">aspectRatioEqual</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/basePath" title="basePath"></a>
+	<h3 class="subsubtitle method-title">basePath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *basePath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/data" title="data"></a>
+	<h3 class="subsubtitle method-title">data</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PDF data when initialized with initWithData: otherwise nil</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSData *data</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/displayingPdfController" title="displayingPdfController"></a>
+	<h3 class="subsubtitle method-title">displayingPdfController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/documentSearcher" title="documentSearcher"></a>
+	<h3 class="subsubtitle method-title">documentSearcher</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Text extraction class for current document.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFDocumentSearcher *documentSearcher</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileUrl" title="fileUrl"></a>
+	<h3 class="subsubtitle method-title">fileUrl</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Usually, you have one single file url representing the pdf. This is a shortcut setter for basePath* <a href="#//api/name/files">files</a>. Overrides all current settings if set.
+nil if the document was initialized with initWithData:</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *fileUrl</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/files" title="files"></a>
+	<h3 class="subsubtitle method-title">files</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Array of NSString pdf files. If <a href="#//api/name/basePath">basePath</a> is set, this will be combined with the file name.
+If <a href="#//api/name/basePath">basePath</a> is not set, add the full path (as NSString) to the files.
+Note: it&rsquo;s currently not possible to add the file multiple times, this will fail to display correctly.`</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *files</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEncrypted" title="isEncrypted"></a>
+	<h3 class="subsubtitle method-title">isEncrypted</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Was the PDF file encryted at file creation time?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL isEncrypted</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLocked" title="isLocked"></a>
+	<h3 class="subsubtitle method-title">isLocked</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Has the PDF file been unlocked? (is it still locked?).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL isLocked</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineParser" title="outlineParser"></a>
+	<h3 class="subsubtitle method-title">outlineParser</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outline extraction class for current document.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFOutlineParser *outlineParser</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/password" title="password"></a>
+	<h3 class="subsubtitle method-title">password</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set a base password to be used for all <a href="#//api/name/files">files</a> in this document (if the document is PDF encrypted).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *password</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/title" title="title"></a>
+	<h3 class="subsubtitle method-title">title</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Document title as shown in the controller.
+If this is not set, the framework tries to extract the title from the PDF meta<a href="#//api/name/data">data</a>.
+If there&rsquo;s no meta<a href="#//api/name/data">data</a>, the fileName is used. &ldquo;.pdf&rdquo; endings will be removed either way.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *title</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/twoStepRenderingEnabled" title="twoStepRenderingEnabled"></a>
+	<h3 class="subsubtitle method-title">twoStepRenderingEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enables two-step rendering. First use cache image, then re-render original pdf. Slightly improves text quality in landscape mode,
+or when displayed embedded. Two-Step rendering is slower. Defaults to NO.
+This might be a good idea to turn on when using JPG for caching.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isTwoStepRenderingEnabled) BOOL twoStepRenderingEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uid" title="uid"></a>
+	<h3 class="subsubtitle method-title">uid</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>For caching, provide a <em>UNIQUE</em> uid here. (Or clear cache after content changes for same uid. Appending content is no problem)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *uid</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/valid" title="valid"></a>
+	<h3 class="subsubtitle method-title">valid</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if the document is valid (if it has at least one page)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly, getter=isValid) BOOL valid</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFDocument" title="PDFDocument"></a>
+	<h3 class="subsubtitle method-title">PDFDocument</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize empty PSPDFDocument</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocument</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFDocumentWithBaseUrl:files:" title="PDFDocumentWithBaseUrl:files:"></a>
+	<h3 class="subsubtitle method-title">PDFDocumentWithBaseUrl:files:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with distinct path and an array of <a href="#//api/name/files">files</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithBaseUrl:(NSURL *)<em>baseUrl</em> files:(NSArray *)<em>files</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFDocumentWithData:" title="PDFDocumentWithData:"></a>
+	<h3 class="subsubtitle method-title">PDFDocumentWithData:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize PS<a href="#//api/name/PDFDocument">PDFDocument</a> with <a href="#//api/name/data">data</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithData:(NSData *)<em>data</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFDocumentWithUrl:" title="PDFDocumentWithUrl:"></a>
+	<h3 class="subsubtitle method-title">PDFDocumentWithUrl:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes PS<a href="#//api/name/PDFDocument">PDFDocument</a> with a single file</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithUrl:(NSURL *)<em>url</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/URLForFileIndex:" title="URLForFileIndex:"></a>
+	<h3 class="subsubtitle method-title">URLForFileIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the URL corresponding to the fileIndex</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)URLForFileIndex:(NSInteger)<em>fileIndex</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/appendFile:" title="appendFile:"></a>
+	<h3 class="subsubtitle method-title">appendFile:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if <a href="#//api/name/basePath">basePath</a> is nil)
+Note: As of PSPDFKit 1.9.7, adding the same file multiple times is allowed.
+Do not mix .<a href="#//api/name/data">data</a> and <a href="#//api/name/files">files</a> &ndash; this call will be ignored when <a href="#//api/name/data">data</a> is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)appendFile:(NSString *)<em>file</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/aspectRatioVariance" title="aspectRatioVariance"></a>
+	<h3 class="subsubtitle method-title">aspectRatioVariance</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Scan the whole document and analyzes if the aspect ratio is equal or not.
+If this returns 0 or a very small value, it&rsquo;s perfectly suitable for pageCurl.
+Note: this might take a second on larger documents, as the page structure needs to be parsed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGFloat)aspectRatioVariance</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/backgroundColorForPage:" title="backgroundColorForPage:"></a>
+	<h3 class="subsubtitle method-title">backgroundColorForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Override if you want custom <em>page</em> background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to white.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIColor *)backgroundColorForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearCache" title="clearCache"></a>
+	<h3 class="subsubtitle method-title">clearCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Shortcut to clearCacheForced:NO</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)clearCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/clearCacheForced:" title="clearCacheForced:"></a>
+	<h3 class="subsubtitle method-title">clearCacheForced:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If you change internal properties (like file count), cache needs to be cleared. Forced clears <em>everything</em> and even if doc is currently displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)clearCacheForced:(BOOL)<em>forced</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/documentProviders" title="documentProviders"></a>
+	<h3 class="subsubtitle method-title">documentProviders</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get an array of documentProviers to easily manage documents with multiple <a href="#//api/name/files">files</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)documentProviders</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/drawOverlayRect:inContext:forPage:zoomScale:size:" title="drawOverlayRect:inContext:forPage:zoomScale:size:"></a>
+	<h3 class="subsubtitle method-title">drawOverlayRect:inContext:forPage:zoomScale:size:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Can be overridden to draw an overlay on the pdf &ndash; will be called from drawing threads.
+Note: most of the time you might be better off using custom UIViews and adding them on <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> via the delegates.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)drawOverlayRect:(CGRect)<em>rect</em> inContext:(CGContextRef)<em>context</em> forPage:(NSUInteger)<em>page</em> zoomScale:(CGFloat)<em>zoomScale</em> size:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileIndexForPage:" title="fileIndexForPage:"></a>
+	<h3 class="subsubtitle method-title">fileIndexForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns position of the internal file array.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSInteger)fileIndexForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/filesWithBasePath" title="filesWithBasePath"></a>
+	<h3 class="subsubtitle method-title">filesWithBasePath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returs a <a href="#//api/name/files">files</a> array with the base path already added (if there is one)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)filesWithBasePath</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fillCache" title="fillCache"></a>
+	<h3 class="subsubtitle method-title">fillCache</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates internal cache for faster display. override to provide custom caching. usually called in a thread.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)fillCache</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasPageInfoForPage:" title="hasPageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">hasPageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES of pageInfo for page is available</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasPageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/nearestPageInfoForPage:" title="nearestPageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">nearestPageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Makes a search beginning from page 0 for the nearest pageInfo. Does not calculate/block the thread.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)nearestPageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageContentForPage:" title="pageContentForPage:"></a>
+	<h3 class="subsubtitle method-title">pageContentForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Can be overridden to provide custom text. Defaults to nil.
+if this returns nil for a site, we&rsquo;ll try to extract text ourselves.
+Note: If you return text here, text highlighting cannot be used for this page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pageContentForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageCount" title="pageCount"></a>
+	<h3 class="subsubtitle method-title">pageCount</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return pdf page count</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)pageCount</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageInfoForPage:" title="pageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">pageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageInfoForPage:pageRef:" title="pageInfoForPage:pageRef:"></a>
+	<h3 class="subsubtitle method-title">pageInfoForPage:pageRef:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+You can override this if you need to manually change the rotation value of a page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)<em>page</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageLabelForPage:substituteWithPlainLabel:" title="pageLabelForPage:substituteWithPlainLabel:"></a>
+	<h3 class="subsubtitle method-title">pageLabelForPage:substituteWithPlainLabel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Page labels (NSString) for the current document.
+Might be nil if PageLabels isn&rsquo;t set in the PDF.
+If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pageLabelForPage:(NSUInteger)<em>page</em> substituteWithPlainLabel:(BOOL)<em>substite</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageNumberForPage:" title="pageNumberForPage:"></a>
+	<h3 class="subsubtitle method-title">pageNumberForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)pageNumberForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pathForPage:" title="pathForPage:"></a>
+	<h3 class="subsubtitle method-title">pathForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)pathForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rectBoxForPage:" title="rectBoxForPage:"></a>
+	<h3 class="subsubtitle method-title">rectBoxForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
+maybe needs a pdf lock if not already cached.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGRect)rectBoxForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rotationForPage:" title="rotationForPage:"></a>
+	<h3 class="subsubtitle method-title">rotationForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Rotation for specified page. cached. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (int)rotationForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldDrawOverlayRectForSize:" title="shouldDrawOverlayRectForSize:"></a>
+	<h3 class="subsubtitle method-title">shouldDrawOverlayRectForSize:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return true if you want drawOverlayRect to be called.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)shouldDrawOverlayRectForSize:(PSPDFSize)<em>size</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/thumbnailPathForPage:" title="thumbnailPathForPage:"></a>
+	<h3 class="subsubtitle method-title">thumbnailPathForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)thumbnailPathForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unlockWithPassword:" title="unlockWithPassword:"></a>
+	<h3 class="subsubtitle method-title">unlockWithPassword:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Passes a <a href="#//api/name/password">password</a> to unlock encrypted documents.
+If the <a href="#//api/name/password">password</a> is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
+If you attempt to unlock an already unlocked document, one of the following occurs:
+If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The <a href="#//api/name/password">password</a> string is ignored.
+If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the <a href="#//api/name/password">password</a>
+string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)unlockWithPassword:(NSString *)<em>password</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-08-01)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
