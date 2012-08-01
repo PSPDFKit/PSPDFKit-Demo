@@ -13,6 +13,8 @@
 #import "PSPDFSettingsBarButtonItem.h"
 #import "PSPDFMetadataBarButtonItem.h"
 
+NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianceCalculated";
+
 @interface PSPDFExampleViewController () {
     BOOL hasLoadedLastPage_;
 }
@@ -32,13 +34,15 @@
         
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aspectRatioVarianceCalculated:) name:kPSPDFAspectRatioVarianceCalculated object:nil];
                         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // use a dispatch thread because calculating the aspectRatioVariance is expensive.
+        // As of iOS5, this could be solved more elegant with __weak. (but we still support 4.3 here)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            CGFloat variance = [document aspectRatioVariance];
+            CGFloat __unused variance = [document aspectRatioVariance];
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.clipToPageBoundaries = variance < 0.2f;
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFAspectRatioVarianceCalculated object:document];
             });
         });
 
@@ -92,6 +96,12 @@
 
 - (void)close:(id)sender {
     [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void)aspectRatioVarianceCalculated:(NSNotification *)notification {
+    if (notification.object == self.document) {
+        self.clipToPageBoundaries = [self.document aspectRatioVariance] < 0.2f;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
