@@ -56,7 +56,6 @@
 		78BE31AB15B8D65C00FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31A615B8D65C00FBB125 /* ACKNOWLEDGEMENTS */; };
 		78BE31AC15B8D65C00FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31A715B8D65C00FBB125 /* LICENSE */; };
 		78BE31AD15B8D65C00FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31A815B8D65C00FBB125 /* PSPDFKit.bundle */; };
-		78BE31AE15B8D65C00FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31A915B8D65C00FBB125 /* PSPDFKit.xcconfig */; };
 		78C22AFA148036FF0092B889 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78C22AF9148036FF0092B889 /* NightOwl.m4a */; };
 		78D6F36915BD5C5900D5BF83 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D6F35615BD5C5900D5BF83 /* AFHTTPClient.m */; };
 		78D6F36A15BD5C5900D5BF83 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D6F35815BD5C5900D5BF83 /* AFHTTPRequestOperation.m */; };
@@ -446,7 +445,7 @@
 		783C779713D982B100CF7C9D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
 			buildConfigurationList = 783C779A13D982B100CF7C9D /* Build configuration list for PBXProject "PSPDFKitExample" */;
@@ -494,7 +493,6 @@
 				78BE31AB15B8D65C00FBB125 /* ACKNOWLEDGEMENTS in Resources */,
 				78BE31AC15B8D65C00FBB125 /* LICENSE in Resources */,
 				78BE31AD15B8D65C00FBB125 /* PSPDFKit.bundle in Resources */,
-				78BE31AE15B8D65C00FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
