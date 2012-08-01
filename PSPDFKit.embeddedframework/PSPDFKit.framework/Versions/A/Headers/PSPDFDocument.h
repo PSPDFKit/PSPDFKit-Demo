@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 
-@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider;
+@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmark;
 
 /// Represents a single, logical, PDF document. (one or many PDF files)
 /// Can be overriden to support custom collections.
@@ -95,6 +95,15 @@
 /// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
 @property(nonatomic, copy) NSString *uid;
 
+/// Contains bookmarks (PSPDFBookmark) for the document. 
+@property(nonatomic, copy) NSArray *bookmarks;
+/// Convenience methods. Will return NO if page is invalid or bookmark doesn't exist.
+/// If you manually add bookmarks, you might need to call createToolbarAnimated to update.
+- (BOOL)addBookmarkForPage:(NSUInteger)page;
+- (BOOL)removeBookmarkForPage:(NSUInteger)page;
+/// Returns the bookmark if page has a bookmark.
+- (PSPDFBookmark *)bookmarkForPage:(NSUInteger)page;
+
 /// @name Annotations
 
 /// Can PDF annotations be embedded?
@@ -112,8 +121,13 @@
 /// Might need file operations to parse the document (slow)
 - (NSUInteger)pageCount;
 
-/// Return pdf page number. this may be different if a collection of pdfs is used a one big document. Page starts at 0.
+/// Return PDF page number (PDF pages start at 1).
+/// This may be different if a collection of pdfs is used a one big document. Page starts at 0.
 - (NSUInteger)pageNumberForPage:(NSUInteger)page;
+
+/// Equal to pageNumberForPage, but returns zero-based compensated page.
+/// (Essentially pageNumberForPage-1)
+- (NSUInteger)compensatedPageForPage:(NSUInteger)page;
 
 /// Returns YES of pageInfo for page is available
 - (BOOL)hasPageInfoForPage:(NSUInteger)page;
@@ -151,6 +165,11 @@
 /// Creates internal cache for faster display. override to provide custom caching. usually called in a thread.
 - (void)fillCache;
 
+/// Path where backupable cache data like bookmarks are saved.
+/// Defaults to <AppDirectory>/Library/PrivateDocuments/PSPDFKit. Cannot be nil.
+/// Will always be appended by UID. Don't manually append UID.
+@property(nonatomic, copy) NSString *cacheDirectory;
+
 
 /// @name Design and hints for PSPDFViewController
 
@@ -177,6 +196,7 @@
 
 /// Set a base password to be used for all files in this document (if the document is PDF encrypted).
 /// Note: relays the password to all files in the .files array.
+/// The password will be ignored if the document is not password protected.
 @property(nonatomic, copy) NSString *password;
 
 /// Returns YES if the document is valid (if it has at least one page)
@@ -231,6 +251,18 @@
 /// Can be overridden to use a subclassed annotation parser.
 /// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
+
+/**
+    Returns the annotation parser for a specific page.
+    page is needed if your PSPDFDocument contains multiple PSPDFDocumentProviders.
+    (thus, multiple sources like multiple files or a file and a NSData object)
+ 
+    If you use [annotationParser annotationsForPage:type:] or the other methods in there,
+    be sure to use a compensated page index. Pages within annotationParser are file relative.
+ 
+    Use NSUInteger compensatedPage = [self compensatedPageForPage:page].
+ */
+- (PSPDFAnnotationParser *)annotationParserForPage:(NSUInteger)page;
 
 /// Page labels (NSString) for the current document.
 /// Might be nil if PageLabels isn't set in the PDF.

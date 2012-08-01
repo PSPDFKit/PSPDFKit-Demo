@@ -9,7 +9,13 @@
 #import "PSPDFDrawView.h"
 #import "PSPDFSelectionView.h"
 
-@class PSPDFViewController;
+@class PSPDFViewController, PSPDFAnnotationToolbar;
+
+@protocol PSPDFAnnotationToolbarDelegate <NSObject>
+
+- (void)annotationToolbarDidHide:(PSPDFAnnotationToolbar *)annotationToolbar;
+
+@end
 
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarNone,
@@ -31,6 +37,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 /// Hide the toolbar.
 - (void)hideToolbarAnimated:(BOOL)animated completion:(dispatch_block_t)completionBlock;
+
+/// Annotation Toolbar delegate.
+@property(nonatomic, strong) id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
 @property(nonatomic, ps_weak) PSPDFViewController *pdfController;

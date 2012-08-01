@@ -43,8 +43,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 /// Clears highlights when controller disappeares. Defaults to NO.
 @property(nonatomic, assign) BOOL clearHighlightsWhenClosed;
 
-/// Minimum search length. Defaults to 3.
-/// Smaller numbers might not be a good idea (performance-wise)
+/// Minimum search length. Defaults to 2.
 @property(nonatomic, assign) NSUInteger minimumSearchLength;
 
 // Updates the search result cell. Can be subclassed.
