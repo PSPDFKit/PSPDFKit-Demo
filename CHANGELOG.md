@@ -1,5 +1,15 @@
 # Changelog
 
+__v1.10.5 - 1/Aug/2012__
+
+*  Add a workaroung for unusable back buttton in a certain unreleased version of iOS. (This is most likely a temporal iOS bug)
+*  Improve PSPDFCloseBarButtonItem to be context-aware if we should close a modal view or pop from the navigation stack.
+*  Fixes a issue where zooming was difficult on pages with lots of PDF link annotations.
+*  Fixes two harmless warnings with Xcode 4.4.
+*  Fixes the delete all tabs action sheet in the TabbedExample on iPhone.
+*  Fixes a certain issue with embedding PSPDFViewController.
+*  Fixes a rare memory leak when image decompression fails.
+
 __v1.10.4 - 12/Jul/2012__
 
 *  New delegates: shouldScrollToPage, resolveCustomAnnotationPathToken.
@@ -58,7 +68,7 @@ __v1.10.1 - 29/May/2012__
 *  Improvement: Don't reload frame if we're in the middle of view disappearing.
 *  Improvement: Use default white statusBar with inline browser on iPhone.
 *  Improves the document<->thumbnail transition with certain non-uniformed sized documents and pageCurl mode.
-*  Fixes a case where the PSPDFPositionView wasn't correctly laid out. 
+*  Fixes a case where the PSPDFPositionView wasn't correctly laid out.
 *  Fixes a problem where the close button was disabled when no document was set.
 *  Fixes a regression regarding pageCurl mode and activated isFittingWidth.
 *  Fixes a regression regarding the viewModeButtonItem not being displayed correctly on appcelerator.
@@ -317,7 +327,7 @@ __v1.9.0 - 13/Feb/2012__
 Note: For pageCurl, Apple's UIPageViewController is used. This class is pretty new and still buggy.
 I had to apply some private API fixes to make it work. Those calls are obfuscated and AppStore-safe.
 
-If you have any reasons to absolutely don't use those workarounds, you can add 
+If you have any reasons to absolutely don't use those workarounds, you can add
 _PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API_ in the preprocessor defines.  (only in the source code variant)
 This will also disable the pageCurl feature as the controller will crash pretty fast when my patches are not applied.
 
@@ -486,7 +496,7 @@ __v1.6.14 - 22/Oct/2011__
 
 __v1.6.13 - 22/Oct/2011__
 
-*  removed the zeroing weak reference helper. If you use custom delegates for PSPDFCache, you now need to manually deregister them. Upside: better management of delegates. 
+*  removed the zeroing weak reference helper. If you use custom delegates for PSPDFCache, you now need to manually deregister them. Upside: better management of delegates.
 
 __v1.6.12 - 19/Oct/2011__
 
@@ -674,7 +684,7 @@ __v1.3.2 - 11/Aug/2011__
 __v1.3.1 - 09/Aug/2011__
 
 *  Add optional vertical scrolling (pageScrolling property)
-*  Adds animation for iOS Simulator 
+*  Adds animation for iOS Simulator
 *  improve thumbnail loading speed
 *  fixes memory pressure when using big preprocessed external thumbnails
 *  fixes a regression with zoomScale introduced in 1.3
@@ -702,7 +712,7 @@ __v1.2.3 - 05/Aug/2011__
 
 *  properly rotate pdfs if they have the /rotated property set
 *  add option to disable outline in document
-*  outline will be cached for faster access 
+*  outline will be cached for faster access
 *  outline element has now a level property
 *  fixes a bug with single-page pdfs
 *  fixes a bug with caching and invalid page numbers
@@ -731,6 +741,6 @@ __v1.1 - 03/Aug/2011__
 *  fixes a warning log message when no external thumbs are used
 *  fixes some potential crashes in PSPDFCache
 
-__v1.0 - 01/Aug/2011__  
+__v1.0 - 01/Aug/2011__
 
 *  First public release

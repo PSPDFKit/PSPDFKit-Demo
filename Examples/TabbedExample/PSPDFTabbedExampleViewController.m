@@ -31,7 +31,11 @@ const char *clearAllActionSheetToken;
             objc_removeAssociatedObjects(sender);
         };
         objc_setAssociatedObject(sender, clearAllActionSheetToken, actionSheet, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [actionSheet showFromBarButtonItem:sender animated:YES];
+        if (PSIsIpad()) {
+            [actionSheet showFromBarButtonItem:sender animated:YES];
+        }else {
+            [actionSheet showInView:self.view];
+        }
     }
 }
 
@@ -40,18 +44,26 @@ const char *clearAllActionSheetToken;
 
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithPDFViewController:pdfViewController])) {
-        
+
         // enable automatic peristance and restore the last state
         self.enableAutomaticStatePersistance = YES;
-        
+
         // on iPhone, we want a backButton here.
         UIBarButtonItem *clearAllButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearAll:)];
         if (PSIsIpad()) {
             PSPDFAddDocumentsBarButtonItem *addDocumentsButton = [[PSPDFAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
             self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObjects:addDocumentsButton, clearAllButton, nil];
         }else {
-            self.navigationItem.leftItemsSupplementBackButton = YES;
             self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
+            self.navigationItem.leftItemsSupplementBackButton = YES;
+        }
+
+        // iOS6B3 has a strange bug where the backButton is not clockable (has a width of 0)
+        if (kCFCoreFoundationVersionNumber >= 788) {
+            NSMutableArray *leftBarButtonItems = [NSMutableArray arrayWithArray:self.pdfViewController.leftBarButtonItems];
+            [leftBarButtonItems insertObject:self.pdfViewController.closeButtonItem atIndex:0];
+            self.pdfViewController.leftBarButtonItems = leftBarButtonItems;
+            self.navigationItem.leftItemsSupplementBackButton = NO;
         }
     }
     return self;
@@ -62,7 +74,7 @@ const char *clearAllActionSheetToken;
 
 - (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeDocuments:(NSArray *)newDocuments {
     NSLog(@"willChangeDocuments: %@", newDocuments);
-    
+
     // return YES to allow the change
     return YES;
 }
@@ -73,13 +85,13 @@ const char *clearAllActionSheetToken;
 
 - (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeVisibleDocument:(PSPDFDocument *)newDocument {
     NSLog(@"willChangeVisibleDocument: %@", newDocument);
-    
+
     // return YES to allow the change
     return YES;
 }
 
 - (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeVisibleDocument:(PSPDFDocument *)oldDocument {
-    NSLog(@"didChangeVisibleDocument: %@ (old)", oldDocument);   
+    NSLog(@"didChangeVisibleDocument: %@ (old)", oldDocument);
 }
 
 @end
