@@ -68,12 +68,32 @@
 /// If this is unimplemented, we try to find the PDF ourself with using the current document's basePath.
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
-/// If user tapped within page bounds, this will notify you.
-/// return YES if this touch was processed by you and need no further checking by PSPDFKit.
-/// Note: PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
-/// Note: Before using this, you might consider just adding custom UIView's on top of a PSPDFPageView.
-/// Note: Will not send events when thumbnailView is visible.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
+/**
+ didTapOnPageView will be called if a user taps on the screen. Taps outside pageView will be reported too (with negative offset)
+ Return YES if you want to set this touch as processed; this will disable automatic touch processing like showing/hiding the HUDView or scrolling to the next/previous page.
+ 
+ Note: This will not send events when we are in the thumbnail view.
+
+ PSPDFPageCoordinates has been replaced by just CGPoint viewPoint.
+ You can easily calculate other needed coordinates:
+ e.g. to get the pdfPoint:    [pageView convertViewPointToPDFPoint:viewPoint]
+                 screenPoint: [pageView convertPoint:tapPosition fromView:pageView]
+                 zoomScale:    pageView.scrollView.zoomScale
+                 pageInfo:     pageView.pageInfo
+ */
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint;
+
+
+/**
+    Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
+ 
+    Default handling is (if available) text selection; showing the magnification-loupe.
+ 
+    The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.
+ 
+    Note that there may be unexpected results if you only capture *some* events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.
+ */
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
 /* annotations */
 
@@ -81,8 +101,18 @@
 /// if NO is returned, viewForAnnotation will not be called.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
-/// Delegate for tapping on an annotation. If you don't implement this or return false, it will be processed by default action (scroll to page, ask to open Safari)
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation page:(NSUInteger)page info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates;
+/**
+    Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
+ 
+    Return YES to override the default action and custom-handle this.
+    Default actions might be scroll to target page, open Safari, show a menu, ...
+ 
+    Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
+ 
+    annotationPoint is the point relative to PSPDFAnnotation, in PDF coordinate space.
+    viewPoint is the point relative to the PSPDFPageView.
+ */
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
 
 /// Returns a pre-generated annotationView that can be modified before being added to the view.
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)

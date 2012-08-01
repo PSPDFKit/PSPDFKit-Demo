@@ -15,7 +15,7 @@
 /// If disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
 #define kPSPDFKitAllowMemoryDebugging
 
-// Newer runtimes define this, here's a fallback for the iOS5 SDK.
+// Newer runtimes defines this, here's a fallback for the iOS5 SDK.
 #ifndef NS_ENUM
 #define NS_ENUM(_type, _name) _type _name; enum
 #define NS_OPTIONS(_type, _name) _type _name; enum

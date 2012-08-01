@@ -5,10 +5,10 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFKitGlobal.h"
+#import "PSPDFBookmark.h"
 
 /// Represents a single outline/table of contents element.
-@interface PSPDFOutlineElement : NSObject <NSCopying, NSCoding>
+@interface PSPDFOutlineElement : PSPDFBookmark <NSCopying, NSCoding>
 
 /// Init with title, page, child elements and deepness level.
 - (id)initWithTitle:(NSString *)title page:(NSUInteger)page relativePath:(NSString *)relativePath children:(NSArray *)children level:(NSUInteger)level;
@@ -18,9 +18,6 @@
 
 /// Outline title.
 @property(nonatomic, strong) NSString *title;
-
-/// Page reference.
-@property(nonatomic, assign) NSUInteger page;
 
 /// Set if outline to a different PDF document. Path is relative to current document.
 @property(nonatomic, copy) NSString *relativePath;

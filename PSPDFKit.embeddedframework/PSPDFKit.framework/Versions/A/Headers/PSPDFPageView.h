@@ -128,6 +128,9 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Shortcut to access the current boxRect of the set page.
 @property(nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
 
+/// Return YES if the pdfPage is displayed in a double page mode setup on the right side.
+@property(nonatomic, assign, readonly, getter=isRightPage) BOOL rightPage;
+
 
 /// @name Shadow settings
 

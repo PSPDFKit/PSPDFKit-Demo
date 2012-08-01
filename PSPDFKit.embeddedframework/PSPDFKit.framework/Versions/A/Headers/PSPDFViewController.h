@@ -12,9 +12,10 @@
 #import "PSPDFPasswordView.h"
 #import "PSPDFOutlineViewController.h"
 #import "PSPDFTransitionProtocol.h"
+#import "PSCollectionView.h"
 
 @protocol PSPDFViewControllerDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFGridView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSCollectionView;
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
@@ -79,7 +80,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, PSCollectionViewDataSource, PSCollectionViewDelegate>
 
 /// @name Initialization
 
@@ -303,6 +304,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Show the annotation menu.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *annotationButtonItem;
 
+/// Show the bookmarks menu.
+@property(nonatomic, strong, readonly) PSPDFBarButtonItem *bookmarkButtonItem;
+
 /// Bar button items displayed at the left of the toolbar
 /// Must be UIBarButtonItem or PSPDFBarButtonItem instances
 /// Defaults to (closeButtonItem) if view is presented modally.
@@ -378,7 +382,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Usually you want this, unless your document is variable sized.
 @property(nonatomic, assign) BOOL clipToPageBoundaries;
 
-/// Maximum zoom scale for the scrollview. Defaults to 8.0. Set before creating the view.
+/// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.
 @property(nonatomic, assign) float maximumZoomScale;
 
 /// Page padding width between single/double pages. Defaults to 20.
@@ -424,7 +428,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 - (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated;
 
 /// The UIGridView/PSPDFGridView thumbnail view.
-@property(nonatomic, strong, readonly) UIScrollView *gridView;
+@property(nonatomic, strong, readonly) PSCollectionView *gridView;
 
 /// Change thumbnail size. Default is 170x220.
 @property(nonatomic, assign) CGSize thumbnailSize;
@@ -475,7 +479,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Override if you're changing the toolbar to your own.
 /// The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.
 - (void)createToolbarAnimated:(BOOL)animated;
-- (void)updateToolbarsAnimated:(BOOL)animated;
+- (void)updateToolbarAnimated:(BOOL)animated;
+
+/// Request to update a specific barButton. Might be more efficent than using createToolbar.
+- (void)updateBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;

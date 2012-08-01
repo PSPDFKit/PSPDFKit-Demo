@@ -10,6 +10,10 @@
 #error This project must be compiled with ARC (Xcode 4.4+ with LLVM 4 and above)
 #endif
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_4_3
+#error PSPDFKit supports iOS 4.3 upwards.
+#endif
+
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
@@ -36,6 +40,7 @@
 #import "PSPDFPasswordView.h"
 #import "PSPDFAlertView.h"
 #import "PSPDFActionSheet.h"
+#import "PSPDFBookmark.h"
 
 // search
 #import "PSPDFTextSearch.h"
@@ -47,9 +52,10 @@
 // thumbnails
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailGridViewCell.h"
-#import "PSPDFGridView.h"
-#import "PSPDFGridViewLayoutStrategies.h"
 #import "UIImage+PSPDFKitAdditions.h"
+#import "PSCollectionView.h"
+#import "PSCollectionViewCell.h"
+#import "PSCollectionViewFlowLayout.h"
 
 // outline
 #import "PSPDFOutlineParser.h"
