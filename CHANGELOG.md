@@ -35,6 +35,10 @@ Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: h
 *  PSPDFViewController now has a renderingMode property; fine-tune cache/thumbnail view usage. PSPDFPageRenderingFullPageBlocking is *great *for pageCurl mode.
 *  New delegate: - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset -> completes dragging delegates; zooming delegates were already available in PSPDFKit v1.
 *  Add overrideClassNames to PSPDFDocument.
+*  Table of Contents now shows titles in multiple lines if too long.
+*  The PSPDFKit image annotation now properly displays and animates animated GIFs.
+*  A long-press on a PDF link annotation now shows the URL/Document/Page target in a popover.
+*  Fixes a problem in the annotation parser where some named page links failed to resolve properly.
 *  Lots of other minor and major changes.
 
 __v1.10.4 - x/Jul/2012__
