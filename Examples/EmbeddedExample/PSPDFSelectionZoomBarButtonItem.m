@@ -11,7 +11,6 @@
 @end
 
 @implementation PSPDFSelectionZoomBarButtonItem {
-    PSPDFTransparentToolbar *_toolbar;
     PSPDFSelectionView *_selectionView;
 
     // state properties
@@ -23,30 +22,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonitem
 
-// a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
-- (UIToolbar *)toolbar {
-    if (!_toolbar) {
-        _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-        _toolbar.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
-        _toolbar.tintColor = self.pdfController.tintColor;
-        [self updateEyeButton];
-    }
-    return _toolbar;
-}
-
 - (BOOL)isAvailable {
-    return self.pdfController.viewMode == PSPDFViewModeDocument;
+    return [super isAvailable] && self.pdfController.viewMode == PSPDFViewModeDocument;
 }
 
-- (UIView *)customView {
-    return self.toolbar;
+- (UIImage *)image {
+     return _selectionView ? [UIImage imageNamed:@"eye-deactivate"] : [UIImage imageNamed:@"eye"];
+}
+
+- (NSString *)actionName {
+    return PSPDFLocalize(@"Zoom to Area");
 }
 
 - (void)updateEyeButton {
-    UIImage *buttonItem = _selectionView ? [UIImage imageNamed:@"eye-deactivate"] : [UIImage imageNamed:@"eye"];
-    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:buttonItem style:UIBarButtonItemStylePlain target:self action:@selector(selectionZoomAction:)];
-    [self.toolbar setItems:@[flexibleSpace, barButtonItem, flexibleSpace] animated:YES];
+    [self.pdfController updateBarButtonItem:self animated:YES];
 }
 
 - (BOOL)cleanup {
@@ -62,7 +51,8 @@
     return NO;
 }
 
-- (void)selectionZoomAction:(PSPDFBarButtonItem *)sender {
+// override default handler
+- (void)action:(PSPDFBarButtonItem *)sender {
     if (![self cleanup]) {
         // diable various features to lock UI
         _savedViewLock = self.pdfController.isViewLockEnabled;
@@ -84,7 +74,6 @@
 #pragma mark - PSPDFSelectionViewDelegate
 
 - (void)selectionView:(PSPDFSelectionView *)selectionView finishedWithSelectedRect:(CGRect)rect {
-
     [self.pdfController zoomToRect:rect animated:YES];
     [self cleanup];
     [self updateEyeButton];
