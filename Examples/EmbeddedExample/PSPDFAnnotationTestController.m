@@ -30,16 +30,23 @@
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"movie"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         self.pageTransition = PSPDFPageCurlTransition;
+        self.renderingMode = PSPDFPageRenderingFullPageBlocking;
         self.linkAction = PSPDFLinkActionInlineBrowser;
-        self.statusBarStyleSetting = PSPDFStatusBarDefault;
+        self.statusBarStyleSetting = PSPDFStatusBarSmartBlack;
         self.tintColor = [UIColor orangeColor];
         self.maximumZoomScale = 100; // as we have the selection zoom-in tool
-        
         self.leftBarButtonItems = nil; // hide close button
         
         PSPDFBarButtonItem *playButtonItem = [[PSPDFPlayButtonItem alloc] initWithPDFViewController:self];
         PSPDFSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSPDFSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
-        self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.bookmarkButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+
+        if (PSIsIpad()) {
+            self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.bookmarkButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+        }else {
+            // not enough space on the iPhone; move some features to additonalRightBarButtonItems
+            self.rightBarButtonItems = @[playButtonItem, self.bookmarkButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+            self.additionalRightBarButtonItems = @[selectionZoomButtonItem, self.openInButtonItem, self.printButtonItem];
+        }
     }
     return self;
 }
