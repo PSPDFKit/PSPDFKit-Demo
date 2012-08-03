@@ -25,7 +25,7 @@
 // a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
 - (UIToolbar *)toolbar {
     if (!_toolbar) {
-        _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0, 0, 22, 44)];
+        _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0.f, 0.f, 22.f, 44.f)];
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _toolbar.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
         _toolbar.tintColor = self.pdfController.tintColor;
@@ -36,6 +36,13 @@
 
 - (UIView *)customView {
     return self.toolbar;
+}
+
+- (void)updateBarButtonItem {
+    // it's quite tricky to get the height right.
+    CGRect toolbarFrame = _toolbar.frame;
+    toolbarFrame.size.height = (PSIsIpad() || UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) ? 44 : 32;
+    _toolbar.frame = toolbarFrame;
 }
 
 - (void)updatePlayButton {
