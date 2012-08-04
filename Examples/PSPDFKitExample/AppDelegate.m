@@ -9,6 +9,8 @@
 #import "PSPDFGridController.h"
 #import "PSPDFSettingsController.h"
 #import "SDURLCache.h"
+#import "BITHockeyManager.h"
+#import "LocalyticsSession.h"
 
 // can also be read from Info.plist, etc...
 #define kAppVersionKey @"AppVersion"
@@ -47,7 +49,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIApplicationDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
     // setup disk saving url cache
     SDURLCache *URLCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
                                                          diskCapacity:1024*1024*5 // 5MB disk cache
@@ -99,6 +102,17 @@
     // after a version upgrade, reset the cache
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self clearCacheOnUpgrade];
+
+        // HockeyApp is a *great* service to manage crashes. It's well worth the money.
+        // If you use it, download your own, current version of the HockeySDK.
+        // This version has been modified to work w/o a dSYM (but will not show line numbers)
+        // http://hockeyapp.net
+        [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
+        [[BITHockeyManager sharedHockeyManager] startManager];
+
+        // Localytics helps me to track PSPDFKit-DEMO downloads.
+        // Remove this or replace with your own Localytics ID if you are using PSPDFKitExample as a template for your own app.
+        [[LocalyticsSession sharedLocalyticsSession] startSession:@"3b7cb4552ea954d48d68f0e-3451f502-de39-11e1-4ab8-00ef75f32667"];
     });
 
     // useful for debugging
