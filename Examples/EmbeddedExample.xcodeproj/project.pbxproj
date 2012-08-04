@@ -45,6 +45,7 @@
 		78BE324F15B8E30F00FBB125 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE324E15B8E30F00FBB125 /* CoreLocation.framework */; };
 		78BF7544141D37D300FF02DF /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BF753B141D37D300FF02DF /* star.png */; };
 		78D5959D158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D5959B158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m */; };
+		78EB4C8615CD2A72002A67E0 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78EB4C8515CD2A72002A67E0 /* exampleimage.jpg */; };
 		DA5F61EF156D20EF00B11285 /* PSPDFPlayButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5F61EE156D20EF00B11285 /* PSPDFPlayButtonItem.m */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,7 @@
 		78BF753B141D37D300FF02DF /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		78D5959B158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFLegacyEmbeddedViewController.m; sourceTree = "<group>"; };
 		78D5959C158EB4F100E09388 /* PSPDFLegacyEmbeddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFLegacyEmbeddedViewController.h; sourceTree = "<group>"; };
+		78EB4C8515CD2A72002A67E0 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		DA5F61ED156D20EF00B11285 /* PSPDFPlayButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFPlayButtonItem.h; sourceTree = "<group>"; };
 		DA5F61EE156D20EF00B11285 /* PSPDFPlayButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFPlayButtonItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -210,6 +212,7 @@
 		78BF7532141D37D300FF02DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78EB4C8515CD2A72002A67E0 /* exampleimage.jpg */,
 				7850665B15BADD3900E6679E /* eye-deactivate.png */,
 				7850665C15BADD3900E6679E /* eye-deactivate@2x.png */,
 				7850665D15BADD3900E6679E /* eye.png */,
@@ -349,6 +352,7 @@
 				7850666015BADD3900E6679E /* eye-deactivate@2x.png in Resources */,
 				7850666115BADD3900E6679E /* eye.png in Resources */,
 				7850666215BADD3900E6679E /* eye@2x.png in Resources */,
+				78EB4C8615CD2A72002A67E0 /* exampleimage.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
