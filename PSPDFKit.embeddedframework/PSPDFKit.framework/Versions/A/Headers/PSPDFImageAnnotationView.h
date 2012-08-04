@@ -1,9 +1,8 @@
 //
-//  PSPDFImageAnnotation.h
+//  PSPDFImageAnnotationView.h
 //  PSPDFKit
 //
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
-//  Thanks to Niklas Saers / Trifork A/S for the contribution.
 //
 
 #import "PSPDFLinkAnnotationBaseView.h"

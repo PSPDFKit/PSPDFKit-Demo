@@ -95,7 +95,32 @@
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
-/* annotations */
+
+/* Text Selection: TODO */
+
+/// Called when text is about to be selected. Return NO to disable text selection.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *) withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+
+/// Called after text has been selected.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+
+/**
+    Called before the menu for text selection is displayed.
+    All coordinates are in view coordinate space.
+ 
+    At this point, the menuItems have already been set at UIMenuController.
+    if you want to customize the menu, use 
+    [[UIMenuController sharedMenuController] setMenuItems:]
+    and set a custom menu.
+ 
+    Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
+
+    Default is YES if not implemented.
+*/
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect;
+
+
+/* Annotations */
 
 /// Called before a annotation view is created and added to a page. Defaults to YES if not implemented.
 /// if NO is returned, viewForAnnotation will not be called.

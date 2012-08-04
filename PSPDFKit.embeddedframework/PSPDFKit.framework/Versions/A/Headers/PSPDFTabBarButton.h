@@ -10,6 +10,7 @@
 @interface PSPDFTabBarCloseButton : UIButton
 @end
 
+/// One tab-bar element.
 @interface PSPDFTabBarButton : UIButton
 
 /// Mark select/select state.
@@ -24,5 +25,8 @@
 
 /// Minimum tab width. Defaults to 0.
 @property(nonatomic, assign) CGFloat minTabWidth;
+
+/// Maximm tab width. Defaults to 300.
+@property(nonatomic, assign) CGFloat maxTabWidth;
 
 @end

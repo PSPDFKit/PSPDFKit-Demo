@@ -41,14 +41,34 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// link if target is a page if siteLinkTarget is nil.
 @property(nonatomic, assign) NSUInteger pageLinkTarget;
 
-/// link if target is a website.
+/** 
+    Link if target is a website.
+ 
+    If you createa  PSPDFLinkAnnotation in code, setting the siteLinkTarget will invoke the parsing at the time you're adding the annotation to the PSPDFAnnotationParser.
+ 
+    After parsing, the linkType will be set and the generate URL will be set.
+ 
+    If you don't want this processing, directly set the URL and the linkType and don't use siteLinkTarget.
+ 
+    An example for a siteLinkTarget to an image annotation would be:
+    PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
+    annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
+    // annotation frame is in PDF coordinate space. Use pageRect for the full page.
+    annotation.boundingBox = [self.document pageInfoForPage:0].pageRect;
+    // annotation.page/document is auomatically set.
+    [self.document.annotationParser addAnnotations:@[annotation] forPage:0];
+ 
+    Note: Do not add NSURL-encoded strings to siteLinkTarget.( no %20 - real space!)
+    If you convert a path fron NSURL, use [url path] and NOT [url description].
+    (Actually, never use url description, except when you're debugging)
+*/
 @property(nonatomic, strong) NSString *siteLinkTarget;
 
-/// URL for PSPDFLinkAnnotationVideo.
+/// URL (generated from the siteLinkTarget after parsing)
 @property(nonatomic, strong) NSURL *URL;
 
 /// A Link annotation might have multiple rects.
-@property (nonatomic, strong) NSArray *rects;
+@property(nonatomic, strong) NSArray *rects;
 
 /// If values between pspdfkit://[...] are set, this will contain those options.
 @property(nonatomic, strong) NSDictionary *options;
@@ -62,8 +82,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
 @property(nonatomic, assign) CGSize size;
 
-@property (nonatomic, assign) CGPDFDictionaryRef pageRef;
-@property (nonatomic, strong) NSString *destinationName;
-@property (nonatomic, strong) NSString *linkURL;
+@property(nonatomic, strong) NSString *destinationName;
+@property(nonatomic, strong) NSString *linkURL;
 
 @end
