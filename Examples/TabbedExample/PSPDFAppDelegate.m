@@ -42,7 +42,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)PDFDocumentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
     // create controller and merge new documents with last saved state.
     PSPDFTabbedViewController *tabbedViewController = [PSPDFTabbedExampleViewController new];
     [tabbedViewController restoreStateAndMergeWithDocuments:[NSArray arrayWithObject:document]];
