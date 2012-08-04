@@ -34,4 +34,8 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Access popover controller, if attached.
 @property(nonatomic, strong) UIPopoverController *popoverController;
 
+// Customize the icon toolbar
+@property(nonatomic, assign) UIBarStyle barStyle;
+@property(nonatomic, strong) UIColor *tintColor;
+
 @end

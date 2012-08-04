@@ -61,7 +61,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
 - (CGRect)rectFromPDFArray:(CGPDFArrayRef)array;
 - (NSArray *)rectsFromQuadPointsInArray:(CGPDFArrayRef)quadPointsArray;
 
-/// Draw current annotation in context.
+/**
+    Draw current annotation in context.
+    Coordinates here are in PDF coordinate space.
+
+    Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
+    (For performance considerations, you want to do this once, not every time drawInContext is called)
+ */
 - (void)drawInContext:(CGContextRef)context;
 
 /// Returns NSData string represnetation in the PDF Standard.

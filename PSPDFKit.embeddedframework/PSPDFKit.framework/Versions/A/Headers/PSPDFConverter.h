@@ -83,7 +83,7 @@ extern inline NSString *PSPDFCopyNameFromPDFDict(CGPDFDictionaryRef pdfDict, NSS
 extern inline id PSPDFCopyPDFObject(CGPDFObjectRef objectRef);
 
 /// Same as PSPDFCopyPDFObject, but returns [NSNull null] instead of nil.
-extern inline id PSPDFCopyPDFObjectOrNSNull(CGPDFObjectRef objectRef);
+extern inline id PSPDFCopyPDFObjectOrNSNull(CGPDFObjectRef objectRef, NSMutableSet *ignoreSet);
 
 /// Converts a CGPDFDictionary into a NSDictionary.
 extern NSDictionary *PSPDFConvertPDFDictionary(CGPDFDictionaryRef pdfDict);

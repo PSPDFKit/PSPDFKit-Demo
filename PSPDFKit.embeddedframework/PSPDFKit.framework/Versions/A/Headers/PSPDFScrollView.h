@@ -104,6 +104,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 // Internal use for smooth rotations. Don't call unless you know exactly whay you're doing.
 - (void)switchPages;
 
+// Call to manually re-center the content.
+- (void)ensureContentIsCentered;
+
 // Return the actual PSPDFPageView behind point.
 - (PSPDFPageView *)pageViewForPoint:(CGPoint)point;
 

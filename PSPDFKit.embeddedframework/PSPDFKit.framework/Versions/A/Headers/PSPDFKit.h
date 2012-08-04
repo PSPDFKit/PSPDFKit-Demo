@@ -7,7 +7,7 @@
 
 // PSPDFKit is compatible with iOS 4.3+, but needs a modern Xcode.
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.4+ with LLVM 4 and above)
+#error This project must be compiled with ARC (Xcode 4.4+ with LLVM 4+)
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_4_3
