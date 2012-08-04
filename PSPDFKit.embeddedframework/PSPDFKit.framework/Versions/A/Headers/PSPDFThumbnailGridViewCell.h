@@ -23,7 +23,7 @@
 /// Allow a margin. Defaults to 0,0,0,0.
 @property(nonatomic, assign) UIEdgeInsets edgeInsets;
 
-/// Enables thumbnail shadow. defaults to YES.
+/// Enables thumbnail shadow. defaults to YES, except on old devices.
 @property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.

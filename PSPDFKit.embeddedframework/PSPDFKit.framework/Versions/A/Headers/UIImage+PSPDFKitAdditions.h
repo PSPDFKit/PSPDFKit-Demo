@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 - (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor opaque:(BOOL)opaque;
 
 /// Load images via path, looking automatically for a @2x option.
-+ (UIImage*)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;
++ (UIImage *)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;
 
 /// Load images via path, looking automatically for a @2x option.
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;
@@ -45,5 +45,8 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 
 /// Tint an image.
 - (UIImage *)pdpdf_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
+
+/// Loads an animated GIF. iOS5 upwards.
++ (UIImage *)pspdf_animatedGIFWithPath:(NSString *)path;
 
 @end

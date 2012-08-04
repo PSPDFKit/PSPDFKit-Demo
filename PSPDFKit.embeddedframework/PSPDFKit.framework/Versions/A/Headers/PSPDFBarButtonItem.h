@@ -7,10 +7,23 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFViewController;
+@class PSPDFViewController, PSPDFCopiedBarButtonItem;
 
-@interface PSPDFBarButtonItem : UIBarButtonItem <UIPopoverControllerDelegate>
+/**
+    Custom subclass that handles a UIBarButtonItem within the UINavigationBar of PSPDFViewController.
+ 
+    The toolbar system in PSPDFViewController is designed to work with both stock UIBarButtonItem and PSPDFBarButtonItem; but if you want to use additionalRightBarButtonItems (where the items are listed inside a UIActionSheet) you must use a subclass of PSPDFBarButtonItem.
+ 
+    PSPDFBarButtonItem also gives you access to the pdfController and ways to dynamically enable/disable your icon.
+ 
+    Call updateBarButtonItem:animated: if you need to change tie image/customView/systemImage after the barButton has been displayed.
+ 
+    Do not change target/selector - if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the PSPDFMoreBarButtonItem. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you'll never know what button has been selected.
 
+ */
+@interface PSPDFBarButtonItem : UIBarButtonItem <UIPopoverControllerDelegate, NSCopying>
+
+/// Global helper to dismiss any open popover handled by PSPDFViewController
 + (void)dismissPopoverAnimated:(BOOL)animated;
 + (BOOL)isPopoverVisible;
 
@@ -20,7 +33,7 @@
 /// PDF controller.
 @property (nonatomic, unsafe_unretained, readonly) PSPDFViewController *pdfController;
 
-/// Implement customView, image or systemItem in your subclass. Falls back to actionName.
+/// Implement customView, image or systemItem in your subclass (via overriding the method)
 - (UIView *)customView;
 - (UIImage *)image;
 - (UIBarButtonSystemItem)systemItem;
@@ -29,6 +42,7 @@
 - (UIImage *)landscapeImagePhone;
 
 /// Always implement actionName in your subclass.
+/// This is needed ot list the action in additionalRightBarButtonItems in an ActionSheet.
 - (NSString *)actionName;
 
 /// Override if you want something diffent than UIBarButtonItemStylePlain
@@ -53,12 +67,28 @@
 - (id)presentModalOrInPopover:(UIViewController *)viewController sender:(id)sender;
 - (void)dismissModalOrPopoverAnimated:(BOOL)animated;
 
-/// Peaks into certain Apple classes to get the internal UIPopoverController.
-/// Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
+/**
+    Peaks into certain Apple classes to get the internal UIPopoverController.
+    (e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
+
+    Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
+    (It's coded very defensely and this failing will just result in a minor UX degredation)
+ */
 + (UIPopoverController *)popoverControllerForObject:(id)object;
 
-/// Subclass this to build a complete custom action.
-/// By default, this calls present/dismissAnimated.
+/// Subclass to build a completely custom action, overriding the default present/dismiss calls.
 - (void)action:(PSPDFBarButtonItem *)sender;
+
+/// UIBarButtonItem is immutable; once initialized, images are fixed.
+/// This returns a current state copy and relays the events.
+- (PSPDFCopiedBarButtonItem *)toolbarCopy;
+
+@end
+
+// Because UIBarButtonItem is so inflexible, we need copies for image changes.
+@interface PSPDFCopiedBarButtonItem : UIBarButtonItem
+
+// Link to the original barButton.
+@property(nonatomic, strong, readonly) PSPDFBarButtonItem *originalBarButtonItem;
 
 @end

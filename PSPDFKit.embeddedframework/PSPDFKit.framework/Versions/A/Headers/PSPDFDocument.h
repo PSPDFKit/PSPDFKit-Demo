@@ -7,6 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
+#import "PSPDFAnnotation.h"
 
 @class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmark;
 
@@ -251,6 +252,17 @@
 /// Can be overridden to use a subclassed annotation parser.
 /// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
+
+/**
+    Shorthand to return annotation array for specified page.
+    This is a shortcut method that already compensates the page, replacing this code:
+
+    NSUInteger compensatedPage = [document compensatedPageForPage:self.page];
+    PSPDFAnnotationParser *annotationParser = [document annotationParserForPage:self.page];
+    NSArray *annotations = [annotationParser annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];
+
+ */
+- (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
 /**
     Returns the annotation parser for a specific page.

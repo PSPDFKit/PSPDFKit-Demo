@@ -11,17 +11,29 @@
 // that can be resolved to video, audio, image or browser views.
 typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationPage = 0,
-    PSPDFLinkAnnotationWebURL,
-    PSPDFLinkAnnotationVideo,
-    PSPDFLinkAnnotationYouTube,
-    PSPDFLinkAnnotationAudio,
-    PSPDFLinkAnnotationImage,
-    PSPDFLinkAnnotationBrowser,
+    PSPDFLinkAnnotationWebURL,  // 1
+    PSPDFLinkAnnotationVideo,   // 2
+    PSPDFLinkAnnotationYouTube, // 3
+    PSPDFLinkAnnotationAudio,   // 4
+    PSPDFLinkAnnotationImage,   // 5
+    PSPDFLinkAnnotationBrowser, // 6
     PSPDFLinkAnnotationCustom  /// any annotation format that is not recognized is custom, calling the delegate viewForAnnotation:
 };
 
-/// PDF Link Annotation (Page links, Web links, PSPDFKit custom links)
+/**
+    The PSPDFLinkAnnotation represents both classic PDF page/document/web links,
+    and more types not supported by other PDF readers (video, audio, image, etc)
+ 
+    PSPDFKit will automatically figure out the type for PDF link annotations loaded from a document, based on the file type. ("mpg" belongs to PSPDFLinkAnnotationVideo; a YouTube-URL to PSPDFLinkAnnotationYouTube, etc)
+ 
+    If you create a PSPDFLinkAnnotation at runtime, be sure to set the correct type and use the URL parameter for your link.
+ 
+    boundingBox defines the frame, in PDF space coordinates.
+ */
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
+
+/// Designated initializer for custom, at runtime created PSPDFLinkAnnotations.
+- (id)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
 
 /// PSPDFKit addition - set if the pspdfkit:// protocol is detected.
 @property(nonatomic, assign) PSPDFLinkAnnotationType linkType;
