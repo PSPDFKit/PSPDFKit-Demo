@@ -470,7 +470,7 @@
 
     NSString *searchString = _searchBar.text;
     if ([searchString length]) {
-        NSString *predicate = [NSString stringWithFormat:@"title CONTAINS '%@' || fileURL.path CONTAINS[cd] '%@'", searchString, searchString];
+        NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchString, searchString];
         _filteredData = [_filteredData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
     }else {
         _filteredData = [_filteredData copy];
