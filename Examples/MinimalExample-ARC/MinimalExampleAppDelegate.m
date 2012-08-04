@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //kPSPDFLogLevel = PSPDFLogLevelVerbose;
-    
+
     // create the PSPDFViewController
     _pdfController = [[PSPDFViewController alloc] initWithDocument:nil];
     _pdfController.pageTransition = PSPDFPageScrollPerPageTransition;
@@ -53,7 +53,10 @@
             });
         }
     });
-    
+
+    // set up custom appearance
+    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationbar-p"] forBarMetrics:UIBarMetricsDefault];
+
     return YES;
 }
 

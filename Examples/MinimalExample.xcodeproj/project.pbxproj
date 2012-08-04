@@ -19,6 +19,7 @@
 		78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6A44613DECE56006000BB /* InfoPlist.strings */; };
 		78E6A44A13DECE56006000BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44913DECE56006000BB /* main.m */; };
 		78E6A44E13DECE56006000BB /* MinimalExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */; };
+		78EB4C7F15CD2A62002A67E0 /* navigationbar-p.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		78E6A44B13DECE56006000BB /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalExample-Prefix.pch"; sourceTree = "<group>"; };
 		78E6A44C13DECE56006000BB /* MinimalExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinimalExampleAppDelegate.h; sourceTree = "<group>"; };
 		78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinimalExampleAppDelegate.m; sourceTree = "<group>"; };
+		78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar-p.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		78E6A44413DECE56006000BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */,
 				7808B4E413E6A7BA005380C8 /* Icon.png */,
 				78E6A44513DECE56006000BB /* MinimalExample-Info.plist */,
 				78E6A44613DECE56006000BB /* InfoPlist.strings */,
@@ -192,6 +195,7 @@
 				78BE31DB15B8DE6700FBB125 /* LICENSE in Resources */,
 				78BE31DC15B8DE6700FBB125 /* PSPDFKit.bundle in Resources */,
 				78BE31DD15B8DE6700FBB125 /* PSPDFKit.xcconfig in Resources */,
+				78EB4C7F15CD2A62002A67E0 /* navigationbar-p.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
