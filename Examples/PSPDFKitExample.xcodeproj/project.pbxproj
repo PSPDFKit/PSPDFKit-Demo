@@ -25,6 +25,13 @@
 		7805D033141EC10C003D10D5 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 7805D031141EC10C003D10D5 /* delete.png */; };
 		7805D034141EC10C003D10D5 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7805D032141EC10C003D10D5 /* delete@2x.png */; };
 		781384A613D9AF600090CAC1 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 781384A513D9AF600090CAC1 /* Samples */; };
+		7831BDF915CD61B00070260B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7831BDF115CD61B00070260B /* LICENSE */; };
+		7831BDFA15CD61B00070260B /* LocalyticsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7831BDF315CD61B00070260B /* LocalyticsDatabase.m */; };
+		7831BDFB15CD61B00070260B /* LocalyticsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 7831BDF515CD61B00070260B /* LocalyticsSession.m */; };
+		7831BDFC15CD61B00070260B /* LocalyticsUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7831BDF715CD61B00070260B /* LocalyticsUploader.m */; };
+		7831BE1715CD61D20070260B /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7831BE1215CD61BA0070260B /* HockeySDKResources.bundle */; };
+		7831BE1815CD61D90070260B /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7831BE1015CD61BA0070260B /* libHockeySDK.a */; };
+		7831BE1A15CD61E80070260B /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7831BE1915CD61E80070260B /* CrashReporter.framework */; };
 		7834179B13DC96DD009DAEE8 /* PSPDFDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 7834179A13DC96DD009DAEE8 /* PSPDFDownload.m */; };
 		7835F1A8149FD8220027FB8D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1A6149FD8220027FB8D /* settings.png */; };
 		7835F1A9149FD8220027FB8D /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7835F1A7149FD8220027FB8D /* settings@2x.png */; };
@@ -74,6 +81,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7831BE0915CD61BA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E59544115B6C3DC00A03429;
+			remoteInfo = HockeySDK;
+		};
+		7831BE0B15CD61BA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E400561A148D79B500EB22B9;
+			remoteInfo = "HockeySDK-Device";
+		};
+		7831BE0D15CD61BA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E59547C15B6C41300A03429;
+			remoteInfo = "HockeySDK-Simulator";
+		};
+		7831BE0F15CD61BA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E5954F215B6F24A00A03429;
+			remoteInfo = HockeySDKLib;
+		};
+		7831BE1115CD61BA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E59550A15B6F45800A03429;
+			remoteInfo = HockeySDKResources;
+		};
+		7831BE1315CD61C80070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E5954CB15B6F24A00A03429;
+			remoteInfo = HockeySDKLib;
+		};
+		7831BE1515CD61CA0070260B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E59550915B6F45800A03429;
+			remoteInfo = HockeySDKResources;
+		};
 		7844A47414A2344A005BA868 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 783C779713D982B100CF7C9D /* Project object */;
@@ -89,6 +145,16 @@
 		7805D031141EC10C003D10D5 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		7805D032141EC10C003D10D5 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = "<group>"; };
 		781384A513D9AF600090CAC1 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
+		7831BDF115CD61B00070260B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7831BDF215CD61B00070260B /* LocalyticsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsDatabase.h; sourceTree = "<group>"; };
+		7831BDF315CD61B00070260B /* LocalyticsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsDatabase.m; sourceTree = "<group>"; };
+		7831BDF415CD61B00070260B /* LocalyticsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsSession.h; sourceTree = "<group>"; };
+		7831BDF515CD61B00070260B /* LocalyticsSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsSession.m; sourceTree = "<group>"; };
+		7831BDF615CD61B00070260B /* LocalyticsUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsUploader.h; sourceTree = "<group>"; };
+		7831BDF715CD61B00070260B /* LocalyticsUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsUploader.m; sourceTree = "<group>"; };
+		7831BDF815CD61B00070260B /* WebserviceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceConstants.h; sourceTree = "<group>"; };
+		7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = "HockeySDK-iOS/Support/HockeySDK.xcodeproj"; sourceTree = "<group>"; };
+		7831BE1915CD61E80070260B /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = "PSPDFKitExample/Vendor/HockeySDK-iOS/Vendor/CrashReporter.framework"; sourceTree = SOURCE_ROOT; };
 		7834179913DC96DD009DAEE8 /* PSPDFDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFDownload.h; sourceTree = "<group>"; };
 		7834179A13DC96DD009DAEE8 /* PSPDFDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFDownload.m; sourceTree = "<group>"; };
 		7835F1A6149FD8220027FB8D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -174,15 +240,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7831BE1815CD61D90070260B /* libHockeySDK.a in Frameworks */,
 				783C77A513D982B100CF7C9D /* UIKit.framework in Frameworks */,
 				783C77A713D982B100CF7C9D /* Foundation.framework in Frameworks */,
 				78BE31AA15B8D65C00FBB125 /* PSPDFKit.framework in Frameworks */,
+				7831BE1A15CD61E80070260B /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7831BDF015CD61B00070260B /* Localytics */ = {
+			isa = PBXGroup;
+			children = (
+				7831BDF115CD61B00070260B /* LICENSE */,
+				7831BDF215CD61B00070260B /* LocalyticsDatabase.h */,
+				7831BDF315CD61B00070260B /* LocalyticsDatabase.m */,
+				7831BDF415CD61B00070260B /* LocalyticsSession.h */,
+				7831BDF515CD61B00070260B /* LocalyticsSession.m */,
+				7831BDF615CD61B00070260B /* LocalyticsUploader.h */,
+				7831BDF715CD61B00070260B /* LocalyticsUploader.m */,
+				7831BDF815CD61B00070260B /* WebserviceConstants.h */,
+			);
+			path = Localytics;
+			sourceTree = "<group>";
+		};
+		7831BDFE15CD61B90070260B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7831BE0A15CD61BA0070260B /* HockeySDK.framework */,
+				7831BE0C15CD61BA0070260B /* libHockeySDK-iphoneos.a */,
+				7831BE0E15CD61BA0070260B /* libHockeySDK-iphonesimulator.a */,
+				7831BE1015CD61BA0070260B /* libHockeySDK.a */,
+				7831BE1215CD61BA0070260B /* HockeySDKResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7831BE1B15CD61F40070260B /* HockeyApp */ = {
+			isa = PBXGroup;
+			children = (
+				7831BE1915CD61E80070260B /* CrashReporter.framework */,
+				7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */,
+			);
+			name = HockeyApp;
+			sourceTree = "<group>";
+		};
 		7834179813DC9686009DAEE8 /* Download Management */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +430,8 @@
 				788E21F715B4AE29004F6EAD /* AFDownloadRequestOperation */,
 				78D6F35415BD5C5900D5BF83 /* AFNetworking */,
 				788E221115B4AE29004F6EAD /* SDURLCache */,
+				7831BDF015CD61B00070260B /* Localytics */,
+				7831BE1B15CD61F40070260B /* HockeyApp */,
 			);
 			name = Vendor;
 			path = PSPDFKitExample/Vendor;
@@ -432,6 +538,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				7831BE1615CD61CA0070260B /* PBXTargetDependency */,
+				7831BE1415CD61C80070260B /* PBXTargetDependency */,
 				7844A47514A2344A005BA868 /* PBXTargetDependency */,
 			);
 			name = PSPDFKitExample;
@@ -461,6 +569,12 @@
 			mainGroup = 783C779513D982B100CF7C9D;
 			productRefGroup = 783C77A113D982B100CF7C9D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7831BDFE15CD61B90070260B /* Products */;
+					ProjectRef = 7831BDFD15CD61B90070260B /* HockeySDK.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				783C779F13D982B100CF7C9D /* PSPDFKitExample */,
@@ -468,6 +582,44 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		7831BE0A15CD61BA0070260B /* HockeySDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = HockeySDK.framework;
+			remoteRef = 7831BE0915CD61BA0070260B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7831BE0C15CD61BA0070260B /* libHockeySDK-iphoneos.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libHockeySDK-iphoneos.a";
+			remoteRef = 7831BE0B15CD61BA0070260B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7831BE0E15CD61BA0070260B /* libHockeySDK-iphonesimulator.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libHockeySDK-iphonesimulator.a";
+			remoteRef = 7831BE0D15CD61BA0070260B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7831BE1015CD61BA0070260B /* libHockeySDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libHockeySDK.a;
+			remoteRef = 7831BE0F15CD61BA0070260B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7831BE1215CD61BA0070260B /* HockeySDKResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = HockeySDKResources.bundle;
+			remoteRef = 7831BE1115CD61BA0070260B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		783C779E13D982B100CF7C9D /* Resources */ = {
@@ -493,6 +645,8 @@
 				78BE31AB15B8D65C00FBB125 /* ACKNOWLEDGEMENTS in Resources */,
 				78BE31AC15B8D65C00FBB125 /* LICENSE in Resources */,
 				78BE31AD15B8D65C00FBB125 /* PSPDFKit.bundle in Resources */,
+				7831BE1715CD61D20070260B /* HockeySDKResources.bundle in Resources */,
+				7831BDF915CD61B00070260B /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,12 +714,25 @@
 				78D6F36F15BD5C5900D5BF83 /* AFURLConnectionOperation.m in Sources */,
 				78D6F37015BD5C5900D5BF83 /* AFXMLRequestOperation.m in Sources */,
 				78D6F37215BD5C5900D5BF83 /* UIImageView+AFNetworking.m in Sources */,
+				7831BDFA15CD61B00070260B /* LocalyticsDatabase.m in Sources */,
+				7831BDFB15CD61B00070260B /* LocalyticsSession.m in Sources */,
+				7831BDFC15CD61B00070260B /* LocalyticsUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7831BE1415CD61C80070260B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HockeySDKLib;
+			targetProxy = 7831BE1315CD61C80070260B /* PBXContainerItemProxy */;
+		};
+		7831BE1615CD61CA0070260B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HockeySDKResources;
+			targetProxy = 7831BE1515CD61CA0070260B /* PBXContainerItemProxy */;
+		};
 		7844A47514A2344A005BA868 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7844A46E14A23437005BA868 /* TouchVersionFile */;
@@ -654,6 +821,10 @@
 			baseConfigurationReference = 78BE31A915B8D65C00FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/PSPDFKitExample/Vendor/HockeySDK-iOS/Vendor\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKitExample/PSPDFKitExample-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -669,6 +840,10 @@
 			baseConfigurationReference = 78BE31A915B8D65C00FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/PSPDFKitExample/Vendor/HockeySDK-iOS/Vendor\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKitExample/PSPDFKitExample-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
