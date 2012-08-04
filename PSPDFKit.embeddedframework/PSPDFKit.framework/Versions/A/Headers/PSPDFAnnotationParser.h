@@ -37,6 +37,11 @@
 /// Can be overridden, but usually reacting to the various annotation-delegate methods is enough.
 - (UIView <PSPDFAnnotationView>*)createAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect;
 
+/// The fileType translation table is used when we encounter pspdfkit:// links.
+/// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo.
+/// The ultimate fallback is PSPDFLinkAnnotationBrowser.
+@property(nonatomic, strong) NSDictionary *fileTypeTranslationTable;
+
 /// The annotation pageCache. Fills up as the documents are accessed.
 
 /// You can add your own annotations (like videos, links) here.
