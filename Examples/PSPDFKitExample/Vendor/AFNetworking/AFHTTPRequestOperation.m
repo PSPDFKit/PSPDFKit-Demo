@@ -134,12 +134,12 @@ NSString * AFCreateIncompleteDownloadDirectoryPath(void) {
 - (void)dealloc {
     
     if (_successCallbackQueue) { 
-        dispatch_release(_successCallbackQueue);
+        PSPDFDispatchRelease(_successCallbackQueue);
         _successCallbackQueue = NULL;
     }
     
     if (_failureCallbackQueue) { 
-        dispatch_release(_failureCallbackQueue); 
+        PSPDFDispatchRelease(_failureCallbackQueue);
         _failureCallbackQueue = NULL;
     }
 
@@ -198,12 +198,12 @@ NSString * AFCreateIncompleteDownloadDirectoryPath(void) {
 - (void)setSuccessCallbackQueue:(dispatch_queue_t)successCallbackQueue {
     if (successCallbackQueue != _successCallbackQueue) {
         if (_successCallbackQueue) {
-            dispatch_release(_successCallbackQueue);
+            PSPDFDispatchRelease(_successCallbackQueue);
             _successCallbackQueue = NULL;
         }
 
         if (successCallbackQueue) {
-            dispatch_retain(successCallbackQueue);
+            PSPDFDispatchRelease(successCallbackQueue);
             _successCallbackQueue = successCallbackQueue;
         }
     }    
@@ -212,12 +212,12 @@ NSString * AFCreateIncompleteDownloadDirectoryPath(void) {
 - (void)setFailureCallbackQueue:(dispatch_queue_t)failureCallbackQueue {
     if (failureCallbackQueue != _failureCallbackQueue) {
         if (_failureCallbackQueue) {
-            dispatch_release(_failureCallbackQueue);
+            PSPDFDispatchRelease(_failureCallbackQueue);
             _failureCallbackQueue = NULL;
         }
         
         if (failureCallbackQueue) {
-            dispatch_retain(failureCallbackQueue);
+            PSPDFDispatchRelease(failureCallbackQueue);
             _failureCallbackQueue = failureCallbackQueue;
         }
     }    
