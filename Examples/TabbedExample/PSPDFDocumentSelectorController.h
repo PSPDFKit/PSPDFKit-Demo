@@ -10,12 +10,12 @@
 
 @protocol PSPDFDocumentSelectorControllerDelegate <NSObject>
 
-- (void)PDFDocumentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document;
+- (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document;
 
 @end
 
 /// Shows all documents available in the Sample directory.
-@interface PSPDFDocumentSelectorController : UITableViewController
+@interface PSPDFDocumentSelectorController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
 /// Returns an array of PSPDFDocument's found in the "directoryName" directory.
 + (NSArray *)documentsFromDirectory:(NSString *)directoryName;
