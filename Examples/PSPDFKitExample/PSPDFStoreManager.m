@@ -356,7 +356,7 @@ static char kvoToken; // we need a static address for the kvo token
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _delegate = nil;
-    dispatch_release(_magazineFolderQueue);
+    PSPDFDispatchRelease(_magazineFolderQueue);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -562,7 +562,7 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
                 completionBlock(operations);
             }
         });
-        dispatch_release(dispatchGroup);
+        PSPDFDispatchRelease(dispatchGroup);
     }];
     
     NSPredicate *finishedOperationPredicate = [NSPredicate predicateWithFormat:@"isFinished == YES"];
