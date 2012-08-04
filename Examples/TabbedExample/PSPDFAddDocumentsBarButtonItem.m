@@ -21,7 +21,9 @@
 }
 
 // override implementation so that we are *always* enabled.
-- (void)updateBarButtonItem {}
+- (void)updateBarButtonItem {
+    self.enabled = YES;
+}
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
     PSPDFDocumentSelectorController *documentsController = [[PSPDFDocumentSelectorController alloc] init];
