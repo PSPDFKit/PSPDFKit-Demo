@@ -20,6 +20,10 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
     PSPDFSearchCancelled
 };
 
+// Default value is 2. You might wanna change this for asian languages.
+// (In the latin alphabeth; searching for a single character is of not much use)
+extern NSUInteger kPSPDFMinimumSearchLength;
+
 /// pdf search controller.
 @interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFSearchDelegate, PSPDFStatusBarStyleHint>
 
@@ -42,9 +46,6 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 
 /// Clears highlights when controller disappeares. Defaults to NO.
 @property(nonatomic, assign) BOOL clearHighlightsWhenClosed;
-
-/// Minimum search length. Defaults to 2.
-@property(nonatomic, assign) NSUInteger minimumSearchLength;
 
 // Updates the search result cell. Can be subclassed.
 // To customize the label search the subvies for the PSPDFAttributedLabel class.

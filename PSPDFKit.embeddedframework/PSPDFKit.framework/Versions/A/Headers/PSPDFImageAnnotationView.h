@@ -8,6 +8,9 @@
 
 #import "PSPDFLinkAnnotationBaseView.h"
 
+// Allow setting a contentMode in setting parameters -> sets the UIViewContentMode of the UIImageView.
+#define kPSPDFImageContentMode @"contentMode"
+
 /// Shows a single UIImageView.
 @interface PSPDFImageAnnotationView : PSPDFLinkAnnotationBaseView
 

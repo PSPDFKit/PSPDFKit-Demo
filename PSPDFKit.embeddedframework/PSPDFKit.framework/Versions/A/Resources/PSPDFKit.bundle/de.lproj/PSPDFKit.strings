@@ -12,6 +12,9 @@
 "Untitled" = "Unbenannt";
 "File Not Found" = "Datei nicht gefunden";
 "Unnamed PDF" = "Unbenanntes PDF";
+"Table Of Contents" = "Inhaltsverzeichnis";
+"Go to %@" = "Zu %@ wechseln";
+"Page %d" = "Seite %d";
 
 // toolbar
 "Outline" = "Outline";

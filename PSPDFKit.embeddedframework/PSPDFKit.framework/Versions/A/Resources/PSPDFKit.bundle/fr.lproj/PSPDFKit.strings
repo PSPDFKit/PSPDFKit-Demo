@@ -12,6 +12,9 @@
 "Untitled" = "Untitled";
 "File Not Found" = "File Not Found";
 "Unnamed PDF" = "Unnamed PDF";
+"Table Of Contents" = "Table Of Contents";
+"Go to %@" = "Go to %@";
+"Page %d" = "Page %d";
 
 // toolbar
 "Outline" = "Plan";

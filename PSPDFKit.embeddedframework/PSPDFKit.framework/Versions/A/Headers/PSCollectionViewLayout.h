@@ -5,11 +5,15 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import <UIKit/UIKitDefines.h>
-#import <Foundation/Foundation.h>
+#import "PSCollectionViewCommon.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
-#import "PSCollectionViewItemKey.h"
+
+typedef NS_ENUM(NSUInteger, PSCollectionViewItemType) {
+    PSCollectionViewItemTypeCell,
+    PSCollectionViewItemTypeDecorationView,
+    PSCollectionViewItemTypeSupplementaryView
+};
 
 // The PSCollectionViewLayout class is provided as an abstract class for subclassing to define custom collection layouts.
 // Defining a custom layout is an advanced operation intended for applications with complex needs.
@@ -54,6 +58,7 @@ typedef NS_ENUM(NSInteger, PSCollectionUpdateAction) {
     PSCollectionUpdateActionNone
 };
 
+/*
 @interface PSCollectionViewUpdateItem : NSObject {
 @private
     NSIndexPath* _initialIndexPath;
@@ -65,8 +70,8 @@ typedef NS_ENUM(NSInteger, PSCollectionUpdateAction) {
 @property (nonatomic, readonly) NSIndexPath *indexPathBeforeUpdate; // nil for PSCollectionUpdateActionInsert
 @property (nonatomic, readonly) NSIndexPath *indexPathAfterUpdate; // nil for PSCollectionUpdateActionDelete
 @property (nonatomic, readonly) PSCollectionUpdateAction updateAction;
-
 @end
+*/
 
 
 
