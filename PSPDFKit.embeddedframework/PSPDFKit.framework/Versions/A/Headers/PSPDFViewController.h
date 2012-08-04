@@ -19,11 +19,8 @@
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
-    PSPDFPageScrollPerPageTransition,     // default mode for iOS4. Has one scrollView per page.
-
-    PSPDFPageScrollContinuousTransition,  // new in PSPDFKit v2. One global scrollView. TODO.
-    PSPDFPageCurlTransition,              // replaces pageCurlEnabled.
-    PSPDFPageFlipTransition               // Flipboard-like; new in PSPDFKit v2. EXPERIMENTAL!
+    PSPDFPageScrollPerPageTransition = 0,     // default mode for iOS4. Has one scrollView per page.
+    PSPDFPageCurlTransition = 2               // replaces pageCurlEnabled.
 };
 
 /// Current active view mode.
