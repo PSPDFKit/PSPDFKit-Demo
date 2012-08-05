@@ -220,6 +220,7 @@
             self.magazineView = nil;
         }else {
             [self.gridView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.gridView layoutSubviews]; // ensure cells are laid out
             /*
             // ensure object is visible
             BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:_animationCellIndex partly:YES];
