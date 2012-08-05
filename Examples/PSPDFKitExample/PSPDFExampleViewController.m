@@ -300,4 +300,23 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     PSELog(@"didEndPageDraggingAtScale: %f", scale);
 }
 
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView {
+    // example how to limit text selection
+    // return [text length] > 10;
+    return YES;
+}
+
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
+
+    // This is an example how to customize the text selection menu.
+    NSMutableArray *newMenuItems = [menuItems mutableCopy];
+    PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
+        [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
+    }];
+    [newMenuItems addObject:menuItem];
+    [[UIMenuController sharedMenuController] setMenuItems:newMenuItems];
+
+    return YES;
+}
+
 @end
