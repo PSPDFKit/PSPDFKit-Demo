@@ -7,145 +7,148 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7808B4E513E6A7BA005380C8 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7808B4E413E6A7BA005380C8 /* Icon.png */; };
-		78BE31D915B8DE6700FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */; };
-		78BE31DA15B8DE6700FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */; };
-		78BE31DB15B8DE6700FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D615B8DE6700FBB125 /* LICENSE */; };
-		78BE31DC15B8DE6700FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */; };
-		78BE31DD15B8DE6700FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */; };
-		78DEFFA213DECEB6005ABEFD /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78DEFFA113DECEB6005ABEFD /* Samples */; };
-		78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43D13DECE56006000BB /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6A43F13DECE56006000BB /* Foundation.framework */; };
-		78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6A44613DECE56006000BB /* InfoPlist.strings */; };
-		78E6A44A13DECE56006000BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44913DECE56006000BB /* main.m */; };
-		78E6A44E13DECE56006000BB /* MinimalExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */; };
-		78EB4C7F15CD2A62002A67E0 /* navigationbar-p.png in Resources */ = {isa = PBXBuildFile; fileRef = 78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */; };
+		78BE321615B8E11000FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE321015B8E11000FBB125 /* PSPDFKit.framework */; };
+		78BE321715B8E11000FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */; };
+		78BE321815B8E11000FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321315B8E11000FBB125 /* LICENSE */; };
+		78BE321915B8E11000FBB125 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321415B8E11000FBB125 /* PSPDFKit.bundle */; };
+		78BE321A15B8E11000FBB125 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */; };
+		78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326513DECAF600F3392F /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		78E6326813DECAF600F3392F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E6326713DECAF600F3392F /* Foundation.framework */; };
+		78E6328F13DECD7300F3392F /* MinimalExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */; };
+		78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78E6329113DECD7C00F3392F /* InfoPlist.strings */; };
+		78E6329713DECD7C00F3392F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6329313DECD7C00F3392F /* main.m */; };
+		78E6329C13DECD8B00F3392F /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 78E6329B13DECD8B00F3392F /* Samples */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7808B4E413E6A7BA005380C8 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
-		78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
-		78BE31D615B8DE6700FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
-		78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
-		78DEFFA113DECEB6005ABEFD /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
-		78E6A43913DECE56006000BB /* MinimalEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		78E6A43D13DECE56006000BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		78E6A43F13DECE56006000BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		78E6A44513DECE56006000BB /* MinimalExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MinimalExample-Info.plist"; sourceTree = "<group>"; };
-		78E6A44713DECE56006000BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		78E6A44913DECE56006000BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		78E6A44B13DECE56006000BB /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MinimalExample-Prefix.pch"; sourceTree = "<group>"; };
-		78E6A44C13DECE56006000BB /* MinimalExampleAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MinimalExampleAppDelegate.h; sourceTree = "<group>"; };
-		78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinimalExampleAppDelegate.m; sourceTree = "<group>"; };
-		78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationbar-p.png"; sourceTree = "<group>"; };
+		78BE321015B8E11000FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
+		78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
+		78BE321315B8E11000FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		78BE321415B8E11000FBB125 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
+		78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
+		78E6326113DECAF600F3392F /* MinimalARC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinimalARC.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78E6326513DECAF600F3392F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		78E6326713DECAF600F3392F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		78E6328D13DECD7300F3392F /* MinimalExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MinimalExampleAppDelegate.h; path = "MinimalExample-ARC/MinimalExampleAppDelegate.h"; sourceTree = SOURCE_ROOT; };
+		78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MinimalExampleAppDelegate.m; path = "MinimalExample-ARC/MinimalExampleAppDelegate.m"; sourceTree = SOURCE_ROOT; };
+		78E6329213DECD7C00F3392F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		78E6329313DECD7C00F3392F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "MinimalExample-ARC/main.m"; sourceTree = SOURCE_ROOT; };
+		78E6329413DECD7C00F3392F /* MinimalExample-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "MinimalExample-Info.plist"; path = "MinimalExample-ARC/MinimalExample-Info.plist"; sourceTree = SOURCE_ROOT; };
+		78E6329513DECD7C00F3392F /* MinimalExample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MinimalExample-Prefix.pch"; path = "MinimalExample-ARC/MinimalExample-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		78E6329B13DECD8B00F3392F /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		78E6A43613DECE56006000BB /* Frameworks */ = {
+		78E6325E13DECAF600F3392F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78E6A43E13DECE56006000BB /* UIKit.framework in Frameworks */,
-				78E6A44013DECE56006000BB /* Foundation.framework in Frameworks */,
-				78BE31D915B8DE6700FBB125 /* PSPDFKit.framework in Frameworks */,
+				78E6326613DECAF600F3392F /* UIKit.framework in Frameworks */,
+				78E6326813DECAF600F3392F /* Foundation.framework in Frameworks */,
+				78BE321615B8E11000FBB125 /* PSPDFKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		785152481592B77C00430E1C /* System */ = {
+		785152401592B73300430E1C /* System */ = {
 			isa = PBXGroup;
 			children = (
-				78E6A43D13DECE56006000BB /* UIKit.framework */,
-				78E6A43F13DECE56006000BB /* Foundation.framework */,
+				78E6326513DECAF600F3392F /* UIKit.framework */,
+				78E6326713DECAF600F3392F /* Foundation.framework */,
 			);
 			name = System;
 			sourceTree = "<group>";
 		};
-		78BE31D215B8DE6700FBB125 /* PSPDFKit.embeddedframework */ = {
+		78BE320F15B8E11000FBB125 /* PSPDFKit.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
-				78BE31D315B8DE6700FBB125 /* PSPDFKit.framework */,
-				78BE31D415B8DE6700FBB125 /* Resources */,
+				78BE321015B8E11000FBB125 /* PSPDFKit.framework */,
+				78BE321115B8E11000FBB125 /* Resources */,
 			);
 			name = PSPDFKit.embeddedframework;
-			path = ../../Products/PSPDFKit.embeddedframework;
+			path = ../PSPDFKit.embeddedframework;
 			sourceTree = "<group>";
 		};
-		78BE31D415B8DE6700FBB125 /* Resources */ = {
+		78BE321115B8E11000FBB125 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				78BE31D515B8DE6700FBB125 /* ACKNOWLEDGEMENTS */,
-				78BE31D615B8DE6700FBB125 /* LICENSE */,
-				78BE31D715B8DE6700FBB125 /* PSPDFKit.bundle */,
-				78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */,
+				78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */,
+				78BE321315B8E11000FBB125 /* LICENSE */,
+				78BE321415B8E11000FBB125 /* PSPDFKit.bundle */,
+				78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		78E6A42E13DECE56006000BB = {
+		78E6325613DECAF600F3392F = {
 			isa = PBXGroup;
 			children = (
-				78E6A44313DECE56006000BB /* MinimalExample */,
-				78E6A43C13DECE56006000BB /* Frameworks */,
-				78E6A43A13DECE56006000BB /* Products */,
+				78E6326B13DECAF600F3392F /* MinimalExample */,
+				78E6326413DECAF600F3392F /* Frameworks */,
+				78E6326213DECAF600F3392F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		78E6A43A13DECE56006000BB /* Products */ = {
+		78E6326213DECAF600F3392F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78E6A43913DECE56006000BB /* MinimalEx.app */,
+				78E6326113DECAF600F3392F /* MinimalARC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		78E6A43C13DECE56006000BB /* Frameworks */ = {
+		78E6326413DECAF600F3392F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				78BE31D215B8DE6700FBB125 /* PSPDFKit.embeddedframework */,
-				785152481592B77C00430E1C /* System */,
+				78BE320F15B8E11000FBB125 /* PSPDFKit.embeddedframework */,
+				785152401592B73300430E1C /* System */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		78E6A44313DECE56006000BB /* MinimalExample */ = {
+		78E6326B13DECAF600F3392F /* MinimalExample */ = {
 			isa = PBXGroup;
 			children = (
-				78E6A44C13DECE56006000BB /* MinimalExampleAppDelegate.h */,
-				78E6A44D13DECE56006000BB /* MinimalExampleAppDelegate.m */,
-				78DEFFA113DECEB6005ABEFD /* Samples */,
-				78E6A44413DECE56006000BB /* Supporting Files */,
+				78E6328D13DECD7300F3392F /* MinimalExampleAppDelegate.h */,
+				78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */,
+				78E6329B13DECD8B00F3392F /* Samples */,
+				78E6326C13DECAF600F3392F /* Supporting Files */,
 			);
 			path = MinimalExample;
 			sourceTree = "<group>";
 		};
-		78E6A44413DECE56006000BB /* Supporting Files */ = {
+		78E6326C13DECAF600F3392F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				78EB4C7E15CD2A62002A67E0 /* navigationbar-p.png */,
-				7808B4E413E6A7BA005380C8 /* Icon.png */,
-				78E6A44513DECE56006000BB /* MinimalExample-Info.plist */,
-				78E6A44613DECE56006000BB /* InfoPlist.strings */,
-				78E6A44913DECE56006000BB /* main.m */,
-				78E6A44B13DECE56006000BB /* MinimalExample-Prefix.pch */,
+				78E6329013DECD7C00F3392F /* en.lproj */,
+				78E6329313DECD7C00F3392F /* main.m */,
+				78E6329413DECD7C00F3392F /* MinimalExample-Info.plist */,
+				78E6329513DECD7C00F3392F /* MinimalExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		78E6329013DECD7C00F3392F /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				78E6329113DECD7C00F3392F /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			path = "MinimalExample-ARC/en.lproj";
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		78E6A43813DECE56006000BB /* MinimalExample */ = {
+		78E6326013DECAF600F3392F /* MinimalExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 78E6A45F13DECE56006000BB /* Build configuration list for PBXNativeTarget "MinimalExample" */;
+			buildConfigurationList = 78E6327913DECAF600F3392F /* Build configuration list for PBXNativeTarget "MinimalExample" */;
 			buildPhases = (
-				78E6A43513DECE56006000BB /* Sources */,
-				78E6A43613DECE56006000BB /* Frameworks */,
-				78E6A43713DECE56006000BB /* Resources */,
+				78E6325D13DECAF600F3392F /* Sources */,
+				78E6325E13DECAF600F3392F /* Frameworks */,
+				78E6325F13DECAF600F3392F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -153,19 +156,19 @@
 			);
 			name = MinimalExample;
 			productName = MinimalExample;
-			productReference = 78E6A43913DECE56006000BB /* MinimalEx.app */;
+			productReference = 78E6326113DECAF600F3392F /* MinimalARC.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		78E6A43013DECE56006000BB /* Project object */ = {
+		78E6325813DECAF600F3392F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Peter Steinberger";
 			};
-			buildConfigurationList = 78E6A43313DECE56006000BB /* Build configuration list for PBXProject "MinimalExample" */;
+			buildConfigurationList = 78E6325B13DECAF600F3392F /* Build configuration list for PBXProject "MinimalExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -173,51 +176,49 @@
 				en,
 				de,
 			);
-			mainGroup = 78E6A42E13DECE56006000BB;
-			productRefGroup = 78E6A43A13DECE56006000BB /* Products */;
+			mainGroup = 78E6325613DECAF600F3392F;
+			productRefGroup = 78E6326213DECAF600F3392F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				78E6A43813DECE56006000BB /* MinimalExample */,
+				78E6326013DECAF600F3392F /* MinimalExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		78E6A43713DECE56006000BB /* Resources */ = {
+		78E6325F13DECAF600F3392F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78E6A44813DECE56006000BB /* InfoPlist.strings in Resources */,
-				78DEFFA213DECEB6005ABEFD /* Samples in Resources */,
-				7808B4E513E6A7BA005380C8 /* Icon.png in Resources */,
-				78BE31DA15B8DE6700FBB125 /* ACKNOWLEDGEMENTS in Resources */,
-				78BE31DB15B8DE6700FBB125 /* LICENSE in Resources */,
-				78BE31DC15B8DE6700FBB125 /* PSPDFKit.bundle in Resources */,
-				78BE31DD15B8DE6700FBB125 /* PSPDFKit.xcconfig in Resources */,
-				78EB4C7F15CD2A62002A67E0 /* navigationbar-p.png in Resources */,
+				78E6329613DECD7C00F3392F /* InfoPlist.strings in Resources */,
+				78E6329C13DECD8B00F3392F /* Samples in Resources */,
+				78BE321715B8E11000FBB125 /* ACKNOWLEDGEMENTS in Resources */,
+				78BE321815B8E11000FBB125 /* LICENSE in Resources */,
+				78BE321915B8E11000FBB125 /* PSPDFKit.bundle in Resources */,
+				78BE321A15B8E11000FBB125 /* PSPDFKit.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		78E6A43513DECE56006000BB /* Sources */ = {
+		78E6325D13DECAF600F3392F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78E6A44A13DECE56006000BB /* main.m in Sources */,
-				78E6A44E13DECE56006000BB /* MinimalExampleAppDelegate.m in Sources */,
+				78E6328F13DECD7300F3392F /* MinimalExampleAppDelegate.m in Sources */,
+				78E6329713DECD7C00F3392F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		78E6A44613DECE56006000BB /* InfoPlist.strings */ = {
+		78E6329113DECD7C00F3392F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				78E6A44713DECE56006000BB /* en */,
+				78E6329213DECD7C00F3392F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -225,11 +226,12 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		78E6A45D13DECE56006000BB /* Debug */ = {
+		78E6327713DECAF600F3392F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -250,11 +252,12 @@
 			};
 			name = Debug;
 		};
-		78E6A45E13DECE56006000BB /* Release */ = {
+		78E6327813DECAF600F3392F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -270,28 +273,28 @@
 			};
 			name = Release;
 		};
-		78E6A46013DECE56006000BB /* Debug */ = {
+		78E6327A13DECAF600F3392F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */;
+			baseConfigurationReference = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "../PSPDFKit.embeddedframework/**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MinimalExample/MinimalExample-Prefix.pch";
-				INFOPLIST_FILE = "MinimalExample/MinimalExample-Info.plist";
-				PRODUCT_NAME = MinimalEx;
+				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
+				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
+				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		78E6A46113DECE56006000BB /* Release */ = {
+		78E6327B13DECAF600F3392F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 78BE31D815B8DE6700FBB125 /* PSPDFKit.xcconfig */;
+			baseConfigurationReference = 78BE321515B8E11000FBB125 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "../PSPDFKit.embeddedframework/**";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../PSPDFKit.embeddedframework\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MinimalExample/MinimalExample-Prefix.pch";
-				INFOPLIST_FILE = "MinimalExample/MinimalExample-Info.plist";
-				PRODUCT_NAME = MinimalEx;
+				GCC_PREFIX_HEADER = "MinimalExample-ARC/MinimalExample-Prefix.pch";
+				INFOPLIST_FILE = "MinimalExample-ARC/MinimalExample-Info.plist";
+				PRODUCT_NAME = MinimalARC;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -299,25 +302,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		78E6A43313DECE56006000BB /* Build configuration list for PBXProject "MinimalExample" */ = {
+		78E6325B13DECAF600F3392F /* Build configuration list for PBXProject "MinimalExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				78E6A45D13DECE56006000BB /* Debug */,
-				78E6A45E13DECE56006000BB /* Release */,
+				78E6327713DECAF600F3392F /* Debug */,
+				78E6327813DECAF600F3392F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		78E6A45F13DECE56006000BB /* Build configuration list for PBXNativeTarget "MinimalExample" */ = {
+		78E6327913DECAF600F3392F /* Build configuration list for PBXNativeTarget "MinimalExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				78E6A46013DECE56006000BB /* Debug */,
-				78E6A46113DECE56006000BB /* Release */,
+				78E6327A13DECAF600F3392F /* Debug */,
+				78E6327B13DECAF600F3392F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 78E6A43013DECE56006000BB /* Project object */;
+	rootObject = 78E6325813DECAF600F3392F /* Project object */;
 }

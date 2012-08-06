@@ -250,6 +250,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 @property(nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 
+/// If YES, when a PDF that requires a password is set, a password dialog is shown.
+/// (The password dialog is of class PSPDFPasswordView; customize with overrideClassNames)
+/// Defaults to YES. If NO, an attempt to display the document anyway is made.
+@property(nonatomic, assign, getter=isPasswordDialogEnabled) BOOL passwordDialogEnabled;
+
 /// If embedded via iOS5 viewController containment, set this to true to allow this controller
 /// to access the parent navigationBar/navigationController to add custom buttons.
 /// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.

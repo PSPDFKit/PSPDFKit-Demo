@@ -96,13 +96,13 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
 
-/* Text Selection: TODO */
+/* Text Selection: */
 
 /// Called when text is about to be selected. Return NO to disable text selection.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *) withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 /// Called after text has been selected.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 /**
     Called before the menu for text selection is displayed.
@@ -117,7 +117,7 @@
 
     Default is YES if not implemented.
 */
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect;
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 
 /* Annotations */

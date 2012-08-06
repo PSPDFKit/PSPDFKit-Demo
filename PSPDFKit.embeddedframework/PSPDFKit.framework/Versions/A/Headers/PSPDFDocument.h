@@ -180,6 +180,11 @@
 /// Annotation link extraction. Defaults to YES.
 @property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
 
+/// Defines the annotations that can be edited (if annotationsEnabled is set to YES)
+/// Set this to an empty set to disable annotation editing/creation.
+/// Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk,
+@property(nonatomic, strong) NSSet *editableAnnotationTypes;
+
 /// If document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
 // Note: doesn't use weak as this could lead to background deallocation of the controller.
 @property(nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController;
@@ -193,6 +198,7 @@
 /// If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The password string is ignored.
 /// If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the password
 /// string. If the string fails, the document maintains its user permissions. In either case, this method returns YES.
+/// After unlocking a document, you need to call reloadData on the PSPDFViewController.
 - (BOOL)unlockWithPassword:(NSString *)password;
 
 /// Set a base password to be used for all files in this document (if the document is PDF encrypted).
@@ -223,7 +229,8 @@
 
 /// A flag that indicates whether copying text is allowed
 /// Note: only evaluates the first file if multiple files are set.
-@property (nonatomic, assign, readonly) BOOL allowsCopying;
+/// Can also be overridden manually.
+@property (nonatomic, assign) BOOL allowsCopying;
 
 
 /// @name Attached Parsers

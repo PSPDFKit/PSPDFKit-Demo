@@ -31,7 +31,7 @@
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
 /// PDF controller.
-@property (nonatomic, unsafe_unretained, readonly) PSPDFViewController *pdfController;
+@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Implement customView, image or systemItem in your subclass (via overriding the method)
 - (UIView *)customView;

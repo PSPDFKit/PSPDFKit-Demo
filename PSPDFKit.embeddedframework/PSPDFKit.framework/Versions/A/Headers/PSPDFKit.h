@@ -38,8 +38,6 @@
 #import "PSPDFTabbedViewController.h"
 #import "PSPDFViewState.h"
 #import "PSPDFPasswordView.h"
-#import "PSPDFAlertView.h"
-#import "PSPDFActionSheet.h"
 #import "PSPDFBookmark.h"
 
 // search
@@ -82,3 +80,8 @@
 
 // toolbar
 #import "PSPDFBarButtonItem.h"
+
+// helper
+#import "PSPDFAlertView.h"
+#import "PSPDFActionSheet.h"
+#import "PSPDFMenuItem.h"

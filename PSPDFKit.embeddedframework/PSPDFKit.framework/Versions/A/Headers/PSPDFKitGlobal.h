@@ -187,6 +187,13 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #define PSPDF_IF_NOT_SIMULATOR(...) { __VA_ARGS__ }
 #endif
 
+// Starting with iOS6, dispatch queue's are objects and managed via ARC.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
+#define PSPDFDispatchRelease(queue)
+#else
+#define PSPDFDispatchRelease(queue) dispatch_release(queue)
+#endif
+
 @interface NSArray (PSPDFArrayAccess)
 - (id)ps_firstObject;
 @end

@@ -13,7 +13,7 @@
 /// Array of lines.
 @property (nonatomic, strong) NSArray *lines;
 
-/// Array of UIBezierPath.
+/// Array of UIBezierPath (a cached version of lines for faster drawing)
 @property (nonatomic, strong) NSArray *paths;
 
 /// Designated initializer.

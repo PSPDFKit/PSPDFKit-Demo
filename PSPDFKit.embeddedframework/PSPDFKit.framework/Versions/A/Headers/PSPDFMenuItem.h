@@ -18,11 +18,16 @@
  */
 @interface PSPDFMenuItem : UIMenuItem
 
-// Initialize PSPDFMenuItem with a block.
+/// Initialize PSPDFMenuItem with a block.
 - (id)initWithTitle:(NSString *)title block:(void(^)())block;
 
-// Menu Item can be enabled/disabled. (disable simply hides it from the UIMenuController)
+- (id)initWithTitle:(NSString *)title block:(void(^)())block identifier:(NSString *)identifier;
+
+/// Menu Item can be enabled/disabled. (disable simply hides it from the UIMenuController)
 @property(nonatomic, assign, getter=isEnabled) BOOL enabled;
+
+/// Helper to identify the current action.
+@property(nonatomic, copy) NSString *identifier;
 
 // Action block.
 @property(nonatomic, copy) void(^block)();
