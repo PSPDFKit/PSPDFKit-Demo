@@ -64,6 +64,9 @@
 /// Removes all annotations that are marked as deleted.
 - (NSUInteger)removeDeletedAnnotations;
 
+/// Removes all annotation and re-evalutes the document on next access.
+- (void)clearCache;
+
 /// document for annotation parser. weak.
 @property(nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
 

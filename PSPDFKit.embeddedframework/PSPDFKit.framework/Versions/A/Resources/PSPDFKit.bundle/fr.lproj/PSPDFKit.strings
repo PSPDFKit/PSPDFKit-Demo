@@ -41,3 +41,17 @@
 "Copy Link" = "Copier le lien";
 "Open in Safari" = "Ouvrir dans Safari";
 "Mail Link to this Page" = "Envoyer cette adresse URL";
+
+// annotations
+"Remove" = "Remove";
+"Colors..." = "Colors...";
+"Yellow" = "Yellow";
+"Green" = "Green";
+"Blue" = "Blue";
+"Pink" = "Pink";
+"Define" = "Define";
+"Wikipedia" = "Wikipedia";
+"Copy" = "Copy";
+"Highlight" = "Highlight";
+"Underline" = "Underline";
+"Strikeout" = "Strike Out";

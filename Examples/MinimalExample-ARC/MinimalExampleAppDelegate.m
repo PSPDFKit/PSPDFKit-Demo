@@ -23,7 +23,6 @@
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
     _pdfController.leftBarButtonItems = @[saveButton];
-
     _pdfController.rightBarButtonItems = @[_pdfController.annotationButtonItem, _pdfController.searchButtonItem, _pdfController.outlineButtonItem, _pdfController.viewModeButtonItem];
     
     // create window and set as rootViewController
@@ -33,8 +32,8 @@
     
     // copy file into documents - needed to allow writing annotatons.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        NSString *fileName = @"white-transparent-borders.pdf";
         NSString *fileName = @"annotations.pdf";
-        //NSString *fileName = @"word lorem ipsum Type3.pdf";
 
         NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -61,12 +60,18 @@
 }
 
 - (void)saveAnnotations {
+    NSLog(@"annotations old: %@", [self.pdfController.document.annotationParser annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+
     NSError *error = nil;
-    NSUInteger dirtyAnnotationCount = [[_pdfController.document.annotationParser dirtyAnnotations] count];
+    NSDictionary *dirtyAnnotations = [_pdfController.document.annotationParser dirtyAnnotations];
+    NSLog(@"dirty: %@", dirtyAnnotations);
     if(![_pdfController.document saveChangedAnnotationsWithError:&error]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+        [_pdfController reloadData];
+        NSLog(@"---------------------------------------------------");
+        NSLog(@"annotations new: %@", [self.pdfController.document.annotationParser annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+        //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }
 }
 
@@ -74,7 +79,7 @@
 #pragma mark - PSPDFViewControllerDelegate
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    NSString *text = [pageView.document.textSearch textForPage:0];
-    NSLog(@"text: %@", text);
+    //NSString *text = [pageView.document.textSearch textForPage:0];
+    //NSLog(@"text: %@", text);
 }
 @end
