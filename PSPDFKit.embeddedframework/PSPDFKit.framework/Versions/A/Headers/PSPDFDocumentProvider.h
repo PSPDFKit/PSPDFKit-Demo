@@ -71,6 +71,10 @@
 /// Releases a page reference. 
 - (void)releasePageRef:(CGPDFPageRef)pageRef;
 
+/// For optimization reasons, the internal documentRef might be cached.
+/// This force-clears the cache, optionally blocking.
+- (void)flushDocumentReferenceAsync:(BOOL)async;
+
 /// Number of pages in the PDF. Nil if source is invalid.
 @property(nonatomic, assign, readonly) NSUInteger pageCount;
 
@@ -85,7 +89,7 @@
 @property(nonatomic, assign, readonly) BOOL allowsPrinting;
 
 /// A flag that indicates whether copying text is allowed
-@property(nonatomic, assign, readonly) BOOL allowsCopying;
+@property(nonatomic, assign) BOOL allowsCopying;
 
 /// Was the PDF file encryted at file creation time?
 @property(nonatomic, assign, readonly) BOOL isEncrypted;

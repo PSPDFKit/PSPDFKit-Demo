@@ -11,6 +11,13 @@
 
 @class PSPDFDocument;
 
+// list of editable annotation types.
+extern NSString *PSPDFAnnotationTypeStringHighlight;
+extern NSString *PSPDFAnnotationTypeStringUnderline;
+extern NSString *PSPDFAnnotationTypeStringStrikeout;
+extern NSString *PSPDFAnnotationTypeStringNote;
+extern NSString *PSPDFAnnotationTypeStringInk;
+
 // Annotations defined after the PDF standard.
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeUndefined = 0,      // any annotation whose type couldn't be recognized.

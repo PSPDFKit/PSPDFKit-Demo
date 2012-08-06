@@ -29,4 +29,7 @@ typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
 
 - (void)setType:(PSPDFHighlightAnnotationType)annotationType withDefaultColor:(BOOL)useDefaultColor;
 
+/// Converts "Highlight" into PSPDFHighlightAnnotationHighlight, etc
++ (PSPDFHighlightAnnotationType)highlightTypeFromTypeString:(NSString *)typeString;
+
 @end
