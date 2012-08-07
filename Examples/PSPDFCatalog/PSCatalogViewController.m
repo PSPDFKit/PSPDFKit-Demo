@@ -7,7 +7,7 @@
 
 #import "PSCatalogViewController.h"
 #import "PSCSectionDescriptor.h"
-#import "PSCGridController.h"
+#import "PSCKioskPDFViewController.h"
 #import "PSCTabbedExampleViewController.h"
 #import "PSCDocumentSelectorController.h"
 #import "PSCEmbeddedTestController.h"
@@ -15,6 +15,7 @@
 #import "PSCAnnotationTestController.h"
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCSplitPDFViewController.h"
+#import "PSCBookmarkParser.h"
 
 @interface PSCatalogViewController () <PSCDocumentSelectorControllerDelegate> {
     NSArray *_content;
@@ -38,7 +39,7 @@
 
         // Full Apps
         PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
-        [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
+        [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCKioskPDFViewController class]]];
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
             if (PSIsIpad()) {
@@ -103,6 +104,16 @@
             return [[PSCustomToolbarController alloc] initWithDocument:document];
         }]];
         [content addObject:customizationSection];
+
+        PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
+        [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture Bookmarks" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            document.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.bookmarkButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+            return controller;
+        }]];
+        [content addObject:subclassingSection];
 
         // iPad only examples
         if (PSIsIpad()) {
