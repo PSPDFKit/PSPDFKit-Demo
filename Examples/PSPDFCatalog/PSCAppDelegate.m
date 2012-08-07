@@ -8,6 +8,7 @@
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
 #import "BITHockeyManager.h"
+#import "BITCrashManager.h"
 #import "LocalyticsSession.h"
 
 @implementation PSCAppDelegate
@@ -50,6 +51,7 @@
         // This version has been modified to work w/o a dSYM (but will not show line numbers)
         // http://hockeyapp.net
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
+        [BITHockeyManager sharedHockeyManager].crashManager.crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
 
         // Localytics helps me to track PSPDFKit-DEMO downloads.
