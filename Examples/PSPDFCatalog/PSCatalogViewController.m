@@ -56,7 +56,8 @@
         /// PSPDFDocument works with a NSURL
         [documentTests addContent:[[PSContent alloc] initWithTitle:@"NSURL" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-            return [[PSPDFViewController alloc] initWithDocument:document];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
         }]];
 
         /// A NSData (both memory-mapped and full)
