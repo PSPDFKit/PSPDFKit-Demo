@@ -7,7 +7,7 @@
 
 #import "PSCatalogViewController.h"
 #import "PSCSectionDescriptor.h"
-#import "PSCKioskPDFViewController.h"
+#import "PSCGridController.h"
 #import "PSCTabbedExampleViewController.h"
 #import "PSCDocumentSelectorController.h"
 #import "PSCEmbeddedTestController.h"
@@ -17,7 +17,7 @@
 #import "PSCSplitPDFViewController.h"
 #import "PSCBookmarkParser.h"
 
-@interface PSCatalogViewController () <PSCDocumentSelectorControllerDelegate> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     NSArray *_content;
 }
 @end
@@ -33,13 +33,14 @@
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
 
         // common paths
-        NSURL *hackerMagURL = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:kHackerMagazineExample]];
+        NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
+        NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         NSMutableArray *content = [NSMutableArray array];
 
         // Full Apps
         PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
-        [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCKioskPDFViewController class]]];
+        [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
             if (PSIsIpad()) {
@@ -78,12 +79,58 @@
         }]];
         [content addObject:documentTests];
 
+        /// PSPDFDocument works with multiple NSURLs
+        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple files" block:^{
+            NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
+
+        // Currently broken.
+        /*
+        /// And even a CGDocumentProvider (can be used for encryption)
+        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
+
+            NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"AES256-encrypted.pdf"]];
+
+            // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
+            // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
+            NSString *AESKey = [NSString stringWithFormat:@"abcde%@234%@", @"fghijklmnopqrstuvwxyz1", @"56"];
+            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF andKey:AESKey];
+//            NSData *tempData = CFBridgingRelease(CGDataProviderCopyData(cryptoWrapper.dataProviderRef));
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:tempData];
+
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
+            return [[PSPDFViewController alloc] initWithDocument:document];
+        }]];
+             */
+
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
         
         [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add a custom annotation" block:^{
             PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             return [[PSCAnnotationTestController alloc] initWithDocument:hackerDocument];
         }]];
+
+        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Custom annotations with multiple files" block:^{
+            NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
+
+            // We're lazy here. 2 = UIViewContentModeScaleAspectFill
+            PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
+            aVideo.boundingBox = [document pageInfoForPage:5].pageRect;
+            [document addAnnotations:@[aVideo ] forPage:5];
+
+            PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
+            anImage.boundingBox = [document pageInfoForPage:2].pageRect;
+            [document addAnnotations:@[anImage] forPage:2];
+
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
         [content addObject:annotationSection];
 
         PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
@@ -207,15 +254,12 @@
     [tabbedViewController restoreStateAndMergeWithDocuments:[NSArray arrayWithObject:document]];
 
     // add fade transition for navigationBar.
-    CATransition *fadeTransition = [CATransition animation];
-    fadeTransition.duration = 0.25f;
-    fadeTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    fadeTransition.type = kCATransitionFade;
-    fadeTransition.subtype = kCATransitionFromTop;
-    [controller.navigationController.navigationBar.layer addAnimation:fadeTransition forKey:kCATransition];
-
+    [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
     [controller.navigationController pushViewController:tabbedViewController animated:YES];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController 
 
 @end
 
