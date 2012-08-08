@@ -9,6 +9,8 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
 
+@class CATransition;
+
 /// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
@@ -107,6 +109,16 @@ extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
 // Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
+
+// Compensates the effect of SLOW ANIMATIONS in the iOS Simulator.
+// Use for CATransition etc. UIKit animations are automatically slowed down.
+extern CGFloat PSPDFSimulatorAnimationDragCoefficient(void);
+
+// Creates a default, 0.25sec long fade transition
+extern CATransition *PSPDFFadeTransition(void);
+
+// Creates a fade transition with 'duration' timimg.
+extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
 
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)

@@ -144,9 +144,6 @@
 /// To get the targeted rect use [annotation rectForPageRect:pageView.bounds];
 - (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
-/// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
-- (NSString *)pdfViewController:(PSPDFViewController *)pdfController resolveCustomAnnotationPathToken:(NSString *)pathToken; // return nil if unknown.
-
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
@@ -168,6 +165,7 @@
 
 /// Called after the controller has been fully displayed. iOS5 only. Isn't called for UIPopoverController's.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+
 
 /// Return NO to stop the HUD change event.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowHUD:(BOOL)animated;

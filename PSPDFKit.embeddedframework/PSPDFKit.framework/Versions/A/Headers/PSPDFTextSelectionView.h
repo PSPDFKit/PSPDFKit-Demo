@@ -38,7 +38,7 @@
 /// Associated PSPDFPageView.
 @property (nonatomic, ps_weak) PSPDFPageView *pageView;
 
-
+// Text Loupe control code
 - (void)showLoupe;
 - (void)hideLoupe;
 
