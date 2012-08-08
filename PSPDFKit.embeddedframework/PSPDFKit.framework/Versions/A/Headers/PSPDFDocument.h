@@ -8,8 +8,10 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFDocumentDelegate.h"
+#import <CoreGraphics/CoreGraphics.h>
 
-@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmark;
+@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmarkParser;
 
 /// Represents a single, logical, PDF document. (one or many PDF files)
 /// Can be overriden to support custom collections.
@@ -39,6 +41,9 @@
 - (id)initWithURL:(NSURL *)URL;
 - (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
 
+
+/// Delegate. Used for annotation calls.
+@property(nonatomic, ps_weak) id<PSPDFDocumentDelegate> delegate;
 
 /// @name File Access / Modification
 
@@ -95,15 +100,6 @@
 
 /// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
 @property(nonatomic, copy) NSString *uid;
-
-/// Contains bookmarks (PSPDFBookmark) for the document. 
-@property(nonatomic, copy) NSArray *bookmarks;
-/// Convenience methods. Will return NO if page is invalid or bookmark doesn't exist.
-/// If you manually add bookmarks, you might need to call createToolbarAnimated to update.
-- (BOOL)addBookmarkForPage:(NSUInteger)page;
-- (BOOL)removeBookmarkForPage:(NSUInteger)page;
-/// Returns the bookmark if page has a bookmark.
-- (PSPDFBookmark *)bookmarkForPage:(NSUInteger)page;
 
 /// @name Annotations
 
@@ -260,6 +256,11 @@
 /// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
 
+/// Manages the bookmark parser.
+/// Lazily initialized, thread safe.
+/// Can be customized with using overrideClassNames.
+@property(nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
+
 /**
     Shorthand to return annotation array for specified page.
     This is a shortcut method that already compensates the page, replacing this code:
@@ -270,6 +271,9 @@
 
  */
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
+
+/// Shorthand accessor that compensates the page. See PSPDFAnnotationParser for details.
+- (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
 /**
     Returns the annotation parser for a specific page.
