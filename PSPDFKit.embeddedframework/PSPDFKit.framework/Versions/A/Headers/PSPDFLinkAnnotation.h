@@ -35,6 +35,10 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Designated initializer for custom, at runtime created PSPDFLinkAnnotations.
 - (id)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
 
+/// Init with siteLinkTarget. Use this for custom pspdfkit:// annotatations that get parsed at runtime.
+/// This will automatically set the linkAnnotationType.
+- (id)initWithSiteLinkTarget:(NSString *)siteLinkTarget;
+
 /// PSPDFKit addition - set if the pspdfkit:// protocol is detected.
 @property(nonatomic, assign) PSPDFLinkAnnotationType linkType;
 

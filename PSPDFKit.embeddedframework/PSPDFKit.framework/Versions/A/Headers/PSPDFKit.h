@@ -21,6 +21,7 @@
 #import "PSPDFViewController.h"
 #import "PSPDFViewControllerDelegate.h"
 #import "PSPDFDocument.h"
+#import "PSPDFDocumentDelegate.h"
 #import "PSPDFPageView.h"
 #import "PSPDFTextSelectionView.h"
 #import "PSPDFScrollView.h"
@@ -39,6 +40,9 @@
 #import "PSPDFViewState.h"
 #import "PSPDFPasswordView.h"
 #import "PSPDFBookmark.h"
+#import "PSPDFBookmarkParser.h"
+#import "PSPDFCryptoDataProvider.h"
+#import "PSPDFAESCryptoDataProvider.h"
 
 // search
 #import "PSPDFTextSearch.h"
