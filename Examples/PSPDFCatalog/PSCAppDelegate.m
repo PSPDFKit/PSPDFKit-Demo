@@ -17,7 +17,7 @@
     
     // print version of the catalog example and PSPDFKit.
     NSString *appVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"@" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    NSLog(@"Catalog Example %@ starting up... [%@]", appVersion, PSPDFVersionString());
+    NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
 
     // enable to see the scrollviews semi-transparent
     //kPSPDFKitDebugScrollViews = YES;
