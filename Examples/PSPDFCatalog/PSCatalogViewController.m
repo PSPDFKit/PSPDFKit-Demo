@@ -87,6 +87,16 @@
             return controller;
         }]];
 
+        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects" block:^{
+            NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+            NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
+            NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[[NSData dataWithContentsOfURL:file1], [NSData dataWithContentsOfURL:file2], [NSData dataWithContentsOfURL:file3]]];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
 
         // Currently broken.
         /*
