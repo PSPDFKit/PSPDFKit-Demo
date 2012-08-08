@@ -17,7 +17,7 @@
 #import "PSCShadowView.h"
 #import "SDURLCache.h"
 
-#define kPSPDFGridFadeAnimationDuration 0.3f
+#define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 
 // the delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
@@ -211,7 +211,7 @@
     self.immediatelyLoadCellImages = NO;
 
     if (_animateViewWillAppearWithFade) {
-        [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+        [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         _animateViewWillAppearWithFade = NO;
     }
 }
@@ -226,7 +226,7 @@
         if (_animationCellIndex >= [self.magazineFolder.magazines count]) {
             self.gridView.transform = CGAffineTransformIdentity;
             self.gridView.alpha = 1.0f;
-            [self.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+            [self.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
@@ -345,16 +345,6 @@
     return newFrame;
 }
 
-// simple fade transition that can be added on a layer
-- (CATransition *)fadeTransition {
-    CATransition *fadeTransition = [CATransition animation];
-    fadeTransition.duration = 0.25f;
-    fadeTransition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    fadeTransition.type = kCATransitionFade;
-    fadeTransition.subtype = kCATransitionFromTop;
-    return fadeTransition;
-}
-
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSCMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
 
@@ -416,7 +406,7 @@
             self.gridView.alpha = 0.0f;
 
         } completion:^(BOOL finished) {
-            [self.navigationController.navigationBar.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+            [self.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
             [self.navigationController pushViewController:pdfController animated:NO];
 
             cell.hidden = NO;
@@ -425,7 +415,7 @@
         if (animated) {
             // add fake data so that we animate back
             _animateViewWillAppearWithFade = YES;
-            [self.navigationController.view.layer addAnimation:[self fadeTransition] forKey:kCATransition];
+            [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         }
         [self.navigationController pushViewController:pdfController animated:NO];
     }
