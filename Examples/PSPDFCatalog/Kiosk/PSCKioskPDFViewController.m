@@ -214,9 +214,11 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
 
     // show pdf title and fileURL
-    NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
-    if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
-        self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
+    if (document) {
+        NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
+        if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
+            self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
+        }
     }
 }
 
