@@ -135,10 +135,10 @@ static char kvoToken; // we need a static address for the kvo token
     return folder;
 }
 
-- (PSCMagazine *)magazineForUid:(NSString *)uid {
+- (PSCMagazine *)magazineForUID:(NSString *)uid {
     for (PSCMagazineFolder *folder in self.magazineFolders) {
         for (PSCMagazine *magazine in folder.magazines) {
-            if ([magazine.uid isEqualToString:uid]) {
+            if ([magazine.UID isEqualToString:uid]) {
                 return magazine;
             }
         }
@@ -496,9 +496,9 @@ static char kvoToken; // we need a static address for the kvo token
     
     // if no magazine is given, find the current
     if (!magazine) {
-        NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:kNewsstandIconUID];
-        if (uid) {
-            magazine = [self magazineForUid:uid];
+        NSString *UID = [[NSUserDefaults standardUserDefaults] objectForKey:kNewsstandIconUID];
+        if (UID) {
+            magazine = [self magazineForUID:UID];
         }
         
         // if magazine doesn't exist anymore, choose the first magazine in the list
@@ -528,8 +528,8 @@ static char kvoToken; // we need a static address for the kvo token
         [[UIApplication sharedApplication] setNewsstandIconImage:newsstandCoverImage];
         
         // update user defaults
-        if (magazine.uid) {
-            [[NSUserDefaults standardUserDefaults] setObject:magazine.uid forKey:kNewsstandIconUID];
+        if (magazine.UID) {
+            [[NSUserDefaults standardUserDefaults] setObject:magazine.UID forKey:kNewsstandIconUID];
         }else {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:kNewsstandIconUID];
         }
@@ -542,7 +542,7 @@ static char kvoToken; // we need a static address for the kvo token
     NSMutableArray *newMagazines = [NSMutableArray arrayWithArray:magazines];
     for (PSCMagazine *newMagazine in magazines) {
         for (PSCMagazineFolder *folder in self.magazineFolders) {
-            NSArray *foundMagazines = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.uid == %@", newMagazine.uid]];
+            NSArray *foundMagazines = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.uid == %@", newMagazine.UID]];
             [newMagazines removeObjectsInArray:foundMagazines];
         }
     }

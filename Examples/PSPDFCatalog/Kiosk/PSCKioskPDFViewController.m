@@ -56,7 +56,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 
         // restore viewState
         if ([self.document isValid]) {
-            NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.uid];
+            NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.UID];
             @try {
                 if (viewStateData) {
                     PSPDFViewState *viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
@@ -65,7 +65,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             }
             @catch (NSException *exception) {
                 NSLog(@"Failed to load saved viewState: %@", exception);
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.uid];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.UID];
             }
         }
 
@@ -84,7 +84,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     // save current viewState
     if ([self.document isValid]) {
         NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self viewState]];
-        [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.uid];
+        [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.UID];
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
