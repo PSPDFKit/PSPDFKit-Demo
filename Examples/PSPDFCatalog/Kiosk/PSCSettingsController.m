@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, PSPDFSettings) {
 
 static NSMutableDictionary *_settings;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
 + (NSDictionary *)settings { return _settings; }
@@ -81,7 +81,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -169,7 +169,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     return renderedImage;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -199,7 +199,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -283,12 +283,14 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
     if (indexPath.section == PSPDFPaperColor) {
         _paperColorControl.frame = CGRectMake(9, 0, 302, 46);
+        _paperColorControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         UIColor *paperColor = _settings[StringSEL(renderBackgroundColor)];
         _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
         [cell addSubview:_paperColorControl];
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
         _contentOpacityControl.frame = CGRectMake(9, 0, 302, 46);
+        _contentOpacityControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         NSUInteger index = roundf((1 - [_settings[StringSEL(renderContentOpacity)] floatValue]) * 10);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
@@ -366,7 +368,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     return cell;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
