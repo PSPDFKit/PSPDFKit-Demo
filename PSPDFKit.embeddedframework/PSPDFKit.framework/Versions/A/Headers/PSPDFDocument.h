@@ -25,6 +25,9 @@
 /// Initialize PSPDFDocument with data.
 + (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
 
+/// Initialize PSPDFDocument with multiple data objects
++ (PSPDFDocument *)PDFDocumentWithDataArray:(NSArray *)dataArray;
+
 /// Initialize PSPDFDocument with a dataProvider.
 /// Note: You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
 + (PSPDFDocument *)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
@@ -37,6 +40,7 @@
 
 - (id)init;
 - (id)initWithData:(NSData *)data;
+- (id)initWithDataArray:(NSArray *)data;
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
 - (id)initWithURL:(NSURL *)URL;
 - (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
@@ -78,6 +82,9 @@
 
 /// PDF data when initialized with initWithData: otherwise nil.
 @property(nonatomic, copy, readonly) NSData *data;
+
+/// A document can also have multiple NSData objects.
+@property(nonatomic, copy, readonly) NSArray *dataArray;
 
 /// PDF dataProvider (can be used to dynamically decrypt a document)
 @property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
