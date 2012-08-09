@@ -24,7 +24,7 @@ Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: h
 *  Even better view reuse. PSPDFPageView is now reused, scrolling is even smoother.
 *  Internal modernization; literals, subscripting, NS_ENUM, UICollectionView usage (if available)
 *  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
-*  PSPDFDocument can now be initialized with a CGDataProviderRef.
+*  PSPDFDocument can now be initialized with a CGDataProviderRef or a dataArray.
 *  Support for Table Of Contents (Outline) linking to other PDF documents.
 *  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
 *  The search/outline controllers now dynamically update their size based on the content height.
