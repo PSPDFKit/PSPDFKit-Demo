@@ -16,6 +16,8 @@
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCSplitPDFViewController.h"
 #import "PSCBookmarkParser.h"
+#import "PSCSettingsBarButtonItem.h"
+#import "PSCKioskPDFViewController.h"
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     NSArray *_content;
@@ -40,6 +42,13 @@
 
         // Full Apps
         PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
+
+        [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
@@ -91,8 +100,12 @@
             NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
             NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
             NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+            NSData *data1 = [NSData dataWithContentsOfURL:file1 options:NSDataReadingMappedIfSafe error:NULL];
+            NSData *data2 = [NSData dataWithContentsOfURL:file2 options:NSDataReadingMappedIfSafe error:NULL];
+            NSData *data3 = [NSData dataWithContentsOfURL:file3 options:NSDataReadingMappedIfSafe error:NULL];
 
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[[NSData dataWithContentsOfURL:file1], [NSData dataWithContentsOfURL:file2], [NSData dataWithContentsOfURL:file3]]];
+            // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
             return controller;
         }]];
