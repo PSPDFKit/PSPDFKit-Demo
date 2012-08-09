@@ -21,7 +21,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 
 @implementation PSCKioskPDFViewController
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithDocument:(PSPDFDocument *)document {
@@ -94,7 +94,13 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 }
 
 - (void)close:(id)sender {
-    [self.navigationController popViewControllerAnimated:NO];
+    // If parent is PSCGridController, we have a custom animation in place.
+    BOOL animated = YES;
+    NSUInteger controllerCount = [self.navigationController.viewControllers count];
+    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridController class]]) {
+        animated = NO;
+    }
+    [self.navigationController popViewControllerAnimated:animated];
 }
 
 - (void)aspectRatioVarianceCalculated:(NSNotification *)notification {
@@ -103,7 +109,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -138,7 +144,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 }
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
 // This is to present the most common features of PSPDFKit.
@@ -201,7 +207,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     [self setViewState:viewState animated:NO];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
 // Allow control if a page should be scrolled to.
