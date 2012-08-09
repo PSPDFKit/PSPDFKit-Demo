@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; };
 		784F012015CF247900849F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011F15CF247900849F81 /* Foundation.framework */; };
 		784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F012115CF247900849F81 /* CoreGraphics.framework */; };
@@ -155,6 +156,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F011D15CF247900849F81 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		784F011F15CF247900849F81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -323,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				784F012315CF247900849F81 /* PSPDFCatalog */,
+				7822D71515D3D1BE00E82EF9 /* Samples */,
 				784F011C15CF247900849F81 /* Frameworks */,
 				784F011A15CF247900849F81 /* Products */,
 			);
@@ -814,6 +817,7 @@
 				78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */,
 				78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */,
 				78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */,
+				7822D71615D3D1BE00E82EF9 /* Samples in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
