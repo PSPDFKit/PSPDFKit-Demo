@@ -11,19 +11,23 @@
 
 #define kPSPDFOutlineParserErrorDomain @"kPSPDFOutlineParserErrorDomain"
 
-/// Parses the Outline/Table of Contents of a pdf.
+/// Parses the Outline/Table of Contents of a PDF.
 @interface PSPDFOutlineParser : NSObject
 
-/// Init outline parser with document.
+/// Initialize outline parser with the documentProvider.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Returns single outline element for specific page.
-/// if exactPageOnly is set, the outline will only be returned if it's from the specific page.
-/// else the last active set outline will be returned.
+/**
+    Returns a single outline element for the specified page.
+ 
+    If exactPageOnly is set, the outline will only be returned if it's from the specific page.
+    else the last active set outline will be returned.
+*/
 - (PSPDFOutlineElement *)outlineElementForPage:(NSUInteger)page exactPageOnly:(BOOL)exactPageOnly;
 
 /// Returns cached outline. starts parsing if outline is not yet created.
-@property(nonatomic, strong, readonly) PSPDFOutlineElement *outline;
+/// Not readonly, because this could also be set programmatically.
+@property(nonatomic, strong) PSPDFOutlineElement *outline;
 
 /// Returns YES if outline is already parsed. Might be an expensive operation.
 @property(nonatomic, assign, readonly, getter=isOutlineParsed) BOOL outlineParsed;
