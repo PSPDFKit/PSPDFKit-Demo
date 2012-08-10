@@ -11,26 +11,41 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFDocumentProvider;
 
-/// Parses and saves annotations for each page in a PDF.
+/**
+    Parses and saves annotations for each page in a PDF.
+
+    Can be subclassed to connect a custom annotation database.
+    Use PSPDFDocument's overrideClassNames to subclass this correctly.
+*/
 @interface PSPDFAnnotationParser : NSObject
 
-/// Init annotation parser.
+/// Initializes the annotation parser with the associated documentProvider.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Return annotation array for specified page.
-/// Note: fetching annotations may take a while. You can do this in a background thread.
+/**
+    Return annotation array for specified page.
+
+    Note: fetching annotations may take a while. You can do this in a background thread.
+ 
+    This method will be called OFTEN. Multiple times during a page display, and basically each time you're scrolling or zooming. Ensure it is fast.
+ 
+    The default implementation is lazy loaded (and of course thread safe); hitting a dictionary cache first and blocks if no cache is found. After the first expensive call, this method is basically free. Ensure that you're using a similar cache if you replace this method with your own.
+*/
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
 /// Return annotation array for specified page, use already open pageRef.
+/// IF you subclass, subclass this method instead of annotationsForPage:type:.
+/// pageRef might be nil or not; this is a pure performance improvement.
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type pageRef:(CGPDFPageRef)pageRef;
 
 /// Parses annotation link target. Override to support custom link protocols.
 - (void)parseAnnotationLinkTarget:(PSPDFAnnotation *)annotation;
 
-/// YES if annotations are loaded for a specific page. Load annotations in a background thread.
+/// YES if annotations are loaded for a specific page. This is used to determine if annotationsForPage:type: should be called directly or in a background thread.
 - (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
 
-/// Returns the annotation classed used to represent the PSPDFAnnotation. Might return nil for certain types.
+/// Returns the annotation classes used to represent the PSPDFAnnotation. Might return nil for certain types.
+/// The classes all are a subtype of UIView <PSPDFAnnotationView>
 - (Class)annotationClassForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Annotation factory for built-in types.
@@ -59,6 +74,7 @@
 /// Dictionary key are the pages, object an array of annotations.
 - (NSDictionary *)dirtyAnnotations;
 
+/// Return all annotations.
 - (NSDictionary *)annotations;
 
 /// Removes all annotations that are marked as deleted.

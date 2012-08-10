@@ -10,11 +10,16 @@
 #import "PSPDFViewController.h"
 #import "PSPDFBaseViewController.h"
 
+/// Enable to completely match the toolbar style with the PSPDFViewController.
+/// Defaults to NO because IMO it doesn't look that great.
+extern BOOL PSPDFHonorBlackAndTranslucentSettingsOnViewController;
+
 typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsNone             = 0,
     PSPDFWebViewControllerAvailableActionsOpenInSafari     = 1 << 0,
     PSPDFWebViewControllerAvailableActionsMailLink         = 1 << 1,
-    PSPDFWebViewControllerAvailableActionsCopyLink         = 1 << 2
+    PSPDFWebViewControllerAvailableActionsCopyLink         = 1 << 2,
+    PSPDFWebViewControllerAvailableActionsPrint            = 1 << 3
 };
 
 /// Inline Web Browser.
@@ -26,7 +31,9 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Creates a new PSPDFWebViewController with the specified URL.
 - (id)initWithURL:(NSURL *)URL;
 
-@property (nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
+/// Controls the available actions under the more icon.
+/// Defaults to all actions available in PSPDFWebViewControllerAvailableActions.
+@property(nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
 
 /// Internal webview used.
 @property(nonatomic, strong, readonly) UIWebView *webView;
@@ -34,8 +41,10 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Access popover controller, if attached.
 @property(nonatomic, strong) UIPopoverController *popoverController;
 
-// Customize the icon toolbar
+// Customize the icon toolbar. Call before displaying.
+- (void)copyStyleFromPDFViewController:(PSPDFViewController *)pdfController;
 @property(nonatomic, assign) UIBarStyle barStyle;
+@property(nonatomic, assign) BOOL isBarTranslucent;
 @property(nonatomic, strong) UIColor *tintColor;
 
 @end

@@ -245,9 +245,13 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property(nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
+/// Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.
+@property(nonatomic, assign) CGFloat scrollOnTapPageEndMargin;
+
 /// Allows text selection. Defaults to YES.
 /// Note: This implies that the PDF file actually contains text glypths.
 /// Sometimes text is represented via embedded images or vectors, in that case we can't select it.
+/// Also disable long press gesture recognizer on PSPDFScrollView if set to NO.
 @property(nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 
 /// If YES, when a PDF that requires a password is set, a password dialog is shown.

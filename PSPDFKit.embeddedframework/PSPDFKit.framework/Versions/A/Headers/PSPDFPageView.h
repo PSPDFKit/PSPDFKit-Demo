@@ -9,7 +9,7 @@
 #import "PSPDFRenderQueue.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
 extern NSString *kPSPDFHidePageHUDElements;
@@ -40,11 +40,6 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 /// Redraw renderView and contentView.
 - (void)updateView;
-
-/// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
-/// Call manually to speed up rendering.
-/// Has no effect if called multiple times.
-- (void)loadPageAnnotationsAnimated:(BOOL)animated;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
 /// (Most PDF annotations are actually rendered into the page; except PSPDFLinkAnntotations and all derivates (video, etc) and PSPDFNoteAnnotation)
@@ -79,6 +74,12 @@ extern NSString *kPSPDFHidePageHUDElements;
 
 /// Access the render status view that is displayed on top of a page while we are rendering.
 @property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
+
+/// Top right offset. Defaults to 30.
+@property(nonatomic, assign) CGFloat renderStatusViewOffset;
+
+/// Should center render status view. Defaults to NO.
+@property(nonatomic, assign) BOOL centerRenderStatusView;
 
 /// Shortcut to access the textParser corresponding to the current page.
 @property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
@@ -152,22 +153,35 @@ extern NSString *kPSPDFHidePageHUDElements;
 // Extensions to handle annotations.
 @interface PSPDFPageView (PSPDFAnnotationMenu)
 
+/// Currently selected annotation (selected by a tap; showing a menu)
 @property(nonatomic, strong, readonly) PSPDFAnnotation *selectedAnnotation;
 
-// Process a tap, we might have an annotation underneath.
-// Returns YES if the tap has been handled, NO if not.
-- (BOOL)singleTap:(UITapGestureRecognizer *)recognizer;
+/**
+    Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
+    Returns YES if the tap has been handled, else NO.
+    
+    All annotations for the current page are loaded and hit-tested (except PSPDFAnnotationTypeLink; which has already been handled by now)
+    
+    If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
+ 
+    If the tap didn't hit an annotation but we are showing a UIMenuController menu; we hide that and set the touch as processed.
+ */
+- (BOOL)singleTapped:(UITapGestureRecognizer *)recognizer;
 
-// Handle long press, potentially relay to subviews
+/// Handle long press, potentially relay to subviews.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 
-// Returns available UIMenuItem for the current annotation.
-// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
+/// Returns available UIMenuItem for the current annotation.
+/// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
 - (NSArray *)menuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-// Called when a annotation was found ad the tapped location.
-// This will call menuItemsForAnnotation to show a UIMenuController.
+/// Called when a annotation was found ad the tapped location.
+/// This will usually call menuItemsForAnnotation to show a UIMenuController,
+/// Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)
 - (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
+
+/// Shows a popover/modal controller to edit the PSPDFNoteAnnotation.
+- (void)showNoteControllerForAnnotation:(PSPDFNoteAnnotation *)annotation;
 
 // Helper to add a custom annotation to the view.
 - (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
@@ -179,5 +193,29 @@ extern NSString *kPSPDFHidePageHUDElements;
 @interface PSPDFPageView (PSPDFScrollViewDelegateExtensions)
 
 - (void)pspdf_scrollView:(UIScrollView *)scrollView willZoomToScale:(float)scale animated:(BOOL)animated;
+
+@end
+
+@interface PSPDFPageView (SubclassingHooks)
+
+/**
+    In PSPDFKit, annotations are managed in two ways:
+
+    1) Annotations that are fixed and rendered with the page image.
+    Those annotations are PSPDFHighlightAnnotation, PSPDFShapeAnnotation, PSPDFInkAnnotation and more.
+    Pretty much all more or less "static" annotations are handled this way.
+ 
+    2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
+    Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
+    
+    Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
+ 
+    This method is called recursively with all annotation types except PSPDFAnnotationTypeLink | PSPDFAnnotationTypeNote.
+*/
+- (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+
+/// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
+/// Call manually to speed up rendering. Has no effect if called multiple times.
+- (void)loadPageAnnotationsAnimated:(BOOL)animated;
 
 @end
