@@ -120,6 +120,16 @@ extern CATransition *PSPDFFadeTransition(void);
 // Creates a fade transition with 'duration' timimg.
 extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
 
+// Matches actionSheet style via barStyle.
+extern UIActionSheetStyle PSPDPFActionSheetStyleForBarButtonStyle(UIBarStyle barStyle, BOOL translucent);
+
+// Returns toolbar height (44; except on iPhone)
+extern CGFloat PSPDFToolbarHeightForOrientation(UIInterfaceOrientation orientation);
+extern CGFloat PSPDFToolbarHeight(BOOL isSmall);
+
+// combines fminf and fmaxf to limit a value between a range
+extern CGFloat psrangef(float minRange, float value, float maxRange);
+
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak

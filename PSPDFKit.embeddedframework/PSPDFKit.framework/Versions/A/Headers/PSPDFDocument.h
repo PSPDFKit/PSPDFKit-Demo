@@ -13,6 +13,13 @@
 
 @class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmarkParser;
 
+typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
+    PSPDFAnnotationSaveModeDisabled,
+    PSPDFAnnotationSaveModeExternalFile,
+    PSPDFAnnotationSaveModeEmbedded,
+    PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback
+};
+
 /// Represents a single, logical, PDF document. (one or many PDF files)
 /// Can be overriden to support custom collections.
 @interface PSPDFDocument : NSObject <NSCopying, NSCoding>
@@ -106,18 +113,70 @@
 @property(nonatomic, strong, readonly) NSDictionary *metadata;
 
 /// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
-@property(nonatomic, copy) NSString *uid;
+@property(nonatomic, copy) NSString *UID;
+
 
 /// @name Annotations
+
+/// Annotation link extraction. Defaults to YES.
+@property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
+
+/**
+    Defines the annotations that can be edited (if annotationsEnabled is set to YES)
+    Set this to an empty set to disable annotation editing/creation.
+ 
+    Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk,
+*/
+@property(nonatomic, strong) NSSet *editableAnnotationTypes;
 
 /// Can PDF annotations be embedded?
 /// Note: only evaluates the first file if multiple files are set.
 @property(nonatomic, assign, readonly) BOOL canEmbedAnnotations;
 
+/**
+    Control if and where custom created PSPDFAnnotations are saved.
+    Defaults to PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback.
+ 
+    Note: Currently PSPDFLinkAnnotations cannot be saved.
+    (See editableAnnotationTypes for annotations that can be written)
+*/
+@property(nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
+
 /// Saves changed annotations back into the PDF sources (files/data).
 /// Returns NO if annotations cannot be embedded. Then most likely error is set.
-/// Returns YES if there are no annotations that have the dirty flag set.
+/// Returns YES if there are no annotations that need to be saved.
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
+
+/// Link annotation parser class for current document.
+/// Can be overridden to use a subclassed annotation parser.
+/// Note: Only returns the parser for the first PDF file.
+@property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
+
+/**
+    Shorthand to return annotation array for specified page.
+    This is a shortcut method that already compensates the page, replacing this code:
+
+    NSUInteger compensatedPage = [document compensatedPageForPage:self.page];
+    PSPDFAnnotationParser *annotationParser = [document annotationParserForPage:self.page];
+    NSArray *annotations = [annotationParser annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];
+ */
+- (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
+
+/// Shorthand accessor that compensates the page. See PSPDFAnnotationParser for details.
+- (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
+
+/**
+    Returns the annotation parser for a specific page.
+    page is needed if your PSPDFDocument contains multiple PSPDFDocumentProviders.
+    (thus, multiple sources like multiple files or a file and a NSData object)
+
+    If you use [annotationParser annotationsForPage:type:] or the other methods in there,
+    be sure to use a compensated page index. Pages within annotationParser are file relative.
+
+    Use NSUInteger compensatedPage = [self compensatedPageForPage:page].
+ */
+- (PSPDFAnnotationParser *)annotationParserForPage:(NSUInteger)page;
+
 
 /// @name Page Info Data
 
@@ -179,14 +238,6 @@
 
 /// If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property(nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
-
-/// Annotation link extraction. Defaults to YES.
-@property(nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
-
-/// Defines the annotations that can be edited (if annotationsEnabled is set to YES)
-/// Set this to an empty set to disable annotation editing/creation.
-/// Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk,
-@property(nonatomic, strong) NSSet *editableAnnotationTypes;
 
 /// If document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
 // Note: doesn't use weak as this could lead to background deallocation of the controller.
@@ -258,41 +309,10 @@
 /// Note: Only returns the parser for the first PDF file.
 @property(nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
 
-/// Link annotation parser class for current document.
-/// Can be overridden to use a subclassed annotation parser.
-/// Note: Only returns the parser for the first PDF file.
-@property(nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
-
 /// Manages the bookmark parser.
 /// Lazily initialized, thread safe.
 /// Can be customized with using overrideClassNames.
 @property(nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
-
-/**
-    Shorthand to return annotation array for specified page.
-    This is a shortcut method that already compensates the page, replacing this code:
-
-    NSUInteger compensatedPage = [document compensatedPageForPage:self.page];
-    PSPDFAnnotationParser *annotationParser = [document annotationParserForPage:self.page];
-    NSArray *annotations = [annotationParser annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];
-
- */
-- (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
-
-/// Shorthand accessor that compensates the page. See PSPDFAnnotationParser for details.
-- (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
-
-/**
-    Returns the annotation parser for a specific page.
-    page is needed if your PSPDFDocument contains multiple PSPDFDocumentProviders.
-    (thus, multiple sources like multiple files or a file and a NSData object)
- 
-    If you use [annotationParser annotationsForPage:type:] or the other methods in there,
-    be sure to use a compensated page index. Pages within annotationParser are file relative.
- 
-    Use NSUInteger compensatedPage = [self compensatedPageForPage:page].
- */
-- (PSPDFAnnotationParser *)annotationParserForPage:(NSUInteger)page;
 
 /// Page labels (NSString) for the current document.
 /// Might be nil if PageLabels isn't set in the PDF.
