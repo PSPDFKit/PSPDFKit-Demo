@@ -92,7 +92,7 @@
 }
 
 - (void)sortMagazines {
-    [_magazines sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"uid" ascending:NO]]];
+    [_magazines sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"UID" ascending:NO]]];
 }
 
 - (void)setMagazines:(NSArray *)magazines {
