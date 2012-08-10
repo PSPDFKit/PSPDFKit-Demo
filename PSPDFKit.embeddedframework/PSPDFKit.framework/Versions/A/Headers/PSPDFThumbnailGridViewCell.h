@@ -29,7 +29,7 @@
 /// Enable page label.
 @property(nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
 
-/// Call before re-showing.
+/// Call before re-showing (will update bookmark status)
 - (void)updateCell;
 
 @end
