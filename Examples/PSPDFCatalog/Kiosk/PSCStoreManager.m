@@ -542,7 +542,7 @@ static char kvoToken; // we need a static address for the kvo token
     NSMutableArray *newMagazines = [NSMutableArray arrayWithArray:magazines];
     for (PSCMagazine *newMagazine in magazines) {
         for (PSCMagazineFolder *folder in self.magazineFolders) {
-            NSArray *foundMagazines = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.uid == %@", newMagazine.UID]];
+            NSArray *foundMagazines = [folder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self.UID == %@", newMagazine.UID]];
             [newMagazines removeObjectsInArray:foundMagazines];
         }
     }
