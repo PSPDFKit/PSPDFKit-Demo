@@ -19,7 +19,7 @@
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.contentSizeForViewInPopover = CGSizeMake(500.f, 2000.f);
-        self.title = PSPDFLocalize(@"Annotation List");
+        self.title = PSPDFLocalize(@"Annotation List (for debugging)");
         _pdfController = pdfController;
     }
     return self;
@@ -30,11 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
+     //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -122,6 +118,8 @@
     PSPDFDocument *document = self.pdfController.document;
     NSArray *annotations = [document annotationsForPage:indexPath.section type:PSPDFAnnotationTypeAll];
     PSPDFAnnotation *annotation = annotations[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
     PSCLog(@"Touched %@", annotation);
 }
 
