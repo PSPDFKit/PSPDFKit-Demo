@@ -78,6 +78,20 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
 @property(nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
 
+/**
+    About Hit-Testing.
+ 
+    PSPDFKit has a UITapGestureRecognizer to detects taps. There are several different actions called, if one succeeds further processing will be stopped.
+ 
+    First, we check if we hit a PSPDFLinkAnnotationView and invoke the delegates and default action if found.
+ 
+    Next, we check if there's text selection and discard if.
+    Then, touches are relayed to all visible PSPDFPageView's and singleTapped: is called. If one page reports that the touch has been processed; the loop is stopped.
+ 
+    Next, the didTapOnPageView:atPoint: delegate is called if the touch still hasn't been processed.
+ 
+    Lastly, if even the delegate returned NO, we look if isScrollOnTapPageEndEnabled and scroll to the next/previous page if the border is near enough; or just toggle the HUD (if that is allowed)
+ */
 - (void)singleTapped:(UITapGestureRecognizer *)recognizer;
 - (void)doubleTapped:(UITapGestureRecognizer *)recognizer;
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer;
