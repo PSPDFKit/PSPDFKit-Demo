@@ -11,6 +11,7 @@
 #import "PSCGridController.h"
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCMetadataBarButtonItem.h"
+#import "PSCAnnotationTableBarButtonItem.h"
 
 NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianceCalculated";
 
@@ -50,8 +51,9 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         PSCSettingsBarButtonItem *settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
         PSCMetadataBarButtonItem *metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+        PSCAnnotationTableBarButtonItem *annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
         
-        self.leftBarButtonItems = PSIsIpad() ? @[closeButtonItem, settingsButtomItem, metadataButtonItem] : @[closeButtonItem, settingsButtomItem];
+        self.leftBarButtonItems = PSIsIpad() ? @[closeButtonItem, settingsButtomItem, metadataButtonItem, annotationListButtonItem] : @[closeButtonItem, settingsButtomItem];
         self.barButtonItemsAlwaysEnabled = @[closeButtonItem];
 
         // restore viewState
@@ -316,12 +318,14 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
 
     // This is an example how to customize the text selection menu.
-    NSMutableArray *newMenuItems = [menuItems mutableCopy];
-    PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
-        [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
-    }];
-    [newMenuItems addObject:menuItem];
-    [[UIMenuController sharedMenuController] setMenuItems:newMenuItems];
+    if (PSIsIpad()) { // looks bad on iPhone, no space
+        NSMutableArray *newMenuItems = [menuItems mutableCopy];
+        PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
+            [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
+        }];
+        [newMenuItems addObject:menuItem];
+        [[UIMenuController sharedMenuController] setMenuItems:newMenuItems];
+    }
 
     return YES;
 }
