@@ -55,3 +55,9 @@
 "Highlight" = "Highlight";
 "Underline" = "Underline";
 "Strikeout" = "Strike Out";
+"Sketch" = "Sketch";
+"New Comment" = "New Comment";
+
+// voiceover accessibility
+"Page" = "Page";
+"Grid" = "Grid;

@@ -55,3 +55,9 @@
 "Highlight" = "Markieren";
 "Underline" = "Unterstreichen";
 "Strikeout" = "Durchstreichen";
+"Sketch" = "Zeichnen";
+"New Comment" = "Neuer Kommentar";
+
+// voiceover accessibility
+"Page" = "Seite";
+"Grid" = "Thumbnails;

@@ -2,13 +2,14 @@
 //  PSCAnnotationTableViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCAnnotationTableViewController.h"
 
-@interface PSCAnnotationTableViewController ()
-
+@interface PSCAnnotationTableViewController () {
+    BOOL _hideLinkAnnotations;
+}
 @end
 
 @implementation PSCAnnotationTableViewController
@@ -18,8 +19,10 @@
 
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
+        _hideLinkAnnotations = YES;
         self.contentSizeForViewInPopover = CGSizeMake(500.f, 2000.f);
         self.title = PSPDFLocalize(@"Annotation List (for debugging)");
+        [self updateToolbar];
         _pdfController = pdfController;
     }
     return self;
@@ -38,6 +41,28 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)updateToolbar {
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(_hideLinkAnnotations ? @"Show Links" : @"Hide Links") style:UIBarButtonItemStyleBordered target:self action:@selector(showHideLinkAnnotations)];
+}
+
+- (void)showHideLinkAnnotations {
+    _hideLinkAnnotations = !_hideLinkAnnotations;
+    [self.tableView reloadData];
+    [self updateToolbar];
+}
+
+// allow filtering link annotations
+- (PSPDFAnnotationType)annotationTypes {
+    PSPDFAnnotationType annotationTypes = PSPDFAnnotationTypeAll;
+    if (_hideLinkAnnotations) {
+        annotationTypes &= ~PSPDFAnnotationTypeLink;
+    }
+    return annotationTypes;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -45,8 +70,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    PSPDFDocument *document = self.pdfController.document;
-    return [[document annotationsForPage:section type:PSPDFAnnotationTypeAll] count];
+    PSPDFDocument *document = self.pdfController.document;    
+    return [[document annotationsForPage:section type:[self annotationTypes]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,7 +86,7 @@
 
     // load all annotations
     PSPDFDocument *document = self.pdfController.document;
-    NSArray *annotations = [document annotationsForPage:indexPath.section type:PSPDFAnnotationTypeAll];
+    NSArray *annotations = [document annotationsForPage:indexPath.section type:[self annotationTypes]];
     annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
 
     // configure cell
