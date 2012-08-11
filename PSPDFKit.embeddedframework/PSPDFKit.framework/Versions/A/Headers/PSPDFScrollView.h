@@ -78,6 +78,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @property(nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
 @property(nonatomic, strong, readonly) UILongPressGestureRecognizer *longPressGesture;
 
+/// Disables singleTapGesture for the current ongoing touch.
+- (void)setCurrentTouchEventAsProcessed;
+
 /**
     About Hit-Testing.
  
