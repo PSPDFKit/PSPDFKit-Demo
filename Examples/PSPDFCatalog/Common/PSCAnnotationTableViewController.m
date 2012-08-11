@@ -62,6 +62,7 @@
     // load all annotations
     PSPDFDocument *document = self.pdfController.document;
     NSArray *annotations = [document annotationsForPage:indexPath.section type:PSPDFAnnotationTypeAll];
+    annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
 
     // configure cell
     cell.textLabel.text = [annotations[indexPath.row] description];
@@ -120,7 +121,7 @@
     PSPDFAnnotation *annotation = annotations[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    PSCLog(@"Touched %@", annotation);
+    NSLog(@"Touched %@", annotation);
 }
 
 @end
