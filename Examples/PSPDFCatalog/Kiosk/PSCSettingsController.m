@@ -77,7 +77,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(viewModeButtonItem)] = @(YES);
         _settings[StringSEL(renderBackgroundColor)] = [UIColor whiteColor];
         _settings[StringSEL(renderContentOpacity)] = @(1.f);
-        _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingFullPageBlocking);
+        _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
     }
 }
 
@@ -108,7 +108,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
-        @[_(@"PSPDFPageRenderingThumbailThenFullPage"), _(@"PSPDFPageRenderingFullPage"), _(@"PSPDFPageRenderingFullPageBlocking"), _(@"PSPDFPageRenderingThumbnailThenRender"), _(@"PSPDFPageRenderingRender")],
+        @[_(@"PSPDFPageRenderingModeThumbailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
         @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
         @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
@@ -123,7 +123,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // double page mode
         _(@"Relevant for double page mode."),
-        _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingFullPageBlocking is a great option for magazine apps that use pageCurl."),
+        _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingModeFullPageBlocking is a great option for magazine apps that use pageCurl."),
         _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
         _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
         _(@"Default is PSPDFLinkActionInlineBrowser."),
@@ -386,7 +386,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
             _settings[StringSEL(pageTransition)] = @(pageTransition);
             // set recommended render mode for pageCurl.
             if (pageTransition == PSPDFPageCurlTransition) {
-                _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingFullPageBlocking);
+                _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
             }
         }break;
         case PSPDFScrollDirectionSettings: _settings[StringSEL(pageScrolling)] = @(indexPath.row); break;

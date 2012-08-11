@@ -2,7 +2,7 @@
 //  PSCAppDelegate.h
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #if !defined(__clang__) || __clang_major__ < 4

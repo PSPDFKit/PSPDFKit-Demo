@@ -6,6 +6,7 @@
 //
 
 #import "MinimalExampleAppDelegate.h"
+#import "PSCAnnotationTableBarButtonItem.h"
 
 @implementation MinimalExampleAppDelegate
 
@@ -22,7 +23,8 @@
     _pdfController.delegate = self;
     
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
-    _pdfController.leftBarButtonItems = @[saveButton];
+    PSCAnnotationTableBarButtonItem *listAnnotationsButton = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:_pdfController];
+    _pdfController.leftBarButtonItems = @[saveButton, listAnnotationsButton];
     _pdfController.rightBarButtonItems = @[_pdfController.annotationButtonItem, _pdfController.searchButtonItem, _pdfController.outlineButtonItem, _pdfController.viewModeButtonItem];
     
     // create window and set as rootViewController
