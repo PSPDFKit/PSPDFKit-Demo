@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>{0.121, 0.350, 1.000, 1.000}</string>
+	<string>{0.057, 0.216, 0.786, 1.000}</string>
+	<string>{0.075, 0.150, 0.408, 1.000}</string>
+	<string>{0.011, 0.055, 0.208, 1.000}</string>
+	<string>{0.463, 0.758, 0.000, 1.000}</string>
+	<string>{0.215, 0.473, 0.000, 1.000}</string>
+	<string>{0.134, 0.250, 0.000, 1.000}</string>
+	<string>{0.086, 0.155, 0.000, 1.000}</string>
+	<string>{0.917, 0.793, 0.000, 1.000}</string>
+	<string>{0.771, 0.667, 0.000, 1.000}</string>
+	<string>{0.625, 0.473, 0.000, 1.000}</string>
+	<string>{0.467, 0.321, 0.000, 1.000}</string>
+	<string>{0.842, 0.424, 0.000, 1.000}</string>
+	<string>{0.719, 0.264, 0.000, 1.000}</string>
+	<string>{0.561, 0.216, 0.000, 1.000}</string>
+	<string>{0.380, 0.158, 0.000, 1.000}</string>
+	<string>{0.776, 0.188, 0.191, 1.000}</string>
+	<string>{0.596, 0.000, 0.000, 1.000}</string>
+	<string>{0.321, 0.000, 0.000, 1.000}</string>
+	<string>{0.177, 0.000, 0.026, 1.000}</string>
+	<string>{0.496, 0.075, 0.902, 1.000}</string>
+	<string>{0.267, 0.000, 0.517, 1.000}</string>
+	<string>{0.200, 0.027, 0.366, 1.000}</string>
+	<string>{0.115, 0.036, 0.201, 1.000}</string>
+</array>
+</plist>

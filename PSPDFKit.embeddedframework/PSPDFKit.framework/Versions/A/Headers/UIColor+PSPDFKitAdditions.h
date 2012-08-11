@@ -31,4 +31,12 @@
 + (UIColor *)pspdf_selectionColor;
 + (CGFloat)pspdf_selectionAlpha;
 
+/// Property list support
++ (UIColor *)pspdf_colorFromPropertyRepresentation:(id)colorObject;
+- (id)pspdf_propertyRepresentation;
+
+/// Derived colors
+- (UIColor *)pspdf_lightenedColor;
+- (UIColor *)pspdf_darkenedColor;
+
 @end
