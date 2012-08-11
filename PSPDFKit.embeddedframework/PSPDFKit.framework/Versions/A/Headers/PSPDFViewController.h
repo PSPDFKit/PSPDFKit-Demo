@@ -181,6 +181,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Enables/Disables the bottom document site position overlay. Defaults to YES. Animatable. Will be added to the hudView.
 @property(nonatomic, assign, getter=isPositionViewEnabled) BOOL positionViewEnabled;
 
+/// Enable/disable the top document label overlay. Defaults to YES on iPhone and NO on iPad.
+/// (On iPad, there's enough space to show the title in the navigationBar)
+@property(nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
+
 /// If YES, shows a decent UIActivityIndicator on the top right while page is rendering. Defaults to YES.
 @property(nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 
