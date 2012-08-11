@@ -15,7 +15,7 @@
 @optional
 
 /// Represented annotation this object is presenting.
-@property(nonatomic, retain) PSPDFAnnotation *annotation;
+@property(nonatomic, strong) PSPDFAnnotation *annotation;
 
 /// page will be displayed. only available in pageCurl mode.
 - (void)willShowPage:(NSUInteger)page;

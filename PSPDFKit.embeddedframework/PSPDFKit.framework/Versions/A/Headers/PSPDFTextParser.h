@@ -21,10 +21,10 @@ extern BOOL kPSPDFTextParserDebugLogEnabled;
 /// Complete list of PSPDFGlyph objects. Corresponds to the text.
 @property (nonatomic, strong) NSMutableArray *glyphs;
 
-/// List of detected words.
+/// List of detected words (PSPDFWord)
 @property (nonatomic, strong) NSMutableArray *words;
 
-/// List of detected text blocks.
+/// List of detected text blocks (PSPDFTextBlock)
 @property(nonatomic, strong, readonly) NSArray *textBlocks;
 
 - (id)initWithPDFPage:(CGPDFPageRef)p;

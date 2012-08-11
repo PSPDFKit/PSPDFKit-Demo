@@ -2,7 +2,7 @@
 //  PSCatalogViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCatalogViewController.h"
@@ -18,6 +18,7 @@
 #import "PSCBookmarkParser.h"
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCKioskPDFViewController.h"
+#import "PSCEmbeddedAnnotationTestViewController.h"
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     NSArray *_content;
@@ -131,8 +132,21 @@
              */
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
-        
-        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add a custom annotation" block:^{
+
+        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
+
+            NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+            NSString *newPath = [docsFolder stringByAppendingPathComponent:[hackerMagURL lastPathComponent]];
+            NSError *error;
+            if(![[NSFileManager new] fileExistsAtPath:newPath] &&
+               ![[NSFileManager new] copyItemAtPath:[hackerMagURL path] toPath:newPath error:&error]) {
+                NSLog(@"Error while copying %@: %@", [hackerMagURL path], error);
+            }
+            PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+            return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:hackerDocument];
+        }]];
+
+        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add custom image annotation" block:^{
             PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             return [[PSCAnnotationTestController alloc] initWithDocument:hackerDocument];
         }]];

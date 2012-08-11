@@ -68,11 +68,11 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 // Customize how a single page should be displayed.
 typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
-    PSPDFPageRenderingThumbailThenFullPage, // load cached page async
-    PSPDFPageRenderingFullPage,             // load cached page async, no upscaled thumb
-    PSPDFPageRenderingFullPageBlocking,     // load cached page directly
-    PSPDFPageRenderingThumbnailThenRender,  // don't use cached page but thumb
-    PSPDFPageRenderingRender                // don't use cached page nor thumb
+    PSPDFPageRenderingModeThumbailThenFullPage, // load cached page async
+    PSPDFPageRenderingModeFullPage,             // load cached page async, no upscaled thumb
+    PSPDFPageRenderingModeFullPageBlocking,     // load cached page directly
+    PSPDFPageRenderingModeThumbnailThenRender,  // don't use cached page but thumb
+    PSPDFPageRenderingModeRender                // don't use cached page nor thumb
 };
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
@@ -218,7 +218,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /**
     This manages how the PDF image cache (thumbnail, full page) is used.
 
-    PSPDFPageRenderingFullPageBlocking is a great option for PSPDFPageCurlTransition.
+    PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
     Note: PSPDFPageRenderingModeFullPageBlocking will disable certain page scroll animations.
     
     Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.
