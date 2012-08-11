@@ -24,6 +24,7 @@
 #define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
+    BOOL _firstShown;
     NSArray *_content;
 }
 @end
@@ -234,9 +235,10 @@
     [super viewDidAppear:animated];
 
 #ifdef kPSPDFAutoSelectCellNumber
-    if (kPSPDFAutoSelectCellNumber) {
+    if (!_firstShown && kPSPDFAutoSelectCellNumber) {
         [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
     }
+    _firstShown = YES;
 #endif
 }
 
