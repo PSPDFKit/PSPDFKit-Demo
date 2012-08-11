@@ -20,6 +20,9 @@
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
 
+// set to auto-choose a section; debugging aid.
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     NSArray *_content;
 }
@@ -32,7 +35,7 @@
 
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:style])) {
-        self.title = @"PSPDFKit Catalog";
+        self.title = PSPDFLocalize(@"PSPDFKit Catalog");
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
 
         // common paths
@@ -226,6 +229,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
+#ifdef kPSPDFAutoSelectCellNumber
+    if (kPSPDFAutoSelectCellNumber) {
+        [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
+    }
+#endif
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
