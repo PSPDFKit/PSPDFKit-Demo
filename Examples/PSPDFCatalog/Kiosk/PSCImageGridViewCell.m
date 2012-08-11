@@ -239,6 +239,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         [self updateSiteLabel]; // create lazily
         self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
         [self updateSiteLabel];
+        self.accessibilityLabel = self.magazine.title;
     }
 }
 
@@ -269,6 +270,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             }
             self.image = [coverMagazine coverImageForSize:self.frame.size];
         }
+        self.accessibilityLabel = self.magazineFolder.title;
     }
 }
 
