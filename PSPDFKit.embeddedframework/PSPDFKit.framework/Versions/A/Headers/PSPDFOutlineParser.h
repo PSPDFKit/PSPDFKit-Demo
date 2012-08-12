@@ -9,8 +9,6 @@
 
 @class PSPDFOutlineElement, PSPDFDocumentProvider;
 
-#define kPSPDFOutlineParserErrorDomain @"kPSPDFOutlineParserErrorDomain"
-
 /// Parses the Outline/Table of Contents of a PDF.
 @interface PSPDFOutlineParser : NSObject
 

@@ -33,7 +33,10 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeDocumentLocked = 300,
-    PSPDFErrorCodeUnknown = 900,    
+    PSPDFErrorCodeFailedToLoadAnnotations = 400,
+    PSPDFErrorCodeFailedToWriteAnnotations = 410,
+    PSPDFErrorCodeOutlineParser = 500,
+    PSPDFErrorCodeUnknown = 900,
 };
 
 /// Log level defines.
