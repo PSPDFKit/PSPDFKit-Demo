@@ -48,10 +48,6 @@
 /// The classes all are a subtype of UIView <PSPDFAnnotationView>
 - (Class)annotationClassForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Annotation factory for built-in types.
-/// Can be overridden, but usually reacting to the various annotation-delegate methods is enough.
-- (UIView <PSPDFAnnotationView>*)createAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect;
-
 /// The fileType translation table is used when we encounter pspdfkit:// links.
 /// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo.
 /// The ultimate fallback is PSPDFLinkAnnotationBrowser.
@@ -70,16 +66,6 @@
 /// Append annotations to a specific page.
 - (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
-/// Searches the annotation cache for annptations that have the dirty flag set.
-/// Dictionary key are the pages, object an array of annotations.
-- (NSDictionary *)dirtyAnnotations;
-
-/// Return all annotations.
-- (NSDictionary *)annotations;
-
-/// Removes all annotations that are marked as deleted.
-- (NSUInteger)removeDeletedAnnotations;
-
 /// Removes all annotation and re-evalutes the document on next access.
 - (void)clearCache;
 
@@ -89,5 +75,32 @@
 /// Change the protocol that's used to parse pspdfkit-additions (links, audio, video)
 /// Defaults to 'pspdfkit://'.
 @property(nonatomic, strong) NSString *protocolString;
+
+@end
+
+@interface PSPDFAnnotationParser (SubclassingHooks)
+
+/// Path where annotations are being saved.
+- (NSString *)annotationsPath;
+
+/// Save annotations (returning NO + eventually an error if it fails)
+- (BOOL)saveAnnotationsWithError:(NSError **)error;
+
+/// Load annotations (returning NO + eventually an error if it fails)
+- (NSDictionary *)loadAnnotationsWithError:(NSError **)error;
+
+/// Annotation factory for built-in types.
+/// Can be overridden, but usually reacting to the various annotation-delegate methods is enough.
+- (UIView <PSPDFAnnotationView>*)createAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect;
+
+/// Searches the annotation cache for annptations that have the dirty flag set.
+/// Dictionary key are the pages, object an array of annotations.
+- (NSDictionary *)dirtyAnnotations;
+
+/// Return all annotations.
+- (NSDictionary *)annotations;
+
+/// Removes all annotations that are marked as deleted.
+- (NSUInteger)removeDeletedAnnotations;
 
 @end
