@@ -19,9 +19,10 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
+#import "PSCustomTextSelectionMenuController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:2 inSection:4]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -118,22 +119,22 @@
 
         // Currently broken.
         /*
-        /// And even a CGDocumentProvider (can be used for encryption)
-        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
+         /// And even a CGDocumentProvider (can be used for encryption)
+         [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
 
-            NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"AES256-encrypted.pdf"]];
+         NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"AES256-encrypted.pdf"]];
 
-            // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
-            // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
-            NSString *AESKey = [NSString stringWithFormat:@"abcde%@234%@", @"fghijklmnopqrstuvwxyz1", @"56"];
-            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF andKey:AESKey];
-//            NSData *tempData = CFBridgingRelease(CGDataProviderCopyData(cryptoWrapper.dataProviderRef));
-//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:tempData];
+         // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
+         // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
+         NSString *AESKey = [NSString stringWithFormat:@"abcde%@234%@", @"fghijklmnopqrstuvwxyz1", @"56"];
+         PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF andKey:AESKey];
+         //            NSData *tempData = CFBridgingRelease(CGDataProviderCopyData(cryptoWrapper.dataProviderRef));
+         //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:tempData];
 
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
-            return [[PSPDFViewController alloc] initWithDocument:document];
-        }]];
-             */
+         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
+         return [[PSPDFViewController alloc] initWithDocument:document];
+         }]];
+         */
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
@@ -191,6 +192,12 @@
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             return [[PSCustomToolbarController alloc] initWithDocument:document];
         }]];
+
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Text Selection Menu" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
+        }]];
+
         [content addObject:customizationSection];
 
         PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
@@ -236,7 +243,19 @@
 
 #ifdef kPSPDFAutoSelectCellNumber
     if (!_firstShown && kPSPDFAutoSelectCellNumber) {
-        [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
+        BOOL success = NO;
+        NSUInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSUInteger numberOfRowsInSection = 0;
+        if (kPSPDFAutoSelectCellNumber.section < numberOfSections) {
+            numberOfRowsInSection = [self tableView:self.tableView numberOfRowsInSection:kPSPDFAutoSelectCellNumber.section];
+            if (kPSPDFAutoSelectCellNumber.row < numberOfRowsInSection) {
+                [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
+                success = YES;
+            }
+        }
+        if (!success) {
+            NSLog(@"Invalid row/section count: %@ (sections: %d, rows:%d)", kPSPDFAutoSelectCellNumber, numberOfSections, numberOfRowsInSection);
+        }
     }
     _firstShown = YES;
 #endif
@@ -311,7 +330,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewController 
+#pragma mark - PSPDFViewController
 
 @end
 
