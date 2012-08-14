@@ -463,6 +463,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Show a modal view controller with automatically added close button on the left side.
 - (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
 
+/// Show a modal view controller or a popover with automatically added close button on the left side.
+/// Use sender OR rect (both only needed for the popover)
+- (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(UIBarButtonItem *)sender rect:(CGRect)rect;
+
 /// Return an NSNumber-array of currently visible page numbers.
 - (NSArray *)visiblePageNumbers;
 
