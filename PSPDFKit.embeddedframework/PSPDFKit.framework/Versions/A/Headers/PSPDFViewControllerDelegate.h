@@ -107,17 +107,12 @@
 /**
     Called before the menu for text selection is displayed.
     All coordinates are in view coordinate space.
- 
-    At this point, the menuItems have already been set at UIMenuController.
-    if you want to customize the menu, use 
-    [[UIMenuController sharedMenuController] setMenuItems:]
-    and set a custom menu.
- 
+
     Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
 
-    Default is YES if not implemented.
+    Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
 */
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 
 /* Annotations */
