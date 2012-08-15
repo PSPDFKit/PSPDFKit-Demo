@@ -220,6 +220,13 @@
             return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
         }]];
 
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Background Color" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+            pdfController.backgroundColor = [UIColor brownColor];
+            return pdfController;
+        }]];
+
         [content addObject:customizationSection];
 
 
