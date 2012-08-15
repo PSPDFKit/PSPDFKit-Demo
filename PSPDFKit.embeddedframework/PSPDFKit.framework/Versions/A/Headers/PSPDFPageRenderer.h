@@ -19,6 +19,9 @@ extern NSString *kPSPDFInterpolationQuality;  // Set custom interpolation qualit
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
 
+/// Setup the graphics context to the current PDF.
++ (void)setupGraphicsContext:(CGContextRef)context inRectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
+
 /// Renders a page inside a rectangle. Set context CTM and ClipRect to control rendering.
 /// Returns the renderingRectangle.
 + (CGRect)renderPageRef:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;

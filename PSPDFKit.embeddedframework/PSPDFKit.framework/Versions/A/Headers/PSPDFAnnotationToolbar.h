@@ -11,12 +11,6 @@
 
 @class PSPDFViewController, PSPDFAnnotationToolbar;
 
-@protocol PSPDFAnnotationToolbarDelegate <NSObject>
-
-- (void)annotationToolbarDidHide:(PSPDFAnnotationToolbar *)annotationToolbar;
-
-@end
-
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarNone,
     PSPDFAnnotationToolbarComment,
@@ -25,6 +19,18 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarUnderline,
     PSPDFAnnotationToolbarDraw
 };
+
+@protocol PSPDFAnnotationToolbarDelegate <NSObject>
+
+@optional
+
+// Called when the Done button has been pressed to hide the toolbar.
+- (void)annotationToolbarDidHide:(PSPDFAnnotationToolbar *)annotationToolbar;
+
+// Called after a mode change is set (button pressed; drawing finished, etc)
+- (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(PSPDFAnnotationToolbarMode)newMode;
+
+@end
 
 /// To edit annotations, a new toolbar will be overlayed.
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
@@ -52,11 +58,19 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
 
-- (void)commentButtonPressed:(UIBarButtonItem *)barButtonItem;
-- (void)highlightButtonPressed:(UIBarButtonItem *)barButtonItem;
-- (void)strikeOutButtonPressed:(UIBarButtonItem *)barButtonItem;
-- (void)underlineButtonPressed:(UIBarButtonItem *)barButtonItem;
-- (void)drawButtonPressed:(UIBarButtonItem *)barButtonItem;
-- (void)backButtonPressed:(UIBarButtonItem *)barButtonItem;
+- (void)commentButtonPressed:(id)sender;
+- (void)highlightButtonPressed:(id)sender;
+- (void)strikeOutButtonPressed:(id)sender;
+- (void)underlineButtonPressed:(id)sender;
+- (void)drawButtonPressed:(id)sender;
+- (void)backButtonPressed:(id)sender;
+
+// Finish up drawing. Usually called by the drawing delegate.
+- (void)finishDrawingAndSaveAnnotation:(BOOL)save;
+
+// helpers to lock/unlock the controller
+- (void)lockPDFController;
+// stayOnTop is a runtime tweak to make sure the toolbar stays above the pfController navigationBar.
+- (void)unlockPDFControllerAndEnsureToStayOnTop:(BOOL)stayOnTop;
 
 @end
