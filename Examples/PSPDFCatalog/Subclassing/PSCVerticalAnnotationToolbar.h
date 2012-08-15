@@ -1,13 +1,16 @@
 //
 //  PSCVerticalAnnotationToolbar.h
-//  PSPDFCatalog-static
+//  PSPDFCatalog
 //
-//  Created by Peter Steinberger on 8/15/12.
 //  Copyright (c) 2012 PSPDFKit. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+// Example how to add a always-visible vertical toolbar
+// Internally uses PSPDFAnnotationToolbar for adding the annotations.
+@interface PSCVerticalAnnotationToolbar : UIView
 
-@interface PSCVerticalAnnotationToolbar : NSObject
+- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+
+@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
 
 @end
