@@ -53,7 +53,7 @@
                 [[UIColor colorWithWhite:0.9 alpha:1.f] setFill];
                 CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
                 UIImage *lockImage = [UIImage imageNamed:@"lock"];
-                CGSize lockImageTargetSize = PSPDFSizeForScale(lockImage.size, 0.6);
+                CGSize lockImageTargetSize = PSPDFSizeForScale(lockImage.size, PSIsIpad() ? 0.6f : 0.3f);
                 [lockImage drawInRect:(CGRect){.origin={floorf((size.width-lockImageTargetSize.width)/2), floorf((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
                 coverImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
