@@ -35,7 +35,10 @@
 #pragma mark - Private
 
 - (void)backToCatalog {
-    self.view.window.rootViewController = ((PSCAppDelegate *)[UIApplication sharedApplication].delegate).catalog;
+    UIWindow *window = self.view.window;
+    // ensure popover is dismissed or we'll crash
+    [self.masterVC.masterPopoverController dismissPopoverAnimated:NO];
+    window.rootViewController = ((PSCAppDelegate *)[UIApplication sharedApplication].delegate).catalog;
 }
 
 // tests fast cycling through the pdf elements

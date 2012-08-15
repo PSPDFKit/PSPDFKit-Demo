@@ -7,6 +7,8 @@
 
 @interface PSCSplitPDFViewController : PSPDFViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate>
 
+@property(nonatomic, strong, readonly) UIPopoverController *masterPopoverController;
+
 - (void)displayDocument:(PSPDFDocument *)document;
 
 @end
