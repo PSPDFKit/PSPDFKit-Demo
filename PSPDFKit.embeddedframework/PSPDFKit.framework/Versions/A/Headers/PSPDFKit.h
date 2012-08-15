@@ -81,6 +81,7 @@
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
 #import "PSPDFSelectionView.h"
+#import "PSPDFAnnotationToolbar.h"
 
 // toolbar
 #import "PSPDFBarButtonItem.h"

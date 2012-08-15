@@ -64,6 +64,8 @@
 /// Will be called after zoom level has been changed, either programatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
 /// Return a PSPDFDocument for a relative path.
 /// If this is unimplemented, we try to find the PDF ourself with using the current document's basePath.
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
@@ -177,11 +179,5 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController willHideHUD:(BOOL)animated;
 /// HUD was hidden (called after the animation finishes)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated;
-
-
-/* deprecated */
-
-// Deprecated. Allows adding custom annotations. Called on any handler that is not recognized by PSPDFKit.
-- (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController viewForAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView __attribute__((deprecated("Deprecated. Use annotationViewForAnnotation instead.")));
 
 @end
