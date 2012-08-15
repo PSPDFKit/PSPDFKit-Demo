@@ -20,9 +20,11 @@
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
 #import "PSCustomTextSelectionMenuController.h"
+#import "PSCExampleAnnotationViewController.h"
+#import "PSCCustomDrawingViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:2 inSection:4]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:6]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -193,6 +195,26 @@
             return [[PSCustomToolbarController alloc] initWithDocument:document];
         }]];
 
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Disable Toolbar" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+
+            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+            self.navigationController.navigationBarHidden = YES;
+
+            // pop back after 5 seconds.
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 5.f * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+
+            // sample settings
+            pdfController.pageTransition = PSPDFPageCurlTransition;
+            pdfController.toolbarEnabled = NO;
+            pdfController.fitToWidthEnabled = NO;
+
+            return pdfController;
+        }]];
+
         [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Text Selection Menu" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
@@ -200,7 +222,10 @@
 
         [content addObject:customizationSection];
 
+
         PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
+
+        // Bookmarks
         [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture Bookmarks" block:^UIViewController *{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             document.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
@@ -208,7 +233,25 @@
             controller.rightBarButtonItems = @[controller.bookmarkButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
+
+        // Vertical always-visible annotation bar
+        [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
         [content addObject:subclassingSection];
+
+        PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:@"How to use PSPDFViewControllerDelegate"];
+        [delegateSection addContent:[[PSContent alloc] initWithTitle:@"Custom drawing" block:^UIViewController *{
+
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            document.title = @"Custom drawing";
+            PSPDFViewController *controller = [[PSCCustomDrawingViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+        [content addObject:delegateSection];
+
 
         // iPad only examples
         if (PSIsIpad()) {
