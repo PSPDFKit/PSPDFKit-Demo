@@ -336,12 +336,6 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Draw a page into a specified context.
 - (void)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
-/// Will be called within renderPage:inContex: but before options like inversion are applied.
-/// Note: most of the time you might be better off using custom UIViews and adding them on PSPDFPageView via the delegates.
-
-//- (void)drawOverlayForPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
-
-
 /// @name Object Finder
 
 // options
