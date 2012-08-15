@@ -239,7 +239,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         [self updateSiteLabel]; // create lazily
         self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
         [self updateSiteLabel];
-        self.accessibilityLabel = self.magazine.title;
+        self.accessibilityLabel = self.siteLabel.text;
     }
 }
 
