@@ -15,6 +15,9 @@
 /// Called when the noteController has deleted the annotation.
 - (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didDeleteAnnotation:(PSPDFNoteAnnotation *)annotation;
 
+/// Called when the noteController changes the annotation look (color/iconName)
+- (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didChangeAnnotation:(PSPDFNoteAnnotation *)annotation originalAnnotationIfCopied:(PSPDFNoteAnnotation *)originalAnnotation;
+
 @end
 
 /// Note annotation controller (Post it)
@@ -26,6 +29,10 @@
 @property(nonatomic, strong) PSPDFNoteAnnotation *annotation;
 
 @property(nonatomic, assign, readonly) BOOL allowEditing;
+
+/// Allow to customize the textView (font etc)
+/// Is created in init to be easily customizable
+@property(nonatomic, strong, readonly) UITextView *textView;
 
 @property(nonatomic, ps_weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
 
