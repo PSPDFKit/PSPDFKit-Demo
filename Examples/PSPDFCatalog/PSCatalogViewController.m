@@ -24,7 +24,7 @@
 #import "PSCCustomDrawingViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:6]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:2]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
