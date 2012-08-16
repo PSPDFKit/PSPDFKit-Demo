@@ -56,9 +56,10 @@
 "Underline" = "Unterstreichen";
 "Strikeout" = "Durchstreichen";
 "Sketch" = "Zeichnen";
-"New Comment" = "Neuer Kommentar";
+"New Note" = "Neue Notiz";
+"Note" = "Notiz";
 "Drawing Color" = "Farbe wählen";
 
 // voiceover accessibility
 "Page" = "Seite";
-"Grid" = "Thumbnails;
+"Grid" = "Thumbnails";

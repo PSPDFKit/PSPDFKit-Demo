@@ -56,9 +56,10 @@
 "Underline" = "Underline";
 "Strikeout" = "Strike Out";
 "Sketch" = "Sketch";
-"New Comment" = "New Comment";
+"New Note" = "New Note";
+"Note" = "Note";
 "Drawing Color" = "Drawing Color";
 
 // voiceover accessibility
 "Page" = "Page";
-"Grid" = "Grid;
+"Grid" = "Grid";

@@ -56,7 +56,8 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
 
 /// To edit annotations, you need to make a copy and delete the original.
-- (PSPDFAnnotation *)copyAndDeleteOriginalIfNeeded;
+/// Returns same type as current class.
+- (id)copyAndDeleteOriginalIfNeeded;
 
 /// Check if point is inside annotation area.
 - (BOOL)hitTest:(CGPoint)point;

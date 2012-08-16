@@ -8,6 +8,7 @@
 #import "PSPDFKitGlobal.h"
 
 @class PSPDFDocument;
+extern NSString *kPSPDFCachedRenderRequest; // set in options when we render a cached page
 
 typedef NS_ENUM(NSInteger, PSPDFCacheStrategy) {
     PSPDFCacheNothing,                    // no files are saved. (slowest)
