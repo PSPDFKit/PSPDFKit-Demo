@@ -21,8 +21,12 @@
         PSCAnnotationTableBarButtonItem *annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
 
         self.leftBarButtonItems = @[self.closeButtonItem, saveButton, annotationListButtonItem];
-        
-        self.rightBarButtonItems = @[self.annotationButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+
+        if (PSIsIpad()) {
+            self.rightBarButtonItems = @[self.annotationButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+        }else {
+            self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
+        }
     }
     return self;
 }
