@@ -40,4 +40,7 @@
 // Global helper to convert glyphs to rects.
 NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRect *boundingBox);
 
+/// Used for caching during longPress event.
+@property(nonatomic, assign) CGRect cachedViewRect;
+
 @end

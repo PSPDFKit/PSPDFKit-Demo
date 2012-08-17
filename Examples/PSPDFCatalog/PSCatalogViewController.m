@@ -372,7 +372,7 @@
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
     // create controller and merge new documents with last saved state.
     PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
-    [tabbedViewController restoreStateAndMergeWithDocuments:[NSArray arrayWithObject:document]];
+    [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
 
     // add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];

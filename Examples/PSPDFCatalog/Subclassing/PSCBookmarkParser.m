@@ -21,7 +21,7 @@
 
 // block bookmark loading
 - (NSArray *)loadBookmarks {
-    return [NSArray array];
+    return @[];
 }
 
 - (void)saveBookmarks {

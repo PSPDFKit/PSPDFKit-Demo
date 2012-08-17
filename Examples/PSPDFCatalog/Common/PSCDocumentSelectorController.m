@@ -134,10 +134,10 @@
 
     PSPDFDocument *document;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        document = [_filteredContent objectAtIndex:indexPath.row];
+        document = _filteredContent[indexPath.row];
     }
 	else {
-        document = [_content objectAtIndex:indexPath.row];
+        document = _content[indexPath.row];
     }
 
     cell.textLabel.text = document.title;
@@ -154,9 +154,9 @@
 
     PSPDFDocument *document;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        document = [_filteredContent objectAtIndex:indexPath.row];
+        document = _filteredContent[indexPath.row];
     }else {
-        document = [_content objectAtIndex:indexPath.row];
+        document = _content[indexPath.row];
     }
     [_delegate documentSelectorController:self didSelectDocument:document];
 
@@ -174,7 +174,7 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
 
     [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+     [self.searchDisplayController.searchBar scopeButtonTitles][[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
 
     // Return YES to cause the search result table view to be reloaded.
     return YES;
@@ -213,12 +213,12 @@
         for (PSPDFDocument *aDocument in _content) {
             if (document == aDocument) {
                 NSUInteger index = [_content indexOfObject:document];
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 
                 //  also update the search table view
                 if ([_filteredContent count]) {
                     NSUInteger searchIndex = [_filteredContent indexOfObject:document];
-                    [self.searchDisplayController.searchResultsTableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:searchIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                    [self.searchDisplayController.searchResultsTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:searchIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
                 }
                 break;
             }

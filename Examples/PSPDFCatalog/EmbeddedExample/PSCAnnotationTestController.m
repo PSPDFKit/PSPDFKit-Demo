@@ -137,11 +137,11 @@
             
             // ensure we have token count of 4 (latitude, longitude, span la, span lo)
             if ([token count] == 4) {
-                CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[token objectAtIndex:0] doubleValue],
-                                                                             [[token objectAtIndex:1] doubleValue]);
+                CLLocationCoordinate2D location = CLLocationCoordinate2DMake([token[0] doubleValue],
+                                                                             [token[1] doubleValue]);
                 
-                MKCoordinateSpan span = MKCoordinateSpanMake([[token objectAtIndex:2] doubleValue],
-                                                             [[token objectAtIndex:3] doubleValue]);
+                MKCoordinateSpan span = MKCoordinateSpanMake([token[2] doubleValue],
+                                                             [token[3] doubleValue]);
                 
                 // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
                 CGRect frame = [annotation rectForPageRect:pageView.bounds];
