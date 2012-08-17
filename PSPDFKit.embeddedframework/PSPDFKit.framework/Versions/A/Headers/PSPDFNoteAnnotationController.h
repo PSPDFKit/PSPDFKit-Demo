@@ -16,7 +16,7 @@
 - (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didDeleteAnnotation:(PSPDFNoteAnnotation *)annotation;
 
 /// Called when the noteController changes the annotation look (color/iconName)
-- (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didChangeAnnotation:(PSPDFNoteAnnotation *)annotation originalAnnotationIfCopied:(PSPDFNoteAnnotation *)originalAnnotation;
+- (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didChangeAnnotation:(PSPDFNoteAnnotation *)annotation originalAnnotation:(PSPDFNoteAnnotation *)originalAnnotation;
 
 @end
 
