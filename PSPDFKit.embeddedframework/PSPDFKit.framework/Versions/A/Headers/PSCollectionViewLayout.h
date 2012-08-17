@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, PSCollectionViewItemType) {
 + (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath;
 + (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath;
 + (instancetype)layoutAttributesForDecorationViewWithReuseIdentifier:(NSString *)reuseIdentifier withIndexPath:(NSIndexPath*)indexPath;
-
+    
 /*
  + (id)layoutAttributesForDecorationViewOfKind:(id)arg1 withIndexPath:(id)arg2;
  - (id)initialLayoutAttributesForInsertedDecorationElementOfKind:(id)arg1 atIndexPath:(id)arg2;
