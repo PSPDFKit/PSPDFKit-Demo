@@ -27,9 +27,9 @@ const char *clearAllActionSheetToken;
         UIBarButtonItem *clearAllButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearAll:)];
         if (PSIsIpad()) {
             PSCAddDocumentsBarButtonItem *addDocumentsButton = [[PSCAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
-            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObjects:addDocumentsButton, clearAllButton, nil];
+            self.pdfViewController.leftBarButtonItems = @[addDocumentsButton, clearAllButton];
         }else {
-            self.pdfViewController.leftBarButtonItems = [NSArray arrayWithObject:clearAllButton];
+            self.pdfViewController.leftBarButtonItems = @[clearAllButton];
             self.navigationItem.leftItemsSupplementBackButton = YES;
         }
 

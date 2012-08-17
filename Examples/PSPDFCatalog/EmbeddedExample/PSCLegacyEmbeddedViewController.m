@@ -35,7 +35,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);    
-    NSString *documentFolder = [paths objectAtIndex:0];
+    NSString *documentFolder = paths[0];
     NSString *path = [documentFolder stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
