@@ -239,12 +239,16 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 // Add support for subscripting to the iOS 5 SDK.
 // See http://petersteinberger.com/blog/2012/using-subscripting-with-Xcode-4_4-and-iOS-4_3
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-@interface NSObject (PSPDFSubscriptingSupport)
-
-- (id)objectAtIndexedSubscript:(NSUInteger)idx;
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+@interface NSDictionary(PSPDFSubscriptingSupport)
 - (id)objectForKeyedSubscript:(id)key;
-
+@end
+@interface NSMutableDictionary(PSPDFSubscriptingSupport)
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
+@end
+@interface NSArray(PSPDFSubscriptingSupport)
+- (id)objectAtIndexedSubscript:(NSUInteger)idx;
+@end
+@interface NSMutableArray(PSPDFSubscriptingSupport)
+- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
 @end
 #endif
