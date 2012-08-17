@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		787C4E8015DE56D300454C0D /* PSCAnnotationTableBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C4E7D15DE56D300454C0D /* PSCAnnotationTableBarButtonItem.m */; };
+		787C4E8115DE56D300454C0D /* PSCAnnotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787C4E7F15DE56D300454C0D /* PSCAnnotationTableViewController.m */; };
 		78BE321615B8E11000FBB125 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BE321015B8E11000FBB125 /* PSPDFKit.framework */; };
 		78BE321715B8E11000FBB125 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */; };
 		78BE321815B8E11000FBB125 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78BE321315B8E11000FBB125 /* LICENSE */; };
@@ -21,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		787C4E7C15DE56D300454C0D /* PSCAnnotationTableBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCAnnotationTableBarButtonItem.h; path = PSPDFCatalog/Common/PSCAnnotationTableBarButtonItem.h; sourceTree = SOURCE_ROOT; };
+		787C4E7D15DE56D300454C0D /* PSCAnnotationTableBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCAnnotationTableBarButtonItem.m; path = PSPDFCatalog/Common/PSCAnnotationTableBarButtonItem.m; sourceTree = SOURCE_ROOT; };
+		787C4E7E15DE56D300454C0D /* PSCAnnotationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCAnnotationTableViewController.h; path = PSPDFCatalog/Common/PSCAnnotationTableViewController.h; sourceTree = SOURCE_ROOT; };
+		787C4E7F15DE56D300454C0D /* PSCAnnotationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCAnnotationTableViewController.m; path = PSPDFCatalog/Common/PSCAnnotationTableViewController.m; sourceTree = SOURCE_ROOT; };
 		78BE321015B8E11000FBB125 /* PSPDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PSPDFKit.framework; sourceTree = "<group>"; };
 		78BE321215B8E11000FBB125 /* ACKNOWLEDGEMENTS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ACKNOWLEDGEMENTS; sourceTree = "<group>"; };
 		78BE321315B8E11000FBB125 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -113,6 +119,10 @@
 			children = (
 				78E6328D13DECD7300F3392F /* MinimalExampleAppDelegate.h */,
 				78E6328E13DECD7300F3392F /* MinimalExampleAppDelegate.m */,
+				787C4E7C15DE56D300454C0D /* PSCAnnotationTableBarButtonItem.h */,
+				787C4E7D15DE56D300454C0D /* PSCAnnotationTableBarButtonItem.m */,
+				787C4E7E15DE56D300454C0D /* PSCAnnotationTableViewController.h */,
+				787C4E7F15DE56D300454C0D /* PSCAnnotationTableViewController.m */,
 				78E6329B13DECD8B00F3392F /* Samples */,
 				78E6326C13DECAF600F3392F /* Supporting Files */,
 			);
@@ -209,6 +219,8 @@
 			files = (
 				78E6328F13DECD7300F3392F /* MinimalExampleAppDelegate.m in Sources */,
 				78E6329713DECD7C00F3392F /* main.m in Sources */,
+				787C4E8015DE56D300454C0D /* PSCAnnotationTableBarButtonItem.m in Sources */,
+				787C4E8115DE56D300454C0D /* PSCAnnotationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
