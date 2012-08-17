@@ -129,7 +129,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@"Default is PSPDFLinkActionInlineBrowser."),
         _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
 
-        _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"100%", @"90%", @"80%", @"70%", @"60%", nil]];
+        _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:@[@"100%", @"90%", @"80%", @"70%", @"60%"]];
 		[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
 
         _paperColors = @[[UIColor whiteColor],

@@ -42,7 +42,7 @@
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
 
     // add new document, and set as current
-    [tabbedViewController addDocuments:[NSArray arrayWithObject:document] atIndex:NSUIntegerMax animated:YES];
+    [tabbedViewController addDocuments:@[document] atIndex:NSUIntegerMax animated:YES];
     tabbedViewController.visibleDocument = document;
 }
 

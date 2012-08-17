@@ -231,7 +231,7 @@
 
 - (NSString *)documentsFolder {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [paths objectAtIndex:0];
+    return paths[0];
 }
 
 - (NSString *)samplesFolder {
