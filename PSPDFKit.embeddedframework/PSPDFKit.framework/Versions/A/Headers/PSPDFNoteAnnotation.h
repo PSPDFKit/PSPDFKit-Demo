@@ -16,4 +16,7 @@
 /// Designated initializer.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
 
+/// Custom HitTest because we have custom widht/height here.
+- (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;
+
 @end
