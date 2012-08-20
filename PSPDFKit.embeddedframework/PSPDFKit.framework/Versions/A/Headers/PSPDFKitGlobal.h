@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFailedToLoadAnnotations = 400,
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
     PSPDFErrorCodeOutlineParser = 500,
+    PSPDFErrorUnableToConvertToDataRepresentation = 600,
     PSPDFErrorCodeUnknown = 900,
 };
 
