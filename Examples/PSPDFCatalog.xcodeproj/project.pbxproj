@@ -20,7 +20,6 @@
 		78525B2D15CF295E00854F49 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2715CF295E00854F49 /* ACKNOWLEDGEMENTS */; };
 		78525B2E15CF295E00854F49 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2815CF295E00854F49 /* LICENSE */; };
 		78525B2F15CF295E00854F49 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2915CF295E00854F49 /* PSPDFKit.bundle */; };
-		78525B3015CF295E00854F49 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2A15CF295E00854F49 /* PSPDFKit.xcconfig */; };
 		78525B3115CF295E00854F49 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2B15CF295E00854F49 /* VERSION */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4D15CFDAAF00328F4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */; };
@@ -738,7 +737,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PSC;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = PSPDFKit;
 			};
 			buildConfigurationList = 784F011315CF247900849F81 /* Build configuration list for PBXProject "PSPDFCatalog" */;
@@ -825,7 +824,6 @@
 				78525B2D15CF295E00854F49 /* ACKNOWLEDGEMENTS in Resources */,
 				78525B2E15CF295E00854F49 /* LICENSE in Resources */,
 				78525B2F15CF295E00854F49 /* PSPDFKit.bundle in Resources */,
-				78525B3015CF295E00854F49 /* PSPDFKit.xcconfig in Resources */,
 				78525B3115CF295E00854F49 /* VERSION in Resources */,
 				78A24A4D15CFDAAF00328F4F /* MainStoryboard.storyboard in Resources */,
 				78A24A8D15CFDAD000328F4F /* balloon.png in Resources */,
