@@ -133,7 +133,7 @@ documentation: current-menu-item current_page_item
 	 </p>
 	 
 <p><b>Q: I am looking for following features: adjust PDF text size/font style/ page margins.</b><br>
-	 A: Due to the nature of PDF, features like "Adjust PDF text size" are extremely hard, if not impossible at all.  Not even Adobe Acrobat has such features. In PDF you don't have "text" like you would think you have. You have a bunch of random characters or vectors where you (most of the time) are able to get the unicode value out. And with applying some algorithms you might can detect what  word is. You are probably looking into HTML/ePub, where you can change such values.</p><br>
+	 A: This is not possible due to the nature of PDF. There's no notion of "word" or sentence. With great hacking and rewriting your renderer, you could increase the font size, but all letters would just overlap. Then there's a chance that some letters aren't even letters as you would think of, but just vector courves. You are probably looking into HTML/ePub, where you can change such values with ease.</p><br>
 		
 	</div>
 	
