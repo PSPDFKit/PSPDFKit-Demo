@@ -76,6 +76,7 @@
         [documentTests addContent:[[PSContent alloc] initWithTitle:@"NSURL" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
 
@@ -83,7 +84,10 @@
         [documentTests addContent:[[PSContent alloc] initWithTitle:@"NSData" block:^{
             NSData *data = [NSData dataWithContentsOfMappedFile:[hackerMagURL path]];
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:data];
-            return [[PSPDFViewController alloc] initWithDocument:document];
+            document.title = @"NSData PDF";
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+            return controller;
         }]];
 
         /// And even a CGDocumentProvider (can be used for encryption)
@@ -91,8 +95,11 @@
             NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
             CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:dataProvider];
+            document.title = @"CGDataProviderRef PDF";
             CGDataProviderRelease(dataProvider);
-            return [[PSPDFViewController alloc] initWithDocument:document];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+            return controller;
         }]];
         [content addObject:documentTests];
 
@@ -101,6 +108,7 @@
             NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
 
@@ -115,6 +123,7 @@
             // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
 
