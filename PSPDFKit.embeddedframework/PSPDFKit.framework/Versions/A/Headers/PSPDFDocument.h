@@ -72,8 +72,18 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Returns the URL corresponding to the fileIndex
 - (NSURL *)URLForFileIndex:(NSInteger)fileIndex;
 
-/// Returs a files array with the base path already added (if there is one)
+/// Returs a NSURL files array with the base path already added (if there is one)
 - (NSArray *)filesWithBasePath;
+
+/**
+    Returns a dictionary with filename : NSData object.
+    Memory-maps files; works with all available input types.
+    If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
+    Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
+ 
+    Returns a private subclass of an ORDERED NSDictionary (PSPDFOrderedDictionary).
+ */
+- (NSDictionary *)fileNamesWithDataDictionary;
 
 /// Common base path for pdf files. Set to nil to use absolute paths for files.
 @property(nonatomic, strong) NSURL *basePath;

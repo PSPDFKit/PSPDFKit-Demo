@@ -42,6 +42,9 @@
 /// Referenced dataProvider. (if data is set, or directly)
 @property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
 
+/// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
+- (NSData *)dataRepresentationWithError:(NSError **)error;
+
 /// Weak-linked parent document.
 @property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
