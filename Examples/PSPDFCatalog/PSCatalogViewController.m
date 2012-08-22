@@ -184,6 +184,25 @@
             return controller;
         }]];
 
+        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically create annotations" block:^{
+            // we use a NSData document here but it'll work even better with a file-based variant.
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:[NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL]];
+            document.title = @"Programmatically create annotations";
+
+            NSMutableArray *annotations = [NSMutableArray array];
+            CGFloat maxHeight = [document pageInfoForPage:0].pageRect.size.height;
+            for (int i=0; i<5; i++) {
+                PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
+                // width/height will be ignored for note annotations.
+                noteAnnotation.boundingBox = CGRectMake(100, 50 + i*maxHeight/5, 50, 50);
+                [annotations addObject:noteAnnotation];
+            }
+            [document addAnnotations:annotations forPage:0];
+
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
         [content addObject:annotationSection];
 
         PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
