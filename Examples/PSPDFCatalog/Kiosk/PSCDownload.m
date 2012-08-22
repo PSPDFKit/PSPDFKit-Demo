@@ -9,7 +9,6 @@
 #import "PSCStoreManager.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFDownloadRequestOperation.h"
-#include <sys/xattr.h>
 
 @interface PSCDownload () {
     UIProgressView *progressView_;
@@ -122,7 +121,7 @@
         [[PSPDFCache sharedCache] cacheThumbnailsForDocument:self.magazine];
 
         // don't back up the downloaded pdf - iCloud is for self-created files only.
-        [self addSkipBackupAttributeToFile:destinationURL];
+        [self addSkipBackupAttributeToItemAtURL:destinationURL];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PSCLog(@"Download failed: %@. Reason: %@.", self.URL, [error localizedDescription]);
         self.status = PSPDFStoreDownloadFailed;
@@ -149,9 +148,26 @@
 
 // set a flag that the files shouldn't be backuped to iCloud.
 // https://developer.apple.com/library/ios/#qa/qa1719/_index.html
-- (void)addSkipBackupAttributeToFile:(NSURL *)url {
-    u_int8_t b = 1;
-    setxattr([[url path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+#include <sys/xattr.h>
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL {
+    assert([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
+    BOOL success = NO;
+
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
+        NSError *error = nil;
+        success = [URL setResourceValue:[NSNumber numberWithBool:YES]
+                                 forKey:NSURLIsExcludedFromBackupKey error:&error];
+        if(!success){
+            PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+        }
+    // only works with 5.0.1 and above
+    }else if(kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
+        success = YES;
+        u_int8_t b = 1;
+        setxattr([[URL path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+    }
+
+    return success;
 }
 
 @end

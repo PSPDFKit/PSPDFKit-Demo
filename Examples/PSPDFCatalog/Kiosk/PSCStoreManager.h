@@ -42,9 +42,6 @@
 /// Shared Instance.
 + (PSCStoreManager *)sharedStoreManager;
 
-/// Helper to migrate data. Use in AppDelegate.
-+ (BOOL)checkAndIfNeededMigrateStoragePathBlocking:(BOOL)blocking completionBlock:(void(^)(void))completionBlock;
-
 /// Storage path currently used. (depends on iOS version)
 + (NSString *)storagePath;
 
