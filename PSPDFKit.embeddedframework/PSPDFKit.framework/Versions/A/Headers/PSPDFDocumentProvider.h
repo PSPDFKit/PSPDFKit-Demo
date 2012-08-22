@@ -37,7 +37,8 @@
 @property(nonatomic, strong, readonly) NSURL *fileURL;
 
 /// Referenced NSData. If this is set, fileURL is nil.
-@property(nonatomic, strong, readonly) NSData *data;
+/// NOT readonly, since we may write back annotation data.
+@property(nonatomic, strong) NSData *data;
 
 /// Referenced dataProvider. (if data is set, or directly)
 @property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;

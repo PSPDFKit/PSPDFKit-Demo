@@ -476,8 +476,16 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// YES if we are at the first page.
 - (BOOL)isFirstPage;
 
-/// Returns the topmost active viewcontroller.
-/// Override if you have a custom setup of viewControllers.
+/**
+    Returns the topmost, active viewcontroller.
+ 
+    This tries to be smart and even works in weird, non-default situations where viewControllers are embedded w/o iOS5 child controller embedding.
+ 
+    If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
+    (Try "return self" first)
+ 
+    It's a sad thing that this tends to be one of the most complex things in iOS development to get right.
+ */
 - (UIViewController *)masterViewController;
 
 @end

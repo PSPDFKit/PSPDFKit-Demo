@@ -31,9 +31,14 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeAll       = PSPDFAnnotationTypeLink | PSPDFAnnotationTypeHighlight | PSPDFAnnotationTypeText | PSPDFAnnotationTypeInk | PSPDFAnnotationTypeShape | PSPDFAnnotationTypeLine | PSPDFAnnotationTypeNote
 };
 
-/// Defines a PDF annotation.
-/// PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
-/// Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
+/**
+    Defines a PDF annotation.
+    PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
+ 
+    Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
+
+    Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
+*/
 @interface PSPDFAnnotation : NSObject <NSCoding, NSCopying> {
     UIColor *_color;
     CGRect _boundingBox;
