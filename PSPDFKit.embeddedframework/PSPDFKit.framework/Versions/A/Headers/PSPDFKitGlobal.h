@@ -179,7 +179,7 @@ extern NSString *PSPDFTrimString(NSString *string);
 #define PSPDFDeregisterObject(object)
 #endif
 
-// iOS compatibility (iOS 5.1 = 690.0)
+// iOS compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_5_0
 #define kCFCoreFoundationVersionNumber_iOS_5_0 674.0
 #endif
@@ -188,6 +188,11 @@ extern NSString *PSPDFTrimString(NSString *string);
 if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) { __VA_ARGS__ }
 #else
 #define PSPDF_IF_IOS5_OR_GREATER(...)
+#endif
+
+// iOS 5.1
+#ifndef kCFCoreFoundationVersionNumber_iOS_5_1
+#define kCFCoreFoundationVersionNumber_iOS_5_1 690.0
 #endif
 
 #define PSPDF_IF_PRE_IOS5(...)  \
