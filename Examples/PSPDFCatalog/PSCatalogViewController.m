@@ -257,6 +257,26 @@
 
         [content addObject:customizationSection];
 
+        PSCSectionDescriptor *encryptedSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords" footer:@"Password is test123"];
+
+        // Bookmarks
+        NSURL *protectedPDFURL = [samplesURL URLByAppendingPathComponent:@"protected.pdf"];
+
+        [encryptedSection addContent:[[PSContent alloc] initWithTitle:@"Password preset" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:protectedPDFURL];
+            [document unlockWithPassword:@"test123"];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
+        [encryptedSection addContent:[[PSContent alloc] initWithTitle:@"Password not preset; dialog" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:protectedPDFURL];
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
+        [content addObject:encryptedSection];
+
 
         PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
 
