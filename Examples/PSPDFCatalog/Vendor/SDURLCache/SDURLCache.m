@@ -280,7 +280,7 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeDataObject:self.data];
+    [coder encodeObject:self.data forKey:@"data"];
     [coder encodeObject:self.response forKey:@"response"];
     [coder encodeObject:self.userInfo forKey:@"userInfo"];
     [coder encodeInt:self.storagePolicy forKey:@"storagePolicy"];
@@ -288,7 +288,7 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
 
 - (id)initWithCoder:(NSCoder *)coder {
     return [self initWithResponse:[coder decodeObjectForKey:@"response"]
-                             data:[coder decodeDataObject]
+                             data:[coder decodeObjectForKey:@"data"]
                          userInfo:[coder decodeObjectForKey:@"userInfo"]
                     storagePolicy:[coder decodeIntForKey:@"storagePolicy"]];
 }
@@ -333,8 +333,9 @@ inline void dispatch_async_afreentrant(dispatch_queue_t queue, dispatch_block_t 
     const char *str = [url.absoluteString UTF8String];
     unsigned char r[CC_MD5_DIGEST_LENGTH];
     CC_MD5(str, strlen(str), r);
-    return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-            r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
+    static NSString *cacheFormatVersion = @"2";
+    return [NSString stringWithFormat:@"%@_%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            cacheFormatVersion, r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
 }
 
 #pragma mark SDURLCache (private)
@@ -652,9 +653,10 @@ static dispatch_queue_t get_disk_io_queue() {
 - (void)storeCachedResponse:(NSCachedURLResponse *)cachedResponse forRequest:(NSURLRequest *)request {
     request = [SDURLCache canonicalRequestForRequest:request];
     
-    if (request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData
-        || request.cachePolicy == NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-        || request.cachePolicy == NSURLRequestReloadIgnoringCacheData) {
+    if (!_allowCachingResponsesToNonCachedRequests &&
+        (request.cachePolicy == NSURLRequestReloadIgnoringLocalCacheData
+         || request.cachePolicy == NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+         || request.cachePolicy == NSURLRequestReloadIgnoringCacheData)) {
         // When cache is ignored for read, it's a good idea not to store the result as well as this option
         // have big chance to be used every times in the future for the same request.
         // NOTE: This is a change regarding default URLCache behavior
@@ -776,7 +778,7 @@ static dispatch_queue_t get_disk_io_queue() {
 - (void)dealloc {
     if(_maintenanceTimer) {
         dispatch_source_cancel(_maintenanceTimer);
-        PSPDFDispatchRelease(_maintenanceTimer);
+        dispatch_release(_maintenanceTimer);
     }
     _diskCachePath = nil;
     _diskCacheInfo = nil;
@@ -784,6 +786,7 @@ static dispatch_queue_t get_disk_io_queue() {
 
 @synthesize minCacheInterval = _minCacheInterval;
 @synthesize ignoreMemoryOnlyStoragePolicy = _ignoreMemoryOnlyStoragePolicy;
+@synthesize allowCachingResponsesToNonCachedRequests = _allowCachingResponsesToNonCachedRequests;
 @synthesize diskCachePath = _diskCachePath;
 @synthesize diskCacheInfo = _diskCacheInfo;
 
