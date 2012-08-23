@@ -24,7 +24,7 @@
 #import "PSCCustomDrawingViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:2]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -129,11 +129,10 @@
 
 
         // Currently broken.
-        /*
          /// And even a CGDocumentProvider (can be used for encryption)
          [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
 
-         NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"AES256-encrypted.pdf"]];
+         NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"output-nonaligned.pdf.aes"]];
 
          // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
          // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
@@ -145,7 +144,6 @@
          PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
          return [[PSPDFViewController alloc] initWithDocument:document];
          }]];
-         */
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
