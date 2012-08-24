@@ -24,7 +24,7 @@
 #import "PSCCustomDrawingViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -127,6 +127,7 @@
             return controller;
         }]];
 
+        /*
 
         // Currently broken.
          /// And even a CGDocumentProvider (can be used for encryption)
@@ -144,6 +145,7 @@
          PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
          return [[PSPDFViewController alloc] initWithDocument:document];
          }]];
+              */
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
