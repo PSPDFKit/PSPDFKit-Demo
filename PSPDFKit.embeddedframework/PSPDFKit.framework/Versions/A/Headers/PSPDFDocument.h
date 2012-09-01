@@ -98,9 +98,11 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 @property(nonatomic, strong) NSURL *fileURL;
 
 /// PDF data when initialized with initWithData: otherwise nil.
+/// This is a shortcut to the first entry of dataArray.
 @property(nonatomic, copy, readonly) NSData *data;
 
 /// A document can also have multiple NSData objects.
+/// Note: If writing annotations is enabled, the dataArray's content will change after a save.
 @property(nonatomic, copy, readonly) NSArray *dataArray;
 
 /// PDF dataProvider (can be used to dynamically decrypt a document)
