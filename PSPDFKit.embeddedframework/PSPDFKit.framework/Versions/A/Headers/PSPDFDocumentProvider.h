@@ -77,7 +77,7 @@
 
 /// For optimization reasons, the internal documentRef might be cached.
 /// This force-clears the cache, optionally blocking.
-- (void)flushDocumentReferenceAsync:(BOOL)async;
+- (void)flushDocumentReference;
 
 /// Number of pages in the PDF. Nil if source is invalid.
 @property(nonatomic, assign, readonly) NSUInteger pageCount;

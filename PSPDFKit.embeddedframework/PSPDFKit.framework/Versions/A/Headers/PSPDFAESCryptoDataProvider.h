@@ -5,9 +5,12 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFCryptoDataProvider.h"
+#import "PSPDFKitGlobal.h"
 
-/// BROKEN
+/**
+    We use AES256 encryption here.
+    The IV vector for the file is written in the first 16 bytes of the file to read.
+ */
 @interface PSPDFAESCryptoDataProvider : NSObject
 
 - (id)initWithURL:(NSURL *)URL andKey:(NSString *)cryptoKey;

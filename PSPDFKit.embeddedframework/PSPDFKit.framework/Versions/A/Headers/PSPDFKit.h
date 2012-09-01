@@ -41,7 +41,6 @@
 #import "PSPDFPasswordView.h"
 #import "PSPDFBookmark.h"
 #import "PSPDFBookmarkParser.h"
-#import "PSPDFCryptoDataProvider.h"
 #import "PSPDFAESCryptoDataProvider.h"
 
 // search

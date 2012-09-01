@@ -15,7 +15,7 @@
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Parses the PDF XRef table.
-- (void)parseDocument;
+- (void)parseDocumentWithError:(NSError **)error;
 
 /// Saves annotations, returns error if there was a problem
 - (BOOL)saveAnnotations:(NSDictionary *)annotations withError:(NSError **)error;
@@ -27,16 +27,5 @@
 @property(nonatomic, strong, readonly) NSString *encryptionFilter;
 
 @property(nonatomic, strong, readonly) NSArray *pageObjectNumbers;
-
-
-@end
-
-@interface PSPDFXRefEntry : NSObject
-
-@property (nonatomic, assign) NSInteger objectNumber;
-@property (nonatomic, assign) long byteOffset;
-@property (nonatomic, assign) BOOL isCompressed;
-@property (nonatomic, assign) NSInteger objectStreamNumber;
-@property (nonatomic, assign) BOOL isDeleted;
 
 @end
