@@ -10,7 +10,7 @@
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */; };
-		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; };
+		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		784F012015CF247900849F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011F15CF247900849F81 /* Foundation.framework */; };
 		784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F012115CF247900849F81 /* CoreGraphics.framework */; };
 		784F012815CF247900849F81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 784F012615CF247900849F81 /* InfoPlist.strings */; };
@@ -326,11 +326,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */,
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
 				78DDC78815CF30B80030C730 /* libHockeySDK.a in Frameworks */,
 				78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */,
-				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				784F012015CF247900849F81 /* Foundation.framework in Frameworks */,
 				784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */,
 				78525B2C15CF295E00854F49 /* PSPDFKit.framework in Frameworks */,
