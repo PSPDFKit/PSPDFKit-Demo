@@ -24,7 +24,7 @@
 #import "PSCCustomDrawingViewController.h"
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:1 inSection:1]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -68,6 +68,18 @@
             }
         }]];
         [content addObject:appSection];
+
+        PSPDFDocument *hcakerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+
+        // pre-cache whole document
+        [[PSPDFCache sharedCache] cacheDocument:hcakerMagDoc startAtPage:0 size:PSPDFSizeNative];
+
+        [appSection addContent:[[PSContent alloc] initWithTitle:@"Fast single PDF" block:^{
+            PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:hcakerMagDoc];
+            // don't use thumbnails if the PDF is not rendered.
+            controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+            return controller;
+        }]];
 
         // PSPDFDocument data provider test
         PSCSectionDescriptor *documentTests = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible."];
