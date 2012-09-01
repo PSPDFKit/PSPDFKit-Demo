@@ -19,12 +19,14 @@
     NSString *appVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"@" withString:@""] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
 
-    // enable to see the scrollviews semi-transparent
-    //kPSPDFKitDebugScrollViews = YES;
 
-    // enable to see memory usage
-    //kPSPDFKitDebugMemory = YES;
-
+    // Example how to localize strings in PSPDFKit (default localization system won't work)
+    PSPDFSetLocalizationDictionary(@{@"en" :
+                                   @{@"Go to %@" : @"Browse %@",
+                                     @"%d of %d" : @"Page %d of %d",
+                                     @"Outline"  : @"Table of Contents"
+                                   }});
+    
     // enable to change animations (e.g. enable on iPad1)
     kPSPDFAnimateOption = PSPDFAnimateEverywhere;
 
