@@ -22,9 +22,10 @@
 #import "PSCustomTextSelectionMenuController.h"
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
+#import "PSCBookViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:1 inSection:1]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:2 inSection:6]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -307,7 +308,15 @@
             PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
             return controller;
         }]];
+
+        [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
         [content addObject:subclassingSection];
+
 
         PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:@"How to use PSPDFViewControllerDelegate"];
         [delegateSection addContent:[[PSContent alloc] initWithTitle:@"Custom drawing" block:^UIViewController *{
