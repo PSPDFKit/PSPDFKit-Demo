@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
+		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
+		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */; };
@@ -162,6 +165,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-left.jpg"; path = "Book/book-left.jpg"; sourceTree = "<group>"; };
+		7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-right.jpg"; path = "Book/book-right.jpg"; sourceTree = "<group>"; };
+		7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookViewController.h; sourceTree = "<group>"; };
+		7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBookViewController.m; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		78344B5015DBB6B1002491BF /* PSCExampleAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExampleAnnotationViewController.h; sourceTree = "<group>"; };
 		78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExampleAnnotationViewController.m; sourceTree = "<group>"; };
@@ -341,6 +348,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7802EA9715F4C5FE00B6EF3C /* Book */ = {
+			isa = PBXGroup;
+			children = (
+				7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */,
+				7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */,
+			);
+			name = Book;
+			sourceTree = "<group>";
+		};
 		784F010E15CF247900849F81 = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +559,7 @@
 				78BCC69915D31BF2006735A9 /* NightOwl.m4a */,
 				78A24A6715CFDAD000328F4F /* EmbeddedExample */,
 				78A24A7915CFDAD000328F4F /* Kiosk */,
+				7802EA9715F4C5FE00B6EF3C /* Book */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -602,6 +619,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */,
+				7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */,
 				78A3815D15DABFEB003850E8 /* PSCustomTextSelectionMenuController.h */,
 				78A3815E15DABFEB003850E8 /* PSCustomTextSelectionMenuController.m */,
 				78AAC6EF15D1760E009B53C6 /* PSCBookmarkParser.h */,
@@ -859,6 +878,8 @@
 				78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */,
 				78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */,
 				7822D71615D3D1BE00E82EF9 /* Samples in Resources */,
+				7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */,
+				7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +941,7 @@
 				78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */,
 				78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
+				7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
