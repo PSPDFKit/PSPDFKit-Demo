@@ -9,23 +9,25 @@
 
 @class PSPDFDocumentProvider;
 
-/// Parses the PDF structure and supports writing annotations
+/// Parses the PDF structure and supports writing annotations.
 @interface PSPDFDocumentParser : NSObject
 
+// Designated initializer.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Parses the PDF XRef table.
-- (void)parseDocumentWithError:(NSError **)error;
+- (BOOL)parseDocumentWithError:(NSError **)error;
 
-/// Saves annotations, returns error if there was a problem
+/// Saves annotations, returns error if there was a problem.
 - (BOOL)saveAnnotations:(NSDictionary *)annotations withError:(NSError **)error;
 
-/// Attached DocumentProvider
+/// Attached DocumentProvider.
 @property(nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Encryption Filter if one is found in the document.
-@property(nonatomic, strong, readonly) NSString *encryptionFilter;
+@property(nonatomic, copy, readonly) NSString *encryptionFilter;
 
-@property(nonatomic, strong, readonly) NSArray *pageObjectNumbers;
+/// Exposed XRef objects.
+@property(nonatomic, copy, readonly) NSArray *pageObjectNumbers;
 
 @end

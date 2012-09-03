@@ -44,3 +44,10 @@
 @property(nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end
+
+@interface PSPDFSinglePageViewController (SubclassingHooks)
+
+// Initially adds the view, later only re-calculates the frame
+- (void)layoutPage;
+
+@end
