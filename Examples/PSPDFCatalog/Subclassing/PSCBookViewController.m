@@ -68,7 +68,7 @@
 }
 
 - (void)updateBackgroundView {
-    BOOL isRightPage = [self.pdfController isDoublePageMode] && [self.pdfController isRightPageInDoublePageMode:self.page];`
+    BOOL isRightPage = [self.pdfController isDoublePageMode] && [self.pdfController isRightPageInDoublePageMode:self.page];
 
     _backgroundImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"book-%@.jpg", isRightPage ? @"right" : @"left"]];
 
