@@ -292,8 +292,9 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     }
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
-    PSCLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+    PSCLog(@"shouldShowViewController: %@ embeddedIn:%@ animated: %d.", viewController, controller, animated);
+    return YES;
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
@@ -326,6 +327,25 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
         [newMenuItems addObject:menuItem];
     }
     return newMenuItems;
+}
+
+// annotations
+
+/// Called before an annotation will be selected. (but after didTapOnAnnotation)
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
+    PSCLog(@"should select %@?", annotation);
+    return YES;
+}
+
+/// Called after an annotation has been selected.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
+    PSCLog(@"did select %@.", annotation);
+}
+
+/// Called before we're showing the menu for an annotation.
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
+    PSCLog(@"showing menu %@ for %@", menuItems, annotation);
+    return menuItems;
 }
 
 @end
