@@ -13,9 +13,10 @@
  */
 @interface PSPDFAESCryptoDataProvider : NSObject
 
-- (id)initWithURL:(NSURL *)URL andKey:(NSString *)cryptoKey;
+/// Designated initializer with the passphrase and salt.
+- (id)initWithURL:(NSURL *)URL passphrase:(NSString *)passphrase salt:(NSString *)salt;
 
-// Created on first access. PSPDFCryptoDataProvider will be retained as long as you retain this.
+/// Created on first access. PSPDFCryptoDataProvider will be retained as long as you retain this.
 - (CGDataProviderRef)dataProviderRef;
 
 @end
