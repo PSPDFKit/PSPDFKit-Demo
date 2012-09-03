@@ -136,6 +136,16 @@
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
 
+
+/// Called before an annotation will be selected. (but after didTapOnAnnotation)
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
+/// Called after an annotation has been selected.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
+/// Called before we're showing the menu for an annotation.
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
+
 /// Returns a pre-generated annotationView that can be modified before being added to the view.
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
 /// To get the targeted rect use [annotation rectForPageRect:pageView.bounds];
@@ -155,10 +165,14 @@
 /// Called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
 
-/// Called before we show a controller modally or in a popover. Allows last minute modifications.
-/// The embeddedInController is either a UINavigationController, a UIPopoverController or nil.
-/// viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+/**
+    Called before we show a controller modally or in a popover. Allows last minute modifications.\
+ 
+    The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
+ 
+    Return NO to process the displaying manually.
+ */
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
 
 /// Called after the controller has been fully displayed. iOS5 only. Isn't called for UIPopoverController's.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;

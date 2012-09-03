@@ -241,7 +241,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (void)fillCache;
 
 /// Path where backupable cache data like bookmarks are saved.
-/// Defaults to <AppDirectory>/Library/PrivateDocuments/PSPDFKit. Cannot be nil.
+/// Defaults to &lt;AppDirectory&gt;/Library/PrivateDocuments/PSPDFKit. Cannot be nil.
 /// Will *always* be appended by UID. Don't manually append UID.
 @property(nonatomic, copy) NSString *cacheDirectory;
 
