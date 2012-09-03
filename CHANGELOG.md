@@ -40,6 +40,7 @@ Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: h
 *  A long-press on a PDF link annotation now shows the URL/Document/Page target in a popover.
 *  The PSPDFScrobbleBar now uses the small height style on iPhone/Landscape.
 *  PSPDFWebViewController now supports printing.
+*  Changed willShowController... delegate to shouldShowController... that returns a BOOL.
 *  Initial support for Voiceover accessibility.
 *  Fixes a problem in the annotation parser where some named page links failed to resolve properly.
 *  Fixes a problem where the Cancel button of the additionalBarButtonItem menu wasn't fully touch-able on iPhone.
