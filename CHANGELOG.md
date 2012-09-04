@@ -43,6 +43,7 @@ Further, PSPDFKit has been improved in virtually every area and a lot of details
 *  PSPDFViewController now has a margin and a padding property to add custom margin/padding on the pdf view.
 *  PSPDFViewController now has a HUDViewMode property to fine-tune the HUD.
 *  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
+*  It's now possible to pre-supply even fully-rendered page images. PSPDFDocument's thumbnailPathForPage has been replaced with cachedImageURLForPage:andSize:.
 *  PSPDFDocument now has a overrideClassNames dictionary, much like PSPDFViewController.
 *  PSPDFDocument now has objectsAtPDFPoint/objectsAtPDFRect to return found glyphs and words.
 *  PSPDFDocument now has convenience methods to render PDF content. (renderImageForPage:withSize:.../renderPage:inContext:...)
@@ -56,6 +57,7 @@ Further, PSPDFKit has been improved in virtually every area and a lot of details
    Zooming in/out is now smarter (smart zoom) and does the right thing depending on the zoom position.
 *  PSPDFWebViewController now supports printing.
 *  A long-press on a PDF link annotation now shows the URL/Document/Page target in a popover.
+*  When switching between DEMO/FULL; the change is automatically detected and the cache cleared. (No more watermark problems)
 *  The image annotation view now properly displays and animates animated GIFs.
 *  GMGridView has been replaced by the new and better PSCollectionView, which is a API compatible copy of UICollectionView.
 *  Internal modernization; literals, subscripting, NS_ENUM, NS_OPTIONS.
