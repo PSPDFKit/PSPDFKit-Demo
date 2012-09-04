@@ -2,50 +2,79 @@
 
 __v2.0.0 - XX/August/2012__
 
-Note: PSPDFKit v2 is beta quality, expect bugs.
-You need at least Xcode 4.4 to compile. (Xcode 4.4/4.5 run both fine on Lion, Mountain Lion is not needed.)
-PSPDFKit v2 will be compatible with iOS 4.3 upwards. (armv7, i386)
+PSPDFKit v2 is a major updates with lots of changes and a streamlined API.
+There are some API deprecations and some breaking changes; but those are fairly straightforward and well documented.
+
+You need at least Xcode 4.4.1 to compile. (Xcode 4.4/4.5 both run fine on Lion, Mountain Lion is not needed but recommended)
+PSPDFKit v2 is compatible with iOS 4.3 upwards. (armv7, i386 - thus dropping iOS 4.2/armv6 from v1)
 
 The installation has been simplified. You now just drop the "PSPDFKit.embeddedframework" container into your project.
 Next, enable the PSPDFKit.xcconfig project configuration. Here's a screenshot: http://cl.ly/image/1e1I2Z2e1D3F
 (Select your project (top left), select project again in the PROJECT/TARGETS tree, select Info, then change in "Based on Configuration file" from None to PSPDFKit.)
 
+If you have the sources and embedd PSPDFKit as a subproject, don't forget to also add PSPDFKit.bundle.
+
+
+MAJOR NEW FEATURES:
 *  Text selection! (Includes Copy, Dictionary, Wikipedia support)
-*  Annotations draw support: FreeText, Note, Ink, Shape, Line, Highlight.
-*  Annotation edit support: Highlights. (Ink, Note will follow)
-*  Smart Zoom. (Text blocks are discovered and zoomed onto on a double-tap)
+*  Annotations! Highlight, Underscore, Strikeout, Note, Draw etc. Annotations also will be written back into the PDF.
+   There is a new annptationBarButtonItem that shows the new annotation toolbar.
+*  Smart Zoom (Text blocks are detected and zoomed onto on a double-tap; much like Safari)
+   The PDF is now also dynamically re-rendered at *every* zoom level for maximal sharpness and quality.
+*  Customizable render modes (enable/disable use of upscaled thumbnails). PSPDFPageRenderingModeFullPageBlocking is great for magazines.
 *  Greatly improved Search. Faster, parses more font styles, compatible with international characters (chinese, turkish, arabic, ...)
-*  Adobe DRM detection (They are just marked as not viewable, instead of showing garbage)
+*  Site Bookmarks (see bookmarksBarButtonItem and PSPDFBookmarkParser)
+*  Support for VoiceOver accessibility (yes, even within the PDF!)
+
+Further, PSPDFKit has been improved in virtually every area and a lot of details have been tweaked.
+
 *  Inline password view. (Before, just a empty screen was shown when document wasn't unlocked.)
+*  Adobe DRM detection (They are just marked as not viewable, instead of showing garbage)
 *  PDF rendering indicator. (see pdfController.renderAnimationEnabled)
-*  API changes. Lots of things got renamed or changed. (e.g. Url -> URL)
-*  navigationBar title is no longer set on every page change.
-*  Delegates are now called correctly (only once instead of multiple times) in pageCurl mode.
 *  Even better view reuse. PSPDFPageView is now reused, scrolling is even smoother.
-*  Internal modernization; literals, subscripting, NS_ENUM, UICollectionView usage (if available)
-*  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
 *  PSPDFDocument can now be initialized with a CGDataProviderRef or a dataArray.
-*  Support for Table Of Contents (Outline) linking to other PDF documents.
-*  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
 *  The search/outline controllers now dynamically update their size based on the content height.
+*  The Table of Contents/Outline controller now shows titles in multiple lines if too long (this is customizable)
+*  Support for Table Of Contents (Outline) linking to external PDF documents.
 *  Page Content/Background Color/Inversion can now be changed to modify rendering.
+*  On the iPhone, a new documentLabel shows the title. (the navigationBar is too small for this)
+*  PSPDFScrobbleBar now uses the small height style on iPhone/Landscape.
 *  PSPDFViewController can now programatically invoke a search via searchForString:animated:.
 *  PSPDFViewController now has a margin and a padding property to add custom margin/padding on the pdf view.
 *  PSPDFViewController now has a HUDViewMode property to fine-tune the HUD.
-*  PSPDFViewController now has a renderingMode property; fine-tune cache/thumbnail view usage. PSPDFPageRenderingFullPageBlocking is *great *for pageCurl mode.
-*  New delegate: - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset -> completes dragging delegates; zooming delegates were already available in PSPDFKit v1.
-*  Add overrideClassNames to PSPDFDocument.
-*  Table of Contents now shows titles in multiple lines if too long.
-*  The PSPDFKit image annotation now properly displays and animates animated GIFs.
-*  A long-press on a PDF link annotation now shows the URL/Document/Page target in a popover.
-*  The PSPDFScrobbleBar now uses the small height style on iPhone/Landscape.
+*  PSPDFTabbedViewController now has a minTabWidth property (defaults to 100)
+*  PSPDFDocument now has a overrideClassNames dictionary, much like PSPDFViewController.
+*  PSPDFDocument now has objectsAtPDFPoint/objectsAtPDFRect to return found glyphs and words.
+*  PSPDFDocument now has convenience methods to render PDF content. (renderImageForPage:withSize:.../renderPage:inContext:...)
+*  PSPDFDocument now exposes some more common metadata keys for the PDF metadata.
+*  PSPDFDocument now has convenience methods to add and get annotations (addAnnotations:forPage:)
+*  PSPDFDocument now has a property called annotationSaveMode to switch between PDF annotation embedding or an external file.
+*  Support for documents with multiple sources(files/dataArray/documentProvider) is now greatly improved due to the new PSPDFDocument/PSPDFDocumentProvider structure.
+*  PSPDFPageView now has convenience methods to calculate between PDF and screen coordinate space (convertViewPointToPDFPoint/convertPDFPointToViewPoint/etc)
+*  PSPDFPageView no longer uses CATiledLayer; this has been replaced by a much faster and better custom solution.
+*  PSPDFScrollView no longer accepts a tripple-tap for zooming out; this was a rarely-used feature in iOS and it increased the reaction time for the much more used double tap.
+   Zooming in/out is now smarter (smart zoom) and does the right thing depending on the zoom position.
 *  PSPDFWebViewController now supports printing.
+*  A long-press on a PDF link annotation now shows the URL/Document/Page target in a popover.
+*  The image annotation view now properly displays and animates animated GIFs.
+*  GMGridView has been replaced by the new and better PSCollectionView, which is a API compatible copy of UICollectionView.
+*  Internal modernization; literals, subscripting, NS_ENUM, NS_OPTIONS.
+*  Better internal error handling; more functions have error parameters.
+
+Fixes/API changes:
+
+*  The navigationBar title is no longer set on every page change.
+*  PSPDFDocument's PDFDocumentWithUrl has been renamed to PDFDocumentWithURL.
+*  Delegates are now called correctly (only once instead of multiple times) in pageCurl mode.
+*  pdfViewController:willShowController:embeddedInController:animated: has been changed to (BOOL)pdfViewController:*SHOULD*ShowController:embeddedInController:animated:
+*  tabbedPDFController:willChangeDocuments has been renamed to tabbedPDFController:shouldChangeDocuments.
+*  New delegate: - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset -> completes dragging delegates; zooming delegates were already available in PSPDFKit v1.
 *  Changed willShowController... delegate to shouldShowController... that returns a BOOL.
-*  Initial support for Voiceover accessibility.
 *  Fixes a problem in the annotation parser where some named page links failed to resolve properly.
 *  Fixes a problem where the Cancel button of the additionalBarButtonItem menu wasn't fully touch-able on iPhone.
 *  Fixes a problem with PSPDFBarButtonItem image updating.
 *  Lots of other minor and major changes.
+
 
 __v1.10.4 - x/Jul/2012__
 
