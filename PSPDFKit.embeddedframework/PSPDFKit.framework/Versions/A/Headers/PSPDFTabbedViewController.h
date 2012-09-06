@@ -27,6 +27,9 @@
 /// Will be called after the visibleDocument changed.
 - (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeVisibleDocument:(PSPDFDocument *)oldDocument;
 
+/// Delegate that will be called after didChangeDocuments if the close button has been invoked.
+- (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didCloseDocument:(PSPDFDocument *)closedDocument;
+
 @end
 
 /// Allows displaying multiple PSPDFDocument's, easily switchable via a top tab bar. iOS5 only.
