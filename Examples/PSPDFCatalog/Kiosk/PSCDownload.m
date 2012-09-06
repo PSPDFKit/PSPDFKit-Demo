@@ -155,7 +155,7 @@
 
     if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
         NSError *error = nil;
-        success = [URL setResourceValue:[NSNumber numberWithBool:YES]
+        success = [URL setResourceValue:@YES
                                  forKey:NSURLIsExcludedFromBackupKey error:&error];
         if(!success){
             PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
