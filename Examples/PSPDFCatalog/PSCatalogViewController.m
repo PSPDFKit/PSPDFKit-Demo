@@ -25,7 +25,7 @@
 #import "PSCBookViewController.h"
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -60,6 +60,8 @@
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
 
+        // the tabbed browser needs iOS5 or greater.
+        PSPDF_IF_IOS5_OR_GREATER(
         [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
             if (PSIsIpad()) {
                 return (UIViewController *)[PSCTabbedExampleViewController new];
@@ -68,6 +70,8 @@
                 return (UIViewController *)[[PSCDocumentSelectorController alloc] initWithDelegate:self];
             }
         }]];
+        );
+        
         [content addObject:appSection];
 
         PSPDFDocument *hcakerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -136,7 +140,7 @@
             // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-            controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+            controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
 
@@ -145,7 +149,7 @@
          /// And even a CGDocumentProvider (can be used for encryption)
          [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
 
-         NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"output-nonaligned.pdf.aes"]];
+         NSURL *encryptedPDF = [NSURL fileURLWithPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:@"output.pdf.aes"]];
 
          // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
          // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
