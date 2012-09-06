@@ -137,6 +137,9 @@ extern CGFloat psrangef(float minRange, float value, float maxRange);
 /// Trims down a string, removing characters like \n 's etc.
 extern NSString *PSPDFTrimString(NSString *string);
 
+// Checks if the current controller class is displayed in the popover (also checks UINavigationController)
+extern BOOL PSPDFIsControllerClassInPopover(UIPopoverController *popoverController, Class controllerClass);
+
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
 #define ps_weak weak
