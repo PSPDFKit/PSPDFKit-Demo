@@ -127,7 +127,11 @@
 
 /// PDF parser that lists the PDF XRef structure and writes annotations.
 /// Lazy initialized. Can be subclassed or set externally.
+/// Parses the PDF on first access. Might be slow.
 @property(nonatomic, strong) PSPDFDocumentParser *documentParser;
+
+/// Determine if lazy-loaded documentParser is already available.
+@property(nonatomic, assign, readonly) BOOL isDocumentParserLoaded;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.

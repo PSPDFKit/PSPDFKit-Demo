@@ -143,6 +143,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 
 /// Can PDF annotations be embedded?
 /// Note: only evaluates the first file if multiple files are set.
+/// This might block for a while since the PDF needs to be parsed to determine this.
 @property(nonatomic, assign, readonly) BOOL canEmbedAnnotations;
 
 /**
@@ -382,8 +383,22 @@ extern NSString *kPSPDFGlyphs, *kPSPDFWords, *kPSPDFTextBlocks, *kPSPDFAnnotatio
 /// Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
 - (PSPDFDocumentProvider *)didCreateDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Return plain thumbnail path, if thumbnail already exists. override if you pre-provide thumbnails. Returns nil on default.
-- (NSURL *)thumbnailPathForPage:(NSUInteger)page;
+/**
+    Return URL to a thumbnail/full sized image (png; jpg preferred). Use this if you want to pre-supply rendered images.
+    Returns nil in the default implementation.
+ 
+    Replaces thumbnailPathForPage from PSPDFKit v1.
+ 
+    For example, you can use the fully pre-rendered images from the iPhone Simulator (or iPad) and copy them into your bundle.
+    Then, you write a method that returns the file URL for those files.
+    
+    In PSPDFKit, files have the name "p1" (PSPDFSizeNative), "t1" (PSPDFSizeThumbnail) or "y1" (PSPDFSizeTiny).
+    The '1' is the first page. Careful; the accessor here is zero-based. 
+    (So page:0 andSize:PSPDFSizeNative would map to the file "p1.jpg".
+ 
+    There are additional checks in place, if the URL you're returning is invalid the image will be rendered on the fly.
+*/
+- (NSURL *)cachedImageURLForPage:(NSUInteger)page andSize:(PSPDFSize)size;
 
 /// Can be overridden to provide custom text. Defaults to nil.
 /// if this returns nil for a site, we'll try to extract text ourselves.
