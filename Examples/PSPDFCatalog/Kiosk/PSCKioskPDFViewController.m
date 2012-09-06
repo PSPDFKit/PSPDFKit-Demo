@@ -272,11 +272,16 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     PSCLog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
 
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        NSUInteger realPage = self.realPage;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            [self.document textParserForPage:realPage];
+            for (NSNumber *pageNumber in [self visiblePageNumbers]) {
+                PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+                [self.document textParserForPage:pageView.page];
+            }
             dispatch_async(dispatch_get_main_queue(), ^{
-                [pageView.selectionView showTextFlowData:YES animated:NO];
+                for (NSNumber *pageNumber in [self visiblePageNumbers]) {
+                    PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+                    [pageView.selectionView showTextFlowData:YES animated:NO];
+                }
             });
         });
     }
@@ -288,7 +293,10 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        [pageView.selectionView showTextFlowData:NO animated:NO];
+        for (NSNumber *pageNumber in [self visiblePageNumbers]) {
+            PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+            [pageView.selectionView showTextFlowData:NO animated:NO];
+        }
     }
 }
 
