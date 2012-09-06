@@ -293,11 +293,14 @@
             return controller;
         }]];
 
+        // uses pageCurl which is a iOS5+ feature.
+        PSPDF_IF_IOS5_OR_GREATER(
         [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
             return controller;
         }]];
+        );
 
         [content addObject:subclassingSection];
 

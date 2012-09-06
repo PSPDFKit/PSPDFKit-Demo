@@ -24,7 +24,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        self.navigationItem.leftItemsSupplementBackButton = YES;
+        PSPDF_IF_IOS5_OR_GREATER(self.navigationItem.leftItemsSupplementBackButton = YES;);
+        
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Embedded" image:[UIImage imageNamed:@"medical"] tag:1];
         
         // prepare document to display, copy it do docs folder
@@ -35,7 +36,11 @@
         
         // add button to push view
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)];
+
+        // don't hide native back button on iOS4.w
+        PSPDF_IF_IOS5_OR_GREATER(
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)];
+                                 );
     }
     return self;
 }
