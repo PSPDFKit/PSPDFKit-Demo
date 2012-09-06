@@ -302,11 +302,8 @@
 
 // toggle the options/settings button.
 - (void)optionsButtonPressed {
-    UIViewController *contentController = self.popoverController.contentViewController;
-    if ([contentController isKindOfClass:[UINavigationController class]]) {
-        contentController = [(UINavigationController *)contentController topViewController];
-    }
-    if ([contentController isKindOfClass:[PSCSettingsController class]]) {
+    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopover(self.popoverController, [PSCSettingsController class]);
+    if (alreadyDisplayed) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
     }else {
