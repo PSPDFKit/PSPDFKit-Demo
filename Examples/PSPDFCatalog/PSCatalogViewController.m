@@ -204,7 +204,15 @@
 
         PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
         [storyboardSection addContent:[[PSContent alloc] initWithTitle:@"Init with Storyboard" block:^UIViewController *{
-            return (UIViewController *)[[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
+            UIViewController *controller = nil;
+            @try {
+                // will throw an exception if the file MainStoryboard.storyboard is missing
+                controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
+            }
+            @catch (NSException *exception) {
+                [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"You need to manually add the file MainStoryboard.storyboard and increase the deployment target to iOS5 - since PSPDFKit is compatible with iOS 4.3 upwards, we removed that file to be able to compile." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            }
+            return controller;
         }]];
         [content addObject:storyboardSection];
 
@@ -419,6 +427,8 @@
             controller = [((UINavigationController *)controller) topViewController];
         }
         [self.navigationController pushViewController:controller animated:YES];
+    }else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
