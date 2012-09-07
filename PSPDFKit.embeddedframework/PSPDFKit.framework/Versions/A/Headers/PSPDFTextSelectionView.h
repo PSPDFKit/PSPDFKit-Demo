@@ -13,6 +13,7 @@
 @class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView;
 
 /// Handles the text and annotation selection.
+/// Only available in PSPDFKit Annotate.
 @interface PSPDFTextSelectionView : UIView
 
 /// Currently selected glyphs.

@@ -155,9 +155,14 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 */
 @property(nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
 
-/// Saves changed annotations back into the PDF sources (files/data).
-/// Returns NO if annotations cannot be embedded. Then most likely error is set.
-/// Returns YES if there are no annotations that need to be saved.
+/**
+    Saves changed annotations back into the PDF sources (files/data).
+ 
+    Returns NO if annotations cannot be embedded. Then most likely error is set.
+    Returns YES if there are no annotations that need to be saved.
+ 
+    Only available in PSPDFKit Annotate.
+ */
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
 /// Link annotation parser class for current document.
