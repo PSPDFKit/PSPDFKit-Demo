@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
     PSPDFLogLevelInfo,
     PSPDFLogLevelVerbose
 };
-extern PSPDFLogLevel kPSPDFLogLevel; // defaults to PSPDFLogLevelError
+extern PSPDFLogLevel kPSPDFLogLevel; // defaults to PSPDFLogLevelWarning
 
 /// Settings for animation of pages, global
 typedef NS_ENUM(NSInteger, PSPDFAnimate) {
