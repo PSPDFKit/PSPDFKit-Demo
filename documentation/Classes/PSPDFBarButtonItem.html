@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -36,9 +38,16 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
+	
+	
 	
 	
 	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/dismissPopoverAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;+ dismissPopoverAnimated:</option>
 	
 	<option value="//api/name/popoverControllerForObject:">&nbsp;&nbsp;&nbsp;&nbsp;+ popoverControllerForObject:</option>
 	
@@ -46,6 +55,8 @@
 	
 	
 	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/action:">&nbsp;&nbsp;&nbsp;&nbsp;- action:</option>
 	
 	<option value="//api/name/actionName">&nbsp;&nbsp;&nbsp;&nbsp;- actionName</option>
 	
@@ -63,6 +74,8 @@
 	
 	<option value="//api/name/presentModalOrInPopover:sender:">&nbsp;&nbsp;&nbsp;&nbsp;- presentModalOrInPopover:sender:</option>
 	
+	<option value="//api/name/toolbarCopy">&nbsp;&nbsp;&nbsp;&nbsp;- toolbarCopy</option>
+	
 	<option value="//api/name/updateBarButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;- updateBarButtonItem</option>
 	
 	
@@ -74,6 +87,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -85,9 +100,17 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dismissPopoverAnimated:">dismissPopoverAnimated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverControllerForObject:">popoverControllerForObject:</a></span></li>
 	
@@ -96,6 +119,8 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/action:">action:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/actionName">actionName</a></span></li>
 	
@@ -112,6 +137,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentAnimated:sender:">presentAnimated:sender:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentModalOrInPopover:sender:">presentModalOrInPopover:sender:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toolbarCopy">toolbarCopy</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateBarButtonItem">updateBarButtonItem</a></span></li>
 	
@@ -142,13 +169,30 @@
 	<td class="specification-value">UIBarButtonItem</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIPopoverControllerDelegate</td>
+	<td class="specification-value">NSCopying<br />UIPopoverControllerDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFBarButtonItem.h</td>
 </tr>
 						</tbody></table></div>
 					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<pre><code>Custom subclass that handles a UIBarButtonItem within the UINavigationBar of PSPDFViewController.
+
+The toolbar system in PSPDFViewController is designed to work with both stock UIBarButtonItem and PSPDFBarButtonItem; but if you want to use additionalRightBarButtonItems (where the items are listed inside a UIActionSheet) you must use a subclass of PSPDFBarButtonItem.
+
+PSPDFBarButtonItem also gives you access to the pdfController and ways to dynamically enable/disable your icon.
+
+Call updateBarButtonItem:animated: if you need to change tie image/customView/systemImage after the barButton has been displayed.
+
+Do not change target/selector - if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the PSPDFMoreBarButtonItem. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you'll never know what button has been selected.
+</code></pre>
+					</div>
 					
 					
 					
@@ -165,15 +209,29 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithPDFViewController:">&ndash;&nbsp;initWithPDFViewController:</a></code>
-		<span class="tooltip"><p>Init with pdfController reference (later calls presentModalViewController:withCloseButton:animated:)</p></span>
+		<code><a href="#//api/name/dismissPopoverAnimated:">+&nbsp;dismissPopoverAnimated:</a></code>
+		<span class="tooltip"><p>Global helper to dismiss any open popover handled by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/initWithPDFViewController:">&ndash;&nbsp;initWithPDFViewController:</a></code>
+		<span class="tooltip"><p>Init with <a href="#//api/name/pdfController">pdfController</a> reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>PDF controller.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/customView">&ndash;&nbsp;customView</a></code>
-		<span class="tooltip"><p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p></span>
+		<span class="tooltip"><p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass (via overriding the method)</p></span>
 	</span>
 	
 	
@@ -187,7 +245,8 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/actionName">&ndash;&nbsp;actionName</a></code>
-		<span class="tooltip"><p>Always implement actionName in your subclass.</p></span>
+		<span class="tooltip"><p>Always implement actionName in your subclass.
+This is needed ot list the action in additionalRightBarButtonItems in an ActionSheet.</p></span>
 	</span>
 	
 	
@@ -233,8 +292,24 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/popoverControllerForObject:">+&nbsp;popoverControllerForObject:</a></code>
-		<span class="tooltip"><p>Peaks into certain Apple classes to get the internal UIPopoverController.
-Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.</p></span>
+		<span class="tooltip"><pre><code>Peaks into certain Apple classes to get the internal UIPopoverController.
+(e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
+</code></pre></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/action:">&ndash;&nbsp;action:</a></code>
+		<span class="tooltip"><p>Subclass to build a completely custom action, overriding the default present/dismiss calls.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/toolbarCopy">&ndash;&nbsp;toolbarCopy</a></code>
+		<span class="tooltip"><p>UIBarButtonItem is immutable; once initialized, images are fixed.
+This returns a current state copy and relays the events.</p></span>
 	</span>
 	
 	
@@ -247,25 +322,22 @@ Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API
 					
 					
 					
-					
-					
 					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/popoverControllerForObject:" title="popoverControllerForObject:"></a>
-	<h3 class="subsubtitle method-title">popoverControllerForObject:</h3>
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Peaks into certain Apple classes to get the internal UIPopoverController.
-Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.</p>
+		<p>PDF controller.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (UIPopoverController *)popoverControllerForObject:(id)<em>object</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController</code></div>
 	
 	
 	
@@ -293,8 +365,127 @@ Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API
 					
 					
 					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/dismissPopoverAnimated:" title="dismissPopoverAnimated:"></a>
+	<h3 class="subsubtitle method-title">dismissPopoverAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Global helper to dismiss any open popover handled by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)dismissPopoverAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/popoverControllerForObject:" title="popoverControllerForObject:"></a>
+	<h3 class="subsubtitle method-title">popoverControllerForObject:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<pre><code>Peaks into certain Apple classes to get the internal UIPopoverController.
+(e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
+</code></pre>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIPopoverController *)popoverControllerForObject:(id)<em>object</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
+(It's coded very defensely and this failing will just result in a minor UX degredation)
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
 						<a title="Instance Methods" name="instance_methods"></a>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/action:" title="action:"></a>
+	<h3 class="subsubtitle method-title">action:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subclass to build a completely custom action, overriding the default present/dismiss calls.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)action:(PSPDFBarButtonItem *)<em>sender</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/actionName" title="actionName"></a>
@@ -303,7 +494,8 @@ Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Always implement actionName in your subclass.</p>
+		<p>Always implement actionName in your subclass.
+This is needed ot list the action in additionalRightBarButtonItems in an ActionSheet.</p>
 	</div>		
 	
 	
@@ -337,7 +529,7 @@ Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass. Falls back to <a href="#//api/name/actionName">actionName</a>.</p>
+		<p>Implement customView, <a href="#//api/name/image">image</a> or <a href="#//api/name/systemItem">systemItem</a> in your subclass (via overriding the method)</p>
 	</div>		
 	
 	
@@ -371,7 +563,7 @@ Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Init with pdfController reference (later calls presentModalViewController:withCloseButton:animated:)</p>
+		<p>Init with <a href="#//api/name/pdfController">pdfController</a> reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)</p>
 	</div>		
 	
 	
@@ -571,6 +763,41 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/toolbarCopy" title="toolbarCopy"></a>
+	<h3 class="subsubtitle method-title">toolbarCopy</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>UIBarButtonItem is immutable; once initialized, images are fixed.
+This returns a current state copy and relays the events.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFCopiedBarButtonItem *)toolbarCopy</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/updateBarButtonItem" title="updateBarButtonItem"></a>
 	<h3 class="subsubtitle method-title">updateBarButtonItem</h3>
 	
@@ -619,7 +846,7 @@ Defaults to enabled, as long as a document is set and valid on pdfViewController
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -72,6 +72,8 @@
 	
 	<option value="//api/name/setImageSize:">&nbsp;&nbsp;&nbsp;&nbsp;- setImageSize:</option>
 	
+	<option value="//api/name/updateCell">&nbsp;&nbsp;&nbsp;&nbsp;- updateCell</option>
+	
 	
 	
 </select>
@@ -87,6 +89,8 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Subclassing Methods">Subclassing Methods</a></span></li>
 	
 </ul></li>
 
@@ -130,6 +134,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setImageSize:">setImageSize:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateCell">updateCell</a></span></li>
+	
 </ul></li>
 
 
@@ -154,7 +160,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFGridViewCell.html">PSPDFGridViewCell</a> : UIView</td>
+	<td class="specification-value">PSCollectionViewCell : PSCollectionReusableView : UIView</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
 	<td class="specification-value"><a href="../Protocols/PSPDFCacheDelegate.html">PSPDFCacheDelegate</a></td>
@@ -183,48 +189,20 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setImage:animated:">&ndash;&nbsp;setImage:animated:</a></code>
-		<span class="tooltip"><p>manually set image. use if you override class.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setImageSize:">&ndash;&nbsp;setImageSize:</a></code>
-		<span class="tooltip"><p>called when cell resizes. use in override class to re-positionize your content.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/imageView">&nbsp;&nbsp;imageView</a></code>
-		<span class="tooltip"><p>internal image view.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>referenced document.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/siteLabel">&nbsp;&nbsp;siteLabel</a></code>
-		<span class="tooltip"><p>site label.</p></span>
+		<span class="tooltip"><p>Referenced document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>referenced page.</p></span>
+		<span class="tooltip"><p>Referenced page.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -238,14 +216,43 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
-		<span class="tooltip"><p>enables thumbnail shadow. defaults to YES.</p></span>
+		<span class="tooltip"><p>Enables thumbnail shadow. defaults to YES, except on old devices.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/showingSiteLabel">&nbsp;&nbsp;showingSiteLabel</a></code>
-		<span class="tooltip"><p>enable <a href="#//api/name/page">page</a> label.</p></span>
+		<span class="tooltip"><p>Enable <a href="#//api/name/page">page</a> label.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateCell">&ndash;&nbsp;updateCell</a></code>
+		<span class="tooltip"><p>Call before re-showing (will update bookmark status)</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Subclassing Methods" name="task_Subclassing Methods"></a>
+						<h3 class="subsubtitle task-title">Subclassing Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/imageView">&nbsp;&nbsp;imageView</a></code>
+		<span class="tooltip"><p>Internal image view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/siteLabel">&nbsp;&nbsp;siteLabel</a></code>
+		<span class="tooltip"><p>Site label.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -253,6 +260,20 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/pathShadowForView:">&ndash;&nbsp;pathShadowForView:</a></code>
 		<span class="tooltip"><p>Creates the shadow. Subclass to change. Returns a CGPathRef.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setImage:animated:">&ndash;&nbsp;setImage:animated:</a></code>
+		<span class="tooltip"><p>Manually set image. use if you override class.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setImageSize:">&ndash;&nbsp;setImageSize:</a></code>
+		<span class="tooltip"><p>Called when cell resizes. use in override class to re-positionize your content.</p></span>
 	</span>
 	
 	
@@ -283,7 +304,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced document.</p>
+		<p>Referenced document.</p>
 	</div>		
 	
 	
@@ -351,7 +372,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>internal image view.</p>
+		<p>Internal image view.</p>
 	</div>		
 	
 	
@@ -385,7 +406,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced page.</p>
+		<p>Referenced page.</p>
 	</div>		
 	
 	
@@ -419,7 +440,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enables thumbnail shadow. defaults to YES.</p>
+		<p>Enables thumbnail shadow. defaults to YES, except on old devices.</p>
 	</div>		
 	
 	
@@ -453,7 +474,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enable <a href="#//api/name/page">page</a> label.</p>
+		<p>Enable <a href="#//api/name/page">page</a> label.</p>
 	</div>		
 	
 	
@@ -487,7 +508,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>site label.</p>
+		<p>Site label.</p>
 	</div>		
 	
 	
@@ -605,7 +626,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>manually set image. use if you override class.</p>
+		<p>Manually set image. use if you override class.</p>
 	</div>		
 	
 	
@@ -639,11 +660,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>called when cell resizes. use in override class to re-positionize your content.</p>
+		<p>Called when cell resizes. use in override class to re-positionize your content.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)setImageSize:(CGSize)<em>imageSize</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFThumbnailGridViewCell.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateCell" title="updateCell"></a>
+	<h3 class="subsubtitle method-title">updateCell</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Call before re-showing (will update bookmark status)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)updateCell</code></div>
 	
 	
 	
@@ -679,7 +734,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

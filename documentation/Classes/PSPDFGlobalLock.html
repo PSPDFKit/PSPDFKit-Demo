@@ -42,14 +42,12 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/sharedPSPDFGlobalLock">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedPSPDFGlobalLock</option>
+	<option value="//api/name/sharedGlobalLock">&nbsp;&nbsp;&nbsp;&nbsp;+ sharedGlobalLock</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/documentProviderForDocument:page:">&nbsp;&nbsp;&nbsp;&nbsp;- documentProviderForDocument:page:</option>
 	
 	<option value="//api/name/freeWithPDFPageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- freeWithPDFPageRef:</option>
 	
@@ -89,15 +87,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedPSPDFGlobalLock">sharedPSPDFGlobalLock</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sharedGlobalLock">sharedGlobalLock</a></span></li>
 	
 </ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProviderForDocument:page:">documentProviderForDocument:page:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/freeWithPDFPageRef:">freeWithPDFPageRef:</a></span></li>
 	
@@ -148,7 +144,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>pdf reading needs memory, which is a rare resource. So we lock access very carefully.</p>
+						<p>PDF reading needs memory, which is a rare resource. So we lock access very carefully.</p>
 					</div>
 					
 					
@@ -166,8 +162,8 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/sharedPSPDFGlobalLock">+&nbsp;sharedPSPDFGlobalLock</a></code>
-		<span class="tooltip"><p>get global singleton.</p></span>
+		<code><a href="#//api/name/sharedGlobalLock">+&nbsp;sharedGlobalLock</a></code>
+		<span class="tooltip"><p>Get global singleton.</p></span>
 	</span>
 	
 	
@@ -182,43 +178,35 @@ returns nil if currently locked.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/lockWithDocument:page:error:">&ndash;&nbsp;lockWithDocument:page:error:</a></code>
-		<span class="tooltip"><p>lock with document and logical page number (starts at 0).</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/documentProviderForDocument:page:">&ndash;&nbsp;documentProviderForDocument:page:</a></code>
-		<span class="tooltip"><p>Get a DocumentProvider for a certain document and page. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
-Returns nil if neither data nor a pdfPath is set in document</p></span>
+		<span class="tooltip"><p>Lock with document and logical page number (starts at 0).</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/freeWithPDFPageRef:">&ndash;&nbsp;freeWithPDFPageRef:</a></code>
-		<span class="tooltip"><p>free lock with CGPDFPageRef.</p></span>
+		<span class="tooltip"><p>Free lock with CGPDFPageRef.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/lockGlobal">&ndash;&nbsp;lockGlobal</a></code>
-		<span class="tooltip"><p>special lock for your application (e.g. unzip)</p></span>
+		<span class="tooltip"><p>Special lock for your application (e.g. unzip)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/unlockGlobal">&ndash;&nbsp;unlockGlobal</a></code>
-		<span class="tooltip"><p>special global unlock. Use with <a href="#//api/name/lockGlobal">lockGlobal</a>.</p></span>
+		<span class="tooltip"><p>Special global unlock. Use with <a href="#//api/name/lockGlobal">lockGlobal</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/requestClearCacheAndWait:">&ndash;&nbsp;requestClearCacheAndWait:</a></code>
-		<span class="tooltip"><p>clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p></span>
+		<span class="tooltip"><p>Clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p></span>
 	</span>
 	
 	
@@ -238,17 +226,17 @@ Returns nil if neither data nor a pdfPath is set in document</p></span>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/sharedPSPDFGlobalLock" title="sharedPSPDFGlobalLock"></a>
-	<h3 class="subsubtitle method-title">sharedPSPDFGlobalLock</h3>
+	<a name="//api/name/sharedGlobalLock" title="sharedGlobalLock"></a>
+	<h3 class="subsubtitle method-title">sharedGlobalLock</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>get global singleton.</p>
+		<p>Get global singleton.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFGlobalLock *)sharedPSPDFGlobalLock</code></div>
+	<div class="method-subsection method-declaration"><code>+ (PSPDFGlobalLock *)sharedGlobalLock</code></div>
 	
 	
 	
@@ -280,48 +268,13 @@ Returns nil if neither data nor a pdfPath is set in document</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/documentProviderForDocument:page:" title="documentProviderForDocument:page:"></a>
-	<h3 class="subsubtitle method-title">documentProviderForDocument:page:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Get a DocumentProvider for a certain document and page. Use this to get CGPDFDocumentRef and/or CGPDFPageRef
-Returns nil if neither data nor a pdfPath is set in document</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (PSPDFDocumentProvider *)documentProviderForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGlobalLock.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/freeWithPDFPageRef:" title="freeWithPDFPageRef:"></a>
 	<h3 class="subsubtitle method-title">freeWithPDFPageRef:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>free lock with CGPDFPageRef.</p>
+		<p>Free lock with CGPDFPageRef.</p>
 	</div>		
 	
 	
@@ -355,7 +308,7 @@ Returns nil if neither data nor a pdfPath is set in document</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>special lock for your application (e.g. unzip)</p>
+		<p>Special lock for your application (e.g. unzip)</p>
 	</div>		
 	
 	
@@ -389,7 +342,7 @@ Returns nil if neither data nor a pdfPath is set in document</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>lock with document and logical page number (starts at 0).</p>
+		<p>Lock with document and logical page number (starts at 0).</p>
 	</div>		
 	
 	
@@ -423,7 +376,7 @@ Returns nil if neither data nor a pdfPath is set in document</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p>
+		<p>Clears internal document/page cache. Usually no need to call externally, until you change a already displayed pdf file.</p>
 	</div>		
 	
 	
@@ -492,7 +445,7 @@ returns nil if currently locked.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>special global unlock. Use with <a href="#//api/name/lockGlobal">lockGlobal</a>.</p>
+		<p>Special global unlock. Use with <a href="#//api/name/lockGlobal">lockGlobal</a>.</p>
 	</div>		
 	
 	
@@ -532,7 +485,7 @@ returns nil if currently locked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

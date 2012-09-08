@@ -46,7 +46,7 @@
 	
 	<option value="//api/name/level">&nbsp;&nbsp;&nbsp;&nbsp;level</option>
 	
-	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
+	<option value="//api/name/relativePath">&nbsp;&nbsp;&nbsp;&nbsp;relativePath</option>
 	
 	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
 	
@@ -59,7 +59,7 @@
 	
 	<option value="//api/name/flattenedChildren">&nbsp;&nbsp;&nbsp;&nbsp;- flattenedChildren</option>
 	
-	<option value="//api/name/initWithTitle:page:children:level:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:page:children:level:</option>
+	<option value="//api/name/initWithTitle:page:relativePath:children:level:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:page:relativePath:children:level:</option>
 	
 	
 	
@@ -91,7 +91,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/level">level</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/relativePath">relativePath</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
 	
@@ -105,7 +105,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flattenedChildren">flattenedChildren</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:page:children:level:">initWithTitle:page:children:level:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:page:relativePath:children:level:">initWithTitle:page:relativePath:children:level:</a></span></li>
 	
 </ul></li>
 
@@ -131,7 +131,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value"><a href="../Classes/PSPDFBookmark.html">PSPDFBookmark</a> : NSObject</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
 	<td class="specification-value">NSCoding<br />NSCopying</td>
@@ -165,8 +165,8 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithTitle:page:children:level:">&ndash;&nbsp;initWithTitle:page:children:level:</a></code>
-		<span class="tooltip"><p>Init with <a href="#//api/name/title">title</a>, <a href="#//api/name/page">page</a>, child elements and deepness <a href="#//api/name/level">level</a>.</p></span>
+		<code><a href="#//api/name/initWithTitle:page:relativePath:children:level:">&ndash;&nbsp;initWithTitle:page:relativePath:children:level:</a></code>
+		<span class="tooltip"><p>Init with <a href="#//api/name/title">title</a>, page, child elements and deepness <a href="#//api/name/level">level</a>.</p></span>
 	</span>
 	
 	
@@ -186,8 +186,8 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Page reference.</p></span>
+		<code><a href="#//api/name/relativePath">&nbsp;&nbsp;relativePath</a></code>
+		<span class="tooltip"><p>Set if outline to a different PDF document. Path is relative to current document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -328,17 +328,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/page" title="page"></a>
-	<h3 class="subsubtitle method-title">page</h3>
+	<a name="//api/name/relativePath" title="relativePath"></a>
+	<h3 class="subsubtitle method-title">relativePath</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page reference.</p>
+		<p>Set if outline to a different PDF document. Path is relative to current document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *relativePath</code></div>
 	
 	
 	
@@ -440,17 +440,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithTitle:page:children:level:" title="initWithTitle:page:children:level:"></a>
-	<h3 class="subsubtitle method-title">initWithTitle:page:children:level:</h3>
+	<a name="//api/name/initWithTitle:page:relativePath:children:level:" title="initWithTitle:page:relativePath:children:level:"></a>
+	<h3 class="subsubtitle method-title">initWithTitle:page:relativePath:children:level:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Init with <a href="#//api/name/title">title</a>, <a href="#//api/name/page">page</a>, child elements and deepness <a href="#//api/name/level">level</a>.</p>
+		<p>Init with <a href="#//api/name/title">title</a>, page, child elements and deepness <a href="#//api/name/level">level</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em> page:(NSUInteger)<em>page</em> children:(NSArray *)<em>children</em> level:(NSUInteger)<em>level</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em> page:(NSUInteger)<em>page</em> relativePath:(NSString *)<em>relativePath</em> children:(NSArray *)<em>children</em> level:(NSUInteger)<em>level</em></code></div>
 	
 	
 	
@@ -486,7 +486,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

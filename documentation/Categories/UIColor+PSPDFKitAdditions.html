@@ -38,11 +38,26 @@
 	
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/pspdf_colorFromPropertyRepresentation:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_colorFromPropertyRepresentation:</option>
+	
+	<option value="//api/name/pspdf_selectionColor">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_selectionColor</option>
+	
+	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
 	<option value="//api/name/initWithCGPDFArray:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithCGPDFArray:</option>
+	
+	<option value="//api/name/initWithCGPDFDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithCGPDFDictionary:</option>
+	
+	<option value="//api/name/pspdf_closestAnnotationColorName">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_closestAnnotationColorName</option>
+	
+	<option value="//api/name/pspdf_closestColorNameFromSelection:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_closestColorNameFromSelection:</option>
+	
+	<option value="//api/name/pspdf_lightenedColor">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_lightenedColor</option>
 	
 	
 	
@@ -66,11 +81,27 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_colorFromPropertyRepresentation:">pspdf_colorFromPropertyRepresentation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_selectionColor">pspdf_selectionColor</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithCGPDFArray:">initWithCGPDFArray:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithCGPDFDictionary:">initWithCGPDFDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_closestAnnotationColorName">pspdf_closestAnnotationColorName</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_closestColorNameFromSelection:">pspdf_closestColorNameFromSelection:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_lightenedColor">pspdf_lightenedColor</a></span></li>
 	
 </ul></li>
 
@@ -123,6 +154,48 @@ returns nil if no color could be derived.</p></span>
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithCGPDFDictionary:">&ndash;&nbsp;initWithCGPDFDictionary:</a></code>
+		<span class="tooltip"><p>Searches for the &ldquo;C&rdquo; entry in the CGPDFDictionaryRef and calls initWithCGPDFArray.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_closestAnnotationColorName">&ndash;&nbsp;pspdf_closestAnnotationColorName</a></code>
+		<span class="tooltip"><p>Returns name of the current color (compared against an internal database)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_closestColorNameFromSelection:">&ndash;&nbsp;pspdf_closestColorNameFromSelection:</a></code>
+		<span class="tooltip"><p>Return name closest compared to dictionary &lsquo;colorNames&rsquo;</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_selectionColor">+&nbsp;pspdf_selectionColor</a></code>
+		<span class="tooltip"><p>Color that matches the system color for selection.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_colorFromPropertyRepresentation:">+&nbsp;pspdf_colorFromPropertyRepresentation:</a></code>
+		<span class="tooltip"><p>Property list support</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_lightenedColor">&ndash;&nbsp;pspdf_lightenedColor</a></code>
+		<span class="tooltip"><p>Derived colors</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -133,6 +206,80 @@ returns nil if no color could be derived.</p></span>
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_colorFromPropertyRepresentation:" title="pspdf_colorFromPropertyRepresentation:"></a>
+	<h3 class="subsubtitle method-title">pspdf_colorFromPropertyRepresentation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Property list support</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIColor *)pspdf_colorFromPropertyRepresentation:(id)<em>colorObject</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_selectionColor" title="pspdf_selectionColor"></a>
+	<h3 class="subsubtitle method-title">pspdf_selectionColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Color that matches the system color for selection.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIColor *)pspdf_selectionColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -153,7 +300,143 @@ returns nil if no color could be derived.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithCGPDFArray:(CGPDFArrayRef)<em>realArray</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithCGPDFArray:(CGPDFArrayRef)<em>arrayRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithCGPDFDictionary:" title="initWithCGPDFDictionary:"></a>
+	<h3 class="subsubtitle method-title">initWithCGPDFDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Searches for the &ldquo;C&rdquo; entry in the CGPDFDictionaryRef and calls initWithCGPDFArray.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithCGPDFDictionary:(CGPDFDictionaryRef)<em>dictionaryRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_closestAnnotationColorName" title="pspdf_closestAnnotationColorName"></a>
+	<h3 class="subsubtitle method-title">pspdf_closestAnnotationColorName</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns name of the current color (compared against an internal database)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pspdf_closestAnnotationColorName</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_closestColorNameFromSelection:" title="pspdf_closestColorNameFromSelection:"></a>
+	<h3 class="subsubtitle method-title">pspdf_closestColorNameFromSelection:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return name closest compared to dictionary &lsquo;colorNames&rsquo;</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pspdf_closestColorNameFromSelection:(NSDictionary *)<em>colorNames</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIColor+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_lightenedColor" title="pspdf_lightenedColor"></a>
+	<h3 class="subsubtitle method-title">pspdf_lightenedColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Derived colors</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIColor *)pspdf_lightenedColor</code></div>
 	
 	
 	
@@ -189,7 +472,7 @@ returns nil if no color could be derived.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

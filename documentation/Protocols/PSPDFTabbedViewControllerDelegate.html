@@ -48,7 +48,9 @@
 	
 	<option value="//api/name/tabbedPDFController:didChangeVisibleDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:didChangeVisibleDocument:</option>
 	
-	<option value="//api/name/tabbedPDFController:willChangeDocuments:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:willChangeDocuments:</option>
+	<option value="//api/name/tabbedPDFController:didCloseDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:didCloseDocument:</option>
+	
+	<option value="//api/name/tabbedPDFController:shouldChangeDocuments:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:shouldChangeDocuments:</option>
 	
 	<option value="//api/name/tabbedPDFController:willChangeVisibleDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- tabbedPDFController:willChangeVisibleDocument:</option>
 	
@@ -84,7 +86,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:didChangeVisibleDocument:">tabbedPDFController:didChangeVisibleDocument:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:willChangeDocuments:">tabbedPDFController:willChangeDocuments:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:didCloseDocument:">tabbedPDFController:didCloseDocument:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:shouldChangeDocuments:">tabbedPDFController:shouldChangeDocuments:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tabbedPDFController:willChangeVisibleDocument:">tabbedPDFController:willChangeVisibleDocument:</a></span></li>
 	
@@ -143,7 +147,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/tabbedPDFController:willChangeDocuments:">&ndash;&nbsp;tabbedPDFController:willChangeDocuments:</a></code>
+		<code><a href="#//api/name/tabbedPDFController:shouldChangeDocuments:">&ndash;&nbsp;tabbedPDFController:shouldChangeDocuments:</a></code>
 		<span class="tooltip"><p>Will be called when the documents array changes.</p></span>
 	</span>
 	
@@ -166,6 +170,13 @@
 	<span class="tooltip">
 		<code><a href="#//api/name/tabbedPDFController:didChangeVisibleDocument:">&ndash;&nbsp;tabbedPDFController:didChangeVisibleDocument:</a></code>
 		<span class="tooltip"><p>Will be called after the visibleDocument changed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tabbedPDFController:didCloseDocument:">&ndash;&nbsp;tabbedPDFController:didCloseDocument:</a></code>
+		<span class="tooltip"><p>Delegate that will be called after didChangeDocuments if the close button has been invoked.</p></span>
 	</span>
 	
 	
@@ -255,8 +266,42 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/tabbedPDFController:willChangeDocuments:" title="tabbedPDFController:willChangeDocuments:"></a>
-	<h3 class="subsubtitle method-title">tabbedPDFController:willChangeDocuments:</h3>
+	<a name="//api/name/tabbedPDFController:didCloseDocument:" title="tabbedPDFController:didCloseDocument:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:didCloseDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delegate that will be called after didChangeDocuments if the close button has been invoked.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> didCloseDocument:(PSPDFDocument *)<em>closedDocument</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTabbedViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tabbedPDFController:shouldChangeDocuments:" title="tabbedPDFController:shouldChangeDocuments:"></a>
+	<h3 class="subsubtitle method-title">tabbedPDFController:shouldChangeDocuments:</h3>
 	
 	
 	
@@ -265,7 +310,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> willChangeDocuments:(NSArray *)<em>newDocuments</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)<em>tabbedPDFController</em> shouldChangeDocuments:(NSArray *)<em>newDocuments</em></code></div>
 	
 	
 	
@@ -335,7 +380,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

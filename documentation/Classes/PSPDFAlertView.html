@@ -38,18 +38,6 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/alertView">&nbsp;&nbsp;&nbsp;&nbsp;alertView</option>
-	
-	
-	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/alertWithTitle:">&nbsp;&nbsp;&nbsp;&nbsp;+ alertWithTitle:</option>
-	
-	<option value="//api/name/alertWithTitle:message:">&nbsp;&nbsp;&nbsp;&nbsp;+ alertWithTitle:message:</option>
 	
 	
 	
@@ -58,13 +46,9 @@
 	
 	<option value="//api/name/addButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- addButtonWithTitle:block:</option>
 	
-	<option value="//api/name/dismissWithClickedButtonIndex:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- dismissWithClickedButtonIndex:animated:</option>
-	
-	<option value="//api/name/initWithTitle:message:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:message:</option>
+	<option value="//api/name/initWithTitle:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:</option>
 	
 	<option value="//api/name/setCancelButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- setCancelButtonWithTitle:block:</option>
-	
-	<option value="//api/name/show">&nbsp;&nbsp;&nbsp;&nbsp;- show</option>
 	
 	
 	
@@ -86,29 +70,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Adding Buttons">Adding Buttons</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Dismiss / Internal Access">Dismiss / Internal Access</a></span></li>
-	
 </ul></li>
 
 
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alertView">alertView</a></span></li>
-	
-</ul></li>
 
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alertWithTitle:">alertWithTitle:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alertWithTitle:message:">alertWithTitle:message:</a></span></li>
-	
-</ul></li>
 
 
 
@@ -116,13 +84,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addButtonWithTitle:block:">addButtonWithTitle:block:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dismissWithClickedButtonIndex:animated:">dismissWithClickedButtonIndex:animated:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:message:">initWithTitle:message:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:">initWithTitle:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCancelButtonWithTitle:block:">setCancelButtonWithTitle:block:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/show">show</a></span></li>
 	
 </ul></li>
 
@@ -148,7 +112,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">UIAlertView</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFAlertView.h</td>
@@ -180,21 +144,7 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/alertWithTitle:">+&nbsp;alertWithTitle:</a></code>
-		<span class="tooltip"><p>Create alertview with title, no message.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/alertWithTitle:message:">+&nbsp;alertWithTitle:message:</a></code>
-		<span class="tooltip"><p>Create alertview with title and message.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithTitle:message:">&ndash;&nbsp;initWithTitle:message:</a></code>
+		<code><a href="#//api/name/initWithTitle:">&ndash;&nbsp;initWithTitle:</a></code>
 		<span class="tooltip"><p>Default initializer.</p></span>
 	</span>
 	
@@ -221,35 +171,6 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	</span>
 	
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/show">&ndash;&nbsp;show</a></code>
-		<span class="tooltip"><p>Show AlerView.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="Dismiss / Internal Access" name="task_Dismiss / Internal Access"></a>
-						<h3 class="subsubtitle task-title">Dismiss / Internal Access</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/dismissWithClickedButtonIndex:animated:">&ndash;&nbsp;dismissWithClickedButtonIndex:animated:</a></code>
-		<span class="tooltip"><p>Dismisses AlertView, calls clock ode set at buttonIndex.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/alertView">&nbsp;&nbsp;alertView</a></code>
-		<span class="tooltip"><p>Access to the internal UIAlertView.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
 </li>
 						</ul>
 						
@@ -259,121 +180,7 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/alertView" title="alertView"></a>
-	<h3 class="subsubtitle method-title">alertView</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Access to the internal UIAlertView.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIAlertView *alertView</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
-					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/alertWithTitle:" title="alertWithTitle:"></a>
-	<h3 class="subsubtitle method-title">alertWithTitle:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Create alertview with title, no message.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFAlertView *)alertWithTitle:(NSString *)<em>title</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/alertWithTitle:message:" title="alertWithTitle:message:"></a>
-	<h3 class="subsubtitle method-title">alertWithTitle:message:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Create alertview with title and message.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFAlertView *)alertWithTitle:(NSString *)<em>title</em> message:(NSString *)<em>message</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 					
@@ -416,42 +223,8 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/dismissWithClickedButtonIndex:animated:" title="dismissWithClickedButtonIndex:animated:"></a>
-	<h3 class="subsubtitle method-title">dismissWithClickedButtonIndex:animated:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Dismisses AlertView, calls clock ode set at buttonIndex.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)dismissWithClickedButtonIndex:(NSInteger)<em>buttonIndex</em> animated:(BOOL)<em>animated</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithTitle:message:" title="initWithTitle:message:"></a>
-	<h3 class="subsubtitle method-title">initWithTitle:message:</h3>
+	<a name="//api/name/initWithTitle:" title="initWithTitle:"></a>
+	<h3 class="subsubtitle method-title">initWithTitle:</h3>
 	
 	
 	
@@ -460,7 +233,7 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em> message:(NSString *)<em>message</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em></code></div>
 	
 	
 	
@@ -517,40 +290,6 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	
 </div>
 						
-						<div class="section-method">
-	<a name="//api/name/show" title="show"></a>
-	<h3 class="subsubtitle method-title">show</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Show AlerView.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)show</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
 					</div>
 					
 					
@@ -564,7 +303,7 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

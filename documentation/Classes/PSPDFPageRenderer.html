@@ -32,10 +32,21 @@
 	
 	
 	
+	<option value="tasks">Tasks</option>
 	
 	
 	
 	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:</option>
+	
+	<option value="//api/name/renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:</option>
+	
+	<option value="//api/name/setupGraphicsContext:inRectangle:pageInfo:">&nbsp;&nbsp;&nbsp;&nbsp;+ setupGraphicsContext:inRectangle:pageInfo:</option>
 	
 	
 	
@@ -53,11 +64,25 @@
 
 
 
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
 
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:">renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:">renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setupGraphicsContext:inRectangle:pageInfo:">setupGraphicsContext:inRectangle:pageInfo:</a></span></li>
+	
+</ul></li>
 
 
 
@@ -96,7 +121,47 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Low level pdf renderer that correctly renders a page with CropBox/Rotation data into a context.</p>
+						<p>PDF rendering code.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setupGraphicsContext:inRectangle:pageInfo:">+&nbsp;setupGraphicsContext:inRectangle:pageInfo:</a></code>
+		<span class="tooltip"><p>Setup the graphics context to the current PDF.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:">+&nbsp;renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:</a></code>
+		<span class="tooltip"><p>Renders a page inside a rectangle. Set context CTM and ClipRect to control rendering.
+Returns the renderingRectangle.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:">+&nbsp;renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:</a></code>
+		<span class="tooltip"><p>Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -105,9 +170,114 @@
 					
 					
 					
-					
-					
-					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:" title="renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:"></a>
+	<h3 class="subsubtitle method-title">renderPage:inContext:atPoint:withZoom:pageInfo:withAnnotations:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (CGSize)renderPage:(CGPDFPageRef)<em>page</em> inContext:(CGContextRef)<em>context</em> atPoint:(CGPoint)<em>point</em> withZoom:(float)<em>zoom</em> pageInfo:(PSPDFPageInfo *)<em>pageInfo</em> withAnnotations:(NSArray *)<em>annotations</em> options:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageRenderer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:" title="renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:"></a>
+	<h3 class="subsubtitle method-title">renderPageRef:inContext:inRectangle:pageInfo:withAnnotations:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Renders a page inside a rectangle. Set context CTM and ClipRect to control rendering.
+Returns the renderingRectangle.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (CGRect)renderPageRef:(CGPDFPageRef)<em>page</em> inContext:(CGContextRef)<em>context</em> inRectangle:(CGRect)<em>rectangle</em> pageInfo:(PSPDFPageInfo *)<em>pageInfo</em> withAnnotations:(NSArray *)<em>annotations</em> options:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageRenderer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setupGraphicsContext:inRectangle:pageInfo:" title="setupGraphicsContext:inRectangle:pageInfo:"></a>
+	<h3 class="subsubtitle method-title">setupGraphicsContext:inRectangle:pageInfo:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Setup the graphics context to the current PDF.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setupGraphicsContext:(CGContextRef)<em>context</em> inRectangle:(CGRect)<em>displayRectangle</em> pageInfo:(PSPDFPageInfo *)<em>pageInfo</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageRenderer.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -122,7 +292,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

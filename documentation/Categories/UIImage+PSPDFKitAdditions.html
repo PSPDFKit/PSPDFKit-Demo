@@ -40,6 +40,8 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/pspdf_animatedGIFWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_animatedGIFWithPath:</option>
+	
 	<option value="//api/name/pspdf_imageNamed:bundle:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_imageNamed:bundle:</option>
 	
 	<option value="//api/name/pspdf_imageWithContentsOfResolutionIndependentFile:">&nbsp;&nbsp;&nbsp;&nbsp;+ pspdf_imageWithContentsOfResolutionIndependentFile:</option>
@@ -59,7 +61,7 @@
 	
 	<option value="//api/name/pdpdf_imageTintedWithColor:fraction:">&nbsp;&nbsp;&nbsp;&nbsp;- pdpdf_imageTintedWithColor:fraction:</option>
 	
-	<option value="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_imageToFitSize:method:honorScaleFactor:</option>
+	<option value="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:opaque:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_imageToFitSize:method:honorScaleFactor:opaque:</option>
 	
 	<option value="//api/name/pspdf_preloadedImage">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_preloadedImage</option>
 	
@@ -87,6 +89,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_animatedGIFWithPath:">pspdf_animatedGIFWithPath:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageNamed:bundle:">pspdf_imageNamed:bundle:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageWithContentsOfResolutionIndependentFile:">pspdf_imageWithContentsOfResolutionIndependentFile:</a></span></li>
@@ -107,7 +111,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdpdf_imageTintedWithColor:fraction:">pdpdf_imageTintedWithColor:fraction:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageToFitSize:method:honorScaleFactor:">pspdf_imageToFitSize:method:honorScaleFactor:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_imageToFitSize:method:honorScaleFactor:opaque:">pspdf_imageToFitSize:method:honorScaleFactor:opaque:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_preloadedImage">pspdf_preloadedImage</a></span></li>
 	
@@ -155,7 +159,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pspdf_imageToFitSize:method:honorScaleFactor:">&ndash;&nbsp;pspdf_imageToFitSize:method:honorScaleFactor:</a></code>
+		<code><a href="#//api/name/pspdf_imageToFitSize:method:honorScaleFactor:opaque:">&ndash;&nbsp;pspdf_imageToFitSize:method:honorScaleFactor:opaque:</a></code>
 		<span class="tooltip"><p>Returns a new image that is resize to fitSize.</p></span>
 	</span>
 	
@@ -216,6 +220,13 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_animatedGIFWithPath:">+&nbsp;pspdf_animatedGIFWithPath:</a></code>
+		<span class="tooltip"><p>Loads an animated GIF. iOS5 upwards.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -232,6 +243,40 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/pspdf_animatedGIFWithPath:" title="pspdf_animatedGIFWithPath:"></a>
+	<h3 class="subsubtitle method-title">pspdf_animatedGIFWithPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Loads an animated GIF. iOS5 upwards.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_animatedGIFWithPath:(NSString *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">UIImage+PSPDFKitAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/pspdf_imageNamed:bundle:" title="pspdf_imageNamed:bundle:"></a>
 	<h3 class="subsubtitle method-title">pspdf_imageNamed:bundle:</h3>
 	
@@ -242,7 +287,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_imageNamed:(NSString *)<em>imageName</em> bundle:(NSString *)<em>bundleName</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (UIImage *)pspdf_imageNamed:(NSString *)<em>imageName</em> bundle:(NSBundle *)<em>bundle</em></code></div>
 	
 	
 	
@@ -478,8 +523,8 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:" title="pspdf_imageToFitSize:method:honorScaleFactor:"></a>
-	<h3 class="subsubtitle method-title">pspdf_imageToFitSize:method:honorScaleFactor:</h3>
+	<a name="//api/name/pspdf_imageToFitSize:method:honorScaleFactor:opaque:" title="pspdf_imageToFitSize:method:honorScaleFactor:opaque:"></a>
+	<h3 class="subsubtitle method-title">pspdf_imageToFitSize:method:honorScaleFactor:opaque:</h3>
 	
 	
 	
@@ -488,7 +533,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIImage *)pspdf_imageToFitSize:(CGSize)<em>fitSize</em> method:(PSPDFImageResizingMethod)<em>resizeMethod</em> honorScaleFactor:(BOOL)<em>honorScaleFactor</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (UIImage *)pspdf_imageToFitSize:(CGSize)<em>fitSize</em> method:(PSPDFImageResizingMethod)<em>resizeMethod</em> honorScaleFactor:(BOOL)<em>honorScaleFactor</em> opaque:(BOOL)<em>opaque</em></code></div>
 	
 	
 	
@@ -558,7 +603,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFDocumentSearcher Class Reference</title>
+		<title>PSPDFTextSearch Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFDocumentSearcher Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFTextSearch Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -39,6 +39,8 @@
 	
 	
 	<option value="properties">Properties</option>
+	
+	<option value="//api/name/compareOptions">&nbsp;&nbsp;&nbsp;&nbsp;compareOptions</option>
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
@@ -89,6 +91,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compareOptions">compareOptions</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
@@ -122,7 +126,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFDocumentSearcher Class Reference" name="top"></a>
+				<a title="PSPDFTextSearch Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -131,7 +135,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFDocumentSearcher Class Reference</h1>
+						<h1 class="title title-header">PSPDFTextSearch Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -145,7 +149,7 @@
 	<td class="specification-value"><a href="../Protocols/PSPDFSearchOperationDelegate.html">PSPDFSearchOperationDelegate</a></td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFDocumentSearcher.h</td>
+	<td class="specification-value">PSPDFTextSearch.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -196,14 +200,14 @@ enable onlyVisible to only search within the visiblePages</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/hasTextForPage:">&ndash;&nbsp;hasTextForPage:</a></code>
-		<span class="tooltip"><p>YES if there&rsquo;s text stored for page page. (thus, textFor<a href="../Classes/Page.html">Page</a> will return instantly)</p></span>
+		<span class="tooltip"><p>YES if there&rsquo;s text stored for page page. (thus, textForPage will return instantly)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/textForPage:">&ndash;&nbsp;textForPage:</a></code>
-		<span class="tooltip"><p>Get text for a specific page. <a href="../Classes/Page.html">Page</a> starts at 0. Returns nil if no text is available or page is incorrect. (blocking)</p></span>
+		<span class="tooltip"><p>Get text for a specific page. Page starts at 0. Returns nil if no text is available or page is incorrect. (blocking)</p></span>
 	</span>
 	
 	
@@ -223,6 +227,15 @@ If you have pdf&rsquo;s that fail, you can send them to us; we may or may not be
 Do not expect that this library will give you 100% perfect results as compared to Adobe Acrobat.
 Text extraction is a </em>very* tricky feature.
 Defaults to PSPDFSearchAdvancedWithHighlighting.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/compareOptions">&nbsp;&nbsp;compareOptions</a></code>
+		<span class="tooltip"><p>Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch
+With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
+See NSString comparison documentation for details.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -254,6 +267,42 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p></span>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/compareOptions" title="compareOptions"></a>
+	<h3 class="subsubtitle method-title">compareOptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch
+With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
+See NSString comparison documentation for details.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSStringCompareOptions compareOptions</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/delegate" title="delegate"></a>
 	<h3 class="subsubtitle method-title">delegate</h3>
 	
@@ -281,7 +330,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p></span>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -315,7 +364,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p></span>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -354,7 +403,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -398,7 +447,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -411,7 +460,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>YES if there&rsquo;s text stored for page page. (thus, textFor<a href="../Classes/Page.html">Page</a> will return instantly)</p>
+		<p>YES if there&rsquo;s text stored for page page. (thus, textForPage will return instantly)</p>
 	</div>		
 	
 	
@@ -432,7 +481,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -466,7 +515,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -500,7 +549,7 @@ Defaults to PSPDFSearchAdvancedWithHighlighting.</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -535,7 +584,7 @@ enable onlyVisible to only search within the visiblePages</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -548,7 +597,7 @@ enable onlyVisible to only search within the visiblePages</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Get text for a specific page. <a href="../Classes/Page.html">Page</a> starts at 0. Returns nil if no text is available or page is incorrect. (blocking)</p>
+		<p>Get text for a specific page. Page starts at 0. Returns nil if no text is available or page is incorrect. (blocking)</p>
 	</div>		
 	
 	
@@ -569,7 +618,7 @@ enable onlyVisible to only search within the visiblePages</p>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentSearcher.h</code><br />
+		<code class="declared-in-ref">PSPDFTextSearch.h</code><br />
 	</div>				
 	
 	
@@ -588,7 +637,7 @@ enable onlyVisible to only search within the visiblePages</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

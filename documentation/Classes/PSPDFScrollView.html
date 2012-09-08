@@ -40,15 +40,17 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/compoundView">&nbsp;&nbsp;&nbsp;&nbsp;compoundView</option>
+	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
+	
+	<option value="//api/name/doublePageMode">&nbsp;&nbsp;&nbsp;&nbsp;doublePageMode</option>
 	
 	<option value="//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;&nbsp;&nbsp;doublePageModeOnFirstPage</option>
 	
-	<option value="//api/name/dualPageMode">&nbsp;&nbsp;&nbsp;&nbsp;dualPageMode</option>
-	
-	<option value="//api/name/fitWidth">&nbsp;&nbsp;&nbsp;&nbsp;fitWidth</option>
+	<option value="//api/name/fitToWidthEnabled">&nbsp;&nbsp;&nbsp;&nbsp;fitToWidthEnabled</option>
 	
 	<option value="//api/name/leftPage">&nbsp;&nbsp;&nbsp;&nbsp;leftPage</option>
+	
+	<option value="//api/name/loupeView">&nbsp;&nbsp;&nbsp;&nbsp;loupeView</option>
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
@@ -56,13 +58,13 @@
 	
 	<option value="//api/name/rightPage">&nbsp;&nbsp;&nbsp;&nbsp;rightPage</option>
 	
-	<option value="//api/name/rotationActive">&nbsp;&nbsp;&nbsp;&nbsp;rotationActive</option>
-	
 	<option value="//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;&nbsp;&nbsp;scrollOnTapPageEndEnabled</option>
 	
 	<option value="//api/name/shadowEnabled">&nbsp;&nbsp;&nbsp;&nbsp;shadowEnabled</option>
 	
 	<option value="//api/name/shadowStyle">&nbsp;&nbsp;&nbsp;&nbsp;shadowStyle</option>
+	
+	<option value="//api/name/zoomingEnabled">&nbsp;&nbsp;&nbsp;&nbsp;zoomingEnabled</option>
 	
 	<option value="//api/name/zoomingSmallDocumentsEnabled">&nbsp;&nbsp;&nbsp;&nbsp;zoomingSmallDocumentsEnabled</option>
 	
@@ -75,9 +77,11 @@
 	
 	<option value="//api/name/displayDocument:withPage:">&nbsp;&nbsp;&nbsp;&nbsp;- displayDocument:withPage:</option>
 	
-	<option value="//api/name/pathShadowForView:">&nbsp;&nbsp;&nbsp;&nbsp;- pathShadowForView:</option>
+	<option value="//api/name/releaseDocument">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocument</option>
 	
-	<option value="//api/name/releaseDocumentAndCallDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocumentAndCallDelegate:</option>
+	<option value="//api/name/setCurrentTouchEventAsProcessed">&nbsp;&nbsp;&nbsp;&nbsp;- setCurrentTouchEventAsProcessed</option>
+	
+	<option value="//api/name/singleTapped:">&nbsp;&nbsp;&nbsp;&nbsp;- singleTapped:</option>
 	
 	
 	
@@ -95,6 +99,12 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Mirrored properties from PSPDFViewController">Mirrored properties from PSPDFViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFSubclassing Methods">PSPDFSubclassing Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFInternal Methods">PSPDFInternal Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -103,15 +113,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compoundView">compoundView</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doublePageMode">doublePageMode</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doublePageModeOnFirstPage">doublePageModeOnFirstPage</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dualPageMode">dualPageMode</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fitWidth">fitWidth</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fitToWidthEnabled">fitToWidthEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/leftPage">leftPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loupeView">loupeView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
@@ -119,13 +131,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rightPage">rightPage</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotationActive">rotationActive</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollOnTapPageEndEnabled">scrollOnTapPageEndEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowEnabled">shadowEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shadowStyle">shadowStyle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zoomingEnabled">zoomingEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zoomingSmallDocumentsEnabled">zoomingSmallDocumentsEnabled</a></span></li>
 	
@@ -139,9 +151,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayDocument:withPage:">displayDocument:withPage:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pathShadowForView:">pathShadowForView:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocument">releaseDocument</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocumentAndCallDelegate:">releaseDocumentAndCallDelegate:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCurrentTouchEventAsProcessed">setCurrentTouchEventAsProcessed</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/singleTapped:">singleTapped:</a></span></li>
 	
 </ul></li>
 
@@ -183,7 +197,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Scrollview for a single <a href="#//api/name/page">page</a>. Every <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> is embedded in a PSPDFScrollView.</p>
+						<p>Scrollview for a single <a href="#//api/name/page">page</a>.
+Depending on the pageTransition, either every <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a> is embedded in a PSPDFScrollView,
+or there is one global PSPDFScrollView for all PSPDFPageView&rsquo;s.</p>
 					</div>
 					
 					
@@ -196,76 +212,55 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/displayDocument:withPage:">&ndash;&nbsp;displayDocument:withPage:</a></code>
-		<span class="tooltip"><p>display specific document with specified <a href="#//api/name/page">page</a>.</p></span>
+		<span class="tooltip"><p>Display specific <a href="#//api/name/document">document</a> with specified <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/releaseDocumentAndCallDelegate:">&ndash;&nbsp;releaseDocumentAndCallDelegate:</a></code>
-		<span class="tooltip"><p>releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.</p></span>
+		<code><a href="#//api/name/releaseDocument">&ndash;&nbsp;releaseDocument</a></code>
+		<span class="tooltip"><p>Releases <a href="#//api/name/document">document</a>, removes all caches. Call before releasing. Can be called multiple times w/o error.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
-		<span class="tooltip"><p>weak reference to parent pdfController.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>current displayed page.</p></span>
+		<span class="tooltip"><p>Current displayed page.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/compoundView">&nbsp;&nbsp;compoundView</a></code>
-		<span class="tooltip"><p>actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.</p></span>
+		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
+		<span class="tooltip"><p>Associated document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/dualPageMode">&nbsp;&nbsp;dualPageMode</a></code>
-		<span class="tooltip"><p>if YES, two sites are displayed.</p></span>
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Weak reference to parent pdfController.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;doublePageModeOnFirstPage</a></code>
-		<span class="tooltip"><p>shows first document <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge.</p></span>
+		<code><a href="#//api/name/leftPage">&nbsp;&nbsp;leftPage</a></code>
+		<span class="tooltip"><p>Left <a href="#//api/name/page">page</a>. Always set. Not used if pageCurlEnabled.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/zoomingSmallDocumentsEnabled">&nbsp;&nbsp;zoomingSmallDocumentsEnabled</a></code>
-		<span class="tooltip"><p>allow zooming of small documents to screen width/height.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/fitWidth">&nbsp;&nbsp;fitWidth</a></code>
-		<span class="tooltip"><p>if true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
-		<span class="tooltip"><p>enables/disables <a href="#//api/name/page">page</a> shadow.</p></span>
+		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
+		<span class="tooltip"><p>Right <a href="#//api/name/page">page</a>, if <a href="#//api/name/doublePageMode">doublePageMode</a> is enabled. Not used if pageCurlEnabled.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -278,38 +273,98 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/zoomingEnabled">&nbsp;&nbsp;zoomingEnabled</a></code>
+		<span class="tooltip"><p>Enables/Disables zooming. Defaults to YES. If set to NO, will lock current zoom level.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Mirrored properties from PSPDFViewController" name="task_Mirrored properties from PSPDFViewController"></a>
+						<h3 class="subsubtitle task-title">Mirrored properties from PSPDFViewController</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doublePageMode">&nbsp;&nbsp;doublePageMode</a></code>
+		<span class="tooltip"><p>If YES, two sites are displayed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;doublePageModeOnFirstPage</a></code>
+		<span class="tooltip"><p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/zoomingSmallDocumentsEnabled">&nbsp;&nbsp;zoomingSmallDocumentsEnabled</a></code>
+		<span class="tooltip"><p>Allow zooming of small documents to screen width/height.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fitToWidthEnabled">&nbsp;&nbsp;fitToWidthEnabled</a></code>
+		<span class="tooltip"><p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shadowEnabled">&nbsp;&nbsp;shadowEnabled</a></code>
+		<span class="tooltip"><p>Enables/disables <a href="#//api/name/page">page</a> shadow.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/scrollOnTapPageEndEnabled">&nbsp;&nbsp;scrollOnTapPageEndEnabled</a></code>
-		<span class="tooltip"><p>tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>.</p></span>
+		<span class="tooltip"><p>Tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFSubclassing Methods" name="task_PSPDFSubclassing Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFSubclassing Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setCurrentTouchEventAsProcessed">&ndash;&nbsp;setCurrentTouchEventAsProcessed</a></code>
+		<span class="tooltip"><p>Disables singleTapGesture for the current ongoing touch.</p></span>
+	</span>
+	
+	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/rotationActive">&nbsp;&nbsp;rotationActive</a></code>
-		<span class="tooltip"><p>show/hide tiled layer.</p></span>
+		<code><a href="#//api/name/singleTapped:">&ndash;&nbsp;singleTapped:</a></code>
+		<span class="tooltip"><pre><code>About Hit-Testing.
+</code></pre></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFInternal Methods" name="task_PSPDFInternal Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFInternal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loupeView">&nbsp;&nbsp;loupeView</a></code>
+		<span class="tooltip"><p>Global loupe view.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/leftPage">&nbsp;&nbsp;leftPage</a></code>
-		<span class="tooltip"><p>left <a href="#//api/name/page">page</a>. Always set.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
-		<span class="tooltip"><p>right <a href="#//api/name/page">page</a>, if doublePageMode is enabled.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pathShadowForView:">&ndash;&nbsp;pathShadowForView:</a></code>
-		<span class="tooltip"><p>for subclassing &ndash; allows changing the shadow path.</p></span>
-	</span>
-	
 	
 </li>
 						</ul>
@@ -325,17 +380,51 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/compoundView" title="compoundView"></a>
-	<h3 class="subsubtitle method-title">compoundView</h3>
+	<a name="//api/name/document" title="document"></a>
+	<h3 class="subsubtitle method-title">document</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>actual view that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.</p>
+		<p>Associated document.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIView *compoundView</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doublePageMode" title="doublePageMode"></a>
+	<h3 class="subsubtitle method-title">doublePageMode</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If YES, two sites are displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isDoublePageMode) BOOL doublePageMode</code></div>
 	
 	
 	
@@ -365,11 +454,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>shows first document <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge.</p>
+		<p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL doublePageModeOnFirstPage</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage</code></div>
 	
 	
 	
@@ -393,51 +482,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/dualPageMode" title="dualPageMode"></a>
-	<h3 class="subsubtitle method-title">dualPageMode</h3>
+	<a name="//api/name/fitToWidthEnabled" title="fitToWidthEnabled"></a>
+	<h3 class="subsubtitle method-title">fitToWidthEnabled</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>if YES, two sites are displayed.</p>
+		<p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isDualPageMode) BOOL dualPageMode</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/fitWidth" title="fitWidth"></a>
-	<h3 class="subsubtitle method-title">fitWidth</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>if true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height)</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isFittingWidth) BOOL fitWidth</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled</code></div>
 	
 	
 	
@@ -467,11 +522,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>left <a href="#//api/name/page">page</a>. Always set.</p>
+		<p>Left <a href="#//api/name/page">page</a>. Always set. Not used if pageCurlEnabled.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFPageView *leftPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loupeView" title="loupeView"></a>
+	<h3 class="subsubtitle method-title">loupeView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Global loupe view.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFLoupeView *loupeView</code></div>
 	
 	
 	
@@ -501,7 +590,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>current displayed page.</p>
+		<p>Current displayed page.</p>
 	</div>		
 	
 	
@@ -535,7 +624,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>weak reference to parent pdfController.</p>
+		<p>Weak reference to parent pdfController.</p>
 	</div>		
 	
 	
@@ -569,45 +658,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>right <a href="#//api/name/page">page</a>, if doublePageMode is enabled.</p>
+		<p>Right <a href="#//api/name/page">page</a>, if <a href="#//api/name/doublePageMode">doublePageMode</a> is enabled. Not used if pageCurlEnabled.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFPageView *rightPage</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/rotationActive" title="rotationActive"></a>
-	<h3 class="subsubtitle method-title">rotationActive</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>show/hide tiled layer.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isRotationActive) BOOL rotationActive</code></div>
 	
 	
 	
@@ -637,7 +692,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>.</p>
+		<p>Tap on begin/end of <a href="#//api/name/page">page</a> scrolls to previous/next <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
@@ -671,7 +726,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>enables/disables <a href="#//api/name/page">page</a> shadow.</p>
+		<p>Enables/disables <a href="#//api/name/page">page</a> shadow.</p>
 	</div>		
 	
 	
@@ -733,13 +788,47 @@
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/zoomingEnabled" title="zoomingEnabled"></a>
+	<h3 class="subsubtitle method-title">zoomingEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enables/Disables zooming. Defaults to YES. If set to NO, will lock current zoom level.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isZoomingEnabled) BOOL zoomingEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/zoomingSmallDocumentsEnabled" title="zoomingSmallDocumentsEnabled"></a>
 	<h3 class="subsubtitle method-title">zoomingSmallDocumentsEnabled</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>allow zooming of small documents to screen width/height.</p>
+		<p>Allow zooming of small documents to screen width/height.</p>
 	</div>		
 	
 	
@@ -783,11 +872,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>display specific document with specified <a href="#//api/name/page">page</a>.</p>
+		<p>Display specific <a href="#//api/name/document">document</a> with specified <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)displayDocument:(PSPDFDocument *)<em>aDocument</em> withPage:(NSUInteger)<em>pageId</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)displayDocument:(PSPDFDocument *)<em>document</em> withPage:(NSUInteger)<em>page</em></code></div>
 	
 	
 	
@@ -811,17 +900,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pathShadowForView:" title="pathShadowForView:"></a>
-	<h3 class="subsubtitle method-title">pathShadowForView:</h3>
+	<a name="//api/name/releaseDocument" title="releaseDocument"></a>
+	<h3 class="subsubtitle method-title">releaseDocument</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>for subclassing &ndash; allows changing the shadow path.</p>
+		<p>Releases <a href="#//api/name/document">document</a>, removes all caches. Call before releasing. Can be called multiple times w/o error.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)pathShadowForView:(UIView *)<em>imgView</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)releaseDocument</code></div>
 	
 	
 	
@@ -845,17 +934,17 @@
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/releaseDocumentAndCallDelegate:" title="releaseDocumentAndCallDelegate:"></a>
-	<h3 class="subsubtitle method-title">releaseDocumentAndCallDelegate:</h3>
+	<a name="//api/name/setCurrentTouchEventAsProcessed" title="setCurrentTouchEventAsProcessed"></a>
+	<h3 class="subsubtitle method-title">setCurrentTouchEventAsProcessed</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.</p>
+		<p>Disables singleTapGesture for the current ongoing touch.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)releaseDocumentAndCallDelegate:(BOOL)<em>callDelegate</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setCurrentTouchEventAsProcessed</code></div>
 	
 	
 	
@@ -863,6 +952,56 @@
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/singleTapped:" title="singleTapped:"></a>
+	<h3 class="subsubtitle method-title">singleTapped:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<pre><code>About Hit-Testing.
+</code></pre>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)singleTapped:(UITapGestureRecognizer *)<em>recognizer</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>PSPDFKit has a UITapGestureRecognizer to detects taps. There are several different actions called, if one succeeds further processing will be stopped.
+
+First, we check if we hit a PSPDFLinkAnnotationView and invoke the delegates and default action if found.
+
+Next, we check if there's text selection and discard if.
+Then, touches are relayed to all visible PSPDFPageView's and singleTapped: is called. If one page reports that the touch has been processed; the loop is stopped.
+
+Next, the didTapOnPageView:atPoint: delegate is called if the touch still hasn't been processed.
+
+Lastly, if even the delegate returned NO, we look if isScrollOnTapPageEndEnabled and scroll to the next/previous page if the border is near enough; or just toggle the HUD (if that is allowed)
+</code></pre>
+	</div>
 	
 	
 	
@@ -891,7 +1030,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -48,21 +48,18 @@
 	
 	<option value="//api/name/pageRotation">&nbsp;&nbsp;&nbsp;&nbsp;pageRotation</option>
 	
+	<option value="//api/name/pageRotationTransform">&nbsp;&nbsp;&nbsp;&nbsp;pageRotationTransform</option>
+	
 	<option value="//api/name/rotatedPageRect">&nbsp;&nbsp;&nbsp;&nbsp;rotatedPageRect</option>
 	
 	
-	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/pageInfoWithRect:rotation:">&nbsp;&nbsp;&nbsp;&nbsp;+ pageInfoWithRect:rotation:</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithRect:rotation:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithRect:rotation:</option>
+	<option value="//api/name/initWithPage:rect:rotation:document:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPage:rect:rotation:document:</option>
 	
 	
 	
@@ -96,23 +93,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRotation">pageRotation</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRotationTransform">pageRotationTransform</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotatedPageRect">rotatedPageRect</a></span></li>
 	
 </ul></li>
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoWithRect:rotation:">pageInfoWithRect:rotation:</a></span></li>
-	
-</ul></li>
-
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithRect:rotation:">initWithRect:rotation:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPage:rect:rotation:document:">initWithPage:rect:rotation:document:</a></span></li>
 	
 </ul></li>
 
@@ -140,6 +133,9 @@
 	<td class="specification-title">Inherits from</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying</td>
+</tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFPageInfo.h</td>
 </tr>
@@ -151,7 +147,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>saves various data of a <a href="#//api/name/page">page</a>. Managed within <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.</p>
+						<p>Represents a PDF <a href="#//api/name/page">page</a>. Managed within <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
+With NSCopying, <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is not serialized.</p>
 					</div>
 					
 					
@@ -169,50 +166,50 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageInfoWithRect:rotation:">+&nbsp;pageInfoWithRect:rotation:</a></code>
-		<span class="tooltip"><p>autoreleased object with <a href="#//api/name/page">page</a> and rotation.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithRect:rotation:">&ndash;&nbsp;initWithRect:rotation:</a></code>
-		<span class="tooltip"><p>init object with <a href="#//api/name/page">page</a> and rotation.</p></span>
+		<code><a href="#//api/name/initWithPage:rect:rotation:document:">&ndash;&nbsp;initWithPage:rect:rotation:document:</a></code>
+		<span class="tooltip"><p>Init object with <a href="#//api/name/page">page</a> and rotation.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageRect">&nbsp;&nbsp;pageRect</a></code>
-		<span class="tooltip"><p>saved aspect ratio of current <a href="#//api/name/page">page</a>.</p></span>
+		<span class="tooltip"><p>Saved aspect ratio of current <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotatedPageRect">&nbsp;&nbsp;rotatedPageRect</a></code>
-		<span class="tooltip"><p>returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p></span>
+		<span class="tooltip"><p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageRotation">&nbsp;&nbsp;pageRotation</a></code>
-		<span class="tooltip"><p>saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.</p></span>
+		<span class="tooltip"><p>Saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageRotationTransform">&nbsp;&nbsp;pageRotationTransform</a></code>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> transform matrix.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>referenced page.</p></span>
+		<span class="tooltip"><p>Referenced page.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>referenced document, weak.</p></span>
+		<span class="tooltip"><p>Referenced document, weak.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -236,11 +233,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced document, weak.</p>
+		<p>Referenced document, weak.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFDocument *document</code></div>
 	
 	
 	
@@ -270,11 +267,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>referenced page.</p>
+		<p>Referenced page.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSUInteger page</code></div>
 	
 	
 	
@@ -304,11 +301,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>saved aspect ratio of current <a href="#//api/name/page">page</a>.</p>
+		<p>Saved aspect ratio of current <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGRect pageRect</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGRect pageRect</code></div>
 	
 	
 	
@@ -338,11 +335,45 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.</p>
+		<p>Saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger pageRotation</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSUInteger pageRotation</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageRotationTransform" title="pageRotationTransform"></a>
+	<h3 class="subsubtitle method-title">pageRotationTransform</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p><a href="../Classes/Page.html">Page</a> transform matrix.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGAffineTransform pageRotationTransform</code></div>
 	
 	
 	
@@ -372,7 +403,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p>
+		<p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p>
 	</div>		
 	
 	
@@ -403,46 +434,6 @@
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/pageInfoWithRect:rotation:" title="pageInfoWithRect:rotation:"></a>
-	<h3 class="subsubtitle method-title">pageInfoWithRect:rotation:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>autoreleased object with <a href="#//api/name/page">page</a> and rotation.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (id)pageInfoWithRect:(CGRect)<em>rect</em> rotation:(NSUInteger)<em>rotation</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
 					
 					
 					<div class="section section-methods">
@@ -450,17 +441,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithRect:rotation:" title="initWithRect:rotation:"></a>
-	<h3 class="subsubtitle method-title">initWithRect:rotation:</h3>
+	<a name="//api/name/initWithPage:rect:rotation:document:" title="initWithPage:rect:rotation:document:"></a>
+	<h3 class="subsubtitle method-title">initWithPage:rect:rotation:document:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>init object with <a href="#//api/name/page">page</a> and rotation.</p>
+		<p>Init object with <a href="#//api/name/page">page</a> and rotation.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithRect:(CGRect)<em>rect</em> rotation:(NSUInteger)<em>rotation</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithPage:(NSUInteger)<em>page</em> rect:(CGRect)<em>pageRect</em> rotation:(NSInteger)<em>rotation</em> document:(PSPDFDocument *)<em>document</em></code></div>
 	
 	
 	
@@ -496,7 +487,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFPageCoordinates Class Reference</title>
+		<title>PSPDFAnnotationToolbar Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFPageCoordinates Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFAnnotationToolbar Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,29 +40,24 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/pageSize">&nbsp;&nbsp;&nbsp;&nbsp;pageSize</option>
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
-	<option value="//api/name/pdfPoint">&nbsp;&nbsp;&nbsp;&nbsp;pdfPoint</option>
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
 	
-	<option value="//api/name/screenPoint">&nbsp;&nbsp;&nbsp;&nbsp;screenPoint</option>
-	
-	<option value="//api/name/viewPoint">&nbsp;&nbsp;&nbsp;&nbsp;viewPoint</option>
-	
-	<option value="//api/name/zoomScale">&nbsp;&nbsp;&nbsp;&nbsp;zoomScale</option>
+	<option value="//api/name/toolbarMode">&nbsp;&nbsp;&nbsp;&nbsp;toolbarMode</option>
 	
 	
-	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">&nbsp;&nbsp;&nbsp;&nbsp;+ pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">&nbsp;&nbsp;&nbsp;&nbsp;- initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</option>
+	<option value="//api/name/hideToolbarAnimated:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- hideToolbarAnimated:completion:</option>
+	
+	<option value="//api/name/initWithPDFController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFController:</option>
+	
+	<option value="//api/name/showToolbarInRect:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showToolbarInRect:animated:</option>
 	
 	
 	
@@ -88,31 +83,25 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageSize">pageSize</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfPoint">pdfPoint</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/screenPoint">screenPoint</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewPoint">viewPoint</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/zoomScale">zoomScale</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toolbarMode">toolbarMode</a></span></li>
 	
 </ul></li>
 
 
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</a></span></li>
-	
-</ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideToolbarAnimated:completion:">hideToolbarAnimated:completion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFController:">initWithPDFController:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showToolbarInRect:animated:">showToolbarInRect:animated:</a></span></li>
 	
 </ul></li>
 
@@ -121,7 +110,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFPageCoordinates Class Reference" name="top"></a>
+				<a title="PSPDFAnnotationToolbar Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -130,7 +119,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFPageCoordinates Class Reference</h1>
+						<h1 class="title title-header">PSPDFAnnotationToolbar Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -138,10 +127,13 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">UIToolbar</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFDrawViewDelegate.html">PSPDFDrawViewDelegate</a><br /><a href="../Protocols/PSPDFSelectionViewDelegate.html">PSPDFSelectionViewDelegate</a></td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFPageInfo.h</td>
+	<td class="specification-value">PSPDFAnnotationToolbar.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -151,7 +143,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>saves various page coordinates.</p>
+						<p>To edit annotations, a new toolbar will be overlayed.</p>
 					</div>
 					
 					
@@ -169,50 +161,43 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">+&nbsp;pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</a></code>
-		<span class="tooltip"><p>initializes coordinate class, autoreleased.</p></span>
+		<code><a href="#//api/name/initWithPDFController:">&ndash;&nbsp;initWithPDFController:</a></code>
+		<span class="tooltip"><p>Designated initializer.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:">&ndash;&nbsp;initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</a></code>
-		<span class="tooltip"><p>initializes coordinate class, autoreleased.</p></span>
+		<code><a href="#//api/name/showToolbarInRect:animated:">&ndash;&nbsp;showToolbarInRect:animated:</a></code>
+		<span class="tooltip"><p>Show the toolbar in target rect. Rect should be the same height as the toolbar. (44px)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfPoint">&nbsp;&nbsp;pdfPoint</a></code>
-		<span class="tooltip"><p>point relative to pdf coordinates.</p></span>
+		<code><a href="#//api/name/hideToolbarAnimated:completion:">&ndash;&nbsp;hideToolbarAnimated:completion:</a></code>
+		<span class="tooltip"><p>Hide the toolbar.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/screenPoint">&nbsp;&nbsp;screenPoint</a></code>
-		<span class="tooltip"><p>point relative to screen.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/viewPoint">&nbsp;&nbsp;viewPoint</a></code>
-		<span class="tooltip"><p>point realtive to view where pdf is displayed.</p></span>
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Annotation Toolbar delegate.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageSize">&nbsp;&nbsp;pageSize</a></code>
-		<span class="tooltip"><p>page size. (pdf may be upscaled AND zoomd via the scrollview)</p></span>
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Attached pdfController.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/zoomScale">&nbsp;&nbsp;zoomScale</a></code>
-		<span class="tooltip"><p>current active zoomScale.</p></span>
+		<code><a href="#//api/name/toolbarMode">&nbsp;&nbsp;toolbarMode</a></code>
+		<span class="tooltip"><p>Active annotation toolbar mode.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -230,17 +215,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/pageSize" title="pageSize"></a>
-	<h3 class="subsubtitle method-title">pageSize</h3>
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>page size. (pdf may be upscaled AND zoomd via the scrollview)</p>
+		<p>Annotation Toolbar delegate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGSize pageSize</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) id&lt;&gt; delegate</code></div>
 	
 	
 	
@@ -257,24 +242,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pdfPoint" title="pdfPoint"></a>
-	<h3 class="subsubtitle method-title">pdfPoint</h3>
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>point relative to pdf coordinates.</p>
+		<p>Attached pdfController.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGPoint pdfPoint</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFViewController *pdfController</code></div>
 	
 	
 	
@@ -291,24 +276,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/screenPoint" title="screenPoint"></a>
-	<h3 class="subsubtitle method-title">screenPoint</h3>
+	<a name="//api/name/toolbarMode" title="toolbarMode"></a>
+	<h3 class="subsubtitle method-title">toolbarMode</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>point relative to screen.</p>
+		<p>Active annotation toolbar mode.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGPoint screenPoint</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode</code></div>
 	
 	
 	
@@ -325,75 +310,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/viewPoint" title="viewPoint"></a>
-	<h3 class="subsubtitle method-title">viewPoint</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>point realtive to view where pdf is displayed.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGPoint viewPoint</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/zoomScale" title="zoomScale"></a>
-	<h3 class="subsubtitle method-title">zoomScale</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>current active zoomScale.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGFloat zoomScale</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
 	</div>				
 	
 	
@@ -402,46 +319,6 @@
 					</div>
 					
 					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:" title="pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:"></a>
-	<h3 class="subsubtitle method-title">pageCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>initializes coordinate class, autoreleased.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (id)pageCoordinatesWithpdfPoint:(CGPoint)<em>pdfPoint</em> screenPoint:(CGPoint)<em>screenPoint</em> viewPoint:(CGPoint)<em>viewPoint</em> pageSize:(CGSize)<em>pageSize</em> zoomScale:(CGFloat)<em>zoomScale</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 					
@@ -450,17 +327,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:" title="initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:"></a>
-	<h3 class="subsubtitle method-title">initCoordinatesWithpdfPoint:screenPoint:viewPoint:pageSize:zoomScale:</h3>
+	<a name="//api/name/hideToolbarAnimated:completion:" title="hideToolbarAnimated:completion:"></a>
+	<h3 class="subsubtitle method-title">hideToolbarAnimated:completion:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>initializes coordinate class, autoreleased.</p>
+		<p>Hide the toolbar.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initCoordinatesWithpdfPoint:(CGPoint)<em>pdfPoint</em> screenPoint:(CGPoint)<em>screenPoint</em> viewPoint:(CGPoint)<em>viewPoint</em> pageSize:(CGSize)<em>pageSize</em> zoomScale:(CGFloat)<em>zoomScale</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)hideToolbarAnimated:(BOOL)<em>animated</em> completion:(dispatch_block_t)<em>completionBlock</em></code></div>
 	
 	
 	
@@ -477,7 +354,75 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFPageInfo.h</code><br />
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithPDFController:" title="initWithPDFController:"></a>
+	<h3 class="subsubtitle method-title">initWithPDFController:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated initializer.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithPDFController:(PSPDFViewController *)<em>pdfController</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showToolbarInRect:animated:" title="showToolbarInRect:animated:"></a>
+	<h3 class="subsubtitle method-title">showToolbarInRect:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Show the toolbar in target rect. Rect should be the same height as the toolbar. (44px)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showToolbarInRect:(CGRect)<em>rect</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
 	</div>				
 	
 	
@@ -496,7 +441,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-07-12)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
