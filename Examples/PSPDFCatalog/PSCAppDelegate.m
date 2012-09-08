@@ -21,6 +21,8 @@
 
 
     // Example how to localize strings in PSPDFKit (default localization system won't work)
+    // add custom localization changes (just a simple example)
+    // See PSPDFKit.bundle for all available strings.
     PSPDFSetLocalizationDictionary(@{@"en" :
                                    @{@"Go to %@" : @"Browse %@",
                                      @"%d of %d" : @"Page %d of %d",
@@ -30,9 +32,8 @@
     // enable to change animations (e.g. enable on iPad1)
     kPSPDFAnimateOption = PSPDFAnimateEverywhere;
 
-    // add custom localization changes (just a simple example)
-    // See PSPDFKit.bundle for all available strings.
-    PSPDFSetLocalizationDictionary(@{@"en" : @{@"Documents" : @"Magazines"}});
+    // change log level to be more verbose.
+    kPSPDFLogLevel = PSPDFLogLevelInfo;
 
     // Create catalog controller
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
