@@ -1,4 +1,4 @@
-## PSPDFKit - The definite solution for displaying and annotating PDF on iOS.
+## PSPDFKit v2 - The definite solution for displaying and annotating PDF.
 
 PSPDFKit is a heavily optimized framework for displaying PDF files with horizontal scrolling.
 It is fast, flexible, has intelligent caching and renders pages usually faster than iBooks.
