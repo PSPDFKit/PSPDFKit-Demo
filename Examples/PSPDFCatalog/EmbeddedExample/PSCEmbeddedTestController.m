@@ -67,7 +67,6 @@
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     //self.pdfController.pageMode = PSPDFPageModeSingle;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
-    self.pdfController.pageCurlEnabled = YES;
     self.pdfController.scrollOnTapPageEndEnabled = NO;
 
     /*
