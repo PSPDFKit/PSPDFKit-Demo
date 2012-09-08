@@ -129,20 +129,46 @@
             return controller;
         }]];
 
-        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects" block:^{
-            NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
-            NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
-            NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
-            NSData *data1 = [NSData dataWithContentsOfURL:file1 options:NSDataReadingMappedIfSafe error:NULL];
-            NSData *data2 = [NSData dataWithContentsOfURL:file2 options:NSDataReadingMappedIfSafe error:NULL];
-            NSData *data3 = [NSData dataWithContentsOfURL:file3 options:NSDataReadingMappedIfSafe error:NULL];
+        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects (memory mapped)" block:^{
+
+            static PSPDFDocument *document = nil;
+            if (!document) {
+                NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+                NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
+                NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+                NSData *data1 = [NSData dataWithContentsOfURL:file1 options:NSDataReadingMappedIfSafe error:NULL];
+                NSData *data2 = [NSData dataWithContentsOfURL:file2 options:NSDataReadingMappedIfSafe error:NULL];
+                NSData *data3 = [NSData dataWithContentsOfURL:file3 options:NSDataReadingMappedIfSafe error:NULL];
+                document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
+            }else {
+                // this is not needed, just an example how to use the changed dataArray (the data will be changed when annotations are written back)
+                document = [PSPDFDocument PDFDocumentWithDataArray:document.dataArray];
+            }
 
             // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
             controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
-        }]];              
+        }]];
+
+        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects" block:^{
+            // make data document static in this example, so that the annotations will be saved (the NSData array will get changed)
+            static PSPDFDocument *document = nil;
+            if (!document) {
+                NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+                NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
+                NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+                NSData *data1 = [NSData dataWithContentsOfURL:file1];
+                NSData *data2 = [NSData dataWithContentsOfURL:file2];
+                NSData *data3 = [NSData dataWithContentsOfURL:file3];
+                document = [PSPDFDocument PDFDocumentWithDataArray:@[data1, data2, data3]];
+            }
+
+            // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
+            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+            controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+            return controller;
+        }]];
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
