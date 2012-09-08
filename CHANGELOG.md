@@ -1,6 +1,6 @@
 # Changelog
 
-__v2.0.0 - XX/August/2012__
+__v2.0.0 - 08/September/2012__
 
 PSPDFKit v2 is a major updates with lots of changes and a streamlined API.
 There are some API deprecations and some breaking changes; but those are fairly straightforward and well documented.
