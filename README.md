@@ -6,7 +6,7 @@ It is fast, flexible, has intelligent caching and renders pages usually faster t
 *Amazingly easy to use and impressive PDF performance - closest thing to iBooks so far.* -- [Martin Reichart, iOS Developer](http://twitter.com/martinr_vienna/status/95823509506359296)
 
 ### You can purchase a license and the full source code at http://pspdfkit.com.
-[![PSPDFKit](http://pspdfkit.com/images/header.png)](http://pspdfkit.com)
+[![PSPDFKit](http://pspdfkit.com/images/header-small.jpg)](http://pspdfkit.com)
 
 Licensing
 ---------
