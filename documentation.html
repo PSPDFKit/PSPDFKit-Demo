@@ -1,8 +1,8 @@
 ---
 layout: default
 title: PSPDFKit - Documentation.
-index: 
-purchase: 
+index:
+purchase:
 documentation: current-menu-item current_page_item
 ---
 <div id="title-container">
@@ -24,69 +24,69 @@ documentation: current-menu-item current_page_item
 	  <h3>Source Code</h3>
 	  <p>If you have the source code and want to integrate PSPDFKit as a subproject, copy the PSPDFKit source folder into your repository and drag the PSPDFKit-lib.xcodeproj file into your project tree, add it as a dependency (choose PSDPFKit, NOT PSPDFKit Demo) and add the library to the "Link Binary with Libraries)" phase. Also add PSPDFKit.bundle and make sure it's in within "Copy Bundle Resource".</p>
 	  <img src="images/sourcecode.png" alt="How to use PSPDFKit as a subproject" width="908" height="362" class="border">
-	  <p>Also, in Build Settings, set the <a href="images/project-settings.png">"User Header Search Paths" to "PSPDFKit"</a> (The folder that you copied into your project folder) and check Recursive.</p> 
+	  <p>Also, in Build Settings, set the <a href="images/project-settings.png">"User Header Search Paths" to "PSPDFKit"</a> (The folder that you copied into your project folder) and check Recursive.</p>
 	  <br><br>
 	  <h3>Backwards compatibility</h3>
 	  <p>You need to weak-link UIKit.framework to be compatible with iOS 4.3.</p>
 	  	  <img src="images/weaklink-UIKit.png" alt="How to set the PSPDFKit.xcconfig for your project" width="908" height="150" class="border">
-	  	  
+
 	  <p>Be sure to add the file ACKNOWLEDGEMENTS to your app resources to value 3rd party licenses.</p><br>
-	  
+
 	  <p>Required frameworks are CoreText.framework, QuartzCore.framework, MessageUI.framework, libz.dylib, ImageIO.framework, CoreMedia.framework, MediaPlayer.framework, AVFoundation.framework, and the linker flags -ObjC and -fobjc-arc (only of you're not using ARC) (<a href="http://developer.apple.com/library/mac/#qa/qa1490/_index.html">see QA1490 for details</a>)</p><br><br>
-	  	  			
+
 	  <h3>Usage</h3>
 	  <p>Open the PSPDFViewController with a simple call:</p>
 	  <script src="https://gist.github.com/1117224.js"> </script>
 	  <p>See PSPDFCatalog for a working demo. Note that while PSDPFDocument accepts a NSURL, only *local* PDF documents are supported. If you need to download them, look at the Kiosk example within PSPDFCatalog for some great example code.</p>
 	</div>
-	
+
 	<div id="logging" class="col-full section">
 	  <h2 class="section-title">Logging</h2>
 	  <p>The log level can be set at runtime, from anywhere in your project. The default log level is PSPDFLogLevelWarning.</p>
 	  <script src="https://gist.github.com/1117227.js"> </script>
 	</div>
-	
+
 	<div id="localization" class="col-full section">
 	  <h2 class="section-title">Localization</h2>
 	  <p>The PSPDFKit.bundle file contains localization for german, english and french. You can either add further localization via adding the corresponding folders, or (the preferred way) set new localization programmatically.</p><br>
 	  <p>(Set before displaying PSPDFViewController, your AppDelegate is a good place)</p>
 	<script src="https://gist.github.com/1409651.js"> </script>
 	</div>
-	
+
 	<div id="multimedia-features" class="col-full section">
 	<a name="multimedia"></a>
 			  <h2 class="section-title">Multimedia Overlay Features</h2>
 			 <p>
 			 	PSPDFKit supports rich multimedia annotations. Those can be created with Mac Preview.app* or Adobe Acrobat. Create a URL annotation and use pspdfkit:// as the url scheme instead of http. The system will auto-detect the correct end correct point. Supported are:
 		</p><br>
-		
+
 		<ul>
 			<li>- Video (m3u8, mov, avi, mpg, m4v - formats that are supported by iOS)</li>
-			<li>- YouTube. (e.g. pspdfkit://youtube.com/watch?v=0DSCFQcR08E)</li>			
+			<li>- YouTube. (e.g. pspdfkit://youtube.com/watch?v=0DSCFQcR08E)</li>
 			<li>- Audio (mp3, m4a, mp4)</li>
-			<li>- Images (jpg, jpeg, png, (animated) gif, tiff, tif, bmp, bmpf, cur, xmb)</li>			
+			<li>- Images (jpg, jpeg, png, (animated) gif, tiff, tif, bmp, bmpf, cur, xmb)</li>
 			<li>- Inline Web Pages</li>
 			<li>- Modal Web Pages (e.g. pspdfkit://[modal:YES,size:500x500]http://apple.com. Size is optional and only honored on iPad. Inline Web Browser can also enabled with changing <a href="/documentation/Classes/PSPDFViewController.html#//api/name/linkAction">linkAction in PSPDFViewController</a>.</li>
-			<li>- Any custom UIView with using the delegate methods.</li>		
+			<li>- Any custom UIView with using the delegate methods.</li>
 		</ul><br>
-	
+
 	<p>For example, pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 will show the Apple HTTP Live streaming test page. There are <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">delegate methods</a> if you need more control. (like manually setting auto play, adding custom annotations)</p><br>
-	
+
 	<img src="images/editlink-adobe.png" alt="Add annotations in Adobe Acrobat" width="944" height="597" class="border"/>
 	<p>Note: The %5B and %5D are just encoded and stand for [ and ].</p><br>
-	
+
 	<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the same path as the displayed PDF. Supported folders include Bundle, Documents and Cache - but you can easily extend that to support custom folders.</p><br>
-	
+
 	<p>You can enable autostart with adding the option like here: pspdfkit://[autostart:true]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8</p><br>
-		
+
 	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p><br>
-	
+
 	<p>(*) Starting with Mountain Lion, the URL linking feature in Preview.app has been removed. Either use Adobe Acrobat or <a href="http://itunes.apple.com/us/app/pdfpenpro-for-mac/id403758325?mt=12">PDFpen</a>.</p>
 		</div>
-	
+
 	<div id="troubleshooting" class="col-full section">
 	  <h2 class="section-title">Troubleshooting</h2>
-	  
+
 	  <p><b>Q: How do I determine what version of PSPDFKit I am using?</b><br>
 	   A: Simply open PSPDFKit.embeddedframework/Resources/VERSION. Alternatively, you can query the version at runtime with calling PSPDFVersionString().</p><br>
 
@@ -98,32 +98,32 @@ documentation: current-menu-item current_page_item
 
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
 		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.</p><br>
-		 
+
 <p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
 	 A: To support iOS 4.3, you need to <i>weak-link</i> UIKit. See the part "Integration".</p><br>
-		 
+
 	  <p><b>Q: Everything works perfectly, but when I use PDF XYZ, your application crashes (this only happens on the device)</b><br>
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some PDF are just _too complex for iOS - meaning drawing takes too much memory. There is a hard limit of about 64MB for every application, and you most likely get killed by the system before getting that much anyway, especially on older devices like the iPad 1. While testing, we encountered PDFs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector graphics, simple re-saving it in Preview.app solves many issues.</p><br>
-				
+
 	  <p><b>Q: The PDF is fine in Adobe Acrobat (R), but there are missing images/fonts on the iPad.</b><br>
 		 A: On iOS, the Quartz-Render-Engine is used. While overall very compatible, there are some differences in interpreting the >1000-pages pdf reference. And some newer variants may not be implemented at all. Because Apple shares most of their foundation code, please check your pdf in Preview.app first. If there are rendering problems, open it in Adobe Acrobat and re-save it File -> Save as... -> Reduced Size PDF, and select under "Make compatible with" an earlier PDF version. We had good experiences with 4.0 or 5.0. Note: File size may increase because of the older format.<br> If you experience problems with transparency (differences between Apple's rendering engine and Adobe's), it's also worth trying the <i>highest</i> possible version. One customer reported good results using PDF/X4-2008 and Acrobat 8/9 (PDF 1.7). There are also some reports that iOS6 fixes a lot of those problems.</p><br>
-		 
+
 		<p><b>Q: The colors on then iPad are a bit off; But everything looks fine in Adobe Acrobat</b><br>
 		A: Apple doesn't always respect color spaces in their PDF rendering engine. You can solve this by converting the document colors to either sRGB or Apple RGB in Acrobat.</p><br>
-		
+
 		<p><b>Q: In Adobe Acrobat, hyperlinks are clickable, but in PSPDFKit, some or all of them are not marked as touch-able.</b><br>
 			A: Adobe Acrobat and to some extend also Preview.app use custom in-text hyperlink detection to create annotations on the fly. This is nothing the PDF references specifies, and is also currently not supported my PSPDFKit. As a workaround, make proper link annotations out of your hyperlinks. This can be accomplished easily with Adobe Acrobat or Preview.app.</p><br>
-		
+
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
 		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode &#8805; 4.4.1 (with iOS SDK &#8805; 5.1) and LLVM/Clang.<br>If you get linker errors about missing symbols, be sure that your project includes the above listed frameworks and the linker flags -ObjC and -fobjc-arc.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
-		
+
 		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
 		      A: To support iOS4.3 with a non-ARC-project, you need to add the linker flag -fobjc-arc in the project settings.
 		</p><br>
-		
+
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There is some careful use of private API that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
-		
+
 <p><b>Q: Do I need to buy another license to make a second app?</b><br>
 	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for custom licensing, contact us if interested.</p><br>
 
@@ -131,12 +131,12 @@ documentation: current-menu-item current_page_item
 	 A: Use <a href="http://pspdfkit.com/documentation/Protocols/PSPDFViewControllerDelegate.html">PSPDFViewControllerDelegate</a> like this:
 	 <script src="https://gist.github.com/2034768.js?file=gistfile1.m"></script>
 	 </p>
-	 
+
 <p><b>Q: I am looking for following features: adjust PDF text size/font style/ page margins.</b><br>
 	 A: This is not possible due to the nature of PDF. There's no notion of "word" or sentence. With great hacking and rewriting your renderer, you could increase the font size, but all letters would just overlap. Then there's a chance that some letters aren't even letters as you would think of, but just vector curves. You are probably looking into HTML/ePub, where you can change such values with ease.</p><br>
-		
+
 	</div>
-	
+
 	<div id="titanium" class="col-full section">
 		<a name="appcelerator"></a>
 	  <h2 class="section-title">Appcelerator Titanium Module</h2>
