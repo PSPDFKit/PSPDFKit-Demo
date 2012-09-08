@@ -1,0 +1,65 @@
+/* 
+  Localization.strings
+  PSPDFKit
+
+  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+*/
+
+// general
+"Close" = "Schließen";
+"Cancel" = "Abbrechen";
+"Open" = "Öffnen";
+"Untitled" = "Unbenannt";
+"File Not Found" = "Datei nicht gefunden";
+"Unnamed PDF" = "Unbenanntes PDF";
+"Table Of Contents" = "Inhaltsverzeichnis";
+"Go to %@" = "Zu %@ wechseln";
+"Page %d" = "Seite %d";
+
+// toolbar
+"Outline" = "Outline";
+"Search" = "Suchen";
+"Email" = "E-Mail";
+"Open in..." = "Öffnen in …";
+"Print" = "Drucken";
+
+// page
+"%d of %d" = "%d von %d";
+"%@ (%d of %d)" = "%@ (%d von %d)";
+
+// search
+"Page %d" = "Seite %d";
+"Search Document" = "Dokument durchsuchen";
+"No matches found" = "Keine Treffer gefunden";
+"One match found" = "Einen Treffer gefunden";
+"%d matches found" = "%d Treffer gefunden";
+"Searching..." = "Suchen …";
+"Search Completed" = "Suche abgeschlossen";
+"Search Cancelled" = "Suche abgebrochen";
+
+// inline browser
+"Copy Link" = "Link kopieren";
+"Open in Safari" = "In Safari öffnen";
+"Mail Link to this Page" = "Link zu dieser Seite mailen";
+
+// annotations
+"Remove" = "Entfernen";
+"Colors..." = "Farbe...";
+"Yellow" = "Gelb";
+"Green" = "Grün";
+"Blue" = "Blau";
+"Pink" = "Pink";
+"Define" = "Definieren";
+"Wikipedia" = "Wikipedia";
+"Copy" = "Kopieren";
+"Highlight" = "Markieren";
+"Underline" = "Unterstreichen";
+"Strikeout" = "Durchstreichen";
+"Sketch" = "Zeichnen";
+"New Note" = "Neue Notiz";
+"Note" = "Notiz";
+"Drawing Color" = "Farbe wählen";
+
+// voiceover accessibility
+"Page" = "Seite";
+"Grid" = "Thumbnails";
