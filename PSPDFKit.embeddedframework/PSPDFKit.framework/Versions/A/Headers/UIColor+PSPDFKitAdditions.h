@@ -39,4 +39,7 @@
 - (UIColor *)pspdf_lightenedColor;
 - (UIColor *)pspdf_darkenedColor;
 
+// Ensures the underlying color space of the UIColor is RGB.
+- (UIColor *)pspdf_colorInRGBColorSpace;
+
 @end

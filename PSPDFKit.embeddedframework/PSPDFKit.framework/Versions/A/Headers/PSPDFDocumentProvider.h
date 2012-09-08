@@ -76,7 +76,7 @@
 - (void)releasePageRef:(CGPDFPageRef)pageRef;
 
 /// For optimization reasons, the internal documentRef might be cached.
-/// This force-clears the cache, optionally blocking.
+/// This force-clears the cache.
 - (void)flushDocumentReference;
 
 /// Number of pages in the PDF. Nil if source is invalid.
