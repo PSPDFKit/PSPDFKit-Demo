@@ -317,7 +317,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Send current pdf via email. Only works with single-file/data pdf's.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *emailButtonItem;
 
-/// Show the annotation menu.
+/// Show the annotation menu. Only available in PSPDFKit Annotate.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *annotationButtonItem;
 
 /// Show the bookmarks menu.
