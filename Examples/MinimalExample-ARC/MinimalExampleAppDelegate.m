@@ -34,8 +34,7 @@
     
     // copy file into documents - needed to allow writing annotatons.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSString *fileName = @"white-transparent-borders.pdf";
-        NSString *fileName = @"annotations.pdf";
+        NSString *fileName = @"hackermonthly12.pdf";
 
         NSString *path = [[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:fileName];
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
