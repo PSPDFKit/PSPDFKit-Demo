@@ -16,8 +16,8 @@ If you have the sources and embedd PSPDFKit as a subproject, don't forget to als
 
 
 MAJOR NEW FEATURES:
-*  Text selection! [PSPDFKit Annotate] (Includes Copy, Dictionary, Wikipedia support)
-*  Annotations! [PSPDFKit Annotate] Highlight, Underscore, Strikeout, Note, Draw etc. Annotations also will be written back into the PDF.
+*  Text selection! (PSPDFKit Annotate) (Includes Copy, Dictionary, Wikipedia support)
+*  Annotations! (PSPDFKit Annotate) Highlight, Underscore, Strikeout, Note, Draw etc. Annotations also will be written back into the PDF.
    There is a new annptationBarButtonItem that shows the new annotation toolbar.
 *  Smart Zoom (Text blocks are detected and zoomed onto on a double-tap; much like Safari)
    The PDF is now also dynamically re-rendered at *every* zoom level for maximal sharpness and quality.
