@@ -65,7 +65,7 @@
         // annotation frame is in PDF coordinate space. Use pageRect for the full page.
         annotation.boundingBox = [self.document pageInfoForPage:0].pageRect;
         // annotation.page/document is auomatically set.
-        [self.document.annotationParser addAnnotations:@[annotation] forPage:0];
+        [self.document addAnnotations:@[annotation] forPage:0];
     }
     return self;
 }
