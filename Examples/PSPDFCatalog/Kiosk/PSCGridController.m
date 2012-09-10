@@ -344,6 +344,7 @@
 
 // open magazine with nice animation
 - (BOOL)openMagazine:(PSCMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+    [self.searchBar resignFirstResponder];
 
     // speed up displaying with parsing several things PSPDFViewController needs.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
