@@ -90,6 +90,7 @@
 		78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */; };
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
+		78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */; };
 		78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */; };
 		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
@@ -289,6 +290,8 @@
 		78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
 		78BCC69815D31BF2006735A9 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
+		78C6AA8C15FFB82A005601DA /* PSCFittingWidthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFittingWidthViewController.h; sourceTree = "<group>"; };
+		78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFittingWidthViewController.m; sourceTree = "<group>"; };
 		78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDrawingViewController.m; sourceTree = "<group>"; };
 		78D8128215DC45EB00B8056B /* PSCCustomDrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomDrawingViewController.h; sourceTree = "<group>"; };
 		78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -619,6 +622,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				78C6AA8C15FFB82A005601DA /* PSCFittingWidthViewController.h */,
+				78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */,
 				7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */,
 				7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */,
 				78A3815D15DABFEB003850E8 /* PSCustomTextSelectionMenuController.h */,
@@ -942,6 +947,7 @@
 				78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
 				7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */,
+				78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
