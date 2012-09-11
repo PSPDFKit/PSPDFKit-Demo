@@ -23,6 +23,7 @@
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
 #import "PSCBookViewController.h"
+#import "PSCFittingWidthViewController.h"
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
@@ -53,7 +54,9 @@
         PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
+            //
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
             return controller;
         }]];
@@ -324,6 +327,13 @@
         [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
+            return controller;
+        }]];
+
+        // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
+        [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dynamic fittingWidth on iPhone" block:^UIViewController *{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *controller = [[PSCFittingWidthViewController alloc] initWithDocument:document];
             return controller;
         }]];
 
