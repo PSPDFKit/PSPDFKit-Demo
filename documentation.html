@@ -101,6 +101,9 @@ documentation: current-menu-item current_page_item
 
 <p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
 	 A: To support iOS 4.3, you need to <i>weak-link</i> UIKit. See the part "Integration".</p><br>
+	 
+<p><b>Q: When I start the app, I get [__NSArrayI objectAtIndexedSubscript:]: unrecognized selector sent to instance </b><br>
+	 A: You're most likely on Xcode 4.3. Upgrade to 4.4.1 or later to fix this problem. Also ensure you've added the linker flag -fobc-arc to your project.</p><br>
 
 	  <p><b>Q: Everything works perfectly, but when I use PDF XYZ, your application crashes (this only happens on the device)</b><br>
 		 A: While there are many ways in place to minimize memory usage when rendering is working, some PDF are just _too complex for iOS - meaning drawing takes too much memory. There is a hard limit of about 64MB for every application, and you most likely get killed by the system before getting that much anyway, especially on older devices like the iPad 1. While testing, we encountered PDFs that needed as much as 300MB for drawing - no way you can to this on iOS. One way to fix this problem is to remove complex vector graphics, simple re-saving it in Preview.app solves many issues.</p><br>
