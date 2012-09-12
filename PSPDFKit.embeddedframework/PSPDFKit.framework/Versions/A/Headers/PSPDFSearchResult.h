@@ -27,4 +27,7 @@
 /// Range within full page text.
 @property(nonatomic, assign) NSRange range;
 
+/// Cached title of the outline chapter. Will be added dynamically on first access.
+@property(nonatomic, copy) NSString *cachedOutlineTitle;
+
 @end

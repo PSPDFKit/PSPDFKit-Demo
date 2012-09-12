@@ -86,7 +86,4 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
 @property(nonatomic, assign) CGSize size;
 
-@property(nonatomic, strong) NSString *destinationName;
-@property(nonatomic, strong) NSString *linkURL;
-
 @end
