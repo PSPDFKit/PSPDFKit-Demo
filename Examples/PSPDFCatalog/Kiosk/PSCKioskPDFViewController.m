@@ -16,7 +16,11 @@
 NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianceCalculated";
 
 @interface PSCKioskPDFViewController () {
-    BOOL hasLoadedLastPage_;
+    BOOL _hasLoadedLastPage;
+    UIBarButtonItem *_closeButtonItem;
+    PSCSettingsBarButtonItem *_settingsButtomItem;
+    PSCMetadataBarButtonItem *_metadataButtonItem;
+    PSCAnnotationTableBarButtonItem *_annotationListButtonItem;
 }
 @end
 
@@ -48,13 +52,12 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 
         // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
-        UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-        PSCSettingsBarButtonItem *settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-        PSCMetadataBarButtonItem *metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
-        PSCAnnotationTableBarButtonItem *annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
+        _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
+        _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+        _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+        _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
         
-        self.leftBarButtonItems = PSIsIpad() ? @[closeButtonItem, settingsButtomItem, metadataButtonItem, annotationListButtonItem] : @[closeButtonItem, settingsButtomItem];
-        self.barButtonItemsAlwaysEnabled = @[closeButtonItem];
+        self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
         // restore viewState
         if ([self.document isValid]) {
@@ -71,7 +74,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             }
         }
 
-        // 1.9 feature
+        // change color
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
         //self.statusBarStyleSetting = PSPDFStatusBarDefault;
         
@@ -133,8 +136,9 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 
     // Example to show how to only allow pageCurl in landscape mode.
-    // Don't change this property in willAnimate* or bad things will happen.
-    // self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+    // Don't change this property in willAnimate* or updateSettingsForRotation or bad things will happen.
+    // Also make sure to set the correct setting on the initial load (might already load up in landscape mode)
+    //self.pageTransition = UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
 
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
     for(NSNumber *number in [self visiblePageNumbers]) {
@@ -145,6 +149,13 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController
+
+- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation {
+    // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
+    self.leftBarButtonItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
