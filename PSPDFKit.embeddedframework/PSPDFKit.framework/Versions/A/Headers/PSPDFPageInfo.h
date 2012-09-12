@@ -23,7 +23,8 @@
 @property(nonatomic, assign, readonly) CGRect rotatedPageRect;
 
 /// Saved page rotation of current page. Value between 0 and 270.
-@property(nonatomic, assign, readonly) NSUInteger pageRotation;
+/// Can be used to manually rotate pages (but needs a cache clearing and a reload)
+@property(nonatomic, assign) NSUInteger pageRotation;
 
 /// Page transform matrix.
 @property(nonatomic, assign, readonly) CGAffineTransform pageRotationTransform;

@@ -1,5 +1,19 @@
 # Changelog
 
+__v2.0.1 - 12/September/2012__
+
+*  Faster search (document pattern detection if deplayed until needed, outline results get cached)
+*  Improved reaction time for complex PDF documents (e.g. annotations are only evaluated if they're already loaded; but won't lock the main thread due to lazy parsing)
+*  Add additional checks so that even incorrectly converted NSURL-paths (where description instead of path has been called) work.
+*  Fixes a issue where annotations were not saved with multiple-file documents on all but the first file.
+*  Fixes problems where link annotations lost their page/link target after saving annotations into a file.
+*  Fixes a problem where fittingWidth was always overridden when run on the iPhone.
+*  Fixes a race condition in the new render stack that could lead to an assert in debug mode (non-critical)
+*  Fixes the toolbar overlapping text issue in the PSPDFCatalog Kiosk Example; added comments how to work around that UIKit bug.
+*  Made the pageRotation property of PSPDFPageInfo writeable; useful for manually rotation PDF documents.
+*  Fixes some issues with the Titanium module; adds support for NavigationGroups.
+*  Improved memory usage, especially on iPad1.
+
 __v2.0.0 - 08/September/2012__
 
 PSPDFKit v2 is a major updates with lots of changes and a streamlined API.

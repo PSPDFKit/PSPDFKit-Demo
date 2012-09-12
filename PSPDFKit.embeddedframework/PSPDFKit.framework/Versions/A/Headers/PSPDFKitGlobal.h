@@ -41,6 +41,8 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
 };
 
 /// Log level defines.
+/// Note that PSPDFLogLevelVerbose will severly slow down the whole application.
+/// (e.g. Some lazy evaluated properties will be evaluated on the main thread)
 typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
     PSPDFLogLevelNothing = 0,
     PSPDFLogLevelError,
@@ -69,6 +71,9 @@ extern BOOL kPSPDFKitDebugScrollViews;
 
 /// Enable to track down memory issues.
 extern BOOL kPSPDFKitDebugMemory;
+
+/// Number of open CGPDFDocument's.
+extern NSUInteger kPSPDFMaximumNumberOfOpenDocumentRefs;
 
 /// Improves scroll performance.
 extern CGFloat kPSPDFInitialAnnotationLoadDelay;

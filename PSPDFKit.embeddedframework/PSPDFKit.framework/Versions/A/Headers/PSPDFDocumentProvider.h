@@ -20,6 +20,8 @@
 
 @end
 
+extern NSString *PSPDFKCloseCachedDocumentRefNotification;
+
 /// A PSPDFDocument consists of one or multiple PSPDFDocumentProvider's.
 /// Note: This class is used within PSPDFDocument and should not be instantiated externally.
 @interface PSPDFDocumentProvider : NSObject
