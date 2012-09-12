@@ -38,10 +38,6 @@ If you do not agree to this, an additional fee can be paid to remove this right.
 
 The license your purchased, unless otherwise negotiated, is valid for one bundle identifier, thus one iOS application.
 
-If you purchased the "Developer Seat" option, you are allowed to build unlimited iOS applications,
-on the condition that your company is building them. Developer Seat licenses cannot be transferred unless written permission.
-The following redistribution conditions apply to both options.
-
 Redistribution and use of the software is permitted in binary and/or source form under the following conditions:
 
 The recipient has purchased a separate, independent license for the software from Peter Steinberger. The redistributed software is governed by that license.
