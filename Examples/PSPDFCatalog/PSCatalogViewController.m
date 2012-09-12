@@ -26,7 +26,7 @@
 #import "PSCFittingWidthViewController.h"
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:5 inSection:1]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:2]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -172,6 +172,15 @@
             controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
+
+
+        PSCSectionDescriptor *multimediaSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Multimedia extensions" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
+
+        [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Multmedia PDF example" block:^{
+            PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+            return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+        }]];
+        [content addObject:multimediaSection];
 
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
