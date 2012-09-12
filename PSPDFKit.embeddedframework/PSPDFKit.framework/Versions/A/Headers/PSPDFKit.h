@@ -25,7 +25,6 @@
 #import "PSPDFPageView.h"
 #import "PSPDFTextSelectionView.h"
 #import "PSPDFScrollView.h"
-#import "PSPDFGlobalLock.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFCache.h"
 #import "PSPDFTransparentToolbar.h"

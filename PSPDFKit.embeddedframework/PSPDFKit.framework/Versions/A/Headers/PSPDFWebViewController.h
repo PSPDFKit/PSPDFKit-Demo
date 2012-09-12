@@ -7,8 +7,16 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFViewController.h"
 #import "PSPDFBaseViewController.h"
+
+@class PSPDFViewController;
+
+@protocol PSPDFWebViewControllerDelegate <NSObject>
+
+/// Controller where the webViewController has been pushed to (to dismiss modally)
+- (UIViewController *)masterViewController;
+
+@end 
 
 /// Enable to completely match the toolbar style with the PSPDFViewController.
 /// Defaults to NO because IMO it doesn't look that great.
@@ -26,6 +34,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 @interface PSPDFWebViewController : PSPDFBaseViewController <UIWebViewDelegate>
 
 /// Use this to get a UINavigationController with a Done-Button.
+/// Convenience-call. Not used within PSPDFKit.
 + (UINavigationController *)modalWebViewWithURL:(NSURL *)URL;
 
 /// Creates a new PSPDFWebViewController with the specified URL.
@@ -40,6 +49,8 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 
 /// Access popover controller, if attached.
 @property(nonatomic, strong) UIPopoverController *popoverController;
+
+@property(nonatomic, ps_weak) id<PSPDFWebViewControllerDelegate> delegate;
 
 // Customize the icon toolbar. Call before displaying.
 - (void)copyStyleFromPDFViewController:(PSPDFViewController *)pdfController;

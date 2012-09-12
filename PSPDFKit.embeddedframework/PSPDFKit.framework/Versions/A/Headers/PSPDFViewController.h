@@ -12,6 +12,7 @@
 #import "PSPDFPasswordView.h"
 #import "PSPDFOutlineViewController.h"
 #import "PSPDFTransitionProtocol.h"
+#import "PSPDFWebViewController.h"
 #import "PSCollectionView.h"
 
 @protocol PSPDFViewControllerDelegate;
@@ -77,7 +78,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// The main view controller to display pdfs. Can be displayed in fullscreen or embedded.
 /// When embedded, be sure to correctly relay the viewController calls of viewWillAppear/etc. (or use iOS5 view controller containment)
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, PSCollectionViewDataSource, PSCollectionViewDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, PSPDFWebViewControllerDelegate, PSCollectionViewDataSource, PSCollectionViewDelegate>
 
 /// @name Initialization
 
@@ -323,9 +324,17 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Show the bookmarks menu.
 @property(nonatomic, strong, readonly) PSPDFBarButtonItem *bookmarkButtonItem;
 
-/// Bar button items displayed at the left of the toolbar
-/// Must be UIBarButtonItem or PSPDFBarButtonItem instances
-/// Defaults to (closeButtonItem) if view is presented modally.
+/**
+ Bar button items displayed at the left of the toolbar
+ Must be UIBarButtonItem or PSPDFBarButtonItem instances
+ Defaults to (closeButtonItem) if view is presented modally.
+ 
+ Note that it appears that UIKit limits the left toolbar size if spaces is low in the toolbar, potentially cutting off buttons
+ in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to 
+ fix this problem. It also appears that UIKit focues on the leftToolbar, the right one is cut of much later.
+ This problem only appears on the iPad in portrait mode.
+ You can also use updateSettingsForRotation to adapt the toolbar for portrait/landscape mode.
+ */
 @property(nonatomic, strong) NSArray *leftBarButtonItems;
 
 /// Bar button items displayed at the right of the toolbar
@@ -356,6 +365,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Set a PageMode defined in the enum. (Single/Double Pages)
 /// Reloads the view, unless it is set while rotation is active.
 /// Thus, one can customize the rotation behavior with animations when set within willAnimate*.
+/// Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.
 @property(nonatomic, assign) PSPDFPageMode pageMode;
 
 /**
@@ -471,7 +481,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show a modal view controller or a popover with automatically added close button on the left side.
 /// Use sender OR rect (both only needed for the popover)
-- (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(UIBarButtonItem *)sender rect:(CGRect)rect;
+extern NSString *PSPDFPresentOptionRect;                           // target rect, if sender is nil for UIPopoverController
+extern NSString *PSPDFPresentOptionPopoverContentSize;             // content size for UIPopoverController
+extern NSString *PSPDFPresentOptionAllowedPopoverArrowDirections;  // customize default arrow directions for UIPopoverController
+extern NSString *PSPDFPresentOptionModalPresentationStyle;         // overrides UIPopoverController if set.
+- (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(UIBarButtonItem *)sender options:(NSDictionary *)options;
 
 /// Return an NSNumber-array of currently visible page numbers.
 - (NSArray *)visiblePageNumbers;
@@ -514,6 +528,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Can be subclassed to update grid spacing.
 - (void)updateGridForOrientation;
+
+/// Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
+/// Might be called multiple times during a rotation, so any code in there should be fast.
+/// The default implementation for this is empty.
+- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation;
 
 /// Manually return the desired UI status bar style (default is evaluated via app status bar style)
 - (UIStatusBarStyle)statusBarStyle;

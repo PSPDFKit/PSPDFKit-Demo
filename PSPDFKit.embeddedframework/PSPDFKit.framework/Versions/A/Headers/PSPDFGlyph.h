@@ -14,19 +14,19 @@
 @interface PSPDFGlyph : NSObject
 
 /// Frame of the glyph.
-@property (nonatomic, assign) CGRect frame;
+@property(nonatomic, assign) CGRect frame;
 
 /// Character content (usually a single character)
-@property (nonatomic, strong) NSString *content;
+@property(nonatomic, copy) NSString *content;
 
 /// Used font info.
-@property (nonatomic, strong) PSPDFFontInfo *font;
+@property(nonatomic, strong) PSPDFFontInfo *font;
 
 // Set if after this glyph a \n is there.
-@property (nonatomic, assign) BOOL lineBreaker;
+@property(nonatomic, assign) BOOL lineBreaker;
 
 /// Index set on the Glyph.
-@property (nonatomic, assign) int indexOnPage;
+@property(nonatomic, assign) int indexOnPage;
 
 /// Compare with second glyph on the X position.
 - (NSComparisonResult)compareByXPosition:(PSPDFGlyph *)glyph;
