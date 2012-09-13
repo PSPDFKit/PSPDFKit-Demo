@@ -15,6 +15,7 @@ extern NSString *kPSPDFPageColor;             // Multiplies a color used to colo
 extern NSString *kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
 extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
 extern NSString *kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
+extern NSString *kPSPDFBackgroundFillColor;   // Allows custom render color. Default is white.
 
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
