@@ -562,8 +562,8 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
         imageName = [imageInfo.imageName lastPathComponent];
         baseAddress = imageInfo.imageBaseAddress;
         pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
-        NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
-        NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]; 
+        //NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
+        //NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
         
         if ([[frameInfo class] respondsToSelector:@selector(symbolName)]) {
           // @steipete: Modified for PSPDFKit to symblicate apps w/o a dSYM. 
