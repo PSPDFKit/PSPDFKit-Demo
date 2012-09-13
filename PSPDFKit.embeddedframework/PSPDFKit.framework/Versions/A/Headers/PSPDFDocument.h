@@ -354,6 +354,13 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Draw a page into a specified context.
 - (void)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
+/// Set custom render options (see PSPDFPageRenderer.h for options)
+/// Options set here will override any options sent to renderImageForPage/renderPage.
+/// This is the perfect place to change the background fill color, e.g. you would do this for a black document:
+/// renderOptions = @{kPSPDFBackgroundFillColor : [UIColor blackColor]};
+/// This fixes tiny white/gray lines at the borders of a document that else might show up.
+@property(nonatomic, strong) NSDictionary *renderOptions;
+
 /// @name Object Finder
 
 // options
