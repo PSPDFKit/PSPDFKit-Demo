@@ -1,9 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
- *         Kent Sutherland
  *
  * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
- * Copyright (c) 2011 Andreas Linde & Kent Sutherland.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -29,16 +27,18 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+/* NSString helpers */
+NSString *bit_URLEncodedString(NSString *inputString);
+NSString *bit_URLDecodedString(NSString *inputString);
+NSComparisonResult bit_versionCompare(NSString *stringA, NSString *stringB);
 
-@interface BITCrashManager () {
-}
+/* UIImage helpers */
+UIImage *bit_roundedCornerImage(UIImage *inputImage, NSInteger cornerSize, NSInteger borderSize);
+UIImage *bit_imageToFitSize(UIImage *inputImage, CGSize fitSize, BOOL honorScaleFactor);
+UIImage *bit_reflectedImageWithHeight(UIImage *inputImage, NSUInteger height, float fromAlpha, float toAlpha);
 
-// set the server URL
-@property (nonatomic, retain) NSString *updateURL;
-
-- (id)initWithAppIdentifier:(NSString *)appIdentifier;
-
-- (void)startManager;
-
-@end
+UIImage *bit_newWithContentsOfResolutionIndependentFile(NSString * path);
+UIImage *bit_imageWithContentsOfResolutionIndependentFile(NSString * path);
+UIImage *bit_imageNamed(NSString *imageName, NSString *bundleName);

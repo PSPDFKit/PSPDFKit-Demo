@@ -77,8 +77,6 @@ static NSString *kBITCrashManagerStatus = @"BITCrashManagerStatus";
 @private
   NSString *_appIdentifier;
   
-  //BITCrashStatus _serverResult;
-  
   NSMutableDictionary *_approvedCrashReports;
 
   NSMutableArray *_crashFiles;
@@ -95,6 +93,9 @@ static NSString *kBITCrashManagerStatus = @"BITCrashManagerStatus";
   NSURLConnection *_urlConnection;
   
   BOOL _sendingInProgress;
+  BOOL _isSetup;
+  
+  NSUncaughtExceptionHandler *_exceptionHandler;
 }
 
 
@@ -105,7 +106,7 @@ static NSString *kBITCrashManagerStatus = @"BITCrashManagerStatus";
 /**
  Sets the optional `BITCrashManagerDelegate` delegate.
  */
-@property (nonatomic, assign) id <BITCrashManagerDelegate> delegate;
+@property (nonatomic, assign) id delegate;
 
 
 ///-----------------------------------------------------------------------------
@@ -176,6 +177,9 @@ static NSString *kBITCrashManagerStatus = @"BITCrashManagerStatus";
  early after startup. This can be used to delay app initialization until the crash
  report has been sent to the server or if you want to do any other actions like
  cleaning up some cache data etc.
+ 
+ Note that sending a crash reports starts as early as 1.5 seconds after the application
+ did finish launching!
  
  The `BITCrashManagerDelegate` protocol provides some delegates to inform if sending
  a crash report was finished successfully, ended in error or was cancelled by the user.

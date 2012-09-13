@@ -35,6 +35,9 @@
 @interface BITUpdateManager () {
 }
 
+// set the server URL
+@property (nonatomic, retain) NSString *updateURL;
+
 // is an update available?
 @property (nonatomic, assign, getter=isUpdateAvailable) BOOL updateAvailable;
 
@@ -52,7 +55,7 @@
 
 @property (nonatomic, copy) NSDate *usageStartTimestamp;
 
-@property (nonatomic, retain) UIView *authorizeView;
+@property (nonatomic, retain) UIView *blockingView;
 
 // if YES, the API will return an existing JMC config
 // if NO, the API will return only version information
@@ -61,6 +64,8 @@
 // Contains the tracker config if received from server
 @property (nonatomic, retain) NSDictionary *trackerConfig;
 
+// used by BITHockeyManager if disable status is changed
+@property (nonatomic, getter = isUpdateManagerDisabled) BOOL disableUpdateManager;
 
 - (id)initWithAppIdentifier:(NSString *)appIdentifier isAppStoreEnvironemt:(BOOL)isAppStoreEnvironment;
 
