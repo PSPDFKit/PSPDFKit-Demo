@@ -45,6 +45,10 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// link if target is a page if siteLinkTarget is nil.
 @property(nonatomic, assign) NSUInteger pageLinkTarget;
 
+/// Returns YES if this link is specially handled by PSPDFKit.
+/// Returns true for any linkType except PSPDFLinkAnnotationPage and PSPDFLinkAnnotationWebURL
+@property(nonatomic, assign, readonly, getter=isMultimediaExtension) BOOL multimediaExtension;
+
 /** 
     Link if target is a website.
  
