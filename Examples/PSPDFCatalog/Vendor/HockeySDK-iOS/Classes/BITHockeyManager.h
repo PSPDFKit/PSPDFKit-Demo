@@ -69,7 +69,7 @@
 
 @interface BITHockeyManager : NSObject {
 @private
-  id<BITHockeyManagerDelegate> delegate;
+  id _delegate;
   NSString *_appIdentifier;
   
   BOOL _validAppIdentifier;
@@ -96,16 +96,20 @@
  Initializes the manager with a particular app identifier and delegate
  
  Initialize the manager with a HockeyApp app identifier and assign the class that
- implements the optional BITHockeyManagerDelegate protocol.
+ implements the optional protocols `BITHockeyManagerDelegate`, `BITCrashManagerDelegate` or
+ `BITUpdateManagerDelegate`.
  
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"<AppIdentifierFromHockeyApp>" delegate:nil];
 
  @see configureWithBetaIdentifier:liveIdentifier:delegate:
  @see startManager
+ @see BITHockeyManagerDelegate
+ @see BITCrashManagerDelegate
+ @see BITUpdateManagerDelegate
  @param appIdentifier The app identifier that should be used.
- @param delegate `nil` or the class implementing the option BITHockeyManagerDelegate protocol
+ @param delegate `nil` or the class implementing the option protocols
  */
-- (void)configureWithIdentifier:(NSString *)appIdentifier delegate:(id<BITHockeyManagerDelegate>)delegate;
+- (void)configureWithIdentifier:(NSString *)appIdentifier delegate:(id)delegate;
 
 
 /**
@@ -114,6 +118,8 @@
  Initialize the manager with different HockeyApp app identifiers for beta and live usage.
  All modules will automatically detect if the app is running in the App Store and use
  the live app identifier for that. In all other cases it will use the beta app identifier.
+ And also assign the class that implements the optional protocols `BITHockeyManagerDelegate`,
+ `BITCrashManagerDelegate` or `BITUpdateManagerDelegate`
  
     [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:@"<AppIdentifierForBetaAppFromHockeyApp>"
                                                          liveIdentifier:@"<AppIdentifierForLiveAppFromHockeyApp>"
@@ -121,11 +127,14 @@
 
  @see configureWithIdentifier:delegate:
  @see startManager
+ @see BITHockeyManagerDelegate
+ @see BITCrashManagerDelegate
+ @see BITUpdateManagerDelegate
  @param betaIdentifier The app identifier for the _non_ app store (beta) configurations
  @param liveIdentifier The app identifier for the app store configurations.
- @param delegate `nil` or the implementing the optional BITHockeyManagerDelegate protocol
+ @param delegate `nil` or the class implementing the optional protocols
  */
-- (void)configureWithBetaIdentifier:(NSString *)betaIdentifier liveIdentifier:(NSString *)liveIdentifier delegate:(id<BITHockeyManagerDelegate>)delegate;
+- (void)configureWithBetaIdentifier:(NSString *)betaIdentifier liveIdentifier:(NSString *)liveIdentifier delegate:(id)delegate;
 
 
 /**
@@ -147,14 +156,38 @@
 
 
 /**
+ Defines the server URL to send data to or request data from
+ 
+ By default this is set to the HockeyApp servers and there rarely should be a
+ need to modify that.
+ */
+@property (nonatomic, retain) NSString *updateURL;
+
+
+/**
  Reference to the initialized BITCrashManager module
  
  @see configureWithIdentifier:delegate:
  @see configureWithBetaIdentifier:liveIdentifier:delegate:
  @see startManager
+ @see disableCrashManager
  @return The BITCrashManager instance initialized by BITHockeyManager
  */
 @property (nonatomic, retain, readonly) BITCrashManager *crashManager;
+
+
+/**
+ Flag the determines wether the Crash Manager should be disabled
+ 
+ If this flag is enabled, then crash reporting is disabled and no crashes will
+ be send.
+ 
+ Please note that the Crash Manager will be initialized anyway!
+
+ *Default*: _NO_
+ @see crashManager
+ */
+@property (nonatomic, getter = isCrashManagerDisabled) BOOL disableCrashManager;
 
 
 /**
@@ -163,9 +196,24 @@
  @see configureWithIdentifier:delegate:
  @see configureWithBetaIdentifier:liveIdentifier:delegate:
  @see startManager
+ @see disableUpdateManager
  @return The BITCrashManager instance initialized by BITUpdateManager
  */
 @property (nonatomic, retain, readonly) BITUpdateManager *updateManager;
+
+
+/**
+ Flag the determines wether the Update Manager should be disabled
+ 
+ If this flag is enabled, then checking for updates and submitting beta usage
+ analytics will be turned off!
+ 
+ Please note that the Update Manager will be initialized anyway!
+ 
+ *Default*: _NO_
+ @see updateManager
+ */
+@property (nonatomic, getter = isUpdateManagerDisabled) BOOL disableUpdateManager;
 
 
 ///-----------------------------------------------------------------------------

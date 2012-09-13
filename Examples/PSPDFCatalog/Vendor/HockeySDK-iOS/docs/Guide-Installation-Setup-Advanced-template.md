@@ -1,12 +1,12 @@
 
 ## Introduction
 
-This article describes how to integrate HockeyApp into your iOS apps. The SDK allows testers to update your app to another beta version right from within the application. It will notify the tester if a new update is available. The SDK also allows to send crash reports. If a crash has happened, it will ask the tester on the next start whether he wants to send information about the crash to the server.
+This article describes how to integrate HockeyApp into your iOS apps using a Git submodule and Xcode subprojects. The SDK allows testers to update your app to another beta version right from within the application. It will notify the tester if a new update is available. The SDK also allows to send crash reports. If a crash has happened, it will ask the tester on the next start whether he wants to send information about the crash to the server.
 
 This document contains the following sections:
 
 - [Requirements](#requirements)
-- [Download & Extract](#download)
+- [Set up Git submodule](#download)
 - [Set up Xcode](#xcode)
 - [Modify Code](#modify)
 - [Submit the UDID](#udid)
@@ -21,61 +21,75 @@ The SDK runs on devices with iOS 4.0 or higher.
 If you need support for iOS 3.x, please check out [HockeyKit](http://support.hockeyapp.net/kb/client-integration/beta-distribution-on-ios-hockeykit) and [QuincyKit](http://support.hockeyapp.net/kb/client-integration/crash-reporting-on-ios-quincykit)
 
 <a id="download"></a> 
-## Download & Extract
+## Set up Git submodule
 
-1. Download the latest [HockeySDK-iOS](https://github.com/bitstadium/HockeySDK-iOS/downloads) framework.
+1. Open a Terminal window
 
-2. Unzip the file. A new folder `HockeySDK-iOS` is created.
+2. Change to your projects directory `cd /path/to/MyProject'
 
-3. Move the folder into your project directory. We usually put 3rd-party code into a subdirectory named `Vendor`, so we move the directory into it.
+3. If this is a new project, initialize Git: `git init`
+
+4. Add the submodule: `git submodule add git://github.com/BitStadium/HockeySDK-iOS.git Vendor/HockeySDK`. This would add the submodule into the `Vendor/HockeySDK` subfolder. Change this to the folder you prefer.
 
 <a id="xcode"></a> 
 ## Set up Xcode
 
-1. Drag & drop the `HockeySDK-iOS` folder from your project directory to your Xcode project.
+1. Find the `HockeySDK.xcodeproj` file inside of the cloned HockeySDK-iOS project directory.
 
-2. Similar to above, our projects have a group `Vendor`, so we drop it there.
+2. Drag & Drop it into the `Project Navigator` (⌘+1).
 
-3. Select `Create groups for any added folders` and set the checkmark for your target. Then click `Finish`.
+3. Select your project in the `Project Navigator` (⌘+1).
 
-    <img src="XcodeCreateGroups_normal.png"/>
+4. Select your target. 
 
-4. Select your project in the `Project Navigator` (⌘+1).
+5. Select the tab `Build Phases`.
 
-5. Select your target.
+6. Expand `Link Binary With Libraries`.
 
-6. Select the tab `Summary`.
+7. Add `libHockeySDK.a`
 
-7. Expand `Link Binary With Libraries`.
+    <img src="XcodeLinkBinariesLib_normal.png"/>
 
-8. The following entries should be present:
-    * CoreGraphics.framework
-    * Foundation.framework
-    * HockeySDK.framework
-    * QuartzCore.framework
-    * SystemConfiguration.framework
-    * UIKit.framework
+8. Select `Add Other...`.
+
+    <img src="XcodeFrameworks3_normal.png"/>
     
-    <img src="XcodeFrameworks1_normal.png"/>
+9. Select `CrashReporter.framework` from the `Vendor/HockeySDK/Vendor` folder
 
-9. If one of the frameworks is missing, then click the + button, search the framework and confirm with the `Add` button.
+    <img src="XcodeFrameworks4_normal.png"/>
 
-10. Remove `CrashReporter.framework` if present, and also remove if from the project by deleting it also from the filesystem
+10. The following entries should be present:
+	* `libHockeySDK.a`
+	* `CrashReporter.framework`
+	* `CoreGraphics.framework`
+    * `Foundation.framework`
+    * `QuartzCore.framework`
+    * `SystemConfiguration.framework`
+    * `UIKit.framework`
 
-11. Select `Build Settings`
+    <img src="XcodeFrameworks2_normal.png"/>
 
-12. Search `Framework Search Paths`
+11. Expand `Copy Bundle Resources`.
 
-13. Make sure that the list does not contain a path pointing to the `QuincyKit` SDK or another framework that contains `PLCrashReporter`
-    
+12. Drag & Drop `HockeySDKResources.bundle` from the `Products` folder in `HockeySDK.xcodeproj`
+
+    <img src="XcodeBundleResource1_normal.png"/>
+
+13. Select `Build Settings`
+
+14. Search for `Header Search Paths`
+
+15. Add a path to `$(SRCROOT)/Vendor/HockeySDK/Vendor` and make sure that the list does not contain a path pointing to the `QuincyKit` SDK or another framework that contains `PLCrashReporter`
+
     <img src="XcodeFrameworkSearchPath_normal.png"/>
 
-14. HockeySDK-iOS also needs a JSON library. If your deployment target iOS 5.0 or later, then you don't have to do anything. If your deployment target is iOS 4.x, please include one of the following libraries:
-    * [JSONKit](https://github.com/johnezang/JSONKit)
-    * [SBJSON](https://github.com/stig/json-framework)
-    * [YAJL](https://github.com/gabriel/yajl-objc)
+16. Hit `Done`.
 
-
+17. HockeySDK-iOS also needs a JSON library. If your deployment target iOS 5.0 or later, then you don't have to do anything. If your deployment target is iOS 4.x, please include one of the following libraries:
+	* [JSONKit](https://github.com/johnezang/JSONKit)
+	* [SBJSON](https://github.com/stig/json-framework)
+	* [YAJL](https://github.com/gabriel/yajl-objc)
+	
 <a id="modify"></a> 
 ## Modify Code
 
@@ -83,7 +97,7 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 
 2. Add the following line at the top of the file below your own #import statements:
 
-        #import <HockeySDK/HockeySDK.h>
+        #import "HockeySDK.h"
 
 3. Let the AppDelegate implement the protocols `BITHockeyManagerDelegate`, `BITUpdateManagerDelegate` and `BITCrashManagerDelegate`:
 
@@ -127,7 +141,7 @@ The method only returns the UDID when the build is not targeted to the App Sore.
 
 4. Search for `preprocessor macros`
 
-    <img src="XcodeMacros1_normal.png"/>
+    ![XcodeMacros1_normal.png](XcodeMacros1_normal.png)
 
 5. Select the top-most line and double-click the value field.
 
@@ -135,7 +149,7 @@ The method only returns the UDID when the build is not targeted to the App Sore.
 
 7. Enter the following string into the input field and finish with "Done".<pre><code>CONFIGURATION_$(CONFIGURATION)</code></pre>
 
-    <img src="XcodeMacros2_normal.png"/>
+    ![XcodeMacros2_normal.png](XcodeMacros2_normal.png)
 
 Now you can use `#if defined (CONFIGURATION_AppStore)` statements in your code. If your configurations have different names, please adjust the above use of `CONFIGURATION_AppStore`.
 

@@ -9,6 +9,9 @@
 /* For dialogs ok buttons */
 "HockeyOK" = "OK";
 
+/* Replacement for app name, if it could not be detected */
+"HockeyAppNamePlaceholder" = "Diese App";
+
 
 /* Crash */
 
@@ -94,6 +97,11 @@
 "UpdateAuthorizationOffline" = "Internet Verbindung wird benötigt!";
 
 "UpdateAuthorizationDenied" = "Autorisierung verweigert. Bitte kontaktieren Sie den Entwickler.";
+
+
+/* Update Expiry  */
+
+"UpdateExpired" = "%@ ist abgelaufen und kann nicht weiter benutzt werden.";
 
 
 /* Update Simulator Warning */

@@ -35,8 +35,27 @@
 
 #import "BITCrashReportTextFormatter.h"
 
+#ifndef CPU_SUBTYPE_ARM_V7S
+#define CPU_SUBTYPE_ARM_V7S		((cpu_subtype_t) 11) /* Swift */
+#endif
+
+/**
+ * Sort PLCrashReportBinaryImageInfo instances by their starting address.
+ */
+static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
+  uint64_t addr1 = [binary1 imageBaseAddress];
+  uint64_t addr2 = [binary2 imageBaseAddress];
+  
+  if (addr1 < addr2)
+    return NSOrderedAscending;
+  else if (addr1 > addr2)
+    return NSOrderedDescending;
+  else
+    return NSOrderedSame;
+}
+
+
 @interface BITCrashReportTextFormatter (PrivateAPI)
-NSInteger binaryImageSort(id binary1, id binary2, void *context);
 + (NSString *)formatStackFrame:(PLCrashReportStackFrameInfo *)frameInfo 
                     frameIndex:(NSUInteger)frameIndex
                         report:(PLCrashReport *)report;
@@ -129,6 +148,7 @@ NSInteger binaryImageSort(id binary1, id binary2, void *context);
             switch (report.systemInfo.architecture) {
                 case PLCrashReportArchitectureARMv6:
                 case PLCrashReportArchitectureARMv7:
+                case PLCrashReportArchitectureARMv7s:
                     codeType = @"ARM";
                     lp64 = false;
                     break;
@@ -154,8 +174,10 @@ NSInteger binaryImageSort(id binary1, id binary2, void *context);
 
     {
         NSString *reportGUID = @"[TODO]";
-        if (report.hasReportInfo && report.reportInfo.reportGUID != nil)
-            reportGUID = report.reportInfo.reportGUID;
+        if ([[report class] respondsToSelector:@selector(reportInfo)]) {
+            if (report.hasReportInfo && report.reportInfo.reportGUID != nil)
+                reportGUID = report.reportInfo.reportGUID;
+        }
       
         NSString *hardwareModel = @"???";
         if (report.hasMachineInfo && report.machineInfo.modelName != nil)
@@ -369,7 +391,11 @@ NSInteger binaryImageSort(id binary1, id binary2, void *context);
                         case CPU_SUBTYPE_ARM_V7:
                             archName = @"armv7";
                             break;
-                            
+
+                        case CPU_SUBTYPE_ARM_V7S:
+                            archName = @"armv7s";
+                            break;
+
                         default:
                             archName = @"arm-unknown";
                             break;
@@ -535,14 +561,16 @@ NSInteger binaryImageSort(id binary1, id binary2, void *context);
     if (imageInfo != nil) {
         imageName = [imageInfo.imageName lastPathComponent];
         baseAddress = imageInfo.imageBaseAddress;
-        //pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
-        //NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
-        //NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
-
-      // @steipete Removed check to get full symbolication w/o dSYM.
-        if (YES) {// || (![imagePath isEqual: report.processInfo.processPath] && ![imagePath hasPrefix:appBundleContentsPath])) {
-          symbol = frameInfo.symbolName;
-          pcOffset = frameInfo.instructionPointer - frameInfo.symbolStart;
+        pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
+        NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
+        NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]; 
+        
+        if ([[frameInfo class] respondsToSelector:@selector(symbolName)]) {
+          // @steipete: Modified for PSPDFKit to symblicate apps w/o a dSYM. 
+          //if (![imagePath isEqual: report.processInfo.processPath] && ![imagePath hasPrefix:appBundleContentsPath]) {
+            symbol = frameInfo.symbolName;
+            pcOffset = frameInfo.instructionPointer - frameInfo.symbolStart;
+          //}
         }
     }
   
@@ -585,21 +613,6 @@ NSInteger binaryImageSort(id binary1, id binary2, void *context);
                 baseAddress, 
                 pcOffset];
     }
-}
-
-/**
- * Sort PLCrashReportBinaryImageInfo instances by their starting address.
- */
-NSInteger binaryImageSort(id binary1, id binary2, void *context) {
-    uint64_t addr1 = [binary1 imageBaseAddress];
-    uint64_t addr2 = [binary2 imageBaseAddress];
-    
-    if (addr1 < addr2)
-        return NSOrderedAscending;
-    else if (addr1 > addr2)
-        return NSOrderedDescending;
-    else
-        return NSOrderedSame;
 }
 
 @end

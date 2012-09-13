@@ -36,7 +36,7 @@
 
 @interface BITHockeyManager ()
 
-- (BOOL)shouldUseLiveIdenfitier;
+- (BOOL)shouldUseLiveIdentifier;
 
 - (void)configureJMC;
 
@@ -66,8 +66,25 @@
 
 - (id) init {
   if ((self = [super init])) {
+    _updateURL = nil;
+    _delegate = nil;
+    
+    _disableCrashManager = NO;
+    _disableUpdateManager = NO;
+    
     _appStoreEnvironment = NO;
     _startManagerIsInvoked = NO;
+
+    // check if we are really not in an app store environment
+    if ([[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"]) {
+      _appStoreEnvironment = NO;
+    } else {
+      _appStoreEnvironment = YES;
+    }
+    
+#if TARGET_IPHONE_SIMULATOR
+    _appStoreEnvironment = NO;
+#endif
 
     [self performSelector:@selector(validateStartManagerIsInvoked) withObject:nil afterDelay:0.0f];
   }
@@ -80,7 +97,7 @@
   [_crashManager release], _crashManager = nil;
   [_updateManager release], _updateManager = nil;
   
-  delegate = nil;
+  _delegate = nil;
   
   [super dealloc];
 }
@@ -88,19 +105,19 @@
 
 #pragma mark - Public Instance Methods (Configuration)
 
-- (void)configureWithIdentifier:(NSString *)newAppIdentifier delegate:(id)newDelegate {
-  delegate = newDelegate;
+- (void)configureWithIdentifier:(NSString *)appIdentifier delegate:(id)delegate {
+  _delegate = delegate;
   [_appIdentifier release];
-  _appIdentifier = [newAppIdentifier copy];
+  _appIdentifier = [appIdentifier copy];
   
   [self initializeModules];
 }
 
-- (void)configureWithBetaIdentifier:(NSString *)betaIdentifier liveIdentifier:(NSString *)liveIdentifier delegate:(id)newDelegate {
-  delegate = newDelegate;
+- (void)configureWithBetaIdentifier:(NSString *)betaIdentifier liveIdentifier:(NSString *)liveIdentifier delegate:(id)delegate {
+  _delegate = delegate;
   [_appIdentifier release];
 
-  if ([self shouldUseLiveIdenfitier]) {
+  if ([self shouldUseLiveIdentifier]) {
     _appIdentifier = [liveIdentifier copy];
   }
   else {
@@ -114,34 +131,65 @@
 - (void)startManager {
   if (!_validAppIdentifier) return;
   
-  BITHockeyLog(@"Starting HockeyManager");
+  BITHockeyLog(@"INFO: Starting HockeyManager");
   _startManagerIsInvoked = YES;
   
   // start CrashManager
-  BITHockeyLog(@"Start crashManager");
-  [_crashManager performSelector:@selector(startManager) withObject:nil afterDelay:0.5f];
-    
+  if (![self isCrashManagerDisabled]) {
+    BITHockeyLog(@"INFO: Start CrashManager");
+    if (_updateURL) {
+      [_crashManager setUpdateURL:_updateURL];
+    }
+    [_crashManager startManager];
+  }
+  
   // Setup UpdateManager
-  BITHockeyLog(@"Start UpdateManager");
-  [_updateManager performSelector:@selector(startManager) withObject:nil afterDelay:0.5f];
+  if (![self isUpdateManagerDisabled] || [[self class] isJMCPresent]) {
+    BITHockeyLog(@"INFO: Start UpdateManager with small delay");
+    if (_updateURL) {
+      [_updateManager setUpdateURL:_updateURL];
+    }
+    [_updateManager performSelector:@selector(startManager) withObject:nil afterDelay:0.5f];
+  }
 }
 
 
 - (void)validateStartManagerIsInvoked {
   if (_validAppIdentifier && !_appStoreEnvironment) {
     if (!_startManagerIsInvoked) {
-      NSLog(@"ERROR: You did not call [[BITHockeyManager sharedHockeyManager] startManager] to startup the HockeySDK! Please do so after setting up all properties. The SDK is NOT running.");
+      NSLog(@"[HockeySDK] ERROR: You did not call [[BITHockeyManager sharedHockeyManager] startManager] to startup the HockeySDK! Please do so after setting up all properties. The SDK is NOT running.");
     }
+  }
+}
+
+
+- (void)setDisableUpdateManager:(BOOL)disableUpdateManager {
+  if (_updateManager) {
+    [_updateManager setDisableUpdateManager:disableUpdateManager];
+  }
+  _disableUpdateManager = disableUpdateManager;
+}
+
+
+- (void)setUpdateURL:(NSString *)anUpdateURL {
+  // ensure url ends with a trailing slash
+  if (![anUpdateURL hasSuffix:@"/"]) {
+    anUpdateURL = [NSString stringWithFormat:@"%@/", anUpdateURL];
+  }
+  
+  if (_updateURL != anUpdateURL) {
+    [_updateURL release];
+    _updateURL = [anUpdateURL copy];
   }
 }
 
 
 #pragma mark - Private Instance Methods
 
-- (BOOL)shouldUseLiveIdenfitier {
+- (BOOL)shouldUseLiveIdentifier {
   BOOL delegateResult = NO;
-  if ([delegate respondsToSelector:@selector(shouldUseLiveIdenfitier)]) {
-    delegateResult = [(NSObject <BITHockeyManagerDelegate>*)delegate shouldUseLiveIdenfitier];
+  if ([_delegate respondsToSelector:@selector(shouldUseLiveIdentifier)]) {
+    delegateResult = [(NSObject <BITHockeyManagerDelegate>*)_delegate shouldUseLiveIdentifier];
   }
 
   return (delegateResult) || (_appStoreEnvironment);
@@ -151,30 +199,21 @@
   NSCharacterSet *hexSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdef"];
   NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:_appIdentifier];
   _validAppIdentifier = ([_appIdentifier length] == 32) && ([hexSet isSupersetOfSet:inStringSet]);
-  
-  // check if we are really not in an app store environment
-  if ([[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"]) {
-    _appStoreEnvironment = NO;
-  } else {
-    _appStoreEnvironment = YES;
-  }
-  
-#if TARGET_IPHONE_SIMULATOR
-  _appStoreEnvironment = NO;
-#endif
-  
+    
   _startManagerIsInvoked = NO;
   
   if (_validAppIdentifier) {
-    BITHockeyLog(@"Setup CrashManager");
+    BITHockeyLog(@"INFO: Setup CrashManager");
     _crashManager = [[BITCrashManager alloc] initWithAppIdentifier:_appIdentifier];
+    _crashManager.delegate = _delegate;
     
-    BITHockeyLog(@"Setup UpdateManager");
+    BITHockeyLog(@"INFO: Setup UpdateManager");
     _updateManager = [[BITUpdateManager alloc] initWithAppIdentifier:_appIdentifier isAppStoreEnvironemt:_appStoreEnvironment];
+    _updateManager.delegate = _delegate;
     
     // Only if JMC is part of the project
     if ([[self class] isJMCPresent]) {
-      BITHockeyLog(@"Setup JMC");
+      BITHockeyLog(@"INFO: Setup JMC");
       [_updateManager setCheckForTracker:YES];
       [_updateManager addObserver:self forKeyPath:@"trackerConfig" options:0 context:nil];
       [[self class] disableJMCCrashReporter];
@@ -182,7 +221,7 @@
     }
     
   } else {
-    NSLog(@"ERROR: The app identifier is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!");
+    NSLog(@"[HockeySDK] ERROR: The app identifier is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!");
   }
 }
 
