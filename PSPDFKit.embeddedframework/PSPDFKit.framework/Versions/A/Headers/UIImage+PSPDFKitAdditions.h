@@ -35,9 +35,6 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 - (UIImage *)pspdf_preloadedImage;
 
 /// Creates a new image that is eventually decompressed using libjpeg-turbo.
-+ (UIImage *)pspdf_preloadedImageWithContentsOfFile:(NSString *)imagePath useJPGTurbo:(BOOL)useJPGTurbo;
-
-/// Creates a new image that is eventually decompressed using libjpeg-turbo.
 + (UIImage *)pspdf_preloadedImageWithData:(NSData *)data useJPGTurbo:(BOOL)useJPGTurbo;
 
 /// Load images from the bundle.

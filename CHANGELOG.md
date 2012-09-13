@@ -1,5 +1,15 @@
 # Changelog
 
+__v2.0.2 - 13/September/2012__
+
+*  Support for iPhone 5, Xcode 4.5, armv7s and the new screen resolution.
+*  Supports a new cover property to have a custom cover screen for videos (big play button; custom preview-images)
+*  Don't show browse popover/actionsheet for multimedia extensions during a long press.
+*  Don't allow long-press over a UIControl. (e.g. a UIButton)
+*  Fixes a issue where soemtimes multimedia annotations would be added multiple times to the document.
+*  Fixes a issue where sometimes you get blank space instead of a page when PSPDFPageRenderingModeFullPageBlocking and PSPDFPageScrollPerPageTransition was combined and the scrobble bar used heavily. This is a workaround for a UIKit bug.
+*  Removes libJPGTurbo; Apple's own implementation has gotten faster (especially in iOS6)
+
 __v2.0.1 - 12/September/2012__
 
 *  Faster search (document pattern detection if deplayed until needed, outline results get cached)

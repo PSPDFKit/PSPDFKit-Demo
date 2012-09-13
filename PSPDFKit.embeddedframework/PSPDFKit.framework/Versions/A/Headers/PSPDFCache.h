@@ -129,9 +129,6 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// This will load the pdf and remove any jpg artifacts.
 @property(assign) CGFloat JPGFormatCompression;
 
-/// Uses libjpeg-turbo for caching. Faster than what CoreFoundation provides. Defaults to YES, as of 1.9.10
-@property(assign) BOOL useJPGTurbo;
-
 /// The interpolation level applied to thumbnail and tiny images.
 /// Defaults to kCGInterpolationHigh.
 @property(assign) CGInterpolationQuality downscaleInterpolationQuality;
