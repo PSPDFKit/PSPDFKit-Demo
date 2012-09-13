@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFGradientView Class Reference</title>
+		<title>PSPDFWebViewControllerDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFGradientView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFWebViewControllerDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,8 +26,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,17 +36,13 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/colors">&nbsp;&nbsp;&nbsp;&nbsp;colors</option>
-	
-	<option value="//api/name/direction">&nbsp;&nbsp;&nbsp;&nbsp;direction</option>
-	
-	<option value="//api/name/locations">&nbsp;&nbsp;&nbsp;&nbsp;locations</option>
 	
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/masterViewController">&nbsp;&nbsp;&nbsp;&nbsp;- masterViewController</option>
 	
 	
 	
@@ -59,8 +53,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -72,26 +64,22 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colors">colors</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/direction">direction</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/locations">locations</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/masterViewController">masterViewController</a></span></li>
 	
 </ul></li>
-
-
-
-
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFGradientView Class Reference" name="top"></a>
+				<a title="PSPDFWebViewControllerDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -100,29 +88,21 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFGradientView Class Reference</h1>
+						<h1 class="title title-header">PSPDFWebViewControllerDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFGradientView.h</td>
+	<td class="specification-value">PSPDFWebViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
-					
-					
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Display a gradient.</p>
-					</div>
 					
 					
 					
@@ -139,26 +119,11 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/direction">&nbsp;&nbsp;direction</a></code>
-		<span class="tooltip"><p>Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.</p></span>
+		<code><a href="#//api/name/masterViewController">&ndash;&nbsp;masterViewController</a></code>
+		<span class="tooltip"><p>Controller where the webViewController has been pushed to (to dismiss modally)</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
 	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/colors">&nbsp;&nbsp;colors</a></code>
-		<span class="tooltip"><p>Gradient colors.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/locations">&nbsp;&nbsp;locations</a></code>
-		<span class="tooltip"><p>Gradient location. Array of NSNumber objects that define the location of each color.
-Defaults to nil; which is a uniform spread.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
+	<span class="task-item-suffix">required method</span>
 </li>
 						</ul>
 						
@@ -168,22 +133,26 @@ Defaults to nil; which is a uniform spread.</p></span>
 					
 					
 					
+					
+					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/colors" title="colors"></a>
-	<h3 class="subsubtitle method-title">colors</h3>
+	<a name="//api/name/masterViewController" title="masterViewController"></a>
+	<h3 class="subsubtitle method-title">masterViewController</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Gradient colors.</p>
+		<p>Controller where the webViewController has been pushed to (to dismiss modally)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *colors</code></div>
+	<div class="method-subsection method-declaration"><code>- (UIViewController *)masterViewController</code></div>
 	
 	
 	
@@ -200,86 +169,13 @@ Defaults to nil; which is a uniform spread.</p></span>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/direction" title="direction"></a>
-	<h3 class="subsubtitle method-title">direction</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFGradientViewDirection direction</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/locations" title="locations"></a>
-	<h3 class="subsubtitle method-title">locations</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Gradient location. Array of NSNumber objects that define the location of each color.
-Defaults to nil; which is a uniform spread.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *locations</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
-					
-					
-					
-					
 					
 					
 				</div>

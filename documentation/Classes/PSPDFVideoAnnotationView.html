@@ -44,6 +44,8 @@
 	
 	<option value="//api/name/autostartEnabled">&nbsp;&nbsp;&nbsp;&nbsp;autostartEnabled</option>
 	
+	<option value="//api/name/coverView">&nbsp;&nbsp;&nbsp;&nbsp;coverView</option>
+	
 	<option value="//api/name/player">&nbsp;&nbsp;&nbsp;&nbsp;player</option>
 	
 	<option value="//api/name/useApplicationAudioSession">&nbsp;&nbsp;&nbsp;&nbsp;useApplicationAudioSession</option>
@@ -51,6 +53,13 @@
 	
 	
 	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addCoverView">&nbsp;&nbsp;&nbsp;&nbsp;- addCoverView</option>
+	
+	<option value="//api/name/coverURL">&nbsp;&nbsp;&nbsp;&nbsp;- coverURL</option>
 	
 	
 	
@@ -68,6 +77,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -80,6 +91,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/autostartEnabled">autostartEnabled</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coverView">coverView</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/player">player</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useApplicationAudioSession">useApplicationAudioSession</a></span></li>
@@ -89,6 +102,14 @@
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addCoverView">addCoverView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coverURL">coverURL</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -138,7 +159,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -173,6 +194,36 @@ Property will reset itself after setting a new annotation.</p></span>
 		<span class="tooltip"><p>Instance of the MPMoviePlayerController.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/coverView">&nbsp;&nbsp;coverView</a></code>
+		<span class="tooltip"><p>Cover view is only set if cover option is set.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/coverURL">&ndash;&nbsp;coverURL</a></code>
+		<span class="tooltip"><p>Looks into (self.linkAnnotation.options)[@&ldquo;cover&rdquo;] for the cover <a href="#//api/name/URL">URL</a>.
+Might return something else; check type before using it as an NS<a href="#//api/name/URL">URL</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addCoverView">&ndash;&nbsp;addCoverView</a></code>
+		<span class="tooltip"><p>Adds the <a href="#//api/name/coverView">coverView</a> if not yet added.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -233,6 +284,40 @@ Property will reset itself after setting a new annotation.</p></span>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isAutostartEnabled) BOOL autostartEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFVideoAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/coverView" title="coverView"></a>
+	<h3 class="subsubtitle method-title">coverView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cover view is only set if cover option is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFVideoAnnotationCoverView *coverView</code></div>
 	
 	
 	
@@ -334,6 +419,81 @@ Property will reset itself after setting a new annotation.</p>
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addCoverView" title="addCoverView"></a>
+	<h3 class="subsubtitle method-title">addCoverView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adds the <a href="#//api/name/coverView">coverView</a> if not yet added.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)addCoverView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFVideoAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/coverURL" title="coverURL"></a>
+	<h3 class="subsubtitle method-title">coverURL</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Looks into (self.linkAnnotation.options)[@&ldquo;cover&rdquo;] for the cover <a href="#//api/name/URL">URL</a>.
+Might return something else; check type before using it as an NS<a href="#//api/name/URL">URL</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)coverURL</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFVideoAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 				</div>
 				<div class="main-navigation navigation-bottom">
@@ -345,7 +505,7 @@ Property will reset itself after setting a new annotation.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

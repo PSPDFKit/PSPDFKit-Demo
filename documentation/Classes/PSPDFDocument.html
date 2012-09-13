@@ -524,8 +524,8 @@ Adding the same file multiple times is allowed.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
-Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p></span>
+		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p></span>
 	</span>
 	
 	
@@ -748,14 +748,14 @@ Might need file operations to parse the document (slow)</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
 		<span class="tooltip"><p>Return PDF page number (PDF pages start at 1).
-This may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+This may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/compensatedPageForPage:">&ndash;&nbsp;compensatedPageForPage:</a></code>
-		<span class="tooltip"><p>Equal to pageNumberFor<a href="../Classes/Page.html">Page</a>, but returns zero-based compensated page.
+		<span class="tooltip"><p>Equal to pageNumberForPage, but returns zero-based compensated page.
 (Essentially pageNumberForPage-1)</p></span>
 	</span>
 	
@@ -770,14 +770,14 @@ This may be different if a collection of pdfs is used a one big document. <a hre
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -792,7 +792,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -800,7 +800,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Rotation for specified page. cached. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -1019,7 +1019,7 @@ Can be customized with using <a href="#//api/name/overrideClassNames">overrideCl
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">&ndash;&nbsp;pageLabelForPage:substituteWithPlainLabel:</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+		<span class="tooltip"><p>Page labels (NSString) for the current document.
 Might be nil if PageLabels isn&rsquo;t set in the PDF.
 If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p></span>
 	</span>
@@ -2811,7 +2811,7 @@ This is called implicitely if you change the <a href="#//api/name/files">files</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Equal to pageNumberFor<a href="../Classes/Page.html">Page</a>, but returns zero-based compensated page.
+		<p>Equal to pageNumberForPage, but returns zero-based compensated page.
 (Essentially pageNumberForPage-1)</p>
 	</div>		
 	
@@ -3340,7 +3340,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3374,7 +3374,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
@@ -3409,7 +3409,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+		<p>Page labels (NSString) for the current document.
 Might be nil if PageLabels isn&rsquo;t set in the PDF.
 If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p>
 	</div>		
@@ -3446,7 +3446,7 @@ If substituteWithPlainLabel is set to YES then this always returns a <a href="#/
 	
 	<div class="method-subsection brief-description">
 		<p>Return PDF page number (PDF pages start at 1).
-This may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+This may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3480,8 +3480,8 @@ This may be different if a collection of pdfs is used a one big document. <a hre
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
-Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p>
+		<p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p>
 	</div>		
 	
 	
@@ -3515,7 +3515,7 @@ Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileInd
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -3648,7 +3648,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Rotation for specified page. cached. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3806,7 +3806,7 @@ After unlocking a document, you need to call reloadData on the <a href="../Class
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

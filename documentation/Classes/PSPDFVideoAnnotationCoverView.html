@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFGradientView Class Reference</title>
+		<title>PSPDFVideoAnnotationCoverView Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFGradientView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFVideoAnnotationCoverView Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,11 +40,9 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/colors">&nbsp;&nbsp;&nbsp;&nbsp;colors</option>
+	<option value="//api/name/coverImage">&nbsp;&nbsp;&nbsp;&nbsp;coverImage</option>
 	
-	<option value="//api/name/direction">&nbsp;&nbsp;&nbsp;&nbsp;direction</option>
-	
-	<option value="//api/name/locations">&nbsp;&nbsp;&nbsp;&nbsp;locations</option>
+	<option value="//api/name/playButton">&nbsp;&nbsp;&nbsp;&nbsp;playButton</option>
 	
 	
 	
@@ -74,11 +72,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colors">colors</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/coverImage">coverImage</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/direction">direction</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/locations">locations</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/playButton">playButton</a></span></li>
 	
 </ul></li>
 
@@ -91,7 +87,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFGradientView Class Reference" name="top"></a>
+				<a title="PSPDFVideoAnnotationCoverView Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -100,7 +96,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFGradientView Class Reference</h1>
+						<h1 class="title title-header">PSPDFVideoAnnotationCoverView Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -111,7 +107,7 @@
 	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFGradientView.h</td>
+	<td class="specification-value">PSPDFVideoAnnotationView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -121,7 +117,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Display a gradient.</p>
+						<p>If the cover option is set, this is showed until the play button is pressed.
+Note: doesn&rsquo;t work with overrideClassNames (since within an annotation view, we don&rsquo;t have a connection to the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>)</p>
 					</div>
 					
 					
@@ -139,23 +136,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/direction">&nbsp;&nbsp;direction</a></code>
-		<span class="tooltip"><p>Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.</p></span>
+		<code><a href="#//api/name/coverImage">&nbsp;&nbsp;coverImage</a></code>
+		<span class="tooltip"><p>The cover image (might be w/o actual image set)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/colors">&nbsp;&nbsp;colors</a></code>
-		<span class="tooltip"><p>Gradient colors.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/locations">&nbsp;&nbsp;locations</a></code>
-		<span class="tooltip"><p>Gradient location. Array of NSNumber objects that define the location of each color.
-Defaults to nil; which is a uniform spread.</p></span>
+		<code><a href="#//api/name/playButton">&nbsp;&nbsp;playButton</a></code>
+		<span class="tooltip"><p>The play button.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -173,17 +162,17 @@ Defaults to nil; which is a uniform spread.</p></span>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/colors" title="colors"></a>
-	<h3 class="subsubtitle method-title">colors</h3>
+	<a name="//api/name/coverImage" title="coverImage"></a>
+	<h3 class="subsubtitle method-title">coverImage</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Gradient colors.</p>
+		<p>The cover image (might be w/o actual image set)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *colors</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIImageView *coverImage</code></div>
 	
 	
 	
@@ -200,24 +189,24 @@ Defaults to nil; which is a uniform spread.</p></span>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
+		<code class="declared-in-ref">PSPDFVideoAnnotationView.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/direction" title="direction"></a>
-	<h3 class="subsubtitle method-title">direction</h3>
+	<a name="//api/name/playButton" title="playButton"></a>
+	<h3 class="subsubtitle method-title">playButton</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.</p>
+		<p>The play button.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFGradientViewDirection direction</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIButton *playButton</code></div>
 	
 	
 	
@@ -234,42 +223,7 @@ Defaults to nil; which is a uniform spread.</p></span>
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/locations" title="locations"></a>
-	<h3 class="subsubtitle method-title">locations</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Gradient location. Array of NSNumber objects that define the location of each color.
-Defaults to nil; which is a uniform spread.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *locations</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFGradientView.h</code><br />
+		<code class="declared-in-ref">PSPDFVideoAnnotationView.h</code><br />
 	</div>				
 	
 	

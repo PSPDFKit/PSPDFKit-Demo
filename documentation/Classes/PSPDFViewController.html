@@ -211,7 +211,7 @@
 	
 	<option value="//api/name/presentModalViewController:embeddedInNavigationController:withCloseButton:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- presentModalViewController:embeddedInNavigationController:withCloseButton:animated:</option>
 	
-	<option value="//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:">&nbsp;&nbsp;&nbsp;&nbsp;- presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:</option>
+	<option value="//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:">&nbsp;&nbsp;&nbsp;&nbsp;- presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:</option>
 	
 	<option value="//api/name/reloadData">&nbsp;&nbsp;&nbsp;&nbsp;- reloadData</option>
 	
@@ -234,6 +234,8 @@
 	<option value="//api/name/updateBarButtonItem:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- updateBarButtonItem:animated:</option>
 	
 	<option value="//api/name/updateGridForOrientation">&nbsp;&nbsp;&nbsp;&nbsp;- updateGridForOrientation</option>
+	
+	<option value="//api/name/updateSettingsForRotation:">&nbsp;&nbsp;&nbsp;&nbsp;- updateSettingsForRotation:</option>
 	
 	<option value="//api/name/visiblePageNumbers">&nbsp;&nbsp;&nbsp;&nbsp;- visiblePageNumbers</option>
 	
@@ -275,9 +277,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingSupport Methods">SubclassingSupport Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
 </ul></li>
 
@@ -459,7 +461,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentModalViewController:embeddedInNavigationController:withCloseButton:animated:">presentModalViewController:embeddedInNavigationController:withCloseButton:animated:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:">presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:">presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/reloadData">reloadData</a></span></li>
 	
@@ -482,6 +484,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateBarButtonItem:animated:">updateBarButtonItem:animated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateGridForOrientation">updateGridForOrientation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/visiblePageNumbers">visiblePageNumbers</a></span></li>
 	
@@ -514,7 +518,7 @@
 	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">MFMailComposeViewControllerDelegate<br />PSCollectionViewDataSource<br />PSCollectionViewDelegate<br /><a href="../Protocols/PSPDFOutlineViewControllerDelegate.html">PSPDFOutlineViewControllerDelegate</a><br /><a href="../Protocols/PSPDFPasswordViewDelegate.html">PSPDFPasswordViewDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br />UIPopoverControllerDelegate</td>
+	<td class="specification-value">MFMailComposeViewControllerDelegate<br />PSCollectionViewDataSource<br />PSCollectionViewDelegate<br /><a href="../Protocols/PSPDFOutlineViewControllerDelegate.html">PSPDFOutlineViewControllerDelegate</a><br /><a href="../Protocols/PSPDFPasswordViewDelegate.html">PSPDFPasswordViewDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br /><a href="../Protocols/PSPDFWebViewControllerDelegate.html">PSPDFWebViewControllerDelegate</a><br />UIPopoverControllerDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFViewController.h</td>
@@ -564,7 +568,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p></spa
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -572,7 +576,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in doub
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -580,21 +584,21 @@ This represents the pages in the pdf <a href="#//api/name/document">document</a>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setPage:animated:">&ndash;&nbsp;setPage:animated:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in Dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
+		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in DualPage mode.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPreviousPageAnimated:">&ndash;&nbsp;scrollToPreviousPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in Dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
+		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in DualPage mode.</p></span>
 	</span>
 	
 	
@@ -847,7 +851,7 @@ NO will perform a generic zoom into the tap area. Defauts to YES.</p></span>
 		<code><a href="#//api/name/viewLockEnabled">&nbsp;&nbsp;viewLockEnabled</a></code>
 		<span class="tooltip"><p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
+This also blocks programatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1043,7 +1047,8 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 		<code><a href="#//api/name/pageMode">&nbsp;&nbsp;pageMode</a></code>
 		<span class="tooltip"><p>Set a PageMode defined in the enum. (Single/Double Pages)
 Reloads the view, unless it is set while rotation is active.
-Thus, one can customize the rotation behavior with animations when set within willAnimate*.</p></span>
+Thus, one can customize the rotation behavior with animations when set within willAnimate*.
+Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1119,7 +1124,7 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagePadding">&nbsp;&nbsp;pagePadding</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
+		<span class="tooltip"><p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1250,7 +1255,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -1263,7 +1268,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:">&ndash;&nbsp;presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:</a></code>
+		<code><a href="#//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:">&ndash;&nbsp;presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:</a></code>
 		<span class="tooltip"><p>Show a modal view controller or a popover with automatically added close button on the left side.
 Use sender OR rect (both only needed for the popover)</p></span>
 	</span>
@@ -1295,21 +1300,6 @@ Use sender OR rect (both only needed for the popover)</p></span>
 		<code><a href="#//api/name/masterViewController">&ndash;&nbsp;masterViewController</a></code>
 		<span class="tooltip"><pre><code>Returns the topmost, active viewcontroller.
 </code></pre></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="Internal Methods" name="task_Internal Methods"></a>
-						<h3 class="subsubtitle task-title">Internal Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/handleTouchUpForAnnotationIgnoredByDelegate:">&ndash;&nbsp;handleTouchUpForAnnotationIgnoredByDelegate:</a></code>
-		<span class="tooltip"><p>Causes the annotations to be handled as the receiver sees fit (for example, link annotations are followed).</p></span>
 	</span>
 	
 	
@@ -1354,6 +1344,15 @@ The toolbar is only displayed, if PSPDFViewController is inside a UINavigationCo
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/updateSettingsForRotation:">&ndash;&nbsp;updateSettingsForRotation:</a></code>
+		<span class="tooltip"><p>Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
+Might be called multiple times during a rotation, so any code in there should be fast.
+The default implementation for this is empty.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/statusBarStyle">&ndash;&nbsp;statusBarStyle</a></code>
 		<span class="tooltip"><p>Manually return the desired UI status bar style (default is evaluated via app status bar style)</p></span>
 	</span>
@@ -1365,6 +1364,21 @@ The toolbar is only displayed, if PSPDFViewController is inside a UINavigationCo
 		<span class="tooltip"><p>Access internal UIViewController for displaying the PDF content</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Internal Methods" name="task_Internal Methods"></a>
+						<h3 class="subsubtitle task-title">Internal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/handleTouchUpForAnnotationIgnoredByDelegate:">&ndash;&nbsp;handleTouchUpForAnnotationIgnoredByDelegate:</a></code>
+		<span class="tooltip"><p>Causes the annotations to be handled as the receiver sees fit (for example, link annotations are followed).</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -2129,6 +2143,15 @@ Defaults to (<a href="#//api/name/closeButtonItem">closeButtonItem</a>) if view 
 	
 	
 	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Note that it appears that UIKit limits the left toolbar size if spaces is low in the toolbar, potentially cutting off buttons
+in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to
+fix this problem. It also appears that UIKit focues on the leftToolbar, the right one is cut of much later.
+This problem only appears on the iPad in portrait mode.
+You can also use updateSettingsForRotation to adapt the toolbar for portrait/landscape mode.</p>
+	</div>
+	
 	
 	
 	
@@ -2503,7 +2526,7 @@ When changing padding; the touch area is still fully active.
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p>
 	</div>		
 	
@@ -2575,7 +2598,8 @@ Note: doesn&rsquo;t re-order <a href="#//api/name/document">document</a> pages. 
 	<div class="method-subsection brief-description">
 		<p>Set a PageMode defined in the enum. (Single/Double Pages)
 Reloads the view, unless it is set while rotation is active.
-Thus, one can customize the rotation behavior with animations when set within willAnimate*.</p>
+Thus, one can customize the rotation behavior with animations when set within willAnimate*.
+Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p>
 	</div>		
 	
 	
@@ -2609,7 +2633,7 @@ Thus, one can customize the rotation behavior with animations when set within wi
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
+		<p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
 	</div>		
 	
 	
@@ -2932,7 +2956,7 @@ Defaults to YES. If NO, an attempt to display the <a href="#//api/name/document"
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the pdf <a href="#//api/name/document">document</a>, starting at 0.</p>
 	</div>		
 	
@@ -3682,7 +3706,7 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	<div class="method-subsection brief-description">
 		<p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
+This also blocks programatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p>
 	</div>		
 	
@@ -4138,7 +4162,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -4281,8 +4305,8 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:" title="presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:"></a>
-	<h3 class="subsubtitle method-title">presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:rect:</h3>
+	<a name="//api/name/presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:" title="presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:"></a>
+	<h3 class="subsubtitle method-title">presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options:</h3>
 	
 	
 	
@@ -4292,7 +4316,7 @@ Use sender OR rect (both only needed for the popover)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)presentViewControllerModalOrPopover:(UIViewController *)<em>controller</em> embeddedInNavigationController:(BOOL)<em>embedded</em> withCloseButton:(BOOL)<em>closeButton</em> animated:(BOOL)<em>animated</em> sender:(UIBarButtonItem *)<em>sender</em> rect:(CGRect)<em>rect</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)presentViewControllerModalOrPopover:(UIViewController *)<em>controller</em> embeddedInNavigationController:(BOOL)<em>embedded</em> withCloseButton:(BOOL)<em>closeButton</em> animated:(BOOL)<em>animated</em> sender:(UIBarButtonItem *)<em>sender</em> options:(NSDictionary *)<em>options</em></code></div>
 	
 	
 	
@@ -4392,7 +4416,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in Dual<a href="../Classes/Page.html">Page</a> mode.</p>
+		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in DualPage mode.</p>
 	</div>		
 	
 	
@@ -4426,7 +4450,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in Dual<a href="../Classes/Page.html">Page</a> mode.</p>
+		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in DualPage mode.</p>
 	</div>		
 	
 	
@@ -4494,7 +4518,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -4692,6 +4716,42 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/updateSettingsForRotation:" title="updateSettingsForRotation:"></a>
+	<h3 class="subsubtitle method-title">updateSettingsForRotation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
+Might be called multiple times during a rotation, so any code in there should be fast.
+The default implementation for this is empty.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)updateSettingsForRotation:(UIInterfaceOrientation)<em>toInterfaceOrientation</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/visiblePageNumbers" title="visiblePageNumbers"></a>
 	<h3 class="subsubtitle method-title">visiblePageNumbers</h3>
 	
@@ -4772,7 +4832,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-08)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-13)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
