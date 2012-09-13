@@ -1,5 +1,11 @@
 # Changelog
 
+__v2.0.3 - 14/September/2012__
+
+*  Add a new "renderOptions" property to PSPDFDocument to fine-tune documents (e.g. fixes gray border lines in mostly-black documents)
+*  Reduces file size of PSPDFKit.bundle by about 50%; improves speed of certain helper plists parsing.
+*  Fixes a bug that sneeked in because PSPDFKit is now compiled with Xcode 4.5. This release now also works with 4.4 for binary.
+
 __v2.0.2 - 13/September/2012__
 
 *  Support for iPhone 5, Xcode 4.5, armv7s and the new screen resolution.
