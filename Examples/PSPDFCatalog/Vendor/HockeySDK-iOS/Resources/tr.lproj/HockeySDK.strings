@@ -9,6 +9,9 @@
 /* For dialogs ok buttons */
 "HockeyOK" = "Tamam";
 
+/* Replacement for app name, if it could not be detected */
+"HockeyAppNamePlaceholder" = "This app";
+
 
 /* Crash */
 
@@ -94,6 +97,11 @@
 "UpdateAuthorizationOffline" = "Internet connection required!";
 
 "UpdateAuthorizationDenied" = "Authorizing denied. Please contact the developer.";
+
+
+/* Update Expiry  */
+
+"UpdateExpired" = "%@ is expired and can not be used any longer.";
 
 
 /* Update Simulator Warning */

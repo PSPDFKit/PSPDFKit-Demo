@@ -1,5 +1,4 @@
-Introduction
-============
+## Introduction
 
 Mac and iOS crash reports show the stack traces for all running threads of your app of the time a crash occured. But the stack traces only contain memory addresses and don't show class names, methods, file names and line numbers that are needed to understand them.
 
@@ -7,8 +6,7 @@ To get these memory addresses translated you need to upload a dSYM package to th
 
 **WARNING:** Every time you are doing a build, the app binary and the dSYM will get a new unique UUID, no matter if you changed the code or not. So make sure to archive all your binaries and dSYMs that you are using for beta or app store builds!
 
-HowTo
-=====
+## HowTo
 
 Once you have your app ready for beta testing or even to submit it to the App Store, you need to upload the `.dSYM` bundle to HockeyApp to enable symbolication. If you have built your app with Xcode4, menu `Product` > `Archive`, you can find the `.dSYM` as follows:
 
@@ -19,4 +17,8 @@ Once you have your app ready for beta testing or even to submit it to the App St
 5. Right-click the `.xcarchive` in Finder and select `Show Package Contents`.
 6. You should see a folder named dSYMs which contains your dSYM bundle. If you use Safari, just drag this file from Finder and drop it on to the corresponding drop zone in HockeyApp. If you use another browser, copy the file to a different location, then right-click it and choose Compress `YourApp.dSYM`. The file will be compressed as a .zip file. Drag & drop this file to HockeyApp. 
 
-As an alternative for step 5 and 6, you can use our [HockeyMac](https://github.com/codenauts/HockeyMac) app to upload the complete archive in one step. You can even integrate HockeyMac into Xcode to automatically show the upload interface after archiving your app, which would make all steps 1 to 6 not necessary any more!
+## Mac Desktop Uploader
+
+As an alternative, you can use our [HockeyMac](Guide-Installation-Mac-App) app to upload the complete archive in one step. You can even integrate HockeyMac into Xcode to automatically show the upload interface after archiving your app, which would make all steps 1 to 6 not necessary any more!
+
+Check out the [Mac Desktop Uploader Guide](Guide-Installation-Mac-App).

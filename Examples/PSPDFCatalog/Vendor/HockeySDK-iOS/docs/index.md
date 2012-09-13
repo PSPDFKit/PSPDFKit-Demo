@@ -1,5 +1,4 @@
-Introduction
-============
+## Introduction
 
 HockeySDK-iOS implements support for using HockeyApp in your iOS applications.
 
@@ -11,26 +10,32 @@ The following features are currently supported:
 
 The main SDK class is `BITHockeyManager`. It initializes all modules and provides access to them, so they can be further adjusted if required. Additionally all modules provide their own protocols.
 
-Prerequisites
-=============
+## Prerequisites
 
 1. Before you integrate HockeySDK into your own app, you should add the app to HockeyApp if you haven't already. Read [this how-to](http://support.hockeyapp.net/kb/how-tos/how-to-create-a-new-app) on how to do it.
 2. We also assume that you already have a project in Xcode and that this project is opened in Xcode 4.
 3. The SDK supports iOS 4.0 or newer.
 
-Guides
-======
+## Release Notes
+
+- [Changelog](Changelog)
+
+## Guides
 
 - [Installation & Setup](Guide-Installation-Setup)
+- [Installation & Setup Advanced](Guide-Installation-Setup-Advanced) (Using Git submodule and Xcode sub-project)
 - [Migration from HockeyKit & QuincyKit](Guide-Migration-Kits)
+- [Mac Desktop Uploader](Guide-Installation-Mac-App)
 
-HowTos
-======
+## HowTos
 
 - [How to do app versioning](HowTo-App-Versioning)
 - [How to upload symbols for crash reporting](HowTo-Upload-Symbols)
+- [How to handle crashes on startup](HowTo-Handle-Crashes-On-Startup)
+- [How to add application specific log data](HowTo-Add-Application-Log)
 
-Troubleshooting
-===============
 
-- [Crashes do not appear on HockeyApp](Troubleshooting-Crashes-Dont-Appear)
+## Troubleshooting
+
+- [Symbolication doesn't work](Symbolication-Doesnt-Work) (Or the rules of binary UUIDs and dSYMs)
+- [Crash Reporting is not working](Troubleshooting-Crash-Reporting-Not-Working)
