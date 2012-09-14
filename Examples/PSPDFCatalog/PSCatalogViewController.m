@@ -74,8 +74,6 @@
             }
         }]];
         );
-        
-        [content addObject:appSection];
 
         PSPDFDocument *hcakerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
 
@@ -88,6 +86,10 @@
             controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
             return controller;
         }]];
+
+        [content addObject:appSection];
+        ///////////////////////////////////////////////////////////////////////////////////////////
+
 
         // PSPDFDocument data provider test
         PSCSectionDescriptor *documentTests = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible."];
@@ -121,7 +123,6 @@
             controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
             return controller;
         }]];
-        [content addObject:documentTests];
 
         /// PSPDFDocument works with multiple NSURLs
         [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple files" block:^{
@@ -133,7 +134,6 @@
         }]];
 
         [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects (memory mapped)" block:^{
-
             static PSPDFDocument *document = nil;
             if (!document) {
                 NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
@@ -173,6 +173,34 @@
             return controller;
         }]];
 
+
+        /// Example how to decrypt a AES256 encrypted PDF on the fly.
+        /// The crypto feature is only available in PSPDFKit Annotate.
+        if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
+            [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
+
+                NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"output.pdf.aes"];
+
+                // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
+                // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
+                NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
+                NSString *salt = @"ducrXn9WaRdpaBfMjDTJVjUf3FApA6gtim0e61LeSGWV9sTxB0r26mPs59Lbcexn";
+
+                PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF passphrase:passphrase salt:salt];
+
+                PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProviderRef];
+                document.UID = [encryptedPDF lastPathComponent]; // manually set an UID for encrypted documents.
+
+                // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
+                // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
+                // document.cacheStrategy = PSPDFCacheNothing;
+                
+                return [[PSPDFViewController alloc] initWithDocument:document];
+            }]];
+        }
+
+        [content addObject:documentTests];
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
         PSCSectionDescriptor *multimediaSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Multimedia extensions" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
 
@@ -239,6 +267,7 @@
         }]];
 
         [content addObject:annotationSection];
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
         PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
         [storyboardSection addContent:[[PSContent alloc] initWithTitle:@"Init with Storyboard" block:^UIViewController *{
@@ -267,6 +296,8 @@
         }]];
 
         [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Disable Toolbar" block:^{
+            [[[UIAlertView alloc] initWithTitle:@"Will exit in 5 seconds." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
+
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
 
             PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -286,10 +317,13 @@
             return pdfController;
         }]];
 
-        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Text Selection Menu" block:^{
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-            return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
-        }]];
+        // Text selection feature is only available in PSPDFKit Annotate.
+        if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
+            [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Text Selection Menu" block:^{
+                PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+                return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
+            }]];
+        }
 
         [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Background Color" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -297,8 +331,9 @@
             pdfController.backgroundColor = [UIColor brownColor];
             return pdfController;
         }]];
-
+        
         [content addObject:customizationSection];
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
         PSCSectionDescriptor *encryptedSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords" footer:@"Password is test123"];
 
@@ -319,7 +354,7 @@
         }]];
 
         [content addObject:encryptedSection];
-
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
         PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
 
@@ -356,6 +391,7 @@
         );
 
         [content addObject:subclassingSection];
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
 
         PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:@"How to use PSPDFViewControllerDelegate"];
@@ -367,6 +403,7 @@
             return controller;
         }]];
         [content addObject:delegateSection];
+        ///////////////////////////////////////////////////////////////////////////////////////////
 
 
         // iPad only examples
