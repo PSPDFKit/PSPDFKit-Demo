@@ -1,9 +1,16 @@
 # Changelog
 
+__v2.0.4 - 1x/September/2012__
+
+*  Fixes "Persistent Text Loupe" when moving over a link annotation while selecting.
+*  Allow to customize caching strategy per document with the new cacheStrategy property.
+*  Fixes a memory leak when CGDataProviderRef is used to initialize a PSPDFDocument.
+
 __v2.0.3 - 14/September/2012__
 
 *  Add a new "renderOptions" property to PSPDFDocument to fine-tune documents (e.g. fixes gray border lines in mostly-black documents)
 *  Reduces file size of PSPDFKit.bundle by about 50%; improves speed of certain helper plists parsing.
+*  Fixes potential category clashing
 *  Fixes a bug that sneeked in because PSPDFKit is now compiled with Xcode 4.5. This release now also works with 4.4 for binary.
 
 __v2.0.2 - 13/September/2012__
