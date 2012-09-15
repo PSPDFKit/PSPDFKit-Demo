@@ -39,6 +39,14 @@ documentation: current-menu-item current_page_item
 	  <script src="https://gist.github.com/1117224.js"> </script>
 	  <p>See PSPDFCatalog for a working demo. Note that while PSDPFDocument accepts a NSURL, only *local* PDF documents are supported. If you need to download them, look at the Kiosk example within PSPDFCatalog for some great example code.</p>
 	</div>
+	
+	<div id="encryption" class="col-full section">
+	  <h2 class="section-title">Encryption</h2>
+	  <p>The default PDF password encryption is supported. If you open a PDF document that is password protected, PSPDFKit will show a password prompt to unlock. (<a href="/documentation/Classes/PSPDFViewController.html#//api/name/passwordDialogEnabled">This can also be disabled</a> and/or <a href="/documentation/Classes/PSPDFDocument.html#//api/name/unlockWithPassword:">the password can be set programmatically</a>)</p>
+	  <p>The Acrobat 3 And Later option uses a low encryption level (40‑bit RC4), while the other options use a high encryption level (128‑bit RC4 or AES). Acrobat 9.0 And Later encrypts the document using the AES encryption algorithm with a 256-bit key size. iOS including version 6 does not yet support the Acrobat 9.0+ style encryption.</p><br>
+	  <p>PSPDFKit Annotate 2.1+ is able to add an <b>additional layer of security</b> with support for state-of-the-art fast, in-memory <a href="http://en.wikipedia.org/wiki/AES256">AES256</a> decryption using the PSPDFAESCryptoDataProvider (iOS5+) class. You can encrypt the whole file with a password+salt, and with using 50.000 <a href="http://en.wikipedia.org/wiki/PBKDF2">PBKDF</a> iterations it's well-protected against brute-force attacks (<a href="http://www.macworld.com/article/1137343/pdf.html">unlike solutions from Adobe</a>). We also provide the "AESCrypt" Mac app that encrypts your PDF documents. Unlike NSData-based solutions, the PDF never is *fully* decrypted, and this even works with very large (> 100MB) documents.</p>
+	<script src="https://gist.github.com/3727230.js?file=PSPDFAESCryptoDataProviderExample.m"></script>
+	</div>
 
 	<div id="logging" class="col-full section">
 	  <h2 class="section-title">Logging</h2>
