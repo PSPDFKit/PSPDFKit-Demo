@@ -24,7 +24,7 @@
     // add custom localization changes (just a simple example)
     // See PSPDFKit.bundle for all available strings.
     PSPDFSetLocalizationDictionary(@{@"en" :
-                                   @{@"Go to %@" : @"Browse %@",
+                                   @{@"Go to %@" : @"%@",
                                      @"%d of %d" : @"Page %d of %d",
                                      @"Outline"  : @"Table of Contents"
                                    }});
