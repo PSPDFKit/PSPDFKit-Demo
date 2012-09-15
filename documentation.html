@@ -69,7 +69,7 @@ documentation: current-menu-item current_page_item
 		</p><br>
 
 		<ul>
-			<li>- Video (m3u8, mov, avi, mpg, m4v - formats that are supported by iOS)</li>
+			<li>- Video (m3u8, mov, avi, mpg, m4v - formats that are supported by iOS) Both local and remote content is supported.</li>
 			<li>- YouTube. (e.g. pspdfkit://youtube.com/watch?v=0DSCFQcR08E)</li>
 			<li>- Audio (mp3, m4a, mp4)</li>
 			<li>- Images (jpg, jpeg, png, (animated) gif, tiff, tif, bmp, bmpf, cur, xmb)</li>
@@ -85,8 +85,11 @@ documentation: current-menu-item current_page_item
 
 	<p>If you want to display local files, use  pspdfkit://localhost/file.xy. The Path is automatically set to the same path as the displayed PDF. Supported folders include Bundle, Documents and Cache - but you can easily extend that to support custom folders.</p><br>
 
-	<p>You can enable autostart with adding the option like here: pspdfkit://[autostart:true]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8</p><br>
-
+<h3>Video Options</h3>
+<ul>
+	<li>- autostart: starts the video as soon as the page is displayed (e.g. pspdfkit://[autostart:true]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8)</li>
+	<li>- cover: displays a custom play button with the cover image. If you just need the play button without a background image, use cover : "". Cover uses the same path resolving like the multimedia link annotation system (http://website or /localhost/Bundle/image.jpg). Note: autostart:true will override the cover setting.</li>
+</ul><br>
 	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p><br>
 
 	<p>(*) Starting with Mountain Lion, the URL linking feature in Preview.app has been removed. Either use Adobe Acrobat or <a href="http://itunes.apple.com/us/app/pdfpenpro-for-mac/id403758325?mt=12">PDFpen</a>.</p>
