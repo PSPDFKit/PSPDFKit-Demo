@@ -182,7 +182,6 @@
                 NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"output.pdf.aes"];
 
                 // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
-                // Also, be sure to disable the cache in PSPDFCache or your document will end up unencrypted in single images on the disk.
                 NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
                 NSString *salt = @"ducrXn9WaRdpaBfMjDTJVjUf3FApA6gtim0e61LeSGWV9sTxB0r26mPs59Lbcexn";
 
