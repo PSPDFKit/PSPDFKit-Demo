@@ -77,7 +77,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(viewModeButtonItem)] = @(YES);
         _settings[StringSEL(renderBackgroundColor)] = [UIColor whiteColor];
         _settings[StringSEL(renderContentOpacity)] = @(1.f);
-        _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
+        _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeThumbailThenFullPage);
     }
 }
 
