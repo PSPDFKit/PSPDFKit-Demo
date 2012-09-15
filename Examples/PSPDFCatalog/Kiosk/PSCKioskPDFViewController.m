@@ -154,7 +154,12 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation {
     // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
-    self.leftBarButtonItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
+    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
+
+    // simple optimization, since changing the toolbar isn't cheap.
+    if ([self.leftBarButtonItems count] != [leftToolbarItems count]) {
+        self.leftBarButtonItems = leftToolbarItems;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -257,8 +262,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     return NO; // touch not used.
 }
 
-NSString *PSPDFGestureStateToString(UIGestureRecognizerState state);
-NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
+static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     switch (state) {
         case UIGestureRecognizerStateBegan:     return @"Began";
         case UIGestureRecognizerStateChanged:   return @"Changed";
@@ -280,7 +284,7 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    PSCLog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
+    //PSCLog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
 
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -342,7 +346,7 @@ NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     if (PSIsIpad()) { // looks bad on iPhone, no space
         PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
             [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
-        }];
+        } identifier:@"Show Text"];
         [newMenuItems addObject:menuItem];
     }
     return newMenuItems;
