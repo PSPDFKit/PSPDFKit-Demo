@@ -91,7 +91,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")],
         @[_(@"Show Text Blocks")],
         @[_(@"Invert")], @[_(@"")], @[_(@"")],
-        @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)"), _(@"Page Flip (Flipboard)")],
+        @[_(@"Scroll Per Page"), _(@"PageCurl (iBooks)")],
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
         @[_(@"Single First Page"), _(@"No Cover Page")],
@@ -104,7 +104,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""],
         @[_(@"(See PSPDFSelectionView)")],
         @[@""], @[@""], @[@""],
-        @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition"), _(@"PSPDFPageFlipTransition")],
+        @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageCurlTransition")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
@@ -299,6 +299,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = [_settings[StringSEL(pageTransition)] integerValue];
+            if (pageTransition == 2) { pageTransition = 1; } // hack until scrollcont. is there
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
@@ -383,6 +384,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         case PSPDFTextReflow: [self showTextReflowController]; break;
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = indexPath.row;
+            if (pageTransition == 1) { pageTransition = 2; } // hack until scrollcont. is there
+
             _settings[StringSEL(pageTransition)] = @(pageTransition);
             // set recommended render mode for pageCurl.
             if (pageTransition == PSPDFPageCurlTransition) {
