@@ -7,6 +7,10 @@
 
 #import "PSCBasicViewController.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 @implementation PSCBasicViewController
 
 @synthesize popoverController = popoverController_;

@@ -17,6 +17,10 @@
 #import "PSCShadowView.h"
 #import "SDURLCache.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 #define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 
 // the delete button target is small enough that we don't need to ask for confirmation.
