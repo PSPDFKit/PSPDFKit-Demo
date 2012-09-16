@@ -12,6 +12,10 @@
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 #define kPSPDFKitDownloadingKey @"downloading"
 #define kPSPDFCellAnimationDuration 0.25f
 

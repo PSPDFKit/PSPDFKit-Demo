@@ -14,6 +14,10 @@
 #include <sys/xattr.h>
 #include <objc/runtime.h>
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 @interface PSCStoreManager()
 @property (nonatomic, strong) NSMutableArray *magazineFolders;
 @property (nonatomic, strong) NSMutableArray *downloadQueue;

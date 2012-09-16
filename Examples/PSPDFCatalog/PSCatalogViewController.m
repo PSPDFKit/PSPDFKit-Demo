@@ -25,6 +25,10 @@
 #import "PSCBookViewController.h"
 #import "PSCFittingWidthViewController.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:2]
 

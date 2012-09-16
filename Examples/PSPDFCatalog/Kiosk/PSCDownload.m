@@ -10,6 +10,10 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFDownloadRequestOperation.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 @interface PSCDownload () {
     UIProgressView *progressView_;
 }

@@ -8,6 +8,10 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCSettingsController.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 @implementation PSCSettingsBarButtonItem
 
 - (UIBarButtonItemStyle)itemStyle {
