@@ -8,6 +8,10 @@
 #import "PSCSettingsController.h"
 #import <UIKit/UIKit.h>
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 #define _(string) NSLocalizedString(string, @"")
 #define StringSEL(string) NSStringFromSelector(@selector(string))
 @interface PSCSettingsController() {

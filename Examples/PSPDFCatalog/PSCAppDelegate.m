@@ -11,6 +11,11 @@
 #import "BITCrashManager.h"
 #import "LocalyticsSession.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
+
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

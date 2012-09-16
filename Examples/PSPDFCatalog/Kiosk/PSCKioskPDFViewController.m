@@ -13,6 +13,10 @@
 #import "PSCMetadataBarButtonItem.h"
 #import "PSCAnnotationTableBarButtonItem.h"
 
+#if !__has_feature(objc_arc)
+#error "Compile this file with ARC"
+#endif
+
 NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianceCalculated";
 
 @interface PSCKioskPDFViewController () {
