@@ -260,7 +260,8 @@
             for (int i=0; i<5; i++) {
                 PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
                 // width/height will be ignored for note annotations.
-                noteAnnotation.boundingBox = CGRectMake(100, 50 + i*maxHeight/5, 50, 50);
+                noteAnnotation.boundingBox = (CGRect){CGPointMake(100, 50 + i*maxHeight/5), kPSPDFNoteAnnotationViewFixedSize};
+                noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
                 [annotations addObject:noteAnnotation];
             }
             [document addAnnotations:annotations forPage:0];
@@ -440,6 +441,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
