@@ -55,7 +55,6 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// Returns cached image of document. preload decompresses the image in the background.
-/// Note: if useJPGTurbo is enabled, preload is always YES.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
 /// Renders image of a page for specified size.

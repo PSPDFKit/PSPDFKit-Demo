@@ -12,7 +12,7 @@
 @class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
-extern NSString *kPSPDFHidePageHUDElements;
+extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
@@ -154,7 +154,7 @@ extern NSString *kPSPDFHidePageHUDElements;
 @interface PSPDFPageView (PSPDFAnnotationMenu)
 
 /// Currently selected annotation (selected by a tap; showing a menu)
-@property(nonatomic, strong, readonly) PSPDFAnnotation *selectedAnnotation;
+@property(nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /**
     Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
@@ -180,8 +180,8 @@ extern NSString *kPSPDFHidePageHUDElements;
 /// Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)
 - (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Shows a popover/modal controller to edit the PSPDFNoteAnnotation.
-- (void)showNoteControllerForAnnotation:(PSPDFNoteAnnotation *)annotation;
+/// Shows a popover/modal controller to edit a PSPDFAnnotation.
+- (void)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation;
 
 // Helper to add a custom annotation to the view.
 - (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;

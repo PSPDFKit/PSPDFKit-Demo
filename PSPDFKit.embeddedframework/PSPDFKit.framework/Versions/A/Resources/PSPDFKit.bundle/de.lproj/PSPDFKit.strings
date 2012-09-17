@@ -13,14 +13,15 @@
 "File Not Found" = "Datei nicht gefunden";
 "Unnamed PDF" = "Unbenanntes PDF";
 "Table Of Contents" = "Inhaltsverzeichnis";
-"Go to %@" = "Zu %@ wechseln";
+"Go to %@" = "%@";
 "Page %d" = "Seite %d";
 
 // toolbar
 "Outline" = "Outline";
 "Search" = "Suchen";
 "Email" = "E-Mail";
-"Open in..." = "Öffnen in …";
+"Open in..." = "Öffnen in…";
+"No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
 
 // page
@@ -33,7 +34,7 @@
 "No matches found" = "Keine Treffer gefunden";
 "One match found" = "Einen Treffer gefunden";
 "%d matches found" = "%d Treffer gefunden";
-"Searching..." = "Suchen …";
+"Searching..." = "Suchen…";
 "Search Completed" = "Suche abgeschlossen";
 "Search Cancelled" = "Suche abgebrochen";
 
@@ -44,11 +45,16 @@
 
 // annotations
 "Remove" = "Entfernen";
-"Colors..." = "Farbe...";
+"Edit" = "Editieren";
+"Type..." = "Type…";
+"Colors..." = "Farbe…";
+"Text..." = "Text…";
 "Yellow" = "Gelb";
 "Green" = "Grün";
+"Red" = "Rot";
 "Blue" = "Blau";
 "Pink" = "Pink";
+"Black" = "Schwarz";
 "Define" = "Definieren";
 "Wikipedia" = "Wikipedia";
 "Copy" = "Kopieren";
@@ -58,7 +64,12 @@
 "Sketch" = "Zeichnen";
 "New Note" = "Neue Notiz";
 "Note" = "Notiz";
+"Text" = "Text";
 "Drawing Color" = "Farbe wählen";
+"Free Text" = "Freier Text";
+"Delete Note" = "Notiz entfernen";
+"Delete Highlight" = "Markierung entfernen";
+"Delete Free Text" = "Text entfernen";
 
 // voiceover accessibility
 "Page" = "Seite";

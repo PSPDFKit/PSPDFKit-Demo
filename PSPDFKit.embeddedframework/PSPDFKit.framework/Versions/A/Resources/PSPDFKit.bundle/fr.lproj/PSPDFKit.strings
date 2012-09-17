@@ -13,7 +13,7 @@
 "File Not Found" = "File Not Found";
 "Unnamed PDF" = "Unnamed PDF";
 "Table Of Contents" = "Table Of Contents";
-"Go to %@" = "Go to %@";
+"Go to %@" = "%@";
 "Page %d" = "Page %d";
 
 // toolbar
@@ -21,6 +21,7 @@
 "Search" = "Rechercher";
 "Email" = "E-mail";
 "Open in..." = "Ouvrir dans…";
+"No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Imprimer";
 
 // page
@@ -44,11 +45,16 @@
 
 // annotations
 "Remove" = "Remove";
-"Colors..." = "Colors...";
+"Edit" = "Edit";
+"Type..." = "Type…";
+"Colors..." = "Colors…";
+"Text..." = "Text…";
 "Yellow" = "Yellow";
 "Green" = "Green";
 "Blue" = "Blue";
+"Red" = "Red";
 "Pink" = "Pink";
+"Black" = "Black";
 "Define" = "Define";
 "Wikipedia" = "Wikipedia";
 "Copy" = "Copy";
@@ -58,7 +64,12 @@
 "Sketch" = "Sketch";
 "New Note" = "New Note";
 "Note" = "Note";
+"Text" = "Text";
 "Drawing Color" = "Drawing Color";
+"Free Text" = "Free Text";
+"Delete Note" = "Delete Note";
+"Delete Highlight" = "Delete Highlight";
+"Delete Free Text" = "Delete Free Text";
 
 // voiceover accessibility
 "Page" = "Page";
