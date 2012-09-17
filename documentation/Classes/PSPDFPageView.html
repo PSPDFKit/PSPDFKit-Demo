@@ -349,7 +349,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/prepareForReuse">&ndash;&nbsp;prepareForReuse</a></code>
-		<span class="tooltip"><p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p></span>
+		<span class="tooltip"><p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p></span>
 	</span>
 	
 	
@@ -482,7 +482,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
 		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDFPageView bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -490,7 +490,7 @@ pageBounds usually is PSPDFPageView bounds.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
 		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDFPageView bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -556,7 +556,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Page that is displayed. Readonly.</p></span>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -577,7 +577,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
-		<span class="tooltip"><p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
+		<span class="tooltip"><p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -672,7 +672,7 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/showNoteControllerForAnnotation:">&ndash;&nbsp;showNoteControllerForAnnotation:</a></code>
-		<span class="tooltip"><p>Shows a popover/modal controller to edit the <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>.</p></span>
+		<span class="tooltip"><p>Shows a popover/modal controller to edit a <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>.</p></span>
 	</span>
 	
 	
@@ -822,7 +822,7 @@ Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page that is displayed. Readonly.</p>
+		<p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p>
 	</div>		
 	
 	
@@ -1129,7 +1129,7 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
+		<p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
 	</div>		
 	
 	
@@ -1167,7 +1167,7 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFAnnotation *selectedAnnotation</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation</code></div>
 	
 	
 	
@@ -1483,7 +1483,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDFPageView bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -1552,7 +1552,7 @@ pageBounds usually is PSPDFPageView bounds.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDFPageView bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -1911,7 +1911,7 @@ To extend this, selectors for UIMenuItem need to be implemented in a subclass.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p>
+		<p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p>
 	</div>		
 	
 	
@@ -2017,11 +2017,11 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Shows a popover/modal controller to edit the <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>.</p>
+		<p>Shows a popover/modal controller to edit a <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)showNoteControllerForAnnotation:(PSPDFNoteAnnotation *)<em>annotation</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)showNoteControllerForAnnotation:(PSPDFAnnotation *)<em>annotation</em></code></div>
 	
 	
 	
@@ -2239,7 +2239,7 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-14)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

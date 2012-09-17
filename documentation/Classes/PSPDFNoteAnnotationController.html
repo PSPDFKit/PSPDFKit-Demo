@@ -40,6 +40,12 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/allowEditing">&nbsp;&nbsp;&nbsp;&nbsp;allowEditing</option>
+	
+	<option value="//api/name/annotation">&nbsp;&nbsp;&nbsp;&nbsp;annotation</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
 	<option value="//api/name/textView">&nbsp;&nbsp;&nbsp;&nbsp;textView</option>
 	
 	
@@ -78,6 +84,12 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowEditing">allowEditing</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotation">annotation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textView">textView</a></span></li>
 	
@@ -130,7 +142,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Note annotation controller (Post it)</p>
+						<p>Note <a href="#//api/name/annotation">annotation</a> controller for editing PSPDFAnnotations.</p>
 					</div>
 					
 					
@@ -155,9 +167,31 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/annotation">&nbsp;&nbsp;annotation</a></code>
+		<span class="tooltip"><p>Attached annotation.
+Allowed types are <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>, <a href="../Classes/PSPDFHighlightAnnotation.html">PSPDFHighlightAnnotation</a> and <a href="../Classes/PSPDFFreeTextAnnotation.html">PSPDFFreeTextAnnotation</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allowEditing">&nbsp;&nbsp;allowEditing</a></code>
+		<span class="tooltip"><p>If NO, the Edit/Delete buttons are not displayed</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/textView">&nbsp;&nbsp;textView</a></code>
 		<span class="tooltip"><p>Allow to customize the textView (font etc)
 Is created in init to be easily customizable</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Attached delegate.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -172,7 +206,7 @@ Is created in init to be easily customizable</p></span>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/deleteAnnotation:">&ndash;&nbsp;deleteAnnotation:</a></code>
-		<span class="tooltip"><p>Called when we&rsquo;re about to show the annotation delete menu.</p></span>
+		<span class="tooltip"><p>Called when we&rsquo;re about to show the <a href="#//api/name/annotation">annotation</a> delete menu.</p></span>
 	</span>
 	
 	
@@ -188,6 +222,109 @@ Is created in init to be easily customizable</p></span>
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/allowEditing" title="allowEditing"></a>
+	<h3 class="subsubtitle method-title">allowEditing</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If NO, the Edit/Delete buttons are not displayed</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) BOOL allowEditing</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFNoteAnnotationController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/annotation" title="annotation"></a>
+	<h3 class="subsubtitle method-title">annotation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Attached annotation.
+Allowed types are <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>, <a href="../Classes/PSPDFHighlightAnnotation.html">PSPDFHighlightAnnotation</a> and <a href="../Classes/PSPDFFreeTextAnnotation.html">PSPDFFreeTextAnnotation</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFAnnotation *annotation</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFNoteAnnotationController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Attached delegate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFNoteAnnotationController.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/textView" title="textView"></a>
@@ -241,7 +378,7 @@ Is created in init to be easily customizable</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when we&rsquo;re about to show the annotation delete menu.</p>
+		<p>Called when we&rsquo;re about to show the <a href="#//api/name/annotation">annotation</a> delete menu.</p>
 	</div>		
 	
 	
@@ -279,7 +416,7 @@ Is created in init to be easily customizable</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithAnnotation:(PSPDFNoteAnnotation *)<em>textOrHighlightAnnotation</em> editable:(BOOL)<em>allowEditing</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithAnnotation:(PSPDFAnnotation *)<em>nnotation</em> editable:(BOOL)<em>allowEditing</em></code></div>
 	
 	
 	
@@ -315,7 +452,7 @@ Is created in init to be easily customizable</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-14)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

@@ -38,13 +38,23 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/dataProvider">&nbsp;&nbsp;&nbsp;&nbsp;dataProvider</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/isAESCryptoDataProvider:">&nbsp;&nbsp;&nbsp;&nbsp;+ isAESCryptoDataProvider:</option>
+	
+	<option value="//api/name/isAESCryptoFeatureAvailable">&nbsp;&nbsp;&nbsp;&nbsp;+ isAESCryptoFeatureAvailable</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/dataProviderRef">&nbsp;&nbsp;&nbsp;&nbsp;- dataProviderRef</option>
 	
 	<option value="//api/name/initWithURL:passphrase:salt:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:passphrase:salt:</option>
 	
@@ -70,13 +80,25 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataProvider">dataProvider</a></span></li>
+	
+</ul></li>
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAESCryptoDataProvider:">isAESCryptoDataProvider:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAESCryptoFeatureAvailable">isAESCryptoFeatureAvailable</a></span></li>
+	
+</ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataProviderRef">dataProviderRef</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:passphrase:salt:">initWithURL:passphrase:salt:</a></span></li>
 	
@@ -117,10 +139,14 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>We use AES256 encryption here.
+						<pre><code>This class allows a tranparent decryption of AES256 encrypted files.
 The IV vector for the file is written in the first 16 bytes of the file to read.
+Use the provided encryption tool to prepare your documents.
 
-This class needs iOS5 or later.
+Ensure your passphrase/salt are also protected within the binary, or at least obfuscated.
+
+Encryption marginally slows down rendering, since everything is decrypted on the fly.
+This class needs iOS5 or later. Only available in PSPDFKit Annotate or Source.
 </code></pre>
 					</div>
 					
@@ -146,8 +172,22 @@ This class needs iOS5 or later.
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/dataProviderRef">&ndash;&nbsp;dataProviderRef</a></code>
-		<span class="tooltip"><p>Created on first access. PSPDFCryptoDataProvider will be retained as long as you retain this.</p></span>
+		<code><a href="#//api/name/dataProvider">&nbsp;&nbsp;dataProvider</a></code>
+		<span class="tooltip"><p>PSPDFCryptoDataProvider will be retained as long as you retain this.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAESCryptoDataProvider:">+&nbsp;isAESCryptoDataProvider:</a></code>
+		<span class="tooltip"><p>Helper to detect if this CGDataProviderRef is handled by PSPDFAESCryptoDataProvider.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAESCryptoFeatureAvailable">+&nbsp;isAESCryptoFeatureAvailable</a></code>
+		<span class="tooltip"><p>Feature only available in PSPDFKit Annotate.</p></span>
 	</span>
 	
 	
@@ -160,26 +200,22 @@ This class needs iOS5 or later.
 					
 					
 					
-					
-					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/dataProviderRef" title="dataProviderRef"></a>
-	<h3 class="subsubtitle method-title">dataProviderRef</h3>
+	<a name="//api/name/dataProvider" title="dataProvider"></a>
+	<h3 class="subsubtitle method-title">dataProvider</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Created on first access. PSPDFCryptoDataProvider will be retained as long as you retain this.</p>
+		<p>PSPDFCryptoDataProvider will be retained as long as you retain this.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (CGDataProviderRef)dataProviderRef</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) CGDataProviderRef dataProvider</code></div>
 	
 	
 	
@@ -201,6 +237,90 @@ This class needs iOS5 or later.
 	
 	
 </div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/isAESCryptoDataProvider:" title="isAESCryptoDataProvider:"></a>
+	<h3 class="subsubtitle method-title">isAESCryptoDataProvider:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper to detect if this CGDataProviderRef is handled by PSPDFAESCryptoDataProvider.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isAESCryptoDataProvider:(CGDataProviderRef)<em>dataProviderRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAESCryptoDataProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAESCryptoFeatureAvailable" title="isAESCryptoFeatureAvailable"></a>
+	<h3 class="subsubtitle method-title">isAESCryptoFeatureAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Feature only available in PSPDFKit Annotate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isAESCryptoFeatureAvailable</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAESCryptoDataProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
 	<a name="//api/name/initWithURL:passphrase:salt:" title="initWithURL:passphrase:salt:"></a>
@@ -249,7 +369,7 @@ This class needs iOS5 or later.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-14)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
