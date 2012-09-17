@@ -183,7 +183,7 @@
         if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
             [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
 
-                NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"output.pdf.aes"];
+                NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
 
                 // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
                 NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
@@ -220,8 +220,8 @@
             NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
             NSString *newPath = [docsFolder stringByAppendingPathComponent:[hackerMagURL lastPathComponent]];
             NSError *error;
-            if(![[NSFileManager new] fileExistsAtPath:newPath] &&
-               ![[NSFileManager new] copyItemAtPath:[hackerMagURL path] toPath:newPath error:&error]) {
+            if(![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
+               ![[NSFileManager defaultManager] copyItemAtPath:[hackerMagURL path] toPath:newPath error:&error]) {
                 NSLog(@"Error while copying %@: %@", [hackerMagURL path], error);
             }
             PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
