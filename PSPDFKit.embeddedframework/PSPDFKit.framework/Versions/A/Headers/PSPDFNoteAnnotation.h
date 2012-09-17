@@ -7,6 +7,9 @@
 
 #import "PSPDFAnnotation.h"
 
+// We extend the width/height of note annotation to make them easier touch targets.
+extern CGSize kPSPDFNoteAnnotationViewFixedSize;
+
 /// PDF Note (Text) Annotation.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 

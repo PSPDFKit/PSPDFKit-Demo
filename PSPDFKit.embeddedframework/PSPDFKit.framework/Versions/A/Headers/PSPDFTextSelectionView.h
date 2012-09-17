@@ -7,10 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-#define SelectionViewLinkTappedNotification		@"SelectionViewLinkTappedNotification"
-#define SelectionViewStartedDrawingNotification	@"SelectionViewStartedDrawingNotification"
-
-@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFInkAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView;
+@class PSPDFTextParser, PSPDFWord, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView;
 
 /// Handles the text and annotation selection.
 /// Only available in PSPDFKit Annotate.
@@ -25,19 +22,14 @@
 /// Currently selected text, optimized for searching
 @property(nonatomic, strong, readonly) NSString *trimmedSelectedText;
 
-//@property (nonatomic, strong) PSPDFWord *wordSelection;
-
-@property (nonatomic, strong) PSPDFInkAnnotation *selectedInk;
-
-@property (nonatomic, strong) PSPDFHighlightAnnotation *selectedAnnotation;
+/// Currently selected annotation
+@property(nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /// Loupe View for text selection.
-@property (nonatomic, strong) PSPDFLoupeView *loupeView;
-
-//@property (nonatomic, assign) CGPoint newNotePoint;
+@property(nonatomic, strong) PSPDFLoupeView *loupeView;
 
 /// Associated PSPDFPageView.
-@property (nonatomic, ps_weak) PSPDFPageView *pageView;
+@property(nonatomic, ps_weak) PSPDFPageView *pageView;
 
 // Text Loupe control code
 - (void)showLoupe;
@@ -48,11 +40,9 @@
 
 /// Clears the current selection.
 - (void)discardSelection;
-
 - (BOOL)hasSelection;
 
-- (void)discardInkSelection;
-
+// gesture handling
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer;
 - (BOOL)shouldHandleLongPressWithRecognizer:(UILongPressGestureRecognizer *)recognizer;
 
@@ -60,5 +50,8 @@
 
 // debugging
 - (void)showTextFlowData:(BOOL)show animated:(BOOL)animated;
+
+/// Text selection is only available in PSPDFKit Annotate
++ (BOOL)isTextSelectionFeatureAvailable;
 
 @end

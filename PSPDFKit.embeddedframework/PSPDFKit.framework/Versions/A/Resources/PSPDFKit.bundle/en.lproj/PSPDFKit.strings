@@ -13,14 +13,15 @@
 "File Not Found" = "File Not Found";
 "Unnamed PDF" = "Unnamed PDF";
 "Table Of Contents" = "Table Of Contents";
-"Go to %@" = "Go to %@";
+"Go to %@" = "%@";
 "Page %d" = "Page %d";
 
 // toolbar
 "Outline" = "Outline";
 "Search" = "Search";
 "Email" = "Email";
-"Open in..." = "Open in...";
+"Open in..." = "Open in…";
+"No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Print";
 
 // page
@@ -33,7 +34,7 @@
 "No matches found" = "No matches found";
 "One match found" = "One match found";
 "%d matches found" = "%d matches found";
-"Searching..." = "Searching...";
+"Searching..." = "Searching…";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
 
@@ -41,14 +42,20 @@
 "Copy Link" = "Copy Link";
 "Open in Safari" = "Open in Safari";
 "Mail Link to this Page" = "Mail Link to this Page";
+"Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
 
 // annotations
 "Remove" = "Remove";
-"Colors..." = "Colors...";
+"Edit" = "Edit";
+"Type..." = "Type…";
+"Colors..." = "Colors…";
+"Text..." = "Text…";
 "Yellow" = "Yellow";
 "Green" = "Green";
+"Red" = "Red";
 "Blue" = "Blue";
 "Pink" = "Pink";
+"Black" = "Black";
 "Define" = "Define";
 "Wikipedia" = "Wikipedia";
 "Copy" = "Copy";
@@ -58,7 +65,12 @@
 "Sketch" = "Sketch";
 "New Note" = "New Note";
 "Note" = "Note";
+"Text" = "Text";
 "Drawing Color" = "Drawing Color";
+"Free Text" = "Free Text";
+"Delete Note" = "Delete Note";
+"Delete Highlight" = "Delete Highlight";
+"Delete Free Text" = "Delete Free Text";
 
 // voiceover accessibility
 "Page" = "Page";

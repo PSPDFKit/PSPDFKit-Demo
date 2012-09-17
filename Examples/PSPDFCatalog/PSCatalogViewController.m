@@ -217,6 +217,7 @@
 
         [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
 
+            // copy file from the bundle to a location where we can write on it.
             NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
             NSString *newPath = [docsFolder stringByAppendingPathComponent:[hackerMagURL lastPathComponent]];
             NSError *error;

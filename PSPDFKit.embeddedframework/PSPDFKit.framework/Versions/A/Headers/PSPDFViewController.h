@@ -161,16 +161,16 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show or hide HUD controls, titlebar, status bar. (iPhone only)
 @property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
-- (void)setHUDVisible:(BOOL)show animated:(BOOL)animated;
+- (BOOL)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
 /// Show the HUD. Respects HUDViewMode.
-- (void)showControls;
+- (BOOL)showControls;
 /// Hide the HUD. Respects HUDViewMode.
-- (void)hideControls;
+- (BOOL)hideControls;
 /// Hide the HUD (respects HUDViewMode) and additional elements like page selection.
-- (void)hideControlsAndPageElements;
+- (BOOL)hideControlsAndPageElements;
 /// Toggles the HUD. Respects HUDViewMode.
-- (void)toggleControls;
+- (BOOL)toggleControls;
 
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property(nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;

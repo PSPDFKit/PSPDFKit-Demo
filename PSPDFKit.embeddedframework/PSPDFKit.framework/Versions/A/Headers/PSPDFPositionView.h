@@ -22,4 +22,7 @@
 /// Weak reference to the pdf controller. We use KVO for updates.
 @property(nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
+/// Update view
+- (void)updateAnimated:(BOOL)animated;
+
 @end

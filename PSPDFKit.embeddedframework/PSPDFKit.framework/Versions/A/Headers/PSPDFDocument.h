@@ -137,7 +137,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
     Defines the annotations that can be edited (if annotationsEnabled is set to YES)
     Set this to an empty set to disable annotation editing/creation.
  
-    Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk,
+    Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk, PSPDFAnnotationTypeStringFreeText
 */
 @property(nonatomic, strong) NSSet *editableAnnotationTypes;
 
@@ -253,6 +253,11 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 
 /// Make sure 'cacheDirectory' exists. Returns error if creation is not possible.
 - (BOOL)ensureCacheDirectoryExistsWithError:(NSError **)error;
+
+/// Overrides the global caching strategy in PSPDFCache.
+/// Defaults to -1; which equals to the setting in PSPDFCache.
+/// Set this to PSPDFCacheNothing for sensible/encrypted documents!
+@property(nonatomic, assign) PSPDFCacheStrategy cacheStrategy;
 
 
 /// @name Design and hints for PSPDFViewController
