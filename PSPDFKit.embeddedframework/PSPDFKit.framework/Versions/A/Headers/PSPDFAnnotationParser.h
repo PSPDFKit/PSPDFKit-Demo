@@ -46,6 +46,7 @@
 
 /// Returns the annotation classes used to represent the PSPDFAnnotation. Might return nil for certain types.
 /// The classes all are a subtype of UIView <PSPDFAnnotationView>
+/// If you implement custom overlay annotations, override this class.
 - (Class)annotationClassForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// The fileType translation table is used when we encounter pspdfkit:// links.

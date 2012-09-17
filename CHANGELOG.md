@@ -1,10 +1,40 @@
 # Changelog
 
-__v2.0.4 - 1x/September/2012__
+__v2.1.0 - 17/September/2012__
 
-*  Fixes "Persistent Text Loupe" when moving over a link annotation while selecting.
+*  New: PSPDFAESCryptoDataProvider. Allows fast, secure on-the-fly decryption of AES256-secured PDF documents. (PSPDFKit Annotate feature)
+   Unlike NSData-based solutons, the PDF never is *fully* decrypted, and this even works with very large (> 100MB) documents.
+   Uses 50.000 PBKDF iterations and a custom IV vector for maximum security.
+   Includes the AESCryptor helper Mac app to properly encrypt your PDF documents.
+
 *  Allow to customize caching strategy per document with the new cacheStrategy property.
+   This is automatically set to PSPDFCacheNothing when using PSPDFAESCryptoDataProvider.
+*  Annotations now have a blue selection view when they are selected.
+*  Add Black and Red to general annotation color options.
+*  Font name/size for FreeText annotations is now parsed.
+*  Added write support for FreeText annotations.
+*  Allow to show/edit the associated text of highlight annotations.
+*  Improves extensibility of the annotation system with adding a isOverlay method to PSPDFAnnotation.
+   (Instead of hard-coding this to Link and Note annotations)
+*  Moves the clipsToBounds call in PSPDFPageView so that delegate can change this (of UIView <PSPDFAnnotationView>).
+*  Adds static helper [PSPDFTextSelectionView isTextSelectionFeatureAvailable] to make runtime checks between PSPDFKit and PSPDFKit Annotate.
+*  Adds new isWriteable static method to PSPDFAnnotation subclasses to determine what classes can be written back to PDF.
+*  Add kPSPDFAllowAntiAliasing as optional render option.
+*  PSPDFOpenInBarButtonItem no longer performs a check for compatible apps. Checking this is pretty slow. An info alert will be displayed to the user if no compatible apps are installed (which is highly unlikely for PDF). You can restore the original behavior with setting kPSPDFCheckIfCompatibleAppsAreInstalled to YES.
+*  The viewState is now preserved when another controller is displayed/dismissed modally. This mostly happend with showing/hiding the inline browser or the note text controller on an iPhone. After that the zoom rate was reset; this is now properly preserved.
+*  The annotation toolbar now flashes if the user tries to hide the HUD while the bar is still active (and blocking that)
+*  Various performance optimizations; especially scrolling and initial controller creation.
+*  Removes sporadic vertical transition of the navigationController's navigationBar when HUD faded out.
+*  Fixes "Persistent Text Loupe" when moving over a link annotation while selecting.
 *  Fixes a memory leak when CGDataProviderRef is used to initialize a PSPDFDocument.
+*  Fixes a issue where the UI could sometimes freeze for a while waiting for background tasks in low-memory situations.
+*  Fixes a issue where the popover page display wasn't hidden after a rotation.
+*  Fixes a issue where sometimes the page was not correctly restored after rotation (was +1).
+*  Fixes a issue where, if email wasn't configured on the device, the internal web browser would be launched with a mailto: link. Now a alert is displayed.
+*  Fixes a issue where a page could, under certain rare conditions, escape the page tracking and be "sticky" behind the new managed page views.
+*  Titanium: Add saveAnnotation method to manually save annotations (needed for createView, automatically called in showPDFAnimated).
+*  Titanium: Limit usage of useParentNavigationBar to iOS5 and above.
+*  Titanium: fixes a rare condition where using document.password to unlock sometimes resulted in an incorrect value for isLocked.
 
 __v2.0.3 - 14/September/2012__
 

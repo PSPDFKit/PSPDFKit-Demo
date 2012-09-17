@@ -12,23 +12,24 @@
 @class PSPDFDocument;
 
 // list of editable annotation types.
-extern NSString *PSPDFAnnotationTypeStringHighlight;
-extern NSString *PSPDFAnnotationTypeStringUnderline;
-extern NSString *PSPDFAnnotationTypeStringStrikeout;
-extern NSString *PSPDFAnnotationTypeStringNote;
-extern NSString *PSPDFAnnotationTypeStringInk;
+extern NSString *const PSPDFAnnotationTypeStringHighlight;
+extern NSString *const PSPDFAnnotationTypeStringUnderline;
+extern NSString *const PSPDFAnnotationTypeStringStrikeout;
+extern NSString *const PSPDFAnnotationTypeStringNote;
+extern NSString *const PSPDFAnnotationTypeStringFreeText;
+extern NSString *const PSPDFAnnotationTypeStringInk;
 
 // Annotations defined after the PDF standard.
-typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
+typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeUndefined = 0,      // any annotation whose type couldn't be recognized.
     PSPDFAnnotationTypeLink      = 1 << 1,
     PSPDFAnnotationTypeHighlight = 1 << 2, // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
     PSPDFAnnotationTypeText      = 1 << 5,
     PSPDFAnnotationTypeInk       = 1 << 6,
-    PSPDFAnnotationTypeShape     = 1 << 7,
+    PSPDFAnnotationTypeShape     = 1 << 7, // Square, Circle
     PSPDFAnnotationTypeLine      = 1 << 8,
     PSPDFAnnotationTypeNote      = 1 << 9,
-    PSPDFAnnotationTypeAll       = PSPDFAnnotationTypeLink | PSPDFAnnotationTypeHighlight | PSPDFAnnotationTypeText | PSPDFAnnotationTypeInk | PSPDFAnnotationTypeShape | PSPDFAnnotationTypeLine | PSPDFAnnotationTypeNote
+    PSPDFAnnotationTypeAll       = ULONG_MAX
 };
 
 /**
@@ -49,6 +50,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
 
 /// Returns the annotation type strings that are supported. Implemented in each subclass.
 + (NSArray *)supportedTypes;
+
+/// Returns YES if PSPDFKit has support to write this annotation back into the PDF.
++ (BOOL)isWriteable;
 
 /// Use this to create custom user annotations. 
 - (id)initWithType:(PSPDFAnnotationType)annotationType;
@@ -88,6 +92,12 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationType) {
 
 /// Current annotation type. 
 @property(nonatomic, assign, readonly) PSPDFAnnotationType type;
+
+/// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
+/// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
+/// Currently won't work if you just set arbitrary annotations to overlay=YES.
+/// If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
+@property(nonatomic, assign, getter=isOverlay, readonly) BOOL overlay;
 
 /// Annotation type string as defined in the PDF.
 /// Usually read from the annotDict. Don't change this unless you know what you're doing.

@@ -10,12 +10,13 @@
 @class PSPDFPageInfo;
 
 // PDF rendering options. kPSPDFIgnoreDisplaySettings is only honored when using the renderImageForPage method in PSPDFDocument.
-extern NSString *kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
-extern NSString *kPSPDFPageColor;             // Multiplies a color used to color a page.
-extern NSString *kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
-extern NSString *kPSPDFInvertRendering;       // Inverts the rendering output.
-extern NSString *kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
-extern NSString *kPSPDFBackgroundFillColor;   // Allows custom render color. Default is white.
+extern NSString *const kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
+extern NSString *const kPSPDFPageColor;             // Multiplies a color used to color a page.
+extern NSString *const kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
+extern NSString *const kPSPDFInvertRendering;       // Inverts the rendering output. Default is NO.
+extern NSString *const kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
+extern NSString *const kPSPDFAllowAntiAliasing;     // Enabled/Disables antialiasing. Defaults to YES.
+extern NSString *const kPSPDFBackgroundFillColor;   // Allows custom render color. Default is white.
 
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject

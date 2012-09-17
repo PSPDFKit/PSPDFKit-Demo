@@ -7,8 +7,8 @@
 
 #import "PSCollectionViewLayout.h"
 
-NSString *const PSCollectionElementKindSectionHeader;
-NSString *const PSCollectionElementKindSectionFooter;
+extern NSString *const PSCollectionElementKindSectionHeader;
+extern NSString *const PSCollectionElementKindSectionFooter;
 
 typedef NS_ENUM(NSInteger, PSCollectionViewScrollDirection) {
     PSCollectionViewScrollDirectionVertical,
@@ -61,9 +61,9 @@ typedef NS_ENUM(NSInteger, UICollectionViewScrollDirection) {
 @end
 
 // @steipete addition, private API in UICollectionViewFlowLayout
-NSString *const PSFlowLayoutCommonRowHorizontalAlignmentKey;
-NSString *const PSFlowLayoutLastRowHorizontalAlignmentKey;
-NSString *const PSFlowLayoutRowVerticalAlignmentKey;
+extern NSString *const PSFlowLayoutCommonRowHorizontalAlignmentKey;
+extern NSString *const PSFlowLayoutLastRowHorizontalAlignmentKey;
+extern NSString *const PSFlowLayoutRowVerticalAlignmentKey;
 
 typedef NS_ENUM(NSInteger, PSFlowLayoutHorizontalAlignment) {
     PSFlowLayoutHorizontalAlignmentLeft,

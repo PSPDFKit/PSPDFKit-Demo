@@ -13,13 +13,15 @@
 
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarNone,
-    PSPDFAnnotationToolbarComment,
+    PSPDFAnnotationToolbarNote,
     PSPDFAnnotationToolbarHighlight,
     PSPDFAnnotationToolbarStrikeOut,
     PSPDFAnnotationToolbarUnderline,
+    PSPDFAnnotationToolbarFreeText,
     PSPDFAnnotationToolbarDraw
 };
 
+/// Delegate to be notified on toolbar actions/hiding.
 @protocol PSPDFAnnotationToolbarDelegate <NSObject>
 
 @optional
@@ -44,7 +46,10 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 /// Hide the toolbar.
 - (void)hideToolbarAnimated:(BOOL)animated completion:(dispatch_block_t)completionBlock;
 
-/// Annotation Toolbar delegate.
+/// Flash toolbar if user tries to hide the HUD.
+- (void)flashToolbar;
+
+/// Annotation toolbar delegate.
 @property(nonatomic, strong) id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
@@ -55,10 +60,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 @end
 
-
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
 
-- (void)commentButtonPressed:(id)sender;
+- (void)noteButtonPressed:(id)sender;
 - (void)highlightButtonPressed:(id)sender;
 - (void)strikeOutButtonPressed:(id)sender;
 - (void)underlineButtonPressed:(id)sender;
@@ -70,6 +74,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 // helpers to lock/unlock the controller
 - (void)lockPDFController;
+
 // stayOnTop is a runtime tweak to make sure the toolbar stays above the pfController navigationBar.
 - (void)unlockPDFControllerAndEnsureToStayOnTop:(BOOL)stayOnTop;
 

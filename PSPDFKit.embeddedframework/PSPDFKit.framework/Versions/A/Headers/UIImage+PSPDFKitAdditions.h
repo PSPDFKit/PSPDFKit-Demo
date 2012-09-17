@@ -10,6 +10,8 @@
 // Note: If you see an error like "Terminating app due to uncaught exception 'NSInvalidArgumentException"
 // you've missed adding the linker flag -ObjC.
 
+extern CGColorSpaceRef pspdf_colorSpace;
+
 @interface UIImage (PSPDFKitAdditions)
 
 typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
@@ -34,8 +36,8 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 /// Creates a new image that is optimized for the screen. (ARGB, not ABGR)
 - (UIImage *)pspdf_preloadedImage;
 
-/// Creates a new image that is eventually decompressed using libjpeg-turbo.
-+ (UIImage *)pspdf_preloadedImageWithData:(NSData *)data useJPGTurbo:(BOOL)useJPGTurbo;
+/// Creates a new image that is eventually decompressed..
++ (UIImage *)pspdf_preloadedImageWithData:(NSData *)data;
 
 /// Load images from the bundle.
 + (UIImage *)pspdf_imageNamed:(NSString *)imageName bundle:(NSBundle *)bundle;
