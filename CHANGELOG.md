@@ -6,7 +6,6 @@ __v2.1.0 - 17/September/2012__
    Unlike NSData-based solutons, the PDF never is *fully* decrypted, and this even works with very large (> 100MB) documents.
    Uses 50.000 PBKDF iterations and a custom IV vector for maximum security.
    Includes the AESCryptor helper Mac app to properly encrypt your PDF documents.
-
 *  Allow to customize caching strategy per document with the new cacheStrategy property.
    This is automatically set to PSPDFCacheNothing when using PSPDFAESCryptoDataProvider.
 *  Annotations now have a blue selection view when they are selected.
