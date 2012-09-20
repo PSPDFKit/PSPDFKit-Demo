@@ -55,7 +55,7 @@ documentation: current-menu-item current_page_item
 	  <p>Link annotations are supported. Both page links and web/email links are fully supported, even unicode-URL's will work. (for example <a href="http://💩.la">http://💩.la</a> works). This is achieved with PSPDFKit integrating the IDNSDK, since iOS does not support this per default. With long-pressing on a link, a actionsheet/popover opens showing the destination.</p><br>
 	  
 	  <h3>Link Annotations to other PDF documents</h3>
-	  <p>PSPDFKit 2.2+ (coming soon) also supports link annotations to external documents. You can both use the Launch annotation type ("Open a file" in Acrobat). This annotation subtype doesn't support setting a page target, so page 0 will be used. Another option is using regular web link annotations ("Open a web link" in Acrobat). The same path resolving methods as with other link annotations are used. Use /localhost/PSPDFKit.pdf#page=3 to link to the file PSPDFKit.pdf at page 3.</p>
+	  <p>PSPDFKit 2.2+ (coming soon) also supports link annotations to external documents. You can both use the Launch annotation type ("Open a file" in Acrobat). This annotation subtype doesn't support setting a page target, so page 0 will be used. Another option is using regular web link annotations ("Open a web link" in Acrobat). The same path resolving methods as with other link annotations are used. Use pspdfkit://localhost/PSPDFKit.pdf#page=3 to link to the file PSPDFKit.pdf at page 3.</p>
 	</div>
 	
 	<div id="encryption" class="col-full section">
