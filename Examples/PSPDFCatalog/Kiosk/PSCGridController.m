@@ -134,8 +134,8 @@
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
     // init the collection view
-    PSCollectionViewFlowLayout *flowLayout = [PSCollectionViewFlowLayout new];
-    PSCollectionView *collectionView = [[PSCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:(PSCollectionViewFlowLayout *)flowLayout];
+    PSTCollectionViewFlowLayout *flowLayout = [PSTCollectionViewFlowLayout new];
+    PSTCollectionView *collectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:(PSTCollectionViewFlowLayout *)flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
     flowLayout.minimumInteritemSpacing = 10;
@@ -234,7 +234,7 @@
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.gridView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.gridView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
             [self.gridView layoutSubviews]; // ensure cells are laid out
             /*
             // ensure object is visible
@@ -364,7 +364,7 @@
     }
     
     if (animated && coverImage && !magazine.isLocked) {
-        PSCollectionViewCell *cell = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
+        PSTCollectionViewCell *cell = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
         cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];

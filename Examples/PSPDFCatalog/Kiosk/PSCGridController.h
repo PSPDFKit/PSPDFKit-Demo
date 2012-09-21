@@ -10,12 +10,12 @@
 
 @class PSCMagazineFolder;
 
-@interface PSCGridController : PSCBasicViewController <PSCStoreManagerDelegate, PSCollectionViewDataSource, PSCollectionViewDelegate>
+@interface PSCGridController : PSCBasicViewController <PSCStoreManagerDelegate, PSTCollectionViewDataSource, PSTCollectionViewDelegate>
 
 - (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
 
-@property(nonatomic, strong) PSCollectionView *gridView;
+@property(nonatomic, strong) PSTCollectionView *gridView;
 @property(nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
 
 @end
