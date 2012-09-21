@@ -62,7 +62,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
         _settings[StringSEL(isFitToWidthEnabled)] = PSIsIpad() ? @(NO) : @(YES);
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
+        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollContinuousTransition);
+        _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
         _settings[StringSEL(isPositionViewEnabled)] = @(YES);
@@ -95,7 +96,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")],
         @[_(@"Show Text Blocks")],
         @[_(@"Invert")], @[_(@"")], @[_(@"")],
-        @[_(@"Scroll Per Page"), _(@"PageCurl (iBooks)")],
+        @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)")],
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
         @[_(@"Single First Page"), _(@"No Cover Page")],
@@ -108,7 +109,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""],
         @[_(@"(See PSPDFSelectionView)")],
         @[@""], @[@""], @[@""],
-        @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageCurlTransition")],
+        @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
@@ -303,7 +304,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = [_settings[StringSEL(pageTransition)] integerValue];
-            if (pageTransition == 2) { pageTransition = 1; } // hack until scrollcont. is there
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
@@ -388,8 +388,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
         case PSPDFTextReflow: [self showTextReflowController]; break;
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = indexPath.row;
-            if (pageTransition == 1) { pageTransition = 2; } // hack until scrollcont. is there
-
             _settings[StringSEL(pageTransition)] = @(pageTransition);
             // set recommended render mode for pageCurl.
             if (pageTransition == PSPDFPageCurlTransition) {
@@ -452,26 +450,19 @@ __attribute__((constructor)) static void setupDefaults(void) {
     [self presentModalViewController:navController animated:YES];
 }
 
-- (void)closeModalView {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (void)showTextReflowController {
     PSPDFViewController *pdfController = [self currentPDFController];
-    if (!pdfController.document) {
-        return;
-    }
+    if (!pdfController.document) return;
 
     UIViewController *configViewController = [PSPDFBaseViewController new];
+    configViewController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
     UITextView *configView = [UITextView new];
     configView.text = [pdfController.document textParserForPage:pdfController.page].text;
     configView.editable = NO;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
-    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
-    navController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
-    [self presentModalViewController:navController animated:YES];
+
+    [pdfController presentViewControllerModalOrPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @(YES)}];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
