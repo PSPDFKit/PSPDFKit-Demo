@@ -30,7 +30,7 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:2]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -59,8 +59,7 @@
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"annotations.pdf"]];
-            //
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Oil Sands fact book_Web.pdf"]];
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
             return controller;
         }]];
@@ -226,6 +225,7 @@
                 NSLog(@"Error while copying %@: %@", [hackerMagURL path], error);
             }
             PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+            hackerDocument.delegate = self;
             return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:hackerDocument];
         }]];
 
@@ -271,6 +271,11 @@
             return controller;
         }]];
 
+        [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Links to external documents" block:^{
+            PSPDFDocument *linkDocument = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
+            return [[PSPDFViewController alloc] initWithDocument:linkDocument];
+        }]];
+
         [content addObject:annotationSection];
         ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -295,9 +300,20 @@
             return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
         }]];
 
-        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Toolbar" block:^{
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
             return [[PSCustomToolbarController alloc] initWithDocument:document];
+        }]];
+
+        // this the default recommended way to customize the toolbar
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Customized Toolbar" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+            pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
+            pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
+            pdfController.additionalRightBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
+
+            return pdfController;
         }]];
 
         [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Disable Toolbar" block:^{
@@ -466,6 +482,9 @@
     }
     _firstShown = YES;
 #endif
+
+    // cache the keyboard. (optional; makes search much more reactive)
+    dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -536,6 +555,17 @@
     // add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
     [controller.navigationController pushViewController:tabbedViewController animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFDocumentDelegate
+
+- (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
+    NSLog(@"\n\nSaving of %@ successful: %@", document, annotations);
+}
+
+- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error {
+    NSLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
