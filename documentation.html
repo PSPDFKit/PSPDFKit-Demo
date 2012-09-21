@@ -131,6 +131,9 @@ documentation: current-menu-item current_page_item
 <p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
 	 A: To support iOS 4.3, you need to <i>weak-link</i> UIKit. See the part "Integration".</p><br>
 	 
+<p><b>Q: Help! I get "PSPDFKit.bundle not found. search and annotations will not work properly" in the log.</b><br>
+	  A: You need to add the PSPDFKit.bundle to your project. If you're using the source code PSPDFkit-lib.xcodeproj, drag the PSPDFKit.bundle into Xcode's tree - anywhere you want (Resources folder is a good place). If you're using Appcelerator, <a href="#appcelerator">read up here</a> how to add it.</p><br>
+	 
 <p><b>Q: When I start the app, I get [__NSArrayI objectAtIndexedSubscript:]: unrecognized selector sent to instance </b><br>
 	 A: You're most likely on Xcode 4.3. Upgrade to 4.4.1 or later to fix this problem. Also ensure you've added the linker flag -fobc-arc to your project.</p><br>
 
