@@ -36,6 +36,8 @@
     // change log level to be more verbose.
     kPSPDFLogLevel = PSPDFLogLevelInfo;
 
+    //kPSPDFDebugScrollViews = YES;
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 0
     // Directly push a PSPDFViewController
@@ -66,7 +68,7 @@
         [[BITHockeyManager sharedHockeyManager] startManager];
 
         // Localytics helps me to track PSPDFCatalog launches
-        // Remove this or replace with your own Localytics ID if you are using PSPDFKitExample as a template for your own app.
+        // Remove this or replace with your own Localytics ID if you are using PSPDFCatalog as a template for your own app.
 #ifndef PSPDF_USE_SOURCE
         [[LocalyticsSession sharedLocalyticsSession] startSession:@"3b7cb4552ea954d48d68f0e-3451f502-de39-11e1-4ab8-00ef75f32667"];
 #else
