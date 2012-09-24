@@ -30,7 +30,7 @@
 
         // prepare document to display, copy it do docs folder
         // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
-        [self copySampleToDocumentsFolder:kPSPDFKitExample];
+        [self copySampleToDocumentsFolder:kPSPDFCatalog];
         [self copySampleToDocumentsFolder:kDevelopersGuideFileName];
         [self copySampleToDocumentsFolder:kPaperExampleFileName];
 
@@ -255,7 +255,7 @@
 }
 
 - (void)pushView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFCatalog];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.additionalRightBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
@@ -264,7 +264,7 @@
 }
 
 - (void)openModalView {
-    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFKitExample];
+    NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFCatalog];
     PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
