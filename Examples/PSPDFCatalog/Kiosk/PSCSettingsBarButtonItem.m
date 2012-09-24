@@ -1,6 +1,6 @@
 //
 //  PSPDFSettingsBarButtonItem.m
-//  PSPDFKitExample
+//  PSPDFCatalog
 //
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
@@ -32,7 +32,9 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[PSCSettingsController new]];
+    PSCSettingsController *settingsController = [PSCSettingsController new];
+    settingsController.owningViewController = self.pdfController;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
     return [self presentModalOrInPopover:navController sender:sender];
 }
 
