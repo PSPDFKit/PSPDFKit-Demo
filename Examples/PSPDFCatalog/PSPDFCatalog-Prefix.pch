@@ -8,14 +8,6 @@
 #warning "This project uses features only available in iOS SDK 4.3 and later."
 #endif
 
-// Logging
-#define kPSCLogEnabled
-#ifdef kPSCLogEnabled
-#define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#else
-#define PSCLog(...)
-#endif
-
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
@@ -24,4 +16,12 @@
 #else
     #import <PSPDFKit/PSPDFKit.h>
 #endif
+#endif
+
+// Logging
+#define kPSCLogEnabled
+#ifdef kPSCLogEnabled
+#define PSCLog(fmt, ...) pspdf_dispatch_async_if(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ![NSThread isMainThread], ^{NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);});
+#else
+#define PSCLog(...)
 #endif
