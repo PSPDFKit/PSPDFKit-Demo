@@ -1,6 +1,6 @@
 //
 //  PSPDFSettingsBarButtonItem.h
-//  PSPDFKitExample
+//  PSPDFCatalog
 //
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
