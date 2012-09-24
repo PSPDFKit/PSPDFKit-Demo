@@ -1,11 +1,12 @@
 //
-//  PSPDFCacheSettingsController.m
-//  PSPDFKitExample
+//  PSCSettingsController.m
+//  PSPDFCatalog
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCSettingsController.h"
+#import "PSCBasicViewController.h"
 #import <UIKit/UIKit.h>
 
 #if !__has_feature(objc_arc)
@@ -14,6 +15,7 @@
 
 #define _(string) NSLocalizedString(string, @"")
 #define StringSEL(string) NSStringFromSelector(@selector(string))
+
 @interface PSCSettingsController() {
     BOOL _isSettingUpCells;
     NSArray *_content;
@@ -396,7 +398,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFOpenAPIButton: {
             PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); break;)
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
-            [self presentModalViewController:webController animated:YES];
+            [self.owningViewController ?: self presentModalViewController:webController animated:YES];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFTextReflow: [self showTextReflowController]; break;
@@ -441,7 +443,8 @@ static CGFloat pscSettingsLastYOffset = 0;
         pdfName = [pdfController.document.fileURL lastPathComponent];
     }
 
-    UIViewController *configViewController = [PSPDFBaseViewController new];
+    UIViewController *configViewController = [PSCBasicViewController new];
+
     UITextView *configView = [UITextView new];
     configView.font = [UIFont fontWithName:@"Courier" size:14];
     NSMutableString *codeString = [NSMutableString string];
@@ -458,15 +461,18 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.editable = NO;
     configViewController.view = configView;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
-    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self action:@selector(closeModalView)];
+    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self.owningViewController action:@selector(closeModalView)];
     navController.title = _(@"Current ");
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self presentModalViewController:navController animated:YES];
+
+    [self.owningViewController ?: self presentModalViewController:navController animated:YES];
 }
 
 - (void)showTextReflowController {
     PSPDFViewController *pdfController = [self currentPDFController];
-    if (!pdfController.document) return;
+    if (!pdfController.document) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"Open a PDF to see the extracted text." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    };
 
     UIViewController *configViewController = [PSPDFBaseViewController new];
     configViewController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
