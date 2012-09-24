@@ -24,8 +24,8 @@
 - (id)initWithDelegate:(id<PSCDocumentSelectorControllerDelegate>)delegate;
 
 /// Delegate to get the didSelect event.
-@property(nonatomic, ps_weak) id<PSCDocumentSelectorControllerDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSCDocumentSelectorControllerDelegate> delegate;
 
-@property(nonatomic, strong, readonly) NSArray *content;
+@property (nonatomic, strong, readonly) NSArray *content;
 
 @end

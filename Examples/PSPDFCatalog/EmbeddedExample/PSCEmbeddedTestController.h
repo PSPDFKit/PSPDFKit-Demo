@@ -13,6 +13,6 @@
 - (IBAction)clearCache;
 - (IBAction)oldContainmentTest;
 
-@property(nonatomic, strong) PSPDFViewController *pdfController;
+@property (nonatomic, strong) PSPDFViewController *pdfController;
 
 @end

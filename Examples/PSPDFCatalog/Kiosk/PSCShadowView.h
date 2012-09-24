@@ -11,9 +11,9 @@
 @interface PSCShadowView : UIView
 
 /// YES if top shadow is enabled. Defaults to YES.
-@property(nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
+@property (nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// top offset for shadow.
-@property(nonatomic) CGFloat shadowOffset;
+@property (nonatomic) CGFloat shadowOffset;
 
 @end

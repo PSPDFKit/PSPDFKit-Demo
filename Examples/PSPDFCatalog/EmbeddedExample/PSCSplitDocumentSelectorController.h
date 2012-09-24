@@ -11,6 +11,6 @@
 
 @interface PSCSplitDocumentSelectorController : PSCDocumentSelectorController <PSCDocumentSelectorControllerDelegate>
 
-@property(nonatomic, unsafe_unretained) PSCSplitPDFViewController *masterVC;
+@property (nonatomic, unsafe_unretained) PSCSplitPDFViewController *masterVC;
 
 @end
