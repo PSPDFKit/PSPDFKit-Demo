@@ -9,7 +9,7 @@
 #import "PSCVerticalAnnotationToolbar.h"
 
 @interface PSCExampleAnnotationViewController ()
-@property(nonatomic, strong) PSCVerticalAnnotationToolbar *verticalToolbar;
+@property (nonatomic, strong) PSCVerticalAnnotationToolbar *verticalToolbar;
 @end
 
 @implementation PSCExampleAnnotationViewController
@@ -28,10 +28,12 @@
     [self.HUDView addSubview:self.verticalToolbar];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    self.verticalToolbar.pdfController = nil;
-    self.verticalToolbar = nil;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if (![self isViewLoaded]) {
+        self.verticalToolbar.pdfController = nil;
+        self.verticalToolbar = nil;
+    }
 }
 
 // ensure custom toolbar is hidden when we show the thumbnails
