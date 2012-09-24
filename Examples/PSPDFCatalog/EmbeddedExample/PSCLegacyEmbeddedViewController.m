@@ -51,7 +51,6 @@
     self.pdfController.view.layer.borderWidth = 2.f;
 }
 
-// replaces viewDidUnload as this is deprecated on iOS6.
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     if (![self isViewLoaded]) {
