@@ -16,17 +16,6 @@
 @synthesize popoverController = popoverController_;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)hidePopover:(NSNotification *)notification {
-    if ([notification.object isKindOfClass:[self.popoverController.contentViewController class]]) {
-        PSCLog(@"dismissing popover: %@", self.popoverController);
-        [self.popoverController dismissPopoverAnimated:NO];
-        self.popoverController = nil;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)init {
@@ -51,6 +40,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Public
+
+- (void)closeModalView {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 
 - (void)setPopoverController:(UIPopoverController *)popoverController {
@@ -60,6 +56,17 @@
         
         popoverController_ = popoverController;
         popoverController_.delegate = self; // set delegate to be notified when popopver controller closes!
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)hidePopover:(NSNotification *)notification {
+    if ([notification.object isKindOfClass:[self.popoverController.contentViewController class]]) {
+        PSCLog(@"dismissing popover: %@", self.popoverController);
+        [self.popoverController dismissPopoverAnimated:NO];
+        self.popoverController = nil;
     }
 }
 
