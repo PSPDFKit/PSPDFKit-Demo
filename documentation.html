@@ -186,7 +186,7 @@ Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the
 
 <p>To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 4.3.<br>
 You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.2.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv6 armv7 i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 4.3". This second solution has the advantage of not needing to modify the Xcode project every single time you build.</p><br>
-<p>Update: <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.3.RC">2.1.3RC finally fixes the armv6 annoyance</a>
+<p>Update: <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.3.RC">2.1.3RC finally fixes the armv6 annoyance.</a>
 	</div>
 
 	<div class="fix"></div>
