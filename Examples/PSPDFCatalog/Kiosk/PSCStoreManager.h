@@ -45,7 +45,7 @@
 /// Storage path currently used. (depends on iOS version)
 + (NSString *)storagePath;
 
-@property(nonatomic, ps_weak) id<PSCStoreManagerDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSCStoreManagerDelegate> delegate;
 
 - (void)downloadMagazine:(PSCMagazine *)magazine;
 - (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine;
