@@ -120,7 +120,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheThumbnails"), _(@"PSPDFCacheThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
         _sectionTitle = @[@"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
-        _sectionFooter = @[@"", @"", @"", @"", _(@"See PSPDFKitGlobal.h for more debugging options."),
+        _sectionFooter = @[@"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
         _(@"Content Opacity"),
@@ -154,7 +154,6 @@ __attribute__((constructor)) static void setupDefaults(void) {
         }];
         _paperColorControl = [[UISegmentedControl alloc] initWithItems:imageArray];
         [_paperColorControl addTarget:self action:@selector(paperColorChanged:) forControlEvents:UIControlEventValueChanged];
-
     }
     return self;
 }
@@ -177,9 +176,24 @@ __attribute__((constructor)) static void setupDefaults(void) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
+static CGFloat pscSettingsLastYOffset = 0;
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    // retore last scroll state
+    if (pscSettingsLastYOffset > 0) {
+        self.tableView.contentOffset = CGPointMake(0, pscSettingsLastYOffset);
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.tableView flashScrollIndicators];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    pscSettingsLastYOffset = self.tableView.contentOffset.y;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
