@@ -22,6 +22,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonitem
 
+- (void)dealloc {
+    _selectionView.delegate = nil;
+}
+
 - (BOOL)isAvailable {
     return [super isAvailable] && self.pdfController.viewMode == PSPDFViewModeDocument;
 }
