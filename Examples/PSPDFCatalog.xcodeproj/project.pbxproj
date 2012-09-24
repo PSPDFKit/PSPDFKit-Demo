@@ -176,7 +176,7 @@
 		78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExampleAnnotationViewController.m; sourceTree = "<group>"; };
 		78344B5215DBB6B1002491BF /* PSCVerticalAnnotationToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCVerticalAnnotationToolbar.h; sourceTree = "<group>"; };
 		78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCVerticalAnnotationToolbar.m; sourceTree = "<group>"; };
-		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		784F011915CF247900849F81 /* PSPDFKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F011D15CF247900849F81 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		784F011F15CF247900849F81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		784F012115CF247900849F81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -375,7 +375,7 @@
 		784F011A15CF247900849F81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				784F011915CF247900849F81 /* PSPDFCatalog.app */,
+				784F011915CF247900849F81 /* PSPDFKit.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -754,7 +754,7 @@
 			);
 			name = PSPDFCatalog;
 			productName = PSPDFCatalog;
-			productReference = 784F011915CF247900849F81 /* PSPDFCatalog.app */;
+			productReference = 784F011915CF247900849F81 /* PSPDFKit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1058,7 +1058,7 @@
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
 				HEADER_SEARCH_PATHS = "PSPDFCatalog/Vendor/**";
 				INFOPLIST_FILE = "PSPDFCatalog/PSPDFCatalog-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PSPDFKit;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1076,7 +1076,7 @@
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
 				HEADER_SEARCH_PATHS = "PSPDFCatalog/Vendor/**";
 				INFOPLIST_FILE = "PSPDFCatalog/PSPDFCatalog-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PSPDFKit;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
