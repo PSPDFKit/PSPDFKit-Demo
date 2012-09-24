@@ -1,6 +1,6 @@
 //
 //  PSPDFMagazineFolder.m
-//  PSPDFKitExample
+//  PSPDFCatalog
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
