@@ -30,7 +30,7 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
@@ -59,7 +59,8 @@
 
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Oil Sands fact book_Web.pdf"]];
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
             return controller;
         }]];
@@ -86,7 +87,8 @@
         [appSection addContent:[[PSContent alloc] initWithTitle:@"Fast single PDF" block:^{
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:hcakerMagDoc];
             // don't use thumbnails if the PDF is not rendered.
-            controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+            // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
+            //controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
             return controller;
         }]];
 
@@ -215,18 +217,20 @@
         PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
         [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
+            NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+//            NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"];
 
             // copy file from the bundle to a location where we can write on it.
             NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-            NSString *newPath = [docsFolder stringByAppendingPathComponent:[hackerMagURL lastPathComponent]];
+            NSString *newPath = [docsFolder stringByAppendingPathComponent:[annotationSavingURL lastPathComponent]];
             NSError *error;
             if(![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
-               ![[NSFileManager defaultManager] copyItemAtPath:[hackerMagURL path] toPath:newPath error:&error]) {
-                NSLog(@"Error while copying %@: %@", [hackerMagURL path], error);
+               ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
+                NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
             }
-            PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
-            hackerDocument.delegate = self;
-            return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:hackerDocument];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+            document.delegate = self;
+            return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
         }]];
 
         [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add custom image annotation" block:^{
@@ -240,11 +244,11 @@
 
             // We're lazy here. 2 = UIViewContentModeScaleAspectFill
             PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
-            aVideo.boundingBox = [document pageInfoForPage:5].pageRect;
+            aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
             [document addAnnotations:@[aVideo ] forPage:5];
 
             PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
-            anImage.boundingBox = [document pageInfoForPage:2].pageRect;
+            anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
             [document addAnnotations:@[anImage] forPage:2];
 
             PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -257,7 +261,7 @@
             document.title = @"Programmatically create annotations";
 
             NSMutableArray *annotations = [NSMutableArray array];
-            CGFloat maxHeight = [document pageInfoForPage:0].pageRect.size.height;
+            CGFloat maxHeight = [document pageInfoForPage:0].rotatedPageRect.size.height;
             for (int i=0; i<5; i++) {
                 PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
                 // width/height will be ignored for note annotations.
@@ -295,6 +299,14 @@
 
         // PSPDFViewController customization examples
         PSCSectionDescriptor *customizationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFViewController customization" footer:@""];
+
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"FPC 10 Workbook.pdf"]];
+            PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
+            viewController.pageMode = PSPDFPageModeSingle;
+            viewController.pageTransition = PSPDFPageCurlTransition;
+            return viewController;
+        }]];
 
         [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Using a NIB" block:^{
             return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
