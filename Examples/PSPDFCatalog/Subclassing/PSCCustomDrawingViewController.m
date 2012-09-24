@@ -31,7 +31,7 @@
     [PSPDFPageRenderer setupGraphicsContext:context inRectangle:clipRect pageInfo:pageInfo];
 
     // flip drawing
-    CGContextTranslateCTM(context, 0, pageInfo.pageRect.size.height);
+    CGContextTranslateCTM(context, 0, pageInfo.rotatedPageRect.size.height);
     CGContextScaleCTM(context, 1, -1);
 
     // set up drawing
@@ -45,7 +45,7 @@
 
     // calculate the font box to center it
     CGSize boundingBox = [overlayText sizeWithFont:[UIFont fontWithName:fontName size:fontSize]];
-    CGContextSetTextPosition(context, roundf((pageInfo.pageRect.size.width-boundingBox.width)/2), roundf((pageInfo.pageRect.size.height-boundingBox.height)/2));
+    CGContextSetTextPosition(context, roundf((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), roundf((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
 
     // finally draw text
     CGContextShowText(context, [overlayText cStringUsingEncoding:NSUTF8StringEncoding], [overlayText length]);
