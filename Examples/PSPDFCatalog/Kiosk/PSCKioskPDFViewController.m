@@ -1,6 +1,6 @@
 //
 //  PSCKioskPDFViewController.m
-//  PSPDFKitExample
+//  PSPDFCatalog
 //
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
@@ -145,8 +145,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
     //self.pageTransition = UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
 
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-    for(NSNumber *number in [self visiblePageNumbers]) {
-        PSPDFPageView *pageView = [self pageViewForPage:[number unsignedIntegerValue]];
+        for (PSPDFPageView *pageView in [self visiblePageViews]) {
             [pageView.selectionView showTextFlowData:NO animated:NO];
             [pageView.selectionView showTextFlowData:YES animated:NO];
         }
@@ -172,7 +171,11 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
 - (void)globalVarChanged {
+    // preserve viewState, but only page, not contentOffset (since we can change fitToWidth etc here)
     PSPDFViewState *viewState = [self viewState];
+    viewState.zoomScale = 1;
+    viewState.contentOffset = CGPointMake(0, 0);
+
     NSDictionary *settings = [PSCSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
@@ -292,13 +295,11 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            for (NSNumber *pageNumber in [self visiblePageNumbers]) {
-                PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+            for (PSPDFPageView *pageView in [self visiblePageViews]) {
                 [self.document textParserForPage:pageView.page];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                for (NSNumber *pageNumber in [self visiblePageNumbers]) {
-                    PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+                for (PSPDFPageView *pageView in [self visiblePageViews]) {
                     [pageView.selectionView showTextFlowData:YES animated:NO];
                 }
             });
@@ -312,8 +313,7 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        for (NSNumber *pageNumber in [self visiblePageNumbers]) {
-            PSPDFPageView *pageView = [self pageViewForPage:[pageNumber unsignedIntegerValue]];
+        for (PSPDFPageView *pageView in [self visiblePageViews]) {
             [pageView.selectionView showTextFlowData:NO animated:NO];
         }
     }
