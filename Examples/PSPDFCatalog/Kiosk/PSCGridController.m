@@ -32,12 +32,12 @@
     BOOL _animationDoubleWithPageCurl;
     BOOL _animateViewWillAppearWithFade;
 }
-@property(nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
-@property(nonatomic, assign, getter=isEditMode) BOOL editMode;
-@property(nonatomic, strong) UIImageView *magazineView;
-@property(nonatomic, strong) PSCMagazineFolder *magazineFolder;
-@property(nonatomic, strong) PSCShadowView *shadowView;
-@property(nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
+@property (nonatomic, assign, getter=isEditMode) BOOL editMode;
+@property (nonatomic, strong) UIImageView *magazineView;
+@property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
+@property (nonatomic, strong) PSCShadowView *shadowView;
+@property (nonatomic, strong) UISearchBar *searchBar;
 @end
 
 @implementation PSCGridController
@@ -169,14 +169,16 @@
     [self.gridView addSubview:self.searchBar];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    self.gridView.delegate = nil;
-    self.gridView.dataSource = nil;
-    self.gridView = nil;
-    self.shadowView = nil;
-    self.searchBar.delegate = nil;
-    self.searchBar = nil;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if (![self isViewLoaded]) {
+        self.gridView.delegate = nil;
+        self.gridView.dataSource = nil;
+        self.gridView = nil;
+        self.shadowView = nil;
+        self.searchBar.delegate = nil;
+        self.searchBar = nil;
+    }
 }
 
 // default style

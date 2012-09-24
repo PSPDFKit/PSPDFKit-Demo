@@ -62,9 +62,11 @@
     [self.view insertSubview:_backgroundImage belowSubview:self.pageView];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    _backgroundImage = nil;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    if (![self isViewLoaded]) {
+        _backgroundImage = nil;
+    }
 }
 
 - (void)updateBackgroundView {
