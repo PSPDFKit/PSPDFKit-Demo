@@ -8,7 +8,7 @@
 #import "PSCSplitPDFViewController.h"
 
 @interface PSCSplitPDFViewController()
-@property(nonatomic, strong) UIPopoverController *masterPopoverController;
+@property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @end
 
 // note that it would be much better if we directly use PSPDFViewController,

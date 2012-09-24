@@ -30,8 +30,8 @@
     UIImageView *_magazineCounterBadgeImage;
     NSMutableSet *observedMagazineDownloads_;
 }
-@property(nonatomic, strong) UIImageView *magazineCounterBadgeImage;
-@property(nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) UIImageView *magazineCounterBadgeImage;
+@property (nonatomic, strong) UIProgressView *progressView;
 - (void)setProgress:(float)theProgress animated:(BOOL)animated;
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated;
 - (void)updateProgressAnimated:(BOOL)animated;

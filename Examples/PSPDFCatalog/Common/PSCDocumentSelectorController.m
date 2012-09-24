@@ -14,9 +14,9 @@
     NSMutableArray *_filteredContent;
 }
 // save state during view reloads
-@property(nonatomic, copy) NSString *savedSearchTerm;
-@property(nonatomic, assign) NSInteger savedScopeButtonIndex;
-@property(nonatomic, assign) BOOL searchWasActive;
+@property (nonatomic, copy) NSString *savedSearchTerm;
+@property (nonatomic, assign) NSInteger savedScopeButtonIndex;
+@property (nonatomic, assign) BOOL searchWasActive;
 @end
 
 @implementation PSCDocumentSelectorController

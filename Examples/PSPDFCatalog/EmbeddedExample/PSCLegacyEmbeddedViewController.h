@@ -9,6 +9,6 @@
 // If you can, use the iOS5 way. Much better, less error phrone, less code.
 @interface PSCLegacyEmbeddedViewController : UIViewController
 
-@property(nonatomic, strong) PSPDFViewController *pdfController;
+@property (nonatomic, strong) PSPDFViewController *pdfController;
 
 @end

@@ -17,12 +17,12 @@
 @interface PSCDownload () {
     UIProgressView *progressView_;
 }
-@property(nonatomic, strong) NSURL *URL;
-@property(nonatomic, assign) PSPDFStoreDownloadStatus status;
-@property(nonatomic, assign) float downloadProgress;
-@property(nonatomic, strong) NSError *error;
-@property(nonatomic, strong) AFHTTPRequestOperation *request;
-@property(nonatomic, assign, getter=isCancelled) BOOL cancelled;
+@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, assign) PSPDFStoreDownloadStatus status;
+@property (nonatomic, assign) float downloadProgress;
+@property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) AFHTTPRequestOperation *request;
+@property (nonatomic, assign, getter=isCancelled) BOOL cancelled;
 @end
 
 @implementation PSCDownload
