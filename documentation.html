@@ -177,16 +177,16 @@ documentation: current-menu-item current_page_item
 	  <h2 class="section-title">Appcelerator Titanium Module</h2>
 	 <p>
 	 	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module. See the in the module included app.js for working example code.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis. All available features are listed in the examples/app.js supplied with the module.<br><br>
-You need to have at least Xcode 4.4.1 installed and the latest available versions of Titanium Studio (&ge; 2.1.2.GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<br><br>
+You need to have at least Xcode 4.4.1 installed and the latest available versions of Titanium Studio (&ge; 2.1.2.GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<p><br><br>
 
-You install the plugin via copying com.pspdfkit.source-iphone-xxx.zip (where xxx is the version number) to /Users/USERNAME/Library/Application\ Support/Titanium/ (where USERNAME is your mac user name). Note that on some installations, Titanium might be installed on root, then the target folder is /Library/Application\ Support/Titanium/.<br>
-Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the [+] on Modules. Select com.pspdfkit (or.com.pspdfkit.source; depending on the version you downloaded). if pspdfkit doesn't appear, try to run your application and re-do the Module add step.<br><br>
+<p>You install the plugin via copying com.pspdfkit.source-iphone-xxx.zip (where xxx is the version number) to /Users/USERNAME/Library/Application\ Support/Titanium/ (where USERNAME is your mac user name). Note that on some installations, Titanium might be installed on root, then the target folder is /Library/Application\ Support/Titanium/.<br>
+Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the [+] on Modules. Select com.pspdfkit (or.com.pspdfkit.source; depending on the version you downloaded). if pspdfkit doesn't appear, try to run your application and re-do the Module add step.</p><br><br>
 
 <p>You also need to <a href="images/titaniumbundle.png">add "PSPDFKit.bundle" to your resources.</a> You'll find it at /Users/USERNAME/Library/Application\ Support/Titanium/modules/iphone/com.pspdfkit.source/VERSIONNUMBER/example/PSPDFKit.bundle. Drop the whole PSPDFKit.bundle folder into the Resources/iphone folder of your Appcelerator project.<br></p>
 
-To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 4.3.<br>
-You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.2.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv6 armv7 i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 4.3". This second solution has the advantage of not needing to modify the Xcode project every single time you build.
-</p>
+<p>To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 4.3.<br>
+You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.2.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv6 armv7 i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 4.3". This second solution has the advantage of not needing to modify the Xcode project every single time you build.</p><br>
+<p>Update: <a href="http://docs.appcelerator.com/titanium/release-notes/?version=2.1.3.RC">2.1.3RC finally fixes the armv6 annoyance</a>
 	</div>
 
 	<div class="fix"></div>
