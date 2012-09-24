@@ -8,8 +8,8 @@
 #import "PSCVerticalAnnotationToolbar.h"
 
 @interface PSCVerticalAnnotationToolbar() <PSPDFAnnotationToolbarDelegate>
-@property(nonatomic, strong) UIButton *drawButton;
-@property(nonatomic, strong) PSPDFAnnotationToolbar *toolbar;
+@property (nonatomic, strong) UIButton *drawButton;
+@property (nonatomic, strong) PSPDFAnnotationToolbar *toolbar;
 @end
 
 @implementation PSCVerticalAnnotationToolbar

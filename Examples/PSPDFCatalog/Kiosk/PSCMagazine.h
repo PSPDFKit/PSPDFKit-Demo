@@ -18,21 +18,21 @@
 - (UIImage *)coverImageForSize:(CGSize)size;
 
 /// Magazine folder. Weak to break the retain cycle.
-@property(nonatomic, ps_weak) PSCMagazineFolder *folder; // weak!
+@property (nonatomic, ps_weak) PSCMagazineFolder *folder; // weak!
 
 /// URL for downloading the pdf.
-@property(nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURL *URL;
 
 // URL for downloading image.
-@property(nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, strong) NSURL *imageURL;
 
 /// YES if magazine is currently downloading.
-@property(nonatomic, assign, getter=isDownloading) BOOL downloading;
+@property (nonatomic, assign, getter=isDownloading) BOOL downloading;
 
 /// YES if magazine is on-disk and/or sucessfully downloaded.
-@property(nonatomic, assign, getter=isAvailable) BOOL available;
+@property (nonatomic, assign, getter=isAvailable) BOOL available;
 
 /// YES if the magazine can be deleted. NO if it's within the app bundle, which can't be edited.
-@property(nonatomic, assign, getter=isDeletable, readonly) BOOL deletable;
+@property (nonatomic, assign, getter=isDeletable, readonly) BOOL deletable;
 
 @end

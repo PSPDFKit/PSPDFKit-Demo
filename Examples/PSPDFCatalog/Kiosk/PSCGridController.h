@@ -15,7 +15,7 @@
 - (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
 - (void)updateGrid;
 
-@property(nonatomic, strong) PSTCollectionView *gridView;
-@property(nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
+@property (nonatomic, strong) PSTCollectionView *gridView;
+@property (nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
 
 @end

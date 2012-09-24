@@ -14,16 +14,16 @@
 @interface PSCImageGridViewCell : PSPDFThumbnailGridViewCell
 
 /// Relays image to internal image of PSPDFThumbnailGridViewCell.
-@property(nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *image;
 
 /// Set magazineCount badge for a PSPDFMagazineFolder.
-@property(nonatomic, assign) NSUInteger magazineCount;
+@property (nonatomic, assign) NSUInteger magazineCount;
 
 // Cell may contain a magazine or a folder. don't set both.
-@property(nonatomic, strong) PSCMagazine *magazine;
-@property(nonatomic, strong) PSCMagazineFolder *magazineFolder;
+@property (nonatomic, strong) PSCMagazine *magazine;
+@property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 
 // If set to YES, image is loaded synchronously, not via threads.
-@property(nonatomic, assign) BOOL immediatelyLoadCellImages;
+@property (nonatomic, assign) BOOL immediatelyLoadCellImages;
 
 @end
