@@ -11,4 +11,7 @@
 
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
+// Helper to close a modal view
+- (void)closeModalView;
+
 @end
