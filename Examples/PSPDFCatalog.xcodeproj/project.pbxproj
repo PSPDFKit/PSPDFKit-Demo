@@ -92,6 +92,7 @@
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
 		78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */; };
 		78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */; };
+		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
 		78DDC72915CF2EFF0030C730 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B715CF2EFF0030C730 /* AFHTTPClient.m */; };
@@ -176,7 +177,7 @@
 		78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExampleAnnotationViewController.m; sourceTree = "<group>"; };
 		78344B5215DBB6B1002491BF /* PSCVerticalAnnotationToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCVerticalAnnotationToolbar.h; sourceTree = "<group>"; };
 		78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCVerticalAnnotationToolbar.m; sourceTree = "<group>"; };
-		784F011915CF247900849F81 /* PSPDFKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F011D15CF247900849F81 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		784F011F15CF247900849F81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		784F012115CF247900849F81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -295,6 +296,8 @@
 		78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFittingWidthViewController.m; sourceTree = "<group>"; };
 		78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDrawingViewController.m; sourceTree = "<group>"; };
 		78D8128215DC45EB00B8056B /* PSCCustomDrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomDrawingViewController.h; sourceTree = "<group>"; };
+		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
+		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
 		78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		78DDC6B215CF2EFF0030C730 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
@@ -375,7 +378,7 @@
 		784F011A15CF247900849F81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				784F011915CF247900849F81 /* PSPDFKit.app */,
+				784F011915CF247900849F81 /* PSPDFCatalog.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -461,6 +464,8 @@
 		78A24A1115CFDAAF00328F4F /* TabbedExample */ = {
 			isa = PBXGroup;
 			children = (
+				78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */,
+				78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */,
 				78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */,
 				78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */,
 			);
@@ -754,7 +759,7 @@
 			);
 			name = PSPDFCatalog;
 			productName = PSPDFCatalog;
-			productReference = 784F011915CF247900849F81 /* PSPDFKit.app */;
+			productReference = 784F011915CF247900849F81 /* PSPDFCatalog.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -952,6 +957,7 @@
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
 				7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */,
 				78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */,
+				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,7 +1064,7 @@
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
 				HEADER_SEARCH_PATHS = "PSPDFCatalog/Vendor/**";
 				INFOPLIST_FILE = "PSPDFCatalog/PSPDFCatalog-Info.plist";
-				PRODUCT_NAME = PSPDFKit;
+				PRODUCT_NAME = PSPDFCatalog;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1076,7 +1082,7 @@
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
 				HEADER_SEARCH_PATHS = "PSPDFCatalog/Vendor/**";
 				INFOPLIST_FILE = "PSPDFCatalog/PSPDFCatalog-Info.plist";
-				PRODUCT_NAME = PSPDFKit;
+				PRODUCT_NAME = PSPDFCatalog;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
