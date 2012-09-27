@@ -134,8 +134,8 @@
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
     // init the collection view
-    PSTCollectionViewFlowLayout *flowLayout = [PSTCollectionViewFlowLayout new];
-    PSTCollectionView *collectionView = [[PSTCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:(PSTCollectionViewFlowLayout *)flowLayout];
+    PSUICollectionViewFlowLayout *flowLayout = [PSUICollectionViewFlowLayout new];
+    PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
     flowLayout.minimumInteritemSpacing = 10;
@@ -633,6 +633,16 @@
         }else {
             [self.navigationController pushViewController:gridController animated:YES];
         }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    // resign keyboard if we scroll down
+    if (self.gridView.contentOffset.y > 0) {
+        [self.searchBar resignFirstResponder];
     }
 }
 
