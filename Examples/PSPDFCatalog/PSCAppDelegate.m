@@ -18,7 +18,7 @@
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+
     // print version of the catalog example and PSPDFKit.
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
