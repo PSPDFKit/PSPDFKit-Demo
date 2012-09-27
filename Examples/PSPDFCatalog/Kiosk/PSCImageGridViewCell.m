@@ -20,7 +20,7 @@
 #define kPSPDFCellAnimationDuration 0.25f
 
 @interface PSCImageGridViewCell() {
-    __block NSOperation *imageLoadOperation_;
+    NSOperation *imageLoadOperation_;
     UIImage *magazineOperationImage_;
     NSString *magazineTitle_;
     CGRect defaultFrame_;
@@ -39,16 +39,10 @@
 
 @implementation PSCImageGridViewCell
 
-static void *kPSPDFKVOToken;
-
-void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block);
-void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
+static char kPSPDFKVOToken;
+static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     if (block) {
-        if ([NSThread isMainThread]) {
-            block();
-        }else {
-            dispatch_async(dispatch_get_main_queue(), block);
-        }
+        [NSThread isMainThread] ? block() : dispatch_async(dispatch_get_main_queue(), block);
     }
 }
 
@@ -63,7 +57,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             return;
         }
         [observedMagazineDownloads_ addObject:download];
-        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:kPSPDFKVOToken];
+        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
         [self updateProgressAnimated:NO];
     }
 }
@@ -71,7 +65,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)clearProgressObservers {
     // clear all observed magazines
     for (PSCDownload *download in observedMagazineDownloads_) {
-        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:kPSPDFKVOToken];
+        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:&kPSPDFKVOToken];
     }
     [observedMagazineDownloads_ removeAllObjects];
 }
@@ -95,7 +89,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)dealloc {
-    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
+    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:&kPSPDFKVOToken];
     [self clearProgressObservers];
     [[PSPDFCache sharedCache] removeDelegate:self];
 }
@@ -155,7 +149,7 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == kPSPDFKVOToken) {
+    if (context == &kPSPDFKVOToken) {
         if ([keyPath isEqualToString:NSStringFromSelector(@selector(downloadProgress))]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
@@ -182,14 +176,14 @@ void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     }
 
     if (_magazine != magazine) {
-        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:kPSPDFKVOToken];
+        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:&kPSPDFKVOToken];
         _magazine = magazine;
 
         // setup for magazine
         if (magazine) {
 
             // add KVO for download property
-            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:kPSPDFKVOToken];
+            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:&kPSPDFKVOToken];
 
             // add KVO
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
