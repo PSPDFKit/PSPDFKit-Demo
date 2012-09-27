@@ -77,6 +77,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(searchButtonItem)] = @(YES);
         _settings[StringSEL(annotationButtonItem)] = @(YES);
         _settings[StringSEL(bookmarkButtonItem)] = @(YES);
+        _settings[StringSEL(brightnessButtonItem)] = @(PSIsIpad()); // doesn't yet look good on iPhone.
         _settings[StringSEL(outlineButtonItem)] = @(YES);
         _settings[StringSEL(printButtonItem)] = @(YES);
         _settings[StringSEL(openInButtonItem)] = @(YES);
@@ -104,7 +105,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Single First Page"), _(@"No Cover Page")],
         @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
         @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Scrobblebar"), _(@"Page Position View")],
-        @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"View Mode")],
+        @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"View Mode")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
         ];
@@ -117,7 +118,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
         @[_(@"PSPDFPageRenderingModeThumbailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
         @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
-        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"viewModeButtonItem")],
+        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"brightnessButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheThumbnails"), _(@"PSPDFCacheThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
@@ -262,7 +263,8 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 4: _settings[StringSEL(emailButtonItem)] = value; break;
                 case 5: _settings[StringSEL(annotationButtonItem)] = value; break;
                 case 6: _settings[StringSEL(bookmarkButtonItem)] = value; break;
-                case 7: _settings[StringSEL(viewModeButtonItem)] = value; break;
+                case 7: _settings[StringSEL(brightnessButtonItem)] = value; break;
+                case 8: _settings[StringSEL(viewModeButtonItem)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -359,7 +361,8 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 4: cellSwitch.on = [_settings[StringSEL(emailButtonItem)] boolValue]; break;
                 case 5: cellSwitch.on = [_settings[StringSEL(annotationButtonItem)] boolValue]; break;
                 case 6: cellSwitch.on = [_settings[StringSEL(bookmarkButtonItem)] boolValue]; break;
-                case 7: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
+                case 7: cellSwitch.on = [_settings[StringSEL(brightnessButtonItem)] boolValue]; break;
+                case 8: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
                 default: break;
             }break;
         }break;
