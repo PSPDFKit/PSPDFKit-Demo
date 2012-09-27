@@ -34,6 +34,7 @@
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
     BOOL _firstShown;
+    BOOL _clearCacheNeeded;
     NSArray *_content;
 }
 @end
@@ -62,6 +63,7 @@
 //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
 //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
+            controller.statusBarStyleSetting = PSPDFStatusBarDefault;
             return controller;
         }]];
 
@@ -364,7 +366,19 @@
             pdfController.backgroundColor = [UIColor brownColor];
             return pdfController;
         }]];
-        
+
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Night Mode" block:^{
+            [[PSPDFCache sharedCache] clearCache];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            document.renderOptions = @{kPSPDFInvertRendering : @(YES)};
+            document.backgroundColor = [UIColor blackColor];
+            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+            pdfController.backgroundColor = [UIColor blackColor];
+            _clearCacheNeeded = YES;
+            return pdfController;
+        }]];
+
+
         [content addObject:customizationSection];
         ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -471,6 +485,12 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
+
+    // clear cache (for night mode)
+    if (_clearCacheNeeded) {
+        _clearCacheNeeded = NO;
+        [[PSPDFCache sharedCache] clearCache];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
