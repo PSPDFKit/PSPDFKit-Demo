@@ -197,6 +197,9 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
             [rightBarButtonItems addObject:self.bookmarkButtonItem];
         }
+        if ([settings[NSStringFromSelector(@selector(brightnessButtonItem))] boolValue]) {
+            [rightBarButtonItems addObject:self.brightnessButtonItem];
+        }
     }
     if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
@@ -223,6 +226,9 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         }
         if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
             [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
+        }
+        if ([settings[NSStringFromSelector(@selector(brightnessButtonItem))] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
     self.additionalRightBarButtonItems = additionalRightBarButtonItems;
