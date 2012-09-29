@@ -59,8 +59,8 @@ const char *clearAllActionSheetToken;
     NSLog(@"didChangeDocuments: %@ (old)", oldDocuments);
 }
 
-- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeVisibleDocument:(PSPDFDocument *)newDocument {
-    NSLog(@"willChangeVisibleDocument: %@", newDocument);
+- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController shouldChangeVisibleDocument:(PSPDFDocument *)newDocument {
+    NSLog(@"shouldChangeVisibleDocument: %@", newDocument);
 
     // return YES to allow the change
     return YES;
