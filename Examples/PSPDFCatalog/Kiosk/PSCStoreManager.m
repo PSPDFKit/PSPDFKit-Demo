@@ -299,7 +299,9 @@ static char kvoToken; // we need a static address for the kvo token
             [downloadObject cancelDownload];
         }
         
-        [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES error:nil];
+        });
     }
     
     [_delegate magazineStoreFolderDeleted:magazineFolder];
@@ -334,7 +336,9 @@ static char kvoToken; // we need a static address for the kvo token
     }
     
     // clear everything
-    [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES waitUntilDone:NO];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES error:nil];
+    });
 
     // if magazine has no url - delete
     if (!magazine.URL) {
