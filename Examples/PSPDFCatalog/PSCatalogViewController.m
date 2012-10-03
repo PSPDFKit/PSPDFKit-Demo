@@ -61,7 +61,7 @@
         [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
             PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
 //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
-//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
+//            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"blue.pdf"]];
             PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
             controller.statusBarStyleSetting = PSPDFStatusBarDefault;
             return controller;
@@ -326,7 +326,7 @@
             pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
             pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
             pdfController.additionalRightBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
-
+            pdfController.tintColor = [UIColor orangeColor];
             return pdfController;
         }]];
 
