@@ -15,7 +15,7 @@ Note: This will be the last release that supports iOS 4.3*. The next version wil
 *  Add new property renderAnnotationTypes to PSPDFViewController to allow control about the types of annotations that should be rendered.
 *  Add support for PDF Link Launch annotations (link to a different PDF within a PDF, see http://pspdfkit.com/documentation.html#annotations)
 *  Annotation selection is now smarter and selects the annotation that's most likely chosen (e.g. a small note annotation now is clickable even if it's behind a big ink drawing annotation)
-*  It's not possible to properly select an annotation while in highlight mode.
+*  It's now possible to properly select an annotation while in highlight mode.
 *  Allow changing the drawing color using the menu. (invokes the color picker)
 *  Add a isEditable property to be able to lock certain annotations against future edits.
 *  Add printing support for small CGDataProviderRef-based PSPDFDocuments.
