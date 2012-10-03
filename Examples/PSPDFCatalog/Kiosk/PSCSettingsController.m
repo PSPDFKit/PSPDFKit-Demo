@@ -65,7 +65,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(isFitToWidthEnabled)] = @(!PSIsIpad());
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollContinuousTransition);
-//        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
+        PSPDF_IF_PRE_IOS5(_settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);)
         _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
@@ -396,13 +396,18 @@ static CGFloat pscSettingsLastYOffset = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDelegate
 
+// allow both iPhone (self) and iPad use. (iPad will crash if we push from self in a popover)
+- (UIViewController *)masterViewController {
+    return self.owningViewController.view.window ? self.owningViewController : self;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case PSPDFClearCacheButton: [[PSPDFCache sharedCache] clearCache]; break;
         case PSPDFOpenAPIButton: {
             PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); break;)
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
-            [self.owningViewController ?: self presentModalViewController:webController animated:YES];
+            [[self masterViewController] presentModalViewController:webController animated:YES];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFTextReflow: [self showTextReflowController]; break;
@@ -465,11 +470,11 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.editable = NO;
     configViewController.view = configView;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:configViewController];
-    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:self.owningViewController action:@selector(closeModalView)];
+    configViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Close") style:UIBarButtonItemStyleDone target:configViewController action:@selector(closeModalView)];
     navController.title = _(@"Current ");
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    [self.owningViewController ?: self presentModalViewController:navController animated:YES];
+    [[self masterViewController] presentModalViewController:navController animated:YES];
 }
 
 - (void)showTextReflowController {
