@@ -749,6 +749,9 @@
     _filteredData = nil;
     [self.gridView reloadData];
     self.gridView.contentOffset = CGPointMake(0, -self.gridView.contentInset.top);
+
+    // TODO: UICollectionView is stealing the first responder. Why?
+    [searchBar becomeFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
