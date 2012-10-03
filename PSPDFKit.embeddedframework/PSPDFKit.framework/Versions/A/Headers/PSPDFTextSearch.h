@@ -55,17 +55,17 @@
 /// Do not expect that this library will give you 100% perfect results as compared to Adobe Acrobat.
 /// Text extraction is a *very* tricky feature.
 /// Defaults to PSPDFSearchAdvancedWithHighlighting.
-@property(nonatomic, assign) PSPDFSearchMode searchMode;
+@property (nonatomic, assign) PSPDFSearchMode searchMode;
 
 /// Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch
 /// With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
 /// See NSString comparison documentation for details.
-@property(nonatomic, assign) NSStringCompareOptions compareOptions;
+@property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
 /// The document that is searched.
-@property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
+@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
 /// Search delegate. Will be retained as long as the operation runs.
-@property(nonatomic, ps_weak) id<PSPDFSearchDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFSearchDelegate> delegate;
 
 @end

@@ -17,18 +17,18 @@
 - (NSArray *)flattenedChildren;
 
 /// Outline title.
-@property(nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *title;
 
 /// Set if outline to a different PDF document. Path is relative to current document.
-@property(nonatomic, copy) NSString *relativePath;
+@property (nonatomic, copy) NSString *relativePath;
 
 /// Child elements.
-@property(nonatomic, strong, readonly) NSArray *children;
+@property (nonatomic, strong, readonly) NSArray *children;
 
 /// Current outline level.
-@property(nonatomic, assign) NSUInteger level;
+@property (nonatomic, assign) NSUInteger level;
 
 /// Expansion state of current outline element.
-@property(nonatomic, assign, getter=isExpanded) BOOL expanded;
+@property (nonatomic, assign, getter=isExpanded) BOOL expanded;
 
 @end

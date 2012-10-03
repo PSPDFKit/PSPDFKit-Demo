@@ -1,0 +1,32 @@
+//
+//  PSPDFContinuousScrollViewController.h
+//  PSPDFKit
+//
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//
+
+#import "PSPDFBaseViewController.h"
+#import "PSPDFKitGlobal.h"
+#import "PSPDFTransitionProtocol.h"
+#import "PSPDFViewController.h"
+
+@class PSPDFPageView, PSPDFPagingScrollView;
+
+/// Controller for Safari-like continuous scrolling
+@interface PSPDFContinuousScrollViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
+
+/// Designated initializer.
+- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+
+// Associated pdfController. (unsafe_unretained because we observe KVO on this)
+@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
+
+// Associated scrollview. Might be nil if transition doesn't support zooming.
+@property (nonatomic, unsafe_unretained) PSPDFContentScrollView *scrollView;
+
+/// Page padding width between single/double pages.
+@property (nonatomic, assign) CGFloat pagePadding;
+
+- (CGPoint)compensatedContentOffset;
+
+@end

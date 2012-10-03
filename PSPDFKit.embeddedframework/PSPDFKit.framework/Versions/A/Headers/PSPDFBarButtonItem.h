@@ -89,6 +89,6 @@
 @interface PSPDFCopiedBarButtonItem : UIBarButtonItem
 
 // Link to the original barButton.
-@property(nonatomic, strong, readonly) PSPDFBarButtonItem *originalBarButtonItem;
+@property (nonatomic, strong, readonly) PSPDFBarButtonItem *originalBarButtonItem;
 
 @end

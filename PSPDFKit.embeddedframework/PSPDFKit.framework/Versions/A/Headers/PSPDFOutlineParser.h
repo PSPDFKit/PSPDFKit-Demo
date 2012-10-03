@@ -25,20 +25,23 @@
 
 /// Returns cached outline. starts parsing if outline is not yet created.
 /// Not readonly, because this could also be set programmatically.
-@property(nonatomic, strong) PSPDFOutlineElement *outline;
+@property (nonatomic, strong) PSPDFOutlineElement *outline;
 
 /// Returns YES if outline is already parsed. Might be an expensive operation.
-@property(nonatomic, assign, readonly, getter=isOutlineParsed) BOOL outlineParsed;
+@property (nonatomic, assign, readonly, getter=isOutlineParsed) BOOL outlineParsed;
 
 /// Returns YES if there is an outline in the document and we parsed it (outline.children > 0)
 /// Will return NO if outline is not yet parsed.
-@property(nonatomic, assign, readonly, getter=isOutlineAvailable) BOOL outlineAvailable;
+@property (nonatomic, assign, readonly, getter=isOutlineAvailable) BOOL outlineAvailable;
+
+/// Attached document provider.
+@property (nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
 + (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;
 
 /// Remembers the first visible outline element.
 /// Used to remember the position in PSPDFOutlineViewController.
-@property(nonatomic, assign) NSUInteger firstVisibleElement;
+@property (nonatomic, assign) NSUInteger firstVisibleElement;
 
 @end

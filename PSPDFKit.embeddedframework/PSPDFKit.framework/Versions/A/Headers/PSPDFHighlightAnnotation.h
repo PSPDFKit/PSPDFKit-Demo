@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
 };
 
 /// Text Highlight Annotation (Highlight, StrikeOut, Underline)
+/// Important! If you programmatically create a highlight annotation, you need to both set the boundingBox AND the rects array. (the rects array contains boxed variants of CGRect (NSValue))
 @interface PSPDFHighlightAnnotation : PSPDFAnnotation
 
 /// Highlight subtype.

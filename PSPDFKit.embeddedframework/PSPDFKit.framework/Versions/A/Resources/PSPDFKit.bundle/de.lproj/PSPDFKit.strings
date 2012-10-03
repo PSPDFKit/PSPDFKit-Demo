@@ -12,17 +12,25 @@
 "Untitled" = "Unbenannt";
 "File Not Found" = "Datei nicht gefunden";
 "Unnamed PDF" = "Unbenanntes PDF";
-"Table Of Contents" = "Inhaltsverzeichnis";
 "Go to %@" = "%@";
 "Page %d" = "Seite %d";
 
 // toolbar
-"Outline" = "Outline";
+"Table Of Contents" = "Inhaltsverzeichnis";
 "Search" = "Suchen";
 "Email" = "E-Mail";
 "Open in..." = "Öffnen in…";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
+"Annotations" = "Annotationen";
+"Add Bookmark" = "Bookmark hinzufügen";
+"Remove Bookmark" = "Bookmark entfernen";
+"Brightness" = "Helligkeit";
+
+// password
+"Unlock" = "Entsperren";
+"Please enter the password." = "Bitte geben sie das Passwort ein.";
+"This document cannot be unlocked. %@ is unsupported." = "Dieses Dokument kann nicht geöffnet werden. %@ nicht unterstützt.";
 
 // page
 "%d of %d" = "%d von %d";
@@ -42,11 +50,13 @@
 "Copy Link" = "Link kopieren";
 "Open in Safari" = "In Safari öffnen";
 "Mail Link to this Page" = "Link zu dieser Seite mailen";
+"Your %@ is not configured to send emails." = "Ihr %@ ist nicht für das Email-senden konfiguriert.";
 
 // annotations
 "Remove" = "Entfernen";
 "Edit" = "Editieren";
 "Type..." = "Type…";
+"Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";
 "Text..." = "Text…";
 "Yellow" = "Gelb";
@@ -70,6 +80,7 @@
 "Delete Note" = "Notiz entfernen";
 "Delete Highlight" = "Markierung entfernen";
 "Delete Free Text" = "Text entfernen";
+"%@ could not be found." = "%@ konnte nicht gefunden werden.";
 
 // voiceover accessibility
 "Page" = "Seite";

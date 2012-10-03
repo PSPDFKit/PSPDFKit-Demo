@@ -11,7 +11,6 @@
 @interface PSPDFLongPressGestureRecognizer : UILongPressGestureRecognizer
 @end
 
-
 @protocol PSPDFLongPressGestureRecognizerDelegate <UIGestureRecognizerDelegate>
 
 - (BOOL)pressRecognizerShouldHandlePressImmediately:(PSPDFLongPressGestureRecognizer *)recognizer;

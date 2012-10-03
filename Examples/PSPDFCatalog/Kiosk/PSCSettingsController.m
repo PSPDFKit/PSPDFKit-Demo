@@ -64,8 +64,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
         _settings[StringSEL(isFitToWidthEnabled)] = @(!PSIsIpad());
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollContinuousTransition);
-        PSPDF_IF_PRE_IOS5(_settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);)
+        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);

@@ -29,14 +29,17 @@
 - (id)initWithDocument:(PSPDFDocument *)document;
 
 /// Contains bookmarks (PSPDFBookmark) for the document.
-@property(copy) NSArray *bookmarks;
+@property (copy) NSArray *bookmarks;
 
-@property(ps_weak) PSPDFDocument *document;
+@property (ps_weak) PSPDFDocument *document;
 
 /// Convenience methods. Will return NO if page is invalid or bookmark doesn't exist.
 /// If you manually add bookmarks, you might need to call createToolbarAnimated to update.
 - (BOOL)addBookmarkForPage:(NSUInteger)page;
 - (BOOL)removeBookmarkForPage:(NSUInteger)page;
+
+/// Clears all bookmarks. Also deletes file.
+- (BOOL)clearAllBookmarksWithError:(NSError **)error;
 
 /// Returns the bookmark if page has a bookmark.
 - (PSPDFBookmark *)bookmarkForPage:(NSUInteger)page;
@@ -54,7 +57,7 @@
 - (NSString *)bookmarkPath;
 
 /// Read bookmarks out of the plist in bookmarkPath.
-- (NSArray *)loadBookmarks;
+- (NSArray *)loadBookmarksWithError:(NSError **)error;
 
 /**
     Saves the bookmark into a plist file at bookmarkPath.
@@ -63,6 +66,6 @@
     We go the tricky way to make a plist so it's human-readable.
     Note that PSPDFDocument confirms to NSCopying, so streaming into a keyed archiver would work too.
 */
-- (void)saveBookmarks;
+- (BOOL)saveBookmarksWithError:(NSError **)error;
 
 @end

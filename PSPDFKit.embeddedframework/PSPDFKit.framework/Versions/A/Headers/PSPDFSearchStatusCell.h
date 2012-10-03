@@ -15,6 +15,6 @@
 - (void)updateCellWithSearchStatus:(PSPDFSearchStatus)searchStatus results:(NSUInteger)results;
 
 /// Spinner that is displayed while search is in progress
-@property(nonatomic, ps_weak, readonly) UIActivityIndicatorView *spinner;
+@property (nonatomic, ps_weak, readonly) UIActivityIndicatorView *spinner;
 
 @end

@@ -14,9 +14,9 @@
 @interface PSPDFImageAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Image URL (to a local resource)
-@property(nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURL *URL;
 
 /// Direct access to the ImageView.
-@property(nonatomic, strong, readonly) UIImageView *imageView;
+@property (nonatomic, strong, readonly) UIImageView *imageView;
 
 @end

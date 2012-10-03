@@ -26,7 +26,7 @@
 /// Class that allows drawing on top of a PSPDFPageView.
 @interface PSPDFDrawView : UIView
 
-@property(nonatomic, strong, readonly) CAShapeLayer *shapeLayer;
+@property (nonatomic, strong, readonly) CAShapeLayer *shapeLayer;
 
 @property (nonatomic, strong) UIBezierPath *path;
 @property (nonatomic, strong) NSMutableArray *lines;
@@ -41,9 +41,9 @@
 
 - (void)loadImage:(UIImage *)image;
 - (BOOL)canUndo;
-- (void)undo;
+- (BOOL)undo;
 - (BOOL)canRedo;
-- (void)redo;
+- (BOOL)redo;
 - (void)done;
 
 @end

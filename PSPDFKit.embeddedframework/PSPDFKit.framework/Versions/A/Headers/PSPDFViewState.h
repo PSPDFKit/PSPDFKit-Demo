@@ -11,15 +11,15 @@
 @interface PSPDFViewState : NSObject <NSCoding, NSCopying>
 
 /// Zoom scale.
-@property(nonatomic, assign) CGFloat zoomScale;
+@property (nonatomic, assign) CGFloat zoomScale;
 
 /// Content offset.
-@property(nonatomic, assign) CGPoint contentOffset;
+@property (nonatomic, assign) CGPoint contentOffset;
 
 /// Visible Page.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// Show the HUD.
-@property(nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
+@property (nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
 
 @end

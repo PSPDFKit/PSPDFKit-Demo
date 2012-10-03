@@ -95,9 +95,9 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Thread safe.
 - (BOOL)resumeCachingForService:(id)service;
 
-/// Clear cache for a specific document, optionally also deletes referenced document files.
-/// This usually performs asyncronously. If you need this call to be blocking until it's done, set wait to YES.
-- (void)removeCacheForDocument:(PSPDFDocument *)aDocument deleteDocument:(BOOL)deleteDocument waitUntilDone:(BOOL)wait;
+/// Clear cache for a specific document, optionally also deletes referenced document files. Operation is synchronous.
+/// Will also delete all metadata in document.cacheDirectory
+- (BOOL)removeCacheForDocument:(PSPDFDocument *)document deleteDocument:(BOOL)deleteDocument error:(NSError **)error;
 
 /// Clear whole (disk) cache directory. May lock until related async tasks are finished. Can be called from any thread.
 - (BOOL)clearCache;
@@ -110,38 +110,38 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 
 /// Set up the caching strategy.
 /// Defaults to PSPDFCacheOpportunistic.
-@property(assign) PSPDFCacheStrategy strategy;
+@property (nonatomic, assign) PSPDFCacheStrategy strategy;
 
 /// Maximum number of cached documents. Default value depends on device. Only odd numbers are allowed. (1,3,5,...)
 /// If you experience memory issues, set this to zero in your AppDelegate.
-@property(nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
+@property (nonatomic, assign) NSUInteger numberOfMaximumCachedDocuments;
 
 /// Only relevant in strategy PSPDFCacheThumbnailsAndNearPages.
-@property(assign) NSUInteger numberOfNearCachedPages;
+@property (nonatomic, assign) NSUInteger numberOfNearCachedPages;
 
 /// JPG is almost always faster, and uses less memory (<50% of a PNG, usually). Defaults to YES.
 /// If you have very text-like pages, you might want to set this to NO.
-@property(assign) BOOL useJPGFormat;
+@property (nonatomic, assign) BOOL useJPGFormat;
 
 /// Compression strength for JPG. (PNG is lossless)
 /// The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
 /// This will load the pdf and remove any jpg artifacts.
-@property(assign) CGFloat JPGFormatCompression;
+@property (nonatomic, assign) CGFloat JPGFormatCompression;
 
 /// The interpolation level applied to thumbnail and tiny images.
 /// Defaults to kCGInterpolationHigh.
-@property(assign) CGInterpolationQuality downscaleInterpolationQuality;
+@property (nonatomic, assign) CGInterpolationQuality downscaleInterpolationQuality;
 
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
 /// Defaults to CGSizeMake(200, 400).
-@property(assign) CGSize thumbnailSize;
+@property (nonatomic, assign) CGSize thumbnailSize;
 
 /// The size of the images used in the scrobble bar.
 /// Defaults to CGSizeMake(50, 100).
-@property(assign) CGSize tinySize;
+@property (nonatomic, assign) CGSize tinySize;
 
 /// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
-@property(nonatomic, copy) NSString *cacheDirectory;
+@property (nonatomic, copy) NSString *cacheDirectory;
 
 @end
 
@@ -178,10 +178,10 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @interface PSPDFCacheQueuedDocument : NSObject 
 
 + (PSPDFCacheQueuedDocument *)queuedDocumentWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
-@property(strong) PSPDFDocument *document;
-@property(assign) NSUInteger page; // the page index from where caching should start
-@property(assign) PSPDFSize size;
-@property(strong) NSMutableSet *pagesCached; // used to remember what pages already were attempted to be cached.
-@property(assign, getter=isCaching) BOOL caching;
+@property (nonatomic, strong) PSPDFDocument *document;
+@property (nonatomic, assign) NSUInteger page; // the page index from where caching should start
+@property (nonatomic, assign) PSPDFSize size;
+@property (nonatomic, strong) NSMutableSet *pagesCached; // used to remember what pages already were attempted to be cached.
+@property (nonatomic, assign, getter=isCaching) BOOL caching;
 
 @end
