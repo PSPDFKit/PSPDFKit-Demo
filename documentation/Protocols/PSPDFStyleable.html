@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFAlertView Class Reference</title>
+		<title>PSPDFStyleable Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFAlertView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFStyleable Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,17 +38,21 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/barStyle">&nbsp;&nbsp;&nbsp;&nbsp;barStyle</option>
+	
+	<option value="//api/name/isBarTranslucent">&nbsp;&nbsp;&nbsp;&nbsp;isBarTranslucent</option>
+	
+	<option value="//api/name/isInPopover">&nbsp;&nbsp;&nbsp;&nbsp;isInPopover</option>
+	
+	<option value="//api/name/shouldTintToolbarButtons">&nbsp;&nbsp;&nbsp;&nbsp;shouldTintToolbarButtons</option>
+	
+	<option value="//api/name/tintColor">&nbsp;&nbsp;&nbsp;&nbsp;tintColor</option>
 	
 	
 	
 	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/addButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- addButtonWithTitle:block:</option>
-	
-	<option value="//api/name/initWithTitle:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTitle:</option>
-	
-	<option value="//api/name/setCancelButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- setCancelButtonWithTitle:block:</option>
 	
 	
 	
@@ -66,36 +70,36 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Adding Buttons">Adding Buttons</a></span></li>
-	
 </ul></li>
 
 
 
 
 
-
-
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addButtonWithTitle:block:">addButtonWithTitle:block:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/barStyle">barStyle</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTitle:">initWithTitle:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isBarTranslucent">isBarTranslucent</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCancelButtonWithTitle:block:">setCancelButtonWithTitle:block:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isInPopover">isInPopover</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldTintToolbarButtons">shouldTintToolbarButtons</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tintColor">tintColor</a></span></li>
 	
 </ul></li>
+
+
+
+
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFAlertView Class Reference" name="top"></a>
+				<a title="PSPDFStyleable Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -104,18 +108,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFAlertView Class Reference</h1>
+						<h1 class="title title-header">PSPDFStyleable Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIAlertView</td>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFAlertView.h</td>
+	<td class="specification-value">PSPDFStyleable.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -125,8 +129,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Helper to add block features to UIAlertView.
-After block has been executed, it is set to nil, breaking potential retain cycles.</p>
+						<p>Implement on your UIViewController subclass to be able to match the style of <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
 					</div>
 					
 					
@@ -138,68 +141,70 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						<a title="Initialization" name="task_Initialization"></a>
-						<h3 class="subsubtitle task-title">Initialization</h3>
+						
+						
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithTitle:">&ndash;&nbsp;initWithTitle:</a></code>
-		<span class="tooltip"><p>Default initializer.</p></span>
+		<code><a href="#//api/name/tintColor">&nbsp;&nbsp;tintColor</a></code>
+		<span class="tooltip"><p>Tint color of the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p></span>
 	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="Adding Buttons" name="task_Adding Buttons"></a>
-						<h3 class="subsubtitle task-title">Adding Buttons</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setCancelButtonWithTitle:block:">&ndash;&nbsp;setCancelButtonWithTitle:block:</a></code>
-		<span class="tooltip"><p>Add a cancel button. (use only once!)</p></span>
-	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/addButtonWithTitle:block:">&ndash;&nbsp;addButtonWithTitle:block:</a></code>
-		<span class="tooltip"><p>Add regular button.</p></span>
+		<code><a href="#//api/name/barStyle">&nbsp;&nbsp;barStyle</a></code>
+		<span class="tooltip"><p>Proposed barStyle</p></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isBarTranslucent">&nbsp;&nbsp;isBarTranslucent</a></code>
+		<span class="tooltip"><p>Transparency flag</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isInPopover">&nbsp;&nbsp;isInPopover</a></code>
+		<span class="tooltip"><p>Marks if this controller is displayed in a UIPopoverController</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shouldTintToolbarButtons">&nbsp;&nbsp;shouldTintToolbarButtons</a></code>
+		<span class="tooltip"><p>Controls if the UIBarButtonItems should be tinted specially. Only needed for custom popover styles.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
 						
 					</div>
-					
-					
-					
-					
 					
 					
 					
 					
 					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/addButtonWithTitle:block:" title="addButtonWithTitle:block:"></a>
-	<h3 class="subsubtitle method-title">addButtonWithTitle:block:</h3>
+	<a name="//api/name/barStyle" title="barStyle"></a>
+	<h3 class="subsubtitle method-title">barStyle</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Add regular button.</p>
+		<p>Proposed barStyle</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)addButtonWithTitle:(NSString *)<em>title</em> block:(void ( ^ ) ( ))<em>block</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) UIBarStyle barStyle</code></div>
 	
 	
 	
@@ -216,24 +221,24 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
+		<code class="declared-in-ref">PSPDFStyleable.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithTitle:" title="initWithTitle:"></a>
-	<h3 class="subsubtitle method-title">initWithTitle:</h3>
+	<a name="//api/name/isBarTranslucent" title="isBarTranslucent"></a>
+	<h3 class="subsubtitle method-title">isBarTranslucent</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Default initializer.</p>
+		<p>Transparency flag</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithTitle:(NSString *)<em>title</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isBarTranslucent</code></div>
 	
 	
 	
@@ -250,24 +255,24 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
+		<code class="declared-in-ref">PSPDFStyleable.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/setCancelButtonWithTitle:block:" title="setCancelButtonWithTitle:block:"></a>
-	<h3 class="subsubtitle method-title">setCancelButtonWithTitle:block:</h3>
+	<a name="//api/name/isInPopover" title="isInPopover"></a>
+	<h3 class="subsubtitle method-title">isInPopover</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Add a cancel button. (use only once!)</p>
+		<p>Marks if this controller is displayed in a UIPopoverController</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)setCancelButtonWithTitle:(NSString *)<em>title</em> block:(void ( ^ ) ( ))<em>block</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isInPopover</code></div>
 	
 	
 	
@@ -284,13 +289,85 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAlertView.h</code><br />
+		<code class="declared-in-ref">PSPDFStyleable.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shouldTintToolbarButtons" title="shouldTintToolbarButtons"></a>
+	<h3 class="subsubtitle method-title">shouldTintToolbarButtons</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Controls if the UIBarButtonItems should be tinted specially. Only needed for custom popover styles.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shouldTintToolbarButtons</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStyleable.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tintColor" title="tintColor"></a>
+	<h3 class="subsubtitle method-title">tintColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tint color of the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *tintColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStyleable.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
+					
+					
+					
+					
 					
 					
 				</div>

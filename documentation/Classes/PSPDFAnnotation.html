@@ -56,6 +56,10 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
+	<option value="//api/name/editable">&nbsp;&nbsp;&nbsp;&nbsp;editable</option>
+	
+	<option value="//api/name/indexOnPage">&nbsp;&nbsp;&nbsp;&nbsp;indexOnPage</option>
+	
 	<option value="//api/name/lineWidth">&nbsp;&nbsp;&nbsp;&nbsp;lineWidth</option>
 	
 	<option value="//api/name/overlay">&nbsp;&nbsp;&nbsp;&nbsp;overlay</option>
@@ -137,6 +141,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dirty">dirty</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/editable">editable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexOnPage">indexOnPage</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineWidth">lineWidth</a></span></li>
 	
@@ -222,13 +230,12 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>Defines a PDF annotation.
-PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
+						<p>Defines a PDF annotation.
+<a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using <a href="#//api/name/supportedTypes">supportedTypes</a>.</p>
 
-Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
+<p>Don&rsquo;t directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the <a href="#//api/name/type">type</a> PSPDFAnnotationTypeUndefined.</p>
 
-Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
-</code></pre>
+<p>Subclasses need to implement &ndash; (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray</p>
 					</div>
 					
 					
@@ -283,7 +290,7 @@ Implement this in your subclass.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/copyAndDeleteOriginalIfNeeded">&ndash;&nbsp;copyAndDeleteOriginalIfNeeded</a></code>
-		<span class="tooltip"><p>To edit annotations, you need to make a copy and delete the original.
+		<span class="tooltip"><p>Annotations that have <a href="#//api/name/indexOnPage">indexOnPage</a> >= 0 will be copied before they&rsquo;re modified.
 Returns same <a href="#//api/name/type">type</a> as current class.</p></span>
 	</span>
 	
@@ -305,9 +312,8 @@ Returns same <a href="#//api/name/type">type</a> as current class.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/drawInContext:">&ndash;&nbsp;drawInContext:</a></code>
-		<span class="tooltip"><pre><code>Draw current annotation in context.
-Coordinates here are in PDF coordinate space.
-</code></pre></span>
+		<span class="tooltip"><p>Draw current annotation in context.
+Coordinates here are in PDF coordinate space.</p></span>
 	</span>
 	
 	
@@ -332,6 +338,14 @@ Coordinates here are in PDF coordinate space.
 PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 Currently won&rsquo;t work if you just set arbitrary annotations to overlay=YES.
 If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/editable">&nbsp;&nbsp;editable</a></code>
+		<span class="tooltip"><p>Per default, annotations are editable when <a href="#//api/name/isWriteable">isWriteable</a> returns YES.
+Override this to lock certain annotations (menu won&rsquo;t be shown)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -376,6 +390,15 @@ Note: use .<a href="#//api/name/alpha">alpha</a> for transparency, not the <a hr
 	<span class="tooltip">
 		<code><a href="#//api/name/lineWidth">&nbsp;&nbsp;lineWidth</a></code>
 		<span class="tooltip"><p>Border Line Width (only used in certain annotations)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/indexOnPage">&nbsp;&nbsp;indexOnPage</a></code>
+		<span class="tooltip"><p>If indexOn<a href="../Classes/Page.html">Page</a> is set, it&rsquo;s a native PDF annotation.
+If this is -1, it&rsquo;s not yet saved in the PDF.
+Annotations that have indexOn<a href="../Classes/Page.html">Page</a> >= 0 will be copied before they&rsquo;re modified.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -710,6 +733,77 @@ After the annotation has been written to the file, this will be reset until the 
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/editable" title="editable"></a>
+	<h3 class="subsubtitle method-title">editable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Per default, annotations are editable when <a href="#//api/name/isWriteable">isWriteable</a> returns YES.
+Override this to lock certain annotations (menu won&rsquo;t be shown)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isEditable) BOOL editable</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/indexOnPage" title="indexOnPage"></a>
+	<h3 class="subsubtitle method-title">indexOnPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If indexOn<a href="../Classes/Page.html">Page</a> is set, it&rsquo;s a native PDF annotation.
+If this is -1, it&rsquo;s not yet saved in the PDF.
+Annotations that have indexOn<a href="../Classes/Page.html">Page</a> >= 0 will be copied before they&rsquo;re modified.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) int indexOnPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/lineWidth" title="lineWidth"></a>
 	<h3 class="subsubtitle method-title">lineWidth</h3>
 	
@@ -1008,7 +1102,7 @@ Usually read from the annotDict. Don&rsquo;t change this unless you know what yo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>To edit annotations, you need to make a copy and delete the original.
+		<p>Annotations that have <a href="#//api/name/indexOnPage">indexOnPage</a> >= 0 will be copied before they&rsquo;re modified.
 Returns same <a href="#//api/name/type">type</a> as current class.</p>
 	</div>		
 	
@@ -1043,9 +1137,8 @@ Returns same <a href="#//api/name/type">type</a> as current class.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Draw current annotation in context.
-Coordinates here are in PDF coordinate space.
-</code></pre>
+		<p>Draw current annotation in context.
+Coordinates here are in PDF coordinate space.</p>
 	</div>		
 	
 	
@@ -1060,9 +1153,8 @@ Coordinates here are in PDF coordinate space.
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
-(For performance considerations, you want to do this once, not every time drawInContext is called)
-</code></pre>
+		<p>Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
+(For performance considerations, you want to do this once, not every time drawInContext is called)</p>
 	</div>
 	
 	
@@ -1297,7 +1389,7 @@ Implement this in your subclass.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

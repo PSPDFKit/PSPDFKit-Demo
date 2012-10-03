@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFOutlineViewControllerDelegate Protocol Reference</title>
+		<title>PSPDFContentScrollView Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFOutlineViewControllerDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">PSPDFContentScrollView Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,13 +38,18 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/contentController">&nbsp;&nbsp;&nbsp;&nbsp;contentController</option>
+	
+	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/outlineController:didTapAtElement:">&nbsp;&nbsp;&nbsp;&nbsp;- outlineController:didTapAtElement:</option>
+	<option value="//api/name/initWithTransitionViewController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithTransitionViewController:</option>
 	
 	
 	
@@ -68,13 +73,19 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contentController">contentController</a></span></li>
+	
+</ul></li>
+
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineController:didTapAtElement:">outlineController:didTapAtElement:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithTransitionViewController:">initWithTransitionViewController:</a></span></li>
 	
 </ul></li>
 
@@ -83,7 +94,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFOutlineViewControllerDelegate Protocol Reference" name="top"></a>
+				<a title="PSPDFContentScrollView Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,18 +103,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFOutlineViewControllerDelegate Protocol Reference</h1>
+						<h1 class="title title-header">PSPDFContentScrollView Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value"><a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> : UIScrollView</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFOutlineViewController.h</td>
+	<td class="specification-value">PSPDFContentScrollView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +124,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate for the <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p>
+						<p>ScrollView used in pageCurl mode. iOS5+</p>
 					</div>
 					
 					
@@ -131,11 +142,18 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/outlineController:didTapAtElement:">&ndash;&nbsp;outlineController:didTapAtElement:</a></code>
-		<span class="tooltip"><p>Called when we tapped on a cell in the outlinController.</p></span>
+		<code><a href="#//api/name/initWithTransitionViewController:">&ndash;&nbsp;initWithTransitionViewController:</a></code>
+		<span class="tooltip"><p>Initializes the PagedScrollView with a viewController.</p></span>
 	</span>
 	
-	<span class="task-item-suffix">required method</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/contentController">&nbsp;&nbsp;contentController</a></code>
+		<span class="tooltip"><p>References the pageController</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -145,26 +163,22 @@
 					
 					
 					
-					
-					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/outlineController:didTapAtElement:" title="outlineController:didTapAtElement:"></a>
-	<h3 class="subsubtitle method-title">outlineController:didTapAtElement:</h3>
+	<a name="//api/name/contentController" title="contentController"></a>
+	<h3 class="subsubtitle method-title">contentController</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when we tapped on a cell in the outlinController.</p>
+		<p>References the pageController</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)outlineController:(PSPDFOutlineViewController *)<em>outlineController</em> didTapAtElement:(PSPDFOutlineElement *)<em>outlineElement</em></code></div>
+	<div class="method-subsection method-declaration"><code>@property (strong, readonly) UIViewController&lt;PSPDFTransitionProtocol&gt; *contentController</code></div>
 	
 	
 	
@@ -181,7 +195,51 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFContentScrollView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithTransitionViewController:" title="initWithTransitionViewController:"></a>
+	<h3 class="subsubtitle method-title">initWithTransitionViewController:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes the PagedScrollView with a viewController.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithTransitionViewController:(UIViewController&lt;PSPDFTransitionProtocol&gt; *)<em>viewController</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFContentScrollView.h</code><br />
 	</div>				
 	
 	

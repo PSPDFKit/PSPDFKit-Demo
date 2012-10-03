@@ -57,11 +57,13 @@
 	
 	<option value="//api/name/cachePath">&nbsp;&nbsp;&nbsp;&nbsp;- cachePath</option>
 	
+	<option value="//api/name/clearAllBookmarksWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- clearAllBookmarksWithError:</option>
+	
 	<option value="//api/name/initWithDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDocument:</option>
 	
-	<option value="//api/name/loadBookmarks">&nbsp;&nbsp;&nbsp;&nbsp;- loadBookmarks</option>
+	<option value="//api/name/loadBookmarksWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- loadBookmarksWithError:</option>
 	
-	<option value="//api/name/saveBookmarks">&nbsp;&nbsp;&nbsp;&nbsp;- saveBookmarks</option>
+	<option value="//api/name/saveBookmarksWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- saveBookmarksWithError:</option>
 	
 	
 	
@@ -107,11 +109,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachePath">cachePath</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearAllBookmarksWithError:">clearAllBookmarksWithError:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDocument:">initWithDocument:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadBookmarks">loadBookmarks</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadBookmarksWithError:">loadBookmarksWithError:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveBookmarks">saveBookmarks</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveBookmarksWithError:">saveBookmarksWithError:</a></span></li>
 	
 </ul></li>
 
@@ -199,6 +203,13 @@ If you manually add <a href="#//api/name/bookmarks">bookmarks</a>, you might nee
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/clearAllBookmarksWithError:">&ndash;&nbsp;clearAllBookmarksWithError:</a></code>
+		<span class="tooltip"><p>Clears all <a href="#//api/name/bookmarks">bookmarks</a>. Also deletes file.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/bookmarkForPage:">&ndash;&nbsp;bookmarkForPage:</a></code>
 		<span class="tooltip"><p>Returns the bookmark if page has a bookmark.</p></span>
 	</span>
@@ -229,14 +240,14 @@ documemt.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.</p><
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/loadBookmarks">&ndash;&nbsp;loadBookmarks</a></code>
+		<code><a href="#//api/name/loadBookmarksWithError:">&ndash;&nbsp;loadBookmarksWithError:</a></code>
 		<span class="tooltip"><p>Read <a href="#//api/name/bookmarks">bookmarks</a> out of the plist in <a href="#//api/name/bookmarkPath">bookmarkPath</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/saveBookmarks">&ndash;&nbsp;saveBookmarks</a></code>
+		<code><a href="#//api/name/saveBookmarksWithError:">&ndash;&nbsp;saveBookmarksWithError:</a></code>
 		<span class="tooltip"><pre><code>Saves the bookmark into a plist file at bookmarkPath.
 Most likely isn't called on the main thread, but do not block.
 </code></pre></span>
@@ -439,6 +450,40 @@ documemt.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/clearAllBookmarksWithError:" title="clearAllBookmarksWithError:"></a>
+	<h3 class="subsubtitle method-title">clearAllBookmarksWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Clears all <a href="#//api/name/bookmarks">bookmarks</a>. Also deletes file.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)clearAllBookmarksWithError:(NSError **)<em>error</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBookmarkParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithDocument:" title="initWithDocument:"></a>
 	<h3 class="subsubtitle method-title">initWithDocument:</h3>
 	
@@ -473,8 +518,8 @@ documemt.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/loadBookmarks" title="loadBookmarks"></a>
-	<h3 class="subsubtitle method-title">loadBookmarks</h3>
+	<a name="//api/name/loadBookmarksWithError:" title="loadBookmarksWithError:"></a>
+	<h3 class="subsubtitle method-title">loadBookmarksWithError:</h3>
 	
 	
 	
@@ -483,7 +528,7 @@ documemt.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSArray *)loadBookmarks</code></div>
+	<div class="method-subsection method-declaration"><code>- (NSArray *)loadBookmarksWithError:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -507,8 +552,8 @@ documemt.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/saveBookmarks" title="saveBookmarks"></a>
-	<h3 class="subsubtitle method-title">saveBookmarks</h3>
+	<a name="//api/name/saveBookmarksWithError:" title="saveBookmarksWithError:"></a>
+	<h3 class="subsubtitle method-title">saveBookmarksWithError:</h3>
 	
 	
 	
@@ -519,7 +564,7 @@ Most likely isn't called on the main thread, but do not block.
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)saveBookmarks</code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)saveBookmarksWithError:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -562,7 +607,7 @@ Note that PSPDFDocument confirms to NSCopying, so streaming into a keyed archive
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

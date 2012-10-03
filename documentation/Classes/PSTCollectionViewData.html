@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSCollectionView Class Reference</title>
+		<title>PSTCollectionViewData Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSCollectionView Class Reference</h1>
+				<h1 class="hideInXcode">PSTCollectionViewData Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -27,7 +27,10 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
-	<option value="overview">Overview</option>
+	
+	
+	
+	<option value="tasks">Tasks</option>
 	
 	
 	
@@ -37,7 +40,9 @@
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/initWithCollectionView:layout:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithCollectionView:layout:</option>
 	
 	
 	
@@ -48,7 +53,12 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
@@ -58,15 +68,18 @@
 
 
 
-
-
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithCollectionView:layout:">initWithCollectionView:layout:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSCollectionView Class Reference" name="top"></a>
+				<a title="PSTCollectionViewData Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -75,7 +88,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSCollectionView Class Reference</h1>
+						<h1 class="title title-header">PSTCollectionViewData Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -83,23 +96,37 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIScrollView</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSCollectionView.h</td>
+	<td class="specification-value">PSTCollectionViewData.h</td>
 </tr>
 						</tbody></table></div>
 					
 					
 					
 					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>Replacement for UICollectionView for iOS4/5.
-Only supports a subset of the features of UICollectionView.
-e.g. animations won't be handled.
-</code></pre>
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithCollectionView:layout:">&ndash;&nbsp;initWithCollectionView:layout:</a></code>
+		<span class="tooltip"><p>Designated initializer.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -110,9 +137,45 @@ e.g. animations won't be handled.
 					
 					
 					
-					
-					
-					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithCollectionView:layout:" title="initWithCollectionView:layout:"></a>
+	<h3 class="subsubtitle method-title">initWithCollectionView:layout:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated initializer.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithCollectionView:(PSTCollectionView *)<em>collectionView</em> layout:(PSTCollectionViewLayout *)<em>layout</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSTCollectionViewData.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
@@ -125,7 +188,7 @@ e.g. animations won't be handled.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

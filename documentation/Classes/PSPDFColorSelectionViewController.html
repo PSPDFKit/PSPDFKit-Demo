@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFOutlineViewControllerDelegate Protocol Reference</title>
+		<title>PSPDFColorSelectionViewController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFOutlineViewControllerDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">PSPDFColorSelectionViewController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,11 +40,18 @@
 	
 	
 	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/defaultColorPickerWithTitle:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ defaultColorPickerWithTitle:delegate:</option>
+	
+	<option value="//api/name/monoChromeSelectionViewController">&nbsp;&nbsp;&nbsp;&nbsp;+ monoChromeSelectionViewController</option>
+	
+	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/outlineController:didTapAtElement:">&nbsp;&nbsp;&nbsp;&nbsp;- outlineController:didTapAtElement:</option>
+	<option value="//api/name/initWithColors:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithColors:</option>
 	
 	
 	
@@ -70,11 +77,19 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultColorPickerWithTitle:delegate:">defaultColorPickerWithTitle:delegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monoChromeSelectionViewController">monoChromeSelectionViewController</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineController:didTapAtElement:">outlineController:didTapAtElement:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithColors:">initWithColors:</a></span></li>
 	
 </ul></li>
 
@@ -83,7 +98,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFOutlineViewControllerDelegate Protocol Reference" name="top"></a>
+				<a title="PSPDFColorSelectionViewController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,18 +107,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFOutlineViewControllerDelegate Protocol Reference</h1>
+						<h1 class="title title-header">PSPDFColorSelectionViewController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UIViewController</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFOutlineViewController.h</td>
+	<td class="specification-value">PSPDFColorSelectionViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +128,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate for the <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p>
+						<p>Flexible Color Picker.</p>
 					</div>
 					
 					
@@ -131,11 +146,25 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/outlineController:didTapAtElement:">&ndash;&nbsp;outlineController:didTapAtElement:</a></code>
-		<span class="tooltip"><p>Called when we tapped on a cell in the outlinController.</p></span>
+		<code><a href="#//api/name/defaultColorPickerWithTitle:delegate:">+&nbsp;defaultColorPickerWithTitle:delegate:</a></code>
+		<span class="tooltip"><p>Creates a new color picker on every access.</p></span>
 	</span>
 	
-	<span class="task-item-suffix">required method</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/monoChromeSelectionViewController">+&nbsp;monoChromeSelectionViewController</a></code>
+		<span class="tooltip"><p>Returns PSPDFColorSelectionViewController.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithColors:">&ndash;&nbsp;initWithColors:</a></code>
+		<span class="tooltip"><p>Default initializer</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -147,24 +176,22 @@
 					
 					
 					
-					
-					
 					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/outlineController:didTapAtElement:" title="outlineController:didTapAtElement:"></a>
-	<h3 class="subsubtitle method-title">outlineController:didTapAtElement:</h3>
+	<a name="//api/name/defaultColorPickerWithTitle:delegate:" title="defaultColorPickerWithTitle:delegate:"></a>
+	<h3 class="subsubtitle method-title">defaultColorPickerWithTitle:delegate:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when we tapped on a cell in the outlinController.</p>
+		<p>Creates a new color picker on every access.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)outlineController:(PSPDFOutlineViewController *)<em>outlineController</em> didTapAtElement:(PSPDFOutlineElement *)<em>outlineElement</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (PSPDFSimplePageViewController *)defaultColorPickerWithTitle:(NSString *)<em>title</em> delegate:(id&lt;PSPDFColorSelectionViewControllerDelegate&gt;)<em>delegate</em></code></div>
 	
 	
 	
@@ -181,7 +208,83 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/monoChromeSelectionViewController" title="monoChromeSelectionViewController"></a>
+	<h3 class="subsubtitle method-title">monoChromeSelectionViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns PSPDFColorSelectionViewController.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (id)monoChromeSelectionViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithColors:" title="initWithColors:"></a>
+	<h3 class="subsubtitle method-title">initWithColors:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Default initializer</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithColors:(NSArray *)<em>colors</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
 	</div>				
 	
 	

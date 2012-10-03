@@ -94,7 +94,7 @@
 	
 	<option value="//api/name/pauseCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- pauseCachingForService:</option>
 	
-	<option value="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:waitUntilDone:</option>
+	<option value="//api/name/removeCacheForDocument:deleteDocument:error:">&nbsp;&nbsp;&nbsp;&nbsp;- removeCacheForDocument:deleteDocument:error:</option>
 	
 	<option value="//api/name/removeDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDelegate:</option>
 	
@@ -186,7 +186,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pauseCachingForService:">pauseCachingForService:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">removeCacheForDocument:deleteDocument:waitUntilDone:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeCacheForDocument:deleteDocument:error:">removeCacheForDocument:deleteDocument:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDelegate:">removeDelegate:</a></span></li>
 	
@@ -240,8 +240,8 @@
 Various image sizes and formats are supported. The system is designed to take as much memory
 as there&rsquo;s available, and free most of it on a memory warning event.
 You can manually call <a href="#//api/name/clearCache">clearCache</a> to remove all temporary files and clear the memory caches.
-additional thumbnail cache control helper.
-Used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.</p>
+Used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.
+additional thumbnail cache control helper.</p>
 					</div>
 					
 					
@@ -345,9 +345,9 @@ Thread safe.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:">&ndash;&nbsp;removeCacheForDocument:deleteDocument:waitUntilDone:</a></code>
-		<span class="tooltip"><p>Clear cache for a specific document, optionally also deletes referenced document files.
-This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p></span>
+		<code><a href="#//api/name/removeCacheForDocument:deleteDocument:error:">&ndash;&nbsp;removeCacheForDocument:deleteDocument:error:</a></code>
+		<span class="tooltip"><p>Clear cache for a specific document, optionally also deletes referenced document files. Operation is synchronous.
+Will also delete all metadata in document.<a href="#//api/name/cacheDirectory">cacheDirectory</a></p></span>
 	</span>
 	
 	
@@ -498,7 +498,7 @@ This will load the pdf and remove any jpg artifacts.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) CGFloat JPGFormatCompression</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat JPGFormatCompression</code></div>
 	
 	
 	
@@ -567,7 +567,7 @@ Defaults to kCGInterpolationHigh.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) CGInterpolationQuality downscaleInterpolationQuality</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGInterpolationQuality downscaleInterpolationQuality</code></div>
 	
 	
 	
@@ -636,7 +636,7 @@ If you experience memory issues, set this to zero in your AppDelegate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) NSUInteger numberOfNearCachedPages</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger numberOfNearCachedPages</code></div>
 	
 	
 	
@@ -671,7 +671,7 @@ Defaults to PSPDFCacheOpportunistic.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) PSPDFCacheStrategy strategy</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFCacheStrategy strategy</code></div>
 	
 	
 	
@@ -706,7 +706,7 @@ Defaults to CGSizeMake(200, 400).</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) CGSize thumbnailSize</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGSize thumbnailSize</code></div>
 	
 	
 	
@@ -741,7 +741,7 @@ Defaults to CGSizeMake(50, 100).</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) CGSize tinySize</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGSize tinySize</code></div>
 	
 	
 	
@@ -776,7 +776,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (assign) BOOL useJPGFormat</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL useJPGFormat</code></div>
 	
 	
 	
@@ -1274,18 +1274,18 @@ Thread safe.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/removeCacheForDocument:deleteDocument:waitUntilDone:" title="removeCacheForDocument:deleteDocument:waitUntilDone:"></a>
-	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:waitUntilDone:</h3>
+	<a name="//api/name/removeCacheForDocument:deleteDocument:error:" title="removeCacheForDocument:deleteDocument:error:"></a>
+	<h3 class="subsubtitle method-title">removeCacheForDocument:deleteDocument:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Clear cache for a specific document, optionally also deletes referenced document files.
-This usually performs asyncronously. If you need this call to be blocking until it&rsquo;s done, set wait to YES.</p>
+		<p>Clear cache for a specific document, optionally also deletes referenced document files. Operation is synchronous.
+Will also delete all metadata in document.<a href="#//api/name/cacheDirectory">cacheDirectory</a></p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)removeCacheForDocument:(PSPDFDocument *)<em>aDocument</em> deleteDocument:(BOOL)<em>deleteDocument</em> waitUntilDone:(BOOL)<em>wait</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)removeCacheForDocument:(PSPDFDocument *)<em>document</em> deleteDocument:(BOOL)<em>deleteDocument</em> error:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -1460,7 +1460,7 @@ Thread safe.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

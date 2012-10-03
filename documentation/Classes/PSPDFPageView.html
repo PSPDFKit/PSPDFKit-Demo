@@ -117,6 +117,8 @@
 	
 	<option value="//api/name/prepareForReuse">&nbsp;&nbsp;&nbsp;&nbsp;- prepareForReuse</option>
 	
+	<option value="//api/name/renderOptionsDictWithZoomScale:">&nbsp;&nbsp;&nbsp;&nbsp;- renderOptionsDictWithZoomScale:</option>
+	
 	<option value="//api/name/scrollView">&nbsp;&nbsp;&nbsp;&nbsp;- scrollView</option>
 	
 	<option value="//api/name/showMenuForAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- showMenuForAnnotation:</option>
@@ -125,9 +127,13 @@
 	
 	<option value="//api/name/singleTapped:">&nbsp;&nbsp;&nbsp;&nbsp;- singleTapped:</option>
 	
+	<option value="//api/name/singleTappedAtViewPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- singleTappedAtViewPoint:</option>
+	
+	<option value="//api/name/tappableAnnotationsAtPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- tappableAnnotationsAtPoint:</option>
+	
 	<option value="//api/name/updateRenderView">&nbsp;&nbsp;&nbsp;&nbsp;- updateRenderView</option>
 	
-	<option value="//api/name/updateShadow">&nbsp;&nbsp;&nbsp;&nbsp;- updateShadow</option>
+	<option value="//api/name/updateShadowAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- updateShadowAnimated:</option>
 	
 	<option value="//api/name/updateView">&nbsp;&nbsp;&nbsp;&nbsp;- updateView</option>
 	
@@ -249,6 +255,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareForReuse">prepareForReuse</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderOptionsDictWithZoomScale:">renderOptionsDictWithZoomScale:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/scrollView">scrollView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showMenuForAnnotation:">showMenuForAnnotation:</a></span></li>
@@ -257,9 +265,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/singleTapped:">singleTapped:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/singleTappedAtViewPoint:">singleTappedAtViewPoint:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tappableAnnotationsAtPoint:">tappableAnnotationsAtPoint:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateRenderView">updateRenderView</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateShadow">updateShadow</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateShadowAnimated:">updateShadowAnimated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateView">updateView</a></span></li>
 	
@@ -349,7 +361,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/prepareForReuse">&ndash;&nbsp;prepareForReuse</a></code>
-		<span class="tooltip"><p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p></span>
+		<span class="tooltip"><p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p></span>
 	</span>
 	
 	
@@ -409,13 +421,6 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfScale">&nbsp;&nbsp;pdfScale</a></code>
 		<span class="tooltip"><p>Calculated scale. Readonly.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
-		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -482,7 +487,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
 		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
+pageBounds usually is PSPDFPageView bounds.</p></span>
 	</span>
 	
 	
@@ -490,7 +495,7 @@ pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bound
 	<span class="tooltip">
 		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
 		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
+pageBounds usually is PSPDFPageView bounds.</p></span>
 	</span>
 	
 	
@@ -556,7 +561,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p></span>
+		<span class="tooltip"><p>Page that is displayed. Readonly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -577,7 +582,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
-		<span class="tooltip"><p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
+		<span class="tooltip"><p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -605,7 +610,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/updateShadow">&ndash;&nbsp;updateShadow</a></code>
+		<code><a href="#//api/name/updateShadowAnimated:">&ndash;&nbsp;updateShadowAnimated:</a></code>
 		<span class="tooltip"><p>Subclass to change shadow behavior.</p></span>
 	</span>
 	
@@ -613,7 +618,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/updateShadowBlock">&nbsp;&nbsp;updateShadowBlock</a></code>
-		<span class="tooltip"><p>Set block that is executed within <a href="#//api/name/updateShadow">updateShadow</a> when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p></span>
+		<span class="tooltip"><p>Set block that is executed within updateShadow when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -699,6 +704,36 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no effect if called multiple times.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tappableAnnotationsAtPoint:">&ndash;&nbsp;tappableAnnotationsAtPoint:</a></code>
+		<span class="tooltip"><p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/singleTappedAtViewPoint:">&ndash;&nbsp;singleTappedAtViewPoint:</a></code>
+		<span class="tooltip"><p>Can be used for manual tap forwarding.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderOptionsDictWithZoomScale:">&ndash;&nbsp;renderOptionsDictWithZoomScale:</a></code>
+		<span class="tooltip"><p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
+One way to ues this would be to customize what annotations types will be rendered with the pdf.
+See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
+		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -822,7 +857,7 @@ Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no 
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p>
+		<p>Page that is displayed. Readonly.</p>
 	</div>		
 	
 	
@@ -1129,7 +1164,7 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
+		<p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
 	</div>		
 	
 	
@@ -1367,7 +1402,7 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set block that is executed within <a href="#//api/name/updateShadow">updateShadow</a> when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p>
+		<p>Set block that is executed within updateShadow when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p>
 	</div>		
 	
 	
@@ -1483,7 +1518,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
+pageBounds usually is PSPDFPageView bounds.</p>
 	</div>		
 	
 	
@@ -1552,7 +1587,7 @@ pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bound
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
+pageBounds usually is PSPDFPageView bounds.</p>
 	</div>		
 	
 	
@@ -1711,10 +1746,11 @@ Pretty much all more or less "static" annotations are handled this way.
 
 2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
 Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
+Those annotations return YES on the isOverlay property.
 
 Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
 
-This method is called recursively with all annotation types except PSPDFAnnotationTypeLink | PSPDFAnnotationTypeNote.
+This method is called recursively with all annotation types except if they return isOverlay = YES.
 </code></pre>
 	</div>
 	
@@ -1911,11 +1947,47 @@ To extend this, selectors for UIMenuItem need to be implemented in a subclass.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p>
+		<p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)prepareForReuse</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderOptionsDictWithZoomScale:" title="renderOptionsDictWithZoomScale:"></a>
+	<h3 class="subsubtitle method-title">renderOptionsDictWithZoomScale:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
+One way to ues this would be to customize what annotations types will be rendered with the pdf.
+See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)<em>zoomScale</em></code></div>
 	
 	
 	
@@ -2091,6 +2163,74 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/singleTappedAtViewPoint:" title="singleTappedAtViewPoint:"></a>
+	<h3 class="subsubtitle method-title">singleTappedAtViewPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Can be used for manual tap forwarding.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)singleTappedAtViewPoint:(CGPoint)<em>viewPoint</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tappableAnnotationsAtPoint:" title="tappableAnnotationsAtPoint:"></a>
+	<h3 class="subsubtitle method-title">tappableAnnotationsAtPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)tappableAnnotationsAtPoint:(CGPoint)<em>viewPoint</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/updateRenderView" title="updateRenderView"></a>
 	<h3 class="subsubtitle method-title">updateRenderView</h3>
 	
@@ -2125,8 +2265,8 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/updateShadow" title="updateShadow"></a>
-	<h3 class="subsubtitle method-title">updateShadow</h3>
+	<a name="//api/name/updateShadowAnimated:" title="updateShadowAnimated:"></a>
+	<h3 class="subsubtitle method-title">updateShadowAnimated:</h3>
 	
 	
 	
@@ -2135,7 +2275,7 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)updateShadow</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)updateShadowAnimated:(BOOL)<em>animated</em></code></div>
 	
 	
 	
@@ -2239,7 +2379,7 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

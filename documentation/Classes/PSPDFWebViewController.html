@@ -42,7 +42,11 @@
 	
 	<option value="//api/name/availableActions">&nbsp;&nbsp;&nbsp;&nbsp;availableActions</option>
 	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
 	<option value="//api/name/popoverController">&nbsp;&nbsp;&nbsp;&nbsp;popoverController</option>
+	
+	<option value="//api/name/updateGlobalActivityIndicator">&nbsp;&nbsp;&nbsp;&nbsp;updateGlobalActivityIndicator</option>
 	
 	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
@@ -60,6 +64,8 @@
 	
 	<option value="//api/name/initWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:</option>
 	
+	<option value="//api/name/setActivityIndicatorEnabled:">&nbsp;&nbsp;&nbsp;&nbsp;- setActivityIndicatorEnabled:</option>
+	
 	
 	
 </select>
@@ -76,6 +82,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -86,7 +94,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/availableActions">availableActions</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popoverController">popoverController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateGlobalActivityIndicator">updateGlobalActivityIndicator</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
 	
@@ -105,6 +117,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:">initWithURL:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setActivityIndicatorEnabled:">setActivityIndicatorEnabled:</a></span></li>
 	
 </ul></li>
 
@@ -133,7 +147,7 @@
 	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">UIWebViewDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFStyleable.html">PSPDFStyleable</a><br />UIWebViewDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFWebViewController.h</td>
@@ -159,7 +173,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -198,6 +212,37 @@ Defaults to all actions available in PSPDFWebViewControllerAvailableActions.</p>
 		<span class="tooltip"><p>Access popover controller, if attached.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Associated delegate, connects to the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateGlobalActivityIndicator">&nbsp;&nbsp;updateGlobalActivityIndicator</a></code>
+		<span class="tooltip"><p>Defaults to YES. Will be checked in the default implementation of setActivityIndicatorEnabled.
+Set to NO to NOT change the global network activity indicator.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setActivityIndicatorEnabled:">&ndash;&nbsp;setActivityIndicatorEnabled:</a></code>
+		<span class="tooltip"><p>Override if you have your own network activity manager.
+Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -248,6 +293,40 @@ Defaults to all actions available in PSPDFWebViewControllerAvailableActions.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Associated delegate, connects to the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/popoverController" title="popoverController"></a>
 	<h3 class="subsubtitle method-title">popoverController</h3>
 	
@@ -259,6 +338,41 @@ Defaults to all actions available in PSPDFWebViewControllerAvailableActions.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIPopoverController *popoverController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateGlobalActivityIndicator" title="updateGlobalActivityIndicator"></a>
+	<h3 class="subsubtitle method-title">updateGlobalActivityIndicator</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defaults to YES. Will be checked in the default implementation of setActivityIndicatorEnabled.
+Set to NO to NOT change the global network activity indicator.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL updateGlobalActivityIndicator</code></div>
 	
 	
 	
@@ -400,6 +514,41 @@ Convenience-call. Not used within PSPDFKit.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/setActivityIndicatorEnabled:" title="setActivityIndicatorEnabled:"></a>
+	<h3 class="subsubtitle method-title">setActivityIndicatorEnabled:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Override if you have your own network activity manager.
+Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setActivityIndicatorEnabled:(BOOL)<em>enabled</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -413,7 +562,7 @@ Convenience-call. Not used within PSPDFKit.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-09-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
