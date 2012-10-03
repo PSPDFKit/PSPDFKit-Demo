@@ -5,7 +5,7 @@ __v2.2.0 - 4/October/2012__
 Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
       If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
 
-(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit alrady dropped iOS4.2 and with it armv6 in 2.0.
+(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
 
 *  New scrolling mode: PSPDFPageScrollContinuousTransition (similar to UIWebView's default mode)
 *  Support text selection on rotated PDF documents.
