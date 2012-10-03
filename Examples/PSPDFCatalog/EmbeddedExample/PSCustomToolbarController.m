@@ -40,7 +40,7 @@
         self.delegate = self;
         
         // use large thumbnails!
-        self.thumbnailSize = CGSizeMake(300, 300);
+        self.thumbnailSize = CGSizeMake(250, 400);
         
         // don't forget to also set the large size in PSPDFCache!
         [PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
