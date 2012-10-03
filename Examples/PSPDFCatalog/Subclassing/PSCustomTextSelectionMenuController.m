@@ -49,7 +49,6 @@
         // create browser
         PSPDFWebViewController *browser = [[PSPDFWebViewController alloc] initWithURL:[NSURL URLWithString:URLString]];
         browser.delegate = pdfController;
-        [browser copyStyleFromPDFViewController:pdfController];
         browser.contentSizeForViewInPopover = CGSizeMake(600, 500);
 
         [pdfController presentViewControllerModalOrPopover:browser embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionRect : BOXED(rect)}];
