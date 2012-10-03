@@ -8,6 +8,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFBaseViewController.h"
+#import "PSPDFStyleable.h"
 
 @class PSPDFViewController;
 
@@ -20,7 +21,7 @@
 
 /// Enable to completely match the toolbar style with the PSPDFViewController.
 /// Defaults to NO because IMO it doesn't look that great.
-extern BOOL PSPDFHonorBlackAndTranslucentSettingsOnViewController;
+extern BOOL PSPDFHonorBlackAndTranslucentSettingsOnWebViewController;
 
 typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsNone             = 0,
@@ -31,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 };
 
 /// Inline Web Browser.
-@interface PSPDFWebViewController : PSPDFBaseViewController <UIWebViewDelegate>
+@interface PSPDFWebViewController : PSPDFBaseViewController <PSPDFStyleable, UIWebViewDelegate>
 
 /// Use this to get a UINavigationController with a Done-Button.
 /// Convenience-call. Not used within PSPDFKit.
@@ -42,20 +43,27 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 
 /// Controls the available actions under the more icon.
 /// Defaults to all actions available in PSPDFWebViewControllerAvailableActions.
-@property(nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
+@property (nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
 
 /// Internal webview used.
-@property(nonatomic, strong, readonly) UIWebView *webView;
+@property (nonatomic, strong, readonly) UIWebView *webView;
 
 /// Access popover controller, if attached.
-@property(nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, strong) UIPopoverController *popoverController;
 
-@property(nonatomic, ps_weak) id<PSPDFWebViewControllerDelegate> delegate;
+/// Associated delegate, connects to the PSPDFViewController
+@property (nonatomic, ps_weak) id<PSPDFWebViewControllerDelegate> delegate;
 
-// Customize the icon toolbar. Call before displaying.
-- (void)copyStyleFromPDFViewController:(PSPDFViewController *)pdfController;
-@property(nonatomic, assign) UIBarStyle barStyle;
-@property(nonatomic, assign) BOOL isBarTranslucent;
-@property(nonatomic, strong) UIColor *tintColor;
+/// Defaults to YES. Will be checked in the default implementation of setActivityIndicatorEnabled.
+/// Set to NO to NOT change the global network activity indicator.
+@property (nonatomic, assign) BOOL updateGlobalActivityIndicator;
+
+@end
+
+@interface PSPDFWebViewController (SubclassingHooks)
+
+/// Override if you have your own network activity manager.
+/// Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+- (void)setActivityIndicatorEnabled:(BOOL)enabled;
 
 @end

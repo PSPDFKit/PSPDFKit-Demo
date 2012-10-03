@@ -15,9 +15,9 @@
 @interface PSPDFFreeTextAnnotation : PSPDFAnnotation
 
 /// Font name as defined in the DA appearance string.
-@property(nonatomic, copy) NSString *fontName;
+@property (nonatomic, copy) NSString *fontName;
 
 /// Font size as defined in the DA appearance string.
-@property(nonatomic, assign) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat fontSize;
 
 @end

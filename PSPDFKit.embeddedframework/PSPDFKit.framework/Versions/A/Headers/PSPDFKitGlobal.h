@@ -23,10 +23,6 @@
 #define NS_OPTIONS(_type, _name) _type _name; enum
 #endif
 
-/// If enabled, this shows some additional log data for specific features to track time.
-/// This should only be enabled for debugging.
-//#define kPSPDFBenchmark
-
 extern NSString *const kPSPDFErrorDomain;
 
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
@@ -36,7 +32,8 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFailedToLoadAnnotations = 400,
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
     PSPDFErrorCodeOutlineParser = 500,
-    PSPDFErrorUnableToConvertToDataRepresentation = 600,
+    PSPDFErrorCodeUnableToConvertToDataRepresentation = 600,
+    PSPDFErrorCodeRemoveCacheError = 700,
     PSPDFErrorCodeUnknown = 900,
 };
 
@@ -67,7 +64,7 @@ extern CGFloat kPSPDFKitPDFAnimationDuration;
 extern BOOL PSPDFShouldAnimate(void);
 
 /// Optionally enable scrollbar debugging.
-extern BOOL kPSPDFKitDebugScrollViews;
+extern BOOL kPSPDFDebugScrollViews;
 
 /// Enable to track down memory issues.
 extern BOOL kPSPDFKitDebugMemory;
@@ -119,6 +116,9 @@ extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 // Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
+// Invoke sync or async, depending on condition
+extern inline void pspdf_dispatch_async_if(dispatch_queue_t queue, BOOL async, dispatch_block_t block);
+
 // Compensates the effect of SLOW ANIMATIONS in the iOS Simulator.
 // Use for CATransition etc. UIKit animations are automatically slowed down.
 extern CGFloat PSPDFSimulatorAnimationDragCoefficient(void);
@@ -144,6 +144,19 @@ extern NSString *PSPDFTrimString(NSString *string);
 
 // Checks if the current controller class is displayed in the popover (also checks UINavigationController)
 extern BOOL PSPDFIsControllerClassInPopover(UIPopoverController *popoverController, Class controllerClass);
+
+/// Initializes the keyboard lazily. (prevents this 1-sec delay when first accessing the keyboard)
+extern void PSPDFCacheKeyboard(void);
+
+// Time tracking. Returns time in nanoseconds. Use result/1E9 to print seconds.
+extern double PSPDFPerformAndTrackTime(dispatch_block_t block, BOOL trackTime);
+
+/// Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
+/// This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
+/// Older variants still need shouldAutorotate* handling in the view controllers.
+extern BOOL PSPDFIsRotationLocked(void);
+extern void PSPDFLockRotation(void);
+extern void PSPDFUnlockRotation(void);
 
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)

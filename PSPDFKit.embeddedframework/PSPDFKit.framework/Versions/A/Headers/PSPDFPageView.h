@@ -46,43 +46,40 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (UIView<PSPDFAnnotationView> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView subview showing the whole document. Readonly.
-@property(nonatomic, strong, readonly) UIImageView *contentView;
+@property (nonatomic, strong, readonly) UIImageView *contentView;
 
 /// UIImageView for the zoomed in state. Readonly.
-@property(nonatomic, strong, readonly) UIImageView *renderView;
+@property (nonatomic, strong, readonly) UIImageView *renderView;
 
 /// Size used for the zoomed-in part. Should always be bigger than the screen.
 /// This is set to a good default already. You shound't need to touch this.
-@property(nonatomic, assign) CGSize renderSize;
+@property (nonatomic, assign) CGSize renderSize;
 
 /// Calculated scale. Readonly.
-@property(nonatomic, assign, readonly) CGFloat pdfScale;
-
-/// Temporarily suspend rendering updates to the renderView.
-@property(nonatomic, assign) BOOL suspendUpdate;
+@property (nonatomic, assign, readonly) CGFloat pdfScale;
 
 /// Is view currently rendering (either contentView or renderView)
-@property(nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
+@property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
 
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
 /// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
 /// this will show the TARGET rect, not the one that's currently animating.
-@property(nonatomic, assign, readonly) CGRect visibleRect;
+@property (nonatomic, assign, readonly) CGRect visibleRect;
 
 /// Access the selectionView. (handles text selection)
-@property(nonatomic, strong, readonly) PSPDFTextSelectionView *selectionView;
+@property (nonatomic, strong, readonly) PSPDFTextSelectionView *selectionView;
 
 /// Access the render status view that is displayed on top of a page while we are rendering.
-@property(nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
+@property (nonatomic, strong) PSPDFRenderStatusView *renderStatusView;
 
 /// Top right offset. Defaults to 30.
-@property(nonatomic, assign) CGFloat renderStatusViewOffset;
+@property (nonatomic, assign) CGFloat renderStatusViewOffset;
 
 /// Should center render status view. Defaults to NO.
-@property(nonatomic, assign) BOOL centerRenderStatusView;
+@property (nonatomic, assign) BOOL centerRenderStatusView;
 
 /// Shortcut to access the textParser corresponding to the current page.
-@property(nonatomic, strong, readonly) PSPDFTextParser *textParser;
+@property (nonatomic, strong, readonly) PSPDFTextParser *textParser;
 
 
 /// @name Coordinate calculations and object fetching
@@ -118,34 +115,34 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (NSArray *)visibleAnnotationViews;
 
 /// Access pdfController
-@property(nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;
+@property (nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;
 
 /// Page that is displayed. Readonly.
-@property(atomic, assign, readonly) NSUInteger page;
+@property (atomic, assign, readonly) NSUInteger page;
 
 /// Document that is displayed. Readonly.
-@property(atomic, strong, readonly) PSPDFDocument *document;
+@property (atomic, strong, readonly) PSPDFDocument *document;
 
 /// Shortcut to access the current boxRect of the set page.
-@property(nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
+@property (nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
 
 /// Return YES if the pdfPage is displayed in a double page mode setup on the right side.
-@property(nonatomic, assign, readonly, getter=isRightPage) BOOL rightPage;
+@property (nonatomic, assign, readonly, getter=isRightPage) BOOL rightPage;
 
 
 /// @name Shadow settings
 
 /// Enables shadow for a single page. Only useful in combination with pageCurl.
-@property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
+@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Set default shadowOpacity. Defaults to 0.7.
-@property(nonatomic, assign) float shadowOpacity;
+@property (nonatomic, assign) float shadowOpacity;
 
 /// Subclass to change shadow behavior.
-- (void)updateShadow;
+- (void)updateShadowAnimated:(BOOL)animated;
 
 /// Set block that is executed within updateShadow when isShadowEnabled = YES.
-@property(nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
+@property (nonatomic, copy) void(^updateShadowBlock)(PSPDFPageView *pageView);
 
 @end
 
@@ -154,7 +151,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @interface PSPDFPageView (PSPDFAnnotationMenu)
 
 /// Currently selected annotation (selected by a tap; showing a menu)
-@property(nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
+@property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /**
     Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
@@ -207,15 +204,30 @@ extern NSString *const kPSPDFHidePageHUDElements;
  
     2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
     Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
+    Those annotations return YES on the isOverlay property.
     
     Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
  
-    This method is called recursively with all annotation types except PSPDFAnnotationTypeLink | PSPDFAnnotationTypeNote.
+    This method is called recursively with all annotation types except if they return isOverlay = YES.
 */
 - (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
 /// Call manually to speed up rendering. Has no effect if called multiple times.
 - (void)loadPageAnnotationsAnimated:(BOOL)animated;
+
+/// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
+- (NSArray *)tappableAnnotationsAtPoint:(CGPoint)viewPoint;
+
+/// Can be used for manual tap forwarding.
+- (BOOL)singleTappedAtViewPoint:(CGPoint)viewPoint;
+
+/// Render options that are used for the live-page rendering. (not for the cache)
+/// One way to ues this would be to customize what annotations types will be rendered with the pdf.
+/// See PSPDFPageRenderer for a list of options.
+- (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale;
+
+/// Temporarily suspend rendering updates to the renderView.
+@property (nonatomic, assign) BOOL suspendUpdate;
 
 @end

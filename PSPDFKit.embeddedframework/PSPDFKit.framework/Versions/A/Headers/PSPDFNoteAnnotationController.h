@@ -6,9 +6,10 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFStyleable.h"
 #import "PSPDFBaseViewController.h"
 
-@class PSPDFAnnotation, PSPDFPageView, PSPDFNoteAnnotationController;
+@class PSPDFGradientView, PSPDFAnnotation, PSPDFPageView, PSPDFNoteAnnotationController;
 
 @protocol PSPDFNoteAnnotationControllerDelegate <NSObject>
 
@@ -24,24 +25,24 @@
 @end
 
 /// Note annotation controller for editing PSPDFAnnotations.
-@interface PSPDFNoteAnnotationController : PSPDFBaseViewController
+@interface PSPDFNoteAnnotationController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initalizer.
 - (id)initWithAnnotation:(PSPDFAnnotation *)nnotation editable:(BOOL)allowEditing;
 
 /// Attached annotation.
 /// Allowed types are PSPDFNoteAnnotation, PSPDFHighlightAnnotation and PSPDFFreeTextAnnotation.
-@property(nonatomic, strong) PSPDFAnnotation *annotation;
+@property (nonatomic, strong) PSPDFAnnotation *annotation;
 
 /// If NO, the Edit/Delete buttons are not displayed
-@property(nonatomic, assign, readonly) BOOL allowEditing;
+@property (nonatomic, assign, readonly) BOOL allowEditing;
 
 /// Allow to customize the textView (font etc)
 /// Is created in init to be easily customizable
-@property(nonatomic, strong, readonly) UITextView *textView;
+@property (nonatomic, strong, readonly) UITextView *textView;
 
 /// Attached delegate.
-@property(nonatomic, ps_weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
 
 @end
 
@@ -50,5 +51,8 @@
 
 /// Called when we're about to show the annotation delete menu.
 - (void)deleteAnnotation:(UIBarButtonItem *)barButtonItem;
+
+@property (nonatomic, strong) PSPDFGradientView *backgroundView;
+@property (nonatomic, strong) UIView *optionsView;
 
 @end

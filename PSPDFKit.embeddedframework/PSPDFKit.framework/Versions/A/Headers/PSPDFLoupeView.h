@@ -25,4 +25,10 @@ typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 /// Target size.
 @property (nonatomic, assign) CGSize targetSize;
 
+// Show Loupe, optionally animated (mimics the UIKit loupe animation)
+- (void)showLoupeAnimated:(BOOL)animated;
+
+// Hide Loupe, optionally animated (mimics the UIKit loupe animation)
+- (void)hideLoupeAnimated:(BOOL)animated;
+
 @end

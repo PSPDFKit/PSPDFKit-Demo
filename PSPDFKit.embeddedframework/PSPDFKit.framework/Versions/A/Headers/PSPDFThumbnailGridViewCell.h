@@ -6,28 +6,28 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSCollectionViewCell.h"
+#import "PSTCollectionViewCell.h"
 
 // if own thumbs are provided and they are larger than the cell, apply shrinking before setting
 #define kPSPDFShrinkOwnImagesTresholdFactor 1.5
 
 /// Thumbnail cell.
-@interface PSPDFThumbnailGridViewCell : PSCollectionViewCell <PSPDFCacheDelegate>
+@interface PSPDFThumbnailGridViewCell : PSUICollectionViewCell <PSPDFCacheDelegate>
 
 /// Referenced document.
-@property(nonatomic, strong) PSPDFDocument *document;
+@property (nonatomic, strong) PSPDFDocument *document;
 
 /// Referenced page.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// Allow a margin. Defaults to 0,0,0,0.
-@property(nonatomic, assign) UIEdgeInsets edgeInsets;
+@property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
 /// Enables thumbnail shadow. defaults to YES, except on old devices.
-@property(nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
+@property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.
-@property(nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
+@property (nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
 
 /// Call before re-showing (will update bookmark status)
 - (void)updateCell;
@@ -38,10 +38,10 @@
 @interface PSPDFThumbnailGridViewCell (Subclassing)
 
 /// Internal image view.
-@property(nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
 /// Site label.
-@property(nonatomic, strong) UILabel *siteLabel;
+@property (nonatomic, strong) UILabel *siteLabel;
 
 /// Creates the shadow. Subclass to change. Returns a CGPathRef.
 - (id)pathShadowForView:(UIView *)imgView;

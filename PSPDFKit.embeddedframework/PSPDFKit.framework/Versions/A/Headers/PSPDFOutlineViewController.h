@@ -28,7 +28,7 @@
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
 
 /// Allow to long-press to copy the title. Defaults to YES.
-@property(nonatomic, assign) BOOL allowCopy;
+@property (nonatomic, assign) BOOL allowCopy;
 
 /**
     How many lines should be displayed for a cell. Defaults to 4.
@@ -36,13 +36,13 @@
     Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
     Set to 0 to show the full text, no matter how long the entry is.
  */
-@property(nonatomic, assign) NSUInteger maximumNumberOfLines;
+@property (nonatomic, assign) NSUInteger maximumNumberOfLines;
 
 /// Delegate to communicate with PSPDFViewController.
-@property(nonatomic, ps_weak) id<PSPDFOutlineViewControllerDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFOutlineViewControllerDelegate> delegate;
 
 /// Attached document.
-@property(nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, ps_weak) PSPDFDocument *document;
 
 @end
 

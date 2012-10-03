@@ -11,9 +11,9 @@
 @interface PSPDFColorButton : UIButton
 
 // Current color.
-@property(nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) UIColor *color;
 
 // Drawing mode.
-@property(nonatomic, assign) BOOL displayAsEllipse;
+@property (nonatomic, assign) BOOL displayAsEllipse;
 
 @end

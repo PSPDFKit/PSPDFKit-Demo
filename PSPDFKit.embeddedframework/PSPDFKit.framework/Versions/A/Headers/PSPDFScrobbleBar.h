@@ -15,7 +15,7 @@
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// PDF controller delegate.
-@property(nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
+@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Updates toolbar, realigns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbar;
@@ -27,10 +27,10 @@
 - (void)updatePageMarker;
 
 /// Current selected page.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// Access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images.
 /// Alpha is set to 0.7, can be changed.
-@property(nonatomic, strong) UIToolbar *toolbar;
+@property (nonatomic, strong) UIToolbar *toolbar;
 
 @end

@@ -10,10 +10,6 @@
 /// Represents a word. Formed out of (usually) multiple glyphs.
 @interface PSPDFWord : NSObject
 
-@property (nonatomic) CGRect frame;
-
-@property (nonatomic, strong) NSArray *glyphs;
-
 - (id)initWithGlyphs:(NSArray *)wordGlyphs;
 
 - (id)initWithFrame:(CGRect)wordFrame;
@@ -25,5 +21,11 @@
 
 // helper to sort the lines: top->down, left->right
 - (NSComparisonResult)compareByLayout:(PSPDFWord *)word;
+
+/// All glyphs merged together in the smallest possible bounding box.
+@property (nonatomic) CGRect frame;
+
+/// All PSPDFGlyph objects
+@property (nonatomic, strong) NSArray *glyphs;
 
 @end

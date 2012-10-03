@@ -13,6 +13,6 @@
 /// Base class for all link-annotation subclasses
 @interface PSPDFLinkAnnotationBaseView : UIView <PSPDFAnnotationView>
 
-@property(nonatomic, strong, readonly) PSPDFLinkAnnotation *linkAnnotation;
+@property (nonatomic, strong, readonly) PSPDFLinkAnnotation *linkAnnotation;
 
 @end

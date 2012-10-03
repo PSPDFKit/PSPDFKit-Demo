@@ -13,21 +13,21 @@
 @interface PSPDFSearchResult : NSObject
 
 /// Referenced document.
-@property(nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, ps_weak) PSPDFDocument *document;
 
 /// referenced page.
-@property(nonatomic, assign) NSUInteger pageIndex;
+@property (nonatomic, assign) NSUInteger pageIndex;
 
 /// preview text snippet.
-@property(nonatomic, copy) NSString *previewText;
+@property (nonatomic, copy) NSString *previewText;
 
 /// Text coordinates. May not be set, expensive calculation.
-@property(nonatomic, strong) PSPDFWord *selection;
+@property (nonatomic, strong) PSPDFWord *selection;
 
 /// Range within full page text.
-@property(nonatomic, assign) NSRange range;
+@property (nonatomic, assign) NSRange range;
 
 /// Cached title of the outline chapter. Will be added dynamically on first access.
-@property(nonatomic, copy) NSString *cachedOutlineTitle;
+@property (nonatomic, copy) NSString *cachedOutlineTitle;
 
 @end

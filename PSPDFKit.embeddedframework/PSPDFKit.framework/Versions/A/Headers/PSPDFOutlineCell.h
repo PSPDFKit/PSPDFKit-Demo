@@ -24,17 +24,17 @@
 + (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize;
 
 /// Delegate for cell button
-@property(nonatomic, ps_weak) id<PSPDFOutlineCellDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFOutlineCellDelegate> delegate;
 
 /// Single outline Element
-@property(nonatomic, strong) PSPDFOutlineElement *outlineElement;
+@property (nonatomic, strong) PSPDFOutlineElement *outlineElement;
 
 @end
 
 @interface PSPDFOutlineCell (Subclassing)
 
 // Button that controls the open/close of cells
-@property(nonatomic, strong) UIButton *disclosureButton;
+@property (nonatomic, strong) UIButton *disclosureButton;
 
 // Subclass to change the font. Default is 17 for level 1; 15 for level > 1.
 + (UIFont *)fontForOutlineElement:(PSPDFOutlineElement *)outlineElement;

@@ -14,26 +14,22 @@
 @interface PSPDFTextSelectionView : UIView
 
 /// Currently selected glyphs.
-@property(nonatomic, strong) NSArray *selectedGlyphs;
+@property (nonatomic, strong) NSArray *selectedGlyphs;
 
 /// Currently selected text.
-@property(nonatomic, strong) NSString *selectedText;
+@property (nonatomic, strong) NSString *selectedText;
 
 /// Currently selected text, optimized for searching
-@property(nonatomic, strong, readonly) NSString *trimmedSelectedText;
+@property (nonatomic, strong, readonly) NSString *trimmedSelectedText;
 
 /// Currently selected annotation
-@property(nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
+@property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /// Loupe View for text selection.
-@property(nonatomic, strong) PSPDFLoupeView *loupeView;
+@property (nonatomic, strong) PSPDFLoupeView *loupeView;
 
 /// Associated PSPDFPageView.
-@property(nonatomic, ps_weak) PSPDFPageView *pageView;
-
-// Text Loupe control code
-- (void)showLoupe;
-- (void)hideLoupe;
+@property (nonatomic, ps_weak) PSPDFPageView *pageView;
 
 /// Updates the UIMenuController if there is a selection.
 - (void)updateMenu;

@@ -18,6 +18,6 @@
 - (id)initWithPage:(NSUInteger)page;
 
 /// Page reference.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 @end

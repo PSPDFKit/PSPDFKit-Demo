@@ -23,6 +23,6 @@
     CGFloat rise;
 }
 
-@property(nonatomic, strong) PSPDFFontInfo *font;
+@property (nonatomic, strong) PSPDFFontInfo *font;
 
 @end

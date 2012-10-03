@@ -29,19 +29,19 @@
 - (void)prepareForReuse;
 
 /// attached pdfController.
-@property(nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property (nonatomic, ps_weak) PSPDFViewController *pdfController;
 
 /// internally used pageView.
-@property(nonatomic, strong, readonly) PSPDFPageView *pageView;
+@property (nonatomic, strong, readonly) PSPDFPageView *pageView;
 
 /// current visible page.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
-@property(nonatomic, assign) BOOL useSolidBackground;
+@property (nonatomic, assign) BOOL useSolidBackground;
 
 /// Delegate (usually connected to a PSPDFPageViewController)
-@property(nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
+@property (nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end
 

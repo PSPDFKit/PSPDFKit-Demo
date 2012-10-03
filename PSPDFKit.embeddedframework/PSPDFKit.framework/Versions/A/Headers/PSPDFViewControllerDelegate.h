@@ -152,9 +152,11 @@
 - (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
+/// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked after animation used to present the annotation view
+/// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 // detailed control for page loading/unloading
