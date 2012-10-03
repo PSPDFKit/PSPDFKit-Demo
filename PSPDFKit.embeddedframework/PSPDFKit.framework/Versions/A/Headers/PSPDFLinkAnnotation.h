@@ -12,11 +12,12 @@
 typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationPage = 0,
     PSPDFLinkAnnotationWebURL,  // 1
-    PSPDFLinkAnnotationVideo,   // 2
-    PSPDFLinkAnnotationYouTube, // 3
-    PSPDFLinkAnnotationAudio,   // 4
-    PSPDFLinkAnnotationImage,   // 5
-    PSPDFLinkAnnotationBrowser, // 6
+    PSPDFLinkAnnotationDocument,// 2
+    PSPDFLinkAnnotationVideo,   // 3
+    PSPDFLinkAnnotationYouTube, // 4
+    PSPDFLinkAnnotationAudio,   // 5
+    PSPDFLinkAnnotationImage,   // 6
+    PSPDFLinkAnnotationBrowser, // 7
     PSPDFLinkAnnotationCustom  /// any annotation format that is not recognized is custom, calling the delegate viewForAnnotation:
 };
 
@@ -40,14 +41,14 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 - (id)initWithSiteLinkTarget:(NSString *)siteLinkTarget;
 
 /// PSPDFKit addition - set if the pspdfkit:// protocol is detected.
-@property(nonatomic, assign) PSPDFLinkAnnotationType linkType;
+@property (nonatomic, assign) PSPDFLinkAnnotationType linkType;
 
 /// link if target is a page if siteLinkTarget is nil.
-@property(nonatomic, assign) NSUInteger pageLinkTarget;
+@property (nonatomic, assign) NSUInteger pageLinkTarget;
 
 /// Returns YES if this link is specially handled by PSPDFKit.
-/// Returns true for any linkType except PSPDFLinkAnnotationPage and PSPDFLinkAnnotationWebURL
-@property(nonatomic, assign, readonly, getter=isMultimediaExtension) BOOL multimediaExtension;
+/// Returns true for any linkType >= PSPDFLinkAnnotationVideo
+@property (nonatomic, assign, readonly, getter=isMultimediaExtension) BOOL multimediaExtension;
 
 /** 
     Link if target is a website.
@@ -70,24 +71,25 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     If you convert a path fron NSURL, use [url path] and NOT [url description].
     (Actually, never use url description, except when you're debugging)
 */
-@property(nonatomic, strong) NSString *siteLinkTarget;
+@property (nonatomic, strong) NSString *siteLinkTarget;
 
 /// URL (generated from the siteLinkTarget after parsing)
-@property(nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSURL *URL;
 
 /// A Link annotation might have multiple rects.
-@property(nonatomic, strong) NSArray *rects;
+/// Note: This is currently NOT supported in PSPDFKit. Use boundingBox.
+@property (nonatomic, strong) NSArray *rects;
 
 /// If values between pspdfkit://[...] are set, this will contain those options.
-@property(nonatomic, strong) NSDictionary *options;
+@property (nonatomic, strong) NSDictionary *options;
 
 /// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.
-@property(nonatomic, assign, getter=isModal) BOOL modal;
+@property (nonatomic, assign, getter=isModal) BOOL modal;
 
 /// Indicator if "popover" is set in options. Will add "popover" to options if setPopover is used.
-@property(nonatomic, assign, getter=isPopover) BOOL popover;
+@property (nonatomic, assign, getter=isPopover) BOOL popover;
 
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
-@property(nonatomic, assign) CGSize size;
+@property (nonatomic, assign) CGSize size;
 
 @end

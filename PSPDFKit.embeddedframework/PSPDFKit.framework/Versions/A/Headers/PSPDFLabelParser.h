@@ -9,13 +9,16 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument;
+@class PSPDFDocumentProvider;
 
 /// Parses Page Labels (see PDF Reference §8.3.1)
 @interface PSPDFLabelParser : NSObject
 
-/// Init label parser with document.
-- (id)initWithDocument:(PSPDFDocument *)document;
+/// Init label parser with document provider.
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+
+/// Attached document provider.
+@property (nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Parse document, returns labels (NSStrings)
 - (NSDictionary *)parseDocument;
@@ -24,6 +27,6 @@
 - (NSString *)pageLabelForPage:(NSUInteger)page;
 
 /// Returns cached labels. Starts parsing if labels are not yet created.
-@property(nonatomic, strong, readonly) NSDictionary *labels;
+@property (nonatomic, strong, readonly) NSDictionary *labels;
 
 @end

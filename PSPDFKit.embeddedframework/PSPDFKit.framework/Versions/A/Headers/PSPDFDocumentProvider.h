@@ -7,10 +7,12 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFTextSearch, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument;
+@class PSPDFTextSearch, PSPDFTextParser, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument;
 
-/// Delegate for writing annotations.
+/// Delegate for writing annotations. 
 @protocol PSPDFDocumentProviderDelegate <NSObject>
+
+@optional
 
 /// Called before we append data to a PDF. Return NO to stop writing annotations.
 - (BOOL)documentProvider:(PSPDFDocumentProvider *)documentProvider shouldAppendData:(NSData *)data;
@@ -36,39 +38,39 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
 
 /// Referenced NSURL. If this is set, data is nil.
-@property(nonatomic, strong, readonly) NSURL *fileURL;
+@property (nonatomic, strong, readonly) NSURL *fileURL;
 
 /// Referenced NSData. If this is set, fileURL is nil.
 /// NOT readonly, since we may write back annotation data.
-@property(nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSData *data;
 
 /// Referenced dataProvider. (if data is set, or directly)
-@property(nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
+@property (nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
 
 /// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
 - (NSData *)dataRepresentationWithError:(NSError **)error;
 
 /// Weak-linked parent document.
-@property(nonatomic, ps_weak, readonly) PSPDFDocument *document;
+@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
-/// Delegate for writing annotations.
-@property(nonatomic, ps_weak) id<PSPDFDocumentProviderDelegate> delegate;
+/// Delegate for writing annotations. Is set to PSPDFDocument per default.
+@property (nonatomic, ps_weak) id<PSPDFDocumentProviderDelegate> delegate;
 
 /// Access the CGPDFDocumentRef and locks the internal document. 
 ///
 /// Increases the internal reference count
 /// We need to keep around the document when accessing a CGPDFPage. Retaining the page alone is not enough.
-- (CGPDFDocumentRef)requestDocumentRef;
+- (CGPDFDocumentRef)requestDocumentRefWithOwner:(id)owner;
 
 /// Releases the lock on the documentRef.
 /// Note: the parameter is to *check* if the returned documentRef is the same as the internal one.
-- (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef;
+- (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef withOwner:(id)owner;
 
 /// Use documentRef within the block. Will be automatically cleaned up.
 - (void)performBlock:(void(^)(PSPDFDocumentProvider *docProvider, CGPDFDocumentRef documentRef))documentRefBlock;
 
 /// Iterate over all CGPDFPageRef pages. pageNumber starts at 1.
-- (void)iterateOverPageRef:(void(^)(PSPDFDocumentProvider *docProvider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger pageNumber))pageRefBlock;
+- (void)iterateOverPageRef:(void(^)(PSPDFDocumentProvider *provider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger page))pageRefBlock;
 
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
@@ -82,74 +84,77 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 - (void)flushDocumentReference;
 
 /// Number of pages in the PDF. Nil if source is invalid.
-@property(nonatomic, assign, readonly) NSUInteger pageCount;
+@property (nonatomic, assign, readonly) NSUInteger pageCount;
 
 /// Unlock the PDF with a password. Returns YES on success. (File operation, might block for a bit
 /// Will set .password to this password if successful.
 - (BOOL)unlockWithPassword:(NSString *)password;
 
 /// Set a password. Doesn't try to unlock the document.
-@property(nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *password;
 
 /// Do the PDF digital right allow for printing?
-@property(nonatomic, assign, readonly) BOOL allowsPrinting;
+@property (nonatomic, assign, readonly) BOOL allowsPrinting;
 
 /// A flag that indicates whether copying text is allowed
-@property(nonatomic, assign) BOOL allowsCopying;
+@property (nonatomic, assign) BOOL allowsCopying;
 
 /// Was the PDF file encryted at file creation time?
-@property(nonatomic, assign, readonly) BOOL isEncrypted;
+@property (nonatomic, assign, readonly) BOOL isEncrypted;
 
 /// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
 /// See "Adobe LifeCycle DRM, http://www.adobe.com/products/livecycle/rightsmanagement
-@property(nonatomic, assign, readonly) NSString *encryptionFilter;
+@property (nonatomic, assign, readonly) NSString *encryptionFilter;
 
 /// Has the PDF file been unlocked? (is it still locked?).
-@property(nonatomic, assign, readonly) BOOL isLocked;
+@property (nonatomic, assign, readonly) BOOL isLocked;
 
 /// Are we able to add/change annotations in this file?
 /// Annotations can't be added to encrypted documents or if there are parsing errors.
-@property(nonatomic, assign, readwrite) BOOL canEmbedAnnotations;
+@property (nonatomic, assign, readwrite) BOOL canEmbedAnnotations;
 
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
 /// Access the PDF metadata. (might be a slow operation)
-@property(nonatomic, strong, readonly) NSDictionary *metadata;
+@property (nonatomic, strong, readonly) NSDictionary *metadata;
 
 /// Return YES if metadata is already parsed.
-@property(nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
+@property (nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
 
 /// Access the PDF title. (".pdf" will be trunicated)
 /// Note: if there's no title in the PDF metadata, the file name will be used.
-@property(nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, readonly) NSString *title;
+
+/// Return a textParser for the specific document page. Page starts at 0.
+- (PSPDFTextParser *)textParserForPage:(NSUInteger)page;
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-@property(nonatomic, strong) PSPDFOutlineParser *outlineParser;
+@property (nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
 /// PDF parser that lists the PDF XRef structure and writes annotations.
 /// Lazy initialized. Can be subclassed or set externally.
 /// Parses the PDF on first access. Might be slow.
-@property(nonatomic, strong) PSPDFDocumentParser *documentParser;
+@property (nonatomic, strong) PSPDFDocumentParser *documentParser;
 
 /// Determine if lazy-loaded documentParser is already available.
-@property(nonatomic, assign, readonly) BOOL isDocumentParserLoaded;
+@property (nonatomic, assign, readonly) BOOL isDocumentParserLoaded;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-@property(nonatomic, strong) PSPDFAnnotationParser *annotationParser;
+@property (nonatomic, strong) PSPDFAnnotationParser *annotationParser;
 
 /// Page labels found in the current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-@property(nonatomic, strong) PSPDFLabelParser *labelParser;
+@property (nonatomic, strong) PSPDFLabelParser *labelParser;
 
 @end
 
 @interface PSPDFDocumentProvider (PSPDFInternal)
 
 // We need to allow writing to data to change annotations.
-@property(nonatomic, strong) NSData *data;
+@property (nonatomic, strong) NSData *data;
 
-@property(nonatomic, assign, readonly) BOOL hasOpenDocumentRef;
+@property (nonatomic, assign, readonly) BOOL hasOpenDocumentRef;
 
 @end

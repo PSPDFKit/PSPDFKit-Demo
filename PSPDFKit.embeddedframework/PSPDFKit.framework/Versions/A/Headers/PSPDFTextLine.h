@@ -23,8 +23,8 @@ typedef NS_ENUM(NSInteger, PSPDFTextLineBorder) {
 void PSPDFSetNextLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *nextLine);
 void PSPDFSetPrevLineIfCloserDistance(PSPDFTextLine *self, PSPDFTextLine *prevLine);
 
-@property(nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
+@property (nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
 
-@property(nonatomic, assign) NSInteger blockID;
+@property (nonatomic, assign) NSInteger blockID;
 
 @end

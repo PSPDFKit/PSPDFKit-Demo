@@ -22,10 +22,13 @@
 - (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeDocuments:(NSArray *)oldDocuments;
 
 /// Will be called when the visibleDocument changes.
-- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController willChangeVisibleDocument:(PSPDFDocument *)newDocument;
+- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController shouldChangeVisibleDocument:(PSPDFDocument *)newDocument;
 
 /// Will be called after the visibleDocument changed.
 - (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didChangeVisibleDocument:(PSPDFDocument *)oldDocument;
+
+/// Delegate that will be called after shouldChangeDocuments if the close button has been invoked.
+- (BOOL)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController shouldCloseDocument:(PSPDFDocument *)closedDocument;
 
 /// Delegate that will be called after didChangeDocuments if the close button has been invoked.
 - (void)tabbedPDFController:(PSPDFTabbedViewController *)tabbedPDFController didCloseDocument:(PSPDFDocument *)closedDocument;
@@ -40,10 +43,10 @@
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
 /// Currently visible document.
-@property(nonatomic, strong) PSPDFDocument *visibleDocument;
+@property (nonatomic, strong) PSPDFDocument *visibleDocument;
 
 /// Documents that are currently loaded.
-@property(nonatomic, strong) NSArray *documents;
+@property (nonatomic, strong) NSArray *documents;
 
 /// Add one or multiple documents to the documents array at the specified index.
 /// Documents that are already within documents (or are equal to those) are ignored.
@@ -57,10 +60,10 @@
 - (void)removeDocuments:(NSArray *)documents animated:(BOOL)animated;
 
 /// Delegate to capture events.
-@property(nonatomic, ps_weak) id<PSPDFTabbedViewControllerDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFTabbedViewControllerDelegate> delegate;
 
 /// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
-@property(nonatomic, assign) BOOL enableAutomaticStatePersistance;
+@property (nonatomic, assign) BOOL enableAutomaticStatePersistance;
 
 /// Persists the state to NSUserDefaults.
 - (void)persistState;
@@ -74,15 +77,15 @@
 
 /// Defaults to kPSPDFTabbedDocumentsPersistKey.
 /// Change if you use multiple instances of PSPDFTabbedViewController.
-@property(nonatomic, copy) NSString *statePersistanceKey;
+@property (nonatomic, copy) NSString *statePersistanceKey;
 
 /// Minimum tab width. Defaults to 100.
-@property(nonatomic, assign) CGFloat minTabWidth;
+@property (nonatomic, assign) CGFloat minTabWidth;
 
 /// The embedded PDFViewController. Access to customize the properties.
-@property(nonatomic, strong, readonly) PSPDFViewController *pdfViewController;
+@property (nonatomic, strong, readonly) PSPDFViewController *pdfViewController;
 
 /// Tab bar view.
-@property(nonatomic, strong, readonly) PSPDFTabBarView *tabBar;
+@property (nonatomic, strong, readonly) PSPDFTabBarView *tabBar;
 
 @end

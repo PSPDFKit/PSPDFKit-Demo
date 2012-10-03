@@ -1,5 +1,5 @@
 //
-//  PSPDFPagedScrollView.h
+//  PSPDFContentScrollView.h
 //  PSPDFKit
 //
 //  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
@@ -9,14 +9,14 @@
 #import "PSPDFScrollView.h"
 #import "PSPDFTransitionProtocol.h"
 
-/// ScrollView used in pageCurl mode. iOS5 only.
-@interface PSPDFPagedScrollView : PSPDFScrollView
+/// ScrollView used in pageCurl mode. iOS5+
+@interface PSPDFContentScrollView : PSPDFScrollView
 
 /// Initializes the PagedScrollView with a viewController.
 - (id)initWithTransitionViewController:(UIViewController<PSPDFTransitionProtocol> *)viewController;
 
 /// References the pageController
 // atomic, might be accessed from a background thread during deallocation
-@property(strong, readonly) UIViewController<PSPDFTransitionProtocol> *contentController;
+@property (strong, readonly) UIViewController<PSPDFTransitionProtocol> *contentController;
 
 @end

@@ -6,8 +6,6 @@
 // 
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFConverter.h"
-#import "UIColor+PSPDFKitAdditions.h"
 
 @class PSPDFDocument;
 
@@ -21,24 +19,25 @@ extern NSString *const PSPDFAnnotationTypeStringInk;
 
 // Annotations defined after the PDF standard.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
-    PSPDFAnnotationTypeUndefined = 0,      // any annotation whose type couldn't be recognized.
+    PSPDFAnnotationTypeNone      = 0,
     PSPDFAnnotationTypeLink      = 1 << 1,
     PSPDFAnnotationTypeHighlight = 1 << 2, // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
-    PSPDFAnnotationTypeText      = 1 << 5,
-    PSPDFAnnotationTypeInk       = 1 << 6,
-    PSPDFAnnotationTypeShape     = 1 << 7, // Square, Circle
-    PSPDFAnnotationTypeLine      = 1 << 8,
-    PSPDFAnnotationTypeNote      = 1 << 9,
-    PSPDFAnnotationTypeAll       = ULONG_MAX
+    PSPDFAnnotationTypeText      = 1 << 3,
+    PSPDFAnnotationTypeInk       = 1 << 4,
+    PSPDFAnnotationTypeShape     = 1 << 5, // Square, Circle
+    PSPDFAnnotationTypeLine      = 1 << 6,
+    PSPDFAnnotationTypeNote      = 1 << 7,
+    PSPDFAnnotationTypeUndefined = 1 << 31, // any annotation whose type couldn't be recognized
+    PSPDFAnnotationTypeAll       = UINT_MAX
 };
 
 /**
-    Defines a PDF annotation.
-    PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
+ Defines a PDF annotation.
+ PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
  
-    Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
+ Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
 
-    Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
+ Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
 */
 @interface PSPDFAnnotation : NSObject <NSCoding, NSCopying> {
     UIColor *_color;
@@ -64,7 +63,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 /// Initialize annotation with the corresponding PDF dictionary. Call from subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
 
-/// To edit annotations, you need to make a copy and delete the original.
+/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
 /// Returns same type as current class.
 - (id)copyAndDeleteOriginalIfNeeded;
 
@@ -79,11 +78,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 - (NSArray *)rectsFromQuadPointsInArray:(CGPDFArrayRef)quadPointsArray;
 
 /**
-    Draw current annotation in context.
-    Coordinates here are in PDF coordinate space.
+ Draw current annotation in context.
+ Coordinates here are in PDF coordinate space.
 
-    Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
-    (For performance considerations, you want to do this once, not every time drawInContext is called)
+ Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
+ (For performance considerations, you want to do this once, not every time drawInContext is called)
  */
 - (void)drawInContext:(CGContextRef)context;
 
@@ -91,54 +90,61 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 - (NSData *)pdfDataRepresentation;
 
 /// Current annotation type. 
-@property(nonatomic, assign, readonly) PSPDFAnnotationType type;
+@property (nonatomic, assign, readonly) PSPDFAnnotationType type;
 
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 /// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 /// Currently won't work if you just set arbitrary annotations to overlay=YES.
 /// If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
-@property(nonatomic, assign, getter=isOverlay, readonly) BOOL overlay;
+@property (nonatomic, assign, getter=isOverlay, readonly) BOOL overlay;
+
+/// Per default, annotations are editable when isWriteable returns YES.
+/// Override this to lock certain annotations (menu won't be shown)
+@property (nonatomic, assign, getter=isEditable) BOOL editable;
 
 /// Annotation type string as defined in the PDF.
 /// Usually read from the annotDict. Don't change this unless you know what you're doing.
-@property(nonatomic, copy) NSString *typeString;
+@property (nonatomic, copy) NSString *typeString;
 
 /// Alpha value of the annotation color.
 @property (nonatomic, assign) float alpha;
 
 /// Color associated with the annotation or nil if there is no color.
 /// Note: use .alpha for transparency, not the alpha value in color.
-@property(nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) UIColor *color;
 
 /// Color with added alpha value.
-@property(nonatomic, strong, readonly) UIColor *colorWithAlpha;
+@property (nonatomic, strong, readonly) UIColor *colorWithAlpha;
 
 /// Optional. Various annotation types may contain text.
-@property(nonatomic, strong) NSString *contents;
+@property (nonatomic, strong) NSString *contents;
 
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
 
-@property(nonatomic, assign) int indexOnPage;
+/// If indexOnPage is set, it's a native PDF annotation.
+/// If this is -1, it's not yet saved in the PDF.
+/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
+@property (nonatomic, assign) int indexOnPage;
 
 /// Some annotations may have a popupIndex. Defaults to -1.
-@property(nonatomic, assign) int popupIndex;
+@property (nonatomic, assign) int popupIndex;
 
 /// Annotation may already be deleted locally, but not written back.
-@property(nonatomic, assign, getter=isDeleted) BOOL deleted;
+@property (nonatomic, assign, getter=isDeleted) BOOL deleted;
 
 /// rectangle of specific annotation.
-@property(nonatomic, assign) CGRect boundingBox;
+@property (nonatomic, assign) CGRect boundingBox;
 
 /// page for current annotation.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.
-@property(nonatomic, assign, getter=isDirty) BOOL dirty;
+@property (nonatomic, assign, getter=isDirty) BOOL dirty;
 
 /// corresponding document, weak.
-@property(nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, ps_weak) PSPDFDocument *document;
 
 @end
 

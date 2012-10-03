@@ -18,6 +18,6 @@
 /// Animates the view with a size incrase pop.
 - (void)popupAnimation;
 
-@property(nonatomic, strong) PSPDFSearchResult *searchResult;
+@property (nonatomic, strong) PSPDFSearchResult *searchResult;
 
 @end

@@ -15,10 +15,10 @@
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
-@property(nonatomic, assign) BOOL useSolidBackground;
+@property (nonatomic, assign) BOOL useSolidBackground;
 
 /// Clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
-@property(nonatomic, assign) BOOL clipToPageBoundaries;
+@property (nonatomic, assign) BOOL clipToPageBoundaries;
 
 @end

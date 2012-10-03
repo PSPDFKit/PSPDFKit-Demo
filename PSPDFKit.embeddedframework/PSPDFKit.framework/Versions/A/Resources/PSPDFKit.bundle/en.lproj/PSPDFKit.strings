@@ -12,17 +12,25 @@
 "Untitled" = "Untitled";
 "File Not Found" = "File Not Found";
 "Unnamed PDF" = "Unnamed PDF";
-"Table Of Contents" = "Table Of Contents";
 "Go to %@" = "%@";
 "Page %d" = "Page %d";
 
 // toolbar
-"Outline" = "Outline";
+"Table Of Contents" = "Table Of Contents";
 "Search" = "Search";
 "Email" = "Email";
 "Open in..." = "Open in…";
 "No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Print";
+"Annotations" = "Annotations";
+"Add Bookmark" = "Add Bookmark";
+"Remove Bookmark" = "Remove Bookmark";
+"Brightness" = "Brightness";
+
+// password
+"Unlock" = "Unlock";
+"Please enter the password." = "Please enter the password.";
+"This document cannot be unlocked. %@ is unsupported." = "This document cannot be unlocked. %@ is unsupported.";
 
 // page
 "%d of %d" = "%d of %d";
@@ -48,6 +56,9 @@
 "Remove" = "Remove";
 "Edit" = "Edit";
 "Type..." = "Type…";
+"Choose Color" = "Choose Color";
+"Rainbow" = "Rainbow";
+"Monochrome" = "Monochrome";
 "Colors..." = "Colors…";
 "Text..." = "Text…";
 "Yellow" = "Yellow";
@@ -71,6 +82,7 @@
 "Delete Note" = "Delete Note";
 "Delete Highlight" = "Delete Highlight";
 "Delete Free Text" = "Delete Free Text";
+"%@ could not be found." = "%@ could not be found.";
 
 // voiceover accessibility
 "Page" = "Page";

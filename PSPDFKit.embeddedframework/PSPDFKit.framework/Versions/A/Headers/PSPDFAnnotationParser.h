@@ -52,7 +52,7 @@
 /// The fileType translation table is used when we encounter pspdfkit:// links.
 /// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo.
 /// The ultimate fallback is PSPDFLinkAnnotationBrowser.
-@property(nonatomic, copy) NSDictionary *fileTypeTranslationTable;
+@property (nonatomic, copy) NSDictionary *fileTypeTranslationTable;
 
 /// The annotation pageCache. Fills up as the documents are accessed.
 
@@ -73,12 +73,12 @@
 /// Try to load annotations from file and set them if successful.
 - (BOOL)tryLoadAnnotationsFromFileWithError:(NSError **)error;
 
-/// document for annotation parser. weak.
-@property(nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
+/// document provider for annotation parser. weak.
+@property (nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Change the protocol that's used to parse pspdfkit-additions (links, audio, video)
 /// Defaults to 'pspdfkit://'.
-@property(nonatomic, copy) NSString *protocolString;
+@property (nonatomic, copy) NSString *protocolString;
 
 @end
 
@@ -87,7 +87,7 @@
 /// Path where annotations are being saved.
 /// Default's to self.documentProvider.document.cacheDirectory + "annotations.pspdfkit"
 /// If set to nil, will return back to the default value.
-@property(nonatomic, copy) NSString *annotationsPath;
+@property (nonatomic, copy) NSString *annotationsPath;
 
 /// Save annotations (returning NO + eventually an error if it fails)
 - (BOOL)saveAnnotationsWithError:(NSError **)error;

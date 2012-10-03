@@ -1,5 +1,81 @@
 # Changelog
 
+__v2.2.0 - 4/October/2012__
+
+Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
+      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+
+(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit alrady dropped iOS4.2 and with it armv6 in 2.0.
+
+*  New scrolling mode: PSPDFPageScrollContinuousTransition (similar to UIWebView's default mode)
+*  Support text selection on rotated PDF documents.
+*  UIPopoverController is now styleable with a tintColor. This is enabled by default if tintColor is set. Use .shouldTintPopovers to disable this.
+   As long as you use presentViewControllerModalOrPopover:embeddedInNavigationController:withCloseButton:animated:sender:options: your custom popovers will be styled the same way.
+*  Adds support for adding annotations for double page mode on the right page. (Note: drawing still isn't perfect)
+*  Add new property renderAnnotationTypes to PSPDFViewController to allow control about the types of annotations that should be rendered.
+*  Add support for PDF Link Launch annotations (link to a different PDF within a PDF, see http://pspdfkit.com/documentation.html#annotations)
+*  Annotation selection is now smarter and selects the annotation that's most likely chosen (e.g. a small note annotation now is clickable even if it's behind a big ink drawing annotation)
+*  It's not possible to properly select an annotation while in highlight mode.
+*  Allow changing the drawing color using the menu. (invokes the color picker)
+*  Add a isEditable property to be able to lock certain annotations against future edits.
+*  Add printing support for small CGDataProviderRef-based PSPDFDocuments.
+*  Improve OpenIn… feature, annotations are auto-saved before opening in another app and a log warning will be displated for incompatible document compositions.
+*  The password in PSPDFDocument is now saved and will be relayed to any added file (e.g. when using appendFile)
+*  Improved performance for outline and annotation parsing (up to 400% faster, especially for large complex documents with huge outlines)
+*  Massively improved performance for search, especially for documents with many fonts.
+*  Text loupe is faster; less delays on the main thread when waiting for a textParser (more fine-grained locking)
+*  PSPDFViewController now saves any unsaved annotation data when app moves to background.
+*  Add PSPDFBrightnessBarButtonItem and optional software-dimming to darken the screen all the way down to black.
+*  PSPDFDocuments objectsAtPDFRect:page:options: now can also search for annotations and text blocks.
+*  Smart Zoom is now even smarter and picks the most likely tapped text block if the detection shows multiple overlaying blocks.
+*  Adds italian translation.
+*  Restores PDF page label feature from v1.
+*  removeCacheForDocument:deleteDocument:error: now also removes any document metadata files (bookmarks, annotations [if they were saved externally])
+*  The cancel button in PSPDFSearchViewController can now be localized.
+*  PSPDFKit now uses UICollectionView on iOS6, and PSTCollectionView on iOS4/5.
+*  When annotations are deserialized from disk, the proper annotation subclasses set in document.overrideClassNames will be used.
+*  Ensure annotation toolbar is closed when view controller pops.
+*  Thumbnails no longer are layed out behind the tab bar if PSPDFTabbedViewController is used. (they now correctly align beneath the bar)
+*  Add workaround for a UIKit problem where a UIPopoverController could be resized to zero on iPad/landscape when it's just above the keyboard.
+*  Greatly reduced the black hair line that was visible in double page modes between the pages. Should now be invisible in most cases.
+*  The last used drawing color is now saved in the user defaults.
+*  The bookmark image is now saved proportionaly to the thumbnail image.
+*  Ensures that for PSPDFTabbedViewController, tabs always have a title.
+*  The close button added when using the presentModal: api of PSPDFViewController now uses the Done-button style.
+*  API: bookmark save/load now exposes NSError object. Also new; clearAllBookmarks.
+*  API: willStartSearchOperation:forString:isFullSearch: in PSPDFSearchOperationDelegate is now optional.
+*  API: PSPDFDocument now implements PSPDFDocumentProviderDelegate and also is set as the default delegate.
+*  API: PSPDFDocumentDelegate now has methods for didSaveAnnotations and failedToSaveAnnotations.
+*  API: removeCacheForDocument:deleteDocument:waitUntilDone: is now removeCacheForDocument:deleteDocument:error: - use dispatch_async to make the call async.
+*  API: tabbedPDFController:willChangeVisibleDocument: has been renamed to tabbedPDFController:shouldChangeVisibleDocument:
+*  Fixes a bug where annotations were not saved correctly on multi-file documents when saving into external file was used. You need to delete the annotations.pspdfkit file in /Library/PrivateDocuments/UID to update to the new saving version (PSPDFKit still first tries to read that file to be backwards compatible)
+*  Fixes freezing if there are A LOT of search results. They are not limited to 600 by default. This can be changed in PSPDFSearchViewController, see maximumNumberOfSearchResultsDisplayed.
+*  Fixes a issue where similar PDF documents could create a equal UID when initialized via NSData.
+*  Fixes "jumping" of the annotation toolbar when the default toolbar style was used.
+*  Fixes calling the shouldChangeDocuments delegate in PSPDFTabbedViewController.
+*  Fixes issue with rotation handling under iOS6.
+*  Fixes a bug that prevented selecting annotations for documents with multiple files on all but the first file
+*  Fixes a bug where the text editor sometimes could have a transparent background.
+*  Fixes a toolbar bug when using UIStoryboard and modal transitions to PSPDFViewController.
+*  Fixes a rare placement bug with the document title label overlay on iPhone.
+*  Fixes a regression of 2.1 where search on iPhone sometimes didn't jump to the correct page.
+*  Fixes issue with certain unselectable words.
+*  Fixes always-spinning activity indicator when internal WebBrowser was closed while page was still loading. ActivityIndicator management now also can be customized and/or disabled.
+*  Fixes a page displacement issue with pageCurl and the app starting up in landscape, directly showing a PSPDFViewController. (workaround for a UIKit issue; has been fixed in iOS6)
+*  Fixes invalid page coordinates sent to didTapOnPageView:atPoint: delegate on right page in landscape mode.
+*  Fixes a race condition where annotations could be missing on display after repeated saving until the document has been reloaded.
+*  Fixes issue with word detection where sometimes words were split apart after the first letter on the beginning of a line.
+*  Fixes viewState generation. (Was always using page instead of realPage which lead to errors when using landscape mode)
+*  Fixes missing background drawing for shape annotations.
+*  Fixes a issue where certain link-annotations did not work when using the long-press and then tap on the sheet-button way.
+*  Fixes a rare bug where pages could been missing when reloading the view of the PSPDFPerPageScrollTransition in a certain way.
+*  Fixes issue where viewLockEnabled was ignored after calling reloadData.
+
+Known Issues:
+*  Dragging note anotations from one page to another doesn't yet work.
+*  Drawing across multiple pages doesn't yet work.
+
+
 __v2.1.0 - 17/September/2012__
 
 *  New: PSPDFAESCryptoDataProvider. Allows fast, secure on-the-fly decryption of AES256-secured PDF documents. (PSPDFKit Annotate feature)

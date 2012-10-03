@@ -10,7 +10,7 @@
 #import "PSPDFSinglePageViewController.h"
 #import "PSPDFTransitionProtocol.h"
 
-@class PSPDFTransitionHelper, PSPDFViewController, PSPDFPagedScrollView, PSPDFSinglePageViewController;
+@class PSPDFTransitionHelper, PSPDFViewController, PSPDFContentScrollView, PSPDFSinglePageViewController;
 
 // Helper to communiate with the transition viewController.
 @protocol PSPDFTransitionHelperDelegate <NSObject>
@@ -30,10 +30,10 @@
 /// Create page controller using the master pdf controller.
 - (id)initWithDelegate:(UIViewController<PSPDFTransitionHelperDelegate> *)delegate;
 
-@property(nonatomic, ps_weak, readonly) UIViewController<PSPDFTransitionHelperDelegate> *delegate;
+@property (nonatomic, ps_weak, readonly) UIViewController<PSPDFTransitionHelperDelegate> *delegate;
 
 /// Set new page.
-@property(nonatomic, assign) NSUInteger page;
+@property (nonatomic, assign) NSUInteger page;
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
 
 - (NSArray *)visiblePageNumbers;

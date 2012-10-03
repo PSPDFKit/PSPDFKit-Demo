@@ -24,13 +24,13 @@
 - (id)initWithTitle:(NSString *)title block:(void(^)())block identifier:(NSString *)identifier;
 
 /// Menu Item can be enabled/disabled. (disable simply hides it from the UIMenuController)
-@property(nonatomic, assign, getter=isEnabled) BOOL enabled;
+@property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 /// Helper to identify the current action.
-@property(nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *identifier;
 
 // Action block.
-@property(nonatomic, copy) void(^block)();
+@property (nonatomic, copy) void(^block)();
 
 
 /**
