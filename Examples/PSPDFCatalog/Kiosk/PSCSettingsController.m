@@ -62,9 +62,10 @@ __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
         _settings[StringSEL(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[StringSEL(isFitToWidthEnabled)] = PSIsIpad() ? @(NO) : @(YES);
+        _settings[StringSEL(isFitToWidthEnabled)] = @(!PSIsIpad());
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollContinuousTransition);
+//        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
@@ -105,7 +106,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Single First Page"), _(@"No Cover Page")],
         @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
         @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Scrobblebar"), _(@"Page Position View")],
-        @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"View Mode")],
+        @[_(@"Search"), _(@"Table of Contents"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"View Mode")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
         ];
