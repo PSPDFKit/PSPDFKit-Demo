@@ -1,5 +1,9 @@
 # Changelog
 
+__v2.2.2 - 5/October/2012__
+
+*  Properly restore the PSPDFLinkAnnotationView backgroundColor.
+
 __v2.2.1 - 4/October/2012__
 
 *  The original backgroundColor of a PSPDFLinkAnnotationView is now preserved.
