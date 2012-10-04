@@ -55,6 +55,13 @@
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/pause">&nbsp;&nbsp;&nbsp;&nbsp;- pause</option>
+	
+	<option value="//api/name/play">&nbsp;&nbsp;&nbsp;&nbsp;- play</option>
+	
+	
 	
 </select>
 				</li>
@@ -94,6 +101,14 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pause">pause</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/play">play</a></span></li>
+	
+</ul></li>
+
 
 			</ul>
 		</nav>
@@ -118,6 +133,9 @@
 	<td class="specification-title">Inherits from</td>
 	<td class="specification-value"><a href="../Classes/PSPDFLinkAnnotationBaseView.html">PSPDFLinkAnnotationBaseView</a> : UIView</td>
 </tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIWebViewDelegate</td>
+</tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFYouTubeAnnotationView.h</td>
 </tr>
@@ -129,7 +147,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Uses MPMoviePlayerController whenever possible, else falls back to the UIWebView YouTube plugin.
+						<p>Encapsulates the YouTube plugin of UIWebView
 Note: The YouTube plugin doesn&rsquo;t show up in the Simulator. Test on the device!</p>
 					</div>
 					
@@ -180,6 +198,20 @@ Note: The YouTube plugin doesn&rsquo;t show up in the Simulator. Test on the dev
 		<span class="tooltip"><p>Used in the default implementation.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/play">&ndash;&nbsp;play</a></code>
+		<span class="tooltip"><p>Control YouTube plugin &ndash;> play.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pause">&ndash;&nbsp;pause</a></code>
+		<span class="tooltip"><p>Control YouTube plugin &ndash;> pause.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -369,6 +401,80 @@ Note: The YouTube plugin doesn&rsquo;t show up in the Simulator. Test on the dev
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/pause" title="pause"></a>
+	<h3 class="subsubtitle method-title">pause</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Control YouTube plugin &ndash;> pause.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pause</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFYouTubeAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/play" title="play"></a>
+	<h3 class="subsubtitle method-title">play</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Control YouTube plugin &ndash;> play.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)play</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFYouTubeAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
