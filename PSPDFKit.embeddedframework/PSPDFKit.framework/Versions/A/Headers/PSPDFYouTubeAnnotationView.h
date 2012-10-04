@@ -12,7 +12,7 @@
 
 @class PSPDFVideoAnnotationView, PSPDFAnnotation;
 
-/// Uses MPMoviePlayerController whenever possible, else falls back to the UIWebView YouTube plugin.
+/// Encapsulates the YouTube plugin of UIWebView
 /// Note: The YouTube plugin doesn't show up in the Simulator. Test on the device!
 @interface PSPDFYouTubeAnnotationView : PSPDFLinkAnnotationBaseView <UIWebViewDelegate>
 
