@@ -14,7 +14,7 @@
 
 /// Uses MPMoviePlayerController whenever possible, else falls back to the UIWebView YouTube plugin.
 /// Note: The YouTube plugin doesn't show up in the Simulator. Test on the device!
-@interface PSPDFYouTubeAnnotationView : PSPDFLinkAnnotationBaseView
+@interface PSPDFYouTubeAnnotationView : PSPDFLinkAnnotationBaseView <UIWebViewDelegate>
 
 /// Keep a reference at the annotation
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
@@ -30,5 +30,11 @@
 
 /// Used in the default implementation.
 @property (nonatomic, strong) UIWebView *webView;
+
+/// Control YouTube plugin -> play.
+- (void)play;
+
+/// Control YouTube plugin -> pause.
+- (void)pause;
 
 @end

@@ -1,5 +1,13 @@
 # Changelog
 
+__v2.2.1 - 4/October/2012__
+
+*  The original backgroundColor of a PSPDFLinkAnnotationView is now preserved.
+*  YouTube embedding now supported on iOS6.
+*  Video embeddings with a cover image now don't show the cover if play has already been pressed after a page change.
+*  Annotations now are cached much like UITableViewCells. (faster; preserve video state, etc)
+*  Fixes a "sticky" scrolling issue that was introduced in 2.2.
+
 __v2.2.0 - 4/October/2012__
 
 Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)

@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFBaseViewController.h"
+#import "PSPDFGradientView.h"
 
 /// Controller to change the brightness. iOS5 and later.
 @interface PSPDFBrightnessViewController : PSPDFBaseViewController
@@ -30,6 +31,9 @@
 
 // Slider used to regulate brightness
 @property (nonatomic, strong) UISlider *slider;
+
+// Background gradient.
+@property (nonatomic, strong) PSPDFGradientView *gradient;
 
 // used for additional software dimming
 - (PSPDFDimmingView *)dimmingView;
