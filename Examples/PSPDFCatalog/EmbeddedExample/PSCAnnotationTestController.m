@@ -13,7 +13,7 @@
 
 @implementation PSCAnnotationTestController
 
-// sample implementaton how to automatically advance to the next page
+// sample implementation how to automatically advance to the next page
 - (void)advanceToNextPage {
     if ([self isLastPage]) {
         [self setPage:0 animated:YES];
