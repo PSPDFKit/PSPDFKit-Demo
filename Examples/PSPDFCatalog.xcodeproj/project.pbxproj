@@ -27,7 +27,6 @@
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4D15CFDAAF00328F4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
-		78A24A4F15CFDAAF00328F4F /* NSObject+BlockObservation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1C15CFDAAF00328F4F /* NSObject+BlockObservation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */; };
 		78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2015CFDAAF00328F4F /* PSCDownload.m */; };
 		78A24A5215CFDAAF00328F4F /* PSCGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2215CFDAAF00328F4F /* PSCGridController.m */; };
@@ -198,8 +197,6 @@
 		78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78A24A1715CFDAAF00328F4F /* PSCStoryboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardTableViewController.h; sourceTree = "<group>"; };
 		78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardTableViewController.m; sourceTree = "<group>"; };
-		78A24A1B15CFDAAF00328F4F /* NSObject+BlockObservation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BlockObservation.h"; sourceTree = "<group>"; };
-		78A24A1C15CFDAAF00328F4F /* NSObject+BlockObservation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BlockObservation.m"; sourceTree = "<group>"; };
 		78A24A1D15CFDAAF00328F4F /* PSCBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBasicViewController.h; sourceTree = "<group>"; };
 		78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBasicViewController.m; sourceTree = "<group>"; };
 		78A24A1F15CFDAAF00328F4F /* PSCDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDownload.h; sourceTree = "<group>"; };
@@ -485,7 +482,6 @@
 		78A24A1915CFDAAF00328F4F /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
-				78A24A1A15CFDAAF00328F4F /* Categories */,
 				78A24A1D15CFDAAF00328F4F /* PSCBasicViewController.h */,
 				78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */,
 				78A24A1F15CFDAAF00328F4F /* PSCDownload.h */,
@@ -510,15 +506,6 @@
 				78A24A3215CFDAAF00328F4F /* PSCStoreManager.m */,
 			);
 			path = Kiosk;
-			sourceTree = "<group>";
-		};
-		78A24A1A15CFDAAF00328F4F /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				78A24A1B15CFDAAF00328F4F /* NSObject+BlockObservation.h */,
-				78A24A1C15CFDAAF00328F4F /* NSObject+BlockObservation.m */,
-			);
-			path = Categories;
 			sourceTree = "<group>";
 		};
 		78A24A3315CFDAAF00328F4F /* EmbeddedExample */ = {
@@ -923,7 +910,6 @@
 				78DDC75B15CF2EFF0030C730 /* SDURLCache.m in Sources */,
 				78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */,
 				78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */,
-				78A24A4F15CFDAAF00328F4F /* NSObject+BlockObservation.m in Sources */,
 				78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */,
 				78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */,
 				78A24A5215CFDAAF00328F4F /* PSCGridController.m in Sources */,
