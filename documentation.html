@@ -148,6 +148,9 @@ documentation: current-menu-item current_page_item
 
 		<p><b>Q: The colors on then iPad are a bit off; But everything looks fine in Adobe Acrobat</b><br>
 		A: Apple doesn't always respect color spaces in their PDF rendering engine. You can solve this by converting the document colors to either sRGB or Apple RGB in Acrobat.</p><br>
+		
+		<p><b>Q: I've added the printBarButtonItem but it's not showing up in the toolbar.</b><br>
+		A: Certain PDF documents might now allow printing. To check this, check the <a href="/documentation/Classes/PSPDFDocument.html#//api/name/allowsPrinting">allowsPrinting flag</a> on PSPDFDocument.</p><br>
 
 		<p><b>Q: In Adobe Acrobat, hyperlinks are clickable, but in PSPDFKit, some or all of them are not marked as touch-able.</b><br>
 			A: Adobe Acrobat and to some extend also Preview.app use custom in-text hyperlink detection to create annotations on the fly. This is nothing the PDF references specifies, and is also currently not supported my PSPDFKit. As a workaround, make proper link annotations out of your hyperlinks. This can be accomplished easily with Adobe Acrobat or Preview.app.</p><br>
