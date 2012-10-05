@@ -67,7 +67,7 @@
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
-        //            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"blue.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"ieee-specialTOC.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -76,8 +76,7 @@
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
 
     // the tabbed browser needs iOS5 or greater.
-    PSPDF_IF_IOS5_OR_GREATER(
-                             [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
+    PSPDF_IF_IOS5_OR_GREATER([appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
         if (PSIsIpad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
