@@ -26,7 +26,6 @@
 		78525B3115CF295E00854F49 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2B15CF295E00854F49 /* VERSION */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
-		78A24A4D15CFDAAF00328F4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
 		78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */; };
 		78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2015CFDAAF00328F4F /* PSCDownload.m */; };
@@ -197,7 +196,6 @@
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
 		78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTabbedExampleViewController.m; sourceTree = "<group>"; };
-		78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78A24A1715CFDAAF00328F4F /* PSCStoryboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardTableViewController.h; sourceTree = "<group>"; };
 		78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardTableViewController.m; sourceTree = "<group>"; };
 		78A24A1D15CFDAAF00328F4F /* PSCBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBasicViewController.h; sourceTree = "<group>"; };
@@ -475,7 +473,6 @@
 		78A24A1415CFDAAF00328F4F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				78A24A1615CFDAAF00328F4F /* MainStoryboard.storyboard */,
 				78A24A1715CFDAAF00328F4F /* PSCStoryboardTableViewController.h */,
 				78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */,
 			);
@@ -849,7 +846,6 @@
 				78525B2E15CF295E00854F49 /* LICENSE in Resources */,
 				78525B2F15CF295E00854F49 /* PSPDFKit.bundle in Resources */,
 				78525B3115CF295E00854F49 /* VERSION in Resources */,
-				78A24A4D15CFDAAF00328F4F /* MainStoryboard.storyboard in Resources */,
 				78A24A8D15CFDAD000328F4F /* balloon.png in Resources */,
 				78A24A8E15CFDAD000328F4F /* balloon@2x.png in Resources */,
 				78A24A8F15CFDAD000328F4F /* EmbeddedNib.xib in Resources */,
