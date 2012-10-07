@@ -25,6 +25,7 @@
 #import "PSCBookViewController.h"
 #import "PSCFittingWidthViewController.h"
 #import "PSCAutoScrollViewController.h"
+#import "PSCPlayButtonItem.h"
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -434,18 +435,25 @@
     }]];
 
     // uses pageCurl which is a iOS5+ feature.
-    PSPDF_IF_IOS5_OR_GREATER(
-                             [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
+    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
         return controller;
-    }]];
-                             );
+    }]];);
 
-    PSPDF_IF_IOS5_OR_GREATER(
-                             [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Teleprompter example" block:^UIViewController *{
+    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Teleprompter example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCAutoScrollViewController alloc] initWithDocument:document];
+        return controller;
+    }]];);
+
+    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Auto paging example" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        PSCPlayButtonItem *playButton = [[PSCPlayButtonItem alloc] initWithPDFViewController:controller];
+        playButton.autoplaying = YES;
+        controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.pageTransition = PSPDFPageCurlTransition;
         return controller;
     }]];);
 
