@@ -439,13 +439,13 @@
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
         return controller;
-    }]];);
+    }]];)
 
     PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Teleprompter example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCAutoScrollViewController alloc] initWithDocument:document];
         return controller;
-    }]];);
+    }]];)
 
     PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -454,8 +454,9 @@
         playButton.autoplaying = YES;
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         controller.pageTransition = PSPDFPageCurlTransition;
+        controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
-    }]];);
+    }]];)
 
     [content addObject:subclassingSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
