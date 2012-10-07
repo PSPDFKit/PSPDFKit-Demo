@@ -10,7 +10,6 @@
 @implementation PSCPlayButtonItem {
     PSPDFTransparentToolbar *_toolbar;
     NSTimer *_autoplayTimer;
-    BOOL _autoplay;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +21,7 @@
 
 // If we would return UIBarButtonSystemItem, UIKit would auto-calculate the width and there - surprise! - is a 3px difference between play/pause, making all icons afterwards to jump.
 //- (UIBarButtonSystemItem)systemItem {
-//    return _autoplay ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+//    return self.isAutoplaying ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
 //}
 
 // a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
@@ -49,7 +48,7 @@
 }
 
 - (void)updatePlayButton {
-    UIBarButtonSystemItem systemItem = _autoplay ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
+    UIBarButtonSystemItem systemItem = self.isAutoplaying ? UIBarButtonSystemItemPause : UIBarButtonSystemItemPlay;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:systemItem target:self action:@selector(playPauseAction:)];
     [self.toolbar setItems:@[flexibleSpace, barButtonItem, flexibleSpace] animated:YES];
@@ -58,15 +57,31 @@
 - (void)playPauseAction:(id)sender {
     [PSPDFBarButtonItem dismissPopoverAnimated:NO];
 
-    if (!_autoplay) {
-        _autoplay = YES;
-        _autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self.pdfController selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+    if (!self.isAutoplaying) {
+        _autoplaying = YES;
+        _autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     }else {
-        _autoplay = NO;
+        _autoplaying = NO;
         [_autoplayTimer invalidate];
         [self updatePlayButton];
     }
+}
+
+- (void)advanceToNextPage {
+    PSPDFViewController *pdfController = self.pdfController;
+    
+    if ([pdfController isLastPage]) {
+        [pdfController setPage:0 animated:YES];
+    }else {
+        [pdfController scrollToNextPageAnimated:YES];
+    }
+}
+
+- (void)setAutoplaying:(BOOL)autoplaying {
+    if (_autoplaying != autoplaying) {
+        [self playPauseAction:nil];
+    }    
 }
 
 @end
