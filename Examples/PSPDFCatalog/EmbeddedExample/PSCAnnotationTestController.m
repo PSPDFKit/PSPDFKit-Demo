@@ -13,15 +13,6 @@
 
 @implementation PSCAnnotationTestController
 
-// sample implementation how to automatically advance to the next page
-- (void)advanceToNextPage {
-    if ([self isLastPage]) {
-        [self setPage:0 animated:YES];
-    }else {
-        [self scrollToNextPageAnimated:YES];
-    }
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
