@@ -66,16 +66,25 @@
         [_autoplayTimer invalidate];
         [self updatePlayButton];
     }
+
+    // lock any interaction while we are in auto-scroll mode
+    PSPDFViewController *pdfController = self.pdfController;
+    pdfController.textSelectionEnabled = !_autoplaying;
+    pdfController.scrollOnTapPageEndEnabled = !_autoplaying;
+    pdfController.viewLockEnabled = _autoplaying;
+    pdfController.scrollingEnabled = !_autoplaying;
 }
 
 - (void)advanceToNextPage {
     PSPDFViewController *pdfController = self.pdfController;
-    
+
+    pdfController.viewLockEnabled = NO;
     if ([pdfController isLastPage]) {
         [pdfController setPage:0 animated:YES];
     }else {
         [pdfController scrollToNextPageAnimated:YES];
     }
+    pdfController.viewLockEnabled = _autoplaying;
 }
 
 - (void)setAutoplaying:(BOOL)autoplaying {
