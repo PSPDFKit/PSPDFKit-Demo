@@ -1,6 +1,6 @@
 //
 //  PSCAutoScrollViewController.m
-//  PSPDFCatalog-
+//  PSPDFCatalog
 //
 //  Copyright (c) 2012 PSPDFKit. All rights reserved.
 //
@@ -51,7 +51,7 @@
 
 - (void)scroll {
     if (self.scrollingPaused) return;
-    
+
     CGPoint currentOffset = self.pagingScrollView.contentOffset;
     self.pagingScrollView.contentOffset = CGPointMake(currentOffset.x, currentOffset.y + 0.5f);
 }
