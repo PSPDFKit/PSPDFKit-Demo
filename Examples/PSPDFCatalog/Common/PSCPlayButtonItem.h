@@ -10,4 +10,6 @@
 // Adds a play/pause button that can enable a slideshow mode for pdf documents.
 @interface PSCPlayButtonItem : PSPDFBarButtonItem
 
+@property (nonatomic, assign, getter=isAutoplaying) BOOL autoplaying;
+
 @end
