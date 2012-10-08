@@ -483,7 +483,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     };
 
     UIViewController *configViewController = [PSPDFBaseViewController new];
-    configViewController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
+    configViewController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.realPage+1];
     UITextView *configView = [UITextView new];
 
     NSMutableString *text = [NSMutableString string];
