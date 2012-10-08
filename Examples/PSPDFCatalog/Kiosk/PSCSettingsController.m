@@ -485,7 +485,16 @@ static CGFloat pscSettingsLastYOffset = 0;
     UIViewController *configViewController = [PSPDFBaseViewController new];
     configViewController.title = [NSString stringWithFormat:_(@"Extracted text for page %d"), pdfController.page];
     UITextView *configView = [UITextView new];
-    configView.text = [pdfController.document textParserForPage:pdfController.page].text;
+
+    NSMutableString *text = [NSMutableString string];
+    NSArray *visiblePageNumbers = [pdfController visiblePageNumbers];
+    for (NSNumber *pageNumber in visiblePageNumbers) {
+        NSUInteger page = [pageNumber unsignedIntegerValue];
+        if ([visiblePageNumbers count] > 1) [text appendFormat:@"Page %d:\n\n", page+1];
+        [text appendString:[pdfController.document textParserForPage:page].text];
+        if ([visiblePageNumbers count] > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
+    }
+    configView.text = text;
     configView.editable = NO;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
