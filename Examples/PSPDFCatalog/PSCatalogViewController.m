@@ -304,6 +304,69 @@
         return controller;
     }]];
     [content addObject:storyboardSection];
+    ///////////////////////////////////////////////////////////////////////////////////////////
+
+    PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
+    [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Full-Text Search" block:^UIViewController *{
+        UIViewController *controller = nil;
+        return controller;
+    }]];
+
+    [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Convert markup string to PDF" block:^UIViewController *{
+
+        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
+        websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
+        [websitePrompt addButtonWithTitle:@"Convert" block:^{
+            // get data
+            NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
+            NSURL *outputURL = PSPDFTempFileURL(@"generated");
+
+            // create pdf (blocking)
+            [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{kPSPDFProcessorNumberOfPages : @(1), kPSPDFProcessorDocumentTitle : @"Generated PDF"}];
+
+            // generate document and show it
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:outputURL];
+            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+            [self.navigationController pushViewController:pdfController animated:YES];
+        }];
+        [websitePrompt show];
+        return nil;
+    }]];
+
+    // Experimental feature
+    [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Convert Website to PDF" block:^UIViewController *{
+
+        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website URL" message:@"Experimental feature. Results may vary. Extraction might take a while."];
+        websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
+        [websitePrompt addButtonWithTitle:@"Convert" block:^{
+            // get URL
+            NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
+            if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
+            NSURL *URL = [NSURL URLWithString:website];
+            NSURL *outputURL = PSPDFTempFileURL(@"generated");
+
+            // start processing.
+            [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
+            [[PSPDFProcessor defaultProcessor] generatePDFFromWebURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
+                if (error) {
+                    [PSPDFProgressHUD dismiss];
+                    [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                }else {
+                    // generate document and show it
+                    [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
+                    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:fileURL];
+                    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+                    [self.navigationController pushViewController:pdfController animated:YES];
+                }
+            }];
+        }];
+        [websitePrompt show];
+        return nil;
+    }]];
+    [content addObject:textExtractionSection];
+    ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFViewController customization" footer:@""];
