@@ -58,7 +58,6 @@
 
     // Perform non-important actions on the next runloop, for faster app-starting.
     dispatch_async(dispatch_get_main_queue(), ^{
-
         // Localytics helps me to track PSPDFCatalog launches
         // Remove this or replace with your own Localytics ID if you are using PSPDFCatalog as a template for your own app.
 #ifndef PSPDF_USE_SOURCE
