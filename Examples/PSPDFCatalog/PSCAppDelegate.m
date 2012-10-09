@@ -52,6 +52,9 @@
     self.window.rootViewController = self.catalog;
     [self.window makeKeyAndVisible];
 
+    // Opened with the Open In... feature?
+    [self handleOpenURL:launchOptions[UIApplicationLaunchOptionsURLKey]];
+
     // print current cache dir
     NSString *cacheFolder = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
     NSLog(@"Cache Folder: %@", cacheFolder);
@@ -75,6 +78,21 @@
 #endif
     });
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)URL sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSLog(@"Open %@ from %@ (annotation: %@)", URL, sourceApplication, annotation);
+    return [self handleOpenURL:URL];
+}
+
+- (BOOL)handleOpenURL:(NSURL *)launchPDFURL {
+    if ([launchPDFURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchPDFURL path]]) {
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchPDFURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        [self.catalog pushViewController:pdfController animated:NO];
+        return YES;
+    }
+    return NO;
 }
 
 @end
