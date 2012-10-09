@@ -10,12 +10,19 @@
 
 @class PSCMagazineFolder;
 
+// Displays a grid of elements from the PSCStoreManager
 @interface PSCGridController : PSCBasicViewController <PSCStoreManagerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate>
 
+// Designated initailizer.
 - (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
+
+// Force-update grid.
 - (void)updateGrid;
 
+// Grid that's used internally. Either a PSCollectionView (iOS5) or UICollectionView (iOS6+)
 @property (nonatomic, strong) PSUICollectionView *gridView;
+
+// Magazine-folder, if one is selected.
 @property (nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
 
 @end

@@ -21,6 +21,8 @@
 #error "Compile this file with ARC"
 #endif
 
+#define _(string) NSLocalizedString(string, @"")
+
 #define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 
 // the delete button target is small enough that we don't need to ask for confirmation.
@@ -47,7 +49,7 @@
 
 - (id)init {
     if ((self = [super init])) {
-        self.title = NSLocalizedString(@"PSPDFKit Kiosk Example", @"");
+        self.title = _(@"PSPDFKit Kiosk Example");
 
         // one-time init stuff
         static dispatch_once_t onceToken;
@@ -61,7 +63,7 @@
         });
 
         // custom back button for smaller wording
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Kiosk", @"") style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
     }
@@ -97,14 +99,14 @@
     [super viewDidLoad];
 
     if (!self.magazineFolder) {
-        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:_(@"Edit")
                                                                        style:UIBarButtonItemStyleBordered
                                                                       target:self
                                                                       action:@selector(editButtonPressed)];
         self.navigationItem.rightBarButtonItem = editButton;
     }
 
-    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Options", @"")
+    UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:_(@"Options")
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self
                                                                     action:@selector(optionsButtonPressed)];
@@ -271,9 +273,7 @@
     [super viewWillDisappear:animated];
 
     // only deregister if not attached to anything else
-    if ([PSCStoreManager sharedStoreManager].delegate == self) {
-        [PSCStoreManager sharedStoreManager].delegate = nil;
-    }
+    if ([PSCStoreManager sharedStoreManager].delegate == self) [PSCStoreManager sharedStoreManager].delegate = nil;
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -426,14 +426,10 @@
 
 - (void)diskDataLoaded {
     // not finished yet? return early.
-    if ([[PSCStoreManager sharedStoreManager].magazineFolders count] == 0) {
-        return;
-    }
+    if ([[PSCStoreManager sharedStoreManager].magazineFolders count] == 0) return;
 
     // if we're in plain mode, pre-set a folder
-    if (kPSPDFStoreManagerPlain) {
-        self.magazineFolder = [[PSCStoreManager sharedStoreManager].magazineFolders lastObject];
-    }
+    if (kPSPDFStoreManagerPlain) self.magazineFolder = [[PSCStoreManager sharedStoreManager].magazineFolders lastObject];
 
     [self.gridView reloadData];
 }
@@ -441,14 +437,14 @@
 - (void)editButtonPressed {
     if (self.isEditMode) {
         self.editMode = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Edit")
                                                                                   style:UIBarButtonItemStyleBordered
                                                                                  target:self
                                                                                  action:@selector(editButtonPressed)];
 
     }else {
         self.editMode = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", @"")
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Done")
                                                                                   style:UIBarButtonItemStyleDone
                                                                                  target:self
                                                                                  action:@selector(editButtonPressed)];
@@ -547,9 +543,9 @@
     BOOL canDelete = YES;
     NSString *message = nil;
     if ([folder.magazines count] > 1 && !self.magazineFolder) {
-        message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineMultiple", @""), folder.title, [folder.magazines count]];
+        message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
     }else {
-        message = [NSString stringWithFormat:NSLocalizedString(@"DeleteMagazineSingle", @""), magazine.title];
+        message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
         if (kPSPDFShouldShowDeleteConfirmationDialog) {
             canDelete = magazine.isAvailable || magazine.isDownloading;
         }
@@ -567,12 +563,12 @@
         if (canDelete) {
             PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
             deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:NSLocalizedString(@"Delete", @"") block:^{
+            [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:^{
                 deleteBlock();
                 // TODO should re-calculate index here.
                 [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
             }];
-            [deleteAction setCancelButtonWithTitle:NSLocalizedString(@"Cancel", @"") block:nil];
+            [deleteAction setCancelButtonWithTitle:_(@"Cancel") block:nil];
             PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
             CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
@@ -607,10 +603,10 @@
 
     if ([folder.magazines count] == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Item is currently downloading.", @"")
+            [[[UIAlertView alloc] initWithTitle:_(@"Item is currently downloading.")
                                         message:nil
                                        delegate:nil
-                              cancelButtonTitle:NSLocalizedString(@"OK", @"")
+                              cancelButtonTitle:_(@"OK")
                               otherButtonTitles:nil] show];
         } else if(!magazine.isAvailable && !magazine.isDownloading) {
             [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
