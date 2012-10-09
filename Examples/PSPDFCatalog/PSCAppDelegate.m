@@ -89,6 +89,7 @@
     if ([launchPDFURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchPDFURL path]]) {
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchPDFURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        [self.catalog popToRootViewControllerAnimated:NO];
         [self.catalog pushViewController:pdfController animated:NO];
         return YES;
     }
