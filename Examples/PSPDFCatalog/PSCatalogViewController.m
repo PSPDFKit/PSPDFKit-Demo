@@ -525,7 +525,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-    PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:@"How to use PSPDFViewControllerDelegate"];
+    PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:PSPDFVersionString()];
     [delegateSection addContent:[[PSContent alloc] initWithTitle:@"Custom drawing" block:^UIViewController *{
 
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
