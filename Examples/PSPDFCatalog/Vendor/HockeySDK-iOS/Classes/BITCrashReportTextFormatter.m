@@ -174,7 +174,7 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
 
     {
         NSString *reportGUID = @"[TODO]";
-        if ([[report class] respondsToSelector:@selector(reportInfo)]) {
+        if ([report respondsToSelector:@selector(reportInfo)]) {
             if (report.hasReportInfo && report.reportInfo.reportGUID != nil)
                 reportGUID = report.reportInfo.reportGUID;
         }
@@ -487,6 +487,10 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
               archName = @"armv7";
               break;
               
+            case CPU_SUBTYPE_ARM_V7S:
+              archName = @"armv7s";
+              break;
+
             default:
               archName = @"arm-unknown";
               break;
@@ -565,8 +569,8 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
         //NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
         //NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
         
-        if ([[frameInfo class] respondsToSelector:@selector(symbolName)]) {
-          // @steipete: Modified for PSPDFKit to symblicate apps w/o a dSYM. 
+        if ([frameInfo respondsToSelector:@selector(symbolName)]) {
+          // Modified for PSPDFKit release.
           //if (![imagePath isEqual: report.processInfo.processPath] && ![imagePath hasPrefix:appBundleContentsPath]) {
             symbol = frameInfo.symbolName;
             pcOffset = frameInfo.instructionPointer - frameInfo.symbolStart;
@@ -581,7 +585,7 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
     
     /* Make sure UTF8/16 characters are handled correctly */
     NSInteger offset = 0;
-    NSInteger index = 0;
+    NSUInteger index = 0;
     for (index = 0; index < [imageName length]; index++) {
         NSRange range = [imageName rangeOfComposedCharacterSequenceAtIndex:index];
         if (range.length > 1) {
