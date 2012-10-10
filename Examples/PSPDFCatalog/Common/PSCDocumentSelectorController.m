@@ -13,6 +13,7 @@
     NSArray *_content;
     NSMutableArray *_filteredContent;
 }
+@property (nonatomic, copy) NSString *directory;
 // save state during view reloads
 @property (nonatomic, copy) NSString *savedSearchTerm;
 @property (nonatomic, assign) NSInteger savedScopeButtonIndex;
@@ -24,13 +25,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDelegate:(id<PSCDocumentSelectorControllerDelegate>)delegate {
+- (id)initWithDirectory:(NSString *)directory delegate:(id<PSCDocumentSelectorControllerDelegate>)delegate {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
-        self.title = NSLocalizedString(@"Files", @"");
 
+        // resolve directory, default to Documents if no name token is issued.
+        _directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
+        self.title = [_directory lastPathComponent];
+        
         _delegate = delegate;
-        _content = [[[self class] documentsFromDirectory:@"Samples"] copy];
+        _content = [[self class] documentsFromDirectory:_directory];
         _filteredContent = [NSMutableArray new];
         [[PSPDFCache sharedCache] addDelegate:self];
     }
@@ -86,16 +90,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
 
-+ (NSArray *)documentsFromDirectory:(NSString *)directoryName {
-    NSMutableArray *folders = [NSMutableArray array];
++ (NSArray *)documentsFromDirectory:(NSString *)directory {
+    NSParameterAssert(directory);    
 
     NSError *error = nil;
-    NSString *sampleFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:directoryName];
-    NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sampleFolder error:&error];
+    NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
 
+    NSMutableArray *folders = [NSMutableArray array];
     for (NSString *folder in documentContents) {
         // check if target path is a directory (all magazines are in directories)
-        NSString *fullPath = [sampleFolder stringByAppendingPathComponent:folder];
+        NSString *fullPath = [directory stringByAppendingPathComponent:folder];
         BOOL isDir;
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
             if (!isDir && [[fullPath lowercaseString] hasSuffix:@"pdf"]) {
@@ -105,7 +109,7 @@
             }
         }
     }
-    return folders;
+    return [folders copy];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -199,6 +203,8 @@
     // ignore scope
 
     if ([searchText length]) {
+
+        // problem is, getting the title is SLOW.
         NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchText, searchText];
         NSArray *filteredContent = [_content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
         [_filteredContent addObjectsFromArray:filteredContent];

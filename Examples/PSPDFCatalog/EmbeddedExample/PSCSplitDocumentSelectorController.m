@@ -15,7 +15,7 @@
 #pragma mark - NSObject
 
 - (id)init {
-    if ((self = [super initWithDelegate:self])) {
+    if ((self = [super initWithDirectory:@"/Bundle/Samples" delegate:self])) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
 

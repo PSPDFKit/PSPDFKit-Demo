@@ -26,7 +26,7 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
-    PSCDocumentSelectorController *documentsController = [[PSCDocumentSelectorController alloc] initWithDelegate:self];
+    PSCDocumentSelectorController *documentsController = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
     UINavigationController *documentsNavController = [[UINavigationController alloc] initWithRootViewController:documentsController];
     return [self presentModalOrInPopover:documentsNavController sender:sender];
 }
