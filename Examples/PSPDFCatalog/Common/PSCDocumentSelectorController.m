@@ -215,7 +215,7 @@
         NSArray *filteredContent = [_content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
         [_filteredContent addObjectsFromArray:filteredContent];
 
-        if (self.fullTextSearchEnabled) {
+        PSPDF_IF_IOS5_OR_GREATER(if (self.fullTextSearchEnabled) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [_fullTextSearchQueue cancelAllOperations];
                 PSCFullTextSearchOperation *operation = [[PSCFullTextSearchOperation alloc] initWithDocuments:self.content searchTerm:searchText];
@@ -233,7 +233,7 @@
                 }];
                 [_fullTextSearchQueue addOperation:operation];
             });
-        }
+        })
     }
 }
 
