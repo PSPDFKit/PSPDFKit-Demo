@@ -87,10 +87,8 @@
 #pragma mark - UIViewController
 
 - (void)updateGridForOrientation {
-    // TODO: don't make this depending on the orientation.
-
     // on iPhone, the navigation toolbar is either 44 (portrait) or 30 (landscape) pixels
-    CGSize size = [self PSPDFGridView:nil sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    CGSize size = PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
     UICollectionViewFlowLayout *flowLayout = ((UICollectionViewFlowLayout *)_gridView.collectionViewLayout);
     flowLayout.itemSize = size;
 }
@@ -479,10 +477,6 @@
     return count;
 }
 
-- (CGSize)PSPDFGridView:(PSPDFGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation {
-    return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PSCImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class]) forIndexPath:indexPath];
 
@@ -495,25 +489,6 @@
 
     return (UICollectionViewCell *)cell;
 }
-
-/*
-- (PSPDFGridViewCell *)PSPDFGridView:(PSPDFGridView *)gridView cellForItemAtIndex:(NSInteger)cellIndex {
-    CGSize size = [self PSPDFGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-
-    PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[self.gridView dequeueReusableCell];
-    if (!cell) {
-        cell = [[PSPDFImageGridViewCell alloc] initWithFrame:CGRectMake(0.0f, 0.0f, size.width, size.height)];
-    }
-
-    cell.immediatelyLoadCellImages = self.immediatelyLoadCellImages;
-    if (self.magazineFolder) {
-        cell.magazine = _filteredData[cellIndex];
-    }else {
-        cell.magazineFolder = _filteredData[cellIndex];
-    }
-
-    return cell;
-}*/
 
 /*
 - (BOOL)PSPDFGridView:(PSPDFGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {

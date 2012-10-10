@@ -35,8 +35,6 @@
     // change log level to be more verbose.
     kPSPDFLogLevel = PSPDFLogLevelInfo;
 
-    //kPSPDFDebugScrollViews = YES;
-
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 0
     // Directly push a PSPDFViewController
