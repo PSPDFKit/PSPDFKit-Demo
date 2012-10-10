@@ -26,6 +26,7 @@
 #import "PSCFittingWidthViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayButtonItem.h"
+#import <objc/runtime.h>
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -40,6 +41,8 @@
     NSArray *_content;
 }
 @end
+
+const char kPSCShowDocumentSelectorOpenInTabbedController;
 
 @implementation PSCatalogViewController
 
@@ -82,10 +85,16 @@
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            return (UIViewController *)[[PSCDocumentSelectorController alloc] initWithDelegate:self];
+            PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedController, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            return (UIViewController *)documentSelector;
         }
+    }]];)
+
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"Open In... Inbox" block:^{
+        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
+        return documentSelector;
     }]];
-                             );
 
     PSPDFDocument *hcakerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
 
@@ -308,8 +317,9 @@
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
     [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Full-Text Search" block:^UIViewController *{
-        UIViewController *controller = nil;
-        return controller;
+        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Samples" delegate:self];
+        documentSelector.fullTextSearchEnabled = YES;
+        return documentSelector;
     }]];
 
     [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Convert markup string to PDF" block:^UIViewController *{
@@ -662,13 +672,20 @@
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
-    // create controller and merge new documents with last saved state.
-    PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
-    [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
+    BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedController) boolValue];
 
     // add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
-    [controller.navigationController pushViewController:tabbedViewController animated:YES];
+
+    if (showInGrid) {
+        // create controller and merge new documents with last saved state.
+        PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
+        [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
+        [controller.navigationController pushViewController:tabbedViewController animated:YES];
+    }else {
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        [controller.navigationController pushViewController:pdfController animated:YES];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
