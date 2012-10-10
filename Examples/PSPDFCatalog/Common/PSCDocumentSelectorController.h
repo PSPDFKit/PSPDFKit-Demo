@@ -21,11 +21,18 @@
 + (NSArray *)documentsFromDirectory:(NSString *)directoryName;
 
 /// Designated initializer.
-- (id)initWithDelegate:(id<PSCDocumentSelectorControllerDelegate>)delegate;
+- (id)initWithDirectory:(NSString *)directory delegate:(id<PSCDocumentSelectorControllerDelegate>)delegate;
 
 /// Delegate to get the didSelect event.
 @property (nonatomic, ps_weak) id<PSCDocumentSelectorControllerDelegate> delegate;
 
-@property (nonatomic, strong, readonly) NSArray *content;
+// All PSPDFDocument objects
+@property (nonatomic, copy, readonly) NSArray *content;
+
+/// Displayed path.
+@property (nonatomic, copy, readonly) NSString *directory;
+
+/// Enable to perform full-text search on all documents. Currently pretty slow. Defaults to NO.
+@property (nonatomic, assign) BOOL fullTextSearchEnabled;
 
 @end
