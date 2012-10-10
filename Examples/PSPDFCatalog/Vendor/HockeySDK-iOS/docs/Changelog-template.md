@@ -1,3 +1,80 @@
+### Version 2.5.4
+
+- General:
+
+    - Declared as final release, since everything in 2.5.4b3 is working as expected
+
+### Version 2.5.4b3
+
+- General:
+
+    - [NEW] Atlassian JMC support disabled (Use subproject integration if you want it)
+
+### Version 2.5.4b2
+
+- Crash Reporting:
+
+    - [UPDATE] Migrate pre v2.5 auto send user setting
+    - [BUGFIX] The alert option 'Auto Send' did not persist correctly
+
+- Updating:
+
+    - [BUGFIX] Authorization option did not persist correctly and caused authorization to re-appear on every cold app start
+
+### Version 2.5.4b1
+
+- General:
+
+    - [NEW] JMC support is removed from binary distribution, requires the compiler preprocessor definition `JIRA_MOBILE_CONNECT_SUPPORT_ENABLED=1` to be linked. Enabled when using the subproject
+    - [BUGFIX] Fix compiler warnings when using Cocoapods
+
+- Updating:
+
+    - [BUGFIX] `expiryDate` property not working correctly
+
+### Version 2.5.3
+
+- General:
+
+    - [BUGFIX] Fix checking validity of live identifier not working correctly
+
+### Version 2.5.2
+
+- General:
+
+    - Declared as final release, since everything in 2.5.2b2 is working as expected
+
+### Version 2.5.2b2
+
+- General:
+
+    - [NEW] Added support for armv7s architecture
+
+- Updating:
+
+    - [BUGFIX] Fix update checks not done when the app becomes active again
+
+
+### Version 2.5.2b1
+
+- General:
+
+    - [NEW] Replace categories with C functions, so the `Other Linker Flag` `-ObjC` and `-all_load` won't not be needed for integration
+	- [BUGFIX] Some code style fixes and missing new lines in headers at EOF
+
+- Crash Reporting:
+
+    - [NEW] PLCrashReporter framework now linked into the HockeySDK framework, so that won't be needed to be added separately any more
+    - [NEW] Add some error handler detection to optionally notify the developer of multiple handlers that could cause crashes not to be reported to HockeyApp
+    - [NEW] Show an error in the console if an older version of PLCrashReporter is linked
+    - [NEW] Make sure the app doesn't crash if the developer forgot to delete the old PLCrashReporter version and the framework search path is still pointing to it
+
+- Updating:
+
+    - [BUGFIX] Fix disabling usage tracking and expiry check not working if `checkForUpdateOnLaunch` is set to NO
+    - [BUGFIX] `disableUpdateManager` wasn't working correctly
+    - [BUGFIX] If the server doesn't return any app versions, don't handle this as an error, but show a warning in the console when `debugLogging` is enabled
+
 ## Version 2.5.1
 
 - General:

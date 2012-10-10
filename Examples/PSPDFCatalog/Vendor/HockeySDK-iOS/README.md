@@ -20,7 +20,7 @@ The main SDK class is `BITHockeyManager`. It initializes all modules and provide
 ## Installation & Setup
 
 - [Installation & Setup](http://support.hockeyapp.net/kb/client-integration/hockeyapp-for-ios-hockeysdk) (Recommended)
-- [Installation & Setup Advanced](http://support.hockeyapp.net/kb/client-integration/hockeyapp-for-ios-hockeysdk-advanced) (Using Git submodule and Xcode sub-project)
+- [Integrate as a Subproject ](http://support.hockeyapp.net/kb/client-integration/integrate-hockeyapp-on-ios-as-a-subproject-advanced-usage) (Using Git submodule and Xcode sub-project)
 - [Migration from HockeyKit & QuincyKit](http://support.hockeyapp.net/kb/how-tos/how-to-migration-from-hockeykit-quincykit)
 - [Mac Desktop Uploader](http://support.hockeyapp.net/kb/how-tos/how-to-upload-to-hockeyapp-on-a-mac)
 
@@ -37,6 +37,52 @@ This documentation provides integrated help in Xcode for all public APIs and a s
 
 
 ## Changelog
+
+### Version 2.5.4
+
+- General:
+
+    - Declared as final release, since everything in 2.5.4b3 is working as expected
+
+### Version 2.5.4b3
+
+- General:
+
+    - [NEW] Atlassian JMC support disabled (Use subproject integration if you want it)
+
+### Version 2.5.4b2
+
+- Crash Reporting:
+
+    - [UPDATE] Migrate pre v2.5 auto send user setting
+    - [BUGFIX] The alert option 'Auto Send' did not persist correctly
+
+- Updating:
+
+    - [BUGFIX] Authorization option did not persist correctly and caused authorization to re-appear on every cold app start
+
+### Version 2.5.4b1
+
+- General:
+
+    - [NEW] JMC support is removed from binary distribution, requires the compiler preprocessor definition `JIRA_MOBILE_CONNECT_SUPPORT_ENABLED=1` to be linked. Enabled when using the subproject
+    - [BUGFIX] Fix compiler warnings when using Cocoapods
+
+- Updating:
+
+    - [BUGFIX] `expiryDate` property not working correctly
+
+### Version 2.5.3
+
+- General:
+
+    - [BUGFIX] Fix checking validity of live identifier not working correctly
+
+### Version 2.5.2
+
+- General:
+
+    - Declared as final release, since everything in 2.5.2b2 is working as expected
 
 ### Version 2.5.2b2
 

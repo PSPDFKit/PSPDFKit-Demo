@@ -38,7 +38,9 @@
 
 - (BOOL)shouldUseLiveIdentifier;
 
+#if JIRA_MOBILE_CONNECT_SUPPORT_ENABLED
 - (void)configureJMC;
+#endif
 
 @end
 
@@ -48,6 +50,26 @@
 @synthesize updateManager = _updateManager;
 
 @synthesize appStoreEnvironment = _appStoreEnvironment;
+
+#pragma mark - Private Class Methods
+
+- (BOOL)checkValidityOfAppIdentifier:(NSString *)identifier {
+  BOOL result = NO;
+  
+  if (identifier) {
+    NSCharacterSet *hexSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdef"];
+    NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:identifier];
+    result = ([identifier length] == 32) && ([hexSet isSupersetOfSet:inStringSet]);
+  }
+  
+  return result;
+}
+
+- (void)logInvalidIdentifier:(NSString *)environment {
+  if (!_appStoreEnvironment) {
+    NSLog(@"[HockeySDK] ERROR: The %@ is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!", environment);
+  }
+}
 
 
 #pragma mark - Public Class Methods
@@ -117,6 +139,11 @@
   _delegate = delegate;
   [_appIdentifier release];
 
+  // check the live identifier now, because otherwise invalid identifier would only be logged when the app is already in the store
+  if (![self checkValidityOfAppIdentifier:liveIdentifier]) {
+    [self logInvalidIdentifier:@"liveIdentifier"];
+  }
+
   if ([self shouldUseLiveIdentifier]) {
     _appIdentifier = [liveIdentifier copy];
   }
@@ -144,7 +171,11 @@
   }
   
   // Setup UpdateManager
-  if (![self isUpdateManagerDisabled] || [[self class] isJMCPresent]) {
+  if (![self isUpdateManagerDisabled]
+#if JIRA_MOBILE_CONNECT_SUPPORT_ENABLED
+      || [[self class] isJMCPresent]
+#endif
+      ) {
     BITHockeyLog(@"INFO: Start UpdateManager with small delay");
     if (_updateURL) {
       [_updateManager setUpdateURL:_updateURL];
@@ -196,10 +227,8 @@
 }
 
 - (void)initializeModules {
-  NSCharacterSet *hexSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdef"];
-  NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:_appIdentifier];
-  _validAppIdentifier = ([_appIdentifier length] == 32) && ([hexSet isSupersetOfSet:inStringSet]);
-    
+  _validAppIdentifier = [self checkValidityOfAppIdentifier:_appIdentifier];
+  
   _startManagerIsInvoked = NO;
   
   if (_validAppIdentifier) {
@@ -211,6 +240,7 @@
     _updateManager = [[BITUpdateManager alloc] initWithAppIdentifier:_appIdentifier isAppStoreEnvironemt:_appStoreEnvironment];
     _updateManager.delegate = _delegate;
     
+#if JIRA_MOBILE_CONNECT_SUPPORT_ENABLED
     // Only if JMC is part of the project
     if ([[self class] isJMCPresent]) {
       BITHockeyLog(@"INFO: Setup JMC");
@@ -219,12 +249,14 @@
       [[self class] disableJMCCrashReporter];
       [self performSelector:@selector(configureJMC) withObject:nil afterDelay:0];
     }
+#endif
     
   } else {
-    NSLog(@"[HockeySDK] ERROR: The app identifier is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!");
+    [self logInvalidIdentifier:@"app identifier"];
   }
 }
 
+#if JIRA_MOBILE_CONNECT_SUPPORT_ENABLED
 
 #pragma mark - JMC
 
@@ -299,8 +331,9 @@
   [invocation setArgument:&key atIndex:4];
   [invocation invoke];
   
-  if ([jmcInstance respondsToSelector:@selector(ping)]) {
-    [jmcInstance performSelector:@selector(ping)];
+  SEL pingSelector = NSSelectorFromString(@"ping");
+  if ([jmcInstance respondsToSelector:pingSelector]) {
+    [jmcInstance performSelector:pingSelector];
   }
 }
 #pragma clang diagnostic pop
@@ -335,5 +368,6 @@
     [self configureJMC];
   }
 }
+#endif
 
 @end
