@@ -150,6 +150,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_5_1
+#define kCFCoreFoundationVersionNumber_iOS_5_1 690.1
+#endif
+
 // set a flag that the files shouldn't be backuped to iCloud.
 // https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 #include <sys/xattr.h>
@@ -157,10 +161,11 @@
     assert([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
     BOOL success = NO;
 
+    // Weak-linking of NSURLIsExcludedFromBackupKey works in Xcode 4.5 and above
+    // http://stackoverflow.com/questions/9620651/use-nsurlisexcludedfrombackupkey-without-crashing-on-ios-5-0
     if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
         NSError *error = nil;
-        success = [URL setResourceValue:@(YES)
-                                 forKey:NSURLIsExcludedFromBackupKey error:&error];
+        success = [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:&error];
         if(!success){
             PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
         }
