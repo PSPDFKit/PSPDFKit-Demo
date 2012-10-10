@@ -93,6 +93,7 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Open In... Inbox" block:^{
         PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
+        documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
 
@@ -317,7 +318,7 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
     [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Full-Text Search" block:^UIViewController *{
-        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Samples" delegate:self];
+        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];

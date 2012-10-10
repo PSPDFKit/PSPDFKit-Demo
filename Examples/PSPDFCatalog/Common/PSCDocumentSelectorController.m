@@ -6,8 +6,10 @@
 //
 
 #import "PSCDocumentSelectorController.h"
+#import "PSCFullTextSearchOperation.h"
 
-@interface PSCDocumentSelectorController () <PSPDFCacheDelegate> {
+@interface PSCDocumentSelectorController () <PSPDFCacheDelegate, PSCFullTextSearchOperationDelegate> {
+    NSOperationQueue *_fullTextSearchQueue;
     UISearchDisplayController *_searchDisplayController;
     UISearchBar *_searchBar;
     NSArray *_content;
@@ -37,6 +39,11 @@
         _content = [[self class] documentsFromDirectory:_directory];
         _filteredContent = [NSMutableArray new];
         [[PSPDFCache sharedCache] addDelegate:self];
+
+        // set up FTS queue
+        _fullTextSearchQueue = [NSOperationQueue new];
+        [_fullTextSearchQueue setName:@"PSCFullTextSearchQueue"];
+        [_fullTextSearchQueue setMaxConcurrentOperationCount:1];
     }
     return self;
 }
@@ -201,14 +208,45 @@
 	[_filteredContent removeAllObjects]; // First clear the filtered array.
 
     // ignore scope
-
     if ([searchText length]) {
 
         // problem is, getting the title is SLOW.
         NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchText, searchText];
         NSArray *filteredContent = [_content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
         [_filteredContent addObjectsFromArray:filteredContent];
+
+        if (self.fullTextSearchEnabled) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                [_fullTextSearchQueue cancelAllOperations];
+                PSCFullTextSearchOperation *operation = [[PSCFullTextSearchOperation alloc] initWithDocuments:self.content searchTerm:searchText];
+                operation.delegate = self;
+                __unsafe_unretained PSCFullTextSearchOperation *weakOperation = operation;
+                [operation setCompletionBlock:^{
+                    if (!weakOperation.isCancelled) {
+                        NSArray *results = weakOperation.results;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [_filteredContent removeAllObjects];
+                            [_filteredContent addObjectsFromArray:results];
+                            [self.searchDisplayController.searchResultsTableView reloadData];
+                        });
+                    }
+                }];
+                [_fullTextSearchQueue addOperation:operation];
+            });
+        }
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCFullTextSearchOperationDelegate
+
+- (void)fullTextSearchOperationDidUpdateResults:(PSCFullTextSearchOperation *)operation {
+    NSArray *results = operation.results;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_filteredContent removeAllObjects];
+        [_filteredContent addObjectsFromArray:results];
+        [self.searchDisplayController.searchResultsTableView reloadData];
+    });
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
