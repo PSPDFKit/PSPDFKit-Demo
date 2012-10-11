@@ -100,6 +100,8 @@
 	
 	<option value="//api/name/renderOptions">&nbsp;&nbsp;&nbsp;&nbsp;renderOptions</option>
 	
+	<option value="//api/name/textParserHideGlyphsOutsidePageRect">&nbsp;&nbsp;&nbsp;&nbsp;textParserHideGlyphsOutsidePageRect</option>
+	
 	<option value="//api/name/textSearch">&nbsp;&nbsp;&nbsp;&nbsp;textSearch</option>
 	
 	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
@@ -159,6 +161,8 @@
 	<option value="//api/name/ensureCacheDirectoryExistsWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- ensureCacheDirectoryExistsWithError:</option>
 	
 	<option value="//api/name/fileIndexForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileIndexForPage:</option>
+	
+	<option value="//api/name/fileNameForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- fileNameForPage:</option>
 	
 	<option value="//api/name/fileNamesWithDataDictionary">&nbsp;&nbsp;&nbsp;&nbsp;- fileNamesWithDataDictionary</option>
 	
@@ -306,6 +310,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderOptions">renderOptions</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textParserHideGlyphsOutsidePageRect">textParserHideGlyphsOutsidePageRect</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textSearch">textSearch</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
@@ -367,6 +373,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/ensureCacheDirectoryExistsWithError:">ensureCacheDirectoryExistsWithError:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileIndexForPage:">fileIndexForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileNameForPage:">fileNameForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileNamesWithDataDictionary">fileNamesWithDataDictionary</a></span></li>
 	
@@ -576,6 +584,13 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/fileNameForPage:">&ndash;&nbsp;fileNameForPage:</a></code>
+		<span class="tooltip"><p>Helper that gets a suggested fileName for a specific page.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/basePath">&nbsp;&nbsp;basePath</a></code>
 		<span class="tooltip"><p>Common base path for pdf <a href="#//api/name/files">files</a>. Set to nil to use absolute paths for <a href="#//api/name/files">files</a>.</p></span>
 	</span>
@@ -617,7 +632,7 @@ Note: If writing annotations is enabled, the dataArray&rsquo;s content will chan
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/dataProvider">&nbsp;&nbsp;dataProvider</a></code>
-		<span class="tooltip"><p>PDF dataProvider (can be used to dynamically decrypt a document)</p></span>
+		<span class="tooltip"><p>PDF dataProvider (can be used to dynamically decrypt a document). Will be retained when set.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -981,6 +996,15 @@ Can also be overridden manually.</p></span>
 		<span class="tooltip"><p>Return a textParser for the specific document page.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/textParserHideGlyphsOutsidePageRect">&nbsp;&nbsp;textParserHideGlyphsOutsidePageRect</a></code>
+		<span class="tooltip"><p>If YES, any glyphs (text, words) that are outside the visible page area will not be parsed.
+Set early or call <a href="#//api/name/clearCache">clearCache</a> manually after changing this property. (since extracted text is cached)
+Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -1701,11 +1725,11 @@ Note: If writing annotations is enabled, the dataArray&rsquo;s content will chan
 	
 	
 	<div class="method-subsection brief-description">
-		<p>PDF dataProvider (can be used to dynamically decrypt a document)</p>
+		<p>PDF dataProvider (can be used to dynamically decrypt a document). Will be retained when set.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) CGDataProviderRef dataProvider</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGDataProviderRef dataProvider</code></div>
 	
 	
 	
@@ -2232,6 +2256,42 @@ This fixes tiny white/gray lines at the borders of a document that else might sh
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/textParserHideGlyphsOutsidePageRect" title="textParserHideGlyphsOutsidePageRect"></a>
+	<h3 class="subsubtitle method-title">textParserHideGlyphsOutsidePageRect</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If YES, any glyphs (text, words) that are outside the visible page area will not be parsed.
+Set early or call <a href="#//api/name/clearCache">clearCache</a> manually after changing this property. (since extracted text is cached)
+Defaults to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL textParserHideGlyphsOutsidePageRect</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/textSearch" title="textSearch"></a>
 	<h3 class="subsubtitle method-title">textSearch</h3>
 	
@@ -2390,7 +2450,7 @@ Might need file operations to parse the document (slow)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocument</code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocument</code></div>
 	
 	
 	
@@ -2424,7 +2484,7 @@ Might need file operations to parse the document (slow)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithBaseURL:(NSURL *)<em>baseURL</em> files:(NSArray *)<em>files</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocumentWithBaseURL:(NSURL *)<em>baseURL</em> files:(NSArray *)<em>files</em></code></div>
 	
 	
 	
@@ -2458,7 +2518,7 @@ Might need file operations to parse the document (slow)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithData:(NSData *)<em>data</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocumentWithData:(NSData *)<em>data</em></code></div>
 	
 	
 	
@@ -2492,7 +2552,7 @@ Might need file operations to parse the document (slow)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithDataArray:(NSArray *)<em>dataArray</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocumentWithDataArray:(NSArray *)<em>dataArray</em></code></div>
 	
 	
 	
@@ -2527,7 +2587,7 @@ Note: You might need to manually set a <a href="#//api/name/UID">UID</a> to enab
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithDataProvider:(CGDataProviderRef)<em>dataProvider</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)<em>dataProvider</em></code></div>
 	
 	
 	
@@ -2561,7 +2621,7 @@ Note: You might need to manually set a <a href="#//api/name/UID">UID</a> to enab
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFDocument *)PDFDocumentWithURL:(NSURL *)<em>URL</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)PDFDocumentWithURL:(NSURL *)<em>URL</em></code></div>
 	
 	
 	
@@ -3123,6 +3183,40 @@ This might be used to change the <a href="#//api/name/delegate">delegate</a> of 
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSInteger)fileIndexForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileNameForPage:" title="fileNameForPage:"></a>
+	<h3 class="subsubtitle method-title">fileNameForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper that gets a suggested fileName for a specific page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)fileNameForPage:(NSUInteger)<em>pageIndex</em></code></div>
 	
 	
 	
@@ -3951,7 +4045,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-11)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

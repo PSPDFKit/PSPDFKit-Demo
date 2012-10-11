@@ -96,6 +96,8 @@
 	
 	<option value="//api/name/minRightToolbarWidth">&nbsp;&nbsp;&nbsp;&nbsp;minRightToolbarWidth</option>
 	
+	<option value="//api/name/minimumZoomScale">&nbsp;&nbsp;&nbsp;&nbsp;minimumZoomScale</option>
+	
 	<option value="//api/name/navigationBarHidden">&nbsp;&nbsp;&nbsp;&nbsp;navigationBarHidden</option>
 	
 	<option value="//api/name/openInButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;openInButtonItem</option>
@@ -233,6 +235,8 @@
 	
 	<option value="//api/name/setPage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setPage:animated:</option>
 	
+	<option value="//api/name/setZoomScale:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setZoomScale:animated:</option>
+	
 	<option value="//api/name/showControls">&nbsp;&nbsp;&nbsp;&nbsp;- showControls</option>
 	
 	<option value="//api/name/statusBarStyle">&nbsp;&nbsp;&nbsp;&nbsp;- statusBarStyle</option>
@@ -354,6 +358,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minLeftToolbarWidth">minLeftToolbarWidth</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minRightToolbarWidth">minRightToolbarWidth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/minimumZoomScale">minimumZoomScale</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationBarHidden">navigationBarHidden</a></span></li>
 	
@@ -493,6 +499,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setPage:animated:">setPage:animated:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setZoomScale:animated:">setZoomScale:animated:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showControls">showControls</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/statusBarStyle">statusBarStyle</a></span></li>
@@ -538,7 +546,7 @@
 	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">MFMailComposeViewControllerDelegate<br /><a href="../Protocols/PSPDFOutlineViewControllerDelegate.html">PSPDFOutlineViewControllerDelegate</a><br /><a href="../Protocols/PSPDFPasswordViewDelegate.html">PSPDFPasswordViewDelegate</a><br /><a href="../Protocols/PSPDFSearchDelegate.html">PSPDFSearchDelegate</a><br /><a href="../Protocols/PSPDFWebViewControllerDelegate.html">PSPDFWebViewControllerDelegate</a><br />PSUICollectionViewDataSource<br />PSUICollectionViewDelegate<br />UIPopoverControllerDelegate</td>
+	<td class="specification-value">MFMailComposeViewControllerDelegate<br /><a href="../Protocols/PSPDFOutlineViewControllerDelegate.html">PSPDFOutlineViewControllerDelegate</a><br /><a href="../Protocols/PSPDFPasswordViewDelegate.html">PSPDFPasswordViewDelegate</a><br /><a href="../Protocols/PSPDFTextSearchDelegate.html">PSPDFTextSearchDelegate</a><br /><a href="../Protocols/PSPDFWebViewControllerDelegate.html">PSPDFWebViewControllerDelegate</a><br />PSUICollectionViewDataSource<br />PSUICollectionViewDelegate<br />UIPopoverControllerDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFViewController.h</td>
@@ -636,6 +644,13 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	<span class="tooltip">
 		<code><a href="#//api/name/zoomToRect:animated:">&ndash;&nbsp;zoomToRect:animated:</a></code>
 		<span class="tooltip"><p>Zooms to a specific rect, optionally animated.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setZoomScale:animated:">&ndash;&nbsp;setZoomScale:animated:</a></code>
+		<span class="tooltip"><p>Zoom to specific scale, optionally animated.</p></span>
 	</span>
 	
 	
@@ -1091,8 +1106,7 @@ Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageTransition">&nbsp;&nbsp;pageTransition</a></code>
-		<span class="tooltip"><pre><code>Defines the page transition. Replaces pageCurlEnabled; allows more modes.
-</code></pre></span>
+		<span class="tooltip"><p>Defines the <a href="#//api/name/page">page</a> transition. Replaces pageCurlEnabled; allows more modes.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1131,7 +1145,7 @@ Note: doesn&rsquo;t re-order <a href="#//api/name/document">document</a> pages. 
 		<code><a href="#//api/name/fitToWidthEnabled">&nbsp;&nbsp;fitToWidthEnabled</a></code>
 		<span class="tooltip"><p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
-fitToWidthEnabled is currently not supported for vertical scrolling or pageCurl mode.</p></span>
+fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You might want PSPDFPageScrollContinuousTransition)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1147,6 +1161,13 @@ fitToWidthEnabled is currently not supported for vertical scrolling or pageCurl 
 		<code><a href="#//api/name/clipToPageBoundaries">&nbsp;&nbsp;clipToPageBoundaries</a></code>
 		<span class="tooltip"><p>PageCurl mode only: clips the <a href="#//api/name/page">page</a> to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 Usually you want this, unless your <a href="#//api/name/document">document</a> is variable sized.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/minimumZoomScale">&nbsp;&nbsp;minimumZoomScale</a></code>
+		<span class="tooltip"><p>Minimum zoom scale. Defaults to 1. You usually don&rsquo;t want to change this.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1349,8 +1370,7 @@ Use sender OR rect (both only needed for the popover)</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/masterViewController">&ndash;&nbsp;masterViewController</a></code>
-		<span class="tooltip"><pre><code>Returns the topmost, active viewcontroller.
-</code></pre></span>
+		<span class="tooltip"><p>Returns the topmost, active viewcontroller.</p></span>
 	</span>
 	
 	
@@ -1366,7 +1386,7 @@ Use sender OR rect (both only needed for the popover)</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/overrideClassNames">&nbsp;&nbsp;overrideClassNames</a></code>
 		<span class="tooltip"><p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
+e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustom<a href="../Classes/PageView.html">PageView</a> must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -2086,7 +2106,7 @@ Note: has simple support to also accepts an NSString, the bundle path then will 
 	<div class="method-subsection brief-description">
 		<p>If true, pages are fit to screen width, not to either height or width (which one is larger &ndash; usually height.) Defaults to NO.
 iPhone switches to yes in willRotateToInterfaceOrientation &ndash; reset back to no if you don&rsquo;t want this.
-fitToWidthEnabled is currently not supported for vertical scrolling or pageCurl mode.</p>
+fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You might want PSPDFPageScrollContinuousTransition)</p>
 	</div>		
 	
 	
@@ -2438,6 +2458,40 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/minimumZoomScale" title="minimumZoomScale"></a>
+	<h3 class="subsubtitle method-title">minimumZoomScale</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Minimum zoom scale. Defaults to 1. You usually don&rsquo;t want to change this.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) float minimumZoomScale</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/navigationBarHidden" title="navigationBarHidden"></a>
 	<h3 class="subsubtitle method-title">navigationBarHidden</h3>
 	
@@ -2547,7 +2601,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 	
 	<div class="method-subsection brief-description">
 		<p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
+e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustom<a href="../Classes/PageView.html">PageView</a> must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.</p>
 	</div>		
 	
@@ -2796,8 +2850,7 @@ Only relevant for scrolling <a href="#//api/name/page">page</a> transitions.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Defines the page transition. Replaces pageCurlEnabled; allows more modes.
-</code></pre>
+		<p>Defines the <a href="#//api/name/page">page</a> transition. Replaces pageCurlEnabled; allows more modes.</p>
 	</div>		
 	
 	
@@ -2812,15 +2865,14 @@ Only relevant for scrolling <a href="#//api/name/page">page</a> transitions.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Note about PSPDFPageCurlTransition:
+		<p>Note about PSPDFPageCurlTransition:
 PageCurl needs iOS5 and above and will fall back to default scrolling on iOS4.
 PageCurl is more memory intensive; you might wanna disable this on an iPad1.
-(e.g. with using the PSPSDIsCrappyDevice() to check for modern devices)
+(e.g. with using the PSPSDIsCrappyDevice() to check for modern devices)</p>
 
-If you change the property dynamically depending on the screen orientation, don't use
+<p>If you change the property dynamically depending on the screen orientation, don&rsquo;t use
 willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
-else the controller will get in an invalid state.
-</code></pre>
+else the controller will get in an invalid state.</p>
 	</div>
 	
 	
@@ -4396,8 +4448,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Returns the topmost, active viewcontroller.
-</code></pre>
+		<p>Returns the topmost, active viewcontroller.</p>
 	</div>		
 	
 	
@@ -4412,13 +4463,12 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>This tries to be smart and even works in weird, non-default situations where viewControllers are embedded w/o iOS5 child controller embedding.
+		<p>This tries to be smart and even works in weird, non-default situations where viewControllers are embedded w/o iOS5 child controller embedding.</p>
 
-If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
-(Try "return self" first)
+<p>If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
+(Try &ldquo;return self&rdquo; first)</p>
 
-It's a sad thing that this tends to be one of the most complex things in iOS development to get right.
-</code></pre>
+<p>It&rsquo;s a sad thing that this tends to be one of the most complex things in iOS development to get right.</p>
 	</div>
 	
 	
@@ -4723,6 +4773,40 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)setPage:(NSUInteger)<em>page</em> animated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setZoomScale:animated:" title="setZoomScale:animated:"></a>
+	<h3 class="subsubtitle method-title">setZoomScale:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Zoom to specific scale, optionally animated.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setZoomScale:(float)<em>scale</em> animated:(BOOL)<em>animated</em></code></div>
 	
 	
 	
@@ -5066,7 +5150,7 @@ The default implementation for this is empty.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-11)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						

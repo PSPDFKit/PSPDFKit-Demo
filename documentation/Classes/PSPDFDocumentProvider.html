@@ -93,6 +93,8 @@
 	
 	<option value="//api/name/flushDocumentReference">&nbsp;&nbsp;&nbsp;&nbsp;- flushDocumentReference</option>
 	
+	<option value="//api/name/hasLoadedTextParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedTextParserForPage:</option>
+	
 	<option value="//api/name/initWithData:document:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithData:document:</option>
 	
 	<option value="//api/name/initWithDataProvider:document:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDataProvider:document:</option>
@@ -192,6 +194,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataRepresentationWithError:">dataRepresentationWithError:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flushDocumentReference">flushDocumentReference</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedTextParserForPage:">hasLoadedTextParserForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithData:document:">initWithData:document:</a></span></li>
 	
@@ -308,7 +312,7 @@ NOT readonly, since we may write back annotation data.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/dataProvider">&nbsp;&nbsp;dataProvider</a></code>
-		<span class="tooltip"><p>Referenced dataProvider. (if <a href="#//api/name/data">data</a> is set, or directly)</p></span>
+		<span class="tooltip"><p>Referenced dataProvider. (if <a href="#//api/name/data">data</a> is set, or directly). Will be retained.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -476,7 +480,15 @@ Note: if there&rsquo;s no title in the PDF <a href="#//api/name/metadata">metada
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/textParserForPage:">&ndash;&nbsp;textParserForPage:</a></code>
-		<span class="tooltip"><p>Return a textParser for the specific <a href="#//api/name/document">document</a> page. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Return a textParser for the specific <a href="#//api/name/document">document</a> page. <a href="../Classes/Page.html">Page</a> starts at 0.
+Will parse the page contents before returning. Might take a while.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasLoadedTextParserForPage:">&ndash;&nbsp;hasLoadedTextParserForPage:</a></code>
+		<span class="tooltip"><p>Checks if the text parser has already been loaded.</p></span>
 	</span>
 	
 	
@@ -515,7 +527,7 @@ Lazy initialized. Can be subclassed or set externally.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/labelParser">&nbsp;&nbsp;labelParser</a></code>
-		<span class="tooltip"><p>Page labels found in the current PDF.
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels found in the current PDF.
 Lazy initialized. Can be subclassed or set externally.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -713,11 +725,11 @@ NOT readonly, since we may write back annotation data.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Referenced dataProvider. (if <a href="#//api/name/data">data</a> is set, or directly)</p>
+		<p>Referenced dataProvider. (if <a href="#//api/name/data">data</a> is set, or directly). Will be retained.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) CGDataProviderRef dataProvider</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGDataProviderRef dataProvider</code></div>
 	
 	
 	
@@ -1022,7 +1034,7 @@ See &ldquo;Adobe LifeCycle DRM, <a href="http://www.adobe.com/products/livecycle
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page labels found in the current PDF.
+		<p><a href="../Classes/Page.html">Page</a> labels found in the current PDF.
 Lazy initialized. Can be subclassed or set externally.</p>
 	</div>		
 	
@@ -1336,6 +1348,40 @@ This force-clears the cache.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/hasLoadedTextParserForPage:" title="hasLoadedTextParserForPage:"></a>
+	<h3 class="subsubtitle method-title">hasLoadedTextParserForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if the text parser has already been loaded.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasLoadedTextParserForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithData:document:" title="initWithData:document:"></a>
 	<h3 class="subsubtitle method-title">initWithData:document:</h3>
 	
@@ -1597,7 +1643,7 @@ Note: the parameter is to <em>check</em> if the returned documentRef is the same
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Increases the internal reference count
-We need to keep around the <a href="#//api/name/document">document</a> when accessing a CGPDFPage. Retaining the page alone is not enough.</p>
+We need to keep around the <a href="#//api/name/document">document</a> when accessing a CG<a href="../Classes/PDFPage.html">PDFPage</a>. Retaining the page alone is not enough.</p>
 	</div>
 	
 	
@@ -1656,7 +1702,8 @@ pageNumber starts at 1.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return a textParser for the specific <a href="#//api/name/document">document</a> page. Page starts at 0.</p>
+		<p>Return a textParser for the specific <a href="#//api/name/document">document</a> page. <a href="../Classes/Page.html">Page</a> starts at 0.
+Will parse the page contents before returning. Might take a while.</p>
 	</div>		
 	
 	
@@ -1731,7 +1778,7 @@ Will set .<a href="#//api/name/password">password</a> to this <a href="#//api/na
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-04)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-11)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
 						
