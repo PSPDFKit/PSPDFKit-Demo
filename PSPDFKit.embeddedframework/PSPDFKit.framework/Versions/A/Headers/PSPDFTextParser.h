@@ -15,7 +15,7 @@
 /// Designated initializer.
 /// fontCache is optional, share only between one PSPDFDocumentProvider.
 // Page is just used to aid debugging. (absolute to PSPDFDocument)
-- (id)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page fontCache:(NSMutableDictionary *)fontCache;
+- (id)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page fontCache:(NSMutableDictionary *)fontCache hideGlyphsOutsidePageRect:(BOOL)hideGlyphsOutsidePageRect;
 
 /// Complete page text.
 @property (nonatomic, strong) NSString *text;

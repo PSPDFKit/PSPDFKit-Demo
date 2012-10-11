@@ -19,6 +19,9 @@
 "Table Of Contents" = "Inhaltsverzeichnis";
 "Search" = "Suchen";
 "Email" = "E-Mail";
+"Email document" = "Dokument senden";
+"Email visible page" = "Nur sichtbare Seite senden";
+"Email visible pages" = "Nur sichtbare Seiten senden";
 "Open in..." = "Öffnen in…";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";

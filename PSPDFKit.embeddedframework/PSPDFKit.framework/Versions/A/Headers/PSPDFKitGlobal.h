@@ -14,9 +14,6 @@
 /// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-/// If disabled, kPSPDFKitDebugMemory has no effect. Also checks for NS_BLOCK_ASSERTIONS to be NOT set.
-#define kPSPDFKitAllowMemoryDebugging
-
 // Newer runtimes defines this, here's a fallback for the iOS5 SDK.
 #ifndef NS_ENUM
 #define NS_ENUM(_type, _name) _type _name; enum
@@ -34,6 +31,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeOutlineParser = 500,
     PSPDFErrorCodeUnableToConvertToDataRepresentation = 600,
     PSPDFErrorCodeRemoveCacheError = 700,
+    PSPDFErrorCodeFailedToConvertToPDF = 800,
     PSPDFErrorCodeUnknown = 900,
 };
 
@@ -58,16 +56,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
 /// Default time to animate pdf views. Defaults to 0.1. Only animates from thumbnail to sharp page, and only on modern devices.
-extern CGFloat kPSPDFKitPDFAnimationDuration;
+extern CGFloat kPSPDFAnimationDuration;
 
 /// Evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 extern BOOL PSPDFShouldAnimate(void);
-
-/// Optionally enable scrollbar debugging.
-extern BOOL kPSPDFDebugScrollViews;
-
-/// Enable to track down memory issues.
-extern BOOL kPSPDFKitDebugMemory;
 
 /// Number of open CGPDFDocument's.
 extern NSUInteger kPSPDFMaximumNumberOfOpenDocumentRefs;
@@ -101,6 +93,8 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 /// Resolves paths like "Documents" or "Bundle" to their real path.
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
 /// resolveUnknownDocumentBlock gets called if a token is found that isn't recognized.
+/// Resolvable tokens must start with a slash. (e.g. /Bundle/Samples)
+/// If the path is from root directory, it won't be resolved.
 extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
 extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath, NSString *(^resolveUnknownPathBlock)(NSString *unknownPath));
 
@@ -145,6 +139,9 @@ extern NSString *PSPDFTrimString(NSString *string);
 // Checks if the current controller class is displayed in the popover (also checks UINavigationController)
 extern BOOL PSPDFIsControllerClassInPopover(UIPopoverController *popoverController, Class controllerClass);
 
+// Convert an NSArray of NSNumber's to an NSIndexSet
+extern NSIndexSet *PSPDFIndexSetFromArray(NSArray *array);
+
 /// Initializes the keyboard lazily. (prevents this 1-sec delay when first accessing the keyboard)
 extern void PSPDFCacheKeyboard(void);
 
@@ -157,6 +154,9 @@ extern double PSPDFPerformAndTrackTime(dispatch_block_t block, BOOL trackTime);
 extern BOOL PSPDFIsRotationLocked(void);
 extern void PSPDFLockRotation(void);
 extern void PSPDFUnlockRotation(void);
+
+// Returns a unique temporary file URL.
+extern NSURL *PSPDFTempFileURL(NSString *prefix);
 
 // Use special weak keyword
 #if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
@@ -176,7 +176,6 @@ extern void PSPDFUnlockRotation(void);
 #define PSPDF_KEYPATH_SELF(property) PSPDF_KEYPATH(self, property)
 
 // Log helper
-#import "PSPDFCache.h"
 #ifdef kPSPDFKitDebugEnabled
 #define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #define PSPDFLog(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
@@ -189,17 +188,6 @@ extern void PSPDFUnlockRotation(void);
 #define PSPDFLogWarning(...)
 #endif
 
-// Object tracker debug helper
-#ifdef kPSPDFKitAllowMemoryDebugging
-#define PSPDFLogMemory(fmt, ...) do { if(kPSPDFKitDebugMemory) NSLog((fmt), ##__VA_ARGS__); }while(0)
-#define PSPDFRegisterObject(object) [[PSPDFCache sharedCache] registerObject:object]
-#define PSPDFDeregisterObject(object) [[PSPDFCache sharedCache] deregisterObject:object]
-#else
-#define PSPDFLogMemory(fmt, ...)
-#define PSPDFRegisterObject(object)
-#define PSPDFDeregisterObject(object)
-#endif
-
 // iOS compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_5_0
 #define kCFCoreFoundationVersionNumber_iOS_5_0 674.0
@@ -209,11 +197,6 @@ extern void PSPDFUnlockRotation(void);
 if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) { __VA_ARGS__ }
 #else
 #define PSPDF_IF_IOS5_OR_GREATER(...)
-#endif
-
-// iOS 5.1
-#ifndef kCFCoreFoundationVersionNumber_iOS_5_1
-#define kCFCoreFoundationVersionNumber_iOS_5_1 690.0
 #endif
 
 #define PSPDF_IF_PRE_IOS5(...)  \

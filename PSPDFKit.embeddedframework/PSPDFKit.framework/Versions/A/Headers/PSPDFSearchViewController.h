@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 extern NSUInteger kPSPDFMinimumSearchLength;
 
 /// pdf search controller.
-@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFSearchDelegate, PSPDFStatusBarStyleHint>
+@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint>
 
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;

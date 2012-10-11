@@ -44,8 +44,8 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// NOT readonly, since we may write back annotation data.
 @property (nonatomic, strong) NSData *data;
 
-/// Referenced dataProvider. (if data is set, or directly)
-@property (nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
+/// Referenced dataProvider. (if data is set, or directly). Will be retained.
+@property (nonatomic, assign, readonly) CGDataProviderRef dataProvider;
 
 /// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
 - (NSData *)dataRepresentationWithError:(NSError **)error;
@@ -126,7 +126,11 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 @property (nonatomic, copy, readonly) NSString *title;
 
 /// Return a textParser for the specific document page. Page starts at 0.
+/// Will parse the page contents before returning. Might take a while.
 - (PSPDFTextParser *)textParserForPage:(NSUInteger)page;
+
+/// Checks if the text parser has already been loaded.
+- (BOOL)hasLoadedTextParserForPage:(NSUInteger)page;
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
