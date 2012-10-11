@@ -127,6 +127,9 @@ documentation: current-menu-item current_page_item
 
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
 		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.</p><br>
+		 
+<p><b>Q: I downloaded the project but saving annotations doesn't work.</b><br>
+	 A: PDF files in the Bundle directory (Resources, app folder) are not writeable. Copy your PDF to a writeable directory like Documents to test the annotation embedding. Annotation embedding is also disabled for encrypted files.</p><br>		 
 
 <p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
 	 A: To support iOS 4.3, you need to <i>weak-link</i> UIKit. See the part "Integration".</p><br>
