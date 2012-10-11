@@ -1,5 +1,9 @@
 # Changelog
 
+__v2.3.1 - 11/October/2012__
+
+*  Fixes a potential memory corruption with PSPDFAESCryptoDataProvider.
+
 __v2.3.0 - 11/October/2012__
 
 Note: This [really] will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
