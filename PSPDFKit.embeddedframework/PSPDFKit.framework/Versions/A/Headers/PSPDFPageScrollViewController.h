@@ -48,5 +48,4 @@
 @end
 
 // Internally used scrollview.
-@interface PSPDFPagingScrollView : UIScrollView
-@end
+@interface PSPDFPagingScrollView : UIScrollView @end

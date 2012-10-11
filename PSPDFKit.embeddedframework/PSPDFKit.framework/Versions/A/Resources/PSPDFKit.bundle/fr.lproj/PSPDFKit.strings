@@ -19,6 +19,9 @@
 "Table Of Contents" = "Table Of Contents";
 "Search" = "Rechercher";
 "Email" = "E-mail";
+"Email document" = "E-mail document";
+"Email visible page" = "E-mail visible page";
+"Email visible pages" = "E-mail visible pages";
 "Open in..." = "Ouvrir dans…";
 "No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Imprimer";

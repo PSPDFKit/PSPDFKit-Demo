@@ -89,3 +89,5 @@
 #import "PSPDFAlertView.h"
 #import "PSPDFActionSheet.h"
 #import "PSPDFMenuItem.h"
+#import "PSPDFProcessor.h"
+#import "PSPDFProgressHUD.h"
