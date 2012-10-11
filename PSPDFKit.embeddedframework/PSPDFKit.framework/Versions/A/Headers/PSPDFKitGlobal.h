@@ -225,6 +225,10 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #define PSPDF_IF_NOT_SIMULATOR(...) { __VA_ARGS__ }
 #endif
 
+// micro optimizations
+#define likely(x)      __builtin_expect(!!(x), 1)
+#define unlikely(x)    __builtin_expect(!!(x), 0)
+
 // Starting with iOS6, dispatch queue's are objects and managed via ARC.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
 #define PSPDFDispatchRelease(queue)
