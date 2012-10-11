@@ -165,9 +165,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Shadow settings">Shadow settings</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFAnnotationMenu Methods">PSPDFAnnotationMenu Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFAnnotationMenu Methods">PSPDFAnnotationMenu Methods</a></span></li>
 	
 </ul></li>
 
@@ -361,7 +361,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/prepareForReuse">&ndash;&nbsp;prepareForReuse</a></code>
-		<span class="tooltip"><p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p></span>
+		<span class="tooltip"><p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p></span>
 	</span>
 	
 	
@@ -487,7 +487,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
 		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDFPageView bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -495,7 +495,7 @@ pageBounds usually is PSPDFPageView bounds.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
 		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDFPageView bounds.</p></span>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
 	</span>
 	
 	
@@ -626,6 +626,60 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 						</ul>
 						
 						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadPageAnnotation:animated:">&ndash;&nbsp;loadPageAnnotation:animated:</a></code>
+		<span class="tooltip"><pre><code>In PSPDFKit, annotations are managed in two ways:
+</code></pre></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadPageAnnotationsAnimated:">&ndash;&nbsp;loadPageAnnotationsAnimated:</a></code>
+		<span class="tooltip"><p>Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
+Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no effect if called multiple times.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tappableAnnotationsAtPoint:">&ndash;&nbsp;tappableAnnotationsAtPoint:</a></code>
+		<span class="tooltip"><p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/singleTappedAtViewPoint:">&ndash;&nbsp;singleTappedAtViewPoint:</a></code>
+		<span class="tooltip"><p>Can be used for manual tap forwarding.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderOptionsDictWithZoomScale:">&ndash;&nbsp;renderOptionsDictWithZoomScale:</a></code>
+		<span class="tooltip"><p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
+One way to ues this would be to customize what annotations types will be rendered with the pdf.
+See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
+		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
 						<a title="PSPDFAnnotationMenu Methods" name="task_PSPDFAnnotationMenu Methods"></a>
 						<h3 class="subsubtitle task-title">PSPDFAnnotationMenu Methods</h3>
 
@@ -680,60 +734,6 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 		<span class="tooltip"><p>Shows a popover/modal controller to edit a <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loadPageAnnotation:animated:">&ndash;&nbsp;loadPageAnnotation:animated:</a></code>
-		<span class="tooltip"><pre><code>In PSPDFKit, annotations are managed in two ways:
-</code></pre></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
-						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loadPageAnnotationsAnimated:">&ndash;&nbsp;loadPageAnnotationsAnimated:</a></code>
-		<span class="tooltip"><p>Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
-Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no effect if called multiple times.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/tappableAnnotationsAtPoint:">&ndash;&nbsp;tappableAnnotationsAtPoint:</a></code>
-		<span class="tooltip"><p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/singleTappedAtViewPoint:">&ndash;&nbsp;singleTappedAtViewPoint:</a></code>
-		<span class="tooltip"><p>Can be used for manual tap forwarding.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/renderOptionsDictWithZoomScale:">&ndash;&nbsp;renderOptionsDictWithZoomScale:</a></code>
-		<span class="tooltip"><p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
-One way to ues this would be to customize what annotations types will be rendered with the pdf.
-See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
-		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -1518,7 +1518,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDFPageView bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -1587,7 +1587,7 @@ pageBounds usually is PSPDFPageView bounds.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDFPageView bounds.</p>
+pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
 	</div>		
 	
 	
@@ -1947,7 +1947,7 @@ To extend this, selectors for UIMenuItem need to be implemented in a subclass.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p>
+		<p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p>
 	</div>		
 	
 	
