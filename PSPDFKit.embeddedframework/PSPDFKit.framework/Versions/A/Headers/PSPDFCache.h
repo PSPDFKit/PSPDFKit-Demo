@@ -160,20 +160,6 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 
 @end
 
-@interface PSPDFCache (Deprecated)
-
-+ (PSPDFCache *)sharedPSPDFCache __attribute__((deprecated("Deprecated. Use sharedCache instead.")));
-
-@end
-
-/// Used for debugging/status checking. See kPSPDFKitDebugMemory in PSPDFKitGlobal.h.
-@interface PSPDFCache (PSPDFDebuggingSupport)
-- (void)registerObject:(NSObject *)object;
-- (void)deregisterObject:(NSObject *)object;
-- (void)printStatus;
-@end
-
-
 // Internal queue item for the cache.
 @interface PSPDFCacheQueuedDocument : NSObject 
 

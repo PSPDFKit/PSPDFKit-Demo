@@ -8,22 +8,24 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFSearchOperation.h"
 
-@class PSPDFDocument;
+@class PSPDFDocument, PSPDFTextSearch;
 
 /// Search status delegate. All delegates are guarranteed to be called within the main thread.
-@protocol PSPDFSearchDelegate <NSObject>
+@protocol PSPDFTextSearchDelegate <NSObject>
+
+@optional
 
 /// Called when search is started.
-- (void)willStartSearchForString:(NSString *)searchString isFullSearch:(BOOL)isFullSearch;
+- (void)willStartSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm isFullSearch:(BOOL)isFullSearch;
 
-/// Search was updated, a new page has been scanned
-- (void)didUpdateSearchForString:(NSString *)searchString newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page;
+/// Search was updated, a new page has been scanned.
+- (void)didUpdateSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page;
 
 /// Search has finished.
-- (void)didFinishSearchForString:(NSString *)searchString searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch;
+- (void)didFinishSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch;
 
 /// Search has been cancelled.
-- (void)didCancelSearchForString:(NSString *)searchString isFullSearch:(BOOL)isFullSearch;;
+- (void)didCancelSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm isFullSearch:(BOOL)isFullSearch;
 
 @end
 
@@ -34,11 +36,11 @@
 - (id)initWithDocument:(PSPDFDocument *)document;
 
 /// Searches for text occurence. If document was not yet parsed, it will be now.
-- (void)searchForString:(NSString *)searchText;
+- (void)searchForString:(NSString *)searchTerm;
 
 /// Searches for text occurence, selection property is added to sites in visiblePages.
 /// enable onlyVisible to only search within the visiblePages
-- (void)searchForString:(NSString *)searchText visiblePages:(NSArray *)visiblePages onlyVisible:(BOOL)onlyVisible;
+- (void)searchForString:(NSString *)searchTerm visiblePages:(NSArray *)visiblePages onlyVisible:(BOOL)onlyVisible;
 
 /// YES if there's text stored for page page. (thus, textForPage will return instantly)
 - (BOOL)hasTextForPage:(NSUInteger)page;
@@ -66,6 +68,6 @@
 @property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
 
 /// Search delegate. Will be retained as long as the operation runs.
-@property (nonatomic, ps_weak) id<PSPDFSearchDelegate> delegate;
+@property (nonatomic, ps_weak) id<PSPDFTextSearchDelegate> delegate;
 
 @end

@@ -10,7 +10,7 @@
 /**
     A Bookmark is a simple object that encapsulates a page.
  
-    True, this could've been accomplished with NSNumber, but having a special object is more flexible i the long run.
+    True, this could've been accomplished with NSNumber, but having a special object is more flexible in the long run.
  */
 @interface PSPDFBookmark : NSObject <NSCopying, NSCoding>
 

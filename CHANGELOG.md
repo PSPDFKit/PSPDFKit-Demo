@@ -1,5 +1,35 @@
 # Changelog
 
+__v2.3.0 - 11/October/2012__
+
+Note: This [really] will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
+      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+
+(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
+
+*  Experimental features: Add support to create PDF documents from html string or even a website.
+*  Annotations now can be flattened before the document is sent via email. PSPDFEmailBarButtonItem has new options, and there is a new class PSPDFProcessor to generate new PDFs.
+*  Outline elements that have no target page now no longer redirect to page 1 and will expand/collapse a section if there are child outline elements.
+*  Add minimumZoomScale and setZoomScale:animated: to PSPDFViewController.
+*  Glyphs that are outside of the page rect are now not displayed in the extracted text per default. You can restore the old behavior with setting PSPDFDocument's textParserHideGlyphsOutsidePageRect to YES.
+*  Further tweaks for the iOS5 YouTube plugin version, ensure it's always correctly resized.
+*  viewLockEnabled now also disables zooming with double tapping.
+*  Don't show outline on search result if it's just one entry (most likely just the PDF name)
+*  The keyboard of the note annotation controller now moves out at the same time as the popover dismisses (before keyboard animated out AFTER the popover animation)
+*  Software dimming view now also covers the status bar.
+*  Adding/Removing bookmarks now correctly hides any open popovers.
+*  PSPDFCatalog: can now receive PDF documents from other apps.
+*  PSPDFCatalog: added basic full-text-search feature across multiple documents.
+*  Removed kPSPDFKitDebugMemory and kPSPDFDebugScrollViews.
+*  API: renamed PSPDFSearchDelegate -> PSPDFTextSearchDelegate and added the PSPDFTextSearch class as parameter.
+*  API: removes certain deprecated methods.
+*  API: renamed kPSPDFKitPDFAnimationDuration to kPSPDFAnimationDuration.
+*  Fixes possible inconsistency between displayed and used drawing color.
+*  Fixes a race conditions when using appendFile: in PSPDFDocument and cacheDocument:startAtPage:size:.
+*  Fixes a rotation issue when the annotation toolbar is displayed.
+*  Fixes a issue where the popover of a ink annotation wasn't correctly sized.
+*  Fixes a issue where the outline button was displayed when the document was invalid (instead of being hidden as expected)
+
 __v2.2.2 - 5/October/2012__
 
 *  Properly restore the PSPDFLinkAnnotationView backgroundColor.
@@ -13,11 +43,6 @@ __v2.2.1 - 4/October/2012__
 *  Fixes a "sticky" scrolling issue that was introduced in 2.2.
 
 __v2.2.0 - 4/October/2012__
-
-Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
-      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
-
-(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
 
 *  New scrolling mode: PSPDFPageScrollContinuousTransition (similar to UIWebView's default mode)
 *  Support text selection on rotated PDF documents.
@@ -58,7 +83,8 @@ Note: This will be the last release that supports iOS 4.3*. The next version wil
 *  API: willStartSearchOperation:forString:isFullSearch: in PSPDFSearchOperationDelegate is now optional.
 *  API: PSPDFDocument now implements PSPDFDocumentProviderDelegate and also is set as the default delegate.
 *  API: PSPDFDocumentDelegate now has methods for didSaveAnnotations and failedToSaveAnnotations.
-*  API: removeCacheForDocument:deleteDocument:waitUntilDone: is now removeCacheForDocument:deleteDocument:error: - use dispatch_async to make the call async.
+*  API: removeCacheForDocument:deleteDocument:waitUntilDone: is now removeCacheForDocument:deleteDocument:error: -
+*  Fixes a rotation issue when the annotation toolbar is displayed use dispatch_async to make the call async..
 *  API: tabbedPDFController:willChangeVisibleDocument: has been renamed to tabbedPDFController:shouldChangeVisibleDocument:
 *  Fixes a bug where annotations were not saved correctly on multi-file documents when saving into external file was used. You need to delete the annotations.pspdfkit file in /Library/PrivateDocuments/UID to update to the new saving version (PSPDFKit still first tries to read that file to be backwards compatible)
 *  Fixes freezing if there are A LOT of search results. They are not limited to 600 by default. This can be changed in PSPDFSearchViewController, see maximumNumberOfSearchResultsDisplayed.

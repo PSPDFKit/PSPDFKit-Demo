@@ -19,12 +19,12 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @protocol PSPDFSearchOperationDelegate <NSObject>
 
 /// Search was updated, a new page has been scanned
-- (void)didUpdateSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchString newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page;
+- (void)didUpdateSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchTerm newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page;
 
 @optional
 
 /// Called when search is started. 
-- (void)willStartSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchString isFullSearch:(BOOL)isFullSearch;
+- (void)willStartSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchTerm isFullSearch:(BOOL)isFullSearch;
 
 @end
 
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @interface PSPDFSearchOperation : NSOperation
 
 /// Initialize with Document reference and searchText.
-- (id)initWithDocument:(PSPDFDocument *)document searchText:(NSString *)searchText;
+- (id)initWithDocument:(PSPDFDocument *)document searchTerm:(NSString *)searchTerm;
 
 /// Define which pages should be searched with selection metadata. (much slower)
 /// If pageText is not set, this setting is ignored.
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @property (nonatomic, copy) NSArray *searchPages;
 
 /// String to be searched for.
-@property (nonatomic, copy, readonly) NSString *searchText;
+@property (nonatomic, copy, readonly) NSString *searchTerm;
 
 /// Dictionary of the whole page text. Set to optimize - in connection with selectionSearchPages.
 @property (nonatomic, strong) NSDictionary *pageTextDict;

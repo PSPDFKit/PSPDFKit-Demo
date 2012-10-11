@@ -13,7 +13,8 @@
 @protocol PSPDFOutlineViewControllerDelegate <NSObject>
 
 /// Called when we tapped on a cell in the outlinController.
-- (void)outlineController:(PSPDFOutlineViewController *)outlineController didTapAtElement:(PSPDFOutlineElement *)outlineElement;
+/// Return NO if event is not processed.
+- (BOOL)outlineController:(PSPDFOutlineViewController *)outlineController didTapAtElement:(PSPDFOutlineElement *)outlineElement;
 
 @end
 

@@ -35,15 +35,19 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 @end
 
 /// To edit annotations, a new toolbar will be overlayed.
+/// You can also use the features of the toolbar in the background and make your own UI.
+/// (for custom UI, don't show the toolbar, manually call the buttons and let the toolbar perform all the state handling)
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
 
 /// Designated initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 /// Show the toolbar in target rect. Rect should be the same height as the toolbar. (44px)
+/// You need to manually add the toolbar to the view. This is just to get the animation right.
 - (void)showToolbarInRect:(CGRect)rect animated:(BOOL)animated;
 
 /// Hide the toolbar.
+/// You need to manually remove the toolbar from the view in the completion block. This is just to get the animation right.
 - (void)hideToolbarAnimated:(BOOL)animated completion:(dispatch_block_t)completionBlock;
 
 /// Flash toolbar if user tries to hide the HUD.

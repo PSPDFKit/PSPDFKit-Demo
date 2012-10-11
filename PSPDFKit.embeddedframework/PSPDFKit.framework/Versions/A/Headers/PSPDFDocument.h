@@ -29,23 +29,23 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// @name Initialization
 
 /// Initialize empty PSPDFDocument.
-+ (PSPDFDocument *)PDFDocument;
++ (instancetype)PDFDocument;
 
 /// Initialize PSPDFDocument with data.
-+ (PSPDFDocument *)PDFDocumentWithData:(NSData *)data;
++ (instancetype)PDFDocumentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with multiple data objects
-+ (PSPDFDocument *)PDFDocumentWithDataArray:(NSArray *)dataArray;
++ (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray;
 
 /// Initialize PSPDFDocument with a dataProvider.
 /// Note: You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
-+ (PSPDFDocument *)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
++ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.
-+ (PSPDFDocument *)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
 /// Initialize PSPDFDocument with a single file.
-+ (PSPDFDocument *)PDFDocumentWithURL:(NSURL *)URL;
++ (instancetype)PDFDocumentWithURL:(NSURL *)URL;
 
 - (id)init;
 - (id)initWithData:(NSData *)data;
@@ -87,6 +87,9 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
  */
 - (NSDictionary *)fileNamesWithDataDictionary;
 
+/// Helper that gets a suggested fileName for a specific page.
+- (NSString *)fileNameForPage:(NSUInteger)pageIndex;
+
 /// Common base path for pdf files. Set to nil to use absolute paths for files.
 @property (nonatomic, strong) NSURL *basePath;
 
@@ -107,8 +110,8 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Note: If writing annotations is enabled, the dataArray's content will change after a save.
 @property (nonatomic, copy, readonly) NSArray *dataArray;
 
-/// PDF dataProvider (can be used to dynamically decrypt a document)
-@property (nonatomic, strong, readonly) __attribute__((NSObject)) CGDataProviderRef dataProvider;
+/// PDF dataProvider (can be used to dynamically decrypt a document). Will be retained when set.
+@property (nonatomic, assign, readonly) CGDataProviderRef dataProvider;
 
 /// Document title as shown in the controller.
 /// If this is not set, the framework tries to extract the title from the PDF metadata.
@@ -332,6 +335,11 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Return a textParser for the specific document page.
 - (PSPDFTextParser *)textParserForPage:(NSUInteger)page;
 
+/// If YES, any glyphs (text, words) that are outside the visible page area will not be parsed.
+/// Set early or call clearCache manually after changing this property. (since extracted text is cached)
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL textParserHideGlyphsOutsidePageRect;
+
 /// Text extraction class for current document.
 @property (nonatomic, strong) PSPDFTextSearch *textSearch;
 
@@ -464,9 +472,3 @@ extern NSString *const kPSPDFMetadataKeyProducer;
 extern NSString *const kPSPDFMetadataKeyCreationDate;
 extern NSString *const kPSPDFMetadataKeyModDate;
 extern NSString *const kPSPDFMetadataKeyTrapped;
-
-@interface PSPDFDocument (Deprecated)
-
-+ (PSPDFDocument *)PDFDocumentWithUrl:(NSURL *)URL  __attribute__((deprecated("Deprecated. Use PDFDocumentWithURL:")));
-
-@end

@@ -21,9 +21,9 @@
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
-    PSPDFPageScrollPerPageTransition = 0,      // default mode for iOS4. Has one scrollView per page.
-    PSPDFPageScrollContinuousTransition = 1,   // Similar to UIWebView. Ignores PSPDFPageModeDouble.
-    PSPDFPageCurlTransition = 2                // replaces pageCurlEnabled. iOS5+ feature.
+    PSPDFPageScrollPerPageTransition,      // default mode for iOS4. Has one scrollView per page.
+    PSPDFPageScrollContinuousTransition,   // Similar to UIWebView. Ignores PSPDFPageModeDouble.
+    PSPDFPageCurlTransition                // replaces pageCurlEnabled. iOS5+ feature.
 };
 
 /// Current active view mode.
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  
  Make sure to correctly use viewController containment when adding this as a child view controller. If you override this class, ensure all UIViewController methods you're using do call super. (e.g. viewWillAppear). 
 */
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate,PSPDFPasswordViewDelegate, PSPDFSearchDelegate, PSPDFWebViewControllerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization
 
@@ -119,6 +119,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Zooms to a specific rect, optionally animated.
 - (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
+
+/// Zoom to specific scale, optionally animated.
+- (void)setZoomScale:(float)scale animated:(BOOL)animated;
 
 /// Saves the view state into a serializable object. (page/zoom/position/HUD)
 @property (nonatomic, strong) PSPDFViewState *viewState;
@@ -381,16 +384,16 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) PSPDFPageMode pageMode;
 
 /**
-    Defines the page transition. Replaces pageCurlEnabled; allows more modes.
+ Defines the page transition. Replaces pageCurlEnabled; allows more modes.
 
-    Note about PSPDFPageCurlTransition:
-    PageCurl needs iOS5 and above and will fall back to default scrolling on iOS4.
-    PageCurl is more memory intensive; you might wanna disable this on an iPad1.
-    (e.g. with using the PSPSDIsCrappyDevice() to check for modern devices)
+ Note about PSPDFPageCurlTransition:
+ PageCurl needs iOS5 and above and will fall back to default scrolling on iOS4.
+ PageCurl is more memory intensive; you might wanna disable this on an iPad1.
+ (e.g. with using the PSPSDIsCrappyDevice() to check for modern devices)
 
-    If you change the property dynamically depending on the screen orientation, don't use
-    willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
-    else the controller will get in an invalid state.
+ If you change the property dynamically depending on the screen orientation, don't use
+ willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
+ else the controller will get in an invalid state.
 */
 @property (nonatomic, assign) PSPDFPageTransition pageTransition;
 
@@ -410,7 +413,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
 /// iPhone switches to yes in willRotateToInterfaceOrientation - reset back to no if you don't want this.
-/// fitToWidthEnabled is currently not supported for vertical scrolling or pageCurl mode.
+/// fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You might want PSPDFPageScrollContinuousTransition)
 @property (nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
 
 /// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitToWidthEnabled is enabled. If NO, new pages will start at the page top position.
@@ -419,6 +422,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
 @property (nonatomic, assign) BOOL clipToPageBoundaries;
+
+/// Minimum zoom scale. Defaults to 1. You usually don't want to change this.
+@property (nonatomic, assign) float minimumZoomScale;
 
 /// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.
 @property (nonatomic, assign) float maximumZoomScale;
@@ -518,14 +524,14 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 - (BOOL)isFirstPage;
 
 /**
-    Returns the topmost, active viewcontroller.
+ Returns the topmost, active viewcontroller.
 
-    This tries to be smart and even works in weird, non-default situations where viewControllers are embedded w/o iOS5 child controller embedding.
+ This tries to be smart and even works in weird, non-default situations where viewControllers are embedded w/o iOS5 child controller embedding.
 
-    If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
-    (Try "return self" first)
+ If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
+ (Try "return self" first)
 
-    It's a sad thing that this tends to be one of the most complex things in iOS development to get right.
+ It's a sad thing that this tends to be one of the most complex things in iOS development to get right.
  */
 - (UIViewController *)masterViewController;
 
@@ -579,15 +585,6 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 - (void)applicationDidEnterBackground:(NSNotification *)notification;
 
 @end
-
-
-@interface PSPDFViewController (Deprecated)
-
-- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated __attribute__((deprecated("Deprecated. Use setPage:animated: instead.")));
-- (BOOL)scrollToPage:(NSUInteger)page animated:(BOOL)animated hideHUD:(BOOL)hideHUD __attribute__((deprecated("Deprecated. Use setPage:animated: and setHUD:animated: instead.")));
-
-@end
-
 
 // Allows better guessing of the status bar style.
 @protocol PSPDFStatusBarStyleHint <NSObject>
