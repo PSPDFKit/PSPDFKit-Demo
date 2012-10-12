@@ -33,16 +33,17 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:2 inSection:5]
 
-@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
     NSArray *_content;
 }
 @end
 
-const char kPSCShowDocumentSelectorOpenInTabbedController;
+const char kPSCShowDocumentSelectorOpenInTabbedControllerKey;
+const char kPSCAlertViewKey;
 
 @implementation PSCatalogViewController
 
@@ -86,7 +87,7 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
             PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
-            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedController, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];)
@@ -226,7 +227,7 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 
     PSCSectionDescriptor *multimediaSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Multimedia extensions" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
 
-    [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Multmedia PDF example" block:^{
+    [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Multimedia PDF example" block:^{
         PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
@@ -327,6 +328,8 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 
         PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
         websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
+
         [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
         [websitePrompt addButtonWithTitle:@"Convert" block:^{
             // get data
@@ -346,21 +349,23 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
     }]];
 
     // Experimental feature
-    [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Convert Website to PDF" block:^UIViewController *{
+    [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Convert Website/Files to PDF" block:^UIViewController *{
 
-        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website URL" message:@"Experimental feature. Results may vary. Extraction might take a while."];
+        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
         websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
+        [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
+
         [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-        [websitePrompt addButtonWithTitle:@"Convert" block:^{
+        [websitePrompt addButtonWithTitle:@"Convert to PDF" block:^{
             // get URL
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
             if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
             NSURL *outputURL = PSPDFTempFileURL(@"generated");
 
-            // start processing.
+            // start the conversion
             [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
-            [[PSPDFProcessor defaultProcessor] generatePDFFromWebURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
+            [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
                 if (error) {
                     [PSPDFProgressHUD dismiss];
                     [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
@@ -373,6 +378,8 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
                 }
             }];
         }];
+        [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
+        objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &kPSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [websitePrompt show];
         return nil;
     }]];
@@ -673,7 +680,7 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
-    BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedController) boolValue];
+    BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
@@ -701,15 +708,19 @@ const char kPSCShowDocumentSelectorOpenInTabbedController;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewController
+#pragma mark - UITextFieldDelegate
+
+// enable the return key on the alert view
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    UIAlertView *alertView = objc_getAssociatedObject(textField, &kPSCAlertViewKey);
+    if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
+    }else { return NO; }
+}
 
 @end
 
-@implementation UINavigationController (PSPDFKeyboardDismiss)
-
 // Fixes a behavior of UIModalPresentationFormSheet
 // http://stackoverflow.com/questions/3372333/ipad-keyboard-will-not-dismiss-if-modal-view-controller-presentation-style-is-ui
-- (BOOL)disablesAutomaticKeyboardDismissal {
-    return NO;
-}
+@implementation UINavigationController (PSPDFKeyboardDismiss)
+- (BOOL)disablesAutomaticKeyboardDismissal { return NO; }
 @end
