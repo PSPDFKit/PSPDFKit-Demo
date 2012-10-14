@@ -361,7 +361,8 @@ const char kPSCAlertViewKey;
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
             if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
-            NSURL *outputURL = PSPDFTempFileURL(@"generated");
+            NSURL *outputURL = PSPDFTempFileURL(@"converted");
+            //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
 
             // start the conversion
             [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
