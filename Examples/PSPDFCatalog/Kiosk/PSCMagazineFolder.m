@@ -96,7 +96,9 @@
 }
 
 - (void)sortMagazines {
-    [_magazines sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"UID" ascending:NO]]];
+    [_magazines sortUsingComparator:^NSComparisonResult(PSPDFDocument *document1, PSPDFDocument *document2) {
+        return [[document1.files ps_firstObject] compare:[document2.files ps_firstObject]];
+    }];
 }
 
 - (void)setMagazines:(NSArray *)magazines {
