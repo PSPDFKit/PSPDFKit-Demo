@@ -33,7 +33,7 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:2 inSection:5]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -72,7 +72,7 @@ const char kPSCAlertViewKey;
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"ieee-specialTOC.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Morning Call.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -98,13 +98,16 @@ const char kPSCAlertViewKey;
         return documentSelector;
     }]];
 
-    PSPDFDocument *hcakerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+    PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
 
     // pre-cache whole document
-    [[PSPDFCache sharedCache] cacheDocument:hcakerMagDoc startAtPage:0 size:PSPDFSizeNative];
+    [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Fast single PDF" block:^{
-        PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:hcakerMagDoc];
+        PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:hackerMagDoc];
+//        controller.pageTransition = PSPDFPageScrollContinuousTransition;
+//        controller.pageScrolling = PSPDFScrollDirectionVertical;
+        
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         //controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
@@ -356,7 +359,7 @@ const char kPSCAlertViewKey;
         [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
 
         [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-        [websitePrompt addButtonWithTitle:@"Convert to PDF" block:^{
+        [websitePrompt addButtonWithTitle:@"Convert" block:^{
             // get URL
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
             if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
@@ -715,7 +718,7 @@ const char kPSCAlertViewKey;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     UIAlertView *alertView = objc_getAssociatedObject(textField, &kPSCAlertViewKey);
     if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
-    }else { return NO; }
+    }else return NO;
 }
 
 @end
