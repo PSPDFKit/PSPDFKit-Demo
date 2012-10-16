@@ -545,6 +545,17 @@
 #pragma mark - UICollectionViewDelegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    /*
+    PSCMagazine *magazine = (_filteredData)[indexPath.item];
+    CGSize maxSize = PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
+    PSPDFPageInfo *pageInfo = [magazine pageInfoForPage:0];
+    CGSize cellSize = maxSize;
+    if (pageInfo) {
+        CGFloat scale = PSPDFScaleForSizeWithinSize(pageInfo.rotatedPageRect.size, maxSize);
+        cellSize = PSPDFSizeForScale(pageInfo.rotatedPageRect.size, scale);
+    }
+    return cellSize;
+     */
     return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
 }
 
