@@ -11,11 +11,17 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    // AFNetworking
+    #import <SystemConfiguration/SystemConfiguration.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+
 #ifdef PSPDF_USE_SOURCE
     #import "PSPDFKit.h"
 #else
     #import <PSPDFKit/PSPDFKit.h>
 #endif
+
 #endif
 
 // Logging
