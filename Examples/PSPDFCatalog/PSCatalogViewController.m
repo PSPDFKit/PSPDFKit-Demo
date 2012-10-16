@@ -305,6 +305,7 @@ const char kPSCAlertViewKey;
     [content addObject:annotationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
+    
     PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
     [storyboardSection addContent:[[PSContent alloc] initWithTitle:@"Init with Storyboard" block:^UIViewController *{
         UIViewController *controller = nil;
@@ -317,7 +318,7 @@ const char kPSCAlertViewKey;
         }
         return controller;
     }]];
-    [content addObject:storyboardSection];
+    PSPDF_IF_IOS5_OR_GREATER([content addObject:storyboardSection];)
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
@@ -387,19 +388,19 @@ const char kPSCAlertViewKey;
         [websitePrompt show];
         return nil;
     }]];
-    [content addObject:textExtractionSection];
+    PSPDF_IF_IOS5_OR_GREATER([content addObject:textExtractionSection];)
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFViewController customization" footer:@""];
 
-    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
+    PSPDF_IF_IOS5_OR_GREATER([customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"FPC 10 Workbook.pdf"]];
         PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
         viewController.pageMode = PSPDFPageModeSingle;
         viewController.pageTransition = PSPDFPageCurlTransition;
         return viewController;
-    }]];
+    }]];)
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Using a NIB" block:^{
         return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
