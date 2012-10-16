@@ -27,6 +27,9 @@
 /// Range within full page text.
 @property (nonatomic, assign) NSRange range;
 
+/// Range of the search result in relation to the previewText.
+@property (nonatomic, assign) NSRange rangeInPreviewText;
+
 /// Cached title of the outline chapter. Will be added dynamically on first access.
 @property (nonatomic, copy) NSString *cachedOutlineTitle;
 

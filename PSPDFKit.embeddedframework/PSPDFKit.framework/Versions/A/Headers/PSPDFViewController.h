@@ -47,12 +47,13 @@ typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
 
 /// Status bar style. (old status will be restored regardless of the style chosen)
 typedef NS_ENUM(NSInteger, PSPDFStatusBarStyleSetting) {
-    PSPDFStatusBarInherit,            /// Don't change status bar style, but show/hide statusbar on HUD events
-    PSPDFStatusBarSmartBlack,         /// Use UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
-    PSPDFStatusBarBlackOpaque,        /// Opaque Black everywhere
-    PSPDFStatusBarDefault,            /// Default statusbar (white on iPhone/black on iPad)
-    PSPDFStatusBarDisable,            /// Never show status bar
-    PSPDFStatusBarIgnore = 0x100      /// Causes this class to ignore the statusbar entirely.
+    PSPDFStatusBarInherit,             /// Don't change status bar style, but show/hide statusbar on HUD events.
+    PSPDFStatusBarSmartBlack,          /// UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
+    PSPDFStatusBarSmartBlackHideOnIpad,/// Similar to PSPDFStatusBarSmartBlack, but also hides statusBar on iPad.
+    PSPDFStatusBarBlackOpaque,         /// Opaque Black everywhere.
+    PSPDFStatusBarDefault,             /// Default statusbar (white on iPhone/black on iPad).
+    PSPDFStatusBarDisable,             /// Never show status bar.
+    PSPDFStatusBarIgnore = 0x100       /// Causes this class to ignore the statusbar entirely.
 };
 
 typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
@@ -265,6 +266,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.
 @property (nonatomic, assign) CGFloat scrollOnTapPageEndMargin;
 
+/// Enable/Disable all internal gesture recognizers. Defaults to YES.
+/// Can be useful if you're doing custom drawing on the PSPDFPageView.
+@property (nonatomic, assign) BOOL internalTapGesturesEnabled;
+
+
 /**
     Allows text selection. Defaults to YES.
 
@@ -338,6 +344,12 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show a button to control the brightness.
 @property (nonatomic, strong, readonly) PSPDFBarButtonItem *brightnessButtonItem;
+
+/// If added to the left/rightBarButtonItems, the position of the additionalRightBarButtonItems action button can be customized.
+/// By default this button is added to the rightBarButtonItems on the left.
+/// Button is only visible if [additionalRightBarButtonItems count] > 1.
+/// Do not add this to additionalRightBarButtonItems.
+@property (nonatomic, strong, readonly) PSPDFBarButtonItem *additionalActionsButtonItem;
 
 /**
  Bar button items displayed at the left of the toolbar

@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 /// Target size.
 @property (nonatomic, assign) CGSize targetSize;
 
+// Since the loupe uses a UIWindow that is added on the fly, call this before making calculations with the superview.
+- (void)prepareShow;
+
 // Show Loupe, optionally animated (mimics the UIKit loupe animation)
 - (void)showLoupeAnimated:(BOOL)animated;
 
