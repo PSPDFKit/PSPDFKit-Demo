@@ -57,6 +57,8 @@
 
 // override default handler
 - (void)action:(PSPDFBarButtonItem *)sender {
+    [[self class] dismissPopoverAnimated:YES];
+
     if (![self cleanup]) {
         // diable various features to lock UI
         _savedViewLock = self.pdfController.isViewLockEnabled;
