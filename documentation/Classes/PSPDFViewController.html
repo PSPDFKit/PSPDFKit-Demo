@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -46,6 +46,8 @@
 	
 	<option value="//api/name/HUDVisible">&nbsp;&nbsp;&nbsp;&nbsp;HUDVisible</option>
 	
+	<option value="//api/name/additionalActionsButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;additionalActionsButtonItem</option>
+	
 	<option value="//api/name/additionalRightBarButtonItems">&nbsp;&nbsp;&nbsp;&nbsp;additionalRightBarButtonItems</option>
 	
 	<option value="//api/name/annotationAnimationDuration">&nbsp;&nbsp;&nbsp;&nbsp;annotationAnimationDuration</option>
@@ -83,6 +85,8 @@
 	<option value="//api/name/gridView">&nbsp;&nbsp;&nbsp;&nbsp;gridView</option>
 	
 	<option value="//api/name/iPhoneThumbnailSizeReductionFactor">&nbsp;&nbsp;&nbsp;&nbsp;iPhoneThumbnailSizeReductionFactor</option>
+	
+	<option value="//api/name/internalTapGesturesEnabled">&nbsp;&nbsp;&nbsp;&nbsp;internalTapGesturesEnabled</option>
 	
 	<option value="//api/name/leftBarButtonItems">&nbsp;&nbsp;&nbsp;&nbsp;leftBarButtonItems</option>
 	
@@ -309,6 +313,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/HUDVisible">HUDVisible</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/additionalActionsButtonItem">additionalActionsButtonItem</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/additionalRightBarButtonItems">additionalRightBarButtonItems</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationAnimationDuration">annotationAnimationDuration</a></span></li>
@@ -346,6 +352,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/gridView">gridView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iPhoneThumbnailSizeReductionFactor">iPhoneThumbnailSizeReductionFactor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/internalTapGesturesEnabled">internalTapGesturesEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/leftBarButtonItems">leftBarButtonItems</a></span></li>
 	
@@ -597,7 +605,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p></spa
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
+		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -605,7 +613,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in doub
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the PDF <a href="#//api/name/document">document</a>, starting at 0.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -613,21 +621,21 @@ This represents the pages in the PDF <a href="#//api/name/document">document</a>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setPage:animated:">&ndash;&nbsp;setPage:animated:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPreviousPageAnimated:">&ndash;&nbsp;scrollToPreviousPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
 	</span>
 	
 	
@@ -895,7 +903,7 @@ NO will perform a generic zoom into the tap area. Defauts to YES.</p></span>
 		<code><a href="#//api/name/viewLockEnabled">&nbsp;&nbsp;viewLockEnabled</a></code>
 		<span class="tooltip"><p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollToPage.
+This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -919,6 +927,14 @@ If set to false, it invokes a attemptRotationToDeviceOrientation (iOS5 and above
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollOnTapPageEndMargin">&nbsp;&nbsp;scrollOnTapPageEndMargin</a></code>
 		<span class="tooltip"><p>Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/internalTapGesturesEnabled">&nbsp;&nbsp;internalTapGesturesEnabled</a></code>
+		<span class="tooltip"><p>Enable/Disable all internal gesture recognizers. Defaults to YES.
+Can be useful if you&rsquo;re doing custom drawing on the <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1031,6 +1047,16 @@ Note: if modal is set in the link, this property has no effect.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/brightnessButtonItem">&nbsp;&nbsp;brightnessButtonItem</a></code>
 		<span class="tooltip"><p>Show a button to control the brightness.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/additionalActionsButtonItem">&nbsp;&nbsp;additionalActionsButtonItem</a></code>
+		<span class="tooltip"><p>If added to the left/rightBarButtonItems, the position of the additionalRightBarButtonItems action button can be customized.
+By default this button is added to the rightBarButtonItems on the left.
+Button is only visible if [additionalRightBarButtonItems count] > 1.
+Do not add this to <a href="#//api/name/additionalRightBarButtonItems">additionalRightBarButtonItems</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1181,7 +1207,7 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagePadding">&nbsp;&nbsp;pagePadding</a></code>
-		<span class="tooltip"><p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
+		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1320,7 +1346,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
+		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
 	</span>
 	
 	
@@ -1557,6 +1583,43 @@ HUD will not change when changing this mode. Use <a href="#//api/name/setHUDVisi
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/additionalActionsButtonItem" title="additionalActionsButtonItem"></a>
+	<h3 class="subsubtitle method-title">additionalActionsButtonItem</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If added to the left/rightBarButtonItems, the position of the additionalRightBarButtonItems action button can be customized.
+By default this button is added to the rightBarButtonItems on the left.
+Button is only visible if [additionalRightBarButtonItems count] > 1.
+Do not add this to <a href="#//api/name/additionalRightBarButtonItems">additionalRightBarButtonItems</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFBarButtonItem *additionalActionsButtonItem</code></div>
 	
 	
 	
@@ -1936,7 +1999,7 @@ ContentView does NOT overlay the navigationBar/statusBar, even if that one is tr
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) IBOutlet id&lt;&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) IBOutlet id&lt;PSPDFViewControllerDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -2213,6 +2276,41 @@ fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/internalTapGesturesEnabled" title="internalTapGesturesEnabled"></a>
+	<h3 class="subsubtitle method-title">internalTapGesturesEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enable/Disable all internal gesture recognizers. Defaults to YES.
+Can be useful if you&rsquo;re doing custom drawing on the <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL internalTapGesturesEnabled</code></div>
 	
 	
 	
@@ -2674,7 +2772,7 @@ When changing padding; the touch area is still fully active.
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
+		<p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p>
 	</div>		
 	
@@ -2781,7 +2879,7 @@ Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
+		<p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
 	</div>		
 	
 	
@@ -3102,7 +3200,7 @@ Defaults to YES. If NO, an attempt to display the <a href="#//api/name/document"
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
 This represents the pages in the PDF <a href="#//api/name/document">document</a>, starting at 0.</p>
 	</div>		
 	
@@ -3922,7 +4020,7 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	<div class="method-subsection brief-description">
 		<p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollToPage.
+This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p>
 	</div>		
 	
@@ -4414,7 +4512,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
+		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -4666,7 +4764,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p>
+		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p>
 	</div>		
 	
 	
@@ -4700,7 +4798,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p>
+		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p>
 	</div>		
 	
 	
@@ -4768,7 +4866,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
 	</div>		
 	
 	
@@ -5150,9 +5248,9 @@ The default implementation for this is empty.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-11)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-17)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>
