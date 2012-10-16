@@ -112,6 +112,7 @@
 		78DDC78815CF30B80030C730 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77F15CF2F180030C730 /* libHockeySDK.a */; };
 		78DDC78915CF30C30030C730 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */; };
 		78E306BC1601C4850051AF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E306BB1601C4850051AF68 /* Default-568h@2x.png */; };
+		78E6AAE2162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6AAE1162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -333,6 +334,8 @@
 		78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = Support/HockeySDK.xcodeproj; sourceTree = "<group>"; };
 		78DDC78215CF2F1E0030C730 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Vendor/CrashReporter.framework; sourceTree = "<group>"; };
 		78E306BB1601C4850051AF68 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		78E6AAE0162DAEFF0074BAB5 /* PSCGoToPageButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGoToPageButtonItem.h; sourceTree = "<group>"; };
+		78E6AAE1162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGoToPageButtonItem.m; sourceTree = "<group>"; };
 		78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCatalogViewController.h; sourceTree = "<group>"; };
 		78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCatalogViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -549,6 +552,8 @@
 				78AE806B15D59D8A000F9D80 /* PSCAnnotationTableViewController.m */,
 				786B5FCB1625AB73009CE5F7 /* PSCFullTextSearchOperation.h */,
 				786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */,
+				78E6AAE0162DAEFF0074BAB5 /* PSCGoToPageButtonItem.h */,
+				78E6AAE1162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -952,6 +957,7 @@
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */,
 				786B5FCD1625AB73009CE5F7 /* PSCFullTextSearchOperation.m in Sources */,
+				78E6AAE2162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
