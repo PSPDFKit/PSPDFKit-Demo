@@ -1,6 +1,6 @@
 # Changelog
 
-__v2.3.2 - 1X/October/2012__
+__v2.3.2 - 17/October/2012__
 
 Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
       If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
