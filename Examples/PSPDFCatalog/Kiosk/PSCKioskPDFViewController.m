@@ -12,6 +12,7 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCMetadataBarButtonItem.h"
 #import "PSCAnnotationTableBarButtonItem.h"
+#import "PSCGoToPageButtonItem.h"
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -231,6 +232,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             [additionalRightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
+    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
     self.additionalRightBarButtonItems = additionalRightBarButtonItems;
 
     // reload scrollview and restore viewState
