@@ -54,6 +54,10 @@
 "Open in Safari" = "Apri con Safari";
 "Mail Link to this Page" = "Manda link tramite e-mail";
 "Your %@ is not configured to send emails." = "Il tuo %@ non è configurato per l'invio di e-mail.";
+"The link is requesting to open %@. Would you like to continue?" = "The link is requesting to open %@. Would you like to continue?";
+"an external application" = "an external application";
+"the App Store" = "the App Store";
+"Mail" = "Mail";
 
 // annotations
 "Remove" = "Rimuovi";

@@ -31,6 +31,9 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Initialize empty PSPDFDocument.
 + (instancetype)PDFDocument;
 
+/// Initialize PSPDFDocument with a single file.
++ (instancetype)PDFDocumentWithURL:(NSURL *)URL;
+
 /// Initialize PSPDFDocument with data.
 + (instancetype)PDFDocumentWithData:(NSData *)data;
 
@@ -44,16 +47,18 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Initialize PSPDFDocument with distinct path and an array of files.
 + (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
-/// Initialize PSPDFDocument with a single file.
-+ (instancetype)PDFDocumentWithURL:(NSURL *)URL;
+/// If you have files that have the pattern XXX_Page_0001 - XXX_Page_0200 use this initializer.
+/// fileTemplate needs to have exactly one '%d' marker where the page should be.
+/// For leading zeros, use the default printf syntax. (%04d = 0001)
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 - (id)init;
+- (id)initWithURL:(NSURL *)URL;
 - (id)initWithData:(NSData *)data;
 - (id)initWithDataArray:(NSArray *)data;
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
-- (id)initWithURL:(NSURL *)URL;
 - (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
-
+- (id)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 /// Delegate. Used for annotation calls.
 @property (nonatomic, ps_weak) id<PSPDFDocumentDelegate> delegate;
@@ -346,6 +351,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Get the document provider for a specific page.
 - (PSPDFDocumentProvider *)documentProviderForPage:(NSUInteger)page;
 
+/// Get the page offset from a specific documentProvider.
+/// Can be used to calculate from the document provider page to the PSPDFDocument page.
+- (NSUInteger)pageOffsetForDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+
 /// Get an array of documentProviers to easily manage documents with multiple files.
 @property (nonatomic, strong, readonly) NSArray *documentProviders;
 
@@ -367,6 +376,8 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// If substituteWithPlainLabel is set to YES then this always returns a valid string.
 - (NSString *)pageLabelForPage:(NSUInteger)page substituteWithPlainLabel:(BOOL)substite;
 
+/// Find page of a pageLabel.
+- (NSUInteger)pageForPageLabel:(NSString *)pageLabel partialMatching:(BOOL)partialMatching;
 
 /// @name PDF Page Rendering
 

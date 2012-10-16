@@ -55,3 +55,16 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 - (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
 @end
+
+@interface PSPDFSearchViewController (SubclassingHooks)
+
+// called every time the text in the searchbar changes. Scope is currently ignored.
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
+
+// Will update the status and insert/reload/remove search rows
+- (void)setSearchStatus:(PSPDFSearchStatus)searchStatus updateTable:(BOOL)updateTable;
+
+// Returns the searchResult for a cell.
+- (PSPDFSearchResult *)searchResultsForIndexPath:(NSIndexPath *)indexPath;
+
+@end

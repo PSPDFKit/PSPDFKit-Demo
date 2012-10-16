@@ -52,8 +52,12 @@
 // inline browser
 "Copy Link" = "Copier le lien";
 "Open in Safari" = "Ouvrir dans Safari";
-"Mail Link to this Page" = "Mail Link to this Page";
 "Mail Link to this Page" = "Envoyer cette adresse URL";
+"Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
+"The link is requesting to open %@. Would you like to continue?" = "The link is requesting to open %@. Would you like to continue?";
+"an external application" = "an external application";
+"the App Store" = "the App Store";
+"Mail" = "Mail";
 
 // annotations
 "Remove" = "Remove";
