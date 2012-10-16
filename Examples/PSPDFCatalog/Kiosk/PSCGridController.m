@@ -86,13 +86,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-- (void)updateGridForOrientation {
-    // on iPhone, the navigation toolbar is either 44 (portrait) or 30 (landscape) pixels
-    CGSize size = PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
-    UICollectionViewFlowLayout *flowLayout = ((UICollectionViewFlowLayout *)_gridView.collectionViewLayout);
-    flowLayout.itemSize = size;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -151,7 +144,6 @@
 
     [self.view insertSubview:self.gridView belowSubview:_shadowView];
     self.gridView.frame = self.view.bounds;
-    [self updateGridForOrientation];
     self.gridView.dataSource = self; // auto-reloads
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
@@ -212,7 +204,6 @@
 
     // ensure everything is up to date (we could change magazines in other controllers)
     self.immediatelyLoadCellImages = YES;
-    [self updateGridForOrientation];
     [self diskDataLoaded]; // also reloads the grid
     self.immediatelyLoadCellImages = NO;
 
@@ -272,16 +263,6 @@
 
     // only deregister if not attached to anything else
     if ([PSCStoreManager sharedStoreManager].delegate == self) [PSCStoreManager sharedStoreManager].delegate = nil;
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    PSPDF_IF_PRE_IOS5([self updateGridForOrientation];) // viewWillLayoutSubviews is iOS5 only
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self updateGridForOrientation];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -562,6 +543,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UICollectionViewDelegate
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
+}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     PSCMagazine *magazine;
