@@ -33,9 +33,9 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 
 @interface AFImageRequestOperation ()
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-@property (readwrite, nonatomic) UIImage *responseImage;
+@property (readwrite, nonatomic, strong) UIImage *responseImage;
 #elif __MAC_OS_X_VERSION_MIN_REQUIRED 
-@property (readwrite, nonatomic, retain) NSImage *responseImage;
+@property (readwrite, nonatomic, strong) NSImage *responseImage;
 #endif
 @end
 
@@ -157,9 +157,12 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 }
 
 - (void)setImageScale:(CGFloat)imageScale {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wfloat-equal"
     if (imageScale == _imageScale) {
         return;
     }
+#pragma clang diagnostic pop
     
     _imageScale = imageScale;
     
@@ -178,7 +181,7 @@ static dispatch_queue_t image_request_operation_processing_queue() {
 }
 #endif
 
-#pragma mark - AFHTTPClientOperation
+#pragma mark - AFHTTPRequestOperation
 
 + (NSSet *)acceptableContentTypes {
     return [NSSet setWithObjects:@"image/tiff", @"image/jpeg", @"image/gif", @"image/png", @"image/ico", @"image/x-icon", @"image/bmp", @"image/x-bmp", @"image/x-xbitmap", @"image/x-win-bitmap", nil];
