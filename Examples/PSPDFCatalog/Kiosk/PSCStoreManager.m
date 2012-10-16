@@ -340,9 +340,8 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
     }
-    if ([rootFolder.magazines count]) {
-        [folders addObject:rootFolder];
-    }
+
+    if ([rootFolder.magazines count]) [folders addObject:rootFolder];
 
     return folders;
 }
@@ -377,6 +376,10 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
         firstFolder.magazines = magazineArray;
     }
+
+    [folders sortUsingComparator:^NSComparisonResult(PSCMagazineFolder *folder1, PSCMagazineFolder *folder2) {
+        return [folder1.title compare:folder2.title];
+    }];
 
     return folders;
 }
