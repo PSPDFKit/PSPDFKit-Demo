@@ -53,6 +53,7 @@ const char kPSCAlertViewKey;
         if (pageIndex == NSNotFound) {
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Page %@ not found"), pageLabel] message:nil delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
         }else {
+            [self.pdfController setViewMode:PSPDFViewModeDocument animated:YES];
             [self.pdfController setPage:pageIndex animated:YES];
         }
     }];
