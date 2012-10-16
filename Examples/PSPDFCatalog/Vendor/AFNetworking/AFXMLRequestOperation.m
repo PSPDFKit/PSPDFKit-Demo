@@ -34,16 +34,16 @@ static dispatch_queue_t xml_request_operation_processing_queue() {
 }
 
 @interface AFXMLRequestOperation ()
-@property (readwrite, nonatomic) NSXMLParser *responseXMLParser;
-#if __MAC_OS_X_VERSION_MIN_REQUIRED
-@property (readwrite, nonatomic, retain) NSXMLDocument *responseXMLDocument;
+@property (readwrite, nonatomic, strong) NSXMLParser *responseXMLParser;
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
+@property (readwrite, nonatomic, strong) NSXMLDocument *responseXMLDocument;
 #endif
-@property (readwrite, nonatomic) NSError *XMLError;
+@property (readwrite, nonatomic, strong) NSError *XMLError;
 @end
 
 @implementation AFXMLRequestOperation
 @synthesize responseXMLParser = _responseXMLParser;
-#if __MAC_OS_X_VERSION_MIN_REQUIRED
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 @synthesize responseXMLDocument = _responseXMLDocument;
 #endif
 @synthesize XMLError = _XMLError;
@@ -66,7 +66,7 @@ static dispatch_queue_t xml_request_operation_processing_queue() {
     return requestOperation;
 }
 
-#if __MAC_OS_X_VERSION_MIN_REQUIRED
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 + (AFXMLRequestOperation *)XMLDocumentRequestOperationWithRequest:(NSURLRequest *)urlRequest
                                                           success:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLDocument *document))success
                                                           failure:(void (^)(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLDocument *document))failure
@@ -97,7 +97,7 @@ static dispatch_queue_t xml_request_operation_processing_queue() {
     return _responseXMLParser;
 }
 
-#if __MAC_OS_X_VERSION_MIN_REQUIRED
+#ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 - (NSXMLDocument *)responseXMLDocument {
     if (!_responseXMLDocument && [self.responseData length] > 0 && [self isFinished]) {
         NSError *error = nil;
