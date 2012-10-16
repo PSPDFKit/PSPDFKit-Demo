@@ -82,6 +82,9 @@
 #import "PSPDFSelectionView.h"
 #import "PSPDFAnnotationToolbar.h"
 
+// labels
+#import "PSPDFLabelParser.h"
+
 // toolbar
 #import "PSPDFBarButtonItem.h"
 

@@ -1,13 +1,33 @@
 # Changelog
 
+__v2.3.2 - 1X/October/2012__
+
+Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
+      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+
+*  The text loupe is now displayed above all other contents (navigation bar, status bar, …)
+*  New status bar style: PSPDFStatusBarSmartBlackHideOnIpad, which now is also the new default (changed from PSPDFStatusBarSmartBlack). Will hide the HUD AND the statusbar on tap now both on iPhone and on iPad.
+*  Improves Website->PDF conversion. Now supports Websites, Pages, Keynote, Excel, Word, RTF, TXT, JPG, etc... (see PSPDFProcessor. This is a PSPDFKit Annotate feature)
+*  PSPDFKit now uses the MediaBox everywhere. Previously the CropBox was used for rendering, which can display areas that are only intended for printing. See http://www.prepressure.com/pdf/basics/page_boxes.
+*  New additionalActionsButtonItem allows to mark where the additional actions menu should be placed on the toolbar. (Default is left next to the last rightBarButtonItem)
+*  New initializer in PSPDFDocument that makes handling with single-file multiple-page documents much easier. (PDFDocumentWithBaseURL:fileTemplate:startPage:endPage:)
+*  Add support for GoToR link annotations.
+*  Add method to search for a specific page label. See PSCGoToPageButtonItem in PSPDFCatalog for an example how to use it. (DevelopersGuide.pdf has labels)
+*  The page popover now shows the page label if one is set in the PDF (e.g. to replace numbers with roman numbering)
+*  Links to the external applications (e.g. AppStore, Mail) are now detected and a alert view is displayed asking to open the application or not.
+*  Add workaround for a UIKit issue in iOS5.x that would sometimes dismiss the keyboard when removing characters from the search view controller. (Issues has been fixed in iOS6)
+*  Fixes a UI issue in search results. If a search result was found more than one time in a string, the first occurence was marked bold. Now the actual result is marked bold.
+   (This was mostly noticable when searching for very small words)
+*  Fixes a issue where too fast drawing could result in some lines now being displayed.
+*  Fixes isLastPage/isFirstPage methods for landscape mode.
+*  Fixes a issue where sometimes overrideClassNames for annotation was ignored.
+*  Fixes a issue where the cache could return a wrong image in some rare cases.
+
 __v2.3.1 - 11/October/2012__
 
 *  Fixes a potential memory corruption with PSPDFAESCryptoDataProvider.
 
 __v2.3.0 - 11/October/2012__
-
-Note: This [really] will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
-      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
 
 (*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
 
