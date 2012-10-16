@@ -232,7 +232,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             [additionalRightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
-    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
+    PSPDF_IF_IOS5_OR_GREATER([additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];)
     self.additionalRightBarButtonItems = additionalRightBarButtonItems;
 
     // reload scrollview and restore viewState
