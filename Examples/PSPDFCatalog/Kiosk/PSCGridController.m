@@ -131,8 +131,8 @@
     PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
-    flowLayout.minimumInteritemSpacing = 10;
-    NSUInteger spacing = 20;
+    NSUInteger spacing = 15;
+    flowLayout.minimumInteritemSpacing = spacing;
     flowLayout.sectionInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
 
     [collectionView registerClass:[PSCImageGridViewCell class] forCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class])];
