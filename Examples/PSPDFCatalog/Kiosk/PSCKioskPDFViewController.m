@@ -37,7 +37,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
-        
+
         // initally update vars
         [self globalVarChanged];
         
