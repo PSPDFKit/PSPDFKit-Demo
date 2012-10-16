@@ -325,8 +325,9 @@
     newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;
     newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
 
-    // compensate for transparent statusbar
-    if (!PSIsIpad()) {
+    // compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarSmartBlackHideOnIpad
+    BOOL iPadFadesOutStatusBar = YES;
+    if (!PSIsIpad() || iPadFadesOutStatusBar) {
         CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
         BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
         CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
