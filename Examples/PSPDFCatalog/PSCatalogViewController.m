@@ -26,6 +26,7 @@
 #import "PSCFittingWidthViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayButtonItem.h"
+#import "PSCGoToPageButtonItem.h"
 #import <objc/runtime.h>
 
 #if !__has_feature(objc_arc)
@@ -103,14 +104,26 @@ const char kPSCAlertViewKey;
     // pre-cache whole document
     [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
 
-    [appSection addContent:[[PSContent alloc] initWithTitle:@"Fast single PDF" block:^{
-        PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:hackerMagDoc];
-//        controller.pageTransition = PSPDFPageScrollContinuousTransition;
-//        controller.pageScrolling = PSPDFScrollDirectionVertical;
-        
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
+        controller.pageTransition = PSPDFPageCurlTransition;
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
-        //controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        controller.rightBarButtonItems = @[controller.brightnessButtonItem, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        return controller;
+    }]];
+
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a scientific paper" block:^{
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]]];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
+        controller.additionalRightBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
+        controller.pageTransition = PSPDFPageScrollContinuousTransition;
+        controller.pageScrolling = PSPDFScrollDirectionVertical;
+        controller.fitToWidthEnabled = YES;
+        controller.pagePadding = 5.f;
+        controller.renderAnimationEnabled = NO;
         return controller;
     }]];
 
