@@ -131,7 +131,7 @@
     PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
-    NSUInteger spacing = 15;
+    NSUInteger spacing = 14;
     flowLayout.minimumInteritemSpacing = spacing;
     flowLayout.sectionInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
 
