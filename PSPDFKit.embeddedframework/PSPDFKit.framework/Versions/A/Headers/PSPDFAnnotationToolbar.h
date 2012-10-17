@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 - (void)strikeOutButtonPressed:(id)sender;
 - (void)underlineButtonPressed:(id)sender;
 - (void)drawButtonPressed:(id)sender;
-- (void)backButtonPressed:(id)sender;
+- (void)doneButtonPressed:(id)sender;
 
 // Finish up drawing. Usually called by the drawing delegate.
 - (void)finishDrawingAndSaveAnnotation:(BOOL)save;

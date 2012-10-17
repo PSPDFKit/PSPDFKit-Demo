@@ -43,7 +43,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
 /// (Most PDF annotations are actually rendered into the page; except PSPDFLinkAnntotations and all derivates (video, etc) and PSPDFNoteAnnotation)
-- (UIView<PSPDFAnnotationView> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
+- (UIView<PSPDFAnnotationView> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView subview showing the whole document. Readonly.
 @property (nonatomic, strong, readonly) UIImageView *contentView;

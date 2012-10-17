@@ -43,6 +43,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// PSPDFKit addition - set if the pspdfkit:// protocol is detected.
 @property (nonatomic, assign) PSPDFLinkAnnotationType linkType;
 
+/// Will be YES if this is a regular link or a multimedia link annotation that should be displayed as link. (e.g. if isPopover/isModal is set to yes)
+@property (nonatomic, assign, readonly) BOOL showAsLinkView;
+
 /// link if target is a page if siteLinkTarget is nil.
 @property (nonatomic, assign) NSUInteger pageLinkTarget;
 
@@ -88,6 +91,15 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 
 /// Indicator if "popover" is set in options. Will add "popover" to options if setPopover is used.
 @property (nonatomic, assign, getter=isPopover) BOOL popover;
+
+/**
+ Indicator if "controls" is set in options.
+ Will hide controls for movies/browser/etc if set. Defaults to YES.
+
+ Some controls will add alternative ways to control if this is disabled.
+ E.g. videos can be paused via touch on the view if this is set to NO.
+ */
+@property (nonatomic, assign) BOOL controlsEnabled;
 
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
 @property (nonatomic, assign) CGSize size;

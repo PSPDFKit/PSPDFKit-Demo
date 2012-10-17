@@ -218,28 +218,28 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, strong) PSPDFDocument *document;
 
 /**
-    Set margin for document pages. Defaults to UIEdgeInsetsZero.
-    Margin is extra space for your (always visible) UI elements.
-    Content will be moved accordingly.
-    Area outside margin does not receive touch events, or is shown while zooming.
+ Set margin for document pages. Defaults to UIEdgeInsetsZero.
+ Margin is extra space for your (always visible) UI elements.
+ Content will be moved accordingly.
+ Area outside margin does not receive touch events, or is shown while zooming.
  */
 @property (nonatomic, assign) UIEdgeInsets margin;
 
 /**
-    Padding for document pages. Defaults to CGSizeZero.
-    Padding is space that is displayed around the document.
-    (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
-    When changing padding; the touch area is still fully active.
+ Padding for document pages. Defaults to CGSizeZero.
+ Padding is space that is displayed around the document.
+ (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
+ When changing padding; the touch area is still fully active.
  */
 @property (nonatomic, assign) CGSize padding;
 
 /**
-    This manages how the PDF image cache (thumbnail, full page) is used.
+ This manages how the PDF image cache (thumbnail, full page) is used.
 
-    PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
-    Note: PSPDFPageRenderingModeFullPageBlocking will disable certain page scroll animations.
+ PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
+ Note: PSPDFPageRenderingModeFullPageBlocking will disable certain page scroll animations.
 
-    Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.
+ Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.
  */
 @property (nonatomic, assign) PSPDFPageRenderingMode renderingMode;
 
@@ -272,14 +272,14 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 
 /**
-    Allows text selection. Defaults to YES.
+ Allows text selection. Defaults to YES.
 
-    Note: This implies that the PDF file actually contains text glypths.
-          Sometimes text is represented via embedded images or vectors, in that case we can't select it.
+ Note: This implies that the PDF file actually contains text glypths.
+       Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 
-    Also disable long press gesture recognizer on PSPDFScrollView if set to NO.
+ Also disable long press gesture recognizer on PSPDFScrollView if set to NO.
 
-    Only available in PSPDFKit Annotate.
+ Only available in PSPDFKit Annotate.
  */
 @property (nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 
@@ -524,6 +524,7 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 - (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(UIBarButtonItem *)sender options:(NSDictionary *)options;
 
 /// Return an NSNumber-array of currently visible page numbers.
+/// Note that this might return more numbers than actually visible if it's queried during a scroll animation.
 - (NSArray *)visiblePageNumbers;
 
 /// Return array of currently visible PSPDFPageView's.

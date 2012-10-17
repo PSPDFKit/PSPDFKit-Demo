@@ -1,9 +1,22 @@
 # Changelog
 
-__v2.3.2 - 17/October/2012__
+__v2.3.3 - 18/October/2012__
 
-Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0)
-      If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0) If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+The binary variant is already links with SDK 6.0 and will not link with 5.1 anymore. (It still works down to iOS 4.3 though)
+
+*  PSPDFShapeAnnotation and PSPDFLineAnnotation can now be created programmatically.
+*  New flag: kPSPDFLowMemoryMode that combines a lot of settings to ease memory pressure for complex apps.
+*  Annotations now have a new flag: controls:false to hide browser/movie controls. If videos have controls disabled, they can be controled via gestures. (tap=pause, pinch=full screen)
+*  Text loupe now also moves if it's not anchored on a PSPDFPageView. (fixes stuck loupe issue)
+*  Fixes a regression on view point restoration that could restore the view point at a different position.
+*  Fixes an issue where the annotation toolbar could lock up rotation even after being dismissed.
+*  Fixes an issue where bookmarks were checked for pages that were not visible.
+*  Fixes the needless log statement "Password couldn't be converted to ASCII: (null)".
+*  Fixes a text loupe regression where the loupe was not rotated on modal controllers.
+*  Fixes a issue where in rare cases the document label (default displayed on iPhone only) was offset by a few pixels.
+
+__v2.3.2 - 17/October/2012__
 
 *  The text loupe is now displayed above all other contents (navigation bar, status bar, …)
 *  New status bar style: PSPDFStatusBarSmartBlackHideOnIpad, which now is also the new default (changed from PSPDFStatusBarSmartBlack). Will hide the HUD AND the statusbar on tap now both on iPhone and on iPad.
