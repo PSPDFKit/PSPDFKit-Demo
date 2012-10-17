@@ -496,7 +496,8 @@ Will parse the page contents before returning. Might take a while.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
 		<span class="tooltip"><p>Outline extraction class for current PDF.
-Lazy initialized. Can be subclassed or set externally.</p></span>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -505,7 +506,8 @@ Lazy initialized. Can be subclassed or set externally.</p></span>
 		<code><a href="#//api/name/documentParser">&nbsp;&nbsp;documentParser</a></code>
 		<span class="tooltip"><p>PDF parser that lists the PDF XRef structure and writes annotations.
 Lazy initialized. Can be subclassed or set externally.
-Parses the PDF on first access. Might be slow.</p></span>
+Parses the PDF on first access. Might be slow.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -520,7 +522,8 @@ Parses the PDF on first access. Might be slow.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
 		<span class="tooltip"><p>Link annotation parser class for current PDF.
-Lazy initialized. Can be subclassed or set externally.</p></span>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -528,7 +531,8 @@ Lazy initialized. Can be subclassed or set externally.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/labelParser">&nbsp;&nbsp;labelParser</a></code>
 		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels found in the current PDF.
-Lazy initialized. Can be subclassed or set externally.</p></span>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -621,7 +625,8 @@ Lazy initialized. Can be subclassed or set externally.</p></span>
 	
 	<div class="method-subsection brief-description">
 		<p>Link annotation parser class for current PDF.
-Lazy initialized. Can be subclassed or set externally.</p>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p>
 	</div>		
 	
 	
@@ -829,7 +834,8 @@ NOT readonly, since we may write back annotation data.</p>
 	<div class="method-subsection brief-description">
 		<p>PDF parser that lists the PDF XRef structure and writes annotations.
 Lazy initialized. Can be subclassed or set externally.
-Parses the PDF on first access. Might be slow.</p>
+Parses the PDF on first access. Might be slow.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p>
 	</div>		
 	
 	
@@ -1035,7 +1041,8 @@ See &ldquo;Adobe LifeCycle DRM, <a href="http://www.adobe.com/products/livecycle
 	
 	<div class="method-subsection brief-description">
 		<p><a href="../Classes/Page.html">Page</a> labels found in the current PDF.
-Lazy initialized. Can be subclassed or set externally.</p>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p>
 	</div>		
 	
 	
@@ -1138,7 +1145,8 @@ Lazy initialized. Can be subclassed or set externally.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>Outline extraction class for current PDF.
-Lazy initialized. Can be subclassed or set externally.</p>
+Lazy initialized. Can be subclassed or set externally.
+If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p>
 	</div>		
 	
 	
@@ -1643,7 +1651,7 @@ Note: the parameter is to <em>check</em> if the returned documentRef is the same
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Increases the internal reference count
-We need to keep around the <a href="#//api/name/document">document</a> when accessing a CG<a href="../Classes/PDFPage.html">PDFPage</a>. Retaining the page alone is not enough.</p>
+We need to keep around the <a href="#//api/name/document">document</a> when accessing a CGPDF<a href="../Classes/Page.html">Page</a>. Retaining the page alone is not enough.</p>
 	</div>
 	
 	
@@ -1778,7 +1786,7 @@ Will set .<a href="#//api/name/password">password</a> to this <a href="#//api/na
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

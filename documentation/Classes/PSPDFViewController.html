@@ -201,9 +201,9 @@
 	
 	<option value="//api/name/applicationDidEnterBackground:">&nbsp;&nbsp;&nbsp;&nbsp;- applicationDidEnterBackground:</option>
 	
-	<option value="//api/name/createToolbarAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- createToolbarAnimated:</option>
+	<option value="//api/name/calculatedVisiblePageNumbers">&nbsp;&nbsp;&nbsp;&nbsp;- calculatedVisiblePageNumbers</option>
 	
-	<option value="//api/name/handleTouchUpForAnnotationIgnoredByDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- handleTouchUpForAnnotationIgnoredByDelegate:</option>
+	<option value="//api/name/createToolbarAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- createToolbarAnimated:</option>
 	
 	<option value="//api/name/hideControls">&nbsp;&nbsp;&nbsp;&nbsp;- hideControls</option>
 	
@@ -295,9 +295,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
 </ul></li>
 
@@ -469,9 +469,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationDidEnterBackground:">applicationDidEnterBackground:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createToolbarAnimated:">createToolbarAnimated:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/calculatedVisiblePageNumbers">calculatedVisiblePageNumbers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/handleTouchUpForAnnotationIgnoredByDelegate:">handleTouchUpForAnnotationIgnoredByDelegate:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createToolbarAnimated:">createToolbarAnimated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideControls">hideControls</a></span></li>
 	
@@ -856,30 +856,27 @@ Note: has simple support to also accepts an NSString, the bundle path then will 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/margin">&nbsp;&nbsp;margin</a></code>
-		<span class="tooltip"><pre><code>Set margin for document pages. Defaults to UIEdgeInsetsZero.
+		<span class="tooltip"><p>Set margin for <a href="#//api/name/document">document</a> pages. Defaults to UIEdgeInsetsZero.
 Margin is extra space for your (always visible) UI elements.
 Content will be moved accordingly.
-Area outside margin does not receive touch events, or is shown while zooming.
-</code></pre></span>
+Area outside margin does not receive touch events, or is shown while zooming.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/padding">&nbsp;&nbsp;padding</a></code>
-		<span class="tooltip"><pre><code>Padding for document pages. Defaults to CGSizeZero.
-Padding is space that is displayed around the document.
+		<span class="tooltip"><p>Padding for <a href="#//api/name/document">document</a> pages. Defaults to CGSizeZero.
+Padding is space that is displayed around the <a href="#//api/name/document">document</a>.
 (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
-When changing padding; the touch area is still fully active.
-</code></pre></span>
+When changing padding; the touch area is still fully active.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/renderingMode">&nbsp;&nbsp;renderingMode</a></code>
-		<span class="tooltip"><pre><code>This manages how the PDF image cache (thumbnail, full page) is used.
-</code></pre></span>
+		<span class="tooltip"><p>This manages how the PDF image cache (thumbnail, full <a href="#//api/name/page">page</a>) is used.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -941,8 +938,7 @@ Can be useful if you&rsquo;re doing custom drawing on the <a href="../Classes/PS
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/textSelectionEnabled">&nbsp;&nbsp;textSelectionEnabled</a></code>
-		<span class="tooltip"><pre><code>Allows text selection. Defaults to YES.
-</code></pre></span>
+		<span class="tooltip"><p>Allows text selection. Defaults to YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1368,7 +1364,8 @@ Use sender OR rect (both only needed for the popover)</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/visiblePageNumbers">&ndash;&nbsp;visiblePageNumbers</a></code>
-		<span class="tooltip"><p>Return an NSNumber-array of currently visible <a href="#//api/name/page">page</a> numbers.</p></span>
+		<span class="tooltip"><p>Return an NSNumber-array of currently visible <a href="#//api/name/page">page</a> numbers.
+Note that this might return more numbers than actually visible if it&rsquo;s queried during a scroll animation.</p></span>
 	</span>
 	
 	
@@ -1404,21 +1401,6 @@ Use sender OR rect (both only needed for the popover)</p></span>
 						</ul>
 						
 						
-						<a title="Internal Methods" name="task_Internal Methods"></a>
-						<h3 class="subsubtitle task-title">Internal Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/handleTouchUpForAnnotationIgnoredByDelegate:">&ndash;&nbsp;handleTouchUpForAnnotationIgnoredByDelegate:</a></code>
-		<span class="tooltip"><p>Causes the annotations to be handled as the receiver sees fit (for example, link annotations are followed).</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
 						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
 						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
 
@@ -1427,7 +1409,7 @@ Use sender OR rect (both only needed for the popover)</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/overrideClassNames">&nbsp;&nbsp;overrideClassNames</a></code>
 		<span class="tooltip"><p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustom<a href="../Classes/PageView.html">PageView</a> must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
+e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1483,6 +1465,22 @@ The default implementation for this is empty.</p></span>
 		<span class="tooltip"><p>Default saves annotations when app goes to background.
 Is registered on init/deregistered on dealloc.
 Only tries to saves <a href="#//api/name/document">document</a> if view is visible.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Internal Methods" name="task_Internal Methods"></a>
+						<h3 class="subsubtitle task-title">Internal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
+		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
+Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
 	</span>
 	
 	
@@ -2420,11 +2418,10 @@ Note: if modal is set in the link, this property has no effect.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Set margin for document pages. Defaults to UIEdgeInsetsZero.
+		<p>Set margin for <a href="#//api/name/document">document</a> pages. Defaults to UIEdgeInsetsZero.
 Margin is extra space for your (always visible) UI elements.
 Content will be moved accordingly.
-Area outside margin does not receive touch events, or is shown while zooming.
-</code></pre>
+Area outside margin does not receive touch events, or is shown while zooming.</p>
 	</div>		
 	
 	
@@ -2699,7 +2696,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 	
 	<div class="method-subsection brief-description">
 		<p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustom<a href="../Classes/PageView.html">PageView</a> must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
+e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.</p>
 	</div>		
 	
@@ -2734,11 +2731,10 @@ Throws an exception if the overriding class is not a subclass of the overridden 
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Padding for document pages. Defaults to CGSizeZero.
-Padding is space that is displayed around the document.
+		<p>Padding for <a href="#//api/name/document">document</a> pages. Defaults to CGSizeZero.
+Padding is space that is displayed around the <a href="#//api/name/document">document</a>.
 (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
-When changing padding; the touch area is still fully active.
-</code></pre>
+When changing padding; the touch area is still fully active.</p>
 	</div>		
 	
 	
@@ -3409,8 +3405,7 @@ Can not be set to nil.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>This manages how the PDF image cache (thumbnail, full page) is used.
-</code></pre>
+		<p>This manages how the PDF image cache (thumbnail, full <a href="#//api/name/page">page</a>) is used.</p>
 	</div>		
 	
 	
@@ -3425,11 +3420,10 @@ Can not be set to nil.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
-Note: PSPDFPageRenderingModeFullPageBlocking will disable certain page scroll animations.
+		<p>PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
+Note: PSPDFPageRenderingModeFullPageBlocking will disable certain <a href="#//api/name/page">page</a> scroll animations.</p>
 
-Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.
-</code></pre>
+<p>Defaults to PSPDFPageRenderingModeThumbnailsThenFull<a href="../Classes/Page.html">Page</a>.</p>
 	</div>
 	
 	
@@ -3834,8 +3828,7 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Allows text selection. Defaults to YES.
-</code></pre>
+		<p>Allows text selection. Defaults to YES.</p>
 	</div>		
 	
 	
@@ -3850,13 +3843,14 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Note: This implies that the PDF file actually contains text glypths.
-      Sometimes text is represented via embedded images or vectors, in that case we can't select it.
+		<p>Note: This implies that the PDF file actually contains text glypths.</p>
 
-Also disable long press gesture recognizer on PSPDFScrollView if set to NO.
-
-Only available in PSPDFKit Annotate.
+<pre><code>   Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 </code></pre>
+
+<p>Also disable long press gesture recognizer on <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if set to NO.</p>
+
+<p>Only available in PSPDFKit Annotate.</p>
 	</div>
 	
 	
@@ -4231,6 +4225,41 @@ Only tries to saves <a href="#//api/name/document">document</a> if view is visib
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/calculatedVisiblePageNumbers" title="calculatedVisiblePageNumbers"></a>
+	<h3 class="subsubtitle method-title">calculatedVisiblePageNumbers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
+Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)calculatedVisiblePageNumbers</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController+Internal.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/createToolbarAnimated:" title="createToolbarAnimated:"></a>
 	<h3 class="subsubtitle method-title">createToolbarAnimated:</h3>
 	
@@ -4260,40 +4289,6 @@ The toolbar is only displayed, if PSPDFViewController is inside a UINavigationCo
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
 		<code class="declared-in-ref">PSPDFViewController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/handleTouchUpForAnnotationIgnoredByDelegate:" title="handleTouchUpForAnnotationIgnoredByDelegate:"></a>
-	<h3 class="subsubtitle method-title">handleTouchUpForAnnotationIgnoredByDelegate:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Causes the annotations to be handled as the receiver sees fit (for example, link annotations are followed).</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)handleTouchUpForAnnotationIgnoredByDelegate:(PSPDFLinkAnnotationView *)<em>annotation</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFViewController+Internal.h</code><br />
 	</div>				
 	
 	
@@ -5140,7 +5135,8 @@ The default implementation for this is empty.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return an NSNumber-array of currently visible <a href="#//api/name/page">page</a> numbers.</p>
+		<p>Return an NSNumber-array of currently visible <a href="#//api/name/page">page</a> numbers.
+Note that this might return more numbers than actually visible if it&rsquo;s queried during a scroll animation.</p>
 	</div>		
 	
 	
@@ -5248,7 +5244,7 @@ The default implementation for this is empty.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

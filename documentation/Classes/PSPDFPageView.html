@@ -89,7 +89,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/annotationViewForAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationViewForAnnotation:</option>
+	<option value="//api/name/cachedAnnotationViewForAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- cachedAnnotationViewForAnnotation:</option>
 	
 	<option value="//api/name/convertPDFPointToViewPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- convertPDFPointToViewPoint:</option>
 	
@@ -227,7 +227,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationViewForAnnotation:">annotationViewForAnnotation:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cachedAnnotationViewForAnnotation:">cachedAnnotationViewForAnnotation:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/convertPDFPointToViewPoint:">convertPDFPointToViewPoint:</a></span></li>
 	
@@ -361,7 +361,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/prepareForReuse">&ndash;&nbsp;prepareForReuse</a></code>
-		<span class="tooltip"><p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p></span>
+		<span class="tooltip"><p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p></span>
 	</span>
 	
 	
@@ -389,7 +389,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/annotationViewForAnnotation:">&ndash;&nbsp;annotationViewForAnnotation:</a></code>
+		<code><a href="#//api/name/cachedAnnotationViewForAnnotation:">&ndash;&nbsp;cachedAnnotationViewForAnnotation:</a></code>
 		<span class="tooltip"><p>If annotations are already loaded, and the annotation is a view, access it here.
 (Most PDF annotations are actually rendered into the <a href="#//api/name/page">page</a>; except PSPDFLinkAnntotations and all derivates (video, etc) and <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>)</p></span>
 	</span>
@@ -487,7 +487,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/convertViewPointToPDFPoint:">&ndash;&nbsp;convertViewPointToPDFPoint:</a></code>
 		<span class="tooltip"><p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
+pageBounds usually is PSPDFPageView bounds.</p></span>
 	</span>
 	
 	
@@ -495,7 +495,7 @@ pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bound
 	<span class="tooltip">
 		<code><a href="#//api/name/convertPDFPointToViewPoint:">&ndash;&nbsp;convertPDFPointToViewPoint:</a></code>
 		<span class="tooltip"><p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p></span>
+pageBounds usually is PSPDFPageView bounds.</p></span>
 	</span>
 	
 	
@@ -1476,8 +1476,8 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/annotationViewForAnnotation:" title="annotationViewForAnnotation:"></a>
-	<h3 class="subsubtitle method-title">annotationViewForAnnotation:</h3>
+	<a name="//api/name/cachedAnnotationViewForAnnotation:" title="cachedAnnotationViewForAnnotation:"></a>
+	<h3 class="subsubtitle method-title">cachedAnnotationViewForAnnotation:</h3>
 	
 	
 	
@@ -1487,7 +1487,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)annotationViewForAnnotation:(PSPDFAnnotation *)<em>annotation</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)<em>annotation</em></code></div>
 	
 	
 	
@@ -1518,7 +1518,7 @@ this will show the TARGET rect, not the one that&rsquo;s currently animating.</p
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a pdf point to the corresponding view point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
+pageBounds usually is PSPDFPageView bounds.</p>
 	</div>		
 	
 	
@@ -1587,7 +1587,7 @@ pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bound
 	
 	<div class="method-subsection brief-description">
 		<p>Convert a view point to the corresponding pdf point.
-pageBounds usually is PSPDF<a href="../Classes/PageView.html">PageView</a> bounds.</p>
+pageBounds usually is PSPDFPageView bounds.</p>
 	</div>		
 	
 	
@@ -1947,7 +1947,7 @@ To extend this, selectors for UIMenuItem need to be implemented in a subclass.</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Prepares the PSPDF<a href="../Classes/PageView.html">PageView</a> for reuse. Removes all unknown internal UIViews.</p>
+		<p>Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.</p>
 	</div>		
 	
 	
@@ -2379,7 +2379,7 @@ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the ta
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
