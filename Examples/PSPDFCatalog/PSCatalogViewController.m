@@ -110,13 +110,14 @@ const char kPSCAlertViewKey;
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
-        controller.rightBarButtonItems = @[controller.brightnessButtonItem, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = PSIsIpad() ? @[controller.brightnessButtonItem, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a scientific paper" block:^{
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]]];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        // brighteness button is not yet optimized for iPhone
+        controller.rightBarButtonItems = PSIsIpad() ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalRightBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageScrollContinuousTransition;
