@@ -17,8 +17,7 @@
 
 @implementation PSCAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     // print version of the catalog example and PSPDFKit.
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
@@ -34,6 +33,9 @@
 
     // change log level to be more verbose.
     kPSPDFLogLevel = PSPDFLogLevelInfo;
+
+    // Enable if you're having memory issues.
+    //kPSPDFLowMemoryMode = YES;
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 #if 0
