@@ -55,6 +55,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
 };
 extern PSPDFAnimate kPSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices
 
+/// Enable to use less memory. Some operations might need more time to complete, and caching will be less efficient. Defaults to NO.
+/// This might be useful if your own app needs a lot of memory or you're seeing memory related crashes with complex PDFs.
+extern BOOL kPSPDFLowMemoryMode;
+
 /// Default time to animate pdf views. Defaults to 0.1. Only animates from thumbnail to sharp page, and only on modern devices.
 extern CGFloat kPSPDFAnimationDuration;
 
@@ -226,8 +230,8 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #endif
 
 // micro optimizations
-#define likely(x)      __builtin_expect(!!(x), 1)
-#define unlikely(x)    __builtin_expect(!!(x), 0)
+#define likely(x)   __builtin_expect(!!(x), 1)
+#define unlikely(x) __builtin_expect(!!(x), 0)
 
 // Starting with iOS6, dispatch queue's are objects and managed via ARC.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
