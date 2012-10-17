@@ -24,7 +24,9 @@
 
 // Dimming view that is added to the main UIWindow.
 @interface PSPDFDimmingView : UIView
+
 @property (nonatomic, assign) CGFloat additionalBrightnessDimmingFactor;
+
 @end
 
 @interface PSPDFBrightnessViewController (SubclassingHooks)

@@ -134,11 +134,13 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
+/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
 @property (nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
 /// PDF parser that lists the PDF XRef structure and writes annotations.
 /// Lazy initialized. Can be subclassed or set externally.
 /// Parses the PDF on first access. Might be slow.
+/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
 @property (nonatomic, strong) PSPDFDocumentParser *documentParser;
 
 /// Determine if lazy-loaded documentParser is already available.
@@ -146,10 +148,12 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
+/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
 @property (nonatomic, strong) PSPDFAnnotationParser *annotationParser;
 
 /// Page labels found in the current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
+/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
 @property (nonatomic, strong) PSPDFLabelParser *labelParser;
 
 @end

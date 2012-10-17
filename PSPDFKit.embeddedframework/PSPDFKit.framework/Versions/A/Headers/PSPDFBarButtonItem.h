@@ -36,6 +36,8 @@
 /// Implement customView, image or systemItem in your subclass (via overriding the method)
 - (UIView *)customView;
 - (UIImage *)image;
+
+// Defaults to (UIBarButtonSystemItem)-1. If you want to e.g. override the searchBarButtonItem that uses a system item, you need to override the PSPDFSearchBarButtonItem class, register it at overrideClassNames, return (UIBarButtonSystemItem)-1 here and implement image/landscapeImagePhone.
 - (UIBarButtonSystemItem)systemItem;
 
 /// Optional. Used if image is set and iOS >= 5.
