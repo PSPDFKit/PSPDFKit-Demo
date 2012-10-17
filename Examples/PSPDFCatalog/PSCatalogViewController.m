@@ -124,6 +124,7 @@ const char kPSCAlertViewKey;
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
+        controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
     }]];
 
