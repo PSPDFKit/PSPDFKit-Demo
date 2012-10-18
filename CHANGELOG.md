@@ -1,5 +1,12 @@
 # Changelog
 
+__v2.3.4 - 18/October/2012__
+
+Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0) If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
+The binary variant is already links with SDK 6.0 and will not link with 5.1 anymore. (It still works down to iOS 4.3 though)
+
+*  Fixes a rare race condition that could lead to a deadlock on initializing PSPDFDocumentProvider and PSPDFAnnotationParser.
+
 __v2.3.3 - 18/October/2012__
 
 Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0) If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
