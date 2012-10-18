@@ -68,7 +68,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
-        _settings[StringSEL(isPositionViewEnabled)] = @(YES);
+        _settings[StringSEL(isPageLabelEnabled)] = @(YES);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isTextSelectionEnabled)] = @(YES);
         _settings[StringSEL(isSmartZoomEnabled)] = @(YES);
@@ -117,7 +117,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
         @[_(@"PSPDFPageRenderingModeThumbailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
-        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"positionViewEnabled")],
+        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"pageLabelEnabled")],
         @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"brightnessButtonItem"), _(@"viewModeButtonItem")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheThumbnails"), _(@"PSPDFCacheThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
@@ -251,7 +251,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 2: _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = value; break;
                 case 3: _settings[StringSEL(isFitToWidthEnabled)] = value; break;
                 case 5: _settings[StringSEL(isScrobbleBarEnabled)] = value; break;
-                case 6: _settings[StringSEL(isPositionViewEnabled)] = value; break;
+                case 6: _settings[StringSEL(isPageLabelEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
@@ -348,7 +348,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 3: cellSwitch.on = [_settings[StringSEL(isFitToWidthEnabled)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[StringSEL(isScrollOnTapPageEndEnabled)] boolValue]; break;
                 case 5: cellSwitch.on = [_settings[StringSEL(isScrobbleBarEnabled)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[StringSEL(isPositionViewEnabled)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[StringSEL(isPageLabelEnabled)] boolValue]; break;
                 default: break;
             }break;
         }break;
