@@ -58,7 +58,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
 /// Renders image of a page for specified size.
-- (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size pdfPage:(CGPDFPageRef)pdfPage;
+- (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size PDFPage:(CGPDFPageRef)pdfPage;
 
 // TODO was used in tiling view
 /// save native rendered image, then call delegate.
