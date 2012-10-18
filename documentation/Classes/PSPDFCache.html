@@ -98,7 +98,7 @@
 	
 	<option value="//api/name/removeDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- removeDelegate:</option>
 	
-	<option value="//api/name/renderImageForDocument:page:size:pdfPage:">&nbsp;&nbsp;&nbsp;&nbsp;- renderImageForDocument:page:size:pdfPage:</option>
+	<option value="//api/name/renderImageForDocument:page:size:PDFPage:">&nbsp;&nbsp;&nbsp;&nbsp;- renderImageForDocument:page:size:PDFPage:</option>
 	
 	<option value="//api/name/resumeCachingForService:">&nbsp;&nbsp;&nbsp;&nbsp;- resumeCachingForService:</option>
 	
@@ -190,7 +190,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeDelegate:">removeDelegate:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderImageForDocument:page:size:pdfPage:">renderImageForDocument:page:size:pdfPage:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderImageForDocument:page:size:PDFPage:">renderImageForDocument:page:size:PDFPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resumeCachingForService:">resumeCachingForService:</a></span></li>
 	
@@ -293,7 +293,7 @@ additional thumbnail cache control helper.</p>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderImageForDocument:page:size:pdfPage:">&ndash;&nbsp;renderImageForDocument:page:size:pdfPage:</a></code>
+		<code><a href="#//api/name/renderImageForDocument:page:size:PDFPage:">&ndash;&nbsp;renderImageForDocument:page:size:PDFPage:</a></code>
 		<span class="tooltip"><p>Renders image of a page for specified size.</p></span>
 	</span>
 	
@@ -301,7 +301,7 @@ additional thumbnail cache control helper.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheDocument:startAtPage:size:">&ndash;&nbsp;cacheDocument:startAtPage:size:</a></code>
-		<span class="tooltip"><p>Start document caching (update often to improve cache hits). <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Start document caching (update often to improve cache hits). Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -453,14 +453,14 @@ Defaults to CGSizeMake(50, 100).</p></span>
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/cacheImage:document:page:size:">&ndash;&nbsp;cacheImage:document:page:size:</a></code>
-		<span class="tooltip"><p>Save image in an NSCache object for specified identifier. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Save image in an NSCache object for specified identifier. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/imageForDocument:page:size:">&ndash;&nbsp;imageForDocument:page:size:</a></code>
-		<span class="tooltip"><p>Load image for a certain document page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Load image for a certain document page. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -889,7 +889,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Start document caching (update often to improve cache hits). <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Start document caching (update often to improve cache hits). Page starts at 0.</p>
 	</div>		
 	
 	
@@ -923,7 +923,7 @@ If you have very text-like pages, you might want to set this to NO.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Save image in an NSCache object for specified identifier. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Save image in an NSCache object for specified identifier. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -1138,7 +1138,7 @@ which would in turn trigger the OS’ cache cleaning sooner.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Load image for a certain document page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Load image for a certain document page. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -1342,8 +1342,8 @@ Will also delete all metadata in document.<a href="#//api/name/cacheDirectory">c
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderImageForDocument:page:size:pdfPage:" title="renderImageForDocument:page:size:pdfPage:"></a>
-	<h3 class="subsubtitle method-title">renderImageForDocument:page:size:pdfPage:</h3>
+	<a name="//api/name/renderImageForDocument:page:size:PDFPage:" title="renderImageForDocument:page:size:PDFPage:"></a>
+	<h3 class="subsubtitle method-title">renderImageForDocument:page:size:PDFPage:</h3>
 	
 	
 	
@@ -1352,7 +1352,7 @@ Will also delete all metadata in document.<a href="#//api/name/cacheDirectory">c
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIImage *)renderImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em> pdfPage:(CGPDFPageRef)<em>pdfPage</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (UIImage *)renderImageForDocument:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em> size:(PSPDFSize)<em>size</em> PDFPage:(CGPDFPageRef)<em>pdfPage</em></code></div>
 	
 	
 	

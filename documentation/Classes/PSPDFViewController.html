@@ -605,7 +605,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p></spa
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -613,7 +613,7 @@ e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in doub
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the PDF <a href="#//api/name/document">document</a>, starting at 0.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -621,21 +621,21 @@ This represents the pages in the PDF <a href="#//api/name/document">document</a>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setPage:animated:">&ndash;&nbsp;setPage:animated:</a></code>
-		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
+		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPreviousPageAnimated:">&ndash;&nbsp;scrollToPreviousPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p></span>
+		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p></span>
 	</span>
 	
 	
@@ -900,7 +900,7 @@ NO will perform a generic zoom into the tap area. Defauts to YES.</p></span>
 		<code><a href="#//api/name/viewLockEnabled">&nbsp;&nbsp;viewLockEnabled</a></code>
 		<span class="tooltip"><p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
+This also blocks programatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1203,7 +1203,7 @@ Usually you want this, unless your <a href="#//api/name/document">document</a> i
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagePadding">&nbsp;&nbsp;pagePadding</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
+		<span class="tooltip"><p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1342,7 +1342,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isRightPageInDoublePageMode:">&ndash;&nbsp;isRightPageInDoublePageMode:</a></code>
-		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -2768,7 +2768,7 @@ When changing padding; the touch area is still fully active.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current page displayed, not landscape corrected. To change page, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current page displayed, not landscape corrected. To change page, use scrollToPage.
 e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double page mode.</p>
 	</div>		
 	
@@ -2875,7 +2875,7 @@ Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
+		<p>Page <a href="#//api/name/padding">padding</a> width between single/double pages. Defaults to 20.</p>
 	</div>		
 	
 	
@@ -3196,7 +3196,7 @@ Defaults to YES. If NO, an attempt to display the <a href="#//api/name/document"
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollTo<a href="../Classes/Page.html">Page</a>.
+		<p>Current <a href="#//api/name/page">page</a> displayed, landscape corrected. To change <a href="#//api/name/page">page</a>, use scrollToPage.
 This represents the pages in the PDF <a href="#//api/name/document">document</a>, starting at 0.</p>
 	</div>		
 	
@@ -3423,7 +3423,7 @@ Can not be set to nil.</p>
 		<p>PSPDFPageRenderingModeFullPageBlocking is a great option for PSPDFPageCurlTransition.
 Note: PSPDFPageRenderingModeFullPageBlocking will disable certain <a href="#//api/name/page">page</a> scroll animations.</p>
 
-<p>Defaults to PSPDFPageRenderingModeThumbnailsThenFull<a href="../Classes/Page.html">Page</a>.</p>
+<p>Defaults to PSPDFPageRenderingModeThumbnailsThenFullPage.</p>
 	</div>
 	
 	
@@ -4014,7 +4014,7 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	<div class="method-subsection brief-description">
 		<p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollTo<a href="../Classes/Page.html">Page</a>.
+This also blocks programatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p>
 	</div>		
 	
@@ -4507,7 +4507,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Checks if the current <a href="#//api/name/page">page</a> is on the right side, when in double <a href="#//api/name/page">page</a> mode. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -4759,7 +4759,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p>
+		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -4793,7 +4793,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dual<a href="../Classes/Page.html">Page</a> mode.</p>
+		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -4861,7 +4861,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Control currently displayed <a href="#//api/name/page">page</a>. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Control currently displayed <a href="#//api/name/page">page</a>. Page starts at 0.</p>
 	</div>		
 	
 	

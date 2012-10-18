@@ -165,9 +165,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Shadow settings">Shadow settings</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFAnnotationMenu Methods">PSPDFAnnotationMenu Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
 	
 </ul></li>
 
@@ -561,7 +561,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p></span>
+		<span class="tooltip"><p>Page that is displayed. Readonly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -582,7 +582,7 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rightPage">&nbsp;&nbsp;rightPage</a></code>
-		<span class="tooltip"><p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
+		<span class="tooltip"><p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -619,60 +619,6 @@ If we use pageCurl mode, we have a global scrollView which can be accessed with 
 	<span class="tooltip">
 		<code><a href="#//api/name/updateShadowBlock">&nbsp;&nbsp;updateShadowBlock</a></code>
 		<span class="tooltip"><p>Set block that is executed within updateShadow when <a href="#//api/name/shadowEnabled">isShadowEnabled</a> = YES.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li>
-						</ul>
-						
-						
-						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
-						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loadPageAnnotation:animated:">&ndash;&nbsp;loadPageAnnotation:animated:</a></code>
-		<span class="tooltip"><pre><code>In PSPDFKit, annotations are managed in two ways:
-</code></pre></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loadPageAnnotationsAnimated:">&ndash;&nbsp;loadPageAnnotationsAnimated:</a></code>
-		<span class="tooltip"><p>Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
-Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no effect if called multiple times.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/tappableAnnotationsAtPoint:">&ndash;&nbsp;tappableAnnotationsAtPoint:</a></code>
-		<span class="tooltip"><p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/singleTappedAtViewPoint:">&ndash;&nbsp;singleTappedAtViewPoint:</a></code>
-		<span class="tooltip"><p>Can be used for manual tap forwarding.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/renderOptionsDictWithZoomScale:">&ndash;&nbsp;renderOptionsDictWithZoomScale:</a></code>
-		<span class="tooltip"><p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
-One way to ues this would be to customize what annotations types will be rendered with the pdf.
-See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
-		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -734,6 +680,60 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 		<span class="tooltip"><p>Shows a popover/modal controller to edit a <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadPageAnnotation:animated:">&ndash;&nbsp;loadPageAnnotation:animated:</a></code>
+		<span class="tooltip"><pre><code>In PSPDFKit, annotations are managed in two ways:
+</code></pre></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loadPageAnnotationsAnimated:">&ndash;&nbsp;loadPageAnnotationsAnimated:</a></code>
+		<span class="tooltip"><p>Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
+Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no effect if called multiple times.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tappableAnnotationsAtPoint:">&ndash;&nbsp;tappableAnnotationsAtPoint:</a></code>
+		<span class="tooltip"><p>Returns annotations that we could tap on. (checks against editableAnnotationTypes)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/singleTappedAtViewPoint:">&ndash;&nbsp;singleTappedAtViewPoint:</a></code>
+		<span class="tooltip"><p>Can be used for manual tap forwarding.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderOptionsDictWithZoomScale:">&ndash;&nbsp;renderOptionsDictWithZoomScale:</a></code>
+		<span class="tooltip"><p>Render options that are used for the live<a href="#//api/name/page">page</a> <a href="#//api/name/rendering">rendering</a>. (not for the cache)
+One way to ues this would be to customize what annotations types will be rendered with the pdf.
+See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list of options.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/suspendUpdate">&nbsp;&nbsp;suspendUpdate</a></code>
+		<span class="tooltip"><p>Temporarily suspend <a href="#//api/name/rendering">rendering</a> updates to the <a href="#//api/name/renderView">renderView</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -857,7 +857,7 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> that is displayed. Readonly.</p>
+		<p>Page that is displayed. Readonly.</p>
 	</div>		
 	
 	
@@ -1164,7 +1164,7 @@ This is set to a good default already. You shound&rsquo;t need to touch this.</p
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return YES if the pdf<a href="../Classes/Page.html">Page</a> is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
+		<p>Return YES if the pdfPage is displayed in a double <a href="#//api/name/page">page</a> mode setup on the right side.</p>
 	</div>		
 	
 	

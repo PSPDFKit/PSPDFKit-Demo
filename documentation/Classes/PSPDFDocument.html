@@ -534,7 +534,7 @@ Note: You might need to manually set a <a href="#//api/name/UID">UID</a> to enab
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFDocumentWithBaseURL:fileTemplate:startPage:endPage:">+&nbsp;PDFDocumentWithBaseURL:fileTemplate:startPage:endPage:</a></code>
-		<span class="tooltip"><p>If you have <a href="#//api/name/files">files</a> that have the pattern XXX<em><a href="../Classes/Page.html">Page</a></em>0001 &ndash; XXX<em><a href="../Classes/Page.html">Page</a></em>0200 use this initializer.
+		<span class="tooltip"><p>If you have <a href="#//api/name/files">files</a> that have the pattern XXX_Page_0001 &ndash; XXX_Page_0200 use this initializer.
 fileTemplate needs to have exactly one &lsquo;%d&rsquo; marker where the page should be.
 For leading zeros, use the default printf syntax. (%04d = 0001)</p></span>
 	</span>
@@ -566,8 +566,8 @@ Adding the same file multiple times is allowed.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pathForPage:">&ndash;&nbsp;pathForPage:</a></code>
-		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
-Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p></span>
+		<span class="tooltip"><p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p></span>
 	</span>
 	
 	
@@ -792,14 +792,14 @@ Might need file operations to parse the document (slow)</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageNumberForPage:">&ndash;&nbsp;pageNumberForPage:</a></code>
 		<span class="tooltip"><p>Return PDF page number (PDF pages start at 1).
-This may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+This may be different if a collection of pdfs is used a one big document. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/compensatedPageForPage:">&ndash;&nbsp;compensatedPageForPage:</a></code>
-		<span class="tooltip"><p>Equal to pageNumberFor<a href="../Classes/Page.html">Page</a>, but returns zero-based compensated page.
+		<span class="tooltip"><p>Equal to pageNumberForPage, but returns zero-based compensated page.
 (Essentially pageNumberForPage-1)</p></span>
 	</span>
 	
@@ -814,14 +814,14 @@ This may be different if a collection of pdfs is used a one big document. <a hre
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
@@ -836,7 +836,7 @@ You can override this if you need to manually change the rotation value of a pag
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rectBoxForPage:">&ndash;&nbsp;rectBoxForPage:</a></code>
-		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<span class="tooltip"><p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p></span>
 	</span>
 	
@@ -844,7 +844,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotationForPage:">&ndash;&nbsp;rotationForPage:</a></code>
-		<span class="tooltip"><p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p></span>
+		<span class="tooltip"><p>Rotation for specified page. cached. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -1084,7 +1084,7 @@ Can be customized with using <a href="#//api/name/overrideClassNames">overrideCl
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageLabelForPage:substituteWithPlainLabel:">&ndash;&nbsp;pageLabelForPage:substituteWithPlainLabel:</a></code>
-		<span class="tooltip"><p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+		<span class="tooltip"><p>Page labels (NSString) for the current document.
 Might be nil if PageLabels isn&rsquo;t set in the PDF.
 If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p></span>
 	</span>
@@ -1203,7 +1203,7 @@ Will use kPSPDFBackgroundFillColor if set in <a href="#//api/name/renderOptions"
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/backgroundColor">&nbsp;&nbsp;backgroundColor</a></code>
-		<span class="tooltip"><p>Default background color for pages. Can be overridden by subclassing backgroundColorFor<a href="../Classes/Page.html">Page</a>.
+		<span class="tooltip"><p>Default background color for pages. Can be overridden by subclassing backgroundColorForPage.
 Defaults to white.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1478,7 +1478,7 @@ Defaults to PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Default background color for pages. Can be overridden by subclassing backgroundColorFor<a href="../Classes/Page.html">Page</a>.
+		<p>Default background color for pages. Can be overridden by subclassing backgroundColorForPage.
 Defaults to white.</p>
 	</div>		
 	
@@ -2516,7 +2516,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>If you have <a href="#//api/name/files">files</a> that have the pattern XXX<em><a href="../Classes/Page.html">Page</a></em>0001 &ndash; XXX<em><a href="../Classes/Page.html">Page</a></em>0200 use this initializer.
+		<p>If you have <a href="#//api/name/files">files</a> that have the pattern XXX_Page_0001 &ndash; XXX_Page_0200 use this initializer.
 fileTemplate needs to have exactly one &lsquo;%d&rsquo; marker where the page should be.
 For leading zeros, use the default printf syntax. (%04d = 0001)</p>
 	</div>		
@@ -2861,7 +2861,7 @@ This is a shortcut method that already compensates the page, replacing this code
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>NSUInteger compensatedPage = [document compensatedPageForPage:self.page];
 <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> <em><a href="#//api/name/annotationParser">annotationParser</a> = [document annotationParserForPage:self.page];
-NSArray </em>annotations = [<a href="#//api/name/annotationParser">annotationParser</a> annotationsFor<a href="../Classes/Page.html">Page</a>:compensated<a href="../Classes/Page.html">Page</a> type:PSPDFAnnotationTypeAll];</p>
+NSArray </em>annotations = [<a href="#//api/name/annotationParser">annotationParser</a> annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];</p>
 	</div>
 	
 	
@@ -3007,7 +3007,7 @@ Returns nil in the default implementation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Replaces thumbnailPathFor<a href="../Classes/Page.html">Page</a> from PSPDFKit v1.</p>
+		<p>Replaces thumbnailPathForPage from PSPDFKit v1.</p>
 
 <p>For example, you can use the fully pre-rendered images from the iPhone Simulator (or iPad) and copy them into your bundle.
 Then, you write a method that returns the file URL for those <a href="#//api/name/files">files</a>.</p>
@@ -3076,7 +3076,7 @@ This is called implicitely if you change the <a href="#//api/name/files">files</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Equal to pageNumberFor<a href="../Classes/Page.html">Page</a>, but returns zero-based compensated page.
+		<p>Equal to pageNumberForPage, but returns zero-based compensated page.
 (Essentially pageNumberForPage-1)</p>
 	</div>		
 	
@@ -3675,7 +3675,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3709,7 +3709,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
 You can override this if you need to manually change the rotation value of a page.</p>
 	</div>		
 	
@@ -3744,7 +3744,7 @@ You can override this if you need to manually change the rotation value of a pag
 	
 	
 	<div class="method-subsection brief-description">
-		<p><a href="../Classes/Page.html">Page</a> labels (NSString) for the current document.
+		<p>Page labels (NSString) for the current document.
 Might be nil if PageLabels isn&rsquo;t set in the PDF.
 If substituteWithPlainLabel is set to YES then this always returns a <a href="#//api/name/valid">valid</a> string.</p>
 	</div>		
@@ -3781,7 +3781,7 @@ If substituteWithPlainLabel is set to YES then this always returns a <a href="#/
 	
 	<div class="method-subsection brief-description">
 		<p>Return PDF page number (PDF pages start at 1).
-This may be different if a collection of pdfs is used a one big document. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+This may be different if a collection of pdfs is used a one big document. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -3850,8 +3850,8 @@ Can be used to calculate from the document provider page to the PS<a href="#//ap
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns path for a single page (in case pages are split up). <a href="../Classes/Page.html">Page</a> starts at 0.
-Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileIndex internally. Override those instead of pathFor<a href="../Classes/Page.html">Page</a>.</p>
+		<p>Returns path for a single page (in case pages are split up). Page starts at 0.
+Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.</p>
 	</div>		
 	
 	
@@ -3885,7 +3885,7 @@ Note: uses fileIndexFor<a href="../Classes/Page.html">Page</a> and URLForFileInd
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Aspect ratio is automatically cached and analyzed per page. <a href="../Classes/Page.html">Page</a> starts at 0.
+		<p>Aspect ratio is automatically cached and analyzed per page. Page starts at 0.
 maybe needs a pdf lock if not already cached.</p>
 	</div>		
 	
@@ -4018,7 +4018,7 @@ maybe needs a pdf lock if not already cached.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Rotation for specified page. cached. <a href="../Classes/Page.html">Page</a> starts at 0.</p>
+		<p>Rotation for specified page. cached. Page starts at 0.</p>
 	</div>		
 	
 	
