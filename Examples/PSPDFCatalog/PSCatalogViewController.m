@@ -27,6 +27,7 @@
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
+#import "PSCCustomLinkAnnotationView.h"
 #import <objc/runtime.h>
 
 #if !__has_feature(objc_arc)
@@ -520,6 +521,14 @@ const char kPSCAlertViewKey;
         controller.rightBarButtonItems = @[controller.bookmarkButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change link background color to red" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.overrideClassNames = @{(id)[PSPDFLinkAnnotationView class] : [PSCCustomLinkAnnotationView class]};
+        return controller;
+    }]];
+
 
     // Vertical always-visible annotation bar
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
