@@ -73,7 +73,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Morning Call.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -100,18 +100,28 @@ const char kPSCAlertViewKey;
         return documentSelector;
     }]];
 
-    PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-
     // pre-cache whole document
+    PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+    hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfear with other examples
     [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
+        hackerMagDoc.title = @"HACKER MONTHLY Issue 12";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         controller.pageTransition = PSPDFPageCurlTransition;
+        controller.pageMode = PSPDFPageModeAutomatic;
+        
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
-        controller.rightBarButtonItems = PSIsIpad() ? @[controller.brightnessButtonItem, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.bookmarkButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+
+        // setup toolbar
+        controller.rightBarButtonItems = PSIsIpad() ? @[controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
+
+        // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
+        controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
+        controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+        controller.pageLabel.showThumbnailGridButton = YES;
         return controller;
     }]];
 
@@ -354,7 +364,7 @@ const char kPSCAlertViewKey;
         [websitePrompt addButtonWithTitle:@"Convert" block:^{
             // get data
             NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
-            NSURL *outputURL = PSPDFTempFileURL(@"generated");
+            NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
 
             // create pdf (blocking)
             [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{kPSPDFProcessorNumberOfPages : @(1), kPSPDFProcessorDocumentTitle : @"Generated PDF"}];
@@ -381,7 +391,7 @@ const char kPSCAlertViewKey;
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
             if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
-            NSURL *outputURL = PSPDFTempFileURL(@"converted");
+            NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
             //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
 
             // start the conversion
