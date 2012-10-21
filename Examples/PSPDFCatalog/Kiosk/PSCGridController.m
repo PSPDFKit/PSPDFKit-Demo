@@ -155,8 +155,22 @@
     _searchBar.backgroundColor = [UIColor clearColor];
     _searchBar.alpha = 0.5;
     _searchBar.delegate = self;
+    
     // doesn't matter much if this fails, but the background doesn't look great within our grid.
     [PSPDFGetViewInsideView(_searchBar, @"UISearchBarBack") removeFromSuperview];
+
+    // Set the return key and keyboard appearance of the search bar.
+    // Since we do live-filtering, the search bar should just dismiss the keyboard.
+    for (UITextField *searchBarTextField in [_searchBar subviews]) {
+        if ([searchBarTextField conformsToProtocol:@protocol(UITextInputTraits)]) {
+            @try {
+                searchBarTextField.enablesReturnKeyAutomatically = NO;
+                searchBarTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+            }
+            @catch (NSException * e) {} break;
+        }
+    }
+    
     self.gridView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
     [self.gridView addSubview:self.searchBar];
 }
@@ -448,8 +462,8 @@
     }
 
     NSString *searchString = _searchBar.text;
-    if ([searchString length]) {
-        NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchString, searchString];
+    if ([searchString length]) { // title CONTAINS[cd] '%@' || 
+        NSString *predicate = [NSString stringWithFormat:@"fileURL.path CONTAINS[cd] '%@'", searchString];
         _filteredData = [_filteredData filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
     }else {
         _filteredData = [_filteredData copy];
