@@ -182,7 +182,7 @@ const char kPSCAlertViewKey;
         NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
@@ -204,7 +204,7 @@ const char kPSCAlertViewKey;
 
         // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
@@ -224,7 +224,7 @@ const char kPSCAlertViewKey;
 
         // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
