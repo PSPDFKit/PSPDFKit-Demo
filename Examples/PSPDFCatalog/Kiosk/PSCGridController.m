@@ -376,8 +376,8 @@
 
         // if we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;
-        if (pdfController.realPage != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:pdfController.realPage size:PSPDFSizeNative];
+        if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
+            UIImage *targetPageImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:pdfController.page size:PSPDFSizeNative];
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;

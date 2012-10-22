@@ -233,7 +233,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         }
     }
     PSPDF_IF_IOS5_OR_GREATER([additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];)
-    self.additionalRightBarButtonItems = additionalRightBarButtonItems;
+    self.additionalBarButtonItems = additionalRightBarButtonItems;
 
     // reload scrollview and restore viewState
     [self reloadData];
