@@ -130,7 +130,7 @@ const char kPSCAlertViewKey;
         // brighteness button is not yet optimized for iPhone
         controller.rightBarButtonItems = PSIsIpad() ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
-        controller.additionalRightBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
+        controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageScrollContinuousTransition;
         controller.pageScrolling = PSPDFScrollDirectionVertical;
         controller.fitToWidthEnabled = YES;
@@ -182,7 +182,8 @@ const char kPSCAlertViewKey;
         NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
 
@@ -203,7 +204,8 @@ const char kPSCAlertViewKey;
 
         // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
 
@@ -222,7 +224,8 @@ const char kPSCAlertViewKey;
 
         // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
 
@@ -443,7 +446,7 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
-        pdfController.additionalRightBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
+        pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
         pdfController.tintColor = [UIColor orangeColor];
         return pdfController;
     }]];
