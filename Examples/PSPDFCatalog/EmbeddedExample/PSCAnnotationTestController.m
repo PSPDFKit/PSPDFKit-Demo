@@ -35,7 +35,7 @@
         }else {
             // not enough space on the iPhone; move some features to additonalRightBarButtonItems
             self.rightBarButtonItems = @[playButtonItem, self.bookmarkButtonItem, self.viewModeButtonItem];
-            self.additionalRightBarButtonItems = @[selectionZoomButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem];
+            self.additionalBarButtonItems = @[selectionZoomButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem];
         }
 
         // example how to add custom image annotation

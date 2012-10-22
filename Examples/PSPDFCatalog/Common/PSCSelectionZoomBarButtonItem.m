@@ -68,7 +68,7 @@
         self.pdfController.rotationLockEnabled = YES;
         self.pdfController.textSelectionEnabled = NO;
 
-        PSPDFPageView *pageView = [self.pdfController pageViewForPage:self.pdfController.realPage];
+        PSPDFPageView *pageView = [self.pdfController pageViewForPage:self.pdfController.page];
 
         _selectionView = [[PSPDFSelectionView alloc] initWithFrame:pageView.bounds delegate:self];
         [pageView addSubview:_selectionView];
