@@ -116,34 +116,8 @@
                 // example how to use transitionFromViewController. However, transitionWithView looks far better.
                 [self transitionFromViewController:_testAnimationViewController toViewController:self.pdfController duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:NULL completion:^(BOOL finished) {
                     [self.pdfController didMoveToParentViewController:self];
+                    [_testAnimationViewController willMoveToParentViewController:nil];
                     [_testAnimationViewController removeFromParentViewController];
-
-                    // frame testing
-/*
-                    double delayInSeconds = 2.0;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        self.pdfController.view.frame = CGRectMake(0, 0, 200, 200);
-                    });
-
-                    {
-                    double delayInSeconds = 5.0;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        self.pdfController.view.frame = CGRectMake(200, 200, 800, 800);
-                    });
-                    }
-*/
-
-                    // animation testing
-/*
-                    [UIView animateWithDuration:5 delay:0 options: UIViewAnimationOptionAllowUserInteraction| UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
-                        CGRect newFrame = self.pdfController.view.frame;
-                        newFrame.size.width += 200;
-                        newFrame.size.height -= 100;
-                        self.pdfController.view.frame = newFrame;
-                    } completion:NULL];
-*/
                 }];
             }else {
                 [UIView transitionWithView:self.pdfController.view duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:^{
