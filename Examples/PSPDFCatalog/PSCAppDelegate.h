@@ -6,8 +6,13 @@
 //
 
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.4+ with LLVM 4 and above)
+#error This project must be compiled with ARC (Xcode 4.5+ with LLVM 4 and above)
 #endif
+
+#define kDevelopersGuideFileName @"DevelopersGuide.pdf"
+#define kPaperExampleFileName @"amazon-dynamo-sosp2007.pdf"
+#define kPSPDFCatalog @"PSPDFKit.pdf"
+#define kHackerMagazineExample @"hackermonthly12.pdf"
 
 @interface PSCAppDelegate : UIResponder <UIApplicationDelegate>
 

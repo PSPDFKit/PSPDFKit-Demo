@@ -65,7 +65,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(isFitToWidthEnabled)] = @(!PSIsIpad());
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
-        _settings[StringSEL(pageScrolling)] = @(PSPDFScrollDirectionHorizontal);
+        _settings[StringSEL(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
         _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
         _settings[StringSEL(isPageLabelEnabled)] = @(YES);
@@ -122,7 +122,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheThumbnails"), _(@"PSPDFCacheThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
-        _sectionTitle = @[@"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (pageScrolling)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionTitle = @[@"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
         _sectionFooter = @[@"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
@@ -325,7 +325,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
-            PSPDFScrollDirection scrollDirection = [_settings[StringSEL(pageScrolling)] integerValue];
+            PSPDFScrollDirection scrollDirection = [_settings[StringSEL(scrollDirection)] integerValue];
             cell.accessoryType = (indexPath.row == scrollDirection) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageModeSettings: {
@@ -418,7 +418,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
             }
         }break;
-        case PSPDFScrollDirectionSettings: _settings[StringSEL(pageScrolling)] = @(indexPath.row); break;
+        case PSPDFScrollDirectionSettings: _settings[StringSEL(scrollDirection)] = @(indexPath.row); break;
         case PSPDFPageModeSettings: _settings[StringSEL(pageMode)] = @(indexPath.row); break;
         case PSPDFPageRenderingSettings: _settings[StringSEL(renderingMode)] = @(indexPath.row); break;
         case PSPDFCoverSettings: _settings[StringSEL(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
