@@ -28,6 +28,8 @@
 #import "PSCPlayButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
 #import "PSCCustomLinkAnnotationView.h"
+#import "PSCChildViewController.h"
+#import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
 #if !__has_feature(objc_arc)
@@ -132,7 +134,7 @@ const char kPSCAlertViewKey;
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageScrollContinuousTransition;
-        controller.pageScrolling = PSPDFScrollDirectionVertical;
+        controller.scrollDirection = PSPDFScrollDirectionVertical;
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
@@ -433,6 +435,15 @@ const char kPSCAlertViewKey;
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Using a NIB" block:^{
         return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
+    }]];
+
+    // one way to speed up PSPDFViewController display is calling fillCache on the document.
+    PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        [childDocument fillCache];
+    });
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
+        return [[PSCChildViewController alloc] initWithDocument:childDocument];
     }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{

@@ -26,6 +26,7 @@
 		78525B3115CF295E00854F49 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2B15CF295E00854F49 /* VERSION */; };
 		786B5FCD1625AB73009CE5F7 /* PSCFullTextSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
+		788C5F8716373DE400854607 /* PSCChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788C5F8616373DE400854607 /* PSCChildViewController.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
 		78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */; };
@@ -199,6 +200,8 @@
 		786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFullTextSearchOperation.m; sourceTree = "<group>"; };
 		78753587161F740300119B8E /* PSCAutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAutoScrollViewController.h; sourceTree = "<group>"; };
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
+		788C5F8516373DE400854607 /* PSCChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCChildViewController.h; sourceTree = "<group>"; };
+		788C5F8616373DE400854607 /* PSCChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCChildViewController.m; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
 		78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTabbedExampleViewController.m; sourceTree = "<group>"; };
 		78A24A1715CFDAAF00328F4F /* PSCStoryboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardTableViewController.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 				78A24A3D15CFDAAF00328F4F /* PSCSplitPDFViewController.m */,
 				78A24A3E15CFDAAF00328F4F /* PSCustomToolbarController.h */,
 				78A24A3F15CFDAAF00328F4F /* PSCustomToolbarController.m */,
+				788C5F8516373DE400854607 /* PSCChildViewController.h */,
+				788C5F8616373DE400854607 /* PSCChildViewController.m */,
 			);
 			path = EmbeddedExample;
 			sourceTree = "<group>";
@@ -964,6 +969,7 @@
 				786B5FCD1625AB73009CE5F7 /* PSCFullTextSearchOperation.m in Sources */,
 				78E6AAE2162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m in Sources */,
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
+				788C5F8716373DE400854607 /* PSCChildViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
