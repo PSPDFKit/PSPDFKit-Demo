@@ -8,6 +8,7 @@
 #import "PSCEmbeddedTestController.h"
 #import "PSCLegacyEmbeddedViewController.h"
 #import "PSCatalogViewController.h"
+#import "PSCAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface PSCEmbeddedTestController () {
@@ -16,8 +17,6 @@
 @end
 
 @implementation PSCEmbeddedTestController
-
-@synthesize pdfController = _pdfController;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -70,7 +69,7 @@
     self.pdfController.scrollOnTapPageEndEnabled = NO;
 
     /*
-     self.pdfController.pageScrolling = PSPDFScrollingVertical;
+     self.pdfController.scrollDirection = PSPDFScrollDirectionVertical;
      self.pdfController.pagePadding = 0.0f;
      self.pdfController.shadowEnabled = NO;
      self.pdfController.pageMode = PSPDFPageModeDouble;

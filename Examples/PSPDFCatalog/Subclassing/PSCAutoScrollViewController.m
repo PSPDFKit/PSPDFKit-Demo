@@ -23,7 +23,7 @@
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.pageTransition = PSPDFPageScrollContinuousTransition;
-        self.pageScrolling = PSPDFScrollDirectionVertical;
+        self.scrollDirection = PSPDFScrollDirectionVertical;
         self.fitToWidthEnabled = YES;
 
         // override all usages of PSPDFContentScrollView with the subclass PSCStoppingContentScrollView.
