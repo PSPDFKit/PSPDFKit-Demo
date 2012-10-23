@@ -439,12 +439,14 @@ const char kPSCAlertViewKey;
 
     // one way to speed up PSPDFViewController display is calling fillCache on the document.
     PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [childDocument fillCache];
     });
-    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
+    PSPDF_IF_IOS5_OR_GREATER([customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
+        NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"widget-annotations.pdf"];
+        PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:testURL];
         return [[PSCChildViewController alloc] initWithDocument:childDocument];
-    }]];
+    }]];)
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
