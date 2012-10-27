@@ -55,6 +55,10 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             });
         });
 
+        // UI optimization: parse outline early, prevents possible toolbar update during the fade-in.
+        // (the outline item is lazily evaluated)
+        [self.document.outlineParser outline];
+
         // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
         _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
