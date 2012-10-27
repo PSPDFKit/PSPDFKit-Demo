@@ -98,7 +98,9 @@
 #pragma mark - Static
 
 + (NSArray *)documentsFromDirectory:(NSString *)directory {
-    NSParameterAssert(directory);    
+    NSParameterAssert(directory);
+
+    directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
 
     NSError *error = nil;
     NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
@@ -129,10 +131,6 @@
 	else {
         return [_content count];
     }
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

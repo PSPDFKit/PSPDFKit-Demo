@@ -36,10 +36,6 @@
     return [self presentModalOrInPopover:navController sender:sender];
 }
 
-- (void)dismissAnimated:(BOOL)animated {
-    [self dismissModalOrPopoverAnimated:animated];
-}
-
 @end
 
 @implementation PSPDFMetadataController
@@ -78,8 +74,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSInteger sections = [self.document.metadata count] > 0 ? 1 : 0;
-    return sections;
+    return [self.document.metadata count] > 0 ? 1 : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
