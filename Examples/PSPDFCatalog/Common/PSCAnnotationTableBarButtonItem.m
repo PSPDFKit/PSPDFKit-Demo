@@ -27,8 +27,4 @@
     return [self presentModalOrInPopover:documentsNavController sender:sender];
 }
 
-- (void)dismissAnimated:(BOOL)animated {
-    [self dismissModalOrPopoverAnimated:animated];
-}
-
 @end
