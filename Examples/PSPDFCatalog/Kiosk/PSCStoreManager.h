@@ -45,6 +45,12 @@
 /// Storage path currently used. (depends on iOS version)
 + (NSString *)storagePath;
 
+/// Clears all magazineFolders. Will not send delegate events.
+- (void)clearCache;
+
+/// Reload all magazines from disk.
+- (void)loadMagazinesFromDisk;
+
 @property (nonatomic, ps_weak) id<PSCStoreManagerDelegate> delegate;
 
 - (void)downloadMagazine:(PSCMagazine *)magazine;
