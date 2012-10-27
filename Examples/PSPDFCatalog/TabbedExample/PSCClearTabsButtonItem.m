@@ -48,10 +48,7 @@
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-    if (_isDismissingSheet) {
-        return;
-    }
-
+    if (_isDismissingSheet) return;
     [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:animated];
 }
 
