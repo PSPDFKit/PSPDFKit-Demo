@@ -38,8 +38,4 @@
     return [self presentModalOrInPopover:navController sender:sender];
 }
 
-- (void)dismissAnimated:(BOOL)animated {
-    [self dismissModalOrPopoverAnimated:animated];
-}
-
 @end
