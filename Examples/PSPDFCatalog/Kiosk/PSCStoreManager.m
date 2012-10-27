@@ -460,6 +460,12 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (void)didReceiveMemoryWarning {} // NOP
 
+- (void)clearCache {
+    pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
+        self.magazineFolders = nil;
+    });
+}
+
 // load magazines from disk
 - (void)loadMagazinesFromDisk {
     NSMutableArray *magazineFolders = [self searchForMagazineFolders];
