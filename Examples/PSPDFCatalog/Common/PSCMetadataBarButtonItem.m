@@ -9,7 +9,7 @@
 
 @interface PSPDFMetadataController : UITableViewController
 - (id)initWithDocument:(PSPDFDocument *)document;
-@property (nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, weak) PSPDFDocument *document;
 @end
 
 @implementation PSCMetadataBarButtonItem
