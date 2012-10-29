@@ -31,7 +31,7 @@
     return NSLocalizedString(@"Options", @"");
 }
 
-- (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
+- (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSCSettingsController *settingsController = [PSCSettingsController new];
     settingsController.owningViewController = self.pdfController;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];

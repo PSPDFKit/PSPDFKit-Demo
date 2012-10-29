@@ -21,7 +21,7 @@
     return PSPDFLocalize(@"List Annotations");
 }
 
-- (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
+- (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSCAnnotationTableViewController *annotationList = [[PSCAnnotationTableViewController alloc] initWithPDFViewController:self.pdfController];
     UINavigationController *documentsNavController = [[UINavigationController alloc] initWithRootViewController:annotationList];
     return [self presentModalOrInPopover:documentsNavController sender:sender];

@@ -29,6 +29,8 @@
 #import "PSCGoToPageButtonItem.h"
 #import "PSCCustomLinkAnnotationView.h"
 #import "PSCChildViewController.h"
+#import "PSCButtonPDFViewController.h"
+#import "PSCCustomAnnotationProvider.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -37,7 +39,7 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -74,9 +76,11 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Morning Call.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"]];
+         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:@[@"A.pdf",@"B.pdf",@"Anlage_3_-_Gerwerbeflaechenmonitoring.pdf"]];
+
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -265,6 +269,17 @@ const char kPSCAlertViewKey;
         PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
+
+    [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Dynamically added video example" block:^{
+        PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+
+        // dynamically add video box
+        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
+        aVideo.boundingBox = [multimediaDoc pageInfoForPage:1].rotatedPageRect;
+        [multimediaDoc addAnnotations:@[aVideo] forPage:1];
+
+        return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+    }]];
     [content addObject:multimediaSection];
 
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
@@ -443,10 +458,15 @@ const char kPSCAlertViewKey;
         [childDocument fillCache];
     });
     PSPDF_IF_IOS5_OR_GREATER([customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
-        NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"widget-annotations.pdf"];
+        NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"];
         PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:testURL];
         return [[PSCChildViewController alloc] initWithDocument:childDocument];
     }]];)
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Adding a simple UIButton" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        return [[PSCButtonPDFViewController alloc] initWithDocument:document];
+    }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -512,7 +532,6 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-
     [content addObject:customizationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -555,8 +574,15 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Custom AnnotationProvider" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+            documentProvider.annotationParser.annotationProviders = @[[PSCCustomAnnotationProvider new], documentProvider.annotationParser.fileAnnotationProvider];
+        }];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
 
-    // Vertical always-visible annotation bar
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
