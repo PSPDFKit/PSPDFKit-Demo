@@ -12,6 +12,6 @@
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
 
 /// Attached PDF controller.
-@property (nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property (nonatomic, weak) PSPDFViewController *pdfController;
 
 @end

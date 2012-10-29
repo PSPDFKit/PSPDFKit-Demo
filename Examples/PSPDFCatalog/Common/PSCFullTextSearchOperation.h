@@ -20,7 +20,6 @@
 /// Sample operation how to perform full-text search across multiple documents.
 /// Note that this WILL BE SLOW for many documents. I am working on a better solution.
 /// (There's a reason why this is PSC* space and not in PSPDF)
-/// iOS5 and later.
 @interface PSCFullTextSearchOperation : NSOperation
 
 /// Designated initializer

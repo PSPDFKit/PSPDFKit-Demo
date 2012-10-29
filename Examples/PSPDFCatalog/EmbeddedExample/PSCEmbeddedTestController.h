@@ -11,7 +11,6 @@
 - (IBAction)appendDocument;
 - (IBAction)replaceDocument;
 - (IBAction)clearCache;
-- (IBAction)oldContainmentTest;
 
 @property (nonatomic, strong) PSPDFViewController *pdfController;
 

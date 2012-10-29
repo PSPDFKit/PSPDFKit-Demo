@@ -44,7 +44,6 @@
 		78A24A5A15CFDAAF00328F4F /* PSCStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3215CFDAAF00328F4F /* PSCStoreManager.m */; };
 		78A24A5B15CFDAAF00328F4F /* PSCAnnotationTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3515CFDAAF00328F4F /* PSCAnnotationTestController.m */; };
 		78A24A5C15CFDAAF00328F4F /* PSCEmbeddedTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3715CFDAAF00328F4F /* PSCEmbeddedTestController.m */; };
-		78A24A5D15CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3915CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.m */; };
 		78A24A5E15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3B15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.m */; };
 		78A24A5F15CFDAAF00328F4F /* PSCSplitPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3D15CFDAAF00328F4F /* PSCSplitPDFViewController.m */; };
 		78A24A6015CFDAAF00328F4F /* PSCustomToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A3F15CFDAAF00328F4F /* PSCustomToolbarController.m */; };
@@ -238,8 +237,6 @@
 		78A24A3515CFDAAF00328F4F /* PSCAnnotationTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationTestController.m; sourceTree = "<group>"; };
 		78A24A3615CFDAAF00328F4F /* PSCEmbeddedTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCEmbeddedTestController.h; sourceTree = "<group>"; };
 		78A24A3715CFDAAF00328F4F /* PSCEmbeddedTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCEmbeddedTestController.m; sourceTree = "<group>"; };
-		78A24A3815CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCLegacyEmbeddedViewController.h; sourceTree = "<group>"; };
-		78A24A3915CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCLegacyEmbeddedViewController.m; sourceTree = "<group>"; };
 		78A24A3A15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSplitDocumentSelectorController.h; sourceTree = "<group>"; };
 		78A24A3B15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSplitDocumentSelectorController.m; sourceTree = "<group>"; };
 		78A24A3C15CFDAAF00328F4F /* PSCSplitPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSplitPDFViewController.h; sourceTree = "<group>"; };
@@ -533,8 +530,6 @@
 				78A24A3515CFDAAF00328F4F /* PSCAnnotationTestController.m */,
 				78A24A3615CFDAAF00328F4F /* PSCEmbeddedTestController.h */,
 				78A24A3715CFDAAF00328F4F /* PSCEmbeddedTestController.m */,
-				78A24A3815CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.h */,
-				78A24A3915CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.m */,
 				78A24A3A15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.h */,
 				78A24A3B15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.m */,
 				78A24A3C15CFDAAF00328F4F /* PSCSplitPDFViewController.h */,
@@ -955,7 +950,6 @@
 				78A24A5A15CFDAAF00328F4F /* PSCStoreManager.m in Sources */,
 				78A24A5B15CFDAAF00328F4F /* PSCAnnotationTestController.m in Sources */,
 				78A24A5C15CFDAAF00328F4F /* PSCEmbeddedTestController.m in Sources */,
-				78A24A5D15CFDAAF00328F4F /* PSCLegacyEmbeddedViewController.m in Sources */,
 				78A24A5E15CFDAAF00328F4F /* PSCSplitDocumentSelectorController.m in Sources */,
 				78A24A5F15CFDAAF00328F4F /* PSCSplitPDFViewController.m in Sources */,
 				78A24A6015CFDAAF00328F4F /* PSCustomToolbarController.m in Sources */,
@@ -1046,7 +1040,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1068,7 +1062,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -6,7 +6,6 @@
 //
 
 #import "PSCEmbeddedTestController.h"
-#import "PSCLegacyEmbeddedViewController.h"
 #import "PSCatalogViewController.h"
 #import "PSCAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
@@ -23,7 +22,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        PSPDF_IF_IOS5_OR_GREATER(self.navigationItem.leftItemsSupplementBackButton = YES;);
+        self.navigationItem.leftItemsSupplementBackButton = YES;
 
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Embedded" image:[UIImage imageNamed:@"medical"] tag:1];
 
@@ -36,10 +35,7 @@
         // add button to push view
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)];
 
-        // don't hide native back button on iOS4.w
-        PSPDF_IF_IOS5_OR_GREATER(
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)];
-                                 );
     }
     return self;
 }
@@ -78,8 +74,7 @@
      self.pdfController.viewMode = PSPDFViewModeThumbnails;
      */
 
-    // This example is for iOS5 upards. See LegacyEmbbededViewController for the old, iOS4 way.
-    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0 && self.pdfController) {
+    if (self.pdfController) {
         [self addChildViewController:self.pdfController];
 
         // initially, add tableview then later animate to the pdf controller
@@ -107,26 +102,24 @@
     [super viewDidAppear:animated];
 
     // show how controller can be animated
-    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
 
-            if (_testAnimationViewController.parentViewController) {
+        if (_testAnimationViewController.parentViewController) {
+            self.pdfController.view.hidden = NO;
+            self.pdfController.view.frame = _testAnimationViewController.view.frame;
+            // example how to use transitionFromViewController. However, transitionWithView looks far better.
+            [self transitionFromViewController:_testAnimationViewController toViewController:self.pdfController duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:NULL completion:^(BOOL finished) {
+                [self.pdfController didMoveToParentViewController:self];
+                [_testAnimationViewController willMoveToParentViewController:nil];
+                [_testAnimationViewController removeFromParentViewController];
+            }];
+        }else {
+            [UIView transitionWithView:self.pdfController.view duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:^{
                 self.pdfController.view.hidden = NO;
-                self.pdfController.view.frame = _testAnimationViewController.view.frame;
-                // example how to use transitionFromViewController. However, transitionWithView looks far better.
-                [self transitionFromViewController:_testAnimationViewController toViewController:self.pdfController duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:NULL completion:^(BOOL finished) {
-                    [self.pdfController didMoveToParentViewController:self];
-                    [_testAnimationViewController willMoveToParentViewController:nil];
-                    [_testAnimationViewController removeFromParentViewController];
-                }];
-            }else {
-                [UIView transitionWithView:self.pdfController.view duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:^{
-                    self.pdfController.view.hidden = NO;
-                } completion:^(BOOL finished) {
-                }];
-            }
-        });
-    }
+            } completion:^(BOOL finished) {
+            }];
+        }
+    });
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -195,12 +188,6 @@
 
 - (IBAction)clearCache {
     [[PSPDFCache sharedCache] clearCache];
-}
-
-- (IBAction)oldContainmentTest {
-    PSCLegacyEmbeddedViewController *legacy = [[PSCLegacyEmbeddedViewController alloc] init];
-    UINavigationController *legacyContainer = [[UINavigationController alloc] initWithRootViewController:legacy];
-    [self presentModalViewController:legacyContainer animated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

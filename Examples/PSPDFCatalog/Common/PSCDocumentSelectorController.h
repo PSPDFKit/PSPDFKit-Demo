@@ -24,7 +24,7 @@
 - (id)initWithDirectory:(NSString *)directory delegate:(id<PSCDocumentSelectorControllerDelegate>)delegate;
 
 /// Delegate to get the didSelect event.
-@property (nonatomic, ps_weak) id<PSCDocumentSelectorControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSCDocumentSelectorControllerDelegate> delegate;
 
 // All PSPDFDocument objects
 @property (nonatomic, copy, readonly) NSArray *content;
