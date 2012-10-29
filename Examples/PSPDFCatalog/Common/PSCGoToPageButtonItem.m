@@ -22,11 +22,6 @@ const char kPSCAlertViewKey;
     return self;
 }
 
-- (BOOL)isAvailable {
-    PSPDF_IF_PRE_IOS5(return NO;)
-    return YES;
-}
-
 - (UIBarButtonSystemItem)systemItem {
     return UIBarButtonSystemItemBookmarks;
 }

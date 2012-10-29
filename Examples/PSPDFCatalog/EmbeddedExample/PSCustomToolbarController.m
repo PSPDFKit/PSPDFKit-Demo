@@ -17,12 +17,12 @@
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
-        
+
         // disable default toolbar
         [self setToolbarEnabled:NO];
         self.statusBarStyleSetting = PSPDFStatusBarInherit;
         self.renderAnimationEnabled = NO; // custom implementation here
-        
+
         // add custom controls to our toolbar
         _customViewModeSegment = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
         _customViewModeSegment.selectedSegmentIndex = 0;
@@ -31,17 +31,12 @@
         [_customViewModeSegment sizeToFit];
         UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:_customViewModeSegment];
 
-        // rightBarButtonItems is iOS5 only
-        if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
-            self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem];
-        }else {
-            self.navigationItem.rightBarButtonItem = viewModeButton;
-        }
+        self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem];
         self.delegate = self;
-        
+
         // use large thumbnails!
         self.thumbnailSize = CGSizeMake(250, 400);
-        
+
         // don't forget to also set the large size in PSPDFCache!
         [PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
     }
@@ -82,7 +77,7 @@
 
 #define PSPDFLoadingViewTag 225475
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", pageView.page];    
+    self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", pageView.page];
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode; {
@@ -93,8 +88,8 @@
 
 // called after pdf page has been loaded and added to the pagingScrollView
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didLoadPageView: %@", pageView);    
-    
+    NSLog(@"didLoadPageView: %@", pageView);
+
     // add loading indicator
     UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pageView viewWithTag:PSPDFLoadingViewTag];
     if (!indicator) {
@@ -109,7 +104,7 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
     NSLog(@"page %@ rendered.", pageView);
-    
+
     // remove loading indicator
     UIActivityIndicatorView *indicator = (UIActivityIndicatorView *)[pageView viewWithTag:PSPDFLoadingViewTag];
     if (indicator) {
