@@ -30,7 +30,7 @@
     return [[UIImage pspdf_imageNamed:@"Help" bundle:PSPDFKitBundle()] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
 }
 
-- (id)presentAnimated:(BOOL)animated sender:(PSPDFBarButtonItem *)sender {
+- (id)presentAnimated:(BOOL)animated sender:(id)sender {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[PSPDFMetadataController alloc] initWithDocument:self.pdfController.document]];
     navController.topViewController.title = [self actionName];
     return [self presentModalOrInPopover:navController sender:sender];
