@@ -57,7 +57,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = dispatch_queue_create("com.PSPDFKit.store.magazineFolderQueue", NULL);
+        _magazineFolderQueue = pspdf_dispatch_queue_create("com.PSPDFKit.store.magazineFolderQueue", NULL);
         _downloadQueue = [[NSMutableArray alloc] init];
 
         // register for memory notifications
