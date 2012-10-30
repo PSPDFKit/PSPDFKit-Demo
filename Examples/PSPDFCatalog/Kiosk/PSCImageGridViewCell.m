@@ -191,7 +191,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             self.magazineCount = 0;
 
             NSBlockOperation *imageLoadOperation = [NSBlockOperation new];
-            __ps_weak NSBlockOperation *weakImageLoadOperation = imageLoadOperation;
+            __weak NSBlockOperation *weakImageLoadOperation = imageLoadOperation;
             [imageLoadOperation addExecutionBlock:^{
                 NSBlockOperation *strongImageLoadOperation = weakImageLoadOperation;
                 if (!strongImageLoadOperation.isCancelled) {

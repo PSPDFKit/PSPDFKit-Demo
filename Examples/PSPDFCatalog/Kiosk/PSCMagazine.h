@@ -18,7 +18,7 @@
 - (UIImage *)coverImageForSize:(CGSize)size;
 
 /// Magazine folder. Weak to break the retain cycle.
-@property (nonatomic, ps_weak) PSCMagazineFolder *folder; // weak!
+@property (nonatomic, weak) PSCMagazineFolder *folder; // weak!
 
 /// URL for downloading the pdf.
 @property (nonatomic, strong) NSURL *URL;

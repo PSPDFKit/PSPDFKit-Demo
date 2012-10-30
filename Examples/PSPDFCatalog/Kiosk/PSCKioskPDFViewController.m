@@ -18,8 +18,6 @@
 #error "Compile this file with ARC"
 #endif
 
-NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianceCalculated";
-
 @interface PSCKioskPDFViewController () {
     BOOL _hasLoadedLastPage;
     UIBarButtonItem *_closeButtonItem;
@@ -43,15 +41,15 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(aspectRatioVarianceCalculated:) name:kPSPDFAspectRatioVarianceCalculated object:nil];
                         
         // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // use a dispatch thread because calculating the aspectRatioVariance is expensive.
-        // As of iOS5, this could be solved more elegant with __weak. (but we still support 4.3 here)
+        __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             CGFloat __unused variance = [document aspectRatioVariance];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFAspectRatioVarianceCalculated object:document];
+                typeof (self) strongSelf = weakSelf;
+                strongSelf.clipToPageBoundaries = [strongSelf.document aspectRatioVariance] < 0.2f;
             });
         });
 
@@ -115,12 +113,6 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
         animated = NO;
     }
     [self.navigationController popViewControllerAnimated:animated];
-}
-
-- (void)aspectRatioVarianceCalculated:(NSNotification *)notification {
-    if (notification.object == self.document) {
-        self.clipToPageBoundaries = [self.document aspectRatioVariance] < 0.2f;
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -236,7 +228,7 @@ NSString *const kPSPDFAspectRatioVarianceCalculated = @"kPSPDFAspectRatioVarianc
             [additionalRightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
-    PSPDF_IF_IOS5_OR_GREATER([additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];)
+    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
     self.additionalBarButtonItems = additionalRightBarButtonItems;
 
     // reload scrollview and restore viewState

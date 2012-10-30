@@ -99,7 +99,7 @@
     // create request
     NSURLRequest *request = [NSURLRequest requestWithURL:self.URL];
     AFDownloadRequestOperation *pdfRequest = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[self downloadDirectory] shouldResume:YES];
-    __ps_weak AFDownloadRequestOperation *pdfRequestWeak = pdfRequest;
+    __weak AFDownloadRequestOperation *pdfRequestWeak = pdfRequest;
     [pdfRequest setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
         PSCLog(@"Download background time expired for %@", pdfRequestWeak);
     }];
@@ -170,7 +170,7 @@
             PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
         }
     // only works with 5.0.1 and above
-    }else if(kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) {
+    }else {
         success = YES;
         u_int8_t b = 1;
         setxattr([[URL path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
