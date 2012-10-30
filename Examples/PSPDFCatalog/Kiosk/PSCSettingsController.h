@@ -15,7 +15,7 @@
  */
 @interface PSCSettingsController : UITableViewController
 
-@property (nonatomic, ps_weak) UIViewController *owningViewController;
+@property (nonatomic, weak) UIViewController *owningViewController;
 
 // Settings are saved within the dictionary.
 + (NSDictionary *)settings;
