@@ -88,8 +88,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
 
-    // the tabbed browser needs iOS5 or greater.
-    PSPDF_IF_IOS5_OR_GREATER([appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
         if (PSIsIpad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
@@ -98,7 +97,7 @@ const char kPSCAlertViewKey;
             objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
-    }]];)
+    }]];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Open In... Inbox" block:^{
         PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
@@ -360,11 +359,11 @@ const char kPSCAlertViewKey;
             controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
         }
         @catch (NSException *exception) {
-            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"You need to manually add the file MainStoryboard.storyboard and increase the deployment target to iOS5 - since PSPDFKit is compatible with iOS 4.3 upwards, we removed that file to be able to compile." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"You need to manually add the file MainStoryboard.storyboard." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
         }
         return controller;
     }]];
-    PSPDF_IF_IOS5_OR_GREATER([content addObject:storyboardSection];)
+    [content addObject:storyboardSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
@@ -434,19 +433,19 @@ const char kPSCAlertViewKey;
         [websitePrompt show];
         return nil;
     }]];
-    PSPDF_IF_IOS5_OR_GREATER([content addObject:textExtractionSection];)
+    [content addObject:textExtractionSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFViewController customization" footer:@""];
 
-    PSPDF_IF_IOS5_OR_GREATER([customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"FPC 10 Workbook.pdf"]];
         PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
         viewController.pageMode = PSPDFPageModeSingle;
         viewController.pageTransition = PSPDFPageCurlTransition;
         return viewController;
-    }]];)
+    }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Using a NIB" block:^{
         return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
@@ -457,11 +456,11 @@ const char kPSCAlertViewKey;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [childDocument fillCache];
     });
-    PSPDF_IF_IOS5_OR_GREATER([customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
         NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"];
         PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:testURL];
         return [[PSCChildViewController alloc] initWithDocument:childDocument];
-    }]];)
+    }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Adding a simple UIButton" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -596,20 +595,19 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
-    // uses pageCurl which is a iOS5+ feature.
-    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
         return controller;
-    }]];)
+    }]];
 
-    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Teleprompter example" block:^UIViewController *{
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Teleprompter example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCAutoScrollViewController alloc] initWithDocument:document];
         return controller;
-    }]];)
+    }]];
 
-    PSPDF_IF_IOS5_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Auto paging example" block:^UIViewController *{
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         PSCPlayButtonItem *playButton = [[PSCPlayButtonItem alloc] initWithPDFViewController:controller];
@@ -618,7 +616,7 @@ const char kPSCAlertViewKey;
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
-    }]];)
+    }]];
 
     [content addObject:subclassingSection];
     ///////////////////////////////////////////////////////////////////////////////////////////

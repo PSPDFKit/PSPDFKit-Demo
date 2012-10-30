@@ -51,7 +51,7 @@
 /// Reload all magazines from disk.
 - (void)loadMagazinesFromDisk;
 
-@property (nonatomic, ps_weak) id<PSCStoreManagerDelegate> delegate;
+@property (nonatomic, weak) id<PSCStoreManagerDelegate> delegate;
 
 - (void)downloadMagazine:(PSCMagazine *)magazine;
 - (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine;
