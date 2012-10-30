@@ -19,6 +19,10 @@ const char *clearAllActionSheetToken;
 
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithPDFViewController:pdfViewController])) {
+
+        // change status bar setting
+        //self.pdfViewController.statusBarStyleSetting = PSPDFStatusBarSmartBlack;
+
         self.navigationItem.leftItemsSupplementBackButton = YES;
 
         // enable automatic peristance and restore the last state
