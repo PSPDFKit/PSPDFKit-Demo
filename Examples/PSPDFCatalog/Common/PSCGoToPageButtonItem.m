@@ -38,7 +38,10 @@ const char kPSCAlertViewKey;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
     [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") block:^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
         NSString *pageLabel = [websitePrompt textFieldAtIndex:0].text ?: @"";
+#pragma clang diagnostic pop
         NSUInteger pageIndex = [self.pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
 
         // if input is just numeric, convert to page
