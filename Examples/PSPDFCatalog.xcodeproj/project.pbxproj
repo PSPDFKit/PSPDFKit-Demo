@@ -89,6 +89,7 @@
 		78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */; };
 		78AE806C15D59D8A000F9D80 /* PSCAnnotationTableBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AE806915D59D8A000F9D80 /* PSCAnnotationTableBarButtonItem.m */; };
 		78AE806D15D59D8A000F9D80 /* PSCAnnotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AE806B15D59D8A000F9D80 /* PSCAnnotationTableViewController.m */; };
+		78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */; };
 		78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */; };
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
@@ -298,6 +299,8 @@
 		78AE806915D59D8A000F9D80 /* PSCAnnotationTableBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationTableBarButtonItem.m; sourceTree = "<group>"; };
 		78AE806A15D59D8A000F9D80 /* PSCAnnotationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAnnotationTableViewController.h; sourceTree = "<group>"; };
 		78AE806B15D59D8A000F9D80 /* PSCAnnotationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationTableViewController.m; sourceTree = "<group>"; };
+		78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBottomToolbarViewController.m; sourceTree = "<group>"; };
+		78B1E1CD1641B65D00FB8FC4 /* PSCBottomToolbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBottomToolbarViewController.h; sourceTree = "<group>"; };
 		78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
 		78BCC69815D31BF2006735A9 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
@@ -639,6 +642,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */,
+				78B1E1CD1641B65D00FB8FC4 /* PSCBottomToolbarViewController.h */,
 				786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */,
 				786E92C1163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.h */,
 				78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */,
@@ -977,6 +982,7 @@
 				788C5F8716373DE400854607 /* PSCChildViewController.m in Sources */,
 				786E92A3163EAEDF000E6FC6 /* PSCButtonPDFViewController.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
+				78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

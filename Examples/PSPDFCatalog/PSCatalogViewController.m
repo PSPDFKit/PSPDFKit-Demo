@@ -31,6 +31,7 @@
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCCustomAnnotationProvider.h"
+#import "PSCBottomToolbarViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -76,10 +77,9 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"]];
-         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:@[@"A.pdf",@"B.pdf",@"Anlage_3_-_Gerwerbeflaechenmonitoring.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"R.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -480,6 +480,17 @@ const char kPSCAlertViewKey;
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
         pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
         pdfController.tintColor = [UIColor orangeColor];
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Use a Bottom Toolbar" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        // simple subclass that shows/hides the navigationController bottom toolbar
+        PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
+        pdfController.statusBarStyleSetting = PSPDFStatusBarDefault;
+        pdfController.scrobbleBarEnabled = NO; // would look to crowded.
+        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
+        pdfController.toolbarItems = @[space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
         return pdfController;
     }]];
 
