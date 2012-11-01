@@ -42,22 +42,20 @@
         // register for global var change notifications from PSPDFCacheSettingsController
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
                         
-        // don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
-        // use a dispatch thread because calculating the aspectRatioVariance is expensive.
-        __weak typeof(self) weakSelf = self;
+        // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
+        // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
+        __weak typeof (self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            CGFloat __unused variance = [document aspectRatioVariance];
+            CGFloat variance = [weakSelf.document aspectRatioVariance];
             dispatch_async(dispatch_get_main_queue(), ^{
-                typeof (self) strongSelf = weakSelf;
-                strongSelf.clipToPageBoundaries = [strongSelf.document aspectRatioVariance] < 0.2f;
+                weakSelf.clipToPageBoundaries = variance < 0.2f;
             });
         });
 
-        // UI optimization: parse outline early, prevents possible toolbar update during the fade-in.
-        // (the outline item is lazily evaluated)
+        // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
         [self.document.outlineParser outline];
 
-        // defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
+        // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
         _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
         _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
@@ -66,7 +64,7 @@
         
         self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
-        // restore viewState
+        // Restore viewState (sadly, NSKeyedUnarchiver might throw on error)
         if ([self.document isValid]) {
             NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.UID];
             @try {
