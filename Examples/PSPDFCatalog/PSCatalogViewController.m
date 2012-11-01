@@ -382,7 +382,10 @@ const char kPSCAlertViewKey;
         [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
         [websitePrompt addButtonWithTitle:@"Convert" block:^{
             // get data
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
             NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
+#pragma clang diagnostic pop
             NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
 
             // create pdf (blocking)
@@ -407,7 +410,10 @@ const char kPSCAlertViewKey;
         [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
         [websitePrompt addButtonWithTitle:@"Convert" block:^{
             // get URL
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
+#pragma clang diagnostic pop
             if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
             NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
