@@ -7,6 +7,11 @@
 
 #import "PSCButtonPDFViewController.h"
 
+// Container to add a UIButton always centered at the page.
+@interface PSCButtonContainerView : UIView <PSPDFAnnotationView>
+@property (nonatomic, strong) UIButton *button;
+@end
+
 @implementation PSCButtonPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -28,12 +33,12 @@
     // PSPDF will re-use PSPDFPageView but will also clear all "foreign" added views - you don't have to remove it yourself.
     // The didLoadPageView will be called once while the pageView is processed for the new page, so it's the perfect time to add custom views.
     if (pageView.page == 0) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [button setTitle:@"Press me!" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [button sizeToFit];
-        button.frame = PSPDFAlignRectangles(button.frame, pageView.bounds, PSPDFRectAlignCenter); // helper to center frame.
-        [pageView addSubview:button];
+        PSCButtonContainerView *buttonContainer = [[PSCButtonContainerView alloc] initWithFrame:CGRectZero];
+        [buttonContainer.button setTitle:@"Press me!" forState:UIControlStateNormal];
+        [buttonContainer.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonContainer sizeToFit];
+        [pageView addSubview:buttonContainer];
+        [buttonContainer didChangePageFrame:pageView.bounds]; // layout initially
     }
 }
 
@@ -42,6 +47,29 @@
 
 - (void)buttonPressed:(UIButton *)sender {
     [[[UIAlertView alloc] initWithTitle:@"Button pressed" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+}
+
+@end
+
+
+@implementation PSCButtonContainerView
+
+- (id)initWithFrame:(CGRect)frame {
+    if ((self = [super initWithFrame:frame])) {
+        self.button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self addSubview:self.button];
+    }
+    return self;
+}
+
+- (void)sizeToFit {
+    [self.button sizeToFit];
+    self.frame = self.button.bounds;
+}
+
+// called initially and on rotation change
+- (void)didChangePageFrame:(CGRect)frame {
+    self.frame = PSPDFAlignRectangles(self.frame, self.superview.bounds, PSPDFRectAlignCenter); // helper to center frame.
 }
 
 @end
