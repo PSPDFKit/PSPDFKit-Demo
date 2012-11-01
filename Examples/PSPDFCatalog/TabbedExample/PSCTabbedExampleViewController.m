@@ -29,12 +29,12 @@ const char *clearAllActionSheetToken;
         self.enableAutomaticStatePersistance = YES;
 
         // on iPhone, we want a backButton here.
-        PSCClearTabsButtonItem *clearTabsButton = [[PSCClearTabsButtonItem alloc] initWithPDFViewController:self.pdfViewController];
+        PSCClearTabsButtonItem *clearTabsButton = [[PSCClearTabsButtonItem alloc] initWithPDFViewController:self.pdfController];
         if (PSIsIpad()) {
-            PSCAddDocumentsBarButtonItem *addDocumentsButton = [[PSCAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfViewController];
-            self.pdfViewController.leftBarButtonItems = @[addDocumentsButton, clearTabsButton];
+            PSCAddDocumentsBarButtonItem *addDocumentsButton = [[PSCAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfController];
+            self.pdfController.leftBarButtonItems = @[addDocumentsButton, clearTabsButton];
         }else {
-            self.pdfViewController.leftBarButtonItems = @[clearTabsButton];
+            self.pdfController.leftBarButtonItems = @[clearTabsButton];
             self.navigationItem.leftItemsSupplementBackButton = YES;
         }
 
