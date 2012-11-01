@@ -12,7 +12,9 @@
 @property (nonatomic, weak) PSPDFDocument *document;
 @end
 
-@implementation PSCMetadataBarButtonItem
+@implementation PSCMetadataBarButtonItem {
+    UIImage *_buttonImage;
+}
 
 - (BOOL)isAvailable {
     return [self.pdfController.document.metadata count] > 0;
@@ -27,7 +29,9 @@
 }
 
 - (UIImage *)image {
-    return [[UIImage pspdf_imageNamed:@"Help" bundle:PSPDFKitBundle()] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
+    // cache resize operation
+    if (!_buttonImage) _buttonImage = [[UIImage pspdf_imageNamed:@"Help" bundle:PSPDFKitBundle()] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
+    return _buttonImage;
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
