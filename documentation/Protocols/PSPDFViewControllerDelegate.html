@@ -82,6 +82,8 @@
 	
 	<option value="//api/name/pdfViewController:documentForRelativePath:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:documentForRelativePath:</option>
 	
+	<option value="//api/name/pdfViewController:requestsUpdateForBarButtonItem:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:requestsUpdateForBarButtonItem:animated:</option>
+	
 	<option value="//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldDisplayAnnotation:onPageView:</option>
 	
 	<option value="//api/name/pdfViewController:shouldHideHUD:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldHideHUD:</option>
@@ -177,6 +179,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didTapOnPageView:atPoint:">pdfViewController:didTapOnPageView:atPoint:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:documentForRelativePath:">pdfViewController:documentForRelativePath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:requestsUpdateForBarButtonItem:animated:">pdfViewController:requestsUpdateForBarButtonItem:animated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">pdfViewController:shouldDisplayAnnotation:onPageView:</a></span></li>
 	
@@ -306,6 +310,20 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didLoadPageView:">&ndash;&nbsp;pdfViewController:didLoadPageView:</a></code>
+		<span class="tooltip"><p>Called after pdf page has been loaded and added to the pagingScrollView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
+		<span class="tooltip"><p>Called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didChangeViewMode:">&ndash;&nbsp;pdfViewController:didChangeViewMode:</a></code>
 		<span class="tooltip"><p>Will be called when viewMode changes</p></span>
 	</span>
@@ -314,11 +332,8 @@ Can be useful if you e.g. want to block the opening of a different document refe
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didEndPageDragging:willDecelerate:withVelocity:targetContentOffset:">&ndash;&nbsp;pdfViewController:didEndPageDragging:willDecelerate:withVelocity:targetContentOffset:</a></code>
-		<span class="tooltip"><p>Will be called after page rect has been dragged.</p>
-
-<pre><code>If decelerate is YES, this will be called again after deceleration is complete.
-velocity/targetContentOffset are only available in iOS5+.
-</code></pre></span>
+		<span class="tooltip"><p>Will be called after page rect has been dragged.
+If decelerate is YES, this will be called again after deceleration is complete.</p></span>
 	</span>
 	
 	
@@ -355,8 +370,7 @@ Return YES if you want to set this touch as processed; this will disable automat
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:">&ndash;&nbsp;pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:</a></code>
-		<span class="tooltip"><pre><code>Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
-</code></pre></span>
+		<span class="tooltip"><p>Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.</p></span>
 	</span>
 	
 	
@@ -377,9 +391,8 @@ Return YES if you want to set this touch as processed; this will disable automat
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:</a></code>
-		<span class="tooltip"><pre><code>Called before the menu for text selection is displayed.
-All coordinates are in view coordinate space.
-</code></pre></span>
+		<span class="tooltip"><p>Called before the menu for text selection is displayed.
+All coordinates are in view coordinate space.</p></span>
 	</span>
 	
 	
@@ -394,8 +407,7 @@ if NO is returned, viewForAnnotation will not be called.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didTapOnAnnotation:annotationPoint:annotationView:pageView:viewPoint:">&ndash;&nbsp;pdfViewController:didTapOnAnnotation:annotationPoint:annotationView:pageView:viewPoint:</a></code>
-		<span class="tooltip"><pre><code>Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
-</code></pre></span>
+		<span class="tooltip"><p>Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.</p></span>
 	</span>
 	
 	
@@ -447,30 +459,25 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:didLoadPageView:">&ndash;&nbsp;pdfViewController:didLoadPageView:</a></code>
-		<span class="tooltip"><p>Called after pdf page has been loaded and added to the pagingScrollView.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
-		<span class="tooltip"><p>Called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowController:embeddedInController:animated:">&ndash;&nbsp;pdfViewController:shouldShowController:embeddedInController:animated:</a></code>
-		<span class="tooltip"><pre><code>Called before we show a controller modally or in a popover. Allows last minute modifications.\
-</code></pre></span>
+		<span class="tooltip"><p>Called before we show a controller modally or in a popover. Allows last minute modifications.\</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didShowController:embeddedInController:animated:">&ndash;&nbsp;pdfViewController:didShowController:embeddedInController:animated:</a></code>
-		<span class="tooltip"><p>Called after the controller has been fully displayed. iOS5 only. Isn&rsquo;t called for UIPopoverController&rsquo;s.</p></span>
+		<span class="tooltip"><p>Called after the controller has been fully displayed. Isn&rsquo;t called for UIPopoverController&rsquo;s.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:requestsUpdateForBarButtonItem:animated:">&ndash;&nbsp;pdfViewController:requestsUpdateForBarButtonItem:animated:</a></code>
+		<span class="tooltip"><p>If you implement your own super-custom toolbar, handle updates for bar buttons. (e.g. with re-setting the items array)
+One popular example is <a href="../Classes/PSPDFBookmarkBarButtonItem.html">PSPDFBookmarkBarButtonItem</a>, which needs to change it&rsquo;s image after pressing the button.
+Ignore this if you&rsquo;re letting PSPDFKit manage your toolbar or if you&rsquo;re using a UIToolbar.
+If you implement this delegate, the default UIToolbar-update-code will not be called.</p></span>
 	</span>
 	
 	
@@ -644,11 +651,8 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Will be called after page rect has been dragged.</p>
-
-<pre><code>If decelerate is YES, this will be called again after deceleration is complete.
-velocity/targetContentOffset are only available in iOS5+.
-</code></pre>
+		<p>Will be called after page rect has been dragged.
+If decelerate is YES, this will be called again after deceleration is complete.</p>
 	</div>		
 	
 	
@@ -663,14 +667,13 @@ velocity/targetContentOffset are only available in iOS5+.
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>You can also change the target with changing targetContentOffset.
+		<p>You can also change the target with changing targetContentOffset.</p>
 
-This delegate combines following scrollViewDelegates:
-- scrollViewWillEndDragging (iOS5) / scrollViewDidEndDragging (iOS4)
-- scrollViewDidEndDecelerating
+<p>This delegate combines following scrollViewDelegates:
+&ndash; scrollViewWillEndDragging / scrollViewDidEndDragging
+&ndash; scrollViewDidEndDecelerating</p>
 
-Note: be careful to not dereference a nil pointer in targetContentOffset.
-</code></pre>
+<p>Note: be careful to not dereference a nil pointer in targetContentOffset.</p>
 	</div>
 	
 	
@@ -830,8 +833,7 @@ Note: be careful to not dereference a nil pointer in targetContentOffset.
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
-</code></pre>
+		<p>Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.</p>
 	</div>		
 	
 	
@@ -846,12 +848,11 @@ Note: be careful to not dereference a nil pointer in targetContentOffset.
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Default handling is (if available) text selection; showing the magnification-loupe.
+		<p>Default handling is (if available) text selection; showing the magnification-loupe.</p>
 
-The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.
+<p>The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.</p>
 
-Note that there may be unexpected results if you only capture *some* events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.
-</code></pre>
+<p>Note that there may be unexpected results if you only capture <em>some</em> events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.</p>
 	</div>
 	
 	
@@ -1012,7 +1013,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called after the controller has been fully displayed. iOS5 only. Isn&rsquo;t called for UIPopoverController&rsquo;s.</p>
+		<p>Called after the controller has been fully displayed. Isn&rsquo;t called for UIPopoverController&rsquo;s.</p>
 	</div>		
 	
 	
@@ -1114,8 +1115,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
-</code></pre>
+		<p>Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.</p>
 	</div>		
 	
 	
@@ -1130,13 +1130,14 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Return YES to override the default action and custom-handle this.
-Default actions might be scroll to target page, open Safari, show a menu, ...
+		<p>Return YES to override the default action and custom-handle this.
+Default actions might be scroll to target page, open Safari, show a menu, &hellip;</p>
 
-Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
+<p>Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)</p>
 
-annotationPoint is the point relative to PSPDFAnnotation, in PDF coordinate space.
-viewPoint is the point relative to the PSPDFPageView.
+<p>AnnotationPoint is the point relative to <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>, in PDF coordinate space.</p>
+
+<pre><code>viewPoint is the point relative to the PSPDFPageView.
 </code></pre>
 	</div>
 	
@@ -1216,6 +1217,43 @@ If this is unimplemented, we try to find the PDF ourself with using the current 
 	
 	
 	<div class="method-subsection method-declaration"><code>- (PSPDFDocument *)pdfViewController:(PSPDFViewController *)<em>pdfController</em> documentForRelativePath:(NSString *)<em>relativePath</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:requestsUpdateForBarButtonItem:animated:" title="pdfViewController:requestsUpdateForBarButtonItem:animated:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:requestsUpdateForBarButtonItem:animated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If you implement your own super-custom toolbar, handle updates for bar buttons. (e.g. with re-setting the items array)
+One popular example is <a href="../Classes/PSPDFBookmarkBarButtonItem.html">PSPDFBookmarkBarButtonItem</a>, which needs to change it&rsquo;s image after pressing the button.
+Ignore this if you&rsquo;re letting PSPDFKit manage your toolbar or if you&rsquo;re using a UIToolbar.
+If you implement this delegate, the default UIToolbar-update-code will not be called.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> requestsUpdateForBarButtonItem:(UIBarButtonItem *)<em>barButtonItem</em> animated:(BOOL)<em>animated</em></code></div>
 	
 	
 	
@@ -1451,8 +1489,7 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Called before we show a controller modally or in a popover. Allows last minute modifications.\
-</code></pre>
+		<p>Called before we show a controller modally or in a popover. Allows last minute modifications.\</p>
 	</div>		
 	
 	
@@ -1467,10 +1504,9 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
+		<p>The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.</p>
 
-Return NO to process the displaying manually.
-</code></pre>
+<p>Return NO to process the displaying manually.</p>
 	</div>
 	
 	
@@ -1562,9 +1598,8 @@ Return NO to process the displaying manually.
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Called before the menu for text selection is displayed.
-All coordinates are in view coordinate space.
-</code></pre>
+		<p>Called before the menu for text selection is displayed.
+All coordinates are in view coordinate space.</p>
 	</div>		
 	
 	
@@ -1579,10 +1614,8 @@ All coordinates are in view coordinate space.
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
-
-Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
-</code></pre>
+		<p>Using <a href="../Classes/PSPDFMenuItem.html">PSPDFMenuItem</a> will help with adding custom menu&rsquo;s w/o hacking the responder chain.
+Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.</p>
 	</div>
 	
 	
@@ -1783,7 +1816,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

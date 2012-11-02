@@ -40,6 +40,8 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;name</option>
+	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
 	
@@ -50,6 +52,8 @@
 	<option value="instance_methods">Instance Methods</option>
 	
 	<option value="//api/name/initWithPage:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPage:</option>
+	
+	<option value="//api/name/pageOrNameString">&nbsp;&nbsp;&nbsp;&nbsp;- pageOrNameString</option>
 	
 	
 	
@@ -75,6 +79,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
 </ul></li>
@@ -86,6 +92,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPage:">initWithPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageOrNameString">pageOrNameString</a></span></li>
 	
 </ul></li>
 
@@ -127,10 +135,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>A Bookmark is a simple object that encapsulates a page.
+						<p>A Bookmark is a simple object that encapsulates a <a href="#//api/name/page">page</a>.</p>
 
-True, this could've been accomplished with NSNumber, but having a special object is more flexible in the long run.
-</code></pre>
+<p>True, this could&rsquo;ve been accomplished with NSNumber, but having a special object is more flexible in the long run.</p>
 					</div>
 					
 					
@@ -160,6 +167,20 @@ True, this could've been accomplished with NSNumber, but having a special object
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/name">&nbsp;&nbsp;name</a></code>
+		<span class="tooltip"><p>Bookmark can have a name. This is optional and can be displayed on the <a href="../Classes/PSPDFBookmarkViewController.html">PSPDFBookmarkViewController</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageOrNameString">&ndash;&nbsp;pageOrNameString</a></code>
+		<span class="tooltip"><p>Returns &ldquo;Page X&rdquo; or <a href="#//api/name/name">name</a>.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -172,6 +193,40 @@ True, this could've been accomplished with NSNumber, but having a special object
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/name" title="name"></a>
+	<h3 class="subsubtitle method-title">name</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Bookmark can have a name. This is optional and can be displayed on the <a href="../Classes/PSPDFBookmarkViewController.html">PSPDFBookmarkViewController</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *name</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBookmark.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/page" title="page"></a>
@@ -251,6 +306,40 @@ True, this could've been accomplished with NSNumber, but having a special object
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/pageOrNameString" title="pageOrNameString"></a>
+	<h3 class="subsubtitle method-title">pageOrNameString</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns &ldquo;Page X&rdquo; or <a href="#//api/name/name">name</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)pageOrNameString</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBookmark.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -264,7 +353,7 @@ True, this could've been accomplished with NSNumber, but having a special object
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

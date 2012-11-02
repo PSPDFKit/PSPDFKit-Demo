@@ -44,12 +44,16 @@
 	
 	<option value="//api/name/outlineElement">&nbsp;&nbsp;&nbsp;&nbsp;outlineElement</option>
 	
+	<option value="//api/name/outlineIndentMultiplicator">&nbsp;&nbsp;&nbsp;&nbsp;outlineIndentMultiplicator</option>
+	
+	<option value="//api/name/outlineIntentLeftOffset">&nbsp;&nbsp;&nbsp;&nbsp;outlineIntentLeftOffset</option>
+	
 	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/heightForCellWithOutlineElement:constrainedToSize:">&nbsp;&nbsp;&nbsp;&nbsp;+ heightForCellWithOutlineElement:constrainedToSize:</option>
+	<option value="//api/name/heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:">&nbsp;&nbsp;&nbsp;&nbsp;+ heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:</option>
 	
 	
 	
@@ -69,6 +73,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Subclassing Methods">Subclassing Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -81,13 +87,17 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineElement">outlineElement</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineIndentMultiplicator">outlineIndentMultiplicator</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineIntentLeftOffset">outlineIntentLeftOffset</a></span></li>
+	
 </ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/heightForCellWithOutlineElement:constrainedToSize:">heightForCellWithOutlineElement:constrainedToSize:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:">heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:</a></span></li>
 	
 </ul></li>
 
@@ -128,7 +138,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Single cell for the outline controller</p>
+						<p>Single cell for the outline controller.</p>
 					</div>
 					
 					
@@ -141,27 +151,49 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/heightForCellWithOutlineElement:constrainedToSize:">+&nbsp;heightForCellWithOutlineElement:constrainedToSize:</a></code>
-		<span class="tooltip"><p>Dynamically claculates the height for a cell.</p></span>
+		<code><a href="#//api/name/heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:">+&nbsp;heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:</a></code>
+		<span class="tooltip"><p>Dynamically calculates the height for a cell.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>Delegate for cell button</p></span>
+		<span class="tooltip"><p>Delegate for cell button.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineElement">&nbsp;&nbsp;outlineElement</a></code>
-		<span class="tooltip"><p>Single outline Element</p></span>
+		<span class="tooltip"><p>Single outline element.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Subclassing Methods" name="task_Subclassing Methods"></a>
+						<h3 class="subsubtitle task-title">Subclassing Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineIntentLeftOffset">&nbsp;&nbsp;outlineIntentLeftOffset</a></code>
+		<span class="tooltip"><p>Defaults to 32.f. Should be changed on <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineIndentMultiplicator">&nbsp;&nbsp;outlineIndentMultiplicator</a></code>
+		<span class="tooltip"><p>Defaults to 15.f. Should be changed on <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -185,11 +217,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Delegate for cell button</p>
+		<p>Delegate for cell button.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFOutlineCellDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFOutlineCellDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -219,11 +251,79 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Single outline Element</p>
+		<p>Single outline element.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFOutlineElement *outlineElement</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineCell.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineIndentMultiplicator" title="outlineIndentMultiplicator"></a>
+	<h3 class="subsubtitle method-title">outlineIndentMultiplicator</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defaults to 15.f. Should be changed on <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat outlineIndentMultiplicator</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineCell.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineIntentLeftOffset" title="outlineIntentLeftOffset"></a>
+	<h3 class="subsubtitle method-title">outlineIntentLeftOffset</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Defaults to 32.f. Should be changed on <a href="../Classes/PSPDFOutlineViewController.html">PSPDFOutlineViewController</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat outlineIntentLeftOffset</code></div>
 	
 	
 	
@@ -255,17 +355,17 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/heightForCellWithOutlineElement:constrainedToSize:" title="heightForCellWithOutlineElement:constrainedToSize:"></a>
-	<h3 class="subsubtitle method-title">heightForCellWithOutlineElement:constrainedToSize:</h3>
+	<a name="//api/name/heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:" title="heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:"></a>
+	<h3 class="subsubtitle method-title">heightForCellWithOutlineElement:constrainedToSize:outlineIntentLeftOffset:outlineIntentMultiplicator:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Dynamically claculates the height for a cell.</p>
+		<p>Dynamically calculates the height for a cell.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)<em>outlineElement</em> constrainedToSize:(CGSize)<em>constraintSize</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)<em>outlineElement</em> constrainedToSize:(CGSize)<em>constraintSize</em> outlineIntentLeftOffset:(CGFloat)<em>leftOffset</em> outlineIntentMultiplicator:(CGFloat)<em>multiplicator</em></code></div>
 	
 	
 	
@@ -303,7 +403,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

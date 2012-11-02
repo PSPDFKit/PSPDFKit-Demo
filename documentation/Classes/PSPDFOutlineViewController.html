@@ -48,6 +48,10 @@
 	
 	<option value="//api/name/maximumNumberOfLines">&nbsp;&nbsp;&nbsp;&nbsp;maximumNumberOfLines</option>
 	
+	<option value="//api/name/outlineIndentMultiplicator">&nbsp;&nbsp;&nbsp;&nbsp;outlineIndentMultiplicator</option>
+	
+	<option value="//api/name/outlineIntentLeftOffset">&nbsp;&nbsp;&nbsp;&nbsp;outlineIntentLeftOffset</option>
+	
 	
 	
 	
@@ -88,6 +92,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maximumNumberOfLines">maximumNumberOfLines</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineIndentMultiplicator">outlineIndentMultiplicator</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/outlineIntentLeftOffset">outlineIntentLeftOffset</a></span></li>
 	
 </ul></li>
 
@@ -136,10 +144,9 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>Outline (Table of Contents) view conroller.
+						<p>Outline (Table of Contents) view conroller.</p>
 
-As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
-</code></pre>
+<p>As always, you can easily customize this controller using the overrideClassName system in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
 					</div>
 					
 					
@@ -172,8 +179,21 @@ As always, you can easily customize this controller using the overrideClassName 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/maximumNumberOfLines">&nbsp;&nbsp;maximumNumberOfLines</a></code>
-		<span class="tooltip"><pre><code>How many lines should be displayed for a cell. Defaults to 4.
-</code></pre></span>
+		<span class="tooltip"><p>How many lines should be displayed for a cell. Defaults to 4.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineIntentLeftOffset">&nbsp;&nbsp;outlineIntentLeftOffset</a></code>
+		<span class="tooltip"><p>Left intent width. Defaults to 32.f.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/outlineIndentMultiplicator">&nbsp;&nbsp;outlineIndentMultiplicator</a></code>
+		<span class="tooltip"><p>Intent multiplicator (will be added x times the intent level). Defaults to 15.f.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -249,7 +269,7 @@ As always, you can easily customize this controller using the overrideClassName 
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFOutlineViewControllerDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFOutlineViewControllerDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -283,7 +303,7 @@ As always, you can easily customize this controller using the overrideClassName 
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) PSPDFDocument *document</code></div>
 	
 	
 	
@@ -313,8 +333,7 @@ As always, you can easily customize this controller using the overrideClassName 
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>How many lines should be displayed for a cell. Defaults to 4.
-</code></pre>
+		<p>How many lines should be displayed for a cell. Defaults to 4.</p>
 	</div>		
 	
 	
@@ -329,10 +348,77 @@ As always, you can easily customize this controller using the overrideClassName 
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
-Set to 0 to show the full text, no matter how long the entry is.
-</code></pre>
+		<p>Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
+Set to 0 to show the full text, no matter how long the entry is.</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineIndentMultiplicator" title="outlineIndentMultiplicator"></a>
+	<h3 class="subsubtitle method-title">outlineIndentMultiplicator</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Intent multiplicator (will be added x times the intent level). Defaults to 15.f.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat outlineIndentMultiplicator</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOutlineViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/outlineIntentLeftOffset" title="outlineIntentLeftOffset"></a>
+	<h3 class="subsubtitle method-title">outlineIntentLeftOffset</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Left intent width. Defaults to 32.f.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat outlineIntentLeftOffset</code></div>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -405,7 +491,7 @@ Set to 0 to show the full text, no matter how long the entry is.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

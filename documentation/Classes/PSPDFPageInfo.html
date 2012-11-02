@@ -40,7 +40,7 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
+	<option value="//api/name/documentProvider">&nbsp;&nbsp;&nbsp;&nbsp;documentProvider</option>
 	
 	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
 	
@@ -59,7 +59,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithPage:rect:rotation:document:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPage:rect:rotation:document:</option>
+	<option value="//api/name/initWithPage:rect:rotation:documentProvider:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPage:rect:rotation:documentProvider:</option>
 	
 	
 	
@@ -85,7 +85,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProvider">documentProvider</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
 	
@@ -105,7 +105,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPage:rect:rotation:document:">initWithPage:rect:rotation:document:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPage:rect:rotation:documentProvider:">initWithPage:rect:rotation:documentProvider:</a></span></li>
 	
 </ul></li>
 
@@ -147,8 +147,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Represents a PDF <a href="#//api/name/page">page</a>. Managed within <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
-With NSCopying, <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is not serialized.</p>
+						<p>Represents PDF <a href="#//api/name/page">page</a> data. Managed within <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.</p>
 					</div>
 					
 					
@@ -166,7 +165,7 @@ With NSCopying, <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is not
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithPage:rect:rotation:document:">&ndash;&nbsp;initWithPage:rect:rotation:document:</a></code>
+		<code><a href="#//api/name/initWithPage:rect:rotation:documentProvider:">&ndash;&nbsp;initWithPage:rect:rotation:documentProvider:</a></code>
 		<span class="tooltip"><p>Init object with <a href="#//api/name/page">page</a> and rotation.</p></span>
 	</span>
 	
@@ -181,7 +180,7 @@ With NSCopying, <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is not
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/rotatedPageRect">&nbsp;&nbsp;rotatedPageRect</a></code>
-		<span class="tooltip"><p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p></span>
+		<span class="tooltip"><p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>. Is calculated on the fly.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -189,7 +188,8 @@ With NSCopying, <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is not
 	<span class="tooltip">
 		<code><a href="#//api/name/pageRotation">&nbsp;&nbsp;pageRotation</a></code>
 		<span class="tooltip"><p>Saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.
-Can be used to manually rotate pages (but needs a cache clearing and a reload)</p></span>
+Can be used to manually rotate pages (but needs a cache clearing and a reload)
+On setting this, <a href="#//api/name/pageRotationTransform">pageRotationTransform</a> will be updated.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -209,8 +209,8 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>Referenced document, weak.</p></span>
+		<code><a href="#//api/name/documentProvider">&nbsp;&nbsp;documentProvider</a></code>
+		<span class="tooltip"><p>Referenced document provider, weak.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -228,17 +228,17 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/document" title="document"></a>
-	<h3 class="subsubtitle method-title">document</h3>
+	<a name="//api/name/documentProvider" title="documentProvider"></a>
+	<h3 class="subsubtitle method-title">documentProvider</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Referenced document, weak.</p>
+		<p>Referenced document provider, weak.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider</code></div>
 	
 	
 	
@@ -337,7 +337,8 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 	
 	<div class="method-subsection brief-description">
 		<p>Saved <a href="#//api/name/page">page</a> rotation of current <a href="#//api/name/page">page</a>. Value between 0 and 270.
-Can be used to manually rotate pages (but needs a cache clearing and a reload)</p>
+Can be used to manually rotate pages (but needs a cache clearing and a reload)
+On setting this, <a href="#//api/name/pageRotationTransform">pageRotationTransform</a> will be updated.</p>
 	</div>		
 	
 	
@@ -405,7 +406,7 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>.</p>
+		<p>Returns corrected, rotated bounds of <a href="#//api/name/pageRect">pageRect</a>. Is calculated on the fly.</p>
 	</div>		
 	
 	
@@ -443,8 +444,8 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithPage:rect:rotation:document:" title="initWithPage:rect:rotation:document:"></a>
-	<h3 class="subsubtitle method-title">initWithPage:rect:rotation:document:</h3>
+	<a name="//api/name/initWithPage:rect:rotation:documentProvider:" title="initWithPage:rect:rotation:documentProvider:"></a>
+	<h3 class="subsubtitle method-title">initWithPage:rect:rotation:documentProvider:</h3>
 	
 	
 	
@@ -453,7 +454,7 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithPage:(NSUInteger)<em>page</em> rect:(CGRect)<em>pageRect</em> rotation:(NSInteger)<em>rotation</em> document:(PSPDFDocument *)<em>document</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithPage:(NSUInteger)<em>page</em> rect:(CGRect)<em>pageRect</em> rotation:(NSInteger)<em>rotation</em> documentProvider:(PSPDFDocumentProvider *)<em>documentProvider</em></code></div>
 	
 	
 	
@@ -489,7 +490,7 @@ Can be used to manually rotate pages (but needs a cache clearing and a reload)</
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

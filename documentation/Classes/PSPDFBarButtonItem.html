@@ -66,9 +66,13 @@
 	
 	<option value="//api/name/isAvailable">&nbsp;&nbsp;&nbsp;&nbsp;- isAvailable</option>
 	
+	<option value="//api/name/isLongPressActionAvailable">&nbsp;&nbsp;&nbsp;&nbsp;- isLongPressActionAvailable</option>
+	
 	<option value="//api/name/itemStyle">&nbsp;&nbsp;&nbsp;&nbsp;- itemStyle</option>
 	
 	<option value="//api/name/landscapeImagePhone">&nbsp;&nbsp;&nbsp;&nbsp;- landscapeImagePhone</option>
+	
+	<option value="//api/name/longPressAction:">&nbsp;&nbsp;&nbsp;&nbsp;- longPressAction:</option>
 	
 	<option value="//api/name/presentAnimated:sender:">&nbsp;&nbsp;&nbsp;&nbsp;- presentAnimated:sender:</option>
 	
@@ -130,9 +134,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAvailable">isAvailable</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isLongPressActionAvailable">isLongPressActionAvailable</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/itemStyle">itemStyle</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/landscapeImagePhone">landscapeImagePhone</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/longPressAction:">longPressAction:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/presentAnimated:sender:">presentAnimated:sender:</a></span></li>
 	
@@ -182,16 +190,15 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>Custom subclass that handles a UIBarButtonItem within the UINavigationBar of PSPDFViewController.
+						<p>Custom subclass that handles a UIBarButtonItem within the UINavigationBar of <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
 
-The toolbar system in PSPDFViewController is designed to work with both stock UIBarButtonItem and PSPDFBarButtonItem; but if you want to use additionalRightBarButtonItems (where the items are listed inside a UIActionSheet) you must use a subclass of PSPDFBarButtonItem.
+<p>The toolbar system in <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> is designed to work with both stock UIBarButtonItem and PSPDFBarButtonItem; but if you want to use additionalRightBarButtonItems (where the items are listed inside a UIActionSheet) you must use a subclass of PSPDFBarButtonItem.</p>
 
-PSPDFBarButtonItem also gives you access to the pdfController and ways to dynamically enable/disable your icon.
+<p>PSPDFBarButtonItem also gives you access to the <a href="#//api/name/pdfController">pdfController</a> and ways to dynamically enable/disable your icon.</p>
 
-Call updateBarButtonItem:animated: if you need to change tie image/customView/systemImage after the barButton has been displayed.
+<p>Call updateBarButtonItem:animated: if you need to change tie image/customView/systemImage after the barButton has been displayed.</p>
 
-Do not change target/selector - if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the PSPDFMoreBarButtonItem. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you'll never know what button has been selected.
-</code></pre>
+<p>Do not change target/selector &ndash; if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the <a href="../Classes/PSPDFMoreBarButtonItem.html">PSPDFMoreBarButtonItem</a>. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you&rsquo;ll never know what button has been selected.</p>
 					</div>
 					
 					
@@ -224,7 +231,7 @@ Do not change target/selector - if the case of UIActionSheet/moreButton we call 
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
-		<span class="tooltip"><p>PDF controller.</p></span>
+		<span class="tooltip"><p>PDF controller. Not weak, can be KVO observed.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -261,7 +268,16 @@ This is needed ot list the action in additionalRightBarButtonItems in an ActionS
 	<span class="tooltip">
 		<code><a href="#//api/name/isAvailable">&ndash;&nbsp;isAvailable</a></code>
 		<span class="tooltip"><p>Defaults to YES. Override if the bar button may not be available.
-Unavailable buttons will not be displayed in the toolbar.</p></span>
+Unavailable buttons will not be displayed in the toolbar.
+Can also be used to hide some options when the grid is displayed.
+e.g. return [self.pdfController.document isValid] &amp;&amp; self.<a href="#//api/name/pdfController">pdfController</a>.viewMode == PSPDFViewModeDocument;</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isLongPressActionAvailable">&ndash;&nbsp;isLongPressActionAvailable</a></code>
+		<span class="tooltip"><p>PSPDFBarButtonItem also supports long-press actions. Defaults to NO.</p></span>
 	</span>
 	
 	
@@ -277,8 +293,8 @@ Defaults to enabled, as long as a document is set and valid on pdfViewController
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/presentAnimated:sender:">&ndash;&nbsp;presentAnimated:sender:</a></code>
-		<span class="tooltip"><p>must call super in subclasses if a popover is presented or dismissed
-Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo; object if you indirectly presented a popover controller</p></span>
+		<span class="tooltip"><p>Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo; object if you indirectly presented a popover controller
+Sender can be either a UIBarButtonItem or a generic view.</p></span>
 	</span>
 	
 	
@@ -292,9 +308,7 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/popoverControllerForObject:">+&nbsp;popoverControllerForObject:</a></code>
-		<span class="tooltip"><pre><code>Peaks into certain Apple classes to get the internal UIPopoverController.
-(e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
-</code></pre></span>
+		<span class="tooltip"><p>Peaks into certain Apple classes to get the internal UIPopoverController. (e.g. UIPrintInteractionController. I&rsquo;ve written rdars to allow access to the internal popoverController &ndash; but this is the best way in the mean time)</p></span>
 	</span>
 	
 	
@@ -302,6 +316,13 @@ Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo
 	<span class="tooltip">
 		<code><a href="#//api/name/action:">&ndash;&nbsp;action:</a></code>
 		<span class="tooltip"><p>Subclass to build a completely custom action, overriding the default present/dismiss calls.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/longPressAction:">&ndash;&nbsp;longPressAction:</a></code>
+		<span class="tooltip"><p>Subclass to react on long press events. Only invoked if <a href="#//api/name/isLongPressActionAvailable">isLongPressActionAvailable</a> is set to YES.</p></span>
 	</span>
 	
 	
@@ -333,7 +354,7 @@ This returns a current state copy and relays the events.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>PDF controller.</p>
+		<p>PDF controller. Not weak, can be KVO observed.</p>
 	</div>		
 	
 	
@@ -409,9 +430,7 @@ This returns a current state copy and relays the events.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Peaks into certain Apple classes to get the internal UIPopoverController.
-(e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
-</code></pre>
+		<p>Peaks into certain Apple classes to get the internal UIPopoverController. (e.g. UIPrintInteractionController. I&rsquo;ve written rdars to allow access to the internal popoverController &ndash; but this is the best way in the mean time)</p>
 	</div>		
 	
 	
@@ -426,9 +445,7 @@ This returns a current state copy and relays the events.</p></span>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set.
-(It's coded very defensely and this failing will just result in a minor UX degredation)
-</code></pre>
+		<p>Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set. (It&rsquo;s coded very defensely and this failing will just result in a minor UX degredation)</p>
 	</div>
 	
 	
@@ -598,11 +615,47 @@ This is needed ot list the action in additionalRightBarButtonItems in an ActionS
 	
 	<div class="method-subsection brief-description">
 		<p>Defaults to YES. Override if the bar button may not be available.
-Unavailable buttons will not be displayed in the toolbar.</p>
+Unavailable buttons will not be displayed in the toolbar.
+Can also be used to hide some options when the grid is displayed.
+e.g. return [self.pdfController.document isValid] &amp;&amp; self.<a href="#//api/name/pdfController">pdfController</a>.viewMode == PSPDFViewModeDocument;</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)isAvailable</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isLongPressActionAvailable" title="isLongPressActionAvailable"></a>
+	<h3 class="subsubtitle method-title">isLongPressActionAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PSPDFBarButtonItem also supports long-press actions. Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isLongPressActionAvailable</code></div>
 	
 	
 	
@@ -694,18 +747,52 @@ Unavailable buttons will not be displayed in the toolbar.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/longPressAction:" title="longPressAction:"></a>
+	<h3 class="subsubtitle method-title">longPressAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Subclass to react on long press events. Only invoked if <a href="#//api/name/isLongPressActionAvailable">isLongPressActionAvailable</a> is set to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)longPressAction:(PSPDFBarButtonItem *)<em>sender</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/presentAnimated:sender:" title="presentAnimated:sender:"></a>
 	<h3 class="subsubtitle method-title">presentAnimated:sender:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>must call super in subclasses if a popover is presented or dismissed
-Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo; object if you indirectly presented a popover controller</p>
+		<p>Return a UIPopoverController if you presented a popover or a &ldquo;parent&rdquo; object if you indirectly presented a popover controller
+Sender can be either a UIBarButtonItem or a generic view.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)presentAnimated:(BOOL)<em>animated</em> sender:(PSPDFBarButtonItem *)<em>sender</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)presentAnimated:(BOOL)<em>animated</em> sender:(id)<em>sender</em></code></div>
 	
 	
 	
@@ -846,7 +933,7 @@ Defaults to enabled, as long as a document is set and valid on pdfViewController
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

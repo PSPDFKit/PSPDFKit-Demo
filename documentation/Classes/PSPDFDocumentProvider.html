@@ -103,6 +103,12 @@
 	
 	<option value="//api/name/iterateOverPageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- iterateOverPageRef:</option>
 	
+	<option value="//api/name/pageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:</option>
+	
+	<option value="//api/name/pageInfoForPage:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPage:pageRef:</option>
+	
+	<option value="//api/name/pageInfoForPageNoFetching:">&nbsp;&nbsp;&nbsp;&nbsp;- pageInfoForPageNoFetching:</option>
+	
 	<option value="//api/name/performBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- performBlock:</option>
 	
 	<option value="//api/name/releaseDocumentRef:withOwner:">&nbsp;&nbsp;&nbsp;&nbsp;- releaseDocumentRef:withOwner:</option>
@@ -132,6 +138,8 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFInternal Methods">PSPDFInternal Methods</a></span></li>
 	
 </ul></li>
 
@@ -205,6 +213,12 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/iterateOverPageRef:">iterateOverPageRef:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:">pageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPage:pageRef:">pageInfoForPage:pageRef:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageInfoForPageNoFetching:">pageInfoForPageNoFetching:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/performBlock:">performBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/releaseDocumentRef:withOwner:">releaseDocumentRef:withOwner:</a></span></li>
@@ -270,7 +284,7 @@ Note: This class is used within <a href="../Classes/PSPDFDocument.html">PSPDFDoc
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -386,6 +400,13 @@ pageNumber starts at 1.</p></span>
 		<code><a href="#//api/name/flushDocumentReference">&ndash;&nbsp;flushDocumentReference</a></code>
 		<span class="tooltip"><p>For optimization reasons, the internal documentRef might be cached.
 This force-clears the cache.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
 	</span>
 	
 	
@@ -535,6 +556,29 @@ Lazy initialized. Can be subclassed or set externally.
 If you set this externally, do this ONLY in your subclass of <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> in didCreateDocumentProvider:.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFInternal Methods" name="task_PSPDFInternal Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFInternal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPageNoFetching:">&ndash;&nbsp;pageInfoForPageNoFetching:</a></code>
+		<span class="tooltip"><p>Queries the PageInfo, but doesn&rsquo;t fetch new <a href="#//api/name/data">data</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+You can override this if you need to manually change the rotation value of a page.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -768,7 +812,7 @@ NOT readonly, since we may write back annotation data.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFDocumentProviderDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFDocumentProviderDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -802,7 +846,7 @@ NOT readonly, since we may write back annotation data.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak, readonly) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak, readonly) PSPDFDocument *document</code></div>
 	
 	
 	
@@ -1526,6 +1570,109 @@ This force-clears the cache.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/pageInfoForPage:" title="pageInfoForPage:"></a>
+	<h3 class="subsubtitle method-title">pageInfoForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageInfoForPage:pageRef:" title="pageInfoForPage:pageRef:"></a>
+	<h3 class="subsubtitle method-title">pageInfoForPage:pageRef:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+You can override this if you need to manually change the rotation value of a page.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)<em>page</em> pageRef:(CGPDFPageRef)<em>pageRef</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageInfoForPageNoFetching:" title="pageInfoForPageNoFetching:"></a>
+	<h3 class="subsubtitle method-title">pageInfoForPageNoFetching:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Queries the PageInfo, but doesn&rsquo;t fetch new <a href="#//api/name/data">data</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (PSPDFPageInfo *)pageInfoForPageNoFetching:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/performBlock:" title="performBlock:"></a>
 	<h3 class="subsubtitle method-title">performBlock:</h3>
 	
@@ -1786,7 +1933,7 @@ Will set .<a href="#//api/name/password">password</a> to this <a href="#//api/na
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

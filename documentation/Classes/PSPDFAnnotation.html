@@ -44,6 +44,8 @@
 	
 	<option value="//api/name/boundingBox">&nbsp;&nbsp;&nbsp;&nbsp;boundingBox</option>
 	
+	<option value="//api/name/boundingBoxWithoutRotation">&nbsp;&nbsp;&nbsp;&nbsp;boundingBoxWithoutRotation</option>
+	
 	<option value="//api/name/color">&nbsp;&nbsp;&nbsp;&nbsp;color</option>
 	
 	<option value="//api/name/colorWithAlpha">&nbsp;&nbsp;&nbsp;&nbsp;colorWithAlpha</option>
@@ -56,7 +58,11 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
+	<option value="//api/name/documentProvider">&nbsp;&nbsp;&nbsp;&nbsp;documentProvider</option>
+	
 	<option value="//api/name/editable">&nbsp;&nbsp;&nbsp;&nbsp;editable</option>
+	
+	<option value="//api/name/fillColor">&nbsp;&nbsp;&nbsp;&nbsp;fillColor</option>
 	
 	<option value="//api/name/indexOnPage">&nbsp;&nbsp;&nbsp;&nbsp;indexOnPage</option>
 	
@@ -68,9 +74,13 @@
 	
 	<option value="//api/name/popupIndex">&nbsp;&nbsp;&nbsp;&nbsp;popupIndex</option>
 	
+	<option value="//api/name/rotation">&nbsp;&nbsp;&nbsp;&nbsp;rotation</option>
+	
 	<option value="//api/name/type">&nbsp;&nbsp;&nbsp;&nbsp;type</option>
 	
 	<option value="//api/name/typeString">&nbsp;&nbsp;&nbsp;&nbsp;typeString</option>
+	
+	<option value="//api/name/user">&nbsp;&nbsp;&nbsp;&nbsp;user</option>
 	
 	
 	
@@ -118,6 +128,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFAnnotationWriting Methods">PSPDFAnnotationWriting Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -129,6 +141,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alpha">alpha</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boundingBox">boundingBox</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boundingBoxWithoutRotation">boundingBoxWithoutRotation</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/color">color</a></span></li>
 	
@@ -142,7 +156,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProvider">documentProvider</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/editable">editable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillColor">fillColor</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexOnPage">indexOnPage</a></span></li>
 	
@@ -154,9 +172,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/popupIndex">popupIndex</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotation">rotation</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/type">type</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/typeString">typeString</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/user">user</a></span></li>
 	
 </ul></li>
 
@@ -230,12 +252,15 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Defines a PDF annotation.
-<a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using <a href="#//api/name/supportedTypes">supportedTypes</a>.</p>
+						<p>Defines a PDF annotation.</p>
+
+<p><a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using <a href="#//api/name/supportedTypes">supportedTypes</a>.</p>
 
 <p>Don&rsquo;t directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the <a href="#//api/name/type">type</a> PSPDFAnnotationTypeUndefined.</p>
 
-<p>Subclasses need to implement &ndash; (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray</p>
+<p>Subclasses need to implement &ndash; (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.</p>
+
+<p>Ensure that custom sublcasses also correctly implement hash and isEqual.</p>
 					</div>
 					
 					
@@ -248,7 +273,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -268,7 +293,7 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithType:">&ndash;&nbsp;initWithType:</a></code>
-		<span class="tooltip"><p>Use this to create custom user annotations.</p></span>
+		<span class="tooltip"><p>Use this to create custom <a href="../Classes/PSPDFAnnotation.html#//api/name/user">user</a> annotations.</p></span>
 	</span>
 	
 	
@@ -284,14 +309,6 @@ Implement this in your subclass.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithAnnotationDictionary:inAnnotsArray:type:">&ndash;&nbsp;initWithAnnotationDictionary:inAnnotsArray:type:</a></code>
 		<span class="tooltip"><p>Initialize annotation with the corresponding PDF dictionary. Call from subclass.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/copyAndDeleteOriginalIfNeeded">&ndash;&nbsp;copyAndDeleteOriginalIfNeeded</a></code>
-		<span class="tooltip"><p>Annotations that have <a href="#//api/name/indexOnPage">indexOnPage</a> >= 0 will be copied before they&rsquo;re modified.
-Returns same <a href="#//api/name/type">type</a> as current class.</p></span>
 	</span>
 	
 	
@@ -319,13 +336,6 @@ Coordinates here are in PDF coordinate space.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfDataRepresentation">&ndash;&nbsp;pdfDataRepresentation</a></code>
-		<span class="tooltip"><p>Returns NSData string represnetation in the PDF Standard.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/type">&nbsp;&nbsp;type</a></code>
 		<span class="tooltip"><p>Current annotation type.</p></span>
 	</span>
@@ -337,7 +347,7 @@ Coordinates here are in PDF coordinate space.</p></span>
 		<span class="tooltip"><p>If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 Currently won&rsquo;t work if you just set arbitrary annotations to overlay=YES.
-If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p></span>
+If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -381,6 +391,15 @@ Note: use .<a href="#//api/name/alpha">alpha</a> for transparency, not the <a hr
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/fillColor">&nbsp;&nbsp;fillColor</a></code>
+		<span class="tooltip"><p>Fill <a href="#//api/name/color">color</a>. Only used for certain annotation types. (&ldquo;IC&rdquo; key)
+(e.g. Square and Circle Annotations)
+FillColor might be nil &ndash; treat like clearColor in that case.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/contents">&nbsp;&nbsp;contents</a></code>
 		<span class="tooltip"><p>Optional. Various annotation types may contain text.</p></span>
 	</span>
@@ -395,22 +414,6 @@ Note: use .<a href="#//api/name/alpha">alpha</a> for transparency, not the <a hr
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/indexOnPage">&nbsp;&nbsp;indexOnPage</a></code>
-		<span class="tooltip"><p>If indexOnPage is set, it&rsquo;s a native PDF annotation.
-If this is -1, it&rsquo;s not yet saved in the PDF.
-Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/popupIndex">&nbsp;&nbsp;popupIndex</a></code>
-		<span class="tooltip"><p>Some annotations may have a popupIndex. Defaults to -1.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/deleted">&nbsp;&nbsp;deleted</a></code>
 		<span class="tooltip"><p>Annotation may already be deleted locally, but not written back.</p></span>
 	</span>
@@ -419,14 +422,29 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/boundingBox">&nbsp;&nbsp;boundingBox</a></code>
-		<span class="tooltip"><p>rectangle of specific annotation.</p></span>
+		<span class="tooltip"><p>Rectangle of specific annotation.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/boundingBoxWithoutRotation">&nbsp;&nbsp;boundingBoxWithoutRotation</a></code>
+		<span class="tooltip"><p>Annotations already have a <a href="#//api/name/boundingBox">boundingBox</a> where <a href="#//api/name/rotation">rotation</a> is applied.
+Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/user">&nbsp;&nbsp;user</a></code>
+		<span class="tooltip"><p>User (title) flag. (&ldquo;T&rdquo; property)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>page for current annotation.</p></span>
+		<span class="tooltip"><p>Page for current annotation. Page is relative to the <a href="#//api/name/documentProvider">documentProvider</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -440,8 +458,61 @@ After the annotation has been written to the file, this will be reset until the 
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/documentProvider">&nbsp;&nbsp;documentProvider</a></code>
+		<span class="tooltip"><p>Corresponding documentProvider, weak.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>corresponding document, weak.</p></span>
+		<span class="tooltip"><p>Document is inferred from the <a href="#//api/name/documentProvider">documentProvider</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rotation">&nbsp;&nbsp;rotation</a></code>
+		<span class="tooltip"><p>Rotation value, copied from the <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> and set when <a href="#//api/name/documentProvider">documentProvider</a> is set.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFAnnotationWriting Methods" name="task_PSPDFAnnotationWriting Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFAnnotationWriting Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfDataRepresentation">&ndash;&nbsp;pdfDataRepresentation</a></code>
+		<span class="tooltip"><p>Returns NSData string represnetation in the PDF Standard.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/copyAndDeleteOriginalIfNeeded">&ndash;&nbsp;copyAndDeleteOriginalIfNeeded</a></code>
+		<span class="tooltip"><p>Annotations that have <a href="#//api/name/indexOnPage">indexOnPage</a> >= 0 will be copied before they&rsquo;re modified.
+Returns same <a href="#//api/name/type">type</a> as current class.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/indexOnPage">&nbsp;&nbsp;indexOnPage</a></code>
+		<span class="tooltip"><p>If indexOnPage is set, it&rsquo;s a native PDF annotation.
+If this is -1, it&rsquo;s not yet saved in the PDF.
+Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/popupIndex">&nbsp;&nbsp;popupIndex</a></code>
+		<span class="tooltip"><p>Some annotations may have a popupIndex. Defaults to -1.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -499,11 +570,46 @@ After the annotation has been written to the file, this will be reset until the 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>rectangle of specific annotation.</p>
+		<p>Rectangle of specific annotation.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGRect boundingBox</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/boundingBoxWithoutRotation" title="boundingBoxWithoutRotation"></a>
+	<h3 class="subsubtitle method-title">boundingBoxWithoutRotation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Annotations already have a <a href="#//api/name/boundingBox">boundingBox</a> where <a href="#//api/name/rotation">rotation</a> is applied.
+Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGRect boundingBoxWithoutRotation</code></div>
 	
 	
 	
@@ -606,7 +712,7 @@ Note: use .<a href="#//api/name/alpha">alpha</a> for transparency, not the <a hr
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *contents</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *contents</code></div>
 	
 	
 	
@@ -705,11 +811,45 @@ After the annotation has been written to the file, this will be reset until the 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>corresponding document, weak.</p>
+		<p>Document is inferred from the <a href="#//api/name/documentProvider">documentProvider</a>.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) PSPDFDocument *document</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/documentProvider" title="documentProvider"></a>
+	<h3 class="subsubtitle method-title">documentProvider</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Corresponding documentProvider, weak.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) PSPDFDocumentProvider *documentProvider</code></div>
 	
 	
 	
@@ -745,6 +885,42 @@ Override this to lock certain annotations (menu won&rsquo;t be shown)</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isEditable) BOOL editable</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fillColor" title="fillColor"></a>
+	<h3 class="subsubtitle method-title">fillColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Fill <a href="#//api/name/color">color</a>. Only used for certain annotation types. (&ldquo;IC&rdquo; key)
+(e.g. Square and Circle Annotations)
+FillColor might be nil &ndash; treat like clearColor in that case.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *fillColor</code></div>
 	
 	
 	
@@ -847,7 +1023,7 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 		<p>If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 Currently won&rsquo;t work if you just set arbitrary annotations to overlay=YES.
-If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p>
+If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p>
 	</div>		
 	
 	
@@ -881,7 +1057,7 @@ If overlay is set to yes, you must also register the corresponding *AnnotationVi
 	
 	
 	<div class="method-subsection brief-description">
-		<p>page for current annotation.</p>
+		<p>Page for current annotation. Page is relative to the <a href="#//api/name/documentProvider">documentProvider</a>.</p>
 	</div>		
 	
 	
@@ -920,6 +1096,40 @@ If overlay is set to yes, you must also register the corresponding *AnnotationVi
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) int popupIndex</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rotation" title="rotation"></a>
+	<h3 class="subsubtitle method-title">rotation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Rotation value, copied from the <a href="../Classes/PSPDFPageInfo.html">PSPDFPageInfo</a> and set when <a href="#//api/name/documentProvider">documentProvider</a> is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSInteger rotation</code></div>
 	
 	
 	
@@ -989,6 +1199,40 @@ Usually read from the annotDict. Don&rsquo;t change this unless you know what yo
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *typeString</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/user" title="user"></a>
+	<h3 class="subsubtitle method-title">user</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>User (title) flag. (&ldquo;T&rdquo; property)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *user</code></div>
 	
 	
 	
@@ -1281,7 +1525,7 @@ Implement this in your subclass.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Use this to create custom user annotations.</p>
+		<p>Use this to create custom <a href="../Classes/PSPDFAnnotation.html#//api/name/user">user</a> annotations.</p>
 	</div>		
 	
 	
@@ -1389,7 +1633,7 @@ Implement this in your subclass.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

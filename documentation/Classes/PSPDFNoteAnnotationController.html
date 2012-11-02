@@ -46,6 +46,8 @@
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
+	<option value="//api/name/showColorAndIconOptions">&nbsp;&nbsp;&nbsp;&nbsp;showColorAndIconOptions</option>
+	
 	<option value="//api/name/textView">&nbsp;&nbsp;&nbsp;&nbsp;textView</option>
 	
 	
@@ -90,6 +92,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotation">annotation</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showColorAndIconOptions">showColorAndIconOptions</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textView">textView</a></span></li>
 	
@@ -145,7 +149,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Note <a href="#//api/name/annotation">annotation</a> controller for editing PSPDFAnnotations.</p>
+						<p>Note <a href="#//api/name/annotation">annotation</a> controller for editing PSPDFAnnotations.
+For Note annotations, special options will be displayed.</p>
 					</div>
 					
 					
@@ -179,15 +184,24 @@ Allowed types are <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotat
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/allowEditing">&nbsp;&nbsp;allowEditing</a></code>
-		<span class="tooltip"><p>If NO, the Edit/Delete buttons are not displayed</p></span>
+		<span class="tooltip"><p>If NO, the Edit/Delete buttons are not displayed and the text will be readonly.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showColorAndIconOptions">&nbsp;&nbsp;showColorAndIconOptions</a></code>
+		<span class="tooltip"><p>If YES, the edit button will be displayed to show color/icon editing. Defaults to YES.
+Will be ignored if <a href="#//api/name/allowEditing">allowEditing</a> is NO or <a href="#//api/name/annotation">annotation</a> type is not PSPDFAnnotationTypeNote.
+Set before showing/initializing the view. (View will be initialized as soon as you&rsquo;re adding a UIPopover)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/textView">&nbsp;&nbsp;textView</a></code>
-		<span class="tooltip"><p>Allow to customize the textView (font etc)
-Is created in init to be easily customizable</p></span>
+		<span class="tooltip"><p>Allow to customize the textView. (font etc)
+Is created in init to be easily customizable.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -233,7 +247,7 @@ Is created in init to be easily customizable</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>If NO, the Edit/Delete buttons are not displayed</p>
+		<p>If NO, the Edit/Delete buttons are not displayed and the text will be readonly.</p>
 	</div>		
 	
 	
@@ -306,7 +320,43 @@ Allowed types are <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotat
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFNoteAnnotationControllerDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFNoteAnnotationControllerDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFNoteAnnotationController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showColorAndIconOptions" title="showColorAndIconOptions"></a>
+	<h3 class="subsubtitle method-title">showColorAndIconOptions</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If YES, the edit button will be displayed to show color/icon editing. Defaults to YES.
+Will be ignored if <a href="#//api/name/allowEditing">allowEditing</a> is NO or <a href="#//api/name/annotation">annotation</a> type is not PSPDFAnnotationTypeNote.
+Set before showing/initializing the view. (View will be initialized as soon as you&rsquo;re adding a UIPopover)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL showColorAndIconOptions</code></div>
 	
 	
 	
@@ -336,8 +386,8 @@ Allowed types are <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotat
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allow to customize the textView (font etc)
-Is created in init to be easily customizable</p>
+		<p>Allow to customize the textView. (font etc)
+Is created in init to be easily customizable.</p>
 	</div>		
 	
 	
@@ -455,7 +505,7 @@ Is created in init to be easily customizable</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

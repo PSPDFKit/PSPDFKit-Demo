@@ -42,6 +42,8 @@
 	
 	<option value="//api/name/URL">&nbsp;&nbsp;&nbsp;&nbsp;URL</option>
 	
+	<option value="//api/name/autoplayEnabled">&nbsp;&nbsp;&nbsp;&nbsp;autoplayEnabled</option>
+	
 	<option value="//api/name/controlsEnabled">&nbsp;&nbsp;&nbsp;&nbsp;controlsEnabled</option>
 	
 	<option value="//api/name/linkType">&nbsp;&nbsp;&nbsp;&nbsp;linkType</option>
@@ -100,6 +102,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URL">URL</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/autoplayEnabled">autoplayEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/controlsEnabled">controlsEnabled</a></span></li>
 	
@@ -172,15 +176,12 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<pre><code>The PSPDFLinkAnnotation represents both classic PDF page/document/web links,
-and more types not supported by other PDF readers (video, audio, image, etc)
+						<p>The PSPDFLinkAnnotation represents both classic PDF page/document/web links, and more types not supported by other PDF readers (video, audio, image, etc)</p>
 
-PSPDFKit will automatically figure out the type for PDF link annotations loaded from a document, based on the file type. ("mpg" belongs to PSPDFLinkAnnotationVideo; a YouTubeURL to PSPDFLinkAnnotationYouTube, etc)
+<p>PSPDFKit will automatically figure out the type for PDF link annotations loaded from a document, based on the file type. (&ldquo;mpg&rdquo; belongs to PSPDFLinkAnnotationVideo; a YouTube<a href="#//api/name/URL">URL</a> to PSPDFLinkAnnotationYouTube, etc)</p>
 
-If you create a PSPDFLinkAnnotation at runtime, be sure to set the correct type and use the URL parameter for your link.
-
-boundingBox defines the frame, in PDF space coordinates.
-</code></pre>
+<p>If you create a PSPDFLinkAnnotation at runtime, be sure to set the correct type and use the <a href="#//api/name/URL">URL</a> parameter for your link.
+BoundingBox defines the frame, in PDF space coordinates.</p>
 					</div>
 					
 					
@@ -243,8 +244,7 @@ Returns true for any <a href="#//api/name/linkType">linkType</a> >= PSPDFLinkAnn
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/siteLinkTarget">&nbsp;&nbsp;siteLinkTarget</a></code>
-		<span class="tooltip"><pre><code>Link if target is a website.
-</code></pre></span>
+		<span class="tooltip"><p>Link if target is a website.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -294,6 +294,13 @@ Will hide controls for movies/browser/etc if set. Defaults to YES.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/autoplayEnabled">&nbsp;&nbsp;autoplayEnabled</a></code>
+		<span class="tooltip"><p>Controls auto-play of video annotations.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/size">&nbsp;&nbsp;size</a></code>
 		<span class="tooltip"><p>Tries to extract a size out of <a href="#//api/name/options">options</a> &ldquo;size&rdquo;. Returns CGSizeZero if conversion fails.</p></span>
 	</span>
@@ -324,6 +331,40 @@ Will hide controls for movies/browser/etc if set. Defaults to YES.</p></span>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURL *URL</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFLinkAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/autoplayEnabled" title="autoplayEnabled"></a>
+	<h3 class="subsubtitle method-title">autoplayEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Controls auto-play of video annotations.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isAutoplayEnabled) BOOL autoplayEnabled</code></div>
 	
 	
 	
@@ -668,8 +709,7 @@ Note: This is currently NOT supported in PSPDFKit. Use boundingBox.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Link if target is a website.
-</code></pre>
+		<p>Link if target is a website.</p>
 	</div>		
 	
 	
@@ -684,24 +724,21 @@ Note: This is currently NOT supported in PSPDFKit. Use boundingBox.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>If you createa  PSPDFLinkAnnotation in code, setting the siteLinkTarget will invoke the parsing at the time you're adding the annotation to the PSPDFAnnotationParser.
+		<p>If you create a PSPDFLinkAnnotation in code, setting the siteLinkTarget will invoke the parsing at the time you&rsquo;re adding the annotation to the PSPDFAnnotationParser.</p>
 
-After parsing, the linkType will be set and the generate URL will be set.
+<p>After parsing, the linkType will be set and the generate URL will be set.
+If you don&rsquo;t want this processing, directly set the URL and the linkType and don&rsquo;t use siteLinkTarget.</p>
 
-If you don't want this processing, directly set the URL and the linkType and don't use siteLinkTarget.
-
-An example for a siteLinkTarget to an image annotation would be:
+<p>An example for a siteLinkTarget to an image annotation would be:
 PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
-annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
+annotation.siteLinkTarget = [NSString stringWithFormat:@&ldquo;pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg&rdquo;, UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
 // annotation frame is in PDF coordinate space. Use pageRect for the full page.
 annotation.boundingBox = [self.document pageInfoForPage:0].pageRect;
 // annotation.page/document is auomatically set.
-[self.document.annotationParser addAnnotations:@[annotation] forPage:0];
+[self.document.annotationParser addAnnotations:@[annotation] forPage:0];</p>
 
-Note: Do not add NSURL-encoded strings to siteLinkTarget.( no %20 - real space!)
-If you convert a path fron NSURL, use [url path] and NOT [url description].
-(Actually, never use url description, except when you're debugging)
-</code></pre>
+<p>Note: Do not add NSURL-encoded strings to siteLinkTarget.(no %20 &ndash; real space!)
+If you convert a path fron NSURL, use [URL path] and NOT [url description]. (Actually, never use <a href="#//api/name/URL">URL</a> description, except when you&rsquo;re debugging)</p>
 	</div>
 	
 	
@@ -844,7 +881,7 @@ This will automatically set the linkAnnotationType.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

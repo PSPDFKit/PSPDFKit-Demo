@@ -40,6 +40,8 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/PDFBox">&nbsp;&nbsp;&nbsp;&nbsp;PDFBox</option>
+	
 	<option value="//api/name/UID">&nbsp;&nbsp;&nbsp;&nbsp;UID</option>
 	
 	<option value="//api/name/allowsCopying">&nbsp;&nbsp;&nbsp;&nbsp;allowsCopying</option>
@@ -73,6 +75,8 @@
 	<option value="//api/name/dataProvider">&nbsp;&nbsp;&nbsp;&nbsp;dataProvider</option>
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/displayingPage">&nbsp;&nbsp;&nbsp;&nbsp;displayingPage</option>
 	
 	<option value="//api/name/displayingPdfController">&nbsp;&nbsp;&nbsp;&nbsp;displayingPdfController</option>
 	
@@ -208,6 +212,8 @@
 	
 	<option value="//api/name/saveChangedAnnotationsWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- saveChangedAnnotationsWithError:</option>
 	
+	<option value="//api/name/setDidCreateDocumentProviderBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- setDidCreateDocumentProviderBlock:</option>
+	
 	<option value="//api/name/textParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- textParserForPage:</option>
 	
 	<option value="//api/name/unlockWithPassword:">&nbsp;&nbsp;&nbsp;&nbsp;- unlockWithPassword:</option>
@@ -256,6 +262,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/PDFBox">PDFBox</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/UID">UID</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowsCopying">allowsCopying</a></span></li>
@@ -289,6 +297,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataProvider">dataProvider</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayingPage">displayingPage</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/displayingPdfController">displayingPdfController</a></span></li>
 	
@@ -425,6 +435,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rotationForPage:">rotationForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveChangedAnnotationsWithError:">saveChangedAnnotationsWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDidCreateDocumentProviderBlock:">setDidCreateDocumentProviderBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textParserForPage:">textParserForPage:</a></span></li>
 	
@@ -806,23 +818,16 @@ This may be different if a collection of pdfs is used a one big document. Page s
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
+		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+Override the methods in <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a> instead.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/hasPageInfoForPage:">&ndash;&nbsp;hasPageInfoForPage:</a></code>
 		<span class="tooltip"><p>Returns YES of pageInfo for page is available</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pageInfoForPage:">&ndash;&nbsp;pageInfoForPage:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
-		<span class="tooltip"><p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
-You can override this if you need to manually change the rotation value of a page.</p></span>
 	</span>
 	
 	
@@ -847,6 +852,14 @@ maybe needs a pdf lock if not already cached.</p></span>
 		<span class="tooltip"><p>Rotation for specified page. cached. Page starts at 0.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/PDFBox">&nbsp;&nbsp;PDFBox</a></code>
+		<span class="tooltip"><p>PDFBox that is used for rendering. Defaults to kCGPDFMediaBox.
+Older versions of PSPDFKit used kCGPDFCropBox by default.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -925,6 +938,13 @@ Set this to PSPDFCacheNothing for sensible/encrypted documents!</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/displayingPdfController">&nbsp;&nbsp;displayingPdfController</a></code>
 		<span class="tooltip"><p>If document is displayed, returns currently active pdfController. Don&rsquo;t set this yourself. Optimizes caching.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/displayingPage">&nbsp;&nbsp;displayingPage</a></code>
+		<span class="tooltip"><p>Currently displayed page. Updated by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1162,6 +1182,7 @@ Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)</p></span>
 		<span class="tooltip"><p>Use this to use specific subclasses instead of the default PSPDF* classes.
 e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] as key/value pair to use the custom subclass. (MyCustomAnnotationParser must be a subclass of <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.
+Hide the warning &ldquo;Incompatible pointer types sending &lsquo;Class&rsquo; to parameter of type &lsquo;id<NSCopying>&rsquo; &rdquo; with casting class to (id). It&rsquo;s perfectly safe to do so. Alternatively you can also use NSStrings.
 Note: does not get serialized when saved to disk.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1171,7 +1192,15 @@ Note: does not get serialized when saved to disk.</p></span>
 		<code><a href="#//api/name/didCreateDocumentProvider:">&ndash;&nbsp;didCreateDocumentProvider:</a></code>
 		<span class="tooltip"><p>Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
 During PS<a href="#//api/name/PDFDocument">PDFDocument</a> lifetime, document providers might be created at any time, lazily, and destroyed when memory is low.
-This might be used to change the <a href="#//api/name/delegate">delegate</a> of the <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.</p></span>
+This might be used to change the <a href="#//api/name/delegate">delegate</a> of the <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.
+Don&rsquo;t forget calling super on this!</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setDidCreateDocumentProviderBlock:">&ndash;&nbsp;setDidCreateDocumentProviderBlock:</a></code>
+		<span class="tooltip"><p>Register a block that is called in didCreateDocumentProvider.</p></span>
 	</span>
 	
 	
@@ -1208,6 +1237,13 @@ Defaults to white.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
+		<span class="tooltip"><p>Helper for higher performance.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -1220,6 +1256,41 @@ Defaults to white.</p></span>
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/PDFBox" title="PDFBox"></a>
+	<h3 class="subsubtitle method-title">PDFBox</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PDFBox that is used for rendering. Defaults to kCGPDFMediaBox.
+Older versions of PSPDFKit used kCGPDFCropBox by default.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGPDFBox PDFBox</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/UID" title="UID"></a>
@@ -1799,7 +1870,41 @@ Note: If writing annotations is enabled, the dataArray&rsquo;s content will chan
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, ps_weak) id&lt;PSPDFDocumentDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFDocumentDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/displayingPage" title="displayingPage"></a>
+	<h3 class="subsubtitle method-title">displayingPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Currently displayed page. Updated by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (atomic, assign, readonly) NSUInteger displayingPage</code></div>
 	
 	
 	
@@ -1833,7 +1938,7 @@ Note: If writing annotations is enabled, the dataArray&rsquo;s content will chan
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) PSPDFViewController *displayingPdfController</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, weak) PSPDFViewController *displayingPdfController</code></div>
 	
 	
 	
@@ -1902,7 +2007,7 @@ Set this to an empty set to disable annotation editing/creation.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSSet *editableAnnotationTypes</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSSet *editableAnnotationTypes</code></div>
 	
 	
 	
@@ -1913,7 +2018,7 @@ Set this to an empty set to disable annotation editing/creation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Defaults to PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringUnderline, PSPDFAnnotationTypeStringStrikeout, PSDFAnnotationTypeStringNote, PSPDFAnnotationTypeStringInk, PSPDFAnnotationTypeStringFreeText</p>
+		<p>Defaults to all available STRING constants (PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk, etc).</p>
 	</div>
 	
 	
@@ -2122,7 +2227,7 @@ Loop the dictionary to find them all.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSDictionary *metadata</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSDictionary *metadata</code></div>
 	
 	
 	
@@ -2190,11 +2295,12 @@ Note: Only returns the parser for the first PDF file.</p>
 		<p>Use this to use specific subclasses instead of the default PSPDF* classes.
 e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] as key/value pair to use the custom subclass. (MyCustomAnnotationParser must be a subclass of <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
 Throws an exception if the overriding class is not a subclass of the overridden class.
+Hide the warning &ldquo;Incompatible pointer types sending &lsquo;Class&rsquo; to parameter of type &lsquo;id<NSCopying>&rsquo; &rdquo; with casting class to (id). It&rsquo;s perfectly safe to do so. Alternatively you can also use NSStrings.
 Note: does not get serialized when saved to disk.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSDictionary *overrideClassNames</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *overrideClassNames</code></div>
 	
 	
 	
@@ -3113,7 +3219,8 @@ This is called implicitely if you change the <a href="#//api/name/files">files</
 	<div class="method-subsection brief-description">
 		<p>Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
 During PS<a href="#//api/name/PDFDocument">PDFDocument</a> lifetime, document providers might be created at any time, lazily, and destroyed when memory is low.
-This might be used to change the <a href="#//api/name/delegate">delegate</a> of the <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.</p>
+This might be used to change the <a href="#//api/name/delegate">delegate</a> of the <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.
+Don&rsquo;t forget calling super on this!</p>
 	</div>		
 	
 	
@@ -3675,7 +3782,8 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.</p>
+		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
+Override the methods in <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a> instead.</p>
 	</div>		
 	
 	
@@ -3709,8 +3817,7 @@ Might need file operations to parse the document (slow)</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Cached rotation and aspect ratio <a href="#//api/name/data">data</a> for specific page. Page starts at 0.
-You can override this if you need to manually change the rotation value of a page.</p>
+		<p>Helper for higher performance.</p>
 	</div>		
 	
 	
@@ -4088,6 +4195,40 @@ Returns YES if there are no annotations that need to be saved.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/setDidCreateDocumentProviderBlock:" title="setDidCreateDocumentProviderBlock:"></a>
+	<h3 class="subsubtitle method-title">setDidCreateDocumentProviderBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a block that is called in didCreateDocumentProvider.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setDidCreateDocumentProviderBlock:(void ( ^ ) ( PSPDFDocumentProvider *documentProvider ))<em>block</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/textParserForPage:" title="textParserForPage:"></a>
 	<h3 class="subsubtitle method-title">textParserForPage:</h3>
 	
@@ -4186,7 +4327,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-10-18)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

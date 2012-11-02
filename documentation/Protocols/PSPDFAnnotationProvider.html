@@ -1,0 +1,657 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFAnnotationProvider Protocol Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFAnnotationProvider Protocol Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/providerDelegate">&nbsp;&nbsp;&nbsp;&nbsp;providerDelegate</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addAnnotations:forPage:">&nbsp;&nbsp;&nbsp;&nbsp;- addAnnotations:forPage:</option>
+	
+	<option value="//api/name/annotationViewClassForAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationViewClassForAnnotation:</option>
+	
+	<option value="//api/name/annotationsForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:</option>
+	
+	<option value="//api/name/didChangeAnnotation:originalAnnotation:keyPaths:options:">&nbsp;&nbsp;&nbsp;&nbsp;- didChangeAnnotation:originalAnnotation:keyPaths:options:</option>
+	
+	<option value="//api/name/dirtyAnnotations">&nbsp;&nbsp;&nbsp;&nbsp;- dirtyAnnotations</option>
+	
+	<option value="//api/name/hasLoadedAnnotationsForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedAnnotationsForPage:</option>
+	
+	<option value="//api/name/saveAnnotationsWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- saveAnnotationsWithError:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/providerDelegate">providerDelegate</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addAnnotations:forPage:">addAnnotations:forPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationViewClassForAnnotation:">annotationViewClassForAnnotation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:">annotationsForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didChangeAnnotation:originalAnnotation:keyPaths:options:">didChangeAnnotation:originalAnnotation:keyPaths:options:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dirtyAnnotations">dirtyAnnotations</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedAnnotationsForPage:">hasLoadedAnnotationsForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/saveAnnotationsWithError:">saveAnnotationsWithError:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFAnnotationProvider Protocol Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFAnnotationProvider Protocol Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFAnnotationProvider.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>With the annotation provider, you can mix in PDF annotations from any source (custom database, web, etc)
+Implement your custom provider class and register it in the <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>.</p>
+
+<p>(Make sure to register the provider in the PSPDFDocument&rsquo;s didCreateDocumentProvider method, since a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> can have multiple PSPDFDocumentProviders and thus multiple PSPDFAnnotationProviders &ndash; and they can also be discarded on low memory situations.)</p>
+
+<p>Ensure everything is thread safe here &ndash; methods will be called from any threads and sometimes even concurrently at the same time.
+(If you&rsquo;re doing parsing, block and then in the queue re-check so you&rsquo;re not parsing multiple times for the same page)</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/annotationsForPage:">&ndash;&nbsp;annotationsForPage:</a></code>
+		<span class="tooltip"><p>Return any annotations that should be displayed on that page.
+This method needs to be acessible FROM ANY THREAD.</p></span>
+	</span>
+	
+	<span class="task-item-suffix">required method</span>
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasLoadedAnnotationsForPage:">&ndash;&nbsp;hasLoadedAnnotationsForPage:</a></code>
+		<span class="tooltip"><p>Return YES if <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> is done preparing the cache, else NO.
+You NEED to return YES on this after <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> has been accessed.
+PSPDFKit will preload/access <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> in a background thread and then re-access it on the main thread.
+Defaults to YES if not implemented.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/annotationViewClassForAnnotation:">&ndash;&nbsp;annotationViewClassForAnnotation:</a></code>
+		<span class="tooltip"><p>Any annotation that returns YES on isOverlay needs a view class to be displayed.
+Will be called on all annotationProviders until someone doesn&rsquo;t return nil.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addAnnotations:forPage:">&ndash;&nbsp;addAnnotations:forPage:</a></code>
+		<span class="tooltip"><p>Handle adding annotations. A provider can decided that he doesn&rsquo;t want to add this annotation, in that case either don&rsquo;t implement addAnnotations at all or return NO. <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> will query all registered annotationProviders until one returns YES on addAnnotations.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/saveAnnotationsWithError:">&ndash;&nbsp;saveAnnotationsWithError:</a></code>
+		<span class="tooltip"><p>PSPDFKit requests a save. Can be ignored if you&rsquo;re instantly persisting.
+Event is e.g. fired before the app goes into background, or when <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> is dismissed.
+Return NO + error if saving failed.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dirtyAnnotations">&ndash;&nbsp;dirtyAnnotations</a></code>
+		<span class="tooltip"><p>Return all &ldquo;dirty&rdquo; = unsaved annotations. Will be used to determine if we need to save.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didChangeAnnotation:originalAnnotation:keyPaths:options:">&ndash;&nbsp;didChangeAnnotation:originalAnnotation:keyPaths:options:</a></code>
+		<span class="tooltip"><p>Callback if an annotation has been changed by PSPDFKit.
+This method will be called on ALL annotations, not just the ones that you provided.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/providerDelegate">&nbsp;&nbsp;providerDelegate</a></code>
+		<span class="tooltip"><p>Provides a back-channel to PSPDFKit if you need to change annotations on the fly. (e.g. new changes from your server are coming in)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/providerDelegate" title="providerDelegate"></a>
+	<h3 class="subsubtitle method-title">providerDelegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Provides a back-channel to PSPDFKit if you need to change annotations on the fly. (e.g. new changes from your server are coming in)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFAnnotationProviderChangeNotifier&gt; providerDelegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addAnnotations:forPage:" title="addAnnotations:forPage:"></a>
+	<h3 class="subsubtitle method-title">addAnnotations:forPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Handle adding annotations. A provider can decided that he doesn&rsquo;t want to add this annotation, in that case either don&rsquo;t implement addAnnotations at all or return NO. <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a> will query all registered annotationProviders until one returns YES on addAnnotations.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)addAnnotations:(NSArray *)<em>annotations</em> forPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/annotationViewClassForAnnotation:" title="annotationViewClassForAnnotation:"></a>
+	<h3 class="subsubtitle method-title">annotationViewClassForAnnotation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Any annotation that returns YES on isOverlay needs a view class to be displayed.
+Will be called on all annotationProviders until someone doesn&rsquo;t return nil.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (Class)annotationViewClassForAnnotation:(PSPDFAnnotation *)<em>annotation</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If no class is found, the view will be ignored.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/annotationsForPage:" title="annotationsForPage:"></a>
+	<h3 class="subsubtitle method-title">annotationsForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return any annotations that should be displayed on that page.
+This method needs to be acessible FROM ANY THREAD.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)annotationsForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>You can block here and do your processing but try to cache the result, this method is called often. (e.g. on every zoom change/rerendering)</p>
+
+<p>You&rsquo;re only getting the zero-based page index here. If needed, add a reference to <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a> during init or query the change notifier delegate.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didChangeAnnotation:originalAnnotation:keyPaths:options:" title="didChangeAnnotation:originalAnnotation:keyPaths:options:"></a>
+	<h3 class="subsubtitle method-title">didChangeAnnotation:originalAnnotation:keyPaths:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Callback if an annotation has been changed by PSPDFKit.
+This method will be called on ALL annotations, not just the ones that you provided.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didChangeAnnotation:(PSPDFAnnotation *)<em>annotation</em> originalAnnotation:(PSPDFAnnotation *)<em>originalAnnotation</em> keyPaths:(NSArray *)<em>keyPaths</em> options:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dirtyAnnotations" title="dirtyAnnotations"></a>
+	<h3 class="subsubtitle method-title">dirtyAnnotations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return all &ldquo;dirty&rdquo; = unsaved annotations. Will be used to determine if we need to save.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)dirtyAnnotations</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hasLoadedAnnotationsForPage:" title="hasLoadedAnnotationsForPage:"></a>
+	<h3 class="subsubtitle method-title">hasLoadedAnnotationsForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return YES if <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> is done preparing the cache, else NO.
+You NEED to return YES on this after <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> has been accessed.
+PSPDFKit will preload/access <a href="#//api/name/annotationsForPage:">annotationsForPage:</a> in a background thread and then re-access it on the main thread.
+Defaults to YES if not implemented.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/saveAnnotationsWithError:" title="saveAnnotationsWithError:"></a>
+	<h3 class="subsubtitle method-title">saveAnnotationsWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>PSPDFKit requests a save. Can be ignored if you&rsquo;re instantly persisting.
+Event is e.g. fired before the app goes into background, or when <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> is dismissed.
+Return NO + error if saving failed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)saveAnnotationsWithError:(NSError **)<em>error</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>
