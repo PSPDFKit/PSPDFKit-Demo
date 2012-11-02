@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 @property (nonatomic, strong, readonly) PSPDFDocument *document;
 
 /// Weak reference to parent pdfController.
-@property (nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Left page. Always set. Not used if pageCurlEnabled.
 @property (nonatomic, strong, readonly) PSPDFPageView *leftPage;

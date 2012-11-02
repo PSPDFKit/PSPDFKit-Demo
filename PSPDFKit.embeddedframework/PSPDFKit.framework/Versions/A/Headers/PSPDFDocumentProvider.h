@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFTextSearch, PSPDFTextParser, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument;
+@class PSPDFTextSearch, PSPDFTextParser, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
 
 /// Delegate for writing annotations. 
 @protocol PSPDFDocumentProviderDelegate <NSObject>
@@ -51,10 +51,10 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 - (NSData *)dataRepresentationWithError:(NSError **)error;
 
 /// Weak-linked parent document.
-@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// Delegate for writing annotations. Is set to PSPDFDocument per default.
-@property (nonatomic, ps_weak) id<PSPDFDocumentProviderDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
 
 /// Access the CGPDFDocumentRef and locks the internal document. 
 ///
@@ -82,6 +82,9 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// For optimization reasons, the internal documentRef might be cached.
 /// This force-clears the cache.
 - (void)flushDocumentReference;
+
+/// Cached rotation and aspect ratio data for specific page. Page starts at 0.
+- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
 /// Number of pages in the PDF. Nil if source is invalid.
 @property (nonatomic, assign, readonly) NSUInteger pageCount;
@@ -164,5 +167,12 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 @property (nonatomic, strong) NSData *data;
 
 @property (nonatomic, assign, readonly) BOOL hasOpenDocumentRef;
+
+/// Queries the PageInfo, but doesn't fetch new data.
+- (PSPDFPageInfo *)pageInfoForPageNoFetching:(NSUInteger)page;
+
+/// Cached rotation and aspect ratio data for specific page. Page starts at 0.
+/// You can override this if you need to manually change the rotation value of a page.
+- (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 @end

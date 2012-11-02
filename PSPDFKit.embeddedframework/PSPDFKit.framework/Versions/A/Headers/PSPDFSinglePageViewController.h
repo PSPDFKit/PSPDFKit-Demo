@@ -28,8 +28,8 @@
 /// Clear internal state, prepare to be used again.
 - (void)prepareForReuse;
 
-/// attached pdfController.
-@property (nonatomic, ps_weak) PSPDFViewController *pdfController;
+/// Attached pdfController.
+@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// internally used pageView.
 @property (nonatomic, strong, readonly) PSPDFPageView *pageView;

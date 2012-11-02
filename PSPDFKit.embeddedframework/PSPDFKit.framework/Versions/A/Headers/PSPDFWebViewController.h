@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
 /// Associated delegate, connects to the PSPDFViewController
-@property (nonatomic, ps_weak) id<PSPDFWebViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFWebViewControllerDelegate> delegate;
 
 /// Defaults to YES. Will be checked in the default implementation of setActivityIndicatorEnabled.
 /// Set to NO to NOT change the global network activity indicator.

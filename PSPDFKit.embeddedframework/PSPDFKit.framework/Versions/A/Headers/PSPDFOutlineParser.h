@@ -35,7 +35,7 @@
 @property (nonatomic, assign, readonly, getter=isOutlineAvailable) BOOL outlineAvailable;
 
 /// Attached document provider.
-@property (nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
+@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
 + (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;

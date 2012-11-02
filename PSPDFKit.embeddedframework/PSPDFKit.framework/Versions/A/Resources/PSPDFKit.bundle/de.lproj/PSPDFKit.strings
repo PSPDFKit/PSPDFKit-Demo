@@ -29,6 +29,8 @@
 "Add Bookmark" = "Bookmark hinzufügen";
 "Remove Bookmark" = "Bookmark entfernen";
 "Brightness" = "Helligkeit";
+"Share..." = "Teilen…";
+"Preparing..." = "Vorbereiten…";
 
 // password
 "Unlock" = "Entsperren";
@@ -65,6 +67,8 @@
 "Type..." = "Type…";
 "Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";
+"Thickness..." = "Stärke…";
+"%@ pt" = "%@ pt";
 "Text..." = "Text…";
 "Yellow" = "Gelb";
 "Green" = "Grün";

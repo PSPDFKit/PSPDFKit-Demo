@@ -19,9 +19,9 @@
 @end
 
 /**
-    Outline (Table of Contents) view conroller.
+ Outline (Table of Contents) view conroller.
  
-    As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
+ As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
  */
 @interface PSPDFOutlineViewController : UITableViewController
 
@@ -32,23 +32,29 @@
 @property (nonatomic, assign) BOOL allowCopy;
 
 /**
-    How many lines should be displayed for a cell. Defaults to 4.
+ How many lines should be displayed for a cell. Defaults to 4.
  
-    Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
-    Set to 0 to show the full text, no matter how long the entry is.
+ Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
+ Set to 0 to show the full text, no matter how long the entry is.
  */
 @property (nonatomic, assign) NSUInteger maximumNumberOfLines;
 
+/// Left intent width. Defaults to 32.f.
+@property (nonatomic, assign) CGFloat outlineIntentLeftOffset;
+
+/// Intent multiplicator (will be added x times the intent level). Defaults to 15.f.
+@property (nonatomic, assign) CGFloat outlineIndentMultiplicator;
+
 /// Delegate to communicate with PSPDFViewController.
-@property (nonatomic, ps_weak) id<PSPDFOutlineViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFOutlineViewControllerDelegate> delegate;
 
 /// Attached document.
-@property (nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, weak) PSPDFDocument *document;
 
 @end
 
 
-@interface PSPDFOutlineViewController (Subclassing)
+@interface PSPDFOutlineViewController (SubclassingHooks)
 
 // subclass if you change the default cell height of 44 pixels.
 - (void)updatePopoverSize;

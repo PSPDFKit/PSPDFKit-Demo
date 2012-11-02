@@ -1,9 +1,81 @@
 # Changelog
 
-__v2.3.4 - 18/October/2012__
+__v2.4.0 - 2/November/2012__
 
-Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0) If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
-The binary variant is already links with SDK 6.0 and will not link with 5.1 anymore. (It still works down to iOS 4.3 though)
+PSPDFKit now requires iOS 5.0+ and Xcode 4.5+ (iOS SDK 6.0) to compile. (Support for iOS 4.3/Xcode 4.4 has been removed, support for iOS 6.1 and Xcode 4.6b1 has been added.)
+
+2.4 is a big release and a great new milestone of PSPDFKit. If you upgrade, make sure to read through the full header diffs to make sure methods you were calling/overriding still exist and are not moved.
+Common methods like pageScrolling will always get a compatibility method for the time being. Methods/Properties are are deeper within the framework won't get a compatibility method, but it's usually pretty easy to figure out what the propert was named before. I am planning on working on PSPDFKit for a long time, and as the API evolves, it's sometimes necessary to clean up and rename things so that the API stays clean and logical.
+
+*  Huge refactoring of PSPDFAnnotationParser. It's now much easier to add custom annotation providers (see PSPDFAnnotationProvider). If you have sublcassed saving/loading or other parts of PSPDFAnnotationParser, you most likely need to change this over to the new PSPDFFileAnnotationProvider.
+*  Page scrolling is now even smoother. And finally removes the slight stuttering when pushing the PSPDFViewController - now animates like butter.
+*  PSPDFShapeAnnotation can now be saved into the PDF.
+*  Ink drawings can now customize the Thickness. Select an annotation and use the new "Thickness..." menu item.
+*  Ink drawings and shape annotations can now also contain comment text.
+*  Annotations now support the title/user "T" flag. Change the default user name by changing the property in PSPDFFileAnnotationProvider.
+*  Add support for embedded and external RichMedia and Screen (Video) annotations of any size.
+*  PSPDFBarButtonItem now has longPress-support. Long-Press on the bookmarkBarButtonItem to see the new PSPDFBookmarkViewController. Bookmarks can now also be renamed/reordered.
+*  If there's no searchButton visible, the search invoked from the text selection menu now will originate from the selection rect.
+*  The Open In... action now also works on multi-file documents and/or data/cgdocumentprovider based documents (will merge the document on-the-fly, shows a progress window if it'll take some time)
+*  PSPDFBarButtonItem now also accepts a generic UIView as sender on presentAnimated:sender:. (makes it easier to manually call menu items from custom code)
+*  Better support when barButtonItems are added to custom UIToolbars.
+*  The internal used BarButtonItem subclasses are now exposed, so that they can be overridden and their icon changed.
+*  New activityBarButtonItem to share pages to Facebook/Twitter on iOS6.
+*  Double-Tapping on a video now enables full-screen (instead of zooming the page. This does not apply to YouTube movies)
+*  Greatly improves handling of multiple video views on one page/screen.
+*  Annotation views now have a optional xIndex. Video has a high index by default, so link annotations won't overlap a video anymore.
+*  No longer allowing text selection above video annotations.
+*  PSPDFDocument now has a new property 'PDFBox' to customize the used PDF box (ClipRect/MediaRect/etc).
+*  PSPDFPositionView has been renamed to PSPDFPageLabelView. PSPDFPageLabelView and PSPDFDocumentLabelView are now easier skinable with the common superclass PSPDFLabelView.
+*  PSPDFLabelView has now a second predefined style (PSPDFLabelStyleBordered)
+*  PSPDFPageLabelView can now show a toolbar item. Check out the "Settings for a magazine" example how to enable this.
+*  PSPDFLinkAnnotationView and the other multimedia annotation views can now be subclassed via overrideClassNames.
+*  The Edit button for the text editor on note annotations can now be hidden. (showColorAndIconOptions)
+*  UI: Moved the Edit button of the PSPDFNoteAnnotationController to the left side. (only visible for PSPDFNoteAnnotation)
+*  Improves annotation parsing speed.
+*  Shape/Circle annotations now correctly display their fillColor.
+*  Improved color parsing for PSPDFFreeTextAnnotation (now honoring the default style string setting)
+*  The icons in the viewModeBarButtonItem now have the same shadow as the toolbar icons (iPhone for now).
+*  No longer displays annotation menus when they can't be saved (PSPDFKit Basic)
+*  Expose outlineIntentLeftOffset and outlineIndentMultiplicator as properties on PSPDFOutlineViewController and PSPDFOutlineCell.
+*  Exposes firstLineRect, lastLineRect and selectionRect on PSPDFTextSelectionView.
+*  The text loupe now fades our correctly when in drag-handle-mode.
+*  Improved caching of external resources like annotations/text glyphs on page init. Caching now won't overflow the dispatch queues anymore if A LOT of pages are loaded at the same time.
+*  PSPDFWord now has a lineBreaker property to detect line changes.
+*  PSPDFPageInfo now regenerates the pageRotationTransform when the pageRotation is changed manually.
+*  PSPDFKit now checks if a URL can be handled by the system and weird/nonrecognizable URLS no longer open the "Leave Appliction" alert.
+*  The PSPDFAnnotationBarButtonItem is now smart enough to choose the right animation depending if the toolbar is at the top/bottom (slide in/out from top/bottom)
+*  Setting the UIPopoverController no longer removes preexisting passthroughViews.
+*  The renderQueue now no longer renders the requested image if the delegate has been released in the mean time. (The delegate is now weak instead of strong)
+*  UI: Undo/Redo buttons on the drawing toolbar are better placed on iPhone.
+*  UI: The color selection button is now smaller on iPhone/Landscape.
+*  API: PSPDFPageInfo is not calculated in PSPDFDocumentProvider. If you've overridden methods that affect PSPDFPageInfo in PSPDFDocument, you should move that code to a PSPDFDocumentProvider subclass.
+*  API: "realPage" has been renamed to "page" and is now set-able. The old "page" has been renamed to "screenPage". This finally cleans up the confusion that has been around page and realPage. In 99% of all cases, you're just interested in page and can ignore screenPage. Please update your bindings accordingly. If you formerly did KVO on realPage, change this to page too. (There's a deprecated compatibility property for realPage, but not for the KVO event)
+*  API: additionalRightBarButtonItems has been renamed to additionalBarButtonItems.
+*  API: pageScrolling has been renamed to scrollDirection. A deprecated compatibility call has been added.
+*  API: handleTouchUpForAnnotationIgnoredByDelegate has been moved to PSPDFAnnotationController.
+*  API: pdfViewController has been renamed to pdfController on PSPDFTabbedViewController.
+*  API: Warning! If you've used pspdf_dispatch_sync_reentrant in your own code, you now absolutely must create your dispatch queues with pspdf_dispatch_queue_create. Apple has deprecated dispatch_get_current_queue(), so we're now using a different solution. This will most likely affect you if you're using the "Kiosk" sample code of PSPDFCatalog.
+*  Titanium: The pdfView now has a hidePopover(true) method so PSPDF popovers can better be coordinated with appcelerator code popovers.
+*  Fixes the lag introduced in 2.3.x when tapping on the screen and the textParser hasn't been finished yet.
+*  Fixes a potential crash when the view was removed on PSPDFKit Basic Titanium.
+*  Fixes a potential crash when parsing the text of malformed PDFs.
+*  Fixes a race condition during PSPDFFreeTextAnnotation drawing that could lead to a crash.
+*  Fixes some issues with PSPDFPageScrollContinuousTransition when the document is invalid or view size is nil.
+*  Fixes an issue where the background color of link annotations could get stuck.
+*  Fixes an issue where PSPDFTabbedViewController did not properly align the tab bars in fullscreen mode.
+*  Fixes an issue with creating PSPDFShapeAnnotation in code.
+*  Fixes an issue where the isEditable flag on a PSPDFAnnotation was not honored when dragging note annotations.
+*  Fixes an issue where the page could disappear on strong scrolling in pageCurl mode under iOS6.
+*  Fixes an issue where scrolling on the tab bar (PSPDFTabbedViewController) sometimes didn't work.
+*  Fixes an issue where the color picker was not properly displayed on bottom UIToolbars.
+*  Fixes an UI issue where the selection and drawing of annotations on rotated pages was handled incorrectly.
+*  Fixes an UI issue where the tabbed controller tabs could be mis-placed when rotating without visible HUD.
+*  Fixes an UI issue where the thumbnails could slightly overlap the toolbar if the statusbar is transparent/auto-hiding.
+*  Fixes several conditions where the PSPDFViewController could be deallocated on a background thread.
+*  Fixes new warnings that popped up with Xcode 4.6. (pretty much all false positives)
+
+__v2.3.4 - 18/October/2012__
 
 *  Fixes a rare race condition that could lead to a deadlock on initializing PSPDFDocumentProvider and PSPDFAnnotationParser.
 
@@ -11,6 +83,8 @@ __v2.3.3 - 18/October/2012__
 
 Note: This will be the last release that supports iOS 4.3*. The next version will be iOS 5+ only and will require Xcode 4.5+ (iOS SDK 6.0) If you're having any comments on this, I would love to hear from you: pspdfkit@petersteinberger.com
 The binary variant is already links with SDK 6.0 and will not link with 5.1 anymore. (It still works down to iOS 4.3 though)
+
+(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
 
 *  PSPDFShapeAnnotation and PSPDFLineAnnotation can now be created programmatically.
 *  New flag: kPSPDFLowMemoryMode that combines a lot of settings to ease memory pressure for complex apps.
@@ -48,8 +122,6 @@ __v2.3.1 - 11/October/2012__
 *  Fixes a potential memory corruption with PSPDFAESCryptoDataProvider.
 
 __v2.3.0 - 11/October/2012__
-
-(*) There is no device that supports iOS 4.3 and can't be upgraded to iOS5, and PSPDFKit already dropped iOS4.2 and with it armv6 in 2.0.
 
 *  Experimental features: Add support to create PDF documents from html string or even a website.
 *  Annotations now can be flattened before the document is sent via email. PSPDFEmailBarButtonItem has new options, and there is a new class PSPDFProcessor to generate new PDFs.

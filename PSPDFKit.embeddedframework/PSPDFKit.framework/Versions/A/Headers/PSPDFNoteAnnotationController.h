@@ -25,6 +25,7 @@
 @end
 
 /// Note annotation controller for editing PSPDFAnnotations.
+/// For Note annotations, special options will be displayed.
 @interface PSPDFNoteAnnotationController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initalizer.
@@ -34,15 +35,20 @@
 /// Allowed types are PSPDFNoteAnnotation, PSPDFHighlightAnnotation and PSPDFFreeTextAnnotation.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 
-/// If NO, the Edit/Delete buttons are not displayed
+/// If NO, the Edit/Delete buttons are not displayed and the text will be readonly.
 @property (nonatomic, assign, readonly) BOOL allowEditing;
 
-/// Allow to customize the textView (font etc)
-/// Is created in init to be easily customizable
+/// If YES, the edit button will be displayed to show color/icon editing. Defaults to YES.
+/// Will be ignored if allowEditing is NO or annotation type is not PSPDFAnnotationTypeNote.
+/// Set before showing/initializing the view. (View will be initialized as soon as you're adding a UIPopover)
+@property (nonatomic, assign) BOOL showColorAndIconOptions;
+
+/// Allow to customize the textView. (font etc)
+/// Is created in init to be easily customizable.
 @property (nonatomic, strong, readonly) UITextView *textView;
 
 /// Attached delegate.
-@property (nonatomic, ps_weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
 
 @end
 

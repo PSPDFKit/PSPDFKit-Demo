@@ -29,7 +29,7 @@
 @property (nonatomic, strong) PSPDFLoupeView *loupeView;
 
 /// Associated PSPDFPageView.
-@property (nonatomic, ps_weak) PSPDFPageView *pageView;
+@property (nonatomic, weak) PSPDFPageView *pageView;
 
 /// Updates the UIMenuController if there is a selection.
 - (void)updateMenu;
@@ -49,5 +49,10 @@
 
 /// Text selection is only available in PSPDFKit Annotate
 + (BOOL)isTextSelectionFeatureAvailable;
+
+// rects for the current selection, in view coordinate space.
+@property (nonatomic, assign, readonly) CGRect firstLineRect;
+@property (nonatomic, assign, readonly) CGRect lastLineRect;
+@property (nonatomic, assign, readonly) CGRect selectionRect;
 
 @end

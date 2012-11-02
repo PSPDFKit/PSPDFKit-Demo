@@ -41,20 +41,26 @@
 /// Page was fully rendered at zoomlevel = 1
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView;
 
+/// Called after pdf page has been loaded and added to the pagingScrollView.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView;
+
+/// Called before a pdf page will be unloaded and removed from the pagingScrollView.
+- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
+
 /// Will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
 
-/** Will be called after page rect has been dragged.
-    If decelerate is YES, this will be called again after deceleration is complete.
-    velocity/targetContentOffset are only available in iOS5+.
+/** 
+ Will be called after page rect has been dragged.
+ If decelerate is YES, this will be called again after deceleration is complete.
  
-    You can also change the target with changing targetContentOffset.
+ You can also change the target with changing targetContentOffset.
  
-    This delegate combines following scrollViewDelegates:
-    - scrollViewWillEndDragging (iOS5) / scrollViewDidEndDragging (iOS4)
-    - scrollViewDidEndDecelerating
+ This delegate combines following scrollViewDelegates:
+ - scrollViewWillEndDragging / scrollViewDidEndDragging
+ - scrollViewDidEndDecelerating
 
-    Note: be careful to not dereference a nil pointer in targetContentOffset.
+ Note: be careful to not dereference a nil pointer in targetContentOffset.
  */
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
@@ -87,13 +93,13 @@
 
 
 /**
-    Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
+ Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
  
-    Default handling is (if available) text selection; showing the magnification-loupe.
+ Default handling is (if available) text selection; showing the magnification-loupe.
  
-    The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.
+ The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.
  
-    Note that there may be unexpected results if you only capture *some* events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.
+ Note that there may be unexpected results if you only capture *some* events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
@@ -107,12 +113,11 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 /**
-    Called before the menu for text selection is displayed.
-    All coordinates are in view coordinate space.
+ Called before the menu for text selection is displayed.
+ All coordinates are in view coordinate space.
 
-    Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
-
-    Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
+ Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
+ Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
 */
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
@@ -124,14 +129,14 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /**
-    Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
+ Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
  
-    Return YES to override the default action and custom-handle this.
-    Default actions might be scroll to target page, open Safari, show a menu, ...
+ Return YES to override the default action and custom-handle this.
+ Default actions might be scroll to target page, open Safari, show a menu, ...
  
-    Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
+ Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
  
-    annotationPoint is the point relative to PSPDFAnnotation, in PDF coordinate space.
+ AnnotationPoint is the point relative to PSPDFAnnotation, in PDF coordinate space.
     viewPoint is the point relative to the PSPDFPageView.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
@@ -159,26 +164,23 @@
 /// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
-// detailed control for page loading/unloading
-
-/// Called after pdf page has been loaded and added to the pagingScrollView.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView;
-
-/// Called before a pdf page will be unloaded and removed from the pagingScrollView.
-- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
-
 /**
-    Called before we show a controller modally or in a popover. Allows last minute modifications.\
+ Called before we show a controller modally or in a popover. Allows last minute modifications.\
  
-    The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
+ The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
  
-    Return NO to process the displaying manually.
+ Return NO to process the displaying manually.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
 
-/// Called after the controller has been fully displayed. iOS5 only. Isn't called for UIPopoverController's.
+/// Called after the controller has been fully displayed. Isn't called for UIPopoverController's.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
 
+/// If you implement your own super-custom toolbar, handle updates for bar buttons. (e.g. with re-setting the items array)
+/// One popular example is PSPDFBookmarkBarButtonItem, which needs to change it's image after pressing the button.
+/// Ignore this if you're letting PSPDFKit manage your toolbar or if you're using a UIToolbar.
+/// If you implement this delegate, the default UIToolbar-update-code will not be called.
+- (void)pdfViewController:(PSPDFViewController *)pdfController requestsUpdateForBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;
 
 /// Return NO to stop the HUD change event.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowHUD:(BOOL)animated;

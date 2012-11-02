@@ -22,7 +22,7 @@
 - (BOOL)saveAnnotations:(NSDictionary *)annotations withError:(NSError **)error;
 
 /// Attached document provider.
-@property (nonatomic, ps_weak, readonly) PSPDFDocumentProvider *documentProvider;
+@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Encryption Filter if one is found in the document.
 @property (nonatomic, copy, readonly) NSString *encryptionFilter;

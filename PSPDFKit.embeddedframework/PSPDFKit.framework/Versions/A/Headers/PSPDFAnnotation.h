@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument;
+@class PSPDFDocument, PSPDFDocumentProvider;
 
 // list of editable annotation types.
 extern NSString *const PSPDFAnnotationTypeStringHighlight;
@@ -16,36 +16,37 @@ extern NSString *const PSPDFAnnotationTypeStringStrikeout;
 extern NSString *const PSPDFAnnotationTypeStringNote;
 extern NSString *const PSPDFAnnotationTypeStringFreeText;
 extern NSString *const PSPDFAnnotationTypeStringInk;
+extern NSString *const PSPDFAnnotationTypeStringSquare;
+extern NSString *const PSPDFAnnotationTypeStringCircle;
 
 // Annotations defined after the PDF standard.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeNone      = 0,
-    PSPDFAnnotationTypeLink      = 1 << 1,
-    PSPDFAnnotationTypeHighlight = 1 << 2, // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
+    PSPDFAnnotationTypeLink      = 1 << 1,  // Links and multimedia extensions
+    PSPDFAnnotationTypeHighlight = 1 << 2,  // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
     PSPDFAnnotationTypeText      = 1 << 3,
     PSPDFAnnotationTypeInk       = 1 << 4,
-    PSPDFAnnotationTypeShape     = 1 << 5, // Square, Circle
+    PSPDFAnnotationTypeShape     = 1 << 5,  // Square, Circle
     PSPDFAnnotationTypeLine      = 1 << 6,
     PSPDFAnnotationTypeNote      = 1 << 7,
+    PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
+    PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
     PSPDFAnnotationTypeUndefined = 1 << 31, // any annotation whose type couldn't be recognized
     PSPDFAnnotationTypeAll       = UINT_MAX
 };
 
 /**
  Defines a PDF annotation.
+ 
  PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
  
  Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
 
- Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray
+ Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.
+ 
+ Ensure that custom sublcasses also correctly implement hash and isEqual.
 */
-@interface PSPDFAnnotation : NSObject <NSCoding, NSCopying> {
-    UIColor *_color;
-    CGRect _boundingBox;
-    int _popupIndex;
-    int _indexOnPage;
-    float _alpha;
-}
+@interface PSPDFAnnotation : NSObject <NSCoding, NSCopying>
 
 /// Returns the annotation type strings that are supported. Implemented in each subclass.
 + (NSArray *)supportedTypes;
@@ -62,10 +63,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 
 /// Initialize annotation with the corresponding PDF dictionary. Call from subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
-
-/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
-/// Returns same type as current class.
-- (id)copyAndDeleteOriginalIfNeeded;
 
 /// Check if point is inside annotation area.
 - (BOOL)hitTest:(CGPoint)point;
@@ -86,16 +83,13 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
  */
 - (void)drawInContext:(CGContextRef)context;
 
-/// Returns NSData string represnetation in the PDF Standard.
-- (NSData *)pdfDataRepresentation;
-
 /// Current annotation type. 
 @property (nonatomic, assign, readonly) PSPDFAnnotationType type;
 
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 /// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 /// Currently won't work if you just set arbitrary annotations to overlay=YES.
-/// If overlay is set to yes, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
+/// If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
 @property (nonatomic, assign, getter=isOverlay, readonly) BOOL overlay;
 
 /// Per default, annotations are editable when isWriteable returns YES.
@@ -116,35 +110,45 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 /// Color with added alpha value.
 @property (nonatomic, strong, readonly) UIColor *colorWithAlpha;
 
+/// Fill color. Only used for certain annotation types. ("IC" key)
+/// (e.g. Square and Circle Annotations)
+/// FillColor might be nil - treat like clearColor in that case.
+@property (nonatomic, strong) UIColor *fillColor;
+
 /// Optional. Various annotation types may contain text.
-@property (nonatomic, strong) NSString *contents;
+@property (nonatomic, copy) NSString *contents;
 
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
 
-/// If indexOnPage is set, it's a native PDF annotation.
-/// If this is -1, it's not yet saved in the PDF.
-/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
-@property (nonatomic, assign) int indexOnPage;
-
-/// Some annotations may have a popupIndex. Defaults to -1.
-@property (nonatomic, assign) int popupIndex;
-
 /// Annotation may already be deleted locally, but not written back.
 @property (nonatomic, assign, getter=isDeleted) BOOL deleted;
 
-/// rectangle of specific annotation.
+/// Rectangle of specific annotation.
 @property (nonatomic, assign) CGRect boundingBox;
 
-/// page for current annotation.
+/// Annotations already have a boundingBox where rotation is applied.
+/// Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)
+@property (nonatomic, assign, readonly) CGRect boundingBoxWithoutRotation;
+
+/// User (title) flag. ("T" property)
+@property (nonatomic, copy) NSString *user;
+
+/// Page for current annotation. Page is relative to the documentProvider.
 @property (nonatomic, assign) NSUInteger page;
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.
 @property (nonatomic, assign, getter=isDirty) BOOL dirty;
 
-/// corresponding document, weak.
-@property (nonatomic, ps_weak) PSPDFDocument *document;
+/// Corresponding documentProvider, weak.
+@property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
+
+/// Document is inferred from the documentProvider.
+@property (nonatomic, assign, readonly) PSPDFDocument *document;
+
+/// Rotation value, copied from the PSPDFPageInfo and set when documentProvider is set.
+@property (nonatomic, assign) NSInteger rotation;
 
 @end
 
@@ -157,6 +161,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 // Color string representation (/C [%f %f %f])
 - (NSString *)pdfColorString;
 
+// Fill Color string representation (/IC [%f %f %f])
+- (NSString *)pdfFillColorString;
+
 // Color string representation (/C [%f %f %f] /CA %f)
 - (NSString *)pdfColorWithAlphaString;
 
@@ -168,5 +175,33 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 
 // Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
 + (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
+
+/// Returns NSData string represnetation in the PDF Standard.
+- (NSData *)pdfDataRepresentation;
+
+/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
+/// Returns same type as current class.
+- (id)copyAndDeleteOriginalIfNeeded;
+
+/// If indexOnPage is set, it's a native PDF annotation.
+/// If this is -1, it's not yet saved in the PDF.
+/// Annotations that have indexOnPage >= 0 will be copied before they're modified.
+@property (nonatomic, assign) int indexOnPage;
+
+/// Some annotations may have a popupIndex. Defaults to -1.
+@property (nonatomic, assign) int popupIndex;
+
+@end
+
+@interface PSPDFAnnotation (SubclassingHooks)
+
+// Will be called after document and page have been set.
+- (void)parse;
+
+@end
+
+@interface PSPDFAnnotation (Deprecated)
+
+- (void)setDocument:(PSPDFDocument *)document __attribute__ ((deprecated("Set the documentProvider instead")));
 
 @end

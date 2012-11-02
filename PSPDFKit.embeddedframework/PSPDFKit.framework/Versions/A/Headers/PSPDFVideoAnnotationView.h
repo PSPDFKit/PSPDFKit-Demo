@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSURL *URL;
 
 /// YES to enable auto-start as soon as the view is loaded. Defaults to NO.
-@property (nonatomic, assign, getter=isAutostartEnabled) BOOL autostartEnabled;
+@property (nonatomic, assign, getter=isAutoplayEnabled) BOOL autoplayEnabled;
 
 /// If this is set to YES, the video will play with it's own audio session, and will *ignore* the silent switch.
 /// This is was people expect when they press play on a video, and they will often report a bug becuase they forgot
@@ -33,6 +33,9 @@
 
 /// Cover view is only set if cover option is set.
 @property (nonatomic, strong) PSPDFVideoAnnotationCoverView *coverView;
+
+/// Video has a zIndex of 10.
+@property (nonatomic, assign) NSUInteger zIndex;
 
 @end
 

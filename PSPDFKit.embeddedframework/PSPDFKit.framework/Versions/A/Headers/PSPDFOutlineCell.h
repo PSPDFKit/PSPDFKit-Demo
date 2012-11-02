@@ -17,16 +17,16 @@
 @end
 
 
-/// Single cell for the outline controller
+/// Single cell for the outline controller.
 @interface PSPDFOutlineCell : UITableViewCell
 
-/// Dynamically claculates the height for a cell.
-+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize;
+/// Dynamically calculates the height for a cell.
++ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplicator:(CGFloat)multiplicator;
 
-/// Delegate for cell button
-@property (nonatomic, ps_weak) id<PSPDFOutlineCellDelegate> delegate;
+/// Delegate for cell button.
+@property (nonatomic, weak) id<PSPDFOutlineCellDelegate> delegate;
 
-/// Single outline Element
+/// Single outline element.
 @property (nonatomic, strong) PSPDFOutlineElement *outlineElement;
 
 @end
@@ -44,5 +44,11 @@
 
 // Button action. Animates and calls the delegate.
 - (void)expandOrCollapse;
+
+/// Defaults to 32.f. Should be changed on PSPDFOutlineViewController.
+@property (nonatomic, assign) CGFloat outlineIntentLeftOffset;
+
+/// Defaults to 15.f. Should be changed on PSPDFOutlineViewController.
+@property (nonatomic, assign) CGFloat outlineIndentMultiplicator;
 
 @end

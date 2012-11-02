@@ -17,6 +17,7 @@ extern NSString *const kPSPDFInvertRendering;       // Inverts the rendering out
 extern NSString *const kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
 extern NSString *const kPSPDFAllowAntiAliasing;     // Enabled/Disables antialiasing. Defaults to YES.
 extern NSString *const kPSPDFBackgroundFillColor;   // Allows custom render color. Default is white.
+extern NSString *const kPSPDFPDFBox;                 // Allows custom PDF box (if pageInfo is nil)
 
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
