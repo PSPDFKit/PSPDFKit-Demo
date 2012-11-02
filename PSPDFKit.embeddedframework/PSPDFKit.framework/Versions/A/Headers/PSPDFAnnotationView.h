@@ -9,7 +9,7 @@
 
 @class PSPDFAnnotation;
 
-/// conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
+/// Conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
 @protocol PSPDFAnnotationView <NSObject>
 
 @optional
@@ -17,19 +17,22 @@
 /// Represented annotation this object is presenting.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 
-/// page will be displayed. only available in pageCurl mode.
+/// Allows ordering of annotation views.
+@property (nonatomic, assign) NSUInteger zIndex;
+
+/// Called when page will be displayed. Only available in pageCurl mode.
 - (void)willShowPage:(NSUInteger)page;
 
-/// page is displayed.
+/// Called when pageView is displayed.
 - (void)didShowPage:(NSUInteger)page;
 
-/// page will be hidden. only available in pageCurl mode.
+/// Called when pageView will be hidden. Only available in pageCurl mode.
 - (void)willHidePage:(NSUInteger)page;
 
-/// page is hidden.
+/// Called when pageView is hidden.
 - (void)didHidePage:(NSUInteger)page;
 
-/// called when the parent page size is changed. (e.g. rotation!)
+/// Called initially and when the parent page size is changed. (e.g. rotation)
 - (void)didChangePageFrame:(CGRect)frame;
 
 @end

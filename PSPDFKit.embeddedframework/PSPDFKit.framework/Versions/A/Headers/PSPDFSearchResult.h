@@ -13,7 +13,7 @@
 @interface PSPDFSearchResult : NSObject
 
 /// Referenced document.
-@property (nonatomic, ps_weak) PSPDFDocument *document;
+@property (nonatomic, weak) PSPDFDocument *document;
 
 /// referenced page.
 @property (nonatomic, assign) NSUInteger pageIndex;

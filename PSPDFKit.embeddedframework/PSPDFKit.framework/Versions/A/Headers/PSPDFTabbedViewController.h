@@ -35,12 +35,12 @@
 
 @end
 
-/// Allows displaying multiple PSPDFDocument's, easily switchable via a top tab bar. iOS5 only.
+/// Allows displaying multiple PSPDFDocument's, easily switchable via a top tab bar.
 @interface PSPDFTabbedViewController : PSPDFBaseViewController
 
 /// Initialize the controller.
 /// Set a custom pdfViewController to use a subclass. If nil, a default instance will be created.
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
 
 /// Currently visible document.
 @property (nonatomic, strong) PSPDFDocument *visibleDocument;
@@ -60,7 +60,7 @@
 - (void)removeDocuments:(NSArray *)documents animated:(BOOL)animated;
 
 /// Delegate to capture events.
-@property (nonatomic, ps_weak) id<PSPDFTabbedViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFTabbedViewControllerDelegate> delegate;
 
 /// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
 @property (nonatomic, assign) BOOL enableAutomaticStatePersistance;
@@ -83,7 +83,7 @@
 @property (nonatomic, assign) CGFloat minTabWidth;
 
 /// The embedded PDFViewController. Access to customize the properties.
-@property (nonatomic, strong, readonly) PSPDFViewController *pdfViewController;
+@property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
 
 /// Tab bar view.
 @property (nonatomic, strong, readonly) PSPDFTabBarView *tabBar;

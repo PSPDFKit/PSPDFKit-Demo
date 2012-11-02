@@ -65,9 +65,9 @@
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
 /// The document that is searched.
-@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// Search delegate. Will be retained as long as the operation runs.
-@property (nonatomic, ps_weak) id<PSPDFTextSearchDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFTextSearchDelegate> delegate;
 
 @end

@@ -14,7 +14,7 @@
 /// This class connects to the pdfController via KVO.
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
-/// PDF controller delegate.
+/// PDF controller delegate. We use KVO, so no weak here.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Updates toolbar, realigns page screenshots. Registers in the runloop and works later.

@@ -14,12 +14,6 @@
 /// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
-// Newer runtimes defines this, here's a fallback for the iOS5 SDK.
-#ifndef NS_ENUM
-#define NS_ENUM(_type, _name) _type _name; enum
-#define NS_OPTIONS(_type, _name) _type _name; enum
-#endif
-
 extern NSString *const kPSPDFErrorDomain;
 
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
@@ -111,6 +105,9 @@ extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
 /// Queries subviews for a specific class prefix. Usually used for subview-querying.
 extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
+// In order for pspdf_dispatch_sync_reentrant to work, you need to create your queues with this helper.
+extern inline dispatch_queue_t pspdf_dispatch_queue_create(const char *label, dispatch_queue_attr_t attr);
+
 // Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
@@ -160,16 +157,7 @@ extern void PSPDFLockRotation(void);
 extern void PSPDFUnlockRotation(void);
 
 // Returns a unique temporary file URL.
-extern NSURL *PSPDFTempFileURL(NSString *prefix);
-
-// Use special weak keyword
-#if !defined ps_weak && __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0 && !defined (PSPDF_ARC_IOS5_COMPILE)
-#define ps_weak weak
-#define __ps_weak __weak
-#elif !defined ps_weak
-#define ps_weak unsafe_unretained
-#define __ps_weak __unsafe_unretained
-#endif
+extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
 
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
@@ -193,19 +181,6 @@ extern NSURL *PSPDFTempFileURL(NSString *prefix);
 #endif
 
 // iOS compatibility
-#ifndef kCFCoreFoundationVersionNumber_iOS_5_0
-#define kCFCoreFoundationVersionNumber_iOS_5_0 674.0
-#endif
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 50000
-#define PSPDF_IF_IOS5_OR_GREATER(...) \
-if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_0) { __VA_ARGS__ }
-#else
-#define PSPDF_IF_IOS5_OR_GREATER(...)
-#endif
-
-#define PSPDF_IF_PRE_IOS5(...)  \
-if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_5_0) { __VA_ARGS__ }
-
 #ifndef kCFCoreFoundationVersionNumber_iOS_6_0
 #define kCFCoreFoundationVersionNumber_iOS_6_0 788.0
 #endif
@@ -229,10 +204,6 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #define PSPDF_IF_NOT_SIMULATOR(...) { __VA_ARGS__ }
 #endif
 
-// micro optimizations
-#define likely(x)   __builtin_expect(!!(x), 1)
-#define unlikely(x) __builtin_expect(!!(x), 0)
-
 // Starting with iOS6, dispatch queue's are objects and managed via ARC.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
 #define PSPDFDispatchRelease(queue)
@@ -253,20 +224,3 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 // Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html
 #define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name @end \
 @implementation PSPDF_FIX_CATEGORY_BUG_##name @end
-
-// Add support for subscripting to the iOS 5 SDK.
-// See http://petersteinberger.com/blog/2012/using-subscripting-with-Xcode-4_4-and-iOS-4_3
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 60000
-@interface NSDictionary(PSPDFSubscriptingSupport)
-- (id)objectForKeyedSubscript:(id)key;
-@end
-@interface NSMutableDictionary(PSPDFSubscriptingSupport)
-- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
-@end
-@interface NSArray(PSPDFSubscriptingSupport)
-- (id)objectAtIndexedSubscript:(NSUInteger)idx;
-@end
-@interface NSMutableArray(PSPDFSubscriptingSupport)
-- (void)setObject:(id)obj atIndexedSubscript:(NSUInteger)idx;
-@end
-#endif

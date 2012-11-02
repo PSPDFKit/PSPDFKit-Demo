@@ -28,4 +28,7 @@
 /// All PSPDFGlyph objects
 @property (nonatomic, strong) NSArray *glyphs;
 
+/// Set to YES if this is the last word on a textBlock.
+@property (nonatomic, assign) BOOL lineBreaker;
+
 @end

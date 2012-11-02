@@ -9,7 +9,7 @@
 
 @class PSPDFDocument, PSPDFConversionOperation;
 
-// Available keys for ptions. kPSPDFProcessorAnnotationDict in form of pageIndex -> annotations.
+// Available keys for options. kPSPDFProcessorAnnotationDict in form of pageIndex -> annotations.
 // If kPSPDFProcessorAnnotationDict is set, kPSPDFProcessorAnnotationTypes will be ignored.
 // Annotations will be *flattened* when set here.
 extern NSString *const kPSPDFProcessorAnnotationTypes;
@@ -35,6 +35,7 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 - (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options;
 
 /// Generate a PDF from a PSPDFDOcument into data.
+/// Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhautive memory usage. 10-20MB should be the maximum for safe usage.
 - (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options;
 
 /**

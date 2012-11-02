@@ -29,6 +29,8 @@
 "Add Bookmark" = "Add Bookmark";
 "Remove Bookmark" = "Remove Bookmark";
 "Brightness" = "Brightness";
+"Share..." = "Share…";
+"Preparing..." = "Preparing…";
 
 // password
 "Unlock" = "Unlock";
@@ -67,6 +69,8 @@
 "Rainbow" = "Rainbow";
 "Monochrome" = "Monochrome";
 "Colors..." = "Colors…";
+"Thickness..." = "Thickness…";
+"%@ pt" = "%@ pt";
 "Text..." = "Text…";
 "Yellow" = "Yellow";
 "Green" = "Green";
