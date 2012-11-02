@@ -29,6 +29,8 @@
 "Add Bookmark" = "Aggiungi segnalibro";
 "Remove Bookmark" = "Elimina segnalibro";
 "Brightness" = "Luminosità";
+"Share..." = "Share…";
+"Preparing..." = "Preparing…";
 
 // password
 "Unlock" = "Sblocca";
@@ -65,6 +67,8 @@
 "Type..." = "Tipo…";
 "Choose Color" = "Scegli il colore";
 "Colors..." = "Colori…";
+"Thickness..." = "Thickness…";
+"%@ pt" = "%@ pt";
 "Text..." = "Testo…";
 "Yellow" = "Giallo";
 "Green" = "Verde";

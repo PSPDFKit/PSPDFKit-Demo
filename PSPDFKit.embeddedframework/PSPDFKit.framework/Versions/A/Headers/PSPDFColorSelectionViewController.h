@@ -23,7 +23,7 @@
 /// Default initializer
 - (id)initWithColors:(NSArray *)colors;
 
-@property (nonatomic, ps_weak) id<PSPDFColorSelectionViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFColorSelectionViewControllerDelegate> delegate;
 
 @end
 

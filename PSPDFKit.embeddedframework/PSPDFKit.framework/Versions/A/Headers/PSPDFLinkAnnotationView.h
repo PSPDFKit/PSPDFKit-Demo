@@ -32,9 +32,6 @@
 /// Stroke width. Defaults to 1.
 @property (nonatomic, assign) CGFloat strokeWidth;
 
-/// Color to fill when the button is pressed. Defaults to gray.
-@property (nonatomic, strong) UIColor *pressedColor;
-
 /// Option to not mark small targets. (small = width/height < 6) Defaults to YES.
 @property (nonatomic, assign, getter=shouldHideSmallLinks) BOOL hideSmallLinks;
 

@@ -30,7 +30,7 @@
 /// Create page controller using the master pdf controller.
 - (id)initWithDelegate:(UIViewController<PSPDFTransitionHelperDelegate> *)delegate;
 
-@property (nonatomic, ps_weak, readonly) UIViewController<PSPDFTransitionHelperDelegate> *delegate;
+@property (nonatomic, weak, readonly) UIViewController<PSPDFTransitionHelperDelegate> *delegate;
 
 /// Set new page.
 @property (nonatomic, assign) NSUInteger page;

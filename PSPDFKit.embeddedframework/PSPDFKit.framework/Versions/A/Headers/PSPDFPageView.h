@@ -62,7 +62,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
 
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
-/// Note: If the scrollview is currently decellerating and we're on iOS5 and upwards,
+/// Note: If the scrollview is currently decellerating,
 /// this will show the TARGET rect, not the one that's currently animating.
 @property (nonatomic, assign, readonly) CGRect visibleRect;
 
@@ -114,8 +114,8 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Returns an array of UIView <PSPDFAnnotationView> objects currently in the view hierarchy.
 - (NSArray *)visibleAnnotationViews;
 
-/// Access pdfController
-@property (nonatomic, ps_weak, readonly) PSPDFViewController *pdfController;
+/// Access the attached pdfController.
+@property (atomic, unsafe_unretained, readonly) PSPDFViewController *pdfController;
 
 /// Page that is displayed. Readonly.
 @property (atomic, assign, readonly) NSUInteger page;
@@ -154,14 +154,14 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /**
-    Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
-    Returns YES if the tap has been handled, else NO.
+ Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
+ Returns YES if the tap has been handled, else NO.
     
-    All annotations for the current page are loaded and hit-tested (except PSPDFAnnotationTypeLink; which has already been handled by now)
+ All annotations for the current page are loaded and hit-tested (except PSPDFAnnotationTypeLink; which has already been handled by now)
     
-    If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
+ If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
  
-    If the tap didn't hit an annotation but we are showing a UIMenuController menu; we hide that and set the touch as processed.
+ If the tap didn't hit an annotation but we are showing a UIMenuController menu; we hide that and set the touch as processed.
  */
 - (BOOL)singleTapped:(UITapGestureRecognizer *)recognizer;
 
@@ -180,8 +180,25 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Shows a popover/modal controller to edit a PSPDFAnnotation.
 - (void)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation;
 
-// Helper to add a custom annotation to the view.
+/**
+ In PSPDFKit, annotations are managed in two ways:
+
+ 1) Annotations that are fixed and rendered with the page image.
+ Those annotations are PSPDFHighlightAnnotation, PSPDFShapeAnnotation, PSPDFInkAnnotation and more.
+ Pretty much all more or less "static" annotations are handled this way.
+
+ 2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
+ Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
+ Those annotations return YES on the isOverlay property.
+
+ Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
+
+ This method is called recursively with all annotation types except if they return isOverlay = NO.
+ */
 - (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+
+/// Remove an annotation from the view.
+- (BOOL)removePageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 @end
 
@@ -194,23 +211,6 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @end
 
 @interface PSPDFPageView (SubclassingHooks)
-
-/**
-    In PSPDFKit, annotations are managed in two ways:
-
-    1) Annotations that are fixed and rendered with the page image.
-    Those annotations are PSPDFHighlightAnnotation, PSPDFShapeAnnotation, PSPDFInkAnnotation and more.
-    Pretty much all more or less "static" annotations are handled this way.
- 
-    2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
-    Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
-    Those annotations return YES on the isOverlay property.
-    
-    Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
- 
-    This method is called recursively with all annotation types except if they return isOverlay = YES.
-*/
-- (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
 /// Call manually to speed up rendering. Has no effect if called multiple times.

@@ -7,23 +7,23 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocument;
+@class PSPDFDocumentProvider;
 
-/// Represents a PDF page. Managed within PSPDFDocument.
-/// With NSCopying, PSPDFDocument is not serialized.
+/// Represents PDF page data. Managed within PSPDFDocumentProvider.
 @interface PSPDFPageInfo : NSObject <NSCopying, NSCoding>
 
 /// Init object with page and rotation.
-- (id)initWithPage:(NSUInteger)page rect:(CGRect)pageRect rotation:(NSInteger)rotation document:(PSPDFDocument *)document;
+- (id)initWithPage:(NSUInteger)page rect:(CGRect)pageRect rotation:(NSInteger)rotation documentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Saved aspect ratio of current page.
 @property (nonatomic, assign, readonly) CGRect pageRect;
 
-/// Returns corrected, rotated bounds of pageRect.
+/// Returns corrected, rotated bounds of pageRect. Is calculated on the fly.
 @property (nonatomic, assign, readonly) CGRect rotatedPageRect;
 
 /// Saved page rotation of current page. Value between 0 and 270.
 /// Can be used to manually rotate pages (but needs a cache clearing and a reload)
+/// On setting this, pageRotationTransform will be updated.
 @property (nonatomic, assign) NSUInteger pageRotation;
 
 /// Page transform matrix.
@@ -32,7 +32,7 @@
 /// Referenced page.
 @property (nonatomic, assign, readonly) NSUInteger page;
 
-/// Referenced document, weak.
-@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
+/// Referenced document provider, weak.
+@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 @end

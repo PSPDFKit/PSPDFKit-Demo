@@ -16,7 +16,7 @@
 - (void)delegateWillDisplayDocument;
 - (void)delegateDidDisplayDocument;
 
-- (void)delegateDidShowPage:(NSUInteger)realPage; // legacy bridge
+- (void)delegateDidShowPage:(NSUInteger)page; // legacy bridge
 - (void)delegateDidShowPageView:(PSPDFPageView *)pageView;
 - (void)delegateDidRenderPageView:(PSPDFPageView *)pageView;
 - (void)delegateDidChangeViewMode:(PSPDFViewMode)viewMode;

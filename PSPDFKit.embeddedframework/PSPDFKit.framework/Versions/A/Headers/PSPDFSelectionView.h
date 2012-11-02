@@ -35,6 +35,6 @@
 - (id)initWithFrame:(CGRect)frame delegate:(id<PSPDFSelectionViewDelegate>)delegate;
 
 /// Selection View delegate.
-@property (nonatomic, ps_weak) id<PSPDFSelectionViewDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFSelectionViewDelegate> delegate;
 
 @end

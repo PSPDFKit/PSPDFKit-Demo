@@ -42,4 +42,10 @@
 // Ensures the underlying color space of the UIColor is RGB.
 - (UIColor *)pspdf_colorInRGBColorSpace;
 
+// Returns a UIColor by scanning the string for a hex number and passing that to +[UIColor pspdf_colorWithRGBHex:]
+// Skips any leading whitespace and ignores any trailing characters
++ (UIColor *)pspdf_colorWithHexString:(NSString *)string;
+
++ (UIColor *)pspdf_colorWithRGBHex:(UInt32)hex allowTransparancy:(BOOL)allowTransparancy;
+
 @end

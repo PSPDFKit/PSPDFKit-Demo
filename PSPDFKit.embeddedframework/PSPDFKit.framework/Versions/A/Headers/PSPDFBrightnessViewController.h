@@ -8,7 +8,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGradientView.h"
 
-/// Controller to change the brightness. iOS5 and later.
+/// Controller to change the brightness.
 @interface PSPDFBrightnessViewController : PSPDFBaseViewController
 
 /// Enables software dimming. Defaults to YES.

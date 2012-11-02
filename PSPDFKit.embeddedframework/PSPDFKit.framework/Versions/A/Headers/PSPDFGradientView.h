@@ -8,6 +8,8 @@
 #import "PSPDFKitGlobal.h"
 
 /// Display a gradient.
+/// Because we override drawRect here, using backgroundColor will not allow cornerRadius.
+/// Use colors with a single color instead.
 @interface PSPDFGradientView : UIView
 
 typedef NS_ENUM(NSInteger, PSPDFGradientViewDirection) {
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSInteger, PSPDFGradientViewDirection) {
 /// Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.
 @property (nonatomic, assign) PSPDFGradientViewDirection direction;
 
-/// Gradient colors.
+/// Gradient colors. One color (flat) is also supported.
 @property (nonatomic, copy) NSArray *colors;
 
 /// Gradient location. Array of NSNumber objects that define the location of each color.

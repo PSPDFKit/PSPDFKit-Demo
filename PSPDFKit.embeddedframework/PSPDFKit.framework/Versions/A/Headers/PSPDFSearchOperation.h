@@ -54,10 +54,10 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @property (nonatomic, strong, readonly) NSArray *searchResults;
 
 /// Associated document (weak, we're saved within the document)
-@property (nonatomic, ps_weak, readonly) PSPDFDocument *document;
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// Search delegate. Will be retained as long as the operation runs.    
-@property (nonatomic, ps_weak) id<PSPDFSearchOperationDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFSearchOperationDelegate> delegate;
 
 /// Set the searchMode for the search.
 @property (nonatomic, assign) PSPDFSearchMode searchMode;

@@ -31,4 +31,7 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
 /// Generates in-code images on the fly. Cached, Thread-safe.
 - (UIImage *)iconForType:(PSPDFIconType)iconType;
 
+/// Generates in-code images on the fly. Thread-safe. Uses custom shadow settings.
+- (UIImage *)iconForType:(PSPDFIconType)iconType shadowOffset:(CGSize)shadowOffset shadowColor:(UIColor *)shadowColor;
+
 @end

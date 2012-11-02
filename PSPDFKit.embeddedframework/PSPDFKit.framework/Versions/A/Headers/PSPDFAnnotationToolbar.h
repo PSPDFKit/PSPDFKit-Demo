@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 @property (nonatomic, strong) id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
-@property (nonatomic, ps_weak) PSPDFViewController *pdfController;
+@property (nonatomic, weak) PSPDFViewController *pdfController;
 
 /// Active annotation toolbar mode.
 @property (nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode;

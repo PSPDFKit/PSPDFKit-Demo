@@ -55,7 +55,7 @@ extern NSString *kPSPDFAnnotationAutoFetchTypes;
 @property (nonatomic, readonly) float zoomScale;
 @property (nonatomic, readonly) NSArray *annotations;
 @property (nonatomic, strong, readonly) NSDictionary *options;
-@property (nonatomic, strong) id<PSPDFRenderDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFRenderDelegate> delegate;
 @property (nonatomic, strong) UIImage *renderedImage;
 
 @end
