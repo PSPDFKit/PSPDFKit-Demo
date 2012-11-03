@@ -180,7 +180,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)processStatusChangeForMagazineDownload:(PSCDownload *)download {
-    if (download.status == PSPDFStoreDownloadFinished) {
+    if (download.status == PSPDFStoreDownloadStatusFinished) {
         [self finishDownload:download];
         /*
          [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Download for %@ finished!", @""), storeDownloadWeak.magazine.title]
@@ -190,7 +190,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
          otherButtonTitles:nil] show];
          */
 
-    }else if (download.status == PSPDFStoreDownloadFailed) {
+    }else if (download.status == PSPDFStoreDownloadStatusFailed) {
         if (!download.isCancelled) {
             NSString *magazineTitle = [download.magazine.title length] ? download.magazine.title : NSLocalizedString(@"Magazine", @"");
             NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%@ could not be downloaded. Please try again.", @""), magazineTitle];

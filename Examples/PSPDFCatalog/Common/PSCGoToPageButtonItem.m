@@ -8,12 +8,15 @@
 #import "PSCGoToPageButtonItem.h"
 #import <objc/runtime.h>
 
-const char kPSCAlertViewKey;
-
 @interface PSCGoToPageButtonItem() <UITextFieldDelegate>
 @end
 
 @implementation PSCGoToPageButtonItem
+
+const char kPSCAlertViewKey;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFBarButtonItem
 
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithPDFViewController:pdfViewController])) {
