@@ -16,6 +16,9 @@
     UIImage *_buttonImage;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFBarButtonItem
+
 - (BOOL)isAvailable {
     return [self.pdfController.document.metadata count] > 0;
 }
@@ -82,8 +85,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSInteger rows = [self.document.metadata count];
-    return rows;
+    return [self.document.metadata count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
