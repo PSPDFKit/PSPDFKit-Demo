@@ -8,8 +8,10 @@
 @class PSCDocumentSelectorController;
 @class PSPDFDocument;
 
+/// Document selector delegate.
 @protocol PSCDocumentSelectorControllerDelegate <NSObject>
 
+/// A cell has been selected.
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document;
 
 @end
@@ -26,7 +28,7 @@
 /// Delegate to get the didSelect event.
 @property (nonatomic, weak) id<PSCDocumentSelectorControllerDelegate> delegate;
 
-// All PSPDFDocument objects
+// All PSPDFDocument objects.
 @property (nonatomic, copy, readonly) NSArray *content;
 
 /// Displayed path.

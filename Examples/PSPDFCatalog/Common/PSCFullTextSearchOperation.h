@@ -31,7 +31,8 @@
 /// Search term.
 @property (nonatomic, copy, readonly) NSString *searchTerm;
 
-@property (nonatomic, unsafe_unretained) id<PSCFullTextSearchOperationDelegate> delegate;
+/// Operation delegate.
+@property (atomic, weak) id<PSCFullTextSearchOperationDelegate> delegate;
 
 /// Array of documents that match for a certain search term.
 /// Access after operation has finished.

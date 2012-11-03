@@ -7,6 +7,7 @@
 
 #define kDismissActivePopover @"kDismissActivePopover"
 
+// Basic viewController subclass that haldes popovers.
 @interface PSCBasicViewController : PSPDFBaseViewController <UIPopoverControllerDelegate>
 
 @property (nonatomic, strong) UIPopoverController *popoverController;

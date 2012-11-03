@@ -45,7 +45,7 @@
             if (self.isCancelled) break;
 
             // create extra textSearch class so we don't interfear with delegates
-            PSPDFTextSearch *textSearch = [[PSPDFTextSearch alloc] initWithDocument:document];
+            PSPDFTextSearch *textSearch = [document.textSearch copy];
             textSearch.delegate = self;
 
             // because of the semaphore we need to call this from another thread.
@@ -67,7 +67,7 @@
 
 - (void)didUpdateSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm newSearchResults:(NSArray *)searchResults forPage:(NSUInteger)page {
     if ([searchResults count]) {
-        NSLog(@"found term in %@", textSearch.document);
+        //NSLog(@"found term in %@", textSearch.document);
         [_internalResults addObject:textSearch.document];
 
         // update results + notify delegate

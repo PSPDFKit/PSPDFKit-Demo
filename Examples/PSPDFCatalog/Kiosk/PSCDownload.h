@@ -8,12 +8,13 @@
 #import "PSCMagazine.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
-    PSPDFStoreDownloadIdle,
-    PSPDFStoreDownloadLoading,
-    PSPDFStoreDownloadFinished,
-    PSPDFStoreDownloadFailed,
+    PSPDFStoreDownloadStatusIdle,
+    PSPDFStoreDownloadStatusLoading,
+    PSPDFStoreDownloadStatusFinished,
+    PSPDFStoreDownloadStatusFailed,
 };
 
+/// Wrapper that helps downloading a PDF.
 @interface PSCDownload : NSObject
 
 /// Initialize a new PDF download.
@@ -40,8 +41,10 @@ typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
 /// Magazine that's being downloaded.
 @property (nonatomic, strong) PSCMagazine *magazine;
 
+/// Exposed error.
 @property (nonatomic, strong, readonly) NSError *error;
 
-@property (nonatomic, assign, readonly, getter=isCancelled) BOOL cancelled;
+/// Download cancelled?
+@property (atomic, assign, readonly, getter=isCancelled) BOOL cancelled;
 
 @end

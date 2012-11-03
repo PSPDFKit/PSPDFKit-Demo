@@ -22,7 +22,7 @@
 @property (nonatomic, assign) float downloadProgress;
 @property (nonatomic, strong) NSError *error;
 @property (nonatomic, strong) AFHTTPRequestOperation *request;
-@property (nonatomic, assign, getter=isCancelled) BOOL cancelled;
+@property (atomic, assign, getter=isCancelled) BOOL cancelled;
 @end
 
 @implementation PSCDownload
@@ -69,7 +69,7 @@
     _status = aStatus;
 
     // remove progress view, animated
-    if (progressView_ && (_status == PSPDFStoreDownloadFinished || _status == PSPDFStoreDownloadFailed)) {
+    if (progressView_ && (_status == PSPDFStoreDownloadStatusFinished || _status == PSPDFStoreDownloadStatusFailed)) {
         [UIView animateWithDuration:0.25 delay:0 options:0 animations:^{
             progressView_.alpha = 0.f;
         } completion:^(BOOL finished) {
@@ -107,7 +107,7 @@
         PSCLog(@"Download finished: %@", self.URL);
 
         if (self.isCancelled) {
-            self.status = PSPDFStoreDownloadFailed;
+            self.status = PSPDFStoreDownloadStatusFailed;
             self.magazine.downloading = NO;
             return;
         }
@@ -118,7 +118,7 @@
         self.magazine.available = YES;
         self.magazine.downloading = NO;
         self.magazine.fileURL = destinationURL;
-        self.status = PSPDFStoreDownloadFinished;
+        self.status = PSPDFStoreDownloadStatusFinished;
 
         // start crunching!
         [[PSPDFCache sharedCache] cacheDocument:self.magazine startAtPage:0 size:PSPDFSizeNative];
@@ -128,7 +128,7 @@
         [self addSkipBackupAttributeToItemAtURL:destinationURL];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         PSCLog(@"Download failed: %@. Reason: %@.", self.URL, [error localizedDescription]);
-        self.status = PSPDFStoreDownloadFailed;
+        self.status = PSPDFStoreDownloadStatusFailed;
         self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;
     }];
