@@ -74,7 +74,7 @@
                 }
             }
             @catch (NSException *exception) {
-                NSLog(@"Failed to load saved viewState: %@", exception);
+                PSCLog(@"Failed to load saved viewState: %@", exception);
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.UID];
             }
         }
@@ -256,7 +256,7 @@
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint {
-    NSLog(@"didTapOnAnnotation:%@ annotationPoint:%@ annotationView:%@ pageView:%@ viewPoint:%@", annotation, NSStringFromCGPoint(annotationPoint), annotationView, pageView, NSStringFromCGPoint(viewPoint));
+    PSCLog(@"didTapOnAnnotation:%@ annotationPoint:%@ annotationView:%@ pageView:%@ viewPoint:%@", annotation, NSStringFromCGPoint(annotationPoint), annotationView, pageView, NSStringFromCGPoint(viewPoint));
     BOOL handled = NO;
     return handled;
 }
@@ -265,7 +265,7 @@
     
     CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
-    NSLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
+    PSCLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
 
     
     return NO; // touch not used.
@@ -287,7 +287,7 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 
     CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
-    NSLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSPDFGestureStateToString(gestureRecognizer.state));
+    PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSPDFGestureStateToString(gestureRecognizer.state));
 
     return NO; // touch not used.
 }
