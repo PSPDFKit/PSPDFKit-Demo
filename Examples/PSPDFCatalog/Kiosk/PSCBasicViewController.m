@@ -42,7 +42,7 @@
 #pragma mark - Public
 
 - (void)closeModalView {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
