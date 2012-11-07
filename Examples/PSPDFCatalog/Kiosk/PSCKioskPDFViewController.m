@@ -46,14 +46,14 @@
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
         __weak typeof (self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            CGFloat variance = [weakSelf.document aspectRatioVariance];
+            CGFloat variance = [document aspectRatioVariance];
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.clipToPageBoundaries = variance < 0.2f;
             });
         });
 
         // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
-        [self.document.outlineParser outline];
+        if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
 
         // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
         NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");

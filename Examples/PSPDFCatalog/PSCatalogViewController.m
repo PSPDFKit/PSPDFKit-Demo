@@ -32,6 +32,7 @@
 #import "PSCButtonPDFViewController.h"
 #import "PSCCustomAnnotationProvider.h"
 #import "PSCBottomToolbarViewController.h"
+#import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -40,7 +41,8 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:3]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -77,9 +79,9 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -284,7 +286,7 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
         //            NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"];
 
         // copy file from the bundle to a location where we can write on it.
@@ -473,6 +475,17 @@ const char kPSCAlertViewKey;
         return [[PSCButtonPDFViewController alloc] initWithDocument:document];
     }]];
 
+    // Other image replacements work similar.
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom toolbar icon for bookmark item" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.title = @"Custom toolbar icon for bookmark item";
+        pdfController.overrideClassNames = @{(id)[PSPDFBookmarkBarButtonItem class] : [PSCCustomBookmarkBarButtonItem class]};
+        pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
+        pdfController.rightBarButtonItems = @[pdfController.bookmarkButtonItem, pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         return [[PSCustomToolbarController alloc] initWithDocument:document];
@@ -496,7 +509,8 @@ const char kPSCAlertViewKey;
         pdfController.statusBarStyleSetting = PSPDFStatusBarDefault;
         pdfController.scrobbleBarEnabled = NO; // would look to crowded.
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-        pdfController.toolbarItems = @[space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
+        pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
+        pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
         return pdfController;
     }]];
 

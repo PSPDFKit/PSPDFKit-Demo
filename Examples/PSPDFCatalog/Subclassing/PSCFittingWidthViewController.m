@@ -2,7 +2,7 @@
 //  PSCFittingWidthViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCFittingWidthViewController.h"
