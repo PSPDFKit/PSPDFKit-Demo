@@ -2,7 +2,7 @@
 //  PSCGoToPageButtonItem.h
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 /// Allows to jump to a specific page or page label.
