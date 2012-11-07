@@ -2,7 +2,7 @@
 //  PSCVerticalAnnotationToolbar.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012 PSPDFKit. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCVerticalAnnotationToolbar.h"
@@ -65,7 +65,7 @@
     }else {
         // remove toolbar
         [self.toolbar unlockPDFControllerAndEnsureToStayOnTop:NO];
-        [self.toolbar finishDrawingAndSaveAnnotation:NO];
+        [self.toolbar finishDrawingAnimated:YES andSaveAnnotation:NO];
     }
 }
 
