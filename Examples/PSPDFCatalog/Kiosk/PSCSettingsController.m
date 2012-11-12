@@ -66,23 +66,23 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[StringSEL(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
-        _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
-        _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @(YES);
-        _settings[StringSEL(isPageLabelEnabled)] = @(YES);
-        _settings[StringSEL(isScrobbleBarEnabled)] = @(YES);
-        _settings[StringSEL(isTextSelectionEnabled)] = @(YES);
-        _settings[StringSEL(isSmartZoomEnabled)] = @(YES);
-        _settings[StringSEL(isScrollOnTapPageEndEnabled)] = @(YES);
-        _settings[StringSEL(viewModeButtonItem)] = @(YES);
-        _settings[StringSEL(searchButtonItem)] = @(YES);
-        _settings[StringSEL(annotationButtonItem)] = @(YES);
-        _settings[StringSEL(bookmarkButtonItem)] = @(YES);
+        _settings[StringSEL(isScrobbleBarEnabled)] = @YES;
+        _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @YES;
+        _settings[StringSEL(isPageLabelEnabled)] = @YES;
+        _settings[StringSEL(isScrobbleBarEnabled)] = @YES;
+        _settings[StringSEL(isTextSelectionEnabled)] = @YES;
+        _settings[StringSEL(isSmartZoomEnabled)] = @YES;
+        _settings[StringSEL(isScrollOnTapPageEndEnabled)] = @YES;
+        _settings[StringSEL(viewModeButtonItem)] = @YES;
+        _settings[StringSEL(searchButtonItem)] = @YES;
+        _settings[StringSEL(annotationButtonItem)] = @YES;
+        _settings[StringSEL(bookmarkButtonItem)] = @YES;
         _settings[StringSEL(brightnessButtonItem)] = @(PSIsIpad()); // doesn't yet look good on iPhone.
-        _settings[StringSEL(outlineButtonItem)] = @(YES);
-        _settings[StringSEL(printButtonItem)] = @(YES);
-        _settings[StringSEL(openInButtonItem)] = @(YES);
-        _settings[StringSEL(emailButtonItem)] = @(YES);
-        _settings[StringSEL(viewModeButtonItem)] = @(YES);
+        _settings[StringSEL(outlineButtonItem)] = @YES;
+        _settings[StringSEL(printButtonItem)] = @YES;
+        _settings[StringSEL(openInButtonItem)] = @YES;
+        _settings[StringSEL(emailButtonItem)] = @YES;
+        _settings[StringSEL(viewModeButtonItem)] = @YES;
         _settings[StringSEL(renderBackgroundColor)] = [UIColor whiteColor];
         _settings[StringSEL(renderContentOpacity)] = @(1.f);
         _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeThumbailThenFullPage);
@@ -499,7 +499,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
 
-    [pdfController presentViewControllerModalOrPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @(YES)}];
+    [pdfController presentViewControllerModalOrPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

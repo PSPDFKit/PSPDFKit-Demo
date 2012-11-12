@@ -165,7 +165,7 @@
     // http://stackoverflow.com/questions/9620651/use-nsurlisexcludedfrombackupkey-without-crashing-on-ios-5-0
     if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
         NSError *error = nil;
-        success = [URL setResourceValue:@(YES) forKey:NSURLIsExcludedFromBackupKey error:&error];
+        success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
         if(!success){
             PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
         }
