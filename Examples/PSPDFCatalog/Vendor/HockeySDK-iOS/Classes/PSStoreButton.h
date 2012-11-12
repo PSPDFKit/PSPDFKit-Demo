@@ -34,7 +34,7 @@
 + (id)dataWithLabel:(NSString*)aLabel colors:(NSArray*)aColors enabled:(BOOL)flag;
 
 @property (nonatomic, copy) NSString *label;
-@property (nonatomic, retain) NSArray *colors;
+@property (nonatomic, copy) NSArray *colors;
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
 
 @end
