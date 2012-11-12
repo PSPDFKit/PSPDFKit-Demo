@@ -29,6 +29,7 @@
     PSPDFSetLocalizationDictionary(@{@"en" :
                                    @{@"Go to %@" : @"%@",
                                      @"%d of %d" : @"Page %d of %d",
+                                     @"%d-%d of %d" : @"Pages %d-%d of %d",
                                    }});
 
     // change log level to be more verbose.
