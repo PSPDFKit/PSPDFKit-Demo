@@ -7,9 +7,8 @@
 
 #import "PSCAnnotationTableViewController.h"
 
-@interface PSCAnnotationTableViewController () {
-    BOOL _hideLinkAnnotations;
-}
+@interface PSCAnnotationTableViewController ()
+@property (nonatomic, copy) NSArray *pagesWithAnnotations;
 @end
 
 @implementation PSCAnnotationTableViewController
@@ -20,7 +19,7 @@
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
     if ((self = [super initWithStyle:UITableViewStylePlain])) {
         _hideLinkAnnotations = YES;
-        self.contentSizeForViewInPopover = CGSizeMake(500.f, 2000.f);
+        self.contentSizeForViewInPopover = CGSizeMake(600.f, 2000.f);
         self.title = PSPDFLocalize(@"Annotation List (for debugging)");
         [self updateToolbar];
         _pdfController = pdfController;
@@ -35,16 +34,39 @@
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self reloadData];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
+
+- (void)reloadData {
+    NSMutableArray *pagesWithAnnotations = [NSMutableArray array];
+
+    PSPDFDocument *document = self.pdfController.document;
+    for (NSUInteger pageIndex=0; pageIndex<[document pageCount]; pageIndex++) {
+        NSArray *annotations = [document annotationsForPage:pageIndex type:[self annotationTypes]];
+        if ([annotations count]) {
+            [pagesWithAnnotations addObject:@(pageIndex)];
+        }
+    }
+    self.pagesWithAnnotations = pagesWithAnnotations;
+    [self.tableView reloadData];
+}
 
 - (void)updateToolbar {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(_hideLinkAnnotations ? @"Show Links" : @"Hide Links") style:UIBarButtonItemStyleBordered target:self action:@selector(showHideLinkAnnotations)];
 }
 
 - (void)showHideLinkAnnotations {
-    _hideLinkAnnotations = !_hideLinkAnnotations;
-    [self.tableView reloadData];
+    self.hideLinkAnnotations = !self.hideLinkAnnotations;
+}
+
+- (void)setHideLinkAnnotations:(BOOL)hideLinkAnnotations {
+    _hideLinkAnnotations = hideLinkAnnotations;
+    [self reloadData];
     [self updateToolbar];
 }
 
@@ -61,12 +83,23 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.pdfController.document pageCount];
+    return [self.pagesWithAnnotations count];
+}
+
+- (NSUInteger)pageForSection:(NSInteger)section {
+    return [self.pagesWithAnnotations[section] unsignedIntegerValue];
+}
+
+- (PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath {
+    PSPDFDocument *document = self.pdfController.document;
+    NSArray *annotations = [document annotationsForPage:[self pageForSection:indexPath.section] type:[self annotationTypes]];
+    annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
+    return annotations[indexPath.row];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    PSPDFDocument *document = self.pdfController.document;    
-    return [[document annotationsForPage:section type:[self annotationTypes]] count];
+    PSPDFDocument *document = self.pdfController.document;
+    return [[document annotationsForPage:[self pageForSection:section] type:[self annotationTypes]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,7 +114,7 @@
 
     // load all annotations
     PSPDFDocument *document = self.pdfController.document;
-    NSArray *annotations = [document annotationsForPage:indexPath.section type:[self annotationTypes]];
+    NSArray *annotations = [document annotationsForPage:[self pageForSection:indexPath.section] type:[self annotationTypes]];
     annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
 
     // configure cell
@@ -91,11 +124,19 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [NSString stringWithFormat:@"Page %d", section];
+    return [NSString stringWithFormat:@"Page %d", [self.pagesWithAnnotations[section] unsignedIntegerValue]+1];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
+    return annotation.isEditable;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
+    [annotation copyAndDeleteOriginalIfNeeded].deleted = YES;
+    NSUInteger annotationPage = annotation.page + [self.pdfController.document pageOffsetForDocumentProvider:annotation.documentProvider];
+    [[self.pdfController pageViewForPage:annotationPage] updateView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
