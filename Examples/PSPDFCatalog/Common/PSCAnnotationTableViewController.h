@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-/// Display all annotations in the document
+/// Display all annotations of the current document.
 @interface PSCAnnotationTableViewController : UITableViewController
 
 /// Designated initializer.
@@ -13,5 +13,8 @@
 
 /// Attached PDF controller.
 @property (nonatomic, weak) PSPDFViewController *pdfController;
+
+/// Enable to hide more common link annotations.
+@property (nonatomic, assign) BOOL hideLinkAnnotations;
 
 @end
