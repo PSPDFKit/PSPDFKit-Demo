@@ -33,6 +33,7 @@
 #import "PSCCustomAnnotationProvider.h"
 #import "PSCBottomToolbarViewController.h"
 #import "PSCCustomBookmarkBarButtonItem.h"
+#import "PSCTimingTestViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -42,7 +43,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:3]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:3]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -79,10 +80,9 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"]];
-
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -96,7 +96,7 @@ const char kPSCAlertViewKey;
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
             PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
-            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @(YES), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];
@@ -554,7 +554,7 @@ const char kPSCAlertViewKey;
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Night Mode" block:^{
         [[PSPDFCache sharedCache] clearCache];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        document.renderOptions = @{kPSPDFInvertRendering : @(YES)};
+        document.renderOptions = @{kPSPDFInvertRendering : @YES};
         document.backgroundColor = [UIColor blackColor];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.backgroundColor = [UIColor blackColor];
@@ -647,6 +647,11 @@ const char kPSCAlertViewKey;
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
+    }]];
+
+    // Used for stability testing.
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Timing tests" block:^UIViewController *{
+        return [[PSCTimingTestViewController alloc] initWithNibName:nil bundle:nil];
     }]];
 
     [content addObject:subclassingSection];

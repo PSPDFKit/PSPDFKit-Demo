@@ -28,6 +28,7 @@
 		786E92A3163EAEDF000E6FC6 /* PSCButtonPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92A2163EAEDF000E6FC6 /* PSCButtonPDFViewController.m */; };
 		786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
+		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		788C5F8716373DE400854607 /* PSCChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788C5F8616373DE400854607 /* PSCChildViewController.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
@@ -208,6 +209,8 @@
 		786E92C1163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomAnnotationProvider.h; sourceTree = "<group>"; };
 		78753587161F740300119B8E /* PSCAutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAutoScrollViewController.h; sourceTree = "<group>"; };
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
+		78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTimingTestViewController.m; sourceTree = "<group>"; };
+		78783DF6164DBDB700076EDD /* PSCTimingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTimingTestViewController.h; sourceTree = "<group>"; };
 		788C5F8516373DE400854607 /* PSCChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCChildViewController.h; sourceTree = "<group>"; };
 		788C5F8616373DE400854607 /* PSCChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCChildViewController.m; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
@@ -672,6 +675,8 @@
 				78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */,
 				78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */,
 				78D8128215DC45EB00B8056B /* PSCCustomDrawingViewController.h */,
+				78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */,
+				78783DF6164DBDB700076EDD /* PSCTimingTestViewController.h */,
 			);
 			path = Subclassing;
 			sourceTree = "<group>";
@@ -993,6 +998,7 @@
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
 				78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */,
 				78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */,
+				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
