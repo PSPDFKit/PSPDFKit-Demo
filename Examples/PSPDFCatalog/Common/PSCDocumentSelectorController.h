@@ -29,7 +29,7 @@
 @property (nonatomic, weak) id<PSCDocumentSelectorControllerDelegate> delegate;
 
 // All PSPDFDocument objects.
-@property (nonatomic, copy, readonly) NSArray *content;
+@property (nonatomic, copy, readonly) NSArray *documents;
 
 /// Displayed path.
 @property (nonatomic, copy, readonly) NSString *directory;

@@ -12,7 +12,7 @@
     NSOperationQueue *_fullTextSearchQueue;
     UISearchDisplayController *_searchDisplayController;
     UISearchBar *_searchBar;
-    NSArray *_content;
+    NSArray *_documents;
     NSMutableArray *_filteredContent;
 }
 @property (nonatomic, copy) NSString *directory;
@@ -36,7 +36,7 @@
         self.title = [_directory lastPathComponent];
         
         _delegate = delegate;
-        _content = [[self class] documentsFromDirectory:_directory];
+        _documents = [[self class] documentsFromDirectory:_directory];
         _filteredContent = [NSMutableArray new];
         [[PSPDFCache sharedCache] addDelegate:self];
 
@@ -129,7 +129,7 @@
         return [_filteredContent count];
     }
 	else {
-        return [_content count];
+        return [_documents count];
     }
 }
 
@@ -146,7 +146,7 @@
         document = _filteredContent[indexPath.row];
     }
 	else {
-        document = _content[indexPath.row];
+        document = _documents[indexPath.row];
     }
 
     cell.textLabel.text = document.title;
@@ -165,7 +165,7 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         document = _filteredContent[indexPath.row];
     }else {
-        document = _content[indexPath.row];
+        document = _documents[indexPath.row];
     }
     [_delegate documentSelectorController:self didSelectDocument:document];
 
@@ -210,13 +210,13 @@
 
         // problem is, getting the title is SLOW.
         NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchText, searchText];
-        NSArray *filteredContent = [_content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
+        NSArray *filteredContent = [_documents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
         [_filteredContent addObjectsFromArray:filteredContent];
 
         if (self.fullTextSearchEnabled) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [_fullTextSearchQueue cancelAllOperations];
-                PSCFullTextSearchOperation *operation = [[PSCFullTextSearchOperation alloc] initWithDocuments:self.content searchTerm:searchText];
+                PSCFullTextSearchOperation *operation = [[PSCFullTextSearchOperation alloc] initWithDocuments:self.documents searchTerm:searchText];
                 operation.delegate = self;
                 __unsafe_unretained PSCFullTextSearchOperation *weakOperation = operation;
                 [operation setCompletionBlock:^{
@@ -252,9 +252,9 @@
 
 - (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size {
     if (size == PSPDFSizeTiny && page == 0 && cachedImage) {
-        for (PSPDFDocument *aDocument in _content) {
+        for (PSPDFDocument *aDocument in _documents) {
             if (document == aDocument) {
-                NSUInteger index = [_content indexOfObject:document];
+                NSUInteger index = [_documents indexOfObject:document];
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
 
                 //  also update the search table view

@@ -48,7 +48,7 @@
     [[PSPDFCache sharedCache] clearCache];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        for (int i = 0; i < [self.content count]; i++) {
+        for (int i = 0; i < [self.documents count]; i++) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
@@ -58,7 +58,7 @@
         }
 
         // and back up!
-        for (int i = [self.content count]-1; i >= 0; i--) {
+        for (int i = [self.documents count]-1; i >= 0; i--) {
             dispatch_sync(dispatch_get_main_queue(), ^{
                 NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
