@@ -309,7 +309,7 @@ inline void dispatch_async_afreentrant(dispatch_queue_t queue, dispatch_block_t 
 }
 
 @interface SDURLCache ()
-@property (nonatomic, retain) NSString *diskCachePath;
+@property (nonatomic, copy) NSString *diskCachePath;
 @property (nonatomic, retain) NSMutableDictionary *diskCacheInfo;
 - (void)periodicMaintenance;
 @end
@@ -612,7 +612,7 @@ static dispatch_queue_t get_disk_io_queue() {
         // start timer for cleanup (rely on fact that dispatch_suspend syncs with disk cache queue)
         if (_timerPaused) {
             _timerPaused = NO;
-            dispatch_resume([self maintenanceTimer]);
+            if ([self maintenanceTimer]) dispatch_resume([self maintenanceTimer]);
         }
     });
 }
