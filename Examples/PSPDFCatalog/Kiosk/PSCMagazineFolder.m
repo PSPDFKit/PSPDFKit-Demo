@@ -35,7 +35,7 @@
 - (void)addMagazineFolderReferences {
     for (PSCMagazine *magazine in _magazines) {
         magazine.folder = self;
-    }    
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -63,23 +63,27 @@
 
 - (BOOL)isEqual:(id)other {
     if ([other isKindOfClass:[self class]]) {
-        if (![self.title isEqual:[other title]] || !self.title || ![other title]) {
-            return NO;
-        }
-        return YES;
+        return [self isEqualToMagazineFolder:(PSCMagazineFolder *)other];
     }
-    else return NO;  
+    return NO;
+}
+
+- (BOOL)isEqualToMagazineFolder:(PSCMagazineFolder *)otherMagazineFolder {
+    if (![self.title isEqual:otherMagazineFolder.title] || !self.title || !otherMagazineFolder.title) {
+        return NO;
+    }
+    return YES;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
 - (BOOL)isSingleMagazine {
-    return [self.magazines count] == 1; 
+    return [self.magazines count] == 1;
 }
 
 - (PSCMagazine *)firstMagazine {
-    PSCMagazine *firstMagazine = [self.magazines count] ? (self.magazines)[0] : nil; 
+    PSCMagazine *firstMagazine = [self.magazines count] ? (self.magazines)[0] : nil;
     return firstMagazine;
 }
 

@@ -25,4 +25,7 @@
 - (void)addMagazine:(PSCMagazine *)magazine;
 - (void)removeMagazine:(PSCMagazine *)magazine;
 
+// Compare.
+- (BOOL)isEqualToMagazineFolder:(PSCMagazineFolder *)otherMagazineFolder;
+
 @end
