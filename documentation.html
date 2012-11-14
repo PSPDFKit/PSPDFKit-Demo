@@ -16,7 +16,7 @@ documentation: current-menu-item current_page_item
 	</div>
 	<div id="integration" class="col-full section">
 	  <h2 class="section-title">Integration</h2>
-	  <p>PSPDFKit compiles with Xcode &ge; 4.5 (iOS SDK &ge; 6.0 and Clang LLVM &ge; 4) and deploys all the way down to iOS 4.3.</p><br>
+	  <p>PSPDFKit compiles with Xcode &ge; 4.5 (iOS SDK &ge; 6.0 and Clang LLVM &ge; 4) and deploys all the way down to iOS 5.0.</p><br>
 	  <h3>Binary</h3>
 	  Simply drag the "PSPDFKit.embeddedframework" folder into your Xcode project. You're almost done. Now enable the PSPDFKit.xcconfig as seen in this screenshot or add the required frameworks listed below.<br>
 	  <img src="images/xcconfig.png" alt="How to set the PSPDFKit.xcconfig for your project" width="908" height="218" class="border">
@@ -26,9 +26,6 @@ documentation: current-menu-item current_page_item
 	  <img src="images/sourcecode.png" alt="How to use PSPDFKit as a subproject" width="908" height="362" class="border">
 	  <p>Also, in Build Settings, set the <a href="images/project-settings.png">"User Header Search Paths" to "PSPDFKit"</a> (The folder that you copied into your project folder) and check Recursive.</p>
 	  <br><br>
-	  <h3>Backwards compatibility</h3>
-	  <p>You need to weak-link UIKit.framework to be compatible with iOS 4.3.</p>
-	  	  <img src="images/weaklink-UIKit.png" alt="How to set the PSPDFKit.xcconfig for your project" width="908" height="150" class="border">
 
 	  <p>Be sure to add the file ACKNOWLEDGEMENTS to your app resources to value 3rd party licenses.</p><br>
 
@@ -130,9 +127,6 @@ documentation: current-menu-item current_page_item
 		 
 <p><b>Q: I downloaded the project but saving annotations doesn't work.</b><br>
 	 A: PDF files in the Bundle directory (Resources, app folder) are not writeable. Copy your PDF to a writeable directory like Documents to test the annotation embedding. Annotation embedding is also disabled for encrypted files.</p><br>		 
-
-<p><b>Q: When I start the app in iOS 4.3, I get dyld: Symbol not found: _OBJC_CLASS_$_UIPageViewController.</b><br>
-	 A: To support iOS 4.3, you need to <i>weak-link</i> UIKit. See the part "Integration".</p><br>
 	 
 <p><b>Q: Help! I get "PSPDFKit.bundle not found. search and annotations will not work properly" in the log.</b><br>
 	  A: You need to add the PSPDFKit.bundle to your project. If you're using the source code PSPDFkit-lib.xcodeproj, drag the PSPDFKit.bundle into Xcode's tree - anywhere you want (Resources folder is a good place). If you're using Appcelerator, <a href="#appcelerator">read up here</a> how to add it.</p><br>
@@ -161,10 +155,6 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
 		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode &#8805; 4.5 (with iOS SDK &#8805; 6) and LLVM/Clang.<br>If you get linker errors about missing symbols, be sure that your project includes the above listed frameworks and the linker flags -ObjC and -fobjc-arc.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
-
-		<p><b>Q: Help! I'm getting the crash dyld: lazy symbol binding failed: Symbol not found: _objc_retainAutorelease.</b><br>
-		      A: To support iOS4.3 with a non-ARC-project, you need to add the linker flag -fobjc-arc in the project settings.
-		</p><br>
 
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There is some careful use of private API that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 
@@ -197,7 +187,7 @@ Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the
 
 <p>You also need to <a href="images/titaniumbundle.png">add "PSPDFKit.bundle" to your resources.</a> You'll find it at /Users/USERNAME/Library/Application\ Support/Titanium/modules/iphone/com.pspdfkit.source/VERSIONNUMBER/example/PSPDFKit.bundle. Drop the whole PSPDFKit.bundle folder into the Resources/iphone folder of your Appcelerator project.</p><br>
 
-<p>To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 4.3. You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.2.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv6 armv7 i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 4.3". This second solution has the advantage of not needing to modify the Xcode project every single time you build.</p><br>
+<p>To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 5.0. You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.3.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv7 armv7s i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 5.0". This second solution has the advantage of not needing to modify the Xcode project every single time you build.</p><br>
 <p>Update: <a href="http://developer.appcelerator.com/blog/2012/09/titanium-sdk-2-1-3-rc-is-released-support-for-ios-6.html">2.1.3RC finally fixes the armv6 annoyance.</a>
 	</div>
 
@@ -248,7 +238,7 @@ Redistribution and use of the software is permitted in binary and/or source form
 
 The recipient has purchased a separate, independent license for the software from Peter Steinberger. The redistributed software is governed by that license.
 Any modifications to the software by the licensee are to be marked clearly as such.
-This software is provided by Peter Steinberger "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall Peter Steinberger be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of sue, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.						</pre>
+This software is provided by Peter Steinberger "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall Peter Steinberger be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of sue, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.</pre>
 	</div>
   </div>
 </div>
