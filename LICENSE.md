@@ -36,7 +36,7 @@ Redistribution and use of this software is permitted in binary form under the fo
 You agree that with purchasing the software you allow Peter Steinberger to list your company and/or company products on the PSPDFKit website.
 If you do not agree to this, an additional fee can be paid to remove this right.
 
-The license your purchased, unless otherwise negotiated, is valid for one bundle identifier, thus one iOS application.
+The license your purchased, unless otherwise negotiated in writing, is valid for one explicit app ID, thus one iOS application.
 
 Redistribution and use of the software is permitted in binary and/or source form under the following conditions:
 
