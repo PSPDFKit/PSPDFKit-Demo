@@ -34,6 +34,7 @@
 #import "PSCBottomToolbarViewController.h"
 #import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
+#import "PSCRotatablePDFViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -43,7 +44,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:3]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -82,9 +83,12 @@ const char kPSCAlertViewKey;
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"rotatedwrong.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+
+        //NSArray *words = [[document textParserForPage:1] words];
+        
         return controller;
     }]];
 
@@ -231,6 +235,28 @@ const char kPSCAlertViewKey;
 
         // make sure your NSData objects are either small or memory mapped; else you're getting into memory troubles.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
+        return controller;
+    }]];
+
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects (merged)" block:^{
+            NSArray *fileNames = @[@"A.pdf", @"B.pdf", @"C.pdf"];
+            //NSArray *fileNames = @[@"Test6.pdf", @"Test5.pdf", @"Test4.pdf", @"Test1.pdf", @"Test2.pdf", @"Test3.pdf", @"rotated-northern.pdf", @"A.pdf", @"rotated360degrees.pdf", @"Rotated PDF.pdf"];
+            NSMutableArray *dataArray = [NSMutableArray array];
+            for (NSString *fileName in fileNames) {
+                NSURL *file = [samplesURL URLByAppendingPathComponent:fileName];
+                NSData *data = [NSData dataWithContentsOfURL:file];
+                [dataArray addObject:data];
+            }
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:dataArray];
+
+        // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
+        NSDictionary * options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
+        NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document pageCount])] options:options];
+        PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument PDFDocumentWithData:consolidatedData];
+
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
@@ -496,9 +522,14 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
+        
+        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem];
+        /*
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
         pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
+         */
         pdfController.tintColor = [UIColor orangeColor];
+        pdfController.shouldTintPopovers = YES;
         return pdfController;
     }]];
 
@@ -559,6 +590,12 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.backgroundColor = [UIColor blackColor];
         _clearCacheNeeded = YES;
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Rotate PDF pages" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -774,6 +811,7 @@ const char kPSCAlertViewKey;
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Invoking [NSIndexPath indexPathForRow:%d inSection:%d]", indexPath.row, indexPath.section);
     PSContent *contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
     UIViewController *controller;
     if (contentDescriptor.classToInvoke) {
