@@ -14,9 +14,11 @@ extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRec
 
 /// Represents a single character (glyph) on the pdf page.
 /// Adobe also might reference to this as "Quad".
-@interface PSPDFGlyph : NSObject
+@interface PSPDFGlyph : NSObject <NSCopying, NSCoding>
 
-/// Frame of the glyph.
+/// Frame of the glyph. Doesn't has pageRotation applied.
+/// To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.pageRotationTransform)
+/// (PSPDFWord etc do have conveniece methods for this)
 @property (nonatomic, assign) CGRect frame;
 
 /// Character content (usually a single character)
@@ -42,5 +44,8 @@ extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRec
 
 /// Used for caching during longPress event.
 @property (nonatomic, assign) CGRect cachedViewRect;
+
+/// Compare.
+- (BOOL)isEqualToGlyph:(PSPDFGlyph *)otherGlyph;
 
 @end

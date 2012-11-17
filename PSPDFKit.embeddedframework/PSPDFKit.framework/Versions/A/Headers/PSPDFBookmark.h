@@ -26,4 +26,7 @@
 /// Returns "Page X" or name.
 - (NSString *)pageOrNameString;
 
+/// Compare
+- (BOOL)isEqualToBookmark:(PSPDFBookmark *)otherBookmark;
+
 @end

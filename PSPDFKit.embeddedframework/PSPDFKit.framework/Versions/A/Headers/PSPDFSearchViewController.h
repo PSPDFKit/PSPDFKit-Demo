@@ -14,10 +14,10 @@
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 
 typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
-    PSPDFSearchIdle,
-    PSPDFSearchActive,
-    PSPDFSearchFinished,
-    PSPDFSearchCancelled
+    PSPDFSearchStatusIdle,
+    PSPDFSearchStatusActive,
+    PSPDFSearchStatusFinished,
+    PSPDFSearchStatusCancelled
 };
 
 // Default value is 2. You might wanna change this for asian languages.
@@ -50,8 +50,18 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// Defaults to 600. A too high number will be slow.
 @property (nonatomic, assign) NSUInteger maximumNumberOfSearchResultsDisplayed;
 
+/// Set to enable searching on the visible pages, then all. Was default until PSPDFKit 2.4.1. Defaults to NO.
+/// If not set, the natural page order is searched.
+@property (nonatomic, assign) BOOL searchVisiblePagesFirst;
+
+/// Internally used textSearch (is a copy of the textSearch class in document)
+@property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
+
+/// Attached pdfController.
+@property (nonatomic, weak, readonly) PSPDFViewController *pdfController;
+
 // Updates the search result cell. Can be subclassed.
-// To customize the label search the subvies for the PSPDFAttributedLabel class.
+// To customize the label search the subviews for the PSPDFAttributedLabel class.
 - (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
 @end
@@ -68,3 +78,10 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 - (PSPDFSearchResult *)searchResultsForIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+
+// Deprecated. Use PSPDFSearchStatus* instead.
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchIdle;
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchActive;
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchFinished;
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchCancelled;

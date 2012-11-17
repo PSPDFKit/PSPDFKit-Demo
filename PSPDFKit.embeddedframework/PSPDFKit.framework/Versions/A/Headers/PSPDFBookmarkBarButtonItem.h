@@ -16,3 +16,10 @@
 @property (nonatomic, assign) BOOL tapChangesBookmarkStatus;
 
 @end
+
+
+@interface PSPDFBookmarkBarButtonItem (SubclassingHooks)
+
+- (NSNumber *)bookmarkNumberForVisiblePages;
+
+@end

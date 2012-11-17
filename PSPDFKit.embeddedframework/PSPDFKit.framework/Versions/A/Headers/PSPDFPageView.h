@@ -7,9 +7,11 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderQueue.h"
+#import "PSPDFResizableView.h"
+#import "PSPDFLongPressGestureRecognizer.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation;
+@class PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController;
 
 /// Send this event to hide any selections, menus or other interactive page elements.
 extern NSString *const kPSPDFHidePageHUDElements;
@@ -17,7 +19,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
@@ -84,19 +86,26 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// @name Coordinate calculations and object fetching
 
-/// Convert a view point to the corresponding pdf point.
+/// Convert a view point to the corresponding PDF point.
 /// pageBounds usually is PSPDFPageView bounds.
 - (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint;
 
-/// Convert a pdf point to the corresponding view point.
+/// Convert a PDF point to the corresponding view point.
 /// pageBounds usually is PSPDFPageView bounds.
 - (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint;
 
 /// Convert a view rect to the corresponding pdf rect.
 - (CGRect)convertViewRectToPDFRect:(CGRect)viewRect;
 
-/// Convert a pdf rect to the corresponding view rect
+/// Convert a PDF rect to the corresponding view rect
 - (CGRect)convertPDFRectToViewRect:(CGRect)pdfRect;
+
+/// Convert a PDF glyph rect to the corresponding view rect.
+/// (Glyphs are not rotated on parsing to preserve reading direction, thus need to be converted differently than e.g. annotations)
+- (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
+
+/// Convert a view rect to PDF glyph rect.
+- (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
 
 /// Get the glyphs/words on a specific page.
 - (NSDictionary *)objectsAtPoint:(CGPoint)pdfPoint options:(NSDictionary *)options;
@@ -115,7 +124,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (NSArray *)visibleAnnotationViews;
 
 /// Access the attached pdfController.
-@property (atomic, unsafe_unretained, readonly) PSPDFViewController *pdfController;
+@property (atomic, weak, readonly) PSPDFViewController *pdfController;
 
 /// Page that is displayed. Readonly.
 @property (atomic, assign, readonly) NSUInteger page;
@@ -124,7 +133,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (atomic, strong, readonly) PSPDFDocument *document;
 
 /// Shortcut to access the current boxRect of the set page.
-@property (nonatomic, assign, readonly) PSPDFPageInfo *pageInfo;
+@property (nonatomic, strong, readonly) PSPDFPageInfo *pageInfo;
 
 /// Return YES if the pdfPage is displayed in a double page mode setup on the right side.
 @property (nonatomic, assign, readonly, getter=isRightPage) BOOL rightPage;
@@ -172,13 +181,19 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
 - (NSArray *)menuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
+/// Returns availble UIMenuItems to change the color.
+- (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
+
+/// Ordered Dictionary of ColorName (NSString) -> UIColor. Used for the highlight annotation color menu.
+@property (nonatomic, copy) PSPDFOrderedDictionary *colorOptions;
+
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController,
 /// Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)
-- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation;
+- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Shows a popover/modal controller to edit a PSPDFAnnotation.
-- (void)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation;
+- (PSPDFNoteAnnotationController *)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation showKeyboard:(BOOL)showKeyboard animated:(BOOL)animated;
 
 /**
  In PSPDFKit, annotations are managed in two ways:
@@ -229,5 +244,14 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Temporarily suspend rendering updates to the renderView.
 @property (nonatomic, assign) BOOL suspendUpdate;
+
+/// Remove a page annotation as soon as the page has been refreshed.
+- (BOOL)removePageAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
+
+/// Allow to update the boundingBox correctly for isOverlay = YES annotations.
+- (void)updatePageAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
+
+/// View for the selected annotation.
+@property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;
 
 @end

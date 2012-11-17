@@ -19,6 +19,7 @@ extern NSString *const kPSPDFErrorDomain;
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
+    PSPDFErrorCodeUnableToGetPageReference = 210,
     PSPDFErrorCodeDocumentLocked = 300,
     PSPDFErrorCodeFailedToLoadAnnotations = 400,
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
@@ -159,7 +160,6 @@ extern void PSPDFUnlockRotation(void);
 // Returns a unique temporary file URL.
 extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
 
-#define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
 #define BOXED(val) ({ typeof(val) _tmp_val = (val); [NSValue valueWithBytes:&(_tmp_val) objCType:@encode(typeof(val))]; })

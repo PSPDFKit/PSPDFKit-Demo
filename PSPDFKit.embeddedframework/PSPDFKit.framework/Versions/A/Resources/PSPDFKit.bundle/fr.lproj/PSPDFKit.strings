@@ -19,9 +19,13 @@
 "Table Of Contents" = "Table Of Contents";
 "Search" = "Rechercher";
 "Email" = "E-mail";
-"Email document" = "E-mail document";
-"Email visible page" = "E-mail visible page";
-"Email visible pages" = "E-mail visible pages";
+"Email document" = "Email document";
+"Email flattened document" = "Email flattened document";
+"Email document files" = "Email document files";
+"Email visible page" = "Email visible page";
+"Email flattened page" = "Email flattened page";
+"Email visible pages" = "Email visible pages";
+"Email flattened pages" = "Email flattened pages";
 "Open in..." = "Ouvrir dans…";
 "No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Imprimer";
@@ -39,6 +43,7 @@
 
 // page
 "%d of %d" = "%d sur %d";
+"%d-%d of %d" = "%d-%d sur %d";
 "%@ (%d of %d)" = "%@ (%d sur %d)";
 
 // search
@@ -61,12 +66,16 @@
 "the App Store" = "the App Store";
 "Mail" = "Mail";
 
+// text selection
+"Save To Camera Roll" = "Save To Camera Roll";
+
 // annotations
 "Remove" = "Remove";
 "Edit" = "Edit";
 "Type..." = "Type…";
 "Choose Color" = "Choose Color";
 "Colors..." = "Colors…";
+"Custom..." = "Custom…";
 "Thickness..." = "Thickness…";
 "%@ pt" = "%@ pt";
 "Text..." = "Text…";

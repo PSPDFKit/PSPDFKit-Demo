@@ -22,11 +22,12 @@
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 // Associated scrollview. Might be nil if transition doesn't support zooming.
-@property (nonatomic, unsafe_unretained) PSPDFContentScrollView *scrollView;
+@property (nonatomic, weak) PSPDFContentScrollView *scrollView;
 
 /// Page padding width between single/double pages.
 @property (nonatomic, assign) CGFloat pagePadding;
 
+/// Customized content offset for PSPDFViewState
 - (CGPoint)compensatedContentOffset;
 
 @end

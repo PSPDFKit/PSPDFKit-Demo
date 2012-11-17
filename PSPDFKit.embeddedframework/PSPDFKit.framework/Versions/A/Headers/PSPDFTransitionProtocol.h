@@ -25,14 +25,14 @@
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 // Associated scrollview. Might be nil if transition doesn't support zooming.
-@property (nonatomic, unsafe_unretained) PSPDFContentScrollView *scrollView;
+@property (nonatomic, weak) PSPDFContentScrollView *scrollView;
 
 @optional
 
 /// Return array of pageViews. (performance optimization)
 - (NSArray *)visiblePageViews;
 
-/// Customized content offset for PSPDFViewState
+/// Customized content offset for PSPDFViewState.
 - (CGPoint)compensatedContentOffset;
 
 @end

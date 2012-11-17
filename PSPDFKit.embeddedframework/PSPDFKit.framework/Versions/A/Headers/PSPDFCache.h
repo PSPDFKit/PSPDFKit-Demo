@@ -57,8 +57,11 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Returns cached image of document. preload decompresses the image in the background.
 - (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size preload:(BOOL)preload;
 
-/// Renders image of a page for specified size.
+/// Renders image of a page for specified size. Will not cache the image.
 - (UIImage *)renderImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size PDFPage:(CGPDFPageRef)pdfPage;
+
+/// Creates image and will add that to the cache.
+- (UIImage *)renderAndCacheImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size error:(NSError **)error;
 
 // TODO was used in tiling view
 /// save native rendered image, then call delegate.

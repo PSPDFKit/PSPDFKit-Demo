@@ -1,5 +1,68 @@
 # Changelog
 
+__v2.5.0 - 17/November/2012__
+
+*  Images can now be selected and copied to the clipboard or saved to the camera roll. There's a new delegate to customize this.
+*  A long-press on an annotation will switch over to edit-mode. Either moving if allowed, or showing the menu and cancelling the gesture if not.
+*  Changes the default PDF Box back to kCGPDFCropBox. You can customize this with using the "PDFBox" property on PSPDFDocument.
+*  Annotations can now be moved and resized, and the selection view is much sexier now (matches popular iOS apps like Pages)
+*  Words are highlighted as they are being highlighted using the annotation toolbar.
+*  Update color picker to include more colors and for better use space on iPhone 5 and iPad.
+*  Default drawing color is now blue.
+*  Highlight annotation color menu will now no longer show the currently used color and has a new option "Custom..." that will show the default color picker.
+*  The options in PSPDFEmailBarButtonItem have been changed to a bit field, it's more flexible now. The flattenedAnnotations parameter is gone and is is now a subset of the bit field.
+*  Annotation toolbar has now properties expoed for easy drawing color/width change.
+*  Add initial implementation for stamp annotations (text and images are supported, no complex AP streams)
+*  Support for "Named" PDF link annotations. (like NextPage/PrevPage/FirstPage/LastPage)
+*  Add "Key" image for note annotations.
+*  Add support for dashed borders on various annotation types.
+*  PSPDFPageLabelView how shows a custom label for double page mode that displays all visible pages, not only the first. (2-3 of 42) instead of (2 of 42).
+*  Refactoring of the search subsystem. Some methods have been renamed/deprecated. The interface is now much cleaner.
+*  Search now search pages in the natural order, no longer visible pages first. You can revert this behavior change with setting searchVisiblePagesFirst to YES in PSPDFSearchViewController.
+*  Search now also finds words that are split up via newline and/or a hyphenations character. This is enabled by default. See PSPDFTextSearch.compareOptions.
+*  PSPDFSearchResult now has a PSPDFTextBlock as selection type (because it mighy have words on multiple lines). PSPDFSearchHighlightView now supports highlighting of multiple words.
+*  Search now is more tolerant on single/double quotation marks.
+*  Improves annotation toolbar animation for iPhone/landscape.
+*  PSPDFHighlightAnnotation has a new helper "highlightedString" to get the string value of the highlighted area. Here, the document content is evaluated, since the annotation just contains CGRect values.
+*  The annotation toolbar now remembers all last used colors per annotation type IF they are changed while the annotation toolbar is visible. (e.g. create yellow highlights, change annotation color to red, make new highlights -> red. But if you change color at a point where the annotation toolbar is closed, the color will not be remembered.)
+*  PSPDFGlyph/PSPDFWord/PSPDFTextBlock frame now needs to be converted using the convertViewRectToGlyphRect/convertGlyphRectToViewRect to get the correct results.
+*  New helper: PSPDFBezierPathGetPoints to convert UIBezierPaths into the representation needed in PSPDFInkAnnotation.
+*  Adds some missing annotation change events.
+*  A visible annotation toolbar will be removed when the viewController disappears.
+*  Improved the performance of outline parsing and animation.
+*  New HUD mode: PSPDFHUDViewAutomaticNoFirstLastPage - similar to PSPDFHUDViewAutomatic but doesn't show the HUD on the first/last page automatically.
+*  Delegate didRenderPage:inContext: is now only called for current rendering. (not manual calls or cache)
+*  PSPDFAnnotationToolbar now exposes cancelDrawingAnimated/doneDrawingAnimated to manually cancel/confirm a open drawing.
+*  PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFViewModeBarButtonItem can now also be overridden using overrideClassNames.
+*  PSPDFOutlineParsers's isOutlineAvailable now parses the outline and always returns the correct value.
+*  If the keyboard whas displayed on a PDF password prompt, that is now hidden again after the viewController is removed from the view.
+*  A single paged document is now displayed centered on pageCurl transition mode (instead of right-aligned)
+*  Adds the iPod touch (4G) to the list of old devices, because that one has Retina but only 256MB RAM.
+*  Allows click-through selection of annotations that are on different pages. (before, you needed sometimes one extra-touch to hide the current selection)
+*  PSPDFGlyph, PSPDFWord, PSPDFTextLine and PSPDFTextBlock can now be properly compared using isEqual.
+*  The text selection is now hidden before the callout menu hides, not afterwards (to match default iOS behavior)
+*  On the Thickness... menu, the option that is currently active is hidden.
+*  The link selection touch-down gray is now less dark to better match Apple's default look.
+*  The tinted popover background is now retina optimized and no longer draws an arrow outside of the rounded corner area.
+*  Fixes a potential stack overflow when parsing really large PDF outlines (>3000 items).
+*  Fixes an UI issue where the annotation toolbar active mode overlay wasn't updated on an annotation frame change.
+*  Fixes an UI bug where note annotations could show with an outdated view (e.g. no color cange visible on page change)
+*  Fixes a rare crash when searching certain documents.
+*  Fixes a rare crash regarding ink annotation saving.
+*  Fixes an issue where tapping on an empty HUD space would somtimes wrongly zoom out the view.
+*  Fixes some minor issues with video cover.
+*  Fixes some settings where didLoadPageView: was not called anymore.
+*  Fixes a rare UIKit crash in UIPageViewController by adding a workaround.
+*  Fixes a potential crash when hot-swapping the document from/to a 1-page document while using UIPageViewController in dual page mode.
+*  Fixes an issue where the text selection menu sometimes wasn't correctly displayed on the right site of a zoomed in page in pageCurl mode.
+*  Fixes a potential crash when a document was hot-swapped during a render operation.
+*  Fixes a rare rendering issue with certain PDF documents that have weird rotation values.
+*  Fixes an issue with the CMap parser where the second part of font ligatures was ignored. (See http://en.wikipedia.org/wiki/Typographic_ligature for details)
+*  Fixes PSPDFProcessor's output of generatePDFFromDocument on rotated PDFs (documents had white border).
+*  Fixes a issue where parsed text coordinates were offset on some non-standard PDFs that had both rotation and a non-null CropBox origin.
+
+KNOWN ISSUE: Annotations can't yet be moved *between* pages. This feature is on our roadmap.
+
 __v2.4.0 - 2/November/2012__
 
 PSPDFKit now requires iOS 5.0+ and Xcode 4.5+ (iOS SDK 6.0) to compile. (Support for iOS 4.3/Xcode 4.4 has been removed, support for iOS 6.1 and Xcode 4.6b1 has been added.)

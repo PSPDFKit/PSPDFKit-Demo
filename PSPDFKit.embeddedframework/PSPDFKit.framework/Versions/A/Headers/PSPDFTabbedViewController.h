@@ -46,7 +46,7 @@
 @property (nonatomic, strong) PSPDFDocument *visibleDocument;
 
 /// Documents that are currently loaded.
-@property (nonatomic, strong) NSArray *documents;
+@property (nonatomic, copy) NSArray *documents;
 
 /// Add one or multiple documents to the documents array at the specified index.
 /// Documents that are already within documents (or are equal to those) are ignored.

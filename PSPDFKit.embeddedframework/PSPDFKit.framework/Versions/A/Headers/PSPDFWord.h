@@ -8,10 +8,10 @@
 #import "PSPDFKitGlobal.h"
 
 /// Represents a word. Formed out of (usually) multiple glyphs.
-@interface PSPDFWord : NSObject
+@interface PSPDFWord : NSObject <NSCopying, NSCoding>
 
+// Initalizers
 - (id)initWithGlyphs:(NSArray *)wordGlyphs;
-
 - (id)initWithFrame:(CGRect)wordFrame;
 
 /// Returns the content of the word (all glyphs merged together)
@@ -19,16 +19,19 @@
 
 - (BOOL)isOnSameLineAs:(PSPDFWord *)word;
 
-// helper to sort the lines: top->down, left->right
+// Helper to sort the lines: top->down, left->right
 - (NSComparisonResult)compareByLayout:(PSPDFWord *)word;
 
 /// All glyphs merged together in the smallest possible bounding box.
-@property (nonatomic) CGRect frame;
+@property (nonatomic, assign) CGRect frame;
 
 /// All PSPDFGlyph objects
-@property (nonatomic, strong) NSArray *glyphs;
+@property (nonatomic, copy) NSArray *glyphs;
 
 /// Set to YES if this is the last word on a textBlock.
 @property (nonatomic, assign) BOOL lineBreaker;
+
+/// Compare.
+- (BOOL)isEqualToWord:(PSPDFWord *)otherWord;
 
 @end
