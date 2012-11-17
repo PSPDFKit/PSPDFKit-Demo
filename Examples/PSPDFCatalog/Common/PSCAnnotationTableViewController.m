@@ -48,6 +48,10 @@
     PSPDFDocument *document = self.pdfController.document;
     for (NSUInteger pageIndex=0; pageIndex<[document pageCount]; pageIndex++) {
         NSArray *annotations = [document annotationsForPage:pageIndex type:[self annotationTypes]];
+        // remove deleted items
+        annotations = [annotations filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PSPDFAnnotation *evaluatedAnnotation, NSDictionary *bindings) {
+            return !evaluatedAnnotation.isDeleted;
+        }]];
         if ([annotations count]) {
             [pagesWithAnnotations addObject:@(pageIndex)];
         }
@@ -139,6 +143,8 @@
     annotation.deleted = YES;
     [pageView updateView];
     [pageView removePageAnnotation:annotation animated:YES]; // if it's an overlay annotation
+
+    [self reloadData];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
