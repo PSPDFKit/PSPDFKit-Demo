@@ -22,7 +22,7 @@
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Main view.
-@property (nonatomic, strong, readonly) PSPDFPagingScrollView *pagingScrollView;
+@property (nonatomic, strong, readonly) UIScrollView *pagingScrollView;
 
 /// Page padding width between single/double pages.
 @property (nonatomic, assign) CGFloat pagePadding;
@@ -46,6 +46,3 @@
 @property (nonatomic, assign) NSUInteger targetPageAfterRotation;
 
 @end
-
-// Internally used scrollview.
-@interface PSPDFPagingScrollView : UIScrollView @end

@@ -16,10 +16,10 @@
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /**
-    Returns a single outline element for the specified page.
+ Returns a single outline element for the specified page.
  
-    If exactPageOnly is set, the outline will only be returned if it's from the specific page.
-    else the last active set outline will be returned.
+ If exactPageOnly is set, the outline will only be returned if it's from the specific page.
+ Else the last active set outline will be returned.
 */
 - (PSPDFOutlineElement *)outlineElementForPage:(NSUInteger)page exactPageOnly:(BOOL)exactPageOnly;
 

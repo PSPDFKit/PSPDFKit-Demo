@@ -8,25 +8,29 @@
 #import "PSPDFKitGlobal.h"
 
 // Encapsulates a PDF font.
-@interface PSPDFFontInfo : NSObject {
-	CGFloat _ascent;
-	CGFloat _descent;
-	NSArray *_encodingArray;
+@interface PSPDFFontInfo : NSObject <NSCopying, NSCoding> {
+    CGFloat _ascent;
+    CGFloat _descent;
 }
 
-@property (nonatomic, assign) CGFloat ascent;
-@property (nonatomic, assign) CGFloat descent;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, assign, readonly) CGFloat ascent;
+@property (nonatomic, assign, readonly) CGFloat descent;
+@property (nonatomic, copy, readonly) NSArray *encodingArray;
+@property (nonatomic, copy, readonly) NSDictionary *toUnicodeMap;
 
-@property (nonatomic, strong) NSArray *encodingArray;
-@property (nonatomic, strong) NSMutableDictionary *toUnicodeMap;
-
+/// Designated initializer
 - (id)initWithFontDictionary:(CGPDFDictionaryRef)font;
+
 - (CGFloat)widthForCharacter:(uint16_t)c;
 - (BOOL)isMultiByteFont;
 - (void)parseToUnicodeMapWithString:(NSString *)cmapString;
 
+// Default glyph dictionaries. Loaded lazily.
 + (NSDictionary *)glyphNames;
 + (NSDictionary *)standardFontWidths;
+
+// Compare.
+- (BOOL)isEqualToFontInfo:(PSPDFFontInfo *)otherFontInfo;
 
 @end

@@ -18,6 +18,10 @@
 /// Animates the view with a size incrase pop.
 - (void)popupAnimation;
 
+/// Attached search result.
 @property (nonatomic, strong) PSPDFSearchResult *searchResult;
+
+/// Default backgroundColor is Yellow, 50% alpha.
+@property (nonatomic, strong) UIColor *selectionBackgroundColor;
 
 @end

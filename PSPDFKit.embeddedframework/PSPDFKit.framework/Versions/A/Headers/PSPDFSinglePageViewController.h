@@ -51,3 +51,6 @@
 - (void)layoutPage;
 
 @end
+
+// named view for better debugging
+@interface PSPDFSinglePageView : UIView @end

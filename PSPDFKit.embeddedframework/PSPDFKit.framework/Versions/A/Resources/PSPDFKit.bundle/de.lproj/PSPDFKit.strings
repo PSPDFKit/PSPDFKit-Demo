@@ -20,8 +20,12 @@
 "Search" = "Suchen";
 "Email" = "E-Mail";
 "Email document" = "Dokument senden";
-"Email visible page" = "Nur sichtbare Seite senden";
-"Email visible pages" = "Nur sichtbare Seiten senden";
+"Email flattened document" = "Dokument senden (eingebettet)";
+"Email document files" = "Dokumente senden";
+"Email visible page" = "Aktuelle Seite senden";
+"Email visible page" = "Aktuelle Seite senden (eingebettet)";
+"Email visible pages" = "Aktuelle Seiten senden";
+"Email visible pages" = "Aktuelle Seiten senden (eingebettet)";
 "Open in..." = "Öffnen in…";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
@@ -39,6 +43,7 @@
 
 // page
 "%d of %d" = "%d von %d";
+"%d-%d of %d" = "%d-%d von %d";
 "%@ (%d of %d)" = "%@ (%d von %d)";
 
 // search
@@ -61,12 +66,16 @@
 "the App Store" = "den App Store";
 "Mail" = "Mail";
 
+// text selection
+"Save To Camera Roll" = "Bild speichern";
+
 // annotations
 "Remove" = "Entfernen";
 "Edit" = "Editieren";
 "Type..." = "Type…";
 "Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";
+"Custom..." = "Mehr…";
 "Thickness..." = "Stärke…";
 "%@ pt" = "%@ pt";
 "Text..." = "Text…";

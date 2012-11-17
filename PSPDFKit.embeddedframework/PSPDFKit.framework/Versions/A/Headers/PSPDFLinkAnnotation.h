@@ -44,7 +44,8 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Will be YES if this is a regular link or a multimedia link annotation that should be displayed as link. (e.g. if isPopover/isModal is set to yes)
 @property (nonatomic, assign, readonly) BOOL showAsLinkView;
 
-/// link if target is a page if siteLinkTarget is nil.
+/// Link if target is a page if siteLinkTarget is nil.
+/// pageLinkTarget starts at page index 1.
 @property (nonatomic, assign) NSUInteger pageLinkTarget;
 
 /// Returns YES if this link is specially handled by PSPDFKit.
@@ -70,17 +71,17 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
  Note: Do not add NSURL-encoded strings to siteLinkTarget.(no %20 - real space!)
  If you convert a path fron NSURL, use [URL path] and NOT [url description]. (Actually, never use URL description, except when you're debugging)
 */
-@property (nonatomic, strong) NSString *siteLinkTarget;
+@property (nonatomic, copy) NSString *siteLinkTarget;
 
 /// URL (generated from the siteLinkTarget after parsing)
 @property (nonatomic, strong) NSURL *URL;
 
 /// A Link annotation might have multiple rects.
 /// Note: This is currently NOT supported in PSPDFKit. Use boundingBox.
-@property (nonatomic, strong) NSArray *rects;
+@property (nonatomic, copy) NSArray *rects;
 
 /// If values between pspdfkit://[...] are set, this will contain those options.
-@property (nonatomic, strong) NSDictionary *options;
+@property (nonatomic, copy) NSDictionary *options;
 
 /// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.
 @property (nonatomic, assign, getter=isModal) BOOL modal;

@@ -68,7 +68,7 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
  
  @discussion A `PSPDFAttributedLabel` delegate responds to messages sent by tapping on links in the label. You can use the delegate to respond to links referencing a URL, address, phone number, date, or date with a specified time zone and duration.
  */
-@property (nonatomic, assign) id <PSPDFAttributedLabelDelegate> delegate;
+@property (nonatomic, weak) id <PSPDFAttributedLabelDelegate> delegate;
 
 ///--------------------------------------------
 /// @name Detecting, Accessing, & Styling Links
@@ -84,14 +84,14 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
 /**
  An array of `NSTextCheckingResult` objects for links detected or manually added to the label text.
  */
-@property (readonly, nonatomic, retain) NSArray *links;
+@property (readonly, nonatomic, copy) NSArray *links;
 
 /**
  A dictionary containing the `NSAttributedString` attributes to be applied to links detected or manually added to the label text. The default link style is blue and underlined.
  
  @warning You must specify `linkAttributes` before setting autodecting or manually-adding links for these attributes to be applied.
  */
-@property (nonatomic, retain) NSDictionary *linkAttributes;
+@property (nonatomic, copy) NSDictionary *linkAttributes;
 
 ///---------------------------------------
 /// @name Acccessing Text Style Attributes

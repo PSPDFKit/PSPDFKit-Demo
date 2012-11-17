@@ -60,6 +60,9 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (instancetype)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
 - (instancetype)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
+/// Compare.
+- (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
+
 /// Delegate. Used for annotation calls.
 @property (nonatomic, weak) id<PSPDFDocumentDelegate> delegate;
 
@@ -237,7 +240,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Rotation for specified page. cached. Page starts at 0.
 - (int)rotationForPage:(NSUInteger)page;
 
-/// PDFBox that is used for rendering. Defaults to kCGPDFMediaBox.
+/// PDFBox that is used for rendering. Defaults to kCGPDFCropBox.
 /// Older versions of PSPDFKit used kCGPDFCropBox by default.
 @property (nonatomic, assign) CGPDFBox PDFBox;
 
@@ -325,7 +328,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
 /// See "Adobe LifeCycle DRM, http://www.adobe.com/products/livecycle/rightsmanagement
 /// Note: only evaluates the first file if multiple files are set.
-@property (nonatomic, assign, readonly) NSString *encryptionFilter;
+@property (nonatomic, copy, readonly) NSString *encryptionFilter;
 
 /// Has the PDF file been unlocked? (is it still locked?).
 /// Note: only evaluates the first file if multiple files are set.
@@ -342,12 +345,16 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Return a textParser for the specific document page.
 - (PSPDFTextParser *)textParserForPage:(NSUInteger)page;
 
+/// Checks if the text parser has already been loaded.
+- (BOOL)hasLoadedTextParserForPage:(NSUInteger)page;
+
 /// If YES, any glyphs (text, words) that are outside the visible page area will not be parsed.
 /// Set early or call clearCache manually after changing this property. (since extracted text is cached)
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL textParserHideGlyphsOutsidePageRect;
 
 /// Text extraction class for current document.
+/// Be careful where you're setting the delegate. You can also create a private PSPDFTextSearch class.
 @property (nonatomic, strong) PSPDFTextSearch *textSearch;
 
 /// Get the document provider for a specific page.
@@ -358,7 +365,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (NSUInteger)pageOffsetForDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Get an array of documentProviers to easily manage documents with multiple files.
-@property (nonatomic, strong, readonly) NSArray *documentProviders;
+@property (nonatomic, copy, readonly) NSArray *documentProviders;
 
 /// Document Parser is per file, so might return the same parser for different pages.
 /// (But we need to check as a PSPDFDocument can contain multiple files)
@@ -399,23 +406,29 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// This is the perfect place to change the background fill color, e.g. you would do this for a black document:
 /// renderOptions = @{kPSPDFBackgroundFillColor : [UIColor blackColor]};
 /// This fixes tiny white/gray lines at the borders of a document that else might show up.
-@property (nonatomic, strong) NSDictionary *renderOptions;
+@property (nonatomic, copy) NSDictionary *renderOptions;
 
 /// @name Object Finder
 
 // options
-extern NSString *const kPSPDFObjectsText;        // Include Text.
-extern NSString *const kPSPDFObjectsFullWords;   // Always return full PSPDFWords. Implies kPSPDFObjectsText.
-extern NSString *const kPSPDFObjectsTextBlocks;  // Include text blocks, sorted after most appropriate.
-extern NSString *const kPSPDFObjectsTextBlocksIgnoreLarge;  // Ignore too large text blocks (that are > 90% of a page)
-extern NSString *const kPSPDFObjectsAnnotationTypes; // Include annotations of attached type
-extern NSString *const kPSPDFObjectsAnnotationPageBounds; // Special case; used for PSPDFAnnotationTypeNote hit testing.
+extern NSString *const kPSPDFObjectsGlyphs;                // Search glyphs.
+extern NSString *const kPSPDFObjectsText;                  // Include Text.
+extern NSString *const kPSPDFObjectsFullWords;             // Always return full PSPDFWords. Implies kPSPDFObjectsText.
+extern NSString *const kPSPDFObjectsTextBlocks;            // Include text blocks, sorted after most appropriate.
+extern NSString *const kPSPDFObjectsTextBlocksIgnoreLarge; // Ignore too large text blocks (that are > 90% of a page)
+extern NSString *const kPSPDFObjectsAnnotationTypes;       // Include annotations of attached type
+extern NSString *const kPSPDFObjectsAnnotationPageBounds;  // Special case; used for PSPDFAnnotationTypeNote hit testing.
+extern NSString *const kPSPDFObjectsImages;                // Include Image info.
+extern NSString *const kPSPDFObjectsSmartSort;             // Will sort words/annotations (smaller words/annots first). Use for touch detection.
+extern NSString *const kPSPDFObjectsFindFirstOnly;         // Will stop after finding the first maching object.
 
 // Output categories
 extern NSString *const kPSPDFGlyphs;
 extern NSString *const kPSPDFWords;
+extern NSString *const kPSPDFText;
 extern NSString *const kPSPDFTextBlocks;
 extern NSString *const kPSPDFAnnotations;
+extern NSString *const kPSPDFImages;
 
 /// Find objects at the current PDF point.
 /// If options is nil, we assume kPSPDFObjectsText and kPSPDFObjectsFullWords.

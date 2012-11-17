@@ -13,6 +13,7 @@
 
 @protocol PSPDFLongPressGestureRecognizerDelegate <UIGestureRecognizerDelegate>
 
+/// Allows immediate handling of the touchesBegan event.
 - (BOOL)pressRecognizerShouldHandlePressImmediately:(PSPDFLongPressGestureRecognizer *)recognizer;
 
 @end

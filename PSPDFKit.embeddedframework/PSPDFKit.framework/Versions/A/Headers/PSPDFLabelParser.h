@@ -34,6 +34,6 @@
 
 /// Returns page labels. Starts parsing if labels are not yet created.
 /// NSNumber -> NSString
-@property (nonatomic, strong, readonly) NSDictionary *labels;
+@property (nonatomic, copy, readonly) NSDictionary *labels;
 
 @end
