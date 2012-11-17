@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 /// Loupe detail mode.
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
 
-/// Target size.
+/// Target size for PSPDFLoupeViewModeDetailTop/PSPDFLoupeViewModeDetailBottom.
 @property (nonatomic, assign) CGSize targetSize;
 
 // Since the loupe uses a UIWindow that is added on the fly, call this before making calculations with the superview.

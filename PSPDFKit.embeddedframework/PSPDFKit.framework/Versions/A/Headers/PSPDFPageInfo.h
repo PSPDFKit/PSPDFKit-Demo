@@ -35,4 +35,7 @@
 /// Referenced document provider, weak.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
+/// Compare.
+- (BOOL)isEqualToPageInfo:(PSPDFPageInfo *)otherPageInfo;
+
 @end

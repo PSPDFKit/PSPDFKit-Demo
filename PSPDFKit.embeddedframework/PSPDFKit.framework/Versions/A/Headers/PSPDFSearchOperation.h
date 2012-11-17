@@ -11,8 +11,8 @@
 @class PSPDFDocument, PSPDFSearchOperation;
 
 typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
-    PSPDFBasicSearch,
-    PSPDFSearchWithHighlighting
+    PSPDFSearchModeBasic,        // don't show highlight positions
+    PSPDFSearchModeHighlighting, // show highlights
 };
 
 /// Get updates while the search operation is running.
@@ -29,35 +29,22 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @end
 
 
-/// Search operation. Created within PSPDFTextSearch.
+/**
+ Search operation to find text inside a all or specific pages of a PSPDFDocument.
+ Usually created within PSPDFTextSearch, but can also be used externally.
+ */
 @interface PSPDFSearchOperation : NSOperation
 
-/// Initialize with Document reference and searchText.
+/// Initialize with document reference and the search term.
 - (id)initWithDocument:(PSPDFDocument *)document searchTerm:(NSString *)searchTerm;
 
-/// Define which pages should be searched with selection metadata. (much slower)
-/// If pageText is not set, this setting is ignored.
-@property (nonatomic, copy) NSArray *selectionSearchPages;
+/// Customize range of pages that should be searched. Set to nil to search whole document.
+/// Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.
+@property (nonatomic, copy) NSIndexSet *pageRanges;
 
-/// If set, only the pages set in searchPages are searched (and also selectionSearchPages)
-/// searchPages will be searched without selection (if text is already cached)
-/// Set this to an empty array and use selectionSearchPages to make a limited search with selection.
-@property (nonatomic, copy) NSArray *searchPages;
-
-/// String to be searched for.
-@property (nonatomic, copy, readonly) NSString *searchTerm;
-
-/// Dictionary of the whole page text. Set to optimize - in connection with selectionSearchPages.
-@property (nonatomic, strong) NSDictionary *pageTextDict;
-
-/// Array of PSPDFSearchResult's.
-@property (nonatomic, strong, readonly) NSArray *searchResults;
-
-/// Associated document (weak, we're saved within the document)
-@property (nonatomic, weak, readonly) PSPDFDocument *document;
-
-/// Search delegate. Will be retained as long as the operation runs.    
-@property (nonatomic, weak) id<PSPDFSearchOperationDelegate> delegate;
+/// If set to YES, pageRanges will be searched first, then all following pages.
+/// If NO, only pageRanges will be searched.
+@property (nonatomic, assign) BOOL shouldSearchAllPages;
 
 /// Set the searchMode for the search.
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
@@ -65,4 +52,28 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 /// Set compareOptions for the search.
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
+/// Search delegate.
+@property (nonatomic, weak) id<PSPDFSearchOperationDelegate> delegate;
+
+/// Array of PSPDFSearchResult (will be set once the operation is finished)
+@property (nonatomic, copy, readonly) NSArray *searchResults;
+
+/// Current search term.
+@property (nonatomic, copy, readonly) NSString *searchTerm;
+
+/// Associated document.
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
+
 @end
+
+@interface PSPDFSearchOperation (Deprecated)
+
+@property (nonatomic, copy) NSArray *selectionSearchPages __attribute__ ((deprecated("Use pageRanges instead.")));
+@property (nonatomic, copy) NSArray *searchPages __attribute__ ((deprecated("Use pageRanges instead.")));
+@property (nonatomic, copy) NSDictionary *pageTextDict __attribute__ ((deprecated("Override PSPDFTextParser instead.")));
+
+@end
+
+// Support for deprecated enum names
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFBasicSearch; // equivalent to PSPDFSearchModeBasic;
+__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchWithHighlighting; // equivalent to PSPDFSearchModeHighlighting;

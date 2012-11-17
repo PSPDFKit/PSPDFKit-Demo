@@ -15,6 +15,7 @@
 @optional
 
 /// Called before we append data to a PDF. Return NO to stop writing annotations.
+/// Defaults to YES if not implemented, and will set a new NSData object.
 - (BOOL)documentProvider:(PSPDFDocumentProvider *)documentProvider shouldAppendData:(NSData *)data;
 
 // Called after the write is completed.
@@ -72,8 +73,10 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Iterate over all CGPDFPageRef pages. pageNumber starts at 1.
 - (void)iterateOverPageRef:(void(^)(PSPDFDocumentProvider *provider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger page))pageRefBlock;
 
+
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
+- (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page;
 
 /// Releases a page reference. 
@@ -107,7 +110,7 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 
 /// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
 /// See "Adobe LifeCycle DRM, http://www.adobe.com/products/livecycle/rightsmanagement
-@property (nonatomic, assign, readonly) NSString *encryptionFilter;
+@property (nonatomic, copy, readonly) NSString *encryptionFilter;
 
 /// Has the PDF file been unlocked? (is it still locked?).
 @property (nonatomic, assign, readonly) BOOL isLocked;
@@ -119,7 +122,7 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
 /// Access the PDF metadata. (might be a slow operation)
-@property (nonatomic, strong, readonly) NSDictionary *metadata;
+@property (nonatomic, copy, readonly) NSDictionary *metadata;
 
 /// Return YES if metadata is already parsed.
 @property (nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;

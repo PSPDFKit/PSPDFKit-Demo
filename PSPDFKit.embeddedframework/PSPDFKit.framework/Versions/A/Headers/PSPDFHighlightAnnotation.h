@@ -18,17 +18,18 @@ typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
 /// Important! If you programmatically create a highlight annotation, you need to both set the boundingBox AND the rects array. (the rects array contains boxed variants of CGRect (NSValue))
 @interface PSPDFHighlightAnnotation : PSPDFAnnotation
 
+/// Designated initializer.
+- (id)initWithHighlightType:(PSPDFHighlightAnnotationType)annotationType;
+
 /// Highlight subtype.
 @property (nonatomic, assign) PSPDFHighlightAnnotationType highlightType;
 
-/// Coordinates for highlight annotation.
+/// Coordinates for highlight annotation (boxed CGRect's)
 @property (nonatomic, strong) NSArray *rects;
 
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
-
-- (id)initWithType:(PSPDFHighlightAnnotationType)annotationType;
-
-- (void)setType:(PSPDFHighlightAnnotationType)annotationType withDefaultColor:(BOOL)useDefaultColor;
+/// Helper that will query the associated PSPDFDocument to get the highlighted content.
+/// (Because we actually just write rects, it's not easy to get the underlying text)
+- (NSString *)highlightedString;
 
 /// Converts "Highlight" into PSPDFHighlightAnnotationHighlight, etc
 + (PSPDFHighlightAnnotationType)highlightTypeFromTypeString:(NSString *)typeString;

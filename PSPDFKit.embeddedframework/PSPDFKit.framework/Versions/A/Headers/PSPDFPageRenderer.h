@@ -15,9 +15,12 @@ extern NSString *const kPSPDFPageColor;             // Multiplies a color used t
 extern NSString *const kPSPDFContentOpacity;        // Opacity of the pdf content can be ajusted.
 extern NSString *const kPSPDFInvertRendering;       // Inverts the rendering output. Default is NO.
 extern NSString *const kPSPDFInterpolationQuality;  // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
+extern NSString *const kPSPDFDisablePageRendering;  // Set to YES to NOT draw page content. (Use to just draw an annotation)
+extern NSString *const kPSPDFRenderOverlayAnnotations;// Set to YES to render annotations that have isOverlay = YES set.
+extern NSString *const kPSPDFIgnorePageClip;        // If YES, will draw outside of page area.
 extern NSString *const kPSPDFAllowAntiAliasing;     // Enabled/Disables antialiasing. Defaults to YES.
 extern NSString *const kPSPDFBackgroundFillColor;   // Allows custom render color. Default is white.
-extern NSString *const kPSPDFPDFBox;                 // Allows custom PDF box (if pageInfo is nil)
+extern NSString *const kPSPDFPDFBox;                // Allows custom PDF box (if pageInfo is nil)
 
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject

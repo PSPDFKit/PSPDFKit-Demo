@@ -29,10 +29,22 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeShape     = 1 << 5,  // Square, Circle
     PSPDFAnnotationTypeLine      = 1 << 6,
     PSPDFAnnotationTypeNote      = 1 << 7,
+    PSPDFAnnotationTypeStamp     = 1 << 8,
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
     PSPDFAnnotationTypeUndefined = 1 << 31, // any annotation whose type couldn't be recognized
     PSPDFAnnotationTypeAll       = UINT_MAX
+};
+
+// Annotation border style. PSPDFKit currently only supports Solid and Dashed.
+typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
+    PSPDFAnnotationBorderStyleNone,
+    PSPDFAnnotationBorderStyleSolid,
+    PSPDFAnnotationBorderStyleDashed,
+    PSPDFAnnotationBorderStyleBelved,
+    PSPDFAnnotationBorderStyleInset,
+    PSPDFAnnotationBorderStyleUnderline,
+    PSPDFAnnotationBorderStyleUnknown
 };
 
 /**
@@ -51,17 +63,20 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 /// Returns the annotation type strings that are supported. Implemented in each subclass.
 + (NSArray *)supportedTypes;
 
-/// Returns YES if PSPDFKit has support to write this annotation back into the PDF.
+/// Returns YES if PSPDFKit has support to write this annotation type back into the PDF.
 + (BOOL)isWriteable;
+
+/// Returns YES if this annotation type is moveable.
+- (BOOL)isMovable;
 
 /// Use this to create custom user annotations. 
 - (id)initWithType:(PSPDFAnnotationType)annotationType;
 
-/// Used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
+/// Designated initializer. Also used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
 /// Implement this in your subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
 
-/// Initialize annotation with the corresponding PDF dictionary. Call from subclass.
+/// Initialize annotation with the corresponding PDF dictionary. Call this from subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
 
 /// Check if point is inside annotation area.
@@ -80,8 +95,14 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 
  Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
  (For performance considerations, you want to do this once, not every time drawInContext is called)
+ 
+ This draws the annotation border.
+ Some annotations handle borders differently, so decide in your supclass if you call [super drawInContext] or not.
  */
 - (void)drawInContext:(CGContextRef)context;
+
+/// Helper that will prepare the context for the border style.
+- (void)prepareBorderStyleInContext:(CGContextRef)context;
 
 /// Current annotation type. 
 @property (nonatomic, assign, readonly) PSPDFAnnotationType type;
@@ -89,8 +110,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 /// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 /// Currently won't work if you just set arbitrary annotations to overlay=YES.
-/// If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
-@property (nonatomic, assign, getter=isOverlay, readonly) BOOL overlay;
+/// If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
+@property (nonatomic, assign, getter=isOverlay) BOOL overlay;
 
 /// Per default, annotations are editable when isWriteable returns YES.
 /// Override this to lock certain annotations (menu won't be shown)
@@ -121,21 +142,26 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
 
+/// Annotation border style.
+@property (nonatomic, assign) PSPDFAnnotationBorderStyle borderStyle;
+
+/// If borderStyle is set to PSPDFAnnotationBorderStyleDashed, we expect a dashStyle array here (int-values)
+@property (nonatomic, copy) NSArray *dashArray;
+
 /// Annotation may already be deleted locally, but not written back.
 @property (nonatomic, assign, getter=isDeleted) BOOL deleted;
 
 /// Rectangle of specific annotation.
 @property (nonatomic, assign) CGRect boundingBox;
 
-/// Annotations already have a boundingBox where rotation is applied.
-/// Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)
-@property (nonatomic, assign, readonly) CGRect boundingBoxWithoutRotation;
-
 /// User (title) flag. ("T" property)
 @property (nonatomic, copy) NSString *user;
 
 /// Page for current annotation. Page is relative to the documentProvider.
 @property (nonatomic, assign) NSUInteger page;
+
+/// Page relative to the document.
+@property (nonatomic, assign, readonly) NSUInteger absolutePage;
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.
@@ -149,6 +175,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 
 /// Rotation value, copied from the PSPDFPageInfo and set when documentProvider is set.
 @property (nonatomic, assign) NSInteger rotation;
+
+/// Compare.
+- (BOOL)isEqualToAnnotation:(PSPDFAnnotation *)otherAnnotation;
 
 @end
 
@@ -181,11 +210,12 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
 
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
 /// Returns same type as current class.
-- (id)copyAndDeleteOriginalIfNeeded;
+- (instancetype)copyAndDeleteOriginalIfNeeded;
 
 /// If indexOnPage is set, it's a native PDF annotation.
 /// If this is -1, it's not yet saved in the PDF.
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
+/// Don't set this property if you're loading annotations from your database.
 @property (nonatomic, assign) int indexOnPage;
 
 /// Some annotations may have a popupIndex. Defaults to -1.

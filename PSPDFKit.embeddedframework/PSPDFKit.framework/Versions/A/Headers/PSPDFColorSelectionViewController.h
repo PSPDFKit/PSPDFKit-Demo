@@ -1,38 +1,52 @@
 //
-//  PSPDFColorSelectionViewController.h
+//  PSPDFColorSelectionViewController.m
 //  PSPDFKit
 //
 //  Copyright 2012 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+#import "PSPDFSimplePageViewController.h"
 
 @protocol PSPDFColorSelectionViewControllerDelegate;
-@class PSPDFSimplePageViewController;
 
-/// Flexible Color Picker.
+/// Beautiful color selection controller.
 @interface PSPDFColorSelectionViewController : UIViewController
 
-/// Creates a new color picker on every access.
+/// Lazily evaluated. Set arrays of colors to change the default picker style.
+/// Will reset to default if set to nil.
++ (void)setDefaultColorArrays:(NSArray *)defaultColorArrays;
+
+/// Used to show the color pickers in PSPDF. Uses defaultColorArrays.
 + (PSPDFSimplePageViewController *)defaultColorPickerWithTitle:(NSString *)title delegate:(id<PSPDFColorSelectionViewControllerDelegate>)delegate;
 
-/// Returns PSPDFColorSelectionViewController.
-+ (id)monoChromeSelectionViewController;
-+ (id)rainbowSelectionViewController;
+/// Convenience initializers
++ (instancetype)monoChromeSelectionViewController;
++ (instancetype)modernColorsSelectionViewController;
++ (instancetype)vintageColorsSelectionViewController;
++ (instancetype)rainbowSelectionViewController;
++ (instancetype)colorSelectionViewControllerFromColors:(NSArray *)colorsArray addDarkenedVariants:(BOOL)darkenedVariants;
 
-/// Default initializer
+/// Helper that generates a color array from a saved plist. See PSPDFKit.bundle for examples.
++ (NSArray *)colorsFromPalletURL:(NSURL *)palletURL addDarkenedVariants:(BOOL)darkenedVariants;
+
+/// Initialize with array of colors.
 - (id)initWithColors:(NSArray *)colors;
 
-@property (nonatomic, weak) id<PSPDFColorSelectionViewControllerDelegate> delegate;
+/// Action delegate.
+@property (nonatomic, weak) id <PSPDFColorSelectionViewControllerDelegate> delegate;
 
 @end
 
-
-/// Delegate for the color picker.
+/// Color picker delegate.
 @protocol PSPDFColorSelectionViewControllerDelegate <NSObject>
 
 @required
+
+/// Asks for the currently selected color.
 - (UIColor *)colorSelectionControllerSelectedColor:(PSPDFColorSelectionViewController *)controller;
+
+/// Sent when a color has been selected.
 - (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color;
 
 @end

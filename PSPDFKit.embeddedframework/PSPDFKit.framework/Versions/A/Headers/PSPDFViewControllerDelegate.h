@@ -9,7 +9,7 @@
 #import "PSPDFViewController.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFDocument, PSPDFPageInfo, PSPDFPageCoordinates, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
+@class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFPageCoordinates, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
 
 /// Implement this delegate on your UIViewController to get notified by PSPDFViewController.
 @protocol PSPDFViewControllerDelegate <NSObject>
@@ -70,6 +70,8 @@
 /// Will be called after zoom level has been changed, either programatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
+/// Callback for a render operation. Will be called on a thread (since rendering is async)
+/// You can use the context to add custom drawing.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Return a PSPDFDocument for a relative path.
@@ -121,6 +123,8 @@
 */
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
+/// Called before the menu for a selected image is displayed.
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedImage:(PSPDFImageInfo *)selectedImage inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 /* Annotations */
 
@@ -165,9 +169,9 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 /**
- Called before we show a controller modally or in a popover. Allows last minute modifications.\
+ Called before we show a internal controller (color picker, note editor, ...) modally or in a popover. Allows last minute modifications.
  
- The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.
+ The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrintInteractionController are no subclasses of UIViewController.
  
  Return NO to process the displaying manually.
  */

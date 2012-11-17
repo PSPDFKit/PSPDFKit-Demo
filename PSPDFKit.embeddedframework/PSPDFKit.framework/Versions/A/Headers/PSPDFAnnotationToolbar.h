@@ -34,6 +34,10 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 @end
 
+// constants which are used for NSUserDefaults.
+extern NSString *const kPSPDFLastUsedDrawingWidth; // float
+extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSString (annotation type) -> NSColor (encoded via NSKeyedArchiver)
+
 /// To edit annotations, a new toolbar will be overlayed.
 /// You can also use the features of the toolbar in the background and make your own UI.
 /// (for custom UI, don't show the toolbar, manually call the buttons and let the toolbar perform all the state handling)
@@ -62,10 +66,19 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 /// Active annotation toolbar mode.
 @property (nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode;
 
+/// Default/current drawing color (PSPDFAnnotationToolbarDraw).
+/// Defaults to [UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]
+/// PSPDFKit will save the last used drawing color in the NSUserDefaults.
+@property (nonatomic, strong) UIColor *drawColor;
+
+/// Current drawing line width. Defaults to 3.f
+@property (nonatomic, assign) CGFloat lineWidth;
+
 @end
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
 
+/// Toolbar might be used "headless" but for state management. Manually call buttons here.
 - (void)noteButtonPressed:(id)sender;
 - (void)highlightButtonPressed:(id)sender;
 - (void)strikeOutButtonPressed:(id)sender;
@@ -73,8 +86,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 - (void)drawButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
+/// Manually cancel drawing. Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
+- (void)cancelDrawingAnimated:(BOOL)animated;
+/// Manually confirm drawing. Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
+- (void)doneDrawingAnimated:(BOOL)animated;
+
 // Finish up drawing. Usually called by the drawing delegate.
-- (void)finishDrawingAndSaveAnnotation:(BOOL)save;
+- (void)finishDrawingAnimated:(BOOL)animated andSaveAnnotation:(BOOL)saveAnnotation;
 
 // helpers to lock/unlock the controller
 - (void)lockPDFController;

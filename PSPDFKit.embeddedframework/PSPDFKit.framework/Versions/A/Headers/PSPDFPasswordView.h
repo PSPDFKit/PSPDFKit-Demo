@@ -44,3 +44,10 @@
 @property (nonatomic, assign) BOOL shakeOnError;
 
 @end
+
+@interface PSPDFPasswordView (SubclassingHooks)
+
+/// Password text field.
+@property (nonatomic, strong, readonly) UITextField *passwordField;
+
+@end

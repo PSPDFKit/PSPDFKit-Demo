@@ -14,6 +14,9 @@
  */
 @interface PSPDFFreeTextAnnotation : PSPDFAnnotation
 
+/// Designated initializer.
+- (id)init;
+
 /// Font name as defined in the DA appearance string.
 @property (nonatomic, copy) NSString *fontName;
 

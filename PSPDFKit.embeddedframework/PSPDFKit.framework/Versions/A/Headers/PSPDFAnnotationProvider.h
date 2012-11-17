@@ -61,18 +61,10 @@
 - (NSDictionary *)dirtyAnnotations;
 
 /**
- Annotation is about to be changed. Return NO to disallow.
- To block he annotation edit menu completely, set the isEditable property to NO.
- 
- This method will be called on ALL annotations, not just the ones that you provided.
- So make sure you return YES/ignore if the annotation is not from you.
- */
-// TODO
-//- (BOOL)shouldChangeAnnotation:(PSPDFAnnotation *)annotation;
-
-/**
  Callback if an annotation has been changed by PSPDFKit.
  This method will be called on ALL annotations, not just the ones that you provided.
+ 
+ Also be sure to check if originalAnnotation might has been deleted because of a change operation (keyPaths will not include deleted, unless the *only* operation that has been performed was a deleted.)
  */
 - (void)didChangeAnnotation:(PSPDFAnnotation *)annotation originalAnnotation:(PSPDFAnnotation *)originalAnnotation keyPaths:(NSArray *)keyPaths options:(NSDictionary *)options;
 

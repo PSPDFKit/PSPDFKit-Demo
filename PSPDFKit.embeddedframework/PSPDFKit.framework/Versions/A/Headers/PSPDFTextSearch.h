@@ -30,44 +30,54 @@
 @end
 
 /// Manages search operations for a specific document.
-@interface PSPDFTextSearch : NSObject <PSPDFSearchOperationDelegate>
+/// You can copy this class to be able to use it on your custom class. (and set a different delegate)
+/// Copying will preserve all settings except the delegate.
+@interface PSPDFTextSearch : NSObject <PSPDFSearchOperationDelegate, NSCopying>
 
 /// Initialize with the document;
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-/// Searches for text occurence. If document was not yet parsed, it will be now.
+/// Searches for text occurence. If document was not yet parsed, it will be now. Searches entire document.
 - (void)searchForString:(NSString *)searchTerm;
 
-/// Searches for text occurence, selection property is added to sites in visiblePages.
-/// enable onlyVisible to only search within the visiblePages
-- (void)searchForString:(NSString *)searchTerm visiblePages:(NSArray *)visiblePages onlyVisible:(BOOL)onlyVisible;
+/// Searches for text on the specified page ranges. If ranges is nil, will search entire document.
+/// If rangesOnly is set to NO, ranges will be searched first, then the rest of the document.
+/// Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.
+- (void)searchForString:(NSString *)searchTerm inRanges:(NSIndexSet *)ranges rangesOnly:(BOOL)rangesOnly;
 
-/// YES if there's text stored for page page. (thus, textForPage will return instantly)
-- (BOOL)hasTextForPage:(NSUInteger)page;
-
-/// Get text for a specific page. Page starts at 0. Returns nil if no text is available or page is incorrect. (blocking)
-- (NSString *)textForPage:(NSUInteger)page;
-
-/// Stops all operations. Call before destroying. Blocks until all operations are finished.
+/// Stops all operations. Blocks until all operations are finished.
 - (void)cancelAllOperationsAndWait;
 
-/// Changes the search mode. Set to PSPDFSearchLegacy if PSPDFSearchAdvanced* is too slow for you.
-/// Note: search does not work with all documents. Also highlighting may doesn't work.
-/// If you have pdf's that fail, you can send them to us; we may or may not be able to improve things.
-/// Do not expect that this library will give you 100% perfect results as compared to Adobe Acrobat.
-/// Text extraction is a *very* tricky feature.
-/// Defaults to PSPDFSearchAdvancedWithHighlighting.
+/// Changes the search mode. Default is PSPDFSearchModeHighlighting.
+/// There's practically no speed difference so PSPDFSearchWithHighlighting should be preferred.
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
 
-/// Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch
+/// Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch | NSRegularExpressionSearch
 /// With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
 /// See NSString comparison documentation for details.
+/// Note: PSPDF has extensions that will allow a combination of NSRegularExpressionSearch and NSDiacriticInsensitiveSearch.
+/// If NSRegularExpressionSearch is enabled, hyphenations and newlines between the body text will be ignored (which is good, better results)
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
 /// The document that is searched.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
-/// Search delegate. Will be retained as long as the operation runs.
-@property (nonatomic, weak) id<PSPDFTextSearchDelegate> delegate;
+/// Search delegate.
+@property (atomic, weak) id<PSPDFTextSearchDelegate> delegate;
+
+@end
+
+@interface PSPDFTextSearch (SubclassingHooks)
+
+@property (nonatomic, strong, readonly) NSOperationQueue *searchQueue;
+
+@end
+
+
+@interface PSPDFTextSearch (Deprecated)
+
+- (void)searchForString:(NSString *)searchTerm visiblePages:(NSArray *)visiblePages onlyVisible:(BOOL)onlyVisible __attribute__ ((deprecated("Use searchForString:inRanges: instead.")));
+- (BOOL)hasTextForPage:(NSUInteger)page __attribute__ ((deprecated("Use [document hasLoadedTextParserForPage:] instead.")));
+- (NSString *)textForPage:(NSUInteger)page __attribute__ ((deprecated("Use [document textParserForPage:] instead.")));
 
 @end

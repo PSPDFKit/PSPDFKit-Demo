@@ -8,19 +8,24 @@
 #import "PSPDFKitGlobal.h"
 
 /// Represents multiple words forming a text block. (e.g. a Column)
-@interface PSPDFTextBlock : NSObject
+@interface PSPDFTextBlock : NSObject <NSCopying, NSCoding>
 
+/// Designated initializer.
 - (id)initWithGlyphs:(NSArray *)glyphs;
 
-@property (nonatomic, readonly) CGRect frame;
+/// Frame of the text block. Not rotated.
+@property (nonatomic, assign, readonly) CGRect frame;
 
 /// All words of the current text block. Evaluated lazily.
-@property (nonatomic, strong, readonly) NSArray *words;
+@property (nonatomic, copy, readonly) NSArray *words;
 
 /// All glyphs of the current text block.
-@property (nonatomic, strong) NSArray *glyphs;
+@property (nonatomic, copy) NSArray *glyphs;
 
 /// Returns the content of the text block (all words merged together)
-@property (nonatomic, strong, readonly) NSString *content;
+@property (nonatomic, copy, readonly) NSString *content;
+
+/// Compare.
+- (BOOL)isEqualToTextBlock:(PSPDFTextBlock *)otherBlock;
 
 @end
