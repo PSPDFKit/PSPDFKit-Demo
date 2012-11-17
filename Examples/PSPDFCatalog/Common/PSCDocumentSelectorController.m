@@ -218,10 +218,11 @@
                 [_fullTextSearchQueue cancelAllOperations];
                 PSCFullTextSearchOperation *operation = [[PSCFullTextSearchOperation alloc] initWithDocuments:self.documents searchTerm:searchText];
                 operation.delegate = self;
-                __unsafe_unretained PSCFullTextSearchOperation *weakOperation = operation;
+                __weak PSCFullTextSearchOperation *weakOperation = operation;
                 [operation setCompletionBlock:^{
-                    if (!weakOperation.isCancelled) {
-                        NSArray *results = weakOperation.results;
+                    PSCFullTextSearchOperation *strongOperation = weakOperation;
+                    if (!strongOperation.isCancelled) {
+                        NSArray *results = strongOperation.results;
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [_filteredContent removeAllObjects];
                             [_filteredContent addObjectsFromArray:results];
