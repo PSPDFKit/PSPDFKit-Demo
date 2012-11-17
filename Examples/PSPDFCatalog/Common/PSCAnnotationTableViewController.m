@@ -47,11 +47,7 @@
 
     PSPDFDocument *document = self.pdfController.document;
     for (NSUInteger pageIndex=0; pageIndex<[document pageCount]; pageIndex++) {
-        NSArray *annotations = [document annotationsForPage:pageIndex type:[self annotationTypes]];
-        // remove deleted items
-        annotations = [annotations filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PSPDFAnnotation *evaluatedAnnotation, NSDictionary *bindings) {
-            return !evaluatedAnnotation.isDeleted;
-        }]];
+        NSArray *annotations = [self annotationsForPage:pageIndex];
         if ([annotations count]) {
             [pagesWithAnnotations addObject:@(pageIndex)];
         }
@@ -83,6 +79,32 @@
     return annotationTypes;
 }
 
+- (NSUInteger)pageForSection:(NSInteger)section {
+    return [self.pagesWithAnnotations[section] unsignedIntegerValue];
+}
+
+- (NSArray *)annotationsForSection:(NSUInteger)section {
+    return [self annotationsForPage:[self pageForSection:section]];
+}
+
+- (NSArray *)annotationsForPage:(NSUInteger)page {
+    PSPDFDocument *document = self.pdfController.document;
+    NSArray *annotations = [document annotationsForPage:page type:[self annotationTypes]];
+    // remove deleted items
+    annotations = [annotations filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PSPDFAnnotation *evaluatedAnnotation, NSDictionary *bindings) {
+        return !evaluatedAnnotation.isDeleted;
+    }]];
+    annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
+    return annotations;
+}
+
+- (PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section >= [self.pagesWithAnnotations count]) return nil;
+    
+    NSArray *annotations = [self annotationsForSection:indexPath.section];
+    return annotations[indexPath.row];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UITableViewDataSource
 
@@ -90,20 +112,9 @@
     return [self.pagesWithAnnotations count];
 }
 
-- (NSUInteger)pageForSection:(NSInteger)section {
-    return [self.pagesWithAnnotations[section] unsignedIntegerValue];
-}
-
-- (PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath {
-    PSPDFDocument *document = self.pdfController.document;
-    NSArray *annotations = [document annotationsForPage:[self pageForSection:indexPath.section] type:[self annotationTypes]];
-    annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
-    return annotations[indexPath.row];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    PSPDFDocument *document = self.pdfController.document;
-    return [[document annotationsForPage:[self pageForSection:section] type:[self annotationTypes]] count];
+    NSArray *annotations = [self annotationsForSection:section];
+    return [annotations count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,12 +127,8 @@
         cell.textLabel.numberOfLines = 5;
     }
 
-    // load all annotations
-    PSPDFDocument *document = self.pdfController.document;
-    NSArray *annotations = [document annotationsForPage:[self pageForSection:indexPath.section] type:[self annotationTypes]];
-    annotations = [annotations sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"type" ascending:YES]]];
-
     // configure cell
+    NSArray *annotations = [self annotationsForSection:indexPath.section];
     cell.textLabel.text = [annotations[indexPath.row] description];
 
     return cell;
