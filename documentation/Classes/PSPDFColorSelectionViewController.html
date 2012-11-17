@@ -38,13 +38,22 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/colorsFromPalletURL:addDarkenedVariants:">&nbsp;&nbsp;&nbsp;&nbsp;+ colorsFromPalletURL:addDarkenedVariants:</option>
+	
 	<option value="//api/name/defaultColorPickerWithTitle:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;+ defaultColorPickerWithTitle:delegate:</option>
 	
 	<option value="//api/name/monoChromeSelectionViewController">&nbsp;&nbsp;&nbsp;&nbsp;+ monoChromeSelectionViewController</option>
+	
+	<option value="//api/name/setDefaultColorArrays:">&nbsp;&nbsp;&nbsp;&nbsp;+ setDefaultColorArrays:</option>
 	
 	
 	
@@ -75,13 +84,23 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+</ul></li>
+
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorsFromPalletURL:addDarkenedVariants:">colorsFromPalletURL:addDarkenedVariants:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/defaultColorPickerWithTitle:delegate:">defaultColorPickerWithTitle:delegate:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/monoChromeSelectionViewController">monoChromeSelectionViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDefaultColorArrays:">setDefaultColorArrays:</a></span></li>
 	
 </ul></li>
 
@@ -128,7 +147,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Flexible Color Picker.</p>
+						<p>Beautiful color selection controller.</p>
 					</div>
 					
 					
@@ -146,24 +165,46 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/setDefaultColorArrays:">+&nbsp;setDefaultColorArrays:</a></code>
+		<span class="tooltip"><p>Lazily evaluated. Set arrays of colors to change the default picker style.
+Will reset to default if set to nil.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/defaultColorPickerWithTitle:delegate:">+&nbsp;defaultColorPickerWithTitle:delegate:</a></code>
-		<span class="tooltip"><p>Creates a new color picker on every access.</p></span>
+		<span class="tooltip"><p>Used to show the color pickers in PSPDF. Uses defaultColorArrays.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/monoChromeSelectionViewController">+&nbsp;monoChromeSelectionViewController</a></code>
-		<span class="tooltip"><p>Returns PSPDFColorSelectionViewController.</p></span>
+		<span class="tooltip"><p>Convenience initializers</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/colorsFromPalletURL:addDarkenedVariants:">+&nbsp;colorsFromPalletURL:addDarkenedVariants:</a></code>
+		<span class="tooltip"><p>Helper that generates a color array from a saved plist. See PSPDFKit.bundle for examples.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithColors:">&ndash;&nbsp;initWithColors:</a></code>
-		<span class="tooltip"><p>Default initializer</p></span>
+		<span class="tooltip"><p>Initialize with array of colors.</p></span>
 	</span>
 	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Action delegate.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -174,11 +215,85 @@
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action delegate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFColorSelectionViewControllerDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 					
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/colorsFromPalletURL:addDarkenedVariants:" title="colorsFromPalletURL:addDarkenedVariants:"></a>
+	<h3 class="subsubtitle method-title">colorsFromPalletURL:addDarkenedVariants:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper that generates a color array from a saved plist. See PSPDFKit.bundle for examples.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)colorsFromPalletURL:(NSURL *)<em>palletURL</em> addDarkenedVariants:(BOOL)<em>darkenedVariants</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/defaultColorPickerWithTitle:delegate:" title="defaultColorPickerWithTitle:delegate:"></a>
@@ -187,7 +302,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Creates a new color picker on every access.</p>
+		<p>Used to show the color pickers in PSPDF. Uses defaultColorArrays.</p>
 	</div>		
 	
 	
@@ -221,11 +336,46 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns PSPDFColorSelectionViewController.</p>
+		<p>Convenience initializers</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (id)monoChromeSelectionViewController</code></div>
+	<div class="method-subsection method-declaration"><code>+ (instancetype)monoChromeSelectionViewController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorSelectionViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setDefaultColorArrays:" title="setDefaultColorArrays:"></a>
+	<h3 class="subsubtitle method-title">setDefaultColorArrays:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lazily evaluated. Set arrays of colors to change the default picker style.
+Will reset to default if set to nil.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (void)setDefaultColorArrays:(NSArray *)<em>defaultColorArrays</em></code></div>
 	
 	
 	
@@ -263,7 +413,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Default initializer</p>
+		<p>Initialize with array of colors.</p>
 	</div>		
 	
 	
@@ -303,7 +453,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

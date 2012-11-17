@@ -42,9 +42,16 @@
 	
 	<option value="//api/name/allowFileMergingAndTempFiles">&nbsp;&nbsp;&nbsp;&nbsp;allowFileMergingAndTempFiles</option>
 	
+	<option value="//api/name/documentInteractionController">&nbsp;&nbsp;&nbsp;&nbsp;documentInteractionController</option>
 	
 	
 	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/fileURLForDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- fileURLForDocument:</option>
 	
 	
 	
@@ -62,6 +69,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -72,11 +81,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowFileMergingAndTempFiles">allowFileMergingAndTempFiles</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentInteractionController">documentInteractionController</a></span></li>
+	
 </ul></li>
 
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileURLForDocument:">fileURLForDocument:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -130,7 +147,7 @@ Before sending it to another application, annotations will be saved.</p>
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -140,6 +157,29 @@ Before sending it to another application, annotations will be saved.</p>
 Defaults to YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/documentInteractionController">&nbsp;&nbsp;documentInteractionController</a></code>
+		<span class="tooltip"><p>Document interaction controller that is used internally.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileURLForDocument:">&ndash;&nbsp;fileURLForDocument:</a></code>
+		<span class="tooltip"><p>Will figure out a file-based URL that we can attach to the interaction controller.
+Default implementation will use <a href="../Classes/PSPDFProcessor.html">PSPDFProcessor</a> to merge multple document files if needed in a temporary directory.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -189,11 +229,86 @@ Defaults to YES.</p>
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/documentInteractionController" title="documentInteractionController"></a>
+	<h3 class="subsubtitle method-title">documentInteractionController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Document interaction controller that is used internally.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIDocumentInteractionController *documentInteractionController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOpenInBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/fileURLForDocument:" title="fileURLForDocument:"></a>
+	<h3 class="subsubtitle method-title">fileURLForDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Will figure out a file-based URL that we can attach to the interaction controller.
+Default implementation will use <a href="../Classes/PSPDFProcessor.html">PSPDFProcessor</a> to merge multple document files if needed in a temporary directory.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)fileURLForDocument:(PSPDFDocument *)<em>document</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFOpenInBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
@@ -206,7 +321,7 @@ Defaults to YES.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

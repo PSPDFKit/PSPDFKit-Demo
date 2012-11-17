@@ -40,7 +40,11 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
+	
 	<option value="//api/name/glyphs">&nbsp;&nbsp;&nbsp;&nbsp;glyphs</option>
+	
+	<option value="//api/name/images">&nbsp;&nbsp;&nbsp;&nbsp;images</option>
 	
 	<option value="//api/name/text">&nbsp;&nbsp;&nbsp;&nbsp;text</option>
 	
@@ -55,7 +59,9 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:</option>
+	<option value="//api/name/initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:</option>
+	
+	<option value="//api/name/textWithGlyphs:">&nbsp;&nbsp;&nbsp;&nbsp;- textWithGlyphs:</option>
 	
 	
 	
@@ -81,7 +87,11 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/glyphs">glyphs</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/images">images</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/text">text</a></span></li>
 	
@@ -97,7 +107,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:">initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:">initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textWithGlyphs:">textWithGlyphs:</a></span></li>
 	
 </ul></li>
 
@@ -154,7 +166,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:">&ndash;&nbsp;initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:</a></code>
+		<code><a href="#//api/name/initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:">&ndash;&nbsp;initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:</a></code>
 		<span class="tooltip"><p>Designated initializer.
 fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentProvider.html">PSPDFDocumentProvider</a>.</p></span>
 	</span>
@@ -166,6 +178,13 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 		<span class="tooltip"><p>Complete page text.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/textWithGlyphs:">&ndash;&nbsp;textWithGlyphs:</a></code>
+		<span class="tooltip"><p>Uses <a href="#//api/name/glyphs">glyphs</a> to return the corresponding page <a href="#//api/name/text">text</a>, including newlines and spaces.</p></span>
+	</span>
+	
 	
 </li><li>
 	<span class="tooltip">
@@ -183,8 +202,22 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/images">&nbsp;&nbsp;images</a></code>
+		<span class="tooltip"><p>List of detected images (<a href="../Classes/PSPDFImageInfo.html">PSPDFImageInfo</a>)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/textBlocks">&nbsp;&nbsp;textBlocks</a></code>
 		<span class="tooltip"><p>List of detected <a href="#//api/name/text">text</a> blocks (<a href="../Classes/PSPDFTextBlock.html">PSPDFTextBlock</a>)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
+		<span class="tooltip"><p>Associated document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -202,6 +235,40 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/document" title="document"></a>
+	<h3 class="subsubtitle method-title">document</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Associated document.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (atomic, weak) PSPDFDocument *document</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/glyphs" title="glyphs"></a>
 	<h3 class="subsubtitle method-title">glyphs</h3>
 	
@@ -212,7 +279,41 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *glyphs</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *glyphs</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/images" title="images"></a>
+	<h3 class="subsubtitle method-title">images</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>List of detected images (<a href="../Classes/PSPDFImageInfo.html">PSPDFImageInfo</a>)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *images</code></div>
 	
 	
 	
@@ -246,7 +347,7 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *text</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *text</code></div>
 	
 	
 	
@@ -280,7 +381,7 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *textBlocks</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSArray *textBlocks</code></div>
 	
 	
 	
@@ -314,7 +415,7 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *words</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *words</code></div>
 	
 	
 	
@@ -348,8 +449,8 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:" title="initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:"></a>
-	<h3 class="subsubtitle method-title">initWithPDFPage:page:fontCache:hideGlyphsOutsidePageRect:PDFBox:</h3>
+	<a name="//api/name/initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:" title="initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:"></a>
+	<h3 class="subsubtitle method-title">initWithPDFPage:page:document:fontCache:hideGlyphsOutsidePageRect:PDFBox:</h3>
 	
 	
 	
@@ -359,7 +460,41 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithPDFPage:(CGPDFPageRef)<em>pageRef</em> page:(NSUInteger)<em>page</em> fontCache:(NSMutableDictionary *)<em>fontCache</em> hideGlyphsOutsidePageRect:(BOOL)<em>hideGlyphsOutsidePageRect</em> PDFBox:(CGPDFBox)<em>PDFBox</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithPDFPage:(CGPDFPageRef)<em>pageRef</em> page:(NSUInteger)<em>page</em> document:(PSPDFDocument *)<em>document</em> fontCache:(NSMutableDictionary *)<em>fontCache</em> hideGlyphsOutsidePageRect:(BOOL)<em>hideGlyphsOutsidePageRect</em> PDFBox:(CGPDFBox)<em>PDFBox</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextParser.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/textWithGlyphs:" title="textWithGlyphs:"></a>
+	<h3 class="subsubtitle method-title">textWithGlyphs:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Uses <a href="#//api/name/glyphs">glyphs</a> to return the corresponding page <a href="#//api/name/text">text</a>, including newlines and spaces.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSString *)textWithGlyphs:(NSArray *)<em>glyphs</em></code></div>
 	
 	
 	
@@ -395,7 +530,7 @@ fontCache is optional, share only between one <a href="../Classes/PSPDFDocumentP
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

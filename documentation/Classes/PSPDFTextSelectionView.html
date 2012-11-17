@@ -40,13 +40,15 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/firstLineRect">&nbsp;&nbsp;&nbsp;&nbsp;firstLineRect</option>
+	
 	<option value="//api/name/loupeView">&nbsp;&nbsp;&nbsp;&nbsp;loupeView</option>
 	
 	<option value="//api/name/pageView">&nbsp;&nbsp;&nbsp;&nbsp;pageView</option>
 	
-	<option value="//api/name/selectedAnnotation">&nbsp;&nbsp;&nbsp;&nbsp;selectedAnnotation</option>
-	
 	<option value="//api/name/selectedGlyphs">&nbsp;&nbsp;&nbsp;&nbsp;selectedGlyphs</option>
+	
+	<option value="//api/name/selectedImage">&nbsp;&nbsp;&nbsp;&nbsp;selectedImage</option>
 	
 	<option value="//api/name/selectedText">&nbsp;&nbsp;&nbsp;&nbsp;selectedText</option>
 	
@@ -66,7 +68,11 @@
 	
 	<option value="//api/name/discardSelection">&nbsp;&nbsp;&nbsp;&nbsp;- discardSelection</option>
 	
-	<option value="//api/name/updateMenu">&nbsp;&nbsp;&nbsp;&nbsp;- updateMenu</option>
+	<option value="//api/name/hasSelection">&nbsp;&nbsp;&nbsp;&nbsp;- hasSelection</option>
+	
+	<option value="//api/name/updateMenuAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- updateMenuAnimated:</option>
+	
+	<option value="//api/name/updateSelection">&nbsp;&nbsp;&nbsp;&nbsp;- updateSelection</option>
 	
 	
 	
@@ -84,6 +90,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -92,13 +100,15 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/firstLineRect">firstLineRect</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loupeView">loupeView</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageView">pageView</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectedAnnotation">selectedAnnotation</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectedGlyphs">selectedGlyphs</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectedImage">selectedImage</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectedText">selectedText</a></span></li>
 	
@@ -120,7 +130,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/discardSelection">discardSelection</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMenu">updateMenu</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasSelection">hasSelection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateMenuAnimated:">updateMenuAnimated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateSelection">updateSelection</a></span></li>
 	
 </ul></li>
 
@@ -159,8 +173,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Handles the text and annotation selection.
-Only available in PSPDFKit Annotate.</p>
+						<p>Handles text selection. PSPDFKit Annotate feature.</p>
 					</div>
 					
 					
@@ -173,7 +186,7 @@ Only available in PSPDFKit Annotate.</p>
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -192,22 +205,15 @@ Only available in PSPDFKit Annotate.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/selectedImage">&nbsp;&nbsp;selectedImage</a></code>
+		<span class="tooltip"><p>Currently selected image.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/trimmedSelectedText">&nbsp;&nbsp;trimmedSelectedText</a></code>
 		<span class="tooltip"><p>Currently selected text, optimized for searching</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/selectedAnnotation">&nbsp;&nbsp;selectedAnnotation</a></code>
-		<span class="tooltip"><p>Currently selected annotation</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/loupeView">&nbsp;&nbsp;loupeView</a></code>
-		<span class="tooltip"><p>Loupe View for text selection.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -220,8 +226,22 @@ Only available in PSPDFKit Annotate.</p>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/updateMenu">&ndash;&nbsp;updateMenu</a></code>
+		<code><a href="#//api/name/firstLineRect">&nbsp;&nbsp;firstLineRect</a></code>
+		<span class="tooltip"><p>rects for the current selection, in view coordinate space.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateMenuAnimated:">&ndash;&nbsp;updateMenuAnimated:</a></code>
 		<span class="tooltip"><p>Updates the UIMenuController if there is a selection.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateSelection">&ndash;&nbsp;updateSelection</a></code>
+		<span class="tooltip"><p>Update the selection (text menu).</p></span>
 	</span>
 	
 	
@@ -229,6 +249,13 @@ Only available in PSPDFKit Annotate.</p>
 	<span class="tooltip">
 		<code><a href="#//api/name/discardSelection">&ndash;&nbsp;discardSelection</a></code>
 		<span class="tooltip"><p>Clears the current selection.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hasSelection">&ndash;&nbsp;hasSelection</a></code>
+		<span class="tooltip"><p>Currently has a text selection?</p></span>
 	</span>
 	
 	
@@ -242,6 +269,21 @@ Only available in PSPDFKit Annotate.</p>
 </li>
 						</ul>
 						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loupeView">&nbsp;&nbsp;loupeView</a></code>
+		<span class="tooltip"><p>Loupe View for text selection.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -251,6 +293,40 @@ Only available in PSPDFKit Annotate.</p>
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/firstLineRect" title="firstLineRect"></a>
+	<h3 class="subsubtitle method-title">firstLineRect</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>rects for the current selection, in view coordinate space.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGRect firstLineRect</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/loupeView" title="loupeView"></a>
@@ -321,17 +397,17 @@ Only available in PSPDFKit Annotate.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/selectedAnnotation" title="selectedAnnotation"></a>
-	<h3 class="subsubtitle method-title">selectedAnnotation</h3>
+	<a name="//api/name/selectedGlyphs" title="selectedGlyphs"></a>
+	<h3 class="subsubtitle method-title">selectedGlyphs</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Currently selected annotation</p>
+		<p>Currently selected glyphs.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *selectedGlyphs</code></div>
 	
 	
 	
@@ -355,17 +431,17 @@ Only available in PSPDFKit Annotate.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/selectedGlyphs" title="selectedGlyphs"></a>
-	<h3 class="subsubtitle method-title">selectedGlyphs</h3>
+	<a name="//api/name/selectedImage" title="selectedImage"></a>
+	<h3 class="subsubtitle method-title">selectedImage</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Currently selected glyphs.</p>
+		<p>Currently selected image.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *selectedGlyphs</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) PSPDFImageInfo *selectedImage</code></div>
 	
 	
 	
@@ -399,7 +475,7 @@ Only available in PSPDFKit Annotate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *selectedText</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *selectedText</code></div>
 	
 	
 	
@@ -433,7 +509,7 @@ Only available in PSPDFKit Annotate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSString *trimmedSelectedText</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSString *trimmedSelectedText</code></div>
 	
 	
 	
@@ -541,8 +617,42 @@ Only available in PSPDFKit Annotate.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/updateMenu" title="updateMenu"></a>
-	<h3 class="subsubtitle method-title">updateMenu</h3>
+	<a name="//api/name/hasSelection" title="hasSelection"></a>
+	<h3 class="subsubtitle method-title">hasSelection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Currently has a text selection?</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasSelection</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateMenuAnimated:" title="updateMenuAnimated:"></a>
+	<h3 class="subsubtitle method-title">updateMenuAnimated:</h3>
 	
 	
 	
@@ -551,7 +661,41 @@ Only available in PSPDFKit Annotate.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)updateMenu</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)updateMenuAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateSelection" title="updateSelection"></a>
+	<h3 class="subsubtitle method-title">updateSelection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Update the selection (text menu).</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)updateSelection</code></div>
 	
 	
 	
@@ -587,7 +731,7 @@ Only available in PSPDFKit Annotate.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

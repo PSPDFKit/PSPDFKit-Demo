@@ -1,0 +1,624 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFStream Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFStream Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/stream">&nbsp;&nbsp;&nbsp;&nbsp;stream</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/dataLength">&nbsp;&nbsp;&nbsp;&nbsp;- dataLength</option>
+	
+	<option value="//api/name/dataUsingFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- dataUsingFormat:</option>
+	
+	<option value="//api/name/dictionary">&nbsp;&nbsp;&nbsp;&nbsp;- dictionary</option>
+	
+	<option value="//api/name/fileURLWithAssetName:document:page:">&nbsp;&nbsp;&nbsp;&nbsp;- fileURLWithAssetName:document:page:</option>
+	
+	<option value="//api/name/fileURLWithPath:">&nbsp;&nbsp;&nbsp;&nbsp;- fileURLWithPath:</option>
+	
+	<option value="//api/name/image">&nbsp;&nbsp;&nbsp;&nbsp;- image</option>
+	
+	<option value="//api/name/initWithStream:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithStream:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stream">stream</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataLength">dataLength</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataUsingFormat:">dataUsingFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dictionary">dictionary</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileURLWithAssetName:document:page:">fileURLWithAssetName:document:page:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileURLWithPath:">fileURLWithPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/image">image</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithStream:">initWithStream:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFStream Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFStream Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFStream.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Allows conversion of a CGPDFStreamRef to a file object.
+A Stream has <a href="#//api/name/dictionary">dictionary</a> data and <a href="#//api/name/stream">stream</a> data. Might be anything (like page commands, a video, an <a href="#//api/name/image">image</a>)</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithStream:">&ndash;&nbsp;initWithStream:</a></code>
+		<span class="tooltip"><p>Designated initializer</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/stream">&nbsp;&nbsp;stream</a></code>
+		<span class="tooltip"><p>Referenced stream. Warning! Only valid as long as the parent CGPDFDocument is not closed.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dictionary">&ndash;&nbsp;dictionary</a></code>
+		<span class="tooltip"><p>Stream dictionary.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/image">&ndash;&nbsp;image</a></code>
+		<span class="tooltip"><p>If CGPDFDataFormat is CGPDFDataFormatJPEGEncoded, we can extract the image.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataUsingFormat:">&ndash;&nbsp;dataUsingFormat:</a></code>
+		<span class="tooltip"><p>Stream data. Format will be returned.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dataLength">&ndash;&nbsp;dataLength</a></code>
+		<span class="tooltip"><p>Stream size.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileURLWithAssetName:document:page:">&ndash;&nbsp;fileURLWithAssetName:document:page:</a></code>
+		<span class="tooltip"><p>File URL from the converted <a href="#//api/name/stream">stream</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fileURLWithPath:">&ndash;&nbsp;fileURLWithPath:</a></code>
+		<span class="tooltip"><p>File URL with generic path. Path needs to be writeable and any directory needs to be created.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/stream" title="stream"></a>
+	<h3 class="subsubtitle method-title">stream</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Referenced stream. Warning! Only valid as long as the parent CGPDFDocument is not closed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGPDFStreamRef stream</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/dataLength" title="dataLength"></a>
+	<h3 class="subsubtitle method-title">dataLength</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stream size.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (size_t)dataLength</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dataUsingFormat:" title="dataUsingFormat:"></a>
+	<h3 class="subsubtitle method-title">dataUsingFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stream data. Format will be returned.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSData *)dataUsingFormat:(CGPDFDataFormat *)<em>dataFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dictionary" title="dictionary"></a>
+	<h3 class="subsubtitle method-title">dictionary</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Stream dictionary.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)dictionary</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileURLWithAssetName:document:page:" title="fileURLWithAssetName:document:page:"></a>
+	<h3 class="subsubtitle method-title">fileURLWithAssetName:document:page:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>File URL from the converted <a href="#//api/name/stream">stream</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)fileURLWithAssetName:(NSString *)<em>assetName</em> document:(PSPDFDocument *)<em>document</em> page:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileURLWithPath:" title="fileURLWithPath:"></a>
+	<h3 class="subsubtitle method-title">fileURLWithPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>File URL with generic path. Path needs to be writeable and any directory needs to be created.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSURL *)fileURLWithPath:(NSString *)<em>path</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/image" title="image"></a>
+	<h3 class="subsubtitle method-title">image</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If CGPDFDataFormat is CGPDFDataFormatJPEGEncoded, we can extract the image.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIImage *)image</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithStream:" title="initWithStream:"></a>
+	<h3 class="subsubtitle method-title">initWithStream:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated initializer</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithStream:(CGPDFStreamRef)<em>stream</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFStream.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

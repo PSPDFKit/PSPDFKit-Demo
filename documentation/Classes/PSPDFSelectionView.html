@@ -40,6 +40,12 @@
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
+	<option value="//api/name/rects">&nbsp;&nbsp;&nbsp;&nbsp;rects</option>
+	
+	<option value="//api/name/selectionColor">&nbsp;&nbsp;&nbsp;&nbsp;selectionColor</option>
+	
+	<option value="//api/name/wordSelectionColor">&nbsp;&nbsp;&nbsp;&nbsp;wordSelectionColor</option>
+	
 	
 	
 	
@@ -48,6 +54,8 @@
 	<option value="instance_methods">Instance Methods</option>
 	
 	<option value="//api/name/initWithFrame:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithFrame:delegate:</option>
+	
+	<option value="//api/name/setRawRects:count:">&nbsp;&nbsp;&nbsp;&nbsp;- setRawRects:count:</option>
 	
 	
 	
@@ -73,6 +81,12 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rects">rects</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectionColor">selectionColor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/wordSelectionColor">wordSelectionColor</a></span></li>
+	
 </ul></li>
 
 
@@ -82,6 +96,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithFrame:delegate:">initWithFrame:delegate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setRawRects:count:">setRawRects:count:</a></span></li>
 	
 </ul></li>
 
@@ -142,6 +158,35 @@
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/selectionColor">&nbsp;&nbsp;selectionColor</a></code>
+		<span class="tooltip"><p>Color used to span the selection. Defaults to iOS selection blue.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/wordSelectionColor">&nbsp;&nbsp;wordSelectionColor</a></code>
+		<span class="tooltip"><p>Color used to select words. Defaults to a darker iOS selection blue.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/rects">&nbsp;&nbsp;rects</a></code>
+		<span class="tooltip"><p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setRawRects:count:">&ndash;&nbsp;setRawRects:count:</a></code>
+		<span class="tooltip"><p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
+<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -167,6 +212,108 @@
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFSelectionViewDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/rects" title="rects"></a>
+	<h3 class="subsubtitle method-title">rects</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *rects</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/selectionColor" title="selectionColor"></a>
+	<h3 class="subsubtitle method-title">selectionColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Color used to span the selection. Defaults to iOS selection blue.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *selectionColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/wordSelectionColor" title="wordSelectionColor"></a>
+	<h3 class="subsubtitle method-title">wordSelectionColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Color used to select words. Defaults to a darker iOS selection blue.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *wordSelectionColor</code></div>
 	
 	
 	
@@ -233,6 +380,41 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/setRawRects:count:" title="setRawRects:count:"></a>
+	<h3 class="subsubtitle method-title">setRawRects:count:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
+<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setRawRects:(CGRect *)<em>rawRects</em> count:(NSUInteger)<em>count</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -246,7 +428,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

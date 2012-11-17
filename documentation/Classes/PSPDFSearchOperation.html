@@ -46,17 +46,15 @@
 	
 	<option value="//api/name/document">&nbsp;&nbsp;&nbsp;&nbsp;document</option>
 	
-	<option value="//api/name/pageTextDict">&nbsp;&nbsp;&nbsp;&nbsp;pageTextDict</option>
+	<option value="//api/name/pageRanges">&nbsp;&nbsp;&nbsp;&nbsp;pageRanges</option>
 	
 	<option value="//api/name/searchMode">&nbsp;&nbsp;&nbsp;&nbsp;searchMode</option>
-	
-	<option value="//api/name/searchPages">&nbsp;&nbsp;&nbsp;&nbsp;searchPages</option>
 	
 	<option value="//api/name/searchResults">&nbsp;&nbsp;&nbsp;&nbsp;searchResults</option>
 	
 	<option value="//api/name/searchTerm">&nbsp;&nbsp;&nbsp;&nbsp;searchTerm</option>
 	
-	<option value="//api/name/selectionSearchPages">&nbsp;&nbsp;&nbsp;&nbsp;selectionSearchPages</option>
+	<option value="//api/name/shouldSearchAllPages">&nbsp;&nbsp;&nbsp;&nbsp;shouldSearchAllPages</option>
 	
 	
 	
@@ -97,17 +95,15 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/document">document</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageTextDict">pageTextDict</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRanges">pageRanges</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchMode">searchMode</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchPages">searchPages</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchResults">searchResults</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchTerm">searchTerm</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectionSearchPages">selectionSearchPages</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shouldSearchAllPages">shouldSearchAllPages</a></span></li>
 	
 </ul></li>
 
@@ -156,7 +152,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Search operation. Created within <a href="../Classes/PSPDFTextSearch.html">PSPDFTextSearch</a>.</p>
+						<p>Search operation to find text inside a all or specific pages of a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a>.
+Usually created within <a href="../Classes/PSPDFTextSearch.html">PSPDFTextSearch</a>, but can also be used externally.</p>
 					</div>
 					
 					
@@ -175,59 +172,23 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithDocument:searchTerm:">&ndash;&nbsp;initWithDocument:searchTerm:</a></code>
-		<span class="tooltip"><p>Initialize with Document reference and searchText.</p></span>
+		<span class="tooltip"><p>Initialize with <a href="#//api/name/document">document</a> reference and the search term.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/selectionSearchPages">&nbsp;&nbsp;selectionSearchPages</a></code>
-		<span class="tooltip"><p>Define which pages should be searched with selection metadata. (much slower)
-If pageText is not set, this setting is ignored.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/searchPages">&nbsp;&nbsp;searchPages</a></code>
-		<span class="tooltip"><p>If set, only the pages set in searchPages are searched (and also <a href="#//api/name/selectionSearchPages">selectionSearchPages</a>)
-searchPages will be searched without selection (if text is already cached)
-Set this to an empty array and use <a href="#//api/name/selectionSearchPages">selectionSearchPages</a> to make a limited search with selection.</p></span>
+		<code><a href="#//api/name/pageRanges">&nbsp;&nbsp;pageRanges</a></code>
+		<span class="tooltip"><p>Customize range of pages that should be searched. Set to nil to search whole <a href="#//api/name/document">document</a>.
+Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/searchTerm">&nbsp;&nbsp;searchTerm</a></code>
-		<span class="tooltip"><p>String to be searched for.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pageTextDict">&nbsp;&nbsp;pageTextDict</a></code>
-		<span class="tooltip"><p>Dictionary of the whole page text. Set to optimize &ndash; in connection with <a href="#//api/name/selectionSearchPages">selectionSearchPages</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/searchResults">&nbsp;&nbsp;searchResults</a></code>
-		<span class="tooltip"><p>Array of PSPDFSearchResult&rsquo;s.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
-		<span class="tooltip"><p>Associated document (weak, we&rsquo;re saved within the document)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>Search delegate. Will be retained as long as the operation runs.</p></span>
+		<code><a href="#//api/name/shouldSearchAllPages">&nbsp;&nbsp;shouldSearchAllPages</a></code>
+		<span class="tooltip"><p>If set to YES, <a href="#//api/name/pageRanges">pageRanges</a> will be searched first, then all following pages.
+If NO, only <a href="#//api/name/pageRanges">pageRanges</a> will be searched.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -242,6 +203,34 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 	<span class="tooltip">
 		<code><a href="#//api/name/compareOptions">&nbsp;&nbsp;compareOptions</a></code>
 		<span class="tooltip"><p>Set compareOptions for the search.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Search delegate.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchResults">&nbsp;&nbsp;searchResults</a></code>
+		<span class="tooltip"><p>Array of <a href="../Classes/PSPDFSearchResult.html">PSPDFSearchResult</a> (will be set once the operation is finished)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchTerm">&nbsp;&nbsp;searchTerm</a></code>
+		<span class="tooltip"><p>Current search term.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
+		<span class="tooltip"><p>Associated document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -299,7 +288,7 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Search delegate. Will be retained as long as the operation runs.</p>
+		<p>Search delegate.</p>
 	</div>		
 	
 	
@@ -333,7 +322,7 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Associated document (weak, we&rsquo;re saved within the document)</p>
+		<p>Associated document.</p>
 	</div>		
 	
 	
@@ -361,17 +350,18 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/pageTextDict" title="pageTextDict"></a>
-	<h3 class="subsubtitle method-title">pageTextDict</h3>
+	<a name="//api/name/pageRanges" title="pageRanges"></a>
+	<h3 class="subsubtitle method-title">pageRanges</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Dictionary of the whole page text. Set to optimize &ndash; in connection with <a href="#//api/name/selectionSearchPages">selectionSearchPages</a>.</p>
+		<p>Customize range of pages that should be searched. Set to nil to search whole <a href="#//api/name/document">document</a>.
+Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSDictionary *pageTextDict</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexSet *pageRanges</code></div>
 	
 	
 	
@@ -429,53 +419,17 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/searchPages" title="searchPages"></a>
-	<h3 class="subsubtitle method-title">searchPages</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>If set, only the pages set in searchPages are searched (and also <a href="#//api/name/selectionSearchPages">selectionSearchPages</a>)
-searchPages will be searched without selection (if text is already cached)
-Set this to an empty array and use <a href="#//api/name/selectionSearchPages">selectionSearchPages</a> to make a limited search with selection.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *searchPages</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSearchOperation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
 	<a name="//api/name/searchResults" title="searchResults"></a>
 	<h3 class="subsubtitle method-title">searchResults</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Array of PSPDFSearchResult&rsquo;s.</p>
+		<p>Array of <a href="../Classes/PSPDFSearchResult.html">PSPDFSearchResult</a> (will be set once the operation is finished)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *searchResults</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSArray *searchResults</code></div>
 	
 	
 	
@@ -505,7 +459,7 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 	
 	
 	<div class="method-subsection brief-description">
-		<p>String to be searched for.</p>
+		<p>Current search term.</p>
 	</div>		
 	
 	
@@ -533,18 +487,18 @@ Set this to an empty array and use <a href="#//api/name/selectionSearchPages">se
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/selectionSearchPages" title="selectionSearchPages"></a>
-	<h3 class="subsubtitle method-title">selectionSearchPages</h3>
+	<a name="//api/name/shouldSearchAllPages" title="shouldSearchAllPages"></a>
+	<h3 class="subsubtitle method-title">shouldSearchAllPages</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Define which pages should be searched with selection metadata. (much slower)
-If pageText is not set, this setting is ignored.</p>
+		<p>If set to YES, <a href="#//api/name/pageRanges">pageRanges</a> will be searched first, then all following pages.
+If NO, only <a href="#//api/name/pageRanges">pageRanges</a> will be searched.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *selectionSearchPages</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shouldSearchAllPages</code></div>
 	
 	
 	
@@ -584,7 +538,7 @@ If pageText is not set, this setting is ignored.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize with Document reference and searchText.</p>
+		<p>Initialize with <a href="#//api/name/document">document</a> reference and the search term.</p>
 	</div>		
 	
 	
@@ -624,7 +578,7 @@ If pageText is not set, this setting is ignored.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -176,7 +176,11 @@
 	
 	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
 	
+	<option value="//api/name/hasLoadedTextParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedTextParserForPage:</option>
+	
 	<option value="//api/name/hasPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasPageInfoForPage:</option>
+	
+	<option value="//api/name/isEqualToDocument:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqualToDocument:</option>
 	
 	<option value="//api/name/nearestPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- nearestPageInfoForPage:</option>
 	
@@ -400,7 +404,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedTextParserForPage:">hasLoadedTextParserForPage:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasPageInfoForPage:">hasPageInfoForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqualToDocument:">isEqualToDocument:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/nearestPageInfoForPage:">nearestPageInfoForPage:</a></span></li>
 	
@@ -549,6 +557,13 @@ Note: You might need to manually set a <a href="#//api/name/UID">UID</a> to enab
 		<span class="tooltip"><p>If you have <a href="#//api/name/files">files</a> that have the pattern XXX_Page_0001 &ndash; XXX_Page_0200 use this initializer.
 fileTemplate needs to have exactly one &lsquo;%d&rsquo; marker where the page should be.
 For leading zeros, use the default printf syntax. (%04d = 0001)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEqualToDocument:">&ndash;&nbsp;isEqualToDocument:</a></code>
+		<span class="tooltip"><p>Compare.</p></span>
 	</span>
 	
 	
@@ -856,7 +871,7 @@ maybe needs a pdf lock if not already cached.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/PDFBox">&nbsp;&nbsp;PDFBox</a></code>
-		<span class="tooltip"><p>PDFBox that is used for rendering. Defaults to kCGPDFMediaBox.
+		<span class="tooltip"><p>PDFBox that is used for rendering. Defaults to kCGPDFCropBox.
 Older versions of PSPDFKit used kCGPDFCropBox by default.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1040,6 +1055,13 @@ Can also be overridden manually.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/hasLoadedTextParserForPage:">&ndash;&nbsp;hasLoadedTextParserForPage:</a></code>
+		<span class="tooltip"><p>Checks if the text parser has already been loaded.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/textParserHideGlyphsOutsidePageRect">&nbsp;&nbsp;textParserHideGlyphsOutsidePageRect</a></code>
 		<span class="tooltip"><p>If YES, any glyphs (text, words) that are outside the visible page area will not be parsed.
 Set early or call <a href="#//api/name/clearCache">clearCache</a> manually after changing this property. (since extracted text is cached)
@@ -1050,7 +1072,8 @@ Defaults to YES.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/textSearch">&nbsp;&nbsp;textSearch</a></code>
-		<span class="tooltip"><p>Text extraction class for current document.</p></span>
+		<span class="tooltip"><p>Text extraction class for current document.
+Be careful where you&rsquo;re setting the <a href="#//api/name/delegate">delegate</a>. You can also create a private <a href="../Classes/PSPDFTextSearch.html">PSPDFTextSearch</a> class.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1264,7 +1287,7 @@ Defaults to white.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>PDFBox that is used for rendering. Defaults to kCGPDFMediaBox.
+		<p>PDFBox that is used for rendering. Defaults to kCGPDFCropBox.
 Older versions of PSPDFKit used kCGPDFCropBox by default.</p>
 	</div>		
 	
@@ -1972,7 +1995,7 @@ Note: If writing annotations is enabled, the dataArray&rsquo;s content will chan
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) NSArray *documentProviders</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSArray *documentProviders</code></div>
 	
 	
 	
@@ -2048,7 +2071,7 @@ Note: only evaluates the first file if multiple <a href="#//api/name/files">file
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSString *encryptionFilter</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSString *encryptionFilter</code></div>
 	
 	
 	
@@ -2374,7 +2397,7 @@ This fixes tiny white/gray lines at the borders of a document that else might sh
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSDictionary *renderOptions</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSDictionary *renderOptions</code></div>
 	
 	
 	
@@ -2440,7 +2463,8 @@ Defaults to YES.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Text extraction class for current document.</p>
+		<p>Text extraction class for current document.
+Be careful where you&rsquo;re setting the <a href="#//api/name/delegate">delegate</a>. You can also create a private <a href="../Classes/PSPDFTextSearch.html">PSPDFTextSearch</a> class.</p>
 	</div>		
 	
 	
@@ -3531,6 +3555,40 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/hasLoadedTextParserForPage:" title="hasLoadedTextParserForPage:"></a>
+	<h3 class="subsubtitle method-title">hasLoadedTextParserForPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if the text parser has already been loaded.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasLoadedTextParserForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/hasPageInfoForPage:" title="hasPageInfoForPage:"></a>
 	<h3 class="subsubtitle method-title">hasPageInfoForPage:</h3>
 	
@@ -3542,6 +3600,40 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)hasPageInfoForPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEqualToDocument:" title="isEqualToDocument:"></a>
+	<h3 class="subsubtitle method-title">isEqualToDocument:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Compare.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEqualToDocument:(PSPDFDocument *)<em>otherDocument</em></code></div>
 	
 	
 	
@@ -4327,7 +4419,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -42,6 +42,14 @@
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
+	<option value="//api/name/lineWidth">&nbsp;&nbsp;&nbsp;&nbsp;lineWidth</option>
+	
+	<option value="//api/name/path">&nbsp;&nbsp;&nbsp;&nbsp;path</option>
+	
+	<option value="//api/name/shapeLayer">&nbsp;&nbsp;&nbsp;&nbsp;shapeLayer</option>
+	
+	<option value="//api/name/strokeColor">&nbsp;&nbsp;&nbsp;&nbsp;strokeColor</option>
+	
 	
 	
 	
@@ -71,6 +79,14 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineWidth">lineWidth</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/path">path</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shapeLayer">shapeLayer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/strokeColor">strokeColor</a></span></li>
 	
 </ul></li>
 
@@ -131,6 +147,34 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/lineWidth">&nbsp;&nbsp;lineWidth</a></code>
+		<span class="tooltip"><p>Current line width.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/strokeColor">&nbsp;&nbsp;strokeColor</a></code>
+		<span class="tooltip"><p>Current stroke color.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/path">&nbsp;&nbsp;path</a></code>
+		<span class="tooltip"><p>path/<a href="#//api/name/lines">lines</a></p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/shapeLayer">&nbsp;&nbsp;shapeLayer</a></code>
+		<span class="tooltip"><p>For a fast drawing preview.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
 		<span class="tooltip"><p>Draw Delegate.</p></span>
 	</span>
@@ -160,7 +204,143 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, unsafe_unretained) id&lt;PSPDFDrawViewDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (atomic, weak) id&lt;PSPDFDrawViewDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDrawView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lineWidth" title="lineWidth"></a>
+	<h3 class="subsubtitle method-title">lineWidth</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current line width.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat lineWidth</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDrawView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/path" title="path"></a>
+	<h3 class="subsubtitle method-title">path</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>path/<a href="#//api/name/lines">lines</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIBezierPath *path</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDrawView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/shapeLayer" title="shapeLayer"></a>
+	<h3 class="subsubtitle method-title">shapeLayer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>For a fast drawing preview.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) CAShapeLayer *shapeLayer</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDrawView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/strokeColor" title="strokeColor"></a>
+	<h3 class="subsubtitle method-title">strokeColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current stroke color.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *strokeColor</code></div>
 	
 	
 	
@@ -200,7 +380,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -51,7 +51,9 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithAnnotationDictionary:inAnnotsArray:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithAnnotationDictionary:inAnnotsArray:</option>
+	<option value="//api/name/copyLinesByApplyingTransform:">&nbsp;&nbsp;&nbsp;&nbsp;- copyLinesByApplyingTransform:</option>
+	
+	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
 	
 	<option value="//api/name/rebuildPaths">&nbsp;&nbsp;&nbsp;&nbsp;- rebuildPaths</option>
 	
@@ -91,7 +93,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithAnnotationDictionary:inAnnotsArray:">initWithAnnotationDictionary:inAnnotsArray:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/copyLinesByApplyingTransform:">copyLinesByApplyingTransform:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rebuildPaths">rebuildPaths</a></span></li>
 	
@@ -132,7 +136,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>PDF Ink Annotation. (Free Drawing)</p>
+						<p>PDF Ink Annotation. (Free Drawing)
+Lines are automatically transformed when the boundingBox is changed.</p>
 					</div>
 					
 					
@@ -150,8 +155,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+		<span class="tooltip"><p>Designated initializer.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/lines">&nbsp;&nbsp;lines</a></code>
-		<span class="tooltip"><p>Array of lines.</p></span>
+		<span class="tooltip"><p>Array of lines (which is a array of CGPoint&rsquo;s)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -164,15 +176,16 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithAnnotationDictionary:inAnnotsArray:">&ndash;&nbsp;initWithAnnotationDictionary:inAnnotsArray:</a></code>
-		<span class="tooltip"><p>Designated initializer.</p></span>
+		<code><a href="#//api/name/rebuildPaths">&ndash;&nbsp;rebuildPaths</a></code>
+		<span class="tooltip"><p>Rebuilds <a href="#//api/name/paths">paths</a> using the data in <a href="#//api/name/lines">lines</a>.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/rebuildPaths">&ndash;&nbsp;rebuildPaths</a></code>
-		<span class="tooltip"><p>Rebuilds <a href="#//api/name/paths">paths</a> using the data in <a href="#//api/name/lines">lines</a>.</p></span>
+		<code><a href="#//api/name/copyLinesByApplyingTransform:">&ndash;&nbsp;copyLinesByApplyingTransform:</a></code>
+		<span class="tooltip"><p>Generate new line array by applying transform.
+This is used internally when boundingBox is changed.</p></span>
 	</span>
 	
 	
@@ -196,11 +209,11 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Array of lines.</p>
+		<p>Array of lines (which is a array of CGPoint&rsquo;s)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *lines</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *lines</code></div>
 	
 	
 	
@@ -234,7 +247,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *paths</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *paths</code></div>
 	
 	
 	
@@ -268,8 +281,43 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithAnnotationDictionary:inAnnotsArray:" title="initWithAnnotationDictionary:inAnnotsArray:"></a>
-	<h3 class="subsubtitle method-title">initWithAnnotationDictionary:inAnnotsArray:</h3>
+	<a name="//api/name/copyLinesByApplyingTransform:" title="copyLinesByApplyingTransform:"></a>
+	<h3 class="subsubtitle method-title">copyLinesByApplyingTransform:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Generate new line array by applying transform.
+This is used internally when boundingBox is changed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)copyLinesByApplyingTransform:(CGAffineTransform)<em>transform</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFInkAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="subsubtitle method-title">init</h3>
 	
 	
 	
@@ -278,7 +326,7 @@
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)<em>annotDict</em> inAnnotsArray:(CGPDFArrayRef)<em>annotsArray</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)init</code></div>
 	
 	
 	
@@ -348,7 +396,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

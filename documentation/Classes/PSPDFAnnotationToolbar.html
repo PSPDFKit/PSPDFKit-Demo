@@ -42,6 +42,10 @@
 	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
+	<option value="//api/name/drawColor">&nbsp;&nbsp;&nbsp;&nbsp;drawColor</option>
+	
+	<option value="//api/name/lineWidth">&nbsp;&nbsp;&nbsp;&nbsp;lineWidth</option>
+	
 	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
 	
 	<option value="//api/name/toolbarMode">&nbsp;&nbsp;&nbsp;&nbsp;toolbarMode</option>
@@ -53,11 +57,17 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/cancelDrawingAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- cancelDrawingAnimated:</option>
+	
+	<option value="//api/name/doneDrawingAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- doneDrawingAnimated:</option>
+	
 	<option value="//api/name/flashToolbar">&nbsp;&nbsp;&nbsp;&nbsp;- flashToolbar</option>
 	
 	<option value="//api/name/hideToolbarAnimated:completion:">&nbsp;&nbsp;&nbsp;&nbsp;- hideToolbarAnimated:completion:</option>
 	
 	<option value="//api/name/initWithPDFController:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithPDFController:</option>
+	
+	<option value="//api/name/noteButtonPressed:">&nbsp;&nbsp;&nbsp;&nbsp;- noteButtonPressed:</option>
 	
 	<option value="//api/name/showToolbarInRect:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showToolbarInRect:animated:</option>
 	
@@ -77,6 +87,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFSubclassing Methods">PSPDFSubclassing Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -86,6 +98,10 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/drawColor">drawColor</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineWidth">lineWidth</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
 	
@@ -99,11 +115,17 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cancelDrawingAnimated:">cancelDrawingAnimated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doneDrawingAnimated:">doneDrawingAnimated:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flashToolbar">flashToolbar</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideToolbarAnimated:completion:">hideToolbarAnimated:completion:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithPDFController:">initWithPDFController:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/noteButtonPressed:">noteButtonPressed:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showToolbarInRect:animated:">showToolbarInRect:animated:</a></span></li>
 	
@@ -162,7 +184,7 @@ You can also use the features of the toolbar in the background and make your own
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -216,6 +238,51 @@ You need to manually remove the toolbar from the view in the completion block. T
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/drawColor">&nbsp;&nbsp;drawColor</a></code>
+		<span class="tooltip"><p>Default/current drawing color (PSPDFAnnotationToolbarDraw).
+Defaults to [UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]
+PSPDFKit will save the last used drawing color in the NSUserDefaults.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lineWidth">&nbsp;&nbsp;lineWidth</a></code>
+		<span class="tooltip"><p>Current drawing line width. Defaults to 3.f</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFSubclassing Methods" name="task_PSPDFSubclassing Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFSubclassing Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/noteButtonPressed:">&ndash;&nbsp;noteButtonPressed:</a></code>
+		<span class="tooltip"><p>Toolbar might be used &ldquo;headless&rdquo; but for state management. Manually call buttons here.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/cancelDrawingAnimated:">&ndash;&nbsp;cancelDrawingAnimated:</a></code>
+		<span class="tooltip"><p>Manually cancel drawing. Only allowed during <a href="#//api/name/toolbarMode">toolbarMode</a> == PSPDFAnnotationToolbarDraw.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doneDrawingAnimated:">&ndash;&nbsp;doneDrawingAnimated:</a></code>
+		<span class="tooltip"><p>Manually confirm drawing. Only allowed during <a href="#//api/name/toolbarMode">toolbarMode</a> == PSPDFAnnotationToolbarDraw.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -241,6 +308,76 @@ You need to manually remove the toolbar from the view in the completion block. T
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) id&lt;PSPDFAnnotationToolbarDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/drawColor" title="drawColor"></a>
+	<h3 class="subsubtitle method-title">drawColor</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Default/current drawing color (PSPDFAnnotationToolbarDraw).
+Defaults to [UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]
+PSPDFKit will save the last used drawing color in the NSUserDefaults.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *drawColor</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lineWidth" title="lineWidth"></a>
+	<h3 class="subsubtitle method-title">lineWidth</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current drawing line width. Defaults to 3.f</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat lineWidth</code></div>
 	
 	
 	
@@ -340,6 +477,74 @@ You need to manually remove the toolbar from the view in the completion block. T
 					<div class="section section-methods">
 						<a title="Instance Methods" name="instance_methods"></a>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/cancelDrawingAnimated:" title="cancelDrawingAnimated:"></a>
+	<h3 class="subsubtitle method-title">cancelDrawingAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Manually cancel drawing. Only allowed during <a href="#//api/name/toolbarMode">toolbarMode</a> == PSPDFAnnotationToolbarDraw.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)cancelDrawingAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doneDrawingAnimated:" title="doneDrawingAnimated:"></a>
+	<h3 class="subsubtitle method-title">doneDrawingAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Manually confirm drawing. Only allowed during <a href="#//api/name/toolbarMode">toolbarMode</a> == PSPDFAnnotationToolbarDraw.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)doneDrawingAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/flashToolbar" title="flashToolbar"></a>
@@ -445,6 +650,40 @@ You need to manually remove the toolbar from the view in the completion block. T
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/noteButtonPressed:" title="noteButtonPressed:"></a>
+	<h3 class="subsubtitle method-title">noteButtonPressed:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Toolbar might be used &ldquo;headless&rdquo; but for state management. Manually call buttons here.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)noteButtonPressed:(id)<em>sender</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotationToolbar.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/showToolbarInRect:animated:" title="showToolbarInRect:animated:"></a>
 	<h3 class="subsubtitle method-title">showToolbarInRect:animated:</h3>
 	
@@ -492,7 +731,7 @@ You need to manually add the toolbar to the view. This is just to get the animat
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

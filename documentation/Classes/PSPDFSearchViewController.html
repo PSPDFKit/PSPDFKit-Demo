@@ -44,13 +44,19 @@
 	
 	<option value="//api/name/maximumNumberOfSearchResultsDisplayed">&nbsp;&nbsp;&nbsp;&nbsp;maximumNumberOfSearchResultsDisplayed</option>
 	
+	<option value="//api/name/pdfController">&nbsp;&nbsp;&nbsp;&nbsp;pdfController</option>
+	
 	<option value="//api/name/searchBar">&nbsp;&nbsp;&nbsp;&nbsp;searchBar</option>
 	
 	<option value="//api/name/searchStatus">&nbsp;&nbsp;&nbsp;&nbsp;searchStatus</option>
 	
 	<option value="//api/name/searchText">&nbsp;&nbsp;&nbsp;&nbsp;searchText</option>
 	
+	<option value="//api/name/searchVisiblePagesFirst">&nbsp;&nbsp;&nbsp;&nbsp;searchVisiblePagesFirst</option>
+	
 	<option value="//api/name/showsCancelButton">&nbsp;&nbsp;&nbsp;&nbsp;showsCancelButton</option>
+	
+	<option value="//api/name/textSearch">&nbsp;&nbsp;&nbsp;&nbsp;textSearch</option>
 	
 	
 	
@@ -89,13 +95,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/maximumNumberOfSearchResultsDisplayed">maximumNumberOfSearchResultsDisplayed</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfController">pdfController</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchBar">searchBar</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchStatus">searchStatus</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchText">searchText</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchVisiblePagesFirst">searchVisiblePagesFirst</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showsCancelButton">showsCancelButton</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textSearch">textSearch</a></span></li>
 	
 </ul></li>
 
@@ -214,6 +226,28 @@ You can change attributes (e.g. barStyle) but don&rsquo;t change the delegate!</
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/searchVisiblePagesFirst">&nbsp;&nbsp;searchVisiblePagesFirst</a></code>
+		<span class="tooltip"><p>Set to enable searching on the visible pages, then all. Was default until PSPDFKit 2.4.1. Defaults to NO.
+If not set, the natural page order is searched.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/textSearch">&nbsp;&nbsp;textSearch</a></code>
+		<span class="tooltip"><p>Internally used textSearch (is a copy of the textSearch class in document)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfController">&nbsp;&nbsp;pdfController</a></code>
+		<span class="tooltip"><p>Attached pdfController.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -273,6 +307,40 @@ You can change attributes (e.g. barStyle) but don&rsquo;t change the delegate!</
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger maximumNumberOfSearchResultsDisplayed</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfController" title="pdfController"></a>
+	<h3 class="subsubtitle method-title">pdfController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Attached pdfController.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak, readonly) PSPDFViewController *pdfController</code></div>
 	
 	
 	
@@ -399,6 +467,41 @@ You can change attributes (e.g. barStyle) but don&rsquo;t change the delegate!</
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/searchVisiblePagesFirst" title="searchVisiblePagesFirst"></a>
+	<h3 class="subsubtitle method-title">searchVisiblePagesFirst</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set to enable searching on the visible pages, then all. Was default until PSPDFKit 2.4.1. Defaults to NO.
+If not set, the natural page order is searched.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL searchVisiblePagesFirst</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/showsCancelButton" title="showsCancelButton"></a>
 	<h3 class="subsubtitle method-title">showsCancelButton</h3>
 	
@@ -411,6 +514,40 @@ Note: this is set from <a href="../Classes/PSPDFViewController.html">PSPDFViewCo
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL showsCancelButton</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFSearchViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/textSearch" title="textSearch"></a>
+	<h3 class="subsubtitle method-title">textSearch</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Internally used textSearch (is a copy of the textSearch class in document)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch</code></div>
 	
 	
 	
@@ -490,7 +627,7 @@ Note: this is set from <a href="../Classes/PSPDFViewController.html">PSPDFViewCo
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

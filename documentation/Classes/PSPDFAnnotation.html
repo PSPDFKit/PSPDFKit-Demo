@@ -40,17 +40,21 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/absolutePage">&nbsp;&nbsp;&nbsp;&nbsp;absolutePage</option>
+	
 	<option value="//api/name/alpha">&nbsp;&nbsp;&nbsp;&nbsp;alpha</option>
 	
-	<option value="//api/name/boundingBox">&nbsp;&nbsp;&nbsp;&nbsp;boundingBox</option>
+	<option value="//api/name/borderStyle">&nbsp;&nbsp;&nbsp;&nbsp;borderStyle</option>
 	
-	<option value="//api/name/boundingBoxWithoutRotation">&nbsp;&nbsp;&nbsp;&nbsp;boundingBoxWithoutRotation</option>
+	<option value="//api/name/boundingBox">&nbsp;&nbsp;&nbsp;&nbsp;boundingBox</option>
 	
 	<option value="//api/name/color">&nbsp;&nbsp;&nbsp;&nbsp;color</option>
 	
 	<option value="//api/name/colorWithAlpha">&nbsp;&nbsp;&nbsp;&nbsp;colorWithAlpha</option>
 	
 	<option value="//api/name/contents">&nbsp;&nbsp;&nbsp;&nbsp;contents</option>
+	
+	<option value="//api/name/dashArray">&nbsp;&nbsp;&nbsp;&nbsp;dashArray</option>
 	
 	<option value="//api/name/deleted">&nbsp;&nbsp;&nbsp;&nbsp;deleted</option>
 	
@@ -108,7 +112,13 @@
 	
 	<option value="//api/name/initWithType:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithType:</option>
 	
+	<option value="//api/name/isEqualToAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqualToAnnotation:</option>
+	
+	<option value="//api/name/isMovable">&nbsp;&nbsp;&nbsp;&nbsp;- isMovable</option>
+	
 	<option value="//api/name/pdfDataRepresentation">&nbsp;&nbsp;&nbsp;&nbsp;- pdfDataRepresentation</option>
+	
+	<option value="//api/name/prepareBorderStyleInContext:">&nbsp;&nbsp;&nbsp;&nbsp;- prepareBorderStyleInContext:</option>
 	
 	<option value="//api/name/rectForPageRect:">&nbsp;&nbsp;&nbsp;&nbsp;- rectForPageRect:</option>
 	
@@ -138,17 +148,21 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/absolutePage">absolutePage</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alpha">alpha</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boundingBox">boundingBox</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/borderStyle">borderStyle</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boundingBoxWithoutRotation">boundingBoxWithoutRotation</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/boundingBox">boundingBox</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/color">color</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorWithAlpha">colorWithAlpha</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contents">contents</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dashArray">dashArray</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleted">deleted</a></span></li>
 	
@@ -208,7 +222,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithType:">initWithType:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqualToAnnotation:">isEqualToAnnotation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMovable">isMovable</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfDataRepresentation">pdfDataRepresentation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareBorderStyleInContext:">prepareBorderStyleInContext:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rectForPageRect:">rectForPageRect:</a></span></li>
 	
@@ -286,21 +306,28 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isWriteable">+&nbsp;isWriteable</a></code>
-		<span class="tooltip"><p>Returns YES if PSPDFKit has support to write this annotation back into the PDF.</p></span>
+		<span class="tooltip"><p>Returns YES if PSPDFKit has support to write this annotation <a href="#//api/name/type">type</a> back into the PDF.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isMovable">&ndash;&nbsp;isMovable</a></code>
+		<span class="tooltip"><p>Returns YES if this annotation <a href="#//api/name/type">type</a> is moveable.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithType:">&ndash;&nbsp;initWithType:</a></code>
-		<span class="tooltip"><p>Use this to create custom <a href="../Classes/PSPDFAnnotation.html#//api/name/user">user</a> annotations.</p></span>
+		<span class="tooltip"><p>Use this to create custom <a href="#//api/name/user">user</a> annotations.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithAnnotationDictionary:inAnnotsArray:">&ndash;&nbsp;initWithAnnotationDictionary:inAnnotsArray:</a></code>
-		<span class="tooltip"><p>Used for generic PSPDFAnnotations (those that are not recognized by <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
+		<span class="tooltip"><p>Designated initializer. Also used for generic PSPDFAnnotations (those that are not recognized by <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
 Implement this in your subclass.</p></span>
 	</span>
 	
@@ -308,7 +335,7 @@ Implement this in your subclass.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithAnnotationDictionary:inAnnotsArray:type:">&ndash;&nbsp;initWithAnnotationDictionary:inAnnotsArray:type:</a></code>
-		<span class="tooltip"><p>Initialize annotation with the corresponding PDF dictionary. Call from subclass.</p></span>
+		<span class="tooltip"><p>Initialize annotation with the corresponding PDF dictionary. Call this from subclass.</p></span>
 	</span>
 	
 	
@@ -336,6 +363,13 @@ Coordinates here are in PDF coordinate space.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/prepareBorderStyleInContext:">&ndash;&nbsp;prepareBorderStyleInContext:</a></code>
+		<span class="tooltip"><p>Helper that will prepare the context for the border style.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/type">&nbsp;&nbsp;type</a></code>
 		<span class="tooltip"><p>Current annotation type.</p></span>
 	</span>
@@ -347,7 +381,7 @@ Coordinates here are in PDF coordinate space.</p></span>
 		<span class="tooltip"><p>If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 Currently won&rsquo;t work if you just set arbitrary annotations to overlay=YES.
-If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p></span>
+If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -414,6 +448,20 @@ FillColor might be nil &ndash; treat like clearColor in that case.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/borderStyle">&nbsp;&nbsp;borderStyle</a></code>
+		<span class="tooltip"><p>Annotation border style.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dashArray">&nbsp;&nbsp;dashArray</a></code>
+		<span class="tooltip"><p>If <a href="#//api/name/borderStyle">borderStyle</a> is set to PSPDFAnnotationBorderStyleDashed, we expect a dashStyle array here (int-values)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/deleted">&nbsp;&nbsp;deleted</a></code>
 		<span class="tooltip"><p>Annotation may already be deleted locally, but not written back.</p></span>
 	</span>
@@ -428,14 +476,6 @@ FillColor might be nil &ndash; treat like clearColor in that case.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/boundingBoxWithoutRotation">&nbsp;&nbsp;boundingBoxWithoutRotation</a></code>
-		<span class="tooltip"><p>Annotations already have a <a href="#//api/name/boundingBox">boundingBox</a> where <a href="#//api/name/rotation">rotation</a> is applied.
-Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/user">&nbsp;&nbsp;user</a></code>
 		<span class="tooltip"><p>User (title) flag. (&ldquo;T&rdquo; property)</p></span>
 	</span>
@@ -445,6 +485,13 @@ Use the non-rotated box to convert the rect to screen coordinate space (where it
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
 		<span class="tooltip"><p>Page for current annotation. Page is relative to the <a href="#//api/name/documentProvider">documentProvider</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/absolutePage">&nbsp;&nbsp;absolutePage</a></code>
+		<span class="tooltip"><p>Page relative to the <a href="#//api/name/document">document</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -477,6 +524,13 @@ After the annotation has been written to the file, this will be reset until the 
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEqualToAnnotation:">&ndash;&nbsp;isEqualToAnnotation:</a></code>
+		<span class="tooltip"><p>Compare.</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -505,7 +559,8 @@ Returns same <a href="#//api/name/type">type</a> as current class.</p></span>
 		<code><a href="#//api/name/indexOnPage">&nbsp;&nbsp;indexOnPage</a></code>
 		<span class="tooltip"><p>If indexOnPage is set, it&rsquo;s a native PDF annotation.
 If this is -1, it&rsquo;s not yet saved in the PDF.
-Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.</p></span>
+Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.
+Don&rsquo;t set this property if you&rsquo;re loading annotations from your database.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -528,6 +583,40 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/absolutePage" title="absolutePage"></a>
+	<h3 class="subsubtitle method-title">absolutePage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Page relative to the <a href="#//api/name/document">document</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSUInteger absolutePage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/alpha" title="alpha"></a>
@@ -564,17 +653,17 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/boundingBox" title="boundingBox"></a>
-	<h3 class="subsubtitle method-title">boundingBox</h3>
+	<a name="//api/name/borderStyle" title="borderStyle"></a>
+	<h3 class="subsubtitle method-title">borderStyle</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Rectangle of specific annotation.</p>
+		<p>Annotation border style.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGRect boundingBox</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFAnnotationBorderStyle borderStyle</code></div>
 	
 	
 	
@@ -598,18 +687,17 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/boundingBoxWithoutRotation" title="boundingBoxWithoutRotation"></a>
-	<h3 class="subsubtitle method-title">boundingBoxWithoutRotation</h3>
+	<a name="//api/name/boundingBox" title="boundingBox"></a>
+	<h3 class="subsubtitle method-title">boundingBox</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Annotations already have a <a href="#//api/name/boundingBox">boundingBox</a> where <a href="#//api/name/rotation">rotation</a> is applied.
-Use the non-rotated box to convert the rect to screen coordinate space (where it will be rotated again)</p>
+		<p>Rectangle of specific annotation.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGRect boundingBoxWithoutRotation</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGRect boundingBox</code></div>
 	
 	
 	
@@ -713,6 +801,40 @@ Note: use .<a href="#//api/name/alpha">alpha</a> for transparency, not the <a hr
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *contents</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dashArray" title="dashArray"></a>
+	<h3 class="subsubtitle method-title">dashArray</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If <a href="#//api/name/borderStyle">borderStyle</a> is set to PSPDFAnnotationBorderStyleDashed, we expect a dashStyle array here (int-values)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *dashArray</code></div>
 	
 	
 	
@@ -952,7 +1074,8 @@ FillColor might be nil &ndash; treat like clearColor in that case.</p>
 	<div class="method-subsection brief-description">
 		<p>If indexOnPage is set, it&rsquo;s a native PDF annotation.
 If this is -1, it&rsquo;s not yet saved in the PDF.
-Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.</p>
+Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modified.
+Don&rsquo;t set this property if you&rsquo;re loading annotations from your database.</p>
 	</div>		
 	
 	
@@ -1023,11 +1146,11 @@ Annotations that have indexOnPage >= 0 will be copied before they&rsquo;re modif
 		<p>If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
 Currently won&rsquo;t work if you just set arbitrary annotations to overlay=YES.
-If overlay is set to YES, you must also register the corresponding *AnnotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p>
+If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser&rsquo;s annotationClassForAnnotation)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isOverlay, readonly) BOOL overlay</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isOverlay) BOOL overlay</code></div>
 	
 	
 	
@@ -1270,7 +1393,7 @@ Usually read from the annotDict. Don&rsquo;t change this unless you know what yo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns YES if PSPDFKit has support to write this annotation back into the PDF.</p>
+		<p>Returns YES if PSPDFKit has support to write this annotation <a href="#//api/name/type">type</a> back into the PDF.</p>
 	</div>		
 	
 	
@@ -1351,7 +1474,7 @@ Returns same <a href="#//api/name/type">type</a> as current class.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)copyAndDeleteOriginalIfNeeded</code></div>
+	<div class="method-subsection method-declaration"><code>- (instancetype)copyAndDeleteOriginalIfNeeded</code></div>
 	
 	
 	
@@ -1399,6 +1522,9 @@ Coordinates here are in PDF coordinate space.</p>
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
 (For performance considerations, you want to do this once, not every time drawInContext is called)</p>
+
+<p>This draws the annotation border.
+Some annotations handle borders differently, so decide in your supclass if you call [super drawInContext] or not.</p>
 	</div>
 	
 	
@@ -1456,7 +1582,7 @@ Coordinates here are in PDF coordinate space.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Used for generic PSPDFAnnotations (those that are not recognized by <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
+		<p>Designated initializer. Also used for generic PSPDFAnnotations (those that are not recognized by <a href="../Classes/PSPDFAnnotationParser.html">PSPDFAnnotationParser</a>)
 Implement this in your subclass.</p>
 	</div>		
 	
@@ -1491,7 +1617,7 @@ Implement this in your subclass.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize annotation with the corresponding PDF dictionary. Call from subclass.</p>
+		<p>Initialize annotation with the corresponding PDF dictionary. Call this from subclass.</p>
 	</div>		
 	
 	
@@ -1525,11 +1651,79 @@ Implement this in your subclass.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Use this to create custom <a href="../Classes/PSPDFAnnotation.html#//api/name/user">user</a> annotations.</p>
+		<p>Use this to create custom <a href="#//api/name/user">user</a> annotations.</p>
 	</div>		
 	
 	
 	<div class="method-subsection method-declaration"><code>- (id)initWithType:(PSPDFAnnotationType)<em>annotationType</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEqualToAnnotation:" title="isEqualToAnnotation:"></a>
+	<h3 class="subsubtitle method-title">isEqualToAnnotation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Compare.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEqualToAnnotation:(PSPDFAnnotation *)<em>otherAnnotation</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isMovable" title="isMovable"></a>
+	<h3 class="subsubtitle method-title">isMovable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if this annotation <a href="#//api/name/type">type</a> is moveable.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isMovable</code></div>
 	
 	
 	
@@ -1564,6 +1758,40 @@ Implement this in your subclass.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSData *)pdfDataRepresentation</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFAnnotation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/prepareBorderStyleInContext:" title="prepareBorderStyleInContext:"></a>
+	<h3 class="subsubtitle method-title">prepareBorderStyleInContext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper that will prepare the context for the border style.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)prepareBorderStyleInContext:(CGContextRef)<em>context</em></code></div>
 	
 	
 	
@@ -1633,7 +1861,7 @@ Implement this in your subclass.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

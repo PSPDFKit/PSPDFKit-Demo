@@ -62,6 +62,8 @@
 	
 	<option value="//api/name/pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:</option>
 	
+	<option value="//api/name/pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:</option>
+	
 	<option value="//api/name/pdfViewController:didRenderPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didRenderPageView:</option>
 	
 	<option value="//api/name/pdfViewController:didSelectAnnotation:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:didSelectAnnotation:onPageView:</option>
@@ -101,6 +103,8 @@
 	<option value="//api/name/pdfViewController:shouldShowHUD:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldShowHUD:</option>
 	
 	<option value="//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:</option>
+	
+	<option value="//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:</option>
 	
 	<option value="//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:">&nbsp;&nbsp;&nbsp;&nbsp;- pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:</option>
 	
@@ -160,6 +164,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:">pdfViewController:didLongPressOnPageView:atPoint:gestureRecognizer:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:">pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didRenderPageView:">pdfViewController:didRenderPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:didSelectAnnotation:onPageView:">pdfViewController:didSelectAnnotation:onPageView:</a></span></li>
@@ -199,6 +205,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldShowHUD:">pdfViewController:shouldShowHUD:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:">pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:">pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:">pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:</a></span></li>
 	
@@ -353,6 +361,14 @@ If decelerate is YES, this will be called again after deceleration is complete.<
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:">&ndash;&nbsp;pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:</a></code>
+		<span class="tooltip"><p>Callback for a render operation. Will be called on a thread (since rendering is async)
+You can use the context to add custom drawing.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:documentForRelativePath:">&ndash;&nbsp;pdfViewController:documentForRelativePath:</a></code>
 		<span class="tooltip"><p>Return a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> for a relative path.
 If this is unimplemented, we try to find the PDF ourself with using the current document&rsquo;s basePath.</p></span>
@@ -393,6 +409,13 @@ Return YES if you want to set this touch as processed; this will disable automat
 		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:</a></code>
 		<span class="tooltip"><p>Called before the menu for text selection is displayed.
 All coordinates are in view coordinate space.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:</a></code>
+		<span class="tooltip"><p>Called before the menu for a selected image is displayed.</p></span>
 	</span>
 	
 	
@@ -460,7 +483,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowController:embeddedInController:animated:">&ndash;&nbsp;pdfViewController:shouldShowController:embeddedInController:animated:</a></code>
-		<span class="tooltip"><p>Called before we show a controller modally or in a popover. Allows last minute modifications.\</p></span>
+		<span class="tooltip"><p>Called before we show a internal controller (color picker, note editor, &hellip;) modally or in a popover. Allows last minute modifications.</p></span>
 	</span>
 	
 	
@@ -854,6 +877,41 @@ If decelerate is YES, this will be called again after deceleration is complete.<
 
 <p>Note that there may be unexpected results if you only capture <em>some</em> events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.</p>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:" title="pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Callback for a render operation. Will be called on a thread (since rendering is async)
+You can use the context to add custom drawing.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)pdfViewController:(PSPDFViewController *)<em>pdfController</em> didRenderPage:(NSUInteger)<em>page</em> inContext:(CGContextRef)<em>context</em> withSize:(CGSize)<em>fullSize</em> clippedToRect:(CGRect)<em>clipRect</em> withAnnotations:(NSArray *)<em>annotations</em> options:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -1489,7 +1547,7 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called before we show a controller modally or in a popover. Allows last minute modifications.\</p>
+		<p>Called before we show a internal controller (color picker, note editor, &hellip;) modally or in a popover. Allows last minute modifications.</p>
 	</div>		
 	
 	
@@ -1504,7 +1562,7 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrntInteractionController are no subclasses of UIViewController.</p>
+		<p>The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrintInteractionController are no subclasses of UIViewController.</p>
 
 <p>Return NO to process the displaying manually.</p>
 	</div>
@@ -1569,6 +1627,40 @@ Can be useful if you e.g. want to block the opening of a different document refe
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSArray *)pdfViewController:(PSPDFViewController *)<em>pdfController</em> shouldShowMenuItems:(NSArray *)<em>menuItems</em> atSuggestedTargetRect:(CGRect)<em>rect</em> forAnnotation:(PSPDFAnnotation *)<em>annotation</em> inRect:(CGRect)<em>textRect</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewControllerDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:" title="pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:"></a>
+	<h3 class="subsubtitle method-title">pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedImage:inRect:onPageView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called before the menu for a selected image is displayed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)pdfViewController:(PSPDFViewController *)<em>pdfController</em> shouldShowMenuItems:(NSArray *)<em>menuItems</em> atSuggestedTargetRect:(CGRect)<em>rect</em> forSelectedImage:(PSPDFImageInfo *)<em>selectedImage</em> inRect:(CGRect)<em>textRect</em> onPageView:(PSPDFPageView *)<em>pageView</em></code></div>
 	
 	
 	
@@ -1816,7 +1908,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-02)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
