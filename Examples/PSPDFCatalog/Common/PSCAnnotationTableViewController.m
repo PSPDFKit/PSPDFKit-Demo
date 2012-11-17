@@ -135,8 +135,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
     [annotation copyAndDeleteOriginalIfNeeded].deleted = YES;
-    NSUInteger annotationPage = annotation.page + [self.pdfController.document pageOffsetForDocumentProvider:annotation.documentProvider];
-    [[self.pdfController pageViewForPage:annotationPage] updateView];
+    [[self.pdfController pageViewForPage:annotation.absolutePage] updateView];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
