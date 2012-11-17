@@ -134,8 +134,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
-    [annotation copyAndDeleteOriginalIfNeeded].deleted = YES;
-    [[self.pdfController pageViewForPage:annotation.absolutePage] updateView];
+    PSPDFPageView *pageView = [self.pdfController pageViewForPage:annotation.absolutePage];
+    pageView.selectedAnnotation = nil; // make sure annotation isn't currently selected.
+    annotation.deleted = YES;
+    [pageView updateView];
+    [pageView removePageAnnotation:annotation animated:YES]; // if it's an overlay annotation
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -147,12 +150,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // log annotation
-    PSPDFDocument *document = self.pdfController.document;
-    NSArray *annotations = [document annotationsForPage:indexPath.section type:PSPDFAnnotationTypeAll];
-    PSPDFAnnotation *annotation = annotations[indexPath.row];
+    PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
     NSLog(@"Touched %@", annotation);
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    // scroll to page
+    [self.pdfController setPage:annotation.absolutePage animated:YES];
 }
 
 @end
