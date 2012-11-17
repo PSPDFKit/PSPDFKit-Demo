@@ -83,7 +83,7 @@ const char kPSCAlertViewKey;
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"encoding-test.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -494,7 +494,7 @@ const char kPSCAlertViewKey;
     });
      */
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
-        NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"];
+        NSURL *testURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
         PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:testURL];
         return [[PSCChildViewController alloc] initWithDocument:childDocument];
     }]];
