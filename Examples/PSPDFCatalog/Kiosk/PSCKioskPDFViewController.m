@@ -262,12 +262,10 @@
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint {
-    
     CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
     PSCLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
 
-    
     return NO; // touch not used.
 }
 
@@ -284,7 +282,6 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {
-
     // only show log on start, prevents excessive log statements
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
@@ -309,6 +306,10 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
                 }
             });
         });
+    }else {
+        for (PSPDFPageView *pageView in [self visiblePageViews]) {
+            [pageView.selectionView showTextFlowData:NO animated:NO];
+        }
     }
 }
 
