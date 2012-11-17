@@ -83,12 +83,9 @@ const char kPSCAlertViewKey;
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"rotatedwrong.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
-
-        //NSArray *words = [[document textParserForPage:1] words];
-        
         return controller;
     }]];
 
@@ -111,10 +108,14 @@ const char kPSCAlertViewKey;
         return documentSelector;
     }]];
 
-    // pre-cache whole document
     PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
     hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfear with other examples
-    [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
+
+    /*
+     // pre-cache whole document
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
+    });*/
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12";
@@ -312,8 +313,8 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
-        //            NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Rotated PDF.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // copy file from the bundle to a location where we can write on it.
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -486,10 +487,12 @@ const char kPSCAlertViewKey;
     }]];
 
     // one way to speed up PSPDFViewController display is calling fillCache on the document.
+    /*
     PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [childDocument fillCache];
     });
+     */
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
         NSURL *testURL = [samplesURL URLByAppendingPathComponent:@"RFI 0018 - Grid lines for A101-BAR Response.pdf"];
         PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:testURL];
