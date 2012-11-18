@@ -245,7 +245,6 @@
 // time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
-
     // show pdf title and fileURL
     if (document) {
         NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
@@ -288,7 +287,6 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
         CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
         PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSPDFGestureStateToString(gestureRecognizer.state));
     }
-
     return NO; // touch not used.
 }
 
