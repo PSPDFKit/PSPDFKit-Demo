@@ -86,10 +86,11 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)drawButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
-/// Manually cancel drawing. Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
+// Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
 - (void)cancelDrawingAnimated:(BOOL)animated;
-/// Manually confirm drawing. Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
 - (void)doneDrawingAnimated:(BOOL)animated;
+- (void)undoDrawing:(id)sender;
+- (void)redoDrawing:(id)sender;
 
 // Finish up drawing. Usually called by the drawing delegate.
 - (void)finishDrawingAnimated:(BOOL)animated andSaveAnnotation:(BOOL)saveAnnotation;

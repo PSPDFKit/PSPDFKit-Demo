@@ -21,6 +21,7 @@
     CGFloat horizontalScaling;
     CGFloat leading;
     CGFloat rise;
+    NSUInteger renderingMode;
 }
 
 @property (nonatomic, strong) PSPDFFontInfo *font;

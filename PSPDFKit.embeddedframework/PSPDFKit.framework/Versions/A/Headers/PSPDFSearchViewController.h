@@ -10,6 +10,7 @@
 #import "PSPDFTextSearch.h"
 #import "PSPDFCache.h"
 #import "PSPDFViewController.h"
+#import "PSPDFPopoverController.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 
@@ -25,7 +26,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 extern NSUInteger kPSPDFMinimumSearchLength;
 
 /// pdf search controller.
-@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint>
+@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFPopoverControllerDismissable>
 
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
