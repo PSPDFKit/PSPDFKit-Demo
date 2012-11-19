@@ -20,7 +20,7 @@
  
  Do not change target/selector - if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the PSPDFMoreBarButtonItem. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you'll never know what button has been selected.
  */
-@interface PSPDFBarButtonItem : UIBarButtonItem <UIPopoverControllerDelegate, NSCopying>
+@interface PSPDFBarButtonItem : UIBarButtonItem <NSCopying>
 
 /// Global helper to dismiss any open popover handled by PSPDFViewController
 + (void)dismissPopoverAnimated:(BOOL)animated;
