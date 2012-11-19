@@ -1,5 +1,12 @@
 # Changelog
 
+__v2.5.1 - 19/November/2012__
+
+*  Dismisses the search bar keyboard at the same time the popover fades out, not afterwards.
+*  Exposes some more methods on PSPDFAnnotationToolbar.
+*  Fixes an issue with text selection being offset/invalid for certain documents (this change fixes A LOT of documents that previously had problems)
+*  Fixes an issue with text encoding on some PDFs.
+
 __v2.5.0 - 17/November/2012__
 
 *  Images can now be selected and copied to the clipboard or saved to the camera roll. There's a new delegate to customize this.
