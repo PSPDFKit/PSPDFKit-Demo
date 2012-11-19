@@ -18,7 +18,7 @@
 @property (nonatomic, weak) UIViewController *owningViewController;
 
 // Settings are saved within the dictionary.
-+ (NSDictionary *)settings;
++ (NSMutableDictionary *)settings;
 
 // converts is* strings to regular strings.
 + (NSString *)setterKeyForGetter:(NSString *)getter;
