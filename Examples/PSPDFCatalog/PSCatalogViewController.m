@@ -35,6 +35,7 @@
 #import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
+#import "PSCSettingsController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -45,6 +46,7 @@
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
+//#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
     BOOL _firstShown;
@@ -83,7 +85,6 @@ const char kPSCAlertViewKey;
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"encoding-test.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -731,6 +732,11 @@ const char kPSCAlertViewKey;
     }
 
     _content = content;
+
+    // debug helper
+#ifdef kDebugTextBlocks
+    [PSCSettingsController settings][@"showTextBlocks"] = @YES;
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
