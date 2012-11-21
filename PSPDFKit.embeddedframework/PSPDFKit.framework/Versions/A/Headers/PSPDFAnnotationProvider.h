@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFDocumentProvider;
+@class PSPDFAnnotation, PSPDFDocumentProvider;
 @protocol PSPDFAnnotationProviderChangeNotifier;
 
 /**

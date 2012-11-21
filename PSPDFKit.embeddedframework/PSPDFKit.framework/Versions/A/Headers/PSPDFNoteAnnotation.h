@@ -14,6 +14,7 @@ extern CGSize kPSPDFNoteAnnotationViewFixedSize;
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
 /// Note Icon name (see PSPDFKit.bundle for available icon names)
+/// If set to zero, it will return to the default "Comment".
 @property (nonatomic, copy) NSString *iconName;
 
 /// Designated initializer.

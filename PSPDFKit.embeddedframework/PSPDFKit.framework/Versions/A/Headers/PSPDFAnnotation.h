@@ -36,6 +36,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeAll       = UINT_MAX
 };
 
+// Converts annotation type into the string representation.
+extern NSString *PSPDFTypeStringFromAnnotationType(PSPDFAnnotationType annotationType);
+
 // Annotation border style. PSPDFKit currently only supports Solid and Dashed.
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
     PSPDFAnnotationBorderStyleNone,

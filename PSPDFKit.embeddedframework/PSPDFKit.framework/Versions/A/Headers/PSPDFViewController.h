@@ -422,6 +422,12 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  If you change the property dynamically depending on the screen orientation, don't use
  willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
  else the controller will get in an invalid state.
+
+ Note that childViewControllers get rotation events AFTER the parent view controller,
+ so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet,
+ and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ ... }); to set.
+ 
+ You might just wanna override updateSettingsForRotation: and set your properties there.
 */
 @property (nonatomic, assign) PSPDFPageTransition pageTransition;
 
@@ -446,7 +452,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign, getter=isFitToWidthEnabled) BOOL fitToWidthEnabled;
 
 /// Defaults to NO. If this is set to YES, the page remembers its vertical position if fitToWidthEnabled is enabled. If NO, new pages will start at the page top position.
-@property (nonatomic, assign) BOOL fixedVerticalPositionForfitToWidthEnabledMode;
+@property (nonatomic, assign) BOOL fixedVerticalPositionForFitToWidthEnabledMode;
 
 /// PageCurl mode only: clips the page to its boundaries, not showing a pageCurl on empty background. Defaults to YES.
 /// Usually you want this, unless your document is variable sized.
@@ -573,14 +579,15 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 - (void)commonInitWithDocument:(PSPDFDocument *)document;
 
 /**
- Use this to use specific subclass names instead of the default PSPDF* classes.
- e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
+ Use this to use specific subclasses instead of the default PSPDF* classes.
+ 
+ This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
 
  Throws an exception if the overriding class is not a subclass of the overridden class.
  
  Hide the warning "Incompatible pointer types sending 'Class' to parameter of type 'id<NSCopying>' " with casting class to (id). It's perfectly safe to do so. Alternatively you can also use NSStrings.
  
- e.g.: overrideClassNames = @[(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]];
+ e.g.: overrideClassNames = @{(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]};
  */
 @property (nonatomic, copy) NSDictionary *overrideClassNames;
 
@@ -597,8 +604,11 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 
 /// Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
 /// Might be called multiple times during a rotation, so any code in there should be fast.
-/// The default implementation for this is empty.
+/// The default implementation calls the block set in setUpdateSettingsForRotationBlock.
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation;
+
+/// Convenience method for updateSettingsForRotation:
+- (void)setUpdateSettingsForRotationBlock:(void (^)(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation))block;
 
 /// Manually return the desired UI status bar style (default is evaluated via app status bar style)
 - (UIStatusBarStyle)statusBarStyle;
