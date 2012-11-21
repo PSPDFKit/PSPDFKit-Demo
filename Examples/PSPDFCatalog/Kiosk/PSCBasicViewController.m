@@ -35,6 +35,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.popoverController dismissPopoverAnimated:animated];
+    self.popoverController = nil;
     [super viewWillDisappear:animated];  
 }
 

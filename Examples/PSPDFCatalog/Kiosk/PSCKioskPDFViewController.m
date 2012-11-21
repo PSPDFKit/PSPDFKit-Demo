@@ -129,6 +129,7 @@
     
     // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
     [self.popoverController dismissPopoverAnimated:YES];
+    self.popoverController = nil;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
