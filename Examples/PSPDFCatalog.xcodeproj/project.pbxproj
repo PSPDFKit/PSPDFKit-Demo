@@ -94,7 +94,6 @@
 		78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */; };
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
-		78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
 		78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */; };
@@ -310,8 +309,6 @@
 		78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
 		78BCC69815D31BF2006735A9 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
-		78C6AA8C15FFB82A005601DA /* PSCFittingWidthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFittingWidthViewController.h; sourceTree = "<group>"; };
-		78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFittingWidthViewController.m; sourceTree = "<group>"; };
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
@@ -666,8 +663,6 @@
 				78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */,
 				78753587161F740300119B8E /* PSCAutoScrollViewController.h */,
 				78753588161F740300119B8E /* PSCAutoScrollViewController.m */,
-				78C6AA8C15FFB82A005601DA /* PSCFittingWidthViewController.h */,
-				78C6AA8D15FFB82A005601DA /* PSCFittingWidthViewController.m */,
 				7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */,
 				7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */,
 				78A3815D15DABFEB003850E8 /* PSCustomTextSelectionMenuController.h */,
@@ -992,7 +987,6 @@
 				78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
 				7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */,
-				78C6AA8E15FFB82A005601DA /* PSCFittingWidthViewController.m in Sources */,
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */,
 				786B5FCD1625AB73009CE5F7 /* PSCFullTextSearchOperation.m in Sources */,
