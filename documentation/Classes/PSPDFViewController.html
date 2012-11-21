@@ -84,7 +84,7 @@
 	
 	<option value="//api/name/fitToWidthEnabled">&nbsp;&nbsp;&nbsp;&nbsp;fitToWidthEnabled</option>
 	
-	<option value="//api/name/fixedVerticalPositionForfitToWidthEnabledMode">&nbsp;&nbsp;&nbsp;&nbsp;fixedVerticalPositionForfitToWidthEnabledMode</option>
+	<option value="//api/name/fixedVerticalPositionForFitToWidthEnabledMode">&nbsp;&nbsp;&nbsp;&nbsp;fixedVerticalPositionForFitToWidthEnabledMode</option>
 	
 	<option value="//api/name/gridView">&nbsp;&nbsp;&nbsp;&nbsp;gridView</option>
 	
@@ -251,6 +251,8 @@
 	
 	<option value="//api/name/setPage:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setPage:animated:</option>
 	
+	<option value="//api/name/setUpdateSettingsForRotationBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- setUpdateSettingsForRotationBlock:</option>
+	
 	<option value="//api/name/setZoomScale:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- setZoomScale:animated:</option>
 	
 	<option value="//api/name/showControls">&nbsp;&nbsp;&nbsp;&nbsp;- showControls</option>
@@ -309,11 +311,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprected Methods">PSPDFDeprected Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprected Methods">PSPDFDeprected Methods</a></span></li>
 	
 </ul></li>
 
@@ -367,7 +369,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fitToWidthEnabled">fitToWidthEnabled</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fixedVerticalPositionForfitToWidthEnabledMode">fixedVerticalPositionForfitToWidthEnabledMode</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fixedVerticalPositionForFitToWidthEnabledMode">fixedVerticalPositionForFitToWidthEnabledMode</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/gridView">gridView</a></span></li>
 	
@@ -534,6 +536,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/searchForString:animated:">searchForString:animated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setPage:animated:">setPage:animated:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setUpdateSettingsForRotationBlock:">setUpdateSettingsForRotationBlock:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setZoomScale:animated:">setZoomScale:animated:</a></span></li>
 	
@@ -1223,7 +1227,7 @@ fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/fixedVerticalPositionForfitToWidthEnabledMode">&nbsp;&nbsp;fixedVerticalPositionForfitToWidthEnabledMode</a></code>
+		<code><a href="#//api/name/fixedVerticalPositionForFitToWidthEnabledMode">&nbsp;&nbsp;fixedVerticalPositionForFitToWidthEnabledMode</a></code>
 		<span class="tooltip"><p>Defaults to NO. If this is set to YES, the <a href="#//api/name/page">page</a> remembers its vertical position if <a href="#//api/name/fitToWidthEnabled">fitToWidthEnabled</a> is enabled. If NO, new pages will start at the <a href="#//api/name/page">page</a> top position.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1452,37 +1456,6 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 						</ul>
 						
 						
-						<a title="PSPDFDeprected Methods" name="task_PSPDFDeprected Methods"></a>
-						<h3 class="subsubtitle task-title">PSPDFDeprected Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li>
-						</ul>
-						
-						
-						<a title="Internal Methods" name="task_Internal Methods"></a>
-						<h3 class="subsubtitle task-title">Internal Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
-		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
-Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
 						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
 						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
 
@@ -1497,8 +1470,7 @@ Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/overrideClassNames">&nbsp;&nbsp;overrideClassNames</a></code>
-		<span class="tooltip"><p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)</p></span>
+		<span class="tooltip"><p>Use this to use specific subclasses instead of the default PSPDF* classes.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1529,7 +1501,14 @@ The toolbar is only displayed, if PSPDFViewController is inside a UINavigationCo
 		<code><a href="#//api/name/updateSettingsForRotation:">&ndash;&nbsp;updateSettingsForRotation:</a></code>
 		<span class="tooltip"><p>Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
 Might be called multiple times during a rotation, so any code in there should be fast.
-The default implementation for this is empty.</p></span>
+The default implementation calls the block set in setUpdateSettingsForRotationBlock.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setUpdateSettingsForRotationBlock:">&ndash;&nbsp;setUpdateSettingsForRotationBlock:</a></code>
+		<span class="tooltip"><p>Convenience method for <a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a></p></span>
 	</span>
 	
 	
@@ -1574,6 +1553,37 @@ Only tries to saves <a href="#//api/name/document">document</a> if view is visib
 	<span class="tooltip">
 		<code><a href="#//api/name/documentLabel">&nbsp;&nbsp;documentLabel</a></code>
 		<span class="tooltip"><p>Document title label view. (default iPhone only)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Internal Methods" name="task_Internal Methods"></a>
+						<h3 class="subsubtitle task-title">Internal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
+		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
+Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFDeprected Methods" name="task_PSPDFDeprected Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFDeprected Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
+		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -2357,8 +2367,8 @@ fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/fixedVerticalPositionForfitToWidthEnabledMode" title="fixedVerticalPositionForfitToWidthEnabledMode"></a>
-	<h3 class="subsubtitle method-title">fixedVerticalPositionForfitToWidthEnabledMode</h3>
+	<a name="//api/name/fixedVerticalPositionForFitToWidthEnabledMode" title="fixedVerticalPositionForFitToWidthEnabledMode"></a>
+	<h3 class="subsubtitle method-title">fixedVerticalPositionForFitToWidthEnabledMode</h3>
 	
 	
 	
@@ -2367,7 +2377,7 @@ fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL fixedVerticalPositionForfitToWidthEnabledMode</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL fixedVerticalPositionForFitToWidthEnabledMode</code></div>
 	
 	
 	
@@ -2900,8 +2910,7 @@ Note: Set this in your subclass within updateToolbars, then call [super updateTo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Use this to use specific subclass names instead of the default PSPDF* classes.
-e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of <a href="../Classes/PSPDFPageView.html">PSPDFPageView</a>)</p>
+		<p>Use this to use specific subclasses instead of the default PSPDF* classes.</p>
 	</div>		
 	
 	
@@ -2916,11 +2925,13 @@ e.g. add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/val
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Throws an exception if the overriding class is not a subclass of the overridden class.</p>
+		<p>This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)</p>
+
+<p>Throws an exception if the overriding class is not a subclass of the overridden class.</p>
 
 <p>Hide the warning &ldquo;Incompatible pointer types sending &lsquo;Class&rsquo; to parameter of type &lsquo;id<NSCopying>&rsquo; &rdquo; with casting class to (id). It&rsquo;s perfectly safe to do so. Alternatively you can also use NSStrings.</p>
 
-<p>e.g.: overrideClassNames = @[(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]];</p>
+<p>e.g.: overrideClassNames = @{(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]};</p>
 	</div>
 	
 	
@@ -3209,6 +3220,12 @@ Defaults to PSPDFPageModeAutomatic on iPad and PSPDFPageModeSingle on iPhone.</p
 		<p>If you change the property dynamically depending on the screen orientation, don&rsquo;t use
 willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
 else the controller will get in an invalid state.</p>
+
+<p>Note that childViewControllers get rotation events AFTER the parent view controller,
+so if you&rsquo;re changing this from a parent viewController, for PSPDFKit the rotation hasn&rsquo;t been completed yet,
+and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ &hellip; }); to set.</p>
+
+<p>You might just wanna override <a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a> and set your properties there.</p>
 	</div>
 	
 	
@@ -5200,6 +5217,40 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/setUpdateSettingsForRotationBlock:" title="setUpdateSettingsForRotationBlock:"></a>
+	<h3 class="subsubtitle method-title">setUpdateSettingsForRotationBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Convenience method for <a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a></p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setUpdateSettingsForRotationBlock:(void ( ^ ) ( PSPDFViewController *pdfController , UIInterfaceOrientation toInterfaceOrientation ))<em>block</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/setZoomScale:animated:" title="setZoomScale:animated:"></a>
 	<h3 class="subsubtitle method-title">setZoomScale:animated:</h3>
 	
@@ -5412,7 +5463,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	<div class="method-subsection brief-description">
 		<p>Called in viewWillAppear with the initial rotation and then in willRotateToInterfaceOrientation.
 Might be called multiple times during a rotation, so any code in there should be fast.
-The default implementation for this is empty.</p>
+The default implementation calls the block set in setUpdateSettingsForRotationBlock.</p>
 	</div>		
 	
 	
@@ -5589,7 +5640,7 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-19)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-22)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
