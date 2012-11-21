@@ -46,7 +46,7 @@
 #pragma mark - Private
 
 - (void)buttonPressed:(UIButton *)sender {
-    [[[UIAlertView alloc] initWithTitle:@"Button pressed" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Button pressed on page %d.", self.page] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 @end
