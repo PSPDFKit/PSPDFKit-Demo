@@ -549,10 +549,10 @@ const char kPSCAlertViewKey;
     }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Disable Toolbar" block:^{
-        [[[UIAlertView alloc] initWithTitle:@"Will exit in 5 seconds." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil] show];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Will exit in 5 seconds." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alertView show];
 
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         self.navigationController.navigationBarHidden = YES;
 
@@ -560,6 +560,7 @@ const char kPSCAlertViewKey;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 5.f * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self.navigationController popViewControllerAnimated:YES];
+            [alertView dismissWithClickedButtonIndex:1 animated:YES];
         });
 
         // sample settings
