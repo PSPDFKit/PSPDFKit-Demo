@@ -55,7 +55,7 @@
 }
 
 - (void)playPauseAction:(id)sender {
-    [PSPDFBarButtonItem dismissPopoverAnimated:NO];
+    [[self class] dismissPopoverAnimated:NO];
 
     if (!self.isAutoplaying) {
         _autoplaying = YES;

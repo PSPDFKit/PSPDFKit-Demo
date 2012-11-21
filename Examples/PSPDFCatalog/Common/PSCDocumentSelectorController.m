@@ -168,13 +168,6 @@
         document = _documents[indexPath.row];
     }
     [_delegate documentSelectorController:self didSelectDocument:document];
-
-    // hide controller
-    if (PSIsIpad()) {
-        [PSPDFBarButtonItem dismissPopoverAnimated:YES];
-    }else {
-        [self dismissViewControllerAnimated:YES completion:NULL];
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
