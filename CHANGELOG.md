@@ -1,5 +1,25 @@
 # Changelog
 
+__v2.5.2 - 22/November/2012__
+
+*  New convenience helper: setUpdateSettingsForRotationBlock in PSPDFViewController. (e.g. to switch between pageCurl and scrolling on rotation)
+*  Moves the logic that returns the default classes for supported annotations out of PSPDFFileAnnotationProvider into PSPDFAnnotationProvider - so if the annotationProvider is customized to use only custom annotation providers, annotations will still work.
+*  Handles corrupt PDF more gracefully, failing faster (esp. important if you're using a custom CGDataProvider)
+*  Search no longer searches between words (but between lines)
+*  API: Renamed fixedVerticalPositionForfitToWidthEnabledMode to fixedVerticalPositionForFitToWidthEnabledMode.
+*  Turned on a lot more warnings (like missing newlines.) PSPDFKit is now warning free even under pedantic settings.
+*  Fixes a UX issue where sometimes a second tap was needed to show the bookmark view controller.
+*  Fixes a crash when deleting bookmarks that has a custom name.
+*  Fixes the delegate call pdfViewController:annotationView:forAnnotation:onPageView: (wasn't called before due to a typo in the selector check)
+*  Fixes an issue with generating link annotations in code using the initWithType initalizer.
+*  Fixes an issue where overrideClass wasn't checked for PSPDFWebViewController in one case.
+*  Fixes an issue that could result in a non-rendered PSPDFPageView if the scrollView contentOffset was set manually without animation.
+*  Fixes an issue where the text block detection could take a very long time on some documents.
+*  Fixes an issue where a log warning was displayed when a highlight annotation was loaded from disk.
+*  Fixes an issue where a low memory warning while editing annotation could lead to a non-scrollable document and/or a not saved annotation.
+*  Fixes an issue where the keyboard was no longer displayed automatically for new text annotations on iPhone.
+*  Fixes an issue where note/text annotations could be mis-placed when a document has a non-nil origin and a non-nil rotation value.
+
 __v2.5.1 - 19/November/2012__
 
 *  Dismisses the search bar keyboard at the same time the popover fades out, not afterwards.

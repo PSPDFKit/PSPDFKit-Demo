@@ -18,9 +18,17 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 
 /**
  ScrollView that manages one or multiple PSPDFView's.
+
  Depending on the pageTransition, either every PSPDFPageView is embedded in a PSPDFScrollView,
  or there is one global PSPDFScrollView for all PSPDFPageView's.
  This is also the center for all the gesture recognizers. Subclass to customize behavior (e.g. override gestureRecognizerShouldBegin)
+ 
+ If you manually zoom/change the contentOffset, you must use the methods with animation extension.
+ (You don't have to animate, but those are overridden by PSPDFKit to properly inform the PSPDFPageViews to re-render. You can also use the default UIScrollView properties and manually call updateRenderView on each visible PSPDFPageView)
+ 
+- (void)setZoomScale:(float)scale animated:(BOOL)animated;
+- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
+- (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;
  */
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
 

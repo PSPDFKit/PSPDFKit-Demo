@@ -436,7 +436,7 @@ extern NSString *const kPSPDFImages;
 - (NSDictionary *)objectsAtPDFPoint:(CGPoint)pdfPoint page:(NSUInteger)page options:(NSDictionary *)options;
 
 /// Find objects at the current PDF rect.
-/// If options is nil, we assume kPSPDFObjectsText, kPSPDFObjectsFullWords and kPSPDFObjectsRespectTextBlocks.
+/// If options is nil, we assume kPSPDFGlyphs only.
 /// Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)
 - (NSDictionary *)objectsAtPDFRect:(CGRect)pdfRect page:(NSUInteger)page options:(NSDictionary *)options;
 

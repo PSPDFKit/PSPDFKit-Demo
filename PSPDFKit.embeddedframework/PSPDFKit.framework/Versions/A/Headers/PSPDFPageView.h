@@ -54,7 +54,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, strong, readonly) UIImageView *renderView;
 
 /// Size used for the zoomed-in part. Should always be bigger than the screen.
-/// This is set to a good default already. You shound't need to touch this.
+/// This is set to a good default already. You shouldn't need to touch this.
 @property (nonatomic, assign) CGSize renderSize;
 
 /// Calculated scale. Readonly.
@@ -111,6 +111,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (NSDictionary *)objectsAtPoint:(CGPoint)pdfPoint options:(NSDictionary *)options;
 
 /// Get the glyphs/words on a specific rect.
+/// Usage e.g. NSDictionary *objects = [pageView objectsAtRect:rect options:@{kPSPDFObjectsFullWords : @YES}];
 - (NSDictionary *)objectsAtRect:(CGRect)pdfRect options:(NSDictionary *)options;
 
 /// @name Accessors
