@@ -41,6 +41,7 @@ const char kPSCAlertViewKey;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
     [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") block:^{
+        // blocks are nilled out to break the cycle after any action.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
         NSString *pageLabel = [websitePrompt textFieldAtIndex:0].text ?: @"";
