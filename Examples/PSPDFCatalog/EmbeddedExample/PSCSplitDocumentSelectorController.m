@@ -75,6 +75,9 @@
 
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
     [self.masterVC displayDocument:document];
+
+    // hide controller
+    [self.masterVC.popoverController dismissPopoverAnimated:YES];
 }
 
 @end
