@@ -23,7 +23,6 @@
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
 #import "PSCBookViewController.h"
-#import "PSCFittingWidthViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
@@ -83,8 +82,8 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdfvideotest-embedded.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -182,6 +181,7 @@ const char kPSCAlertViewKey;
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"CGDocumentProvider" block:^{
         NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
+//        CGDataProviderRef dataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)([samplesURL URLByAppendingPathComponent:@"corrupted.pdf"]));
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:dataProvider];
         document.title = @"CGDataProviderRef PDF";
         CGDataProviderRelease(dataProvider);
@@ -263,7 +263,6 @@ const char kPSCAlertViewKey;
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
-
 
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
     /// The crypto feature is only available in PSPDFKit Annotate.
@@ -476,11 +475,11 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *customizationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFViewController customization" footer:@""];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"PageCurl example" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"FPC 10 Workbook.pdf"]];
-        PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
-        viewController.pageMode = PSPDFPageModeSingle;
-        viewController.pageTransition = PSPDFPageCurlTransition;
-        return viewController;
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.pageMode = PSPDFPageModeSingle;
+        pdfController.pageTransition = PSPDFPageCurlTransition;
+        return pdfController;
     }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Using a NIB" block:^{
@@ -597,6 +596,7 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // rotation example
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Rotate PDF pages" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];
@@ -663,7 +663,13 @@ const char kPSCAlertViewKey;
     // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dynamic fittingWidth on iPhone" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCFittingWidthViewController alloc] initWithDocument:document];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
+            if(!PSIsIpad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+
+            // example how to switch between pageTransitions
+            //pdfController.pageTransition = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
+        }];
         return controller;
     }]];
 
@@ -780,6 +786,7 @@ const char kPSCAlertViewKey;
     dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
 }
 
+// Support for iOS5. iOS6 does this differently and also correct by default.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
