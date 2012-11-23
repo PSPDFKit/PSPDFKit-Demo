@@ -51,16 +51,10 @@ Annotations will be written back into the PDF, or optionally also into an extern
 <p><a href="/documentation/Classes/PSPDFLabelParser.html">If the PDF document defines PDF labels, those will be displayed instead of the regular page labels.</a> Page labels can be roman letters or custom text. <a href="http://www.planetpdf.com/enterprise/article.asp?ContentID=adding_page_labels&gid=6424">Page Labels can be added with Adobe Acrobat or in-code.</a></p>
 
 <h2 class="section-title-small">Encryption</h2>
-<p>PSPDFKit supports basic PDF password encryption (40‑bit RC4 or 128‑bit RC4 or AES). Additionally, <a href="/documentation.html#encryption">PSPDFKit Annotate supports an additional layer of security with a military-grade AES256 encryption.</a> A Mac tool is provided that helps to encrypt regular PDF into the more secure variant.
-If a document with a password is opened, a custom view requesting the password will be displayed.</p>
+<p>PSPDFKit supports basic PDF password encryption (40‑bit RC4 or 128‑bit RC4 or AES). Additionally, <a href="/documentation.html#encryption">PSPDFKit Annotate supports an additional layer of security with a military-grade AES256 encryption.</a> A Mac tool is provided that helps to encrypt regular PDF into the more secure variant. If a document with a password is opened, a custom view requesting the password will be displayed.</p>
 
 <h2 class="section-title-small">Page Transitions and Dual Page Mode</h2>
-<p>PSPDFKit has 3 different <a href="/documentation/Classes/PSPDFViewController.html#//api/name/pageTransition">pageTransition styles</a>, each of it in a horizontal or a vertical mode. 
-- Magazine-like side-scrolling.
-- Safari-like continuous scrolling
-- PageCurl.
-
-You can choose to show only one or two pages, optionally also with a cover page. The document can be anchored to the screen height or width.</p>
+<p>PSPDFKit has 3 different <a href="/documentation/Classes/PSPDFViewController.html#//api/name/pageTransition">pageTransition styles</a>, each of it in a horizontal or a vertical mode: Magazine-like side-scrolling, Safari-like continuous scrolling or PageCurl. You can choose to show only one or two pages, optionally also with a cover page. The document can be anchored to the screen height or width.</p>
 
 <h2 class="section-title-small">Overlays</h2>
 <p><a href="/documentation/Classes/PSPDFPageView.html">Every page is a subclass of a UIView (PSPDFPage)</a> and it’s very easy to add additional custom views on top of that. Views optionally also get notified when the parent frame changes (e.g. on rotation) to re-align themselves. The PSPDFCatalog provides some examples how to add custom overlays (like a button).</p>
