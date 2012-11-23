@@ -22,34 +22,40 @@ documentation:
 <img src="/images/features/loupe.png" width="414" height="323">
 <p>Allows you to select text or images, just like you’re used to on iOS. The loupe has been rebuild to closely match the one that’s default on iOS. Useful options will be displayed, like querying the dictionary if that word is included, or opening Wikipedia. The menu is fully customizable and extendable via the PSPDFViewControllerDelegate.</p>
 
-<h2 class="section-title-small">Full-Text Search</h2>
-<p>Search will search across your whole document and highlight all found positions. A lot of thought went into this, even Words that are hyphenated/split on multiple lines will be found correctly. The search text is preprocessed to allow a diacritic insensitive search. (e.g. a search for economie will find a result even for économie)</p>
-
 <h2 class="section-title-small">Annotations</h2>
 <p>Displaying/Editing annotations is fully supported for Highlight, Underscore, Strikeout, Ink drawings, Notes, Free Text, Shape (Circle, Square). Some other annotation types are currently readonly, like Line, Stamp, Link, RichMedia (Videos) or Screen
-Annotations will be written back into the PDF, or optionally also into an external file (this can be customized.) The annotation system is provider-based and very flexible to allow custom backends like a local database or a web-server. Annotations can also be moved and resized.</p>
+Annotations will be written back into the PDF, or optionally also into an external file (<a href="/documentation/Classes/PSPDFDocument.html#//api/name/annotationSaveMode">this can be customized in PSPDFDocument</a>). Annotations that are written back into the PDF are compatible with Adobe Acrobat, GoodReader or any other PDF reading app that can display annotations. The annotation system is <a href="/documentation/Protocols/PSPDFAnnotationProvider.html">provider-based</a> and very flexible to allow custom backends like a local database or a web-server. Annotations can also be moved and resized.</p>
 
 <h2 class="section-title-small">Annotation Toolbar</h2>
-<p>Annotations can be created on the fly (e.g. with selecting text) or in code. PSPDFKit also provides a great default toolbar to create annotations and related operations, like changing the drawing color, undo or redo operations.</p>
+<p>Annotations can be created on the fly (e.g. with selecting text) or in code. PSPDFKit also provides <a href="/documentation/Classes/PSPDFAnnotationToolbar.html">a great default toolbar</a> to create annotations and related operations, like changing the drawing color, undo or redo operations.</p>
 
-<h2 class="section-title-small">Links</h2>
-<p>PSPDFKit supports all common types of link annotations, including links to external PDF documents to link documents with other documents, much like hyperlinks. Links to the AppStore are supported and specially handled, so are email links to provide the best possible experience.</p>
+<h2 class="section-title-small">Smart Zoom</h2>
+<p>On double-tap, <a href="/documentation/Classes/PSPDFViewController.html#//api/name/smartZoomEnabled">PSPDFKit will search for the tapped text block and perform an intelligent zoom</a>, just as you’re used to in Safari. This reduces the zooming amount and is super convenient. And PSPDFKit will also render documents much faster as the typical block-based render variants.</p>
 
-<h2 class="section-title-small">Thumbnails</h2>
-<p>PSPDFKit uses advanced caching to be that fast. You get a thumbnail overview page and a bottom scrobble bar to navigate between pages. Thumbnail size can be customized for the overview.</p>
-
-<h2 class="section-title-small">Outline</h2>
-<p>The PDF outline will be parsed and supports both in-page links and links to other PDF documents. If a outline element doesn’t contain a target, it will expand/collapse on touch. Large outline elements will be wrapped across multiple lines.</p>
+<h2 class="section-title-small">Full-Text Search</h2>
+<p>Search will <a href="/documentation/Classes/PSPDFSearchViewController.html">search across your whole document</a> and highlight all found positions. A lot of thought went into this, even Words that are hyphenated/split on multiple lines will be found correctly. The search text is preprocessed to allow a diacritic insensitive search. (e.g. a search for economie will find a result even for économie)</p>
 
 <h2 class="section-title-small">Multimedia</h2>
-<p>PSPDFKit supports embedded video, audio, images and web content. You can link to local or remote files, even YouTube is supported. Multimedia annotations can be created with Adobe Acrobat or 3rd party software like PDFPen Pro. Set the regions using regular PDF annotations and the custom pspdfkit:// format - everything can be set up within the PDF.</p>
+<p><a href="/documentation.html#multimedia">PSPDFKit supports embedded video, audio, images and web content.</a> You can link to local or remote files, even YouTube is supported. Multimedia annotations can be created with Adobe Acrobat or 3rd party software like <a href="https://itunes.apple.com/us/app/pdfpenpro-for-mac/id403758325?mt=12">PDFPen Pro</a>. Set the regions using regular PDF annotations and the custom pspdfkit:// format - everything can be set up within the PDF.</p>
+
+<h2 class="section-title-small">Links</h2>
+<p>PSPDFKit supports <a href="/documentation.html#annotations">all common types of link annotations</a>, including links to external PDF documents to link documents with other documents, much like hyperlinks. Links to the AppStore are supported and specially handled, so are email links to provide the best possible experience.</p>
+
+<h2 class="section-title-small">Thumbnails</h2>
+<p><a href="/documentation/Classes/PSPDFCache.html">PSPDFKit uses advanced caching to be that fast.</a> You get a thumbnail overview page and a bottom scrobble bar to navigate between pages. Thumbnail size can be customized for the overview.</p>
+
+<h2 class="section-title-small">Outline</h2>
+<p><a href="/documentation/Classes/PSPDFOutlineParser.html">The PDF outline will be parsed and supports both in-page links and links to other PDF documents.</a> If a outline element doesn’t contain a target, it will expand/collapse on touch. Large outline elements will be wrapped across multiple lines.</p>
+
+<h2 class="section-title-small">Page Labels</h2>
+<p><a href="/documentation/Classes/PSPDFLabelParser.html">If the PDF document defines PDF labels, those will be displayed instead of the regular page labels.</a> Page labels can be roman letters or custom text. <a href="http://www.planetpdf.com/enterprise/article.asp?ContentID=adding_page_labels&gid=6424">Page Labels can be added with Adobe Acrobat or in-code.</a></p>
 
 <h2 class="section-title-small">Encryption</h2>
-<p>PSPDFKit supports basic PDF password encryption (40‑bit RC4 or 128‑bit RC4 or AES). Additionally, PSPDFKit Annotate supports an additional layer of security with a military-grade AES256 encryption. A Mac tool is provided that helps to encrypt regular PDF into the more secure variant.
+<p>PSPDFKit supports basic PDF password encryption (40‑bit RC4 or 128‑bit RC4 or AES). Additionally, <a href="/documentation.html#encryption">PSPDFKit Annotate supports an additional layer of security with a military-grade AES256 encryption.</a> A Mac tool is provided that helps to encrypt regular PDF into the more secure variant.
 If a document with a password is opened, a custom view requesting the password will be displayed.</p>
 
 <h2 class="section-title-small">Page Transitions and Dual Page Mode</h2>
-<p>PSPDFKit has 3 different pageTransition styles, each of it in a horizontal or a vertical mode. 
+<p>PSPDFKit has 3 different <a href="/documentation/Classes/PSPDFViewController.html#//api/name/pageTransition">pageTransition styles</a>, each of it in a horizontal or a vertical mode. 
 - Magazine-like side-scrolling.
 - Safari-like continuous scrolling
 - PageCurl.
@@ -57,39 +63,41 @@ If a document with a password is opened, a custom view requesting the password w
 You can choose to show only one or two pages, optionally also with a cover page. The document can be anchored to the screen height or width.</p>
 
 <h2 class="section-title-small">Overlays</h2>
-<p>Every page is a subclass of a UIView and it’s very easy to add additional custom views on top of that. Views optionally also get notified when the parent frame changes (e.g. on rotation) to re-align themselves. The PSPDFCatalog provides some examples how to add custom overlays (like a button).</p>
+<p><a href="/documentation/Classes/PSPDFPageView.html">Every page is a subclass of a UIView (PSPDFPage)</a> and it’s very easy to add additional custom views on top of that. Views optionally also get notified when the parent frame changes (e.g. on rotation) to re-align themselves. The PSPDFCatalog provides some examples how to add custom overlays (like a button).</p>
 
 <h2 class="section-title-small">Bookmarks</h2>
-<p>Bookmarks can be added per-page and bookmarked pages will be specially marked in the thumbnail overview. A long-press to the bookmark icon shows the bookmark controller where bookmarks can be edited or even renamed. Bookmarks are persisted within a plist and can be created/deleted programmatically.</p>
+<p>Bookmarks can be added per-page and bookmarked pages will be specially marked in the thumbnail overview. A long-press to the bookmark icon shows the bookmark controller where bookmarks can be edited or even renamed. <a href="/documentation/Classes/PSPDFBookmarkParser.html">Bookmarks are persisted within a plist and can be created/deleted programmatically.</a></p>
 
 <h2 class="section-title-small">Send via Email and Annotation Flattening</h2>
-<p>PSPDFKit provides a action to send the current page or the whole document via email. The user can choose to optionally flatten the document to render the annotations into the page itself. (Most apps including Safari on iOS can’t display annotations, so flattening is very important.)
-The annotation flattening class can also used manually or to merge multiple PDF documents or to cut out a single page from a document.</p>
+<p><a href="/documentation/Classes/PSPDFEmailBarButtonItem.html">PSPDFKit provides a action to send the current page or the whole document via email.</a> The user can choose to optionally flatten the document to render the annotations into the page itself. (Most apps including Safari on iOS can’t display annotations, so flattening is very important.)
+<a href="/documentation/Classes/PSPDFProcessor.html">The annotation flattening class can also used manually or to merge multiple PDF documents or to cut out a single page from a document.</a></p>
 
 <h2 class="section-title-small">Highly customizable default actions</h2>
 <p>All commonly used actions are pre-provided as UIBarButtonItems that can be added to the default or custom UIToolbars. Actions include bookmarks, annotations, brightness, send via email, open in..., outline, search, iOS6 Activity (like Twitter/Facebook), printing, etc.</p>
 
 <h2 class="section-title-small">Flexible Display</h2>
-<p>Almost every property can be customized. The PSPDFViewController can be used in fullscreen or as a child controller. Zooming can be customized, padding/margin can be changed. Rendering can be customized to be faster or to skip the thumbnail. The padding between the pages can be customized as well.</p>
+<p><a href="/documentation/Classes/PSPDFViewController.html">Almost every property can be customized.</a> The PSPDFViewController can be used in fullscreen or as a child controller. Zooming can be customized, padding/margin can be changed. Rendering can be customized to be faster or to skip the thumbnail. The padding between the pages can be customized as well.</p>
 
 <h2 class="section-title-small">Perfectly customized for both iPhone and iPad.</h2>
-<p>PSPDFKit gets every detail right. The scrobble bar correctly reduces size on iPhone/Landscape. The document title will be displayed in a label above the document on iPhone but will use the title bar on iPad.</p>
+<p>PSPDFKit gets every detail right. The <a href="/documentation/Classes/PSPDFScrobbleBar.html">scrobble bar</a> correctly reduces size on iPhone/Landscape. The document title will be displayed in a label above the document on iPhone but will use the title bar on iPad.</p>
 
 <h2 class="section-title-small">One document, many sources</h2>
-<p>PSPDFKit can merge multiple document source into a single logical document, may they be from different PDF files, NSData objects or CGDocumentProviders. Everything can be mixed dynamically, for the user it will display as one file.</p>
+<p><a href="/documentation/Classes/PSPDFDocument.html">PSPDFKit can merge multiple document source into a single logical document</a>, may they be from different PDF files, NSData objects or CGDocumentProviders. Everything can be mixed dynamically, for the user it will display as one file.</p>
 
 <h2 class="section-title-small">Convert everything to PDF</h2>
-<p>With the PSPDFProcessor, you can create PDF documents on the fly from many supported file formats, such as Word (doc, docx), Excel (xls), PowerPoint, Numbers, Pages or even websites. Those documents then can be opened and annotated.</p>
+<p>With <a href="/documentation/Classes/PSPDFProcessor.html">PSPDFProcessor</a>, you can create PDF documents on the fly from many supported file formats, such as Word (doc, docx), Excel (xls), PowerPoint, Numbers, Pages or even websites. Those documents then can be opened and annotated.</p>
 
 <h2 class="section-title-small">Night Mode</h2>
-<p>For pilots or people that work in dark areas PSPDFKit has a night mode that inverts the document and can dim down the screen with an additional software layer until it’s almost completely dark. This is already used today in many cockpits around the world.</p>
+<p>For pilots or people that work in dark areas PSPDFKit has a <a href="/documentation/Classes/PSPDFViewController.html#//api/name/renderInvertEnabled">night mode that inverts the document</a> and can <a href="/documentation/Classes/PSPDFBrightnessViewController.html">dim down the screen with an additional software layer</a> until it’s almost completely dark. This is already used today in many cockpits around the world.</p>
 
 <h2 class="section-title-small">Internal Web Browser</h2>
-<p>When a URL is tapped, PSPDFKit can be customized to either open a internal browser, Safari or simply ask the user. When a link is long-pressed, a preview popover will be displayed that shows the target URL. Actions within the browser can be customized as well. (Copy Link, Open in Safari, Mail Link, Print)</p>
+<p>When a URL is tapped, PSPDFKit can be <a href="/documentation/Classes/PSPDFViewController.html#//api/name/linkAction">customized</a> to either open an <a href="/documentation/Classes/PSPDFWebViewController.html">internal browser</a>, Safari or simply ask the user. When a link is long-pressed, a preview popover will be displayed that shows the target URL. Actions within the browser can be customized as well. (Copy Link, Open in Safari, Mail Link, Print)</p>
 
-<h2 class="section-title-small">Smart Zoom</h2>
-<p>On double-tap, PSPDFKit will search for the tapped text block and perform an intelligent zoom, just as you’re used to in Safari. This reduces the zooming amount and is super convenient. And PSPDFKit will also render documents much faster as the typical block-based render variants.</p>
-		
+<h2 class="section-title-small">Tabs</h2>
+<p>With the optional <a href="/documentation/Classes/PSPDFTabbedViewController.html">PSPDFTabbedViewController</a>, multiple documents can be opened easily. The state is automatically restored across app restarts.</p>
+
+<h2 class="section-title-small">Object Extraction</h2>
+<p>PSPDFKit allows you to <a href="/documentation/Classes/PSPDFDocument.html#//api/name/objectsAtPDFRect:page:options:">query a document for text glyphs, words, full-text and text blocks.</a> Images can also be extract. <a href="/documentation/Classes/PSPDFPageView.html#//api/name/convertPDFRectToViewRect:">PSPDFPageView allows easy conversion between PDF and screen coordinates.</a></p>
 	</div>
   </div>
 </div>
