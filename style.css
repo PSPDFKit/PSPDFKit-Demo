@@ -270,7 +270,7 @@ body.home #content { padding: 30px 0; }
 .breadcrumbs { color: #92999F; border-bottom: 1px dotted #BFC5CA;font-size: 13px; margin: 0 0 1.5em; padding-bottom: 10px; }
 
 /* 2.8 Homepage */
-#main h2.section-title { line-height:1em; font-size: 1.9em; font-weight: bold; margin-bottom: 20px; }
+#main h2.section-title { line-height:1em; font-size: 1.9em; font-weight: bold; margin-bottom: 10px; }
 #main h2.section-title-small { line-height:1em; font-size: 1.9em; font-weight: bold; margin-top: 20px; margin-bottom: 5px; }
 #main .block { width: 306px; float:left; margin: 0 20px 20px 0; border:none; }
 #main .block.last { margin-right:0; }
