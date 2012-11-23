@@ -82,8 +82,8 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
