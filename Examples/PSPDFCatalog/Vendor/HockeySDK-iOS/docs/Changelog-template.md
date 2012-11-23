@@ -1,3 +1,58 @@
+### Version 3.0.0b4
+
+- Crash Reporting:
+
+    - [BUGFIX] Fix a crash if `username`, `useremail` or `userid` delegate method returns `nil` and trying to send a crash report
+
+- Feedback:
+
+    - [BUGFIX] Fix user data UI not always being presented as a form sheet on the iPad
+    
+- Updating:
+
+    - [BUGFIX] Fix a problem showing the update UI animated if there TTNavigator class is present even though not being used
+    
+### Version 3.0.0b3
+
+- General:
+
+    - [BUGFIX] Exchange some more prefixes of TTTAttributedLabel class that have been missed out
+    - [BUGFIX] Fix some new compiler warnings
+
+- Crash Reporting:
+
+    - [BUGFIX] Format timestamp in crash report to be always UTC in en_US locale
+
+### Version 3.0.0b2
+
+- General:
+
+    - [BUGFIX] Add missing header files to the binary distribution
+    - [BUGFIX] Add missing new lines of two header files
+    
+### Version 3.0.0b1
+
+- General:
+
+    - [NEW] Feedback component
+    - [NEW] Minimum iOS Deployment version is now iOS 5.0
+    - [NEW] Migrated to use ARC
+    - [UPDATE] Improved Xcode project setup to only use one static library
+    - [UPDATE] Providing build settings as `HockeySDK.xcconfig` file for easier setup
+    - [UPDATE] Using embedded.framework for binary distribution containing everything needed in one package
+    
+- Feedback:
+
+    - [NEW] User feedback interface for direct communication with your users
+    - [NEW] iOS 6 UIActivity component for integrating feedback
+
+- Updating:
+
+    - [NEW] Support for In-App updates without changing `CFBundleVersion`
+    - [UPDATE] Update UI modified to be more iOS 6 alike
+    - [UPDATE] Update UI shows the company name next to the app name if defined in the backend
+
+
 ### Version 2.5.4
 
 - General:

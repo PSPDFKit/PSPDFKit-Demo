@@ -240,8 +240,14 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
         NSString *osBuild = @"???";
         if (report.systemInfo.operatingSystemBuild != nil)
             osBuild = report.systemInfo.operatingSystemBuild;
-        
-        [text appendFormat: @"Date/Time:       %@\n", report.systemInfo.timestamp];
+      
+        NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+        NSDateFormatter *rfc3339Formatter = [[NSDateFormatter alloc] init];
+        [rfc3339Formatter setLocale:enUSPOSIXLocale];
+        [rfc3339Formatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+        [rfc3339Formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+
+        [text appendFormat: @"Date/Time:       %@\n", [rfc3339Formatter stringFromDate:report.systemInfo.timestamp]];
         [text appendFormat: @"OS Version:      %@ %@ (%@)\n", osName, report.systemInfo.operatingSystemVersion, osBuild];
         [text appendFormat: @"Report Version:  104\n"];        
     }
@@ -566,15 +572,14 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
         imageName = [imageInfo.imageName lastPathComponent];
         baseAddress = imageInfo.imageBaseAddress;
         pcOffset = frameInfo.instructionPointer - imageInfo.imageBaseAddress;
-        //NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
-        //NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+        NSString *imagePath = [imageInfo.imageName stringByStandardizingPath];
+        NSString *appBundleContentsPath = [[report.processInfo.processPath stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]; 
         
         if ([frameInfo respondsToSelector:@selector(symbolName)]) {
-          // Modified for PSPDFKit release.
-          //if (![imagePath isEqual: report.processInfo.processPath] && ![imagePath hasPrefix:appBundleContentsPath]) {
+          if (![imagePath isEqual: report.processInfo.processPath] && ![imagePath hasPrefix:appBundleContentsPath]) {
             symbol = frameInfo.symbolName;
             pcOffset = frameInfo.instructionPointer - frameInfo.symbolStart;
-          //}
+          }
         }
     }
   

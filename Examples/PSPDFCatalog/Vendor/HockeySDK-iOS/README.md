@@ -20,8 +20,8 @@ The main SDK class is `BITHockeyManager`. It initializes all modules and provide
 ## Installation & Setup
 
 - [Installation & Setup](http://support.hockeyapp.net/kb/client-integration/hockeyapp-for-ios-hockeysdk) (Recommended)
-- [Integrate as a Subproject ](http://support.hockeyapp.net/kb/client-integration/integrate-hockeyapp-on-ios-as-a-subproject-advanced-usage) (Using Git submodule and Xcode sub-project)
-- [Migration from HockeyKit & QuincyKit](http://support.hockeyapp.net/kb/how-tos/how-to-migration-from-hockeykit-quincykit)
+- [Installation & Setup Advanced](http://support.hockeyapp.net/kb/client-integration/hockeyapp-for-ios-hockeysdk-advanced) (Using Git submodule and Xcode sub-project)
+- [Migration from HockeyKit & QuincyKit](http://support.hockeyapp.net/kb/client-integration/migrate-from-hockeykit-quincykit-to-hockeysdk-for-ios)
 - [Mac Desktop Uploader](http://support.hockeyapp.net/kb/how-tos/how-to-upload-to-hockeyapp-on-a-mac)
 
 
