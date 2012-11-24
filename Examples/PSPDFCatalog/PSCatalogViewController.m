@@ -706,7 +706,7 @@ const char kPSCAlertViewKey;
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-    PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:PSPDFVersionString()];
+    PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:!PSIsIpad() ? PSPDFVersionString() : @""];
     [delegateSection addContent:[[PSContent alloc] initWithTitle:@"Custom drawing" block:^UIViewController *{
 
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -720,7 +720,7 @@ const char kPSCAlertViewKey;
 
     // iPad only examples
     if (PSIsIpad()) {
-        PSCSectionDescriptor *iPadTests = [[PSCSectionDescriptor alloc] initWithTitle:@"iPad only" footer:@""];
+        PSCSectionDescriptor *iPadTests = [[PSCSectionDescriptor alloc] initWithTitle:@"iPad only" footer:PSPDFVersionString()];
         [iPadTests addContent:[[PSContent alloc] initWithTitle:@"SplitView" block:^{
             UISplitViewController *splitVC = [[UISplitViewController alloc] init];
             splitVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"shoebox"] tag:3];
