@@ -1,5 +1,13 @@
 # Changelog
 
+__v2.5.3 - 24/November/2012__
+
+*  Allows to render certain annotations as always overlay and still preserve movement features.
+*  Fixes for text selection handling, especially for -90/270 degree rotated documents.
+*  Fixes image selection rects for rotated documents.
+*  Fixes a crash with searching certain arabic documents.
+*  Fixes a one-pixel-bleedthrough in between the pages in dualPage / pageCurl mode.
+
 __v2.5.2 - 22/November/2012__
 
 *  New convenience helper: setUpdateSettingsForRotationBlock in PSPDFViewController. (e.g. to switch between pageCurl and scrolling on rotation)

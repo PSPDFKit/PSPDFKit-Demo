@@ -18,12 +18,22 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
     PSPDFAnnotationSaveModeDisabled,
     PSPDFAnnotationSaveModeExternalFile, // will use save/loadAnnotationsWithError of PSPDFAnnotationParser (override to ship your own)
     PSPDFAnnotationSaveModeEmbedded,
-    PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback
+    PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback // Default.
 };
 
-/// Represents a single, logical, PDF document. (one or many PDF files)
-/// Can be overriden to support custom collections.
-/// PSPDFDOcument is the default delegate for PSPDFDocumentProviderDelegate.
+/**
+ PSPDFDocument represents a single document for the user.
+ Internally it might come from several different sources, files or data.
+ 
+ Ensure that a document is only opened within *one* PSPDFViewController at a time.
+ Documents fully support copy or serialiation.
+ 
+ To speed up PSPDFViewController display, you can invoke fillCache on any thread. Most methods are thread safe. If you change settings here while the document is already being displayed, you most likely need to call reloadData on  PSPDFViewController to refresh.
+ 
+ Remember that rendered images of PSPDFDocument will be cached using PSPDFCache. If you replace/modify a PDF that has already been cached, you need to clear the cache for that document.
+ 
+ PSPDFDocument is the default delegate for PSPDFDocumentProviderDelegate.
+ */
 @interface PSPDFDocument : NSObject <NSCopying, NSCoding, PSPDFDocumentProviderDelegate>
 
 /// @name Initialization
@@ -60,7 +70,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (instancetype)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
 - (instancetype)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
-/// Compare.
+/// Compare to documents.
 - (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
 
 /// Delegate. Used for annotation calls.
@@ -86,12 +96,12 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (NSArray *)filesWithBasePath;
 
 /**
-    Returns a dictionary with filename : NSData object.
-    Memory-maps files; works with all available input types.
-    If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
-    Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
+ Returns a dictionary with filename : NSData object.
+ Memory-maps files; works with all available input types.
+ If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
+ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
  
-    Returns a private subclass of an ORDERED NSDictionary (PSPDFOrderedDictionary).
+ Returns an ordered NSDictionary (PSPDFOrderedDictionary).
  */
 - (NSDictionary *)fileNamesWithDataDictionary;
 
@@ -252,9 +262,14 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 
 /// @name Caching
 
-/// Call if you change referenced pdf files outside.
-/// Clear the pageCount, pageRects, outline cache, text parser, ...
-/// This is called implicitely if you change the files array or append a file.
+/**
+ Will clear all cached objects (annotations, pageCount, ouline, textParser, ...)
+
+ This is called implicitely if you change the files array or append a file.
+ 
+ Important! Unless you disable it, PSPDFKit also has an image cache who is not affected by this. If you replace the PDF document with new content, you also need to clear the image cache:
+ [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+ */
 - (void)clearCache;
 
 /// Creates internal cache for faster display. override to provide custom caching. usually called in a thread.
