@@ -490,9 +490,17 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Represents a single, logical, PDF document. (one or many PDF <a href="#//api/name/files">files</a>)
-Can be overriden to support custom collections.
-PSPDFDOcument is the default <a href="#//api/name/delegate">delegate</a> for <a href="../Protocols/PSPDFDocumentProviderDelegate.html">PSPDFDocumentProviderDelegate</a>.</p>
+						<p>PS<a href="#//api/name/PDFDocument">PDFDocument</a> represents a single document for the user.
+Internally it might come from several different sources, <a href="#//api/name/files">files</a> or <a href="#//api/name/data">data</a>.</p>
+
+<p>Ensure that a document is only opened within <em>one</em> <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> at a time.
+Documents fully support copy or serialiation.</p>
+
+<p>To speed up <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> display, you can invoke <a href="#//api/name/fillCache">fillCache</a> on any thread. Most methods are thread safe. If you change settings here while the document is already being displayed, you most likely need to call reloadData on  <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> to refresh.</p>
+
+<p>Remember that rendered images of PS<a href="#//api/name/PDFDocument">PDFDocument</a> will be cached using <a href="../Classes/PSPDFCache.html">PSPDFCache</a>. If you replace/modify a PDF that has already been cached, you need to clear the cache for that document.</p>
+
+<p>PS<a href="#//api/name/PDFDocument">PDFDocument</a> is the default <a href="#//api/name/delegate">delegate</a> for <a href="../Protocols/PSPDFDocumentProviderDelegate.html">PSPDFDocumentProviderDelegate</a>.</p>
 					</div>
 					
 					
@@ -563,7 +571,7 @@ For leading zeros, use the default printf syntax. (%04d = 0001)</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isEqualToDocument:">&ndash;&nbsp;isEqualToDocument:</a></code>
-		<span class="tooltip"><p>Compare.</p></span>
+		<span class="tooltip"><p>Compare to documents.</p></span>
 	</span>
 	
 	
@@ -622,11 +630,10 @@ Note: uses fileIndexForPage and URLForFileIndex internally. Override those inste
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/fileNamesWithDataDictionary">&ndash;&nbsp;fileNamesWithDataDictionary</a></code>
-		<span class="tooltip"><pre><code>Returns a dictionary with filename : NSData object.
-Memory-maps files; works with all available input types.
-If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
-Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
-</code></pre></span>
+		<span class="tooltip"><p>Returns a dictionary with filename : NSData object.
+Memory-maps <a href="#//api/name/files">files</a>; works with all available input types.
+If there&rsquo;s no file name, we use the PDF <a href="#//api/name/title">title</a> or &ldquo;Untitled PDF&rdquo; if all fails.
+Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.</p></span>
 	</span>
 	
 	
@@ -896,9 +903,7 @@ Note: this might take a second on larger documents, as the page structure needs 
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/clearCache">&ndash;&nbsp;clearCache</a></code>
-		<span class="tooltip"><p>Call if you change referenced pdf <a href="#//api/name/files">files</a> outside.
-Clear the <a href="#//api/name/pageCount">pageCount</a>, pageRects, outline cache, text parser, &hellip;
-This is called implicitely if you change the <a href="#//api/name/files">files</a> array or append a file.</p></span>
+		<span class="tooltip"><p>Will clear all cached objects (annotations, <a href="#//api/name/pageCount">pageCount</a>, ouline, textParser, &hellip;)</p></span>
 	</span>
 	
 	
@@ -3170,9 +3175,7 @@ The &lsquo;1&rsquo; is the first page. Careful; the accessor here is zero-based.
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Call if you change referenced pdf <a href="#//api/name/files">files</a> outside.
-Clear the <a href="#//api/name/pageCount">pageCount</a>, pageRects, outline cache, text parser, &hellip;
-This is called implicitely if you change the <a href="#//api/name/files">files</a> array or append a file.</p>
+		<p>Will clear all cached objects (annotations, <a href="#//api/name/pageCount">pageCount</a>, ouline, textParser, &hellip;)</p>
 	</div>		
 	
 	
@@ -3184,6 +3187,14 @@ This is called implicitely if you change the <a href="#//api/name/files">files</
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This is called implicitely if you change the files array or append a file.</p>
+
+<p>Important! Unless you disable it, PSPDFKit also has an image cache who is not affected by this. If you replace the PDF document with new content, you also need to clear the image cache:
+[[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];</p>
+	</div>
 	
 	
 	
@@ -3449,11 +3460,10 @@ Don&rsquo;t forget calling super on this!</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<pre><code>Returns a dictionary with filename : NSData object.
-Memory-maps files; works with all available input types.
-If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
-Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
-</code></pre>
+		<p>Returns a dictionary with filename : NSData object.
+Memory-maps <a href="#//api/name/files">files</a>; works with all available input types.
+If there&rsquo;s no file name, we use the PDF <a href="#//api/name/title">title</a> or &ldquo;Untitled PDF&rdquo; if all fails.
+Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.</p>
 	</div>		
 	
 	
@@ -3468,8 +3478,7 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<pre><code>Returns a private subclass of an ORDERED NSDictionary (PSPDFOrderedDictionary).
-</code></pre>
+		<p>Returns an ordered NSDictionary (<a href="../Classes/PSPDFOrderedDictionary.html">PSPDFOrderedDictionary</a>).</p>
 	</div>
 	
 	
@@ -3629,7 +3638,7 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Compare.</p>
+		<p>Compare to documents.</p>
 	</div>		
 	
 	
@@ -4419,7 +4428,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-22)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
