@@ -326,7 +326,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  self.additionalBarButtonItems = @[self.printButtonItem, self.openInButtonItem, self.emailButtonItem];
 
  You can change the button with using the subclassing system: (e.g. if you are looking for toolbarBackButton)
- overrideClassNames = @[(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]];
+ overrideClassNames = @{(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]};
 */
 
 /// Default button in leftBarButtonItems if view is presented modally.
@@ -336,8 +336,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show Outline/Table Of Contents (if available in the PDF)
 @property (nonatomic, strong, readonly) PSPDFOutlineBarButtonItem *outlineButtonItem;
+
 /// Enable Search.
 @property (nonatomic, strong, readonly) PSPDFSearchBarButtonItem *searchButtonItem;
+
 /// Document/Thumbnail toggle.
 @property (nonatomic, strong, readonly) PSPDFViewModeBarButtonItem *viewModeButtonItem;
 

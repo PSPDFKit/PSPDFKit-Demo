@@ -105,6 +105,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
 
 /// Convert a view rect to PDF glyph rect.
+/// This is equilvalent to [self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]
 - (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
 
 /// Get the glyphs/words on a specific page.
