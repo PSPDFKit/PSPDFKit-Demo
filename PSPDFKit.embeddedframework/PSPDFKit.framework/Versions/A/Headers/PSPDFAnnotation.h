@@ -10,6 +10,7 @@
 @class PSPDFDocument, PSPDFDocumentProvider;
 
 // list of editable annotation types.
+extern NSString *const PSPDFAnnotationTypeStringLink;
 extern NSString *const PSPDFAnnotationTypeStringHighlight;
 extern NSString *const PSPDFAnnotationTypeStringUnderline;
 extern NSString *const PSPDFAnnotationTypeStringStrikeout;
@@ -79,7 +80,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Implement this in your subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
 
-/// Initialize annotation with the corresponding PDF dictionary. Call this from subclass.
+/// Initialize annotation with the corresponding PDF dictionary. Call this from your direct subclass.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
 
 /// Check if point is inside annotation area.
@@ -142,6 +143,10 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Optional. Various annotation types may contain text.
 @property (nonatomic, copy) NSString *contents;
 
+/// The annotation name, a text string uniquely identifying it among all the annotations on its page.
+/// (Optional; PDF1.4, "NM" key)
+@property (nonatomic, copy) NSString *name;
+
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
 
@@ -200,6 +205,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 - (NSString *)pdfColorWithAlphaString;
 
 // Appends escaped contents data if contents length is > 0.
+// Will also add user and name if set.
 - (void)appendEscapedContents:(NSMutableData *)pdfData;
 
 // Converts an array of NSValue-CGRect's into an array of CGRect-NSString's.
@@ -232,6 +238,12 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 - (void)parse;
 
 @end
+
+// Helper for pdfDataRepresentation creation.
+@interface NSMutableData (PSPDFAdditions)
+- (void)pspdf_appendDataString:(NSString *)dataString;
+@end
+
 
 @interface PSPDFAnnotation (Deprecated)
 
