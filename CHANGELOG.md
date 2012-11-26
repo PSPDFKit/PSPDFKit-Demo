@@ -1,5 +1,19 @@
 # Changelog
 
+__v2.5.4 - 26/November/2012__
+
+*  Makes PSPDFLinkAnnotation writeable and adds a new targetString method to customize the preview URL that is displayed on a long press annotation.
+*  PDF link annotations are now editable. This is not added by default. Enable this by adding PSPDFAnnotationTypeStringLink to the editableAnnotationTypes of PSPDFDocument.
+*  PSPDFAnnotation now parses and write the name (NM) property. (Optional, used to uniquely identift PDF annotations)
+*  Exposes some new methods in PSPDFNoteViewController.
+*  Expose PSPDFPageView's showLinkPreviewActionSheetForAnnotation:fromRect:animated to allow customization of the link preview sheet (invoked on long press)
+*  Ensures that the minimum size of annotations is not smaller than the current size (to prevent weird resizing)
+*  Fixes a potential wrong private API detection issue where "visibleBounds" was incorrectly flagged.
+*  Fixes an issue where the search controller was sometimes misplaced when search was directly invoked from the selected text.
+*  Fixes an issue where scrolling was disabled when setting a document delayed in scrollperpage mode after no document was set before.
+*  Fixes an UI glitch where the page label background was blurry for certain conditions.
+*  Fixes a rare issue where the background color of a link annotation could get stuck when using inter-document links.
+
 __v2.5.3 - 24/November/2012__
 
 *  Allows to render certain annotations as always overlay and still preserve movement features.

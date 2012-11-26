@@ -12,7 +12,6 @@
 @interface PSPDFPageLabelView : PSPDFLabelView
 
 /// Show button to show the thumbnail grid on the right side of the label. Defaults to NO.
-// WORK IN PROGRESS
 @property (nonatomic, assign) BOOL showThumbnailGridButton;
 
 @end

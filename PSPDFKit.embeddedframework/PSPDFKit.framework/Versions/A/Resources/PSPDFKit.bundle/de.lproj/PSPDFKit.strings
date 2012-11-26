@@ -102,6 +102,18 @@
 "Delete Free Text" = "Text entfernen";
 "%@ could not be found." = "%@ konnte nicht gefunden werden.";
 
+// limk annotation editing
+"Create Link..." = "Link erstellen...";
+"Add Link" = "Link erstellen";
+"Edit Link" = "Link editieren";
+"Move Link" = "Link verschieben";
+"Remove Link" = "Link entfernen";
+"Open Link" = "Link öffnen";
+"Go to page %d" = "Zu Seite %d wechseln";
+"Save" = "Speicherm";
+"Link Destination" = "Link Destination";
+"Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
+
 // voiceover accessibility
 "Page" = "Seite";
 "Grid" = "Thumbnails";
