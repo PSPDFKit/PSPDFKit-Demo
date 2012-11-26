@@ -148,6 +148,10 @@
     PSPDFPageView *pageView = [self.pdfController pageViewForPage:annotation.absolutePage];
     pageView.selectedAnnotation = nil; // make sure annotation isn't currently selected.
     annotation.deleted = YES;
+
+    // send change event for deleted = YES.
+    [[NSNotificationCenter defaultCenter] postNotificationName:PSPDFAnnotationChangedNotification object:annotation userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[NSStringFromSelector(@selector(isDeleted))], PSPDFAnnotationChangedNotificationOriginalAnnotationKey : annotation}];
+
     [pageView updateView];
     [pageView removePageAnnotation:annotation animated:YES]; // if it's an overlay annotation
 
