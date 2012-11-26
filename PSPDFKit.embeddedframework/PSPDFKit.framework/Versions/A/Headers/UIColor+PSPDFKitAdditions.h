@@ -7,6 +7,9 @@
 
 #import "PSPDFKitGlobal.h"
 
+/// Returns a lighter and a darker color to make a gradient out of 'color'.
+extern NSArray *PSPDFGradientColorsForColor(UIColor *color);
+
 @interface UIColor (PSPDFKitAdditions)
 
 /// Given an array of floats, applies the rules described in the PDF 1.7 Reference (page 607) to derive a UIColor instance.

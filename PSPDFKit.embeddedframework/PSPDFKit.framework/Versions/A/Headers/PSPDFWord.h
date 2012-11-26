@@ -10,26 +10,31 @@
 /// Represents a word. Formed out of (usually) multiple glyphs.
 @interface PSPDFWord : NSObject <NSCopying, NSCoding>
 
-// Initalizers
+/// Initalize with glyphs (PSPDFGlyph).
+/// As an optimizations, only the first and last glyph will be used for frmae calculations.
 - (id)initWithGlyphs:(NSArray *)wordGlyphs;
+
+/// Initialize with word frame.
 - (id)initWithFrame:(CGRect)wordFrame;
 
 /// Returns the content of the word (all glyphs merged together)
 - (NSString *)stringValue;
 
-- (BOOL)isOnSameLineAs:(PSPDFWord *)word;
-
-// Helper to sort the lines: top->down, left->right
-- (NSComparisonResult)compareByLayout:(PSPDFWord *)word;
-
 /// All glyphs merged together in the smallest possible bounding box.
 @property (nonatomic, assign) CGRect frame;
 
-/// All PSPDFGlyph objects
+/// All PSPDFGlyph objects.
+/// Frame will be recalculated when glyphs are set.
 @property (nonatomic, copy) NSArray *glyphs;
 
 /// Set to YES if this is the last word on a textBlock.
 @property (nonatomic, assign) BOOL lineBreaker;
+
+/// Tests if word is approximately on the same horizontal line as the other word.
+- (BOOL)isOnSameLineAs:(PSPDFWord *)word;
+
+// Helper to sort the lines: top->down, left->right
+- (NSComparisonResult)compareByLayout:(PSPDFWord *)word;
 
 /// Compare.
 - (BOOL)isEqualToWord:(PSPDFWord *)otherWord;

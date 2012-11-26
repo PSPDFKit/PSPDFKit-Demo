@@ -102,6 +102,18 @@
 "Delete Free Text" = "Elimina testo libro";
 "%@ could not be found." = "impossibile trovare %@.";
 
+// limk annotation editing
+"Create Link..." = "Create Link...";
+"Add Link" = "Add Link";
+"Edit Link" = "Edit Link";
+"Move Link" = "Move Link";
+"Remove Link" = "Remove Link";
+"Open Link" = "Open Link";
+"Go to page %d" = "Go to page %d";
+"Save" = "Save";
+"Link Destination" = "Link Destination";
+"Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
+
 // voiceover accessibility
 "Page" = "Pagina";
 "Grid" = "Griglia";

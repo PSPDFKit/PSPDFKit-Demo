@@ -58,6 +58,9 @@
 /// Called when we're about to show the annotation delete menu.
 - (void)deleteAnnotation:(UIBarButtonItem *)barButtonItem;
 
+/// Returns "Delete Note", "Delete Free Text", "Delete Highlight" etc.
+- (NSString *)deleteAnnotationActionTitle;
+
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;
 @property (nonatomic, strong) UIView *optionsView;
 

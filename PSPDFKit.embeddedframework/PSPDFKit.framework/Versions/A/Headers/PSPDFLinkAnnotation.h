@@ -28,6 +28,8 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
  
  If you create a PSPDFLinkAnnotation at runtime, be sure to set the correct type and use the URL parameter for your link.
  BoundingBox defines the frame, in PDF space coordinates.
+ 
+ If you want to customize how links look in the PDF, customize PSPDFLinkAnnotationView's properties. There's currently no mapping between color/lineWidth/etc and the properties of the view. This might change in future releases.
  */
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
 
@@ -73,8 +75,13 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 */
 @property (nonatomic, copy) NSString *siteLinkTarget;
 
-/// URL (generated from the siteLinkTarget after parsing)
+/// URL (generated from the siteLinkTarget after parsing. Will not be saved.)
 @property (nonatomic, strong) NSURL *URL;
+
+/// Used for the preview string when the user long-presses on a link annotation.
+/// Per default either formats "Go to %@" with siteLinkTarget or "Page %@" for pageLinkTarget (using the pageLabel if one is available)
+/// Override this if you implement custom actions.
+- (NSString *)targetString;
 
 /// A Link annotation might have multiple rects.
 /// Note: This is currently NOT supported in PSPDFKit. Use boundingBox.
