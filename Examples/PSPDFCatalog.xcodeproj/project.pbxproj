@@ -10,6 +10,7 @@
 		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
 		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
+		781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77915CF2F180030C730 /* libHockeySDK.a */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */; };
@@ -346,6 +347,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */,
 				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */,
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
