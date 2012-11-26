@@ -96,6 +96,7 @@
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
+		78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */; };
 		78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
@@ -114,7 +115,6 @@
 		78DDC75915CF2EFF0030C730 /* LocalyticsUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC71E15CF2EFF0030C730 /* LocalyticsUploader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78DDC75B15CF2EFF0030C730 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC72315CF2EFF0030C730 /* SDURLCache.m */; };
 		78DDC78315CF2F1E0030C730 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC78215CF2F1E0030C730 /* CrashReporter.framework */; };
-		78DDC78815CF30B80030C730 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77F15CF2F180030C730 /* libHockeySDK.a */; };
 		78DDC78915CF30C30030C730 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */; };
 		78E306BC1601C4850051AF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E306BB1601C4850051AF68 /* Default-568h@2x.png */; };
 		78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */; };
@@ -130,27 +130,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1E59544115B6C3DC00A03429;
 			remoteInfo = HockeySDK;
-		};
-		78DDC77A15CF2F180030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E400561A148D79B500EB22B9;
-			remoteInfo = "HockeySDK-Device";
-		};
-		78DDC77C15CF2F180030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1E59547C15B6C41300A03429;
-			remoteInfo = "HockeySDK-Simulator";
-		};
-		78DDC77E15CF2F180030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1E5954F215B6F24A00A03429;
-			remoteInfo = HockeySDKLib;
 		};
 		78DDC78015CF2F180030C730 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -312,6 +291,8 @@
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
+		78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCLinkEditorViewController.m; sourceTree = "<group>"; };
+		78D455C71662C06300213CA5 /* PSCLinkEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCLinkEditorViewController.h; sourceTree = "<group>"; };
 		78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDrawingViewController.m; sourceTree = "<group>"; };
 		78D8128215DC45EB00B8056B /* PSCCustomDrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomDrawingViewController.h; sourceTree = "<group>"; };
 		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
@@ -368,7 +349,6 @@
 				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */,
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
-				78DDC78815CF30B80030C730 /* libHockeySDK.a in Frameworks */,
 				78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */,
 				784F012015CF247900849F81 /* Foundation.framework in Frameworks */,
 				784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */,
@@ -653,6 +633,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */,
+				78D455C71662C06300213CA5 /* PSCLinkEditorViewController.h */,
 				78E543FD164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.h */,
 				78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */,
 				78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */,
@@ -764,10 +746,7 @@
 		78DDC76D15CF2F180030C730 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78DDC77915CF2F180030C730 /* HockeySDK.framework */,
-				78DDC77B15CF2F180030C730 /* libHockeySDK-iphoneos.a */,
-				78DDC77D15CF2F180030C730 /* libHockeySDK-iphonesimulator.a */,
-				78DDC77F15CF2F180030C730 /* libHockeySDK.a */,
+				78DDC77915CF2F180030C730 /* libHockeySDK.a */,
 				78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */,
 			);
 			name = Products;
@@ -842,32 +821,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		78DDC77915CF2F180030C730 /* HockeySDK.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = HockeySDK.framework;
-			remoteRef = 78DDC77815CF2F180030C730 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78DDC77B15CF2F180030C730 /* libHockeySDK-iphoneos.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libHockeySDK-iphoneos.a";
-			remoteRef = 78DDC77A15CF2F180030C730 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78DDC77D15CF2F180030C730 /* libHockeySDK-iphonesimulator.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libHockeySDK-iphonesimulator.a";
-			remoteRef = 78DDC77C15CF2F180030C730 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78DDC77F15CF2F180030C730 /* libHockeySDK.a */ = {
+		78DDC77915CF2F180030C730 /* libHockeySDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libHockeySDK.a;
-			remoteRef = 78DDC77E15CF2F180030C730 /* PBXContainerItemProxy */;
+			remoteRef = 78DDC77815CF2F180030C730 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */ = {
@@ -999,6 +957,7 @@
 				78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */,
 				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
 				78E7A73E16546EAE000C70BE /* PSCRotatablePDFViewController.m in Sources */,
+				78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

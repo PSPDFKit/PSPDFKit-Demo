@@ -34,6 +34,7 @@
 #import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
+#import "PSCLinkEditorViewController.h"
 #import "PSCSettingsController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
@@ -44,7 +45,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:8]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -325,6 +326,17 @@ const char kPSCAlertViewKey;
             NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
         }
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+        document.editableAnnotationTypes = [NSSet setWithObjects:
+                                            PSPDFAnnotationTypeStringLink, // not added by default.
+                                            PSPDFAnnotationTypeStringHighlight,
+                                            PSPDFAnnotationTypeStringUnderline,
+                                            PSPDFAnnotationTypeStringStrikeout,
+                                            PSPDFAnnotationTypeStringNote,
+                                            PSPDFAnnotationTypeStringFreeText,
+                                            PSPDFAnnotationTypeStringInk,
+                                            PSPDFAnnotationTypeStringSquare,
+                                            PSPDFAnnotationTypeStringCircle,
+                                            nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
@@ -630,6 +642,24 @@ const char kPSCAlertViewKey;
 
     PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Link Editor" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        document.editableAnnotationTypes = [NSSet setWithObjects:
+                                            PSPDFAnnotationTypeStringLink, // important!
+                                            PSPDFAnnotationTypeStringHighlight,
+                                            PSPDFAnnotationTypeStringUnderline,
+                                            PSPDFAnnotationTypeStringStrikeout,
+                                            PSPDFAnnotationTypeStringNote,
+                                            PSPDFAnnotationTypeStringFreeText,
+                                            PSPDFAnnotationTypeStringInk,
+                                            PSPDFAnnotationTypeStringSquare,
+                                            PSPDFAnnotationTypeStringCircle,
+                                            nil];
+
+        PSPDFViewController *controller = [[PSCLinkEditorViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
     // Bookmarks
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture Bookmarks" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -696,13 +726,38 @@ const char kPSCAlertViewKey;
         controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
+    [content addObject:subclassingSection];
+
+    PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
-    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Timing tests" block:^UIViewController *{
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Timing tests" block:^UIViewController *{
         return [[PSCTimingTestViewController alloc] initWithNibName:nil bundle:nil];
     }]];
 
-    [content addObject:subclassingSection];
+    // Tests if we're correctly reloading the controller.
+    // Check if scrolling works after the document is set delayed.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Delayed document set" block:^UIViewController *{
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] init];
+
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            pdfController.document = hackerMagDoc;
+        });
+        
+        return pdfController;
+    }]];
+
+    // Tests if the placement of the search controller is correct, even for zoomed documents.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Inline search test" block:^UIViewController *{
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
+        pdfController.fitToWidthEnabled = YES;
+        pdfController.rightBarButtonItems = @[pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+
+    [content addObject:testSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
