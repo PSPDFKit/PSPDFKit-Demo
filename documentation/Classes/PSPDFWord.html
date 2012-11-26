@@ -53,7 +53,13 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/initWithFrame:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithFrame:</option>
+	
+	<option value="//api/name/initWithGlyphs:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithGlyphs:</option>
+	
 	<option value="//api/name/isEqualToWord:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqualToWord:</option>
+	
+	<option value="//api/name/isOnSameLineAs:">&nbsp;&nbsp;&nbsp;&nbsp;- isOnSameLineAs:</option>
 	
 	<option value="//api/name/stringValue">&nbsp;&nbsp;&nbsp;&nbsp;- stringValue</option>
 	
@@ -95,7 +101,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithFrame:">initWithFrame:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithGlyphs:">initWithGlyphs:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqualToWord:">isEqualToWord:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isOnSameLineAs:">isOnSameLineAs:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/stringValue">stringValue</a></span></li>
 	
@@ -157,6 +169,21 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/initWithGlyphs:">&ndash;&nbsp;initWithGlyphs:</a></code>
+		<span class="tooltip"><p>Initalize with <a href="#//api/name/glyphs">glyphs</a> (<a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a>).
+As an optimizations, only the first and last glyph will be used for frmae calculations.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithFrame:">&ndash;&nbsp;initWithFrame:</a></code>
+		<span class="tooltip"><p>Initialize with word <a href="#//api/name/frame">frame</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/stringValue">&ndash;&nbsp;stringValue</a></code>
 		<span class="tooltip"><p>Returns the content of the word (all <a href="#//api/name/glyphs">glyphs</a> merged together)</p></span>
 	</span>
@@ -172,7 +199,8 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/glyphs">&nbsp;&nbsp;glyphs</a></code>
-		<span class="tooltip"><p>All <a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a> objects</p></span>
+		<span class="tooltip"><p>All <a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a> objects.
+Frame will be recalculated when glyphs are set.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -182,6 +210,13 @@
 		<span class="tooltip"><p>Set to YES if this is the last word on a textBlock.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isOnSameLineAs:">&ndash;&nbsp;isOnSameLineAs:</a></code>
+		<span class="tooltip"><p>Tests if word is approximately on the same horizontal line as the other word.</p></span>
+	</span>
+	
 	
 </li><li>
 	<span class="tooltip">
@@ -244,7 +279,8 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>All <a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a> objects</p>
+		<p>All <a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a> objects.
+Frame will be recalculated when glyphs are set.</p>
 	</div>		
 	
 	
@@ -316,6 +352,75 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/initWithFrame:" title="initWithFrame:"></a>
+	<h3 class="subsubtitle method-title">initWithFrame:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialize with word <a href="#//api/name/frame">frame</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithFrame:(CGRect)<em>wordFrame</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithGlyphs:" title="initWithGlyphs:"></a>
+	<h3 class="subsubtitle method-title">initWithGlyphs:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initalize with <a href="#//api/name/glyphs">glyphs</a> (<a href="../Classes/PSPDFGlyph.html">PSPDFGlyph</a>).
+As an optimizations, only the first and last glyph will be used for frmae calculations.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithGlyphs:(NSArray *)<em>wordGlyphs</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/isEqualToWord:" title="isEqualToWord:"></a>
 	<h3 class="subsubtitle method-title">isEqualToWord:</h3>
 	
@@ -327,6 +432,40 @@
 	
 	
 	<div class="method-subsection method-declaration"><code>- (BOOL)isEqualToWord:(PSPDFWord *)<em>otherWord</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWord.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isOnSameLineAs:" title="isOnSameLineAs:"></a>
+	<h3 class="subsubtitle method-title">isOnSameLineAs:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tests if word is approximately on the same horizontal line as the other word.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isOnSameLineAs:(PSPDFWord *)<em>word</em></code></div>
 	
 	
 	
@@ -396,7 +535,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-24)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-26)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
