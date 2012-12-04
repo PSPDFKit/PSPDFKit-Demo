@@ -9,6 +9,7 @@
 #import "PSCatalogViewController.h"
 #import "HockeySDK.h"
 #import "LocalyticsSession.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -89,10 +90,21 @@
     return [self handleOpenURL:URL];
 }
 
-- (BOOL)handleOpenURL:(NSURL *)launchPDFURL {
-    if ([launchPDFURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchPDFURL path]]) {
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchPDFURL];
+- (BOOL)handleOpenURL:(NSURL *)launchURL {
+    // Add DropBox hook
+    if ([[DBSession sharedSession] handleOpenURL:launchURL]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            PSCLog(@"App linked successfully!");
+        }
+        return YES;
+    }
+
+    // Open PDF
+    if ([launchURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
         [self.catalog popToRootViewControllerAnimated:NO];
         [self.catalog pushViewController:pdfController animated:NO];
         return YES;
