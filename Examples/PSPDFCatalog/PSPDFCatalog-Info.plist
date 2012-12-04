@@ -62,5 +62,14 @@
 			</array>
 		</dict>
 	</array>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>db-tlgd0ci9254huta</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
