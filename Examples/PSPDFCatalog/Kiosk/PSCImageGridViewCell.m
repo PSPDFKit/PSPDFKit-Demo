@@ -123,7 +123,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         siteLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
         self.siteLabel = siteLabel;
         [self.contentView addSubview:siteLabel];
-    }else if(!self.isShowingSiteLabel && self.siteLabel.superview) {
+    }else if (!self.isShowingSiteLabel && self.siteLabel.superview) {
         [self.siteLabel removeFromSuperview];
     }
 
@@ -154,7 +154,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
-        }else if([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
+        }else if ([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
             // check if magazine needs to be observed (if download progress is active)
             if (self.magazine.isDownloading && ![observedMagazineDownloads_ containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -213,7 +213,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
                 if (!strongImageLoadOperation.isCancelled && !imageLoadedFromWeb) {
                     PSPDFDispatchIfNotOnMainThread(^{
-                        if(!strongImageLoadOperation.isCancelled) {
+                        if (!strongImageLoadOperation.isCancelled) {
                             // animating this is too expensive.
                             [self setImage:magazineOperationImage_ animated:NO];
                             self.siteLabel.text = magazineTitle_;
@@ -334,7 +334,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
-    if(darken && !progressViewBackground_) {
+    if (darken && !progressViewBackground_) {
         progressViewBackground_ = [[UIView alloc] initWithFrame:self.imageView.bounds];
         progressViewBackground_.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         progressViewBackground_.backgroundColor = [UIColor blackColor];
@@ -352,7 +352,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         }else {
             progressViewBackground_.alpha = 0.5f;
         }
-    }else if(!darken && progressViewBackground_.superview) {
+    }else if (!darken && progressViewBackground_.superview) {
         if (animated) {
             [UIView animateWithDuration:0.25 animations:^{
                 progressViewBackground_.alpha = 0.f;
@@ -381,7 +381,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             [self.progressView removeFromSuperview];
             self.progressView = nil;
         }];
-    }else if(shouldShowProgress) {
+    }else if (shouldShowProgress) {
         [self.contentView bringSubviewToFront:self.progressView];
 
         // ensure visibility

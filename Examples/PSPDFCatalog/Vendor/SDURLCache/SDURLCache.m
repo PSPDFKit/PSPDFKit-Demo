@@ -217,7 +217,7 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
         int _slen, _trans;
         const char *_keys;
         const unsigned char *_inds;
-        if(p  == pe) { goto _test_eof; }
+        if (p  == pe) { goto _test_eof; }
     _resume:
         _keys  = _httpDate_trans_keys + (cs << 1);
         _inds  = _httpDate_indicies   + _httpDate_index_offsets[cs];
@@ -225,7 +225,7 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
         _trans = _inds[(_slen > 0) && (_keys[0] <= (*p)) && ((*p) <= _keys[1]) ? (*p) - _keys[0] : _slen];
         cs     = _httpDate_trans_targs[_trans];
 
-        if(_httpDate_trans_actions[_trans] == 0) { goto _again; }
+        if (_httpDate_trans_actions[_trans] == 0) { goto _again; }
 
         switch(_httpDate_trans_actions[_trans]) {
             case 6:  gdate.year   = gdate.year * 10 + ((*p) - '0');                     break;
@@ -249,10 +249,10 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
         }
 
     _again:
-        if(  cs ==  0) { goto _out;    }
-        if(++p  != pe) { goto _resume; }
+        if (  cs ==  0) { goto _out;    }
+        if (++p  != pe) { goto _resume; }
     _test_eof: {}
-        if(p == eof) {
+        if (p == eof) {
             switch(_httpDate_eof_actions[cs]) {
                 case 19: parsed = 1; break;
                 case 20: parsed = 1; break;
@@ -267,7 +267,7 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{ gmtTimeZone = CFTimeZoneCreateWithTimeIntervalFromGMT(NULL, 0.0); });
 
-    if(parsed == 1) { date = [NSDate dateWithTimeIntervalSinceReferenceDate:CFGregorianDateGetAbsoluteTime(gdate, gmtTimeZone)]; }
+    if (parsed == 1) { date = [NSDate dateWithTimeIntervalSinceReferenceDate:CFGregorianDateGetAbsoluteTime(gdate, gmtTimeZone)]; }
 
     return(date);
 }
@@ -390,10 +390,10 @@ static dispatch_queue_t get_disk_io_queue() {
     char stringBuffer[256];
     size_t stringLength = (size_t)CFStringGetLength((__bridge CFStringRef)httpDate);
     const char *cStringPtr = (const char *)CFStringGetCStringPtr((__bridge CFStringRef)httpDate, kCFStringEncodingMacRoman);
-    if(cStringPtr == NULL) {
+    if (cStringPtr == NULL) {
         CFIndex usedBytes = 0L, convertedCount = 0L;
         convertedCount = CFStringGetBytes((__bridge CFStringRef)httpDate, CFRangeMake(0L, (CFIndex)stringLength), kCFStringEncodingUTF8, '?', NO, (UInt8 *)stringBuffer, sizeof(stringBuffer) - 1L, &usedBytes);
-        if(((size_t)convertedCount != stringLength) || (usedBytes < 0L)) { return(NULL); }
+        if (((size_t)convertedCount != stringLength) || (usedBytes < 0L)) { return(NULL); }
         stringBuffer[usedBytes] = '\0';
         cStringPtr = (const char *)stringBuffer;
     }
@@ -776,7 +776,7 @@ static dispatch_queue_t get_disk_io_queue() {
 #pragma mark NSObject
 
 - (void)dealloc {
-    if(_maintenanceTimer) {
+    if (_maintenanceTimer) {
         dispatch_source_cancel(_maintenanceTimer);
         PSPDFDispatchRelease(_maintenanceTimer);
     }

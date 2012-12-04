@@ -89,7 +89,7 @@
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     if (![fileManager fileExistsAtPath:dirPath]) {
         NSError *fileError = nil;
-        if(![fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&fileError]) {
+        if (![fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&fileError]) {
             PSCLog(@"Error while creating directory: %@", [fileError localizedDescription]);
         }
     }
@@ -166,7 +166,7 @@
     if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
         NSError *error = nil;
         success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
-        if(!success){
+        if (!success){
             PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
         }
     // only works with 5.0.1 and above
