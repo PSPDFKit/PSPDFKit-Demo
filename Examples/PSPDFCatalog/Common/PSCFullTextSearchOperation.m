@@ -79,7 +79,7 @@
             [textSearch cancelAllOperationsAndWait];
         });
         dispatch_semaphore_signal(_searchBlockSemaphore);
-    }else if(self.isCancelled) {
+    }else if (self.isCancelled) {
         dispatch_semaphore_signal(_searchBlockSemaphore);
     }
 }

@@ -98,7 +98,7 @@
     if (downloading != _downloading) {
         _downloading = downloading;
         
-        if(!downloading) {
+        if (!downloading) {
             // clear cache, needed to recalculate pageCount
             [self clearCache];
             
