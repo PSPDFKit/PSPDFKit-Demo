@@ -139,13 +139,6 @@
     // Don't change this property in willAnimate* or updateSettingsForRotation or bad things will happen.
     // Also make sure to set the correct setting on the initial load (might already load up in landscape mode)
     //self.pageTransition = UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
-
-    if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        for (PSPDFPageView *pageView in [self visiblePageViews]) {
-            [pageView.selectionView showTextFlowData:NO animated:NO];
-            [pageView.selectionView showTextFlowData:YES animated:NO];
-        }
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
