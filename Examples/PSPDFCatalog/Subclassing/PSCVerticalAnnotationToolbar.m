@@ -27,7 +27,7 @@
 
         // simple example, just one button.
         UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *sketchImage = [UIImage pspdf_imageNamed:@"sketch" bundle:PSPDFKitBundle()];
+        UIImage *sketchImage = [UIImage imageNamed:@"PSPDFKit.bundle/sketch"];
         [drawButton setImage:sketchImage forState:UIControlStateNormal];
         [drawButton addTarget:self action:@selector(drawButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:drawButton];
