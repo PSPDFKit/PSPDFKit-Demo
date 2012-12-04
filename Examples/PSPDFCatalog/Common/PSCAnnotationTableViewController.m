@@ -153,7 +153,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:PSPDFAnnotationChangedNotification object:annotation userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[NSStringFromSelector(@selector(isDeleted))], PSPDFAnnotationChangedNotificationOriginalAnnotationKey : annotation}];
 
     [pageView updateView];
-    [pageView removePageAnnotation:annotation animated:YES]; // if it's an overlay annotation
+    [pageView removeAnnotation:annotation animated:YES]; // if it's an overlay annotation
 
     [self reloadData];
 }
