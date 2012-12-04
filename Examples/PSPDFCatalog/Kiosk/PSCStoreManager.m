@@ -148,7 +148,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     if (!magazine.URL) {
         [folder removeMagazine:magazine];
 
-        if([folder.magazines count] > 0) {
+        if ([folder.magazines count] > 0) {
             [_delegate magazineStoreFolderModified:folder]; // was just modified
         }else {
             dispatch_barrier_sync(_magazineFolderQueue, ^{
@@ -296,7 +296,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine {
     for (PSCDownload *aDownload in _downloadQueue) {
-        if(aDownload.magazine == magazine) {
+        if (aDownload.magazine == magazine) {
             return aDownload;
         }
     }
@@ -332,7 +332,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
                 if ([contentFolder.magazines count]) {
                     [folders addObject:contentFolder];
                 }
-            }else if([[fullPath lowercaseString] hasSuffix:@"pdf"]) {
+            }else if ([[fullPath lowercaseString] hasSuffix:@"pdf"]) {
                 @autoreleasepool {
                     PSCMagazine *magazine = [PSCMagazine magazineWithPath:fullPath];
                     [rootFolder addMagazine:magazine];

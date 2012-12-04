@@ -33,7 +33,7 @@
 
 - (UIImage *)image {
     // cache resize operation
-    if (!_buttonImage) _buttonImage = [[UIImage pspdf_imageNamed:@"Help" bundle:PSPDFKitBundle()] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
+    if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
     return _buttonImage;
 }
 
@@ -51,7 +51,7 @@
 #pragma mark - NSObject
 
 - (id)initWithDocument:(PSPDFDocument *)document {
-    if((self = [super init])) {
+    if ((self = [super init])) {
         _document = document;
         self.title = [document.fileURL lastPathComponent];
         self.contentSizeForViewInPopover = CGSizeMake(350, [self.document.metadata count] * 44);

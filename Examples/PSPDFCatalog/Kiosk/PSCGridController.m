@@ -593,7 +593,7 @@
                                        delegate:nil
                               cancelButtonTitle:_(@"OK")
                               otherButtonTitles:nil] show];
-        } else if(!magazine.isAvailable && !magazine.isDownloading) {
+        } else if (!magazine.isAvailable && !magazine.isDownloading) {
             [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
         } else {
             [self openMagazine:magazine animated:YES cellIndex:indexPath.item];

@@ -40,7 +40,7 @@
     NSError *error = nil;
     NSDictionary *dirtyAnnotations = [self.document.annotationParser dirtyAnnotations];
     NSLog(@"dirty: %@", dirtyAnnotations);
-    if(![self.document saveChangedAnnotationsWithError:&error]) {
+    if (![self.document saveChangedAnnotationsWithError:&error]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
         [self reloadData];
