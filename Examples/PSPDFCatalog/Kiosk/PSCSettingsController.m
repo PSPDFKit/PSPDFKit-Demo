@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, PSPDFSettings) {
     PSPDFOpenAPIButton,
     PSPDFShowConfigButton,
     PSPDFTextReflow,
+    PSPDFPageInfoButton,
     PSPDFDebugSettings,
     PSPDFDisplaySettings,
     PSPDFPaperColor,
@@ -96,7 +97,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Options");
         _content = @[
-        @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")],
+        @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")], @[_(@"Show Page Rect & Rotation")],
         @[_(@"Show Text Blocks")],
         @[_(@"Invert")], @[_(@"")], @[_(@"")],
         @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)")],
@@ -109,7 +110,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
         ];
-        _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""],
+        _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""], @[@""],
         @[_(@"(See PSPDFSelectionView)")],
         @[@""], @[@""], @[@""],
         @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition")],
@@ -122,8 +123,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFCacheNothing"), _(@"PSPDFCacheThumbnails"), _(@"PSPDFCacheThumbnailsAndNearPages"), _(@"PSPDFCacheOpportunistic")],
         ];
-        _sectionTitle = @[@"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
-        _sectionFooter = @[@"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
+        _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionFooter = @[@"", @"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
         _(@"Content Opacity"),
@@ -350,7 +351,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 5: cellSwitch.on = [_settings[StringSEL(isScrobbleBarEnabled)] boolValue]; break;
                 case 6: cellSwitch.on = [_settings[StringSEL(isPageLabelEnabled)] boolValue]; break;
                 default: break;
-            }break;
+            }
         }break;
         case PSPDFToolbarSettings: {
             switch (indexPath.row) {
@@ -364,7 +365,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: cellSwitch.on = [_settings[StringSEL(brightnessButtonItem)] boolValue]; break;
                 case 8: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
                 default: break;
-            }break;
+            }
         }break;
         case PSPDFLinkActionSettings: {
             PSPDFLinkAction linkAction = [_settings[StringSEL(linkAction)] integerValue];
@@ -378,13 +379,13 @@ static CGFloat pscSettingsLastYOffset = 0;
             switch (indexPath.row) {
                 case 0: cellSwitch.on = [_settings[@"showTextBlocks"] boolValue]; break;
                 default: break;
-            }break;
+            }
         }break;
         case PSPDFDisplaySettings: {
             switch (indexPath.row) {
                 case 0: cellSwitch.on = [_settings[StringSEL(renderInvertEnabled)] boolValue]; break;
                 default: break;
-            }break;
+            }
         }break;
         default:break;
     }
@@ -409,6 +410,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             [[self masterViewController] presentModalViewController:webController animated:YES];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
+        case PSPDFPageInfoButton: [self showPageInfoButton]; break;
         case PSPDFTextReflow: [self showTextReflowController]; break;
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = indexPath.row;
@@ -474,6 +476,10 @@ static CGFloat pscSettingsLastYOffset = 0;
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 
     [[self masterViewController] presentModalViewController:navController animated:YES];
+}
+
+- (void)showPageInfoButton {
+    [[[UIAlertView alloc] initWithTitle:@"Page Info" message:[[[[self currentPDFController] document] pageInfoForPage:[[self currentPDFController] page]] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 - (void)showTextReflowController {
