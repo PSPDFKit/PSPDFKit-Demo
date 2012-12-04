@@ -39,12 +39,17 @@
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
+// Dropbox support
+#import <DropboxSDK/DropboxSDK.h>
+#import "GSDropboxActivity.h"
+#import "GSDropboxUploader.h"
+
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:8]
 //#define kDebugTextBlocks
 
@@ -83,8 +88,12 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+
+        //PSPDFTextParser *textParser = [document textParserForPage:0];
+        //NSLog(@"%@", textParser.textBlocks);
+
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
@@ -114,16 +123,16 @@ const char kPSCAlertViewKey;
 
     /*
      // pre-cache whole document
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
-    });*/
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+     [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
+     });*/
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
-        
+
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
@@ -182,7 +191,7 @@ const char kPSCAlertViewKey;
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"CGDocumentProvider" block:^{
         NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
         CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
-//        CGDataProviderRef dataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)([samplesURL URLByAppendingPathComponent:@"corrupted.pdf"]));
+        //        CGDataProviderRef dataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)([samplesURL URLByAppendingPathComponent:@"corrupted.pdf"]));
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:dataProvider];
         document.title = @"CGDataProviderRef PDF";
         CGDataProviderRelease(dataProvider);
@@ -244,15 +253,15 @@ const char kPSCAlertViewKey;
     }]];
 
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"Multiple NSData objects (merged)" block:^{
-            NSArray *fileNames = @[@"A.pdf", @"B.pdf", @"C.pdf"];
-            //NSArray *fileNames = @[@"Test6.pdf", @"Test5.pdf", @"Test4.pdf", @"Test1.pdf", @"Test2.pdf", @"Test3.pdf", @"rotated-northern.pdf", @"A.pdf", @"rotated360degrees.pdf", @"Rotated PDF.pdf"];
-            NSMutableArray *dataArray = [NSMutableArray array];
-            for (NSString *fileName in fileNames) {
-                NSURL *file = [samplesURL URLByAppendingPathComponent:fileName];
-                NSData *data = [NSData dataWithContentsOfURL:file];
-                [dataArray addObject:data];
-            }
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:dataArray];
+        NSArray *fileNames = @[@"A.pdf", @"B.pdf", @"C.pdf"];
+        //NSArray *fileNames = @[@"Test6.pdf", @"Test5.pdf", @"Test4.pdf", @"Test1.pdf", @"Test2.pdf", @"Test3.pdf", @"rotated-northern.pdf", @"A.pdf", @"rotated360degrees.pdf", @"Rotated PDF.pdf"];
+        NSMutableArray *dataArray = [NSMutableArray array];
+        for (NSString *fileName in fileNames) {
+            NSURL *file = [samplesURL URLByAppendingPathComponent:fileName];
+            NSData *data = [NSData dataWithContentsOfURL:file];
+            [dataArray addObject:data];
+        }
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:dataArray];
 
         // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
         NSDictionary * options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
@@ -321,8 +330,8 @@ const char kPSCAlertViewKey;
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSString *newPath = [docsFolder stringByAppendingPathComponent:[annotationSavingURL lastPathComponent]];
         NSError *error;
-        if(![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
-           ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
+            ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
             NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
         }
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
@@ -391,7 +400,7 @@ const char kPSCAlertViewKey;
     [content addObject:annotationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    
+
     PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
     [storyboardSection addContent:[[PSContent alloc] initWithTitle:@"Init with Storyboard" block:^UIViewController *{
         UIViewController *controller = nil;
@@ -500,10 +509,10 @@ const char kPSCAlertViewKey;
 
     // one way to speed up PSPDFViewController display is calling fillCache on the document.
     /*
-    PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [childDocument fillCache];
-    });
+     PSPDFDocument *childDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+     [childDocument fillCache];
+     });
      */
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Child View Controller containment" block:^{
         NSURL *testURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
@@ -537,11 +546,11 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
-        
+
         pdfController.rightBarButtonItems = @[pdfController.searchButtonItem];
         /*
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
-        pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
+         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
+         pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
          */
         pdfController.tintColor = [UIColor orangeColor];
         pdfController.shouldTintPopovers = YES;
@@ -696,7 +705,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
-            if(!PSIsIpad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+            if (!PSIsIpad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
 
             // example how to switch between pageTransitions
             //pdfController.pageTransition = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
@@ -728,6 +737,42 @@ const char kPSCAlertViewKey;
     }]];
     [content addObject:subclassingSection];
 
+    PSPDF_IF_IOS6_OR_GREATER(
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+
+        // To use this in your own app, replace the key/secret with your own API.
+        // and update the Info.plist with the new URL scheme.
+        // See https://www.dropbox.com/developers/start/authentication#ios for details.
+        DBSession *dbSession = [[DBSession alloc] initWithAppKey:@"tlgd0ci9254huta"
+                                                       appSecret:@"jbel7nqasuc63wt"
+                                                            root:kDBRootAppFolder];
+        [DBSession setSharedSession:dbSession];
+        controller.activityButtonItem.applicationActivities = @[[GSDropboxActivity new]];
+
+        // Very simple approach to show upload status.
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidGetProgressUpdateNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+                [PSPDFProgressHUD showProgress:[note.userInfo[GSDropboxUploaderProgressKey] floatValue] status:@"Uploading..."];
+            }];
+
+            [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidFinishUploadingFileNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+                [PSPDFProgressHUD showSuccessWithStatus:@"Upload Finished."];
+            }];
+
+            [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidFailNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+                [PSPDFProgressHUD showErrorWithStatus:@"Upload failed."];
+            }];
+        });
+
+        return controller;
+    }]];
+    )
+    [content addObject:subclassingSection];
+
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
@@ -745,7 +790,7 @@ const char kPSCAlertViewKey;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             pdfController.document = hackerMagDoc;
         });
-        
+
         return pdfController;
     }]];
 
@@ -756,6 +801,39 @@ const char kPSCAlertViewKey;
         pdfController.rightBarButtonItems = @[pdfController.viewModeButtonItem];
         return pdfController;
     }]];
+
+    // additional test cases, just for developing
+#ifdef PSPDF_USE_SOURCE
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Zoom out UIKit freeze bug" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // test search highlighting matching, also tests that we indeed are on logical page 3.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Search for Drammen" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"doc-1205.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 2; // pages start at 0.
+
+        int64_t delayInSeconds = 1.f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController searchForString:@"Drammen" animated:YES];
+        });
+
+        return pdfController;
+    }]];
+
+    // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        document.editableAnnotationTypes = [NSSet setWithArray:@[PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+#endif
 
     [content addObject:testSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -917,6 +995,8 @@ const char kPSCAlertViewKey;
         [controller.navigationController pushViewController:tabbedViewController animated:YES];
     }else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
         [controller.navigationController pushViewController:pdfController animated:YES];
     }
 }
@@ -925,11 +1005,11 @@ const char kPSCAlertViewKey;
 #pragma mark - PSPDFDocumentDelegate
 
 - (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
-    NSLog(@"\n\nSaving of %@ successful: %@", document, annotations);
+    PSCLog(@"\n\nSaving of %@ successful: %@", document, annotations);
 }
 
 - (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error {
-    NSLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
+    PSCLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
