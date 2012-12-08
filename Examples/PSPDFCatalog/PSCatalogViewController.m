@@ -49,8 +49,8 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:8]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:12 inSection:6]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -700,6 +700,24 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a shape annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        //document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
+
+        // add shape annotation if there isn't one already.
+        if ([[document annotationsForPage:0 type:PSPDFAnnotationTypeShape] count] == 0) {
+            PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
+            annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100, 100);
+            annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
+            annotation.fillColor = annotation.color;
+            annotation.alpha = 0.3f;
+            [document addAnnotations:@[annotation] forPage:0];
+        }
+        
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
     // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dynamic fittingWidth on iPhone" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -829,8 +847,42 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         document.editableAnnotationTypes = [NSSet setWithArray:@[PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+
+    // Show grid initially, test that page is correctly zoomed at.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Show grid initially" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference17.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 15;
+        pdfController.viewMode = PSPDFViewModeThumbnails;
+        return pdfController;
+    }]];
+
+    // check that annotations work well with pageCurl (e.g. that you can't curl while adding a annotation)
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Annotations + pageCurl" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+        pdfController.pageTransition = PSPDFPageCurlTransition;
+        return pdfController;
+    }]];
+
+    // check that the brightness works on iPhone as well.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Brightness on iPhone" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.brightnessButtonItem, pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+
+    // check that non-uniform pages are correctly handled.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Centered dual-page mode" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pepsico-slow2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 1;
         return pdfController;
     }]];
 #endif
