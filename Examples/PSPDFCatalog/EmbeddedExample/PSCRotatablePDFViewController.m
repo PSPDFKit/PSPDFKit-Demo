@@ -74,9 +74,6 @@
 
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        // reset view
-        gestureRecognizer.view.transform = CGAffineTransformIdentity;
-
         // Invalidate the cache.
         // TODO: this could be made more fine grained. (just update the current page)
         [[PSPDFCache sharedCache] removeCacheForDocument:self.document deleteDocument:NO error:NULL];
@@ -90,7 +87,8 @@
         // request an immediate rendering, will block the main thread but prevent flashing.
         [[PSPDFCache sharedCache] renderAndCacheImageForDocument:self.document page:self.page size:PSPDFSizeNative error:NULL];
 
-        // Reload the controller. (this is efficient and will re-use views)
+        // Reset view and reload the controller. (this is efficient and will re-use views)
+        gestureRecognizer.view.transform = CGAffineTransformIdentity;
         [self.pdfController reloadData];
     }else {
         // Transform the current view.
