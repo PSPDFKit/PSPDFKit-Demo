@@ -32,8 +32,19 @@
 	
 	
 	
+	<option value="tasks">Tasks</option>
 	
 	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/activityController">&nbsp;&nbsp;&nbsp;&nbsp;activityController</option>
+	
+	<option value="//api/name/applicationActivities">&nbsp;&nbsp;&nbsp;&nbsp;applicationActivities</option>
+	
+	<option value="//api/name/excludedActivityTypes">&nbsp;&nbsp;&nbsp;&nbsp;excludedActivityTypes</option>
 	
 	
 	
@@ -53,9 +64,23 @@
 
 
 
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/activityController">activityController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationActivities">applicationActivities</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/excludedActivityTypes">excludedActivityTypes</a></span></li>
+	
+</ul></li>
 
 
 
@@ -103,9 +128,152 @@
 					
 					
 					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applicationActivities">&nbsp;&nbsp;applicationActivities</a></code>
+		<span class="tooltip"><p>Add custom activities.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/excludedActivityTypes">&nbsp;&nbsp;excludedActivityTypes</a></code>
+		<span class="tooltip"><p>Excluded activities. Defaults to UIActivityTypeAssignToContact.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/activityController">&nbsp;&nbsp;activityController</a></code>
+		<span class="tooltip"><p>The UIActivityViewController will be created during presentAnimated.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+					</div>
 					
 					
 					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/activityController" title="activityController"></a>
+	<h3 class="subsubtitle method-title">activityController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The UIActivityViewController will be created during presentAnimated.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) UIActivityViewController *activityController</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFActivityBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applicationActivities" title="applicationActivities"></a>
+	<h3 class="subsubtitle method-title">applicationActivities</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add custom activities.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *applicationActivities</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFActivityBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/excludedActivityTypes" title="excludedActivityTypes"></a>
+	<h3 class="subsubtitle method-title">excludedActivityTypes</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Excluded activities. Defaults to UIActivityTypeAssignToContact.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSArray *excludedActivityTypes</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFActivityBarButtonItem.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -122,7 +290,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-11-26)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-09)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
