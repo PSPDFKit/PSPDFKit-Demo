@@ -104,6 +104,8 @@ documentation: current-menu-item current_page_item
 <ul>
 	<li>- autostart: starts the video as soon as the page is displayed (e.g. pspdfkit://[autostart:true]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8)</li>
 	<li>- cover: displays a custom play button with the cover image. If you just need the play button without a background image, use cover : "". Cover uses the same path resolving like the multimedia link annotation system (http://website or /localhost/Bundle/image.jpg). Note: autostart:true will override the cover setting.</li>
+	<li>- offset: will start the video at a specific time in seconds. (e.g. pspdfkit://[offset:10]devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8)</li>
+
 </ul><br>
 	<p>Note: YouTube-Links are not displayed as a inline-thumbnail on the iPhone if the PSPDFViewController is displayed modally. This is a workaround for a known Apple bug, where the UINavigationController breaks after the control returns from fullscreen.</p><br>
 
