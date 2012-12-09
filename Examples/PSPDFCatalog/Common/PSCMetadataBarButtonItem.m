@@ -7,7 +7,7 @@
 
 #import "PSCMetadataBarButtonItem.h"
 
-@interface PSPDFMetadataController : UITableViewController
+@interface PSCMetadataController : UITableViewController
 - (id)initWithDocument:(PSPDFDocument *)document;
 @property (nonatomic, weak) PSPDFDocument *document;
 @end
@@ -17,14 +17,24 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
+
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
+    if ((self = [super initWithPDFViewController:pdfController])) {
+        // compensate icon center
+        if ([self itemStyle] == UIBarButtonItemStylePlain) {
+            float topInset = 2.0f;
+            self.imageInsets = UIEdgeInsetsMake(topInset, 0.0f, -topInset, 0.0f);
+        }
+    }
+    return self;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
 
 - (BOOL)isAvailable {
     return [self.pdfController.document.metadata count] > 0;
-}
-
-- (UIBarButtonItemStyle)itemStyle {
-    return UIBarButtonItemStylePlain;
 }
 
 - (NSString *)actionName {
@@ -32,20 +42,20 @@
 }
 
 - (UIImage *)image {
-    // cache resize operation
     if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
-    return _buttonImage;
+
+    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(_buttonImage) : _buttonImage;
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[PSPDFMetadataController alloc] initWithDocument:self.pdfController.document]];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[PSCMetadataController alloc] initWithDocument:self.pdfController.document]];
     navController.topViewController.title = [self actionName];
     return [self presentModalOrInPopover:navController sender:sender];
 }
 
 @end
 
-@implementation PSPDFMetadataController
+@implementation PSCMetadataController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
