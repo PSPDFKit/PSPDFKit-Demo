@@ -167,7 +167,7 @@ const char kPSCAlertViewKey;
 
 
     // PSPDFDocument data provider test
-    PSCSectionDescriptor *documentTests = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible."];
+    PSCSectionDescriptor *documentTests = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one."];
 
     /// PSPDFDocument works with a NSURL
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"NSURL" block:^{
@@ -649,7 +649,7 @@ const char kPSCAlertViewKey;
     [content addObject:encryptedSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit"];
+    PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit."];
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Link Editor" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -753,7 +753,6 @@ const char kPSCAlertViewKey;
         controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
-    [content addObject:subclassingSection];
 
     PSPDF_IF_IOS6_OR_GREATER(
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
