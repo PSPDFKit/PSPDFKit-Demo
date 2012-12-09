@@ -55,15 +55,6 @@
         // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
         if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
 
-        // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-        NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
-        _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-        _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-        _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
-        _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
-        
-        self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
-
         // Restore viewState (sadly, NSKeyedUnarchiver might throw on error)
         if ([self.document isValid]) {
             NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.UID];
@@ -148,10 +139,7 @@
     // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
-    // simple optimization, since changing the toolbar isn't cheap.
-    if ([self.leftBarButtonItems count] != [leftToolbarItems count]) {
-        self.leftBarButtonItems = leftToolbarItems;
-    }
+    self.leftBarButtonItems = leftToolbarItems;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -172,6 +160,16 @@
         }
     }];
 
+    // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
+    NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
+    _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
+    _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+    _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
+    _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
+    [self updateSettingsForRotation:self.interfaceOrientation];
+
+    self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
+
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
     if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.annotationButtonItem];
@@ -190,6 +188,7 @@
             [rightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
+
     if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
     }
@@ -206,6 +205,10 @@
     if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
         [additionalRightBarButtonItems addObject:self.emailButtonItem];
     }
+    if ([settings[NSStringFromSelector(@selector(activityButtonItem))] boolValue]) {
+        [additionalRightBarButtonItems addObject:self.activityButtonItem];
+    }
+
     if (!PSIsIpad()) {
         if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
             [additionalRightBarButtonItems addObject:self.outlineButtonItem];
@@ -220,6 +223,12 @@
             [additionalRightBarButtonItems addObject:self.brightnessButtonItem];
         }
     }
+
+#ifdef kPSPDFEnableAllBarButtonItems
+    [rightBarButtonItems addObjectsFromArray:additionalRightBarButtonItems];
+    self.rightBarButtonItems = rightBarButtonItems;
+#endif
+    
     [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
     self.additionalBarButtonItems = additionalRightBarButtonItems;
 

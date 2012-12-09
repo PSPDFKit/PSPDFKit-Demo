@@ -14,17 +14,32 @@
 
 @implementation PSCSettingsBarButtonItem
 
-- (UIBarButtonItemStyle)itemStyle {
-    return UIBarButtonItemStylePlain;
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
+
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
+    if ((self = [super initWithPDFViewController:pdfController])) {
+        // compensate icon center
+        if ([self itemStyle] == UIBarButtonItemStylePlain) {
+            float topInset = 2.0f;
+            self.imageInsets = UIEdgeInsetsMake(topInset, 0.0f, -topInset, 0.0f);
+        }
+    }
+    return self;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFBarButtonItem
 
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    return [UIImage imageNamed:@"settings"];
+    UIImage *image = [UIImage imageNamed:@"settings"];
+    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
 }
 
 - (UIImage *)landscapeImagePhone {
-    return [UIImage imageNamed:@"settings_landscape"];
+    UIImage *image = [UIImage imageNamed:@"settings_landscape"];
+    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
 }
 
 - (NSString *)actionName {
