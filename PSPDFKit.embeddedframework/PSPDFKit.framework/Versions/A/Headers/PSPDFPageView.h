@@ -9,6 +9,7 @@
 #import "PSPDFRenderQueue.h"
 #import "PSPDFResizableView.h"
 #import "PSPDFLongPressGestureRecognizer.h"
+#import "PSPDFSignatureViewController.h"
 
 @protocol PSPDFAnnotationView;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController;
@@ -19,7 +20,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
@@ -212,10 +213,10 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
  This method is called recursively with all annotation types except if they return isOverlay = NO.
  */
-- (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (void)addAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Remove an annotation from the view.
-- (BOOL)removePageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (BOOL)removeAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 @end
 
@@ -239,6 +240,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Can be used for manual tap forwarding.
 - (BOOL)singleTappedAtViewPoint:(CGPoint)viewPoint;
 
+/// Show menu if annotation/text is selected.
+- (void)showMenuIfSelectedAnimated:(BOOL)animated;
+
 /// Render options that are used for the live-page rendering. (not for the cache)
 /// One way to ues this would be to customize what annotations types will be rendered with the pdf.
 /// See PSPDFPageRenderer for a list of options.
@@ -248,7 +252,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, assign) BOOL suspendUpdate;
 
 /// Remove a page annotation as soon as the page has been refreshed.
-- (BOOL)removePageAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
+- (BOOL)removeAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
 
 /// Allow to update the boundingBox correctly for isOverlay = YES annotations.
 - (void)updatePageAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
@@ -259,5 +263,13 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Will create and show the action sheet on long-press above a PSPDFLinkAnnotation.
 /// Return nil if you don't show the actionSheet, or return the object you're showing. (UIView or UIViewController subclass)
 - (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
+
+@end
+
+@interface PSPDFPageView (Deprecated)
+
+- (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated __attribute__ ((deprecated("Use addAnnotation:animated: instead.")));
+
+- (void)removePageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated __attribute__ ((deprecated("Use removePageAnnotation:animated: instead.")));
 
 @end

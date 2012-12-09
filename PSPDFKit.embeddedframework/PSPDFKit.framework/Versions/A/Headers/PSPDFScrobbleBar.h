@@ -33,4 +33,10 @@
 /// Alpha is set to 0.7, can be changed.
 @property (nonatomic, strong) UIToolbar *toolbar;
 
+/// Defaults to 5. 
+@property (nonatomic, assign) CGFloat leftBorderMargin;
+
+/// Defaults to 5.
+@property (nonatomic, assign) CGFloat rightBorderMargin;
+
 @end

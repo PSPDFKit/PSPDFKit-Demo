@@ -19,6 +19,9 @@ extern NSString *const PSPDFAnnotationTypeStringFreeText;
 extern NSString *const PSPDFAnnotationTypeStringInk;
 extern NSString *const PSPDFAnnotationTypeStringSquare;
 extern NSString *const PSPDFAnnotationTypeStringCircle;
+// Signature is technically an Ink annotation, but this enables an optimized adding mode (toolbar).
+extern NSString *const PSPDFAnnotationTypeStringSignature;
+
 
 // Annotations defined after the PDF standard.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
@@ -135,10 +138,18 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Color with added alpha value.
 @property (nonatomic, strong, readonly) UIColor *colorWithAlpha;
 
-/// Fill color. Only used for certain annotation types. ("IC" key)
-/// (e.g. Square and Circle Annotations)
-/// FillColor might be nil - treat like clearColor in that case.
+/**
+ Fill color. Only used for certain annotation types. ("IC" key, e.g. Shape Annotations)
+ 
+ FillColor might be nil - treat like clearColor in that case.
+ FillColor will *share* the alpha value set in the .alpha property, and will ignore any custom alpha value set here.
+ 
+ Note: Apple Preview.app will not show you transparency in the fillColor. (tested under 10.8.2)
+ */
 @property (nonatomic, strong) UIColor *fillColor;
+
+/// FillColor with added alpha value.
+@property (nonatomic, strong, readonly) UIColor *fillColorWithAlpha;
 
 /// Optional. Various annotation types may contain text.
 @property (nonatomic, copy) NSString *contents;
@@ -146,6 +157,11 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// The annotation name, a text string uniquely identifying it among all the annotations on its page.
 /// (Optional; PDF1.4, "NM" key)
 @property (nonatomic, copy) NSString *name;
+
+/// Date where the annotation was last modifed.
+/// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
+/// Will be updated by PSPDFKt as soon as a property is changed.
+@property (nonatomic, strong) NSDate *lastModified;
 
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
@@ -159,7 +175,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Annotation may already be deleted locally, but not written back.
 @property (nonatomic, assign, getter=isDeleted) BOOL deleted;
 
-/// Rectangle of specific annotation.
+/// Rectangle of specific annotation. (PDF coordinates)
 @property (nonatomic, assign) CGRect boundingBox;
 
 /// User (title) flag. ("T" property)

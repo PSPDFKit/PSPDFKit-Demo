@@ -1,5 +1,36 @@
 # Changelog
 
+__v2.6.0 - 9/December/2012__
+
+*  New feature: Add signature. It's enabled by default. If you don't need it, set the editableAnnotationTypes on PSPDFDocument.
+*  New Opacity... menu item for Ink and Highlight annotations. This can be disabled via the menu delegates (PSPDFViewControllerDelegate)
+*  New Create Annotations menu after a long-tap on a space without text or image. This is now enabled by default. See createAnnotationMenuEnabled on PSPDFViewController.
+*  Imoroved text block detection (this also improves smart zoom)
+*  New convenience method defaultAnnotationUsername in PSPDFDocument. You should set this to the user name if you're using annotations.
+*  DualPage display will now center pages vertically if they don't have the same aspect ratio, and will draw a nicer shadow spanning exactly both page rects.
+*  PSPDFProgressHUD now has support to show a circular progress status. (Try the new Dropbox upload sample)
+*  Exposes applicationActivities and excludedActivities in PSPDFActivityBarButtonItem.
+*  Adds support for Web/Email URLs in the PDF Outline.
+*  Adds a workaround for an UIKit bug that could result in an partly unresponsive scrollView when zooming out programmatically all the way to zoomLevel 1.0 (e.g. after tapping an already zoomed in text block, only affected the default pageTransition, only on device)
+*  If only Highlighting is allowed (and not Underscore or Strikeout), the Type... menu option will be hidden (since there is no point one could change it to)
+*  PSPDFScrobbleBar now has left/rightBorderMargin properties. (e.g. to make space to a custom button at one end)
+*  Allows subclassing of PSPDFThumbnailGridViewCell via overrideClassNames.
+*  Uses the shared alpha property for fillColor, to be compliant to the PDF standard. (mostly affects shape annotations)
+*  Ensure annotation selection is cleared before a pageCurl transition starts.
+*  Simplifies toolbar code by removing the copiedToolbar subclasses. (This should not affect your code at all, simply found a better way to trigger UIKit to refresh the image property)
+*  Fixes a rare crash for parsing certain MMType1 PDF fonts.
+*  Fixes an issue where the annotation toolbar could be overlayed by the underlying toolbar buttons when the toolbar (not navigtionBar) was updated afterwards.
+*  Fixes an issue where the search highlighting was incorrectly applied on certain rotated documents.
+*  Fixes a bug where under certain conditions the initial page set on the PSPDFViewController was ignored.
+*  Fixes an issue where not rendered annotations where still selectable.
+*  Fixes a situation where the PDF annotation user wasn't written unless contents was set.
+*  Fixes an issue where the page offset for document providers sometimes was calculated incorrectly, this showing the wrong page labels.
+*  Fixes a crash on iOS6 when viewMode was set to PSPDFViewModeThumbnails before the controller was actually displayed.
+*  Fixes an issue where a late view frame change could result in an incorrectly rendered PDF view (black borders, could happen under certain conditions with Storyboarding)
+*  Fixes a bug with using brightnessBarButtonItem on iPhone.
+*  Fixes a situation where one could initiate a pageCurl during adding an annotation.
+*  Titanium: Fixes an issue where setLinkAnnotationBorderColor would not work on the first page. Also adds support for "clear" color.
+
 __v2.5.4 - 26/November/2012__
 
 *  Makes PSPDFLinkAnnotation writeable and adds a new targetString method to customize the preview URL that is displayed on a long press annotation.

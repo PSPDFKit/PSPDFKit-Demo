@@ -13,7 +13,7 @@
 
 @optional
 
-/// called before we start selecting. No further delegates will be called for the following touch events until filter is lifted and started again if we return NO here. (touchesBegan)
+/// Called before we start selecting. If we return NO here, no selection will be drawn (but delegates will still be displayed)
 - (BOOL)selectionView:(PSPDFSelectionView *)selectionView shouldStartSelectionAtPoint:(CGPoint)point;
 
 /// Rect is updated. (touchesMoved)

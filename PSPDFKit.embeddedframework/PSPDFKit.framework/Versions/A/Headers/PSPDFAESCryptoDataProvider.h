@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 
 /**
- This class allows a tranparent decryption of AES256 encrypted files.
+ This class allows a tranparent decryption of AES256 encrypted files (using CBC and an initial 16 byte IV vector)
  The IV vector for the file is written in the first 16 bytes of the file to read.
  Use the provided encryption tool to prepare your documents.
  
