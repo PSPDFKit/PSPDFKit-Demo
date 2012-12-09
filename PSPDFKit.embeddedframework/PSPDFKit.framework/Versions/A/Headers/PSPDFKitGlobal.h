@@ -169,10 +169,10 @@ extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *path
 
 // Log helper
 #ifdef kPSPDFKitDebugEnabled
-#define PSPDFLogVerbose(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLog(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLogWarning(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelWarning) NSLog((@"Warning: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
-#define PSPDFLogError(fmt, ...) do { if(kPSPDFLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogVerbose(fmt, ...) do { if (kPSPDFLogLevel >= PSPDFLogLevelVerbose) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLog(fmt, ...) do { if (kPSPDFLogLevel >= PSPDFLogLevelInfo) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogWarning(fmt, ...) do { if (kPSPDFLogLevel >= PSPDFLogLevelWarning) NSLog((@"Warning: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
+#define PSPDFLogError(fmt, ...) do { if (kPSPDFLogLevel >= PSPDFLogLevelError) NSLog((@"Error: %s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__); }while(0)
 #else
 #define PSPDFLogVerbose(...)
 #define PSPDFLog(...)
@@ -213,6 +213,9 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 
 @interface NSArray (PSPDFArrayAccess)
 - (id)ps_firstObject;
+@end
+@interface NSMutableArray (PSPDFArrayAccess)
+- (void)ps_addObjectSave:(id)anObject;
 @end
 
 // Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.

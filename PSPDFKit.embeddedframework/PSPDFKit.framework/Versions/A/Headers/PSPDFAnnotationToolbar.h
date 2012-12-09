@@ -18,7 +18,8 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarStrikeOut,
     PSPDFAnnotationToolbarUnderline,
     PSPDFAnnotationToolbarFreeText,
-    PSPDFAnnotationToolbarDraw
+    PSPDFAnnotationToolbarDraw,
+    PSPDFAnnotationToolbarSignature
 };
 
 /// Delegate to be notified on toolbar actions/hiding.
@@ -38,9 +39,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 extern NSString *const kPSPDFLastUsedDrawingWidth; // float
 extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSString (annotation type) -> NSColor (encoded via NSKeyedArchiver)
 
-/// To edit annotations, a new toolbar will be overlayed.
-/// You can also use the features of the toolbar in the background and make your own UI.
-/// (for custom UI, don't show the toolbar, manually call the buttons and let the toolbar perform all the state handling)
+/**
+ Toolbar to quickly create annotations.
+ 
+ This is just one way to create annotations. They can also be created in code, but PSPDFAnnotationToolbar does a lot of work/view/state management for you - if you implement your own annotation UI, you should still use PSPDFAnnotationToolbar underneath (just don't show it, but call the methods). 
+ 
+ To customize which annotation icons should be displayed, simply edit editableAnnotationTypes in PSPDFDocument.
+ */
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
 
 /// Designated initializer.
@@ -54,13 +59,14 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// You need to manually remove the toolbar from the view in the completion block. This is just to get the animation right.
 - (void)hideToolbarAnimated:(BOOL)animated completion:(dispatch_block_t)completionBlock;
 
-/// Flash toolbar if user tries to hide the HUD.
+/// Flash toolbar (e.g. if user tries to hide the HUD)
 - (void)flashToolbar;
 
 /// Annotation toolbar delegate.
 @property (nonatomic, strong) id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
+/// If you update tintColor, barStyle, etc - this needs to be set again to re-capture changed states.
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
 /// Active annotation toolbar mode.
@@ -74,6 +80,9 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// Current drawing line width. Defaults to 3.f
 @property (nonatomic, assign) CGFloat lineWidth;
 
+/// Enable to auto-hide toolbar after drawing finishes. Defaults to NO.
+@property (nonatomic, assign) BOOL hideAfterDrawingDidFinish;
+
 @end
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
@@ -84,6 +93,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)strikeOutButtonPressed:(id)sender;
 - (void)underlineButtonPressed:(id)sender;
 - (void)drawButtonPressed:(id)sender;
+- (void)signatureButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
 // Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.

@@ -68,6 +68,12 @@
 
 @interface PSPDFFileAnnotationProvider (SubclassingHooks)
 
+/// Parses the page annotation dictionary and returns the newly created annotations.
+/// Want to customize annotations right after parsing? This is the perfect place.
+/// Will be called from annotationsForPage:pageRef: in a thread safe manner and later cached.
+- (NSArray *)parseAnnotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
+
+/// Saving code.
 - (BOOL)saveAnnotationsWithError:(NSError **)error;
 
 /// Load annotations (returning NO + eventually an error if it fails)

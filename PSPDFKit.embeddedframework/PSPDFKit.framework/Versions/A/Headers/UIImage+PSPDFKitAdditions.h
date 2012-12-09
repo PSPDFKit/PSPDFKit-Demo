@@ -25,9 +25,6 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 - (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor opaque:(BOOL)opaque;
 
 /// Load images via path, looking automatically for a @2x option.
-+ (UIImage *)pspdf_imageWithContentsOfResolutionIndependentFile:(NSString *)path;
-
-/// Load images via path, looking automatically for a @2x option.
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;
 
 /// Creates a new images that is already preloaded to draw on screen.
@@ -38,9 +35,6 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 
 /// Creates a new image that is eventually decompressed..
 + (UIImage *)pspdf_preloadedImageWithData:(NSData *)data;
-
-/// Load images from the bundle.
-+ (UIImage *)pspdf_imageNamed:(NSString *)imageName bundle:(NSBundle *)bundle;
 
 /// Tint an image.
 - (UIImage *)pdpdf_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;

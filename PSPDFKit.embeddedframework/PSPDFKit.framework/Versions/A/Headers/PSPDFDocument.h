@@ -178,6 +178,10 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 */
 @property (nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
 
+/// Default annotation username. Defaults to nil.
+/// Written as the "T" (title/user) property of newly created annotations.
+@property (nonatomic, copy) NSString *defaultAnnotationUsername;
+
 /**
  Saves changed annotations back into the PDF sources (files/data).
  
