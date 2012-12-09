@@ -12,19 +12,22 @@
 
 typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
     PSPDFProgressHUDMaskTypeNone = 1, // allow user interactions while HUD is displayed
-    PSPDFProgressHUDMaskTypeClear, // don't allow
-    PSPDFProgressHUDMaskTypeBlack, // don't allow and dim the UI in the back of the HUD
-    PSPDFProgressHUDMaskTypeGradient // don't allow and dim the UI with a a-la-alert-view bg gradient
+    PSPDFProgressHUDMaskTypeClear,    // don't allow
+    PSPDFProgressHUDMaskTypeBlack,    // don't allow and dim the UI in the back of the HUD
+    PSPDFProgressHUDMaskTypeGradient  // don't allow and dim the UI with a a-la-alert-view bg gradient
 };
 
-/// Simple Progres HUD.
+/// Simple Progress HUD.
 @interface PSPDFProgressHUD : UIView
 
 + (void)show;
 + (void)showWithMaskType:(PSPDFProgressHUDMaskType)maskType;
-
 + (void)showWithStatus:(NSString *)status;
 + (void)showWithStatus:(NSString *)status maskType:(PSPDFProgressHUDMaskType)maskType;
+
++ (void)showProgress:(CGFloat)progress;
++ (void)showProgress:(CGFloat)progress status:(NSString *)status;
++ (void)showProgress:(CGFloat)progress status:(NSString *)status maskType:(PSPDFProgressHUDMaskType)maskType;
 
 + (void)setStatus:(NSString *)string; // change the HUD loading status while it's showing
 

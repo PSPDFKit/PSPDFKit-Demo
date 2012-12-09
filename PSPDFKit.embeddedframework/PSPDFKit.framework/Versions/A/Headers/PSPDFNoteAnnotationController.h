@@ -29,7 +29,7 @@
 @interface PSPDFNoteAnnotationController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initalizer.
-- (id)initWithAnnotation:(PSPDFAnnotation *)nnotation editable:(BOOL)allowEditing;
+- (id)initWithAnnotation:(PSPDFAnnotation *)annotation editable:(BOOL)allowEditing;
 
 /// Attached annotation.
 /// Allowed types are PSPDFNoteAnnotation, PSPDFHighlightAnnotation and PSPDFFreeTextAnnotation.
@@ -40,7 +40,6 @@
 
 /// If YES, the edit button will be displayed to show color/icon editing. Defaults to YES.
 /// Will be ignored if allowEditing is NO or annotation type is not PSPDFAnnotationTypeNote.
-/// Set before showing/initializing the view. (View will be initialized as soon as you're adding a UIPopover)
 @property (nonatomic, assign) BOOL showColorAndIconOptions;
 
 /// Allow to customize the textView. (font etc)

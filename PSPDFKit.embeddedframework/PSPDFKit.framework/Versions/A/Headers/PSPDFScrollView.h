@@ -32,6 +32,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
  */
 @interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
 
+// Designated initializer.
+- (id)initWithFrame:(CGRect)frame;
+
 /// Display specific document with specified page.
 - (void)displayDocument:(PSPDFDocument *)document withPage:(NSUInteger)page;
 

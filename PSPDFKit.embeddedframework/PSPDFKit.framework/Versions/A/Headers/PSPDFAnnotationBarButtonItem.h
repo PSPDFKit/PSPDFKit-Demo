@@ -7,6 +7,8 @@
 
 #import "PSPDFBarButtonItem.h"
 
+@class PSPDFAnnotationToolbar;
+
 /**
  Show/Hide the annotation toolbar.
  
@@ -27,5 +29,8 @@
 
 /// Override if you are using multiple UIToolbars and want to change on what toolbar the annotation bar should be displayed.
 - (UIToolbar *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
+
+/// Internally used and displayed annotation toolbar.
+@property (nonatomic, strong, readonly) PSPDFAnnotationToolbar *annotationToolbar;
 
 @end

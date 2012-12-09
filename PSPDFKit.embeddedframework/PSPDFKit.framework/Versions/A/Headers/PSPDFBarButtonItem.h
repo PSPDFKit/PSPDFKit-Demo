@@ -7,7 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFViewController, PSPDFCopiedBarButtonItem;
+@class PSPDFViewController;
 
 /**
  Custom subclass that handles a UIBarButtonItem within the UINavigationBar of PSPDFViewController.
@@ -88,17 +88,5 @@
 
 /// Subclass to react on long press events. Only invoked if isLongPressActionAvailable is set to YES.
 - (void)longPressAction:(PSPDFBarButtonItem *)sender;
-
-/// UIBarButtonItem is immutable; once initialized, images are fixed.
-/// This returns a current state copy and relays the events.
-- (PSPDFCopiedBarButtonItem *)toolbarCopy;
-
-@end
-
-// Because UIBarButtonItem is so inflexible, we need copies for image changes.
-@interface PSPDFCopiedBarButtonItem : UIBarButtonItem
-
-// Link to the original barButton.
-@property (nonatomic, strong, readonly) PSPDFBarButtonItem *originalBarButtonItem;
 
 @end

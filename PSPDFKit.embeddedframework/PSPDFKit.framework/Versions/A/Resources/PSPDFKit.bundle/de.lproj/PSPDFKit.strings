@@ -75,6 +75,7 @@
 "Type..." = "Type…";
 "Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";
+"Opacity..." = "Alpha…";
 "Custom..." = "Mehr…";
 "Thickness..." = "Stärke…";
 "%@ pt" = "%@ pt";
@@ -92,6 +93,8 @@
 "Underline" = "Unterstreichen";
 "Strikeout" = "Durchstreichen";
 "Sketch" = "Zeichnen";
+"Signature" = "Unterschrift";
+"Add Signature" = "Unterschrift hinzufügen";
 "New Note" = "Neue Notiz";
 "Note" = "Notiz";
 "Text" = "Text";

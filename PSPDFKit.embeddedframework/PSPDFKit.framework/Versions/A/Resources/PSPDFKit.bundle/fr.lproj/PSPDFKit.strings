@@ -75,6 +75,7 @@
 "Type..." = "Type…";
 "Choose Color" = "Choose Color";
 "Colors..." = "Colors…";
+"Opacity..." = "Opacity…";
 "Custom..." = "Custom…";
 "Thickness..." = "Thickness…";
 "%@ pt" = "%@ pt";
@@ -92,6 +93,8 @@
 "Underline" = "Underline";
 "Strikeout" = "Strike Out";
 "Sketch" = "Sketch";
+"Signature" = "Signature";
+"Add Signature" = "Add Signature";
 "New Note" = "New Note";
 "Note" = "Note";
 "Text" = "Text";

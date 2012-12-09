@@ -103,6 +103,7 @@
 #import "PSPDFBookmarkBarButtonItem.h"
 #import "PSPDFBrightnessBarButtonItem.h"
 #import "PSPDFOutlineBarButtonItem.h"
+#import "PSPDFActivityBarButtonItem.h"
 
 // helper
 #import "PSPDFAlertView.h"

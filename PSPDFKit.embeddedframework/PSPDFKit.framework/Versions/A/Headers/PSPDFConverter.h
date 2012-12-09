@@ -33,6 +33,12 @@ extern NSDictionary *PSPDFConvertPDFDictionary(CGPDFDictionaryRef pdfDict);
 /// Converts a CGPDFArray into an NSArray.
 extern NSArray *PSPDFConvertPDFArray(CGPDFArrayRef pdfArray);
 
+/// Converts a string formatted after PDF Reference 7.9.4 to an NSDate.
+extern NSDate *PSPDFDateFromString(NSString *pdfDateString);
+
+/// Converts a NSDate to a PDF string formatted after PDF Reference 7.9.4.
+extern NSString *PSPDFStringFromDate(NSDate *date);
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 typedef NS_ENUM(NSInteger, PSPDFRectAlignment) {
@@ -90,6 +96,7 @@ extern inline CGRect PSPDFNormalizeRect(CGRect rect);
 extern inline CGRect PSPDFCGRectFromPoints(CGPoint p1, CGPoint p2);
 
 #define PSPDFDegreesToRadians(degrees) (degrees * M_PI / 180)
+#define PSPDFRadiansToDegrees(degrees) (degrees * (180 / M_PI))
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 

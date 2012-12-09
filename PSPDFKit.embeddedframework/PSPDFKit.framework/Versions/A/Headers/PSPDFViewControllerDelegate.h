@@ -152,7 +152,8 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /// Called before we're showing the menu for an annotation.
-- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
+/// If annotation is nil, we show the menu to create *new* annotations (in that case annotationRect will also be nil)
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)annotationRect onPageView:(PSPDFPageView *)pageView;
 
 /// Returns a pre-generated annotationView that can be modified before being added to the view.
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
