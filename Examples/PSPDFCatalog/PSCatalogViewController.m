@@ -50,7 +50,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:12 inSection:6]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:12 inSection:6]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
