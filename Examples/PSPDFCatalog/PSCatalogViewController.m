@@ -36,6 +36,7 @@
 #import "PSCRotatablePDFViewController.h"
 #import "PSCLinkEditorViewController.h"
 #import "PSCSettingsController.h"
+#import "PSCTintablePDFViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -50,7 +51,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:12 inSection:6]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -542,18 +543,9 @@ const char kPSCAlertViewKey;
     }]];
 
     // this the default recommended way to customize the toolbar
-    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Customized Toolbar" block:^{
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Tinted Toolbar, Popovers, AlertView" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pdfController.viewModeButtonItem];
-
-        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem];
-        /*
-         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem];
-         pdfController.additionalBarButtonItems = @[pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.bookmarkButtonItem];
-         */
-        pdfController.tintColor = [UIColor orangeColor];
-        pdfController.shouldTintPopovers = YES;
+        PSPDFViewController *pdfController = [[PSCTintablePDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 

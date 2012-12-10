@@ -10,6 +10,8 @@
 		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
 		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
+		780D5ADB1675641B00ECDDAC /* PSCTintColorSelectionBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */; };
+		780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */; };
 		781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77915CF2F180030C730 /* libHockeySDK.a */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
@@ -170,6 +172,10 @@
 		7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-right.jpg"; path = "Book/book-right.jpg"; sourceTree = "<group>"; };
 		7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookViewController.h; sourceTree = "<group>"; };
 		7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBookViewController.m; sourceTree = "<group>"; };
+		780D5AD91675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintColorSelectionBarButtonItem.h; sourceTree = "<group>"; };
+		780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintColorSelectionBarButtonItem.m; sourceTree = "<group>"; };
+		780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintablePDFViewController.m; sourceTree = "<group>"; };
+		780D5ADF1675642C00ECDDAC /* PSCTintablePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintablePDFViewController.h; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
 		78344B5015DBB6B1002491BF /* PSCExampleAnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExampleAnnotationViewController.h; sourceTree = "<group>"; };
 		78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExampleAnnotationViewController.m; sourceTree = "<group>"; };
@@ -609,6 +615,8 @@
 				786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */,
 				78E6AAE0162DAEFF0074BAB5 /* PSCGoToPageButtonItem.h */,
 				78E6AAE1162DAEFF0074BAB5 /* PSCGoToPageButtonItem.m */,
+				780D5AD91675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.h */,
+				780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -682,6 +690,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */,
+				780D5ADF1675642C00ECDDAC /* PSCTintablePDFViewController.h */,
 				78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */,
 				78D455C71662C06300213CA5 /* PSCLinkEditorViewController.h */,
 				78E543FD164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.h */,
@@ -1016,6 +1026,8 @@
 				785B160A16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m in Sources */,
 				785B160B16692BA100F747B8 /* GSDropboxUploader.m in Sources */,
 				785B160C16692BA100F747B8 /* GSDropboxUploadJob.m in Sources */,
+				780D5ADB1675641B00ECDDAC /* PSCTintColorSelectionBarButtonItem.m in Sources */,
+				780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
