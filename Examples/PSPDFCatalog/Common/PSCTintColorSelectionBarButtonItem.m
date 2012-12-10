@@ -15,15 +15,6 @@
 @implementation PSCTintColorSelectionBarButtonItem
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
-
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
-    if ((self = [super initWithPDFViewController:pdfController])) {
-    }
-    return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
 
 - (void)updateBarButtonItem {
