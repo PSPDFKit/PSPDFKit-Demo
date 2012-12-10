@@ -17,20 +17,6 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - NSObject
-
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
-    if ((self = [super initWithPDFViewController:pdfController])) {
-        // compensate icon center
-        if ([self itemStyle] == UIBarButtonItemStylePlain) {
-            float topInset = 2.0f;
-            self.imageInsets = UIEdgeInsetsMake(topInset, 0.0f, -topInset, 0.0f);
-        }
-    }
-    return self;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFBarButtonItem
 
 - (BOOL)isAvailable {
