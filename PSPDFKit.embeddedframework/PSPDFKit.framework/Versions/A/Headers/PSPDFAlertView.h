@@ -16,7 +16,6 @@
 - (id)initWithTitle:(NSString *)title;
 - (id)initWithTitle:(NSString *)title message:(NSString *)message;
 
-
 /// @name Adding Buttons
 
 /// Add a cancel button. (use only once!)
@@ -24,5 +23,13 @@
 
 /// Add regular button.
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block;
+
+/// @name Style
+
+/// Custom tintColor. Set to nil for the default style.
+@property (nonatomic, strong) UIColor *tintColor;
+
+/// Show with tint color. Use to conveniently create a one-line alertView with the classic init methods.
+- (void)showWithTintColor:(UIColor *)tintColor;
 
 @end

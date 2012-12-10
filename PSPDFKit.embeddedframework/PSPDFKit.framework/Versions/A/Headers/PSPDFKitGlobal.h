@@ -14,6 +14,8 @@
 /// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
+//#define kPSPDFEnableAllBarButtonItems
+
 extern NSString *const kPSPDFErrorDomain;
 
 typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
@@ -139,7 +141,7 @@ extern CGFloat psrangef(float minRange, float value, float maxRange);
 extern NSString *PSPDFTrimString(NSString *string);
 
 // Checks if the current controller class is displayed in the popover (also checks UINavigationController)
-extern BOOL PSPDFIsControllerClassInPopover(UIPopoverController *popoverController, Class controllerClass);
+extern BOOL PSPDFIsControllerClassInPopoverAndVisible(UIPopoverController *popoverController, Class controllerClass);
 
 // Convert an NSArray of NSNumber's to an NSIndexSet
 extern NSIndexSet *PSPDFIndexSetFromArray(NSArray *array);

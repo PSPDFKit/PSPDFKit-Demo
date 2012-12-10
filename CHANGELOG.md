@@ -1,5 +1,16 @@
 # Changelog
 
+__v2.6.1 - 10/December/2012__
+
+*  Video annotations can now have a specified offset. (e.g. offset=10) in seconds. Optional parameter.
+*  PSPDFResizableView can now optionally be set in a way that it only allows moving, not resizing.
+*  New toolbar style option in PSPDFViewController: useBorderedToolbarStyle. Will add regular bordered toolbar buttons. Optional.
+*  tintColor can now be changed after the PSPDFViewController has been displayed.
+*  Fixes an issue where video was autostarted even if autostart was set to NO.
+*  Fixes an issue where the last toolbar item on the right toolbar could vanish if the style is bordered.
+*  Fixes some issues regarding the textParser. More documents are now supported (especially with multiple nested XObject streams)
+*  Fixes an issue where PSPDFStatusBarDisable could sometime strigger statusbar showing/hiding.
+
 __v2.6.0 - 9/December/2012__
 
 *  New feature: Add signature. It's enabled by default. If you don't need it, set the editableAnnotationTypes on PSPDFDocument.
