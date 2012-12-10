@@ -70,7 +70,7 @@
         NSString *viewControllerTitle = NSLocalizedString(@"Tint Color", @"");
         PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle delegate:self];
         if (colorPicker) {
-            [self.pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[self]}];
+            [self.pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
         }else {
             PSPDFLogError(@"Color picker can't be displayed. Is PSPDFKit.bundle missing?");
         }
@@ -86,8 +86,8 @@
 
 - (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color {
     controller.navigationController.navigationBar.tintColor = color;
-    [self dismissModalOrPopoverAnimated:YES];
     self.pdfController.tintColor = color;
+    [self dismissModalOrPopoverAnimated:YES];
     [self.pdfController createToolbarAnimated:NO];
 }
 
