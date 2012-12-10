@@ -135,11 +135,19 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
-- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation {
+- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
     // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
-    self.leftBarButtonItems = leftToolbarItems;
+    // performance optimization
+    if ([leftToolbarItems count] != [self.leftBarButtonItems count] || force) {
+        self.leftBarButtonItems = leftToolbarItems;
+    }
+}
+
+- (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation {
+    [super updateSettingsForRotation:toInterfaceOrientation];
+    [self updateSettingsForRotation:toInterfaceOrientation force:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -166,7 +174,7 @@
     _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
     _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
     _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
-    [self updateSettingsForRotation:self.interfaceOrientation];
+    [self updateSettingsForRotation:self.interfaceOrientation force:YES];
 
     self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
