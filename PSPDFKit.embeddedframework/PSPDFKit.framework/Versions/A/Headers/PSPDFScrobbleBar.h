@@ -15,6 +15,7 @@
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// PDF controller delegate. We use KVO, so no weak here.
+/// Re-set pdfController to update the tintColor.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Updates toolbar, realigns page screenshots. Registers in the runloop and works later.

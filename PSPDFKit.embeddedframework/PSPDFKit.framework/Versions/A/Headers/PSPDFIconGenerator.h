@@ -7,6 +7,10 @@
 
 #import "PSPDFKitGlobal.h"
 
+/// Applies the barButton shadow if style is UIBarButtonItemStyleBorder.
+/// This is not needed, UIBarButtonItemStylePlain is managed by the system.
+extern UIImage *PSPDFApplyToolbarShadowToImage(UIImage *oldImage);
+
 typedef NS_ENUM(NSInteger, PSPDFIconType) {
     PSPDFIconTypeOutline,
     PSPDFIconTypePage,
@@ -30,6 +34,9 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
 
 /// Generates in-code images on the fly. Cached, Thread-safe.
 - (UIImage *)iconForType:(PSPDFIconType)iconType;
+
+/// Generates image on the fly, applies button shadow if needed. Thread-safe.
+- (UIImage *)iconForType:(PSPDFIconType)iconType barButtonStyle:(UIBarButtonItemStyle)style;
 
 /// Generates in-code images on the fly. Thread-safe. Uses custom shadow settings.
 - (UIImage *)iconForType:(PSPDFIconType)iconType shadowOffset:(CGSize)shadowOffset shadowColor:(UIColor *)shadowColor;

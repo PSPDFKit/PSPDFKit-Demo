@@ -91,6 +91,7 @@
 #import "PSPDFLabelParser.h"
 
 // toolbar (subclass buttons to change image)
+#import "PSPDFIconGenerator.h"
 #import "PSPDFBarButtonItem.h"
 #import "PSPDFCloseBarButtonItem.h"
 #import "PSPDFEmailBarButtonItem.h"
@@ -111,3 +112,5 @@
 #import "PSPDFMenuItem.h"
 #import "PSPDFProcessor.h"
 #import "PSPDFProgressHUD.h"
+#import "PSPDFColorButton.h"
+#import "PSPDFColorSelectionViewController.h"
