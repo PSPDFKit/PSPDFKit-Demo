@@ -88,6 +88,8 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  Make sure to correctly use viewController containment when adding this as a child view controller. If you override this class, ensure all UIViewController methods you're using do call super. (e.g. viewWillAppear).
  
  For subclassing, please use overrideClassNames to register your custom subclasses. (Cast the key class to (id) to hide the copy warning - classes can be copied without a problem)
+ 
+ The best time for setting the properties is during initialization, in commonInitWithDocument:. Some properties require a call to reloadData if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. viewWillAppear is bad, viewDidAppear is ok) since that could corrupt internal state.
 */
 @interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
@@ -409,6 +411,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Allows to change the minimum width of the right toolbar. Set this within updateToolbars.
 @property (nonatomic, assign) CGFloat minRightToolbarWidth;
 
+/// Will use UIBarButtonItemStyleBordered instead of UIBarButtonItemStylePlain for toolbar items.
+///
+/// You have to call reloadData after changing this.
+@property (nonatomic, assign) BOOL useBorderedToolbarStyle;
+
 
 /// @name Appearance Properties
 
@@ -484,6 +491,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Enable to add tinting to UIPopoverController using a custom UIPopoverView subclass. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldTintPopovers;
+
+/// Enable to allow tinting of PSPDFAlertView. Defaults to YES.
+@property (nonatomic, assign) BOOL shouldTintAlertView;
+- (UIColor *)alertViewTintColor; // Helper
 
 /// The navigationBar is animated. Check this to get the proper value, even if navigationBar.navigationBarHidden is not yet set (but will be in the animation block)
 @property (nonatomic, assign, getter=isNavigationBarHidden, readonly) BOOL navigationBarHidden;

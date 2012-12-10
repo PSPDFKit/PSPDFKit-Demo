@@ -108,6 +108,9 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Controls auto-play of video annotations.
 @property (nonatomic, assign, getter=isAutoplayEnabled) BOOL autoplayEnabled;
 
+/// Video offset.
+@property (nonatomic, assign) CGFloat offset;
+
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
 @property (nonatomic, assign) CGSize size;
 

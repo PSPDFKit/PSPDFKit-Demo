@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 @interface PSPDFResizableView : UIView <PSPDFLongPressGestureRecognizerDelegate>
 
 /// Designated initializer.
+/// This will call self.trackedView, so trackedView is the place where you'd wanna override to dynamically set allowResizing.
 - (id)initWithTrackedView:(UIView *)trackedView;
 
 /// View that will be changed on selection change.
@@ -53,6 +54,10 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 
 /// If set to NO, won't show selection knobs and dragging. Defaults to YES.
 @property (nonatomic, assign) BOOL allowEditing;
+
+/// Allows view resizing, shows resize knobs.
+/// If set to NO, view can only be moved, no resize knobs will be displayed. Depends on allowEditing. Defaults to YES.
+@property (nonatomic, assign) BOOL allowResizing;
 
 /// Set minimum allowed width (unless the view is smaller to begin width). Default is 44.0.
 @property (nonatomic, assign) CGFloat minWidth;
