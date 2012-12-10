@@ -296,7 +296,7 @@
 
 // toggle the options/settings button.
 - (void)optionsButtonPressed {
-    BOOL alreadyDisplayed = self.popoverController.isPopoverVisible && PSPDFIsControllerClassInPopover(self.popoverController, [PSCSettingsController class]);
+    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopoverAndVisible(self.popoverController, [PSCSettingsController class]);
     if (alreadyDisplayed) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
