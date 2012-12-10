@@ -1,13 +1,11 @@
 //
 //  PSCTintablePDFViewController.h
-//  PSPDFCatalog-static
+//  PSPDFCatalog
 //
-//  Created by Peter Steinberger on 12/10/12.
 //  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFBarButtonItem.h"
-
-@interface PSCTintablePDFViewController : PSPDFBarButtonItem
+// Shows how to re-tint on the fly
+@interface PSCTintablePDFViewController : PSPDFViewController
 
 @end
