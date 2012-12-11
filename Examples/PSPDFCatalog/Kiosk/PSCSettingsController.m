@@ -78,7 +78,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(searchButtonItem)] = @YES;
         _settings[StringSEL(annotationButtonItem)] = @YES;
         _settings[StringSEL(bookmarkButtonItem)] = @YES;
-        _settings[StringSEL(brightnessButtonItem)] = @(PSIsIpad()); // doesn't yet look good on iPhone.
+        _settings[StringSEL(brightnessButtonItem)] = @YES;
         _settings[StringSEL(outlineButtonItem)] = @YES;
         _settings[StringSEL(printButtonItem)] = @YES;
         _settings[StringSEL(openInButtonItem)] = @YES;
@@ -109,7 +109,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Scrobblebar"), _(@"Page Position View")],
         @[_(@"Search"), _(@"Table of Contents"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode"), _(@"Bordered Toolbar")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
-        @[_(@"No Disk Cache"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
+        @[_(@"No Disk Cache"), _(@"Thumbnails only"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
         ];
         _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""], @[@""],
         @[_(@"(See PSPDFSelectionView)")],
