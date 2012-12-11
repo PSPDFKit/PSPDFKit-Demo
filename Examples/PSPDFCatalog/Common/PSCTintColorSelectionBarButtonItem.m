@@ -34,7 +34,7 @@
 - (void)updateButtonSize {
     // as we lock orientation, button size needs to be checked only here.
     CGFloat buttonSize = roundf(PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation) * 0.75f);
-    _strokeColorButton.frame = CGRectMake(0, 0, buttonSize, buttonSize);
+    _strokeColorButton.frame = (CGRect){.origin = _strokeColorButton.frame.origin, .size=CGSizeMake(buttonSize, buttonSize)};
 }
 
 - (UIView *)customView {
