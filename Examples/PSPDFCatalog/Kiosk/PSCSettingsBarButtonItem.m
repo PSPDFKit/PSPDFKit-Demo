@@ -35,8 +35,7 @@
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSCSettingsController *settingsController = [PSCSettingsController new];
     settingsController.owningViewController = self.pdfController;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-    return [self presentModalOrInPopover:navController sender:sender];
+    return [self.pdfController presentViewControllerModalOrPopover:settingsController embeddedInNavigationController:PSIsIpad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAlwaysPopover : @YES}];
 }
 
 @end
