@@ -308,15 +308,13 @@ static CGFloat pscSettingsLastYOffset = 0;
     }
 
     if (indexPath.section == PSPDFPaperColor) {
-        _paperColorControl.frame = CGRectMake(9, 0, 302, 46);
-        _paperColorControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _paperColorControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
         UIColor *paperColor = _settings[StringSEL(renderBackgroundColor)];
         _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
         [cell addSubview:_paperColorControl];
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
-        _contentOpacityControl.frame = CGRectMake(9, 0, 302, 46);
-        _contentOpacityControl.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _contentOpacityControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
         NSUInteger index = roundf((1 - [_settings[StringSEL(renderContentOpacity)] floatValue]) * 10);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
