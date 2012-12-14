@@ -26,22 +26,16 @@
         }
     }];
     [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
-    actionSheet.destroyBlock = ^{
+    [actionSheet setDestroyBlock:^(PSPDFActionSheet *sheet, NSInteger buttonIndex) {
         // we don't get any delegates for the slide down animation on iPhone.
         // if we'd call dismissWithClickedButtonIndex again, the animation would be nil.
         _isDismissingSheet = YES;
         [self didDismiss];
-    };
+    }];
 
     BOOL shouldShow = [self.pdfController delegateShouldShowController:actionSheet embeddedInController:nil animated:animated];
     if (shouldShow) {
-        if (PSIsIpad() && [sender isKindOfClass:[UIBarButtonItem class]]) {
-            [actionSheet showFromBarButtonItem:sender animated:animated];
-        }else if (PSIsIpad() && [sender isKindOfClass:[UIView class]]) {
-            [actionSheet showFromRect:[sender bounds] inView:sender animated:animated];
-        }else {
-            [actionSheet showInView:[self.pdfController masterViewController].view];
-        }
+        [actionSheet showWithSender:sender fallbackView:[self.pdfController masterViewController].view animated:animated];
         self.actionSheet = actionSheet;
         return self.actionSheet;
     }else {

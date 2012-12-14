@@ -50,8 +50,8 @@
 #endif
 
 // set to auto-choose a section; debugging aid.
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
+#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:6 inSection:6]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -89,14 +89,30 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"search-page2.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"ORF.pdf"]];
 
         //PSPDFTextParser *textParser = [document textParserForPage:0];
         //NSLog(@"%@", textParser.textBlocks);
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+
+
+        NSMutableArray *points = [NSMutableArray array];
+        [points addObject:[NSValue valueWithCGPoint:CGPointMake(10, 10)]];
+        [points addObject:[NSValue valueWithCGPoint:CGPointMake(20, 20)]];
+        [points addObject:[NSValue valueWithCGPoint:CGPointMake(30, 30)]];
+
+        PSPDFInkAnnotation *inkAnnotation = [PSPDFInkAnnotation new];
+        inkAnnotation.lines = points;
+        inkAnnotation.lineWidth = 20;
+        inkAnnotation.color = [UIColor redColor];
+        inkAnnotation.boundingBox = (CGRect){CGPointMake(100, 50),CGSizeMake(500, 500)};
+        [inkAnnotation rebuildPaths];
+        [controller.document addAnnotations:[NSArray arrayWithObject:inkAnnotation] forPage:0];
+        [controller reloadData];
+
         return controller;
     }]];
 
@@ -265,7 +281,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataArray:dataArray];
 
         // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
-        NSDictionary * options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
+        NSDictionary *options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
         NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document pageCount])] options:options];
         PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument PDFDocumentWithData:consolidatedData];
 
