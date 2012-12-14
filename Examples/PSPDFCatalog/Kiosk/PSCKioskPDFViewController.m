@@ -10,9 +10,12 @@
 #import "PSCSettingsController.h"
 #import "PSCGridController.h"
 #import "PSCSettingsBarButtonItem.h"
-#import "PSCMetadataBarButtonItem.h"
+
+#ifdef PSPDFCatalog
 #import "PSCAnnotationTableBarButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
+#import "PSCMetadataBarButtonItem.h"
+#endif
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -22,8 +25,10 @@
     BOOL _hasLoadedLastPage;
     UIBarButtonItem *_closeButtonItem;
     PSCSettingsBarButtonItem *_settingsButtomItem;
+#ifdef PSPDFCatalog
     PSCMetadataBarButtonItem *_metadataButtonItem;
     PSCAnnotationTableBarButtonItem *_annotationListButtonItem;
+#endif
 }
 @end
 
@@ -69,6 +74,9 @@
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.UID];
             }
         }
+
+        self.leftBarButtonItems = @[_closeButtonItem];
+
 
         // change color
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
@@ -135,6 +143,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewController
 
+#ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
     // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
@@ -149,9 +158,11 @@
     [super updateSettingsForRotation:toInterfaceOrientation];
     [self updateSettingsForRotation:toInterfaceOrientation force:NO];
 }
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
+
 
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
@@ -172,9 +183,12 @@
     NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
     _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
     _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+
+#ifdef PSPDFCatalog
     _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
     _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
     [self updateSettingsForRotation:self.interfaceOrientation force:YES];
+#endif
 
     self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
@@ -233,9 +247,11 @@
     [rightBarButtonItems addObjectsFromArray:additionalRightBarButtonItems];
     self.rightBarButtonItems = rightBarButtonItems;
 #endif
-    
+
+#ifdef PSPDFCatalog
     [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
     self.additionalBarButtonItems = additionalRightBarButtonItems;
+#endif
 
     // reload scrollview and restore viewState
     [self reloadData];
@@ -276,7 +292,7 @@
     return NO; // touch not used.
 }
 
-static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
+static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     switch (state) {
         case UIGestureRecognizerStateBegan:     return @"Began";
         case UIGestureRecognizerStateChanged:   return @"Changed";
@@ -293,7 +309,7 @@ static NSString *PSPDFGestureStateToString(UIGestureRecognizerState state) {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
         CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
-        PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSPDFGestureStateToString(gestureRecognizer.state));
+        PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSCGestureStateToString(gestureRecognizer.state));
     }
     return NO; // touch not used.
 }
