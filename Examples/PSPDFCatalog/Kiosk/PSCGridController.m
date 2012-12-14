@@ -97,6 +97,7 @@
         self.navigationItem.rightBarButtonItem = editButton;
     }
 
+#ifdef PSPDFCatalog
     UIBarButtonItem *optionButton = [[UIBarButtonItem alloc] initWithTitle:_(@"Options")
                                                                      style:UIBarButtonItemStyleBordered
                                                                     target:self
@@ -109,6 +110,7 @@
         self.navigationItem.leftBarButtonItem = optionButton;
         self.navigationItem.leftItemsSupplementBackButton = YES;
     }
+#endif
 
     // add global shadow
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
