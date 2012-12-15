@@ -10,10 +10,6 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFDownloadRequestOperation.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 @interface PSCDownload () {
     UIProgressView *progressView_;
 }
@@ -29,10 +25,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
-
-+ (PSCDownload *)PDFDownloadWithURL:(NSURL *)URL {
-    return [[[self class] alloc] initWithURL:URL];
-}
 
 - (id)initWithURL:(NSURL *)URL {
     if ((self = [super init])) {
@@ -53,8 +45,7 @@
 #pragma mark - Public
 
 - (NSString *)downloadDirectory {
-    NSString *downloadDirectory = [[PSCStoreManager storagePath] stringByAppendingPathComponent:@"downloads"];
-    return downloadDirectory;
+    return [[PSCStoreManager storagePath] stringByAppendingPathComponent:@"downloads"];
 }
 
 - (PSCMagazine *)magazine {
@@ -93,7 +84,6 @@
             PSCLog(@"Error while creating directory: %@", [fileError localizedDescription]);
         }
     }
-
     PSCLog(@"downloading pdf from %@ to %@", self.URL, destPath);
 
     // create request
@@ -150,10 +140,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-#ifndef kCFCoreFoundationVersionNumber_iOS_5_1
-#define kCFCoreFoundationVersionNumber_iOS_5_1 690.1
-#endif
-
 // set a flag that the files shouldn't be backuped to iCloud.
 // https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 #include <sys/xattr.h>
@@ -161,9 +147,9 @@
     assert([[NSFileManager defaultManager] fileExistsAtPath:[URL path]]);
     BOOL success = NO;
 
-    // Weak-linking of NSURLIsExcludedFromBackupKey works in Xcode 4.5 and above
+    // Weak-linking of NSURLIsExcludedFromBackupKey works in Xcode 4.5 and above.
     // http://stackoverflow.com/questions/9620651/use-nsurlisexcludedfrombackupkey-without-crashing-on-ios-5-0
-    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_5_1) {
+    if (kCFCoreFoundationVersionNumber >= 690.1) { // iOS_5_1
         NSError *error = nil;
         success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
         if (!success){
@@ -175,7 +161,6 @@
         u_int8_t b = 1;
         setxattr([[URL path] fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
     }
-
     return success;
 }
 
