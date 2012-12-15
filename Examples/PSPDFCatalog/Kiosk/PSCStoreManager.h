@@ -5,15 +5,13 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-/// enable to make the view plain, no folders supported
+/// Enable to make the view plain, no folders supported.
 #define kPSPDFStoreManagerPlain YES
 
-/// notification emitted when magazines were successfully loaded form disk
-#define kPSPDFStoreDiskLoadFinishedNotification @"kPSPDFStoreDiskLoadFinishedNotification"
+/// Notification emitted when magazines were successfully loaded form disk.
+extern NSString *const kPSPDFStoreDiskLoadFinishedNotification;
 
-@class PSCMagazine;
-@class PSCMagazineFolder;
-@class PSCDownload;
+@class PSCMagazine, PSCMagazineFolder, PSCDownload;
 
 @protocol PSCStoreManagerDelegate <NSObject>
 
@@ -34,13 +32,14 @@
 
 @end
 
-/// Store manager, hold magazines and folders
-@interface PSCStoreManager : NSObject {
-    dispatch_queue_t _magazineFolderQueue;
-}
+/// Store manager, keeps magazines and folders.
+@interface PSCStoreManager : NSObject
 
 /// Shared Instance.
 + (PSCStoreManager *)sharedStoreManager;
+
+/// Single delegate.
+@property (nonatomic, weak) id<PSCStoreManagerDelegate> delegate;
 
 /// Storage path currently used. (depends on iOS version)
 + (NSString *)storagePath;
@@ -51,18 +50,27 @@
 /// Reload all magazines from disk.
 - (void)loadMagazinesFromDisk;
 
-@property (nonatomic, weak) id<PSCStoreManagerDelegate> delegate;
-
-- (void)downloadMagazine:(PSCMagazine *)magazine;
-- (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine;
-
+// Add multiple magazines.
 - (void)addMagazinesToStore:(NSArray *)magazines;
 
-// Delete
+// Delete a magazine.
 - (void)deleteMagazine:(PSCMagazine *)magazine;
+
+// Delete a magazine folder.
 - (void)deleteMagazineFolder:(PSCMagazineFolder *)magazineFolder;
 
-@property (nonatomic, strong, readonly) NSMutableArray *magazineFolders;
-@property (nonatomic, strong, readonly) NSMutableArray *downloadQueue;
+// All available magazine folders.
+@property (nonatomic, strong, readonly) NSArray *magazineFolders;
+
+// @name Download management
+
+// Start downloading a magazine.
+- (void)downloadMagazine:(PSCMagazine *)magazine;
+
+// Gets the current download progress object, if one is available.
+- (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine;
+
+// Running downloads (PSCDownload) are saved here.
+@property (nonatomic, strong, readonly) NSArray *downloadQueue;
 
 @end

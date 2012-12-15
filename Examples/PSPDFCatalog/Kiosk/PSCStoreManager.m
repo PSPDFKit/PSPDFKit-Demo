@@ -13,18 +13,18 @@
 #include <sys/xattr.h>
 #include <objc/runtime.h>
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
-@interface PSCStoreManager()
+@interface PSCStoreManager() {
+    NSMutableArray *_magazineFolders;
+    NSMutableArray *_downloadQueue;
+    dispatch_queue_t _magazineFolderQueue;
+}
 @property (nonatomic, strong) NSMutableArray *magazineFolders;
 @property (nonatomic, strong) NSMutableArray *downloadQueue;
-- (void)updateNewsstandIcon:(PSCMagazine *)magazine;
 @end
 
 @implementation PSCStoreManager
 
+NSString *const kPSPDFStoreDiskLoadFinishedNotification =  @"kPSPDFStoreDiskLoadFinishedNotification";
 static char kPSCKVOToken; // we need a static address for the kvo token
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +74,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    _delegate = nil;
     PSPDFDispatchRelease(_magazineFolderQueue);
 }
 
@@ -346,7 +345,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     return folders;
 }
 
-// doesn't support deep hierarchies. Just root or a folder
+// doesn't support deep hierarchies. Just root or a folder.
 - (NSMutableArray *)searchForMagazineFolders {
     NSMutableArray *folders = [NSMutableArray array];
 
@@ -384,7 +383,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     return folders;
 }
 
-// add a magazine to folder, then re-sort it
+// Add a magazine to folder, then re-sort it.
 - (PSCMagazineFolder *)addMagazineToFolder:(PSCMagazine *)magazine {
     PSCMagazineFolder *folder = [self.magazineFolders lastObject];
     [folder addMagazine:magazine];
@@ -400,7 +399,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
     }
-
     return nil;
 }
 
@@ -412,7 +410,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
     }
-
     return nil;
 }
 
