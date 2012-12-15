@@ -7,11 +7,12 @@
 
 #import "PSCMagazine.h"
 
-typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
-    PSPDFStoreDownloadStatusIdle,
-    PSPDFStoreDownloadStatusLoading,
-    PSPDFStoreDownloadStatusFinished,
-    PSPDFStoreDownloadStatusFailed,
+typedef NS_ENUM(NSUInteger, PSCStoreDownloadStatus) {
+    PSCStoreDownloadStatusIdle,
+    PSCStoreDownloadStatusLoading,
+    PSCStoreDownloadStatusFinished,
+    PSCStoreDownloadStatusFailed,
+    PSCStoreDownloadStatusCancelled
 };
 
 /// Wrapper that helps downloading a PDF.
@@ -27,7 +28,7 @@ typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
 - (void)cancelDownload;
 
 /// Current download status.
-@property (nonatomic, assign, readonly) PSPDFStoreDownloadStatus status;
+@property (nonatomic, assign, readonly) PSCStoreDownloadStatus status;
 
 /// Current download progress.
 @property (nonatomic, assign, readonly) float downloadProgress;
@@ -42,6 +43,6 @@ typedef NS_ENUM(NSUInteger, PSPDFStoreDownloadStatus) {
 @property (nonatomic, strong, readonly) NSError *error;
 
 /// Download cancelled?
-@property (atomic, assign, readonly, getter=isCancelled) BOOL cancelled;
+@property (nonatomic, assign, readonly, getter=isCancelled) BOOL cancelled;
 
 @end
