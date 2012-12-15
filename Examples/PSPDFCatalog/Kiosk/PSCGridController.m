@@ -35,7 +35,6 @@
     BOOL _animateViewWillAppearWithFade;
 }
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
-@property (nonatomic, assign, getter=isEditMode) BOOL editMode;
 @property (nonatomic, strong) UIImageView *magazineView;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) PSCShadowView *shadowView;
@@ -90,11 +89,7 @@
     [super viewDidLoad];
 
     if (!self.magazineFolder) {
-        UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:_(@"Edit")
-                                                                       style:UIBarButtonItemStyleBordered
-                                                                      target:self
-                                                                      action:@selector(editButtonPressed)];
-        self.navigationItem.rightBarButtonItem = editButton;
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
     }
 
 #ifdef PSPDFCatalog
@@ -429,27 +424,46 @@
     [self.gridView reloadData];
 }
 
-- (void)editButtonPressed {
-    if (self.isEditMode) {
-        self.editMode = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Edit")
-                                                                                  style:UIBarButtonItemStyleBordered
-                                                                                 target:self
-                                                                                 action:@selector(editButtonPressed)];
-
+- (BOOL)canEditCell:(PSCImageGridViewCell *)cell {
+    BOOL editing = self.isEditing;
+    if (cell.magazine) {
+        editing &= cell.magazine.isAvailable && !cell.magazine.isDownloading && cell.magazine.isDeletable;
     }else {
-        self.editMode = YES;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Done")
-                                                                                  style:UIBarButtonItemStyleDone
-                                                                                 target:self
-                                                                                 action:@selector(editButtonPressed)];
+        NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
+        editing &= [fixedMagazines count] == 0;
+    }
+    return editing;
+}
+
+- (void)updateEditingAnimated:(BOOL)animated {
+    NSArray *visibleCells = [self.gridView visibleCells];
+
+    for (PSCImageGridViewCell *cell in visibleCells) {
+        if ([cell isKindOfClass:[PSCImageGridViewCell class]]) {
+
+            BOOL editing = [self canEditCell:cell];
+            if (editing) cell.showDeleteImage = editing;
+            cell.deleteButton.alpha = editing?0.f:1.f;
+
+            [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                cell.deleteButton.alpha = editing?1.f:0.f;
+            } completion:^(BOOL finished) {
+                if (finished) {
+                    cell.showDeleteImage = editing;
+                }
+            }];
+        }
     }
 }
 
-- (void)setEditMode:(BOOL)editMode {
-    _editMode = editMode;
-    // TODO
-    //[self.gridView setEditing:editMode animated:YES];
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [self updateEditingAnimated:animated];
+}
+
+- (void)setEditing:(BOOL)editing {
+    [super setEditing:editing];
+    [self updateEditingAnimated:NO];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -477,100 +491,81 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PSCImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class]) forIndexPath:indexPath];
 
+    // connect the delete button
+    if ([[cell.deleteButton allTargets] count] == 0) {
+        [cell.deleteButton addTarget:self action:@selector(processDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     cell.immediatelyLoadCellImages = self.immediatelyLoadCellImages;
     if (self.magazineFolder) {
         cell.magazine = _filteredData[indexPath.item];
     }else {
         cell.magazineFolder = _filteredData[indexPath.item];
     }
+    cell.showDeleteImage = [self canEditCell:cell];
 
     return (UICollectionViewCell *)cell;
 }
 
-/*
- - (BOOL)PSPDFGridView:(PSPDFGridView *)gridView canDeleteItemAtIndex:(NSInteger)index {
- BOOL canDelete;
- if (!self.magazineFolder) {
- NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
- canDelete = [fixedMagazines count] == 0;
- }else {
- PSPDFMagazine *magazine = (self.magazineFolder.magazines)[index];
- canDelete = magazine.isAvailable && !magazine.isDownloading && magazine.isDeletable;
- }
- return canDelete;
- }
+- (void)processDeleteAction:(UIButton *)button {
+    [self processDeleteActionForCell:(PSCImageGridViewCell *)button.superview.superview];
+}
 
- - (void)PSPDFGridView:(PSPDFGridView *)gridView processDeleteActionForItemAtIndex:(NSInteger)index {
- PSPDFMagazine *magazine;
- PSPDFMagazineFolder *folder;
+- (void)processDeleteActionForCell:(PSCImageGridViewCell *)cell {
+    PSCMagazine *magazine = cell.magazine;
+    PSCMagazineFolder *folder = cell.magazineFolder;
 
- if (self.magazineFolder) {
- folder = self.magazineFolder;
- magazine = (self.magazineFolder.magazines)[index];
- }else {
- folder = ([PSPDFStoreManager sharedStoreManager].magazineFolders)[index];
- magazine = [folder firstMagazine];
- }
+    BOOL canDelete = YES;
+    NSString *message = nil;
+    if ([folder.magazines count] > 1 && !self.magazineFolder) {
+        message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
+    }else {
+        message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
+        if (kPSPDFShouldShowDeleteConfirmationDialog) {
+            canDelete = magazine.isAvailable || magazine.isDownloading;
+        }
+    }
 
- BOOL canDelete = YES;
- NSString *message = nil;
- if ([folder.magazines count] > 1 && !self.magazineFolder) {
- message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
- }else {
- message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
- if (kPSPDFShouldShowDeleteConfirmationDialog) {
- canDelete = magazine.isAvailable || magazine.isDownloading;
- }
- }
+    dispatch_block_t deleteBlock = ^{
+        if (self.magazineFolder) {
+            [[PSCStoreManager sharedStoreManager] deleteMagazine:magazine];
+        }else {
+            [[PSCStoreManager sharedStoreManager] deleteMagazineFolder:folder];
+        }
 
- dispatch_block_t deleteBlock = ^{
- if (self.magazineFolder) {
- [[PSPDFStoreManager sharedStoreManager] deleteMagazine:magazine];
- }else {
- [[PSPDFStoreManager sharedStoreManager] deleteMagazineFolder:folder];
- }
- };
+        NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
 
- if (kPSPDFShouldShowDeleteConfirmationDialog) {
- if (canDelete) {
- PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
- deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
- [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:^{
- deleteBlock();
- // TODO should re-calculate index here.
- [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
- }];
- [deleteAction setCancelButtonWithTitle:_(@"Cancel") block:nil];
- PSPDFImageGridViewCell *cell = (PSPDFImageGridViewCell *)[gridView cellForItemAtIndex:index];
- CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
- [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
- }
- }else {
- deleteBlock();
- if (magazine.URL) {
- // magazines with URL can't really be deleted, just delete data & fade to gray.
- [self.gridView reloadObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
- }else {
- [self.gridView removeObjectAtIndex:index withAnimation:PSPDFGridViewItemAnimationFade];
- }
- }
- }*/
+        if (indexPath) {
+            if (magazine.URL) {
+                [self.gridView reloadItemsAtIndexPaths:@[indexPath]];
+            }else {
+                [self.gridView deleteItemsAtIndexPaths:@[indexPath]];
+            }
+        }else {
+            [self.gridView reloadData];
+        }
+    };
+
+    if (kPSPDFShouldShowDeleteConfirmationDialog) {
+        if (canDelete) {
+            PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
+            deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+            [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:^{
+                deleteBlock();
+            }];
+            [deleteAction setCancelButtonWithTitle:_(@"Cancel") block:nil];
+            CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
+            [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
+        }
+    }else {
+        deleteBlock();
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UICollectionViewDelegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    /*
-     PSCMagazine *magazine = (_filteredData)[indexPath.item];
-     CGSize maxSize = PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
-     PSPDFPageInfo *pageInfo = [magazine pageInfoForPage:0];
-     CGSize cellSize = maxSize;
-     if (pageInfo) {
-     CGFloat scale = PSPDFScaleForSizeWithinSize(pageInfo.rotatedPageRect.size, maxSize);
-     cellSize = PSPDFSizeForScale(pageInfo.rotatedPageRect.size, scale);
-     }
-     return cellSize;
-     */
     return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
 }
 
@@ -732,7 +727,7 @@
     _filteredData = nil;
     [self.gridView reloadData];
     self.gridView.contentOffset = CGPointMake(0, -self.gridView.contentInset.top);
-
+    
     // TODO: UICollectionView is stealing the first responder. Why?
     [searchBar becomeFirstResponder];
 }
