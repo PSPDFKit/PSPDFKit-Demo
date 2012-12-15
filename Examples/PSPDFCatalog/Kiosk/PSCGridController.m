@@ -427,7 +427,7 @@
 - (BOOL)canEditCell:(PSCImageGridViewCell *)cell {
     BOOL editing = self.isEditing;
     if (cell.magazine) {
-        editing &= cell.magazine.isAvailable && !cell.magazine.isDownloading && cell.magazine.isDeletable;
+        editing &=  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
     }else {
         NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
         editing &= [fixedMagazines count] == 0;
@@ -483,9 +483,8 @@
     }else {
         _filteredData = [_filteredData copy];
     }
-
-    NSUInteger count = [_filteredData count];
-    return count;
+    
+    return [_filteredData count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -528,21 +527,13 @@
 
     dispatch_block_t deleteBlock = ^{
         if (self.magazineFolder) {
-            [[PSCStoreManager sharedStoreManager] deleteMagazine:magazine];
-        }else {
-            [[PSCStoreManager sharedStoreManager] deleteMagazineFolder:folder];
-        }
-
-        NSIndexPath *indexPath = [self.gridView indexPathForCell:cell];
-
-        if (indexPath) {
-            if (magazine.URL) {
-                [self.gridView reloadItemsAtIndexPaths:@[indexPath]];
+            if (magazine.isDownloading) {
+                [[PSCStoreManager sharedStoreManager] cancelDownloadForMagazine:magazine];
             }else {
-                [self.gridView deleteItemsAtIndexPaths:@[indexPath]];
+                [[PSCStoreManager sharedStoreManager] deleteMagazine:magazine];
             }
         }else {
-            [self.gridView reloadData];
+            [[PSCStoreManager sharedStoreManager] deleteMagazineFolder:folder];
         }
     };
 
@@ -591,7 +582,9 @@
                               cancelButtonTitle:_(@"OK")
                               otherButtonTitles:nil] show];
         } else if (!magazine.isAvailable && !magazine.isDownloading) {
-            [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
+            if (!self.isEditing) {
+                [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
+            }
         } else {
             [self openMagazine:magazine animated:YES cellIndex:indexPath.item];
         }

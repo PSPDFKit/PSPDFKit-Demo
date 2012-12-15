@@ -67,6 +67,9 @@ extern NSString *const kPSPDFStoreDiskLoadFinishedNotification;
 // Start downloading a magazine.
 - (void)downloadMagazine:(PSCMagazine *)magazine;
 
+// Cancels a magazine download.
+- (BOOL)cancelDownloadForMagazine:(PSCMagazine *)magazine;
+
 // Gets the current download progress object, if one is available.
 - (PSCDownload *)downloadObjectForMagazine:(PSCMagazine *)magazine;
 
