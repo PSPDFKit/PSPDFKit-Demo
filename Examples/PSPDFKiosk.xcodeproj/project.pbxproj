@@ -43,12 +43,9 @@
 		785DDA29167B9C8200559562 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA18167B9C8200559562 /* AFPropertyListRequestOperation.m */; };
 		785DDA2A167B9C8200559562 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA1A167B9C8200559562 /* AFURLConnectionOperation.m */; };
 		785DDA2B167B9C8200559562 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA1C167B9C8200559562 /* AFXMLRequestOperation.m */; };
-		785DDA2C167B9C8200559562 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA1D167B9C8200559562 /* LICENSE */; };
 		785DDA2D167B9C8200559562 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA1F167B9C8200559562 /* UIImageView+AFNetworking.m */; };
-		785DDA2E167B9C8200559562 /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA21167B9C8200559562 /* LICENCE */; };
 		785DDA2F167B9C8200559562 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA23167B9C8200559562 /* SDURLCache.m */; };
 		785DDA34167B9C8C00559562 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA32167B9C8C00559562 /* AFDownloadRequestOperation.m */; };
-		785DDA35167B9C8C00559562 /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA33167B9C8C00559562 /* LICENCE */; };
 		785DDA39167B9D3200559562 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA38167B9D3200559562 /* SystemConfiguration.framework */; };
 		785DDA3B167B9D3700559562 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA3A167B9D3700559562 /* MobileCoreServices.framework */; };
 		785DDA54167B9EB700559562 /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA3F167B9EB700559562 /* badge.png */; };
@@ -129,15 +126,12 @@
 		785DDA1A167B9C8200559562 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
 		785DDA1B167B9C8200559562 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
 		785DDA1C167B9C8200559562 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
-		785DDA1D167B9C8200559562 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		785DDA1E167B9C8200559562 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		785DDA1F167B9C8200559562 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		785DDA21167B9C8200559562 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = "<group>"; };
 		785DDA22167B9C8200559562 /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
 		785DDA23167B9C8200559562 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		785DDA31167B9C8C00559562 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		785DDA32167B9C8C00559562 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
-		785DDA33167B9C8C00559562 /* LICENCE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENCE; sourceTree = "<group>"; };
 		785DDA38167B9D3200559562 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		785DDA3A167B9D3700559562 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		785DDA3F167B9EB700559562 /* badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = badge.png; path = PSPDFCatalog/Resources/Kiosk/badge.png; sourceTree = SOURCE_ROOT; };
@@ -305,7 +299,6 @@
 				785DDA1A167B9C8200559562 /* AFURLConnectionOperation.m */,
 				785DDA1B167B9C8200559562 /* AFXMLRequestOperation.h */,
 				785DDA1C167B9C8200559562 /* AFXMLRequestOperation.m */,
-				785DDA1D167B9C8200559562 /* LICENSE */,
 				785DDA1E167B9C8200559562 /* UIImageView+AFNetworking.h */,
 				785DDA1F167B9C8200559562 /* UIImageView+AFNetworking.m */,
 			);
@@ -316,7 +309,6 @@
 		785DDA20167B9C8200559562 /* SDURLCache */ = {
 			isa = PBXGroup;
 			children = (
-				785DDA21167B9C8200559562 /* LICENCE */,
 				785DDA22167B9C8200559562 /* SDURLCache.h */,
 				785DDA23167B9C8200559562 /* SDURLCache.m */,
 			);
@@ -329,7 +321,6 @@
 			children = (
 				785DDA31167B9C8C00559562 /* AFDownloadRequestOperation.h */,
 				785DDA32167B9C8C00559562 /* AFDownloadRequestOperation.m */,
-				785DDA33167B9C8C00559562 /* LICENCE */,
 			);
 			name = AFDownloadRequestOperation;
 			path = PSPDFCatalog/Vendor/AFDownloadRequestOperation;
@@ -451,9 +442,6 @@
 				785DDA08167B9C4600559562 /* PSPDFKit.bundle in Resources */,
 				785DDA09167B9C4600559562 /* PSPDFKit.xcconfig in Resources */,
 				785DDA0A167B9C4600559562 /* VERSION in Resources */,
-				785DDA2C167B9C8200559562 /* LICENSE in Resources */,
-				785DDA2E167B9C8200559562 /* LICENCE in Resources */,
-				785DDA35167B9C8C00559562 /* LICENCE in Resources */,
 				785DDA54167B9EB700559562 /* badge.png in Resources */,
 				785DDA55167B9EB700559562 /* badge@2x.png in Resources */,
 				785DDA56167B9EB700559562 /* Localizable.strings in Resources */,

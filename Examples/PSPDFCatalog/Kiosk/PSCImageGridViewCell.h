@@ -10,7 +10,7 @@
 
 @class PSCMagazine, PSCMagazineFolder;
 
-/// Cell for pdf magazines. Adds support for deleting.
+/// Cell for PDF magazines. Adds support for deleting.
 @interface PSCImageGridViewCell : PSPDFThumbnailGridViewCell
 
 /// Relays image to internal image of PSPDFThumbnailGridViewCell.
@@ -19,11 +19,17 @@
 /// Set magazineCount badge for a PSPDFMagazineFolder.
 @property (nonatomic, assign) NSUInteger magazineCount;
 
-// Cell may contain a magazine or a folder. don't set both.
+/// Cell may contain a magazine or a folder. don't set both.
 @property (nonatomic, strong) PSCMagazine *magazine;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 
-// If set to YES, image is loaded synchronously, not via threads.
+/// If set to YES, image is loaded synchronously, not via a thread.
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages;
+
+/// Delete button shown in edit mode.
+@property (nonatomic, strong) UIButton *deleteButton;
+
+/// Show delete image on the top left of the cell image.
+@property (nonatomic, assign) BOOL showDeleteImage;
 
 @end
