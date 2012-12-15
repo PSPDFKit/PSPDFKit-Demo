@@ -12,14 +12,8 @@
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 #define kPSPDFKitDownloadingKey @"downloading"
 #define kPSPDFCellAnimationDuration 0.25f
-
-#define kiPhoneReductionFactor 0.588
 
 @interface PSCImageGridViewCell() {
     NSOperation *_imageLoadOperation;
@@ -43,29 +37,6 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)checkMagazineAndObserveProgressIfDownloading:(PSCMagazine *)magazine {
-    if (magazine.isDownloading) {
-        PSCDownload *download = [[PSCStoreManager sharedStoreManager] downloadObjectForMagazine:magazine];
-        if (!download) {
-            PSPDFLogError(@"failed to find associated download object for %@", magazine); return;
-        }
-        [_observedMagazineDownloads addObject:download];
-        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
-        [self updateProgressAnimated:NO];
-    }
-}
-
-- (void)clearProgressObservers {
-    // clear all observed magazines
-    for (PSCDownload *download in _observedMagazineDownloads) {
-        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:&kPSPDFKVOToken];
-    }
-    [_observedMagazineDownloads removeAllObjects];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
 - (id)initWithFrame:(CGRect)frame {
@@ -84,7 +55,6 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         [self.contentView addSubview:_deleteButton];
         _deleteButton.hidden = YES;
     }
-
     return self;
 }
 
@@ -214,7 +184,15 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
                         PSPDFDispatchIfNotOnMainThread(^{
-                            [self.imageView setImageWithURL:magazine.imageURL];
+
+                            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageURL];
+                            [request setHTTPShouldHandleCookies:NO];
+                            [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+
+                            __weak typeof (self) weakSelf = self;
+                            [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request_, NSHTTPURLResponse *response, UIImage *image) {
+                                [weakSelf setNeedsLayout];
+                            } failure:NULL];
                         });
                     }
                 }
@@ -389,7 +367,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     }else if (shouldShowProgress) {
         [self.contentView bringSubviewToFront:self.progressView];
 
-        // ensure visibility
+        // ensure visibility.
         if (self.progressView.alpha == 0.f || !self.progressView.superview) {
             self.progressView.alpha = 0.f;
             [self.contentView addSubview:self.progressView];
@@ -403,10 +381,10 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)setImage:(UIImage *)image animated:(BOOL)animated {
     [super setImage:image animated:animated];
 
-    // ensure magazineCounter is at top
+    // ensure magazineCounter is at top.
     [self bringSubviewToFront:_magazineCounterBadgeImage];
 
-    // recalculate edit button position
+    // recalculate edit button position.
     [self setNeedsLayout];
 }
 
@@ -435,6 +413,29 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     _magazineCounter = nil;
     [_magazineCounterBadgeImage removeFromSuperview];
     _magazineCounterBadgeImage = nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (void)checkMagazineAndObserveProgressIfDownloading:(PSCMagazine *)magazine {
+    if (magazine.isDownloading) {
+        PSCDownload *download = [[PSCStoreManager sharedStoreManager] downloadObjectForMagazine:magazine];
+        if (!download) {
+            PSPDFLogError(@"failed to find associated download object for %@", magazine); return;
+        }
+        [_observedMagazineDownloads addObject:download];
+        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
+        [self updateProgressAnimated:NO];
+    }
+}
+
+- (void)clearProgressObservers {
+    // clear all observed magazines
+    for (PSCDownload *download in _observedMagazineDownloads) {
+        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:&kPSPDFKVOToken];
+    }
+    [_observedMagazineDownloads removeAllObjects];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

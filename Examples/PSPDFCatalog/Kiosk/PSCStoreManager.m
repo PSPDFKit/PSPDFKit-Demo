@@ -31,12 +31,12 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 #pragma mark - Static
 
 + (id)sharedStoreManager {
-    static dispatch_once_t pred = 0;
-    __strong static PSCStoreManager *_sharedStoreManager = nil;
-    dispatch_once(&pred, ^{
+    static dispatch_once_t onceToken = 0;
+    static __strong PSCStoreManager *_sharedStoreManager = nil;
+    dispatch_once(&onceToken, ^{
         _sharedStoreManager = [self new];
 
-        // allow plain text in JSON downloader class, fixes servers that don't know about JSON.
+        // Allow plain text in JSON downloader class, fixes servers that don't know about JSON.
         [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
     });
     return _sharedStoreManager;
@@ -52,6 +52,15 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     return _sharedOperationQueue;
 }
 
++ (NSString *)storagePath {
+    static __strong NSString *storagePath = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        storagePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    });
+    return storagePath;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -59,10 +68,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     if ((self = [super init])) {
         _magazineFolderQueue = pspdf_dispatch_queue_create("com.PSPDFKit.store.magazineFolderQueue", NULL);
         _downloadQueue = [[NSMutableArray alloc] init];
-
-        // register for memory notifications
-        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc addObserver:self selector:@selector(didReceiveMemoryWarning) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
 
         // load magazines from disk async
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -114,7 +119,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
     [_delegate magazineStoreEndUpdate];
 
-    // ensure set icon is not deleted
+    // ensure set icon is not deleted.
     [self updateNewsstandIcon:nil];
 }
 
@@ -123,7 +128,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
     PSCMagazineFolder *folder = magazine.folder;
 
-    // first notify, then delete from the backing store
+    // first notify, then delete from the backing store.
     if (!magazine.URL) {
         [_delegate magazineStoreMagazineDeleted:magazine];
 
@@ -167,10 +172,10 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)downloadMagazine:(PSCMagazine *)magazine {
-    PSCDownload *storeDownload = [PSCDownload PDFDownloadWithURL:magazine.URL];
+    PSCDownload *storeDownload = [[PSCDownload alloc] initWithURL:magazine.URL];
     storeDownload.magazine = magazine;
 
-    // use kvo to track status
+    // Use KVO to track status.
     [storeDownload addObserver:self forKeyPath:NSStringFromSelector(@selector(status)) options:0 context:&kPSCKVOToken];
 
     [_downloadQueue addObject:storeDownload];
@@ -207,16 +212,13 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
         }
         [self finishDownload:download];
-
-        // delete unfinished magazine
-        //[self deleteMagazine:storeDownload.magazine];
     }
 }
 
 #define kNewsstandIconUID @"kNewsstandIconUID"
 - (void)updateNewsstandIcon:(PSCMagazine *)magazine {
 
-    // if no magazine is given, find the current
+    // if no magazine is given, find the current.
     if (!magazine) {
         NSString *UID = [[NSUserDefaults standardUserDefaults] objectForKey:kNewsstandIconUID];
         if (UID) {
@@ -259,7 +261,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)addMagazinesToStore:(NSArray *)magazines {
-
     // filter out magazines that are already in array
     NSMutableArray *newMagazines = [NSMutableArray arrayWithArray:magazines];
     for (PSCMagazine *newMagazine in magazines) {
@@ -305,7 +306,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-// helper for folder search
+// Helper for folder search.
 - (NSMutableArray *)searchFolder:(NSString *)sampleFolder {
     NSError *error = nil;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -339,7 +340,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
     }
-
     if ([rootFolder.magazines count]) [folders addObject:rootFolder];
 
     return folders;
@@ -455,8 +455,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     [[[self class] sharedOperationQueue] addOperation:operation];
 }
 
-- (void)didReceiveMemoryWarning {} // NOP
-
 - (void)clearCache {
     pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
         self.magazineFolders = nil;
@@ -472,19 +470,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             self.magazineFolders = magazineFolders;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
 
-            /*
-             // ensure we have thumbnails for all magazines (else they would be lazy-loaded)
-             // must run on the main thread, as magazines/magazineFolder can be mutated while running
-             dispatch_async(dispatch_get_main_queue(), ^{
-             [magazineFolders enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id folder, NSUInteger idx, BOOL *stop) {
-             [[folder magazines] enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id magazine, NSUInteger idx2, BOOL *stop2) {
-             [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
-             }];
-             }];
-             });
-             */
-
-            // now start web-request
+            // now start web-request.
             [self loadMagazinesAvailableFromWeb];
         });
     });
@@ -502,15 +488,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 - (void)finishDownload:(PSCDownload *)storeDownload {
     [storeDownload removeObserver:self forKeyPath:NSStringFromSelector(@selector(status))];
     [_downloadQueue removeObject:storeDownload];
-}
-
-+ (NSString *)storagePath {
-    static NSString *storagePath = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        storagePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    });
-    return storagePath;
 }
 
 @end
