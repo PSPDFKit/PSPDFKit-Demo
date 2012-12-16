@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFSelectionView Class Reference</title>
+		<title>PSPDFImageBitmapRep Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFSelectionView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFImageBitmapRep Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -36,26 +36,21 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
-	
-	<option value="//api/name/rects">&nbsp;&nbsp;&nbsp;&nbsp;rects</option>
-	
-	<option value="//api/name/selectionColor">&nbsp;&nbsp;&nbsp;&nbsp;selectionColor</option>
-	
-	<option value="//api/name/wordSelectionColor">&nbsp;&nbsp;&nbsp;&nbsp;wordSelectionColor</option>
-	
-	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithFrame:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithFrame:delegate:</option>
+	<option value="//api/name/getPixelAtPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- getPixelAtPoint:</option>
 	
-	<option value="//api/name/setRawRects:count:">&nbsp;&nbsp;&nbsp;&nbsp;- setRawRects:count:</option>
+	<option value="//api/name/image">&nbsp;&nbsp;&nbsp;&nbsp;- image</option>
+	
+	<option value="//api/name/invertColors">&nbsp;&nbsp;&nbsp;&nbsp;- invertColors</option>
+	
+	<option value="//api/name/setBrightness:">&nbsp;&nbsp;&nbsp;&nbsp;- setBrightness:</option>
+	
+	<option value="//api/name/setPixel:atPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- setPixel:atPoint:</option>
 	
 	
 	
@@ -77,27 +72,21 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rects">rects</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectionColor">selectionColor</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/wordSelectionColor">wordSelectionColor</a></span></li>
-	
-</ul></li>
-
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithFrame:delegate:">initWithFrame:delegate:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getPixelAtPoint:">getPixelAtPoint:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setRawRects:count:">setRawRects:count:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/image">image</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/invertColors">invertColors</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setBrightness:">setBrightness:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setPixel:atPoint:">setPixel:atPoint:</a></span></li>
 	
 </ul></li>
 
@@ -106,7 +95,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFSelectionView Class Reference" name="top"></a>
+				<a title="PSPDFImageBitmapRep Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -115,7 +104,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFSelectionView Class Reference</h1>
+						<h1 class="title title-header">PSPDFImageBitmapRep Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -123,10 +112,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
+	<td class="specification-value"><a href="../Classes/PSPDFBitmapContextRep.html">PSPDFBitmapContextRep</a> : NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFSelectionView.h</td>
+	<td class="specification-value">PSPDFImageBitmapRep.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -146,44 +135,37 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithFrame:delegate:">&ndash;&nbsp;initWithFrame:delegate:</a></code>
-		<span class="tooltip"><p>Designated initializer</p></span>
+		<code><a href="#//api/name/invertColors">&ndash;&nbsp;invertColors</a></code>
+		<span class="tooltip"><p>Reverses the RGB values of all pixels in the bitmap.  This causes
+an &ldquo;inverted&rdquo; effect.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>Selection View delegate.</p></span>
+		<code><a href="#//api/name/setBrightness:">&ndash;&nbsp;setBrightness:</a></code>
+		<span class="tooltip"><p>Darken or brighten the <a href="#//api/name/image">image</a>.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/selectionColor">&nbsp;&nbsp;selectionColor</a></code>
-		<span class="tooltip"><p>Color used to span the selection. Defaults to iOS selection blue.</p></span>
+		<code><a href="#//api/name/getPixelAtPoint:">&ndash;&nbsp;getPixelAtPoint:</a></code>
+		<span class="tooltip"><p>Returns a pixel at a given location.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/wordSelectionColor">&nbsp;&nbsp;wordSelectionColor</a></code>
-		<span class="tooltip"><p>Color used to select words. Defaults to a darker iOS selection blue.</p></span>
+		<code><a href="#//api/name/setPixel:atPoint:">&ndash;&nbsp;setPixel:atPoint:</a></code>
+		<span class="tooltip"><p>Sets a pixel at a specific location.</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/rects">&nbsp;&nbsp;rects</a></code>
-		<span class="tooltip"><p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setRawRects:count:">&ndash;&nbsp;setRawRects:count:</a></code>
-		<span class="tooltip"><p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
-<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p></span>
+		<code><a href="#//api/name/image">&ndash;&nbsp;image</a></code>
+		<span class="tooltip"><p>Creates a new UIImage from the bitmap context.</p></span>
 	</span>
 	
 	
@@ -196,148 +178,6 @@
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/delegate" title="delegate"></a>
-	<h3 class="subsubtitle method-title">delegate</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Selection View delegate.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFSelectionViewDelegate&gt; delegate</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/rects" title="rects"></a>
-	<h3 class="subsubtitle method-title">rects</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *rects</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/selectionColor" title="selectionColor"></a>
-	<h3 class="subsubtitle method-title">selectionColor</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Color used to span the selection. Defaults to iOS selection blue.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *selectionColor</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/wordSelectionColor" title="wordSelectionColor"></a>
-	<h3 class="subsubtitle method-title">wordSelectionColor</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Color used to select words. Defaults to a darker iOS selection blue.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *wordSelectionColor</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
 					
 					
 					
@@ -347,20 +187,37 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithFrame:delegate:" title="initWithFrame:delegate:"></a>
-	<h3 class="subsubtitle method-title">initWithFrame:delegate:</h3>
+	<a name="//api/name/getPixelAtPoint:" title="getPixelAtPoint:"></a>
+	<h3 class="subsubtitle method-title">getPixelAtPoint:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Designated initializer</p>
+		<p>Returns a pixel at a given location.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithFrame:(CGRect)<em>frame</em> delegate:(id&lt;PSPDFSelectionViewDelegate&gt;)<em>delegate</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BMPixel)getPixelAtPoint:(BMPoint)<em>point</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>point</em></dt>
+			<dd><p>The point from which a pixel will be taken.  For all points
+in a BitmapContextRep, the x and y values start at 0 and end at
+width &ndash; 1 and height &ndash; 1 respectively.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The pixel with values taken from the specified point.</p>
+	</div>
 	
 	
 	
@@ -374,25 +231,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFImageBitmapRep.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/setRawRects:count:" title="setRawRects:count:"></a>
-	<h3 class="subsubtitle method-title">setRawRects:count:</h3>
+	<a name="//api/name/image" title="image"></a>
+	<h3 class="subsubtitle method-title">image</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
-<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p>
+		<p>Creates a new UIImage from the bitmap context.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)setRawRects:(CGRect *)<em>rawRects</em> count:(NSUInteger)<em>count</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (UIImage *)image</code></div>
 	
 	
 	
@@ -409,7 +265,140 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFImageBitmapRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/invertColors" title="invertColors"></a>
+	<h3 class="subsubtitle method-title">invertColors</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reverses the RGB values of all pixels in the bitmap.  This causes
+an &ldquo;inverted&rdquo; effect.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)invertColors</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFImageBitmapRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setBrightness:" title="setBrightness:"></a>
+	<h3 class="subsubtitle method-title">setBrightness:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Darken or brighten the <a href="#//api/name/image">image</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setBrightness:(CGFloat)<em>brightness</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>brightness</em></dt>
+			<dd><p>A percentage from 0 to 2.  In this case, 0 is the darkest
+and 2 is the brightest.  If this is 1, no change will be made.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFImageBitmapRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setPixel:atPoint:" title="setPixel:atPoint:"></a>
+	<h3 class="subsubtitle method-title">setPixel:atPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets a pixel at a specific location.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setPixel:(BMPixel)<em>pixel</em> atPoint:(BMPoint)<em>point</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>pixel</em></dt>
+			<dd><p>An RGBA pixel represented by an array of four floats.
+Each component is one float long, and goes from 0 to 1.
+In this case, 0 is black and 1 is white.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>point</em></dt>
+			<dd><p>The location of the pixel to change.  For all points
+in a BitmapContextRep, the x and y values start at 0 and end at
+width &ndash; 1 and height &ndash; 1 respectively.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFImageBitmapRep.h</code><br />
 	</div>				
 	
 	

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFSelectionView Class Reference</title>
+		<title>PSPDFHSVColorPickerController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFSelectionView Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFHSVColorPickerController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,6 +26,8 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
 	
 	
 	
@@ -38,13 +40,15 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/brightnessSlider">&nbsp;&nbsp;&nbsp;&nbsp;brightnessSlider</option>
+	
+	<option value="//api/name/colorPicker">&nbsp;&nbsp;&nbsp;&nbsp;colorPicker</option>
+	
 	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
 	
-	<option value="//api/name/rects">&nbsp;&nbsp;&nbsp;&nbsp;rects</option>
+	<option value="//api/name/margin">&nbsp;&nbsp;&nbsp;&nbsp;margin</option>
 	
 	<option value="//api/name/selectionColor">&nbsp;&nbsp;&nbsp;&nbsp;selectionColor</option>
-	
-	<option value="//api/name/wordSelectionColor">&nbsp;&nbsp;&nbsp;&nbsp;wordSelectionColor</option>
 	
 	
 	
@@ -53,9 +57,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithFrame:delegate:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithFrame:delegate:</option>
-	
-	<option value="//api/name/setRawRects:count:">&nbsp;&nbsp;&nbsp;&nbsp;- setRawRects:count:</option>
+	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
 	
 	
 	
@@ -66,6 +68,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -79,13 +83,15 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/brightnessSlider">brightnessSlider</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorPicker">colorPicker</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rects">rects</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/margin">margin</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectionColor">selectionColor</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/wordSelectionColor">wordSelectionColor</a></span></li>
 	
 </ul></li>
 
@@ -95,9 +101,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithFrame:delegate:">initWithFrame:delegate:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setRawRects:count:">setRawRects:count:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
 	
 </ul></li>
 
@@ -106,7 +110,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFSelectionView Class Reference" name="top"></a>
+				<a title="PSPDFHSVColorPickerController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -115,7 +119,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFSelectionView Class Reference</h1>
+						<h1 class="title title-header">PSPDFHSVColorPickerController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -123,13 +127,24 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">UIView</td>
+	<td class="specification-value">PSPDFBaseViewController : UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">PSPDFColorPickerViewDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFSelectionView.h</td>
+	<td class="specification-value">PSPDFHSVColorPickerController.h</td>
 </tr>
 						</tbody></table></div>
 					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Advanced HSV color picker with loupe feature.</p>
+					</div>
 					
 					
 					
@@ -146,46 +161,45 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithFrame:delegate:">&ndash;&nbsp;initWithFrame:delegate:</a></code>
-		<span class="tooltip"><p>Designated initializer</p></span>
+		<code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+		<span class="tooltip"><p>Designated initializer.</p></span>
 	</span>
 	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
-		<span class="tooltip"><p>Selection View delegate.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/selectionColor">&nbsp;&nbsp;selectionColor</a></code>
-		<span class="tooltip"><p>Color used to span the selection. Defaults to iOS selection blue.</p></span>
+		<span class="tooltip"><p>Will be set via <a href="#//api/name/delegate">delegate</a> on viewWillAppear, but can be modified here as well.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/wordSelectionColor">&nbsp;&nbsp;wordSelectionColor</a></code>
-		<span class="tooltip"><p>Color used to select words. Defaults to a darker iOS selection blue.</p></span>
+		<code><a href="#//api/name/margin">&nbsp;&nbsp;margin</a></code>
+		<span class="tooltip"><p>Border. Defaults to 10,10,10,10.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/rects">&nbsp;&nbsp;rects</a></code>
-		<span class="tooltip"><p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p></span>
+		<code><a href="#//api/name/colorPicker">&nbsp;&nbsp;colorPicker</a></code>
+		<span class="tooltip"><p>Internally used picker view. Allows certain customizations.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setRawRects:count:">&ndash;&nbsp;setRawRects:count:</a></code>
-		<span class="tooltip"><p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
-<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p></span>
+		<code><a href="#//api/name/brightnessSlider">&nbsp;&nbsp;brightnessSlider</a></code>
+		<span class="tooltip"><p>Color brightness slider.</p></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Action delegate.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -201,17 +215,17 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/delegate" title="delegate"></a>
-	<h3 class="subsubtitle method-title">delegate</h3>
+	<a name="//api/name/brightnessSlider" title="brightnessSlider"></a>
+	<h3 class="subsubtitle method-title">brightnessSlider</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Selection View delegate.</p>
+		<p>Color brightness slider.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFSelectionViewDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFBrightnessSlider *brightnessSlider</code></div>
 	
 	
 	
@@ -228,24 +242,24 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/rects" title="rects"></a>
-	<h3 class="subsubtitle method-title">rects</h3>
+	<a name="//api/name/colorPicker" title="colorPicker"></a>
+	<h3 class="subsubtitle method-title">colorPicker</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allows to mark an array of CGRects on the view. rects and rawRects are mutually exclusive and will nil out each other.</p>
+		<p>Internally used picker view. Allows certain customizations.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *rects</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong, readonly) PSPDFColorPickerView *colorPicker</code></div>
 	
 	
 	
@@ -262,7 +276,75 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Action delegate.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFColorSelectionViewControllerDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/margin" title="margin"></a>
+	<h3 class="subsubtitle method-title">margin</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Border. Defaults to 10,10,10,10.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) UIEdgeInsets margin</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
 	</div>				
 	
 	
@@ -275,7 +357,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Color used to span the selection. Defaults to iOS selection blue.</p>
+		<p>Will be set via <a href="#//api/name/delegate">delegate</a> on viewWillAppear, but can be modified here as well.</p>
 	</div>		
 	
 	
@@ -296,41 +378,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/wordSelectionColor" title="wordSelectionColor"></a>
-	<h3 class="subsubtitle method-title">wordSelectionColor</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Color used to select words. Defaults to a darker iOS selection blue.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UIColor *wordSelectionColor</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
 	</div>				
 	
 	
@@ -347,17 +395,17 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithFrame:delegate:" title="initWithFrame:delegate:"></a>
-	<h3 class="subsubtitle method-title">initWithFrame:delegate:</h3>
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="subsubtitle method-title">init</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Designated initializer</p>
+		<p>Designated initializer.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithFrame:(CGRect)<em>frame</em> delegate:(id&lt;PSPDFSelectionViewDelegate&gt;)<em>delegate</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)init</code></div>
 	
 	
 	
@@ -374,42 +422,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/setRawRects:count:" title="setRawRects:count:"></a>
-	<h3 class="subsubtitle method-title">setRawRects:count:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
-<a href="#//api/name/rects">rects</a> and rawRects are mutually exclusive and will nil out each other.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)setRawRects:(CGRect *)<em>rawRects</em> count:(NSUInteger)<em>count</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFSelectionView.h</code><br />
+		<code class="declared-in-ref">PSPDFHSVColorPickerController.h</code><br />
 	</div>				
 	
 	

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFBrightnessBarButtonItem Class Reference</title>
+		<title>PSPDFExtendedPopoverController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFBrightnessBarButtonItem Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFExtendedPopoverController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -32,12 +32,19 @@
 	
 	
 	
+	<option value="tasks">Tasks</option>
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/notifyContentControllerAboutDismissalAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- notifyContentControllerAboutDismissalAnimated:</option>
 	
 	
 	
@@ -53,6 +60,9 @@
 
 
 
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
@@ -60,13 +70,20 @@
 
 
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/notifyContentControllerAboutDismissalAnimated:">notifyContentControllerAboutDismissalAnimated:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFBrightnessBarButtonItem Class Reference" name="top"></a>
+				<a title="PSPDFExtendedPopoverController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -75,7 +92,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFBrightnessBarButtonItem Class Reference</h1>
+						<h1 class="title title-header">PSPDFExtendedPopoverController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -83,10 +100,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFBarButtonItem.html">PSPDFBarButtonItem</a> : UIBarButtonItem</td>
+	<td class="specification-value">UIPopoverController</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFBrightnessBarButtonItem.h</td>
+	<td class="specification-value">PSPDFExtendedPopoverController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -96,7 +113,34 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Controls the system brightness.</p>
+						<p>Supports early notifying of the content controller that we&rsquo;re going to be dismissed.
+e.g. Used to improve animation of the keyboard dismissing.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/notifyContentControllerAboutDismissalAnimated:">&ndash;&nbsp;notifyContentControllerAboutDismissalAnimated:</a></code>
+		<span class="tooltip"><p>Call to manually invoke delegate sending.
+Due to the nature of the callback we currently don&rsquo;t actually know the animated state.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -107,9 +151,46 @@
 					
 					
 					
-					
-					
-					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/notifyContentControllerAboutDismissalAnimated:" title="notifyContentControllerAboutDismissalAnimated:"></a>
+	<h3 class="subsubtitle method-title">notifyContentControllerAboutDismissalAnimated:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Call to manually invoke delegate sending.
+Due to the nature of the callback we currently don&rsquo;t actually know the animated state.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)notifyContentControllerAboutDismissalAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFExtendedPopoverController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>

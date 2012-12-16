@@ -1,0 +1,741 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFBitmapContextRep Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFBitmapContextRep Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/CGImage">&nbsp;&nbsp;&nbsp;&nbsp;- CGImage</option>
+	
+	<option value="//api/name/bitmapSize">&nbsp;&nbsp;&nbsp;&nbsp;- bitmapSize</option>
+	
+	<option value="//api/name/context">&nbsp;&nbsp;&nbsp;&nbsp;- context</option>
+	
+	<option value="//api/name/getRawPixel:atPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- getRawPixel:atPoint:</option>
+	
+	<option value="//api/name/initWithImage:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithImage:</option>
+	
+	<option value="//api/name/initWithSize:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithSize:</option>
+	
+	<option value="//api/name/setContext:">&nbsp;&nbsp;&nbsp;&nbsp;- setContext:</option>
+	
+	<option value="//api/name/setNeedsUpdate:">&nbsp;&nbsp;&nbsp;&nbsp;- setNeedsUpdate:</option>
+	
+	<option value="//api/name/setRawPixel:atPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- setRawPixel:atPoint:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/CGImage">CGImage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/bitmapSize">bitmapSize</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/context">context</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getRawPixel:atPoint:">getRawPixel:atPoint:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithImage:">initWithImage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSize:">initWithSize:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setContext:">setContext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setNeedsUpdate:">setNeedsUpdate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setRawPixel:atPoint:">setRawPixel:atPoint:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFBitmapContextRep Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFBitmapContextRep Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFBitmapContextRep.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>BitmapContextRep is a concrete subclass of NSObject that provides a basic
+class for mutating image&rsquo;s bitmaps.  This class is very barebones,
+and generally will not be enough for most image manipulation.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithImage:">&ndash;&nbsp;initWithImage:</a></code>
+		<span class="tooltip"><p>Creates a bitmap <a href="#//api/name/context">context</a> with pixels and dimensions from an image.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithSize:">&ndash;&nbsp;initWithSize:</a></code>
+		<span class="tooltip"><p>Creates a blank bitmap <a href="#//api/name/context">context</a> with specified dimensions.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/context">&ndash;&nbsp;context</a></code>
+		<span class="tooltip"><p>Returns the bitmap context underlying the image.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setContext:">&ndash;&nbsp;setContext:</a></code>
+		<span class="tooltip"><p>Replaces the current <a href="#//api/name/context">context</a> with a new one.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/bitmapSize">&ndash;&nbsp;bitmapSize</a></code>
+		<span class="tooltip"><p>Returns the current size of the bitmap.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setNeedsUpdate:">&ndash;&nbsp;setNeedsUpdate:</a></code>
+		<span class="tooltip"><p>Tells the BitmapContext that a new image should be generated when
+one is requested because the internal <a href="#//api/name/context">context</a> has been externally
+modified.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getRawPixel:atPoint:">&ndash;&nbsp;getRawPixel:atPoint:</a></code>
+		<span class="tooltip"><p>Returns by reference a 4-byte RGBA pixel at a certain point.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setRawPixel:atPoint:">&ndash;&nbsp;setRawPixel:atPoint:</a></code>
+		<span class="tooltip"><p>Sets a 4-byte ARGB pixel at a specified point.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/CGImage">&ndash;&nbsp;CGImage</a></code>
+		<span class="tooltip"><p>Returns an autoreleased CGImageRef of the current BitmapContext.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/CGImage" title="CGImage"></a>
+	<h3 class="subsubtitle method-title">CGImage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an autoreleased CGImageRef of the current BitmapContext.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGImageRef)CGImage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/bitmapSize" title="bitmapSize"></a>
+	<h3 class="subsubtitle method-title">bitmapSize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the current size of the bitmap.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BMPoint)bitmapSize</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/context" title="context"></a>
+	<h3 class="subsubtitle method-title">context</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the bitmap context underlying the image.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (CGContextRef)context</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getRawPixel:atPoint:" title="getRawPixel:atPoint:"></a>
+	<h3 class="subsubtitle method-title">getRawPixel:atPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns by reference a 4-byte RGBA pixel at a certain point.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)getRawPixel:(UInt8 *)<em>rgba</em> atPoint:(BMPoint)<em>point</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>rgba</em></dt>
+			<dd><p>A pointer to a 4-byte or more pixel buffer.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>point</em></dt>
+			<dd><p>The point from which a pixel will be read.  For all
+points in a BitmapContextRep, the x and y values start at 0 and end
+at width &ndash; 1 and height &ndash; 1 respectively.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithImage:" title="initWithImage:"></a>
+	<h3 class="subsubtitle method-title">initWithImage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a bitmap <a href="#//api/name/context">context</a> with pixels and dimensions from an image.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithImage:(UIImage *)<em>image</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>image</em></dt>
+			<dd><p>The image to wrap in a bitmap <a href="#//api/name/context">context</a>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithSize:" title="initWithSize:"></a>
+	<h3 class="subsubtitle method-title">initWithSize:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a blank bitmap <a href="#//api/name/context">context</a> with specified dimensions.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithSize:(BMPoint)<em>sizePoint</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>sizePoint</em></dt>
+			<dd><p>The size to use for the new bitmap.  The x value
+of this is used for the width, and the y value is used for height.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setContext:" title="setContext:"></a>
+	<h3 class="subsubtitle method-title">setContext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Replaces the current <a href="#//api/name/context">context</a> with a new one.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setContext:(CGContextRef)<em>aContext</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aContext</em></dt>
+			<dd><p>The new bitmap <a href="#//api/name/context">context</a> for the image which will be retained
+and released automatically by the BitmapContextRep.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setNeedsUpdate:" title="setNeedsUpdate:"></a>
+	<h3 class="subsubtitle method-title">setNeedsUpdate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Tells the BitmapContext that a new image should be generated when
+one is requested because the internal <a href="#//api/name/context">context</a> has been externally
+modified.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setNeedsUpdate:(BOOL)<em>flag</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>needsUpdate</em></dt>
+			<dd><p>This should almost always be YES.  If this is no,
+a new CGImageRef will not be generated when one is requested.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setRawPixel:atPoint:" title="setRawPixel:atPoint:"></a>
+	<h3 class="subsubtitle method-title">setRawPixel:atPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sets a 4-byte ARGB pixel at a specified point.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)setRawPixel:(const UInt8 *)<em>rgba</em> atPoint:(BMPoint)<em>point</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>rgba</em></dt>
+			<dd><p>The pixel buffer containing at least 4 bytes.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>point</em></dt>
+			<dd><p>The point at which the pixel will be set.  For all
+points in a BitmapContextRep, the x and y values start at 0 and end
+at width &ndash; 1 and height &ndash; 1 respectively.
+@discussion Since alpha is premultiplied, it is important to remember to multiply
+the alpha as a percentage by the RGB values.  This means that a white pixel
+with 50% alpha would become rgba(128, 128, 128, 128).</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFBitmapContextRep.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-16)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

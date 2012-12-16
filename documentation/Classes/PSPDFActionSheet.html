@@ -38,6 +38,11 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/destroyBlock">&nbsp;&nbsp;&nbsp;&nbsp;destroyBlock</option>
+	
+	
 	
 	
 	
@@ -54,9 +59,9 @@
 	
 	<option value="//api/name/setCancelButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- setCancelButtonWithTitle:block:</option>
 	
-	<option value="//api/name/setDestroyBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- setDestroyBlock:</option>
-	
 	<option value="//api/name/setDestructiveButtonWithTitle:block:">&nbsp;&nbsp;&nbsp;&nbsp;- setDestructiveButtonWithTitle:block:</option>
+	
+	<option value="//api/name/showWithSender:fallbackView:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showWithSender:fallbackView:animated:</option>
 	
 	
 	
@@ -78,13 +83,19 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Adding Buttons">Adding Buttons</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties and destroy">Properties and destroy</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Properties and show/destroy">Properties and show/destroy</a></span></li>
 	
 </ul></li>
 
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/destroyBlock">destroyBlock</a></span></li>
+	
+</ul></li>
 
 
 
@@ -102,9 +113,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setCancelButtonWithTitle:block:">setCancelButtonWithTitle:block:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDestroyBlock:">setDestroyBlock:</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDestructiveButtonWithTitle:block:">setDestructiveButtonWithTitle:block:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showWithSender:fallbackView:animated:">showWithSender:fallbackView:animated:</a></span></li>
 	
 </ul></li>
 
@@ -200,14 +211,21 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 						</ul>
 						
 						
-						<a title="Properties and destroy" name="task_Properties and destroy"></a>
-						<h3 class="subsubtitle task-title">Properties and destroy</h3>
+						<a title="Properties and show/destroy" name="task_Properties and show/destroy"></a>
+						<h3 class="subsubtitle task-title">Properties and show/destroy</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/buttonCount">&ndash;&nbsp;buttonCount</a></code>
 		<span class="tooltip"><p>Count the buttons.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showWithSender:fallbackView:animated:">&ndash;&nbsp;showWithSender:fallbackView:animated:</a></code>
+		<span class="tooltip"><p>Is clever about the sender, uses fallbackView if sender is not usable (nil, or not UIBarButtonItem/UIView)</p></span>
 	</span>
 	
 	
@@ -220,10 +238,10 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/setDestroyBlock:">&ndash;&nbsp;setDestroyBlock:</a></code>
+		<code><a href="#//api/name/destroyBlock">&nbsp;&nbsp;destroyBlock</a></code>
 		<span class="tooltip"><p>Call block when actionsheet gets dismissed.</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -233,6 +251,46 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/destroyBlock" title="destroyBlock"></a>
+	<h3 class="subsubtitle method-title">destroyBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Call block when actionsheet gets dismissed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) void ( ^ ) ( PSPDFActionSheet *sheet , NSInteger buttonIndex ) destroyBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFActionSheet.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 					
@@ -413,17 +471,17 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/setDestroyBlock:" title="setDestroyBlock:"></a>
-	<h3 class="subsubtitle method-title">setDestroyBlock:</h3>
+	<a name="//api/name/setDestructiveButtonWithTitle:block:" title="setDestructiveButtonWithTitle:block:"></a>
+	<h3 class="subsubtitle method-title">setDestructiveButtonWithTitle:block:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Call block when actionsheet gets dismissed.</p>
+		<p>Adds a destructive button. Use only once.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)setDestroyBlock:(void ( ^ ) ( ))<em>block</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setDestructiveButtonWithTitle:(NSString *)<em>title</em> block:(void ( ^ ) ( ))<em>block</em></code></div>
 	
 	
 	
@@ -447,17 +505,17 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/setDestructiveButtonWithTitle:block:" title="setDestructiveButtonWithTitle:block:"></a>
-	<h3 class="subsubtitle method-title">setDestructiveButtonWithTitle:block:</h3>
+	<a name="//api/name/showWithSender:fallbackView:animated:" title="showWithSender:fallbackView:animated:"></a>
+	<h3 class="subsubtitle method-title">showWithSender:fallbackView:animated:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Adds a destructive button. Use only once.</p>
+		<p>Is clever about the sender, uses fallbackView if sender is not usable (nil, or not UIBarButtonItem/UIView)</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)setDestructiveButtonWithTitle:(NSString *)<em>title</em> block:(void ( ^ ) ( ))<em>block</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)showWithSender:(id)<em>sender</em> fallbackView:(UIView *)<em>view</em> animated:(BOOL)<em>animated</em></code></div>
 	
 	
 	
@@ -493,7 +551,7 @@ After block has been executed, it is set to nil, breaking potential retain cycle
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-10)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
