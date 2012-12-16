@@ -93,12 +93,14 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)strikeOutButtonPressed:(id)sender;
 - (void)underlineButtonPressed:(id)sender;
 - (void)drawButtonPressed:(id)sender;
+- (void)freeTextButtonPressed:(id)sender;
 - (void)signatureButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
 // Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
 - (void)cancelDrawingAnimated:(BOOL)animated;
 - (void)doneDrawingAnimated:(BOOL)animated;
+- (void)selectStrokeColor:(id)sender;
 - (void)undoDrawing:(id)sender;
 - (void)redoDrawing:(id)sender;
 

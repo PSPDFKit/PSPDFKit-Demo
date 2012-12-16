@@ -10,7 +10,7 @@
 #import "PSPDFTextSearch.h"
 #import "PSPDFCache.h"
 #import "PSPDFViewController.h"
-#import "PSPDFPopoverController.h"
+#import "PSPDFExtendedPopoverController.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 

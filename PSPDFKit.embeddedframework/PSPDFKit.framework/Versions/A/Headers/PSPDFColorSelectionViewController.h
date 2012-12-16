@@ -33,6 +33,9 @@
 /// Initialize with array of colors.
 - (id)initWithColors:(NSArray *)colors;
 
+/// Access the colors.
+@property (nonatomic, copy, readonly) NSArray *colors;
+
 /// Action delegate.
 @property (nonatomic, weak) id <PSPDFColorSelectionViewControllerDelegate> delegate;
 
@@ -44,9 +47,9 @@
 @required
 
 /// Asks for the currently selected color.
-- (UIColor *)colorSelectionControllerSelectedColor:(PSPDFColorSelectionViewController *)controller;
+- (UIColor *)colorSelectionControllerSelectedColor:(UIViewController *)controller;
 
 /// Sent when a color has been selected.
-- (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color;
+- (void)colorSelectionController:(UIViewController *)controller didSelectedColor:(UIColor *)color;
 
 @end

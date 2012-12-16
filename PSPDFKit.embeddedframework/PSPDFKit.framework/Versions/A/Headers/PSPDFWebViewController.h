@@ -10,12 +10,17 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFStyleable.h"
 
-@class PSPDFViewController;
+@class PSPDFViewController, PSPDFAlertView;
 
 @protocol PSPDFWebViewControllerDelegate <NSObject>
 
 /// Controller where the webViewController has been pushed to (to dismiss modally)
 - (UIViewController *)masterViewController;
+
+@optional
+
+/// To handle external URLS.
+- (BOOL)handleExternalURL:(NSURL *)URL buttonCompletionBlock:(void (^)(PSPDFAlertView *alert, NSUInteger buttonIndex))completionBlock;
 
 @end 
 

@@ -1,4 +1,26 @@
-# Changelog
+# PSPDFKit Changelog
+
+Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
+
+__v2.6.2 - 16/December/2012__
+
+*  New HSV color picker.
+*  Color picker now selects the page where the color is selected, or the generic picker if none of the pallette colors matches.
+*  Brightness control is now properly displayed within a custom popover on iPhone.
+*  Highlight selection control now selects using the natural text flow, not just the selected rect. (Preview: https://twitter.com/PSPDFKit/status/279636900590006272)
+*  Further improve document shadow for non-equal sized documents.
+*  Undo/Redo buttons now have icons instead of text. (Annotation drawing toolbar)
+*  Open In... now asks for flattening.
+*  Print now optionally allows annotation printing.
+*  Ensure documentProvider is always added when annotations are added.
+*  Add support for annotation links like tel://4343434 and generally improves handling of external URLs.
+*  Add support for PDF labels that have a offset and are plain numbered labels.
+*  Fixed a rare condition where menus within UIMenuController could fail to execute their block target.
+*  Fixes an issue where PSPDFNoteAnnotation sometimes used the wrong overrideClassNames dict for lookup.
+*  Fixes a situation where pdfViewController:didDisplayDocument: wasn't called correctly.
+*  Fixes issue where in pageCurl mode after selecting a new color on iPhone the drawing overlay vanished.
+*  Fixes crash when trying to change highlight annotation type on long-tap.
+*  Adds a workaround for an UIKit bug that only appears on iOS 5 with videos that are playing inline and have a incorrect frame after exit from fullscreen.
 
 __v2.6.1 - 10/December/2012__
 
@@ -9,7 +31,7 @@ __v2.6.1 - 10/December/2012__
 *  Fixes an issue where video was autostarted even if autostart was set to NO.
 *  Fixes an issue where the last toolbar item on the right toolbar could vanish if the style is bordered.
 *  Fixes some issues regarding the textParser. More documents are now supported (especially with multiple nested XObject streams)
-*  Fixes an issue where PSPDFStatusBarDisable could sometime strigger statusbar showing/hiding.
+*  Fixes an issue where PSPDFStatusBarDisable could sometimes trigger statusbar showing/hiding.
 
 __v2.6.0 - 9/December/2012__
 

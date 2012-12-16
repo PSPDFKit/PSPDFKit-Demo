@@ -27,6 +27,10 @@
 "Email visible pages" = "Email visible pages";
 "Email flattened pages" = "Email flattened pages";
 "Open in..." = "Apri con…";
+"Open original document" = "Open original document";
+"Open flattened document" = "Open flattened document";
+"Print with Annotations" = "Print with Annotations";
+"Print document only" = "Print document only";
 "No Applications found" = "Non ci sono applicazioni installate in grado di aprire documenti PDF.";
 "Print" = "Stampa";
 "Annotations" = "Annotazioni";
@@ -61,10 +65,11 @@
 "Open in Safari" = "Apri con Safari";
 "Mail Link to this Page" = "Manda link tramite e-mail";
 "Your %@ is not configured to send emails." = "Il tuo %@ non è configurato per l'invio di e-mail.";
-"The link is requesting to open %@. Would you like to continue?" = "The link is requesting to open %@. Would you like to continue?";
+"The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
 "an external application" = "an external application";
 "the App Store" = "the App Store";
 "Mail" = "Mail";
+"No handler found for %@" = "No handler found for %@";
 
 // text selection
 "Save To Camera Roll" = "Save To Camera Roll";
@@ -72,6 +77,8 @@
 // annotations
 "Remove" = "Rimuovi";
 "Edit" = "Modifica";
+"Undo" = "Undo";
+"Redo" = "Redo";
 "Type..." = "Tipo…";
 "Choose Color" = "Scegli il colore";
 "Colors..." = "Colori…";

@@ -72,6 +72,10 @@
 - (void)dismissAnimated:(BOOL)animated;
 - (void)didDismiss;
 
+/// Use if presentModal needs to return nil because of a long-running process.
+/// Use this to correctly set up barButton dismissal logic for non-popopver controls (e.g. UIDocumentInteractionController)
+- (void)setPresentedObject:(id)presentedObject sender:(id)sender;
+
 /// Helper method to present and dismiss a view controller inside a popover controller on iPad or modally on iPhone.
 - (id)presentModalOrInPopover:(UIViewController *)viewController sender:(id)sender;
 - (void)dismissModalOrPopoverAnimated:(BOOL)animated;
@@ -88,5 +92,9 @@
 
 /// Subclass to react on long press events. Only invoked if isLongPressActionAvailable is set to YES.
 - (void)longPressAction:(PSPDFBarButtonItem *)sender;
+
+// UIActionSheet support.
+@property (nonatomic, strong) UIActionSheet *actionSheet;
+@property (nonatomic, assign, getter=isDismissingSheet) BOOL dismissingSheet;
 
 @end

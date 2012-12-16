@@ -37,7 +37,6 @@
 #import "PSCLinkEditorViewController.h"
 #import "PSCSettingsController.h"
 #import "PSCTintablePDFViewController.h"
-#import "PSPDFHSVColorPickerController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 

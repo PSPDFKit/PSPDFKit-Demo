@@ -27,6 +27,10 @@
 "Email visible pages" = "Aktuelle Seiten senden";
 "Email visible pages" = "Aktuelle Seiten senden (eingebettet)";
 "Open in..." = "Öffnen in…";
+"Open original document" = "Als Original öffnen";
+"Open flattened document" = "Mit Annotationen eingebettet öffnen";
+"Print with Annotations" = "Mit Annotationen drucken";
+"Print document only" = "Ohne Annotationen drucken";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
 "Annotations" = "Annotationen";
@@ -61,10 +65,11 @@
 "Open in Safari" = "In Safari öffnen";
 "Mail Link to this Page" = "Link zu dieser Seite mailen";
 "Your %@ is not configured to send emails." = "Ihr %@ ist nicht für das Email-senden konfiguriert.";
-"The link is requesting to open %@. Would you like to continue?" = "Dieser Link öffnet %@. Fortfahren?";
+"The link is requesting to open %@Would you like to continue?" = "Dieser Link öffnet %@Fortfahren?";
 "an external application" = "eine externe Applikation";
 "the App Store" = "den App Store";
 "Mail" = "Mail";
+"No handler found for %@" = "Link konnte nicht geöffnet werden: %@";
 
 // text selection
 "Save To Camera Roll" = "Bild speichern";
@@ -72,6 +77,8 @@
 // annotations
 "Remove" = "Entfernen";
 "Edit" = "Editieren";
+"Undo" = "Wiederrufen";
+"Redo" = "Wiederherstellen";
 "Type..." = "Type…";
 "Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";

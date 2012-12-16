@@ -9,12 +9,12 @@
 #import <MessageUI/MessageUI.h>
 
 typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
-    PSPDFEmailSendCurrentPageOnly              = 1<<0,
+    PSPDFEmailSendCurrentPageOnly              = 1<<0, // only page set in .page of PSPDFViewController
     PSPDFEmailSendCurrentPageOnlyFlattened     = 1<<1,
-    PSPDFEmailSendVisiblePages                 = 1<<2,
+    PSPDFEmailSendVisiblePages                 = 1<<2, // all visible pages (is ignored if only one page is visible)
     PSPDFEmailSendVisiblePagesFlattened        = 1<<3,
     PSPDFEmailSendMergedFilesIfNeeded          = 1<<4,
-    PSPDFEmailSendMergedFilesIfNeededFlattened = 1<<5,
+    PSPDFEmailSendMergedFilesIfNeededFlattened = 1<<5, // Will merge your annotations, even if you have just one file.
     PSPDFEmailSendOriginalDocumentFiles        = 1<<6
 };
 
@@ -28,10 +28,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
 @interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <MFMailComposeViewControllerDelegate>
 
 /**
- Control what data is sent. Defaults to PSPDFEmailSendVisiblePagesFlattened | PSPDFEmailSendMergedFilesIfNeeded.
+ Control what data is sent. Defaults to PSPDFEmailSendVisiblePagesFlattened | PSPDFEmailSendMergedFilesIfNeeded | PSPDFEmailSendMergedFilesIfNeededFlattened.
  If only one option is set here, no menu will be displayed.
 
- ***Flattened control if annotations should be flattened. Defaults to YES.
+ ***Flattened control if annotations should be flattened.
  Annotations that are not flattened are not displayed in Mobile Mail/Mobile Safari.
  Note that annotations will be removed if this is set to NO for every option but PSPDFEmailSendOriginalDocumentFiles.
  
