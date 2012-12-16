@@ -45,4 +45,7 @@
 // Rotation Helper.
 @property (nonatomic, assign) NSUInteger targetPageAfterRotation;
 
+// Will configure the PSPDFScrollView and set the properties on it.
+- (void)configureScrollView:(PSPDFScrollView *)page forPageIndex:(NSUInteger)pageIndex;
+
 @end

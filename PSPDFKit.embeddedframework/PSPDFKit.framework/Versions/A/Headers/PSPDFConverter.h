@@ -68,6 +68,9 @@ extern CGRect PSPDFAlignRectangles(CGRect alignee, CGRect aligner, PSPDFRectAlig
 /// Alignment helper that allows offsets.
 extern CGRect PSPDFAlignSizeWithinRectWithOffset(CGSize targetSize, CGRect bounds, CGFloat widthOffset, CGFloat heightOffset, PSPDFRectAlignment alignment);
 
+// Divides a source rectangle into two component rectangles, skipping the given amount of padding in between them.
+void PSPDFRectDivideWithPadding(CGRect rect, CGRect *slicePtr, CGRect *remainderPtr, CGFloat sliceAmount, CGFloat padding, CGRectEdge edge);
+
 /// Normalizes rotation values (returns something between 0 and 359)
 extern NSUInteger PSPDFNormalizeRotation(NSInteger rotation);
 

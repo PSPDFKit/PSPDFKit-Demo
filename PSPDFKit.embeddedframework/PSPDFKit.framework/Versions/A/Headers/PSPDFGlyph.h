@@ -18,6 +18,9 @@ extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRec
 /// 't' is the pageRotationTransform of PSPDFPageInfo.
 extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
 
+/// Scans glyphs and reduces the selection to columns.
+extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
+
 /// Represents a single character (glyph) on the pdf page.
 /// Adobe also might reference to this as "Quad".
 @interface PSPDFGlyph : NSObject <NSCopying, NSCoding>

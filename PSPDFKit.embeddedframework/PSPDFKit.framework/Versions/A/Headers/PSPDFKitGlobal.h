@@ -217,7 +217,8 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 - (id)ps_firstObject;
 @end
 @interface NSMutableArray (PSPDFArrayAccess)
-- (void)ps_addObjectSave:(id)anObject;
+- (void)ps_addObjectSafe:(id)anObject;
+- (void)ps_addObjectsFromArraySafe:(NSArray *)otherArray;
 @end
 
 // Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.
