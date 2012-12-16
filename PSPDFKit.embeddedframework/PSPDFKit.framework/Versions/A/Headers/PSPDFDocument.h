@@ -439,6 +439,7 @@ extern NSString *const kPSPDFObjectsAnnotationTypes;       // Include annotation
 extern NSString *const kPSPDFObjectsAnnotationPageBounds;  // Special case; used for PSPDFAnnotationTypeNote hit testing.
 extern NSString *const kPSPDFObjectsImages;                // Include Image info.
 extern NSString *const kPSPDFObjectsSmartSort;             // Will sort words/annotations (smaller words/annots first). Use for touch detection.
+extern NSString *const kPSPDFObjectsTextFlow;              // Will look at the text flow and select full sentences, not just what's within the rect.
 extern NSString *const kPSPDFObjectsFindFirstOnly;         // Will stop after finding the first maching object.
 
 // Output categories

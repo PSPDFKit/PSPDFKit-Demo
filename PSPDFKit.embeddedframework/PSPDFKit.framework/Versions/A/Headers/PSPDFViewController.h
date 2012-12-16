@@ -561,6 +561,7 @@ extern NSString *const PSPDFPresentOptionPopoverContentSize;            // conte
 extern NSString *const PSPDFPresentOptionAllowedPopoverArrowDirections; // customize default arrow directions for popover.
 extern NSString *const PSPDFPresentOptionModalPresentationStyle;        // overrides UIPopoverController if set.
 extern NSString *const PSPDFPresentOptionAlwaysModal;                   // don't use UIPopoverController, even on iPad.
+extern NSString *const PSPDFPresentOptionAlwaysPopover;                 // show as popover, even on iPhone. (limited functionality!)
 extern NSString *const PSPDFPresentOptionPassthroughViews;              // customizes the click-through views.
 - (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
 

@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 - (UIImage *)pdpdf_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
 
 /// Loads an animated GIF. iOS5 upwards.
+/// This supports basic animated GIF with a equal animation delay.
+/// For a more perfect solution, use https://github.com/ondalabs/OLImageView.
 + (UIImage *)pspdf_animatedGIFWithPath:(NSString *)path;
 
 @end

@@ -25,7 +25,9 @@
 /// Time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;
 
-/// Delegate to be notified when pdfController finished loading
+/// Delegate to be notified when pdfController finished loading.
+/// Will also be called if the document is nil.
+/// This will also be called for broken documents. use [document isValid] to check.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
 /* Events */

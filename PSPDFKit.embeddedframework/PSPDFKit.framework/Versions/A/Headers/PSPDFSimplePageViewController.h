@@ -7,6 +7,14 @@
 
 #import "PSPDFKitGlobal.h"
 
+@protocol PSPDFSimplePageViewControllerDelegate <NSObject>
+
+@optional
+// sets scrollview property. Defaults to YES.
+- (BOOL)shouldDelayContentTouches;
+
+@end
+
 /// Simple view controller that paginates a set of viewControllers.
 /// (Apple added something like this in iOS6, but we can't use that yet)
 @interface PSPDFSimplePageViewController : UIViewController <UIScrollViewDelegate>

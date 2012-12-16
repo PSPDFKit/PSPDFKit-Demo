@@ -23,6 +23,8 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 
  Usually you want to add your custom PSPDFAnnotationProvider instead of subclassing this.
  If you subclass, use overrideClassNames in PSPDFDocument.
+ 
+ This class will set the documentProvider on both annotation adding and retrieving. You don't have to handle this in your annotationProvider subclass.
 */
 @interface PSPDFAnnotationParser : NSObject <PSPDFAnnotationProviderChangeNotifier>
 
