@@ -426,11 +426,13 @@
 
 - (BOOL)canEditCell:(PSCImageGridViewCell *)cell {
     BOOL editing = self.isEditing;
-    if (cell.magazine) {
-        editing &=  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
-    }else {
-        NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
-        editing &= [fixedMagazines count] == 0;
+    if (editing) {
+        if (cell.magazine) {
+            editing =  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
+        }else {
+            NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
+            editing = [fixedMagazines count] == 0;
+        }
     }
     return editing;
 }
