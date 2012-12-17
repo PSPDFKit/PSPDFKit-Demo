@@ -80,6 +80,10 @@
 "Undo" = "Undo";
 "Redo" = "Redo";
 "Type..." = "Type…";
+"Font..." = "Font…";
+"Size..." = "Size…";
+"Choose Font" = "Choose Font";
+"Choose Font Style" = "Choose Font Style";
 "Choose Color" = "Choose Color";
 "Colors..." = "Colors…";
 "Opacity..." = "Opacity…";
