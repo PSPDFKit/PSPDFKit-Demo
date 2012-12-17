@@ -50,6 +50,9 @@
 // search
 #import "PSPDFTextSearch.h"
 #import "PSPDFTextParser.h"
+#import "PSPDFGlyph.h"
+#import "PSPDFWord.h"
+#import "PSPDFTextBlock.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 #import "PSPDFSearchHighlightView.h"
@@ -114,3 +117,4 @@
 #import "PSPDFProgressHUD.h"
 #import "PSPDFColorButton.h"
 #import "PSPDFColorSelectionViewController.h"
+#import "PSPDFHSVColorPickerController.h"
