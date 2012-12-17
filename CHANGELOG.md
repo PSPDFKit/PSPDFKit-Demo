@@ -2,6 +2,19 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.6.3 - 17/December/2012__
+
+*  New font picker for FreeText annotations.
+*  Allow changing the text color of the free text annotation.
+*  FreeText annotations will now persist the color state.
+*  Supports more formats for textColor and fontName in free text annotation.
+*  Selected annotations are now rendered in full resolution and no longer appear blurry when zoomed in.
+*  Don't block double tap for selected annotations that are not movable (like text highlights)
+*  After creating a note or a freetext annotation, the toolbar will be set to none. (to match iPad behavior)
+*  Fixes color picker placement for annotations when zoomed all the way in.
+*  Fixes various minor issues with annotation menu showing/placement.
+*  Fixes a UI issue where the Open In... menu didn't disappear on tapping the button a second time.
+
 __v2.6.2 - 16/December/2012__
 
 *  New HSV color picker.

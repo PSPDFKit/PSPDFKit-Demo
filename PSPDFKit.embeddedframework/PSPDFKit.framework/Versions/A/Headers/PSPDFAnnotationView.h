@@ -20,6 +20,9 @@
 /// Allows ordering of annotation views.
 @property (nonatomic, assign) NSUInteger zIndex;
 
+/// Allows adapting to the outer zoomScale. Re-set after zooming.
+@property (nonatomic, assign) CGFloat zoomScale;
+
 /// Called when page will be displayed. Only available in pageCurl mode.
 - (void)willShowPage:(NSUInteger)page;
 

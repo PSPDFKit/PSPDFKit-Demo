@@ -79,7 +79,11 @@
 "Edit" = "Editieren";
 "Undo" = "Wiederrufen";
 "Redo" = "Wiederherstellen";
-"Type..." = "Type…";
+"Type..." = "Typ…";
+"Font..." = "Schrift…";
+"Size..." = "Größe…";
+"Choose Font" = "Schriftart auswählen";
+"Choose Font Style" = "Schrifttyp auswählen";
 "Choose Color" = "Farbe wählen";
 "Colors..." = "Farbe…";
 "Opacity..." = "Alpha…";

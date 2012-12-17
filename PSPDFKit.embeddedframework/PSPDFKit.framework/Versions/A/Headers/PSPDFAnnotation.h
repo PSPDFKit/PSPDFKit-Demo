@@ -28,7 +28,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeNone      = 0,
     PSPDFAnnotationTypeLink      = 1 << 1,  // Links and multimedia extensions
     PSPDFAnnotationTypeHighlight = 1 << 2,  // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
-    PSPDFAnnotationTypeText      = 1 << 3,
+    PSPDFAnnotationTypeText      = 1 << 3,  // FreeText
     PSPDFAnnotationTypeInk       = 1 << 4,
     PSPDFAnnotationTypeShape     = 1 << 5,  // Square, Circle
     PSPDFAnnotationTypeLine      = 1 << 6,
@@ -220,6 +220,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 // Color string representation (/C [%f %f %f] /CA %f)
 - (NSString *)pdfColorWithAlphaString;
 
+// Border dictionary. e.g. /BS <</Type /Border /W 3 /S /U>>
+- (NSString *)pdfBorderString;
+
 // Appends escaped contents data if contents length is > 0.
 // Will also add user and name if set.
 - (void)appendEscapedContents:(NSMutableData *)pdfData;
@@ -235,6 +238,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
 /// Returns same type as current class.
+/// YOU NEED TO CALL THIS EVERY TIME BEFORE TRYING TO EDIT AN ANNOTATION.
 - (instancetype)copyAndDeleteOriginalIfNeeded;
 
 /// If indexOnPage is set, it's a native PDF annotation.
