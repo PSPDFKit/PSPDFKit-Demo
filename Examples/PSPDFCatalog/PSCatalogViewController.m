@@ -64,6 +64,7 @@
 
 const char kPSCShowDocumentSelectorOpenInTabbedControllerKey;
 const char kPSCAlertViewKey;
+#define kPSPDFLastIndexPath @"kPSPDFLastIndexPath"
 
 @implementation PSCatalogViewController
 
@@ -707,7 +708,7 @@ const char kPSCAlertViewKey;
             annotation.alpha = 0.3f;
             [document addAnnotations:@[annotation] forPage:0];
         }
-        
+
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -761,7 +762,7 @@ const char kPSCAlertViewKey;
     }]];
 
     PSPDF_IF_IOS6_OR_GREATER(
-    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
+                             [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
@@ -793,7 +794,7 @@ const char kPSCAlertViewKey;
 
         return controller;
     }]];
-    )
+                             )
     [content addObject:subclassingSection];
 
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
@@ -980,22 +981,29 @@ const char kPSCAlertViewKey;
 
 #ifdef kPSPDFAutoSelectCellNumber
     if (!_firstShown && kPSPDFAutoSelectCellNumber) {
-        BOOL success = NO;
-        NSUInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
-        NSUInteger numberOfRowsInSection = 0;
-        if (kPSPDFAutoSelectCellNumber.section < numberOfSections) {
-            numberOfRowsInSection = [self tableView:self.tableView numberOfRowsInSection:kPSPDFAutoSelectCellNumber.section];
-            if (kPSPDFAutoSelectCellNumber.row < numberOfRowsInSection) {
-                [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
-                success = YES;
-            }
+        if ([self isValidIndexPath:kPSPDFAutoSelectCellNumber]) {
+            [self tableView:self.tableView didSelectRowAtIndexPath:kPSPDFAutoSelectCellNumber];
+            _firstShown = YES;
         }
-        if (!success) {
+        if (!_firstShown) {
             NSLog(@"Invalid row/section count: %@ (sections: %d, rows:%d)", kPSPDFAutoSelectCellNumber, numberOfSections, numberOfRowsInSection);
         }
     }
-    _firstShown = YES;
 #endif
+
+    // load last state
+    if (!_firstShown) {
+        NSData *indexData = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFLastIndexPath];
+        if (indexData) {
+            NSIndexPath *indexPath = nil;
+            @try { indexPath = [NSKeyedUnarchiver unarchiveObjectWithData:indexData]; }
+            @catch (NSException *exception) {}
+            if ([self isValidIndexPath:indexPath]) {
+                [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+                _firstShown = YES;
+            }
+        }
+    }
 
     // cache the keyboard. (optional; makes search much more reactive)
     dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
@@ -1004,6 +1012,24 @@ const char kPSCAlertViewKey;
 // Support for iOS5. iOS6 does this differently and also correct by default.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private
+
+- (BOOL)isValidIndexPath:(NSIndexPath *)indexPath {
+    BOOL isValid = NO;
+    if (indexPath) {
+        NSUInteger numberOfSections = [self numberOfSectionsInTableView:self.tableView];
+        NSUInteger numberOfRowsInSection = 0;
+        if (indexPath.section < numberOfSections) {
+            numberOfRowsInSection = [self tableView:self.tableView numberOfRowsInSection:indexPath.section];
+            if (indexPath.row < numberOfRowsInSection) {
+                isValid = YES;
+            }
+        }
+    }
+    return isValid;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -1044,6 +1070,12 @@ const char kPSCAlertViewKey;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Invoking [NSIndexPath indexPathForRow:%d inSection:%d]", indexPath.row, indexPath.section);
     PSContent *contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+
+    // persist state
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:indexPath] forKey:kPSPDFLastIndexPath];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    _firstShown = YES; // don't re-show after saving it first.
+
     UIViewController *controller;
     if (contentDescriptor.classToInvoke) {
         controller = [contentDescriptor.classToInvoke new];
