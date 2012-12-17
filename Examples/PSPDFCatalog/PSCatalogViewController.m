@@ -37,6 +37,7 @@
 #import "PSCLinkEditorViewController.h"
 #import "PSCSettingsController.h"
 #import "PSCTintablePDFViewController.h"
+#import "PSCReaderPDFViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -51,7 +52,7 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:11 inSection:9]
+//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:10 inSection:8]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -744,6 +745,18 @@ const char kPSCAlertViewKey;
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
+        return controller;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Screen Reader" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSCReaderPDFViewController alloc] initWithDocument:document];
+        controller.page = 3;
+        //PSCPlayButtonItem *playButton = [[PSCPlayButtonItem alloc] initWithPDFViewController:controller];
+        //playButton.autoplaying = YES;
+        //controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        //controller.pageTransition = PSPDFPageCurlTransition;
+        //controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
 
