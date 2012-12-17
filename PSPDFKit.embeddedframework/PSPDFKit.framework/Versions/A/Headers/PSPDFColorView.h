@@ -2,7 +2,7 @@
 //  PSPDFColorView.h
 //  PSPDFKit
 //
-//  Copyright 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
