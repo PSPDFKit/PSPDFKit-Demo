@@ -39,6 +39,7 @@
 #import "PSCTintablePDFViewController.h"
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
+#import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -761,6 +762,12 @@ const char kPSCAlertViewKey;
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCCustomSubviewPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Add a two finger swipe gesture" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSCTwoFingerSwipeGestureViewController  alloc] initWithDocument:document];
         controller.page = 3;
         return controller;
     }]];
