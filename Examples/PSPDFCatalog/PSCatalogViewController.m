@@ -38,6 +38,7 @@
 #import "PSCSettingsController.h"
 #import "PSCTintablePDFViewController.h"
 #import "PSCReaderPDFViewController.h"
+#import "PSCCustomSubviewPDFViewController.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -753,16 +754,18 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCReaderPDFViewController alloc] initWithDocument:document];
         controller.page = 3;
-        //PSCPlayButtonItem *playButton = [[PSCPlayButtonItem alloc] initWithPDFViewController:controller];
-        //playButton.autoplaying = YES;
-        //controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-        //controller.pageTransition = PSPDFPageCurlTransition;
-        //controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
 
-    PSPDF_IF_IOS6_OR_GREATER(
-                             [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
+    // Helps in case you want to add custom subviews but still have drawings on top of everything
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSCCustomSubviewPDFViewController alloc] initWithDocument:document];
+        controller.page = 3;
+        return controller;
+    }]];
+
+    PSPDF_IF_IOS6_OR_GREATER([subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
