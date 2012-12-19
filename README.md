@@ -1,16 +1,16 @@
-## PSPDFKit v2 - The definite solution for displaying and annotating PDF.
+## PSPDFKit v2 - The definitive framework for displaying and annotating PDFs in your iOS apps.
 
 PSPDFKit is a heavily optimized framework for displaying PDF files with horizontal scrolling.
 It is fast, flexible, has intelligent caching and renders pages usually faster than iBooks.
 
-*Amazingly easy to use and impressive PDF performance - closest thing to iBooks so far.* -- [Martin Reichart, iOS Developer](http://twitter.com/martinr_vienna/status/95823509506359296)
+*We were impressed on how fast we got a working prototype to show off to the client. Integrating PSPDFKit into our existing project was a breeze and we loved that most of the features we needed for our app were there out of the box. Highly customizable, well documented, great support… this is THE PDF library everyone should use. Money well spent!* -- [Alex Taras, Ruby Tribe.](http://rubytribe.ro/)
 
 ### You can purchase a license and the full source code at http://pspdfkit.com.
 [![PSPDFKit](http://pspdfkit.com/images/header-small.jpg)](http://pspdfkit.com)
 
 Licensing
 ---------
-This is example code to show you the features of PSPDFKit.
-You need a license if you want to distribute this within your application, see [License.md](https://github.com/PSPDFKit/PSPDFKit-Demo/blob/master/LICENSE.md) for details.
+This is the example project including a DEMO version of the PSPDFKit framework.
+[The code is bound to the PSPDFKit Evalulation License.](http://pspdfkit.com/documentation.html#license)
 
-PSPDFKit uses 3rd-party code, see [ACKNOWLEDGEMENTS](https://github.com/PSPDFKit/PSPDFKit-Demo/blob/master/ACKNOWLEDGEMENTS) for contributions.
+PSPDFKit uses 3rd-party code, see [ACKNOWLEDGEMENTS](https://github.com/PSPDFKit/PSPDFKit-Demo/blob/master/ACKNOWLEDGEMENTS) for the list of contributions.
