@@ -67,7 +67,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
 
         // HockeyApp (http://hockeyapp.net) is a *great* service to manage crashes. It's well worth the money.
-#ifndef CONFIGURATION_Debug
+#if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE)
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
         [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
