@@ -111,14 +111,14 @@
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSCShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
     _shadowView.shadowOffset = toolbarHeight;
-    _shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _shadowView.backgroundColor = [UIColor clearColor];
     _shadowView.userInteractionEnabled = NO;
     [self.view addSubview:_shadowView];
 
     // use custom view to match background with PSPDFViewController
     UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
-    backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
@@ -135,18 +135,18 @@
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
-    collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.gridView = collectionView;
 
     [self.view insertSubview:self.gridView belowSubview:_shadowView];
-    self.gridView.frame = self.view.bounds;
+    self.gridView.frame = CGRectIntegral(self.view.bounds);
     self.gridView.dataSource = self; // auto-reloads
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
     // add search bar
     CGFloat searchBarWidth = 290.f;
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.gridView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
-    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
     _searchBar.tintColor = [UIColor blackColor];
     _searchBar.backgroundColor = [UIColor clearColor];
     _searchBar.alpha = 0.5;
@@ -279,7 +279,17 @@
 #pragma mark - Public
 
 - (void)updateGrid {
+    BOOL restoreKeyboard = NO;
+    if ([self.searchBar isFirstResponder]) {
+        restoreKeyboard = YES;
+    }
+    
     [self.gridView reloadData];
+
+    // UICollectionView is stealing the first responder.
+    if (restoreKeyboard) {
+        [self.searchBar becomeFirstResponder];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -421,7 +431,7 @@
     // if we're in plain mode, pre-set a folder
     if (kPSPDFStoreManagerPlain) self.magazineFolder = [[PSCStoreManager sharedStoreManager].magazineFolders lastObject];
 
-    [self.gridView reloadData];
+    [self updateGrid];
 }
 
 - (BOOL)canEditCell:(PSCImageGridViewCell *)cell {
@@ -679,17 +689,14 @@
 }
 
 - (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
-    [self.gridView reloadData];
-    // TODO: PSPDFGridView has some problems with inserting elements; will be fixed soon.
-    /*
-     if (self.magazineFolder) {
-     NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
-     if (cellIndex != NSNotFound) {
-     [self.gridView insertObjectAtIndex:cellIndex withAnimation:PSPDFGridViewItemAnimationFade];
-     }else {
-     PSCLog(@"index not found for %@", magazine);
-     }
-     } */
+    if (self.magazineFolder) {
+        NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
+        if (cellIndex != NSNotFound) {
+            [self.gridView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+        }else {
+            PSCLog(@"index not found for %@", magazine);
+        }
+    }
 }
 
 - (void)magazineStoreMagazineModified:(PSCMagazine *)magazine {
@@ -720,11 +727,9 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     _filteredData = nil;
-    [self.gridView reloadData];
-    self.gridView.contentOffset = CGPointMake(0, -self.gridView.contentInset.top);
-    
-    // TODO: UICollectionView is stealing the first responder. Why?
-    [searchBar becomeFirstResponder];
+
+    [self updateGrid];
+    self.gridView.contentOffset = CGPointMake(0, -self.gridView.contentInset.top);    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
