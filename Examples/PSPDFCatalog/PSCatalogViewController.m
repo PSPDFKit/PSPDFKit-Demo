@@ -94,7 +94,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Entwurf AIFM-UmsG.pdf"]];
 
         //PSPDFTextParser *textParser = [document textParserForPage:0];
         //NSLog(@"%@", textParser.textBlocks);
@@ -277,6 +277,22 @@ const char kPSCAlertViewKey;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
+        return controller;
+    }]];
+
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Extract single pages with PSPDFProcessor" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+
+        // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
+        NSMutableIndexSet *pageIndexes = [[NSMutableIndexSet alloc] initWithIndex:1];
+        [pageIndexes addIndex:3];
+        [pageIndexes addIndex:5];
+
+        // Extract pages into new document
+        NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil];
+        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithData:newDocumentData];
+
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:newDocument];
         return controller;
     }]];
 
@@ -925,6 +941,44 @@ const char kPSCAlertViewKey;
         return picker;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test that § can be found." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Entwurf AIFM-UmsG.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 5;
+
+        int64_t delayInSeconds = 1.f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController searchForString:@"§ " animated:YES];
+        });
+
+        return pdfController;
+    }]];
+
+    // Page 26 of hackernews-12 has a very complex XObject setup with nested objects that reference objects that have a parent with the same name. If parsed from top to bottom with the wrong XObjects this will take 100^4 calls, thus clocks up the iPad for a very long time.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test for cyclic XObject references." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 26;
+
+        [[document textParserForPage:26] words];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing with nil color" block:^{
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
+
+        // copy file from the bundle to a location where we can write on it.
+        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *newPath = [docsFolder stringByAppendingPathComponent:[annotationSavingURL lastPathComponent]];
+        NSError *error;
+        if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
+            ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
+            NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
+        }
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+        return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
+    }]];
 #endif
 
     [content addObject:testSection];
