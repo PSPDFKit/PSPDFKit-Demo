@@ -829,10 +829,10 @@ const char kPSCAlertViewKey;
         });
 
         return controller;
-    }]];
-                             )
+    }]];)
     [content addObject:subclassingSection];
 
+    
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
@@ -862,7 +862,8 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    // additional test cases, just for developing
+    // additional test cases, just for developing and testing PSPDFKit.
+    // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Zoom out UIKit freeze bug" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
@@ -1025,6 +1026,15 @@ const char kPSCAlertViewKey;
         pdfController.page = 6;
         return pdfController;
     }]];
+
+    // Check that the link annotation on page one actually works, even if it's encoded in a weird way.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Invalid URI encodings" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-link-annotation-siteLinkTargetIsRaw.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    
 #endif
 
     [content addObject:testSection];
