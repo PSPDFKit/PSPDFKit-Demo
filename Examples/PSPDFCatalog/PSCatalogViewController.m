@@ -382,7 +382,7 @@ const char kPSCAlertViewKey;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
 
-    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add custom image annotation" block:^{
+    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Add custom image annotation on first page." block:^{
         PSPDFDocument *hackerDocument = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         return [[PSCAnnotationTestController alloc] initWithDocument:hackerDocument];
     }]];
