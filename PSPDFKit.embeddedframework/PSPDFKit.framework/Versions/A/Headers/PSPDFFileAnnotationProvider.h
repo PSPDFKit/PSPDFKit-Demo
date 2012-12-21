@@ -91,4 +91,7 @@
 /// Removes all annotations that are marked as deleted.
 - (NSUInteger)removeDeletedAnnotations;
 
+// Ensure document/page references are set correctly before adding annotations. Used internally.
+- (void)updateAnnotationsPageAndDocumentReference:(NSArray *)annotations page:(NSUInteger)page;
+
 @end

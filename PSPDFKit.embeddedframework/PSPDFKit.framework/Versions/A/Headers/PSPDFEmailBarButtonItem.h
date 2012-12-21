@@ -25,7 +25,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
  
  To figure out the name, PSPDFDOcument's fileNamesWithDataDictionary will be used.
  */
-@interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <MFMailComposeViewControllerDelegate>
+@interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem
 
 /**
  Control what data is sent. Defaults to PSPDFEmailSendVisiblePagesFlattened | PSPDFEmailSendMergedFilesIfNeeded | PSPDFEmailSendMergedFilesIfNeededFlattened.
@@ -44,10 +44,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
 @interface PSPDFEmailBarButtonItem (SubclassingHooks)
 
 // merges/flattens/attaches the files.
-- (BOOL)attachDocumentToMailController:(MFMailComposeViewController *)mailViewController withMode:(PSPDFEmailSendOptions)mode;
+- (void)attachDocumentToMailController:(MFMailComposeViewController *)mailViewController withMode:(PSPDFEmailSendOptions)mode completionBlock:(void (^)(BOOL success))completionBlock;
 
 // finally shows the email controller.
-- (id)showEmailControllerWithSendOptions:(PSPDFEmailSendOptions)sendOptions animated:(BOOL)animated;
+- (void)showEmailControllerWithSendOptions:(PSPDFEmailSendOptions)sendOptions sender:(id)sender animated:(BOOL)animated;
 
 // Hook to customize the fileName generation.
 - (NSString *)fileNameForPage:(NSUInteger)pageIndex sendOptions:(PSPDFEmailSendOptions)sendOptions;

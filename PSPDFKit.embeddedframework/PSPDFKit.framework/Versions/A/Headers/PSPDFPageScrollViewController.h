@@ -10,7 +10,9 @@
 #import "PSPDFTransitionProtocol.h"
 #import "PSPDFViewController.h"
 
-@class PSPDFPageView, PSPDFPagingScrollView;
+@interface PSPDFPagingScrollView : UIScrollView @end
+
+@class PSPDFPageView;
 
 /// Basic magazine-like side scrolling.
 @interface PSPDFPageScrollViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
