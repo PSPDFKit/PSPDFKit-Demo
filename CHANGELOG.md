@@ -2,6 +2,31 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.6.4 - 21/December/2012__
+
+*  Note annotations now adapt itself to the zoomScale and are no longer scaled when zooming in.
+*  Note annotation dragging has been unified with all other annotation types (Notes are now selectable as well)
+*  Text/Note annotation popover is now less modal and allows one-touch clickthrough to other annotations and UI.
+*  New annotationContainerView container in PSPDFPageView makes it easier to coordinate the zIndex of annotation views with your own custom views.
+*  Add encryption/decryption block helper for PSPDFCache. (PSPDFKit Annotate feature)
+*  Moved MFMailComposeViewControllerDelegate to PSPDFViewController (from PSPDFEmailBarButtonItem)
+*  Annotations now have a new isResizable that controls if they can be resized or not.
+*  With + (void)setDefaultColorPickerStyles: in PSPDFColorSelectionViewController the default color pickers can be configured easily. (e.g. disable the new HSV Picker)
+*  Better support for annotation borders.
+*  Improves performance for text extraction engine with cyclic XObjects.
+*  No longer breaks between a word after a font ligature.
+*  Properly sets the cropBox for each page in PSPDFProcessor.
+*  Adds a fallback for weird URI encodings on link annotations.
+*  No longer sets the title for the internal web browser if that is nil (show URL instead)
+*  Fixes a bug on toolbar building with correctly adding the moreBarButtonItem when the first button is filtered.
+*  Fixes an issue where the signature jumped to a different page when added to the right page in landscape mode.
+*  Fixes an issue with the initialization of the continuous scroll mode (especially when using it within a childViewController)
+*  Fixes an issue with text extraction on fonts that don't define any base encoding.
+*  Fixes an issue where custom bookmark names were not correctly saved.
+*  Fixes an issue with video rotation and iOS 5 - current page state is now preserved in all states.
+*  Fixes a potential crash when annotations were written back that do not define any color information.
+*  Titanium: Fixes issue with the didTapOnAnnotation callback and event.
+
 __v2.6.3 - 17/December/2012__
 
 *  New font picker for FreeText annotations.

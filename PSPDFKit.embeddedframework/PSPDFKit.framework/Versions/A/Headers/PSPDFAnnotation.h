@@ -76,6 +76,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Returns YES if this annotation type is moveable.
 - (BOOL)isMovable;
 
+/// Returns YES if this annotation type is resizable (all but note annotations usually are).
+- (BOOL)isResizable;
+
 /// Use this to create custom user annotations. 
 - (id)initWithType:(PSPDFAnnotationType)annotationType;
 

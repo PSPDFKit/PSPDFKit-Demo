@@ -147,6 +147,19 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
 @property (nonatomic, copy) NSString *cacheDirectory;
 
+/// Calculates the current cache disk usage.
+- (unsigned long long int)currentDiskUsage;
+
+/// @name Encryption/Decryption Handlers
+
+/// Decrypt data from the path. PSPDFKit Annotate feature.
+/// If set to nil, the default implementation will be used.
+@property (atomic, copy) NSData *(^decryptFromPathBlock)(PSPDFDocument *document, NSString *path);
+
+/// Encrypt mutable data. PSPDFKit Annotate feature.
+/// If set to nil, the default implementation will be used.
+@property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data);
+
 @end
 
 

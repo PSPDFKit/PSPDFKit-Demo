@@ -13,6 +13,8 @@
 
 @protocol PSPDFNoteAnnotationControllerDelegate <NSObject>
 
+@optional
+
 /// Called when the noteController has deleted the annotation.
 - (void)noteAnnotationController:(PSPDFNoteAnnotationController *)noteAnnotationController didDeleteAnnotation:(PSPDFAnnotation *)annotation;
 

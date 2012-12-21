@@ -18,3 +18,10 @@
 - (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
 
 @end
+
+@interface PSPDFGenericAnnotationView (SubclassingHooks)
+
+// Called when any annotation changes. Must call super on this.
+- (void)annotationsChanged:(NSNotification *)notification;
+
+@end

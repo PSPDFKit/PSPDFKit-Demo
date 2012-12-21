@@ -185,13 +185,13 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 - (BOOL)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
 /// Show the HUD. Respects HUDViewMode.
-- (BOOL)showControls;
+- (BOOL)showControlsAnimated:(BOOL)animated;
 /// Hide the HUD. Respects HUDViewMode.
-- (BOOL)hideControls;
+- (BOOL)hideControlsAnimated:(BOOL)animated;
 /// Hide the HUD (respects HUDViewMode) and additional elements like page selection.
-- (BOOL)hideControlsAndPageElements;
+- (BOOL)hideControlsAndPageElementsAnimated:(BOOL)animated;
 /// Toggles the HUD. Respects HUDViewMode.
-- (BOOL)toggleControls;
+- (BOOL)toggleControlsAnimated:(BOOL)animated;
 
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property (nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
@@ -674,12 +674,13 @@ extern NSString *const PSPDFPresentOptionPassthroughViews;              // custo
 @interface PSPDFViewController (PSPDFDeprected)
 
 @property (nonatomic, assign, getter=isPositionViewEnabled) BOOL positionViewEnabled __attribute__ ((deprecated("Use pageLabelEnabled instead")));
-
 /// As of PSPDFKit 2.4, page now returns the actual page value, and the old "page" has been replaced with screenPage.
 @property (nonatomic, assign, readonly) NSUInteger realPage __attribute__ ((deprecated("Use page instead")));
-
 @property (nonatomic, copy) NSArray *additionalRightBarButtonItems __attribute__ ((deprecated("Use additionalBarButtonItems instead")));
-
 @property (nonatomic, assign) PSPDFScrollDirection pageScrolling __attribute__ ((deprecated("Use scrollDirection instead")));
+- (BOOL)showControls __attribute__ ((deprecated("Use showControlsAnimated: instead")));
+- (BOOL)hideControls __attribute__ ((deprecated("Use hideControlsAnimated: instead")));;
+- (BOOL)hideControlsAndPageElements __attribute__ ((deprecated("Use hideControlsAndPageElementsAnimated: instead")));;
+- (BOOL)toggleControls __attribute__ ((deprecated("Use toggleControlsAnimated: instead")));;
 
 @end
