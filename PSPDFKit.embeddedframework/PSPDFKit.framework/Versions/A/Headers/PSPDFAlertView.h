@@ -4,7 +4,7 @@
 //  Copyright 2011-2012 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
 
 /// Helper to add block features to UIAlertView.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.

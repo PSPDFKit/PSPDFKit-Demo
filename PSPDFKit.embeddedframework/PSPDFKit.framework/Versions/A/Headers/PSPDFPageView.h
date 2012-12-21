@@ -8,11 +8,14 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderQueue.h"
 #import "PSPDFResizableView.h"
+#import "PSPDFHUDView.h"
 #import "PSPDFLongPressGestureRecognizer.h"
 #import "PSPDFSignatureViewController.h"
 
 @protocol PSPDFAnnotationView;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController;
+
+@interface PSPDFAnnotationContainerView : PSPDFHUDView @end
 
 /// Send this event to hide any selections, menus or other interactive page elements.
 extern NSString *const kPSPDFHidePageHUDElements;
@@ -53,6 +56,17 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// UIImageView for the zoomed in state. Readonly.
 @property (nonatomic, strong, readonly) UIImageView *renderView;
+
+/**
+ Container view for all overlay annotations.
+ 
+ This is just a named subclass of UIView that will always track the frame of the PSPDFPageView.
+ It's useful to coordinate this with your own subviews to get the zIndex right.
+ 
+ @warning Most annotations will not be rendered as overlays or only when they are currently being selected.
+ Rendering annotations within the pageView has several advantages including performance or view color multiplication (in case of highlight annotations)
+ */
+@property (nonatomic, strong, readonly) PSPDFAnnotationContainerView *annotationContainerView;
 
 /// Size used for the zoomed-in part. Should always be bigger than the screen.
 /// This is set to a good default already. You shouldn't need to touch this.
@@ -211,7 +225,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
  Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
 
- This method is called recursively with all annotation types except if they return isOverlay = NO.
+ This method is called recursively with all annotation types except if they return isOverlay = NO. In case of isOverlay = NO, it will call updateView to re-render the page.
  */
 - (void)addAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
@@ -235,6 +249,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (void)loadPageAnnotationsAnimated:(BOOL)animated;
 
 /// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
+/// The point will have a variance of a few pixels to improve touch recognition.
 - (NSArray *)tappableAnnotationsAtPoint:(CGPoint)viewPoint;
 
 /// Can be used for manual tap forwarding.

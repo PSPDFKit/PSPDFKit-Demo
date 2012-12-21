@@ -12,9 +12,11 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
 
-// internal events to notify the prividers when annotations are being changed.
-extern NSString *const PSPDFAnnotationChangedNotification; // object = new PSPDFAnnotation.
-extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey; // NSArray of selector names.
+// Internal events to notify the prividers when annotations are being changed.
+extern NSString *const PSPDFAnnotationChangedNotification;                  // object = new PSPDFAnnotation.
+extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;       // set to NO to not animate updates (if it can be animated, that is)
+extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;   // set to YES to disable handling by views.
+extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;        // NSArray of selector names.
 extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; // original PSPDFAnnotation.
 
 /**

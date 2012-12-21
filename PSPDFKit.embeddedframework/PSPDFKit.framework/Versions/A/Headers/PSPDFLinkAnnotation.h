@@ -76,6 +76,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 @property (nonatomic, copy) NSString *siteLinkTarget;
 
 /// URL (generated from the siteLinkTarget after parsing. Will not be saved.)
+/// If set to nil, this will be autocreated from siteLinkTarget.
 @property (nonatomic, strong) NSURL *URL;
 
 /// Used for the preview string when the user long-presses on a link annotation.

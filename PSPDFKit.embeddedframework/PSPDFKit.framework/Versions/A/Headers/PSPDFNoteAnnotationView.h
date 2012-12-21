@@ -16,4 +16,7 @@
 /// Designated initializer.
 - (id)initWithAnnotation:(PSPDFNoteAnnotation *)noteAnnotation;
 
+/// Image of the rendered annotation.
+@property (nonatomic, strong) UIImageView *annotationImageView;
+
 @end

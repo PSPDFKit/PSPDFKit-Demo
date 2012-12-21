@@ -48,4 +48,10 @@ extern BOOL kPSPDFCheckIfCompatibleAppsAreInstalled;
 // Used to create the document interaction controller during presentAnimated:
 - (UIDocumentInteractionController *)interactionControllerWithURL:(NSURL *)fileURL;
 
+// Does the heavy lifting, annotation flattening. Also might show progress dialog.
+- (void)fileURLForDocument:(PSPDFDocument *)document withOptions:(PSPDFOpenInOptions)options completionBlock:(void (^)(NSURL *fileURL))completionBlock;
+
+// Shows the open in controller. options at this point can only be exactly one item, not multiple.
+- (void)showOpenInControllerWithOptions:(PSPDFOpenInOptions)options animated:(BOOL)animated sender:(id)sender;
+
 @end

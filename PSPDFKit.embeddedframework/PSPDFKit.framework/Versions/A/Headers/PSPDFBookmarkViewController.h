@@ -45,7 +45,7 @@
 
 - (void)createBarButtonItems;
 - (void)updatePopoverSize;
-- (void)updateView;
+- (void)updateBookmarkView;
 - (void)addBookmarkAction:(id)sender;
 - (void)doneAction:(id)sender;
 
