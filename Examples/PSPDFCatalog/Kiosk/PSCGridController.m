@@ -737,3 +737,20 @@
 }
 
 @end
+
+// Fixes the missing action method crash on updating when the keyboard is visible.
+#import <objc/runtime.h>
+#import <objc/message.h>
+__attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
+    @autoreleasepool {
+        if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
+            IMP updateIMP = imp_implementationWithBlock(^(id _self) {});
+            Method method = class_getInstanceMethod([UICollectionViewUpdateItem class], @selector(action));
+            const char *encoding = method_getTypeEncoding(method);
+            if (!class_addMethod([UICollectionViewUpdateItem class], @selector(action), updateIMP, encoding)) {
+                PSPDFLogError(@"Failed to add action: workaround");
+            }
+        }
+    }
+}
+
