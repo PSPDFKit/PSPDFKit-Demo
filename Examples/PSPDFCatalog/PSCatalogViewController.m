@@ -1027,6 +1027,15 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Check that multiple videos work fine and all annotations are parsed.
+    // Also check that dashed border is parsed correctly and displayed as dash.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Advanced annotation usage test." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 8;
+        return pdfController;
+    }]];
+
     // Check that the link annotation on page one actually works, even if it's encoded in a weird way.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Invalid URI encodings" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-link-annotation-siteLinkTargetIsRaw.pdf"]];
