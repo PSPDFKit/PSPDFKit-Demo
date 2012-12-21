@@ -44,7 +44,11 @@
 	
 	<option value="//api/name/cacheDirectory">&nbsp;&nbsp;&nbsp;&nbsp;cacheDirectory</option>
 	
+	<option value="//api/name/decryptFromPathBlock">&nbsp;&nbsp;&nbsp;&nbsp;decryptFromPathBlock</option>
+	
 	<option value="//api/name/downscaleInterpolationQuality">&nbsp;&nbsp;&nbsp;&nbsp;downscaleInterpolationQuality</option>
+	
+	<option value="//api/name/encryptDataBlock">&nbsp;&nbsp;&nbsp;&nbsp;encryptDataBlock</option>
 	
 	<option value="//api/name/numberOfMaximumCachedDocuments">&nbsp;&nbsp;&nbsp;&nbsp;numberOfMaximumCachedDocuments</option>
 	
@@ -86,6 +90,8 @@
 	
 	<option value="//api/name/clearMemoryCache">&nbsp;&nbsp;&nbsp;&nbsp;- clearMemoryCache</option>
 	
+	<option value="//api/name/currentDiskUsage">&nbsp;&nbsp;&nbsp;&nbsp;- currentDiskUsage</option>
+	
 	<option value="//api/name/imageForDocument:page:size:">&nbsp;&nbsp;&nbsp;&nbsp;- imageForDocument:page:size:</option>
 	
 	<option value="//api/name/isDocumentCached:size:">&nbsp;&nbsp;&nbsp;&nbsp;- isDocumentCached:size:</option>
@@ -122,6 +128,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Encryption/Decryption Handlers">Encryption/Decryption Handlers</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFKitThumbnailCache Methods">PSPDFKitThumbnailCache Methods</a></span></li>
 	
 </ul></li>
@@ -136,7 +144,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cacheDirectory">cacheDirectory</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/decryptFromPathBlock">decryptFromPathBlock</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/downscaleInterpolationQuality">downscaleInterpolationQuality</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encryptDataBlock">encryptDataBlock</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfMaximumCachedDocuments">numberOfMaximumCachedDocuments</a></span></li>
 	
@@ -179,6 +191,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache">clearCache</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearMemoryCache">clearMemoryCache</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentDiskUsage">currentDiskUsage</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/imageForDocument:page:size:">imageForDocument:page:size:</a></span></li>
 	
@@ -454,6 +468,37 @@ Defaults to CGSizeMake(50, 100).</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentDiskUsage">&ndash;&nbsp;currentDiskUsage</a></code>
+		<span class="tooltip"><p>Calculates the current cache disk usage.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Encryption/Decryption Handlers" name="task_Encryption/Decryption Handlers"></a>
+						<h3 class="subsubtitle task-title">Encryption/Decryption Handlers</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/decryptFromPathBlock">&nbsp;&nbsp;decryptFromPathBlock</a></code>
+		<span class="tooltip"><p>Decrypt data from the path. PSPDFKit Annotate feature.
+If set to nil, the default implementation will be used.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/encryptDataBlock">&nbsp;&nbsp;encryptDataBlock</a></code>
+		<span class="tooltip"><p>Encrypt mutable data. PSPDFKit Annotate feature.
+If set to nil, the default implementation will be used.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -567,6 +612,41 @@ This will load the pdf and remove any jpg artifacts.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/decryptFromPathBlock" title="decryptFromPathBlock"></a>
+	<h3 class="subsubtitle method-title">decryptFromPathBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Decrypt data from the path. PSPDFKit Annotate feature.
+If set to nil, the default implementation will be used.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) NSData *^ ) ( PSPDFDocument *document , NSString *path ) decryptFromPathBlock</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/downscaleInterpolationQuality" title="downscaleInterpolationQuality"></a>
 	<h3 class="subsubtitle method-title">downscaleInterpolationQuality</h3>
 	
@@ -579,6 +659,41 @@ Defaults to kCGInterpolationHigh.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGInterpolationQuality downscaleInterpolationQuality</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/encryptDataBlock" title="encryptDataBlock"></a>
+	<h3 class="subsubtitle method-title">encryptDataBlock</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Encrypt mutable data. PSPDFKit Annotate feature.
+If set to nil, the default implementation will be used.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (atomic, copy) void ( ^ ) ( PSPDFDocument *document , NSMutableData *data ) encryptDataBlock</code></div>
 	
 	
 	
@@ -1144,6 +1259,40 @@ which would in turn trigger the OS’ cache cleaning sooner.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/currentDiskUsage" title="currentDiskUsage"></a>
+	<h3 class="subsubtitle method-title">currentDiskUsage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Calculates the current cache disk usage.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (unsigned long long int)currentDiskUsage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFCache.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/imageForDocument:page:size:" title="imageForDocument:page:size:"></a>
 	<h3 class="subsubtitle method-title">imageForDocument:page:size:</h3>
 	
@@ -1506,7 +1655,7 @@ Thread safe.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-17)</span><br />
+						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
