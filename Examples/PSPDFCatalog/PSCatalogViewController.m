@@ -290,9 +290,19 @@ const char kPSCAlertViewKey;
 
         // Extract pages into new document
         NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil];
-        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithData:newDocumentData];
 
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:newDocument];
+        // add a page from a second document
+        PSPDFDocument *landscapeDocument = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kPSPDFCatalog]];
+        NSData *newLandscapeDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:landscapeDocument pageRange:[NSIndexSet indexSetWithIndex:0] options:nil];
+
+        // merge into new PDF
+        PSPDFDocument *twoPartDocument = [PSPDFDocument PDFDocumentWithDataArray:@[newDocumentData, newLandscapeDocumentData]];
+        NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [twoPartDocument pageCount])] options:nil];
+        PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithData:mergedDocumentData];
+
+        // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
+    
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
         return controller;
     }]];
 
@@ -965,6 +975,25 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Check that the free text annotation has a 5px red border around it.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation with border" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"textbox.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that "Griffin" is correctly parsed and only one word.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test ligature parsing" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 1;
+
+        NSArray *glyphs = [[document textParserForPage:1] glyphs];
+        NSLog(@"glyphs: %@", glyphs);
+
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing with nil color" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
 
@@ -979,6 +1008,23 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
+
+//    1. Run in iOS 5.1 in Simulator in landscape.
+//    2. Expand to fullscreen.
+//    3. Rotate to Portrait.
+//    4. Tap 'Done'
+//
+//    Expected behavior:
+//    PDF returns to page 7 and movie is visible
+//
+//    Bug behavior: (fixed as of 2.6.4)
+//    PDF returns to page 1 instead of page 7. If you scroll go back to page 7, the movie fails to load.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Video Rotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDF with Video.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 6;
+        return pdfController;
+    }]];
 #endif
 
     [content addObject:testSection];
@@ -990,8 +1036,8 @@ const char kPSCAlertViewKey;
 
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         document.title = @"Custom drawing";
-        PSPDFViewController *controller = [[PSCCustomDrawingViewController alloc] initWithDocument:document];
-        return controller;
+        PSPDFViewController *pdfController = [[PSCCustomDrawingViewController alloc] initWithDocument:document];
+        return pdfController;
     }]];
     [content addObject:delegateSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
