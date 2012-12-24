@@ -12,6 +12,7 @@
 		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
 		780D5ADB1675641B00ECDDAC /* PSCTintColorSelectionBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */; };
 		780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */; };
+		7814630E1688BD9D0002E7C8 /* PSPDFFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7814630D1688BD9D0002E7C8 /* PSPDFFontCacheTest.m */; };
 		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77915CF2F180030C730 /* libHockeySDK.a */; };
@@ -179,6 +180,8 @@
 		780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintColorSelectionBarButtonItem.m; sourceTree = "<group>"; };
 		780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintablePDFViewController.m; sourceTree = "<group>"; };
 		780D5ADF1675642C00ECDDAC /* PSCTintablePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintablePDFViewController.h; sourceTree = "<group>"; };
+		7814630C1688BD9D0002E7C8 /* PSPDFFontCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSPDFFontCacheTest.h; sourceTree = "<group>"; };
+		7814630D1688BD9D0002E7C8 /* PSPDFFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSPDFFontCacheTest.m; sourceTree = "<group>"; };
 		781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTwoFingerSwipeGestureViewController.m; sourceTree = "<group>"; };
 		781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTwoFingerSwipeGestureViewController.h; sourceTree = "<group>"; };
 		781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSubviewPDFViewController.m; sourceTree = "<group>"; };
@@ -412,6 +415,15 @@
 			name = Book;
 			sourceTree = "<group>";
 		};
+		7814630B1688BD9D0002E7C8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7814630C1688BD9D0002E7C8 /* PSPDFFontCacheTest.h */,
+				7814630D1688BD9D0002E7C8 /* PSPDFFontCacheTest.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		784F010E15CF247900849F81 = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +462,7 @@
 				78A24A3315CFDAAF00328F4F /* Customization */,
 				78A8EE5915D6ADA900400DE7 /* Annotations */,
 				78AAC6EE15D1760E009B53C6 /* Subclassing */,
+				7814630B1688BD9D0002E7C8 /* Tests */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
 				78A24AAE15CFDAE200328F4F /* PSCSectionDescriptor.h */,
@@ -1046,6 +1059,7 @@
 				78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */,
 				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
 				781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */,
+				7814630E1688BD9D0002E7C8 /* PSPDFFontCacheTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
