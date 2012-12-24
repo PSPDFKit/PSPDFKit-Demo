@@ -40,6 +40,7 @@
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
+#import "PSPDFFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -1043,7 +1044,25 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    
+    // Check that font caching works correctly and doesn't corrupt future search runs.
+    // Also check search support to ignore no-break-space
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Font Caching" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"fontcaching-bug.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 12;
+        //[PSPDFFontCacheTest runWithDocumentAtPath:[document.fileURL path]];
+
+        int64_t delayInSeconds = 0.5f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController searchForString:@"control points" animated:YES];
+        });
+
+        NSLog(@"%@", [[document textParserForPage:12] glyphs]);
+
+        return pdfController;
+    }]];
+
 #endif
 
     [content addObject:testSection];
