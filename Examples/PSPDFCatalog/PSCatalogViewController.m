@@ -307,6 +307,18 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Create password protected PDF." block:^UIViewController *{
+        // create new file that is protected
+        NSString *password = @"test123";
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128)}];
+
+        // show file
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
     /// The crypto feature is only available in PSPDFKit Annotate.
     if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
@@ -523,6 +535,7 @@ const char kPSCAlertViewKey;
         return nil;
     }]];
     [content addObject:textExtractionSection];
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
