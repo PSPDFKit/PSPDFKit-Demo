@@ -307,18 +307,6 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
-    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Create password protected PDF." block:^UIViewController *{
-        // create new file that is protected
-        NSString *password = @"test123";
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128)}];
-
-        // show file
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
     /// The crypto feature is only available in PSPDFKit Annotate.
     if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
@@ -342,6 +330,15 @@ const char kPSCAlertViewKey;
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
+
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
+        return controller;
+    }]];
+
 
     [content addObject:documentTests];
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -380,6 +377,12 @@ const char kPSCAlertViewKey;
             NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
         }
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+
+        NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
+        [pageRange addIndexesInRange:NSMakeRange(13, 2)];
+        [pageRange addIndex:0];
+
+        document.pageRange = pageRange;
         document.editableAnnotationTypes = [NSSet setWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
@@ -665,25 +668,37 @@ const char kPSCAlertViewKey;
     [content addObject:customizationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    PSCSectionDescriptor *encryptedSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords" footer:@"Password is test123"];
+    PSCSectionDescriptor *passwordSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords" footer:@"Password is test123"];
 
     // Bookmarks
     NSURL *protectedPDFURL = [samplesURL URLByAppendingPathComponent:@"protected.pdf"];
 
-    [encryptedSection addContent:[[PSContent alloc] initWithTitle:@"Password preset" block:^UIViewController *{
+    [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Password preset" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:protectedPDFURL];
         [document unlockWithPassword:@"test123"];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
-    [encryptedSection addContent:[[PSContent alloc] initWithTitle:@"Password not preset; dialog" block:^UIViewController *{
+    [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Password not preset; dialog" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:protectedPDFURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
-    [content addObject:encryptedSection];
+    [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Create password protected PDF." block:^UIViewController *{
+        // create new file that is protected
+        NSString *password = @"test123";
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128)}];
+
+        // show file
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [content addObject:passwordSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *subclassingSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit."];
@@ -954,6 +969,17 @@ const char kPSCAlertViewKey;
     // Check that even multiple different pageLabel enumerations work properly, compare with Acrobat.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
+        [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.viewMode = PSPDFViewModeThumbnails;
+        return pdfController;
+    }]];
+
+    // Check that page labens work correctly, even if we use the pageRange feature.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test + pageRange" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
+        [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+        document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 15)];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
         return pdfController;
@@ -1051,7 +1077,7 @@ const char kPSCAlertViewKey;
     }]];
 
     // Check that the link annotation on page one actually works, even if it's encoded in a weird way.
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Invalid URI encodings" block:^UIViewController *{
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test invalid URI encodings" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-link-annotation-siteLinkTargetIsRaw.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -1073,6 +1099,12 @@ const char kPSCAlertViewKey;
 
         NSLog(@"%@", [[document textParserForPage:12] glyphs]);
 
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
