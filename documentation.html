@@ -126,7 +126,7 @@ documentation: current-menu-item current_page_item
  A: Use the link you got in your initial purchase email, it always points to the latest stable version available. (You might need to update the links if it's an older purchase, see above)</p><br>
 
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
-		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedPSPDFCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.</p><br>
+		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.</p><br>
 		 
 <p><b>Q: I downloaded the project but saving annotations doesn't work.</b><br>
 	 A: PDF files in the Bundle directory (Resources, app folder) are not writeable. Copy your PDF to a writeable directory like Documents to test the annotation embedding. Annotation embedding is also disabled for encrypted files.</p><br>		 
