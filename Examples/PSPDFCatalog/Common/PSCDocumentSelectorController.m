@@ -171,6 +171,14 @@
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if (tableView != self.searchDisplayController.searchResultsTableView) {
+
+            PSPDFDocument *document = _documents[indexPath.row];
+            NSError *error = nil;
+            if (![[NSFileManager defaultManager] removeItemAtPath:[document.fileURL path] error:&error]) {
+                NSLog(@"Deletion failed: %@",[error localizedDescription]);
+            }
+
+            // update internal data strucures and UI.
             [_documents removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
