@@ -41,12 +41,9 @@ const char kPSCAlertViewKey;
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-    [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") block:^{
-        // blocks are nilled out to break the cycle after any action.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-        NSString *pageLabel = [websitePrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
+    [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") extendedBlock:^(PSPDFAlertView *alert, NSInteger buttonIndex) {
+
+        NSString *pageLabel = [alert textFieldAtIndex:0].text ?: @"";
         NSUInteger pageIndex = [self.pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
 
         // if input is just numeric, convert to page
