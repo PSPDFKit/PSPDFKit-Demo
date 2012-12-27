@@ -12,7 +12,7 @@
     NSOperationQueue *_fullTextSearchQueue;
     UISearchDisplayController *_searchDisplayController;
     UISearchBar *_searchBar;
-    NSArray *_documents;
+    NSMutableArray *_documents;
     NSMutableArray *_filteredContent;
 }
 @property (nonatomic, copy) NSString *directory;
@@ -34,9 +34,10 @@
         // resolve directory, default to Documents if no name token is issued.
         _directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
         self.title = [_directory lastPathComponent];
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
         
         _delegate = delegate;
-        _documents = [[self class] documentsFromDirectory:_directory];
+        _documents = [[[self class] documentsFromDirectory:_directory] mutableCopy];
         _filteredContent = [NSMutableArray new];
         [[PSPDFCache sharedCache] addDelegate:self];
 
@@ -153,6 +154,27 @@
     cell.imageView.image = [[PSPDFCache sharedCache] cachedImageForDocument:document page:0 size:PSPDFSizeTiny];
 
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    PSPDFDocument *document = nil;
+
+    // don't allow delete in search mode
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        document = _documents[indexPath.row];
+    }
+
+    return [[NSFileManager defaultManager] isDeletableFileAtPath:[[document.fileURL path] stringByDeletingLastPathComponent]];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if (tableView != self.searchDisplayController.searchResultsTableView) {
+            [_documents removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
