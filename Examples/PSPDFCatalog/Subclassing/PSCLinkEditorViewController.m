@@ -25,6 +25,7 @@
                                             PSPDFAnnotationTypeStringInk,
                                             PSPDFAnnotationTypeStringSquare,
                                             PSPDFAnnotationTypeStringCircle,
+                                            PSPDFAnnotationTypeStringStamp,
                                             nil];
     }
     return self;
