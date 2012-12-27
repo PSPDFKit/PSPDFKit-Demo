@@ -393,6 +393,7 @@ const char kPSCAlertViewKey;
                                             PSPDFAnnotationTypeStringInk,
                                             PSPDFAnnotationTypeStringSquare,
                                             PSPDFAnnotationTypeStringCircle,
+                                            PSPDFAnnotationTypeStringStamp,
                                             nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
@@ -715,6 +716,7 @@ const char kPSCAlertViewKey;
                                             PSPDFAnnotationTypeStringInk,
                                             PSPDFAnnotationTypeStringSquare,
                                             PSPDFAnnotationTypeStringCircle,
+                                            PSPDFAnnotationTypeStringStamp,
                                             nil];
 
         PSPDFViewController *controller = [[PSCLinkEditorViewController alloc] initWithDocument:document];
@@ -1069,10 +1071,24 @@ const char kPSCAlertViewKey;
 
     // Check that multiple videos work fine and all annotations are parsed.
     // Also check that dashed border is parsed correctly and displayed as dash.
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"Advanced annotation usage test." block:^UIViewController *{
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Advanced annotation usage test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 8;
+        return pdfController;
+    }]];
+
+    // Test that stamps are correctly displayed and movable.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamps test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 1;
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamps test with appearance streams" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamptest.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
