@@ -272,7 +272,7 @@ const char kPSCAlertViewKey;
 
         // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
         NSDictionary *options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
-        NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document pageCount])] options:options];
+        NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document pageCount])] options:options error:NULL];
         PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument PDFDocumentWithData:consolidatedData];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
@@ -290,15 +290,15 @@ const char kPSCAlertViewKey;
         [pageIndexes addIndex:5];
 
         // Extract pages into new document
-        NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil];
+        NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil error:NULL];
 
         // add a page from a second document
         PSPDFDocument *landscapeDocument = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kPSPDFCatalog]];
-        NSData *newLandscapeDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:landscapeDocument pageRange:[NSIndexSet indexSetWithIndex:0] options:nil];
+        NSData *newLandscapeDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:landscapeDocument pageRange:[NSIndexSet indexSetWithIndex:0] options:nil error:NULL];
 
         // merge into new PDF
         PSPDFDocument *twoPartDocument = [PSPDFDocument PDFDocumentWithDataArray:@[newDocumentData, newLandscapeDocumentData]];
-        NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [twoPartDocument pageCount])] options:nil];
+        NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [twoPartDocument pageCount])] options:nil error:NULL];
         PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithData:mergedDocumentData];
 
         // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
@@ -641,6 +641,16 @@ const char kPSCAlertViewKey;
         }]];
     }
 
+    if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
+        [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Disable text copying" block:^{
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+                documentProvider.allowsCopying = NO;
+            }];
+            return [[PSPDFViewController alloc] initWithDocument:document];
+        }]];
+    }
+
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Custom Background Color" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -691,7 +701,8 @@ const char kPSCAlertViewKey;
         // create new file that is protected
         NSString *password = @"test123";
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128)}];
+        // With password protected pages, PSPDFProcessor can only add link annotations.
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128), kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} error:NULL];
 
         // show file
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];
@@ -1121,6 +1132,30 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that annotations are there, links work.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} error:NULL];
+
+        // show file
+        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:newDocument];
+        return pdfController;
+    }]];
+
+    // Check that annotations are there.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 2" block:^UIViewController *{
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} error:NULL];
+
+        // show file
+        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:newDocument];
         return pdfController;
     }]];
 
