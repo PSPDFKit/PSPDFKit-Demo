@@ -767,16 +767,48 @@ const char kPSCAlertViewKey;
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a shape annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
 
         // add shape annotation if there isn't one already.
-        if ([[document annotationsForPage:0 type:PSPDFAnnotationTypeShape] count] == 0) {
+        NSUInteger targetPage = 0;
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeShape] count] == 0) {
             PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
             annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100, 100);
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
             annotation.alpha = 0.3f;
-            [document addAnnotations:@[annotation] forPage:0];
+            [document addAnnotations:@[annotation] forPage:targetPage];
+        }
+
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add an ink annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
+
+        // add shape annotation if there isn't one already.
+        NSUInteger targetPage = 0;
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk] count] == 0) {
+
+            // Check the header for more helper methods; PSPDFBezierPathGetPoints() might be useful depending on your use case.
+            PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
+
+            // example how to create a line rect. Boxed is just shorthand for [NSValue valueWithCGRect:]
+            NSArray *lines = @[
+            @[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
+            @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
+            ];
+
+            // convert view line points into PDF line points. 
+            PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
+            CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
+            annotation.lineWidth = 5;
+            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
+
+            annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
+            [document addAnnotations:@[annotation] forPage:targetPage];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
