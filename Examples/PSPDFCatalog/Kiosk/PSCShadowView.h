@@ -2,7 +2,7 @@
 //  PSPDFShadowView.h
 //  PSPDFCatalog
 //
-//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
