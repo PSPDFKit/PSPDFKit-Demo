@@ -37,7 +37,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %@ progress:%.1f>", NSStringFromClass([self class]), self.magazine.title, self.downloadProgress];
+    return [NSString stringWithFormat:@"<%@ %p: %@ progress:%.1f>", self.class, self, self.magazine.title, self.downloadProgress];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
