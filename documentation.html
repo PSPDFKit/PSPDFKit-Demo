@@ -134,8 +134,11 @@ documentation: current-menu-item current_page_item
 <p><b>Q: Help! I get "PSPDFKit.bundle not found. search and annotations will not work properly" in the log.</b><br>
 	  A: You need to add the PSPDFKit.bundle to your project. If you're using the source code PSPDFkit-lib.xcodeproj, drag the PSPDFKit.bundle into Xcode's tree - anywhere you want (Resources folder is a good place). If you're using Appcelerator, <a href="#appcelerator">read up here</a> how to add it.</p><br>
 	 
-<p><b>Q: When I start the app, I get [__NSArrayI objectAtIndexedSubscript:]: unrecognized selector sent to instance </b><br>
+<p><b>Q: When I start the app, I get [__NSArrayI objectAtIndexedSubscript:]: unrecognized selector sent to instance.</b><br>
 	 A: You're most likely on Xcode 4.3. Upgrade to 4.5 or later to fix this problem. Also ensure you've added the linker flag -fobc-arc to your project.</p><br>
+	 
+	 <p><b>Q: The document doesn't show up, instead I get "Error: CFURLCreateDataAndPropertiesFromResource: failed with error code -15" in the debug log.</b><br>
+	 	 A: You need to initialize PSPDFDocument with a *file* URL or a URL from localhost. Remote URLs are not supported - download the PDF first, for example with AFDownloadRequestOperation, as used in the PSPDFCatalog.</p><br>
 	 
 	 <p><b>Q: When I start the app, I get "_OBJC_CLASS_$_UICollectionView", referenced from: objc-class-ref in PSPDFKit</b><br>
 	 	 A: You're most likely on Xcode 4.4. Upgrade to 4.5 or later to fix this problem. PSPDFKit will use the native UICollectionView if the device is on iOS6, and PSTCollectionView on iOS5.</p><br>
