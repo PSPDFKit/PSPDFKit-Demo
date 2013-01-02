@@ -53,7 +53,7 @@
 }
 
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"<%@ %@, %d magazines>", NSStringFromClass([self class]), self.title, [self.magazines count]];
+    NSString *description = [NSString stringWithFormat:@"<%@ %p: %@, %d magazines>", self.class, self, self.title, [self.magazines count]];
     return description;
 }
 
@@ -69,10 +69,7 @@
 }
 
 - (BOOL)isEqualToMagazineFolder:(PSCMagazineFolder *)otherMagazineFolder {
-    if (![self.title isEqual:otherMagazineFolder.title] || !self.title || !otherMagazineFolder.title) {
-        return NO;
-    }
-    return YES;
+    return PSPDFEqualObjects(self.title, otherMagazineFolder.title);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
