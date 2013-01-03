@@ -87,7 +87,7 @@
     [self updateBackgroundView];
     _backgroundImage.frame = self.view.bounds;
 
-    if (self.page == NSUIntegerMax || self.page >= [self.pdfController.document pageCount]) {
+    if (self.page == NSUIntegerMax || self.page >= self.pdfController.document.pageCount) {
         return;
     }
 
