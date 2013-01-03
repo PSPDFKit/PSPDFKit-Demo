@@ -49,6 +49,8 @@
                         
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
+        // Disabled by default, since this is a bit slow.
+        /*
         __weak typeof (self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             CGFloat variance = [document aspectRatioVariance];
@@ -56,6 +58,7 @@
                 weakSelf.clipToPageBoundaries = variance < 0.2f;
             });
         });
+         */
 
         // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
         if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
