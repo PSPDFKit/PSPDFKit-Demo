@@ -168,7 +168,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // log annotation
     PSPDFAnnotation *annotation = [self annotationForIndexPath:indexPath];
-    NSLog(@"Touched %@", annotation);
+    NSLog(@"Touched annotation\n%@", [annotation externalRepresentationInFormat:nil]);
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
