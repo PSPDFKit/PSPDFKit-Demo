@@ -46,7 +46,7 @@
     NSMutableArray *pagesWithAnnotations = [NSMutableArray array];
 
     PSPDFDocument *document = self.pdfController.document;
-    for (NSUInteger pageIndex=0; pageIndex<[document pageCount]; pageIndex++) {
+    for (NSUInteger pageIndex=0; pageIndex<document.pageCount; pageIndex++) {
         NSArray *annotations = [self annotationsForPage:pageIndex];
         if ([annotations count]) {
             [pagesWithAnnotations addObject:@(pageIndex)];

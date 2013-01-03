@@ -39,7 +39,7 @@
     // rotate 90 degree counter-clock-wise (and make sure we don't set something >= 360)
     BOOL rotateAll = NO;
     if (rotateAll) {
-        for (NSUInteger pageIndex=0; pageIndex < [self.document pageCount]; pageIndex++) {
+        for (NSUInteger pageIndex=0; pageIndex < self.document.pageCount; pageIndex++) {
             PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:pageIndex];
             pageInfo.pageRotation = PSPDFNormalizeRotation(pageInfo.pageRotation - 90);
         }

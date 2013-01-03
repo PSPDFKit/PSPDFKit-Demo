@@ -272,7 +272,7 @@ const char kPSCAlertViewKey;
 
         // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
         NSDictionary *options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
-        NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [document pageCount])] options:options error:NULL];
+        NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] options:options error:NULL];
         PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument PDFDocumentWithData:consolidatedData];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
@@ -298,7 +298,7 @@ const char kPSCAlertViewKey;
 
         // merge into new PDF
         PSPDFDocument *twoPartDocument = [PSPDFDocument PDFDocumentWithDataArray:@[newDocumentData, newLandscapeDocumentData]];
-        NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [twoPartDocument pageCount])] options:nil error:NULL];
+        NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, twoPartDocument.pageCount)] options:nil error:NULL];
         PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithData:mergedDocumentData];
 
         // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
@@ -702,7 +702,7 @@ const char kPSCAlertViewKey;
         NSString *password = @"test123";
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
         // With password protected pages, PSPDFProcessor can only add link annotations.
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [hackerMagDoc pageCount])] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128), kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} error:NULL];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128), kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} error:NULL];
 
         // show file
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];

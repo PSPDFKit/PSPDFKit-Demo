@@ -64,7 +64,7 @@
         if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
 
         // Restore viewState (sadly, NSKeyedUnarchiver might throw on error)
-        if ([self.document isValid]) {
+        if (self.document.isValid) {
             NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.UID];
             @try {
                 if (viewStateData) {
@@ -94,7 +94,7 @@
 
 - (void)dealloc {
     // save current viewState
-    if ([self.document isValid]) {
+    if (self.document.isValid) {
         NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self viewState]];
         [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.UID];
     }
