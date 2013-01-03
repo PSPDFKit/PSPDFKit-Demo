@@ -34,7 +34,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%d URL:%@ basePath:%@, files:%@>", self.class, self, self.UID, [self pageCount], self.URL, self.basePath, self.files];
+    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%d URL:%@ basePath:%@, files:%@>", self.class, self, self.UID, self.pageCount, self.URL, self.basePath, self.files];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
