@@ -39,25 +39,27 @@
         }
 
         // example how to add custom image annotation
-        PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
+        if ([[self.document annotationParserForPage:0] annotationsForPage:0 type:PSPDFAnnotationTypeLink].count == 0) {
+            PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
 
-        // with setting the path, you can use two different ways:
+            // with setting the path, you can use two different ways:
 
-        // either set the siteLinkTarget, which needs the pspdfkit syntax and invokes parseAnnotationLinkTarget in PSPDFAnnotationParser to parse the type, options and the path.
-        // Note that we need to expliitely set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folter, this we can't use the auto-path mode.
-        // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnoationView)
-        // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
-        annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
+            // either set the siteLinkTarget, which needs the pspdfkit syntax and invokes parseAnnotationLinkTarget in PSPDFAnnotationParser to parse the type, options and the path.
+            // Note that we need to expliitely set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folter, this we can't use the auto-path mode.
+            // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnoationView)
+            // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
+            annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
 
-        // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
-        // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
-        //annotation.URL = [NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"exampleimage.jpg"]];
+            // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
+            // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
+            //annotation.URL = [NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"exampleimage.jpg"]];
 
-        // annotation frame is in PDF coordinate space. Use pageRect for the full page.
-        annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
-        
-        // annotation.page/document is auomatically set.
-        [self.document addAnnotations:@[annotation] forPage:0];
+            // annotation frame is in PDF coordinate space. Use pageRect for the full page.
+            annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
+
+            // annotation.page/document is auomatically set.
+            [self.document addAnnotations:@[annotation] forPage:0];
+        }
     }
     return self;
 }
