@@ -40,7 +40,8 @@
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
-#import "PSPDFFontCacheTest.h"
+#import "PSCHeadlessSearchPDFViewController.h"
+#import "PSCFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -369,14 +370,8 @@ const char kPSCAlertViewKey;
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // copy file from the bundle to a location where we can write on it.
-        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *newPath = [docsFolder stringByAppendingPathComponent:[annotationSavingURL lastPathComponent]];
-        NSError *error;
-        if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
-            ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
-            NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
-        }
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
 
         NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
         [pageRange addIndexesInRange:NSMakeRange(13, 2)];
@@ -960,6 +955,14 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Search for Drammen, without controller" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"doc-1205.pdf"]];
+        PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 2; // pages start at 0.
+        pdfController.highlightedSearchText = @"Drammen";
+        return pdfController;
+    }]];
+
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -1084,14 +1087,8 @@ const char kPSCAlertViewKey;
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
 
         // copy file from the bundle to a location where we can write on it.
-        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSString *newPath = [docsFolder stringByAppendingPathComponent:[annotationSavingURL lastPathComponent]];
-        NSError *error;
-        if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
-            ![[NSFileManager defaultManager] copyItemAtPath:[annotationSavingURL path] toPath:newPath error:&error]) {
-            NSLog(@"Error while copying %@: %@", [annotationSavingURL path], error);
-        }
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:newPath]];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
 
@@ -1135,9 +1132,51 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction with CMYK images" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
+
+        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSLog(@"Detected images: %@", images);
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - top left" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"image-topleft.pdf"]];
+
+        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSLog(@"Detected images: %@", images);
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // test that even many links don't create any performance problem on saving.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Performance with many links." block:^UIViewController *{
+
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"PDFReference17.pdf"];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:documentURL];
+
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 2;
+        return pdfController;
+    }]];
+
     // Check that the link annotation on page one actually works, even if it's encoded in a weird way.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test invalid URI encodings" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-link-annotation-siteLinkTargetIsRaw.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that the link on page one opens the internal web view both on the simulator and device.
+    // There was a bug that prevented opening local html pages on the device until PSPDFKit 2.7.
+    // Also check that the inline web view shows a nice error message + image as html.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test link on page 1" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weblink-page1.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1306,6 +1345,21 @@ const char kPSCAlertViewKey;
         }
     }
     return isValid;
+}
+
+- (NSURL *)copyFileURLToDocumentFolder:(NSURL *)documentURL {
+    // copy file from the bundle to a location where we can write on it.
+    NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *newPath = [docsFolder stringByAppendingPathComponent:[documentURL lastPathComponent]];
+    NSURL *newURL = [NSURL fileURLWithPath:newPath];
+
+    NSError *error;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
+        ![[NSFileManager defaultManager] copyItemAtURL:documentURL toURL:newURL error:&error]) {
+        NSLog(@"Error while copying %@: %@", documentURL.path, error.localizedDescription);
+    }
+
+    return newURL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
