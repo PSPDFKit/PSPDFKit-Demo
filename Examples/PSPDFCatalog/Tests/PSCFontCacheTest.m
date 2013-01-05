@@ -1,25 +1,25 @@
 //
-//  PSPDFFontCacheTest.h
+//  PSCFontCacheTest.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFFontCacheTest.h"
+#import "PSCFontCacheTest.h"
 
-@interface PSPDFFontCacheTest () <PSPDFTextSearchDelegate>
+@interface PSCFontCacheTest () <PSPDFTextSearchDelegate>
 @property (nonatomic, strong) NSString *path;
 @property (nonatomic, strong) PSPDFDocument *doc;
 @end
 
-@implementation PSPDFFontCacheTest
+@implementation PSCFontCacheTest
 
-static PSPDFFontCacheTest *instance = nil;
+static PSCFontCacheTest *instance = nil;
 
 + (void)runWithDocumentAtPath:(NSString *)path {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [PSPDFFontCacheTest new];
+        instance = [PSCFontCacheTest new];
     });
 
     [instance runWithDocumentAtPath:path];
