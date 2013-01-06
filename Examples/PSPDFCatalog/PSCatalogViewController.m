@@ -89,7 +89,7 @@ const char kPSCAlertViewKey;
     NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
-    NSMutableArray *content = [NSMutableArray array];
+    NSMutableOrderedSet *content = [NSMutableOrderedSet orderedSet];
 
     // Full Apps
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
