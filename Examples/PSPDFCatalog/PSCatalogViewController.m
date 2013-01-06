@@ -362,7 +362,6 @@ const char kPSCAlertViewKey;
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
-    [content addObject:multimediaSection];
 
     [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Dynamically added video with cover" block:^{
         PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
