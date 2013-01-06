@@ -353,15 +353,30 @@ const char kPSCAlertViewKey;
 
     [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Dynamically added video example" block:^{
         PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo.boundingBox = [multimediaDoc pageInfoForPage:1].rotatedPageRect;
-        [multimediaDoc addAnnotations:@[aVideo] forPage:1];
+        aVideo.boundingBox = [multimediaDoc pageInfoForPage:0].rotatedPageRect;
+        [multimediaDoc addAnnotations:@[aVideo] forPage:0];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
     [content addObject:multimediaSection];
+
+    [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Dynamically added video with cover" block:^{
+        PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+
+        // dynamically add video box
+        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
+        aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
+        [multimediaDoc addAnnotations:@[aVideo] forPage:0];
+
+        return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+    }]];
+    [content addObject:multimediaSection];
+
 
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
@@ -1177,6 +1192,13 @@ const char kPSCAlertViewKey;
     // Also check that the inline web view shows a nice error message + image as html.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test link on page 1" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weblink-page1.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that those links actually work.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test latex generated PDF links" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pdf_pagelinks_latex.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
