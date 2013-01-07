@@ -375,9 +375,9 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
-    NSMutableArray *newMenuItems = [menuItems mutableCopy];
-    
     // This is an example how to customize the text selection menu.
+    /*
+    NSMutableArray *newMenuItems = [menuItems mutableCopy];
     if (PSIsIpad()) { // looks bad on iPhone, no space
         PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
             [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
@@ -385,6 +385,8 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         [newMenuItems addObject:menuItem];
     }
     return newMenuItems;
+     */
+    return menuItems;
 }
 
 // annotations
