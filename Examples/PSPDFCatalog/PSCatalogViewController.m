@@ -1289,7 +1289,7 @@ const char kPSCAlertViewKey;
         [content addObject:iPadTests];
     }
 
-    _content = content;
+    _content = content.array;
 
     // debug helper
 #ifdef kDebugTextBlocks
