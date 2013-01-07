@@ -58,6 +58,20 @@
 
 - (void)updateToolbar {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(_hideLinkAnnotations ? @"Show Links" : @"Hide Links") style:UIBarButtonItemStyleBordered target:self action:@selector(showHideLinkAnnotations)];
+
+    if (PSIsSimulator()) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open In Acrobat" style:UIBarButtonItemStyleBordered target:self action:@selector(openInAcrobat:)];
+    }
+}
+
+- (void)openInAcrobat:(id)sender {
+    NSString *shell = [NSString stringWithFormat:@"open '%@' -a \"Adobe Acrobat Pro\"", self.pdfController.document.fileURL.path];
+    NSString *shellFallback = [NSString stringWithFormat:@"open '%@'", self.pdfController.document.fileURL.path];
+
+    [self.pdfController.document saveChangedAnnotationsWithError:NULL];
+    PSPDF_IF_SIMULATOR(if(system(shell.UTF8String) != 0) {
+                           system(shellFallback.UTF8String);
+                       })
 }
 
 - (void)showHideLinkAnnotations {
