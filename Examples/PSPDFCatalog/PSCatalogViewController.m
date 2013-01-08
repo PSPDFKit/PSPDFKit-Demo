@@ -1135,6 +1135,9 @@ const char kPSCAlertViewKey;
     // Test that stamps are correctly displayed and movable.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamps test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        // as a second test, ensure that annotation info can still be displayed, even if they are set to be readonly.
+        document.editableAnnotationTypes = [NSSet setWithObject:PSPDFAnnotationTypeStringStamp];
+
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
         return pdfController;
@@ -1218,6 +1221,22 @@ const char kPSCAlertViewKey;
 
         NSLog(@"%@", [[document textParserForPage:12] glyphs]);
 
+        return pdfController;
+    }]];
+
+    // This document has a font XObject recursion depth of > 4. Test if it's parsed correctly and doesn't crash PSPDFKit.
+    // Simply opening will crash if this isn't handled correctly.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test font XObject recursion depth" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"font-xobject-recursion-depth-crashtest.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Ensure that parsing completes and doesn't loop. If the document opens, everything is OK.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test parsing of recursive XRef table" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"recursive-xref-table.pdf"]];
+        [[document documentParserForPage:0] objectNumberForAnnotationIndex:0 onPageIndex:0]; // start parsing
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
