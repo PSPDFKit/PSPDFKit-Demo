@@ -632,10 +632,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFStoreManagerDelegate
 
+- (BOOL)isSearchModeActive {
+    return self.searchBar.text.length > 0;
+}
+
 - (void)magazineStoreBeginUpdate {}
 - (void)magazineStoreEndUpdate {}
 
 - (void)magazineStoreFolderDeleted:(PSCMagazineFolder *)magazineFolder {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
@@ -647,6 +653,8 @@
 }
 
 - (void)magazineStoreFolderAdded:(PSCMagazineFolder *)magazineFolder {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
@@ -658,6 +666,8 @@
 }
 
 - (void)magazineStoreFolderModified:(PSCMagazineFolder *)magazineFolder {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
@@ -678,6 +688,8 @@
 }
 
 - (void)magazineStoreMagazineDeleted:(PSCMagazine *)magazine {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
@@ -689,6 +701,8 @@
 }
 
 - (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
@@ -700,6 +714,8 @@
 }
 
 - (void)magazineStoreMagazineModified:(PSCMagazine *)magazine {
+    if (self.isSearchModeActive) return; // don't animate if we're in search mode
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
