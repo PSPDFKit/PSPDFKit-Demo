@@ -41,6 +41,7 @@
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
+#import "PSCSaveAsPDFViewController.h"
 #import "PSCFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
@@ -453,6 +454,13 @@ const char kPSCAlertViewKey;
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Links to external documents" block:^{
         PSPDFDocument *linkDocument = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
         return [[PSPDFViewController alloc] initWithDocument:linkDocument];
+    }]];
+
+    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Save as... for annotation editing" block:^{
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+        NSURL *writableDocumentURL = [self copyFileURLToDocumentFolder:documentURL];
+        PSPDFDocument *linkDocument = [PSPDFDocument PDFDocumentWithURL:writableDocumentURL];
+        return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
     }]];
 
     [content addObject:annotationSection];
