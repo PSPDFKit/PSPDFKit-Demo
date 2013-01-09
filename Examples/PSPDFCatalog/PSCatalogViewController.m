@@ -1130,6 +1130,16 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Ensure that videos do display.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test large video extraction code" block:^UIViewController *{
+        // clear temp directory to force video extraction.
+        [[NSFileManager defaultManager] removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"PSPDFKit"] error:NULL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Embedded-video-large.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 2;
+        return pdfController;
+    }]];
+
     // Check that multiple videos work fine and all annotations are parsed.
     // Also check that dashed border is parsed correctly and displayed as dash.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Advanced annotation usage test" block:^UIViewController *{
