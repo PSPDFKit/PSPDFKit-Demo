@@ -65,13 +65,11 @@
 }
 
 - (void)openInAcrobat:(id)sender {
+    PSPDF_IF_SIMULATOR(
     NSString *shell = [NSString stringWithFormat:@"open '%@' -a \"Adobe Acrobat Pro\"", self.pdfController.document.fileURL.path];
     NSString *shellFallback = [NSString stringWithFormat:@"open '%@'", self.pdfController.document.fileURL.path];
-
     [self.pdfController.document saveChangedAnnotationsWithError:NULL];
-    PSPDF_IF_SIMULATOR(if(system(shell.UTF8String) != 0) {
-                           system(shellFallback.UTF8String);
-                       })
+    if(system(shell.UTF8String) != 0) {system(shellFallback.UTF8String);})
 }
 
 - (void)showHideLinkAnnotations {
