@@ -895,3 +895,14 @@ font-size: 14px ;
 }
 
 
+.columnleft {
+	float:left;width:48%;
+}
+
+.columnright {
+	float:left;width:48%; margin-left: 20px;
+}
+
+.featurelisting {
+	height: 120px;
+}
