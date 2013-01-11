@@ -481,7 +481,11 @@ static CGFloat pscSettingsLastYOffset = 0;
 }
 
 - (void)showPageInfoButton {
-    [[[UIAlertView alloc] initWithTitle:@"Page Info" message:[[[[self currentPDFController] document] pageInfoForPage:[[self currentPDFController] page]] description] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    PSPDFDocument *document = self.currentPDFController.document;
+    NSString *description = [[document pageInfoForPage:[[self currentPDFController] page]] description];
+    description = [description stringByAppendingFormat:@"\n%@", [[document textParserForPage:0] description]];
+    NSLog(@"%@", description);
+    [[[UIAlertView alloc] initWithTitle:_(@"Page Info") message:description delegate:nil cancelButtonTitle:_(@"OK") otherButtonTitles:nil] show];
 }
 
 - (void)showTextReflowController {
