@@ -1105,6 +1105,26 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test bfrange-Cmaps with array syntax" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"HT-newspaper-textextraction.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        NSString *text = [document textParserForPage:0].text;
+        NSLog(@"text: %@", text);
+
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test bfrange-Cmaps with ligatures" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"chinese0.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        NSString *text = [document textParserForPage:0].text;
+        NSLog(@"text: %@", text);
+
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing with nil color" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
 
