@@ -9,16 +9,19 @@
 
 @class PSCMagazine;
 
-@interface PSCMagazineFolder : NSObject {
-    NSMutableArray *_magazines;
-}
+@interface PSCMagazineFolder : NSObject
 
 + (PSCMagazineFolder *)folderWithTitle:(NSString *)title;
 
-@property (nonatomic, copy) NSArray *magazines; // PSPDFMagazine
+// Array of PSPDFMagazine
+@property (nonatomic, copy) NSArray *magazines;
+
+/// The folder title
 @property (nonatomic, copy) NSString *title;
 
 - (BOOL)isSingleMagazine;
+
+// Override to change sorting.
 - (void)sortMagazines;
 
 - (PSCMagazine *)firstMagazine;

@@ -12,7 +12,9 @@
 #error "Compile this file with ARC"
 #endif
 
-@implementation PSCMagazineFolder
+@implementation PSCMagazineFolder {
+    NSMutableArray *_magazines;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
@@ -21,21 +23,6 @@
     PSCMagazineFolder *folder = [[[self class] alloc] init];
     folder.title = title;
     return folder;
-}
-
-// only deregister if delegate belongs to us
-- (void)removeMagazineFolderReferences {
-    for (PSCMagazine *magazine in _magazines) {
-        if (magazine.folder == self) {
-            magazine.folder = nil;
-        }
-    }
-}
-
-- (void)addMagazineFolderReferences {
-    for (PSCMagazine *magazine in _magazines) {
-        magazine.folder = self;
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -74,6 +61,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
+
+// only deregister if delegate belongs to us
+- (void)removeMagazineFolderReferences {
+    for (PSCMagazine *magazine in _magazines) {
+        if (magazine.folder == self) {
+            magazine.folder = nil;
+        }
+    }
+}
+
+- (void)addMagazineFolderReferences {
+    for (PSCMagazine *magazine in _magazines) {
+        magazine.folder = self;
+    }
+}
 
 - (BOOL)isSingleMagazine {
     return [self.magazines count] == 1;
