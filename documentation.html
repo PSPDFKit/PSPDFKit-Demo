@@ -17,7 +17,7 @@ documentation: current-menu-item current_page_item
 	</div>
 	<div id="integration" class="col-full section">
 	  <h2 class="section-title">Integration</h2>
-	  <p>PSPDFKit compiles with Xcode &ge; 4.5 (iOS SDK &ge; 6.0 and Clang LLVM &ge; 4) and deploys all the way down to iOS 5.0.</p><br>
+	  <p>PSPDFKit compiles with Xcode &ge; 4.5.2 (iOS SDK &ge; 6.0 and Clang LLVM &ge; 4) and deploys all the way down to iOS 5.0.</p><br>
 	  <h3>Binary</h3>
 	  Simply drag the "PSPDFKit.embeddedframework" folder into your Xcode project. You're almost done. Now enable the PSPDFKit.xcconfig as seen in this screenshot or add the required frameworks listed below. If you have custom values set in your project settings "Other Linker Flags", you need to clear that or merge the entries with the contents of PSPDFKit.xcconfig.<br>
 	  <img src="images/xcconfig.png" alt="How to set the PSPDFKit.xcconfig for your project" width="908" height="218" class="border">
@@ -119,14 +119,11 @@ documentation: current-menu-item current_page_item
 	  <p><b>Q: How do I determine what version of PSPDFKit I am using?</b><br>
 	   A: Simply open PSPDFKit.embeddedframework/Resources/VERSION. Alternatively, you can query the version at runtime with calling PSPDFVersionString().</p><br>
 
-	<p><b>Q: I can't download the package anymore!</b><br>
-	 A: The links have been updated. Please replace the part in your private link "http://petersteinberger.com/assets/" with "http://download.pspdfkit.com" and it will work again.</p><br>
-
 <p><b>Q: I purchased PSPDFKit. Where can I download the latest version?</b><br>
  A: Use the link you got in your initial purchase email, it always points to the latest stable version available. (You might need to update the links if it's an older purchase, see above)</p><br>
 
 	  <p><b>Q: I upgraded from Demo to Binary/Source, but the "PSPDFKit-Demo" text doesn't disappear.</b><br>
-		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework.</p><br>
+		 A: You have either delete your app on the Simulator/Device or explicitly call [[PSPDFCache sharedCache] clearCache] to remove the demo text. Also be sure to check your linker settings, so that you don't accidentally link a demo version of the framework. Keep in mind that the distribution will contain both the demo binary (in PSPDFKit-Demo) and the full binary in the "Products" folder.</p><br>
 		 
 <p><b>Q: I downloaded the project but saving annotations doesn't work.</b><br>
 	 A: PDF files in the Bundle directory (Resources, app folder) are not writeable. Copy your PDF to a writeable directory like Documents to test the annotation embedding. Annotation embedding is also disabled for encrypted files.</p><br>		 
@@ -159,13 +156,13 @@ documentation: current-menu-item current_page_item
 			A: Adobe Acrobat and to some extend also Preview.app use custom in-text hyperlink detection to create annotations on the fly. This is nothing the PDF references specifies, and is also currently not supported my PSPDFKit. As a workaround, make proper link annotations out of your hyperlinks. This can be accomplished easily with Adobe Acrobat or Preview.app.</p><br>
 
 	  <p><b>Q: When I use the source, there are compile errors/warnings.</b><br>
-		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode &#8805; 4.5 (with iOS SDK &#8805; 6) and LLVM/Clang.<br>If you get linker errors about missing symbols, be sure that your project includes the above listed frameworks and the linker flags -ObjC and -fobjc-arc.<br>
+		 A: You most likely use and old Xcode and/or compiler. PSPDFKit is designed for Xcode &#8805; 4.5.2 (with iOS SDK &#8805; 6) and LLVM/Clang.<br>If you get linker errors about missing symbols, be sure that your project includes the above listed frameworks and the linker flags -ObjC and -fobjc-arc.<br>
 		Also, check that you correctly included the combined header file PSPDFKit.h. When using the framework, add '#import <PSPDFKit/PSPDFKit.h>' to your global header file (.pch), when using source add '#import "PSPDFKit.h"'</p><br>
 
 		<p><b>Q: Is PSPDFKit AppStore-safe?</b><br>Yes. There is some careful use of private API that _can_ be used in DEBUG mode (e.g. for memory debugging), but that's automatically compiled out in non-debug builds. There are lots of apps in the store using PSPDFKit, <a href="http://itunes.apple.com/at/app/amano-media/id403978602?mt=8">like this one.</a></p><br>
 
 <p><b>Q: Do I need to buy another license to make a second app?</b><br>
-	 A: Yes, the license is per app bundle id. If you're already a customer, email us to get a coupon for a discounted second license. There is also the option for custom licensing, contact us if interested.</p><br>
+	 A: Yes, the license is per app bundle id. If you're already a customer, <a href="mailto:peter@pspdfkit.com">email us to get a coupon for a discounted second license</a>. You'll find <a href="/purchase.html">more FAQ on the purchase page</a>.</p><br>
 
 <p><b>Q: How do I change the link-color of PDF annotation links?</b><br>
 	 A: Use <a href="/documentation/Protocols/PSPDFViewControllerDelegate.html">PSPDFViewControllerDelegate</a> like this:
@@ -186,7 +183,7 @@ documentation: current-menu-item current_page_item
 	  <h2 class="section-title">Appcelerator Titanium Module</h2>
 	 <p>
 	 	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module. See the in the module included app.js for working example code.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis. All available features are listed in the examples/app.js supplied with the module.<br><br>
-You need to have at least Xcode 4.5.1 installed and the latest available versions of Titanium Studio (&ge; 2.1.2.GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<p><br>
+You need to have at least Xcode 4.5.2 installed and the latest available versions of Titanium Studio (&ge; 2.1.4.GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<p><br>
 
 <p>You install the plugin via copying com.pspdfkit.source-iphone-xxx.zip (where xxx is the version number) to /Users/USERNAME/Library/Application\ Support/Titanium/ (where USERNAME is your mac user name). Note that on some installations, Titanium might be installed on root, then the target folder is /Library/Application\ Support/Titanium/.<br>
 Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the [+] on Modules. Select com.pspdfkit (or.com.pspdfkit.source; depending on the version you downloaded). if pspdfkit doesn't appear, try to run your application and re-do the Module add step.</p><br>
@@ -207,7 +204,7 @@ Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the
 
 The following license applies to the free trial versions of the software components.
 
-Copyright (c) 2010-2012, Peter Steinberger
+Copyright (c) 2010-2013, Peter Steinberger
 All rights reserved.
 
 Redistribution of this software, in either source or binary form is prohibited.
@@ -225,7 +222,7 @@ This software is provided by Peter Steinberger "as is" and any express or implie
 
 The following license applies to software components purchased and paid for in full.
 
-Copyright (c) 2010-2012, Peter Steinberger
+Copyright (c) 2010-2013, Peter Steinberger
 All rights reserved.
 
 The license your purchased, unless otherwise negotiated in writing, is valid for one explicit app ID, thus one iOS application.
@@ -255,7 +252,7 @@ Unless the parties have entered into a written amendment to this agreement that 
 This Agreement, and any disputes arising from or relating to the interpretation thereof, shall be governed by Austrian law.
 If any provision of this Agreement is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make it enforceable. The failure of Peter Steinberger to act with respect to a breach of this Agreement by Licensee or others does not constitute a waiver and shall not limit Peter Steinberger rights with respect to such breach or any subsequent breaches. This Agreement is personal to Licensee and may not be assigned or transferred for any reason whatsoever (including, without limitation, by operation of law, merger, reorganization, or as a result of an acquisition or change of control involving Licensee) without Peter Steinberger prior written consent and any action or conduct in violation of the foregoing shall be void and without effect. Peter Steinberger expressly reserves the right to assign this Agreement and to delegate any of its obligations hereunder.
 
-Last updated December 14, 2012
+Last updated January 11, 2013
 </pre>
 	</div>
   </div>
