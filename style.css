@@ -274,14 +274,14 @@ body.home #content { padding: 30px 0; }
 #main h2.section-title-small { line-height:1em; font-size: 1.9em; font-weight: bold; margin-top: 20px; margin-bottom: 5px; }
 #main .block { width: 306px; float:left; margin: 0 20px 20px 0; border:none; }
 #main .block.last { margin-right:0; }
-.section .post .title  { font:22px/22px 'PT Sans', sans-serif;position:relative; margin: 0 0 15px; }
+.section .post .title  { font:28px 'PT Sans', sans-serif;position:relative; margin: 0 0 15px; }
 #portfolio .post h3  { font-size:16px; font-weight:bold; position:relative; margin: 0 0 8px; }
 #portfolio .post h3 a:link, .post h3 a:visited  {}
 #main #portfolio .block { margin: 0 20px 10px 0; width: 225px; }
 #main #portfolio .block.last { margin-right:0; }
 #main .section { border-bottom: 1px dotted #bfc5ca; padding-bottom:10px; margin-bottom:20px; width:100%; }
 
-#main #testimonials.section { border-bottom: none; clear:both;}
+#main #testimonials.section { clear:both;}
 body.layout-left-content #main #testimonials.section { }
 #main #testimonials .icon { background: #73b8e0; padding:15px 12px; margin:5px 0 0;  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 #main #testimonials .quote-icon {background: url("images/ico-quotes.png") no-repeat scroll 11px center #73B8E0;	border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; position: absolute; height: 53px;width: 53px;}
@@ -889,3 +889,9 @@ body.single-portfolio #slides.gallery .slides_container img, #gallery img  { pad
 #TB_overlay  { z-index: 9998!important; }
 #TB_window  { z-index: 9999!important; }
 #single-gallery-image { margin: 0 auto 50px auto; }
+
+.entry ul {
+font-size: 14px ; 
+}
+
+
