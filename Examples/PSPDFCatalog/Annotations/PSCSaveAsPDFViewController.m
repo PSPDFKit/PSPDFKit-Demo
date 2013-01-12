@@ -47,6 +47,8 @@
 
     self.annotationSaveAlertView = [[PSPDFAlertView alloc] initWithTitle:@"Annotation Save Location" message:@"Would you like to save annotations into the current file, or create a copy to save the annotation changes?"];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-retain-cycles"
     [self.annotationSaveAlertView addButtonWithTitle:@"Save to this file" block:^{
         self.hasUserBeenAskedAboutSaveLocation = YES;
         // We're all set, don't need to do more.
@@ -92,6 +94,7 @@
             self.document.fileURL = newURL;
         }
     }];
+#pragma clang diagnostic pop
     [self.annotationSaveAlertView showWithTintColor:self.alertViewTintColor];
 }
 
