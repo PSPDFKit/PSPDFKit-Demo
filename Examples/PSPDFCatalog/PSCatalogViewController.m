@@ -51,6 +51,10 @@
 #import "GSDropboxActivity.h"
 #import "GSDropboxUploader.h"
 
+// Crypto support
+#import "RNEncryptor.h"
+#import "RNDecryptor.h"
+
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
 #endif
@@ -304,34 +308,10 @@ const char kPSCAlertViewKey;
         PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithData:mergedDocumentData];
 
         // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
-    
+
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
         return controller;
     }]];
-
-    /// Example how to decrypt a AES256 encrypted PDF on the fly.
-    /// The crypto feature is only available in PSPDFKit Annotate.
-    if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
-        [documentTests addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
-
-            NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
-
-            // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
-            NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
-            NSString *salt = @"ducrXn9WaRdpaBfMjDTJVjUf3FApA6gtim0e61LeSGWV9sTxB0r26mPs59Lbcexn";
-
-            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF passphrase:passphrase salt:salt];
-
-            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProvider];
-            document.UID = [encryptedPDF lastPathComponent]; // manually set an UID for encrypted documents.
-
-            // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
-            // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
-            // document.cacheStrategy = PSPDFCacheNothing;
-
-            return [[PSPDFViewController alloc] initWithDocument:document];
-        }]];
-    }
 
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -696,7 +676,7 @@ const char kPSCAlertViewKey;
     [content addObject:customizationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    PSCSectionDescriptor *passwordSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords" footer:@"Password is test123"];
+    PSCSectionDescriptor *passwordSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Passwords/Security" footer:@"Password is test123"];
 
     // Bookmarks
     NSURL *protectedPDFURL = [samplesURL URLByAppendingPathComponent:@"protected.pdf"];
@@ -725,6 +705,68 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:tempURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
+    }]];
+
+    /// Example how to decrypt a AES256 encrypted PDF on the fly.
+    /// The crypto feature is only available in PSPDFKit Annotate.
+    if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
+        [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Encrypted CGDocumentProvider" block:^{
+
+            NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
+
+            // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
+            NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
+            NSString *salt = @"ducrXn9WaRdpaBfMjDTJVjUf3FApA6gtim0e61LeSGWV9sTxB0r26mPs59Lbcexn";
+
+            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF passphrase:passphrase salt:salt];
+
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:cryptoWrapper.dataProvider];
+            document.UID = [encryptedPDF lastPathComponent]; // manually set an UID for encrypted documents.
+
+            // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
+            // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
+            // document.cacheStrategy = PSPDFCacheNothing;
+
+            return [[PSPDFViewController alloc] initWithDocument:document];
+        }]];
+    }
+
+    [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Enable PSPDFCache encryption" block:^UIViewController *{
+        // Clear existing cache
+        [[PSPDFCache sharedCache] clearCache];
+
+        // Set up cache encryption handlers
+        NSString *password = @"unsafe-testpassword";
+        [[PSPDFCache sharedCache] setEncryptDataBlock:^(PSPDFDocument *document, NSMutableData *data) {
+            NSError *error = nil;
+            NSData *encryptedData = [RNEncryptor encryptData:data
+                                                withSettings:kRNCryptorAES256Settings
+                                                    password:password
+                                                       error:&error];
+            if (!encryptedData) {
+                PSPDFLogWarning(@"Failed to encrypt: %@", [error localizedDescription]);
+                [data setData:[NSData data]]; // clear data - better save nothing than unencrypted!
+            }else {
+                [data setData:encryptedData];
+            }
+        }];
+        [[PSPDFCache sharedCache] setDecryptFromPathBlock:^NSData *(PSPDFDocument *document, NSString *path) {
+            NSError *error = nil;
+            NSData *encryptedData = [NSData dataWithContentsOfFile:path];
+            if (!encryptedData) return nil; // no file, return early.
+
+            NSData *decryptedData = [RNDecryptor decryptData:encryptedData
+                                                withPassword:password
+                                                       error:&error];
+            if (!decryptedData) {
+                PSPDFLogWarning(@"Failed to decrypt: %@", [error localizedDescription]);
+            }
+            return decryptedData;
+        }];
+
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
     }]];
 
     [content addObject:passwordSection];
@@ -814,11 +856,11 @@ const char kPSCAlertViewKey;
 
             // example how to create a line rect. Boxed is just shorthand for [NSValue valueWithCGRect:]
             NSArray *lines = @[
-            @[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
-            @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
-            ];
+                               @[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
+                               @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
+                               ];
 
-            // convert view line points into PDF line points. 
+            // convert view line points into PDF line points.
             PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
             CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
             annotation.lineWidth = 5;
@@ -923,7 +965,7 @@ const char kPSCAlertViewKey;
     }]];)
     [content addObject:subclassingSection];
 
-    
+
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
@@ -1125,6 +1167,17 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Test that file actually opens.
+    // CoreGraphics is picky about AES-128 and will fail if the document is parsed before we enter a password with a "failed to create default crypt filter."
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test AES-128 password protected file" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"cryptfilter-password-abc.pdf"]];
+        [document pageCount]; // trigger calculation to test that pageCount is reset afterwardsl
+        document.password = @"abc";
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing with nil color" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
 
@@ -1134,16 +1187,16 @@ const char kPSCAlertViewKey;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
 
-//    1. Run in iOS 5.1 in Simulator in landscape.
-//    2. Expand to fullscreen.
-//    3. Rotate to Portrait.
-//    4. Tap 'Done'
-//
-//    Expected behavior:
-//    PDF returns to page 7 and movie is visible
-//
-//    Bug behavior: (fixed as of 2.6.4)
-//    PDF returns to page 1 instead of page 7. If you scroll go back to page 7, the movie fails to load.
+    //    1. Run in iOS 5.1 in Simulator in landscape.
+    //    2. Expand to fullscreen.
+    //    3. Rotate to Portrait.
+    //    4. Tap 'Done'
+    //
+    //    Expected behavior:
+    //    PDF returns to page 7 and movie is visible
+    //
+    //    Bug behavior: (fixed as of 2.6.4)
+    //    PDF returns to page 1 instead of page 7. If you scroll go back to page 7, the movie fails to load.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Video Rotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDF with Video.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
