@@ -115,6 +115,10 @@
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
+		78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1716A5F83800899C4A /* RNCryptor.m */; };
+		78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */; };
+		78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1B16A5F83800899C4A /* RNDecryptor.m */; };
+		78D2CB2116A5F83800899C4A /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1D16A5F83800899C4A /* RNEncryptor.m */; };
 		78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */; };
 		78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
@@ -340,6 +344,15 @@
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
+		78D2CB1516A5F83800899C4A /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
+		78D2CB1616A5F83800899C4A /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
+		78D2CB1716A5F83800899C4A /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
+		78D2CB1816A5F83800899C4A /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
+		78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
+		78D2CB1A16A5F83800899C4A /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
+		78D2CB1B16A5F83800899C4A /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
+		78D2CB1C16A5F83800899C4A /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
+		78D2CB1D16A5F83800899C4A /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
 		78D455C61662C06300213CA5 /* PSCLinkEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCLinkEditorViewController.m; sourceTree = "<group>"; };
 		78D455C71662C06300213CA5 /* PSCLinkEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCLinkEditorViewController.h; sourceTree = "<group>"; };
 		78D8128115DC45EB00B8056B /* PSCCustomDrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDrawingViewController.m; sourceTree = "<group>"; };
@@ -760,6 +773,22 @@
 			path = Subclassing;
 			sourceTree = "<group>";
 		};
+		78D2CB1416A5F83800899C4A /* RNCryptor */ = {
+			isa = PBXGroup;
+			children = (
+				78D2CB1516A5F83800899C4A /* RNCryptor+Private.h */,
+				78D2CB1616A5F83800899C4A /* RNCryptor.h */,
+				78D2CB1716A5F83800899C4A /* RNCryptor.m */,
+				78D2CB1816A5F83800899C4A /* RNCryptorEngine.h */,
+				78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */,
+				78D2CB1A16A5F83800899C4A /* RNDecryptor.h */,
+				78D2CB1B16A5F83800899C4A /* RNDecryptor.m */,
+				78D2CB1C16A5F83800899C4A /* RNEncryptor.h */,
+				78D2CB1D16A5F83800899C4A /* RNEncryptor.m */,
+			);
+			path = RNCryptor;
+			sourceTree = "<group>";
+		};
 		78DDC6B015CF2EFF0030C730 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +798,7 @@
 				78DDC6CA15CF2EFF0030C730 /* HockeySDK-iOS */,
 				78DDC71715CF2EFF0030C730 /* Localytics */,
 				78DDC72015CF2EFF0030C730 /* SDURLCache */,
+				78D2CB1416A5F83800899C4A /* RNCryptor */,
 			);
 			name = Vendor;
 			path = PSPDFCatalog/Vendor;
@@ -1072,6 +1102,10 @@
 				787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */,
 				787B07D61695B9F800852825 /* PSCHeadlessSearchPDFViewController.m in Sources */,
 				781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */,
+				78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */,
+				78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */,
+				78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */,
+				78D2CB2116A5F83800899C4A /* RNEncryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
