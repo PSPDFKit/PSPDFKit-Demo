@@ -2,7 +2,7 @@
 //  PSPDFAnnotationProvider.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -84,7 +84,7 @@
  Call this from your code as soon as annotations change.
  This method can be called from any thread. (try to avoid the main thread)
  
- Note: Don't dynamically change the value that isOverlay returns, else you'll confuse the updater.
+ @warning Don't dynamically change the value that isOverlay returns, else you'll confuse the updater.
  If you delete annotations, simply set the isDeleted-flag to YES.
   */
 - (void)updateAnnotations:(NSArray *)annotations originalAnnotations:(NSArray *)originalAnnotations animated:(BOOL)animated;

@@ -2,12 +2,12 @@
 //  PSPDFPageRenderer.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFPageInfo;
+@class PSPDFPageInfo, PSPDFAnnotation;
 
 // PDF rendering options. kPSPDFIgnoreDisplaySettings is only honored when using the renderImageForPage method in PSPDFDocument.
 extern NSString *const kPSPDFIgnoreDisplaySettings; // Always draw pixels with a 1.0 scale.
@@ -34,5 +34,9 @@ extern NSString *const kPSPDFPDFBox;                // Allows custom PDF box (if
 
 /// Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+
+/// Renders a particular appearence stream (A PDF within a PDF) into a context.
+/// Highly experimental. Will return NO if rendering failed.
++ (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context;
 
 @end

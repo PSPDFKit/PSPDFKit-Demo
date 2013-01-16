@@ -2,6 +2,79 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.0 - 16/January/2013__
+
+*  PSPDFKit model classes now have a common base model class 'PSPDFModel' - allows to serialize/deserialize via JSON easily using externalRepresentationInFormat:.
+   To get the JSON dictionary, use [annotation externalRepresentationInFormat:PSPDFModelJSONFormat]
+   (The old annotation serialization format is still supported for the time being)
+*  PSPDFKit now requires AssetsLibrary.framework - if you're using PSPDFKit.xcproj or the source distribution, this is already been taken cared of. If you added the frameworks manually and get a linker error, make sure you are linking sAssetsLibrary.framework.
+*  PSPDFMenuItem learned to show images in UIMenuController - this beautifies many of the annotation menus, images are now used for annotation types/colors where appropriate.
+*  PSPDFKit has learned to write apperance streams. Currently they are emitted for Stamp and Ink annotations. This will help to further improve annotation compatibility with some apps that behave less standard compliant (like Adobe Acrobat/iOS, last tested version is 10.4.4, which doesn't show Ink annotations if they do not have an attached AP stream, even if this is invalid behavior according to the PDF spec. (GoodReader/Preview.app/Adobe Reader on the Mac don't require an AP stream and work in compliance to the spec.))
+*  Annotation menus have been cleaned up a little, Opacity... has been moved into a submenu of Color for highlight annotations.
+*  PSPDFProcessor has learned to write annotations as dictionary, not only flatten. This will be used e.g. for Open In... when the original PDF is not writeable and thus annotations are saved in an external file.
+*  Open In... will now create a new file if there are annotations and the source PDF is not writeable itself.
+*  Stamp annotations now have limited support for appearance streams.
+*  Stamp annotations can now be added via the new PSPDFStampViewController.
+*  Add experimental pageRange feature in PSPDFDocument to allow showing of a subset of the pages.
+*  Highlight annotation hit testing is now more accurate, checking the specific rects of the highlights, not the outer boundingBox.
+*  Annotation rendering now checks if the annotation will be visible at all and only then renders the annotation. This speeds up zooming on complex documents with many annotations.
+*  Improves search by ignoring certain whitespace characters like no-break-spaces.
+*  Allows to create password protected PDFs with PSPDFProcessor up to AES-128 (and mix other CGPDFContext properties like kCGPDFContextAllowsPrinting or kCGPDFContextAllowsCopying)
+*  Improves word detection with splitting words between a line of thought and adding special logic for non-default whitespace characters.
+to use the old behavior.
+*  Improves french translation.
+*  zIndex of annotation images is now below zIndex of links, so that links are always displayed before annotation images.
+*  Email sending using PSPDFEmailSendMergedFilesIfNeeded will not perform a merge if there is only one source document.
+*  Links are now handled even if they are overlapped or hidden underneath other views.
+*  Hides the page label and the scrobble bar if the document is password protected and not yet unlocked.
+*  PSPDFAnnotation now shows if an appearanceStream is attached.
+*  PSPDFAnnotation now as a userInfo dictionary to add any custom data.
+*  Annotations now have a creationDate.
+*  When note annotations are tapped, don't fade-animate the former annotation out.
+*  Page label will not be displayed if the page label is simply the real page number. (Prevent titles like 2 (2 of 10))
+*  The internal web browser will now display an error within the HTML, much like Safari on iOS: https://twitter.com/steipete/status/287272056524001280
+*  Selected images now have a (default iOS light blue) selection state, matching the selection behavior of glyphs.
+*  Brightness control now has indicator images for less/more brightness and a better icon.
+*  Improves performance for pages with many links by dynamically disabling the rounded corners in that case.
+*  External PDF links can now be opened modally in a new controller, use [modal:YES] in the option field, e.g. pspdfkit://[modal:YES]localhost/two.pdf#page=4.
+*  Video extension with a cover now no longer has a dark background and is transparent. If you set cover:YES it will simply show the play button without any background.
+*  API change: Words are now detected if they are completely within the rect specified. Use kPSPDFObjectsTestIntersection
+*  API change: OutlineElement.page is now 0-based, not 1-based.
+*  API change: Several PSPDFProcessor methods now have an additional error part.
+*  API change: PSPDFInkAnnotation has been simplified, will automatically recalculate bounding box and paths on line change.
+*  API change: Setting the annotation color will now also set the alpha value, if one is set in color.
+*  API change: objectsAtPoint: now automatically does an intersection test unless specified otherwise, but objectsAtRect will not, so you need to specify that. Also, in previous version the rect check was done incorrectly to check if the test rect is within the object, now we check if the object is within the test rect OR intersects with it, if intersection is set to YES.
+*  API change: Links to external files now reference the page, not page+1. (pspdfkit://localhost/two.pdf#page=4 will move to page 4, before it was page 5)
+*  Add support for older PDF standard of defining Dest arrays for page links (for example those produced by LaTeX with PDF version 1.3)
+*  Annotation option parsing is now more robust and will tolerate whitespace.
+*  Annotation text (and thus the annotation menu) is now even displayed if editableAnnotationType is set to NO.
+*  Adds a workaround for certain PDFs with large embedded videos that previously couldn't be parsed.
+*  PSPDFKit now uses OS_OBJECT_USE_OBJC instead of OS version checking to check of GCD objects are collected via ARC or not (This is iOS6 only and the new default, can be disabled by the compiler)
+*  Text in the password view is now viewable on iPhone in landscape.
+*  Fixes an issue with font caching on search and certain documents.
+*  Fixes an off-by-one error on writing link annotations that link to internal pages.
+*  Fixes an issue with the "Save To Camera Roll" feature and iOS6 - the required rights are now checked fore before writing the image, and an error dialog is displayed for the user in case image saving failed.
+*  Fixes an issue where PDF images in CMYK format could not be saved to the Camera Roll.
+*  Fixes an issue where PSPDFTabbedViewController failed to show the tab bar if restoreState wasn't called and thus the documents array was nil.
+*  Fixes an issue with opening internal html links on PDF link annotations on the device (worked fine on the Simulator)
+*  Fixes an issue where the cancel button of the search controller was disabled sometimes (iPhone only)
+*  Fixes an issue where under certain conditions link annotations were marked as dirty right after reading them from the PDF which could result in some slowdown when hiding the PSPDFViewController.
+*  Fixes a crash with LifeScribe PDF documents when there's an embedded video annotation.
+*  Fixes a weird potential crashing issue where setting the controlStyle of the MPMoviePlayerController could throw an exception (which is not documented and should not happen according to the MPMoviePlayer documentation).
+*  Fixes a bug that prevented setting of the defaultColorPickerStyles.
+*  Fixes an issue where the cover view of movie annotations showed outdated content in some cases.
+*  Fixes a potential stack overflow when a PDF that had recursive XObjects with font informations was parsed.
+*  Fixes an UIKit bug where the statusbar sometimes was placed above the navigationBar on certain occasions.
+*  Fixes issue where certain isOverlay=YES annotations became unmovable after a save until the page had been changed.
+*  Fixes issue where a highlight annotation was re-added to the backing store after a color change.
+*  Fixes an issue where encryptImage:fromDocument: wasn't actually using the encrypted data.
+*  Fixes an issue in the text extractor with parsing certain special formatted CMaps wit bfranges. This should especially help for text extraction errors in languages like turkish or chinese.
+*  Fixes a missing setter for PSPDFLineAnnotation.
+*  Fixes a retain cycle with PSPDFAnnotationToolbar because the delegate was retained.
+*  Fixes a issue with AES-128 encrypted documents that failed to open with a "failed to create default crypt filter." error.
+*  Fixes the delegate in the PSCAnnotationTestController (thanks to Peter Li)
+*  Titanium: Fixes several issues and adding compatibility for Titanium 3, also added new searchForString(string, animated) and setAnnotationSaveMode(1) functions.
+
 __v2.6.4 - 21/December/2012__
 
 *  Note annotations now adapt itself to the zoomScale and are no longer scaled when zooming in.

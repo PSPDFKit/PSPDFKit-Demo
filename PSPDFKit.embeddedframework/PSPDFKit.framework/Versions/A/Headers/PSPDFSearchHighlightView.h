@@ -2,20 +2,22 @@
 //  PSPDFSearchHighlightView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFAnnotationView.h"
 
 @class PSPDFSearchResult;
 
+///
 /// Highlight view used to show where the search keyword is within the document.
+///
 @interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationView>
 
 /// Initialize with a search result. Coordinates are recalculated automatically.
 - (id)initWithSearchResult:(PSPDFSearchResult *)searchResult;
 
-/// Animates the view with a size incrase pop.
+/// Animates the view with a short "pop" size animation.
 - (void)popupAnimation;
 
 /// Attached search result.

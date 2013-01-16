@@ -2,7 +2,7 @@
 //  PSPDFKitGlobal.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +14,7 @@
 /// *Completely* disables logging. not advised to change this, use kPSPDFLogLevel instead.
 #define kPSPDFKitDebugEnabled
 
+// Debug feature
 //#define kPSPDFEnableAllBarButtonItems
 
 extern NSString *const kPSPDFErrorDomain;
@@ -30,10 +31,12 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeUnableToConvertToDataRepresentation = 600,
     PSPDFErrorCodeRemoveCacheError = 700,
     PSPDFErrorCodeFailedToConvertToPDF = 800,
+    PSPDFErrorCodeFailedToGeneratePDFInvalidArguments = 810,
+    PSPDFErrorCodeFailedToGeneratePDFDocumentInvalid = 820,
     PSPDFErrorCodeUnknown = 900,
 };
 
-/// Log level defines.
+/// Global PSPDFKit log level.
 /// Note that PSPDFLogLevelVerbose will severly slow down the whole application.
 /// (e.g. Some lazy evaluated properties will be evaluated on the main thread)
 typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
@@ -163,12 +166,21 @@ extern void PSPDFUnlockRotation(void);
 // Returns a unique temporary file URL.
 extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
 
+// Returns whether both objects are identical or equal via -isEqual.
+BOOL PSPDFEqualObjects(id obj1, id obj2);
+
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
 #define BOXED(val) ({ typeof(val) _tmp_val = (val); [NSValue valueWithBytes:&(_tmp_val) objCType:@encode(typeof(val))]; })
 
+// Compiler-checked selectors
 #define PSPDF_KEYPATH(object, property) ((void)(NO && ((void)object.property, NO)), @#property)
 #define PSPDF_KEYPATH_SELF(property) PSPDF_KEYPATH(self, property)
+#if DEBUG
+#define PROPERTY(propName) NSStringFromSelector(@selector(propName))
+#else
+#define PROPERTY(propName) @#propName
+#endif
 
 // Log helper
 #ifdef kPSPDFKitDebugEnabled
@@ -207,19 +219,22 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #define PSPDF_IF_NOT_SIMULATOR(...) { __VA_ARGS__ }
 #endif
 
-// Starting with iOS6, dispatch queue's are objects and managed via ARC.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 60000
+// Starting with iOS6, dispatch queue's can be objects and managed via ARC.
+#if OS_OBJECT_USE_OBJC
 #define PSPDFDispatchRelease(queue)
 #else
 #define PSPDFDispatchRelease(queue) dispatch_release(queue)
 #endif
 
-@interface NSArray (PSPDFArrayAccess)
+@interface NSArray (PSPDFCollections)
 - (id)ps_firstObject;
 @end
-@interface NSMutableArray (PSPDFArrayAccess)
+@interface NSMutableArray (PSPDFCollections)
 - (void)ps_addObjectSafe:(id)anObject;
 - (void)ps_addObjectsFromArraySafe:(NSArray *)otherArray;
+@end
+@interface NSMutableDictionary (PSPDFCollections)
+- (void)ps_setObjectSafe:(id)anObject forKey:(id<NSCopying>)aKey;
 @end
 
 // Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.

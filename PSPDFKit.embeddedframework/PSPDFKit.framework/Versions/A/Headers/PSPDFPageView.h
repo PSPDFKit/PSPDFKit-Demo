@@ -2,7 +2,7 @@
 //  PSPDFPageView.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -11,6 +11,8 @@
 #import "PSPDFHUDView.h"
 #import "PSPDFLongPressGestureRecognizer.h"
 #import "PSPDFSignatureViewController.h"
+#import "PSPDFStampViewController.h"
+#import "PSPDFAnnotation.h"
 
 @protocol PSPDFAnnotationView;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController;
@@ -23,7 +25,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFStampViewControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
@@ -201,9 +203,6 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Returns availble UIMenuItems to change the color.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Ordered Dictionary of ColorName (NSString) -> UIColor. Used for the highlight annotation color menu.
-@property (nonatomic, copy) PSPDFOrderedDictionary *colorOptions;
-
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController,
 /// Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)
@@ -246,7 +245,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
 /// Call manually to speed up rendering. Has no effect if called multiple times.
-- (void)loadPageAnnotationsAnimated:(BOOL)animated;
+- (void)loadPageAnnotationsAnimated:(BOOL)animated blockWhileParsing:(BOOL)blockWhileParsing;
 
 /// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
 /// The point will have a variance of a few pixels to improve touch recognition.
@@ -257,6 +256,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Show menu if annotation/text is selected.
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
+
+/// Returns the default color options for the specified annotation type.
+- (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
 
 /// Render options that are used for the live-page rendering. (not for the cache)
 /// One way to ues this would be to customize what annotations types will be rendered with the pdf.
@@ -281,10 +283,13 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 @end
 
+// Key to register alertViews to enable the return key.
+const char kPSPDFAlertViewKey;
+
 @interface PSPDFPageView (Deprecated)
 
 - (void)loadPageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated __attribute__ ((deprecated("Use addAnnotation:animated: instead.")));
 
-- (void)removePageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated __attribute__ ((deprecated("Use removePageAnnotation:animated: instead.")));
+- (void)removePageAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated __attribute__ ((deprecated("Use removeAnnotation:animated: instead.")));
 
 @end

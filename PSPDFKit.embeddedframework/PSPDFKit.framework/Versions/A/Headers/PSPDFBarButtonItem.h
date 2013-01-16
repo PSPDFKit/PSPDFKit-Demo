@@ -2,7 +2,7 @@
 //  PSPDFBarButtonItem.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -36,7 +36,7 @@
 - (UIView *)customView;
 - (UIImage *)image;
 
-// Defaults to (UIBarButtonSystemItem)-1. If you want to e.g. override the searchBarButtonItem that uses a system item, you need to override the PSPDFSearchBarButtonItem class, register it at overrideClassNames, return (UIBarButtonSystemItem)-1 here and implement image/landscapeImagePhone.
+/// Defaults to (UIBarButtonSystemItem)-1. If you want to e.g. override the searchBarButtonItem that uses a system item, you need to override the PSPDFSearchBarButtonItem class, register it at overrideClassNames, return (UIBarButtonSystemItem)-1 here and implement image/landscapeImagePhone.
 - (UIBarButtonSystemItem)systemItem;
 
 /// Optional. Used if image is set.
@@ -52,7 +52,7 @@
 /// Defaults to YES. Override if the bar button may not be available.
 /// Unavailable buttons will not be displayed in the toolbar.
 /// Can also be used to hide some options when the grid is displayed.
-/// e.g. return [self.pdfController.document isValid] && self.pdfController.viewMode == PSPDFViewModeDocument;
+/// e.g. return self.pdfController.document.isValid && self.pdfController.viewMode == PSPDFViewModeDocument;
 - (BOOL)isAvailable;
 
 /// PSPDFBarButtonItem also supports long-press actions. Defaults to NO.

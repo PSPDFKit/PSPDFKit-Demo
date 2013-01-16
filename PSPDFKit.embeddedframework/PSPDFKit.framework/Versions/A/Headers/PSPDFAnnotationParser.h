@@ -2,7 +2,7 @@
 //  PSPDFAnnotationParser.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -12,7 +12,11 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
 
-// Internal events to notify the prividers when annotations are being changed.
+// Sent when a new annotation is added to the default PSPDFFileAnnotationProvider.
+// Will also be sent if an annotation is added because a editable copy is created.
+extern NSString *const PSPDFAnnotationAddedNotification;  // object = new PSPDFAnnotation.
+
+// Internal events to notify the providers when annotations are being changed.
 extern NSString *const PSPDFAnnotationChangedNotification;                  // object = new PSPDFAnnotation.
 extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;       // set to NO to not animate updates (if it can be animated, that is)
 extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;   // set to YES to disable handling by views.
@@ -52,8 +56,18 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
  
  This method will be called OFTEN. Multiple times during a page display, and basically each time you're scrolling or zooming. Ensure it is fast.
  This will query all annotationProviders and merge the result.
+ 
+ For example, to get all annotations except links, use PSPDFAnnotationTypeAll &~ PSPDFAnnotationTypeLink as type.
 */
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
+
+/**
+ Returns all annotations of all annotationProviders.
+ 
+ Returns dictionary NSNumber->NSArray. Only adds entries for a page if there are annotations.
+ @warning This might take some time if the annotation cache hasn't been built yet.
+ */
+- (NSDictionary *)allAnnotationsOfType:(PSPDFAnnotationType)annotationType;
 
 /// YES if annotations are loaded for a specific page.
 /// This is used to determine if annotationsForPage:type: should be called directly or in a background thread.

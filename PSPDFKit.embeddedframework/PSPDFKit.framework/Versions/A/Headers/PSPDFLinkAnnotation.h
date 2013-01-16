@@ -2,7 +2,7 @@
 //  LinkAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFAnnotation.h"
@@ -84,10 +84,6 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Override this if you implement custom actions.
 - (NSString *)targetString;
 
-/// A Link annotation might have multiple rects.
-/// Note: This is currently NOT supported in PSPDFKit. Use boundingBox.
-@property (nonatomic, copy) NSArray *rects;
-
 /// If values between pspdfkit://[...] are set, this will contain those options.
 @property (nonatomic, copy) NSDictionary *options;
 
@@ -114,5 +110,8 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 
 /// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
 @property (nonatomic, assign) CGSize size;
+
+/// Link Type String <-> PSPDFLinkAnnotationType transformer.
++ (NSValueTransformer *)linkTypeTransformer;
 
 @end

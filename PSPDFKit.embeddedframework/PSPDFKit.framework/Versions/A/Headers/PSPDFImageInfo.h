@@ -2,7 +2,7 @@
 //  PSPDFImageInfo.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -31,5 +31,11 @@
 
 /// The actual image. Will be extracted on the fly. Might have other dimensions than the displayed dimensions.
 - (UIImage *)image;
+
+/// Some PDF images are in CMYK color space, which is not a supported encoding.
+/// (UIImageJPEGRepresentation will return nil in that case)
+/// This method checks against this case and converts the image into RGB color space.
+- (UIImage *)imageInRGBColorSpace;
+
 
 @end

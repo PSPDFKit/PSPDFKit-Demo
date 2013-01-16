@@ -2,30 +2,38 @@
 //  PSPDFStampAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFAnnotation.h"
 
 /**
- PDF Stamp annotation (signature, overlay)
- PSPDFKit has only limited support for stamp annotations that use appearance streams.
+ PDF Stamp annotation
  
- An appearance stream is basically a PDF inside a PDF, and this can't be rendered without rewriting a PDF parser.
- You can disable stamp annotations in PSPDFViewController if they aren't displaying correctly.
- 
- PSPDF supports the classic text stamps (those won't be displayed by Preview.app, but Adobe Acrobat can display them),
- and stamps that contain one image are also supported (often used for signatures)
+ PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using apperance streams.
+
+ @warning Classic text stamps won't be rendered in Apple's Preview.app (last tested with 10.8.2). Adobe Acrobat can display them.
 */
 @interface PSPDFStampAnnotation : PSPDFAnnotation
+
+/// Returns predefined colors for special subjects, like red for "void" or green for "completed".
++ (UIColor *)stampColorForSubject:(NSString *)subject;
 
 /// Designated initializer.
 - (id)init;
 
-/// Stamp subject.
+/// Init with a default subject and uses a matching color.
+- (id)initWithSubject:(NSString *)subject;
+
+/// Stamp subject. Will be displayed uppercase italic bold.
 @property (nonatomic, copy) NSString *subject;
 
-/// Stamp image, if one is found.
-@property (nonatomic, strong) UIImage *image;
+/// Stamp subtext.
+///
+/// Used for custom stamps, will render beneath the subject or as the subject if subject is not set.
+@property (nonatomic, copy) NSString *subtext;
+
+/// Stamp image (if one is found in the appearance stream)
+@property (nonatomic, strong, readonly) UIImage *image;
 
 @end

@@ -2,7 +2,7 @@
 //  UIColor+PSPDFKitAdditions.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -38,7 +38,7 @@ extern NSArray *PSPDFGradientColorsForColorWithOptions(UIColor *color, CGFloat v
 
 /// Property list support
 + (UIColor *)pspdf_colorFromPropertyRepresentation:(id)colorObject;
-- (id)pspdf_propertyRepresentation;
+- (NSString *)pspdf_stringFromColor;
 
 /// Derived colors. Default delta is 0.1f.
 - (UIColor *)pspdf_lightenedColor;
@@ -57,5 +57,8 @@ extern NSArray *PSPDFGradientColorsForColorWithOptions(UIColor *color, CGFloat v
 + (UIColor *)pspdf_colorWithHexString:(NSString *)string;
 
 + (UIColor *)pspdf_colorWithRGBHex:(UInt32)hex allowTransparancy:(BOOL)allowTransparancy;
+
+// Component access.
+- (CGFloat)pspdf_alphaComponent;
 
 @end

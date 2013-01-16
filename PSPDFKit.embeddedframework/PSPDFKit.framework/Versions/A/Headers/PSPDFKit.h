@@ -2,7 +2,7 @@
 //  PSPDFKit.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 // PSPDFKit is compatible with iOS 5.0+, but needs a modern Xcode.
@@ -61,7 +61,6 @@
 // thumbnails
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailGridViewCell.h"
-#import "UIImage+PSPDFKitAdditions.h"
 #import "PSTCollectionView.h"
 #import "PSTCollectionViewCell.h"
 #import "PSTCollectionViewFlowLayout.h"
@@ -73,6 +72,7 @@
 
 // annotations
 #import "PSPDFAnnotationParser.h"
+#import "PSPDFDocumentParser.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFFileAnnotationProvider.h"
@@ -83,6 +83,7 @@
 #import "PSPDFLineAnnotation.h"
 #import "PSPDFLinkAnnotation.h"
 #import "PSPDFShapeAnnotation.h"
+#import "PSPDFStampAnnotation.h"
 #import "PSPDFAnnotationView.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"
@@ -90,7 +91,10 @@
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
 #import "PSPDFSelectionView.h"
+#import "PSPDFDrawView.h"
 #import "PSPDFAnnotationToolbar.h"
+#import "PSPDFSignatureViewController.h"
+#import "PSPDFStampViewController.h"
 
 // labels
 #import "PSPDFLabelParser.h"
@@ -120,3 +124,13 @@
 #import "PSPDFColorButton.h"
 #import "PSPDFColorSelectionViewController.h"
 #import "PSPDFHSVColorPickerController.h"
+
+// categories
+#import "UIImage+PSPDFKitAdditions.h"
+#import "NSDate+PSPDFKitAdditions.h"
+#import "UIColor+PSPDFKitAdditions.h"
+#import "NSValueTransformer+PSPDFPredefinedTransformerAdditions.h"
+
+// model
+#import "PSPDFModel.h"
+#import "PSPDFValueTransformer.h"

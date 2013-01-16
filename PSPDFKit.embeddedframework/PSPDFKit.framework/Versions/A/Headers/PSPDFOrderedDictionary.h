@@ -2,7 +2,7 @@
 //  PSPDFOrderedDictionary.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 //  Created by Matt Gallagher on 19/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
