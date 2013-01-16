@@ -119,7 +119,7 @@
     return NO;
 }
 
-- (UIView *)pdfViewController:(PSPDFViewController *)pdfController viewForAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
+- (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
     
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
@@ -142,11 +142,11 @@
                 
                 MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
                 [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
-                return mapView;
+                return (UIView <PSPDFAnnotationView> *)mapView;
             }
         }
     }
-    return nil;
+    return annotationView;
 }
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
