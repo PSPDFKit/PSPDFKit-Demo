@@ -1,0 +1,1407 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PSPDFModel Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PSPDFModel Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/dictionaryValue">&nbsp;&nbsp;&nbsp;&nbsp;dictionaryValue</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ keyPathsByPropertyKeyForExternalRepresentationFormat:</option>
+	
+	<option value="//api/name/migrateExternalRepresentation:inFormat:fromVersion:">&nbsp;&nbsp;&nbsp;&nbsp;+ migrateExternalRepresentation:inFormat:fromVersion:</option>
+	
+	<option value="//api/name/modelVersion">&nbsp;&nbsp;&nbsp;&nbsp;+ modelVersion</option>
+	
+	<option value="//api/name/modelWithDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;+ modelWithDictionary:</option>
+	
+	<option value="//api/name/modelWithExternalRepresentation:inFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ modelWithExternalRepresentation:inFormat:</option>
+	
+	<option value="//api/name/propertyKeysInFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ propertyKeysInFormat:</option>
+	
+	<option value="//api/name/transformerForPropertyKey:externalRepresentationFormat:">&nbsp;&nbsp;&nbsp;&nbsp;+ transformerForPropertyKey:externalRepresentationFormat:</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/copyWithZone:">&nbsp;&nbsp;&nbsp;&nbsp;- copyWithZone:</option>
+	
+	<option value="//api/name/didLoadModelInstance">&nbsp;&nbsp;&nbsp;&nbsp;- didLoadModelInstance</option>
+	
+	<option value="//api/name/encodeWithCoder:">&nbsp;&nbsp;&nbsp;&nbsp;- encodeWithCoder:</option>
+	
+	<option value="//api/name/externalRepresentationInFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- externalRepresentationInFormat:</option>
+	
+	<option value="//api/name/hash">&nbsp;&nbsp;&nbsp;&nbsp;- hash</option>
+	
+	<option value="//api/name/init">&nbsp;&nbsp;&nbsp;&nbsp;- init</option>
+	
+	<option value="//api/name/initWithCoder:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithCoder:</option>
+	
+	<option value="//api/name/initWithDictionary:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDictionary:</option>
+	
+	<option value="//api/name/initWithExternalRepresentation:inFormat:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithExternalRepresentation:inFormat:</option>
+	
+	<option value="//api/name/initWithLegacyCoder:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithLegacyCoder:</option>
+	
+	<option value="//api/name/isEqual:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqual:</option>
+	
+	<option value="//api/name/mergeValueForKey:fromModel:">&nbsp;&nbsp;&nbsp;&nbsp;- mergeValueForKey:fromModel:</option>
+	
+	<option value="//api/name/mergeValuesForKeysFromModel:">&nbsp;&nbsp;&nbsp;&nbsp;- mergeValuesForKeysFromModel:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Initialization">Initialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Copy/Serialization">Copy/Serialization</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_External representation">External representation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Migration">Migration</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dictionaryValue">dictionaryValue</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">keyPathsByPropertyKeyForExternalRepresentationFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/migrateExternalRepresentation:inFormat:fromVersion:">migrateExternalRepresentation:inFormat:fromVersion:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modelVersion">modelVersion</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modelWithDictionary:">modelWithDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/modelWithExternalRepresentation:inFormat:">modelWithExternalRepresentation:inFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/propertyKeysInFormat:">propertyKeysInFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/transformerForPropertyKey:externalRepresentationFormat:">transformerForPropertyKey:externalRepresentationFormat:</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/copyWithZone:">copyWithZone:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didLoadModelInstance">didLoadModelInstance</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/encodeWithCoder:">encodeWithCoder:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/externalRepresentationInFormat:">externalRepresentationInFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hash">hash</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/init">init</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithCoder:">initWithCoder:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDictionary:">initWithDictionary:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithExternalRepresentation:inFormat:">initWithExternalRepresentation:inFormat:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithLegacyCoder:">initWithLegacyCoder:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqual:">isEqual:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mergeValueForKey:fromModel:">mergeValueForKey:fromModel:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mergeValuesForKeysFromModel:">mergeValuesForKeysFromModel:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PSPDFModel Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PSPDFModel Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSCoding<br />NSCopying</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PSPDFModel.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>PSPDFModel has a concept of an &ldquo;external representation,&rdquo; which is like
+a serialized version of the model object. By default, the only external
+representation formats defined are PSPDFModelKeyedArchiveFormat and
+PSPDFModelJSONFormat, but applications can use their own format names and
+implement their own serialization behaviors as desired.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Initialization" name="task_Initialization"></a>
+						<h3 class="subsubtitle task-title">Initialization</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/propertyKeysInFormat:">+&nbsp;propertyKeysInFormat:</a></code>
+		<span class="tooltip"><p>Return any property keys that should be serialized.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/modelWithDictionary:">+&nbsp;modelWithDictionary:</a></code>
+		<span class="tooltip"><p>Returns a new instance of the receiver initialized using
+<a href="#//api/name/initWithDictionary:">initWithDictionary:</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/modelWithExternalRepresentation:inFormat:">+&nbsp;modelWithExternalRepresentation:inFormat:</a></code>
+		<span class="tooltip"><p>Returns a new instance of the receiver initialized using
+<a href="#//api/name/initWithExternalRepresentation:inFormat:">initWithExternalRepresentation:inFormat:</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+		<span class="tooltip"><p>This is the designated initializer for this class.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithDictionary:">&ndash;&nbsp;initWithDictionary:</a></code>
+		<span class="tooltip"><p>Initializes the receiver using key-value coding, setting the keys and values
+in the given dictionary. If <a href="#//api/name/dictionaryValue"><code>dictionaryValue</code></a> is nil, this method is equivalent
+to <a href="#//api/name/init">init</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithExternalRepresentation:inFormat:">&ndash;&nbsp;initWithExternalRepresentation:inFormat:</a></code>
+		<span class="tooltip"><p>Invokes <a href="#//api/name/initWithDictionary:">initWithDictionary:</a> after mapping the given external
+representation using <a href="#//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">keyPathsByPropertyKeyForExternalRepresentationFormat:</a>
+and <a href="#//api/name/transformerForPropertyKey:externalRepresentationFormat:">transformerForPropertyKey:externalRepresentationFormat:</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithCoder:">&ndash;&nbsp;initWithCoder:</a></code>
+		<span class="tooltip"><p>Decodes an external representation in PSPDFModelKeyedArchiveFormat from the
+given coder, migrates it (if necessary) using
+<a href="#//api/name/migrateExternalRepresentation:inFormat:fromVersion:">migrateExternalRepresentation:inFormat:fromVersion:</a>, and then initializes
+the receiver with <a href="#//api/name/initWithExternalRepresentation:inFormat:">initWithExternalRepresentation:inFormat:</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/initWithLegacyCoder:">&ndash;&nbsp;initWithLegacyCoder:</a></code>
+		<span class="tooltip"><p>If no external representation is found, try initializing the models using the legacy code.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didLoadModelInstance">&ndash;&nbsp;didLoadModelInstance</a></code>
+		<span class="tooltip"><p>Hook to update variables after model has been loaded from dictionary/external represenation/copied.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Copy/Serialization" name="task_Copy/Serialization"></a>
+						<h3 class="subsubtitle task-title">Copy/Serialization</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/copyWithZone:">&ndash;&nbsp;copyWithZone:</a></code>
+		<span class="tooltip"><p>Returns a copy of the receiver, initialized using <a href="#//api/name/initWithDictionary:">initWithDictionary:</a> with
+the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/encodeWithCoder:">&ndash;&nbsp;encodeWithCoder:</a></code>
+		<span class="tooltip"><p>Serializes the receiver with the given coder, according to the behaviors
+specified by +encodingBehaviorForPropertyKey:externalRepresentationFormat:.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="External representation" name="task_External representation"></a>
+						<h3 class="subsubtitle task-title">External representation</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">+&nbsp;keyPathsByPropertyKeyForExternalRepresentationFormat:</a></code>
+		<span class="tooltip"><p>Specifies how to map @property keys to different key paths in the given
+external representation format. Subclasses overriding this method should
+combine their values with those of super.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/transformerForPropertyKey:externalRepresentationFormat:">+&nbsp;transformerForPropertyKey:externalRepresentationFormat:</a></code>
+		<span class="tooltip"><p>Specifies how to transform an external representation value to the given
+@property key. If reversible, the transformer will also be used to convert
+the property value back to its external representation.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dictionaryValue">&nbsp;&nbsp;dictionaryValue</a></code>
+		<span class="tooltip"><p>A dictionary representing the properties of the receiver.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/externalRepresentationInFormat:">&ndash;&nbsp;externalRepresentationInFormat:</a></code>
+		<span class="tooltip"><p>Transforms the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a> into the given external
+representation format, suitable for serialization.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Migration" name="task_Migration"></a>
+						<h3 class="subsubtitle task-title">Migration</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/modelVersion">+&nbsp;modelVersion</a></code>
+		<span class="tooltip"><p>The version of this PSPDFModel subclass.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/migrateExternalRepresentation:inFormat:fromVersion:">+&nbsp;migrateExternalRepresentation:inFormat:fromVersion:</a></code>
+		<span class="tooltip"><p>Migrates an external representation in a specified format from an older model
+version.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mergeValueForKey:fromModel:">&ndash;&nbsp;mergeValueForKey:fromModel:</a></code>
+		<span class="tooltip"><p>Merges the value of the given key on the receiver with the value of the same
+key from the given model object, giving precedence to the other model object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mergeValuesForKeysFromModel:">&ndash;&nbsp;mergeValuesForKeysFromModel:</a></code>
+		<span class="tooltip"><p>Merges the values of the given model object into the receiver, using
+<a href="#//api/name/mergeValueForKey:fromModel:">mergeValueForKey:fromModel:</a> for each key in +propertyKeys.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/hash">&ndash;&nbsp;hash</a></code>
+		<span class="tooltip"><p>Returns a hash of the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEqual:">&ndash;&nbsp;isEqual:</a></code>
+		<span class="tooltip"><p>Returns whether <code>model</code> is of the exact same class as the receiver, and
+whether its <a href="#//api/name/dictionaryValue">dictionaryValue</a> compares equal to the receiver&rsquo;s.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/dictionaryValue" title="dictionaryValue"></a>
+	<h3 class="subsubtitle method-title">dictionaryValue</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A dictionary representing the properties of the receiver.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) NSDictionary *dictionaryValue</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The default implementation combines the values corresponding to all
++propertyKeys into a dictionary, with any nil values represented by NSNull.</p>
+
+<p>This property must never be nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:" title="keyPathsByPropertyKeyForExternalRepresentationFormat:"></a>
+	<h3 class="subsubtitle method-title">keyPathsByPropertyKeyForExternalRepresentationFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Specifies how to map @property keys to different key paths in the given
+external representation format. Subclasses overriding this method should
+combine their values with those of super.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)keyPathsByPropertyKeyForExternalRepresentationFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Any keys not present in the dictionary are assumed to be the same for
+@property declarations and the external representation.</p>
+
+<p>Returns an empty dictionary.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/migrateExternalRepresentation:inFormat:fromVersion:" title="migrateExternalRepresentation:inFormat:fromVersion:"></a>
+	<h3 class="subsubtitle method-title">migrateExternalRepresentation:inFormat:fromVersion:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Migrates an external representation in a specified format from an older model
+version.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSDictionary *)migrateExternalRepresentation:(id)<em>externalRepresentation</em> inFormat:(NSString *)<em>externalRepresentationFormat</em> fromVersion:(NSUInteger)<em>fromVersion</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is only invoked by PSPDFModel from <a href="#//api/name/initWithCoder:">initWithCoder:</a>, and only if an
+older version of the receiver is unarchived.</p>
+
+<p>Returns <code>externalRepresentation</code> without any changes. Subclasses may return
+nil if unarchiving should fail.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/modelVersion" title="modelVersion"></a>
+	<h3 class="subsubtitle method-title">modelVersion</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The version of this PSPDFModel subclass.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSUInteger)modelVersion</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns 0.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/modelWithDictionary:" title="modelWithDictionary:"></a>
+	<h3 class="subsubtitle method-title">modelWithDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a new instance of the receiver initialized using
+<a href="#//api/name/initWithDictionary:">initWithDictionary:</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (instancetype)modelWithDictionary:(NSDictionary *)<em>dictionaryValue</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/modelWithExternalRepresentation:inFormat:" title="modelWithExternalRepresentation:inFormat:"></a>
+	<h3 class="subsubtitle method-title">modelWithExternalRepresentation:inFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a new instance of the receiver initialized using
+<a href="#//api/name/initWithExternalRepresentation:inFormat:">initWithExternalRepresentation:inFormat:</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (instancetype)modelWithExternalRepresentation:(id)<em>externalRepresentation</em> inFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/propertyKeysInFormat:" title="propertyKeysInFormat:"></a>
+	<h3 class="subsubtitle method-title">propertyKeysInFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return any property keys that should be serialized.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSOrderedSet *)propertyKeysInFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Override this in your subclass and list any properties that should be serialized.
+If <code>externalRepresentationFormat</code> is nil, return all available properties.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/transformerForPropertyKey:externalRepresentationFormat:" title="transformerForPropertyKey:externalRepresentationFormat:"></a>
+	<h3 class="subsubtitle method-title">transformerForPropertyKey:externalRepresentationFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Specifies how to transform an external representation value to the given
+@property key. If reversible, the transformer will also be used to convert
+the property value back to its external representation.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>+ (NSValueTransformer *)transformerForPropertyKey:(NSString *)<em>key</em> externalRepresentationFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>By default, this method looks for
+a <code>+&lt;key&gt;TransformerForExternalRepresentationFormat:</code> method on the receiver,
+and invokes it if found.</p>
+
+<p>Returns a value transformer, or nil if no transformation should be performed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/copyWithZone:" title="copyWithZone:"></a>
+	<h3 class="subsubtitle method-title">copyWithZone:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a copy of the receiver, initialized using <a href="#//api/name/initWithDictionary:">initWithDictionary:</a> with
+the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)copyWithZone:(NSZone *)<em>zone</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didLoadModelInstance" title="didLoadModelInstance"></a>
+	<h3 class="subsubtitle method-title">didLoadModelInstance</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Hook to update variables after model has been loaded from dictionary/external represenation/copied.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)didLoadModelInstance</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Default implementation is empty. Always call super.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/encodeWithCoder:" title="encodeWithCoder:"></a>
+	<h3 class="subsubtitle method-title">encodeWithCoder:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Serializes the receiver with the given coder, according to the behaviors
+specified by +encodingBehaviorForPropertyKey:externalRepresentationFormat:.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)encodeWithCoder:(NSCoder *)<em>coder</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>From the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a>, this method retrieves any properties
+that should be encoded, transforms them using</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/externalRepresentationInFormat:" title="externalRepresentationInFormat:"></a>
+	<h3 class="subsubtitle method-title">externalRepresentationInFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Transforms the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a> into the given external
+representation format, suitable for serialization.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)externalRepresentationInFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The keys in the <a href="#//api/name/dictionaryValue">dictionaryValue</a> are mapped using
+<a href="#//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">keyPathsByPropertyKeyForExternalRepresentationFormat:</a>, and the values are
+mapped using any reversible transformers returned by
+<a href="#//api/name/transformerForPropertyKey:externalRepresentationFormat:">transformerForPropertyKey:externalRepresentationFormat:</a>.</p>
+
+<p>Any keys for which
+-encodingBehaviorForPropertyKey:externalRepresentationFormat: returns
+PSPDFModelEncodingBehaviorNone will be omitted from the returned dictionary.
+All other keys will be included by default.</p>
+
+<p>For any external representation key paths where values along the path are
+nil (but the final value is not), dictionaries are automatically added so
+that the value can be correctly set at the complete key path.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/hash" title="hash"></a>
+	<h3 class="subsubtitle method-title">hash</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns a hash of the receiver&rsquo;s <a href="#//api/name/dictionaryValue">dictionaryValue</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)hash</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="subsubtitle method-title">init</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>This is the designated initializer for this class.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)init</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithCoder:" title="initWithCoder:"></a>
+	<h3 class="subsubtitle method-title">initWithCoder:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Decodes an external representation in PSPDFModelKeyedArchiveFormat from the
+given coder, migrates it (if necessary) using
+<a href="#//api/name/migrateExternalRepresentation:inFormat:fromVersion:">migrateExternalRepresentation:inFormat:fromVersion:</a>, and then initializes
+the receiver with <a href="#//api/name/initWithExternalRepresentation:inFormat:">initWithExternalRepresentation:inFormat:</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithCoder:(NSCoder *)<em>coder</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithDictionary:" title="initWithDictionary:"></a>
+	<h3 class="subsubtitle method-title">initWithDictionary:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initializes the receiver using key-value coding, setting the keys and values
+in the given dictionary. If <a href="#//api/name/dictionaryValue"><code>dictionaryValue</code></a> is nil, this method is equivalent
+to <a href="#//api/name/init">init</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithDictionary:(NSDictionary *)<em>dictionaryValue</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Any NSNull values will be converted to nil before being used. KVC validation
+methods will be automatically invoked for all of the properties given.</p>
+
+<p>Returns an initialized model object, or nil if validation failed.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithExternalRepresentation:inFormat:" title="initWithExternalRepresentation:inFormat:"></a>
+	<h3 class="subsubtitle method-title">initWithExternalRepresentation:inFormat:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Invokes <a href="#//api/name/initWithDictionary:">initWithDictionary:</a> after mapping the given external
+representation using <a href="#//api/name/keyPathsByPropertyKeyForExternalRepresentationFormat:">keyPathsByPropertyKeyForExternalRepresentationFormat:</a>
+and <a href="#//api/name/transformerForPropertyKey:externalRepresentationFormat:">transformerForPropertyKey:externalRepresentationFormat:</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithExternalRepresentation:(id)<em>externalRepresentation</em> inFormat:(NSString *)<em>externalRepresentationFormat</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Any NSNull values will be converted to nil before being used. KVC validation
+methods will be automatically invoked for any transformed values.</p>
+
+<p>Returns an initialized model object, or nil if validation failed or
+<code>externalRepresentation</code> was nil.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/initWithLegacyCoder:" title="initWithLegacyCoder:"></a>
+	<h3 class="subsubtitle method-title">initWithLegacyCoder:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If no external representation is found, try initializing the models using the legacy code.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)initWithLegacyCoder:(NSCoder *)<em>decoder</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Override for legacy decoding support.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEqual:" title="isEqual:"></a>
+	<h3 class="subsubtitle method-title">isEqual:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns whether <code>model</code> is of the exact same class as the receiver, and
+whether its <a href="#//api/name/dictionaryValue">dictionaryValue</a> compares equal to the receiver&rsquo;s.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isEqual:(PSPDFModel *)<em>model</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mergeValueForKey:fromModel:" title="mergeValueForKey:fromModel:"></a>
+	<h3 class="subsubtitle method-title">mergeValueForKey:fromModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Merges the value of the given key on the receiver with the value of the same
+key from the given model object, giving precedence to the other model object.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)mergeValueForKey:(NSString *)<em>key</em> fromModel:(PSPDFModel *)<em>model</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>By default, this method looks for a <code>-merge&lt;Key&gt;FromModel:</code> method on the
+receiver, and invokes it if found. If not found, and <code>model</code> is not nil, the
+value for the given key is taken from <code>model</code>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mergeValuesForKeysFromModel:" title="mergeValuesForKeysFromModel:"></a>
+	<h3 class="subsubtitle method-title">mergeValuesForKeysFromModel:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Merges the values of the given model object into the receiver, using
+<a href="#//api/name/mergeValueForKey:fromModel:">mergeValueForKey:fromModel:</a> for each key in +propertyKeys.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)mergeValuesForKeysFromModel:(PSPDFModel *)<em>model</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p><code>model</code> must be an instance of the receiver&rsquo;s class or a subclass thereof.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFModel.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

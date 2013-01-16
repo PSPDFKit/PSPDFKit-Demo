@@ -1,0 +1,929 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>NSArray(PSPDFHigherOrderAdditions) Category Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PSPDFKit </a></h1>
+				<a id="developerHome" href="../index.html">Peter Steinberger</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">NSArray(PSPDFHigherOrderAdditions) Category Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/pspdf_filteredArrayUsingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_filteredArrayUsingBlock:</option>
+	
+	<option value="//api/name/pspdf_filteredArrayWithFailedObjects:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_filteredArrayWithFailedObjects:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_filteredArrayWithOptions:failedObjects:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_filteredArrayWithOptions:failedObjects:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_filteredArrayWithOptions:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_filteredArrayWithOptions:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_foldLeftWithValue:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_foldLeftWithValue:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_foldRightWithValue:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_foldRightWithValue:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_mappedArrayUsingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_mappedArrayUsingBlock:</option>
+	
+	<option value="//api/name/pspdf_mappedArrayWithOptions:usingBlock:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_mappedArrayWithOptions:usingBlock:</option>
+	
+	<option value="//api/name/pspdf_objectPassingTest:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_objectPassingTest:</option>
+	
+	<option value="//api/name/pspdf_objectWithOptions:passingTest:">&nbsp;&nbsp;&nbsp;&nbsp;- pspdf_objectWithOptions:passingTest:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_filteredArrayUsingBlock:">pspdf_filteredArrayUsingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_filteredArrayWithFailedObjects:usingBlock:">pspdf_filteredArrayWithFailedObjects:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_filteredArrayWithOptions:failedObjects:usingBlock:">pspdf_filteredArrayWithOptions:failedObjects:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_filteredArrayWithOptions:usingBlock:">pspdf_filteredArrayWithOptions:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_foldLeftWithValue:usingBlock:">pspdf_foldLeftWithValue:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_foldRightWithValue:usingBlock:">pspdf_foldRightWithValue:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_mappedArrayUsingBlock:">pspdf_mappedArrayUsingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_mappedArrayWithOptions:usingBlock:">pspdf_mappedArrayWithOptions:usingBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_objectPassingTest:">pspdf_objectPassingTest:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pspdf_objectWithOptions:passingTest:">pspdf_objectWithOptions:passingTest:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="NSArray(PSPDFHigherOrderAdditions) Category Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">NSArray(PSPDFHigherOrderAdditions) Category Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">NSArray+PSPDFHigherOrderAdditions.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Higher-order functions for <code>NSArray</code>.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_filteredArrayUsingBlock:">&ndash;&nbsp;pspdf_filteredArrayUsingBlock:</a></code>
+		<span class="tooltip"><p>Returns an array of filtered objects for which <code>block</code> returns true.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_filteredArrayWithOptions:usingBlock:">&ndash;&nbsp;pspdf_filteredArrayWithOptions:usingBlock:</a></code>
+		<span class="tooltip"><p>Returns an array of filtered objects for which <code>block</code> returns true, applying <code>opts</code> while filtering.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_filteredArrayWithFailedObjects:usingBlock:">&ndash;&nbsp;pspdf_filteredArrayWithFailedObjects:usingBlock:</a></code>
+		<span class="tooltip"><p>Returns an array of filtered objects for which <code>block</code> returns <code>YES</code>, and
+sets <code>failedObjects</code> to an array of the objects for which <code>block</code> returned
+<code>NO</code>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_filteredArrayWithOptions:failedObjects:usingBlock:">&ndash;&nbsp;pspdf_filteredArrayWithOptions:failedObjects:usingBlock:</a></code>
+		<span class="tooltip"><p>Returns an array of filtered objects for which <code>block</code> returns <code>YES</code>, and
+sets <code>failedObjects</code> to an array of the objects for which <code>block</code> returned
+<code>NO</code>, applying <code>opts</code> while filtering.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_foldLeftWithValue:usingBlock:">&ndash;&nbsp;pspdf_foldLeftWithValue:usingBlock:</a></code>
+		<span class="tooltip"><p>Reduces the receiver to a single value from left to right, using the given
+block.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_foldRightWithValue:usingBlock:">&ndash;&nbsp;pspdf_foldRightWithValue:usingBlock:</a></code>
+		<span class="tooltip"><p>Reduces the receiver to a single value from right to left, using the given
+block.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_mappedArrayUsingBlock:">&ndash;&nbsp;pspdf_mappedArrayUsingBlock:</a></code>
+		<span class="tooltip"><p>Transforms each object in the receiver with the given predicate, returning
+a new array built from the resulting objects.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_mappedArrayWithOptions:usingBlock:">&ndash;&nbsp;pspdf_mappedArrayWithOptions:usingBlock:</a></code>
+		<span class="tooltip"><p>Transforms each object in the receiver with the given predicate, according to
+the semantics of <code>opts</code>, returning a new array built from the resulting
+objects.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_objectPassingTest:">&ndash;&nbsp;pspdf_objectPassingTest:</a></code>
+		<span class="tooltip"><p>Returns the first object in the receiver that passes the given test, or <code>nil</code>
+if no such object exists.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pspdf_objectWithOptions:passingTest:">&ndash;&nbsp;pspdf_objectWithOptions:passingTest:</a></code>
+		<span class="tooltip"><p>Returns the first object in the receiver that passes the given test, or <code>nil</code>
+if no such object exists.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_filteredArrayUsingBlock:" title="pspdf_filteredArrayUsingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_filteredArrayUsingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of filtered objects for which <code>block</code> returns true.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_filteredArrayUsingBlock:(BOOL ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A predicate block that determines whether to include or exclude
+a given object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_filteredArrayWithFailedObjects:usingBlock:" title="pspdf_filteredArrayWithFailedObjects:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_filteredArrayWithFailedObjects:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of filtered objects for which <code>block</code> returns <code>YES</code>, and
+sets <code>failedObjects</code> to an array of the objects for which <code>block</code> returned
+<code>NO</code>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_filteredArrayWithFailedObjects:(NSArray **)<em>failedObjects</em> usingBlock:(BOOL ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failedObjects</em></dt>
+			<dd><p>If not <code>NULL</code>, this will be a collection of all the
+objects for which <code>block</code> returned <code>NO</code>. If no objects failed, this will be
+an empty array.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A predicate with which to filter objects in the receiver. If
+this block returns <code>YES</code>, the object will be added to the returned
+collection. If this block returns <code>NO</code>, the object will be added to
+<code>failedObjects</code>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_filteredArrayWithOptions:failedObjects:usingBlock:" title="pspdf_filteredArrayWithOptions:failedObjects:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_filteredArrayWithOptions:failedObjects:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of filtered objects for which <code>block</code> returns <code>YES</code>, and
+sets <code>failedObjects</code> to an array of the objects for which <code>block</code> returned
+<code>NO</code>, applying <code>opts</code> while filtering.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_filteredArrayWithOptions:(NSEnumerationOptions)<em>opts</em> failedObjects:(NSArray **)<em>failedObjects</em> usingBlock:(BOOL ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>opts</em></dt>
+			<dd><p>A mask of <code>NSEnumerationOptions</code> to apply when filtering.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>failedObjects</em></dt>
+			<dd><p>If not <code>NULL</code>, this will be a collection of all the
+objects for which <code>block</code> returned <code>NO</code>. If no objects failed, this will be
+an empty array.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A predicate with which to filter objects in the receiver. If
+this block returns <code>YES</code>, the object will be added to the returned
+collection. If this block returns <code>NO</code>, the object will be added to
+<code>failedObjects</code>.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_filteredArrayWithOptions:usingBlock:" title="pspdf_filteredArrayWithOptions:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_filteredArrayWithOptions:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns an array of filtered objects for which <code>block</code> returns true, applying <code>opts</code> while filtering.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_filteredArrayWithOptions:(NSEnumerationOptions)<em>opts</em> usingBlock:(BOOL ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>opts</em></dt>
+			<dd><p>A mask of <code>NSEnumerationOptions</code> to apply when filtering.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A predicate block that determines whether to include or exclude
+a given object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_foldLeftWithValue:usingBlock:" title="pspdf_foldLeftWithValue:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_foldLeftWithValue:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reduces the receiver to a single value from left to right, using the given
+block.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)pspdf_foldLeftWithValue:(id)<em>startingValue</em> usingBlock:(id ( ^ ) ( id left , id right ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>startingValue</em></dt>
+			<dd><p>The value to be combined with the first element of the
+receiver. If the receiver is empty, this is the value returned.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A block that describes how to combine elements of the receiver.
+If the receiver is empty, this block will never be invoked.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If the receiver is empty, <code>startingValue</code> is returned. Otherwise, the
+algorithm proceeds as follows:</p>
+
+<ol>
+<li><code>startingValue</code> is passed into the block as the <code>left</code> value, and the
+first element of the receiver is passed into the block as the <code>right</code> value.</li>
+<li>The result of the previous invocation (<code>left</code>) and the next element of
+the receiver (<code>right</code>) is passed into <code>block</code>.</li>
+<li>Step 2 is repeated until all elements have been processed.</li>
+<li>The result of the last call to <code>block</code> is returned.</li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_foldRightWithValue:usingBlock:" title="pspdf_foldRightWithValue:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_foldRightWithValue:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reduces the receiver to a single value from right to left, using the given
+block.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)pspdf_foldRightWithValue:(id)<em>startingValue</em> usingBlock:(id ( ^ ) ( id left , id right ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>startingValue</em></dt>
+			<dd><p>The value to be combined with the last element of the
+receiver. If the receiver is empty, this is the value returned.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A block that describes how to combine elements of the receiver.
+If the receiver is empty, this block will never be invoked.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If the receiver is empty, <code>startingValue</code> is returned. Otherwise, the
+algorithm proceeds as follows:</p>
+
+<ol>
+<li>The last element of the receiver is passed into the block as the <code>left</code>
+value, and <code>startingValue</code> is passed into the block as the <code>right</code> value.</li>
+<li>The previous element of the receiver (<code>left</code>) and the result of the
+previous invocation (<code>right</code>) is passed into <code>block</code>.</li>
+<li>Step 2 is repeated until all elements have been processed.</li>
+<li>The result of the last call to <code>block</code> is returned.</li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_mappedArrayUsingBlock:" title="pspdf_mappedArrayUsingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_mappedArrayUsingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Transforms each object in the receiver with the given predicate, returning
+a new array built from the resulting objects.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_mappedArrayUsingBlock:(id ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A block with which to transform each element. The element from
+the receiver is passed in as the <code>obj</code> argument.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> <strong>Important:</strong> It is permissible to return <code>nil</code> from <code>block</code>, but
+doing so will omit an entry from the resultant array, such that the number of
+objects in the result is less than the number of objects in the receiver. If
+you need the arrays to match in size, ensure that the given block returns
+<code>NSNull</code> or <code>EXTNil</code> instead of <code>nil</code>.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_mappedArrayWithOptions:usingBlock:" title="pspdf_mappedArrayWithOptions:usingBlock:"></a>
+	<h3 class="subsubtitle method-title">pspdf_mappedArrayWithOptions:usingBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Transforms each object in the receiver with the given predicate, according to
+the semantics of <code>opts</code>, returning a new array built from the resulting
+objects.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (instancetype)pspdf_mappedArrayWithOptions:(NSEnumerationOptions)<em>opts</em> usingBlock:(id ( ^ ) ( id obj ))<em>block</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>opts</em></dt>
+			<dd><p>A mask of <code>NSEnumerationOptions</code> to apply when mapping.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A block with which to transform each element. The element from
+the receiver is passed in as the <code>obj</code> argument.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> <strong>Important:</strong> It is permissible to return <code>nil</code> from <code>block</code>, but
+doing so will omit an entry from the resultant array, such that the number of
+objects in the result is less than the number of objects in the receiver. If
+you need the arrays to match in size, ensure that the given block returns
+<code>NSNull</code> or <code>EXTNil</code> instead of <code>nil</code>.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_objectPassingTest:" title="pspdf_objectPassingTest:"></a>
+	<h3 class="subsubtitle method-title">pspdf_objectPassingTest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the first object in the receiver that passes the given test, or <code>nil</code>
+if no such object exists.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)pspdf_objectPassingTest:(BOOL ( ^ ) ( id obj , NSUInteger index , BOOL *stop ))<em>predicate</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>predicate</em></dt>
+			<dd><p>The test to apply to each element in the receiver. This block
+should return whether the object passed the test.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pspdf_objectWithOptions:passingTest:" title="pspdf_objectWithOptions:passingTest:"></a>
+	<h3 class="subsubtitle method-title">pspdf_objectWithOptions:passingTest:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the first object in the receiver that passes the given test, or <code>nil</code>
+if no such object exists.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (id)pspdf_objectWithOptions:(NSEnumerationOptions)<em>opts</em> passingTest:(BOOL ( ^ ) ( id obj , NSUInteger index , BOOL *stop ))<em>predicate</em></code></div>
+	
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>opts</em></dt>
+			<dd><p>A mask of <code>NSEnumerationOptions</code> to apply when enumerating.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>predicate</em></dt>
+			<dd><p>The test to apply to each element in the receiver. This block
+should return whether the object passed the test.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">NSArray+PSPDFHigherOrderAdditions.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+		</script>
+	</body>
+</html>

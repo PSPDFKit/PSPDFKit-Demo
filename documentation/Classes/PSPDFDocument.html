@@ -102,6 +102,10 @@
 	
 	<option value="//api/name/overrideClassNames">&nbsp;&nbsp;&nbsp;&nbsp;overrideClassNames</option>
 	
+	<option value="//api/name/pageCount">&nbsp;&nbsp;&nbsp;&nbsp;pageCount</option>
+	
+	<option value="//api/name/pageRange">&nbsp;&nbsp;&nbsp;&nbsp;pageRange</option>
+	
 	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
 	
 	<option value="//api/name/renderOptions">&nbsp;&nbsp;&nbsp;&nbsp;renderOptions</option>
@@ -144,6 +148,8 @@
 	
 	<option value="//api/name/addAnnotations:forPage:">&nbsp;&nbsp;&nbsp;&nbsp;- addAnnotations:forPage:</option>
 	
+	<option value="//api/name/allAnnotationsOfType:">&nbsp;&nbsp;&nbsp;&nbsp;- allAnnotationsOfType:</option>
+	
 	<option value="//api/name/annotationParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationParserForPage:</option>
 	
 	<option value="//api/name/annotationsForPage:type:">&nbsp;&nbsp;&nbsp;&nbsp;- annotationsForPage:type:</option>
@@ -178,6 +184,8 @@
 	
 	<option value="//api/name/fillCache">&nbsp;&nbsp;&nbsp;&nbsp;- fillCache</option>
 	
+	<option value="//api/name/hasDirtyAnnotations">&nbsp;&nbsp;&nbsp;&nbsp;- hasDirtyAnnotations</option>
+	
 	<option value="//api/name/hasLoadedTextParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasLoadedTextParserForPage:</option>
 	
 	<option value="//api/name/hasPageInfoForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- hasPageInfoForPage:</option>
@@ -191,8 +199,6 @@
 	<option value="//api/name/objectsAtPDFRect:page:options:">&nbsp;&nbsp;&nbsp;&nbsp;- objectsAtPDFRect:page:options:</option>
 	
 	<option value="//api/name/pageContentForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- pageContentForPage:</option>
-	
-	<option value="//api/name/pageCount">&nbsp;&nbsp;&nbsp;&nbsp;- pageCount</option>
 	
 	<option value="//api/name/pageForPageLabel:partialMatching:">&nbsp;&nbsp;&nbsp;&nbsp;- pageForPageLabel:partialMatching:</option>
 	
@@ -330,6 +336,10 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/overrideClassNames">overrideClassNames</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageCount">pageCount</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRange">pageRange</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderOptions">renderOptions</a></span></li>
@@ -374,6 +384,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addAnnotations:forPage:">addAnnotations:forPage:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allAnnotationsOfType:">allAnnotationsOfType:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationParserForPage:">annotationParserForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationsForPage:type:">annotationsForPage:type:</a></span></li>
@@ -408,6 +420,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fillCache">fillCache</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasDirtyAnnotations">hasDirtyAnnotations</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasLoadedTextParserForPage:">hasLoadedTextParserForPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hasPageInfoForPage:">hasPageInfoForPage:</a></span></li>
@@ -421,8 +435,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectsAtPDFRect:page:options:">objectsAtPDFRect:page:options:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageContentForPage:">pageContentForPage:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageCount">pageCount</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageForPageLabel:partialMatching:">pageForPageLabel:partialMatching:</a></span></li>
 	
@@ -787,6 +799,13 @@ Written as the &ldquo;T&rdquo; (title/user) property of newly created annotation
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/hasDirtyAnnotations">&ndash;&nbsp;hasDirtyAnnotations</a></code>
+		<span class="tooltip"><p>Returns YES if any provider of the document has dirty annotations that need saving.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/annotationParser">&nbsp;&nbsp;annotationParser</a></code>
 		<span class="tooltip"><p>Link annotation parser class for current document.
 Can be overridden to use a subclassed annotation parser.
@@ -811,6 +830,13 @@ This is a shortcut method that already compensates the page, replacing this code
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/allAnnotationsOfType:">&ndash;&nbsp;allAnnotationsOfType:</a></code>
+		<span class="tooltip"><p>Get all annotations of all <a href="#//api/name/documentProviders">documentProviders</a>.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/annotationParserForPage:">&ndash;&nbsp;annotationParserForPage:</a></code>
 		<span class="tooltip"><p>Returns the annotation parser for a specific page.
 page is needed if your PS<a href="#//api/name/PDFDocument">PDFDocument</a> contains multiple PSPDFDocumentProviders.
@@ -828,11 +854,18 @@ page is needed if your PS<a href="#//api/name/PDFDocument">PDFDocument</a> conta
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pageCount">&ndash;&nbsp;pageCount</a></code>
+		<code><a href="#//api/name/pageCount">&nbsp;&nbsp;pageCount</a></code>
 		<span class="tooltip"><p>Return pdf page count.
 Might need file operations to parse the document (slow)</p></span>
 	</span>
+	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageRange">&nbsp;&nbsp;pageRange</a></code>
+		<span class="tooltip"><p>Limit pages to a certain page range.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
@@ -1127,17 +1160,14 @@ Can be used to calculate from the document provider page to the PS<a href="#//ap
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/outlineParser">&nbsp;&nbsp;outlineParser</a></code>
-		<span class="tooltip"><p>Outline extraction class for current document.
-Note: Only returns the parser for the first PDF file.</p></span>
+		<span class="tooltip"><p>Outline extraction class for current document.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/bookmarkParser">&nbsp;&nbsp;bookmarkParser</a></code>
-		<span class="tooltip"><p>Manages the bookmark parser.
-Lazily initialized, thread safe.
-Can be customized with using <a href="#//api/name/overrideClassNames">overrideClassNames</a>.</p></span>
+		<span class="tooltip"><p>Accesses the bookmark parser.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1195,6 +1225,7 @@ This fixes tiny white/gray lines at the borders of a document that else might sh
 		<code><a href="#//api/name/objectsAtPDFPoint:page:options:">&ndash;&nbsp;objectsAtPDFPoint:page:options:</a></code>
 		<span class="tooltip"><p>Find objects at the current PDF point.
 If options is nil, we assume kPSPDFObjectsText and kPSPDFObjectsFullWords.
+Unless set otherwise, for points kPSPDFObjectsTestIntersection is YES automatically.
 Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)</p></span>
 	</span>
 	
@@ -1658,9 +1689,7 @@ Defaults to white.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Manages the bookmark parser.
-Lazily initialized, thread safe.
-Can be customized with using <a href="#//api/name/overrideClassNames">overrideClassNames</a>.</p>
+		<p>Accesses the bookmark parser.</p>
 	</div>		
 	
 	
@@ -1672,6 +1701,11 @@ Can be customized with using <a href="#//api/name/overrideClassNames">overrideCl
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Bookmarks are handled on document level, not on documentProvider.</p>
+	</div>
 	
 	
 	
@@ -2332,8 +2366,7 @@ Loop the dictionary to find them all.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Outline extraction class for current document.
-Note: Only returns the parser for the first PDF file.</p>
+		<p>Outline extraction class for current document.</p>
 	</div>		
 	
 	
@@ -2345,6 +2378,11 @@ Note: Only returns the parser for the first PDF file.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> Only returns the parser for the first PDF file.</p></div>
+	</div>
 	
 	
 	
@@ -2383,6 +2421,81 @@ Note: does not get serialized when saved to disk.</p>
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageCount" title="pageCount"></a>
+	<h3 class="subsubtitle method-title">pageCount</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return pdf page count.
+Might need file operations to parse the document (slow)</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) NSUInteger pageCount</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageRange" title="pageRange"></a>
+	<h3 class="subsubtitle method-title">pageRange</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Limit pages to a certain page range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexSet *pageRange</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If document has a pageRange set, the visible pages can be limited to a certain subset.
+Defaults to nil.</p><div class="warning"><p><strong>Warning:</strong> This is still an experimental feature and doesn&rsquo;t yet support multiple document sources. Changing this will require a reloadData on the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> and also a <a href="#//api/name/clearCache">clearCache</a> for this document (as the cached pages will be different after changing this!)</p></div>
+	</div>
 	
 	
 	
@@ -2952,6 +3065,40 @@ Note: You might need to manually set a <a href="#//api/name/UID">UID</a> to enab
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)addAnnotations:(NSArray *)<em>annotations</em> forPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/allAnnotationsOfType:" title="allAnnotationsOfType:"></a>
+	<h3 class="subsubtitle method-title">allAnnotationsOfType:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all annotations of all <a href="#//api/name/documentProviders">documentProviders</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSDictionary *)allAnnotationsOfType:(PSPDFAnnotationType)<em>annotationType</em></code></div>
 	
 	
 	
@@ -3611,6 +3758,40 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/hasDirtyAnnotations" title="hasDirtyAnnotations"></a>
+	<h3 class="subsubtitle method-title">hasDirtyAnnotations</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns YES if any provider of the document has dirty annotations that need saving.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)hasDirtyAnnotations</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/hasLoadedTextParserForPage:" title="hasLoadedTextParserForPage:"></a>
 	<h3 class="subsubtitle method-title">hasLoadedTextParserForPage:</h3>
 	
@@ -3755,6 +3936,7 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	<div class="method-subsection brief-description">
 		<p>Find objects at the current PDF point.
 If options is nil, we assume kPSPDFObjectsText and kPSPDFObjectsFullWords.
+Unless set otherwise, for points kPSPDFObjectsTestIntersection is YES automatically.
 Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)</p>
 	</div>		
 	
@@ -3832,41 +4014,6 @@ Note: If you return text here, text highlighting cannot be used for this page.</
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSString *)pageContentForPage:(NSUInteger)<em>page</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocument.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/pageCount" title="pageCount"></a>
-	<h3 class="subsubtitle method-title">pageCount</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Return pdf page count.
-Might need file operations to parse the document (slow)</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (NSUInteger)pageCount</code></div>
 	
 	
 	
@@ -4475,7 +4622,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

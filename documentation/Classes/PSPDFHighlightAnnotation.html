@@ -42,14 +42,12 @@
 	
 	<option value="//api/name/highlightType">&nbsp;&nbsp;&nbsp;&nbsp;highlightType</option>
 	
-	<option value="//api/name/rects">&nbsp;&nbsp;&nbsp;&nbsp;rects</option>
-	
 	
 	
 	
 	<option value="class_methods">Class Methods</option>
 	
-	<option value="//api/name/highlightTypeFromTypeString:">&nbsp;&nbsp;&nbsp;&nbsp;+ highlightTypeFromTypeString:</option>
+	<option value="//api/name/highlightTypeTransformer">&nbsp;&nbsp;&nbsp;&nbsp;+ highlightTypeTransformer</option>
 	
 	
 	
@@ -86,15 +84,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/highlightType">highlightType</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/rects">rects</a></span></li>
-	
 </ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/highlightTypeFromTypeString:">highlightTypeFromTypeString:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/highlightTypeTransformer">highlightTypeTransformer</a></span></li>
 	
 </ul></li>
 
@@ -130,7 +126,7 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a> : NSObject</td>
+	<td class="specification-value"><a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a> : <a href="../Classes/PSPDFModel.html">PSPDFModel</a> : NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFHighlightAnnotation.h</td>
@@ -143,8 +139,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Text Highlight Annotation (Highlight, StrikeOut, Underline)
-Important! If you programmatically create a highlight annotation, you need to both set the boundingBox AND the <a href="#//api/name/rects">rects</a> array. (the <a href="#//api/name/rects">rects</a> array contains boxed variants of CGRect (NSValue))</p>
+						<p>Text Highlight Annotation (Highlight, StrikeOut, Underline)</p><div class="warning"><p><strong>Warning:</strong> If you programmatically create a highlight annotation, you need to both set the boundingBox AND the rects array. The rects array contains boxed variants of CGRect (NSValue).</p></div>
 					</div>
 					
 					
@@ -163,21 +158,14 @@ Important! If you programmatically create a highlight annotation, you need to bo
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithHighlightType:">&ndash;&nbsp;initWithHighlightType:</a></code>
-		<span class="tooltip"><p>Designated initializer.</p></span>
+		<span class="tooltip"><p>Initialize annotation with a highlight type. Designated initializer.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/highlightType">&nbsp;&nbsp;highlightType</a></code>
-		<span class="tooltip"><p>Highlight subtype.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/rects">&nbsp;&nbsp;rects</a></code>
-		<span class="tooltip"><p>Coordinates for highlight annotation (boxed CGRect&rsquo;s)</p></span>
+		<span class="tooltip"><p>Highlight Type.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -185,14 +173,14 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	<span class="tooltip">
 		<code><a href="#//api/name/highlightedString">&ndash;&nbsp;highlightedString</a></code>
 		<span class="tooltip"><p>Helper that will query the associated <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> to get the highlighted content.
-(Because we actually just write <a href="#//api/name/rects">rects</a>, it&rsquo;s not easy to get the underlying text)</p></span>
+(Because we actually just write rects, it&rsquo;s not easy to get the underlying text)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/highlightTypeFromTypeString:">+&nbsp;highlightTypeFromTypeString:</a></code>
-		<span class="tooltip"><p>Converts &ldquo;Highlight&rdquo; into PSPDFHighlightAnnotationHighlight, etc</p></span>
+		<code><a href="#//api/name/highlightTypeTransformer">+&nbsp;highlightTypeTransformer</a></code>
+		<span class="tooltip"><p>Highlight Type String &lt;&ndash;> PSPDFHighlightAnnotationType transformer.</p></span>
 	</span>
 	
 	
@@ -216,7 +204,7 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Highlight subtype.</p>
+		<p>Highlight Type.</p>
 	</div>		
 	
 	
@@ -229,39 +217,11 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFHighlightAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/rects" title="rects"></a>
-	<h3 class="subsubtitle method-title">rects</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Coordinates for highlight annotation (boxed CGRect&rsquo;s)</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSArray *rects</code></div>
-	
-	
-	
-	
-	
-	
-	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>The highlight type is inferred from typeString and will not be serialized to disk.
+Setting the highlight type will also update the typeString.</p>
+	</div>
 	
 	
 	
@@ -286,17 +246,17 @@ Important! If you programmatically create a highlight annotation, you need to bo
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/highlightTypeFromTypeString:" title="highlightTypeFromTypeString:"></a>
-	<h3 class="subsubtitle method-title">highlightTypeFromTypeString:</h3>
+	<a name="//api/name/highlightTypeTransformer" title="highlightTypeTransformer"></a>
+	<h3 class="subsubtitle method-title">highlightTypeTransformer</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Converts &ldquo;Highlight&rdquo; into PSPDFHighlightAnnotationHighlight, etc</p>
+		<p>Highlight Type String &lt;&ndash;> PSPDFHighlightAnnotationType transformer.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>+ (PSPDFHighlightAnnotationType)highlightTypeFromTypeString:(NSString *)<em>typeString</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (NSValueTransformer *)highlightTypeTransformer</code></div>
 	
 	
 	
@@ -304,6 +264,11 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Sample usage: PSPDFHighlightAnnotationType highlightType = [[self.class.highlightTypeTransformer transformedValue:self.typeString] integerValue];</p>
+	</div>
 	
 	
 	
@@ -335,7 +300,7 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	
 	<div class="method-subsection brief-description">
 		<p>Helper that will query the associated <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> to get the highlighted content.
-(Because we actually just write <a href="#//api/name/rects">rects</a>, it&rsquo;s not easy to get the underlying text)</p>
+(Because we actually just write rects, it&rsquo;s not easy to get the underlying text)</p>
 	</div>		
 	
 	
@@ -369,7 +334,7 @@ Important! If you programmatically create a highlight annotation, you need to bo
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Designated initializer.</p>
+		<p>Initialize annotation with a highlight type. Designated initializer.</p>
 	</div>		
 	
 	
@@ -409,7 +374,7 @@ Important! If you programmatically create a highlight annotation, you need to bo
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

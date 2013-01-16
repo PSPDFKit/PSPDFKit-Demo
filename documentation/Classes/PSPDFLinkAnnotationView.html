@@ -40,9 +40,13 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/allowToDisableRoundedCorners">&nbsp;&nbsp;&nbsp;&nbsp;allowToDisableRoundedCorners</option>
+	
 	<option value="//api/name/borderColor">&nbsp;&nbsp;&nbsp;&nbsp;borderColor</option>
 	
 	<option value="//api/name/cornerRadius">&nbsp;&nbsp;&nbsp;&nbsp;cornerRadius</option>
+	
+	<option value="//api/name/disableRoundedCorners">&nbsp;&nbsp;&nbsp;&nbsp;disableRoundedCorners</option>
 	
 	<option value="//api/name/hideSmallLinks">&nbsp;&nbsp;&nbsp;&nbsp;hideSmallLinks</option>
 	
@@ -79,6 +83,8 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
 </ul></li>
 
 
@@ -87,9 +93,13 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowToDisableRoundedCorners">allowToDisableRoundedCorners</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/borderColor">borderColor</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cornerRadius">cornerRadius</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/disableRoundedCorners">disableRoundedCorners</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/hideSmallLinks">hideSmallLinks</a></span></li>
 	
@@ -161,7 +171,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -216,8 +226,32 @@ Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (g
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/allowToDisableRoundedCorners">&nbsp;&nbsp;allowToDisableRoundedCorners</a></code>
+		<span class="tooltip"><p>For performance reasons, rounded corners are disabled if too many link views are on a page.
+Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/disableRoundedCorners">&nbsp;&nbsp;disableRoundedCorners</a></code>
+		<span class="tooltip"><p>If set to YES, will save the last rounded corner setting, and restore if set to no.
+Defaults to NO.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
+						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
 		<code><a href="#//api/name/touchUp">&ndash;&nbsp;touchUp</a></code>
-		<span class="tooltip"><p>Called when the annotation fires. Can be used for subclassing.</p></span>
+		<span class="tooltip"><p>Called when the annotation firess</p></span>
 	</span>
 	
 	
@@ -233,6 +267,41 @@ Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (g
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/allowToDisableRoundedCorners" title="allowToDisableRoundedCorners"></a>
+	<h3 class="subsubtitle method-title">allowToDisableRoundedCorners</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>For performance reasons, rounded corners are disabled if too many link views are on a page.
+Defaults to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL allowToDisableRoundedCorners</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFLinkAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/borderColor" title="borderColor"></a>
@@ -281,6 +350,41 @@ Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (g
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) CGFloat cornerRadius</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFLinkAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/disableRoundedCorners" title="disableRoundedCorners"></a>
+	<h3 class="subsubtitle method-title">disableRoundedCorners</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If set to YES, will save the last rounded corner setting, and restore if set to no.
+Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL disableRoundedCorners</code></div>
 	
 	
 	
@@ -490,7 +594,7 @@ Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (g
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called when the annotation fires. Can be used for subclassing.</p>
+		<p>Called when the annotation firess</p>
 	</div>		
 	
 	
@@ -530,7 +634,7 @@ Defaults to [UIColor colorWithRed:0.055f green:0.129f blue:0.800f alpha:0.1f] (g
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -51,9 +51,9 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/generatePDFFromDocument:pageRange:options:">&nbsp;&nbsp;&nbsp;&nbsp;- generatePDFFromDocument:pageRange:options:</option>
+	<option value="//api/name/generatePDFFromDocument:pageRange:options:error:">&nbsp;&nbsp;&nbsp;&nbsp;- generatePDFFromDocument:pageRange:options:error:</option>
 	
-	<option value="//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:">&nbsp;&nbsp;&nbsp;&nbsp;- generatePDFFromDocument:pageRange:outputFileURL:options:</option>
+	<option value="//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:error:">&nbsp;&nbsp;&nbsp;&nbsp;- generatePDFFromDocument:pageRange:outputFileURL:options:error:</option>
 	
 	<option value="//api/name/generatePDFFromHTMLString:outputFileURL:options:">&nbsp;&nbsp;&nbsp;&nbsp;- generatePDFFromHTMLString:outputFileURL:options:</option>
 	
@@ -95,9 +95,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generatePDFFromDocument:pageRange:options:">generatePDFFromDocument:pageRange:options:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generatePDFFromDocument:pageRange:options:error:">generatePDFFromDocument:pageRange:options:error:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:">generatePDFFromDocument:pageRange:outputFileURL:options:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:error:">generatePDFFromDocument:pageRange:outputFileURL:options:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/generatePDFFromHTMLString:outputFileURL:options:">generatePDFFromHTMLString:outputFileURL:options:</a></span></li>
 	
@@ -140,7 +140,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Creates new PDF documents from current data.</p>
+						<p>Create, merge or modify PDF documents. Also allows to flatten annotation data.</p>
 					</div>
 					
 					
@@ -159,21 +159,23 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/defaultProcessor">+&nbsp;defaultProcessor</a></code>
-		<span class="tooltip"><p>Singleton</p></span>
+		<span class="tooltip"><p>Access the processor via singleton.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:">&ndash;&nbsp;generatePDFFromDocument:pageRange:outputFileURL:options:</a></code>
-		<span class="tooltip"><p>Generate a PDF from a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> into a file.</p></span>
+		<code><a href="#//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:error:">&ndash;&nbsp;generatePDFFromDocument:pageRange:outputFileURL:options:error:</a></code>
+		<span class="tooltip"><p>Generate a PDF from a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> into a file.
+&lsquo;options&rsquo; can also contain CGPDFContext options.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/generatePDFFromDocument:pageRange:options:">&ndash;&nbsp;generatePDFFromDocument:pageRange:options:</a></code>
+		<code><a href="#//api/name/generatePDFFromDocument:pageRange:options:error:">&ndash;&nbsp;generatePDFFromDocument:pageRange:options:error:</a></code>
 		<span class="tooltip"><p>Generate a PDF from a PSPDFDOcument into data.
+&lsquo;options&rsquo; can also contain CGPDFContext options.
 Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhautive memory usage. 10-20MB should be the maximum for safe usage.</p></span>
 	</span>
 	
@@ -257,7 +259,7 @@ Upon completion, the completionBlock will be called.</p></span>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Singleton</p>
+		<p>Access the processor via singleton.</p>
 	</div>		
 	
 	
@@ -293,18 +295,19 @@ Upon completion, the completionBlock will be called.</p></span>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/generatePDFFromDocument:pageRange:options:" title="generatePDFFromDocument:pageRange:options:"></a>
-	<h3 class="subsubtitle method-title">generatePDFFromDocument:pageRange:options:</h3>
+	<a name="//api/name/generatePDFFromDocument:pageRange:options:error:" title="generatePDFFromDocument:pageRange:options:error:"></a>
+	<h3 class="subsubtitle method-title">generatePDFFromDocument:pageRange:options:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
 		<p>Generate a PDF from a PSPDFDOcument into data.
+&lsquo;options&rsquo; can also contain CGPDFContext options.
 Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhautive memory usage. 10-20MB should be the maximum for safe usage.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (NSData *)generatePDFFromDocument:(PSPDFDocument *)<em>document</em> pageRange:(NSIndexSet *)<em>pageRange</em> options:(NSDictionary *)<em>options</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSData *)generatePDFFromDocument:(PSPDFDocument *)<em>document</em> pageRange:(NSIndexSet *)<em>pageRange</em> options:(NSDictionary *)<em>options</em> error:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -328,17 +331,18 @@ Beware to not use that on big files, since iOS has no virtual memory and the pro
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:" title="generatePDFFromDocument:pageRange:outputFileURL:options:"></a>
-	<h3 class="subsubtitle method-title">generatePDFFromDocument:pageRange:outputFileURL:options:</h3>
+	<a name="//api/name/generatePDFFromDocument:pageRange:outputFileURL:options:error:" title="generatePDFFromDocument:pageRange:outputFileURL:options:error:"></a>
+	<h3 class="subsubtitle method-title">generatePDFFromDocument:pageRange:outputFileURL:options:error:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Generate a PDF from a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> into a file.</p>
+		<p>Generate a PDF from a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> into a file.
+&lsquo;options&rsquo; can also contain CGPDFContext options.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)generatePDFFromDocument:(PSPDFDocument *)<em>document</em> pageRange:(NSIndexSet *)<em>pageRange</em> outputFileURL:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>options</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)generatePDFFromDocument:(PSPDFDocument *)<em>document</em> pageRange:(NSIndexSet *)<em>pageRange</em> outputFileURL:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>options</em> error:(NSError **)<em>error</em></code></div>
 	
 	
 	
@@ -373,7 +377,7 @@ Will not work with complex HTML pages.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (BOOL)generatePDFFromHTMLString:(NSString *)<em>html</em> outputFileURL:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>options</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (BOOL)generatePDFFromHTMLString:(NSString *)<em>HTML</em> outputFileURL:(NSURL *)<em>fileURL</em> options:(NSDictionary *)<em>options</em></code></div>
 	
 	
 	
@@ -431,11 +435,22 @@ See <a href="https://developer.apple.com/library/ios/">https://developer.apple.c
 <p>Certain documents might not have the correct pagination.
 (Try to manually define kPSPDFProcessorPageRect to fine-tune this)</p>
 
+<p>&lsquo;options&rsquo; can contain both the kPSPDF constants listed above and any kCGPDFContext constants.
+For example, to password protect the pdf, you can use:
+@{(id)kCGPDFContextUserPassword  : password, (id)kCGPDFContextOwnerPassword : password,
+   (id)kCGPDFContextEncryptionKeyLength : @(128)}</p>
+
+<p>Other useful properties are:
+&ndash; kCGPDFContextAllowsCopying
+&ndash; kCGPDFContextAllowsPrinting
+&ndash; kCGPDFContextKeywords
+&ndash; kCGPDFContextAuthor</p>
+
 <p>Experimental feature.
 Don&rsquo;t manually override NSOperation&rsquo;s completionBlock.
 If this helper is used, operation will be automatically queued in <a href="#//api/name/conversionOperationQueue">conversionOperationQueue</a>.</p>
 
-<p>PSPDFKit Annotate feature.</p>
+<p>PSPDFKit Annotate feature.</p><div class="warning"><p><strong>Warning:</strong> When a password is set, only link annotations can be added as dictionary (this does not affect flattening)</p></div>
 	</div>
 	
 	
@@ -465,7 +480,7 @@ If this helper is used, operation will be automatically queued in <a href="#//ap
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

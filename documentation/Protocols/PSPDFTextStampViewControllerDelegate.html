@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>NSArray(PSPDFArrayAccess) Category Reference</title>
+		<title>PSPDFTextStampViewControllerDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">NSArray(PSPDFArrayAccess) Category Reference</h1>
+				<h1 class="hideInXcode">PSPDFTextStampViewControllerDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -32,12 +32,19 @@
 	
 	
 	
+	<option value="tasks">Tasks</option>
 	
 	
 	
 	
 	
 	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/textStampViewController:didCreateAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- textStampViewController:didCreateAnnotation:</option>
 	
 	
 	
@@ -53,6 +60,9 @@
 
 
 
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
 
 
 
@@ -60,13 +70,20 @@
 
 
 
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textStampViewController:didCreateAnnotation:">textStampViewController:didCreateAnnotation:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="NSArray(PSPDFArrayAccess) Category Reference" name="top"></a>
+				<a title="PSPDFTextStampViewControllerDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -75,15 +92,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">NSArray(PSPDFArrayAccess) Category Reference</h1>
+						<h1 class="title title-header">PSPDFTextStampViewControllerDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFKitGlobal.h</td>
+	<td class="specification-value">PSPDFTextStampViewController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -93,9 +113,32 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
-This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
-Older variants still need shouldAutorotate* handling in the view controllers.</p>
+						<p>Delegate to be notified on signature actions.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/textStampViewController:didCreateAnnotation:">&ndash;&nbsp;textStampViewController:didCreateAnnotation:</a></code>
+		<span class="tooltip"><p>Add button has been pressed.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
 					</div>
 					
 					
@@ -106,9 +149,45 @@ Older variants still need shouldAutorotate* handling in the view controllers.</p
 					
 					
 					
-					
-					
-					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/textStampViewController:didCreateAnnotation:" title="textStampViewController:didCreateAnnotation:"></a>
+	<h3 class="subsubtitle method-title">textStampViewController:didCreateAnnotation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add button has been pressed.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)textStampViewController:(PSPDFTextStampViewController *)<em>stampController</em> didCreateAnnotation:(PSPDFStampAnnotation *)<em>stampAnnotation</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFTextStampViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
@@ -121,7 +200,7 @@ Older variants still need shouldAutorotate* handling in the view controllers.</p
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

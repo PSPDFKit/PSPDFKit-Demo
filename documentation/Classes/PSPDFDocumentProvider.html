@@ -78,6 +78,8 @@
 	
 	<option value="//api/name/pageCount">&nbsp;&nbsp;&nbsp;&nbsp;pageCount</option>
 	
+	<option value="//api/name/pageRange">&nbsp;&nbsp;&nbsp;&nbsp;pageRange</option>
+	
 	<option value="//api/name/password">&nbsp;&nbsp;&nbsp;&nbsp;password</option>
 	
 	<option value="//api/name/title">&nbsp;&nbsp;&nbsp;&nbsp;title</option>
@@ -90,6 +92,8 @@
 	<option value="instance_methods">Instance Methods</option>
 	
 	<option value="//api/name/dataRepresentationWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- dataRepresentationWithError:</option>
+	
+	<option value="//api/name/fileSize">&nbsp;&nbsp;&nbsp;&nbsp;- fileSize</option>
 	
 	<option value="//api/name/flushDocumentReference">&nbsp;&nbsp;&nbsp;&nbsp;- flushDocumentReference</option>
 	
@@ -120,6 +124,10 @@
 	<option value="//api/name/requestPageRefForPageNumber:error:">&nbsp;&nbsp;&nbsp;&nbsp;- requestPageRefForPageNumber:error:</option>
 	
 	<option value="//api/name/textParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- textParserForPage:</option>
+	
+	<option value="//api/name/translateCappedPageToRealPage:">&nbsp;&nbsp;&nbsp;&nbsp;- translateCappedPageToRealPage:</option>
+	
+	<option value="//api/name/translateRealPageToCappedPage:">&nbsp;&nbsp;&nbsp;&nbsp;- translateRealPageToCappedPage:</option>
 	
 	<option value="//api/name/unlockWithPassword:">&nbsp;&nbsp;&nbsp;&nbsp;- unlockWithPassword:</option>
 	
@@ -187,6 +195,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageCount">pageCount</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/pageRange">pageRange</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/password">password</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/title">title</a></span></li>
@@ -200,6 +210,8 @@
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dataRepresentationWithError:">dataRepresentationWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fileSize">fileSize</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/flushDocumentReference">flushDocumentReference</a></span></li>
 	
@@ -230,6 +242,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/requestPageRefForPageNumber:error:">requestPageRefForPageNumber:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textParserForPage:">textParserForPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/translateCappedPageToRealPage:">translateCappedPageToRealPage:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/translateRealPageToCappedPage:">translateRealPageToCappedPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unlockWithPassword:">unlockWithPassword:</a></span></li>
 	
@@ -339,6 +355,13 @@ NOT readonly, since we may write back annotation data.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/fileSize">&ndash;&nbsp;fileSize</a></code>
+		<span class="tooltip"><p>Returns the fileSize of this documentProvider.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/document">&nbsp;&nbsp;document</a></code>
 		<span class="tooltip"><p>Weak-linked parent document.</p></span>
 	</span>
@@ -413,9 +436,32 @@ This force-clears the cache.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageCount">&nbsp;&nbsp;pageCount</a></code>
-		<span class="tooltip"><p>Number of pages in the PDF. Nil if source is invalid.</p></span>
+		<span class="tooltip"><p>Number of pages in the PDF. Nil if source is invalid. Will be filtered by <a href="#//api/name/pageRange">pageRange</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pageRange">&nbsp;&nbsp;pageRange</a></code>
+		<span class="tooltip"><p>Limit pages to a certain page range.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/translateCappedPageToRealPage:">&ndash;&nbsp;translateCappedPageToRealPage:</a></code>
+		<span class="tooltip"><p>Translates the capped page to the real page.
+Will only return something different if <a href="#//api/name/pageRange">pageRange</a> is set.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/translateRealPageToCappedPage:">&ndash;&nbsp;translateRealPageToCappedPage:</a></code>
+		<span class="tooltip"><p>Translates the real page to the capped page.
+Will only return something different if <a href="#//api/name/pageRange">pageRange</a> is set.</p></span>
+	</span>
+	
 	
 </li><li>
 	<span class="tooltip">
@@ -1224,7 +1270,7 @@ If you set this externally, do this ONLY in your subclass of <a href="../Classes
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Number of pages in the PDF. Nil if source is invalid.</p>
+		<p>Number of pages in the PDF. Nil if source is invalid. Will be filtered by <a href="#//api/name/pageRange">pageRange</a>.</p>
 	</div>		
 	
 	
@@ -1236,6 +1282,46 @@ If you set this externally, do this ONLY in your subclass of <a href="../Classes
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/pageRange" title="pageRange"></a>
+	<h3 class="subsubtitle method-title">pageRange</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Limit pages to a certain page range.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSIndexSet *pageRange</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>If <a href="#//api/name/document">document</a> has a pageRange set, the visible pages can be limited to a certain subset.
+Defaults to nil.</p><div class="warning"><p><strong>Warning:</strong> Changing this will require a reloadData on the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p></div>
+	</div>
 	
 	
 	
@@ -1342,6 +1428,40 @@ Note: if there&rsquo;s no title in the PDF <a href="#//api/name/metadata">metada
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSData *)dataRepresentationWithError:(NSError **)<em>error</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/fileSize" title="fileSize"></a>
+	<h3 class="subsubtitle method-title">fileSize</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the fileSize of this documentProvider.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (unsigned long long)fileSize</code></div>
 	
 	
 	
@@ -1886,6 +2006,76 @@ Will parse the page contents before returning. Might take a while.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/translateCappedPageToRealPage:" title="translateCappedPageToRealPage:"></a>
+	<h3 class="subsubtitle method-title">translateCappedPageToRealPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Translates the capped page to the real page.
+Will only return something different if <a href="#//api/name/pageRange">pageRange</a> is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)translateCappedPageToRealPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/translateRealPageToCappedPage:" title="translateRealPageToCappedPage:"></a>
+	<h3 class="subsubtitle method-title">translateRealPageToCappedPage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Translates the real page to the capped page.
+Will only return something different if <a href="#//api/name/pageRange">pageRange</a> is set.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSUInteger)translateRealPageToCappedPage:(NSUInteger)<em>page</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/unlockWithPassword:" title="unlockWithPassword:"></a>
 	<h3 class="subsubtitle method-title">unlockWithPassword:</h3>
 	
@@ -1933,7 +2123,7 @@ Will set .<a href="#//api/name/password">password</a> to this <a href="#//api/na
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2012 Peter Steinberger. All rights reserved. (Last updated: 2012-12-21)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
