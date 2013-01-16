@@ -314,6 +314,10 @@ const char kPSCAlertViewKey;
     }]];
 
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
+        // cache needs to be cleared since pages will change.
+        [[PSPDFCache sharedCache] clearCache];
+        _clearCacheNeeded = YES;
+        
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -368,11 +372,6 @@ const char kPSCAlertViewKey;
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
 
-        NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
-        [pageRange addIndexesInRange:NSMakeRange(13, 2)];
-        [pageRange addIndex:0];
-
-        document.pageRange = pageRange;
         document.editableAnnotationTypes = [NSSet setWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
@@ -732,13 +731,19 @@ const char kPSCAlertViewKey;
         }]];
     }
 
+    // Encrypting the images will be a 5-10% slowdown, nothing substantial at all.
+    // TODO: Update RNCryptor as soon as file format v2 has been released: http://robnapier.net/blog/rncryptor-hmac-vulnerability-827
     [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Enable PSPDFCache encryption" block:^UIViewController *{
+        PSPDFCache *cache = [PSPDFCache sharedCache];
         // Clear existing cache
-        [[PSPDFCache sharedCache] clearCache];
+        [cache clearCache];
+
+        // Set new cache directory so this example doesn't interfear with the other examples
+        cache.cacheDirectory = @"PSPDFKit_encrypted";
 
         // Set up cache encryption handlers
         NSString *password = @"unsafe-testpassword";
-        [[PSPDFCache sharedCache] setEncryptDataBlock:^(PSPDFDocument *document, NSMutableData *data) {
+        [cache setEncryptDataBlock:^(PSPDFDocument *document, NSMutableData *data) {
             NSError *error = nil;
             NSData *encryptedData = [RNEncryptor encryptData:data
                                                 withSettings:kRNCryptorAES256Settings
@@ -751,7 +756,7 @@ const char kPSCAlertViewKey;
                 [data setData:encryptedData];
             }
         }];
-        [[PSPDFCache sharedCache] setDecryptFromPathBlock:^NSData *(PSPDFDocument *document, NSString *path) {
+        [cache setDecryptFromPathBlock:^NSData *(PSPDFDocument *document, NSString *path) {
             NSError *error = nil;
             NSData *encryptedData = [NSData dataWithContentsOfFile:path];
             if (!encryptedData) return nil; // no file, return early.
@@ -1092,6 +1097,7 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test + pageRange" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
         [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+        _clearCacheNeeded = YES;
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 15)];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
