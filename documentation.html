@@ -184,16 +184,25 @@ documentation: current-menu-item current_page_item
 	  <h2 class="section-title">Appcelerator Titanium Module</h2>
 	 <p>
 	 	PSPDFKit is also available as an <a href="https://marketplace.appcelerator.com/apps/1072">Appcelerator Titanium Module. See the in the module included app.js for working example code.</a> Note that currently only a practical subset of the features of the ObjC-Version are exposed via the JavaScript bridge. This will be expanded on a need-basis. All available features are listed in the examples/app.js supplied with the module.<br><br>
-You need to have at least Xcode 4.5.2 installed and the latest available versions of Titanium Studio (&ge; 2.1.4.GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<p><br>
+You need to have at least Xcode 4.5.2 installed and the latest available versions of Titanium Studio (&ge; 2.1.4.GA or 3.0.0 GA) and the Titanium SDK. If you're getting errors like "unrecognized selector sent to instance", chances are high that your Xcode is too old.<p><br>
 
 <p>You install the plugin via copying com.pspdfkit.source-iphone-xxx.zip (where xxx is the version number) to /Users/USERNAME/Library/Application\ Support/Titanium/ (where USERNAME is your mac user name). Note that on some installations, Titanium might be installed on root, then the target folder is /Library/Application\ Support/Titanium/.<br>
 Just copy the zip and then start Titanium Studio. Select tiapp.xml and press the [+] on Modules. Select com.pspdfkit (or.com.pspdfkit.source; depending on the version you downloaded). if pspdfkit doesn't appear, try to run your application and re-do the Module add step.</p><br>
 
 <p>You also need to <a href="images/titaniumbundle.png">add "PSPDFKit.bundle" to your resources.</a> You'll find it at /Users/USERNAME/Library/Application\ Support/Titanium/modules/iphone/com.pspdfkit.source/VERSIONNUMBER/example/PSPDFKit.bundle. Drop the whole PSPDFKit.bundle folder into the Resources/iphone folder of your Appcelerator project.</p><br>
 
-<p>To deploy your project to the device, you need to <a href="http://developer.appcelerator.com/question/110801/how-to-set-iphone-minimum-os-requirements-not-to-be-31">manually remove any armv6 references</a> in the generated Xcode project and raise the minimum deployment target to at least iOS 5.0. You can also modify the Appcelerator file yourself, as it's pretty unlikely that you still want to generate files that run on iOS 4.2. Open /Users/USER/Library/Application\ Support/Titanium/mobilesdk/osx/2.1.3.GA/iphone/builder.py, search for "extra_args = ["VALID_ARCHS=armv7 armv7s i386"]" and change this to "extra_args = ["VALID_ARCHS=armv7 i386"]". Also search for "min_ver = 4.0" and change this to "min_ver = 5.0". This second solution has the advantage of not needing to modify the Xcode project every single time you build.</p><br>
-<p>Update: <a href="http://developer.appcelerator.com/blog/2012/09/titanium-sdk-2-1-3-rc-is-released-support-for-ios-6.html">2.1.3RC finally fixes the armv6 annoyance.</a>
+<p>As of PSPDFKit 2.7, <a href="https://github.com/steipete/titanium_mobile/commit/60e6c745971fb922737fd966d458800a2c67ef3f">you need to make a small patch in the Appcelerator sources if you require compiling from source.</a> This patch is already in review and should be applied to 3.0.1 or a following release. You can <a href="https://github.com/appcelerator/titanium_mobile/pull/3717">track the progress of this GitHub Pull Request.</a> This doesn't concern you if you're using the pre-built binaries.<br><br>
+
+<p>You also will need to set the minimum iOS version to 5.0. Open tiapp.xml as source (right click, Open With... -> Text Editor) and add following inside the <ti:app> xml block:
+<script src="https://gist.github.com/4547044.js"></script>
 	</div>
+	
+		<div id="monotouch" class="col-full section">
+			<a name="monotouch"></a>
+		  <h2 class="section-title">Xamarin MonoTouch</h2>
+		  
+		  <p>PSPDFKit provides a full-featured <a href="https://github.com/Krumelur/MonoTouch-PSPDFKit-bindings">3rd-party managed wrapper for MonoTouch</a> to deliver the best way to view and edit PDF with annotations with the power of C#. It allows extensive customization and subclassing (especially when compared to the more limited Appcelerator plugin).<br><br>You can try the demo with simply using the linked GitHub repository, just add <a href="https://github.com/PSPDFKit/PSPDFKit-Demo/blob/master/PSPDFKit.embeddedframework/PSPDFKit.framework/Versions/A/PSPDFKit">the matching binary from the PSPDFKit-Demo repository</a>.</a>
+		</div>
 
 	<div class="fix"></div>
 	<div id="license" class="col-full section">
