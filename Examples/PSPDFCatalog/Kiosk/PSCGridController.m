@@ -758,6 +758,7 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
+    PSPDF_IF_PRE_IOS6(return;) // stop if we're on iOS5.
     @autoreleasepool {
         if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
             IMP updateIMP = imp_implementationWithBlock(^(id _self) {});
