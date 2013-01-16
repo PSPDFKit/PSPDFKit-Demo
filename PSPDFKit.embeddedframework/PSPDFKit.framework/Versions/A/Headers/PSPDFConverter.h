@@ -2,7 +2,7 @@
 //  PSPDFConverter.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -19,7 +19,10 @@ extern inline NSString *PSPDFArrayGetString(CGPDFArrayRef pdfArray, size_t index
 extern id PSPDFDictionaryGetObjectForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 
 /// Like PSPDFDictionaryGetObjectForPath, but type safe.
+id PSPDFDictionaryGetObjectForPathOfType(CGPDFDictionaryRef pdfDict, NSString *keyPath, Class returnClass);
 extern PSPDFStream *PSPDFDictionaryGetStreamForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSNumber *PSPDFDictionaryGetNumberForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSString *PSPDFDictionaryGetStringForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 
 /// Convert a single PDF object to the corresponding CoreFoundation-object.
 extern id PSPDFConvertPDFObject(CGPDFObjectRef objectRef);
@@ -32,12 +35,6 @@ extern NSDictionary *PSPDFConvertPDFDictionary(CGPDFDictionaryRef pdfDict);
 
 /// Converts a CGPDFArray into an NSArray.
 extern NSArray *PSPDFConvertPDFArray(CGPDFArrayRef pdfArray);
-
-/// Converts a string formatted after PDF Reference 7.9.4 to an NSDate.
-extern NSDate *PSPDFDateFromString(NSString *pdfDateString);
-
-/// Converts a NSDate to a PDF string formatted after PDF Reference 7.9.4.
-extern NSString *PSPDFStringFromDate(NSDate *date);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 

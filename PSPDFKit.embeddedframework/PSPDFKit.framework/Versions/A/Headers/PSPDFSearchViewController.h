@@ -2,7 +2,7 @@
 //  PSPDFSearchViewController.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -79,10 +79,3 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 - (PSPDFSearchResult *)searchResultsForIndexPath:(NSIndexPath *)indexPath;
 
 @end
-
-
-// Deprecated. Use PSPDFSearchStatus* instead.
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchIdle;
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchActive;
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchFinished;
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchCancelled;

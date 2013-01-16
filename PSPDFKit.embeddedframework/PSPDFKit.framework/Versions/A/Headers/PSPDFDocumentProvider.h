@@ -2,7 +2,7 @@
 //  PSPDFDocumentProvider.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -51,6 +51,9 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
 - (NSData *)dataRepresentationWithError:(NSError **)error;
 
+/// Returns the fileSize of this documentProvider.
+- (unsigned long long)fileSize;
+
 /// Weak-linked parent document.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
@@ -89,8 +92,28 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Cached rotation and aspect ratio data for specific page. Page starts at 0.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
-/// Number of pages in the PDF. Nil if source is invalid.
+/// Number of pages in the PDF. Nil if source is invalid. Will be filtered by pageRange.
 @property (nonatomic, assign, readonly) NSUInteger pageCount;
+@property (nonatomic, assign, readonly) NSUInteger pageCountUnfiltered; // ignores pageRange
+@property (nonatomic, assign, readonly) NSUInteger firstPageIndex;      // first page, 0 if pageRange is not set.
+
+/**
+ Limit pages to a certain page range.
+
+ If document has a pageRange set, the visible pages can be limited to a certain subset.
+ Defaults to nil.
+
+ @warning Changing this will require a reloadData on the PSPDFViewController.
+ */
+@property (nonatomic, copy) NSIndexSet *pageRange;
+
+/// Translates the capped page to the real page.
+/// Will only return something different if pageRange is set.
+- (NSUInteger)translateCappedPageToRealPage:(NSUInteger)page;
+
+/// Translates the real page to the capped page.
+/// Will only return something different if pageRange is set.
+- (NSUInteger)translateRealPageToCappedPage:(NSUInteger)page;
 
 /// Unlock the PDF with a password. Returns YES on success. (File operation, might block for a bit
 /// Will set .password to this password if successful.

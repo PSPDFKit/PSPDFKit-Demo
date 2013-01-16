@@ -2,7 +2,7 @@
 //  PSPDFTextSelectionView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -43,7 +43,7 @@
 /// Clears the current selection.
 - (void)discardSelection;
 
-/// Currently has a text selection?
+/// Currently has a text/image selection?
 - (BOOL)hasSelection;
 
 /// Text selection is only available in PSPDFKit Annotate

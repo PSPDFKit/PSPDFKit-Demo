@@ -2,7 +2,7 @@
 //  PSPDFViewControllerDelegate.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -27,7 +27,7 @@
 
 /// Delegate to be notified when pdfController finished loading.
 /// Will also be called if the document is nil.
-/// This will also be called for broken documents. use [document isValid] to check.
+/// This will also be called for broken documents. use document.isValid to check.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
 /* Events */

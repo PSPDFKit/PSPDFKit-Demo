@@ -2,7 +2,7 @@
 //  PSPDFAnnotationToolbar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -19,7 +19,8 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarUnderline,
     PSPDFAnnotationToolbarFreeText,
     PSPDFAnnotationToolbarDraw,
-    PSPDFAnnotationToolbarSignature
+    PSPDFAnnotationToolbarSignature,
+    PSPDFAnnotationToolbarStamp,
 };
 
 /// Delegate to be notified on toolbar actions/hiding.
@@ -63,7 +64,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)flashToolbar;
 
 /// Annotation toolbar delegate.
-@property (nonatomic, strong) id<PSPDFAnnotationToolbarDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
 /// If you update tintColor, barStyle, etc - this needs to be set again to re-capture changed states.
@@ -82,6 +83,10 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 
 /// Enable to auto-hide toolbar after drawing finishes. Defaults to NO.
 @property (nonatomic, assign) BOOL hideAfterDrawingDidFinish;
+
+/// This will issue a save event after the toolbar has been dismissed.
+/// Since saving is slow, this defaults to NO.
+@property (nonatomic, assign) BOOL saveAfterToolbarHiding;
 
 @end
 
@@ -103,6 +108,15 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)selectStrokeColor:(id)sender;
 - (void)undoDrawing:(id)sender;
 - (void)redoDrawing:(id)sender;
+
+// Called anytime the drawing toolbar is updated.
+- (void)updateDrawingToolbar;
+@property (nonatomic, strong, readonly) UIBarButtonItem *undoItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem *redoItem;
+
+// Color management
+- (void)setLastUsedColor:(UIColor *)lastUsedDrawColor forAnnotationType:(NSString *)annotationType;
+- (UIColor *)lastUsedColorForAnnotationTypeString:(NSString *)annotationType;
 
 // Finish up drawing. Usually called by the drawing delegate.
 - (void)finishDrawingAnimated:(BOOL)animated andSaveAnnotation:(BOOL)saveAnnotation;

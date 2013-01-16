@@ -2,15 +2,16 @@
 //  PSPDFSearchResult.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFModel.h"
 
 @class PSPDFTextBlock, PSPDFDocument;
 
 /// Search result object.
-@interface PSPDFSearchResult : NSObject <NSCopying, NSCoding>
+@interface PSPDFSearchResult : PSPDFModel
 
 /// referenced page.
 @property (nonatomic, assign) NSUInteger pageIndex;

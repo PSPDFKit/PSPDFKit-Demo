@@ -2,7 +2,7 @@
 //  PSPDFCache.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @interface PSPDFCache : NSObject <NSCacheDelegate> 
 
 /// The cache is a singleton.
-+ (PSPDFCache *)sharedCache;
++ (instancetype)sharedCache;
 
 /// Check if all pages of a document are cached.
 - (BOOL)isDocumentCached:(PSPDFDocument *)document size:(PSPDFSize)size;

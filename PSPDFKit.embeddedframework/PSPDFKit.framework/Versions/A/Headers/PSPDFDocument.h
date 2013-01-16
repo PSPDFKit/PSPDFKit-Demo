@@ -2,7 +2,7 @@
 //  PSPDFDocument.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -192,6 +192,9 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
  */
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
+/// Returns YES if any provider of the document has dirty annotations that need saving.
+- (BOOL)hasDirtyAnnotations;
+
 /// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
 /// Note: Only returns the parser for the first PDF file.
@@ -210,6 +213,9 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Shorthand accessor that compensates the page. See PSPDFAnnotationParser for details.
 - (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
+/// Get all annotations of all documentProviders.
+- (NSDictionary *)allAnnotationsOfType:(PSPDFAnnotationType)annotationType;
+
 /**
  Returns the annotation parser for a specific page.
  page is needed if your PSPDFDocument contains multiple PSPDFDocumentProviders.
@@ -227,7 +233,17 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 
 /// Return pdf page count.
 /// Might need file operations to parse the document (slow)
-- (NSUInteger)pageCount;
+@property (nonatomic, assign, readonly) NSUInteger pageCount;
+
+/**
+ Limit pages to a certain page range.
+
+ If document has a pageRange set, the visible pages can be limited to a certain subset.
+ Defaults to nil.
+
+ @warning This is still an experimental feature and doesn't yet support multiple document sources. Changing this will require a reloadData on the PSPDFViewController and also a clearCache for this document (as the cached pages will be different after changing this!)
+ */
+@property (nonatomic, copy) NSIndexSet *pageRange;
 
 /// Return PDF page number (PDF pages start at 1).
 /// This may be different if a collection of pdfs is used a one big document. Page starts at 0.
@@ -391,12 +407,13 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 - (PSPDFDocumentParser *)documentParserForPage:(NSUInteger)page;
 
 /// Outline extraction class for current document.
-/// Note: Only returns the parser for the first PDF file.
+///
+/// @warning Only returns the parser for the first PDF file.
 @property (nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
 
-/// Manages the bookmark parser.
-/// Lazily initialized, thread safe.
-/// Can be customized with using overrideClassNames.
+/// Accesses the bookmark parser.
+///
+/// Bookmarks are handled on document level, not on documentProvider.
 @property (nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
 
 /// Page labels (NSString) for the current document.
@@ -453,6 +470,7 @@ extern NSString *const kPSPDFImages;
 
 /// Find objects at the current PDF point.
 /// If options is nil, we assume kPSPDFObjectsText and kPSPDFObjectsFullWords.
+/// Unless set otherwise, for points kPSPDFObjectsTestIntersection is YES automatically.
 /// Returns objects in certain key dictionaries (kPSPDFGlyphs, etc)
 - (NSDictionary *)objectsAtPDFPoint:(CGPoint)pdfPoint page:(NSUInteger)page options:(NSDictionary *)options;
 

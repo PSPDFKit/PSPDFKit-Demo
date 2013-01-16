@@ -2,22 +2,23 @@
 //  PSPDFBookmark.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFModel.h"
 
 /**
- A Bookmark is a simple object that encapsulates a page.
+ A bookmark is a simple object that encapsulates a page and a name.
  
- True, this could've been accomplished with NSNumber, but having a special object is more flexible in the long run.
- */
-@interface PSPDFBookmark : NSObject <NSCopying, NSCoding>
+ @warning: Bookmarks don't have any representation in the PDF standard, thus they are saved in an external file.
+  */
+@interface PSPDFBookmark : PSPDFModel
 
 /// Designated initializer.
 - (id)initWithPage:(NSUInteger)page;
 
-/// Page reference.
+/// The page this bookmark links to.
 @property (nonatomic, assign) NSUInteger page;
 
 /// Bookmark can have a name. This is optional and can be displayed on the PSPDFBookmarkViewController.
@@ -25,8 +26,5 @@
 
 /// Returns "Page X" or name.
 - (NSString *)pageOrNameString;
-
-/// Compare
-- (BOOL)isEqualToBookmark:(PSPDFBookmark *)otherBookmark;
 
 @end

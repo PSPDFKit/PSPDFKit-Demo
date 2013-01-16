@@ -2,7 +2,7 @@
 //  PSPDFInkAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFAnnotation.h"
@@ -14,6 +14,8 @@ NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
 CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
 
 // Will convert view lines to PDF lines (operates on every point)
+// Get the cropBox and rotation from PSPDFPageInfo.
+// bounds should be the size of the view.
 NSArray *PSPDFConvertViewLinesToPDFLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
 // Will convert PDF lines to view lines (operates on every point)
@@ -26,17 +28,24 @@ NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInte
 /// Designated initializer.
 - (id)init;
 
-/// Array of lines (which is a array of CGPoint's)
+/// Array of arrays of boxed CGPoints.
+/// Example: annotation.lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))]];
+/// @warning: After setting lines, the boundingBox will be automatically recalculated.
 @property (nonatomic, copy) NSArray *lines;
 
-/// Array of UIBezierPath (a cached version of lines for faster drawing)
-@property (nonatomic, copy) NSArray *paths;
+/// Array of UIBezierPath.
+/// Will be dynamically crated from the lines array. 
+@property (nonatomic, copy, readonly) NSArray *paths;
 
-/// Rebuilds paths using the data in lines.
-- (void)rebuildPaths;
+/// By default, setting the boundingBox will transform all points in the lines array.
+/// Use this setter to manually change the boundingBox without changing lines.
+- (void)setBoundingBox:(CGRect)boundingBox transformLines:(BOOL)transformLines;
 
 /// Generate new line array by applying transform.
 /// This is used internally when boundingBox is changed.
 - (NSArray *)copyLinesByApplyingTransform:(CGAffineTransform)transform;
+
+/// NSArray of NSStrings <-> NSArray of CGRects transformer.
++ (NSValueTransformer *)linesTransformer;
 
 @end

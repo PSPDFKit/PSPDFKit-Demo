@@ -2,13 +2,14 @@
 //  PSPDFViewState.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFModel.h"
 
 /// Represents a certain view state (document position, zoom) of a PSPDFDocument.
-@interface PSPDFViewState : NSObject <NSCoding, NSCopying>
+@interface PSPDFViewState : PSPDFModel
 
 /// Zoom scale.
 @property (nonatomic, assign) CGFloat zoomScale;

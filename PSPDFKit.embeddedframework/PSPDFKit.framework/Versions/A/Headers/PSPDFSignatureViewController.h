@@ -2,7 +2,7 @@
 //  PSPDFSignatureViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFBaseViewController.h"
@@ -10,7 +10,7 @@
 
 @class PSPDFSignatureViewController;
 
-/// Delegegate to be notified on signature actions
+/// Delegate to be notified on signature actions.
 @protocol PSPDFSignatureViewControllerDelegate <NSObject>
 
 @optional
@@ -21,10 +21,10 @@
 /// Save/Done button has been pressed.
 - (void)signatureViewControllerDidSave:(PSPDFSignatureViewController *)signatureController;
 
-
 @end
 
-@interface PSPDFSignatureViewController : PSPDFBaseViewController <PSPDFDrawViewDelegate>
+/// Allows adding signatures or drawings as ink annotations.
+@interface PSPDFSignatureViewController : PSPDFBaseViewController
 
 /// Designated initializer.
 - (id)init;
@@ -45,5 +45,9 @@
 
 // Internally used drawView.
 @property (nonatomic, strong, readonly) PSPDFDrawView *drawView;
+
+// To make custom buttons.
+- (void)cancel:(id)sender;
+- (void)done:(id)sender;
 
 @end
