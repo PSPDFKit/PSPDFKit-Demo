@@ -192,7 +192,10 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                             __weak typeof (self) weakSelf = self;
                             [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request_, NSHTTPURLResponse *response, UIImage *image) {
                                 [weakSelf setNeedsLayout];
-                            } failure:NULL];
+                                self.imageView.image = image;
+                            } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                PSCLog(@"Failed to download image: %@", error.localizedDescription);
+                            }];
                         });
                     }
                 }
