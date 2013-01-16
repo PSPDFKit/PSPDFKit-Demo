@@ -2,7 +2,7 @@
 //  PSPDFLinkAnnotationView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -38,7 +38,20 @@
 /// Increases touch target by overspan pixel. Defaults to 15/15. Overspan is not visible.
 @property (nonatomic, assign) CGSize overspan;
 
-/// Called when the annotation fires. Can be used for subclassing.
+/// For performance reasons, rounded corners are disabled if too many link views are on a page.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL allowToDisableRoundedCorners;
+
+/// If set to YES, will save the last rounded corner setting, and restore if set to no.
+/// Defaults to NO.
+@property (nonatomic, assign) BOOL disableRoundedCorners;
+
+@end
+
+
+@interface PSPDFLinkAnnotationView (SubclassingHooks)
+
+/// Called when the annotation firess
 - (void)touchUp;
 
 @end

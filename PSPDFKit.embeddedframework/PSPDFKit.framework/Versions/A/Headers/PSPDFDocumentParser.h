@@ -2,7 +2,7 @@
 //  PSPDFDocumentParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -29,5 +29,26 @@
 
 /// Exposed XRef objects.
 @property (nonatomic, copy, readonly) NSArray *pageObjectNumbers;
+
+@end
+
+@interface PSPDFDocumentParser (SubclassingHooks)
+
+- (NSMutableData *)generateTrailerWithObjects:(NSDictionary *)updatedObjects startObjectNumber:(NSInteger)numberForNewObject;
+
+- (NSInteger)numberForNewObject;
+
+- (BOOL)isObjectCompressedForPageIndex:(NSUInteger)pageIndex;
+- (NSInteger)objectNumberForPageIndex:(NSUInteger)pageIndex;
+- (NSUInteger)objectNumberForAnnotationIndex:(NSUInteger)annotationIndex onPageIndex:(NSUInteger)pageIndex;
+
+- (NSString *)objectDictionaryForPageIndex:(NSUInteger)pageIndex;
+- (NSString *)objectDictionaryForNumber:(NSUInteger)number;
+
+// Will return the PDF apperance stream and helper objects for the drawing operations inside drawingBlock.
++ (NSArray *)createAppearanceStreamForRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
+
+// Debugging feature
+- (void)printAllObjects;
 
 @end

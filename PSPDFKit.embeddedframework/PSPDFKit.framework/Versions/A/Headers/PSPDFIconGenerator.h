@@ -2,7 +2,7 @@
 //  PSPDFIconGenerator.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -22,8 +22,7 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
     PSPDFIconTypeEmail,
     PSPDFIconTypeAnnotations,
     PSPDFIconTypeBookmark,
-    PSPDFIconTypeBookmarkActive,
-    PSPDFIconTypeBrightness
+    PSPDFIconTypeBookmarkActive
 };
 
 /// Generates various Icons on the fly and caches them for later use.

@@ -2,7 +2,7 @@
 //  PSPDFWebViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012 Peter Steinberger. All rights reserved.
+//  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //  Parts of this code is based on https://github.com/samvermette/SVWebViewController.
 //
 
@@ -74,5 +74,13 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Override if you have your own network activity manager.
 /// Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 - (void)setActivityIndicatorEnabled:(BOOL)enabled;
+
+// Toolbar items
+- (void)goBack:(id)sender;
+- (void)goForward:(id)sender;
+- (void)reload:(id)sender;
+- (void)stop:(id)sender;
+- (void)action:(id)sender;
+- (void)doneButtonClicked:(id)sender;
 
 @end

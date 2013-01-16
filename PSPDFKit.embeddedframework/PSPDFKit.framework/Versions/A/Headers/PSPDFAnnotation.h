@@ -2,10 +2,11 @@
 //  PSPDFAnnotation.h
 //  PSPDFKit
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 // 
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFModel.h"
 
 @class PSPDFDocument, PSPDFDocumentProvider;
 
@@ -19,9 +20,9 @@ extern NSString *const PSPDFAnnotationTypeStringFreeText;
 extern NSString *const PSPDFAnnotationTypeStringInk;
 extern NSString *const PSPDFAnnotationTypeStringSquare;
 extern NSString *const PSPDFAnnotationTypeStringCircle;
+extern NSString *const PSPDFAnnotationTypeStringStamp;
 // Signature is technically an Ink annotation, but this enables an optimized adding mode (toolbar).
 extern NSString *const PSPDFAnnotationTypeStringSignature;
-
 
 // Annotations defined after the PDF standard.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
  
  Ensure that custom sublcasses also correctly implement hash and isEqual.
 */
-@interface PSPDFAnnotation : NSObject <NSCoding, NSCopying>
+@interface PSPDFAnnotation : PSPDFModel
 
 /// Returns the annotation type strings that are supported. Implemented in each subclass.
 + (NSArray *)supportedTypes;
@@ -114,7 +115,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Helper that will prepare the context for the border style.
 - (void)prepareBorderStyleInContext:(CGContextRef)context;
 
-/// Current annotation type. 
+/// Current annotation type.
 @property (nonatomic, assign, readonly) PSPDFAnnotationType type;
 
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
@@ -166,6 +167,10 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Will be updated by PSPDFKt as soon as a property is changed.
 @property (nonatomic, strong) NSDate *lastModified;
 
+/// Date when the annotation was created. Might be nil.
+/// PSPDFKit will set this for newly created annotations.
+@property (nonatomic, strong) NSDate *creationDate;
+
 /// Border Line Width (only used in certain annotations)
 @property (nonatomic, assign) float lineWidth;
 
@@ -180,6 +185,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 /// Rectangle of specific annotation. (PDF coordinates)
 @property (nonatomic, assign) CGRect boundingBox;
+
+/// Rotation property (should be a multiple of 90, but there are exceptions, e.h. for stamp annotations)
+/// Defaults to 0. Allowed values are between 0 and 360.
+@property (nonatomic, assign) NSUInteger rotation;
+
+/// Certain annotation types like highlight might have multiple rects.
+@property (nonatomic, copy) NSArray *rects;
 
 /// User (title) flag. ("T" property)
 @property (nonatomic, copy) NSString *user;
@@ -201,10 +213,30 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 @property (nonatomic, assign, readonly) PSPDFDocument *document;
 
 /// Rotation value, copied from the PSPDFPageInfo and set when documentProvider is set.
-@property (nonatomic, assign) NSInteger rotation;
+@property (nonatomic, assign) NSInteger pageRotation;
+
+/**
+ Returns YES if a custom appearance stream is attached to this annotation.
+ 
+ An apperance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for apearance streams, currently only for stamp annotations and that only under certain conditions. Appearance streams generally are not very useful in the annotation area, and PSPDFKit can't write annotation streams back into PDF.
+ */
+@property (nonatomic, assign, readonly) BOOL hasAppearanceStream;
+
+/// Allows to save arbitrary data (e.g. a CoreData Object ID)
+/// Will be preserved within app sessions and copy, but NOT serialized to disk or within the PDF.
+@property (atomic, copy) NSDictionary *userInfo;
 
 /// Compare.
 - (BOOL)isEqualToAnnotation:(PSPDFAnnotation *)otherAnnotation;
+
+/// Color string <-> UIColor transformer.
++ (NSValueTransformer *)colorTransformer;
+
+/// PDF border style string representation <-> PSPDFAnnotationBorderStyle transformer.
++ (NSValueTransformer *)borderStyleTransformer;
+
+/// ISO8601 date string <-> NSDate transformer.
++ (NSValueTransformer *)lastModifiedTransformer;
 
 @end
 
@@ -213,6 +245,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 // PDF rect string representation (/Rect [%f %f %f %f])
 - (NSString *)pdfRectString;
+extern NSString *PSPDFRectStringFromRect(CGRect rect);
 
 // Color string representation (/C [%f %f %f])
 - (NSString *)pdfColorString;
@@ -226,9 +259,12 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 // Border dictionary. e.g. /BS <</Type /Border /W 3 /S /U>>
 - (NSString *)pdfBorderString;
 
+// rects representation.
+- (NSString *)pdfQuadPointsString;
+
 // Appends escaped contents data if contents length is > 0.
-// Will also add user and name if set.
-- (void)appendEscapedContents:(NSMutableData *)pdfData;
+// Will also add common PDF properties like user name, date.
+- (void)appendEscapedContents:(NSMutableData *)pdfData withStreamOptions:(NSDictionary *)streamOptions;
 
 // Converts an array of NSValue-CGRect's into an array of CGRect-NSString's.
 + (NSArray *)stringsFromRectsArray:(NSArray *)rects;
@@ -236,8 +272,11 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 // Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
 + (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
 
-/// Returns NSData string represnetation in the PDF Standard.
-- (NSData *)pdfDataRepresentation;
+extern NSString *const kPSPDFRepresentationAPStreamNumber;
+extern NSString *const kPSPDFRepresentationFirstObjectNumber;
+/// Returns NSData string representations in the PDF standard.
+/// Per convention, the first returned object has to be an annotation objects, all other can be supportive objects.
+- (NSArray *)pdfDataRepresentationsWithOptions:(NSDictionary *)streamOptions;
 
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
 /// Returns same type as current class.
@@ -247,11 +286,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// If indexOnPage is set, it's a native PDF annotation.
 /// If this is -1, it's not yet saved in the PDF.
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
-/// Don't set this property if you're loading annotations from your database.
-@property (nonatomic, assign) int indexOnPage;
+@property (nonatomic, assign, readonly) NSInteger indexOnPage;
+
+/// If this is a copy of a deleted annotation, we still need to track the index.
+@property (nonatomic, assign, readonly) NSInteger previousIndexOnPage;
 
 /// Some annotations may have a popupIndex. Defaults to -1.
-@property (nonatomic, assign) int popupIndex;
+@property (nonatomic, assign) NSInteger popupIndex;
 
 @end
 
@@ -265,11 +306,4 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 // Helper for pdfDataRepresentation creation.
 @interface NSMutableData (PSPDFAdditions)
 - (void)pspdf_appendDataString:(NSString *)dataString;
-@end
-
-
-@interface PSPDFAnnotation (Deprecated)
-
-- (void)setDocument:(PSPDFDocument *)document __attribute__ ((deprecated("Set the documentProvider instead")));
-
 @end

@@ -2,7 +2,7 @@
  Localization.strings
  PSPDFKit
 
- Copyright (c) 2012 Peter Steinberger. All rights reserved.
+ Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
  */
 
 // general
@@ -73,6 +73,7 @@
 
 // text selection
 "Save To Camera Roll" = "Save To Camera Roll";
+"Failed to extract image." = "Failed to extract image.";
 
 // annotations
 "Remove" = "Rimuovi";
@@ -105,6 +106,12 @@
 "Strikeout" = "Sbarra";
 "Sketch" = "Disegna";
 "Signature" = "Signature";
+"Stamp" = "Stamp";
+"Add Stamp" = "Add Stamp";
+"Custom" = "Custom";
+"Create Stamp" = "Create Stamp";
+"Preview" = "Preview";
+"Stamp Text" = "Stamp Text";
 "Add Signature" = "Add Signature";
 "New Note" = "Nuova nota";
 "Note" = "Nota";

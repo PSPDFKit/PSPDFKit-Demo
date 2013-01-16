@@ -2,7 +2,7 @@ Evaluation License
 ------------------
 The following license applies to the free trial versions of the software components.
 
-Copyright (c) 2010-2012, Peter Steinberger
+Copyright (c) 2010-2013, Peter Steinberger
 All rights reserved.
 
 Redistribution of this software, in either source or binary form is prohibited.
@@ -20,7 +20,7 @@ Commercial Development License
 ------------------------------
 The following license applies to software components purchased and paid for in full.
 
-Copyright (c) 2010-2012, Peter Steinberger
+Copyright (c) 2010-2013, Peter Steinberger
 All rights reserved.
 
 The license your purchased, unless otherwise negotiated in writing, is valid for one explicit app ID, thus one iOS application.
@@ -50,4 +50,4 @@ Unless the parties have entered into a written amendment to this agreement that 
 This Agreement, and any disputes arising from or relating to the interpretation thereof, shall be governed by Austrian law.
 If any provision of this Agreement is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make it enforceable. The failure of Peter Steinberger to act with respect to a breach of this Agreement by Licensee or others does not constitute a waiver and shall not limit Peter Steinberger rights with respect to such breach or any subsequent breaches. This Agreement is personal to Licensee and may not be assigned or transferred for any reason whatsoever (including, without limitation, by operation of law, merger, reorganization, or as a result of an acquisition or change of control involving Licensee) without Peter Steinberger prior written consent and any action or conduct in violation of the foregoing shall be void and without effect. Peter Steinberger expressly reserves the right to assign this Agreement and to delegate any of its obligations hereunder.
 
-Last updated December 14, 2012
+Last updated January 11, 2013
