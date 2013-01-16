@@ -164,8 +164,10 @@ static const NSUInteger kPreambleSize = 2;
                                                                                          forKey:NSLocalizedDescriptionKey]]];
   }
 
-  NSUInteger headerSize = kPreambleSize + settings.IVSize;
-  if (self.options & kRNCryptorOptionHasPassword) {
+
+#if !defined(__clang__)
+    NSUInteger headerSize = kPreambleSize + settings.IVSize;
+    if (self.options & kRNCryptorOptionHasPassword) {
     headerSize += settings.keySettings.saltSize + settings.HMACKeySettings.saltSize;
   }
 
@@ -202,6 +204,7 @@ static const NSUInteger kPreambleSize = 2;
     self.HMACLength = settings.HMACLength;
     self.HMACKey = nil; // Don't need this anymore
   }
+#endif
 }
 
 - (void)finish
