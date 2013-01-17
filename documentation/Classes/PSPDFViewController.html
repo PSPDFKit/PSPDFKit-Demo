@@ -319,9 +319,9 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprected Methods">PSPDFDeprected Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprected Methods">PSPDFDeprected Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
 	
@@ -1001,8 +1001,7 @@ Can be useful if you&rsquo;re doing custom drawing on the <a href="../Classes/PS
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/imageSelectionEnabled">&nbsp;&nbsp;imageSelectionEnabled</a></code>
-		<span class="tooltip"><p>Allows image selection. Defaults to YES.
-Will only work if <a href="#//api/name/textSelectionEnabled">textSelectionEnabled</a> is also set to YES.</p></span>
+		<span class="tooltip"><p>Allows image selection. Defaults to YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1496,21 +1495,6 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 						</ul>
 						
 						
-						<a title="PSPDFDeprected Methods" name="task_PSPDFDeprected Methods"></a>
-						<h3 class="subsubtitle task-title">PSPDFDeprected Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li>
-						</ul>
-						
-						
 						<a title="Internal Methods" name="task_Internal Methods"></a>
 						<h3 class="subsubtitle task-title">Internal Methods</h3>
 
@@ -1529,6 +1513,21 @@ Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</
 		<span class="tooltip"><p>To handle external URLS.</p></span>
 	</span>
 	
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFDeprected Methods" name="task_PSPDFDeprected Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFDeprected Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
+		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -2558,8 +2557,7 @@ fitToWidthEnabled is not supported for vertical scrolling or pageCurl mode. (You
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Allows image selection. Defaults to YES.
-Will only work if <a href="#//api/name/textSelectionEnabled">textSelectionEnabled</a> is also set to YES.</p>
+		<p>Allows image selection. Defaults to YES.</p>
 	</div>		
 	
 	
@@ -2574,10 +2572,13 @@ Will only work if <a href="#//api/name/textSelectionEnabled">textSelectionEnable
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Note: This implies that the image is not in vector format.
-Will not work on all images (feature is still experimental)</p>
+		<div class="warning"><p><strong>Warning:</strong> Will only work if <a href="#//api/name/textSelectionEnabled">textSelectionEnabled</a> is also set to YES.</p>
 
-<p>Only available in PSPDFKit Annotate.</p>
+<pre><code>      This implies that the image is not in vector format.
+      Will not work on all images (feature is still experimental)
+</code></pre>
+
+<p>Only available in PSPDFKit Annotate.</p></div>
 	</div>
 	
 	
@@ -4256,14 +4257,12 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Note: This implies that the PDF file actually contains text glypths.</p>
+		<div class="warning"><p><strong>Warning:</strong> This implies that the PDF file actually contains text glyphs.</p>
 
-<pre><code>   Sometimes text is represented via embedded images or vectors, in that case we can't select it.
+<pre><code>      Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 </code></pre>
 
-<p>Also disable long press gesture recognizer on <a href="../Classes/PSPDFScrollView.html">PSPDFScrollView</a> if set to NO.</p>
-
-<p>Only available in PSPDFKit Annotate.</p>
+<p>Only available in PSPDFKit Annotate.</p></div>
 	</div>
 	
 	
@@ -5829,7 +5828,7 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-16)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
