@@ -2,10 +2,23 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.1 - 17/January/2013__
+
+*  Note annotation flattening.
+*  Text selection is now always priorized over image selection.
+*  For the continuous scrolling page transition, all visible pages are now animated when showing/hiding the thumbnail view.
+*  Improve PDF serialization of custom stamp annotations.
+*  Fixes an animation issue with continuous scrolling.
+*  Fixes an UI issue where under certain conditions a second tap was required on a toolbar button to hide the active popover.
+*  Fixes an UI issue with creating note annotations.
+*  Fixes an issue where annotation resizing was disabled when textSelectionEnabled was set to NO.
+*  Fixes a rounding bug in continuous scrolling that could lead to a x AND y scrolling on zoomScale 1.0
+*  Fixes several issues with certain RichMedia embedded video annotations.
+
 __v2.7.0 - 16/January/2013__
 
 *  PSPDFKit model classes now have a common base model class 'PSPDFModel' - allows to serialize/deserialize via JSON easily using externalRepresentationInFormat:.
-   To get the JSON dictionary, use [annotation externalRepresentationInFormat:PSPDFModelJSONFormat]
+   To get the JSON dictionary, use annotation externalRepresentationInFormat:PSPDFModelJSONFormat.
    (The old annotation serialization format is still supported for the time being)
 *  PSPDFKit now requires AssetsLibrary.framework - if you're using PSPDFKit.xcproj or the source distribution, this is already been taken cared of. If you added the frameworks manually and get a linker error, make sure you are linking sAssetsLibrary.framework.
 *  PSPDFMenuItem learned to show images in UIMenuController - this beautifies many of the annotation menus, images are now used for annotation types/colors where appropriate.
