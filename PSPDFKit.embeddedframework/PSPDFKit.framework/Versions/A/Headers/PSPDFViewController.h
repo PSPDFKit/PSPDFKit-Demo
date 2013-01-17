@@ -279,14 +279,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Can be useful if you're doing custom drawing on the PSPDFPageView.
 @property (nonatomic, assign) BOOL internalTapGesturesEnabled;
 
-
 /**
  Allows text selection. Defaults to YES.
 
- Note: This implies that the PDF file actually contains text glypths.
-       Sometimes text is represented via embedded images or vectors, in that case we can't select it.
-
- Also disable long press gesture recognizer on PSPDFScrollView if set to NO.
+ @warning This implies that the PDF file actually contains text glyphs.
+          Sometimes text is represented via embedded images or vectors, in that case we can't select it.
 
  Only available in PSPDFKit Annotate.
  */
@@ -294,10 +291,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /**
  Allows image selection. Defaults to YES.
- Will only work if textSelectionEnabled is also set to YES.
-
- Note: This implies that the image is not in vector format.
- Will not work on all images (feature is still experimental)
+ 
+ @warning Will only work if textSelectionEnabled is also set to YES.
+          This implies that the image is not in vector format.
+          Will not work on all images (feature is still experimental)
 
  Only available in PSPDFKit Annotate.
  */
@@ -563,6 +560,7 @@ extern NSString *const PSPDFPresentOptionModalPresentationStyle;        // overr
 extern NSString *const PSPDFPresentOptionAlwaysModal;                   // don't use UIPopoverController, even on iPad.
 extern NSString *const PSPDFPresentOptionAlwaysPopover;                 // show as popover, even on iPhone. (limited functionality!)
 extern NSString *const PSPDFPresentOptionPassthroughViews;              // customizes the click-through views.
+extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispatch_block_t called when the popover is being dismissed.
 - (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
 
 /// Return an NSNumber-array of currently visible page numbers.

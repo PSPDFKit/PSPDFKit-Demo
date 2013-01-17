@@ -112,6 +112,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
  */
 - (void)drawInContext:(CGContextRef)context;
 
+// Options to use for drawInContext:withOptions:
+extern NSString *const kPSPDFAnnotationDrawFlattened;
+
+/// Allows to customize the drawing process.
+/// Currently used to allow different annotation drawings during the annotation flattening process.
+- (void)drawInContext:(CGContextRef)context withOptions:(NSDictionary *)options;
+
 /// Helper that will prepare the context for the border style.
 - (void)prepareBorderStyleInContext:(CGContextRef)context;
 
@@ -120,7 +127,6 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 /// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
-/// Currently won't work if you just set arbitrary annotations to overlay=YES.
 /// If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
 @property (nonatomic, assign, getter=isOverlay) BOOL overlay;
 
@@ -295,6 +301,9 @@ extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 @property (nonatomic, assign) NSInteger popupIndex;
 
 @end
+
+// Helper to properly escape strings.
+extern NSString *PSPDFEscapedString(NSString *string);
 
 @interface PSPDFAnnotation (SubclassingHooks)
 
