@@ -463,7 +463,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         PSCLog(@"Failed to download JSON: %@", error);
     }];
 
-    [[[self class] sharedOperationQueue] addOperation:operation];
+    [[self.class sharedOperationQueue] addOperation:operation];
 }
 
 - (void)clearCache {

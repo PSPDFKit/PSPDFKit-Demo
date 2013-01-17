@@ -42,7 +42,7 @@
     tabbedViewController.visibleDocument = document;
 
     // hide controller
-    if (PSIsIpad())[[self class] dismissPopoverAnimated:YES];
+    if (PSIsIpad())[self.class dismissPopoverAnimated:YES];
     else [documentSelectorController dismissViewControllerAnimated:YES completion:NULL];
 }
 

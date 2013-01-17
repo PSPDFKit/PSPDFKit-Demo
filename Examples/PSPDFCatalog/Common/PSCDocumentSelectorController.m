@@ -37,7 +37,7 @@
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         
         _delegate = delegate;
-        _documents = [[[self class] documentsFromDirectory:_directory] mutableCopy];
+        _documents = [[self.class documentsFromDirectory:_directory] mutableCopy];
         _filteredContent = [NSMutableArray new];
         [[PSPDFCache sharedCache] addDelegate:self];
 
