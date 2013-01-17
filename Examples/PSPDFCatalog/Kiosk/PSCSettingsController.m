@@ -463,7 +463,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     [codeString appendFormat:@"PSPDFDocument *pdfDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@\"%@\"]]]\n\nPSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:pdfDocument];\n\n// Config properies. Use the enum values instead.\n// This is only for debugging.\n", pdfName];
     [_settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:@"is"]) {
-            key = [[self class] setterKeyForGetter:key];
+            key = [self.class setterKeyForGetter:key];
             obj = [obj boolValue] ? @"YES" : @"NO";
         }
         [codeString appendFormat:@"pdfController.%@ = %@;\n", key, obj];

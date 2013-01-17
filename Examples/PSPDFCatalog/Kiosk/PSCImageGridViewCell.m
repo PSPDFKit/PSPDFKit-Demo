@@ -217,7 +217,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             if (self.immediatelyLoadCellImages) {
                 [imageLoadOperation start]; // start directly.
             }else {
-                [[[self class] thumbnailQueue] addOperation:imageLoadOperation];
+                [[self.class thumbnailQueue] addOperation:imageLoadOperation];
                 _imageLoadOperation = imageLoadOperation;
             }
 

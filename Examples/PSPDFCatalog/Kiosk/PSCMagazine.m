@@ -20,7 +20,7 @@
 
 + (PSCMagazine *)magazineWithPath:(NSString *)path {
     NSURL *URL = path ? [NSURL fileURLWithPath:path] : nil;
-    PSCMagazine *magazine = [(PSCMagazine *)[[self class] alloc] initWithURL:URL];
+    PSCMagazine *magazine = [(PSCMagazine *)[self.class alloc] initWithURL:URL];
     magazine.available = YES;
     return magazine;
 }

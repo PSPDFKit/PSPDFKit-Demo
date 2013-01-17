@@ -20,7 +20,7 @@
 #pragma mark - Static
 
 + (PSCMagazineFolder *)folderWithTitle:(NSString *)title {
-    PSCMagazineFolder *folder = [[[self class] alloc] init];
+    PSCMagazineFolder *folder = [[self.class alloc] init];
     folder.title = title;
     return folder;
 }
@@ -49,7 +49,7 @@
 }
 
 - (BOOL)isEqual:(id)other {
-    if ([other isKindOfClass:[self class]]) {
+    if ([other isKindOfClass:self.class]) {
         return [self isEqualToMagazineFolder:(PSCMagazineFolder *)other];
     }
     return NO;
