@@ -830,10 +830,10 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    // As a second test, this example disables text selection, test that the shape still can be resized.
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a shape annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
-
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
         if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeShape] count] == 0) {
@@ -846,6 +846,7 @@ const char kPSCAlertViewKey;
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.textSelectionEnabled = NO;
         return controller;
     }]];
 
@@ -861,8 +862,7 @@ const char kPSCAlertViewKey;
             PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
 
             // example how to create a line rect. Boxed is just shorthand for [NSValue valueWithCGRect:]
-            NSArray *lines = @[
-                               @[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
+            NSArray *lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
                                @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
                                ];
 
@@ -1361,33 +1361,18 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"DB debug settings" block:^{
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]]];
+    // Test flattening, especially for notes
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} error:NULL];
 
-//        pdfController.pageLabelEnabled = NO;
-        pdfController.documentLabelEnabled = NO;
-        pdfController.fitToWidthEnabled = YES;
-        pdfController.scrobbleBarEnabled = NO;
-        pdfController.pagePadding = 0.5f;
-        pdfController.pageMode = PSPDFPageModeSingle;
-        pdfController.createAnnotationMenuEnabled = NO;
-        pdfController.smartZoomEnabled = NO;
-        pdfController.zoomingSmallDocumentsEnabled = YES;
-        pdfController.scrollingEnabled = YES;
-        pdfController.scrollOnTapPageEndEnabled = YES;
-        pdfController.textSelectionEnabled = YES;
-        pdfController.imageSelectionEnabled = YES;
-        pdfController.passwordDialogEnabled = YES;
-        pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
-        pdfController.scrollDirection = PSPDFScrollDirectionVertical;
-        pdfController.renderAnimationEnabled = NO;
-//        pdfController.HUDViewMode = PSPDFHUDViewNever;
-//        pdfController.useParentNavigationBar = YES;
-        pdfController.toolbarEnabled = YES;
-        pdfController.pageTransition = PSPDFPageScrollContinuousTransition;
-        
+        // show file
+        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:newDocument];
         return pdfController;
     }]];
+    
 
     // Check that annotations are there, links work.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
