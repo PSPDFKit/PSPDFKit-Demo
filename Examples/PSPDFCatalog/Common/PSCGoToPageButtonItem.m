@@ -34,7 +34,7 @@ const char kPSCAlertViewKey;
 }
 
 - (void)action:(PSPDFBarButtonItem *)sender {
-    [[self class] dismissPopoverAnimated:YES];
+    [self.class dismissPopoverAnimated:YES];
 
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to Page") message:nil];
     websitePrompt.tintColor = [self.pdfController alertViewTintColor];
