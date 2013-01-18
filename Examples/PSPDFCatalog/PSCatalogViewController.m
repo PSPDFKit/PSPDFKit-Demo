@@ -1254,6 +1254,13 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"FreeText annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 2;
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction with CMYK images" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 
@@ -1398,6 +1405,27 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFProcessor PPTX (Microsoft Office) conversion" block:^UIViewController *{
+        NSURL *URL = [NSURL fileURLWithPath:@"/Users/steipete/Documents/Projects/PSPDFKit_meta/converts/Neu_03_VZ3_Introduction.pptx"];
+        NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
+        [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
+            if (error) {
+                [PSPDFProgressHUD dismiss];
+                [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+            }else {
+                // generate document and show it
+                [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
+                PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:fileURL];
+                PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+                [self.navigationController pushViewController:pdfController animated:YES];
+            }
+        }];
+        return nil;
+    }]];
+    [content addObject:textExtractionSection];
+
 #endif
 
     [content addObject:testSection];
@@ -1492,7 +1520,7 @@ const char kPSCAlertViewKey;
     }
 
     // cache the keyboard. (optional; makes search much more reactive)
-    dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
+    //dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
 }
 
 // Support for iOS5. iOS6 does this differently and also correct by default.
