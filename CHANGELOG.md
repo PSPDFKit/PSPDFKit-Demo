@@ -2,6 +2,15 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.2 - 18/January/2013__
+
+*  PSPDFScrollView will now move up if a keyboard is displayed.
+*  Free Text annotation now have sensible defaults when created in code. (Helvetica, font-size 20)
+*  Several tweaks for PSPDFProcessor PDF from web/office files generation.
+*  Fixes a potential crash in the iPhone popover controller.
+*  Fixes in the annotation selection handling logic.
+*  Fixes a minor UX issue where Open In... could result in a second tap needed to activate.
+
 __v2.7.1 - 17/January/2013__
 
 *  Note annotation flattening.

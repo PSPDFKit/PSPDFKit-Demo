@@ -55,4 +55,7 @@
 // NOP.
 @property (nonatomic, readwrite, strong) Class popoverBackgroundViewClass;
 
+/// Action that is invoked before the popover hides. (programmatially or via user action)
+@property (nonatomic, copy) dispatch_block_t popoverWillDismissAction;
+
 @end
