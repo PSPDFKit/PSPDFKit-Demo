@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFAnnotationController Class Reference</title>
+		<title>PSPDFFreeTextAnnotationView Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFAnnotationController Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFFreeTextAnnotationView Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -26,6 +26,8 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
 	
 	
 	
@@ -36,19 +38,22 @@
 	
 	
 	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/textView">&nbsp;&nbsp;&nbsp;&nbsp;textView</option>
+	
+	
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/clearCache">&nbsp;&nbsp;&nbsp;&nbsp;- clearCache</option>
+	<option value="//api/name/endEditing">&nbsp;&nbsp;&nbsp;&nbsp;- endEditing</option>
 	
-	<option value="//api/name/createAnnotationViewForAnnotation:frame:">&nbsp;&nbsp;&nbsp;&nbsp;- createAnnotationViewForAnnotation:frame:</option>
+	<option value="//api/name/initWithAnnotation:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithAnnotation:</option>
 	
-	<option value="//api/name/dequeueViewFromCacheForAnnotation:class:">&nbsp;&nbsp;&nbsp;&nbsp;- dequeueViewFromCacheForAnnotation:class:</option>
-	
-	<option value="//api/name/recycleAnnotationView:">&nbsp;&nbsp;&nbsp;&nbsp;- recycleAnnotationView:</option>
+	<option value="//api/name/startEditing">&nbsp;&nbsp;&nbsp;&nbsp;- startEditing</option>
 	
 	
 	
@@ -59,14 +64,12 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Cache">Cache</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
 	
 </ul></li>
 
@@ -74,19 +77,23 @@
 
 
 
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/textView">textView</a></span></li>
+	
+</ul></li>
+
 
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/clearCache">clearCache</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/endEditing">endEditing</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/createAnnotationViewForAnnotation:frame:">createAnnotationViewForAnnotation:frame:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithAnnotation:">initWithAnnotation:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dequeueViewFromCacheForAnnotation:class:">dequeueViewFromCacheForAnnotation:class:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/recycleAnnotationView:">recycleAnnotationView:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/startEditing">startEditing</a></span></li>
 	
 </ul></li>
 
@@ -95,7 +102,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFAnnotationController Class Reference" name="top"></a>
+				<a title="PSPDFFreeTextAnnotationView Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -104,7 +111,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFAnnotationController Class Reference</h1>
+						<h1 class="title title-header">PSPDFFreeTextAnnotationView Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -112,13 +119,24 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value"><a href="../Classes/PSPDFHostingAnnotationView.html">PSPDFHostingAnnotationView</a> : <a href="../Classes/PSPDFGenericAnnotationView.html">PSPDFGenericAnnotationView</a> : UIView</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UITextViewDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFAnnotationController.h</td>
+	<td class="specification-value">PSPDFFreeTextAnnotationView.h</td>
 </tr>
 						</tbody></table></div>
 					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Free Text View. Allows inline text editing.</p>
+					</div>
 					
 					
 					
@@ -129,47 +147,37 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						<a title="Cache" name="task_Cache"></a>
-						<h3 class="subsubtitle task-title">Cache</h3>
+						
+						
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/recycleAnnotationView:">&ndash;&nbsp;recycleAnnotationView:</a></code>
-		<span class="tooltip"><p>Enqueues a annotationView for later reuse</p></span>
+		<code><a href="#//api/name/initWithAnnotation:">&ndash;&nbsp;initWithAnnotation:</a></code>
+		<span class="tooltip"><p>Designated initializer.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/dequeueViewFromCacheForAnnotation:class:">&ndash;&nbsp;dequeueViewFromCacheForAnnotation:class:</a></code>
-		<span class="tooltip"><p>Dequeues an annotation view, if available from the cache.
-If there&rsquo;s a match with the current annotation, this view is picked in favor of a random cached view.</p></span>
+		<code><a href="#//api/name/startEditing">&ndash;&nbsp;startEditing</a></code>
+		<span class="tooltip"><p>Start editing, shows the keyboard.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/clearCache">&ndash;&nbsp;clearCache</a></code>
-		<span class="tooltip"><p>Clears all cached objects</p></span>
+		<code><a href="#//api/name/endEditing">&ndash;&nbsp;endEditing</a></code>
+		<span class="tooltip"><p>Ends editing, hides the keyboard</p></span>
 	</span>
 	
 	
-</li>
-						</ul>
-						
-						
-						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
-						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
-
-						<ul class="task-list">
-							<li>
+</li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/createAnnotationViewForAnnotation:frame:">&ndash;&nbsp;createAnnotationViewForAnnotation:frame:</a></code>
-		<span class="tooltip"><p>Annotation factory for built-in types.
-Can be overridden, but usually reacting to the various annotation-delegate methods is enough.</p></span>
+		<code><a href="#//api/name/textView">&nbsp;&nbsp;textView</a></code>
+		<span class="tooltip"><p>Internally used TextView.</p></span>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -180,6 +188,46 @@ Can be overridden, but usually reacting to the various annotation-delegate metho
 					
 					
 					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/textView" title="textView"></a>
+	<h3 class="subsubtitle method-title">textView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Internally used TextView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UITextView *textView</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFFreeTextAnnotationView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
 					
 					
 					
@@ -189,17 +237,17 @@ Can be overridden, but usually reacting to the various annotation-delegate metho
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/clearCache" title="clearCache"></a>
-	<h3 class="subsubtitle method-title">clearCache</h3>
+	<a name="//api/name/endEditing" title="endEditing"></a>
+	<h3 class="subsubtitle method-title">endEditing</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Clears all cached objects</p>
+		<p>Ends editing, hides the keyboard</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (void)clearCache</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)endEditing</code></div>
 	
 	
 	
@@ -216,25 +264,24 @@ Can be overridden, but usually reacting to the various annotation-delegate metho
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAnnotationController.h</code><br />
+		<code class="declared-in-ref">PSPDFFreeTextAnnotationView.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/createAnnotationViewForAnnotation:frame:" title="createAnnotationViewForAnnotation:frame:"></a>
-	<h3 class="subsubtitle method-title">createAnnotationViewForAnnotation:frame:</h3>
+	<a name="//api/name/initWithAnnotation:" title="initWithAnnotation:"></a>
+	<h3 class="subsubtitle method-title">initWithAnnotation:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Annotation factory for built-in types.
-Can be overridden, but usually reacting to the various annotation-delegate methods is enough.</p>
+		<p>Designated initializer.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)createAnnotationViewForAnnotation:(PSPDFAnnotation *)<em>annotation</em> frame:(CGRect)<em>annotationRect</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (id)initWithAnnotation:(PSPDFFreeTextAnnotation *)<em>freeTextAnnotation</em></code></div>
 	
 	
 	
@@ -251,25 +298,24 @@ Can be overridden, but usually reacting to the various annotation-delegate metho
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAnnotationController.h</code><br />
+		<code class="declared-in-ref">PSPDFFreeTextAnnotationView.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/dequeueViewFromCacheForAnnotation:class:" title="dequeueViewFromCacheForAnnotation:class:"></a>
-	<h3 class="subsubtitle method-title">dequeueViewFromCacheForAnnotation:class:</h3>
+	<a name="//api/name/startEditing" title="startEditing"></a>
+	<h3 class="subsubtitle method-title">startEditing</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Dequeues an annotation view, if available from the cache.
-If there&rsquo;s a match with the current annotation, this view is picked in favor of a random cached view.</p>
+		<p>Start editing, shows the keyboard.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (UIView&lt;PSPDFAnnotationView&gt; *)dequeueViewFromCacheForAnnotation:(PSPDFAnnotation *)<em>annotation</em> class:(Class)<em>annotationViewClass</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)startEditing</code></div>
 	
 	
 	
@@ -286,41 +332,7 @@ If there&rsquo;s a match with the current annotation, this view is picked in fav
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAnnotationController.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/recycleAnnotationView:" title="recycleAnnotationView:"></a>
-	<h3 class="subsubtitle method-title">recycleAnnotationView:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Enqueues a annotationView for later reuse</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (void)recycleAnnotationView:(id&lt;PSPDFAnnotationView&gt;)<em>annotationView</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFAnnotationController.h</code><br />
+		<code class="declared-in-ref">PSPDFFreeTextAnnotationView.h</code><br />
 	</div>				
 	
 	
