@@ -7,6 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLongPressGestureRecognizer.h"
+#import "PSPDFKeyboardAvoidingScrollView.h"
 
 @protocol PSPDFAnnotationView;
 @class PSPDFDocument, PSPDFPageView, PSPDFViewController, PSPDFLoupeView;
@@ -30,7 +31,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 - (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
 - (void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;
  */
-@interface PSPDFScrollView : UIScrollView <UIScrollViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
+@interface PSPDFScrollView : PSPDFKeyboardAvoidingScrollView <UIScrollViewDelegate, PSPDFLongPressGestureRecognizerDelegate>
 
 // Designated initializer.
 - (id)initWithFrame:(CGRect)frame;

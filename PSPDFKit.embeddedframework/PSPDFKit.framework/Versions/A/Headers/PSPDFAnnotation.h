@@ -224,7 +224,7 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 /**
  Returns YES if a custom appearance stream is attached to this annotation.
  
- An apperance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for apearance streams, currently only for stamp annotations and that only under certain conditions. Appearance streams generally are not very useful in the annotation area, and PSPDFKit can't write annotation streams back into PDF.
+ An apperance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for apearance streams, currently only for stamp/ink annotations and that only under certain conditions.
  */
 @property (nonatomic, assign, readonly) BOOL hasAppearanceStream;
 

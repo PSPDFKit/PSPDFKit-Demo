@@ -75,7 +75,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, assign) CGSize renderSize;
 
 /// Calculated scale. Readonly.
-@property (nonatomic, assign, readonly) CGFloat pdfScale;
+@property (nonatomic, assign, readonly) CGFloat PDFScale;
 
 /// Is view currently rendering (either contentView or renderView)
 @property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
