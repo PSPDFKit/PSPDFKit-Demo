@@ -23,4 +23,10 @@
 /// Font size as defined in the DA appearance string.
 @property (nonatomic, assign) CGFloat fontSize;
 
+/// Return a default font size if not defined in the annotation.
+- (CGFloat)defaultFontSize;
+
+/// Return a default font name (Helvetica) if not defined in the annotation.
+- (NSString *)defaultFontName;
+
 @end

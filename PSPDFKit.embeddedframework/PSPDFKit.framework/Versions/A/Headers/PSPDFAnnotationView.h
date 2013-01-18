@@ -23,6 +23,9 @@
 /// Allows adapting to the outer zoomScale. Re-set after zooming.
 @property (nonatomic, assign) CGFloat zoomScale;
 
+/// Allows adapting to the initial pdfScale
+@property (nonatomic, assign) CGFloat PDFScale;
+
 /// Called when page will be displayed. Only available in pageCurl mode.
 - (void)willShowPage:(NSUInteger)page;
 

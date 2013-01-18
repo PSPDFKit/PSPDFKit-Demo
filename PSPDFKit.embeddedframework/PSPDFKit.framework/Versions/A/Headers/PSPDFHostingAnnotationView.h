@@ -11,4 +11,7 @@
 /// View that will render an annotation.
 @interface PSPDFHostingAnnotationView : PSPDFGenericAnnotationView <PSPDFRenderDelegate>
 
+/// Image View that shows the rendered annotation.
+@property (nonatomic, strong, readonly) UIImageView *annotationImageView;
+
 @end
