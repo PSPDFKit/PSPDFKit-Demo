@@ -1,10 +1,17 @@
-﻿/* General */
+﻿/*
+ Localization provided by Wordcrafts
+ The Mac OS X and iOS localization experts.
+ http://www.wordcrafts.de
+ */
+
+
+/* General */
 
 /* For dialogs yes buttons */
-"HockeyYes" = "Ja";
+"HockeyYes" = "Yes";
 
 /* For dialogs no buttons */
-"HockeyNo" = "Nej";
+"HockeyNo" = "No";
 
 /* For dialogs ok buttons */
 "HockeyOK" = "OK";
@@ -12,32 +19,31 @@
 /* Replacement for app name, if it could not be detected */
 "HockeyAppNamePlaceholder" = "This app";
 
-
 /* Crash */
 
 
 /* Crash dialog */
 
 /* Title showing in the alert box when crash report data has been found */
-"CrashDataFoundTitle" = "%@ kraschade";
+"CrashDataFoundTitle" = "%@ Unexpectedly Quit";
 
 /* Description explaining that crash data has been found and ask the user if the data might be uploaded to the developers server */
-"CrashDataFoundAnonymousDescription" = "Vill du skicka en anonym kraschrapport så att vi kan lösa felet?";
+"CrashDataFoundAnonymousDescription" = "Would you like to send an anonymous report so we can fix the problem?";
 
 /* Description explaining that crash data has been found and ask the user if the non anonymous data might be uplaoded to the developers server */
-"CrashDataFoundDescription" = "Vill du skicka en kraschrapport så att vi kan lösa felet?";
+"CrashDataFoundDescription" = "Would you like to send a report so we can fix the problem?";
 
 /* Alert box button if the users wants to send crash data always automatically */
-"CrashSendReportAlways" = "Skicka alltid";
+"CrashSendReportAlways" = "Always Send";
 
 /* Alert box button to send the crash report once */
-"CrashSendReport" = "Skicka rapport";
+"CrashSendReport" = "Send Report";
 
 /* Alert box button to decline sending the report */
-"CrashDontSendReport" = "Skicka inte";
+"CrashDontSendReport" = "Don't Send";
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
-"CrashReportSending" = "Skickar…";
+"CrashReportSending" = "Sending…";
 
 
 /* Update */
@@ -46,57 +52,57 @@
 /* Update Alert view */
 
 /* Update available */
-"UpdateAvailable" = "Uppdatering tillgänglig";
+"UpdateAvailable" = "Update available";
 
-"UpdateAlertTextWithAppVersion" = "%@ finns.";
+"UpdateAlertTextWithAppVersion" = "%@ is available.";
 
 "UpdateAlertMandatoryTextWithAppVersion" = "%@ is available and is a mandatory update!";
 
-"UpdateIgnore" = "Ignorera";
+"UpdateIgnore" = "Ignore";
 
-"UpdateShow" = "Visa";
+"UpdateShow" = "Show";
 
-"UpdateInstall" = "Installera";
+"UpdateInstall" = "Install";
 
 
 /* Update Details */
 
-"UpdateScreenTitle" = "Uppdatera";
+"UpdateScreenTitle" = "Update";
 
-"UpdateButtonCheck" = "FRÅGA";
+"UpdateButtonCheck" = "CHECK";
 
-"UpdateButtonSearching" = "FRÅGAR";
+"UpdateButtonSearching" = "CHECKING";
 
-"UpdateButtonUpdate" = "UPPDATERA";
+"UpdateButtonUpdate" = "UPDATE";
 
-"UpdateButtonInstalling" = "INSTALLERAR";
+"UpdateButtonInstalling" = "INSTALLING";
 
 "UpdateButtonOffline" = "OFFLINE";
 
-"UpdateInstalled" = "INSTALLERAD";
+"UpdateInstalled" = "INSTALLED";
 
 "UpdateVersion" = "Version";
 
-"UpdateShowPreviousVersions" = "Se tidigare versioner...";
+"UpdateShowPreviousVersions" = "Show previous versions...";
 
-"UpdateNoUpdateAvailableTitle" = "Ingen uppdatering tillgänglig";
+"UpdateNoUpdateAvailableTitle" = "No Update Available";
 
-"UpdateNoUpdateAvailableMessage" = "%@ är den senaste versionen.";
+"UpdateNoUpdateAvailableMessage" = "%@ is already the latest version.";
 
 "UpdateError" = "Error";
 
-"UpdateWarning" = "Varning";
+"UpdateWarning" = "Warning";
 
-"UpdateNoReleaseNotesAvailable" = "Inga releasenoteringar tillgängliga.";
+"UpdateNoReleaseNotesAvailable" = "No release notes available.";
 
 
 /* Update Authorization  */
 
-"UpdateAuthorizationProgress" = "Auktoriserar...";
+"UpdateAuthorizationProgress" = "Authorizing...";
 
-"UpdateAuthorizationOffline" = "Internetuppkoppling krävs!";
+"UpdateAuthorizationOffline" = "Internet connection required!";
 
-"UpdateAuthorizationDenied" = "Auktoriseringen nekades. Kontakta utvecklaren.";
+"UpdateAuthorizationDenied" = "Authorizing denied. Please contact the developer.";
 
 
 /* Update Expiry  */
@@ -106,7 +112,7 @@
 
 /* Update Simulator Warning */
 
-"UpdateSimulatorMessage" = "Hockey Update fungerar inte i Simulatorn.\nitms-services:// url schemat är implementerat men fungerar ej.";
+"UpdateSimulatorMessage" = "Hockey Update does not work in the Simulator.\nThe itms-services:// url scheme is implemented but nonfunctional.";
 
 
 /* Feedback */

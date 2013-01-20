@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -215,9 +215,9 @@
     NSString *userID = [[BITHockeyManager sharedHockeyManager].delegate
                         userIDForHockeyManager:[BITHockeyManager sharedHockeyManager]
                         componentManager:self];
-    if (self.userID) {
-      self.userID = userID;
+    if (userID) {
       availableViaDelegate = YES;
+      self.userID = userID;
     }
   }
   
@@ -251,8 +251,8 @@
                            userEmailForHockeyManager:[BITHockeyManager sharedHockeyManager]
                            componentManager:self];
     if (userEmail) {
-      self.userEmail = userEmail;
       availableViaDelegate = YES;
+      self.userEmail = userEmail;
       self.requireUserEmail = BITFeedbackUserDataElementDontShow;
     }
   }
@@ -264,6 +264,12 @@
   [self updateUserIDUsingDelegate];
   [self updateUserNameUsingDelegate];
   [self updateUserEmailUsingDelegate];
+
+  // if both values are shown via the delegates, we never ever did ask and will never ever ask for user data
+  if (self.requireUserName == BITFeedbackUserDataElementDontShow &&
+      self.requireUserEmail == BITFeedbackUserDataElementDontShow) {
+    self.didAskUserData = NO;
+  }
 }
 
 #pragma mark - Local Storage
@@ -508,6 +514,8 @@
 #pragma mark - User
 
 - (BOOL)askManualUserDataAvailable {
+  [self updateAppDefinedUserData];
+  
   if (self.requireUserName == BITFeedbackUserDataElementDontShow &&
       self.requireUserEmail == BITFeedbackUserDataElementDontShow)
     return NO;
@@ -516,6 +524,8 @@
 }
 
 - (BOOL)requireManualUserDataMissing {
+  [self updateAppDefinedUserData];
+  
   if (self.requireUserName == BITFeedbackUserDataElementRequired && !self.userName)
     return YES;
   
@@ -526,6 +536,8 @@
 }
 
 - (BOOL)isManualUserDataAvailable {
+  [self updateAppDefinedUserData];
+
   if ((self.requireUserName != BITFeedbackUserDataElementDontShow && self.userName) ||
       (self.requireUserEmail != BITFeedbackUserDataElementDontShow && self.userEmail))
     return YES;
@@ -784,26 +796,28 @@
         NSString *responseString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding: NSUTF8StringEncoding];
         BITHockeyLog(@"INFO: Received API response: %@", responseString);
         
-        NSError *error = NULL;
-        
-        NSDictionary *feedDict = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        
-        // server returned empty response?
-        if (error) {
-          [self reportError:error];
-        } else if (![feedDict count]) {
-          [self reportError:[NSError errorWithDomain:kBITFeedbackErrorDomain
-                                                code:BITFeedbackAPIServerReturnedEmptyResponse
-                                            userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned empty response.", NSLocalizedDescriptionKey, nil]]];
-        } else {
-          BITHockeyLog(@"INFO: Received API response: %@", responseString);
-          NSString *status = [feedDict objectForKey:@"status"];
-          if ([status compare:@"success"] != NSOrderedSame) {
+        if (responseString && [responseString dataUsingEncoding:NSUTF8StringEncoding]) {
+          NSError *error = NULL;
+          
+          NSDictionary *feedDict = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+          
+          // server returned empty response?
+          if (error) {
+            [self reportError:error];
+          } else if (![feedDict count]) {
             [self reportError:[NSError errorWithDomain:kBITFeedbackErrorDomain
-                                                  code:BITFeedbackAPIServerReturnedInvalidStatus
-                                              userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned invalid status.", NSLocalizedDescriptionKey, nil]]];
+                                                  code:BITFeedbackAPIServerReturnedEmptyResponse
+                                              userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned empty response.", NSLocalizedDescriptionKey, nil]]];
           } else {
-            [self updateMessageListFromResponse:feedDict];
+            BITHockeyLog(@"INFO: Received API response: %@", responseString);
+            NSString *status = [feedDict objectForKey:@"status"];
+            if ([status compare:@"success"] != NSOrderedSame) {
+              [self reportError:[NSError errorWithDomain:kBITFeedbackErrorDomain
+                                                    code:BITFeedbackAPIServerReturnedInvalidStatus
+                                                userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned invalid status.", NSLocalizedDescriptionKey, nil]]];
+            } else {
+              [self updateMessageListFromResponse:feedDict];
+            }
           }
         }
       }
@@ -889,7 +903,7 @@
 
 #pragma mark - UIAlertViewDelegate
 
-// invoke the selected action from the actionsheet for a location element
+// invoke the selected action from the action sheet for a location element
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
   
   _incomingMessagesAlertShowing = NO;

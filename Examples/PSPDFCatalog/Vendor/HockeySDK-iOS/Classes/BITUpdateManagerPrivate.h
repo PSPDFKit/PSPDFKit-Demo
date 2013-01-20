@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Peter Steinberger
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * Copyright (c) 2011 Andreas Linde.
  * All rights reserved.
  *
@@ -72,7 +72,7 @@
 // initiates app-download call. displays an system UIAlertView
 - (BOOL)initiateAppDownload;
 
-// checks wether this app version is authorized
+// checks whether this app version is authorized
 - (BOOL)appVersionIsAuthorized;
 
 // start checking for an authorization key

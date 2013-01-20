@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -37,14 +37,14 @@
 #import "BITHockeyHelper.h"
 
 
-@interface BITFeedbackComposeViewController () <BITFeedbackUserDataDelegate>
+@interface BITFeedbackComposeViewController () <BITFeedbackUserDataDelegate> {
+  UIStatusBarStyle _statusBarStyle;
+}
 
 @property (nonatomic, weak) BITFeedbackManager *manager;
 @property (nonatomic, strong) UITextView *textView;
 
 @property (nonatomic, strong) NSString *text;
-
-- (void)setUserDataAction;
 
 @end
 
@@ -166,6 +166,7 @@
   
   [super viewWillAppear:animated];
   
+  _statusBarStyle = [[UIApplication sharedApplication] statusBarStyle];
   [[UIApplication sharedApplication] setStatusBarStyle:(self.navigationController.navigationBar.barStyle == UIBarStyleDefault) ? UIStatusBarStyleDefault : UIStatusBarStyleBlackOpaque];
   
   [self.textView setFrame:self.view.frame];
@@ -199,6 +200,8 @@
   self.manager.currentFeedbackComposeViewController = nil;
   
 	[super viewWillDisappear:animated];
+
+  [[UIApplication sharedApplication] setStatusBarStyle:_statusBarStyle];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -228,6 +231,8 @@
   userController.delegate = self;
   
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:userController];
+  navController.navigationBar.barStyle = [self.manager barStyle];
+  navController.navigationBar.tintColor = [self.manager tintColor];
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   
   [self presentViewController:navController animated:YES completion:nil];

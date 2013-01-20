@@ -4,9 +4,9 @@
  *  Damian Morris <damian@moso.com.au>
  *  Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2008-2012 Plausible Labs Cooperative, Inc.
+ * Copyright (c) 2008-2013 Plausible Labs Cooperative, Inc.
  * Copyright (c) 2010 MOSO Corporation, Pty Ltd.
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -76,7 +76,7 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
  *
  * @return Returns the formatted result on success, or nil if an error occurs.
  */
-+ (NSString *)stringValueForCrashReport:(PLCrashReport *)report {
++ (NSString *)stringValueForCrashReport:(PLCrashReport *)report crashReporterKey:(NSString *)crashReporterKey {
 	NSMutableString* text = [NSMutableString string];
 	boolean_t lp64 = true; // quiesce GCC uninitialized value warning
     
@@ -173,18 +173,22 @@ static NSInteger binaryImageSort(id binary1, id binary2, void *context) {
     }
 
     {
-        NSString *reportGUID = @"[TODO]";
+        NSString *reportGUID = @"TODO";
         if ([report respondsToSelector:@selector(reportInfo)]) {
             if (report.hasReportInfo && report.reportInfo.reportGUID != nil)
                 reportGUID = report.reportInfo.reportGUID;
         }
-      
+
+        NSString *reporterKey = @"TODO";
+        if (crashReporterKey && [crashReporterKey length] > 0)
+            reporterKey = crashReporterKey;
+
         NSString *hardwareModel = @"???";
         if (report.hasMachineInfo && report.machineInfo.modelName != nil)
             hardwareModel = report.machineInfo.modelName;
 
         [text appendFormat: @"Incident Identifier: %@\n", reportGUID];
-        [text appendFormat: @"CrashReporter Key:   [TODO]\n"];
+        [text appendFormat: @"CrashReporter Key:   %@\n", reporterKey];
         [text appendFormat: @"Hardware Model:      %@\n", hardwareModel];
     }
     

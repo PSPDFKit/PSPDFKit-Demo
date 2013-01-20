@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Kent Sutherland
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -71,7 +71,11 @@
 
 - (void)logInvalidIdentifier:(NSString *)environment {
   if (!_appStoreEnvironment) {
-    NSLog(@"[HockeySDK] ERROR: The %@ is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!", environment);
+    if ([environment isEqualToString:@"liveIdentifier"]) {
+      NSLog(@"[HockeySDK] WARNING: The liveIdentifier is invalid! The SDK will be disabled when deployed to the App Store without setting a valid app identifier!");
+    } else {
+      NSLog(@"[HockeySDK] ERROR: The %@ is invalid! Please use the HockeyApp app identifier you find on the apps website on HockeyApp! The SDK is disabled!", environment);
+    }
   }
 }
 
@@ -102,15 +106,11 @@
     _appStoreEnvironment = NO;
     _startManagerIsInvoked = NO;
 
-    // check if we are really not in an app store environment
-    if ([[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"]) {
-      _appStoreEnvironment = NO;
-    } else {
+#if !TARGET_IPHONE_SIMULATOR
+    // check if we are really in an app store environment
+    if (![[NSBundle mainBundle] pathForResource:@"embedded" ofType:@"mobileprovision"]) {
       _appStoreEnvironment = YES;
     }
-    
-#if TARGET_IPHONE_SIMULATOR
-    _appStoreEnvironment = NO;
 #endif
 
     [self performSelector:@selector(validateStartManagerIsInvoked) withObject:nil afterDelay:0.0f];

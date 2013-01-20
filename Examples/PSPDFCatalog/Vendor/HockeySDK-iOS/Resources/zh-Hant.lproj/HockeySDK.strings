@@ -1,4 +1,11 @@
-﻿/* General */
+﻿/*
+ Localization provided by Wordcrafts
+ The Mac OS X and iOS localization experts.
+ http://www.wordcrafts.de
+ */
+
+
+/* General */
 
 /* For dialogs yes buttons */
 "HockeyYes" = "Yes";
@@ -7,11 +14,10 @@
 "HockeyNo" = "No";
 
 /* For dialogs ok buttons */
-"HockeyOK" = "確定";
+"HockeyOK" = "OK";
 
 /* Replacement for app name, if it could not be detected */
 "HockeyAppNamePlaceholder" = "This app";
-
 
 /* Crash */
 
@@ -19,25 +25,25 @@
 /* Crash dialog */
 
 /* Title showing in the alert box when crash report data has been found */
-"CrashDataFoundTitle" = "發現崩潰數據";
+"CrashDataFoundTitle" = "%@ Unexpectedly Quit";
 
 /* Description explaining that crash data has been found and ask the user if the data might be uploaded to the developers server */
-"CrashDataFoundAnonymousDescription" = "%@ 不正常退出。你能否匿名提供崩潰記錄以幫助我們解決問題？";
+"CrashDataFoundAnonymousDescription" = "Would you like to send an anonymous report so we can fix the problem?";
 
 /* Description explaining that crash data has been found and ask the user if the non anonymous data might be uplaoded to the developers server */
-"CrashDataFoundDescription" = "%@ 不正常退出。你能否名提供崩潰記錄以幫助我們解決問題？";
+"CrashDataFoundDescription" = "Would you like to send a report so we can fix the problem?";
 
 /* Alert box button if the users wants to send crash data always automatically */
-"CrashSendReportAlways" = "總是";
+"CrashSendReportAlways" = "Always Send";
 
 /* Alert box button to send the crash report once */
-"CrashSendReport" = "是";
+"CrashSendReport" = "Send Report";
 
 /* Alert box button to decline sending the report */
-"CrashDontSendReport" = "否";
+"CrashDontSendReport" = "Don't Send";
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
-"CrashReportSending" = "發送中…";
+"CrashReportSending" = "Sending…";
 
 
 /* Update */

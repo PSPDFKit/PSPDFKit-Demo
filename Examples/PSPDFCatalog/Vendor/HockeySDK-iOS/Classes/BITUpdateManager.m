@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Peter Steinberger
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * Copyright (c) 2011 Andreas Linde.
  * All rights reserved.
  *
@@ -584,43 +584,45 @@
   if ([responseData length]) {
     NSString *responseString = [[NSString alloc] initWithBytes:[responseData bytes] length:[responseData length] encoding: NSUTF8StringEncoding];
     
-    NSDictionary *feedDict = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-
-    // server returned empty response?
-    if (![feedDict count]) {
-      [self reportError:[NSError errorWithDomain:kBITUpdateErrorDomain
-                                            code:BITUpdateAPIServerReturnedEmptyResponse
-                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned empty response.", NSLocalizedDescriptionKey, nil]]];
-      return;
-    } else {
-      BITHockeyLog(@"INFO: Received API response: %@", responseString);
-      NSString *token = [[feedDict objectForKey:@"authcode"] lowercaseString];
-      failed = NO;
-      if ([[self authenticationToken] compare:token] == NSOrderedSame) {
-        // identical token, activate this version
-        
-        // store the new data
-        [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:kBITUpdateAuthorizedVersion];
-        [[NSUserDefaults standardUserDefaults] setObject:token forKey:kBITUpdateAuthorizedToken];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        self.requireAuthorization = NO;
-        self.blockingView = nil;
-        
-        // now continue with an update check right away
-        if (self.checkForUpdateOnLaunch) {
-          [self checkForUpdate];
-        }
+    if (responseString && [responseString dataUsingEncoding:NSUTF8StringEncoding]) {
+      NSDictionary *feedDict = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+      
+      // server returned empty response?
+      if (![feedDict count]) {
+        [self reportError:[NSError errorWithDomain:kBITUpdateErrorDomain
+                                              code:BITUpdateAPIServerReturnedEmptyResponse
+                                          userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned empty response.", NSLocalizedDescriptionKey, nil]]];
+        return;
       } else {
-        // different token, block this version
-        BITHockeyLog(@"INFO: AUTH FAILURE: %@", [self authenticationToken]);
-        
-        // store the new data
-        [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:kBITUpdateAuthorizedVersion];
-        [[NSUserDefaults standardUserDefaults] setObject:token forKey:kBITUpdateAuthorizedToken];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self showBlockingScreen:BITHockeyLocalizedString(@"UpdateAuthorizationDenied") image:@"authorize_denied.png"];
+        BITHockeyLog(@"INFO: Received API response: %@", responseString);
+        NSString *token = [[feedDict objectForKey:@"authcode"] lowercaseString];
+        failed = NO;
+        if ([[self authenticationToken] compare:token] == NSOrderedSame) {
+          // identical token, activate this version
+          
+          // store the new data
+          [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:kBITUpdateAuthorizedVersion];
+          [[NSUserDefaults standardUserDefaults] setObject:token forKey:kBITUpdateAuthorizedToken];
+          [[NSUserDefaults standardUserDefaults] synchronize];
+          
+          self.requireAuthorization = NO;
+          self.blockingView = nil;
+          
+          // now continue with an update check right away
+          if (self.checkForUpdateOnLaunch) {
+            [self checkForUpdate];
+          }
+        } else {
+          // different token, block this version
+          BITHockeyLog(@"INFO: AUTH FAILURE: %@", [self authenticationToken]);
+          
+          // store the new data
+          [[NSUserDefaults standardUserDefaults] setObject:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] forKey:kBITUpdateAuthorizedVersion];
+          [[NSUserDefaults standardUserDefaults] setObject:token forKey:kBITUpdateAuthorizedToken];
+          [[NSUserDefaults standardUserDefaults] synchronize];
+          
+          [self showBlockingScreen:BITHockeyLocalizedString(@"UpdateAuthorizationDenied") image:@"authorize_denied.png"];
+        }
       }
     }
     
@@ -729,7 +731,7 @@
 }
 
 
-// checks wether this app version is authorized
+// checks whether this app version is authorized
 - (BOOL)appVersionIsAuthorized {
   if (self.requireAuthorization && !_authenticationSecret) {
     [self reportError:[NSError errorWithDomain:kBITUpdateErrorDomain
@@ -840,6 +842,12 @@
     NSString *responseString = [[NSString alloc] initWithBytes:[_receivedData bytes] length:[_receivedData length] encoding: NSUTF8StringEncoding];
     BITHockeyLog(@"INFO: Received API response: %@", responseString);
     
+    if (!responseString || ![responseString dataUsingEncoding:NSUTF8StringEncoding]) {
+      self.receivedData = nil;
+      self.urlConnection = nil;
+      return;
+    }
+    
     NSError *error = nil;
     NSDictionary *json = (NSDictionary *)[NSJSONSerialization JSONObjectWithData:[responseString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
                                               
@@ -849,15 +857,14 @@
     if (![self isAppStoreEnvironment]) {
       NSArray *feedArray = (NSArray *)[json valueForKey:@"versions"];
       
-      self.receivedData = nil;
-      self.urlConnection = nil;
-      
       // remember that we just checked the server
       self.lastCheck = [NSDate date];
       
       // server returned empty response?
       if (![feedArray count]) {
         BITHockeyLog(@"WARNING: No versions available for download on HockeyApp.");
+        self.receivedData = nil;
+        self.urlConnection = nil;
         return;
       } else {
         _lastCheckFailed = NO;
@@ -916,6 +923,8 @@
                                           code:BITUpdateAPIServerReturnedEmptyResponse
                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:@"Server returned an empty response.", NSLocalizedDescriptionKey, nil]]];
   }
+  self.receivedData = nil;
+  self.urlConnection = nil;
 }
 
 - (BOOL)hasNewerMandatoryVersion {
@@ -990,7 +999,7 @@
 
 #pragma mark - UIAlertViewDelegate
 
-// invoke the selected action from the actionsheet for a location element
+// invoke the selected action from the action sheet for a location element
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
   if ([alertView tag] == 2) {
     (void)[self initiateAppDownload];

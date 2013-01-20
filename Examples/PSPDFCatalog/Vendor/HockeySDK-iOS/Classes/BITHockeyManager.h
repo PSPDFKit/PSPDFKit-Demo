@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Kent Sutherland
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -44,8 +44,11 @@
  This is the principal SDK class. It represents the entry point for the HockeySDK. The main promises of the class are initializing the SDK modules, providing access to global properties and to all modules. Initialization is divided into several distinct phases:
  
  1. Setup the [HockeyApp](http://hockeyapp.net/) app identifier and the optional delegate: This is the least required information on setting up the SDK and using it. It does some simple validation of the app identifier and checks if the app is running from the App Store or not. If the [Atlassian JMC framework](http://www.atlassian.com/jmc/) is found, it will disable its Crash Reporting module and configure it with the Jira configuration data from [HockeyApp](http://hockeyapp.net/).
- 2. Provides access to the SDK modules `BITCrashManager` and `BITUpdateManager`. This way all modules can be further configured to personal needs, if the defaults don't fit the requirements.
- 3. Start up all modules.
+ 2. Provides access to the SDK modules `BITCrashManager`, `BITUpdateManager`, and `BITFeedbackManager`. This way all modules can be further configured to personal needs, if the defaults don't fit the requirements.
+ 3. Configure each module.
+ 4. Start up all modules.
+ 
+ @warning You should **NOT** change any module configuration after calling `startManager`!
  
  Example:
     [[BITHockeyManager sharedHockeyManager]
@@ -104,6 +107,7 @@
  @see BITHockeyManagerDelegate
  @see BITCrashManagerDelegate
  @see BITUpdateManagerDelegate
+ @see BITFeedbackManagerDelegate
  @param appIdentifier The app identifier that should be used.
  @param delegate `nil` or the class implementing the option protocols
  */
@@ -138,6 +142,7 @@
  @see BITHockeyManagerDelegate
  @see BITCrashManagerDelegate
  @see BITUpdateManagerDelegate
+ @see BITFeedbackManagerDelegate
  @param betaIdentifier The app identifier for the _non_ app store (beta) configurations
  @param liveIdentifier The app identifier for the app store configurations.
  @param delegate `nil` or the class implementing the optional protocols
@@ -185,7 +190,7 @@
 
 
 /**
- Flag the determines wether the Crash Manager should be disabled
+ Flag the determines whether the Crash Manager should be disabled
  
  If this flag is enabled, then crash reporting is disabled and no crashes will
  be send.
@@ -211,7 +216,7 @@
 
 
 /**
- Flag the determines wether the Update Manager should be disabled
+ Flag the determines whether the Update Manager should be disabled
  
  If this flag is enabled, then checking for updates and submitting beta usage
  analytics will be turned off!
@@ -237,7 +242,7 @@
 
 
 /**
- Flag the determines wether the Feedback Manager should be disabled
+ Flag the determines whether the Feedback Manager should be disabled
  
  If this flag is enabled, then letting the user give feedback and
  get responses will be turned off!
