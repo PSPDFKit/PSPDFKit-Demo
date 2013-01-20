@@ -10,7 +10,7 @@
 /**
  PDF Stamp annotation
  
- PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using apperance streams.
+ PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
 
  @warning Classic text stamps won't be rendered in Apple's Preview.app (last tested with 10.8.2). Adobe Acrobat can display them.
 */

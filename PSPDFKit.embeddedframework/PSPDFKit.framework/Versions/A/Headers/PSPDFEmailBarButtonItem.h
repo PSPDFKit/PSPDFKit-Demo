@@ -21,9 +21,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
 /**
  Allows to send the whole PDF or the visible page(s) as PDF.
  
- If the PDF consists of multple files, a temporary PDF will be created merging all pages.
+ If the PDF consists of multiple files, a temporary PDF will be created merging all pages.
  
- To figure out the name, PSPDFDOcument's fileNamesWithDataDictionary will be used.
+ To figure out the name, PSPDFDocument's fileNamesWithDataDictionary will be used.
  */
 @interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem
 

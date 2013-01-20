@@ -23,7 +23,7 @@
 
 /**
  Return any annotations that should be displayed on that page.
- This method needs to be acessible FROM ANY THREAD.
+ This method needs to be accessible FROM ANY THREAD.
  
  You can block here and do your processing but try to cache the result, this method is called often. (e.g. on every zoom change/rerendering)
  

@@ -12,14 +12,14 @@
 /// Delegate for the PSPDFOutlineViewController.
 @protocol PSPDFOutlineViewControllerDelegate <NSObject>
 
-/// Called when we tapped on a cell in the outlinController.
+/// Called when we tapped on a cell in the outlineController.
 /// Return NO if event is not processed.
 - (BOOL)outlineController:(PSPDFOutlineViewController *)outlineController didTapAtElement:(PSPDFOutlineElement *)outlineElement;
 
 @end
 
 /**
- Outline (Table of Contents) view conroller.
+ Outline (Table of Contents) view conrroller.
  
  As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
  */
@@ -34,7 +34,7 @@
 /**
  How many lines should be displayed for a cell. Defaults to 4.
  
- Set this to 1 for PSPDFKit v1 behavior (tail trunication, one line)
+ Set this to 1 for PSPDFKit v1 behavior (tail truncation, one line)
  Set to 0 to show the full text, no matter how long the entry is.
  */
 @property (nonatomic, assign) NSUInteger maximumNumberOfLines;
@@ -42,8 +42,8 @@
 /// Left intent width. Defaults to 32.f.
 @property (nonatomic, assign) CGFloat outlineIntentLeftOffset;
 
-/// Intent multiplicator (will be added x times the intent level). Defaults to 15.f.
-@property (nonatomic, assign) CGFloat outlineIndentMultiplicator;
+/// Intent multiplier (will be added x times the intent level). Defaults to 15.f.
+@property (nonatomic, assign) CGFloat outlineIndentMultiplier;
 
 /// Delegate to communicate with PSPDFViewController.
 @property (nonatomic, weak) id<PSPDFOutlineViewControllerDelegate> delegate;

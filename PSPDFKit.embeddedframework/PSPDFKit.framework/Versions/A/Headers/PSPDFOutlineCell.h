@@ -21,7 +21,7 @@
 @interface PSPDFOutlineCell : UITableViewCell
 
 /// Dynamically calculates the height for a cell.
-+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplicator:(CGFloat)multiplicator;
++ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier;
 
 /// Delegate for cell button.
 @property (nonatomic, weak) id<PSPDFOutlineCellDelegate> delegate;
@@ -49,6 +49,6 @@
 @property (nonatomic, assign) CGFloat outlineIntentLeftOffset;
 
 /// Defaults to 15.f. Should be changed on PSPDFOutlineViewController.
-@property (nonatomic, assign) CGFloat outlineIndentMultiplicator;
+@property (nonatomic, assign) CGFloat outlineIndentMultiplier;
 
 @end

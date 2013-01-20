@@ -85,14 +85,14 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
  Add annotations at a specific page.
  
  PSPDFAnnotationParser will query all registered annotationProviders until one returns YES on addAnnotations.
- Will return false if no annotationProviders handled the annotation. (By default, the PSPDFFileAnnotationProvider will handle all annotation addings.)
+ Will return false if no annotationProviders handled the annotation. (By default, the PSPDFFileAnnotationProvider will handle all annotation additions.)
  
  If you're just interested in being notified, you can register a custom annotationProvider and set in the array before the file annotationProvider. Implement addAnnotations:forPage: and return NO. You'll be notified of all add operations.
  */
 - (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
 /**
- Will be called by PSPDF internally every time an annotatation is changed.
+ Will be called by PSPDF internally every time an annotation is changed.
  Call will be relayed to all annotationProviders.
  
  This method will be called on ALL annotations, not just the ones that you provided.
@@ -111,7 +111,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /// Usually you want to override the method in PSPDFFileAnnotationProvider instead.
 - (BOOL)saveAnnotationsWithError:(NSError **)error;
 
-/// Privided to the PSPDFAnnotationProviders via PSPDFAnnotationProviderChangeNotifier.
+/// Provided to the PSPDFAnnotationProviders via PSPDFAnnotationProviderChangeNotifier.
 /// Will update any visible annotation.
 /// If no objects were replace, you can set originalAnnotations to nil. Ensure that originalAnnotations is either nil or has the same item count as annotations.
 - (void)updateAnnotations:(NSArray *)annotations originalAnnotations:(NSArray *)originalAnnotations animated:(BOOL)animated;
@@ -125,7 +125,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 @interface PSPDFAnnotationParser (SubclassingHooks)
 
 /// Fast path, same as annotationsForPage:type: but with already opened pageRef.
-/// If you wanna override annotationsfForPage:type, override this instead.
+/// If you want to override annotationsfForPage:type, override this instead.
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type pageRef:(CGPDFPageRef)pageRef;
 
 /// Searches the annotation cache for annotations that have the dirty flag set.

@@ -37,7 +37,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
 };
 
 /// Global PSPDFKit log level.
-/// Note that PSPDFLogLevelVerbose will severly slow down the whole application.
+/// Note that PSPDFLogLevelVerbose will severely slow down the whole application.
 /// (e.g. Some lazy evaluated properties will be evaluated on the main thread)
 typedef NS_ENUM(NSInteger, PSPDFLogLevel) {
     PSPDFLogLevelNothing = 0,
@@ -128,7 +128,7 @@ extern CGFloat PSPDFSimulatorAnimationDragCoefficient(void);
 // Creates a default, 0.25sec long fade transition
 extern CATransition *PSPDFFadeTransition(void);
 
-// Creates a fade transition with 'duration' timimg.
+// Creates a fade transition with 'duration' timing.
 extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
 
 // Matches actionSheet style via barStyle.

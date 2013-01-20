@@ -27,7 +27,7 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 
 /// Frame of the glyph. Doesn't has pageRotation applied.
 /// To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.pageRotationTransform)
-/// (PSPDFWord etc do have conveniece methods for this)
+/// (PSPDFWord etc do have convenience methods for this)
 @property (nonatomic, assign) CGRect frame;
 
 /// Character content (usually a single character)

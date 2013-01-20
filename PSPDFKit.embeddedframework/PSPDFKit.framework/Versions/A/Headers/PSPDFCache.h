@@ -48,7 +48,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Check if all pages of a document are cached.
 - (BOOL)isDocumentCached:(PSPDFDocument *)document size:(PSPDFSize)size;
 
-/// Check if an individouble page of a document is cached.
+/// Check if an individual page of a document is cached.
 - (BOOL)isImageCachedForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size;
 
 /// Returns cached image of document. If not found, add to TOP of current caching queue.
@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 ///
 /// Note that PSPDFViewController will cache images in PSPDFSizeNative.
 ///
-/// Returns wether or not any preloading has to be done.
+/// Returns whether or not any preloading has to be done.
 - (BOOL)cacheThumbnailsForDocument:(PSPDFDocument *)aDocument;
 
 /// Stop document caching.

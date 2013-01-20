@@ -2,6 +2,20 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.3 - 20/January/2013__
+
+*  FreeText annotations are now editable inline.
+*  Improves stamp and signature rect placement (no longer places the rect outside of page boundaries)
+*  Drawing overlay is now transparent. You can restore this behavior with subclassing PSPDFDrawView and setting the backgroundColor to [UIColor colorWithWhite:1.0 alpha:0.5].
+*  When chaning the thickness of a drawing, the selection border will now automatically adapt itself to fit the new bounds.
+*  Renamed "Colors..." menu entry to "Color...".
+*  Fixes a potential issue with annotation rotation handling.
+*  Fixes a potential crash on stamp creation on iPhone.
+*  Fixes an issue where the drawing toolbar was added behind the HUD toolbar.
+*  Fixes an issue where PSPDFKit could end up displaying something like 'Page 2-3 of 2'.
+*  Fixes an issue where certain pages could be skipped with scroll to prev/nextPage in double page mode (via touching the borders).
+*  Fixes some typos and spelling mistakes.
+
 __v2.7.2 - 18/January/2013__
 
 *  PSPDFScrollView will now move up if a keyboard is displayed.

@@ -1,4 +1,4 @@
-// PSPDFAttributedLabel.h (originated as TTTAttributedLabel, renamed to prvevent naming conflicts)
+// PSPDFAttributedLabel.h (originated as TTTAttributedLabel, renamed to prevent naming conflicts)
 //
 // Copyright (c) 2011-2012 Mattt Thompson (http://mattt.me)
 // 
@@ -89,12 +89,12 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
 /**
  A dictionary containing the `NSAttributedString` attributes to be applied to links detected or manually added to the label text. The default link style is blue and underlined.
  
- @warning You must specify `linkAttributes` before setting autodecting or manually-adding links for these attributes to be applied.
+ @warning You must specify `linkAttributes` before setting autodetecting or manually-adding links for these attributes to be applied.
  */
 @property (nonatomic, copy) NSDictionary *linkAttributes;
 
 ///---------------------------------------
-/// @name Acccessing Text Style Attributes
+/// @name Accessing Text Style Attributes
 ///---------------------------------------
 
 /**
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
 @property (nonatomic, assign) CGFloat shadowRadius;
 
 ///--------------------------------------------
-/// @name Acccessing Paragraph Style Attributes
+/// @name Accessing Paragraph Style Attributes
 ///--------------------------------------------
 
 /**

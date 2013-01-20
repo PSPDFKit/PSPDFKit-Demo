@@ -81,7 +81,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
 
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
-/// Note: If the scrollview is currently decellerating,
+/// Note: If the scrollview is currently decelerating,
 /// this will show the TARGET rect, not the one that's currently animating.
 @property (nonatomic, assign, readonly) CGRect visibleRect;
 
@@ -122,7 +122,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
 
 /// Convert a view rect to PDF glyph rect.
-/// This is equilvalent to [self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]
+/// This is equivalent to [self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]
 - (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
 
 /// Get the glyphs/words on a specific page.
@@ -135,7 +135,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// @name Accessors
 
 /// Access parent PSPDFScrollView if available. (zoom controller)
-/// Note: this only lets you access the scrollView if it's in the view hiararchy.
+/// Note: this only lets you access the scrollView if it's in the view hierarchy.
 /// If we use pageCurl mode, we have a global scrollView which can be accessed with pdfController.pagingScrollView
 - (PSPDFScrollView *)scrollView;
 
@@ -200,7 +200,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
 - (NSArray *)menuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Returns availble UIMenuItems to change the color.
+/// Returns available UIMenuItems to change the color.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Called when a annotation was found ad the tapped location.
@@ -234,7 +234,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @end
 
 
-// Entends the UIScrollViewDelegate.
+// Extends the UIScrollViewDelegate.
 @interface PSPDFPageView (PSPDFScrollViewDelegateExtensions)
 
 - (void)pspdf_scrollView:(UIScrollView *)scrollView willZoomToScale:(float)scale animated:(BOOL)animated;
@@ -261,7 +261,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
 
 /// Render options that are used for the live-page rendering. (not for the cache)
-/// One way to ues this would be to customize what annotations types will be rendered with the pdf.
+/// One way to use this would be to customize what annotations types will be rendered with the pdf.
 /// See PSPDFPageRenderer for a list of options.
 - (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale;
 

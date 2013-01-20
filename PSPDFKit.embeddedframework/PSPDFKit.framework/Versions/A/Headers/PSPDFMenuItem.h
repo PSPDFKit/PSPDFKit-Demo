@@ -14,7 +14,7 @@
  If you use PSPDFMenuItem with the classic initWithTitle:selector initializer,
  this will work and be handled just like a UIMenuItem.
   
- @warning By design, PSPDFMenuItem will only work with *different* title names. Title is reqired to be > 0 and unique, even when images are used.
+ @warning By design, PSPDFMenuItem will only work with *different* title names. Title is required to be > 0 and unique, even when images are used.
  */
 @interface PSPDFMenuItem : UIMenuItem
 

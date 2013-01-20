@@ -20,7 +20,7 @@ extern CGSize kPSPDFNoteAnnotationViewFixedSize;
 /// Designated initializer.
 - (id)init;
 
-/// Custom HitTest because we have custom widht/height here.
+/// Custom HitTest because we have custom width/height here.
 - (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;
 - (CGRect)boundingBoxForPageViewBounds:(CGRect)pageBounds;
 

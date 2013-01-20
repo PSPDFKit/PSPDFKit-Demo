@@ -11,7 +11,7 @@
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
 @interface PSPDFActionSheet : UIActionSheet
 
-/// @name Inititalization
+/// @name Initialization
 
 /// Default initializer.
 - (id)initWithTitle:(NSString *)title;
@@ -41,7 +41,7 @@
 /// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.
 - (void)destroy;
 
-/// Call block when actionsheet gets dismissed.
+/// Call block when action sheet gets dismissed.
 @property (nonatomic, copy) void (^destroyBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
 
 @end

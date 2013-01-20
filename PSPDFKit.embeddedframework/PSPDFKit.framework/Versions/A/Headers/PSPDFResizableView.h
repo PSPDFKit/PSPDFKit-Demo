@@ -10,19 +10,31 @@
 
 @class PSPDFResizableView;
 
+///
 /// Delegate to be notified on session begin/end and frame changes.
+///
 @protocol PSPDFResizableViewDelegate <NSObject>
 
 @optional
 
-/// The editing session has begin
+/// The editing session has begun.
 - (void)resizableViewDidBeginEditing:(PSPDFResizableView *)resizableView;
 
 /// Called after frame change.
 - (void)resizableViewChangedFrame:(PSPDFResizableView *)resizableView;
 
-/// The editing session has ended
+/// The editing session has ended.
 - (void)resizableViewDidEndEditing:(PSPDFResizableView *)resizableView;
+
+@end
+
+///
+/// If trackedView responds to this delegate, we will set it.
+///
+@protocol PSPDFResizableTrackedViewDelegate <NSObject>
+
+/// The resizable tracker, if currently available.
+@property (nonatomic, weak) PSPDFResizableView *resizableView;
 
 @end
 
@@ -39,11 +51,13 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
     PSPDFSelectionBorderKnobTypeBottomRight
 };
 
+///
 /// Handles view selection with resize knobs.
+///
 @interface PSPDFResizableView : UIView <PSPDFLongPressGestureRecognizerDelegate>
 
 /// Designated initializer.
-/// This will call self.trackedView, so trackedView is the place where you'd wanna override to dynamically set allowResizing.
+/// This will call self.trackedView, so trackedView is the place where you'd want to override to dynamically set allowResizing.
 - (id)initWithTrackedView:(UIView *)trackedView;
 
 /// View that will be changed on selection change.
@@ -61,6 +75,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 
 /// Set minimum allowed width (unless the view is smaller to begin width). Default is 44.0.
 @property (nonatomic, assign) CGFloat minWidth;
+
 /// Set minimum allowed height (unless the view is smaller to begin width). Default is 44.0.
 @property (nonatomic, assign) CGFloat minHeight;
 

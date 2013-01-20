@@ -36,7 +36,7 @@
 /// Set Page, animated.
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
 
-/// Explictely reload the view.
+/// Explicitly reload the view.
 - (void)reloadData;
 
 @end

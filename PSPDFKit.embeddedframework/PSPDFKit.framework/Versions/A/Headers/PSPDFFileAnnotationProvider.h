@@ -44,7 +44,7 @@
 /// Will add the annotation to the current annotation array. Will accept any annotations.
 - (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
-/// Removes all annotation and re-evalutes the document on next access.
+/// Removes all annotation and re-evaluates the document on next access.
 - (void)clearCache;
 
 /// Try to load annotations from file and set them if successful.

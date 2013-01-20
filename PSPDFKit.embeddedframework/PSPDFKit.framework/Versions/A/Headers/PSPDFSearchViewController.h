@@ -21,8 +21,8 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
     PSPDFSearchStatusCancelled
 };
 
-// Default value is 2. You might wanna change this for asian languages.
-// (In the latin alphabeth; searching for a single character is of not much use)
+// Default value is 2. You might want to change this for asian languages.
+// (In the latin alphabet; searching for a single character is of not much use)
 extern NSUInteger kPSPDFMinimumSearchLength;
 
 /// pdf search controller.
@@ -42,10 +42,10 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// You can change attributes (e.g. barStyle) but don't change the delegate!
 @property (nonatomic, strong, readonly) UISearchBar *searchBar;
 
-/// Current search status. KVO ovserveable.
+/// Current search status. KVO observable.
 @property (nonatomic, assign, readonly) PSPDFSearchStatus searchStatus;
 
-/// Clears highlights when controller disappeares. Defaults to NO.
+/// Clears highlights when controller disappears. Defaults to NO.
 @property (nonatomic, assign) BOOL clearHighlightsWhenClosed;
 
 /// Defaults to 600. A too high number will be slow.
