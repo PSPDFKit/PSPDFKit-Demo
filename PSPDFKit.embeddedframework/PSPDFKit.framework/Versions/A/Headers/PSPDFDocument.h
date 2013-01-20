@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
  Internally it might come from several different sources, files or data.
  
  Ensure that a document is only opened within *one* PSPDFViewController at a time.
- Documents fully support copy or serialiation.
+ Documents fully support copy or serialization.
  
  To speed up PSPDFViewController display, you can invoke fillCache on any thread. Most methods are thread safe. If you change settings here while the document is already being displayed, you most likely need to call reloadData on  PSPDFViewController to refresh.
  
@@ -92,7 +92,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Returns the URL corresponding to the fileIndex
 - (NSURL *)URLForFileIndex:(NSInteger)fileIndex;
 
-/// Returs a NSURL files array with the base path already added (if there is one)
+/// Returns a NSURL files array with the base path already added (if there is one)
 - (NSArray *)filesWithBasePath;
 
 /**
@@ -285,7 +285,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /**
  Will clear all cached objects (annotations, pageCount, ouline, textParser, ...)
 
- This is called implicitely if you change the files array or append a file.
+ This is called implicitly if you change the files array or append a file.
  
  Important! Unless you disable it, PSPDFKit also has an image cache who is not affected by this. If you replace the PDF document with new content, you also need to clear the image cache:
  [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
@@ -356,7 +356,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Note: only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL allowsPrinting;
 
-/// Was the PDF file encryted at file creation time?
+/// Was the PDF file encrypted at file creation time?
 /// Note: only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL isEncrypted;
 
@@ -399,7 +399,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Can be used to calculate from the document provider page to the PSPDFDocument page.
 - (NSUInteger)pageOffsetForDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Get an array of documentProviers to easily manage documents with multiple files.
+/// Get an array of documentProviders to easily manage documents with multiple files.
 @property (nonatomic, copy, readonly) NSArray *documentProviders;
 
 /// Document Parser is per file, so might return the same parser for different pages.

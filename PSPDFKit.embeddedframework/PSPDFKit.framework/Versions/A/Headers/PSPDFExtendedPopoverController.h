@@ -16,7 +16,7 @@
 /// e.g. Used to improve animation of the keyboard dismissing.
 @interface PSPDFExtendedPopoverController : UIPopoverController
 
-/// Action that is invoked before the popover hides. (programmatially or via user action)
+/// Action that is invoked before the popover hides. (programmatically or via user action)
 @property (nonatomic, copy) dispatch_block_t popoverWillDismissAction;
 
 /// Call to manually invoke delegate sending.

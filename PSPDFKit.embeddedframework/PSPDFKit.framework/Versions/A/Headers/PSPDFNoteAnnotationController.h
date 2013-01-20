@@ -30,7 +30,7 @@
 /// For Note annotations, special options will be displayed.
 @interface PSPDFNoteAnnotationController : PSPDFBaseViewController <PSPDFStyleable>
 
-/// Designated initalizer.
+/// Designated Initializer.
 - (id)initWithAnnotation:(PSPDFAnnotation *)annotation editable:(BOOL)allowEditing;
 
 /// Attached annotation.

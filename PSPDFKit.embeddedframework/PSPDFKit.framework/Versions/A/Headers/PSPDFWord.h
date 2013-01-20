@@ -10,8 +10,8 @@
 /// Represents a word. Formed out of (usually) multiple glyphs.
 @interface PSPDFWord : NSObject <NSCopying, NSCoding>
 
-/// Initalize with glyphs (PSPDFGlyph).
-/// As an optimizations, only the first and last glyph will be used for frmae calculations.
+/// Initialize with glyphs (PSPDFGlyph).
+/// As an optimizations, only the first and last glyph will be used for frame calculations.
 - (id)initWithGlyphs:(NSArray *)wordGlyphs;
 
 /// Initialize with word frame.

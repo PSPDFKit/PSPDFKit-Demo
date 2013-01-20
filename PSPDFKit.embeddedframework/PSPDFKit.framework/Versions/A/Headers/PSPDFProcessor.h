@@ -39,9 +39,9 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 /// 'options' can also contain CGPDFContext options.
 - (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error;
 
-/// Generate a PDF from a PSPDFDOcument into data.
+/// Generate a PDF from a PSPDFDocument into data.
 /// 'options' can also contain CGPDFContext options.
-/// Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhautive memory usage. 10-20MB should be the maximum for safe usage.
+/// Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe usage.
 - (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options error:(NSError **)error;
 
 /**

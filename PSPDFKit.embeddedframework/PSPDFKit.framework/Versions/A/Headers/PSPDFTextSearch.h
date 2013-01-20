@@ -10,7 +10,7 @@
 
 @class PSPDFDocument, PSPDFTextSearch;
 
-/// Search status delegate. All delegates are guarranteed to be called within the main thread.
+/// Search status delegate. All delegates are guaranteed to be called within the main thread.
 @protocol PSPDFTextSearchDelegate <NSObject>
 
 @optional
@@ -37,7 +37,7 @@
 /// Initialize with the document;
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-/// Searches for text occurence. If document was not yet parsed, it will be now. Searches entire document.
+/// Searches for text occurrence. If document was not yet parsed, it will be now. Searches entire document.
 - (void)searchForString:(NSString *)searchTerm;
 
 /// Searches for text on the specified page ranges. If ranges is nil, will search entire document.

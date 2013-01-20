@@ -51,7 +51,7 @@
 
 @interface PSPDFLinkAnnotationView (SubclassingHooks)
 
-/// Called when the annotation firess
+/// Called when the annotation Explicitly
 - (void)touchUp;
 
 @end

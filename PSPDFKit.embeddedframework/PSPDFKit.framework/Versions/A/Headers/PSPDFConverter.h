@@ -59,7 +59,7 @@ extern CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize 
 /// helper to calculate new size for specific scale and size.
 extern CGSize PSPDFSizeForScale(CGSize size, CGFloat scale);
 
-/// Helper that aligns rectables depending on PSPDFRectAlignment. (usually used to center)
+/// Helper that aligns rectangles depending on PSPDFRectAlignment. (usually used to center)
 extern CGRect PSPDFAlignRectangles(CGRect alignee, CGRect aligner, PSPDFRectAlignment alignment);
 
 /// Alignment helper that allows offsets.

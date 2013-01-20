@@ -35,7 +35,7 @@ extern NSString *const kPSPDFPDFBox;                // Allows custom PDF box (if
 /// Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.
 + (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
-/// Renders a particular appearence stream (A PDF within a PDF) into a context.
+/// Renders a particular appearance stream (A PDF within a PDF) into a context.
 /// Highly experimental. Will return NO if rendering failed.
 + (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context;
 

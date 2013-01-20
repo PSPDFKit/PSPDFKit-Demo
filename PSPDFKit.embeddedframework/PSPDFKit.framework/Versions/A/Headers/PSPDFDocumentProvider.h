@@ -32,10 +32,10 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Initialize with a local file URL.
 - (id)initWithFileURL:(NSURL *)fileURL document:(PSPDFDocument *)document;
 
-/// Initalize with NSData. (can be memory or mapped data)
+/// Initialize with NSData. (can be memory or mapped data)
 - (id)initWithData:(NSData *)data document:(PSPDFDocument *)document;
 
-/// Initalize with CGDataProviderRef. (can be used for dynamic decryption)
+/// Initialize with CGDataProviderRef. (can be used for dynamic decryption)
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
 
 /// Referenced NSURL. If this is set, data is nil.
@@ -128,7 +128,7 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// A flag that indicates whether copying text is allowed
 @property (nonatomic, assign) BOOL allowsCopying;
 
-/// Was the PDF file encryted at file creation time?
+/// Was the PDF file encrypted at file creation time?
 @property (nonatomic, assign, readonly) BOOL isEncrypted;
 
 /// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
@@ -150,7 +150,7 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Return YES if metadata is already parsed.
 @property (nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
 
-/// Access the PDF title. (".pdf" will be trunicated)
+/// Access the PDF title. (".pdf" will be truncated)
 /// Note: if there's no title in the PDF metadata, the file name will be used.
 @property (nonatomic, copy, readonly) NSString *title;
 
