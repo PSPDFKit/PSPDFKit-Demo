@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 // Customize how a single page should be displayed.
 typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
-    PSPDFPageRenderingModeThumbailThenFullPage, // load cached page async
+    PSPDFPageRenderingModeThumbnailThenFullPage, // load cached page async
     PSPDFPageRenderingModeFullPage,             // load cached page async, no upscaled thumb
     PSPDFPageRenderingModeFullPageBlocking,     // load cached page directly
     PSPDFPageRenderingModeThumbnailThenRender,  // don't use cached page but thumb
@@ -110,10 +110,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Set current page, optionally animated. Page starts at 0. Returns NO if page is invalid (e.g. out of bounds).
 - (BOOL)setPage:(NSUInteger)page animated:(BOOL)animated;
 
-/// Scroll to next page. Will potentiall advance two pages in dualPage mode.
+/// Scroll to next page. Will potential advance two pages in dualPage mode.
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;
 
-/// Scroll to previous page. Will potentiall decrease two pages in dualPage mode.
+/// Scroll to previous page. Will potential decrease two pages in dualPage mode.
 - (BOOL)scrollToPreviousPageAnimated:(BOOL)animated;
 
 /// If we're in double page mode, this will return the current screen page, else it's equal to page.
@@ -148,14 +148,14 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /*
  Changing those settings will affect PDF rendering.
  Currently the PDF cache still does not yet honor those settings.
- You need to manually call [self reloadData] after changing those properites.
+ You need to manually call [self reloadData] after changing those properties.
 */
 
 /// Change the PDF content opacity. Defaults to 1 (100%)
 @property (nonatomic, assign) CGFloat renderContentOpacity;
 
 /// Multiplies a color to the PDF background color.
-/// Does not change anything if the pge color is black.
+/// Does not change anything if the page color is black.
 /// This is useful to ease reading on mostly white documents. Defaults to [UIColor whiteColor]. (white)
 /// Can not be set to nil.
 @property (nonatomic, strong) UIColor *renderBackgroundColor;
@@ -253,7 +253,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) PSPDFPageRenderingMode renderingMode;
 
 /// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
-/// NO will perform a generic zoom into the tap area. Defauts to YES.
+/// NO will perform a generic zoom into the tap area. Defaults to YES.
 @property (nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
 
 /// Enable/disable scrolling. can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
@@ -261,7 +261,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 /// This is useful if you want to invoke a "drawing mode". (e.g. Ink Annotation drawing)
-/// This also blocks programatically calls to scrollToPage.
+/// This also blocks programmatically calls to scrollToPage.
 /// Note: This might be disabled after a reloadData.
 @property (nonatomic, assign, getter=isViewLockEnabled) BOOL viewLockEnabled;
 
@@ -377,9 +377,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  Must be UIBarButtonItem or PSPDFBarButtonItem instances
  Defaults to (closeButtonItem) if view is presented modally.
  
- Note that it appears that UIKit limits the left toolbar size if spaces is low in the toolbar, potentially cutting off buttons
+ Note that it appears that UIKit limits the left toolbar size if space is low in the toolbar, potentially cutting off buttons
  in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to 
- fix this problem. It also appears that UIKit focues on the leftToolbar, the right one is cut of much later.
+ fix this problem. It also appears that UIKit focuses on the leftToolbar, the right one is cut off much later.
  This problem only appears on the iPad in portrait mode.
  You can also use updateSettingsForRotation to adapt the toolbar for portrait/landscape mode.
  */
@@ -396,8 +396,8 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Note: This has been renamed in PSPDFKit 2.4 from "additionalRightBarButtonItems" since it's now controllable where the icon gets placed.
 @property (nonatomic, copy) NSArray *additionalBarButtonItems; // defaults to nil
 
-/// Add your custom UIBarButtonItems so that they won't be automatically enabed/disabed.
-/// Note: You really want to add yout custom close/back button there, else the user might get stuck!
+/// Add your custom UIBarButtonItems so that they won't be automatically enabled/disabled.
+/// Note: You really want to add your custom close/back button there, else the user might get stuck!
 @property (nonatomic, copy) NSArray *barButtonItemsAlwaysEnabled;
 
 /// UIBarButtonItem doesn't support calculation of it's width, so we have to approximate.
@@ -433,7 +433,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet,
  and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ ... }); to set.
  
- You might just wanna override updateSettingsForRotation: and set your properties there.
+ You might just want to override updateSettingsForRotation: and set your properties there.
 */
 @property (nonatomic, assign) PSPDFPageTransition pageTransition;
 
@@ -499,7 +499,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
 @property (nonatomic, assign) CGFloat annotationAnimationDuration;
 
-/// If set to YES, a long-tap that ends on a page area that is not a text/image wil show a new menu to create annotations. Defaults to YES.
+/// If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
 /// If set to NO, there's no menu displayed and the loupe is simply hidden. Only works in PSPDFKit Annotate. New as of PSPDFKit 2.6.
 /// Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: delegate.
 @property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
@@ -507,14 +507,14 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// @name Class Accessors
 
-/// Return the pageView for a given page. Returns nil if page is not initalized (e.g. page is not visible.)
+/// Return the pageView for a given page. Returns nil if page is not Initialized (e.g. page is not visible.)
 /// Usually, using the delegates is a better idea to get the current page.
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
 /// Saves the popoverController if currently displayed. (KVO compliant, like almost all properties)
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
-/// Paging scroll view. (hosts scollviews for pdf)
+/// Paging scroll view. (hosts scroll views for PDF)
 /// If you want to customize this, override reloadData and set the properties after calling super.
 @property (nonatomic, strong, readonly) UIScrollView *pagingScrollView;
 
@@ -577,7 +577,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (BOOL)isFirstPage;
 
 /**
- Returns the topmost, active viewcontroller.
+ Returns the topmost, active view controller.
 
  If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto.
  (Try "return self" first)
@@ -612,7 +612,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (void)createToolbarAnimated:(BOOL)animated;
 - (void)updateToolbarAnimated:(BOOL)animated;
 
-/// Request to update a specific barButton. Might be more efficent than using createToolbar.
+/// Request to update a specific barButton. Might be more efficient than using createToolbar.
 - (void)updateBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;
 
 /// Can be subclassed to update grid spacing.
@@ -669,7 +669,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (UIStatusBarStyle)preferredStatusBarStyle;
 @end
 
-@interface PSPDFViewController (PSPDFDeprected)
+@interface PSPDFViewController (PSPDFDeprecated)
 
 @property (nonatomic, assign, getter=isPositionViewEnabled) BOOL positionViewEnabled __attribute__ ((deprecated("Use pageLabelEnabled instead")));
 /// As of PSPDFKit 2.4, page now returns the actual page value, and the old "page" has been replaced with screenPage.

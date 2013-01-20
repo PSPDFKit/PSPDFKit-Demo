@@ -135,7 +135,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// (Used to decide when it's best to tile pages in ContinuousScroll)
 @property (nonatomic, assign, getter=isAnimatingZoomIn, readonly) BOOL animatingZoomIn;
 
-// Internal use for smooth rotations. Don't call unless you know exactly whay you're doing.
+// Internal use for smooth rotations. Don't call unless you know exactly what you're doing.
 - (void)switchPages;
 
 // Call to manually re-center the content.

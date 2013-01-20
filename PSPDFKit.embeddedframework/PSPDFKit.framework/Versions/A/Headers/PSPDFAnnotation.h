@@ -64,7 +64,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
  Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.
  
- Ensure that custom sublcasses also correctly implement hash and isEqual.
+ Ensure that custom subclasses also correctly implement hash and isEqual.
 */
 @interface PSPDFAnnotation : PSPDFModel
 
@@ -108,7 +108,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
  (For performance considerations, you want to do this once, not every time drawInContext is called)
  
  This draws the annotation border.
- Some annotations handle borders differently, so decide in your supclass if you call [super drawInContext] or not.
+ Some annotations handle borders differently, so decide in your subclass if you call [super drawInContext] or not.
  */
 - (void)drawInContext:(CGContextRef)context;
 
@@ -168,7 +168,7 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 /// (Optional; PDF1.4, "NM" key)
 @property (nonatomic, copy) NSString *name;
 
-/// Date where the annotation was last modifed.
+/// Date where the annotation was last modified.
 /// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
 /// Will be updated by PSPDFKt as soon as a property is changed.
 @property (nonatomic, strong) NSDate *lastModified;
@@ -192,7 +192,7 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 /// Rectangle of specific annotation. (PDF coordinates)
 @property (nonatomic, assign) CGRect boundingBox;
 
-/// Rotation property (should be a multiple of 90, but there are exceptions, e.h. for stamp annotations)
+/// Rotation property (should be a multiple of 90, but there are exceptions, e.g. for stamp annotations)
 /// Defaults to 0. Allowed values are between 0 and 360.
 @property (nonatomic, assign) NSUInteger rotation;
 
@@ -224,7 +224,7 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 /**
  Returns YES if a custom appearance stream is attached to this annotation.
  
- An apperance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for apearance streams, currently only for stamp/ink annotations and that only under certain conditions.
+ An appearance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for appearance streams, currently only for stamp/ink annotations and that only under certain conditions.
  */
 @property (nonatomic, assign, readonly) BOOL hasAppearanceStream;
 

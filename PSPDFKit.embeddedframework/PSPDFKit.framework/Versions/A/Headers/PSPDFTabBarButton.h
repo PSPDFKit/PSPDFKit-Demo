@@ -26,7 +26,7 @@
 /// Minimum tab width. Defaults to 0.
 @property (nonatomic, assign) CGFloat minTabWidth;
 
-/// Maximm tab width. Defaults to 300.
+/// Maximum tab width. Defaults to 300.
 @property (nonatomic, assign) CGFloat maxTabWidth;
 
 @end

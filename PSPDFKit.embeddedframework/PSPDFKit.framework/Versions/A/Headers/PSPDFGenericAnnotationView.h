@@ -11,7 +11,9 @@
 
 @class PSPDFAnnotation;
 
+///
 /// Generic annotation view that listens on annotation changes.
+///
 @interface PSPDFGenericAnnotationView : UIView <PSPDFAnnotationView>
 
 /// Designated initializer.

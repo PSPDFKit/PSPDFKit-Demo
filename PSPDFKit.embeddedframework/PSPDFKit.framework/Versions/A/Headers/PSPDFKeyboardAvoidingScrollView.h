@@ -17,9 +17,12 @@
 
 /// Enable/Disable keyboard avoidance features. Defaults to YES.
 /// @warning Don't change this while isShowingKeyboard is YES, else 
-@property (nonatomic, assign, readonly) BOOL enableKeyboardAvoidance;
+@property (nonatomic, assign) BOOL enableKeyboardAvoidance;
 
 // Helper to find first responder.
 - (UIView *)findFirstResponderBeneathView:(UIView *)view;
+
+// Helper to resign first responder if the view is within the scrollView.
+- (BOOL)resignFirstResponderIfInsideView;
 
 @end

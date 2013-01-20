@@ -49,7 +49,7 @@
 /// Manually set image. use if you override class.
 - (void)setImage:(UIImage *)image animated:(BOOL)animated;
 
-/// Called when cell resizes. use in override class to re-positionize your content.
+/// Called when cell resizes. use in override class to re-position your content.
 - (void)setImageSize:(CGSize)imageSize;
 
 /// Internal static queue for thumbnail parsing.

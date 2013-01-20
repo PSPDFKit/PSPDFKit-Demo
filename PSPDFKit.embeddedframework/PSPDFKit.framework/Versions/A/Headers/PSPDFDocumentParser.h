@@ -45,7 +45,7 @@
 - (NSString *)objectDictionaryForPageIndex:(NSUInteger)pageIndex;
 - (NSString *)objectDictionaryForNumber:(NSUInteger)number;
 
-// Will return the PDF apperance stream and helper objects for the drawing operations inside drawingBlock.
+// Will return the PDF appearance stream and helper objects for the drawing operations inside drawingBlock.
 + (NSArray *)createAppearanceStreamForRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
 
 // Debugging feature

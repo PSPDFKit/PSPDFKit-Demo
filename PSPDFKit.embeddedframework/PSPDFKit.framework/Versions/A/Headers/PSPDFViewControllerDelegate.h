@@ -69,7 +69,7 @@
 /// Will be called after zooming animation is complete.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(UIScrollView *)scrollView;
 
-/// Will be called after zoom level has been changed, either programatically or manually.
+/// Will be called after zoom level has been changed, either programmatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
 /// Callback for a render operation. Will be called on a thread (since rendering is async)
@@ -77,7 +77,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Return a PSPDFDocument for a relative path.
-/// If this is unimplemented, we try to find the PDF ourself with using the current document's basePath.
+/// If this is unimplemented, we try to find the PDF ourselves with using the current document's basePath.
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
 /**

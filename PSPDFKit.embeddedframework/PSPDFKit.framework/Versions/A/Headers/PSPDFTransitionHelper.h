@@ -12,7 +12,7 @@
 
 @class PSPDFTransitionHelper, PSPDFViewController, PSPDFContentScrollView, PSPDFSinglePageViewController;
 
-// Helper to communiate with the transition viewController.
+// Helper to communicate with the transition viewController.
 @protocol PSPDFTransitionHelperDelegate <NSObject>
 
 - (PSPDFViewController *)pdfController;

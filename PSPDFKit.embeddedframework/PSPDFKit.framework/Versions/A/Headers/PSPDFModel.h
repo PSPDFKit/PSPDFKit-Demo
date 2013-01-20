@@ -76,7 +76,7 @@ extern NSString *const PSPDFModelJSONFormat;
 /// Override for legacy decoding support.
 - (id)initWithLegacyCoder:(NSCoder *)decoder;
 
-/// Hook to update variables after model has been loaded from dictionary/external represenation/copied.
+/// Hook to update variables after model has been loaded from dictionary/external representation/copied.
 ///
 /// Default implementation is empty. Always call super.
 - (void)didLoadModelInstance;

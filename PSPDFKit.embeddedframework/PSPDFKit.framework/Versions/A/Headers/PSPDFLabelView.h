@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
 
 @interface PSPDFLabelView (SubclassingHooks)
 
-// Override to change KVO ovservers
+// Override to change KVO observers
 - (NSArray *)KVOValues;
 
 @end

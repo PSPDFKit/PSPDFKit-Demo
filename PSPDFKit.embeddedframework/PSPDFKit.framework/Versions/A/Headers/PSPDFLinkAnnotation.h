@@ -36,7 +36,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Designated initializer for custom, at runtime created PSPDFLinkAnnotations.
 - (id)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
 
-/// Init with siteLinkTarget. Use this for custom pspdfkit:// annotatations that get parsed at runtime.
+/// Init with siteLinkTarget. Use this for custom pspdfkit:// annotations that get parsed at runtime.
 /// This will automatically set the linkAnnotationType.
 - (id)initWithSiteLinkTarget:(NSString *)siteLinkTarget;
 
@@ -67,11 +67,11 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
  annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
  // annotation frame is in PDF coordinate space. Use pageRect for the full page.
  annotation.boundingBox = [self.document pageInfoForPage:0].pageRect;
- // annotation.page/document is auomatically set.
+ // annotation.page/document is autodetecting set.
  [self.document.annotationParser addAnnotations:@[annotation] forPage:0];
  
  Note: Do not add NSURL-encoded strings to siteLinkTarget.(no %20 - real space!)
- If you convert a path fron NSURL, use [URL path] and NOT [url description]. (Actually, never use URL description, except when you're debugging)
+ If you convert a path from NSURL, use [URL path] and NOT [url description]. (Actually, never use URL description, except when you're debugging)
 */
 @property (nonatomic, copy) NSString *siteLinkTarget;
 

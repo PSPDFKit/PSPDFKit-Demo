@@ -124,7 +124,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 // helpers to lock/unlock the controller
 - (void)lockPDFController;
 
-// stayOnTop is a runtime tweak to make sure the toolbar stays above the pfController navigationBar.
+// stayOnTop is a runtime tweak to make sure the toolbar stays above the pdfController navigationBar.
 - (void)unlockPDFControllerAndEnsureToStayOnTop:(BOOL)stayOnTop;
 
 @end

@@ -12,7 +12,7 @@
 // Handles annotation cache and view creation
 @interface PSPDFAnnotationController : NSObject
 
-// Designated initalizer
+// Designated Initializer
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
 // Prepare annotation view
