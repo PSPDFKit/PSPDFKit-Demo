@@ -145,6 +145,7 @@ const char kPSCAlertViewKey;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
+        controller.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
 
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
