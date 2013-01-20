@@ -1,17 +1,23 @@
-﻿/* General */
+﻿/*
+ Localization provided by Wordcrafts
+ The Mac OS X and iOS localization experts.
+ http://www.wordcrafts.de
+ */
+
+
+/* General */
 
 /* For dialogs yes buttons */
-"HockeyYes" = "Evet";
+"HockeyYes" = "Yes";
 
 /* For dialogs no buttons */
-"HockeyNo" = "Yok";
+"HockeyNo" = "No";
 
 /* For dialogs ok buttons */
-"HockeyOK" = "Tamam";
+"HockeyOK" = "OK";
 
 /* Replacement for app name, if it could not be detected */
 "HockeyAppNamePlaceholder" = "This app";
-
 
 /* Crash */
 
@@ -19,25 +25,25 @@
 /* Crash dialog */
 
 /* Title showing in the alert box when crash report data has been found */
-"CrashDataFoundTitle" = "Hata raporu bulundu";
+"CrashDataFoundTitle" = "%@ Unexpectedly Quit";
 
 /* Description explaining that crash data has been found and ask the user if the data might be uploaded to the developers server */
-"CrashDataFoundAnonymousDescription" = "%@ beklenmeyen bir şekilde kapanmış. Bu hatayı gidermemizi kolaylaştırmak için anonim bir hata raporu göndermek ister misiniz?";
+"CrashDataFoundAnonymousDescription" = "Would you like to send an anonymous report so we can fix the problem?";
 
 /* Description explaining that crash data has been found and ask the user if the non anonymous data might be uplaoded to the developers server */
-"CrashDataFoundDescription" = "%@ beklenmeyen bir şekilde kapanmış. Bu hatayı gidermemizi kolaylaştırmak için bir hata raporu göndermek ister misiniz?";
+"CrashDataFoundDescription" = "Would you like to send a report so we can fix the problem?";
 
 /* Alert box button if the users wants to send crash data always automatically */
-"CrashSendReportAlways" = "Her seferinde gönder!";
+"CrashSendReportAlways" = "Always Send";
 
 /* Alert box button to send the crash report once */
-"CrashSendReport" = "Gönder!";
+"CrashSendReport" = "Send Report";
 
 /* Alert box button to decline sending the report */
-"CrashDontSendReport" = "Hayır";
+"CrashDontSendReport" = "Don't Send";
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
-"CrashReportSending" = "Gönderiliyor…";
+"CrashReportSending" = "Sending…";
 
 
 /* Update */

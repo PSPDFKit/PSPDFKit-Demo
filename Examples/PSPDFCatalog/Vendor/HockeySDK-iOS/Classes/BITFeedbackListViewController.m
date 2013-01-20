@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -58,10 +58,11 @@
 #define BORDER_COLOR BIT_RGBCOLOR(215, 215, 215)
 
 
-@interface BITFeedbackListViewController () <BITFeedbackUserDataDelegate, BITAttributedLabelDelegate>
+@interface BITFeedbackListViewController () <BITFeedbackUserDataDelegate, BITFeedbackComposeViewControllerDelegate, BITAttributedLabelDelegate>
 
 @property (nonatomic, weak) BITFeedbackManager *manager;
 @property (nonatomic, strong) NSDateFormatter *lastUpdateDateFormatter;
+@property (nonatomic) BOOL userDataComposeFlow;
 
 @end
 
@@ -77,6 +78,7 @@
     
     _deleteButtonSection = -1;
     _userButtonSection = -1;
+    _userDataComposeFlow = NO;
     
     self.lastUpdateDateFormatter = [[NSDateFormatter alloc] init];
 		[self.lastUpdateDateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -169,7 +171,10 @@
   CGPoint contentOffset = self.tableView.contentOffset;
   
   [self.tableView reloadData];
-  if (contentSize.height > 0 && self.tableView.contentSize.height > contentSize.height && ![self isRefreshingWithNewControl])
+  if (contentSize.height > 0 &&
+      self.tableView.contentSize.height > self.tableView.frame.size.height &&
+      self.tableView.contentSize.height > contentSize.height &&
+      ![self isRefreshingWithNewControl])
     [self.tableView setContentOffset:CGPointMake(contentOffset.x, self.tableView.contentSize.height - contentSize.height + contentOffset.y) animated:NO];
   
   [self stopLoadingIndicator];
@@ -177,14 +182,30 @@
   [self.tableView flashScrollIndicators];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
+  if (self.userDataComposeFlow) {
+    self.userDataComposeFlow = NO;
+  }
   self.manager.currentFeedbackListViewController = self;
   
   [self.manager updateMessagesListIfRequired];
   
-  [self.tableView reloadData];
+  if ([self.manager numberOfMessages] == 0 &&
+      [self.manager askManualUserDataAvailable] &&
+      [self.manager requireManualUserDataMissing] &&
+      ![self.manager didAskUserData]
+      ) {
+    self.userDataComposeFlow = YES;
+    
+    BITFeedbackUserDataViewController *userController = [[BITFeedbackUserDataViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    userController.delegate = self;
+    
+    [self.navigationController pushViewController:userController animated:YES];
+  } else {
+    [self.tableView reloadData];
+  }
 
-  [super viewWillAppear:animated];
+  [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -201,6 +222,8 @@
   userController.delegate = self;
   
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:userController];
+  navController.navigationBar.barStyle = [self.manager barStyle];
+  navController.navigationBar.tintColor = [self.manager tintColor];
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   
   [self presentViewController:navController animated:YES completion:nil];
@@ -210,6 +233,8 @@
   BITFeedbackComposeViewController *composeController = [[BITFeedbackComposeViewController alloc] init];
   
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:composeController];
+  navController.navigationBar.barStyle = [self.manager barStyle];
+  navController.navigationBar.tintColor = [self.manager tintColor];
   navController.modalPresentationStyle = UIModalPresentationFormSheet;
   
   [self presentViewController:navController animated:YES completion:nil];
@@ -230,7 +255,7 @@
                                    ];
     [deleteAction setTag:0];
     [deleteAction setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [deleteAction showInView:self.view];
+    [deleteAction showInView:[self viewForShowingActionSheetOnPhone]];
   } else {
     UIAlertView *deleteAction = [[UIAlertView alloc] initWithTitle:BITHockeyLocalizedString(@"HockeyFeedbackListButonDeleteAllMessages")
                                                            message:BITHockeyLocalizedString(@"HockeyFeedbackListDeleteAllTitle")
@@ -243,17 +268,56 @@
   }
 }
 
+- (UIView*) viewForShowingActionSheetOnPhone {
+  //find the topmost presented viewcontroller
+  //and use its view
+  UIViewController* topMostPresentedViewController = self.view.window.rootViewController;
+  while(topMostPresentedViewController.presentedViewController) {
+    topMostPresentedViewController = topMostPresentedViewController.presentedViewController;
+  }
+  UIView* view = topMostPresentedViewController.view;
+  
+  if(nil == view) {
+    //hope for the best. Should work
+    //on simple view(controller) hierarchies
+    view = self.view;
+  }
+  
+  return view;
+}
 
 #pragma mark - BITFeedbackUserDataDelegate
 
 -(void)userDataUpdateCancelled {
-  [self dismissViewControllerAnimated:YES completion:^(void){}];
+  if (self.userDataComposeFlow) {
+    [self.navigationController popToViewController:self animated:YES];
+  } else {
+    [self dismissViewControllerAnimated:YES completion:^(void){}];
+  }
 }
 
 -(void)userDataUpdateFinished {
   [self.manager saveMessages];
   
-  [self dismissViewControllerAnimated:YES completion:^(void){}];
+  if (self.userDataComposeFlow) {
+    BITFeedbackComposeViewController *composeController = [[BITFeedbackComposeViewController alloc] init];
+    composeController.delegate = self;
+    
+    [self.navigationController pushViewController:composeController animated:YES];
+  } else {
+    [self dismissViewControllerAnimated:YES completion:^(void){}];
+  }
+}
+
+
+#pragma mark - BITFeedbackComposeViewControllerDelegate
+
+- (void)feedbackComposeViewControllerDidFinish:(BITFeedbackComposeViewController *)composeViewController {
+  if (self.userDataComposeFlow) {
+    [self.navigationController popToViewController:self animated:YES];
+  } else {
+    [self dismissViewControllerAnimated:YES completion:^(void){}];
+  }
 }
 
 
@@ -373,11 +437,11 @@
       if ([self.manager requireUserName] == BITFeedbackUserDataElementRequired ||
           ([self.manager requireUserName] == BITFeedbackUserDataElementOptional && [self.manager userName] != nil)
           ) {
-        title = [NSString stringWithFormat:BITHockeyLocalizedString(@"HockeyFeedbackListButonUserDataWithName"), [self.manager userName]];
+        title = [NSString stringWithFormat:BITHockeyLocalizedString(@"HockeyFeedbackListButonUserDataWithName"), [self.manager userName] ?: @"-"];
       } else if ([self.manager requireUserEmail] == BITFeedbackUserDataElementRequired ||
                  ([self.manager requireUserEmail] == BITFeedbackUserDataElementOptional && [self.manager userEmail] != nil)
                  ) {
-        title = [NSString stringWithFormat:BITHockeyLocalizedString(@"HockeyFeedbackListButonUserDataWithEmail"), [self.manager userEmail]];
+        title = [NSString stringWithFormat:BITHockeyLocalizedString(@"HockeyFeedbackListButonUserDataWithEmail"), [self.manager userEmail] ?: @"-"];
       } else if ([self.manager requireUserName] == BITFeedbackUserDataElementOptional) {
         title = BITHockeyLocalizedString(@"HockeyFeedbackListButonUserDataSetName");
       } else {
@@ -505,7 +569,7 @@
                                  ];
     [linkAction setTag:1];
     [linkAction setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [linkAction showInView:self.view];
+    [linkAction showInView:[self viewForShowingActionSheetOnPhone]];
   } else {
     UIAlertView *linkAction = [[UIAlertView alloc] initWithTitle:[url absoluteString]
                                                          message:nil

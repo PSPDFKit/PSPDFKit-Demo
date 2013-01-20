@@ -18,7 +18,7 @@ This document contains the following sections:
 
 The SDK runs on devices with iOS 5.0 or higher.
 
-If you need support for iOS 4.x, please check out [HockeySDK v2.5.4](https://github.com/bitstadium/HockeySDK-iOS/downloads)
+If you need support for iOS 4.x, please check out [HockeySDK v2.5.5](https://github.com/bitstadium/HockeySDK-iOS/downloads)
 
 If you need support for iOS 3.x, please check out [HockeyKit](http://support.hockeyapp.net/kb/client-integration/beta-distribution-on-ios-hockeykit) and [QuincyKit](http://support.hockeyapp.net/kb/client-integration/crash-reporting-on-ios-quincykit)
 
@@ -34,7 +34,7 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 <a id="xcode"></a> 
 ## Set up Xcode
 
-1. Drag & drop the `HockeySDK-iOS` folder from your project directory to your Xcode project.
+1. Drag & drop `HockeySDK.embeddedframework` from your project directory to your Xcode project.
 
 2. Similar to above, our projects have a group `Vendor`, so we drop it there.
 
@@ -53,15 +53,27 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 8. Select `HockeySDK.xcconfig` for all your configurations (if you don't already use a `.xcconfig` file)
     
     <img src="XcodeFrameworks1_normal.png"/>
+    
+    **Note:** You can also add the required frameworks manually to your targets `Build Phases` an continue with step `10.` instead.
 
 9. If you are already using a `.xcconfig` file, simply add the following line to it
 
     `#include "../Vendor/HockeySDK/Support/HockeySDK.xcconfig"`
     
     (Adjust the path depending where the `Project.xcconfig` file is located related to the Xcode project package)
+    
+    **Important note:** Check if you overwrite any of the build settings and add a missing `$(inherited)` entry on the projects build settings level, so the `HockeySDK.xcconfig` settings will be passed through successfully.
 
-<a
- id="modify"></a> 
+10. If you are getting build warnings, then the `.xcconfig` setting wasn't included successfully or its settings in `Other Linker Flags` get ignored because `$(interited)` is missing on project or target level. Either add `$(inherited)` or link the following frameworks manually in `Link Binary With Libraries` under `Build Phases`:
+    - `CoreText`
+    - `CoreGraphics`
+    - `Foundation`
+    - `QuartzCore`
+    - `SystemConfiguration`
+    - `UIKit`    
+
+
+<a id="modify"></a> 
 ## Modify Code
 
 1. Open your `AppDelegate.m` file.
@@ -72,7 +84,7 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 
 3. Let the AppDelegate implement the protocols `BITHockeyManagerDelegate`, `BITUpdateManagerDelegate` and `BITCrashManagerDelegate`:
 
-        @interface AppDelegate() <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
+        @interface AppDelegate(HockeyProtocols) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
         @end
 
 4. Search for the method `application:didFinishLaunchingWithOptions:`
@@ -102,7 +114,7 @@ If you only want crash reporting, you can skip this step. If you want to use Hoc
       return nil;
     }
   
-The method only returns the UDID when the build is not targeted to the App Sore. This assumes that a preprocessor macro name CONFIGURATION_AppStore exists and is set for App Store builds. The macros are already defined in `HockeySDK.xcconfig`.
+The method only returns the UDID when the build is not targeted to the App Sore. This assumes that a preprocessor macro name CONFIGURATION_AppStore exists and is set for App Store builds. The macros are already defined in `HockeySDK.xcconfig` or can be set manually by setting `GCC_PREPROCESSOR_DEFINITIONS` in your build configurations to `CONFIGURATION_$(CONFIGURATION)`.
 
 <a id="mac"></a> 
 ## Mac Desktop Uploader
@@ -114,4 +126,4 @@ The Mac Desktop Uploader can provide easy uploading of your app versions to Hock
 
 This documentation provides integrated help in Xcode for all public APIs and a set of additional tutorials and HowTos.
 
-1. Copy `de.bitstadium.HockeySDK-iOS-3.0.0b1.docset` into ~`/Library/Developer/Shared/Documentation/DocSet`
+1. Copy `de.bitstadium.HockeySDK-iOS-3.0.0b5.docset` into ~`/Library/Developer/Shared/Documentation/DocSet`

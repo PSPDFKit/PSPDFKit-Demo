@@ -1,7 +1,7 @@
 /*
  * Author: Andreas Linde <mail@andreaslinde.de>
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * All rights reserved.
  *
  * Permission is hereby granted, free of charge, to any person
@@ -110,7 +110,12 @@ typedef enum {
 
  The default value is `BITFeedbackUserDataElementOptional`.
 
+ @warning If you provide a non nil value for the `BITFeedbackManager` class via
+ `[BITHockeyManagerDelegate userNameForHockeyManager:componentManager:]` then this
+ property will automatically be set to `BITFeedbackUserDataElementDontShow`
+
  @see requireUserEmail
+ @see `[BITHockeyManagerDelegate userNameForHockeyManager:componentManager:]`
  */
 @property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserName;
 
@@ -127,7 +132,12 @@ typedef enum {
  
  The default value is `BITFeedbackUserDataElementOptional`.
 
+ @warning If you provide a non nil value for the `BITFeedbackManager` class via
+ `[BITHockeyManagerDelegate userEmailForHockeyManager:componentManager:]` then this
+ property will automatically be set to `BITFeedbackUserDataElementDontShow`
+ 
  @see requireUserName
+ @see `[BITHockeyManagerDelegate userEmailForHockeyManager:componentManager:]`
  */
 @property (nonatomic, readwrite) BITFeedbackUserDataElement requireUserEmail;
 
