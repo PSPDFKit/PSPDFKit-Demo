@@ -263,7 +263,7 @@ Will be called on all <a href="#//api/name/annotationProviders">annotationProvid
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/didChangeAnnotation:originalAnnotation:keyPaths:options:">&ndash;&nbsp;didChangeAnnotation:originalAnnotation:keyPaths:options:</a></code>
-		<span class="tooltip"><p>Will be called by PSPDF internally every time an annotatation is changed.
+		<span class="tooltip"><p>Will be called by PSPDF internally every time an annotation is changed.
 Call will be relayed to all <a href="#//api/name/annotationProviders">annotationProviders</a>.</p></span>
 	</span>
 	
@@ -280,7 +280,7 @@ Usually you want to override the method in <a href="../Classes/PSPDFFileAnnotati
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/updateAnnotations:originalAnnotations:animated:">&ndash;&nbsp;updateAnnotations:originalAnnotations:animated:</a></code>
-		<span class="tooltip"><p>Privided to the PSPDFAnnotationProviders via <a href="../Protocols/PSPDFAnnotationProviderChangeNotifier.html">PSPDFAnnotationProviderChangeNotifier</a>.
+		<span class="tooltip"><p>Provided to the PSPDFAnnotationProviders via <a href="../Protocols/PSPDFAnnotationProviderChangeNotifier.html">PSPDFAnnotationProviderChangeNotifier</a>.
 Will update any visible annotation.
 If no objects were replace, you can set originalAnnotations to nil. Ensure that originalAnnotations is either nil or has the same item count as annotations.</p></span>
 	</span>
@@ -305,7 +305,7 @@ If no objects were replace, you can set originalAnnotations to nil. Ensure that 
 	<span class="tooltip">
 		<code><a href="#//api/name/annotationsForPage:type:pageRef:">&ndash;&nbsp;annotationsForPage:type:pageRef:</a></code>
 		<span class="tooltip"><p>Fast path, same as <a href="#//api/name/annotationsForPage:type:">annotationsForPage:type:</a> but with already opened pageRef.
-If you wanna override annotationsfForPage:type, override this instead.</p></span>
+If you want to override annotationsfForPage:type, override this instead.</p></span>
 	</span>
 	
 	
@@ -473,7 +473,7 @@ Will never be nil, but can be removed from the <a href="#//api/name/annotationPr
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>PSPDFAnnotationParser will query all registered <a href="#//api/name/annotationProviders">annotationProviders</a> until one returns YES on addAnnotations.
-Will return false if no <a href="#//api/name/annotationProviders">annotationProviders</a> handled the annotation. (By default, the <a href="../Classes/PSPDFFileAnnotationProvider.html">PSPDFFileAnnotationProvider</a> will handle all annotation addings.)</p>
+Will return false if no <a href="#//api/name/annotationProviders">annotationProviders</a> handled the annotation. (By default, the <a href="../Classes/PSPDFFileAnnotationProvider.html">PSPDFFileAnnotationProvider</a> will handle all annotation additions.)</p>
 
 <p>If you&rsquo;re just interested in being notified, you can register a custom annotationProvider and set in the array before the file annotationProvider. Implement addAnnotations:forPage: and return NO. You&rsquo;ll be notified of all add operations.</p>
 	</div>
@@ -622,7 +622,7 @@ This will query all <a href="#//api/name/annotationProviders">annotationProvider
 	
 	<div class="method-subsection brief-description">
 		<p>Fast path, same as <a href="#//api/name/annotationsForPage:type:">annotationsForPage:type:</a> but with already opened pageRef.
-If you wanna override annotationsfForPage:type, override this instead.</p>
+If you want to override annotationsfForPage:type, override this instead.</p>
 	</div>		
 	
 	
@@ -656,7 +656,7 @@ If you wanna override annotationsfForPage:type, override this instead.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Will be called by PSPDF internally every time an annotatation is changed.
+		<p>Will be called by PSPDF internally every time an annotation is changed.
 Call will be relayed to all <a href="#//api/name/annotationProviders">annotationProviders</a>.</p>
 	</div>		
 	
@@ -843,7 +843,7 @@ Usually you want to override the method in <a href="../Classes/PSPDFFileAnnotati
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Privided to the PSPDFAnnotationProviders via <a href="../Protocols/PSPDFAnnotationProviderChangeNotifier.html">PSPDFAnnotationProviderChangeNotifier</a>.
+		<p>Provided to the PSPDFAnnotationProviders via <a href="../Protocols/PSPDFAnnotationProviderChangeNotifier.html">PSPDFAnnotationProviderChangeNotifier</a>.
 Will update any visible annotation.
 If no objects were replace, you can set originalAnnotations to nil. Ensure that originalAnnotations is either nil or has the same item count as annotations.</p>
 	</div>		
@@ -885,7 +885,7 @@ If no objects were replace, you can set originalAnnotations to nil. Ensure that 
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-18)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-20)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

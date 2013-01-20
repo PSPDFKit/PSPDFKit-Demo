@@ -319,11 +319,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
-	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprected Methods">PSPDFDeprected Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprecated Methods">PSPDFDeprecated Methods</a></span></li>
 	
 </ul></li>
 
@@ -674,14 +674,14 @@ Note: In PSPDFKit &lt; 2.4, this was called &ldquo;realPage&rdquo;.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potential advance two pages in dualPage mode.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPreviousPageAnimated:">&ndash;&nbsp;scrollToPreviousPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potential decrease two pages in dualPage mode.</p></span>
 	</span>
 	
 	
@@ -757,7 +757,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	<span class="tooltip">
 		<code><a href="#//api/name/renderBackgroundColor">&nbsp;&nbsp;renderBackgroundColor</a></code>
 		<span class="tooltip"><p>Multiplies a color to the PDF background color.
-Does not change anything if the pge color is black.
+Does not change anything if the page color is black.
 This is useful to ease reading on mostly white documents. Defaults to [UIColor whiteColor]. (white)
 Can not be set to nil.</p></span>
 	</span>
@@ -940,7 +940,7 @@ When changing padding; the touch area is still fully active.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/smartZoomEnabled">&nbsp;&nbsp;smartZoomEnabled</a></code>
 		<span class="tooltip"><p>If set to YES, tries to find the text blocks on the <a href="#//api/name/page">page</a> and zooms into the tapped block.
-NO will perform a generic zoom into the tap area. Defauts to YES.</p></span>
+NO will perform a generic zoom into the tap area. Defaults to YES.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -956,7 +956,7 @@ NO will perform a generic zoom into the tap area. Defauts to YES.</p></span>
 		<code><a href="#//api/name/viewLockEnabled">&nbsp;&nbsp;viewLockEnabled</a></code>
 		<span class="tooltip"><p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollToPage.
+This also blocks programmatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1156,8 +1156,8 @@ Note: This has been renamed in PSPDFKit 2.4 from &ldquo;additionalRightBarButton
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/barButtonItemsAlwaysEnabled">&nbsp;&nbsp;barButtonItemsAlwaysEnabled</a></code>
-		<span class="tooltip"><p>Add your custom UIBarButtonItems so that they won&rsquo;t be automatically enabed/disabed.
-Note: You really want to add yout custom close/back button there, else the user might get stuck!</p></span>
+		<span class="tooltip"><p>Add your custom UIBarButtonItems so that they won&rsquo;t be automatically enabled/disabled.
+Note: You really want to add your custom close/back button there, else the user might get stuck!</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1345,7 +1345,7 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/createAnnotationMenuEnabled">&nbsp;&nbsp;createAnnotationMenuEnabled</a></code>
-		<span class="tooltip"><p>If set to YES, a long-tap that ends on a <a href="#//api/name/page">page</a> area that is not a text/image wil show a new menu to create annotations. Defaults to YES.
+		<span class="tooltip"><p>If set to YES, a long-tap that ends on a <a href="#//api/name/page">page</a> area that is not a text/image will show a new menu to create annotations. Defaults to YES.
 If set to NO, there&rsquo;s no menu displayed and the loupe is simply hidden. Only works in PSPDFKit Annotate. New as of PSPDFKit 2.6.
 Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: <a href="#//api/name/delegate">delegate</a>.</p></span>
 	</span>
@@ -1362,7 +1362,7 @@ Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedT
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageViewForPage:">&ndash;&nbsp;pageViewForPage:</a></code>
-		<span class="tooltip"><p>Return the pageView for a given <a href="#//api/name/page">page</a>. Returns nil if <a href="#//api/name/page">page</a> is not initalized (e.g. <a href="#//api/name/page">page</a> is not visible.)
+		<span class="tooltip"><p>Return the pageView for a given <a href="#//api/name/page">page</a>. Returns nil if <a href="#//api/name/page">page</a> is not Initialized (e.g. <a href="#//api/name/page">page</a> is not visible.)
 Usually, using the delegates is a better idea to get the current <a href="#//api/name/page">page</a>.</p></span>
 	</span>
 	
@@ -1377,7 +1377,7 @@ Usually, using the delegates is a better idea to get the current <a href="#//api
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pagingScrollView">&nbsp;&nbsp;pagingScrollView</a></code>
-		<span class="tooltip"><p>Paging scroll view. (hosts scollviews for pdf)
+		<span class="tooltip"><p>Paging scroll view. (hosts scroll views for PDF)
 If you want to customize this, override <a href="#//api/name/reloadData">reloadData</a> and set the properties after calling super.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
@@ -1487,7 +1487,30 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/masterViewController">&ndash;&nbsp;masterViewController</a></code>
-		<span class="tooltip"><p>Returns the topmost, active viewcontroller.</p></span>
+		<span class="tooltip"><p>Returns the topmost, active view controller.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Internal Methods" name="task_Internal Methods"></a>
+						<h3 class="subsubtitle task-title">Internal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
+		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
+Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/handleExternalURL:buttonCompletionBlock:">&ndash;&nbsp;handleExternalURL:buttonCompletionBlock:</a></code>
+		<span class="tooltip"><p>To handle external URLS.</p></span>
 	</span>
 	
 	
@@ -1524,7 +1547,7 @@ The toolbar is only displayed, if PSPDFViewController is inside a UINavigationCo
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/updateBarButtonItem:animated:">&ndash;&nbsp;updateBarButtonItem:animated:</a></code>
-		<span class="tooltip"><p>Request to update a specific barButton. Might be more efficent than using createToolbar.</p></span>
+		<span class="tooltip"><p>Request to update a specific barButton. Might be more efficient than using createToolbar.</p></span>
 	</span>
 	
 	
@@ -1599,31 +1622,8 @@ Only tries to saves <a href="#//api/name/document">document</a> if view is visib
 						</ul>
 						
 						
-						<a title="Internal Methods" name="task_Internal Methods"></a>
-						<h3 class="subsubtitle task-title">Internal Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
-		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
-Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/handleExternalURL:buttonCompletionBlock:">&ndash;&nbsp;handleExternalURL:buttonCompletionBlock:</a></code>
-		<span class="tooltip"><p>To handle external URLS.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
-						<a title="PSPDFDeprected Methods" name="task_PSPDFDeprected Methods"></a>
-						<h3 class="subsubtitle task-title">PSPDFDeprected Methods</h3>
+						<a title="PSPDFDeprecated Methods" name="task_PSPDFDeprecated Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFDeprecated Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -1969,8 +1969,8 @@ Note: This has been renamed in PSPDFKit 2.4 from &ldquo;additionalRightBarButton
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Add your custom UIBarButtonItems so that they won&rsquo;t be automatically enabed/disabed.
-Note: You really want to add yout custom close/back button there, else the user might get stuck!</p>
+		<p>Add your custom UIBarButtonItems so that they won&rsquo;t be automatically enabled/disabled.
+Note: You really want to add your custom close/back button there, else the user might get stuck!</p>
 	</div>		
 	
 	
@@ -2177,7 +2177,7 @@ ContentView does NOT overlay the navigationBar/statusBar, even if that one is tr
 	
 	
 	<div class="method-subsection brief-description">
-		<p>If set to YES, a long-tap that ends on a <a href="#//api/name/page">page</a> area that is not a text/image wil show a new menu to create annotations. Defaults to YES.
+		<p>If set to YES, a long-tap that ends on a <a href="#//api/name/page">page</a> area that is not a text/image will show a new menu to create annotations. Defaults to YES.
 If set to NO, there&rsquo;s no menu displayed and the loupe is simply hidden. Only works in PSPDFKit Annotate. New as of PSPDFKit 2.6.
 Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: <a href="#//api/name/delegate">delegate</a>.</p>
 	</div>		
@@ -2654,9 +2654,9 @@ Defaults to (<a href="#//api/name/closeButtonItem">closeButtonItem</a>) if view 
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Note that it appears that UIKit limits the left toolbar size if spaces is low in the toolbar, potentially cutting off buttons
+		<p>Note that it appears that UIKit limits the left toolbar size if space is low in the toolbar, potentially cutting off buttons
 in those toolbars if the title is also too long. You can either reduce the number of buttons, cut down the text or use a titleView to
-fix this problem. It also appears that UIKit focues on the leftToolbar, the right one is cut of much later.
+fix this problem. It also appears that UIKit focuses on the leftToolbar, the right one is cut off much later.
 This problem only appears on the iPad in portrait mode.
 You can also use updateSettingsForRotation to adapt the toolbar for portrait/landscape mode.</p>
 	</div>
@@ -3309,7 +3309,7 @@ else the controller will get in an invalid state.</p>
 so if you&rsquo;re changing this from a parent viewController, for PSPDFKit the rotation hasn&rsquo;t been completed yet,
 and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ &hellip; }); to set.</p>
 
-<p>You might just wanna override <a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a> and set your properties there.</p>
+<p>You might just want to override <a href="#//api/name/updateSettingsForRotation:">updateSettingsForRotation:</a> and set your properties there.</p>
 	</div>
 	
 	
@@ -3367,7 +3367,7 @@ and your app will eventually crash. In that case, use a dispatch_async(dispatch_
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Paging scroll view. (hosts scollviews for pdf)
+		<p>Paging scroll view. (hosts scroll views for PDF)
 If you want to customize this, override <a href="#//api/name/reloadData">reloadData</a> and set the properties after calling super.</p>
 	</div>		
 	
@@ -3610,7 +3610,7 @@ Set this to PSPDFAnnotationTypeLink | PSPDFAnnotationTypeHighlight for PSPDFKit 
 	
 	<div class="method-subsection brief-description">
 		<p>Multiplies a color to the PDF background color.
-Does not change anything if the pge color is black.
+Does not change anything if the page color is black.
 This is useful to ease reading on mostly white documents. Defaults to [UIColor whiteColor]. (white)
 Can not be set to nil.</p>
 	</div>		
@@ -4173,7 +4173,7 @@ Deprecation Note: Previously to PSPDFKit 2.4, this was named &ldquo;pageScrollin
 	
 	<div class="method-subsection brief-description">
 		<p>If set to YES, tries to find the text blocks on the <a href="#//api/name/page">page</a> and zooms into the tapped block.
-NO will perform a generic zoom into the tap area. Defauts to YES.</p>
+NO will perform a generic zoom into the tap area. Defaults to YES.</p>
 	</div>		
 	
 	
@@ -4464,7 +4464,7 @@ Has no effect if <a href="#//api/name/toolbarEnabled">toolbarEnabled</a> is fals
 	<div class="method-subsection brief-description">
 		<p>Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 This is useful if you want to invoke a &ldquo;drawing mode&rdquo;. (e.g. Ink Annotation drawing)
-This also blocks programatically calls to scrollToPage.
+This also blocks programmatically calls to scrollToPage.
 Note: This might be disabled after a <a href="#//api/name/reloadData">reloadData</a>.</p>
 	</div>		
 	
@@ -5059,7 +5059,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns the topmost, active viewcontroller.</p>
+		<p>Returns the topmost, active view controller.</p>
 	</div>		
 	
 	
@@ -5101,7 +5101,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Return the pageView for a given <a href="#//api/name/page">page</a>. Returns nil if <a href="#//api/name/page">page</a> is not initalized (e.g. <a href="#//api/name/page">page</a> is not visible.)
+		<p>Return the pageView for a given <a href="#//api/name/page">page</a>. Returns nil if <a href="#//api/name/page">page</a> is not Initialized (e.g. <a href="#//api/name/page">page</a> is not visible.)
 Usually, using the delegates is a better idea to get the current <a href="#//api/name/page">page</a>.</p>
 	</div>		
 	
@@ -5275,7 +5275,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentiall advance two pages in dualPage mode.</p>
+		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potential advance two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -5309,7 +5309,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentiall decrease two pages in dualPage mode.</p>
+		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potential decrease two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -5581,7 +5581,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Request to update a specific barButton. Might be more efficent than using createToolbar.</p>
+		<p>Request to update a specific barButton. Might be more efficient than using createToolbar.</p>
 	</div>		
 	
 	
@@ -5828,7 +5828,7 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-18)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-20)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

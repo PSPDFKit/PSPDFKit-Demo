@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFTransitionHelper Class Reference</title>
+		<title>PSPDFResizableTrackedViewDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFTransitionHelper Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFResizableTrackedViewDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -40,16 +40,11 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/page">&nbsp;&nbsp;&nbsp;&nbsp;page</option>
+	<option value="//api/name/resizableView">&nbsp;&nbsp;&nbsp;&nbsp;resizableView</option>
 	
 	
 	
 	
-	
-	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/initWithDelegate:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithDelegate:</option>
 	
 	
 	
@@ -75,26 +70,20 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/page">page</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/resizableView">resizableView</a></span></li>
 	
 </ul></li>
 
 
 
 
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithDelegate:">initWithDelegate:</a></span></li>
-	
-</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFTransitionHelper Class Reference" name="top"></a>
+				<a title="PSPDFResizableTrackedViewDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -103,21 +92,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFTransitionHelper Class Reference</h1>
+						<h1 class="title title-header">PSPDFResizableTrackedViewDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
+	<td class="specification-title">Conforms to</td>
 	<td class="specification-value">NSObject</td>
 </tr><tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFSinglePageViewControllerDelegate.html">PSPDFSinglePageViewControllerDelegate</a></td>
-</tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFTransitionHelper.h</td>
+	<td class="specification-value">PSPDFResizableView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -127,8 +113,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Helper for creating/reusing PSPDFSinglePageViewController&rsquo;s.
-Is used for more complex animation like the <a href="../Classes/PSPDFPageViewController.html">PSPDFPageViewController</a>.</p>
+						<p>If trackedView responds to this delegate, we will set it.</p>
 					</div>
 					
 					
@@ -146,18 +131,11 @@ Is used for more complex animation like the <a href="../Classes/PSPDFPageViewCon
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithDelegate:">&ndash;&nbsp;initWithDelegate:</a></code>
-		<span class="tooltip"><p>Create <a href="#//api/name/page">page</a> controller using the master pdf controller.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Set new page.</p></span>
+		<code><a href="#//api/name/resizableView">&nbsp;&nbsp;resizableView</a></code>
+		<span class="tooltip"><p>The resizable tracker, if currently available.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
-	
+	<span class="task-item-suffix">required method</span>
 </li>
 						</ul>
 						
@@ -172,17 +150,17 @@ Is used for more complex animation like the <a href="../Classes/PSPDFPageViewCon
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/page" title="page"></a>
-	<h3 class="subsubtitle method-title">page</h3>
+	<a name="//api/name/resizableView" title="resizableView"></a>
+	<h3 class="subsubtitle method-title">resizableView</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set new page.</p>
+		<p>The resizable tracker, if currently available.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSUInteger page</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) PSPDFResizableView *resizableView</code></div>
 	
 	
 	
@@ -199,7 +177,7 @@ Is used for more complex animation like the <a href="../Classes/PSPDFPageViewCon
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFTransitionHelper.h</code><br />
+		<code class="declared-in-ref">PSPDFResizableView.h</code><br />
 	</div>				
 	
 	
@@ -210,46 +188,6 @@ Is used for more complex animation like the <a href="../Classes/PSPDFPageViewCon
 					
 					
 					
-					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/initWithDelegate:" title="initWithDelegate:"></a>
-	<h3 class="subsubtitle method-title">initWithDelegate:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Create <a href="#//api/name/page">page</a> controller using the master pdf controller.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (id)initWithDelegate:(UIViewController&lt;PSPDFTransitionHelperDelegate&gt; *)<em>delegate</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFTransitionHelper.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 				</div>
