@@ -1479,10 +1479,11 @@ const char kPSCAlertViewKey;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // restore state as it was before.
+    // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
+    [self fixNavigationBarFrameAnimated:animated];
 
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
@@ -1493,6 +1494,7 @@ const char kPSCAlertViewKey;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self fixNavigationBarFrameAnimated:animated];
 
 #ifdef kPSPDFAutoSelectCellNumber
     if (!_firstShown && kPSPDFAutoSelectCellNumber) {
@@ -1520,7 +1522,7 @@ const char kPSCAlertViewKey;
         }
     }
 
-    // cache the keyboard. (optional; makes search much more reactive)
+    // Cache the keyboard. (optional; makes search much more reactive)
     //dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
 }
 
@@ -1560,6 +1562,30 @@ const char kPSCAlertViewKey;
     }
 
     return newURL;
+}
+
+// UIKit sometimes gets the toolbar position wrong, when we show/hide things at the "wrong" time.
+// While I see this as a bug and have placed some rdars on it, here's a simple workaround.
+- (BOOL)fixNavigationBarFrameAnimated:(BOOL)animated {
+    BOOL fixWasNeeded = NO;
+    if (self.isViewLoaded && self.navigationController.navigationBar) {
+        CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
+        CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+        if (navigationBarFrame.origin.y <= statusBarFrame.origin.y) {
+            // compensate rotation
+            CGRect fixedFrame = navigationBarFrame;
+            fixedFrame.origin.y = fminf(statusBarFrame.size.height, statusBarFrame.size.width);
+            if (animated) {
+                [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                    self.navigationController.navigationBar.frame = fixedFrame;
+                } completion:nil];
+            }else {
+                self.navigationController.navigationBar.frame = fixedFrame;
+            }
+            fixWasNeeded = YES;
+        }
+    }
+    return fixWasNeeded;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
