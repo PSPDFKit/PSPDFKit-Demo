@@ -2,7 +2,7 @@
  * Author: Andreas Linde <mail@andreaslinde.de>
  *         Kent Sutherland
  *
- * Copyright (c) 2012 HockeyApp, Bit Stadium GmbH.
+ * Copyright (c) 2012-2013 HockeyApp, Bit Stadium GmbH.
  * Copyright (c) 2011 Andreas Linde & Kent Sutherland.
  * All rights reserved.
  *
@@ -316,6 +316,15 @@ NSString *const kBITCrashManagerStatus = @"BITCrashManagerStatus";
     if (crashData == nil) {
       BITHockeyLog(@"ERROR: Could not load crash report: %@", error);
     } else {
+      // get the startup timestamp from the crash report, and the file timestamp to calculate the timeinterval when the crash happened after startup
+      PLCrashReport *report = [[PLCrashReport alloc] initWithData:crashData error:&error];
+      
+      if ([report.applicationInfo respondsToSelector:@selector(applicationStartupTimestamp)]) {
+        if (report.systemInfo.timestamp && report.applicationInfo.applicationStartupTimestamp) {
+          _timeintervalCrashInLastSessionOccured = [report.systemInfo.timestamp timeIntervalSinceDate:report.applicationInfo.applicationStartupTimestamp];
+        }
+      }
+
       [crashData writeToFile:[_crashesDir stringByAppendingPathComponent: cacheFilename] atomically:YES];
       
       // write the meta file
@@ -339,15 +348,6 @@ NSString *const kBITCrashManagerStatus = @"BITCrashManagerStatus";
         [plist writeToFile:[NSString stringWithFormat:@"%@.meta", [_crashesDir stringByAppendingPathComponent: cacheFilename]] atomically:YES];
       } else {
         BITHockeyLog(@"ERROR: Writing crash meta data failed. %@", error);
-      }
-
-      // get the startup timestamp from the crash report, and the file timestamp to calculate the timeinterval when the crash happened after startup
-      PLCrashReport *report = [[PLCrashReport alloc] initWithData:crashData error:&error];
-      
-      if ([report.applicationInfo respondsToSelector:@selector(applicationStartupTimestamp)]) {
-        if (report.systemInfo.timestamp && report.applicationInfo.applicationStartupTimestamp) {
-          _timeintervalCrashInLastSessionOccured = [report.systemInfo.timestamp timeIntervalSinceDate:report.applicationInfo.applicationStartupTimestamp];
-        }
       }
     }
   }
@@ -398,8 +398,17 @@ NSString *const kBITCrashManagerStatus = @"BITCrashManagerStatus";
   if ([_crashFiles count] > 0) {
     BITHockeyLog(@"INFO: %i pending crash reports found.", [_crashFiles count]);
     return YES;
-  } else
+  } else {
+    if (_didCrashInLastSession) {
+      if (self.delegate != nil && [self.delegate respondsToSelector:@selector(crashManagerWillCancelSendingCrashReport:)]) {
+        [self.delegate crashManagerWillCancelSendingCrashReport:self];
+      }
+
+      _didCrashInLastSession = NO;
+    }
+    
     return NO;
+  }
 }
 
 
@@ -557,7 +566,8 @@ NSString *const kBITCrashManagerStatus = @"BITCrashManagerStatus";
       if ([report respondsToSelector:@selector(reportInfo)]) {
         crashUUID = report.reportInfo.reportGUID ?: @"";
       }
-      NSString *crashLogString = [BITCrashReportTextFormatter stringValueForCrashReport:report];
+      NSString *installString = bit_appAnonID() ?: @"";
+      NSString *crashLogString = [BITCrashReportTextFormatter stringValueForCrashReport:report crashReporterKey:installString];
       
       if ([report.applicationInfo.applicationVersion compare:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]] == NSOrderedSame) {
         _crashIdenticalCurrentVersion = YES;
@@ -572,7 +582,6 @@ NSString *const kBITCrashManagerStatus = @"BITCrashManagerStatus";
       NSString *userid = @"";
       NSString *applicationLog = @"";
       NSString *description = @"";
-      NSString *installString = bit_appAnonID() ?: @"";
       
       NSString *errorString = nil;
       NSPropertyListFormat format;

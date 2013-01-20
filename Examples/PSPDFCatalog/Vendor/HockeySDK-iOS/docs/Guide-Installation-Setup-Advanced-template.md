@@ -33,6 +33,8 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 
 4. Add the submodule: `git submodule add git://github.com/BitStadium/HockeySDK-iOS.git Vendor/HockeySDK`. This would add the submodule into the `Vendor/HockeySDK` subfolder. Change this to the folder you prefer.
 
+5. Releases are always in the `master` branch while the `develop` branch provides the latest in development source code (Using the git flow branching concept). We recommend using the `master` branch!
+
 <a id="xcode"></a> 
 ## Set up Xcode
 
@@ -70,6 +72,8 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 
 14. Create a new `Project.xcconfig` file, if you don't already have one (You can give it any name)
 
+    **Note:** You can also add the required frameworks manually to your targets `Build Phases` an continue with step `17.` instead.
+
     a. Select your project.
 
     b. Select the tab `Info`.
@@ -87,7 +91,16 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
     `#include "../Vendor/HockeySDK/Support/HockeySDK.xcconfig"`
     
     (Adjust the path depending where the `Project.xcconfig` file is located related to the Xcode project package)
-	
+    
+    **Important note:** Check if you overwrite any of the build settings and add a missing `$(inherited)` entry on the projects build settings level, so the `HockeySDK.xcconfig` settings will be passed through successfully.
+    
+17. If you are getting build warnings, then the `.xcconfig` setting wasn't included successfully or its settings in `Other Linker Flags` get ignored because `$(interited)` is missing on project or target level. Either add `$(inherited)` or link the following frameworks manually in `Link Binary With Libraries` under `Build Phases`:
+    - `CoreText`
+    - `CoreGraphics`
+    - `Foundation`
+    - `QuartzCore`
+    - `SystemConfiguration`
+    - `UIKit`  
 
 
 <a id="modify"></a> 
@@ -101,7 +114,7 @@ If you need support for iOS 3.x, please check out [HockeyKit](http://support.hoc
 
 3. Let the AppDelegate implement the protocols `BITHockeyManagerDelegate`, `BITUpdateManagerDelegate` and `BITCrashManagerDelegate`:
 
-        @interface AppDelegate() <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
+        @interface AppDelegate(HockeyProtocols) <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> {}
         @end
 
 4. Search for the method `application:didFinishLaunchingWithOptions:`
@@ -131,7 +144,7 @@ If you only want crash reporting, you can skip this step. If you want to use Hoc
       return nil;
     }
   
-The method only returns the UDID when the build is not targeted to the App Sore. This assumes that a preprocessor macro name CONFIGURATION_AppStore exists and is set for App Store builds. The macros are already defined in `HockeySDK.xcconfig`.
+The method only returns the UDID when the build is not targeted to the App Sore. This assumes that a preprocessor macro name CONFIGURATION_AppStore exists and is set for App Store builds. The macros are already defined in `HockeySDK.xcconfig` or can be set manually by setting `GCC_PREPROCESSOR_DEFINITIONS` in your build configurations to `CONFIGURATION_$(CONFIGURATION)`.
 
 <a id="mac"></a> 
 ## Mac Desktop Uploader
