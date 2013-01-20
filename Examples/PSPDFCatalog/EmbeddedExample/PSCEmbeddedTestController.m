@@ -94,7 +94,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // initially hide view, as we wanna animate on it!
+    // initially hide view, as we want to animate on it!
     self.pdfController.view.hidden = YES;
 }
 

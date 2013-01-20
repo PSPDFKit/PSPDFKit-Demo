@@ -30,7 +30,7 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     // add custom button at pageView on page 0.
-    // PSPDF will re-use PSPDFPageView but will also clear all "foreign" added views - you don't have to remove it yourself.
+    // PSPDF will re-use PSPDFPageView but will also clear all "foreign" added views - you don't have to remove it yourselves.
     // The didLoadPageView will be called once while the pageView is processed for the new page, so it's the perfect time to add custom views.
     if (pageView.page == 0) {
         PSCButtonContainerView *buttonContainer = [[PSCButtonContainerView alloc] initWithFrame:CGRectZero];

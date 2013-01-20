@@ -55,7 +55,7 @@
         [popoverController_ dismissPopoverAnimated:NO];
         
         popoverController_ = popoverController;
-        popoverController_.delegate = self; // set delegate to be notified when popopver controller closes!
+        popoverController_.delegate = self; // set delegate to be notified when popover controller closes!
     }
 }
 
