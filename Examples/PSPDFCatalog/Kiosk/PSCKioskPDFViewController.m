@@ -41,10 +41,10 @@
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
 
-        // initally update vars
+        // Initally update vars.
         [self globalVarChanged];
         
-        // register for global var change notifications from PSPDFCacheSettingsController
+        // Register for global var change notifications from PSPDFCacheSettingsController.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
                         
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
@@ -70,11 +70,11 @@
 
         self.leftBarButtonItems = @[_closeButtonItem];
 
-        // change color
+        // Change color.
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
         //self.statusBarStyleSetting = PSPDFStatusBarDefault;
         
-        // change statusbar setting to your preferred style
+        // Change statusbar setting to your preferred style.
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
         //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
     }    
@@ -116,7 +116,7 @@
 
 #ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
-    // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
+    // Dynamically adapt toolbar (in landscape mode, we have a lot more space!)
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
     // Simple performance optimization.
@@ -137,7 +137,7 @@
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
 - (void)globalVarChanged {
-    // preserve viewState, but only page, not contentOffset (since we can change fitToWidth etc here)
+    // Preserve viewState, but only page, not contentOffset. (since we can change fitToWidth etc here)
     PSPDFViewState *viewState = [self viewState];
     viewState.zoomScale = 1;
     viewState.contentOffset = CGPointMake(0, 0);
@@ -186,7 +186,7 @@
     }
     self.rightBarButtonItems = rightBarButtonItems;
 
-    // define additional buttons with an action icon
+    // Define additional buttons with an action icon.
     NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
     if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
         [additionalRightBarButtonItems addObject:self.printButtonItem];
@@ -223,7 +223,7 @@
     self.additionalBarButtonItems = additionalRightBarButtonItems;
 #endif
 
-    // reload scrollview and restore viewState
+    // reload scroll view and restore viewState
     [self reloadData];
     [self setViewState:viewState animated:NO];
 }
@@ -236,7 +236,7 @@
     return YES;
 }
 
-// time to adjust PSPDFViewController before a PSPDFDocument is displayed
+// Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     // show pdf title and fileURL
@@ -275,13 +275,13 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {
-    // only show log on start, prevents excessive log statements
+    // Only show log on start, prevents excessive log statements.
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
         CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
         PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSCGestureStateToString(gestureRecognizer.state));
     }
-    return NO; // touch not used.
+    return NO; // Touch not used.
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
@@ -306,7 +306,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    PSCLog(@"page %d rendered. (document: %@)", pageView.page, pageView.document.title);
+    PSCLog(@"Page %d rendered. (document: %@)", pageView.page, pageView.document.title);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
@@ -336,7 +336,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView {
-    // example how to limit text selection
+    // Example how to limit text selection.
     // return [text length] > 10;
     return YES;
 }
@@ -354,7 +354,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     return newMenuItems;
 }
 
-// annotations
+// Annotations
 
 /// Called before an annotation will be selected. (but after didTapOnAnnotation)
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
@@ -370,6 +370,12 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 /// Called before we're showing the menu for an annotation.
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
     PSCLog(@"showing menu %@ for %@", menuItems, annotation);
+
+    // Example how to rename menu items.
+    //for (UIMenuItem *menuItem in menuItems) {
+    //    menuItem.title = @"Test";
+    //}
+
     return menuItems;
 }
 
