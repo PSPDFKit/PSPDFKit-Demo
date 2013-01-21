@@ -2,7 +2,7 @@
 //  PSPDFStoreManager.h
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 /// Enable to make the view plain, no folders supported.
