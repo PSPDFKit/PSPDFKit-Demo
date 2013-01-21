@@ -1359,6 +1359,18 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Test that we preserve the scrollEnabled setting.
+    // Check that scroll is still blocked after drawing.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test scroll blocking" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        // Finds the right timing to set properties.
+        [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *aPDFController, UIInterfaceOrientation toInterfaceOrientation) {
+            aPDFController.pagingScrollView.scrollEnabled = NO;
+        }];
+        return pdfController;
+    }]];
+
     // Add note annotation via toolbar, close toolbar, ensure that the PDF was saved correctly, then test if the annotation still can be moved. If annoations haven't been correcttly reloaded after saving the move will fail.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation updating after a save" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -1369,7 +1381,7 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    // Test flattening, especially for notes
+    // Test flattening, especially for notes.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
