@@ -2,7 +2,7 @@
 //  PSCGridController.m
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
@@ -25,7 +25,7 @@
 
 #define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 
-// the delete button target is small enough that we don't need to ask for confirmation.
+// The delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
 
 @interface PSCGridController() <UISearchBarDelegate> {
@@ -36,6 +36,7 @@
 }
 @property (nonatomic, assign) BOOL immediatelyLoadCellImages; // UI tweak.
 @property (nonatomic, strong) UIImageView *magazineView;
+@property (nonatomic, strong) PSCMagazine *lastOpenedMagazine;
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) PSCShadowView *shadowView;
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -98,7 +99,7 @@
                                                                     target:self
                                                                     action:@selector(optionsButtonPressed)];
 
-    // only show the option button if we're at root (else we hide the back button)
+    // Only show the option button if we're at root. (else we hide the back button)
     if ((self.navigationController.viewControllers)[0] == self) {
         self.navigationItem.leftBarButtonItem = optionButton;
     }else {
@@ -107,7 +108,7 @@
     }
 #endif
 
-    // add global shadow
+    // Add global shadow.
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSCShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
     _shadowView.shadowOffset = toolbarHeight;
@@ -116,13 +117,13 @@
     _shadowView.userInteractionEnabled = NO;
     [self.view addSubview:_shadowView];
 
-    // use custom view to match background with PSPDFViewController
+    // Use custom view to match background with PSPDFViewController.
     UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
     backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
-    // init the collection view
+    // Init the collection view.
     PSUICollectionViewFlowLayout *flowLayout = [PSUICollectionViewFlowLayout new];
     PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
@@ -143,7 +144,7 @@
     self.gridView.dataSource = self; // auto-reloads
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
-    // add search bar
+    // Add the search bar.
     CGFloat searchBarWidth = 290.f;
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.gridView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -152,7 +153,7 @@
     _searchBar.alpha = 0.5;
     _searchBar.delegate = self;
 
-    // doesn't matter much if this fails, but the background doesn't look great within our grid.
+    // Doesn't matter much if this fails, but the background doesn't look great within our grid.
     [PSPDFGetViewInsideView(_searchBar, @"UISearchBarBack") removeFromSuperview];
 
     // Set the return key and keyboard appearance of the search bar.
@@ -183,13 +184,12 @@
     }
 }
 
-// default style
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // ensure our navigation bar is visible. PSPDFKit restores the properties,
-    // but since we're doing a custom fade-out on the navigationBar alpha,
-    // we also have to restore this properly.
+    // Ensure our navigation bar is visible. PSPDFKit restores the properties,
+    // But since we're doing a custom fade-out on the navigationBar alpha,
+    // We also have to restore this properly.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 1.f;
@@ -198,21 +198,13 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     _shadowView.shadowEnabled = YES;
 
-    // if navigationBar is offset, we're fixing that.
-    if (self.navigationController.navigationBar) {
-        CGRect navigationBarFrame = self.navigationController.navigationBar.frame;
-        CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
-        if (navigationBarFrame.origin.y <= statusBarFrame.origin.y) {
-            // compensate rotation
-            navigationBarFrame.origin.y = fminf(statusBarFrame.size.height, statusBarFrame.size.width);
-            self.navigationController.navigationBar.frame = navigationBarFrame;
-        }
-    }
+    // If navigationBar is offset, we're fixing that.
+    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
-    // only one delegate at a time (only one grid is displayed at a time)
+    // Only one delegate at a time (only one grid is displayed at a time)
     [PSCStoreManager sharedStoreManager].delegate = self;
 
-    // ensure everything is up to date (we could change magazines in other controllers)
+    // Ensure everything is up to date (we could change magazines in other controllers)
     self.immediatelyLoadCellImages = YES;
     [self diskDataLoaded]; // also reloads the grid
     self.immediatelyLoadCellImages = NO;
@@ -226,11 +218,14 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // animate back to grid cell?
+    // If navigationBar is offset, we're fixing that.
+    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+
+    // Animate back to grid cell?
     if (self.magazineView) {
 
-        // if something changed, just don't animate.
-        if (_animationCellIndex >= [self.magazineFolder.magazines count]) {
+        // If something changed, just don't animate.
+        if (_animationCellIndex >= self.magazineFolder.magazines.count) {
             self.gridView.transform = CGAffineTransformIdentity;
             self.gridView.alpha = 1.0f;
             [self.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
@@ -247,14 +242,18 @@
              [self.gridView layoutSubviews]; // ensure cells are laid out
              };*/
 
-            // convert the coordinates into view coordinate system
-            // we can't remember those, because the device might has been rotated.
+            // Convert the coordinates into view coordinate system.
+            // We can't remember those, because the device might has been rotated.
             CGRect absoluteCellRect = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0]].frame;
             CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
 
             self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
 
-            // start animation!
+            // Update image for a nicer animation (get the correct page)
+            UIImage *coverImage = [self imageForMagazine:self.lastOpenedMagazine];
+            if (coverImage) self.magazineView.image = coverImage;
+
+            // Start animation!
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
                 self.gridView.transform = CGAffineTransformIdentity;
                 self.magazineView.frame = relativeCellRect;
@@ -271,7 +270,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
-    // only deregister if not attached to anything else
+    // Only deregister if not attached to anything else.
     if ([PSCStoreManager sharedStoreManager].delegate == self) [PSCStoreManager sharedStoreManager].delegate = nil;
 }
 
@@ -345,8 +344,20 @@
     return newFrame;
 }
 
-// open magazine with nice animation
+- (UIImage *)imageForMagazine:(PSCMagazine *)magazine {
+    if (!magazine) return nil;
+    
+    NSUInteger lastPage = magazine.lastViewState.page;
+    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:lastPage size:PSPDFSizeNative];
+    if (!coverImage) {
+        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:lastPage size:PSPDFSizeThumbnail];
+    }
+    return coverImage;
+}
+
+// Open magazine with a nice animation.
 - (BOOL)openMagazine:(PSCMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+    self.lastOpenedMagazine = magazine;
     [self.searchBar resignFirstResponder];
 
     // speed up displaying with parsing several things PSPDFViewController needs.
@@ -356,12 +367,8 @@
 
     PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
 
-    // try to get full-size image, if that fails try thumbnail.
-    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeNative];
-    if (!coverImage) {
-        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:0 size:PSPDFSizeThumbnail];
-    }
-
+    // Try to get full-size image, if that fails try thumbnail.
+    UIImage *coverImage = [self imageForMagazine:magazine];
     if (animated && coverImage && !magazine.isLocked) {
         PSTCollectionViewCell *cell = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
         cell.hidden = YES;
