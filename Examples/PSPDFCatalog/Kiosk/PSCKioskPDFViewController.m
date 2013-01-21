@@ -2,7 +2,7 @@
 //  PSCKioskPDFViewController.m
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCKioskPDFViewController.h"
@@ -63,23 +63,12 @@
         // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
         if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
 
-        // Restore viewState (sadly, NSKeyedUnarchiver might throw on error)
-        if (self.document.isValid) {
-            NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.document.UID];
-            @try {
-                if (viewStateData) {
-                    PSPDFViewState *viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
-                    [self setViewState:viewState animated:NO];
-                }
-            }
-            @catch (NSException *exception) {
-                PSCLog(@"Failed to load saved viewState: %@", exception);
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.document.UID];
-            }
+        // Restore viewState.
+        if ([self.document isKindOfClass:PSCMagazine.class]) {
+            [self setViewState:((PSCMagazine *)self.document).lastViewState];
         }
 
         self.leftBarButtonItems = @[_closeButtonItem];
-
 
         // change color
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
@@ -93,11 +82,6 @@
 }
 
 - (void)dealloc {
-    // save current viewState
-    if (self.document.isValid) {
-        NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:[self viewState]];
-        [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.document.UID];
-    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -118,29 +102,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    
-    /*
-     // Example how to customize the double page mode switching. 
-     if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation) && !PSIsIpad()) {
-     self.pageMode = PSPDFPageModeDouble;
-     }else {
-     self.pageMode = PSPDFPageModeAutomatic;
-     }*/
-    
-    // toolbar will be recreated, so release popover after rotation (else CoreAnimation crashes on us)
-    [self.popoverController dismissPopoverAnimated:YES];
-    self.popoverController = nil;
-}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-
-    // Example to show how to only allow pageCurl in landscape mode.
-    // Don't change this property in willAnimate* or updateSettingsForRotation or bad things will happen.
-    // Also make sure to set the correct setting on the initial load (might already load up in landscape mode)
-    //self.pageTransition = UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
+    // Save current viewState.
+    if ([self.document isKindOfClass:PSCMagazine.class]) {
+        ((PSCMagazine *)self.document).lastViewState = self.viewState;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +119,7 @@
     // dynamically adapt toolbar (in landscape mode, we have a lot more space!)
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
-    // performance optimization
+    // Simple performance optimization.
     if ([leftToolbarItems count] != [self.leftBarButtonItems count] || force) {
         self.leftBarButtonItems = leftToolbarItems;
     }
@@ -165,7 +133,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
-
 
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
