@@ -2,7 +2,7 @@
 //  PSPDFMagazine.m
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSCMagazine.h"
@@ -65,6 +65,36 @@
     }
     
     return coverImage;
+}
+
+- (PSPDFViewState *)lastViewState {
+    PSPDFViewState *viewState = nil;
+    
+    // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error)
+    if (self.isValid) {
+        NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.UID];
+        @try {
+            if (viewStateData) {
+                viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
+            }
+        }
+        @catch (NSException *exception) {
+            PSCLog(@"Failed to load saved viewState: %@", exception);
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.UID];
+        }
+    }
+    return viewState;
+}
+
+- (void)setLastViewState:(PSPDFViewState *)lastViewState {
+    if (self.isValid) {
+        if (lastViewState) {
+            NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:lastViewState];
+            [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.UID];
+        }else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.UID];
+        }
+    }
 }
 
 // example how to manually rotate a page

@@ -2,12 +2,14 @@
 //  PSPDFMagazine.h
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 @class PSCMagazineFolder;
 
-/// Represents a magazine in the PDFKitExample.
+///
+/// Represents a magazine in the PSPDFKiosk example.
+///
 @interface PSCMagazine : PSPDFDocument
 
 /// Initializes a magazine object with the specified path.
@@ -23,8 +25,11 @@
 /// URL for downloading the pdf.
 @property (nonatomic, strong) NSURL *URL;
 
-// URL for downloading image.
+/// URL for downloading image.
 @property (nonatomic, strong) NSURL *imageURL;
+
+/// Handles serialization/deserialization of the last known viewState (page, ...)
+@property (nonatomic, strong) PSPDFViewState *lastViewState;
 
 /// YES if magazine is currently downloading.
 @property (nonatomic, assign, getter=isDownloading) BOOL downloading;
