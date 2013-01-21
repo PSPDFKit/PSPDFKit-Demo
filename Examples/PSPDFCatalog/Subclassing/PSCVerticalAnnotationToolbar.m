@@ -64,7 +64,7 @@
         [self.toolbar drawButtonPressed:sender];
     }else {
         // remove toolbar
-        [self.toolbar unlockPDFControllerAndEnsureToStayOnTop:NO];
+        [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
         [self.toolbar finishDrawingAnimated:YES andSaveAnnotation:NO];
     }
 }
