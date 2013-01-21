@@ -2,7 +2,7 @@
 //  PSPDFMagazineFolder.h
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 #define kPSPDFMagazineJSONURL @"http://pspdfkit.com/magazines.json"

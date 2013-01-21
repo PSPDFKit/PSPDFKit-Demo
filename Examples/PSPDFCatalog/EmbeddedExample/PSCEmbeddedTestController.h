@@ -2,7 +2,7 @@
 //  PSPDFEmbeddedTestController.h
 //  PSPDFCatalog
 //
-//  Copyright 2011-2012 Peter Steinberger. All rights reserved.
+//  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
 /// Exmaple how to correctly embedd (in an iOS4 compatible way) the view controller within another view controller.
