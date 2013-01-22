@@ -970,6 +970,14 @@ const char kPSCAlertViewKey;
 
         return controller;
     }]];)
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Search for Batman, without controller" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
+        pdfController.highlightedSearchText = @"Batman";
+        return pdfController;
+    }]];
+    
     [content addObject:subclassingSection];
 
 
@@ -1023,14 +1031,6 @@ const char kPSCAlertViewKey;
             [pdfController searchForString:@"Drammen" animated:YES];
         });
 
-        return pdfController;
-    }]];
-
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"Search for Drammen, without controller" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"doc-1205.pdf"]];
-        PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 2; // pages start at 0.
-        pdfController.highlightedSearchText = @"Drammen";
         return pdfController;
     }]];
 
@@ -1378,6 +1378,13 @@ const char kPSCAlertViewKey;
         pdfController.imageSelectionEnabled = NO;
         pdfController.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Parse weird outline format." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-outline.pdf"]];
+        [document.outlineParser outline]; // PARSE!
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
