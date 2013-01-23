@@ -1388,6 +1388,14 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"View state restoration for continuous scrolling." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 10;
+        pdfController.pageTransition = PSPDFPageScrollContinuousTransition;
+        return pdfController;
+    }]];
+
     // Test flattening, especially for notes.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
