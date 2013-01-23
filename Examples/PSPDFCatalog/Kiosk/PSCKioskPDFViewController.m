@@ -60,8 +60,8 @@
         });
          */
 
-        // UI: parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
-        if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
+        // UI: Parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
+        //if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
 
         // Restore viewState.
         if ([self.document isKindOfClass:PSCMagazine.class]) {
