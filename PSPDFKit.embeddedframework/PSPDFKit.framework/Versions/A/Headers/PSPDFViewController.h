@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 };
 
 /**
- The main view controller to display PDFs. Can be displayed in fullscreen or embedded. Everything in PSPDFKit is based around PSPDFViewController. This is the class you want to override and customize.
+ The main view controller to display PDFs. Can be displayed in full-screen or embedded. Everything in PSPDFKit is based around PSPDFViewController. This is the class you want to override and customize.
  
  Make sure to correctly use viewController containment when adding this as a child view controller. If you override this class, ensure all UIViewController methods you're using do call super. (e.g. viewWillAppear).
  
@@ -104,16 +104,15 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// @name Page Scrolling and Zooming
 
 /// Set current page. Page starts at 0.
-/// Note: In PSPDFKit < 2.4, this was called "realPage".
 @property (nonatomic, assign) NSUInteger page;
 
 /// Set current page, optionally animated. Page starts at 0. Returns NO if page is invalid (e.g. out of bounds).
 - (BOOL)setPage:(NSUInteger)page animated:(BOOL)animated;
 
-/// Scroll to next page. Will potential advance two pages in dualPage mode.
+/// Scroll to next page. Will potentially advance two pages in dualPage mode.
 - (BOOL)scrollToNextPageAnimated:(BOOL)animated;
 
-/// Scroll to previous page. Will potential decrease two pages in dualPage mode.
+/// Scroll to previous page. Will potentially decrease two pages in dualPage mode.
 - (BOOL)scrollToPreviousPageAnimated:(BOOL)animated;
 
 /// If we're in double page mode, this will return the current screen page, else it's equal to page.
@@ -186,15 +185,23 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show the HUD. Respects HUDViewMode.
 - (BOOL)showControlsAnimated:(BOOL)animated;
+
 /// Hide the HUD. Respects HUDViewMode.
 - (BOOL)hideControlsAnimated:(BOOL)animated;
+
 /// Hide the HUD (respects HUDViewMode) and additional elements like page selection.
 - (BOOL)hideControlsAndPageElementsAnimated:(BOOL)animated;
+
 /// Toggles the HUD. Respects HUDViewMode.
 - (BOOL)toggleControlsAnimated:(BOOL)animated;
 
 /// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
 @property (nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
+
+/// Allow PSPDFKit to change the title of this viewController.
+/// Defaults to NO on iPhone (no space) and YES on iPad.
+/// @warning Requires isToolbarEnabled = YES to work.
+@property (nonatomic, assign) BOOL allowToolbarTitleChange;
 
 /// Enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Animatable.
 /// There's some more logic involved, e.g. is the default white statusbar not hidden on a HUD change.
@@ -442,7 +449,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Deprecation Note: Previously to PSPDFKit 2.4, this was named "pageScrolling".
 @property (nonatomic, assign) PSPDFScrollDirection scrollDirection;
 
-/// Shows first document page alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.
+/// Shows first document page alone. Not relevant in PSPDFPageModeSingle. Defaults to NO.
 @property (nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
 
 /// Allow zooming of small documents to screen width/height. Defaults to YES.

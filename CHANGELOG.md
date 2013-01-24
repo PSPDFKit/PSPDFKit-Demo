@@ -2,6 +2,31 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.4 - 24/January/2013__
+
+*  Line annotations are now writeable.
+*  A second tap now enables the edit mode in a free text annotation.
+*  Annotation selection is now properly pixel aligned, resulting in sharper border, drag points and content - especially on the iPad Mini.
+*  The drawing toolbar no longer forces the HUD to show before displaying itself.
+*  If enableKeyboardAvoidance is set to NO, the firstResponder won't be tampered with anymore.
+*  New property: allowToolbarTitleChange on PSPDFViewController, controls it title is set or not.
+*  PSPDFOutlineParser now lazily evaluates named destinations if an outline has more than a specified threshold. (This is currently set to 500). This greatly improves loading times for documents with complex outlines.
+*  Allow audio file types for RichMedia/Screen annotations.
+*  Add more audio file formats to the support list. (aiff, cif, ...)
+*  Ensure that addAnnotation:animated: in PSPDFPageView sets the page and documentProvider.
+*  Better workaround for MPMoviePlayer's problem with multiple audio/video views on the same window. (A play button is now displayed in those cases)
+*  Normalizes extracted text, allow searching within text that contains non-normalized ligatures.
+*  Opacity menu now draws a checked white background instead of using the menu background (now it's more like Photoshop, looks better)
+*  Add spanish translation (thanks to Tony Tomc!)
+*  The maximum software dimming value is less dark.
+*  Fixes a problem in PSPDFProcessor with NSData-based documents and adding annotation trailers.
+*  Fixes a bug where the scrollview would update it's position when a UIAlertView with a TextField was visible.
+*  Fixes a bug in the outline parser that resulted in the loop for (invalid) cyclid PDF referenced objects.
+*  Fixes an issue where parsing certain PDF dates failed.
+*  Fixes an issue with view state restoration and continuous scrolling.
+*  Fixes a rare issue where the bookmark thumbnail view indicator could be behind the thumbnail image.
+*  Fixes an issue with inline editing and the split screen keyboard.
+
 __v2.7.3 - 20/January/2013__
 
 *  FreeText annotations are now editable inline.

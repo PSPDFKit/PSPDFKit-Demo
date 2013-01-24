@@ -9,7 +9,7 @@
 #import "PSPDFHostingAnnotationView.h"
 #import "PSPDFResizableView.h"
 
-// Enables inline freetext annotation editing. Enabled by default.
+// Enables inline free text annotation editing. Enabled by default.
 // @warning This switch is temporary and will be removed in later updates.
 extern BOOL kPSPDFEnableInlineFreeTextAnnotations;
 
@@ -24,13 +24,14 @@ extern BOOL kPSPDFEnableInlineFreeTextAnnotations;
 - (id)initWithAnnotation:(PSPDFFreeTextAnnotation *)freeTextAnnotation;
 
 /// Start editing, shows the keyboard.
-- (void)startEditing;
+- (void)beginEditing;
 
 /// Ends editing, hides the keyboard
 - (void)endEditing;
 
 /// Internally used textView.
-@property (nonatomic, strong, readonly) UITextView *textView;
+/// @warning If you set this, do early on and not while edit mode is active.
+@property (nonatomic, strong) UITextView *textView;
 
 /// The dragging view, if we are currently dragged.
 @property (nonatomic, weak) PSPDFResizableView *resizableView;

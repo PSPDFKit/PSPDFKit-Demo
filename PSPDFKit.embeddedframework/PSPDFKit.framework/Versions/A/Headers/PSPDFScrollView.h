@@ -13,7 +13,7 @@
 @class PSPDFDocument, PSPDFPageView, PSPDFViewController, PSPDFLoupeView;
 
 typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
-    PSPDFShadowStyleFlat,   // flat  shadow style (Default)
+    PSPDFShadowStyleFlat,   // flat shadow style (Default)
     PSPDFShadowStyleCurl,   // curled shadow style
 };
 
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
  or there is one global PSPDFScrollView for all PSPDFPageView's.
  This is also the center for all the gesture recognizers. Subclass to customize behavior (e.g. override gestureRecognizerShouldBegin)
  
- If you manually zoom/change the contentOffset, you must use the methods with animation extension.
+ @warning If you manually zoom/change the contentOffset, you must use the methods with animation extension.
  (You don't have to animate, but those are overridden by PSPDFKit to properly inform the PSPDFPageViews to re-render. You can also use the default UIScrollView properties and manually call updateRenderView on each visible PSPDFPageView)
  
 - (void)setZoomScale:(float)scale animated:(BOOL)animated;
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 /// If YES, two sites are displayed.
 @property (nonatomic, assign, getter=isDoublePageMode) BOOL doublePageMode;
 
-/// Shows first document page alone. Not relevant in PSPDFPageModeSinge.
+/// Shows first document page alone. Not relevant in PSPDFPageModeSingle.
 @property (nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;
 
 /// Allow zooming of small documents to screen width/height.

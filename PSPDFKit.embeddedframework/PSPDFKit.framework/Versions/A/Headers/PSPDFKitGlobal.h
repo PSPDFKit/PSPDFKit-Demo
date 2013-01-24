@@ -81,6 +81,9 @@ extern NSString *kPSPDFCacheClassName;
 /// Class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
 extern NSString *kPSPDFIconGeneratorClassName;
 
+// Returns the (localized) name of the current app.
+extern NSString *PSPDFAppName(void);
+
 /// Get current PSPDFKit version.
 extern NSString *PSPDFVersionString(void);
 
@@ -130,6 +133,10 @@ extern CATransition *PSPDFFadeTransition(void);
 
 // Creates a fade transition with 'duration' timing.
 extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
+
+// UIKit sometimes gets the toolbar position wrong, when we show/hide things at the "wrong" time.
+// While I see this as a bug and have placed some rdars on it, here's a simple workaround.
+extern BOOL PSPDFFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated);
 
 // Matches actionSheet style via barStyle.
 extern UIActionSheetStyle PSPDPFActionSheetStyleForBarButtonStyle(UIBarStyle barStyle, BOOL translucent);

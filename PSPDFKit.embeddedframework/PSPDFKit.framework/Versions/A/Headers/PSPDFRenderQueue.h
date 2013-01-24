@@ -26,7 +26,7 @@ extern NSString *kPSPDFAnnotationAutoFetchTypes;
 @interface PSPDFRenderQueue : NSObject
 
 /// Render Queue is a singleton.
-+ (PSPDFRenderQueue *)sharedRenderQueue;
++ (instancetype)sharedRenderQueue;
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 /// For options, see PSPDFPageRender.

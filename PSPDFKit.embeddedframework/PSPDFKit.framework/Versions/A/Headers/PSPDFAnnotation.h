@@ -170,7 +170,7 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 
 /// Date where the annotation was last modified.
 /// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
-/// Will be updated by PSPDFKt as soon as a property is changed.
+/// Will be updated by PSPDFKit as soon as a property is changed.
 @property (nonatomic, strong) NSDate *lastModified;
 
 /// Date when the annotation was created. Might be nil.

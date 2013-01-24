@@ -37,11 +37,19 @@
 /// Attached document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
-/// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
-+ (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;
-
 /// Remembers the first visible outline element.
 /// Used to remember the position in PSPDFOutlineViewController.
 @property (nonatomic, assign) NSUInteger firstVisibleElement;
+
+/// Named destinations can be slow to resolve. By default, the outline parser will resolve up to 500 destinations. If more than 500 destinations are set, resolving is delayed to when the PSPDFOutlineElement is first used.
+/// @warning Change this before you first call outline. Future changes won't have any effect.
+@property (nonatomic, assign) NSUInteger namedDestinationResolveThreshold;
+
+/// Resolve the destinationName of an outline element.
+/// Will return NO if destinationName is nil or couldn't be resolved.
+- (BOOL)resolveDestinationNameForOutlineElement:(PSPDFOutlineElement *)outlineElement;
+
+/// Static helper, resolves named destination entries, returns dict with name -> page NSNumber
++ (NSDictionary *)resolveDestNames:(NSSet *)destNames documentRef:(CGPDFDocumentRef)documentRef;
 
 @end

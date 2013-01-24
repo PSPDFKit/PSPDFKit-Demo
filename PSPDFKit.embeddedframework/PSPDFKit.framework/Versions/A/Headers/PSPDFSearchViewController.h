@@ -69,7 +69,7 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 
 @interface PSPDFSearchViewController (SubclassingHooks)
 
-// called every time the text in the searchbar changes. Scope is currently ignored.
+// called every time the text in the search bar changes. Scope is currently ignored.
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 
 // Will update the status and insert/reload/remove search rows
