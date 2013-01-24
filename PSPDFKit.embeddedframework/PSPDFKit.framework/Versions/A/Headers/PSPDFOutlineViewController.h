@@ -19,7 +19,7 @@
 @end
 
 /**
- Outline (Table of Contents) view conrroller.
+ Outline (Table of Contents) view controller.
  
  As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
  */

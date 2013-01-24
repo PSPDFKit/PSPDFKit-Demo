@@ -7,13 +7,15 @@
 
 #import "PSPDFBookmark.h"
 
+///
 /// Represents a single outline/table of contents element.
+///
 @interface PSPDFOutlineElement : PSPDFBookmark
 
-/// Init with title, page, child elements and deepness level.
+/// Init with title, page, child elements and indentation level.
 - (id)initWithTitle:(NSString *)title page:(NSUInteger)page relativePath:(NSString *)relativePath children:(NSArray *)children level:(NSUInteger)level;
 
-/// Returns all elements + flattened subelements
+/// Returns all elements + flattened subelements.
 - (NSArray *)flattenedChildren;
 
 /// Outline title.
@@ -30,5 +32,10 @@
 
 /// Expansion state of current outline element.
 @property (nonatomic, assign, getter=isExpanded) BOOL expanded;
+
+/// PDF destination name.
+/// @warning If 'destinationName' is set, the target page hasn't yet been resolved.
+/// Use PSPDFOutlineParser to resolve a destination name.
+@property (nonatomic, copy) NSString *destinationName;
 
 @end

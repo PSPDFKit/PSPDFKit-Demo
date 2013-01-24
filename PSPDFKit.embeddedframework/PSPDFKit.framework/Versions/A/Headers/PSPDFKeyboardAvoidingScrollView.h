@@ -13,7 +13,11 @@
 @interface PSPDFKeyboardAvoidingScrollView : UIScrollView
 
 /// YES if keyboard is currently displayed.
+/// @warning Keep in mind that there are many other ways for the keyboard. E.g. this will return NO if the keyboard is in split view mode or a physical keyboard is attached.
 @property (nonatomic, assign, readonly, getter=isKeyboardVisible) BOOL keyboardVisible;
+
+/// Return YES if we have a first responder inside the scrollView that is a text input.
+@property (nonatomic, assign, readonly) BOOL firstResponderIsTextInput;
 
 /// Enable/Disable keyboard avoidance features. Defaults to YES.
 /// @warning Don't change this while isShowingKeyboard is YES, else 

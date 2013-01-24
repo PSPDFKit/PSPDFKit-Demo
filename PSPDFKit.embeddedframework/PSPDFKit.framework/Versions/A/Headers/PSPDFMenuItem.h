@@ -62,7 +62,7 @@
 
  The original implementation will be called if the PSPDFMenuItem selector is not detected.
 
- @parm object can be an instance or a class.
+ @param object can be an instance or a class.
  */
 + (void)installMenuHandlerForObject:(id)object;
 

@@ -20,6 +20,10 @@
 /// Defaults to 0.3. Only relevant if wantsAdditionalSoftwareDimming is YES.
 @property (nonatomic, assign) CGFloat additionalBrightnessDimmingFactor;
 
+/// Defaults to 0.6. If you set this to 1 the screen will be *completely* dark.
+/// Only relevant if wantsAdditionalSoftwareDimming is YES.
+@property (nonatomic, assign) CGFloat maximumAdditionalBrightnessDimmingFactor;
+
 @end
 
 
