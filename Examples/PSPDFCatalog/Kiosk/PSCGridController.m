@@ -575,7 +575,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UICollectionViewDelegate
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
 }
 
@@ -593,10 +593,10 @@
 
     PSCLog(@"Magazine selected: %d %@", indexPath.item, magazine);
 
-    if ([folder.magazines count] == 1 || self.magazineFolder) {
+    if (folder.magazines.count == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {
-            [[[UIAlertView alloc] initWithTitle:_(@"Item is currently downloading.")
-                                        message:nil
+            [[[UIAlertView alloc] initWithTitle:PSPDFAppName()
+                                        message:_(@"Item is currently downloading.")
                                        delegate:nil
                               cancelButtonTitle:_(@"OK")
                               otherButtonTitles:nil] show];
@@ -610,13 +610,9 @@
     }else {
         PSCGridController *gridController = [[PSCGridController alloc] initWithMagazineFolder:folder];
 
-        // a full-page-fade animation doesn't work very well on iPad (under a ux aspect; technically it's fine)
+        // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
         if (!PSIsIpad()) {
-            CATransition* transition = [CATransition animation];
-            transition.duration = kPSPDFGridFadeAnimationDuration;
-            transition.type = kCATransitionFade;
-            transition.subtype = kCATransitionFromTop;
-
+            CATransition *transition = PSPDFFadeTransitionWithDuration(0.3f);
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
             [self.navigationController pushViewController:gridController animated:NO];
 
