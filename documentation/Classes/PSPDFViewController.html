@@ -52,6 +52,8 @@
 	
 	<option value="//api/name/additionalBarButtonItems">&nbsp;&nbsp;&nbsp;&nbsp;additionalBarButtonItems</option>
 	
+	<option value="//api/name/allowToolbarTitleChange">&nbsp;&nbsp;&nbsp;&nbsp;allowToolbarTitleChange</option>
+	
 	<option value="//api/name/annotationAnimationDuration">&nbsp;&nbsp;&nbsp;&nbsp;annotationAnimationDuration</option>
 	
 	<option value="//api/name/annotationButtonItem">&nbsp;&nbsp;&nbsp;&nbsp;annotationButtonItem</option>
@@ -319,11 +321,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprecated Methods">PSPDFDeprecated Methods</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprecated Methods">PSPDFDeprecated Methods</a></span></li>
 	
 </ul></li>
 
@@ -344,6 +346,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/additionalActionsButtonItem">additionalActionsButtonItem</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/additionalBarButtonItems">additionalBarButtonItems</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/allowToolbarTitleChange">allowToolbarTitleChange</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/annotationAnimationDuration">annotationAnimationDuration</a></span></li>
 	
@@ -617,7 +621,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The main view controller to display PDFs. Can be displayed in fullscreen or embedded. Everything in PSPDFKit is based around PSPDFViewController. This is the class you want to override and customize.</p>
+						<p>The main view controller to display PDFs. Can be displayed in full-screen or embedded. Everything in PSPDFKit is based around PSPDFViewController. This is the class you want to override and customize.</p>
 
 <p>Make sure to correctly use viewController containment when adding this as a child view controller. If you override this class, ensure all UIViewController methods you&rsquo;re using do call super. (e.g. viewWillAppear).</p>
 
@@ -659,8 +663,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p></spa
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/page">&nbsp;&nbsp;page</a></code>
-		<span class="tooltip"><p>Set current page. Page starts at 0.
-Note: In PSPDFKit &lt; 2.4, this was called &ldquo;realPage&rdquo;.</p></span>
+		<span class="tooltip"><p>Set current page. Page starts at 0.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -674,14 +677,14 @@ Note: In PSPDFKit &lt; 2.4, this was called &ldquo;realPage&rdquo;.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToNextPageAnimated:">&ndash;&nbsp;scrollToNextPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potential advance two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to next <a href="#//api/name/page">page</a>. Will potentially advance two pages in dualPage mode.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/scrollToPreviousPageAnimated:">&ndash;&nbsp;scrollToPreviousPageAnimated:</a></code>
-		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potential decrease two pages in dualPage mode.</p></span>
+		<span class="tooltip"><p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentially decrease two pages in dualPage mode.</p></span>
 	</span>
 	
 	
@@ -843,6 +846,14 @@ HUD will not change when changing this mode. Use <a href="#//api/name/setHUDVisi
 	<span class="tooltip">
 		<code><a href="#//api/name/toolbarEnabled">&nbsp;&nbsp;toolbarEnabled</a></code>
 		<span class="tooltip"><p>Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/allowToolbarTitleChange">&nbsp;&nbsp;allowToolbarTitleChange</a></code>
+		<span class="tooltip"><p>Allow PSPDFKit to change the title of this viewController.
+Defaults to NO on iPhone (no space) and YES on iPad.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1221,7 +1232,7 @@ Deprecation Note: Previously to PSPDFKit 2.4, this was named &ldquo;pageScrollin
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/doublePageModeOnFirstPage">&nbsp;&nbsp;doublePageModeOnFirstPage</a></code>
-		<span class="tooltip"><p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.</p></span>
+		<span class="tooltip"><p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSingle. Defaults to NO.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1495,6 +1506,21 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 						</ul>
 						
 						
+						<a title="PSPDFDeprecated Methods" name="task_PSPDFDeprecated Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFDeprecated Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
+		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
 						<a title="Internal Methods" name="task_Internal Methods"></a>
 						<h3 class="subsubtitle task-title">Internal Methods</h3>
 
@@ -1615,21 +1641,6 @@ Only tries to saves <a href="#//api/name/document">document</a> if view is visib
 	<span class="tooltip">
 		<code><a href="#//api/name/documentLabel">&nbsp;&nbsp;documentLabel</a></code>
 		<span class="tooltip"><p>Document title label view. (default iPhone only)</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li>
-						</ul>
-						
-						
-						<a title="PSPDFDeprecated Methods" name="task_PSPDFDeprecated Methods"></a>
-						<h3 class="subsubtitle task-title">PSPDFDeprecated Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1845,6 +1856,46 @@ Note: This has been renamed in PSPDFKit 2.4 from &ldquo;additionalRightBarButton
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/allowToolbarTitleChange" title="allowToolbarTitleChange"></a>
+	<h3 class="subsubtitle method-title">allowToolbarTitleChange</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Allow PSPDFKit to change the title of this viewController.
+Defaults to NO on iPhone (no space) and YES on iPad.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL allowToolbarTitleChange</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> Requires <a href="#//api/name/toolbarEnabled">isToolbarEnabled</a> = YES to work.</p></div>
+	</div>
 	
 	
 	
@@ -2351,7 +2402,7 @@ Note: has simple support to also accepts an NSString, the bundle path then will 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSinge. Defaults to NO.</p>
+		<p>Shows first <a href="#//api/name/document">document</a> <a href="#//api/name/page">page</a> alone. Not relevant in PSPDFPageModeSingle. Defaults to NO.</p>
 	</div>		
 	
 	
@@ -3076,8 +3127,7 @@ When changing padding; the touch area is still fully active.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set current page. Page starts at 0.
-Note: In PSPDFKit &lt; 2.4, this was called &ldquo;realPage&rdquo;.</p>
+		<p>Set current page. Page starts at 0.</p>
 	</div>		
 	
 	
@@ -5275,7 +5325,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potential advance two pages in dualPage mode.</p>
+		<p>Scroll to next <a href="#//api/name/page">page</a>. Will potentially advance two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -5309,7 +5359,7 @@ PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of <a href="../Cl
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potential decrease two pages in dualPage mode.</p>
+		<p>Scroll to previous <a href="#//api/name/page">page</a>. Will potentially decrease two pages in dualPage mode.</p>
 	</div>		
 	
 	
@@ -5828,7 +5878,7 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-20)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -72,6 +72,8 @@
 	
 	<option value="//api/name/loadAnnotationsWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- loadAnnotationsWithError:</option>
 	
+	<option value="//api/name/mediaFileTypes">&nbsp;&nbsp;&nbsp;&nbsp;- mediaFileTypes</option>
+	
 	<option value="//api/name/parseAnnotationLinkTarget:">&nbsp;&nbsp;&nbsp;&nbsp;- parseAnnotationLinkTarget:</option>
 	
 	<option value="//api/name/parseAnnotationsForPage:pageRef:">&nbsp;&nbsp;&nbsp;&nbsp;- parseAnnotationsForPage:pageRef:</option>
@@ -83,8 +85,6 @@
 	<option value="//api/name/setAnnotations:forPage:">&nbsp;&nbsp;&nbsp;&nbsp;- setAnnotations:forPage:</option>
 	
 	<option value="//api/name/tryLoadAnnotationsFromFileWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- tryLoadAnnotationsFromFileWithError:</option>
-	
-	<option value="//api/name/videoFileTypes">&nbsp;&nbsp;&nbsp;&nbsp;- videoFileTypes</option>
 	
 	
 	
@@ -146,6 +146,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loadAnnotationsWithError:">loadAnnotationsWithError:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mediaFileTypes">mediaFileTypes</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseAnnotationLinkTarget:">parseAnnotationLinkTarget:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/parseAnnotationsForPage:pageRef:">parseAnnotationsForPage:pageRef:</a></span></li>
@@ -157,8 +159,6 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setAnnotations:forPage:">setAnnotations:forPage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tryLoadAnnotationsFromFileWithError:">tryLoadAnnotationsFromFileWithError:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/videoFileTypes">videoFileTypes</a></span></li>
 	
 </ul></li>
 
@@ -346,8 +346,8 @@ Will be called from <a href="#//api/name/annotationsForPage:pageRef:">annotation
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/videoFileTypes">&ndash;&nbsp;videoFileTypes</a></code>
-		<span class="tooltip"><p>filtered <a href="#//api/name/fileTypeTranslationTable">fileTypeTranslationTable</a> that only returns video elements.</p></span>
+		<code><a href="#//api/name/mediaFileTypes">&ndash;&nbsp;mediaFileTypes</a></code>
+		<span class="tooltip"><p>filtered <a href="#//api/name/fileTypeTranslationTable">fileTypeTranslationTable</a> that only returns video or audio elements.</p></span>
 	</span>
 	
 	
@@ -772,6 +772,40 @@ Defaults to &lsquo;pspdfkit://&rsquo;.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/mediaFileTypes" title="mediaFileTypes"></a>
+	<h3 class="subsubtitle method-title">mediaFileTypes</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>filtered <a href="#//api/name/fileTypeTranslationTable">fileTypeTranslationTable</a> that only returns video or audio elements.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)mediaFileTypes</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFFileAnnotationProvider.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/parseAnnotationLinkTarget:" title="parseAnnotationLinkTarget:"></a>
 	<h3 class="subsubtitle method-title">parseAnnotationLinkTarget:</h3>
 	
@@ -984,40 +1018,6 @@ Note: Setting nil as annotations will re-evaluate the pdf for annotations on the
 	
 </div>
 						
-						<div class="section-method">
-	<a name="//api/name/videoFileTypes" title="videoFileTypes"></a>
-	<h3 class="subsubtitle method-title">videoFileTypes</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>filtered <a href="#//api/name/fileTypeTranslationTable">fileTypeTranslationTable</a> that only returns video elements.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (NSArray *)videoFileTypes</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFFileAnnotationProvider.h</code><br />
-	</div>				
-	
-	
-</div>
-						
 					</div>
 					
 					
@@ -1031,7 +1031,7 @@ Note: Setting nil as annotations will re-evaluate the pdf for annotations on the
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-20)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

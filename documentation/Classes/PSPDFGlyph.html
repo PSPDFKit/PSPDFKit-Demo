@@ -46,9 +46,13 @@
 	
 	<option value="//api/name/font">&nbsp;&nbsp;&nbsp;&nbsp;font</option>
 	
+	<option value="//api/name/fontHeight">&nbsp;&nbsp;&nbsp;&nbsp;fontHeight</option>
+	
 	<option value="//api/name/frame">&nbsp;&nbsp;&nbsp;&nbsp;frame</option>
 	
 	<option value="//api/name/indexOnPage">&nbsp;&nbsp;&nbsp;&nbsp;indexOnPage</option>
+	
+	<option value="//api/name/lineBreaker">&nbsp;&nbsp;&nbsp;&nbsp;lineBreaker</option>
 	
 	
 	
@@ -60,6 +64,8 @@
 	<option value="//api/name/compareByXPosition:">&nbsp;&nbsp;&nbsp;&nbsp;- compareByXPosition:</option>
 	
 	<option value="//api/name/isEqualToGlyph:">&nbsp;&nbsp;&nbsp;&nbsp;- isEqualToGlyph:</option>
+	
+	<option value="//api/name/isOnSameLineAs:">&nbsp;&nbsp;&nbsp;&nbsp;- isOnSameLineAs:</option>
 	
 	
 	
@@ -91,9 +97,13 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/font">font</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/fontHeight">fontHeight</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/frame">frame</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/indexOnPage">indexOnPage</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineBreaker">lineBreaker</a></span></li>
 	
 </ul></li>
 
@@ -106,6 +116,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compareByXPosition:">compareByXPosition:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEqualToGlyph:">isEqualToGlyph:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isOnSameLineAs:">isOnSameLineAs:</a></span></li>
 	
 </ul></li>
 
@@ -147,8 +159,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Represents a single character (glyph) on the pdf page.
-Adobe also might reference to this as &ldquo;Quad&rdquo;.</p>
+						<p>Represents a single character (glyph, quad) on the PDF page.</p>
 					</div>
 					
 					
@@ -189,6 +200,13 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/lineBreaker">&nbsp;&nbsp;lineBreaker</a></code>
+		<span class="tooltip"><p>Set if after this glyph a \n is there.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/indexOnPage">&nbsp;&nbsp;indexOnPage</a></code>
 		<span class="tooltip"><p>Index set on the Glyph.</p></span>
 	</span>
@@ -198,6 +216,20 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 	<span class="tooltip">
 		<code><a href="#//api/name/compareByXPosition:">&ndash;&nbsp;compareByXPosition:</a></code>
 		<span class="tooltip"><p>Compare with second glyph on the X position.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/fontHeight">&nbsp;&nbsp;fontHeight</a></code>
+		<span class="tooltip"><p>Height of the glyph <a href="#//api/name/font">font</a>.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isOnSameLineAs:">&ndash;&nbsp;isOnSameLineAs:</a></code>
+		<span class="tooltip"><p>Compare glyph with other glyph if it&rsquo;s approximately on the same line.</p></span>
 	</span>
 	
 	
@@ -331,6 +363,40 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/fontHeight" title="fontHeight"></a>
+	<h3 class="subsubtitle method-title">fontHeight</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Height of the glyph <a href="#//api/name/font">font</a>.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGFloat fontHeight</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFGlyph.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/frame" title="frame"></a>
 	<h3 class="subsubtitle method-title">frame</h3>
 	
@@ -378,6 +444,40 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) int indexOnPage</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFGlyph.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lineBreaker" title="lineBreaker"></a>
+	<h3 class="subsubtitle method-title">lineBreaker</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set if after this glyph a \n is there.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL lineBreaker</code></div>
 	
 	
 	
@@ -478,6 +578,40 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/isOnSameLineAs:" title="isOnSameLineAs:"></a>
+	<h3 class="subsubtitle method-title">isOnSameLineAs:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Compare glyph with other glyph if it&rsquo;s approximately on the same line.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (BOOL)isOnSameLineAs:(PSPDFGlyph *)<em>glyph</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFGlyph.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -491,7 +625,7 @@ To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-20)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
