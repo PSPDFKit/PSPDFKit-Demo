@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
  [self.document.annotationParser addAnnotations:@[annotation] forPage:0];
  
  Note: Do not add NSURL-encoded strings to siteLinkTarget.(no %20 - real space!)
- If you convert a path from NSURL, use [URL path] and NOT [url description]. (Actually, never use URL description, except when you're debugging)
+ If you convert a path from NSURL, use URL.path and NOT [url description]. (Actually, never use URL description, except when you're debugging)
 */
 @property (nonatomic, copy) NSString *siteLinkTarget;
 

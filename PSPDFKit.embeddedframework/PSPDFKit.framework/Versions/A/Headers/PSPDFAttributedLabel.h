@@ -261,7 +261,7 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
  Tells the delegate that the user did select a link to a date.
  
  @param label The label whose link was selected.
- @param date The datefor the selected link.
+ @param date The date for the selected link.
  */
 - (void)attributedLabel:(PSPDFAttributedLabel *)label didSelectLinkWithDate:(NSDate *)date;
 

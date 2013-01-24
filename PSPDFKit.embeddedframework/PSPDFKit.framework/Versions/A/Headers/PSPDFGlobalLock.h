@@ -13,7 +13,7 @@
 @interface PSPDFGlobalLock : NSObject
 
 /// Get global singleton.
-+ (PSPDFGlobalLock *)sharedGlobalLock;
++ (instancetype)sharedGlobalLock;
 
 /// TRY to lock with document and logical page number (starts at 0).
 /// returns nil if currently locked.

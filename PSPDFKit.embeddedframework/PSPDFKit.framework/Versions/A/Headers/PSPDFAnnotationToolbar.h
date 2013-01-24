@@ -23,15 +23,17 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarStamp,
 };
 
+///
 /// Delegate to be notified on toolbar actions/hiding.
+///
 @protocol PSPDFAnnotationToolbarDelegate <NSObject>
 
 @optional
 
-// Called when the Done button has been pressed to hide the toolbar.
+/// Called when the Done button has been pressed to hide the toolbar.
 - (void)annotationToolbarDidHide:(PSPDFAnnotationToolbar *)annotationToolbar;
 
-// Called after a mode change is set (button pressed; drawing finished, etc)
+/// Called after a mode change is set (button pressed; drawing finished, etc)
 - (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(PSPDFAnnotationToolbarMode)newMode;
 
 @end
@@ -92,7 +94,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
 
-/// Toolbar might be used "headless" but for state management. Manually call buttons here.
+// Toolbar might be used "headless" but for state management. Manually call buttons here.
 - (void)noteButtonPressed:(id)sender;
 - (void)highlightButtonPressed:(id)sender;
 - (void)strikeOutButtonPressed:(id)sender;
@@ -122,9 +124,9 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)finishDrawingAnimated:(BOOL)animated andSaveAnnotation:(BOOL)saveAnnotation;
 
 // helpers to lock/unlock the controller
-- (void)lockPDFController;
+- (void)lockPDFControllerAnimated:(BOOL)animated;
 
 // stayOnTop is a runtime tweak to make sure the toolbar stays above the pdfController navigationBar.
-- (void)unlockPDFControllerAndEnsureToStayOnTop:(BOOL)stayOnTop;
+- (void)unlockPDFControllerAnimated:(BOOL)animated showControls:(BOOL)showControls ensureToStayOnTop:(BOOL)stayOnTop;
 
 @end

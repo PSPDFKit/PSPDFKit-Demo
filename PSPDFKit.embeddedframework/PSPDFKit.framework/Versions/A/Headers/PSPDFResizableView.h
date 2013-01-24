@@ -73,10 +73,10 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 /// If set to NO, view can only be moved, no resize knobs will be displayed. Depends on allowEditing. Defaults to YES.
 @property (nonatomic, assign) BOOL allowResizing;
 
-/// Set minimum allowed width (unless the view is smaller to begin width). Default is 44.0.
+/// Set minimum allowed width (unless the view is smaller to begin width). Default is 32.0.
 @property (nonatomic, assign) CGFloat minWidth;
 
-/// Set minimum allowed height (unless the view is smaller to begin width). Default is 44.0.
+/// Set minimum allowed height (unless the view is smaller to begin width). Default is 32.0.
 @property (nonatomic, assign) CGFloat minHeight;
 
 /// Disables dragging the view outside of the parent. Defaults to YES.

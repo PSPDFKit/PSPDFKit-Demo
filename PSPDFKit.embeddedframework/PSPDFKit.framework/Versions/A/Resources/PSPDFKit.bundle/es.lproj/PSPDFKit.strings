@@ -1,0 +1,143 @@
+/* 
+  Localization.strings
+  PSPDFKit
+ 
+  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
+*/
+
+// general
+"Close" = "Cerrar";
+"Cancel" = "Cancelar";
+"Open" = "Abrir";
+"Untitled" = "Sin título";
+"File Not Found" = "Archivo no encontrado";
+"Unnamed PDF" = "PDF sin nombre";
+"Go to %@" = "Ir a %@";
+"Page %d" = "Página %d";
+
+// toolbar
+"Table Of Contents" = "Índice";
+"Search" = "Buscar";
+"Email" = "E-mail";
+"Email document" = "Mandar el documento por e-mail";
+"Email flattened document" = "Mandar el documento aplanado por e-mail";
+"Email document files" = "Mandar los archivos por e-mail";
+"Email visible page" = "Mandar la página visible por e-mail";
+"Email flattened page" = "Mandar la página aplanada por e-mail";
+"Email visible pages" = "Mandar las páginas visibles por e-mail";
+"Email flattened pages" = "Mandar las páginas aplanadas por e-mail";
+"Open in..." = "Abrir enâ€¦";
+"Open original document" = "Abrir el documento original";
+"Open flattened document" = "Abrir el documento aplanado";
+"Print with Annotations" = "Imprimir con anotaciones";
+"Print document only" = "Imprimir el documento solamente";
+"No Applications found" = "Ninguna aplicación puede abrir el documento PDF.";
+"Print" = "Imprimir";
+"Annotations" = "Anotaciones";
+"Add Bookmark" = "Agregar marcador";
+"Remove Bookmark" = "Remover marcador";
+"Brightness" = "Luminosidad";
+"Share..." = "Compartirâ€¦";
+"Preparing..." = "Preparandoâ€¦";
+
+// password
+"Unlock" = "Desbloquear";
+"Please enter the password." = "Por favor introduzca la contraseña.";
+"This document cannot be unlocked. %@ is unsupported." = "Este documento no puede ser desbloqueado. %@ no está soportado.";
+
+// page
+"%d of %d" = "%d de %d";
+"%d-%d of %d" = "%d-%d de %d";
+"%@ (%d of %d)" = "%@ (%d de %d)";
+
+// search
+"Page %d" = "Página %d";
+"Search Document" = "Buscar en el documento";
+"No matches found" = "No se encontraron resultados";
+"One match found" = "Se encontró un resultado";
+"%d matches found" = "Se encontraron %d resultados";
+"Searching..." = "Buscandoâ€¦";
+"Search Completed" = "Búsqueda completa";
+"Search Cancelled" = "Búsqueda cancelada";
+
+// inline browser
+"Copy Link" = "Copiar enlace";
+"Open in Safari" = "Abrir en Safari";
+"Mail Link to this Page" = "Enviar enlace a esta página por e-mail";
+"Your %@ is not configured to send emails." = "Su %@ no está configurado para enviar e-mails.";
+"The link is requesting to open %@Would you like to continue?" = "El enlace solicita abrir %@Desea continuar?";
+"an external application" = "una aplicación externa";
+"the App Store" = "la App Store";
+"Mail" = "E-mail";
+"No handler found for %@" = "No se encontró manejador para %@";
+
+// text selection
+"Save To Camera Roll" = "Guardar al rollo de la cámara";
+"Failed to extract image." = "No se pudo extraer la imagen.";
+
+// annotations
+"Remove" = "Remover";
+"Edit" = "Editar";
+"Undo" = "Deshacer";
+"Redo" = "Rehacer";
+"Type..." = "Tipoâ€¦";
+"Font..." = "Tipografíaâ€¦";
+"Size..." = "Tamañoâ€¦";
+"Choose Font" = "Elija tipografía";
+"Choose Font Style" = "Elija estilo de tipografía";
+"Choose Color" = "Elija un color";
+"Rainbow" = "Arco iris";
+"Monochrome" = "Monocromo";
+"Color..." = "Colorâ€¦";
+"Opacity..." = "Opacidadâ€¦";
+"Custom..." = "Personalizadoâ€¦";
+"Custom" = "Personalizado";
+"Thickness..." = "Espesorâ€¦";
+"%@ pt" = "%@ puntos";
+"Text..." = "Textoâ€¦";
+"Yellow" = "Amarillo";
+"Green" = "Verde";
+"Red" = "Rojo";
+"Blue" = "Azul";
+"Pink" = "Rosado";
+"Black" = "Negro";
+"Define" = "Definir";
+"Wikipedia" = "Wikipedia";
+"Copy" = "Copiar";
+"Highlight" = "Destacar";
+"Underline" = "Subrayar";
+"Strikeout" = "Tachar";
+"Sketch" = "Dibujo";
+"Signature" = "Firma";
+"Stamp" = "Sello";
+"Add Stamp" = "Agregar sello";
+"Custom" = "Personalizado";
+"Create Stamp" = "Crear sello";
+"Preview" = "Preview";
+"Stamp Text" = "Texto del sello";
+"Add Signature" = "Agregar firma";
+"New Note" = "Nota nueva";
+"Note" = "Nota";
+"Text" = "Texto";
+"Drawing Color" = "Color de dibujo";
+"Free Text" = "Texto libre";
+"Delete Note" = "Borrar la nota";
+"Delete Highlight" = "Borrar el destacamiento";
+"Delete Free Text" = "Borrar el texto libre";
+"%@ could not be found." = "%@ no se pudo encontrar.";
+
+// limk annotation editing
+"Create Link..." = "Crear enlace...";
+"Add Link" = "Agregar enlace";
+"Edit Link" = "Editar enlace";
+"Move Link" = "Mover enlace";
+"Remove Link" = "Remover enlace";
+"Open Link" = "Abrir enlace";
+"Go to page %d" = "Ir a la página %d";
+"Save" = "Guardar";
+"Link Destination" = "Destino del enlace";
+"Enter page index or a http:// address to link to an URL." = "Introduzca un índice de página o una dirección http:// para enlazar a un URL.";
+
+// voiceover accessibility
+"Page" = "Página";
+"Grid" = "Cuadrícula";

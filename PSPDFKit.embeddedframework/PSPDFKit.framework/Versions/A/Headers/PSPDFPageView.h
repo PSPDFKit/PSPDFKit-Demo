@@ -81,7 +81,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 @property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
 
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
-/// Note: If the scrollview is currently decelerating,
+/// Note: If the scroll view is currently decelerating,
 /// this will show the TARGET rect, not the one that's currently animating.
 @property (nonatomic, assign, readonly) CGRect visibleRect;
 
@@ -282,9 +282,6 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
 
 @end
-
-// Key to register alertViews to enable the return key.
-const char kPSPDFAlertViewKey;
 
 @interface PSPDFPageView (Deprecated)
 

@@ -85,8 +85,8 @@
 /// Resolves a PSPDFKit-style URL to the appropriate NSURL.
 + (NSURL *)resolvePath:(NSString *)path forDocument:(PSPDFDocument *)document page:(NSUInteger)page;
 
-/// filtered fileTypeTranslationTable that only returns video elements.
-- (NSArray *)videoFileTypes;
+/// filtered fileTypeTranslationTable that only returns video or audio elements.
+- (NSArray *)mediaFileTypes;
 
 /// Removes all annotations that are marked as deleted.
 - (NSUInteger)removeDeletedAnnotations;

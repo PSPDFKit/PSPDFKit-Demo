@@ -21,8 +21,9 @@ extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
 /// Scans glyphs and reduces the selection to columns.
 extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 
-/// Represents a single character (glyph) on the pdf page.
-/// Adobe also might reference to this as "Quad".
+///
+/// Represents a single character (glyph, quad) on the PDF page.
+///
 @interface PSPDFGlyph : NSObject <NSCopying, NSCoding>
 
 /// Frame of the glyph. Doesn't has pageRotation applied.
@@ -36,7 +37,7 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 /// Used font info.
 @property (nonatomic, strong) PSPDFFontInfo *font;
 
-// Set if after this glyph a \n is there.
+/// Set if after this glyph a \n is there.
 @property (nonatomic, assign) BOOL lineBreaker;
 
 /// Index set on the Glyph.
@@ -45,10 +46,11 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 /// Compare with second glyph on the X position.
 - (NSComparisonResult)compareByXPosition:(PSPDFGlyph *)glyph;
 
-- (BOOL)isOnSameLineAs:(PSPDFGlyph *)glyph;
-
+/// Height of the glyph font.
 @property (nonatomic, assign, readonly) CGFloat fontHeight;
 
+/// Compare glyph with other glyph if it's approximately on the same line.
+- (BOOL)isOnSameLineAs:(PSPDFGlyph *)glyph;
 - (BOOL)isOnSameLineSegmentAs:(PSPDFGlyph *)glyph;
 
 /// Used for caching during longPress event.
