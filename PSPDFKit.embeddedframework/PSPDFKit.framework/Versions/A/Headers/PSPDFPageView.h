@@ -25,7 +25,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFStampViewControllerDelegate, UITextFieldDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
@@ -196,16 +196,18 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Handle long press, potentially relay to subviews.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 
-/// Returns available UIMenuItem for the current annotation.
-/// To extend this, selectors for UIMenuItem need to be implemented in a subclass.
+/// Returns available PSPDFMenuItem's for the current annotation.
+/// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)menuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Returns available UIMenuItems to change the color.
+/// Returns available PSPDFMenuItem's to change the color.
+/// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController,
-/// Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)
+/// Except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
+/// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Shows a popover/modal controller to edit a PSPDFAnnotation.
@@ -256,6 +258,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Show menu if annotation/text is selected.
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
+
+/// Show signature menu.
+- (void)showNewSignatureMenuAtPoint:(CGPoint)point;
 
 /// Returns the default color options for the specified annotation type.
 - (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;

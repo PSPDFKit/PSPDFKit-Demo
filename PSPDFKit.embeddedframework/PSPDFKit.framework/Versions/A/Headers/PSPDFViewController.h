@@ -75,11 +75,11 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 
 // Customize how a single page should be displayed.
 typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
-    PSPDFPageRenderingModeThumbnailThenFullPage, // load cached page async
-    PSPDFPageRenderingModeFullPage,             // load cached page async, no upscaled thumb
-    PSPDFPageRenderingModeFullPageBlocking,     // load cached page directly
-    PSPDFPageRenderingModeThumbnailThenRender,  // don't use cached page but thumb
-    PSPDFPageRenderingModeRender                // don't use cached page nor thumb
+    PSPDFPageRenderingModeThumbnailThenFullPage, /// load cached page async
+    PSPDFPageRenderingModeFullPage,              /// load cached page async, no upscaled thumb
+    PSPDFPageRenderingModeFullPageBlocking,      /// load cached page directly
+    PSPDFPageRenderingModeThumbnailThenRender,   /// don't use cached page but thumb
+    PSPDFPageRenderingModeRender                 /// don't use cached page nor thumb
 };
 
 /**
@@ -117,7 +117,6 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// If we're in double page mode, this will return the current screen page, else it's equal to page.
 /// e.g. if you have 50 pages, you get 25/26 "double pages" when in double page mode.
-/// Note: In PSPDFKit < 2.4, this formerly was called was "page".
 @property (nonatomic, assign, readonly) NSUInteger screenPage;
 
 /// Scrolls to a specific rect on the current page. No effect if zoom is at 1.0.

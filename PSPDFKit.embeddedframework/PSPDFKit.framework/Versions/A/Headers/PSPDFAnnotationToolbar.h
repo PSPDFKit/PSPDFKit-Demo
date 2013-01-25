@@ -90,6 +90,11 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// Since saving is slow, this defaults to NO.
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
 
+/// Allows to scroll with two fingers while annotation mode is active. Defaults to YES.
+/// Not all annotation modes block scrolling (but higlight, drawing, etc do).
+/// @warning Do not change this while we are in annotation mode.
+@property (nonatomic, assign) BOOL allowTwoFingerScrollPanDuringLock;
+
 @end
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
@@ -99,6 +104,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)highlightButtonPressed:(id)sender;
 - (void)strikeOutButtonPressed:(id)sender;
 - (void)underlineButtonPressed:(id)sender;
+// Draw replaces the toolbar items with custom items and later restores the original items via using the 'originalItems' property.
 - (void)drawButtonPressed:(id)sender;
 - (void)freeTextButtonPressed:(id)sender;
 - (void)signatureButtonPressed:(id)sender;
@@ -116,14 +122,17 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @property (nonatomic, strong, readonly) UIBarButtonItem *undoItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *redoItem;
 
-// Color management
+// Drawing mode will update the toolbar items, here are the original items saved.
+@property (nonatomic, strong, readonly) NSArray *originalItems;
+
+// Color management.
 - (void)setLastUsedColor:(UIColor *)lastUsedDrawColor forAnnotationType:(NSString *)annotationType;
 - (UIColor *)lastUsedColorForAnnotationTypeString:(NSString *)annotationType;
 
 // Finish up drawing. Usually called by the drawing delegate.
 - (void)finishDrawingAnimated:(BOOL)animated andSaveAnnotation:(BOOL)saveAnnotation;
 
-// helpers to lock/unlock the controller
+// Helpers to lock/unlock the controller
 - (void)lockPDFControllerAnimated:(BOOL)animated;
 
 // stayOnTop is a runtime tweak to make sure the toolbar stays above the pdfController navigationBar.

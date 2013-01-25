@@ -87,6 +87,7 @@
 #import "PSPDFAnnotationView.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"
+#import "PSPDFFreeTextAnnotationView.h"
 #import "PSPDFVideoAnnotationView.h"
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
