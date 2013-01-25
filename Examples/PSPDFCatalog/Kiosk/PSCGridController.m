@@ -374,7 +374,7 @@
         cell.hidden = YES;
         CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
-        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = cellCoords;
 
         coverImageView.contentMode = UIViewContentModeScaleAspectFit;
