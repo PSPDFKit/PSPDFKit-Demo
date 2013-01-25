@@ -322,7 +322,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)darkenView:(BOOL)darken animated:(BOOL)animated {
     if (darken && !_progressViewBackground) {
         _progressViewBackground = [[UIView alloc] initWithFrame:self.imageView.bounds];
-        _progressViewBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _progressViewBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _progressViewBackground.backgroundColor = [UIColor blackColor];
         _progressViewBackground.alpha = 0.5f;
     }
