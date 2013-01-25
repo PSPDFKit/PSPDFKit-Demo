@@ -119,6 +119,12 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 /// Currently used to allow different annotation drawings during the annotation flattening process.
 - (void)drawInContext:(CGContextRef)context withOptions:(NSDictionary *)options;
 
+extern NSString *const kPSPDFAnnotationDrawCentered; // CGFloat, draw in the middle of the image, if size has a different aspect ratio.
+extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
+
+/// Renders annotation into an image.
+- (UIImage *)imageWithSize:(CGSize)size withOptions:(NSDictionary *)options;
+
 /// Helper that will prepare the context for the border style.
 - (void)prepareBorderStyleInContext:(CGContextRef)context;
 
@@ -206,7 +212,8 @@ extern NSString *const kPSPDFAnnotationDrawFlattened;
 @property (nonatomic, assign) NSUInteger page;
 
 /// Page relative to the document.
-@property (nonatomic, assign, readonly) NSUInteger absolutePage;
+/// Will be calculated from page and will change page if set.
+@property (nonatomic, assign) NSUInteger absolutePage;
 
 /// If this annotation isn't backed by the PDF, it's dirty by default.
 /// After the annotation has been written to the file, this will be reset until the annotation has been changed.

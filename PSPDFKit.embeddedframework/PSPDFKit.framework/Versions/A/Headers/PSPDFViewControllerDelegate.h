@@ -122,6 +122,8 @@
 
  Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
  Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
+ 
+ Use PSPDFMenuItem's 'identifier' to check and modify the menu items. This string will not be translated (vs the title property)
 */
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
