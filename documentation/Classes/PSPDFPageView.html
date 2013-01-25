@@ -143,6 +143,8 @@
 	
 	<option value="//api/name/showMenuIfSelectedAnimated:">&nbsp;&nbsp;&nbsp;&nbsp;- showMenuIfSelectedAnimated:</option>
 	
+	<option value="//api/name/showNewSignatureMenuAtPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- showNewSignatureMenuAtPoint:</option>
+	
 	<option value="//api/name/showNoteControllerForAnnotation:showKeyboard:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- showNoteControllerForAnnotation:showKeyboard:animated:</option>
 	
 	<option value="//api/name/singleTapped:">&nbsp;&nbsp;&nbsp;&nbsp;- singleTapped:</option>
@@ -303,6 +305,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showMenuIfSelectedAnimated:">showMenuIfSelectedAnimated:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showNewSignatureMenuAtPoint:">showNewSignatureMenuAtPoint:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showNoteControllerForAnnotation:showKeyboard:animated:">showNoteControllerForAnnotation:showKeyboard:animated:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/singleTapped:">singleTapped:</a></span></li>
@@ -348,7 +352,7 @@
 	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFLongPressGestureRecognizerDelegate.html">PSPDFLongPressGestureRecognizerDelegate</a><br /><a href="../Protocols/PSPDFRenderDelegate.html">PSPDFRenderDelegate</a><br /><a href="../Protocols/PSPDFResizableViewDelegate.html">PSPDFResizableViewDelegate</a><br /><a href="../Protocols/PSPDFSignatureViewControllerDelegate.html">PSPDFSignatureViewControllerDelegate</a><br /><a href="../Protocols/PSPDFStampViewControllerDelegate.html">PSPDFStampViewControllerDelegate</a><br />UIScrollViewDelegate<br />UITextFieldDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFLongPressGestureRecognizerDelegate.html">PSPDFLongPressGestureRecognizerDelegate</a><br /><a href="../Protocols/PSPDFRenderDelegate.html">PSPDFRenderDelegate</a><br /><a href="../Protocols/PSPDFResizableViewDelegate.html">PSPDFResizableViewDelegate</a><br /><a href="../Protocols/PSPDFSignatureSelectorViewControllerDelegate.html">PSPDFSignatureSelectorViewControllerDelegate</a><br /><a href="../Protocols/PSPDFSignatureViewControllerDelegate.html">PSPDFSignatureViewControllerDelegate</a><br /><a href="../Protocols/PSPDFStampViewControllerDelegate.html">PSPDFStampViewControllerDelegate</a><br />UIScrollViewDelegate<br />UITextFieldDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFPageView.h</td>
@@ -730,6 +734,13 @@ The point will have a variance of a few pixels to improve touch recognition.</p>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/showNewSignatureMenuAtPoint:">&ndash;&nbsp;showNewSignatureMenuAtPoint:</a></code>
+		<span class="tooltip"><p>Show signature menu.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/defaultColorOptionsForAnnotationType:">&ndash;&nbsp;defaultColorOptionsForAnnotationType:</a></code>
 		<span class="tooltip"><p>Returns the default color options for the specified annotation type.</p></span>
 	</span>
@@ -817,15 +828,16 @@ Returns YES if the tap has been handled, else NO.</p>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/menuItemsForAnnotation:">&ndash;&nbsp;menuItemsForAnnotation:</a></code>
-		<span class="tooltip"><p>Returns available UIMenuItem for the current annotation.
-To extend this, selectors for UIMenuItem need to be implemented in a subclass.</p></span>
+		<span class="tooltip"><p>Returns available PSPDFMenuItem&rsquo;s for the current annotation.
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/colorMenuItemsForAnnotation:">&ndash;&nbsp;colorMenuItemsForAnnotation:</a></code>
-		<span class="tooltip"><p>Returns available UIMenuItems to change the color.</p></span>
+		<span class="tooltip"><p>Returns available PSPDFMenuItem&rsquo;s to change the color.
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p></span>
 	</span>
 	
 	
@@ -834,7 +846,8 @@ To extend this, selectors for UIMenuItem need to be implemented in a subclass.</
 		<code><a href="#//api/name/showMenuForAnnotation:animated:">&ndash;&nbsp;showMenuForAnnotation:animated:</a></code>
 		<span class="tooltip"><p>Called when a annotation was found ad the tapped location.
 This will usually call menuItemsForAnnotation to show a UIMenuController,
-Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)</p></span>
+Except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p></span>
 	</span>
 	
 	
@@ -1765,7 +1778,8 @@ Those annotations return YES on the isOverlay property.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns available UIMenuItems to change the color.</p>
+		<p>Returns available PSPDFMenuItem&rsquo;s to change the color.
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p>
 	</div>		
 	
 	
@@ -2179,8 +2193,8 @@ Call manually to speed up <a href="#//api/name/rendering">rendering</a>. Has no 
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Returns available UIMenuItem for the current annotation.
-To extend this, selectors for UIMenuItem need to be implemented in a subclass.</p>
+		<p>Returns available PSPDFMenuItem&rsquo;s for the current annotation.
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p>
 	</div>		
 	
 	
@@ -2494,7 +2508,8 @@ Return nil if you don&rsquo;t show the actionSheet, or return the object you&rsq
 	<div class="method-subsection brief-description">
 		<p>Called when a annotation was found ad the tapped location.
 This will usually call menuItemsForAnnotation to show a UIMenuController,
-Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControllerForAnnotation)</p>
+Except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
+The better way to extend this is to use the shouldShowMenuItems:* delegates.</p>
 	</div>		
 	
 	
@@ -2533,6 +2548,40 @@ Except for PSPDFAnnotationTypeNote which is handled differently (showNoteControl
 	
 	
 	<div class="method-subsection method-declaration"><code>- (void)showMenuIfSelectedAnimated:(BOOL)<em>animated</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/showNewSignatureMenuAtPoint:" title="showNewSignatureMenuAtPoint:"></a>
+	<h3 class="subsubtitle method-title">showNewSignatureMenuAtPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Show signature menu.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showNewSignatureMenuAtPoint:(CGPoint)<em>point</em></code></div>
 	
 	
 	
@@ -2885,7 +2934,7 @@ The point will have a variance of a few pixels to improve touch recognition.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-24)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

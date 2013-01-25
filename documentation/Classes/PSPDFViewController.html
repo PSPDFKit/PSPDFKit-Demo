@@ -196,6 +196,8 @@
 	
 	<option value="//api/name/toolbarEnabled">&nbsp;&nbsp;&nbsp;&nbsp;toolbarEnabled</option>
 	
+	<option value="//api/name/twoFingerScrollModeEnabled">&nbsp;&nbsp;&nbsp;&nbsp;twoFingerScrollModeEnabled</option>
+	
 	<option value="//api/name/useBorderedToolbarStyle">&nbsp;&nbsp;&nbsp;&nbsp;useBorderedToolbarStyle</option>
 	
 	<option value="//api/name/useParentNavigationBar">&nbsp;&nbsp;&nbsp;&nbsp;useParentNavigationBar</option>
@@ -321,11 +323,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers">Helpers</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprecated Methods">PSPDFDeprecated Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Internal Methods">Internal Methods</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_SubclassingHooks Methods">SubclassingHooks Methods</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_PSPDFDeprecated Methods">PSPDFDeprecated Methods</a></span></li>
 	
 </ul></li>
 
@@ -490,6 +492,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tintColor">tintColor</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/toolbarEnabled">toolbarEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/twoFingerScrollModeEnabled">twoFingerScrollModeEnabled</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useBorderedToolbarStyle">useBorderedToolbarStyle</a></span></li>
 	
@@ -692,8 +696,7 @@ Also supports creation via initWithCoder to allow usage in Storyboards.</p></spa
 	<span class="tooltip">
 		<code><a href="#//api/name/screenPage">&nbsp;&nbsp;screenPage</a></code>
 		<span class="tooltip"><p>If we&rsquo;re in double <a href="#//api/name/page">page</a> mode, this will return the current screen <a href="#//api/name/page">page</a>, else it&rsquo;s equal to <a href="#//api/name/page">page</a>.
-e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double <a href="#//api/name/page">page</a> mode.
-Note: In PSPDFKit &lt; 2.4, this formerly was called was &ldquo;page&rdquo;.</p></span>
+e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double <a href="#//api/name/page">page</a> mode.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -1506,44 +1509,6 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 						</ul>
 						
 						
-						<a title="PSPDFDeprecated Methods" name="task_PSPDFDeprecated Methods"></a>
-						<h3 class="subsubtitle task-title">PSPDFDeprecated Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
-		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li>
-						</ul>
-						
-						
-						<a title="Internal Methods" name="task_Internal Methods"></a>
-						<h3 class="subsubtitle task-title">Internal Methods</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
-		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
-Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/handleExternalURL:buttonCompletionBlock:">&ndash;&nbsp;handleExternalURL:buttonCompletionBlock:</a></code>
-		<span class="tooltip"><p>To handle external URLS.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-						
 						<a title="SubclassingHooks Methods" name="task_SubclassingHooks Methods"></a>
 						<h3 class="subsubtitle task-title">SubclassingHooks Methods</h3>
 
@@ -1641,6 +1606,52 @@ Only tries to saves <a href="#//api/name/document">document</a> if view is visib
 	<span class="tooltip">
 		<code><a href="#//api/name/documentLabel">&nbsp;&nbsp;documentLabel</a></code>
 		<span class="tooltip"><p>Document title label view. (default iPhone only)</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="Internal Methods" name="task_Internal Methods"></a>
+						<h3 class="subsubtitle task-title">Internal Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/calculatedVisiblePageNumbers">&ndash;&nbsp;calculatedVisiblePageNumbers</a></code>
+		<span class="tooltip"><p>Return <a href="#//api/name/page">page</a> numbers that are visible. Only returns the current set <a href="#//api/name/page">page</a> in continuous scroll mode
+Useful to get exact pages for double <a href="#//api/name/page">page</a> mode.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/handleExternalURL:buttonCompletionBlock:">&ndash;&nbsp;handleExternalURL:buttonCompletionBlock:</a></code>
+		<span class="tooltip"><p>To handle external URLS.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/twoFingerScrollModeEnabled">&nbsp;&nbsp;twoFingerScrollModeEnabled</a></code>
+		<span class="tooltip"><p>Enables two finger scroll mode for the current <a href="#//api/name/page">page</a>.
+Depending on the <a href="#//api/name/pageTransition">pageTransition</a>, this will only allow the current <a href="#//api/name/page">page</a> or all to scroll.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li>
+						</ul>
+						
+						
+						<a title="PSPDFDeprecated Methods" name="task_PSPDFDeprecated Methods"></a>
+						<h3 class="subsubtitle task-title">PSPDFDeprecated Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/realPage">&nbsp;&nbsp;realPage</a></code>
+		<span class="tooltip"><p>As of PSPDFKit 2.4, <a href="#//api/name/page">page</a> now returns the actual <a href="#//api/name/page">page</a> value, and the old &ldquo;page&rdquo; has been replaced with <a href="#//api/name/screenPage">screenPage</a>.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
@@ -3878,8 +3889,7 @@ If set to false, it invokes an attemptRotationToDeviceOrientation.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>If we&rsquo;re in double <a href="#//api/name/page">page</a> mode, this will return the current screen <a href="#//api/name/page">page</a>, else it&rsquo;s equal to <a href="#//api/name/page">page</a>.
-e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double <a href="#//api/name/page">page</a> mode.
-Note: In PSPDFKit &lt; 2.4, this formerly was called was &ldquo;page&rdquo;.</p>
+e.g. if you have 50 pages, you get 25/26 &ldquo;double pages&rdquo; when in double <a href="#//api/name/page">page</a> mode.</p>
 	</div>		
 	
 	
@@ -4426,6 +4436,41 @@ If controller is used embedded (in a non-fullscreen way), this setting has no ef
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
 		<code class="declared-in-ref">PSPDFViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/twoFingerScrollModeEnabled" title="twoFingerScrollModeEnabled"></a>
+	<h3 class="subsubtitle method-title">twoFingerScrollModeEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Enables two finger scroll mode for the current <a href="#//api/name/page">page</a>.
+Depending on the <a href="#//api/name/pageTransition">pageTransition</a>, this will only allow the current <a href="#//api/name/page">page</a> or all to scroll.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL twoFingerScrollModeEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFViewController+Internal.h</code><br />
 	</div>				
 	
 	
@@ -5878,7 +5923,7 @@ Note that this might return more numbers than actually visible if it&rsquo;s que
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-24)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
