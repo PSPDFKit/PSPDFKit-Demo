@@ -70,8 +70,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
-/// Creates caches for both thumbnails and tiny images. This, together with PSPDFDocument.loadThumbnailsOnMainThread,
-/// will ensure that the user doesn’t see any white pages when showing the document to the user.
+/// Creates caches for both thumbnails and tiny images.
 ///
 /// Preloading the cache for PSPDFSizeNative would not be efficient. These images tend to become large in data size,
 /// which would in turn trigger the OS’ cache cleaning sooner.

@@ -2,6 +2,17 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.7.5 - 25/January/2013__
+
+*  Signatures are now securely saved in the Keychain and a list of signatures is presented. To disable this feature, set PSPDFSignatureStore.sharedSignatureStore.signatureSavingEnabled = NO in your appDelegate.
+*  While annotation mode is active (highlight, drawing, etc) scrolling is now enabled with using two fingers. The old behavior can be restored with setting allowTwoFingerScrollPanDuringLock in PSPDFAnnotationToolbar to NO.
+*  PSPDFKit now requires Security.framework.
+*  Fixes an issue that could cause an initial "white page" when the controller is first loaded, even when there's cache data available.
+*  Fixes an UX issue where, with creating a new note, the menu could be displayed on iPhone, stealing the keyboard from the newly created note controller.
+*  Fixes a regression of 2.7.4 that broke some remote videos/audios.
+*  Fixes a potential issue when reordering bookmarks.
+*  Fixes an issue where the last letter was cut off when using PSPDFHighlightAnnotation highlightedString.
+
 __v2.7.4 - 24/January/2013__
 
 *  Line annotations are now writeable.
