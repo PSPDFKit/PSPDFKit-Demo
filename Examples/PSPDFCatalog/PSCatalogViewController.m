@@ -108,7 +108,6 @@ const char kPSCAlertViewKey;
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
-
         return controller;
     }]];
 
