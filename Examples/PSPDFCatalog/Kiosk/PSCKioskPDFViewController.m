@@ -372,7 +372,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     PSCLog(@"showing menu %@ for %@", menuItems, annotation);
 
     // Example how to rename menu items.
-    //for (UIMenuItem *menuItem in menuItems) {
+    //for (PSPDFMenuItem *menuItem in menuItems) {
     //    menuItem.title = @"Test";
     //}
 
