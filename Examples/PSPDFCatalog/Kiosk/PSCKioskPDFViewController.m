@@ -371,6 +371,12 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
     PSCLog(@"showing menu %@ for %@", menuItems, annotation);
 
+    // Print highlight contents
+    if ([annotation isKindOfClass:PSPDFHighlightAnnotation.class]) {
+        NSString *highlightedString = [(PSPDFHighlightAnnotation *)annotation highlightedString];
+        PSCLog(@"Highlighted value: %@", highlightedString);
+    }
+
     // Example how to rename menu items.
     //for (PSPDFMenuItem *menuItem in menuItems) {
     //    menuItem.title = @"Test";
