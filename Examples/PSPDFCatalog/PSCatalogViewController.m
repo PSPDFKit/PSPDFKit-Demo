@@ -368,11 +368,11 @@ const char kPSCAlertViewKey;
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
-        // copy file from the bundle to a location where we can write on it.
+        // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
 
-        document.editableAnnotationTypes = [NSSet setWithObjects:
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
                                             PSPDFAnnotationTypeStringUnderline,
@@ -382,7 +382,9 @@ const char kPSCAlertViewKey;
                                             PSPDFAnnotationTypeStringInk,
                                             PSPDFAnnotationTypeStringSquare,
                                             PSPDFAnnotationTypeStringCircle,
+                                            PSPDFAnnotationTypeStringSignature,
                                             PSPDFAnnotationTypeStringStamp,
+                                            PSPDFAnnotationTypeStringImage,
                                             nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
@@ -782,7 +784,7 @@ const char kPSCAlertViewKey;
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Link Editor" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        document.editableAnnotationTypes = [NSSet setWithObjects:
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationTypeStringLink, // important!
                                             PSPDFAnnotationTypeStringHighlight,
                                             PSPDFAnnotationTypeStringUnderline,
@@ -976,7 +978,17 @@ const char kPSCAlertViewKey;
         pdfController.highlightedSearchText = @"Batman";
         return pdfController;
     }]];
-    
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Remove Ink from the annotation toolbar" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
+        NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
+        [editableTypes removeObject:PSPDFAnnotationTypeStringInk];
+        pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
+        return pdfController;
+    }]];
+
     [content addObject:subclassingSection];
 
 
@@ -1036,7 +1048,7 @@ const char kPSCAlertViewKey;
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        document.editableAnnotationTypes = [NSSet setWithArray:@[PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk]];
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithArray:@[PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
@@ -1254,7 +1266,7 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamps test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         // as a second test, ensure that annotation info can still be displayed, even if they are set to be readonly.
-        document.editableAnnotationTypes = [NSSet setWithObject:PSPDFAnnotationTypeStringStamp];
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationTypeStringStamp];
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
@@ -1319,6 +1331,17 @@ const char kPSCAlertViewKey;
     // Also check that the inline web view shows a nice error message + image as html.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test link on page 1" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"weblink-page1.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that telephone numbers are dynamically converted to annotations.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Detect Telephone Numbers and Links" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"detect-telephone-numbers.pdf"]];
+        NSArray *newAnnotations = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
+        NSLog(@"Created %d new annotations: %@", newAnnotations.count, newAnnotations);
+        NSArray *newAnnotations2 = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
+        NSAssert(newAnnotations2.count == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1416,6 +1439,23 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
+        NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
+        PSPDFDocument *doc = [PSPDFDocument PDFDocumentWithURL:URL];
+        UIImage *thumbnail = [doc renderImageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero withAnnotations:nil options:nil];
+        NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_imageToFitSize:CGSizeMake(150, 150) method:PSPDFImageResizeScale honorScaleFactor:NO opaque:NO]);
+        NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_imageToFitSize:CGSizeMake(80, 80) method:PSPDFImageResizeScale honorScaleFactor:NO opaque:NO]);
+        NSString *filePathMedium = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"medium.png"];
+        NSString *filePathSmall = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"small.png"];
+        NSLog(@"Writing %@", filePathMedium);
+        [thumbnailMedium writeToFile:filePathMedium atomically:YES];
+        NSLog(@"Writing %@", filePathSmall);
+        [thumbnailSmall writeToFile:filePathSmall atomically:YES];
+        NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
+        [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
+        return nil;
+    }]];
+
     // Test flattening, especially for notes.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
@@ -1428,6 +1468,21 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
     
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening 2" block:^UIViewController *{
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest2", @"pdf");
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+        PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
+        noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
+        noteAnnotation.contents = @"This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening.";
+        [document addAnnotations:@[noteAnnotation] forPage:0];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} error:NULL];
+
+        // show file
+        PSPDFDocument *newDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:newDocument];
+        return pdfController;
+    }]];
 
     // Check that annotations are there, links work.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
