@@ -10,6 +10,7 @@
 		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
 		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
+		780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */; };
 		780D5ADB1675641B00ECDDAC /* PSCTintColorSelectionBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */; };
 		780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */; };
 		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
@@ -46,7 +47,6 @@
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
-		787B07D61695B9F800852825 /* PSCHeadlessSearchPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07D51695B9F800852825 /* PSCHeadlessSearchPDFViewController.m */; };
 		78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */; };
 		788C5F8716373DE400854607 /* PSCChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 788C5F8616373DE400854607 /* PSCChildViewController.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
@@ -182,6 +182,8 @@
 		7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-right.jpg"; path = "Book/book-right.jpg"; sourceTree = "<group>"; };
 		7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookViewController.h; sourceTree = "<group>"; };
 		7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBookViewController.m; sourceTree = "<group>"; };
+		780C820516B85C44009396AF /* PSCHeadlessSearchPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHeadlessSearchPDFViewController.h; sourceTree = "<group>"; };
+		780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHeadlessSearchPDFViewController.m; sourceTree = "<group>"; };
 		780D5AD91675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintColorSelectionBarButtonItem.h; sourceTree = "<group>"; };
 		780D5ADA1675641A00ECDDAC /* PSCTintColorSelectionBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintColorSelectionBarButtonItem.m; sourceTree = "<group>"; };
 		780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintablePDFViewController.m; sourceTree = "<group>"; };
@@ -239,8 +241,6 @@
 		78783DF6164DBDB700076EDD /* PSCTimingTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTimingTestViewController.h; sourceTree = "<group>"; };
 		787B07CB1695B65300852825 /* PSCFontCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFontCacheTest.h; sourceTree = "<group>"; };
 		787B07CC1695B65300852825 /* PSCFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFontCacheTest.m; sourceTree = "<group>"; };
-		787B07D41695B9F800852825 /* PSCHeadlessSearchPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHeadlessSearchPDFViewController.h; sourceTree = "<group>"; };
-		787B07D51695B9F800852825 /* PSCHeadlessSearchPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHeadlessSearchPDFViewController.m; sourceTree = "<group>"; };
 		78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCReaderPDFViewController.m; sourceTree = "<group>"; };
 		78803912167F2B49008AEBAE /* PSCReaderPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCReaderPDFViewController.h; sourceTree = "<group>"; };
 		788C5F8516373DE400854607 /* PSCChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCChildViewController.h; sourceTree = "<group>"; };
@@ -437,8 +437,6 @@
 		7814630B1688BD9D0002E7C8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				787B07D41695B9F800852825 /* PSCHeadlessSearchPDFViewController.h */,
-				787B07D51695B9F800852825 /* PSCHeadlessSearchPDFViewController.m */,
 				787B07CB1695B65300852825 /* PSCFontCacheTest.h */,
 				787B07CC1695B65300852825 /* PSCFontCacheTest.m */,
 			);
@@ -735,6 +733,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				780C820516B85C44009396AF /* PSCHeadlessSearchPDFViewController.h */,
+				780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */,
 				781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */,
 				781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */,
 				781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */,
@@ -1100,12 +1100,12 @@
 				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
 				781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */,
 				787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */,
-				787B07D61695B9F800852825 /* PSCHeadlessSearchPDFViewController.m in Sources */,
 				781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */,
 				78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */,
 				78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */,
 				78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */,
 				78D2CB2116A5F83800899C4A /* RNEncryptor.m in Sources */,
+				780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
