@@ -19,7 +19,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        // register for the delegate
+        // register for the delegate.
         self.delegate = self;
     }
     return self;

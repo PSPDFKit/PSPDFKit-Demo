@@ -14,8 +14,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        
-        document.editableAnnotationTypes = [NSSet setWithObjects:
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
                                             PSPDFAnnotationTypeStringUnderline,
