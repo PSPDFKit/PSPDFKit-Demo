@@ -20,6 +20,7 @@
     if ((self = [super initWithDocument:document])) {
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"movie"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
+        document.delegate = self;
         self.pageTransition = PSPDFPageCurlTransition;
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         self.linkAction = PSPDFLinkActionInlineBrowser;
@@ -39,7 +40,8 @@
         }
 
         // example how to add custom image annotation
-        if ([[self.document annotationParserForPage:0] annotationsForPage:0 type:PSPDFAnnotationTypeLink].count == 0) {
+        NSArray *linkAnnotations = [[self.document annotationParserForPage:0] annotationsForPage:0 type:PSPDFAnnotationTypeLink];
+        if (linkAnnotations.count <= 2) {
             PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
 
             // with setting the path, you can use two different ways:
@@ -48,7 +50,7 @@
             // Note that we need to expliitely set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folter, this we can't use the auto-path mode.
             // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnoationView)
             // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
-            annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
+            annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/TokenTest/exampleimage.jpg", UIViewContentModeScaleAspectFill];
 
             // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
             // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
@@ -159,15 +161,6 @@
     NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
 }
 
-/// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
-- (NSString *)pdfViewController:(PSPDFViewController *)pdfController resolveCustomAnnotationPathToken:(NSString *)pathToken {
-    NSString *resolvedPath = nil;
-    if ([pathToken isEqualToString:@"Books"]) {
-        resolvedPath = [[NSBundle mainBundle] bundlePath];
-    }
-    return resolvedPath;
-}
-
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
     NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
     
@@ -202,6 +195,18 @@
 /// HUD was hidden (called after the animation finishes)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated {
     NSLog(@"didHideHUDAnimated: %@", animated ? @"YES" : @"NO");
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFDocumentDelegate
+
+/// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
+- (NSString *)pdfDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken {
+    NSString *resolvedPath = nil;
+    if ([pathToken isEqualToString:@"TokenTest"]) {
+        resolvedPath = [[NSBundle mainBundle] bundlePath];
+    }
+    return resolvedPath;
 }
 
 @end
