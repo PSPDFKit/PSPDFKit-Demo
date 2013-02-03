@@ -369,7 +369,7 @@ const char kPSCAlertViewKey;
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // Copy file from the bundle to a location where we can write on it.
-        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
 
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
@@ -440,7 +440,7 @@ const char kPSCAlertViewKey;
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Save as... for annotation editing" block:^{
         NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        NSURL *writableDocumentURL = [self copyFileURLToDocumentFolder:documentURL];
+        NSURL *writableDocumentURL = [self copyFileURLToDocumentFolder:documentURL overrideFile:YES];
         PSPDFDocument *linkDocument = [PSPDFDocument PDFDocumentWithURL:writableDocumentURL];
         return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
     }]];
@@ -1214,7 +1214,7 @@ const char kPSCAlertViewKey;
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
 
         // copy file from the bundle to a location where we can write on it.
-        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:YES];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
@@ -1310,7 +1310,7 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Performance with many links." block:^UIViewController *{
 
         NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"PDFReference17.pdf"];
-        NSURL *newURL = [self copyFileURLToDocumentFolder:documentURL];
+        NSURL *newURL = [self copyFileURLToDocumentFolder:documentURL overrideFile:YES];
 
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
@@ -1450,6 +1450,28 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test freetext annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"freetext-test.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // If the encoding is wrong, the freeText annotation will not be displayed.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation encoding" block:^UIViewController *{
+        NSURL *URL = [self copyFileURLToDocumentFolder:[samplesURL URLByAppendingPathComponent:@"A.pdf"] overrideFile:YES];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:URL];
+
+        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
+        freeText.contents = @"發音正確\n眼睛看聽眾\n準備充足\n聲音響亮\n運用適當的語氣\n用自己的話講故事\n內容";
+        freeText.boundingBox = CGRectMake(100, 100, 400, 400);
+        [document addAnnotations:@[freeText] forPage:0];
+        [document saveChangedAnnotationsWithError:NULL];
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+    
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
@@ -1663,14 +1685,20 @@ const char kPSCAlertViewKey;
     return isValid;
 }
 
-- (NSURL *)copyFileURLToDocumentFolder:(NSURL *)documentURL {
+- (NSURL *)copyFileURLToDocumentFolder:(NSURL *)documentURL overrideFile:(BOOL)override {
     // copy file from the bundle to a location where we can write on it.
     NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *newPath = [docsFolder stringByAppendingPathComponent:[documentURL lastPathComponent]];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
 
+    BOOL needsCopy = ![[NSFileManager defaultManager] fileExistsAtPath:newPath];
+    if (override) {
+        needsCopy = YES;
+        [[NSFileManager defaultManager] removeItemAtURL:newURL error:NULL];
+    }
+    
     NSError *error;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:newPath] &&
+    if (needsCopy &&
         ![[NSFileManager defaultManager] copyItemAtURL:documentURL toURL:newURL error:&error]) {
         NSLog(@"Error while copying %@: %@", documentURL.path, error.localizedDescription);
     }
