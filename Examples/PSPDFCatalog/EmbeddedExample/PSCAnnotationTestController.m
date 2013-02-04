@@ -205,6 +205,8 @@
     NSString *resolvedPath = nil;
     if ([pathToken isEqualToString:@"TokenTest"]) {
         resolvedPath = [[NSBundle mainBundle] bundlePath];
+    }else {
+        PSCLog(@"Token not recognized: %@", pathToken);
     }
     return resolvedPath;
 }
