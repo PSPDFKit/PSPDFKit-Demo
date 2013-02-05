@@ -178,6 +178,10 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 if (!strongImageLoadOperation.isCancelled) {
                     _magazineOperationImage = [magazine coverImageForSize:self.frame.size];
                 }
+                // also may be slow, parsing the title from PDF metadata.
+                if (magazine.isTitleLoaded || _magazineOperationImage) {
+                    _magazineTitle = magazine.title;
+                }
                 BOOL imageLoadedFromWeb = NO;
                 if (!_magazineOperationImage && !strongImageLoadOperation.isCancelled) {
                     // try to download image
@@ -199,9 +203,6 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                         });
                     }
                 }
-
-                // also may be slow, parsing the title from PDF metadata.
-                _magazineTitle = magazine.title;
 
                 if (!strongImageLoadOperation.isCancelled && !imageLoadedFromWeb) {
                     PSPDFDispatchIfNotOnMainThread(^{
@@ -452,6 +453,11 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
     if (magazine == document && page == 0 && size == PSPDFSizeThumbnail) {
         [self setImage:cachedImage animated:YES];
+
+        if (magazine.isTitleLoaded) {
+            _magazineTitle = magazine.title;
+            self.siteLabel.text = _magazineTitle;
+        }
     }
 }
 
