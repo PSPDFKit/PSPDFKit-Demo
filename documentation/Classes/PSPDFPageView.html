@@ -127,6 +127,8 @@
 	
 	<option value="//api/name/objectsAtRect:options:">&nbsp;&nbsp;&nbsp;&nbsp;- objectsAtRect:options:</option>
 	
+	<option value="//api/name/passthroughViewsForPopoverController">&nbsp;&nbsp;&nbsp;&nbsp;- passthroughViewsForPopoverController</option>
+	
 	<option value="//api/name/prepareForReuse">&nbsp;&nbsp;&nbsp;&nbsp;- prepareForReuse</option>
 	
 	<option value="//api/name/removeAnnotation:animated:">&nbsp;&nbsp;&nbsp;&nbsp;- removeAnnotation:animated:</option>
@@ -289,6 +291,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectsAtRect:options:">objectsAtRect:options:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/passthroughViewsForPopoverController">passthroughViewsForPopoverController</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/prepareForReuse">prepareForReuse</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAnnotation:animated:">removeAnnotation:animated:</a></span></li>
@@ -352,7 +356,7 @@
 	<td class="specification-value">UIView</td>
 </tr><tr>
 	<td class="specification-title">Conforms to</td>
-	<td class="specification-value"><a href="../Protocols/PSPDFLongPressGestureRecognizerDelegate.html">PSPDFLongPressGestureRecognizerDelegate</a><br /><a href="../Protocols/PSPDFRenderDelegate.html">PSPDFRenderDelegate</a><br /><a href="../Protocols/PSPDFResizableViewDelegate.html">PSPDFResizableViewDelegate</a><br /><a href="../Protocols/PSPDFSignatureSelectorViewControllerDelegate.html">PSPDFSignatureSelectorViewControllerDelegate</a><br /><a href="../Protocols/PSPDFSignatureViewControllerDelegate.html">PSPDFSignatureViewControllerDelegate</a><br /><a href="../Protocols/PSPDFStampViewControllerDelegate.html">PSPDFStampViewControllerDelegate</a><br />UIScrollViewDelegate<br />UITextFieldDelegate</td>
+	<td class="specification-value"><a href="../Protocols/PSPDFLongPressGestureRecognizerDelegate.html">PSPDFLongPressGestureRecognizerDelegate</a><br /><a href="../Protocols/PSPDFRenderDelegate.html">PSPDFRenderDelegate</a><br /><a href="../Protocols/PSPDFResizableViewDelegate.html">PSPDFResizableViewDelegate</a><br /><a href="../Protocols/PSPDFSignatureSelectorViewControllerDelegate.html">PSPDFSignatureSelectorViewControllerDelegate</a><br /><a href="../Protocols/PSPDFSignatureViewControllerDelegate.html">PSPDFSignatureViewControllerDelegate</a><br /><a href="../Protocols/PSPDFStampViewControllerDelegate.html">PSPDFStampViewControllerDelegate</a><br />UIImagePickerControllerDelegate<br />UIScrollViewDelegate<br />UITextFieldDelegate</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
 	<td class="specification-value">PSPDFPageView.h</td>
@@ -439,7 +443,7 @@ Note: We already need <a href="#//api/name/pdfController">pdfController</a> at t
 	<span class="tooltip">
 		<code><a href="#//api/name/cachedAnnotationViewForAnnotation:">&ndash;&nbsp;cachedAnnotationViewForAnnotation:</a></code>
 		<span class="tooltip"><p>If annotations are already loaded, and the annotation is a view, access it here.
-(Most PDF annotations are actually rendered into the <a href="#//api/name/page">page</a>; except PSPDFLinkAnntotations and all derivates (video, etc) and <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>)</p></span>
+(Most PDF annotations are actually rendered into the <a href="#//api/name/page">page</a>; except annotations that return YES for isOverlay, like links or notes.</p></span>
 	</span>
 	
 	
@@ -788,6 +792,14 @@ See <a href="../Classes/PSPDFPageRenderer.html">PSPDFPageRenderer</a> for a list
 		<code><a href="#//api/name/showLinkPreviewActionSheetForAnnotation:fromRect:animated:">&ndash;&nbsp;showLinkPreviewActionSheetForAnnotation:fromRect:animated:</a></code>
 		<span class="tooltip"><p>Will create and show the action sheet on long-press above a <a href="../Classes/PSPDFLinkAnnotation.html">PSPDFLinkAnnotation</a>.
 Return nil if you don&rsquo;t show the actionSheet, or return the object you&rsquo;re showing. (UIView or UIViewController subclass)</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/passthroughViewsForPopoverController">&ndash;&nbsp;passthroughViewsForPopoverController</a></code>
+		<span class="tooltip"><p>Returns the passthrough views for the popover controllers (e.g. color picker).
+By default this is failry agressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.</p></span>
 	</span>
 	
 	
@@ -1744,7 +1756,7 @@ Those annotations return YES on the isOverlay property.</p>
 	
 	<div class="method-subsection brief-description">
 		<p>If annotations are already loaded, and the annotation is a view, access it here.
-(Most PDF annotations are actually rendered into the <a href="#//api/name/page">page</a>; except PSPDFLinkAnntotations and all derivates (video, etc) and <a href="../Classes/PSPDFNoteAnnotation.html">PSPDFNoteAnnotation</a>)</p>
+(Most PDF annotations are actually rendered into the <a href="#//api/name/page">page</a>; except annotations that return YES for isOverlay, like links or notes.</p>
 	</div>		
 	
 	
@@ -2268,6 +2280,41 @@ Usage e.g. NSDictionary *objects = [pageView objectsAtRect:rect options:@{kPSPDF
 	
 	
 	<div class="method-subsection method-declaration"><code>- (NSDictionary *)objectsAtRect:(CGRect)<em>pdfRect</em> options:(NSDictionary *)<em>options</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFPageView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/passthroughViewsForPopoverController" title="passthroughViewsForPopoverController"></a>
+	<h3 class="subsubtitle method-title">passthroughViewsForPopoverController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the passthrough views for the popover controllers (e.g. color picker).
+By default this is failry agressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)passthroughViewsForPopoverController</code></div>
 	
 	
 	
@@ -2934,7 +2981,7 @@ The point will have a variance of a few pixels to improve touch recognition.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -182,21 +182,21 @@ this will work and be handled just like a UIMenuItem.</p><div class="warning"><p
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithTitle:block:">&ndash;&nbsp;initWithTitle:block:</a></code>
-		<span class="tooltip"><p>Initialize PSPDFMenuItem with a <a href="#//api/name/block">block</a>.</p></span>
+		<span class="tooltip"><p>Initialize PSPDFMenuItem with a block.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithTitle:block:identifier:">&ndash;&nbsp;initWithTitle:block:identifier:</a></code>
-		<span class="tooltip"><p>Initialize PSPDFMenuItem with a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p></span>
+		<span class="tooltip"><p>Initialize PSPDFMenuItem with a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithTitle:image:block:identifier:">&ndash;&nbsp;initWithTitle:image:block:identifier:</a></code>
-		<span class="tooltip"><p>Initialize PSPDFMenuItem with an image, a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.
+		<span class="tooltip"><p>Initialize PSPDFMenuItem with an image, a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.
 Will not allow image colors.</p></span>
 	</span>
 	
@@ -204,7 +204,7 @@ Will not allow image colors.</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithTitle:image:block:identifier:allowImageColors:">&ndash;&nbsp;initWithTitle:image:block:identifier:allowImageColors:</a></code>
-		<span class="tooltip"><p>Initialize PSPDFMenuItem with an image, a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p></span>
+		<span class="tooltip"><p>Initialize PSPDFMenuItem with an image, a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p></span>
 	</span>
 	
 	
@@ -348,7 +348,7 @@ Will not allow image colors.</p></span>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>If set, will hide the <a href="#//api/name/title">title</a>.
-This is prefixed to make sure it will work even when Apple decides to add support for images in future releases.</p>
+This is prefixed to make sure it will work even when Apple decides to add support for images in future releases.</p><div class="warning"><p><strong>Warning:</strong> Due to implementation details, this will actually change &lsquo;title&rsquo;. Use <a href="#//api/name/identifier">identifier</a> to compare menuItems instead.</p></div>
 	</div>
 	
 	
@@ -478,7 +478,7 @@ This is prefixed to make sure it will work even when Apple decides to add suppor
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize PSPDFMenuItem with a <a href="#//api/name/block">block</a>.</p>
+		<p>Initialize PSPDFMenuItem with a block.</p>
 	</div>		
 	
 	
@@ -512,7 +512,7 @@ This is prefixed to make sure it will work even when Apple decides to add suppor
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize PSPDFMenuItem with a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p>
+		<p>Initialize PSPDFMenuItem with a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p>
 	</div>		
 	
 	
@@ -546,7 +546,7 @@ This is prefixed to make sure it will work even when Apple decides to add suppor
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize PSPDFMenuItem with an image, a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.
+		<p>Initialize PSPDFMenuItem with an image, a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.
 Will not allow image colors.</p>
 	</div>		
 	
@@ -581,7 +581,7 @@ Will not allow image colors.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize PSPDFMenuItem with an image, a <a href="#//api/name/block">block</a> and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p>
+		<p>Initialize PSPDFMenuItem with an image, a block and an unlocalized <a href="#//api/name/identifier">identifier</a> for later manipulation.</p>
 	</div>		
 	
 	
@@ -621,7 +621,7 @@ Will not allow image colors.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

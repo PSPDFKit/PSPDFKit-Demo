@@ -48,6 +48,8 @@
 	
 	<option value="//api/name/updateGlobalActivityIndicator">&nbsp;&nbsp;&nbsp;&nbsp;updateGlobalActivityIndicator</option>
 	
+	<option value="//api/name/useCustomErrorPage">&nbsp;&nbsp;&nbsp;&nbsp;useCustomErrorPage</option>
+	
 	<option value="//api/name/webView">&nbsp;&nbsp;&nbsp;&nbsp;webView</option>
 	
 	
@@ -65,6 +67,8 @@
 	<option value="//api/name/initWithURL:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithURL:</option>
 	
 	<option value="//api/name/setActivityIndicatorEnabled:">&nbsp;&nbsp;&nbsp;&nbsp;- setActivityIndicatorEnabled:</option>
+	
+	<option value="//api/name/showHTMLWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- showHTMLWithError:</option>
 	
 	
 	
@@ -100,6 +104,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateGlobalActivityIndicator">updateGlobalActivityIndicator</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/useCustomErrorPage">useCustomErrorPage</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/webView">webView</a></span></li>
 	
 </ul></li>
@@ -119,6 +125,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithURL:">initWithURL:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setActivityIndicatorEnabled:">setActivityIndicatorEnabled:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showHTMLWithError:">showHTMLWithError:</a></span></li>
 	
 </ul></li>
 
@@ -228,6 +236,14 @@ Set to NO to NOT change the global network activity indicator.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/useCustomErrorPage">&nbsp;&nbsp;useCustomErrorPage</a></code>
+		<span class="tooltip"><p>If set to YES, a custom HTML is loaded when the UIWebView encounters an error (like 404).
+Defaults to YES.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
 </li>
 						</ul>
 						
@@ -241,6 +257,14 @@ Set to NO to NOT change the global network activity indicator.</p></span>
 		<code><a href="#//api/name/setActivityIndicatorEnabled:">&ndash;&nbsp;setActivityIndicatorEnabled:</a></code>
 		<span class="tooltip"><p>Override if you have your own network activity manager.
 Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/showHTMLWithError:">&ndash;&nbsp;showHTMLWithError:</a></code>
+		<span class="tooltip"><p>Called on error events if <a href="#//api/name/useCustomErrorPage">useCustomErrorPage</a> is set.
+Uses the &ldquo;StandardError.html&rdquo; inside PSPDFKit.bundle.</p></span>
 	</span>
 	
 	
@@ -303,7 +327,7 @@ Defaults to all actions available in PSPDFWebViewControllerAvailableActions.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) id&lt;PSPDFWebViewControllerDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet id&lt;PSPDFWebViewControllerDelegate&gt; delegate</code></div>
 	
 	
 	
@@ -373,6 +397,41 @@ Set to NO to NOT change the global network activity indicator.</p>
 	
 	
 	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL updateGlobalActivityIndicator</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/useCustomErrorPage" title="useCustomErrorPage"></a>
+	<h3 class="subsubtitle method-title">useCustomErrorPage</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>If set to YES, a custom HTML is loaded when the UIWebView encounters an error (like 404).
+Defaults to YES.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL useCustomErrorPage</code></div>
 	
 	
 	
@@ -549,6 +608,41 @@ Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisibl
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/showHTMLWithError:" title="showHTMLWithError:"></a>
+	<h3 class="subsubtitle method-title">showHTMLWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Called on error events if <a href="#//api/name/useCustomErrorPage">useCustomErrorPage</a> is set.
+Uses the &ldquo;StandardError.html&rdquo; inside PSPDFKit.bundle.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)showHTMLWithError:(NSError *)<em>error</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFWebViewController.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
@@ -562,7 +656,7 @@ Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisibl
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

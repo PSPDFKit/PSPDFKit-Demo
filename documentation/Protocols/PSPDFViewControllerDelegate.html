@@ -134,6 +134,22 @@
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Document Handling">Document Handling</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Scroll and Page Events">Scroll and Page Events</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Text Selection">Text Selection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Menu Handling">Menu Handling</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Annotations">Annotations</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_View Controller Management">View Controller Management</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_General View State">General View State</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_HUD">HUD</a></span></li>
+	
 </ul></li>
 
 
@@ -257,7 +273,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Implement this delegate on your UIViewController to get notified by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a>.</p>
+						<p>Implement this delegate in your UIViewController to get notified by <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> events.</p>
 					</div>
 					
 					
@@ -269,8 +285,8 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						
-						
+						<a title="Document Handling" name="task_Document Handling"></a>
+						<h3 class="subsubtitle task-title">Document Handling</h3>
 
 						<ul class="task-list">
 							<li>
@@ -284,7 +300,7 @@ Can be useful if you e.g. want to block the opening of a different document refe
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:willDisplayDocument:">&ndash;&nbsp;pdfViewController:willDisplayDocument:</a></code>
-		<span class="tooltip"><p>Time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed</p></span>
+		<span class="tooltip"><p>Time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed.</p></span>
 	</span>
 	
 	
@@ -297,7 +313,15 @@ This will also be called for broken documents. use document.isValid to check.</p
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Scroll and Page Events" name="task_Scroll and Page Events"></a>
+						<h3 class="subsubtitle task-title">Scroll and Page Events</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldScrollToPage:">&ndash;&nbsp;pdfViewController:shouldScrollToPage:</a></code>
 		<span class="tooltip"><p>Control scrolling to pages. Not implementing this will return YES.</p></span>
@@ -307,14 +331,14 @@ This will also be called for broken documents. use document.isValid to check.</p
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didShowPageView:">&ndash;&nbsp;pdfViewController:didShowPageView:</a></code>
-		<span class="tooltip"><p>Controller did show/scrolled to a new page (at least 51% of it is visible)</p></span>
+		<span class="tooltip"><p>Controller did show/scrolled to a new page. (at least 51% of it is visible)</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didRenderPageView:">&ndash;&nbsp;pdfViewController:didRenderPageView:</a></code>
-		<span class="tooltip"><p>Page was fully rendered at zoomlevel = 1</p></span>
+		<span class="tooltip"><p>Page was fully rendered at zoomlevel = 1.</p></span>
 	</span>
 	
 	
@@ -329,13 +353,6 @@ This will also be called for broken documents. use document.isValid to check.</p
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:willUnloadPageView:">&ndash;&nbsp;pdfViewController:willUnloadPageView:</a></code>
 		<span class="tooltip"><p>Called before a pdf page will be unloaded and removed from the pagingScrollView.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:didChangeViewMode:">&ndash;&nbsp;pdfViewController:didChangeViewMode:</a></code>
-		<span class="tooltip"><p>Will be called when viewMode changes</p></span>
 	</span>
 	
 	
@@ -392,7 +409,15 @@ Return YES if you want to set this touch as processed; this will disable automat
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Text Selection" name="task_Text Selection"></a>
+						<h3 class="subsubtitle task-title">Text Selection</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldSelectText:withGlyphs:atRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldSelectText:withGlyphs:atRect:onPageView:</a></code>
 		<span class="tooltip"><p>Called when text is about to be selected. Return NO to disable text selection.</p></span>
@@ -406,7 +431,15 @@ Return YES if you want to set this touch as processed; this will disable automat
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Menu Handling" name="task_Menu Handling"></a>
+						<h3 class="subsubtitle task-title">Menu Handling</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forSelectedText:inRect:onPageView:</a></code>
 		<span class="tooltip"><p>Called before the menu for text selection is displayed.
@@ -423,9 +456,24 @@ All coordinates are in view coordinate space.</p></span>
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:</a></code>
+		<span class="tooltip"><p>Called before we&rsquo;re showing the menu for an annotation.
+If annotation is nil, we show the menu to create <em>new</em> annotations (in that case annotationRect will also be nil)</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Annotations" name="task_Annotations"></a>
+						<h3 class="subsubtitle task-title">Annotations</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldDisplayAnnotation:onPageView:">&ndash;&nbsp;pdfViewController:shouldDisplayAnnotation:onPageView:</a></code>
-		<span class="tooltip"><p>Called before a annotation view is created and added to a page. Defaults to YES if not implemented.
-if NO is returned, viewForAnnotation will not be called.</p></span>
+		<span class="tooltip"><p>Called before a annotation view is created and added to a page. Defaults to YES if not implemented.</p></span>
 	</span>
 	
 	
@@ -452,14 +500,6 @@ if NO is returned, viewForAnnotation will not be called.</p></span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:">&ndash;&nbsp;pdfViewController:shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView:</a></code>
-		<span class="tooltip"><p>Called before we&rsquo;re showing the menu for an annotation.
-If annotation is nil, we show the menu to create <em>new</em> annotations (in that case annotationRect will also be nil)</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:annotationView:forAnnotation:onPageView:">&ndash;&nbsp;pdfViewController:annotationView:forAnnotation:onPageView:</a></code>
 		<span class="tooltip"><p>Returns a pre-generated annotationView that can be modified before being added to the view.
 If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
@@ -470,20 +510,26 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p></
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:willShowAnnotationView:onPageView:">&ndash;&nbsp;pdfViewController:willShowAnnotationView:onPageView:</a></code>
-		<span class="tooltip"><p>Invoked prior to the presentation of the annotation view: use this to configure actions etc
-PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p></span>
+		<span class="tooltip"><p>Invoked prior to the presentation of the annotation view: use this to configure actions etc</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:didShowAnnotationView:onPageView:">&ndash;&nbsp;pdfViewController:didShowAnnotationView:onPageView:</a></code>
-		<span class="tooltip"><p>Invoked after animation used to present the annotation view
-PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p></span>
+		<span class="tooltip"><p>Invoked after animation used to present the annotation view</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="View Controller Management" name="task_View Controller Management"></a>
+						<h3 class="subsubtitle task-title">View Controller Management</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowController:embeddedInController:animated:">&ndash;&nbsp;pdfViewController:shouldShowController:embeddedInController:animated:</a></code>
 		<span class="tooltip"><p>Called before we show a internal controller (color picker, note editor, &hellip;) modally or in a popover. Allows last minute modifications.</p></span>
@@ -497,7 +543,15 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="General View State" name="task_General View State"></a>
+						<h3 class="subsubtitle task-title">General View State</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:requestsUpdateForBarButtonItem:animated:">&ndash;&nbsp;pdfViewController:requestsUpdateForBarButtonItem:animated:</a></code>
 		<span class="tooltip"><p>If you implement your own super-custom toolbar, handle updates for bar buttons. (e.g. with re-setting the items array)
@@ -508,6 +562,21 @@ If you implement this delegate, the default UIToolbar-update-code will not be ca
 	
 	
 </li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/pdfViewController:didChangeViewMode:">&ndash;&nbsp;pdfViewController:didChangeViewMode:</a></code>
+		<span class="tooltip"><p>Will be called when viewMode changes.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="HUD" name="task_HUD"></a>
+						<h3 class="subsubtitle task-title">HUD</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/pdfViewController:shouldShowHUD:">&ndash;&nbsp;pdfViewController:shouldShowHUD:</a></code>
 		<span class="tooltip"><p>Return NO to stop the HUD change event.</p></span>
@@ -609,7 +678,7 @@ To get the targeted rect use [annotation rectForPageRect:pageView.bounds];</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Will be called when viewMode changes</p>
+		<p>Will be called when viewMode changes.</p>
 	</div>		
 	
 	
@@ -657,6 +726,11 @@ This will also be called for broken documents. use document.isValid to check.</p
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This currently will only be called during viewDidAppear, not when setting a new document.</p></div>
+	</div>
 	
 	
 	
@@ -939,7 +1013,7 @@ You can use the context to add custom drawing.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Page was fully rendered at zoomlevel = 1</p>
+		<p>Page was fully rendered at zoomlevel = 1.</p>
 	</div>		
 	
 	
@@ -1041,8 +1115,7 @@ You can use the context to add custom drawing.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Invoked after animation used to present the annotation view
-PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p>
+		<p>Invoked after animation used to present the annotation view</p>
 	</div>		
 	
 	
@@ -1054,6 +1127,12 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This will only be called for annotations that render as an overlay (that return YES for isOverlay)
+PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p></div>
+	</div>
 	
 	
 	
@@ -1144,7 +1223,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Controller did show/scrolled to a new page (at least 51% of it is visible)</p>
+		<p>Controller did show/scrolled to a new page. (at least 51% of it is visible)</p>
 	</div>		
 	
 	
@@ -1346,8 +1425,7 @@ If you implement this delegate, the default UIToolbar-update-code will not be ca
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Called before a annotation view is created and added to a page. Defaults to YES if not implemented.
-if NO is returned, viewForAnnotation will not be called.</p>
+		<p>Called before a annotation view is created and added to a page. Defaults to YES if not implemented.</p>
 	</div>		
 	
 	
@@ -1359,6 +1437,12 @@ if NO is returned, viewForAnnotation will not be called.</p>
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This will only be called for annotations that render as an overlay (that return YES for isOverlay)
+If NO is returned, viewForAnnotation will not be called.</p></div>
+	</div>
 	
 	
 	
@@ -1739,7 +1823,7 @@ Default returns menuItems if not implemented. Return nil or an empty array to no
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed</p>
+		<p>Time to adjust <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> before a <a href="../Classes/PSPDFDocument.html">PSPDFDocument</a> is displayed.</p>
 	</div>		
 	
 	
@@ -1751,6 +1835,11 @@ Default returns menuItems if not implemented. Return nil or an empty array to no
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This currently will only be called during viewWillAppear, not when setting a new document.</p></div>
+	</div>
 	
 	
 	
@@ -1807,8 +1896,7 @@ Default returns menuItems if not implemented. Return nil or an empty array to no
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Invoked prior to the presentation of the annotation view: use this to configure actions etc
-PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p>
+		<p>Invoked prior to the presentation of the annotation view: use this to configure actions etc</p>
 	</div>		
 	
 	
@@ -1820,6 +1908,12 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 	
 	
 	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> This will only be called for annotations that render as an overlay (that return YES for isOverlay)
+PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected state) &ndash; delegate will not be called for those.</p></div>
+	</div>
 	
 	
 	
@@ -1916,7 +2010,7 @@ PSPDFLinkAnnotations are handled differently (they don&rsquo;t have a selected s
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

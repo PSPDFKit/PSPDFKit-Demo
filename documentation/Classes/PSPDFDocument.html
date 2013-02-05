@@ -166,6 +166,8 @@
 	
 	<option value="//api/name/compensatedPageForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- compensatedPageForPage:</option>
 	
+	<option value="//api/name/detectLinkTypes:forPagesInRange:">&nbsp;&nbsp;&nbsp;&nbsp;- detectLinkTypes:forPagesInRange:</option>
+	
 	<option value="//api/name/didCreateDocumentProvider:">&nbsp;&nbsp;&nbsp;&nbsp;- didCreateDocumentProvider:</option>
 	
 	<option value="//api/name/documentParserForPage:">&nbsp;&nbsp;&nbsp;&nbsp;- documentParserForPage:</option>
@@ -402,6 +404,8 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compensatedPageForPage:">compensatedPageForPage:</a></span></li>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/detectLinkTypes:forPagesInRange:">detectLinkTypes:forPagesInRange:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didCreateDocumentProvider:">didCreateDocumentProvider:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentParserForPage:">documentParserForPage:</a></span></li>
@@ -587,7 +591,7 @@ For leading zeros, use the default printf syntax. (%04d = 0001)</p></span>
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/isEqualToDocument:">&ndash;&nbsp;isEqualToDocument:</a></code>
-		<span class="tooltip"><p>Compare to documents.</p></span>
+		<span class="tooltip"><p>Compare two documents.</p></span>
 	</span>
 	
 	
@@ -1312,6 +1316,15 @@ Defaults to white.</p></span>
 	<span class="tooltip">
 		<code><a href="#//api/name/pageInfoForPage:pageRef:">&ndash;&nbsp;pageInfoForPage:pageRef:</a></code>
 		<span class="tooltip"><p>Helper for higher performance.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/detectLinkTypes:forPagesInRange:">&ndash;&nbsp;detectLinkTypes:forPagesInRange:</a></code>
+		<span class="tooltip"><p>Experimental. Will iterate all pages and create new annotations for the set types.
+Will ignore any text that is already linked with the same URL.
+To analyze the whole document, use [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.<a href="#//api/name/pageCount">pageCount</a>)]</p></span>
 	</span>
 	
 	
@@ -2116,7 +2129,7 @@ Set this to an empty set to disable annotation editing/creation.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSSet *editableAnnotationTypes</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes</code></div>
 	
 	
 	
@@ -2128,6 +2141,8 @@ Set this to an empty set to disable annotation editing/creation.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Defaults to all available STRING constants (PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk, etc).</p>
+
+<p>Since PSPDFKit 2.8, this now is an ordered set &ndash; the order will change the button order in the toolbar and the page menu.</p><div class="warning"><p><strong>Warning:</strong> Some annotation types are only behaviorally different in PSPDFKit but in are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See <a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a>.h for comments</p></div>
 	</div>
 	
 	
@@ -3440,6 +3455,47 @@ The &lsquo;1&rsquo; is the first page. Careful; the accessor here is zero-based.
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/detectLinkTypes:forPagesInRange:" title="detectLinkTypes:forPagesInRange:"></a>
+	<h3 class="subsubtitle method-title">detectLinkTypes:forPagesInRange:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Experimental. Will iterate all pages and create new annotations for the set types.
+Will ignore any text that is already linked with the same URL.
+To analyze the whole document, use [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.<a href="#//api/name/pageCount">pageCount</a>)]</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (NSArray *)detectLinkTypes:(PSPDFTextCheckingType)<em>textLinkType</em> forPagesInRange:(NSIndexSet *)<em>pageRange</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<div class="warning"><p><strong>Warning:</strong> Performs text and annotation extraction and analysis. Might be slow. Call this before showing the document in the <a href="../Classes/PSPDFViewController.html">PSPDFViewController</a> or manually add the link annotations.</p></div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFDocument.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/didCreateDocumentProvider:" title="didCreateDocumentProvider:"></a>
 	<h3 class="subsubtitle method-title">didCreateDocumentProvider:</h3>
 	
@@ -3866,7 +3922,7 @@ Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Compare to documents.</p>
+		<p>Compare two documents.</p>
 	</div>		
 	
 	
@@ -4622,7 +4678,7 @@ This doesn&rsquo;t harm if the document is already unlocked.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFDocumentProviderDelegate Protocol Reference</title>
+		<title>PSPDFNavigationController Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFDocumentProviderDelegate Protocol Reference</h1>
+				<h1 class="hideInXcode">PSPDFNavigationController Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -32,19 +32,12 @@
 	
 	
 	
-	<option value="tasks">Tasks</option>
 	
 	
 	
 	
 	
 	
-	
-	
-	
-	<option value="instance_methods">Instance Methods</option>
-	
-	<option value="//api/name/documentProvider:shouldAppendData:">&nbsp;&nbsp;&nbsp;&nbsp;- documentProvider:shouldAppendData:</option>
 	
 	
 	
@@ -60,9 +53,6 @@
 
 
 
-<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
-	
-</ul></li>
 
 
 
@@ -70,20 +60,13 @@
 
 
 
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/documentProvider:shouldAppendData:">documentProvider:shouldAppendData:</a></span></li>
-	
-</ul></li>
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFDocumentProviderDelegate Protocol Reference" name="top"></a>
+				<a title="PSPDFNavigationController Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,18 +75,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFDocumentProviderDelegate Protocol Reference</h1>
+						<h1 class="title title-header">PSPDFNavigationController Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Conforms to</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UINavigationController</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFDocumentProvider.h</td>
+	<td class="specification-value">PSPDFNavigationController.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,33 +96,8 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>Delegate for writing annotations.</p>
-					</div>
-					
-					
-					
-					
-					
-					<div class="section section-tasks">
-						<a title="Tasks" name="tasks"></a>
-						<h2 class="subtitle subtitle-tasks">Tasks</h2>
-						
-						
-						
-						
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/documentProvider:shouldAppendData:">&ndash;&nbsp;documentProvider:shouldAppendData:</a></code>
-		<span class="tooltip"><p>Called before we append data to a PDF. Return NO to stop writing annotations.
-Defaults to YES if not implemented, and will set a new NSData object.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
+						<p>Simple subclass that forwards following iOS6 rotation methods to the top view controller:
+shouldAutorotate, supportedInterfaceOrientations, preferredInterfaceOrientationForPresentation.</p>
 					</div>
 					
 					
@@ -150,46 +108,9 @@ Defaults to YES if not implemented, and will set a new NSData object.</p></span>
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Instance Methods" name="instance_methods"></a>
-						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/documentProvider:shouldAppendData:" title="documentProvider:shouldAppendData:"></a>
-	<h3 class="subsubtitle method-title">documentProvider:shouldAppendData:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Called before we append data to a PDF. Return NO to stop writing annotations.
-Defaults to YES if not implemented, and will set a new NSData object.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>- (BOOL)documentProvider:(PSPDFDocumentProvider *)<em>documentProvider</em> shouldAppendData:(NSData *)<em>data</em></code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFDocumentProvider.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
+					
+					
+					
 					
 					
 				</div>

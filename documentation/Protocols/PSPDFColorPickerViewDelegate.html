@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>PSPDFShapeAnnotation Class Reference</title>
+		<title>PSPDFColorPickerViewDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">PSPDFShapeAnnotation Class Reference</h1>
+				<h1 class="hideInXcode">PSPDFColorPickerViewDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,23 +38,13 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/shapeType">&nbsp;&nbsp;&nbsp;&nbsp;shapeType</option>
-	
-	
-	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/shapeTypeTransformer">&nbsp;&nbsp;&nbsp;&nbsp;+ shapeTypeTransformer</option>
 	
 	
 	
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/initWithShapeType:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithShapeType:</option>
+	<option value="//api/name/colorPickerDidChangeSelection:finishedSelection:">&nbsp;&nbsp;&nbsp;&nbsp;- colorPickerDidChangeSelection:finishedSelection:</option>
 	
 	
 	
@@ -78,25 +68,13 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shapeType">shapeType</a></span></li>
-	
-</ul></li>
 
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/shapeTypeTransformer">shapeTypeTransformer</a></span></li>
-	
-</ul></li>
 
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithShapeType:">initWithShapeType:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorPickerDidChangeSelection:finishedSelection:">colorPickerDidChangeSelection:finishedSelection:</a></span></li>
 	
 </ul></li>
 
@@ -105,7 +83,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="PSPDFShapeAnnotation Class Reference" name="top"></a>
+				<a title="PSPDFColorPickerViewDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -114,18 +92,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">PSPDFShapeAnnotation Class Reference</h1>
+						<h1 class="title title-header">PSPDFColorPickerViewDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value"><a href="../Classes/PSPDFAnnotation.html">PSPDFAnnotation</a> : <a href="../Classes/PSPDFModel.html">PSPDFModel</a> : NSObject</td>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">PSPDFShapeAnnotation.h</td>
+	<td class="specification-value">PSPDFColorPickerView.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -135,7 +113,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>PDF Shape Annotation.</p>
+						<p>Color Picker delegate.</p>
 					</div>
 					
 					
@@ -153,22 +131,8 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/initWithShapeType:">&ndash;&nbsp;initWithShapeType:</a></code>
-		<span class="tooltip"><p>Initialize annotation with a shape type. Designated initializer.</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/shapeType">&nbsp;&nbsp;shapeType</a></code>
-		<span class="tooltip"><p>The Shape type.</p></span>
-	</span>
-	<span class="task-item-suffix">property</span>
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/shapeTypeTransformer">+&nbsp;shapeTypeTransformer</a></code>
-		<span class="tooltip"><p>NSString &lt;&ndash;> Shape Type transformer.</p></span>
+		<code><a href="#//api/name/colorPickerDidChangeSelection:finishedSelection:">&ndash;&nbsp;colorPickerDidChangeSelection:finishedSelection:</a></code>
+		<span class="tooltip"><p>Color selection has been changed.</p></span>
 	</span>
 	
 	
@@ -181,93 +145,7 @@
 					
 					
 					
-					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/shapeType" title="shapeType"></a>
-	<h3 class="subsubtitle method-title">shapeType</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>The Shape type.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) PSPDFShapeAnnotationType shapeType</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Shape type is inferred from the typeString and won&rsquo;t be serialized.
-Use [[[self.class shapeTypeTransformer] transformedValue:self.typeString] integerValue] to convert the typeString to shapeType.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFShapeAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
-					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/shapeTypeTransformer" title="shapeTypeTransformer"></a>
-	<h3 class="subsubtitle method-title">shapeTypeTransformer</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>NSString &lt;&ndash;> Shape Type transformer.</p>
-	</div>		
-	
-	
-	<div class="method-subsection method-declaration"><code>+ (NSValueTransformer *)shapeTypeTransformer</code></div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFShapeAnnotation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
 					
 					
 					
@@ -276,17 +154,17 @@ Use [[[self.class shapeTypeTransformer] transformedValue:self.typeString] intege
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/initWithShapeType:" title="initWithShapeType:"></a>
-	<h3 class="subsubtitle method-title">initWithShapeType:</h3>
+	<a name="//api/name/colorPickerDidChangeSelection:finishedSelection:" title="colorPickerDidChangeSelection:finishedSelection:"></a>
+	<h3 class="subsubtitle method-title">colorPickerDidChangeSelection:finishedSelection:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize annotation with a shape type. Designated initializer.</p>
+		<p>Color selection has been changed.</p>
 	</div>		
 	
 	
-	<div class="method-subsection method-declaration"><code>- (id)initWithShapeType:(PSPDFShapeAnnotationType)<em>shapeType</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)colorPickerDidChangeSelection:(PSPDFColorPickerView *)<em>colorPicker</em> finishedSelection:(BOOL)<em>finished</em></code></div>
 	
 	
 	
@@ -303,7 +181,7 @@ Use [[[self.class shapeTypeTransformer] transformedValue:self.typeString] intege
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">PSPDFShapeAnnotation.h</code><br />
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
 	</div>				
 	
 	

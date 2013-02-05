@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -38,11 +40,28 @@
 	
 	<option value="properties">Properties</option>
 	
+	<option value="//api/name/brightnessSlider">&nbsp;&nbsp;&nbsp;&nbsp;brightnessSlider</option>
+	
 	<option value="//api/name/cropToCircle">&nbsp;&nbsp;&nbsp;&nbsp;cropToCircle</option>
 	
+	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	
+	<option value="//api/name/isOrthoganal">&nbsp;&nbsp;&nbsp;&nbsp;isOrthoganal</option>
+	
+	<option value="//api/name/loupeEnabled">&nbsp;&nbsp;&nbsp;&nbsp;loupeEnabled</option>
+	
+	<option value="//api/name/selection">&nbsp;&nbsp;&nbsp;&nbsp;selection</option>
 	
 	
 	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/colorAtPoint:">&nbsp;&nbsp;&nbsp;&nbsp;- colorAtPoint:</option>
+	
+	<option value="//api/name/selectionToHue:saturation:brightness:">&nbsp;&nbsp;&nbsp;&nbsp;- selectionToHue:saturation:brightness:</option>
 	
 	
 	
@@ -53,6 +72,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -66,13 +87,31 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/brightnessSlider">brightnessSlider</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/cropToCircle">cropToCircle</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isOrthoganal">isOrthoganal</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/loupeEnabled">loupeEnabled</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selection">selection</a></span></li>
 	
 </ul></li>
 
 
 
 
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/colorAtPoint:">colorAtPoint:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/selectionToHue:saturation:brightness:">selectionToHue:saturation:brightness:</a></span></li>
+	
+</ul></li>
 
 
 			</ul>
@@ -106,6 +145,14 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Color Picker view control. (circle)</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -119,10 +166,59 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
+		<code><a href="#//api/name/selection">&nbsp;&nbsp;selection</a></code>
+		<span class="tooltip"><p>Current selection point.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/cropToCircle">&nbsp;&nbsp;cropToCircle</a></code>
 		<span class="tooltip"><p>Set to YES to show a square with saturation on Y axis, No for saturation on radial axis.</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isOrthoganal">&nbsp;&nbsp;isOrthoganal</a></code>
+		<span class="tooltip"><p>Changes color distribution mode to orthoganal. Defaults to NO.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/loupeEnabled">&nbsp;&nbsp;loupeEnabled</a></code>
+		<span class="tooltip"><p>Set to YES to show a loupe. Defaults to YES, unless old device.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<span class="tooltip"><p>Picker delegate</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/brightnessSlider">&nbsp;&nbsp;brightnessSlider</a></code>
+		<span class="tooltip"><p>The internally used brightness slider.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/selectionToHue:saturation:brightness:">&ndash;&nbsp;selectionToHue:saturation:brightness:</a></code>
+		<span class="tooltip"><p>Conversion helper.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/colorAtPoint:">&ndash;&nbsp;colorAtPoint:</a></code>
+		<span class="tooltip"><p>Returns UIColor at a point in the PSPDFColorPickerView.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -136,6 +232,40 @@
 					<div class="section section-methods">
 						<a title="Properties" name="properties"></a>
 						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/brightnessSlider" title="brightnessSlider"></a>
+	<h3 class="subsubtitle method-title">brightnessSlider</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The internally used brightness slider.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet PSPDFBrightnessSlider *brightnessSlider</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/cropToCircle" title="cropToCircle"></a>
@@ -171,11 +301,221 @@
 	
 </div>
 						
+						<div class="section-method">
+	<a name="//api/name/delegate" title="delegate"></a>
+	<h3 class="subsubtitle method-title">delegate</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Picker delegate</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, weak) IBOutlet id&lt;PSPDFColorPickerViewDelegate&gt; delegate</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isOrthoganal" title="isOrthoganal"></a>
+	<h3 class="subsubtitle method-title">isOrthoganal</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Changes color distribution mode to orthoganal. Defaults to NO.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isOrthoganal</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/loupeEnabled" title="loupeEnabled"></a>
+	<h3 class="subsubtitle method-title">loupeEnabled</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set to YES to show a loupe. Defaults to YES, unless old device.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=isLoupeEnabled) BOOL loupeEnabled</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/selection" title="selection"></a>
+	<h3 class="subsubtitle method-title">selection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current selection point.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, readonly) CGPoint selection</code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
 					</div>
 					
 					
 					
 					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/colorAtPoint:" title="colorAtPoint:"></a>
+	<h3 class="subsubtitle method-title">colorAtPoint:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns UIColor at a point in the PSPDFColorPickerView.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (UIColor *)colorAtPoint:(CGPoint)<em>point</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/selectionToHue:saturation:brightness:" title="selectionToHue:saturation:brightness:"></a>
+	<h3 class="subsubtitle method-title">selectionToHue:saturation:brightness:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Conversion helper.</p>
+	</div>		
+	
+	
+	<div class="method-subsection method-declaration"><code>- (void)selectionToHue:(CGFloat *)<em>pH</em> saturation:(CGFloat *)<em>pS</em> brightness:(CGFloat *)<em>pV</em></code></div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PSPDFColorPickerView.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
 					
 					
 				</div>
@@ -188,7 +528,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-01-25)</span><br />
+						<p><span class="copyright">&copy; 2013 Peter Steinberger. All rights reserved. (Last updated: 2013-02-05)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
