@@ -21,6 +21,10 @@ NSArray *PSPDFConvertViewLinesToPDFLines(NSArray *lines, CGRect cropBox, NSUInte
 // Will convert PDF lines to view lines (operates on every point)
 NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
+// Controls if an AP stream should be generated for Ink annotations.
+// Enabled by default. Add this with @NO to the renderingOptions dict in PSPDFDocument to override.
+extern NSString *const kPSPDFGenerateAPForInk;
+
 /// PDF Ink Annotation. (Free Drawing)
 /// Lines are automatically transformed when the boundingBox is changed.
 @interface PSPDFInkAnnotation : PSPDFAnnotation

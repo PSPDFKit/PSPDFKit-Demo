@@ -56,7 +56,7 @@
 "No matches found" = "Aucun résultat";
 "One match found" = "Un résultat trouvé";
 "%d matches found" = "%d résultats trouvés";
-"Searching..." = "Recherche…";
+"Searching Page %d of %d..." = "Recherche %d of %d…";
 "Search Completed" = "Recherche terminée";
 "Search Cancelled" = "Recherche annulée";
 
@@ -124,6 +124,12 @@
 "Delete Highlight" = "Supprimer le surlignage";
 "Delete Free Text" = "Supprimer le texte libre";
 "%@ could not be found." = "%@ n'a pu être trouvé.";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+"Image" = "Image";
+"Low Quality" = "Low Quality";
+"Medium Quality" = "Medium Quality";
+"High Quality" = "High Quality";
 
 // limk annotation editing
 "Create Link..." = "Créer hyperlien...";

@@ -38,7 +38,7 @@
 @property (nonatomic, weak) PSPDFDocument *document;
 
 /// Delegate to control the password unlock.
-@property (nonatomic, weak) id<PSPDFPasswordViewDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFPasswordViewDelegate> delegate;
 
 /// Shake if password is not accepted.
 @property (nonatomic, assign) BOOL shakeOnError;

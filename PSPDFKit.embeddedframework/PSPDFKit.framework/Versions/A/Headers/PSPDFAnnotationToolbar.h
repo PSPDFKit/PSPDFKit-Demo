@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarDraw,
     PSPDFAnnotationToolbarSignature,
     PSPDFAnnotationToolbarStamp,
+    PSPDFAnnotationToolbarImage,
 };
 
 ///
@@ -66,7 +67,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)flashToolbar;
 
 /// Annotation toolbar delegate.
-@property (nonatomic, weak) id<PSPDFAnnotationToolbarDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
 /// If you update tintColor, barStyle, etc - this needs to be set again to re-capture changed states.
@@ -108,6 +109,8 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)drawButtonPressed:(id)sender;
 - (void)freeTextButtonPressed:(id)sender;
 - (void)signatureButtonPressed:(id)sender;
+- (void)stampButtonPressed:(id)sender;
+- (void)imageButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
 // Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
@@ -123,7 +126,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @property (nonatomic, strong, readonly) UIBarButtonItem *redoItem;
 
 // Drawing mode will update the toolbar items, here are the original items saved.
-@property (nonatomic, strong, readonly) NSArray *originalItems;
+@property (nonatomic, copy, readonly) NSArray *originalItems;
 
 // Color management.
 - (void)setLastUsedColor:(UIColor *)lastUsedDrawColor forAnnotationType:(NSString *)annotationType;
@@ -137,5 +140,10 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 
 // stayOnTop is a runtime tweak to make sure the toolbar stays above the pdfController navigationBar.
 - (void)unlockPDFControllerAnimated:(BOOL)animated showControls:(BOOL)showControls ensureToStayOnTop:(BOOL)stayOnTop;
+
+// Parses the editableAnnotationTypes set from the document.
+// Per default this is the contents of the editableAnnotationTypes set in PSPDFDocument.
+// If set to nil, this will load from pdfController.document.editableAnnotationTypes.allObjects.
+@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
 @end

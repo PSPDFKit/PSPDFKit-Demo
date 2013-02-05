@@ -28,18 +28,17 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 
 @end
 
-
-/**
- Search operation to find text inside a all or specific pages of a PSPDFDocument.
- Usually created within PSPDFTextSearch, but can also be used externally.
- */
+///
+/// Search operation to find text inside a all or specific pages of a PSPDFDocument.
+/// Usually created within PSPDFTextSearch, but can also be used externally.
+///
 @interface PSPDFSearchOperation : NSOperation
 
 /// Initialize with document reference and the search term.
 - (id)initWithDocument:(PSPDFDocument *)document searchTerm:(NSString *)searchTerm;
 
 /// Customize range of pages that should be searched. Set to nil to search whole document.
-/// Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.
+/// Hint: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.
 @property (nonatomic, copy) NSIndexSet *pageRanges;
 
 /// If set to YES, pageRanges will be searched first, then all following pages.
@@ -65,15 +64,3 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 @end
-
-@interface PSPDFSearchOperation (Deprecated)
-
-@property (nonatomic, copy) NSArray *selectionSearchPages __attribute__ ((deprecated("Use pageRanges instead.")));
-@property (nonatomic, copy) NSArray *searchPages __attribute__ ((deprecated("Use pageRanges instead.")));
-@property (nonatomic, copy) NSDictionary *pageTextDict __attribute__ ((deprecated("Override PSPDFTextParser instead.")));
-
-@end
-
-// Support for deprecated enum names
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFBasicSearch; // equivalent to PSPDFSearchModeBasic;
-__attribute__ ((deprecated)) extern const NSUInteger PSPDFSearchWithHighlighting; // equivalent to PSPDFSearchModeHighlighting;

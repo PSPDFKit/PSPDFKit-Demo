@@ -43,7 +43,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @property (nonatomic, strong, readonly) NSArray *lines;
 
 /// Signature controller delegate.
-@property (nonatomic, weak) id <PSPDFSignatureViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFSignatureViewControllerDelegate> delegate;
 
 /// Save additional properties here. This will not be used by the signature controller.
 @property (nonatomic, copy) NSDictionary *userInfo;
@@ -81,6 +81,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 ///
 /// Shows a list of signtures to select one.
+/// Will show up in landscape on iOS6 (preferredInterfaceOrientationForPresentation)
 ///
 @interface PSPDFSignatureSelectorViewController : UITableViewController <PSPDFStyleable>
 
@@ -91,13 +92,10 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @property (nonatomic, copy, readonly) NSArray *signatures;
 
 /// Delegate.
-@property (nonatomic, weak) id <PSPDFSignatureSelectorViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFSignatureSelectorViewControllerDelegate> delegate;
 
 /// Save additional properties here. This will not be used by the signature selector controller.
 @property (nonatomic, copy) NSDictionary *userInfo;
-
-// PSPDFStyleable attribute.
-@property (nonatomic, assign) BOOL isInPopover;
 
 @end
 
@@ -122,5 +120,9 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 /// If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
 /// Defaults to YES.
 @property (atomic, assign) BOOL signatureSavingEnabled;
+
+/// If enabled, the signature feature will show a menu with a customer signature (will not be saved)
+/// Defaults to YES.
+@property (atomic, assign) BOOL customerSignatureFeatureEnabled;
 
 @end

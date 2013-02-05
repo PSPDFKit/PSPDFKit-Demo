@@ -61,11 +61,15 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
 /// Associated delegate, connects to the PSPDFViewController
-@property (nonatomic, weak) id<PSPDFWebViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFWebViewControllerDelegate> delegate;
 
 /// Defaults to YES. Will be checked in the default implementation of setActivityIndicatorEnabled.
 /// Set to NO to NOT change the global network activity indicator.
 @property (nonatomic, assign) BOOL updateGlobalActivityIndicator;
+
+/// If set to YES, a custom HTML is loaded when the UIWebView encounters an error (like 404).
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL useCustomErrorPage;
 
 @end
 
@@ -74,6 +78,10 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Override if you have your own network activity manager.
 /// Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 - (void)setActivityIndicatorEnabled:(BOOL)enabled;
+
+/// Called on error events if useCustomErrorPage is set.
+/// Uses the "StandardError.html" inside PSPDFKit.bundle.
+- (void)showHTMLWithError:(NSError *)error;
 
 // Toolbar items
 - (void)goBack:(id)sender;

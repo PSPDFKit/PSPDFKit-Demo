@@ -9,6 +9,9 @@
 
 @class PSPDFDocument;
 
+///
+/// Defines the position if an image in the PDF.
+///
 @interface PSPDFImageInfo : NSObject
 
 @property (nonatomic, copy) NSString* imageID;
@@ -19,6 +22,7 @@
 @property (nonatomic, assign) double displayHeight;
 @property (nonatomic, assign) double horizontalResolution;
 @property (nonatomic, assign) double verticalResolution;
+@property (nonatomic, assign) CGAffineTransform ctm; // global transform state.
 @property (nonatomic, readonly, assign) CGPoint *vertices;
 
 @property (atomic, weak) PSPDFDocument *document;

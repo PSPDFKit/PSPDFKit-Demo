@@ -46,7 +46,7 @@
 @property (nonatomic, assign) CGFloat outlineIndentMultiplier;
 
 /// Delegate to communicate with PSPDFViewController.
-@property (nonatomic, weak) id<PSPDFOutlineViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFOutlineViewControllerDelegate> delegate;
 
 /// Attached document.
 @property (nonatomic, weak) PSPDFDocument *document;

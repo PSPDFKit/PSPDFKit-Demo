@@ -11,6 +11,7 @@
 
 /// Get string from CGPDFDictionary.
 extern inline NSString *PSPDFDictionaryGetString(CGPDFDictionaryRef pdfDict, NSString *key);
+extern inline NSString *PSPDFDictionaryGetStringC(CGPDFDictionaryRef pdfDict, const char *key);
 
 /// Get string from CGPDFArray.
 extern inline NSString *PSPDFArrayGetString(CGPDFArrayRef pdfArray, size_t index);

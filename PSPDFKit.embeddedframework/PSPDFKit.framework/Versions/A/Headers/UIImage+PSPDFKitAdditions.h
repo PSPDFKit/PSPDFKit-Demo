@@ -44,4 +44,10 @@ typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
 /// For a more perfect solution, use https://github.com/ondalabs/OLImageView.
 + (UIImage *)pspdf_animatedGIFWithPath:(NSString *)path;
 
+/// CropRect is assumed to be in UIImageOrientationUp, as it is delivered this way from the UIImagePickerController when using AllowsImageEditing is on.
+/// The sourceImage can be in any orientation, the crop will be transformed to match
+/// The output image bounds define the final size of the image, the image will be scaled to fit,(AspectFit) the bounds, the fill color will be used for areas that are not covered by the scaled image.
+/// This method is especially useful when dealing with UIImagePickerControllerCropRect.
+- (UIImage *)pspdf_cropImageWithCropRect:(CGRect)cropRect aspectFitBounds:(CGSize)finalImageSize fillColor:(UIColor *)fillColor;
+
 @end

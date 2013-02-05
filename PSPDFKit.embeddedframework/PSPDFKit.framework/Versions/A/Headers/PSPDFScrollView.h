@@ -118,6 +118,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 // Allows changing the shadow path.
 - (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
 
+// Creates and sets up the double tap gesture. Override and return nil to remove it.
+- (UITapGestureRecognizer *)createDoubleTapGesture;
+
 @end
 
 @interface PSPDFScrollView (PSPDFInternal)

@@ -49,7 +49,7 @@
 @property (nonatomic, strong, readonly) UITextView *textView;
 
 /// Attached delegate.
-@property (nonatomic, weak) id<PSPDFNoteAnnotationControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFNoteAnnotationControllerDelegate> delegate;
 
 @end
 

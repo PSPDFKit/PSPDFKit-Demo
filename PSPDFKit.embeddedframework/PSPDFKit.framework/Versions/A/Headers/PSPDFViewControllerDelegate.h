@@ -11,36 +11,44 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFPageCoordinates, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
 
-/// Implement this delegate on your UIViewController to get notified by PSPDFViewController.
+///
+/// Implement this delegate in your UIViewController to get notified by PSPDFViewController events.
+///
 @protocol PSPDFViewControllerDelegate <NSObject>
 
 @optional
 
-/* global document handling */
+///--------------------------------------------
+/// @name Document Handling
+///--------------------------------------------
 
 /// Allow/disallow document setting.
 /// Can be useful if you e.g. want to block the opening of a different document reference via a outline entry.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSetDocument:(PSPDFDocument *)document;
 
-/// Time to adjust PSPDFViewController before a PSPDFDocument is displayed
+/// Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
+/// @warning This currently will only be called during viewWillAppear, not when setting a new document.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document;
 
 /// Delegate to be notified when pdfController finished loading.
 /// Will also be called if the document is nil.
 /// This will also be called for broken documents. use document.isValid to check.
+/// @warning This currently will only be called during viewDidAppear, not when setting a new document.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document;
 
-/* Events */
+///--------------------------------------------
+/// @name Scroll and Page Events
+///--------------------------------------------
 
 // Note: If you need more scroll events, subclass PSPDFScrollView and relay your custom scroll events. Don't forget calling super though.
 
 /// Control scrolling to pages. Not implementing this will return YES.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page;
 
-/// Controller did show/scrolled to a new page (at least 51% of it is visible)
+/// Controller did show/scrolled to a new page. (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView;
 
-/// Page was fully rendered at zoomlevel = 1
+/// Page was fully rendered at zoomlevel = 1.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView;
 
 /// Called after pdf page has been loaded and added to the pagingScrollView.
@@ -48,9 +56,6 @@
 
 /// Called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
-
-/// Will be called when viewMode changes
-- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
 
 /** 
  Will be called after page rect has been dragged.
@@ -108,13 +113,19 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
 
-/* Text Selection: */
+///--------------------------------------------
+/// @name Text Selection
+///--------------------------------------------
 
 /// Called when text is about to be selected. Return NO to disable text selection.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 /// Called after text has been selected.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
+
+///--------------------------------------------
+/// @name Menu Handling
+///--------------------------------------------
 
 /**
  Called before the menu for text selection is displayed.
@@ -130,10 +141,17 @@
 /// Called before the menu for a selected image is displayed.
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedImage:(PSPDFImageInfo *)selectedImage inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
-/* Annotations */
+/// Called before we're showing the menu for an annotation.
+/// If annotation is nil, we show the menu to create *new* annotations (in that case annotationRect will also be nil)
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)annotationRect onPageView:(PSPDFPageView *)pageView;
+
+///--------------------------------------------
+/// @name Annotations
+///--------------------------------------------
 
 /// Called before a annotation view is created and added to a page. Defaults to YES if not implemented.
-/// if NO is returned, viewForAnnotation will not be called.
+/// @warning This will only be called for annotations that render as an overlay (that return YES for isOverlay)
+/// If NO is returned, viewForAnnotation will not be called.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /**
@@ -155,22 +173,24 @@
 /// Called after an annotation has been selected.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
-/// Called before we're showing the menu for an annotation.
-/// If annotation is nil, we show the menu to create *new* annotations (in that case annotationRect will also be nil)
-- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)annotationRect onPageView:(PSPDFPageView *)pageView;
-
 /// Returns a pre-generated annotationView that can be modified before being added to the view.
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
 /// To get the targeted rect use [annotation rectForPageRect:pageView.bounds];
 - (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
+/// @warning This will only be called for annotations that render as an overlay (that return YES for isOverlay)
 /// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked after animation used to present the annotation view
+/// @warning This will only be called for annotations that render as an overlay (that return YES for isOverlay)
 /// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
+
+///--------------------------------------------
+/// @name View Controller Management
+///--------------------------------------------
 
 /**
  Called before we show a internal controller (color picker, note editor, ...) modally or in a popover. Allows last minute modifications.
@@ -184,17 +204,29 @@
 /// Called after the controller has been fully displayed. Isn't called for UIPopoverController's.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
 
+///--------------------------------------------
+/// @name General View State
+///--------------------------------------------
+
 /// If you implement your own super-custom toolbar, handle updates for bar buttons. (e.g. with re-setting the items array)
 /// One popular example is PSPDFBookmarkBarButtonItem, which needs to change it's image after pressing the button.
 /// Ignore this if you're letting PSPDFKit manage your toolbar or if you're using a UIToolbar.
 /// If you implement this delegate, the default UIToolbar-update-code will not be called.
 - (void)pdfViewController:(PSPDFViewController *)pdfController requestsUpdateForBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;
 
+/// Will be called when viewMode changes.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
+
+///--------------------------------------------
+/// @name HUD
+///--------------------------------------------
+
 /// Return NO to stop the HUD change event.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowHUD:(BOOL)animated;
 
 /// HUD will be displayed.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowHUD:(BOOL)animated;
+
 /// HUD was displayed (called after the animation finishes)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowHUD:(BOOL)animated;
 
@@ -203,6 +235,7 @@
 
 /// HUD will be hidden.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willHideHUD:(BOOL)animated;
+
 /// HUD was hidden (called after the animation finishes)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didHideHUD:(BOOL)animated;
 

@@ -33,7 +33,7 @@
 @property (nonatomic, strong) PSPDFDocument *document;
 
 /// Delegate.
-@property (nonatomic, weak) id<PSPDFBookmarkViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFBookmarkViewControllerDelegate> delegate;
 
 // PSPDFStyleable attribute.
 @property (nonatomic, assign) BOOL isInPopover;
