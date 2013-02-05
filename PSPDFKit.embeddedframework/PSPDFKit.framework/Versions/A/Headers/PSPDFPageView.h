@@ -25,7 +25,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will not be re-used for different pages.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to PSPDFPageView's.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UITextFieldDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// Note: We already need pdfController at this stage to check the classOverride table.
@@ -50,7 +50,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (void)updateView;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
-/// (Most PDF annotations are actually rendered into the page; except PSPDFLinkAnntotations and all derivates (video, etc) and PSPDFNoteAnnotation)
+/// (Most PDF annotations are actually rendered into the page; except annotations that return YES for isOverlay, like links or notes.
 - (UIView<PSPDFAnnotationView> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView subview showing the whole document. Readonly.
@@ -262,6 +262,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Show signature menu.
 - (void)showNewSignatureMenuAtPoint:(CGPoint)point;
 
+// Show image menu.
+- (void)showNewImageMenuAtPoint:(CGPoint)point;
+
 /// Returns the default color options for the specified annotation type.
 - (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
 
@@ -285,6 +288,10 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Will create and show the action sheet on long-press above a PSPDFLinkAnnotation.
 /// Return nil if you don't show the actionSheet, or return the object you're showing. (UIView or UIViewController subclass)
 - (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
+
+/// Returns the passthrough views for the popover controllers (e.g. color picker).
+/// By default this is failry agressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.
+- (NSArray *)passthroughViewsForPopoverController;
 
 @end
 

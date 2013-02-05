@@ -45,7 +45,7 @@ extern NSString *const kPSPDFColorKey;
 @property (nonatomic, strong, readonly) NSArray *linesDictionaries;
 
 /// Draw Delegate.
-@property (atomic, weak) id<PSPDFDrawViewDelegate> delegate;
+@property (atomic, weak) IBOutlet id<PSPDFDrawViewDelegate> delegate;
 
 - (BOOL)canUndo;
 - (BOOL)undo;

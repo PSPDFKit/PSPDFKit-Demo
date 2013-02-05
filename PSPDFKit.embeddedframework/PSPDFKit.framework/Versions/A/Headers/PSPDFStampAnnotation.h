@@ -8,11 +8,9 @@
 #import "PSPDFAnnotation.h"
 
 /**
- PDF Stamp annotation
+ PDF Stamp annotation.
  
  PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
-
- @warning Classic text stamps won't be rendered in Apple's Preview.app (last tested with 10.8.2). Adobe Acrobat can display them.
 */
 @interface PSPDFStampAnnotation : PSPDFAnnotation
 
@@ -33,7 +31,15 @@
 /// Used for custom stamps, will render beneath the subject or as the subject if subject is not set.
 @property (nonatomic, copy) NSString *subtext;
 
-/// Stamp image (if one is found in the appearance stream)
-@property (nonatomic, strong, readonly) UIImage *image;
+/// Stamp image. Defaults to nil. Set to render an image.
+@property (nonatomic, strong) UIImage *image;
+
+/// Parses the AP stream, searches for an image and loads it.
+/// Will also update imageTransform.
+- (UIImage *)loadImage;
+
+/// Stamp image transform. Defaults to CGAffineTransformIdentity.
+@property (nonatomic, assign) CGAffineTransform imageTransform;
 
 @end
+

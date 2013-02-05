@@ -41,7 +41,7 @@
 @property (nonatomic, assign) BOOL useSolidBackground;
 
 /// Delegate (usually connected to a PSPDFPageViewController)
-@property (nonatomic, assign) id<PSPDFSinglePageViewControllerDelegate> delegate;
+@property (nonatomic, assign) IBOutlet id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end
 

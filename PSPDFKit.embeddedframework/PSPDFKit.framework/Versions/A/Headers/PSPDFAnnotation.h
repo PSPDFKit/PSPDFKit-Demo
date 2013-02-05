@@ -10,7 +10,8 @@
 
 @class PSPDFDocument, PSPDFDocumentProvider;
 
-// list of editable annotation types.
+/// List of editable annotation types.
+/// Set those constants in the editableAnnotationTypes set of PSPDFDocument.
 extern NSString *const PSPDFAnnotationTypeStringLink;
 extern NSString *const PSPDFAnnotationTypeStringHighlight;
 extern NSString *const PSPDFAnnotationTypeStringUnderline;
@@ -20,28 +21,31 @@ extern NSString *const PSPDFAnnotationTypeStringFreeText;
 extern NSString *const PSPDFAnnotationTypeStringInk;
 extern NSString *const PSPDFAnnotationTypeStringSquare;
 extern NSString *const PSPDFAnnotationTypeStringCircle;
+extern NSString *const PSPDFAnnotationTypeStringSignature;  // Signature is an image annotation.
 extern NSString *const PSPDFAnnotationTypeStringStamp;
-// Signature is technically an Ink annotation, but this enables an optimized adding mode (toolbar).
-extern NSString *const PSPDFAnnotationTypeStringSignature;
+
+// UIImagePickerController used in the image add feature will throw a UIApplicationInvalidInterfaceOrientation exception if your app does not include portrait in UISupportedInterfaceOrientations (Info.plist).
+// For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in UIViewController's auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use UIImagePickerController.
+extern NSString *const PSPDFAnnotationTypeStringImage;      // Image is a stamp annotation.
 
 // Annotations defined after the PDF standard.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeNone      = 0,
-    PSPDFAnnotationTypeLink      = 1 << 1,  // Links and multimedia extensions
-    PSPDFAnnotationTypeHighlight = 1 << 2,  // (Highlight, Underline, StrikeOut) - PSPDFHighlightAnnotationView
+    PSPDFAnnotationTypeUndefined = 1 << 0, // Any annotation whose type couldn't be recognized.
+    PSPDFAnnotationTypeLink      = 1 << 1,  // Links and PSPDFKit multimedia extensions.
+    PSPDFAnnotationTypeHighlight = 1 << 2,  // Highlight, Underline, StrikeOut
     PSPDFAnnotationTypeText      = 1 << 3,  // FreeText
-    PSPDFAnnotationTypeInk       = 1 << 4,
+    PSPDFAnnotationTypeInk       = 1 << 4,  // Ink (includes Signatures)
     PSPDFAnnotationTypeShape     = 1 << 5,  // Square, Circle
     PSPDFAnnotationTypeLine      = 1 << 6,
     PSPDFAnnotationTypeNote      = 1 << 7,
-    PSPDFAnnotationTypeStamp     = 1 << 8,
+    PSPDFAnnotationTypeStamp     = 1 << 8,  // Stamp (includes images)
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
-    PSPDFAnnotationTypeUndefined = 1 << 31, // any annotation whose type couldn't be recognized
     PSPDFAnnotationTypeAll       = UINT_MAX
 };
 
-// Converts annotation type into the string representation.
+// Converts an annotation type into the string representation.
 extern NSString *PSPDFTypeStringFromAnnotationType(PSPDFAnnotationType annotationType);
 
 // Annotation border style. PSPDFKit currently only supports Solid and Dashed.
@@ -60,7 +64,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
  
  PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
  
- Don't directly make an instance of this class, use the subclasses like PSPDFNoteAnnotations, PSPDFLinkAnnotations or others. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
+ Don't directly make an instance of this class, use subclasses like PSPDFNoteAnnotations or PSPDFLinkAnnotations. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
 
  Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.
  
@@ -285,11 +289,11 @@ extern NSString *PSPDFRectStringFromRect(CGRect rect);
 // Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
 + (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
 
-extern NSString *const kPSPDFRepresentationAPStreamNumber;
-extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 /// Returns NSData string representations in the PDF standard.
 /// Per convention, the first returned object has to be an annotation objects, all other can be supportive objects.
 - (NSArray *)pdfDataRepresentationsWithOptions:(NSDictionary *)streamOptions;
+extern NSString *const kPSPDFRepresentationAPStreamNumber;
+extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
 /// Returns same type as current class.
@@ -309,9 +313,6 @@ extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 
 @end
 
-// Helper to properly escape strings.
-extern NSString *PSPDFEscapedString(NSString *string);
-
 @interface PSPDFAnnotation (SubclassingHooks)
 
 // Will be called after document and page have been set.
@@ -323,3 +324,10 @@ extern NSString *PSPDFEscapedString(NSString *string);
 @interface NSMutableData (PSPDFAdditions)
 - (void)pspdf_appendDataString:(NSString *)dataString;
 @end
+
+// Helps to properly encode strings to PDF UTF16.
+// Will only convert strings that can't be represented in ASCII.
+extern NSData *PSPDFUTF16EncodedStringWithTitle(NSString *string, NSString *title);
+
+// Helper to properly escape ASCII strings.
+extern NSString *PSPDFEscapedString(NSString *string);

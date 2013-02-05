@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 @property (nonatomic, copy, readonly) NSArray *colors;
 
 /// Action delegate.
-@property (nonatomic, weak) id <PSPDFColorSelectionViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFColorSelectionViewControllerDelegate> delegate;
 
 @end
 
@@ -62,6 +62,6 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 - (UIColor *)colorSelectionControllerSelectedColor:(UIViewController *)controller;
 
 /// Sent when a color has been selected.
-- (void)colorSelectionController:(UIViewController *)controller didSelectedColor:(UIColor *)color;
+- (void)colorSelectionController:(UIViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished;
 
 @end

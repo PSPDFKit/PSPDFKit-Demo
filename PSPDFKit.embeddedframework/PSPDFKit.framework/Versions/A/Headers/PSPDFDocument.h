@@ -14,11 +14,19 @@
 
 @class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmarkParser;
 
+// Annotations can be saved in the PDF or alongside in an external file.
 typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
     PSPDFAnnotationSaveModeDisabled,
-    PSPDFAnnotationSaveModeExternalFile, // will use save/loadAnnotationsWithError of PSPDFAnnotationParser (override to ship your own)
+    PSPDFAnnotationSaveModeExternalFile, // Uses save/loadAnnotationsWithError in PSPDFAnnotationParser.
     PSPDFAnnotationSaveModeEmbedded,
     PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback // Default.
+};
+
+// Creates annotations based on the text content. See detectLinkTypes:forPagesInRange:.
+typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
+    PSPDFTextCheckingTypeLink        = 1 << 0,  // URLs
+    PSPDFTextCheckingTypePhoneNumber = 1 << 1,  // Phone numbers
+    PSPDFTextCheckingTypeAll         = UINT_MAX
 };
 
 /**
@@ -62,15 +70,15 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// For leading zeros, use the default printf syntax. (%04d = 0001)
 + (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
-- (instancetype)init;
-- (instancetype)initWithURL:(NSURL *)URL;
-- (instancetype)initWithData:(NSData *)data;
-- (instancetype)initWithDataArray:(NSArray *)data;
-- (instancetype)initWithDataProvider:(CGDataProviderRef)dataProvider;
-- (instancetype)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
-- (instancetype)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
+- (id)init;
+- (id)initWithURL:(NSURL *)URL;
+- (id)initWithData:(NSData *)data;
+- (id)initWithDataArray:(NSArray *)data;
+- (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
+- (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
+- (id)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
-/// Compare to documents.
+/// Compare two documents.
 - (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
 
 /// Delegate. Used for annotation calls.
@@ -161,8 +169,12 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
  Set this to an empty set to disable annotation editing/creation.
  
  Defaults to all available STRING constants (PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk, etc).
+ 
+ Since PSPDFKit 2.8, this now is an ordered set - the order will change the button order in the toolbar and the page menu.
+ 
+ @warning Some annotation types are only behaviorally different in PSPDFKit but in are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See PSPDFAnnotation.h for comments 
 */
-@property (nonatomic, copy) NSSet *editableAnnotationTypes;
+@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
 /// Can PDF annotations be embedded?
 /// Note: only evaluates the first file if multiple files are set.
@@ -531,6 +543,12 @@ extern NSString *const kPSPDFImages;
 
 /// Helper for higher performance.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
+
+/// Experimental. Will iterate all pages and create new annotations for the set types.
+/// Will ignore any text that is already linked with the same URL.
+/// To analyze the whole document, use [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]
+/// @warning Performs text and annotation extraction and analysis. Might be slow. Call this before showing the document in the PSPDFViewController or manually add the link annotations.
+- (NSArray *)detectLinkTypes:(PSPDFTextCheckingType)textLinkType forPagesInRange:(NSIndexSet *)pageRange;
 
 @end
 

@@ -39,7 +39,7 @@
 @property (nonatomic, copy) NSArray *stamps;
 
 /// Stamp controller delegate.
-@property (nonatomic, weak) id <PSPDFStampViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFStampViewControllerDelegate> delegate;
 
 /// Save additional properties here. This will not be used by the signature controller.
 @property (nonatomic, copy) NSDictionary *userInfo;

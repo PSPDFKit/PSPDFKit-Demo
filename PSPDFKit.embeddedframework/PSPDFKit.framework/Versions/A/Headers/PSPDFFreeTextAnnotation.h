@@ -29,4 +29,7 @@
 /// Return a default font name (Helvetica) if not defined in the annotation.
 - (NSString *)defaultFontName;
 
+/// Returns the currently set font (calculated from defaultFontSize)
+- (UIFont *)defaultFont;
+
 @end

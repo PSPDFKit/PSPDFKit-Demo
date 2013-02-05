@@ -44,10 +44,11 @@
 ///
 /// If set, will hide the title.
 /// This is prefixed to make sure it will work even when Apple decides to add support for images in future releases.
+/// @warning Due to implementation details, this will actually change 'title'. Use identifier to compare menuItems instead.
 @property(nonatomic, copy) UIImage *ps_image;
 
 // Action block.
-@property (nonatomic, copy) void(^block)();
+@property (nonatomic, copy) void(^actionBlock)();
 
 
 /**

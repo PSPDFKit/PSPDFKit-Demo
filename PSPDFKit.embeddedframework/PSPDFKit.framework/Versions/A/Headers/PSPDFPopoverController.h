@@ -15,7 +15,7 @@
 - (id)initWithContentViewController:(UIViewController *)viewController;
 
 /// Delegate for popover dismissal.
-@property (nonatomic, weak) id<UIPopoverControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<UIPopoverControllerDelegate> delegate;
 
 /// The content view controller is the `UIViewController` instance in charge of the content view of the displayed popover. This property can be changed while the popover is displayed to allow different view controllers in the same popover session.
 @property (nonatomic, strong) UIViewController *contentViewController;

@@ -240,9 +240,6 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 - (void)ps_addObjectSafe:(id)anObject;
 - (void)ps_addObjectsFromArraySafe:(NSArray *)otherArray;
 @end
-@interface NSMutableDictionary (PSPDFCollections)
-- (void)ps_setObjectSafe:(id)anObject forKey:(id<NSCopying>)aKey;
-@end
 
 // Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.
 // Only available with source code in DEBUG mode.
@@ -251,5 +248,5 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 @end
 
 // Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html
-#define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name @end \
+#define PSPDF_FIX_CATEGORY_BUG(name) @interface PSPDF_FIX_CATEGORY_BUG_##name : NSObject @end \
 @implementation PSPDF_FIX_CATEGORY_BUG_##name @end
