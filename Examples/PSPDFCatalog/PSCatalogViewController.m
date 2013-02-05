@@ -1146,7 +1146,17 @@ const char kPSCAlertViewKey;
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [pdfController searchForString:@"In Vitro Amplification" animated:YES];
         });
+        return pdfController;
+    }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Search performance test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        int64_t delayInSeconds = 1.f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController searchForString:@"pdfo" animated:YES];
+        });
         return pdfController;
     }]];
 
@@ -1340,7 +1350,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"detect-telephone-numbers.pdf"]];
         NSArray *newAnnotations = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
         NSLog(@"Created %d new annotations: %@", newAnnotations.count, newAnnotations);
-        NSArray *newAnnotations2 = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
+        __unused NSArray *newAnnotations2 = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
         NSAssert(newAnnotations2.count == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
