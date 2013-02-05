@@ -10,15 +10,16 @@
 
 @class PSPDFViewController;
 
-/// ScrobbleBar, similar to iBooks.
-/// This class connects to the pdfController via KVO.
+///
+/// PDF thumbnail scrobble bar - similar to iBooks.
+///
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// PDF controller delegate. We use KVO, so no weak here.
 /// Re-set pdfController to update the tintColor.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
-/// Updates toolbar, realigns page screenshots. Registers in the runloop and works later.
+/// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbar;
 
 /// *Instantly* updates toolbar.
@@ -34,10 +35,30 @@
 /// Alpha is set to 0.7, can be changed.
 @property (nonatomic, strong) UIToolbar *toolbar;
 
-/// Defaults to 5. 
+/// Left border margin. Defaults to thumbnailMargin. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat leftBorderMargin;
 
-/// Defaults to 5.
+/// Right border margin. Defaults to thumbnailMargin. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat rightBorderMargin;
+
+@end
+
+
+@interface PSPDFScrobbleBar (SubclassingHooks)
+
+// Returns YES if toolbar is in landscape/iPhone mode.
+- (BOOL)isSmallToolbar;
+
+// Returns toolbar height. (depending on isSmallToolbar)
+- (CGFloat)scrobbleBarHeight;
+
+// Returns size of the bottom thumbnails. (depending on isSmallToolbar)
+- (CGSize)scrobbleBarThumbSize;
+
+// Margin between thumbnails. Defaults to 2.
+@property (nonatomic, assign) CGFloat thumbnailMargin;
+
+// Size multiplicator for the current page thumbail. Defaults to 1.35;
+@property (nonatomic, assign) CGFloat pageMarkerSizeMultiplicator;
 
 @end

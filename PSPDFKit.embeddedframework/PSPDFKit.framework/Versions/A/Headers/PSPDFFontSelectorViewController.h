@@ -31,6 +31,6 @@
 @property (nonatomic, strong) UIFont *selectedFont;
 
 /// Delegate.
-@property (nonatomic, weak)	id<PSPDFFontSelectorViewControllerDelegate> delegate;
+@property (nonatomic, weak)	IBOutlet id<PSPDFFontSelectorViewControllerDelegate> delegate;
 
 @end

@@ -82,6 +82,9 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 /// Disables dragging the view outside of the parent. Defaults to YES.
 @property (nonatomic, assign) BOOL preventsPositionOutsideSuperview;
 
+/// Border color. Defaults to [[UIColor pspdf_selectionColor] colorWithAlphaComponent:0.6f].
+@property (nonatomic, strong) UIColor *selectionBorderColor;
+
 /// Active knob when we're dragging.
 @property (nonatomic, assign) PSPDFSelectionBorderKnobType activeKnobType;
 
@@ -89,6 +92,22 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 
 /// Delegate called on frame change.
-@property (nonatomic, weak) id<PSPDFResizableViewDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFResizableViewDelegate> delegate;
+
+@end
+
+@interface PSPDFResizableView (SubclassingHooks)
+
+// All knobs. Can be hidden individually.
+// Note that properties like allowEditing/allowReszing will update the hidden property.
+// To properly hide a know, remove it from the superview.
+@property (nonatomic, strong, readonly) UIImageView *knobTopLeft;
+@property (nonatomic, strong, readonly) UIImageView *knobTopMiddle;
+@property (nonatomic, strong, readonly) UIImageView *knobTopRight;
+@property (nonatomic, strong, readonly) UIImageView *knobMiddleLeft;
+@property (nonatomic, strong, readonly) UIImageView *knobMiddleRight;
+@property (nonatomic, strong, readonly) UIImageView *knobBottomLeft;
+@property (nonatomic, strong, readonly) UIImageView *knobBottomMiddle;
+@property (nonatomic, strong, readonly) UIImageView *knobBottomRight;
 
 @end

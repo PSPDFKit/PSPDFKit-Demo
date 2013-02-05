@@ -29,6 +29,6 @@
 @property (nonatomic, strong, readonly) PSPDFBrightnessSlider *brightnessSlider;
 
 /// Action delegate.
-@property (nonatomic, weak) id <PSPDFColorSelectionViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFColorSelectionViewControllerDelegate> delegate;
 
 @end

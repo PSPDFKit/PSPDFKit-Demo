@@ -2,6 +2,48 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.0 - 5/February/2013__
+
+*  Image annotations. PSPDFKit can now add images from the camera and the photo library and embedd them as stamp annotations.
+*  Search / Text extraction is now more than twice as fast and reports the current page.
+*  The whole AP stream generation system has been improved and performance optimized to allow bigger streams like images.
+*  PSPDFKit will now require Xcode 4.6/SDK 6.1 to compile. (4.5 should still work fine, but we follow Apple's best practice with always compiling with the latest SDK available.)
+*  API change: editableAnnotationTypes is now an *ordered* set. Using a regular set to change this property will work for the time being, but please update your code. The order now will change the ordering of the buttons in the annotation toolbar and the new annotation menu.
+*  Add experimental phone/link detection: detectLinkTypes:forPagesInRange: in PSPDFDocument. This will create annotations for phone numbers and links found in the document, if they are not linked already. This is the same that Preview/Mac and Adobe Acrobat do - they allow to click URLs even if they don't have any link set on them.
+*  Search now displays the current processed page.
+*  Further tweaks to PSPDFHighlightAnnotation highlightedString.
+*  Add setting to enable/disable the "Customer Signature" feature. (customerSignatureFeatureEnabled in PSPDFSignatureStore)
+*  The signature controller has now landscape as preferred rotation under iOS6. (but still supports portrait)
+*  Controllers presented via the PSPDFViewController helper now use a custom PSPDFNavigationController that queries the iOS6 rotation methods of the topmost view controller. This makes it easier to customize rotation for PSPDF* controllers without hacks.
+*  Performance improvement: deleted annotations now are no longer serialized if the external annotation format is used.
+*  The "hide small links" feature now works better on iPhone.
+*  FreeText annotations now parse even more font definition styles.
+*  Improvements to the heursitic in PSPDFHighlightAnnotation highlightedString.
+*  Annotations added via a modal view (e.g. Signatures on iPhone) are now also selected. (annotation selection is preserved during reloadData)
+*  Smart zoom now uses less border when zooming into a text block, which looks better. (other columns usually are no longer visible)
+*  Taps that dismiss an annotation editing popover no longer modify the HUD state.
+*  The scrobble bar thumbnail size has been tweaked to be a little bigger. This now can also be fine-tuned, see PSPDFScrobbleBar.h.
+*  The font selector now selects the currently chosen font.
+*  Various performance improvements. (esp. search and the color picker)
+*  Thumbnails are now sharper and always aligned to pixel grid (fixes a bug in UICollectionViewFlowLayout)
+*  Text selection knobs are now pixel aligned as well.
+*  When thumbnails are loaded from scratch, they are loaded in order. (PSPDFCache's numberOfConcurrentCacheOperations has been set to 1)
+*  Fixes an UX issue where PSPDFKit could end up displaying something like '1 (1 of 2)' for page labels.
+*  Fixes an UX issue where a tap wasn't set to being processed when the delegate delegateDidTapOnAnnotation:annotationPoint:... was being used.
+*  Fixes an UIKit bug that in some cases froze the UIScrollView when we zoomed out programmatically (e.g. a double tap after already zoomed in)
+*  Fixes a potential crash when saving NSData-based PDFs with a corrupt XRef table.
+*  Fixes a rendering issue where some landscape documents were incorrectly scaled when using renderImageForPage:withSize in PSPDFDocument.
+*  Fixes a regression that stopped the [popover:YES] option form working properly. (A formsheet was presented instead)
+*  Fixes a regression in the 2.7.x branch that caused movies loaded in the PSPDFWebViewController to fail with the error "Plugin handled load".
+*  Fixes an issue when using Storyboard and setting the viewState to thumbnails initially.
+*  Fixes an issue where the signature selector controller dismissed the whole pdfController under certain conditions.
+*  Fixes an issue with annotations moving to other pages on a document with multiple document providers.
+*  Fixes an issue where the note view controller would hide the close button on iPhone if edit was set to NO.
+*  Fixes an issue with frame displacement under certain conditions on embedded UINavigationControllers.
+*  Fixes an issue with zooming when in text edit mode and page centering.
+*  Fixes an issue with searching for certain characters that are reserved regex characters (like []()*+).
+*  Fixes an encoding issue with annotation content and certain Chinese characters.
+
 __v2.7.5 - 25/January/2013__
 
 *  Signatures are now securely saved in the Keychain and a list of signatures is presented. To disable this feature, set PSPDFSignatureStore.sharedSignatureStore.signatureSavingEnabled = NO in your appDelegate.

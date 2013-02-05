@@ -60,7 +60,7 @@
 - (void)removeDocuments:(NSArray *)documents animated:(BOOL)animated;
 
 /// Delegate to capture events.
-@property (nonatomic, weak) id<PSPDFTabbedViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFTabbedViewControllerDelegate> delegate;
 
 /// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
 @property (nonatomic, assign) BOOL enableAutomaticStatePersistance;

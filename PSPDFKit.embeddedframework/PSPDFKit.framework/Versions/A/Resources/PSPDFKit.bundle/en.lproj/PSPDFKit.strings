@@ -56,7 +56,7 @@
 "No matches found" = "No matches found";
 "One match found" = "One match found";
 "%d matches found" = "%d matches found";
-"Searching..." = "Searching…";
+"Searching Page %d of %d..." = "Searching Page %d of %d…";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
 
@@ -127,6 +127,12 @@
 "Delete Highlight" = "Delete Highlight";
 "Delete Free Text" = "Delete Free Text";
 "%@ could not be found." = "%@ could not be found.";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+"Image" = "Image";
+"Low Quality" = "Low Quality";
+"Medium Quality" = "Medium Quality";
+"High Quality" = "High Quality";
 
 // limk annotation editing
 "Create Link..." = "Create Link...";
