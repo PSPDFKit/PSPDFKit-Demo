@@ -8,10 +8,9 @@
 #import "PSPDFKitGlobal.h"
 #import "PSTCollectionViewCell.h"
 
-// if own thumbs are provided and they are larger than the cell, apply shrinking before setting
-#define kPSPDFShrinkOwnImagesTresholdFactor 1.5
-
-/// Thumbnail cell.
+///
+/// Simple thumbnail cell.
+///
 @interface PSPDFThumbnailGridViewCell : PSUICollectionViewCell <PSPDFCacheDelegate>
 
 /// Referenced document.
@@ -55,6 +54,7 @@
 /// Internal static queue for thumbnail parsing.
 + (NSOperationQueue *)thumbnailQueue;
 
+/// Updates the page label.
 - (void)updateSiteLabel;
 
 @end
