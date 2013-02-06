@@ -9,13 +9,13 @@
 
 @class PSPDFViewController;
 
-// Handles annotation cache and view creation
+// Handles annotation cache and view creation.
 @interface PSPDFAnnotationController : NSObject
 
-// Designated Initializer
+// Designated Initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
-// Prepare annotation view
+// Prepare annotation view.
 - (UIView <PSPDFAnnotationView> *)prepareAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation frame:(CGRect)annotationRect pageView:(PSPDFPageView *)pageView;
 
 // Handle annotation action.
@@ -30,11 +30,11 @@
 /// If there's a match with the current annotation, this view is picked in favor of a random cached view.
 - (UIView <PSPDFAnnotationView>*)dequeueViewFromCacheForAnnotation:(PSPDFAnnotation *)annotation class:(Class)annotationViewClass;
 
-/// Clears all cached objects
+/// Clears all cached objects.
 - (void)clearCache;
 
 
-// Attached PDFController
+// Attached PDFController.
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
 @end

@@ -132,6 +132,8 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Saves the view state into a serializable object. (page/zoom/position/HUD)
 @property (nonatomic, strong) PSPDFViewState *viewState;
+
+/// Saves the view state into a serializable object, optionally animated. (page/zoom/position/HUD)
 - (void)setViewState:(PSPDFViewState *)viewState animated:(BOOL)animated;
 
 /// Recreates the content view hierarchy. Usually automatically invoked if you change certain properties (like document, pageTransition).
@@ -535,6 +537,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, strong, readonly) PSUICollectionView *gridView;
 
 /// Change thumbnail size. Default is 170x220.
+/// @warning After changing this, call reloadData on the gridView.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
 /// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.

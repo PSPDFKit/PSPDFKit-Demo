@@ -43,6 +43,7 @@
 #import "PSPDFBookmark.h"
 #import "PSPDFBookmarkParser.h"
 #import "PSPDFAESCryptoDataProvider.h"
+#import "PSPDFBrightnessViewController.h"
 
 // views
 #import "PSPDFPageLabelView.h"
