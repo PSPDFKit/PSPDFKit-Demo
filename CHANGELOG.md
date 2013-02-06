@@ -2,6 +2,21 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.1 - 6/February/2013__
+
+*  The highlight tool now matches full words. A single touch will highlight the complete word instead of just one character.
+*  A new syntax for link annotations to control UI. For now pspdfkit://control:outline is supported to open the TOC directly from the document.
+*  The signature controller now uses "Signatures" as title instead of "Choose Signature" on iPhone, since later was too long and got cut off.
+*  Fixes an issue where setFileURL: could generate a new UID if one was already set.
+*  Fixes an UI issue when resizing an annotation purely horizontally would result in no redraw.
+*  Fixes an UI issue where the thumbnail indicator could move behind the thumbnail image in some cases.
+*  Fixes an UI issue in PSPDFFixNavigationBarForNavigationControllerAnimated() that could potentially shift down the navigationBar for unusual view controller setups.
+*  Fixes an UX issue where a second tap was sometimes required after using certain modes in the annotation toolbar.
+*  Fixes an issue where an external PSPDFBarButtonItem would not update on iPhone.
+*  Fixes an issue where videos played in a popover continued to play even after the popover was dismissed.
+*  Fixes an issue where thumbnailSize could not be changed after the PSPDFViewController has been displayed.
+*  Fixes an issue with incorrect view controller locking after switching from highlight to draw mode in the annotation toolbar.
+
 __v2.8.0 - 5/February/2013__
 
 *  Image annotations. PSPDFKit can now add images from the camera and the photo library and embedd them as stamp annotations.

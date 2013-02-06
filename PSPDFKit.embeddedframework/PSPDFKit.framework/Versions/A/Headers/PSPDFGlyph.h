@@ -44,6 +44,12 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 /// Set if after this glyph a \n is there.
 @property (nonatomic, assign) BOOL lineBreaker;
 
+/// Dynamically evaluated. Return YES if glyph is a word boundary (space, parenthesis)
+@property (nonatomic, assign, readonly) BOOL isWordBreaker;
+
+/// Returns YES if glyph is end end of a word or line.
+@property (nonatomic, assign, readonly) BOOL isWordOrLineBreaker;
+
 /// Index set on the Glyph.
 @property (nonatomic, assign) int indexOnPage;
 

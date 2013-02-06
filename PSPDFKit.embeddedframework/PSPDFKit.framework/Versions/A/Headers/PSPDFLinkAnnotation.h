@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationAudio,   // 5
     PSPDFLinkAnnotationImage,   // 6
     PSPDFLinkAnnotationBrowser, // 7
+    PSPDFLinkAnnotationControl, // 8
     PSPDFLinkAnnotationCustom  /// any annotation format that is not recognized is custom (e.g. tel://)
 };
 

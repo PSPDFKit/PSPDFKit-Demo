@@ -25,6 +25,9 @@
 /// Called when rect selection was cancelled. (touchesCancelled)
 - (void)selectionView:(PSPDFSelectionView *)selectionView cancelledWithSelectedRect:(CGRect)rect;
 
+/// Called when we did a single tap in the selection view (via tap gesture recognizer
+- (void)selectionView:(PSPDFSelectionView *)selectionView singleTappedWithGestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer;
+
 @end
 
 // Captures touches and marks text as selected for annotations.
