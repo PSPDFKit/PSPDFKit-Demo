@@ -174,7 +174,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    if (![self isViewLoaded]) {
+    if (!self.isViewLoaded) {
         self.gridView.delegate = nil;
         self.gridView.dataSource = nil;
         self.gridView = nil;
