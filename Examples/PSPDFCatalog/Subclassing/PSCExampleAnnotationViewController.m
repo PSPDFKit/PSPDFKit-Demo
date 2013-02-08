@@ -30,7 +30,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    if (![self isViewLoaded]) {
+    if (!self.isViewLoaded) {
         self.verticalToolbar.pdfController = nil;
         self.verticalToolbar = nil;
     }
