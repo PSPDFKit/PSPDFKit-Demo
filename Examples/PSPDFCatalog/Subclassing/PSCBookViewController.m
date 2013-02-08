@@ -40,7 +40,7 @@
 
 - (void)updateViewSize {
     // cancel if we're zoomed in
-    if (![self isViewLoaded] || self.scrollView.zoomScale != 1.f) {
+    if (!self.isViewLoaded || self.scrollView.zoomScale != 1.f) {
         return;
     }
 
@@ -64,7 +64,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    if (![self isViewLoaded]) {
+    if (!self.isViewLoaded) {
         _backgroundImage = nil;
     }
 }
