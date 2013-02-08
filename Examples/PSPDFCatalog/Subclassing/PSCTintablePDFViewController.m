@@ -22,7 +22,7 @@
 
     self.useBorderedToolbarStyle = YES;
     self.leftBarButtonItems = @[self.closeButtonItem, tintColorButtonItem, alertButtonTest];
-    self.rightBarButtonItems = @[self.brightnessButtonItem, self.viewModeButtonItem];
+    self.rightBarButtonItems = @[self.brightnessButtonItem, self.annotationButtonItem, self.viewModeButtonItem];
     self.linkAction = PSPDFLinkActionAlertView; // touch a link to test tint.
 
     // both default, but set explicitly here for demonstration purposes
