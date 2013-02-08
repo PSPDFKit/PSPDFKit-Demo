@@ -5,9 +5,9 @@
 //  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSCPlayButtonItem.h"
+#import "PSCPlayBarButtonItem.h"
 
-@implementation PSCPlayButtonItem {
+@implementation PSCPlayBarButtonItem {
     PSPDFTransparentToolbar *_toolbar;
     NSTimer *_autoplayTimer;
 }
@@ -90,7 +90,7 @@
 - (void)setAutoplaying:(BOOL)autoplaying {
     if (_autoplaying != autoplaying) {
         [self playPauseAction:nil];
-    }    
+    }
 }
 
 @end
