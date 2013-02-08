@@ -112,7 +112,7 @@
 
 - (PSPDFAnnotation *)annotationForIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section >= [self.pagesWithAnnotations count]) return nil;
-    
+
     NSArray *annotations = [self annotationsForSection:indexPath.section];
     return annotations[indexPath.row];
 }
