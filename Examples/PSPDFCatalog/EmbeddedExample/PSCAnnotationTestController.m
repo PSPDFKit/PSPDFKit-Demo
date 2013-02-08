@@ -6,7 +6,7 @@
 //
 
 #import "PSCAnnotationTestController.h"
-#import "PSCPlayButtonItem.h"
+#import "PSCPlayBarButtonItem.h"
 #import "PSCSelectionZoomBarButtonItem.h"
 #import <MapKit/MapKit.h>
 #import <MediaPlayer/MediaPlayer.h>
@@ -28,7 +28,7 @@
         self.tintColor = [UIColor orangeColor];
         self.maximumZoomScale = 100; // as we have the selection zoom-in tool
         
-        PSPDFBarButtonItem *playButtonItem = [[PSCPlayButtonItem alloc] initWithPDFViewController:self];
+        PSPDFBarButtonItem *playButtonItem = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:self];
         PSCSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSCSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
 
         if (PSIsIpad()) {
