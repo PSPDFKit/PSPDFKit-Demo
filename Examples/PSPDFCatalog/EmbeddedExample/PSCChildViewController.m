@@ -77,7 +77,7 @@
     [super didReceiveMemoryWarning];
 
     // manually unload view.
-    if ([self isViewLoaded] && !self.view.window) {
+    if (self.isViewLoaded && !self.view.window) {
         [self.pdfController willMoveToParentViewController:nil];
         [self.pdfController.view removeFromSuperview];
         [self.pdfController removeFromParentViewController];
