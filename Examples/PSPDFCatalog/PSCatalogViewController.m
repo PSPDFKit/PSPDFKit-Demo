@@ -24,7 +24,7 @@
 #import "PSCCustomDrawingViewController.h"
 #import "PSCBookViewController.h"
 #import "PSCAutoScrollViewController.h"
-#import "PSCPlayButtonItem.h"
+#import "PSCPlayBarButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
 #import "PSCCustomLinkAnnotationView.h"
 #import "PSCChildViewController.h"
@@ -32,6 +32,7 @@
 #import "PSCCustomAnnotationProvider.h"
 #import "PSCBottomToolbarViewController.h"
 #import "PSCCustomBookmarkBarButtonItem.h"
+#import "PSCRotationLockBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
 #import "PSCLinkEditorViewController.h"
@@ -61,7 +62,6 @@
 
 // set to auto-choose a section; debugging aid.
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
-//#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:10 inSection:8]
 //#define kDebugTextBlocks
 
 @interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
@@ -101,13 +101,12 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Entwurf AIFM-UmsG.pdf"]];
-
-        //PSPDFTextParser *textParser = [document textParserForPage:0];
-        //NSLog(@"%@", textParser.textBlocks);
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"X.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+        controller.transparentHUD = YES;
+        controller.shouldHideNavigationBarWithHUD = YES;
         return controller;
     }]];
 
@@ -150,8 +149,10 @@ const char kPSCAlertViewKey;
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
+        PSCRotationLockBarButtonItem *rotationLock = [[PSCRotationLockBarButtonItem alloc] initWithPDFViewController:controller];
+
         // setup toolbar
-        controller.rightBarButtonItems = PSIsIpad() ? @[controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
+        controller.rightBarButtonItems = PSIsIpad() ? @[rotationLock, controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
         controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
@@ -910,7 +911,7 @@ const char kPSCAlertViewKey;
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Auto paging example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        PSCPlayButtonItem *playButton = [[PSCPlayButtonItem alloc] initWithPDFViewController:controller];
+        PSCPlayBarButtonItem *playButton = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:controller];
         playButton.autoplaying = YES;
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         controller.pageTransition = PSPDFPageCurlTransition;
