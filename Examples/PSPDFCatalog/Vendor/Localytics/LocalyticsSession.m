@@ -270,7 +270,7 @@ static LocalyticsSession *_sharedLocalyticsSession = nil;
             }
             
             if (success) {
-                [self logMessage:@"Session succesfully closed."];
+                [self logMessage:@"Session successfully closed."];
             } else {
                 [self logMessage:@"Failed to record session close."];
             }
@@ -585,7 +585,7 @@ static LocalyticsSession *_sharedLocalyticsSession = nil;
             [db releaseTransaction:t];
             self.isSessionOpen = YES;
             self.sessionHasBeenOpen = YES;
-            [self logMessage:[@"Succesfully opened session. UUID is: " stringByAppendingString:self.sessionUUID]];
+            [self logMessage:[@"Successfully opened session. UUID is: " stringByAppendingString:self.sessionUUID]];
         } else {
             [db rollbackTransaction:t];
             self.isSessionOpen = NO;
@@ -825,7 +825,7 @@ static LocalyticsSession *_sharedLocalyticsSession = nil;
     // Continue executing until critical blocks finish executing or background time runs out, whichever comes first.
     UIApplication *application = (UIApplication *)[notification object];
     __block UIBackgroundTaskIdentifier taskID = [application beginBackgroundTaskWithExpirationHandler:^{
-        // Synchronize with the main queue in case the the tasks finish at the same time as the expiration handler.
+        // Synchronize with the main queue in case the tasks finish at the same time as the expiration handler.
         dispatch_async(dispatch_get_main_queue(), ^{
             if (taskID != UIBackgroundTaskInvalid) {
                 [self logMessage:@"Failed to finish executing critical tasks. Cleaning up."];
@@ -992,7 +992,7 @@ static LocalyticsSession *_sharedLocalyticsSession = nil;
  */
 - (NSString *)uniqueDeviceIdentifier {
 
-// Supress the warning for uniqueIdentifier being deprecated.
+// Suppress the warning for uniqueIdentifier being deprecated.
 // We collect it as long as it is available along with a randomly generated ID.
 // This way, when this becomes unavailable we can map existing users so the
 // new vs returning counts do not break. This will be removed before it causes grief.
@@ -1069,7 +1069,7 @@ static LocalyticsSession *_sharedLocalyticsSession = nil;
 	uint64_t system = [[stats objectForKey:NSFileSystemSize] longLongValue];
 	
 	// Add up and convert to gigabytes
-	// TODO: seem to be missing a system partiton or two...
+	// TODO: seem to be missing a system partition or two...
 	NSInteger size = (user + system) >> 30;
 	
 	// Find nearest power of 2 (eg, 1,2,4,8,16,32,etc).  Over 64 and we return 0

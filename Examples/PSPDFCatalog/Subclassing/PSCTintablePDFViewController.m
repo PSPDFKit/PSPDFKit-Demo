@@ -25,7 +25,7 @@
     self.rightBarButtonItems = @[self.brightnessButtonItem, self.viewModeButtonItem];
     self.linkAction = PSPDFLinkActionAlertView; // touch a link to test tint.
 
-    // both default, but set explicitely here for demonstration purposes
+    // both default, but set explicitly here for demonstration purposes
     self.shouldTintPopovers = YES;
     self.shouldTintAlertView = YES;
 }

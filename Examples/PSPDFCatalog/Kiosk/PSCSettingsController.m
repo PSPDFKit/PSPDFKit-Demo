@@ -185,7 +185,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // retore last scroll state
+    // restore last scroll state
     if (pscSettingsLastYOffset > 0) {
         self.tableView.contentOffset = CGPointMake(0, pscSettingsLastYOffset);
     }
@@ -460,7 +460,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     UITextView *configView = [UITextView new];
     configView.font = [UIFont fontWithName:@"Courier" size:14];
     NSMutableString *codeString = [NSMutableString string];
-    [codeString appendFormat:@"PSPDFDocument *pdfDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@\"%@\"]]]\n\nPSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:pdfDocument];\n\n// Config properies. Use the enum values instead.\n// This is only for debugging.\n", pdfName];
+    [codeString appendFormat:@"PSPDFDocument *pdfDocument = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@\"%@\"]]]\n\nPSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:pdfDocument];\n\n// Config properties. Use the enum values instead.\n// This is only for debugging.\n", pdfName];
     [_settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([key hasPrefix:@"is"]) {
             key = [self.class setterKeyForGetter:key];

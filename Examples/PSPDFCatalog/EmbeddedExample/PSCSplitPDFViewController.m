@@ -1,5 +1,5 @@
 //
-//  SplitMasterViewController.m
+//  PSCSplitPDFViewController.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
@@ -67,7 +67,7 @@
         self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];    
     }else {
         self.title = @"No document loaded.";
-        [self setHUDVisible:NO animated:NO]; // ensure hud is disabled if no document is loaded.
+        [self setHUDVisible:NO animated:NO]; // ensure HUD is disabled if no document is loaded.
     }
 }
 

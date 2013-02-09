@@ -54,7 +54,7 @@ static LocalyticsUploader *_sharedUploader = nil;
 	
 	// Prepare the data for upload.  The upload could take a long time, so some effort has to be made to be sure that events
 	// which get written while the upload is taking place don't get lost or duplicated.  To achieve this, the logic is:
-    // 1) Append every header row blob string and and those of its associated events to the upload string.
+    // 1) Append every header row blob string and those of its associated events to the upload string.
     // 2) Deflate and upload the data.
     // 3) On success, delete all blob headers and staged events. Events added while an upload is in process are not
     //    deleted because they are not associated a header (and cannot be until the upload completes).
@@ -105,7 +105,7 @@ static LocalyticsUploader *_sharedUploader = nil;
             
             if (responseError) {
                 // On error, simply print the error and close the uploader.  We have to assume the data was not transmited
-                // so it is not deleted.  In the event that we accidently store data which was succesfully uploaded, the
+                // so it is not deleted.  In the event that we accidentally store data which was successfully uploaded, the
                 // duplicate data will be ignored by the server when it is next uploaded.
                 [self logMessage:[NSString stringWithFormat: 
                                   @"Error Uploading.  Code: %d,  Description: %@", 
