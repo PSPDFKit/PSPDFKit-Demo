@@ -34,7 +34,7 @@
 /// YES if magazine is currently downloading.
 @property (nonatomic, assign, getter=isDownloading) BOOL downloading;
 
-/// YES if magazine is on-disk and/or sucessfully downloaded.
+/// YES if magazine is on-disk and/or successfully downloaded.
 @property (nonatomic, assign, getter=isAvailable) BOOL available;
 
 /// YES if the magazine can be deleted. NO if it's within the app bundle, which can't be edited.

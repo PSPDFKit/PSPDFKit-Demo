@@ -44,7 +44,7 @@
         @autoreleasepool {
             if (self.isCancelled) break;
 
-            // create extra textSearch class so we don't interfear with delegates
+            // create extra textSearch class so we don't interfere with delegates
             PSPDFTextSearch *textSearch = [document.textSearch copy];
             textSearch.delegate = self;
 
@@ -74,7 +74,7 @@
         self.results = [[_internalResults array] copy];
         [self.delegate fullTextSearchOperationDidUpdateResults:self];
 
-        // stop serach in current document - we already found a result
+        // stop search in current document - we already found a result
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [textSearch cancelAllOperationsAndWait];
         });

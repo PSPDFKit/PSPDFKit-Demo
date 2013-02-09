@@ -98,7 +98,7 @@
   // calculate optimal new size
   CGSize sizeThatFits = [self sizeThatFits:CGSizeZero];
   
-  // move sublayer (can't be animated explcitely)
+  // move sublayer (can't be animated explicitly)
   for (CALayer *aLayer in self.layer.sublayers) {
     [CATransaction begin];
     
