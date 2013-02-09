@@ -462,11 +462,11 @@ static dispatch_queue_t get_disk_io_queue() {
     }
     
     if (status == 302 || status == 307) {
-        // If not explict cache control defined, do not cache those status
+        // If not explicit cache control defined, do not cache those status
         return nil;
     }
     
-    // If no cache control defined, try some heristic to determine an expiration date
+    // If no cache control defined, try some heuristic to determine an expiration date
     NSString *lastModified = [headers objectForKey:@"Last-Modified"];
     if (lastModified) {
         NSTimeInterval age = 0;
@@ -701,7 +701,7 @@ static dispatch_queue_t get_disk_io_queue() {
     __block NSCachedURLResponse *response = nil;
     dispatch_sync(get_disk_cache_queue(), ^{
         NSMutableDictionary *accesses = [self.diskCacheInfo objectForKey:kAFURLCacheInfoAccessesKey];
-        if ([accesses objectForKey:cacheKey]) { // OPTI: Check for cache-hit in a in-memory dictionnary before to hit the FS
+        if ([accesses objectForKey:cacheKey]) { // OPTI: Check for cache-hit in a in-memory dictionary before to hit the FS
             @try {
                 response = [NSKeyedUnarchiver unarchiveObjectWithFile:[_diskCachePath stringByAppendingPathComponent:cacheKey]];
                 if (response) {

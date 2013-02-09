@@ -5,7 +5,7 @@
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
-/// Exmaple how to correctly embedd (in an iOS4 compatible way) the view controller within another view controller.
+/// Example of how to correctly embed (in an iOS4 compatible way) the view controller within another view controller.
 @interface PSCEmbeddedTestController : UIViewController
 
 - (IBAction)appendDocument;

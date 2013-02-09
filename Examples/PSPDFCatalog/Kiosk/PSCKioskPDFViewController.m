@@ -41,7 +41,7 @@
     if ((self = [super initWithDocument:document])) {
         self.delegate = self;
 
-        // Initally update vars.
+        // Initially update vars.
         [self globalVarChanged];
         
         // Register for global var change notifications from PSPDFCacheSettingsController.

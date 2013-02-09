@@ -131,7 +131,7 @@ const char kPSCAlertViewKey;
     }]];
 
     PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-    hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfear with other examples
+    hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
 
     /*
      // pre-cache whole document
@@ -162,7 +162,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a scientific paper" block:^{
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]]];
-        // brighteness button is not yet optimized for iPhone
+        // brightness button is not yet optimized for iPhone
         controller.rightBarButtonItems = PSIsIpad() ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
@@ -740,7 +740,7 @@ const char kPSCAlertViewKey;
         // Clear existing cache
         [cache clearCache];
 
-        // Set new cache directory so this example doesn't interfear with the other examples
+        // Set new cache directory so this example doesn't interfere with the other examples
         cache.cacheDirectory = @"PSPDFKit_encrypted";
 
         // Set up cache encryption handlers
@@ -1105,7 +1105,7 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    // Check that page labens work correctly, even if we use the pageRange feature.
+    // Check that page labels work correctly, even if we use the pageRange feature.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test + pageRange" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
         [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
@@ -1213,7 +1213,7 @@ const char kPSCAlertViewKey;
     // CoreGraphics is picky about AES-128 and will fail if the document is parsed before we enter a password with a "failed to create default crypt filter."
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test AES-128 password protected file" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"cryptfilter-password-abc.pdf"]];
-        [document pageCount]; // trigger calculation to test that pageCount is reset afterwardsl
+        [document pageCount]; // trigger calculation to test that pageCount is reset afterwards
         document.password = @"abc";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -1416,7 +1416,7 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    // Add note annotation via toolbar, close toolbar, ensure that the PDF was saved correctly, then test if the annotation still can be moved. If annoations haven't been correcttly reloaded after saving the move will fail.
+    // Add note annotation via toolbar, close toolbar, ensure that the PDF was saved correctly, then test if the annotation still can be moved. If annotations haven't been correctly reloaded after saving the move will fail.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation updating after a save" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1604,7 +1604,7 @@ const char kPSCAlertViewKey;
             tableVC.masterVC = hostVC;
             splitVC.delegate = hostVC;
             splitVC.viewControllers = @[tableNavVC, hostNavVC];
-            // Splitview controllers can't just be added to a UINavigationController
+            // Split view controllers can't just be added to a UINavigationController
             self.view.window.rootViewController = splitVC;
             return (UIViewController *)nil;
         }]];
