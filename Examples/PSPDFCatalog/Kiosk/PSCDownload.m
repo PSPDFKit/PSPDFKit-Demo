@@ -143,7 +143,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-// set a flag that the files shouldn't be backuped to iCloud.
+// set a flag that the files shouldn't be backed up to iCloud.
 // https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 #include <sys/xattr.h>
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL {

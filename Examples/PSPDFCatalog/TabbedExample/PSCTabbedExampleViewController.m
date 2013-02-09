@@ -25,7 +25,7 @@ const char *clearAllActionSheetToken;
 
         self.navigationItem.leftItemsSupplementBackButton = YES;
 
-        // enable automatic peristance and restore the last state
+        // enable automatic persistance and restore the last state
         self.enableAutomaticStatePersistance = YES;
 
         // on iPhone, we want a backButton here.

@@ -60,7 +60,7 @@
     [self.class dismissPopoverAnimated:YES];
 
     if (![self cleanup]) {
-        // diable various features to lock UI
+        // disable various features to lock UI
         _savedViewLock = self.pdfController.isViewLockEnabled;
         _savedRotationLock = self.pdfController.isRotationLockEnabled;
         _savedTextSelection = self.pdfController.isTextSelectionEnabled;
