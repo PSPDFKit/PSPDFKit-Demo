@@ -1,5 +1,5 @@
 //
-//  SplitMasterViewController.m
+//  PSCSplitPDFViewController.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
