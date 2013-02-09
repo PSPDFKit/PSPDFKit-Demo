@@ -178,7 +178,7 @@
                 NSLog(@"Deletion failed: %@",[error localizedDescription]);
             }
 
-            // update internal data strucures and UI.
+            // update internal data structures and UI.
             [_documents removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }

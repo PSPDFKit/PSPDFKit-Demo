@@ -13,7 +13,7 @@
 // Displays a grid of elements from the PSCStoreManager
 @interface PSCGridController : PSCBasicViewController <PSCStoreManagerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate>
 
-// Designated initailizer.
+// Designated initializer.
 - (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;
 
 // Force-update grid.

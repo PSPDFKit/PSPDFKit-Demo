@@ -56,7 +56,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
         NSParameterAssert(targetPath != nil && urlRequest != nil);
         _shouldResume = shouldResume;
 
-        // Ee assume that at least the directory has to exist on the targetPath
+        // We assume that at least the directory has to exist on the targetPath
         BOOL isDirectory;
         if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
             isDirectory = NO;
@@ -69,7 +69,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(NSInteger bytes
             _targetPath = targetPath;
         }
 
-        // Download is saved into a temorary file and renamed upon completion.
+        // Download is saved into a temporary file and renamed upon completion.
         NSString *tempPath = [self tempPath];
 
         // Do we need to resume the file?
