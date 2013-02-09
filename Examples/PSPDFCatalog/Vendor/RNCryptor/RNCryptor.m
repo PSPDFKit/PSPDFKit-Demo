@@ -111,7 +111,7 @@ const uint8_t kRNCryptorFileVersion = 1;
                                     derivedKey.length);                 // derivedKeyLen
 
   // Do not log password here
-  // TODO: Is is safe to assert here? We read salt from a file (but salt.length is internal).
+  // TODO: Is it safe to assert here? We read salt from a file (but salt.length is internal).
   NSAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
 
   return derivedKey;

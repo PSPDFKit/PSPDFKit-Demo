@@ -47,8 +47,8 @@
             // with setting the path, you can use two different ways:
 
             // either set the siteLinkTarget, which needs the pspdfkit syntax and invokes parseAnnotationLinkTarget in PSPDFAnnotationParser to parse the type, options and the path.
-            // Note that we need to expliitely set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folter, this we can't use the auto-path mode.
-            // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnoationView)
+            // Note that we need to explicitly set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folder, this we can't use the auto-path mode.
+            // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnotationView)
             // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
             annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/TokenTest/exampleimage.jpg", UIViewContentModeScaleAspectFill];
 

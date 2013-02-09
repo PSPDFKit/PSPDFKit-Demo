@@ -91,7 +91,7 @@
 }
 
 - (BOOL)handleOpenURL:(NSURL *)launchURL {
-    // Add DropBox hook
+    // Add Dropbox hook
     if ([[DBSession sharedSession] handleOpenURL:launchURL]) {
         if ([[DBSession sharedSession] isLinked]) {
             PSCLog(@"App linked successfully!");
