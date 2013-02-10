@@ -6,7 +6,7 @@
 //
 
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.5+ with LLVM 4 and above)
+#error This project must be compiled with ARC (Xcode 4.6+ with Clang)
 #endif
 
 #define kDevelopersGuideFileName @"DevelopersGuide.pdf"
