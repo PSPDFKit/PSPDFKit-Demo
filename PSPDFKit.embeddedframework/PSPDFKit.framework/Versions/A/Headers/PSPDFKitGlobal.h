@@ -98,6 +98,10 @@ extern NSString *PSPDFLocalize(NSString *stringToken);
 // Falls back to "en" if localization key is not found in dictionary.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
+// Parses a strings file, same format as regular localization.
+// Will override any previous language setting for 'locale', but merges with other set languages.
+extern void PSPDFAddLocalizationFileForLocale(NSString *filePath, NSString *locale);
+
 /// Resolves paths like "Documents" or "Bundle" to their real path.
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
 /// resolveUnknownDocumentBlock gets called if a token is found that isn't recognized.

@@ -17,7 +17,7 @@ typedef enum {
 typedef enum {
     PSPDFSliderBackgroundStyleDefault = 0,
     PSPDFSliderBackgroundStyleGrayscale,
-    PSPDFSliderBackgroundStyleColorfull,
+    PSPDFSliderBackgroundStyleColorful,
 } PSPDFSliderBackgroundStyle;
 
 @class PSPDFColorPickerView;

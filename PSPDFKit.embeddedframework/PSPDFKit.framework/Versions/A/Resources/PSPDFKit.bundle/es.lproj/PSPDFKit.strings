@@ -18,14 +18,14 @@
 // toolbar
 "Table Of Contents" = "Índice";
 "Search" = "Buscar";
-"Email" = "E-mail";
-"Email document" = "Mandar el documento por e-mail";
-"Email flattened document" = "Mandar el documento aplanado por e-mail";
-"Email document files" = "Mandar los archivos por e-mail";
-"Email visible page" = "Mandar la página visible por e-mail";
-"Email flattened page" = "Mandar la página aplanada por e-mail";
-"Email visible pages" = "Mandar las páginas visibles por e-mail";
-"Email flattened pages" = "Mandar las páginas aplanadas por e-mail";
+"Email" = "Email";
+"Email document" = "Mandar el documento por email";
+"Email flattened document" = "Mandar el documento aplanado por email";
+"Email document files" = "Mandar los archivos por email";
+"Email visible page" = "Mandar la página visible por email";
+"Email flattened page" = "Mandar la página aplanada por email";
+"Email visible pages" = "Mandar las páginas visibles por email";
+"Email flattened pages" = "Mandar las páginas aplanadas por email";
 "Open in..." = "Abrir enâ€¦";
 "Open original document" = "Abrir el documento original";
 "Open flattened document" = "Abrir el documento aplanado";
@@ -51,24 +51,23 @@
 "%@ (%d of %d)" = "%@ (%d de %d)";
 
 // search
-"Page %d" = "Página %d";
 "Search Document" = "Buscar en el documento";
 "No matches found" = "No se encontraron resultados";
 "One match found" = "Se encontró un resultado";
 "%d matches found" = "Se encontraron %d resultados";
-"Searching Page %d of %d..." = "Buscando %d of %dÉ";
+"Searching Page %d of %d..." = "Buscando en la página %d de %dâ€¦";
 "Search Completed" = "Búsqueda completa";
 "Search Cancelled" = "Búsqueda cancelada";
 
 // inline browser
 "Copy Link" = "Copiar enlace";
 "Open in Safari" = "Abrir en Safari";
-"Mail Link to this Page" = "Enviar enlace a esta página por e-mail";
-"Your %@ is not configured to send emails." = "Su %@ no está configurado para enviar e-mails.";
+"Mail Link to this Page" = "Enviar enlace a esta página por email";
+"Your %@ is not configured to send emails." = "Su %@ no está configurado para enviar emails.";
 "The link is requesting to open %@Would you like to continue?" = "El enlace solicita abrir %@Desea continuar?";
 "an external application" = "una aplicación externa";
 "the App Store" = "la App Store";
-"Mail" = "E-mail";
+"Mail" = "Email";
 "No handler found for %@" = "No se encontró manejador para %@";
 
 // text selection
@@ -91,7 +90,6 @@
 "Color..." = "Colorâ€¦";
 "Opacity..." = "Opacidadâ€¦";
 "Custom..." = "Personalizadoâ€¦";
-"Custom" = "Personalizado";
 "Thickness..." = "Espesorâ€¦";
 "%@ pt" = "%@ puntos";
 "Text..." = "Textoâ€¦";
@@ -107,19 +105,19 @@
 "Highlight" = "Destacar";
 "Underline" = "Subrayar";
 "Strikeout" = "Tachar";
-"Sketch" = "Dibujo";
+"Sketch" = "Dibujar";
 "Signature" = "Firma";
-"Signatures" = "Firma";
+"Signatures" = "Firmas";
 "Stamp" = "Sello";
 "Add Stamp" = "Agregar sello";
-"My Signature" = "My Signature";
-"Customer Signature" = "Customer Signature";
 "Custom" = "Personalizado";
 "Create Stamp" = "Crear sello";
-"Preview" = "Preview";
+"Preview" = "Avance";
 "Stamp Text" = "Texto del sello";
-"Add Signature" = "Agregar firma";
-"New Note" = "Nota nueva";
+"Add Signature" = "Agregar Firma";
+"My Signature" = "Mi Firma";
+"Customer Signature" = "Firma Del Cliente";
+"New Note" = "Nota Nueva";
 "Note" = "Nota";
 "Text" = "Texto";
 "Drawing Color" = "Color de dibujo";
@@ -128,14 +126,14 @@
 "Delete Highlight" = "Borrar el destacamiento";
 "Delete Free Text" = "Borrar el texto libre";
 "%@ could not be found." = "%@ no se pudo encontrar.";
-"Photo Library" = "Photo Library";
-"Camera" = "Camera";
-"Image" = "Image";
-"Low Quality" = "Low Quality";
-"Medium Quality" = "Medium Quality";
-"High Quality" = "High Quality";
+"Photo Library" = "Fototeca";
+"Camera" = "Cámara";
+"Image" = "Imagen";
+"Low Quality" = "Baja Calidad";
+"Medium Quality" = "Media Calidad";
+"High Quality" = "Alta Calidad";
 
-// limk annotation editing
+// link annotation editing
 "Create Link..." = "Crear enlace...";
 "Add Link" = "Agregar enlace";
 "Edit Link" = "Editar enlace";

@@ -45,10 +45,17 @@
 - (NSString *)objectDictionaryForPageIndex:(NSUInteger)pageIndex;
 - (NSString *)objectDictionaryForNumber:(NSUInteger)number;
 
-// Will return the PDF appearance stream and helper objects for the drawing operations inside drawingBlock.
-+ (NSArray *)createAppearanceStreamForRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
+// Will create PDF data from the drawingBlock.
++ (NSData *)createAppearanceStreamDataWithRect:(CGRect)rect drawingBlock:(void(^)(CGContextRef context))drawingBlock;
 
-// Debugging feature
+// Uses a PDF to extract the AP stream from the document. (first page only)
++ (NSArray *)extractAppearanceStreamFromData:(NSData *)pdfData withRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber;
+
+// Will return the PDF appearance stream and helper objects for the drawing operations inside drawingBlock.
+// Combines createAppearanceStreamDataWithRect and extractAppearanceStreamFromData.
++ (NSArray *)createAppearanceStreamWithRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
+
+// Debugging feature.
 - (void)printAllObjects;
 
 @end

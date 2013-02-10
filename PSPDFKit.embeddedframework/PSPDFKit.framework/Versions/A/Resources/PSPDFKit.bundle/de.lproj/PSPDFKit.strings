@@ -18,14 +18,14 @@
 // toolbar
 "Table Of Contents" = "Inhaltsverzeichnis";
 "Search" = "Suchen";
-"Email" = "E-Mail";
+"Email" = "Email";
 "Email document" = "Dokument senden";
 "Email flattened document" = "Dokument senden (eingebettet)";
 "Email document files" = "Dokumente senden";
 "Email visible page" = "Aktuelle Seite senden";
-"Email visible page" = "Aktuelle Seite senden (eingebettet)";
+"Email flattened page" = "Aktuelle Seite senden (eingebettet)";
 "Email visible pages" = "Aktuelle Seiten senden";
-"Email visible pages" = "Aktuelle Seiten senden (eingebettet)";
+"Email flattened pages" = "Aktuelle Seiten senden (eingebettet)";
 "Open in..." = "Öffnen in…";
 "Open original document" = "Als Original öffnen";
 "Open flattened document" = "Mit Annotationen eingebettet öffnen";
@@ -51,7 +51,6 @@
 "%@ (%d of %d)" = "%@ (%d von %d)";
 
 // search
-"Page %d" = "Seite %d";
 "Search Document" = "Dokument durchsuchen";
 "No matches found" = "Keine Treffer gefunden";
 "One match found" = "Einen Treffer gefunden";
@@ -86,6 +85,8 @@
 "Choose Font" = "Schriftart auswählen";
 "Choose Font Style" = "Schrifttyp auswählen";
 "Choose Color" = "Farbe wählen";
+"Rainbow" = "Regenbogen";
+"Monochrome" = "Monochrom";
 "Color..." = "Farbe…";
 "Opacity..." = "Alpha…";
 "Custom..." = "Mehr…";
@@ -132,7 +133,7 @@
 "Medium Quality" = "Mittlere Qualität";
 "High Quality" = "Hohe Qualität";
 
-// limk annotation editing
+// link annotation editing
 "Create Link..." = "Link erstellen...";
 "Add Link" = "Link erstellen";
 "Edit Link" = "Link editieren";

@@ -34,8 +34,8 @@
 /// Set to YES to show a square with saturation on Y axis, No for saturation on radial axis.
 @property (nonatomic, assign) BOOL cropToCircle;
 
-/// Changes color distribution mode to orthoganal. Defaults to NO.
-@property (nonatomic, assign) BOOL isOrthoganal;
+/// Changes color distribution mode to orthogonal. Defaults to NO.
+@property (nonatomic, assign) BOOL isOrthogonal;
 
 /// Set to YES to show a loupe. Defaults to YES, unless old device.
 @property (nonatomic, assign, getter=isLoupeEnabled) BOOL loupeEnabled;

@@ -8,7 +8,9 @@
 #import "PSPDFKitGlobal.h"
 @class PSPDFViewController;
 
+///
 /// Delegate to receive events regarding PSPDFDocument (annotation saving; path resolving)
+///
 @protocol PSPDFDocumentDelegate <NSObject>
 
 @optional
@@ -20,7 +22,7 @@
 /// If there are no dirty annotations, delegates will not be called.
 - (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations;
 
-/// Called after saving was failed. When a error occurs, annotations will not be the complete set in multi-file documents.
+/// Called after saving failed. When an error occurs, annotations will not be the complete set in multi-file documents.
 - (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error;
 
 @end

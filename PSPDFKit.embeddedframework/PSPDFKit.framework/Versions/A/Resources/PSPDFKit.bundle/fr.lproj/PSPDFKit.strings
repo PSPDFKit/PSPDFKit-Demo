@@ -12,20 +12,20 @@
 "Untitled" = "Sans titre";
 "File Not Found" = "Fichier non trouvé";
 "Unnamed PDF" = "PDF sans nom";
-"Go to %@" = "Aller à %@";
+"Go to %@" = "Aller � %@";
 "Page %d" = "Page %d";
 
 // toolbar
 "Table Of Contents" = "Sommaire";
 "Search" = "Rechercher";
-"Email" = "E-mail";
-"Email document" = "Envoyer le document par e-mail";
-"Email flattened document" = "Envoyer e document aplati par e-mail";
-"Email document files" = "Envoyer les fichier par e-mail";
-"Email visible page" = "Envoyer la page en cours par e-mail";
-"Email flattened page" = "Envoyer la page aplatie par e-mail";
-"Email visible pages" = "Envoyer les pages visibles par e-mail";
-"Email flattened pages" = "Envoyer les pages aplaties par e-mail";
+"Email" = "Email";
+"Email document" = "Envoyer le document par email";
+"Email flattened document" = "Envoyer e document aplati par email";
+"Email document files" = "Envoyer les fichier par email";
+"Email visible page" = "Envoyer la page en cours par email";
+"Email flattened page" = "Envoyer la page aplatie par email";
+"Email visible pages" = "Envoyer les pages visibles par email";
+"Email flattened pages" = "Envoyer les pages aplaties par email";
 "Open in..." = "Ouvrir dans…";
 "Open original document" = "Ouvrir le document d'origine";
 "Open flattened document" = "Ouvrir le document aplati";
@@ -51,12 +51,11 @@
 "%@ (%d of %d)" = "%@ (%d sur %d)";
 
 // search
-"Page %d" = "Page %d";
 "Search Document" = "Recherche";
 "No matches found" = "Aucun résultat";
 "One match found" = "Un résultat trouvé";
 "%d matches found" = "%d résultats trouvés";
-"Searching Page %d of %d..." = "Recherche %d of %d…";
+"Searching Page %d of %d..." = "Recherche %d sur %d…";
 "Search Completed" = "Recherche terminée";
 "Search Cancelled" = "Recherche annulée";
 
@@ -64,11 +63,11 @@
 "Copy Link" = "Copier le lien";
 "Open in Safari" = "Ouvrir dans Safari";
 "Mail Link to this Page" = "Envoyer cette adresse URL";
-"Your %@ is not configured to send emails." = "Votre %@ n'est pas configuré pour envoyer des e-mails.";
-"The link is requesting to open %@Would you like to continue?" = "Ce lien demande à lancer %@Voulez vous continuer?";
+"Your %@ is not configured to send emails." = "Votre %@ n'est pas configuré pour envoyer des emails.";
+"The link is requesting to open %@Would you like to continue?" = "Ce lien demande � lancer %@Voulez vous continuer?";
 "an external application" = "une application externe";
 "the App Store" = "l'App Store";
-"Mail" = "E-mail";
+"Mail" = "Email";
 "No handler found for %@" = "Pas de gestionnaire trouvé pour %@";
 
 // text selection
@@ -81,11 +80,13 @@
 "Undo" = "Défaire";
 "Redo" = "Refaire";
 "Type..." = "Type…";
-"Font..." = "Police…";
+"Font..." = "Typographie…";
 "Size..." = "Taille…";
-"Choose Font" = "Choisir une police";
-"Choose Font Style" = "Choisir un type de police";
+"Choose Font" = "Choisir une typographie";
+"Choose Font Style" = "Choisir un style de typographie";
 "Choose Color" = "Choisir une couleur";
+"Rainbow" = "Arc en ciel";
+"Monochrome" = "Cama�eu";
 "Color..." = "Couleur…";
 "Opacity..." = "Opacité…";
 "Custom..." = "Personnalisé…";
@@ -94,8 +95,8 @@
 "Text..." = "Texte…";
 "Yellow" = "Jaune";
 "Green" = "Vert";
-"Blue" = "Bleu";
 "Red" = "Rouge";
+"Blue" = "Bleu";
 "Pink" = "Rose";
 "Black" = "Black";
 "Define" = "Definir";
@@ -106,16 +107,16 @@
 "Strikeout" = "Barrer";
 "Sketch" = "Esquisse";
 "Signature" = "Signature";
-"Signature" = "Signatures";
-"Stamp" = "Stamp";
-"Add Stamp" = "Ajouter Stamp";
-"Custom" = "Custom";
-"Create Stamp" = "Create Stamp";
-"Preview" = "Preview";
-"Stamp Text" = "Stamp Text";
+"Signatures" = "Signatures";
+"Stamp" = "Timbre";
+"Add Stamp" = "Ajouter timbre";
+"Custom" = "Personnalisé";
+"Create Stamp" = "Cr�er timbre";
+"Preview" = "Avant-premi�re";
+"Stamp Text" = "Texte du timbre";
 "Add Signature" = "Ajouter Signature";
-"My Signature" = "My Signature";
-"Customer Signature" = "Customer Signature";
+"My Signature" = "Ma Signature";
+"Customer Signature" = "Signature Du Client";
 "New Note" = "Nouvelle Note";
 "Note" = "Note";
 "Text" = "Texte";
@@ -125,24 +126,24 @@
 "Delete Highlight" = "Supprimer le surlignage";
 "Delete Free Text" = "Supprimer le texte libre";
 "%@ could not be found." = "%@ n'a pu être trouvé.";
-"Photo Library" = "Photo Library";
-"Camera" = "Camera";
+"Photo Library" = "Phototh�que";
+"Camera" = "Cam�ra";
 "Image" = "Image";
-"Low Quality" = "Low Quality";
-"Medium Quality" = "Medium Quality";
-"High Quality" = "High Quality";
+"Low Quality" = "Qualit� Basse";
+"Medium Quality" = "Qualit� Moyenne";
+"High Quality" = "Qualit� Haute";
 
-// limk annotation editing
+// link annotation editing
 "Create Link..." = "Créer hyperlien...";
 "Add Link" = "Ajouter hyperlien";
 "Edit Link" = "Editer hyperlien";
 "Move Link" = "Déplacer hyperlien";
 "Remove Link" = "Supprimer hyperlien";
 "Open Link" = "Ouvrir hyperlien";
-"Go to page %d" = "Aller à la page %d";
+"Go to page %d" = "Aller � la page %d";
 "Save" = "Enregistrer";
 "Link Destination" = "Destination du lien";
-"Enter page index or a http:// address to link to an URL." = "Entrer l'index de page ou une adresse http:// pour lier à une URL.";
+"Enter page index or a http:// address to link to an URL." = "Entrer l'index de page ou une adresse http:// pour lier � une URL.";
 
 // voiceover accessibility
 "Page" = "Page";

@@ -469,8 +469,8 @@ extern NSString *const kPSPDFObjectsAnnotationPageBounds;  // Special case; used
 extern NSString *const kPSPDFObjectsImages;                // Include Image info.
 extern NSString *const kPSPDFObjectsSmartSort;             // Will sort words/annotations (smaller words/annots first). Use for touch detection.
 extern NSString *const kPSPDFObjectsTextFlow;              // Will look at the text flow and select full sentences, not just what's within the rect.
-extern NSString *const kPSPDFObjectsFindFirstOnly;         // Will stop after finding the first maching object.
-extern NSString *const kPSPDFObjectsTestIntersection;      // Only relevant for rect. Will test for interesection instead of objects that are fully included in the pdfRect.
+extern NSString *const kPSPDFObjectsFindFirstOnly;         // Will stop after finding the first matching object.
+extern NSString *const kPSPDFObjectsTestIntersection;      // Only relevant for rect. Will test for intersection instead of objects that are fully included in the pdfRect.
 
 // Output categories
 extern NSString *const kPSPDFGlyphs;

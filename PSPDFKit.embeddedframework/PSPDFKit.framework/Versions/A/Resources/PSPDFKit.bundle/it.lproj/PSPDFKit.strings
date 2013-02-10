@@ -19,26 +19,26 @@
 "Table Of Contents" = "Indice";
 "Search" = "Ricerca";
 "Email" = "Email";
-"Email document" = "Email document";
-"Email flattened document" = "Email flattened document";
-"Email document files" = "Email document files";
-"Email visible page" = "Email visible page";
-"Email flattened page" = "Email flattened page";
-"Email visible pages" = "Email visible pages";
-"Email flattened pages" = "Email flattened pages";
+"Email document" = "Invia il documento per email";
+"Email flattened document" = "Invia il documento appiattito per email";
+"Email document files" = "Invia file per email";
+"Email visible page" = "Invia pagina visibile per email";
+"Email flattened page" = "Invia pagina appiattita per email";
+"Email visible pages" = "Invia le pagine visibili per email";
+"Email flattened pages" = "Invia pagine appiattita per email";
 "Open in..." = "Apri con…";
-"Open original document" = "Open original document";
-"Open flattened document" = "Open flattened document";
-"Print with Annotations" = "Print with Annotations";
-"Print document only" = "Print document only";
+"Open original document" = "Apri documento originale";
+"Open flattened document" = "Apri documento appiattito";
+"Print with Annotations" = "Stampa con annotazioni";
+"Print document only" = "Stampa il documento solo";
 "No Applications found" = "Non ci sono applicazioni installate in grado di aprire documenti PDF.";
 "Print" = "Stampa";
 "Annotations" = "Annotazioni";
 "Add Bookmark" = "Aggiungi segnalibro";
-"Remove Bookmark" = "Elimina segnalibro";
+"Remove Bookmark" = "Rimuovi segnalibro";
 "Brightness" = "Luminosità";
-"Share..." = "Share…";
-"Preparing..." = "Preparing…";
+"Share..." = "Spartire…";
+"Preparing..." = "Preparando…";
 
 // password
 "Unlock" = "Sblocca";
@@ -51,45 +51,46 @@
 "%@ (%d of %d)" = "%@ (%d di %d)";
 
 // search
-"Page %d" = "Pagina %d";
 "Search Document" = "Cerca nel documento";
 "No matches found" = "Nessun risultato trovato";
 "One match found" = "Un risultato trovato";
 "%d matches found" = "%d risultati trovati";
-"Searching Page %d of %d..." = "Ricerca in corso %d of %d…";
+"Searching Page %d of %d..." = "Ricerca in corso %d di %d…";
 "Search Completed" = "Ricerca completata";
 "Search Cancelled" = "Ricerca annullata";
 
 // inline browser
 "Copy Link" = "Copia link";
 "Open in Safari" = "Apri con Safari";
-"Mail Link to this Page" = "Manda link tramite e-mail";
-"Your %@ is not configured to send emails." = "Il tuo %@ non è configurato per l'invio di e-mail.";
-"The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
-"an external application" = "an external application";
-"the App Store" = "the App Store";
-"Mail" = "Mail";
-"No handler found for %@" = "No handler found for %@";
+"Mail Link to this Page" = "Manda link tramite email";
+"Your %@ is not configured to send emails." = "Il tuo %@ non è configurato per l'invio di email.";
+"The link is requesting to open %@Would you like to continue?" = "Il link richiede per aprire %@Vuoi continuare?";
+"an external application" = "un'applicazione esterna";
+"the App Store" = "la App Store";
+"Mail" = "Email";
+"No handler found for %@" = "Nessun gestore trovato per %@";
 
 // text selection
-"Save To Camera Roll" = "Save To Camera Roll";
-"Failed to extract image." = "Failed to extract image.";
+"Save To Camera Roll" = "Memorizzare sul rullino fotografico";
+"Failed to extract image." = "Impossibile estrarre l'immagine.";
 
 // annotations
 "Remove" = "Rimuovi";
 "Edit" = "Modifica";
-"Undo" = "Undo";
-"Redo" = "Redo";
+"Undo" = "Disfare";
+"Redo" = "Rifare";
 "Type..." = "Tipo…";
-"Font..." = "Font…";
-"Size..." = "Size…";
-"Choose Font" = "Choose Font";
-"Choose Font Style" = "Choose Font Style";
+"Font..." = "Tipografia…";
+"Size..." = "Taglia…";
+"Choose Font" = "Scegli la tipografia";
+"Choose Font Style" = "Scegli il stile della tipografia";
 "Choose Color" = "Scegli il colore";
+"Rainbow" = "Arcobaleno";
+"Monochrome" = "Monocromatico";
 "Color..." = "Colore…";
-"Opacity..." = "Opacity…";
-"Custom..." = "Custom…";
-"Thickness..." = "Thickness…";
+"Opacity..." = "Opacit�…";
+"Custom..." = "Personalizzata…";
+"Thickness..." = "Spessore…";
 "%@ pt" = "%@ pt";
 "Text..." = "Testo…";
 "Yellow" = "Giallo";
@@ -105,18 +106,18 @@
 "Underline" = "Sottolinea";
 "Strikeout" = "Sbarra";
 "Sketch" = "Disegna";
-"Signature" = "Signature";
-"Signature" = "Signatures";
-"Stamp" = "Stamp";
-"Add Stamp" = "Add Stamp";
-"Custom" = "Custom";
-"Create Stamp" = "Create Stamp";
-"Preview" = "Preview";
-"Stamp Text" = "Stamp Text";
-"Add Signature" = "Add Signature";
-"My Signature" = "My Signature";
-"Customer Signature" = "Customer Signature";
-"New Note" = "Nuova nota";
+"Signature" = "Firma";
+"Signatures" = "Firme";
+"Stamp" = "Timbro";
+"Add Stamp" = "Aggiungi timbro";
+"Custom" = "Personalizzata";
+"Create Stamp" = "Creare timbro";
+"Preview" = "Anteprima";
+"Stamp Text" = "Testo del timbro";
+"Add Signature" = "Aggiungi Firma";
+"My Signature" = "Mia Firma";
+"Customer Signature" = "Firma Del Cliente";
+"New Note" = "Nuova Nota";
 "Note" = "Nota";
 "Text" = "Testo";
 "Drawing Color" = "Colore disegno";
@@ -124,25 +125,25 @@
 "Delete Note" = "Elimina nota";
 "Delete Highlight" = "Elimina evidenziazione";
 "Delete Free Text" = "Elimina testo libro";
-"%@ could not be found." = "impossibile trovare %@.";
-"Photo Library" = "Photo Library";
-"Camera" = "Camera";
-"Image" = "Image";
-"Low Quality" = "Low Quality";
-"Medium Quality" = "Medium Quality";
-"High Quality" = "High Quality";
+"%@ could not be found." = "Impossibile trovare %@.";
+"Photo Library" = "Fototeca";
+"Camera" = "Macchina Fotografica";
+"Image" = "Immagine";
+"Low Quality" = "Qualit� Bassa";
+"Medium Quality" = "Qualit� Media";
+"High Quality" = "Qualit� Alta";
 
-// limk annotation editing
-"Create Link..." = "Create Link...";
-"Add Link" = "Add Link";
-"Edit Link" = "Edit Link";
-"Move Link" = "Move Link";
-"Remove Link" = "Remove Link";
-"Open Link" = "Open Link";
-"Go to page %d" = "Go to page %d";
-"Save" = "Save";
-"Link Destination" = "Link Destination";
-"Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
+// link annotation editing
+"Create Link..." = "Crea link...";
+"Add Link" = "Aggiungi link";
+"Edit Link" = "Modifica link";
+"Move Link" = "Spostare link";
+"Remove Link" = "Rimuovi link";
+"Open Link" = "Apri link";
+"Go to page %d" = "Vai alla pagina %d";
+"Save" = "Memorizzare";
+"Link Destination" = "Destinazione del link";
+"Enter page index or a http:// address to link to an URL." = "Inserire un indice di pagina o un link a un URL http://.";
 
 // voiceover accessibility
 "Page" = "Pagina";

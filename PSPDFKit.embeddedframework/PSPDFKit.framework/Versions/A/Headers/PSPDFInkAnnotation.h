@@ -18,6 +18,9 @@ CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
 // bounds should be the size of the view.
 NSArray *PSPDFConvertViewLinesToPDFLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
+// Converts a single line of boxed CGPoints.
+NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
 // Will convert PDF lines to view lines (operates on every point)
 NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
