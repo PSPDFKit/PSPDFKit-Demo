@@ -365,7 +365,7 @@ const char kPSCAlertViewKey;
 
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
-    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing" block:^{
+    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"PDF annotation writing" block:^{
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
@@ -388,6 +388,12 @@ const char kPSCAlertViewKey;
                                             PSPDFAnnotationTypeStringImage,
                                             nil];
         document.delegate = self;
+        return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
+    }]];
+
+    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"PDF annotation writing with NSData" block:^{
+        NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithData:PDFData];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
 
