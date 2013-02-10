@@ -15,33 +15,35 @@
 #error "Compile this file with ARC"
 #endif
 
-@interface PSCAppDelegate () <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
-@end
-
+@interface PSCAppDelegate () <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> @end
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    // print version of the catalog example and PSPDFKit.
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
 
 
-    // Example how to localize strings in PSPDFKit (default localization system won't work)
-    // add custom localization changes (just a simple example)
-    // See PSPDFKit.bundle for all available strings.
+    // Example how to localize strings in PSPDFKit.
+    // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
+    // You can also replace the strings in the PSPDFKit.bundle, but then make sure you merge your changes anytime the bundle is updated.
+    // If you have created custom translations, feel free to submit them to peter@pspdfkit.com for inclusion.
     PSPDFSetLocalizationDictionary(@{@"en" :
                                    @{@"Go to %@" : @"%@",
                                      @"%d of %d" : @"Page %d of %d",
                                      @"%d-%d of %d" : @"Pages %d-%d of %d",
                                    }});
 
-    // change log level to be more verbose.
-    kPSPDFLogLevel = PSPDFLogLevelInfo;
+    // You can also load a whole text file (any encoding supported)
+    //PSPDFAddLocalizationFileForLocale(@"PSPDFKit.strings.sv.txt", @"sv");
+
+    // Change log level to be more verbose.
+    //kPSPDFLogLevel = PSPDFLogLevelInfo;
 
     // Enable if you're having memory issues.
     //kPSPDFLowMemoryMode = YES;
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
 #if 0
     // Directly push a PSPDFViewController
     NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
@@ -72,7 +74,6 @@
         [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
 #endif
-
         // Localytics helps me to track PSPDFCatalog launches
         // Remove this or replace with your own Localytics ID if you are using PSPDFCatalog as a template for your own app.
 #ifndef PSPDF_USE_SOURCE
@@ -99,7 +100,7 @@
         return YES;
     }
 
-    // Open PDF
+    // Directly open the PDF.
     if ([launchURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
