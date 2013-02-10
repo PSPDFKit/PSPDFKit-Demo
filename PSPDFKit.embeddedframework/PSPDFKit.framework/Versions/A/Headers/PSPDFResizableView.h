@@ -1,5 +1,5 @@
 //
-//  PSPDFSelectionBorderView.h
+//  PSPDFResizableView.h
 //  PSPDFKit
 //
 //  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
@@ -72,6 +72,13 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 /// Allows view resizing, shows resize knobs.
 /// If set to NO, view can only be moved, no resize knobs will be displayed. Depends on allowEditing. Defaults to YES.
 @property (nonatomic, assign) BOOL allowResizing;
+
+/// Enables resizing helper so that aspect ration can be preserved easily.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL enableResizingGuides;
+
+/// Defines how agressive the guide works. Defaults to 30.f
+@property (nonatomic, assign) CGFloat guideSnapAllowance;
 
 /// Set minimum allowed width (unless the view is smaller to begin width). Default is 32.0.
 @property (nonatomic, assign) CGFloat minWidth;

@@ -1,5 +1,5 @@
 //
-//  PSPFScrobbleBar.h
+//  PSPDFScrobbleBar.h
 //  PSPDFKit
 //
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.
@@ -20,7 +20,7 @@
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
-- (void)updateToolbar;
+- (void)updateToolbarAnimated:(BOOL)animated;
 
 /// *Instantly* updates toolbar.
 - (void)updateToolbarForced;
@@ -58,7 +58,7 @@
 // Margin between thumbnails. Defaults to 2.
 @property (nonatomic, assign) CGFloat thumbnailMargin;
 
-// Size multiplicator for the current page thumbail. Defaults to 1.35;
-@property (nonatomic, assign) CGFloat pageMarkerSizeMultiplicator;
+// Size multiplier for the current page thumbnail. Defaults to 1.35.
+@property (nonatomic, assign) CGFloat pageMarkerSizeMultiplier;
 
 @end

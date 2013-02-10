@@ -276,8 +276,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Temporarily suspend rendering updates to the renderView.
 @property (nonatomic, assign) BOOL suspendUpdate;
 
-/// Remove a page annotation as soon as the page has been refreshed.
+/// Remove a page annotation/view as soon as the page has been refreshed. Will also refresh page.
 - (BOOL)removeAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
+- (void)removeViewOnNextPageUpdate:(UIView *)view;
 
 /// Allow to update the boundingBox correctly for isOverlay = YES annotations.
 - (void)updatePageAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
@@ -290,7 +291,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
 
 /// Returns the passthrough views for the popover controllers (e.g. color picker).
-/// By default this is failry agressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.
+/// By default this is fairly aggressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.
 - (NSArray *)passthroughViewsForPopoverController;
 
 @end

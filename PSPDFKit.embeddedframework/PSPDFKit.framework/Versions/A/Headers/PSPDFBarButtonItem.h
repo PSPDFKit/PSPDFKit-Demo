@@ -29,8 +29,8 @@
 /// Init with pdfController reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
-/// PDF controller. Not weak, can be KVO observed.
-@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
+/// PDF controller. (weak, do not use KVO on it)
+@property (nonatomic, weak) PSPDFViewController *pdfController;
 
 /// Implement customView, image or systemItem in your subclass (via overriding the method)
 - (UIView *)customView;
@@ -83,7 +83,7 @@
 /**
  Peeks into certain Apple classes to get the internal UIPopoverController. (e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)
 
- Note: returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set. (It's coded very defensively and this failing will just result in a minor UX degradation)
+ @warning Returns nil if operation fails or PSPDFKIT_DONT_USE_OBFUSCATED_PRIVATE_API is set. (It's coded very defensively and this failing will just result in a minor UX degradation)
  */
 + (UIPopoverController *)popoverControllerForObject:(id)object;
 

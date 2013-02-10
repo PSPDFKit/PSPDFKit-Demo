@@ -10,6 +10,13 @@
 @protocol PSPDFAnnotationView;
 @class PSPDFPageView, PSPDFAnnotation, PSPDFPageCoordinates, PSPDFPageInfo, PSPDFImageInfo;
 
+// NSNotification equivalent to didLoadPageView: delegate.
+extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
+
+// NSNotification equivalent to didShowPageView: delegate.
+extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
+
+
 @interface PSPDFViewController (Delegates)
 
 - (BOOL)delegateShouldSetDocument:(PSPDFDocument *)document;

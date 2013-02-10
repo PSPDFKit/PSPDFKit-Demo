@@ -66,7 +66,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// Flash toolbar (e.g. if user tries to hide the HUD)
 - (void)flashToolbar;
 
-/// Annotation toolbar delegate.
+/// Annotation toolbar delegate. (Can be freely set to any receiver.)
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
@@ -92,7 +92,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
 
 /// Allows to scroll with two fingers while annotation mode is active. Defaults to YES.
-/// Not all annotation modes block scrolling (but higlight, drawing, etc do).
+/// Not all annotation modes block scrolling (but highlight, drawing, etc. do).
 /// @warning Do not change this while we are in annotation mode.
 @property (nonatomic, assign) BOOL allowTwoFingerScrollPanDuringLock;
 

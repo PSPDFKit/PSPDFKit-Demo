@@ -51,7 +51,6 @@
 "%@ (%d of %d)" = "%@ (%d of %d)";
 
 // search
-"Page %d" = "Page %d";
 "Search Document" = "Search Document";
 "No matches found" = "No matches found";
 "One match found" = "One match found";
@@ -91,7 +90,6 @@
 "Color..." = "Color…";
 "Opacity..." = "Opacity…";
 "Custom..." = "Custom…";
-"Custom" = "Custom";
 "Thickness..." = "Thickness…";
 "%@ pt" = "%@ pt";
 "Text..." = "Text…";
@@ -135,7 +133,7 @@
 "Medium Quality" = "Medium Quality";
 "High Quality" = "High Quality";
 
-// limk annotation editing
+// link annotation editing
 "Create Link..." = "Create Link...";
 "Add Link" = "Add Link";
 "Edit Link" = "Edit Link";

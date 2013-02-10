@@ -66,7 +66,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
 
 ///
-/// Delegate to be notified wiehn the PSPDFSignatureSelectorViewController has a valid selection.
+/// Delegate to be notified when the PSPDFSignatureSelectorViewController has a valid selection.
 ///
 @protocol PSPDFSignatureSelectorViewControllerDelegate <NSObject>
 
@@ -80,7 +80,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 
 ///
-/// Shows a list of signtures to select one.
+/// Shows a list of signatures to select one.
 /// Will show up in landscape on iOS6 (preferredInterfaceOrientationForPresentation)
 ///
 @interface PSPDFSignatureSelectorViewController : UITableViewController <PSPDFStyleable>
@@ -101,7 +101,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 
 ///
-/// Allows to securly store signatures (as ink annotations) in the keychain.
+/// Allows to securely store signatures (as ink annotations) in the keychain.
 ///
 @interface PSPDFSignatureStore : NSObject
 

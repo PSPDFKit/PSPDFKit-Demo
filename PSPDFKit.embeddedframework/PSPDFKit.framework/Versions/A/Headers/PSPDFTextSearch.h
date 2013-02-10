@@ -1,5 +1,5 @@
 //
-//  PSPDFDocumentSearch.h
+//  PSPDFTextSearch.h
 //  PSPDFKit
 //
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.

@@ -2,6 +2,28 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.2 - 10/February/2013__
+
+*  HUD visibility/transparenty can now be set more fine-grained with the new properties transparentHUD, shouldHideNavigationBarWithHUD, shouldHideStatusBarWithHUD and statusBarStyle. Check your code and let me know if this breaks something. Setting statusBarStyleSetting will update all those properties.
+*  Resize view now snaps to aspect ratio on resizing. Middle knobs are hidden if space is low.
+*  Document link annotations now resolve symbolic links.
+*  After editing annotation properties (e.g. color) the menu will re-appear.
+*  Annotation menu is re-displayed after a rotation.
+*  Finishing a drawing no longer disappears/reappears because of the page rendering process.
+*  Search view controller cells now animate better and have better sized margins.
+*  PSPDFBarButtonItem's pdfController property is now weak. Update your code to use notifications if you previously relied on KVO.
+*  NavigationBar/ScrobbleBar are now rasterized before a fade out/fade in, which improves the fade animation (no more bleed-through)
+*  Annotation Toolbar now in all cases correctly adapts to statusbar frame size changes (calling, personal hotspot, ...)
+*  Improves compatibility with writing PDF trailer data with certain corrupt PDF files.
+*  Adds new helper: PSPDFAddLocalizationFileForLocale, parses a localization text file.
+*  Fixes an UX issue where the annotation tool could be deselected when using the two-finger scroll while the annotation toolbar is active and a tool (e.g. highlight is selected).
+*  Fixes a touch inconsistency where a annotation deselection could be done without marking the touch as processed.
+*  Fixes several entries in the localization table.
+*  Fixes a regression introduced in 2.8.1, a potential crash when using the highlight annotation tool outside of a glyph.
+*  Fixes a potential crash in the search view controller due to invalid state handling.
+*  Fixes an issue where part of the drawing state was lost when opening a modal controller while in drawing mode. (e.g. iPhone/color picker)
+*  Various typos fixed, and some very minor API changes due to spelling corrections (thanks to Tony Tomc).
+
 __v2.8.1 - 6/February/2013__
 
 *  The highlight tool now matches full words. A single touch will highlight the complete word instead of just one character.
