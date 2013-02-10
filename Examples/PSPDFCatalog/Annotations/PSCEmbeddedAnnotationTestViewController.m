@@ -40,6 +40,11 @@
     NSError *error = nil;
     NSDictionary *dirtyAnnotations = [self.document.annotationParser dirtyAnnotations];
     NSLog(@"dirty: %@", dirtyAnnotations);
+
+    if (self.document.data) {
+        NSLog(@"Length of NSData before saving: %d", self.document.data.length);
+    }
+
     if (![self.document saveChangedAnnotationsWithError:&error]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
@@ -47,6 +52,10 @@
         NSLog(@"---------------------------------------------------");
         NSLog(@"annotations new: %@", [self.document.annotationParser annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
         //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+
+        if (self.document.data) {
+            NSLog(@"Length of NSData after saving: %d", self.document.data.length);
+        }
     }
 }
 
