@@ -93,7 +93,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 // override to change label (default is within the image, has rounded borders)
 - (void)updateSiteLabel {
-    if (self.isShowingSiteLabel && !self.siteLabel.superview) {
+    if (self.isShowingSiteLabel && !self.pageLabel.superview) {
         UILabel *siteLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         siteLabel.backgroundColor = [UIColor clearColor];
         siteLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
@@ -102,17 +102,17 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         siteLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
         siteLabel.textAlignment = UITextAlignmentCenter;
         siteLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
-        self.siteLabel = siteLabel;
+        self.pageLabel = siteLabel;
         [self.contentView addSubview:siteLabel];
-    }else if (!self.isShowingSiteLabel && self.siteLabel.superview) {
-        [self.siteLabel removeFromSuperview];
+    }else if (!self.isShowingSiteLabel && self.pageLabel.superview) {
+        [self.pageLabel removeFromSuperview];
     }
 
     // calculate new frame and position correct
-    self.siteLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
+    self.pageLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
 
-    if (self.siteLabel.superview) {
-        [self.contentView bringSubviewToFront:self.siteLabel];
+    if (self.pageLabel.superview) {
+        [self.contentView bringSubviewToFront:self.pageLabel];
     }
 }
 
@@ -209,7 +209,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                         if (!strongImageLoadOperation.isCancelled) {
                             // animating this is too expensive.
                             [self setImage:_magazineOperationImage animated:NO];
-                            self.siteLabel.text = _magazineTitle;
+                            self.pageLabel.text = _magazineTitle;
                         }
                     });
                 }
@@ -228,9 +228,9 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
         NSString *siteLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updateSiteLabel]; // create lazily
-        self.siteLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
+        self.pageLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
         [self updateSiteLabel];
-        self.accessibilityLabel = self.siteLabel.text;
+        self.accessibilityLabel = self.pageLabel.text;
     }
 }
 
@@ -456,7 +456,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
         if (magazine.isTitleLoaded) {
             _magazineTitle = magazine.title;
-            self.siteLabel.text = _magazineTitle;
+            self.pageLabel.text = _magazineTitle;
         }
     }
 }
