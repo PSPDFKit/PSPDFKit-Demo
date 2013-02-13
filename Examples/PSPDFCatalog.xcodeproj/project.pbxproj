@@ -150,6 +150,7 @@
 		78E306BC1601C4850051AF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E306BB1601C4850051AF68 /* Default-568h@2x.png */; };
 		78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
+		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -415,6 +416,8 @@
 		78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomBookmarkBarButtonItem.m; sourceTree = "<group>"; };
 		78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCatalogViewController.h; sourceTree = "<group>"; };
 		78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCatalogViewController.m; sourceTree = "<group>"; };
+		78FDE16316CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDForThumbnailsViewController.h; sourceTree = "<group>"; };
+		78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDForThumbnailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,6 +801,8 @@
 				78C7C5D716CB9C4D0006075D /* PSCSplitDocumentSelectorController.m */,
 				78C7C5D816CB9C4D0006075D /* PSCSplitPDFViewController.h */,
 				78C7C5D916CB9C4D0006075D /* PSCSplitPDFViewController.m */,
+				78FDE16316CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.h */,
+				78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1141,6 +1146,7 @@
 				78C7C5E016CB9C4D0006075D /* PSCRotatablePDFViewController.m in Sources */,
 				78C7C5E116CB9C4D0006075D /* PSCSplitDocumentSelectorController.m in Sources */,
 				78C7C5E216CB9C4D0006075D /* PSCSplitPDFViewController.m in Sources */,
+				78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
