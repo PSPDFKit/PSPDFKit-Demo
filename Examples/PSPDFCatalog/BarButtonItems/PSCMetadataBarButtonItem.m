@@ -30,7 +30,7 @@
 - (UIImage *)image {
     if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
 
-    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(_buttonImage) : _buttonImage;
+    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(_buttonImage) : _buttonImage;
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
