@@ -14,33 +14,38 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocument:(PSPDFDocument *)document {
-    if ((self = [super initWithDocument:document])) {
-        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
+- (void)commonInitWithDocument:(PSPDFDocument *)document {
+    [super commonInitWithDocument:document];
 
-        // disable default toolbar
-        [self setToolbarEnabled:NO];
-        self.statusBarStyleSetting = PSPDFStatusBarInherit;
-        self.renderAnimationEnabled = NO; // custom implementation here
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
 
-        // add custom controls to our toolbar
-        _customViewModeSegment = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
-        _customViewModeSegment.selectedSegmentIndex = 0;
-        _customViewModeSegment.segmentedControlStyle = UISegmentedControlStyleBar;
-        [_customViewModeSegment addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
-        [_customViewModeSegment sizeToFit];
-        UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:_customViewModeSegment];
+    // disable default toolbar
+    [self setToolbarEnabled:NO];
+    self.statusBarStyleSetting = PSPDFStatusBarSmartBlack;
+    self.renderAnimationEnabled = NO; // custom implementation here
 
-        self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem];
-        self.delegate = self;
+    // add custom controls to our toolbar
+    _customViewModeSegment = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"Page", @""), NSLocalizedString(@"Thumbnails", @"")]];
+    _customViewModeSegment.selectedSegmentIndex = 0;
+    _customViewModeSegment.segmentedControlStyle = UISegmentedControlStyleBar;
+    [_customViewModeSegment addTarget:self action:@selector(viewModeSegmentChanged:) forControlEvents:UIControlEventValueChanged];
+    [_customViewModeSegment sizeToFit];
+    UIBarButtonItem *viewModeButton = [[UIBarButtonItem alloc] initWithCustomView:_customViewModeSegment];
 
-        // use large thumbnails!
-        self.thumbnailSize = CGSizeMake(250, 400);
+    self.navigationItem.rightBarButtonItems = @[viewModeButton, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, self.annotationButtonItem];
 
-        // don't forget to also set the large size in PSPDFCache!
-        [PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
+    // UIBarButtons are defaulted to be plain in PSPDFKit. Iterate and update them to improve image rendering and positioning in bordered.
+    for (UIBarButtonItem *barButton in self.navigationItem.rightBarButtonItems) {
+        barButton.style = UIBarButtonItemStyleBordered;
     }
-    return self;
+
+    self.delegate = self;
+
+    // use large thumbnails!
+    self.thumbnailSize = CGSizeMake(250, 400);
+
+    // don't forget to also set the large size in PSPDFCache!
+    [PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
 }
 
 - (void)dealloc {
@@ -49,6 +54,12 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
