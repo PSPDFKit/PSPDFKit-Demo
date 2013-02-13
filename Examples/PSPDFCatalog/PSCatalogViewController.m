@@ -11,7 +11,7 @@
 #import "PSCTabbedExampleViewController.h"
 #import "PSCDocumentSelectorController.h"
 #import "PSCEmbeddedTestController.h"
-#import "PSCustomToolbarController.h"
+#import "PSCCustomToolbarController.h"
 #import "PSCAnnotationTestController.h"
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCSplitPDFViewController.h"
@@ -43,6 +43,8 @@
 #import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
 #import "PSCSaveAsPDFViewController.h"
+#import "PSCCustomThumbnailsViewController.h"
+#import "PSCHideHUDForThumbnailsViewController.h"
 #import "PSCFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
@@ -104,7 +106,7 @@ const char kPSCAlertViewKey;
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"X.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
-        controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+        controller.statusBarStyleSetting = PSPDFStatusBarDisable;
         controller.transparentHUD = YES;
         controller.shouldHideNavigationBarWithHUD = YES;
         return controller;
@@ -594,7 +596,7 @@ const char kPSCAlertViewKey;
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Completely Custom Toolbar" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        return [[PSCustomToolbarController alloc] initWithDocument:document];
+        return [[PSCCustomToolbarController alloc] initWithDocument:document];
     }]];
 
     // this the default recommended way to customize the toolbar
@@ -679,6 +681,18 @@ const char kPSCAlertViewKey;
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Rotate PDF pages" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Customize thumbnail page label" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSCCustomThumbnailsViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Hide HUD while showing thumbnails" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSCHideHUDForThumbnailsViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -996,14 +1010,36 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Customize email sending (add body text)" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.emailButtonItem.mailComposeViewControllerCustomizationBlock = ^(MFMailComposeViewController *mailController) {
+            [mailController setMessageBody:@"<h1 style='color:blue'>Custom message body.</h1>" isHTML:YES];
+        };
+        pdfController.rightBarButtonItems = @[pdfController.emailButtonItem];
+        return pdfController;
+    }]];
+
     [content addObject:subclassingSection];
 
+
+    
 
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Timing tests" block:^UIViewController *{
         return [[PSCTimingTestViewController alloc] initWithNibName:nil bundle:nil];
+    }]];
+
+    // Modal controller - check that we don't get dismissed at some point.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Modal test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.printButtonItem, pdfController.emailButtonItem, pdfController.openInButtonItem, pdfController.viewModeButtonItem];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
+        [self presentViewController:navController animated:YES completion:NULL];
+        return nil; // don't push anything
     }]];
 
     // Tests if we're correctly reloading the controller.
@@ -1253,6 +1289,13 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Check that this doesn't auto-play, especially not on iOS5.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Video No-Autoplay" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia-autostart-ios5.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // Test video covers
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test multiple Video Covers" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"covertest/imrevi.pdf"]];
@@ -1315,6 +1358,16 @@ const char kPSCAlertViewKey;
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - top left" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"image-topleft.pdf"]];
+
+        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSLog(@"Detected images: %@", images);
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - not inverted" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"inverted-image.pdf"]];
 
         NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);

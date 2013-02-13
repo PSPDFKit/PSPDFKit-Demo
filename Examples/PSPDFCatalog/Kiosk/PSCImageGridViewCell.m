@@ -27,6 +27,7 @@
 }
 @property (nonatomic, strong) UIImageView *magazineCounterBadgeImage;
 @property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
 @end
 
 @implementation PSCImageGridViewCell
@@ -92,23 +93,23 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 #pragma mark - PSPDFThumbnailGridViewCell
 
 // override to change label (default is within the image, has rounded borders)
-- (void)updateSiteLabel {
+- (void)updatePageLabel {
     if (self.isShowingSiteLabel && !self.pageLabel.superview) {
-        UILabel *siteLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-        siteLabel.backgroundColor = [UIColor clearColor];
-        siteLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
-        siteLabel.shadowColor = [UIColor blackColor];
-        siteLabel.shadowOffset = CGSizeMake(0, 1);
-        siteLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
-        siteLabel.textAlignment = UITextAlignmentCenter;
-        siteLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
-        self.pageLabel = siteLabel;
-        [self.contentView addSubview:siteLabel];
+        UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        pageLabel.backgroundColor = [UIColor clearColor];
+        pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
+        pageLabel.shadowColor = [UIColor blackColor];
+        pageLabel.shadowOffset = CGSizeMake(0, 1);
+        pageLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        pageLabel.textAlignment = UITextAlignmentCenter;
+        pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
+        self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
+        [self.contentView addSubview:pageLabel];
     }else if (!self.isShowingSiteLabel && self.pageLabel.superview) {
         [self.pageLabel removeFromSuperview];
     }
 
-    // calculate new frame and position correct
+    // Calculate new frame and position correct
     self.pageLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
 
     if (self.pageLabel.superview) {
@@ -227,9 +228,9 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         }
 
         NSString *siteLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
-        [self updateSiteLabel]; // create lazily
+        [self updatePageLabel]; // create lazily
         self.pageLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
-        [self updateSiteLabel];
+        [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }
 }
