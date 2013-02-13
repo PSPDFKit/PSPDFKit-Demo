@@ -106,7 +106,7 @@ const char kPSCAlertViewKey;
         //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"X.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
-        controller.statusBarStyleSetting = PSPDFStatusBarDisable;
+        controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         controller.transparentHUD = YES;
         controller.shouldHideNavigationBarWithHUD = YES;
         return controller;
