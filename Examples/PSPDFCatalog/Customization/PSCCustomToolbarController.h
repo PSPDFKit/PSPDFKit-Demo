@@ -6,6 +6,6 @@
 //
 
 /// Example to show how to add a custom toolbar.
-@interface PSCustomToolbarController : PSPDFViewController <PSPDFViewControllerDelegate>
+@interface PSCCustomToolbarController : PSPDFViewController <PSPDFViewControllerDelegate>
 
 @end

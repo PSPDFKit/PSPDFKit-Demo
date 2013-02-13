@@ -11,6 +11,9 @@
 
 @implementation PSCCustomSubviewPDFViewController
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController
+
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
     self.delegate = self;
