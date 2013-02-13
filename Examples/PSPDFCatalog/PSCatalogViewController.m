@@ -1689,7 +1689,8 @@ const char kPSCAlertViewKey;
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
