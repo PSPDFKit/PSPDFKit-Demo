@@ -20,12 +20,12 @@
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
     UIImage *image = [UIImage imageNamed:@"settings"];
-    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
+    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
 }
 
 - (UIImage *)landscapeImagePhone {
     UIImage *image = [UIImage imageNamed:@"settings_landscape"];
-    return [self itemStyle] == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
+    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
 }
 
 - (NSString *)actionName {
