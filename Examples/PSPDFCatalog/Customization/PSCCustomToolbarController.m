@@ -21,7 +21,7 @@
 
     // disable default toolbar
     [self setToolbarEnabled:NO];
-    self.statusBarStyleSetting = PSPDFStatusBarSmartBlack;
+    self.statusBarStyleSetting = PSPDFStatusBarBlackOpaque;
     self.renderAnimationEnabled = NO; // custom implementation here
 
     // add custom controls to our toolbar
@@ -42,10 +42,10 @@
     self.delegate = self;
 
     // use large thumbnails!
-    self.thumbnailSize = CGSizeMake(250, 400);
+    self.thumbnailSize = CGSizeMake(240, 380);
 
     // don't forget to also set the large size in PSPDFCache!
-    [PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
+    //[PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
 }
 
 - (void)dealloc {
