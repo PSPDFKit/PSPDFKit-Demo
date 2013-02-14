@@ -21,7 +21,7 @@
     if ((self = [super init])) {
         _pdfController = pdfController;
 
-        self.toolbar = [[PSPDFAnnotationToolbar alloc] initWithPDFController:pdfController];
+        self.toolbar = self.pdfController.annotationButtonItem.annotationToolbar;
         self.toolbar.delegate = self;
         self.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.8f];
 
@@ -50,14 +50,21 @@
 - (void)drawButtonPressed:(id)sender {
     if (self.toolbar.toolbarMode == PSPDFAnnotationToolbarNone) {
 
-        // add the toolbar to the view hierarchy for color picking etc
-        if (self.pdfController.navigationController) {
-            CGRect targetRect = self.pdfController.navigationController.navigationBar.frame;
-            [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:self.pdfController.navigationController.navigationBar];
-            [self.toolbar showToolbarInRect:targetRect animated:YES];
-        }else {
-            CGRect targetRect = CGRectMake(0, 0, self.pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation));
-            [self.toolbar showToolbarInRect:targetRect animated:YES];
+        if (!self.toolbar.window) {
+            // match style
+            self.toolbar.barStyle = self.pdfController.navigationBarStyle;
+            self.toolbar.translucent = self.pdfController.isTransparentHUD;
+            self.toolbar.tintColor = self.pdfController.tintColor;
+
+            // add the toolbar to the view hierarchy for color picking etc
+            if (self.pdfController.navigationController) {
+                CGRect targetRect = self.pdfController.navigationController.navigationBar.frame;
+                [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:self.pdfController.navigationController.navigationBar];
+                [self.toolbar showToolbarInRect:targetRect animated:YES];
+            }else {
+                CGRect targetRect = CGRectMake(0, 0, self.pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation));
+                [self.toolbar showToolbarInRect:targetRect animated:YES];
+            }
         }
 
         // call draw mode of the toolbar
