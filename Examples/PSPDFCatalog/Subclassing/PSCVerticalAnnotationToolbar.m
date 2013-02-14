@@ -49,7 +49,7 @@
 
 - (void)drawButtonPressed:(id)sender {
     if (self.toolbar.toolbarMode == PSPDFAnnotationToolbarNone) {
-
+        self.pdfController.HUDViewMode = PSPDFHUDViewAlways;
         if (!self.toolbar.window) {
             // match style
             self.toolbar.barStyle = self.pdfController.navigationBarStyle;
@@ -62,7 +62,9 @@
                 [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:self.pdfController.navigationController.navigationBar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }else {
-                CGRect targetRect = CGRectMake(0, 0, self.pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation));
+                CGRect contentRect = self.pdfController.contentRect;
+                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, self.pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation));
+                [self.pdfController.view addSubview:self.toolbar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }
         }
@@ -70,6 +72,7 @@
         // call draw mode of the toolbar
         [self.toolbar drawButtonPressed:sender];
     }else {
+        self.pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
         // remove toolbar
         [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
         [self.toolbar finishDrawingAnimated:YES andSaveAnnotation:NO];
