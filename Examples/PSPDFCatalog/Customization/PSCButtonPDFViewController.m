@@ -37,7 +37,7 @@
         [buttonContainer.button setTitle:@"Press me!" forState:UIControlStateNormal];
         [buttonContainer.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [buttonContainer sizeToFit];
-        [pageView addSubview:buttonContainer];
+        [pageView.annotationContainerView addSubview:buttonContainer];
         [buttonContainer didChangePageFrame:pageView.bounds]; // layout initially
     }
 }
