@@ -320,7 +320,7 @@ const char kPSCAlertViewKey;
         // cache needs to be cleared since pages will change.
         [[PSPDFCache sharedCache] clearCache];
         _clearCacheNeeded = YES;
-        
+
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -909,12 +909,23 @@ const char kPSCAlertViewKey;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
             if (!PSIsIpad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
-
-            // example how to switch between pageTransitions
-            //pdfController.pageTransition = UIInterfaceOrientationIsLandscape(toInterfaceOrientation) ? PSPDFPageCurlTransition : PSPDFPageScrollPerPageTransition;
         }];
         return controller;
     }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dynamic pageCurl/scrolling" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
+            if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
+                pdfController.pageTransition = PSPDFPageScrollPerPageTransition;
+            }  else {
+                pdfController.pageTransition = PSPDFPageCurlTransition;
+            }
+        }];
+        return controller;
+    }]];
+
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
@@ -1023,7 +1034,7 @@ const char kPSCAlertViewKey;
     [content addObject:subclassingSection];
 
 
-    
+
 
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
@@ -1541,7 +1552,7 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-    
+
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
@@ -1571,7 +1582,7 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:newDocument];
         return pdfController;
     }]];
-    
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening 2" block:^UIViewController *{
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest2", @"pdf");
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -1767,7 +1778,7 @@ const char kPSCAlertViewKey;
         needsCopy = YES;
         [[NSFileManager defaultManager] removeItemAtURL:newURL error:NULL];
     }
-    
+
     NSError *error;
     if (needsCopy &&
         ![[NSFileManager defaultManager] copyItemAtURL:documentURL toURL:newURL error:&error]) {
