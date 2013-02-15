@@ -45,6 +45,7 @@
 #import "PSCSaveAsPDFViewController.h"
 #import "PSCCustomThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
+#import "PSCHideHUDDelayedDocumentViewController.h"
 #import "PSCFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
@@ -693,6 +694,18 @@ const char kPSCAlertViewKey;
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Hide HUD while showing thumbnails" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCHideHUDForThumbnailsViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Hide HUD with delayed document set" block:^UIViewController *{
+        PSPDFViewController *pdfController = [[PSCHideHUDDelayedDocumentViewController alloc] init];
+
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            pdfController.document = hackerMagDoc;
+        });
+
         return pdfController;
     }]];
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */; };
 		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
 		7802EA9A15F4C61400B6EF3C /* PSCBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7802EA9915F4C61400B6EF3C /* PSCBookViewController.m */; };
@@ -185,6 +186,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDDelayedDocumentViewController.h; sourceTree = "<group>"; };
+		6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDDelayedDocumentViewController.m; sourceTree = "<group>"; };
 		7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-left.jpg"; path = "Book/book-left.jpg"; sourceTree = "<group>"; };
 		7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-right.jpg"; path = "Book/book-right.jpg"; sourceTree = "<group>"; };
 		7802EA9815F4C61400B6EF3C /* PSCBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookViewController.h; sourceTree = "<group>"; };
@@ -803,6 +806,8 @@
 				78C7C5D916CB9C4D0006075D /* PSCSplitPDFViewController.m */,
 				78FDE16316CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.h */,
 				78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */,
+				6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */,
+				6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1147,6 +1152,7 @@
 				78C7C5E116CB9C4D0006075D /* PSCSplitDocumentSelectorController.m in Sources */,
 				78C7C5E216CB9C4D0006075D /* PSCSplitPDFViewController.m in Sources */,
 				78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */,
+				6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
