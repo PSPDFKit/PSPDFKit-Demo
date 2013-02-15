@@ -108,8 +108,6 @@ const char kPSCAlertViewKey;
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
-        controller.transparentHUD = YES;
-        controller.shouldHideNavigationBarWithHUD = YES;
         return controller;
     }]];
 
