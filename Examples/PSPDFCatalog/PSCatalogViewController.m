@@ -346,7 +346,7 @@ const char kPSCAlertViewKey;
 
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo.boundingBox = [multimediaDoc pageInfoForPage:0].rotatedPageRect;
+        aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
         [multimediaDoc addAnnotations:@[aVideo] forPage:0];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
