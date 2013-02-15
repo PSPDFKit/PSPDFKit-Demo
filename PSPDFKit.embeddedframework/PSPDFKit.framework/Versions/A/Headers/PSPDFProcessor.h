@@ -27,21 +27,17 @@ extern NSString *const kPSPDFProcessorDocumentTitle;    // Will override any def
 
 typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 
-/**
- Create, merge or modify PDF documents. Also allows to flatten annotation data.
- */
+/// Create, merge or modify PDF documents. Also allows to flatten annotation data.
 @interface PSPDFProcessor : NSObject
 
 /// Access the processor via singleton.
 + (instancetype)defaultProcessor;
 
-/// Generate a PDF from a PSPDFDocument into a file.
-/// 'options' can also contain CGPDFContext options.
+/// Generate a PDF from a PSPDFDocument into a file. 'options' can also contain CGPDFContext options.
 - (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error;
 
-/// Generate a PDF from a PSPDFDocument into data.
-/// 'options' can also contain CGPDFContext options.
-/// Beware to not use that on big files, since iOS has no virtual memory and the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe usage.
+/// Generate a PDF from a PSPDFDocument into data. 'options' can also contain CGPDFContext options.
+/// @warning Don't use with large files, since iOS has no virtual memory the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe in-memory usage.
 - (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options error:(NSError **)error;
 
 /**
@@ -93,11 +89,19 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 /// Needs to be executed from a thread.  PSPDFKit Annotate feature.
 @interface PSPDFConversionOperation : NSOperation
 
+/// Designated initializer.
 - (id)initWithURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputFileURL options:(NSDictionary *)options completionBlock:(PSPDFCompletionBlockWithError)completionBlock;
 
+/// Input. Needs to be a file URL.
 @property (nonatomic, strong, readonly) NSURL *inputURL;
+
+/// Output. Needs to be a file URL.
 @property (nonatomic, strong, readonly) NSURL *outputFileURL;
+
+/// Options set for conversion. See generatePDFFromURL:outputFileURL:options:completionBlock: for a list of options.
 @property (nonatomic, copy  , readonly) NSDictionary *options;
+
+/// Error if something went wrong.
 @property (nonatomic, strong, readonly) NSError *error;
 
 @end

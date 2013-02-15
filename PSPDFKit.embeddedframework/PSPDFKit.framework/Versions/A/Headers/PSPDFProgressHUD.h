@@ -17,7 +17,9 @@ typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
     PSPDFProgressHUDMaskTypeGradient  // don't allow and dim the UI with a a-la-alert-view bg gradient
 };
 
+///
 /// Simple Progress HUD.
+///
 @interface PSPDFProgressHUD : UIView
 
 + (void)show;

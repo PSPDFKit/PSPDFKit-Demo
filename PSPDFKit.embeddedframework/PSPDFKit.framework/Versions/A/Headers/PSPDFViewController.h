@@ -264,7 +264,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// NO will perform a generic zoom into the tap area. Defaults to YES.
 @property (nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
 
-/// Enable/disable scrolling. Can be used in special cases where scrolling is turned of (temporarily). Defaults to YES.
+/// Enable/disable scrolling. Can be used in special cases where scrolling is turned off (temporarily). Defaults to YES.
 @property (nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
 
 /// Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
@@ -455,12 +455,14 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) PSPDFStatusBarStyleSetting statusBarStyleSetting;
 
 /// Current statusBarStyle.
+/// @warning Remember that UIStatusBarStyleBlackTranslucent is not available on iPad.
 @property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
 /// Current navigationBarStyle.
 @property (nonatomic, assign) UIBarStyle navigationBarStyle;
 
 /// Defines if the HUD is transparent or not.
+/// @warning If this is set to NO, shouldHideNavigationBarWithHUD and shouldHideStatusBarWithHUD won't work as expected.
 @property (nonatomic, assign, getter=isTransparentHUD) BOOL transparentHUD;
 
 /// If YES, the navigation bar will be hidden when the HUD is hidden.
@@ -523,6 +525,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Thumbnail size. Defaults to 170x220.
 /// @warning After changing, call reloadData on the gridView.
 @property (nonatomic, assign) CGSize thumbnailSize;
+
+/// Set margin for thumbnail view mode. Defaults to UIEdgeInsetsMake(15, 15, 15, 15).
+/// Margin is extra space around the grid of thumbnails.
+@property (nonatomic, assign) UIEdgeInsets thumbnailMargin;
 
 /// Thumbnails on iPhone are smaller - you may change the reduction factor. Defaults to 0.5.
 @property (nonatomic, assign) CGFloat iPhoneThumbnailSizeReductionFactor;

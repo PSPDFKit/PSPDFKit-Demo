@@ -67,6 +67,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
  
  @warning Most annotations will not be rendered as overlays or only when they are currently being selected.
  Rendering annotations within the pageView has several advantages including performance or view color multiplication (in case of highlight annotations)
+ Do not manually add/remove views into the container view. Contents is managed. Views should respond to the <PSPDFAnnotationView> protocol, especially the annotation method.
  */
 @property (nonatomic, strong, readonly) PSPDFAnnotationContainerView *annotationContainerView;
 
