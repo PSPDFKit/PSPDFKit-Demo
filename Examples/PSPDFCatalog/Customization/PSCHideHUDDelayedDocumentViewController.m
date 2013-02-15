@@ -14,7 +14,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // Make sure the HUD is hidden until the documents arrive
+    // Make sure the HUD is hidden until the document arrives
     [self setHUDVisible:NO animated:NO];
     self.viewMode = PSPDFViewModeThumbnails;
 }
