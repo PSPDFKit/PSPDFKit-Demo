@@ -44,20 +44,34 @@ extern NSString *const kPSPDFColorKey;
 /// If you want to create a PSPDFInkAnnotation from this, convert the points to PDF coordinates first.
 @property (nonatomic, strong, readonly) NSArray *linesDictionaries;
 
+/// Draw view zoom scale. Defaults to 1. Increase to allow sharp rendering when zoomed in.
+/// @warning Allows maximum zoomScale of 5. Will be disabled for older devices (iPad1)
+@property (nonatomic, assign) CGFloat zoomScale;
+
 /// Draw Delegate.
 @property (atomic, weak) IBOutlet id<PSPDFDrawViewDelegate> delegate;
 
+/// Undo possible?
 - (BOOL)canUndo;
+
+/// Undo last action, update view.
 - (BOOL)undo;
+
+/// Redo possible?
 - (BOOL)canRedo;
+
+/// Redo last action, update view.
 - (BOOL)redo;
 
 @end
 
 @interface PSPDFDrawView (SubclassingHooks)
 
-/// For a fast drawing preview.
+// For a fast drawing preview.
 @property (nonatomic, strong, readonly) CAShapeLayer *shapeLayer;
+
+// Drawings are cached.
+@property (nonatomic, strong) UIImage *currentImage;
 
 @end
 
@@ -65,10 +79,13 @@ extern NSString *const kPSPDFColorKey;
 // Single draw action. (saved for undo/redo)
 @interface PSPDFDrawAction : NSObject
 
+// Points that are in this drawing action.
 @property (nonatomic, copy) NSArray *points;
 
+// Designated initializer.
 - (id)initWithPoints:(NSArray *)pointArray path:(UIBezierPath *)bezierPath type:(NSString *)actionType strokeColor:(UIColor *)color lineWidth:(CGFloat)width;
 
+// Apply action to the current UI image context.
 - (void)apply;
 
 @end

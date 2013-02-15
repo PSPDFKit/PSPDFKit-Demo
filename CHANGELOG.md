@@ -2,6 +2,30 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.3 - 15/February/2013__
+
+*  Allow UIAppearance for PSPDFRoundedLabel.
+*  Added a mailComposeViewControllerCustomizationBlock in PSPDFEmailBarButtonItem to easily change the default email body text.
+*  New property: thumbnailMargin in PSPDFViewController.
+*  Thumbnail view now dynamically updates the sectionInset if the HUD is hidden during thumbnail view.
+*  API change: Renamed siteLabel to pageLabel in PSPDFThumbnailGridViewCell.
+*  Replaces PSPDFAddLocalizationFileForLocale with the more flexible PSPDFSetLocalizationBlock.
+*  Add double-tap to fullscreen for YouTube views.
+*  Add fallback to use associated objects for annotation views that don't comply to PSPDFAnnotationView. (Fixes duplicate view adding)
+*  Disables the yellow block highlighting on a double-tap zoom.
+*  The Save To Camera Roll is now faster and no longer blocks the main thread during JPG compression.
+*  Certain smaller tweaks/improvements for the HUD.
+*  Fixes a regression where on a long press the annotation menu would reappear then disappear for highlight annotations.
+*  Fixes a regression that broke re-positioning of search highlights on a frame change.
+*  Fixes an issue where the pdfController could be dismissed when using the "send via email" feature.
+*  Fixes a rare condition in which the progressView (PSPDFProgressHUD) could get stuck.
+*  Fixes an issue where videos that were set to autostart=NO could still autostart on iOS5.
+*  Fixes an issue where CMYK encoded JPGs would be extracted inverted upon saving.
+*  Fixes an issue where ink annotations could be added in the wrong size when the device directly rotates after finishing a drawing
+*  Fixes a rounding error that made certain pages scroll-able in pageCurl mode.
+*  Fixes a page blurriness issue because of rounding errors when zooming out/zooming in a lot.
+*  Removed deprecated options from PSPDFEmailBarButtonItem.
+
 __v2.8.2 - 10/February/2013__
 
 *  HUD visibility/transparenty can now be set more fine-grained with the new properties transparentHUD, shouldHideNavigationBarWithHUD, shouldHideStatusBarWithHUD and statusBarStyle. Check your code and let me know if this breaks something. Setting statusBarStyleSetting will update all those properties.

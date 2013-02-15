@@ -91,16 +91,17 @@ extern NSString *PSPDFVersionString(void);
 extern NSBundle *PSPDFKitBundle(void);
 
 /// Localizes strings.
+/// Will first look up the string in the PSPDFKit.bundle
 extern NSString *PSPDFLocalize(NSString *stringToken);
 
-// Allows to set a custom dictionary that contains dictionaries with language locales.
-// Will override localization found in the bundle, if a value is found.
-// Falls back to "en" if localization key is not found in dictionary.
+/// Allows to set a custom dictionary that contains dictionaries with language locales.
+/// Will override localization found in the bundle, if a value is found.
+/// Falls back to "en" if localization key is not found in dictionary.
 extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
-// Parses a strings file, same format as regular localization.
-// Will override any previous language setting for 'locale', but merges with other set languages.
-extern void PSPDFAddLocalizationFileForLocale(NSString *filePath, NSString *locale);
+/// Register a custom block that handles translation.
+/// If this block returns nil, the PSPDFKit.bundle + localizationDict will be used.
+extern void PSPDFSetLocalizationBlock(NSString* (^localizationBlock)(NSString *stringToLocalize));
 
 /// Resolves paths like "Documents" or "Bundle" to their real path.
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
@@ -140,7 +141,8 @@ extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
 
 // UIKit sometimes gets the toolbar position wrong, when we show/hide things at the "wrong" time.
 // While I see this as a bug and have placed some rdars on it, here's a simple workaround.
-extern BOOL PSPDFFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated);
+// @warning 'animated' is currently ignored.
+extern void PSPDFFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated);
 
 // Matches actionSheet style via barStyle.
 extern UIActionSheetStyle PSPDPFActionSheetStyleForBarButtonStyle(UIBarStyle barStyle, BOOL translucent);

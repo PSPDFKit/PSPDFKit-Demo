@@ -53,13 +53,14 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 + (instancetype)PDFDocumentWithURL:(NSURL *)URL;
 
 /// Initialize PSPDFDocument with data.
+/// @warning You might want to set a custom UID when initialized with NSData, else the UID will be calculated from the PDF contents, which might be the same for two equal files.
 + (instancetype)PDFDocumentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with multiple data objects
 + (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray;
 
 /// Initialize PSPDFDocument with a dataProvider.
-/// Note: You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
+/// @warning You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
 + (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.

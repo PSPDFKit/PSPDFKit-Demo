@@ -54,4 +54,8 @@ extern BOOL kPSPDFCheckIfCompatibleAppsAreInstalled;
 // Shows the open in controller. options at this point can only be exactly one item, not multiple.
 - (void)showOpenInControllerWithOptions:(PSPDFOpenInOptions)options animated:(BOOL)animated sender:(id)sender;
 
+// Presenting OpenIn/Options Menu
+- (BOOL) presentOpenInMenuFromBarButtonItem:(id)sender animated:(BOOL)animated;
+- (BOOL) presentOpenInMenuFromRect:(CGRect)senderRect inView:(id)sender animated:(BOOL)animated;
+
 @end

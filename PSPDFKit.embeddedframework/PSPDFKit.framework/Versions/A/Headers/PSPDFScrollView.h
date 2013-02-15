@@ -145,3 +145,6 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 - (PSPDFPageView *)pageViewForPoint:(CGPoint)point;
 
 @end
+
+// Round rect to nearest size, if it's close.
+CGRect PSPDFRoundCompoundViewSize(CGRect compoundViewRect, UIView *superview);

@@ -6,11 +6,10 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFRoundedLabel.h"
 #import "PSTCollectionViewCell.h"
 
-///
 /// Simple thumbnail cell.
-///
 @interface PSPDFThumbnailGridViewCell : PSUICollectionViewCell <PSPDFCacheDelegate>
 
 /// Referenced document.
@@ -39,8 +38,8 @@
 /// Internal image view.
 @property (nonatomic, strong) UIImageView *imageView;
 
-/// Site label.
-@property (nonatomic, strong) UILabel *siteLabel;
+/// Page label. (By default a PSPDFRoundedLabel, but can be set to any UILabel subclass, simply do a cast)
+@property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
 
 /// Creates the shadow. Subclass to change. Returns a CGPathRef.
 - (id)pathShadowForView:(UIView *)imgView;
@@ -55,6 +54,7 @@
 + (NSOperationQueue *)thumbnailQueue;
 
 /// Updates the page label.
-- (void)updateSiteLabel;
+- (void)updatePageLabel;
 
 @end
+
