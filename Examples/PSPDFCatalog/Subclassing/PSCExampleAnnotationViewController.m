@@ -23,7 +23,7 @@
 
     // create the custom toolbar and add it on top of the HUDView.
     self.verticalToolbar = [[PSCVerticalAnnotationToolbar alloc] initWithPDFController:self];
-    self.verticalToolbar.frame = CGRectIntegral(CGRectMake(self.view.bounds.size.width-44.f, (self.view.bounds.size.height-44.f)/2, 44.f, 44.f));
+    self.verticalToolbar.frame = CGRectIntegral(CGRectMake(self.view.bounds.size.width-44.f, (self.view.bounds.size.height-44.f)/2, 44.f, 44.f * 2));
     self.verticalToolbar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
     [self.HUDView addSubview:self.verticalToolbar];
 }
