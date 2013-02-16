@@ -28,9 +28,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
+// Warning: Don't add a child view controller during viewDidAppear. There is a bug on iOS5 that prevents forwarding viewWillAppear: in this case.
+- (void)createPDFViewController {
     // configure the PSPDF controller
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document];
     self.pdfController.pageTransition = PSPDFPageScrollContinuousTransition;
@@ -45,10 +44,9 @@
     [self addChildViewController:self.pdfController];
     [self.pdfController didMoveToParentViewController:self];
     [self.view addSubview:self.pdfController.view];
-
+    
     // As an example, here we're not using the UINavigationController but instead a custom UIToolbar.
     // Note that if you're going that way, you'll loose some features that PSPDFKit provides, like dynamic toolbar updating or accessibility.
-    self.navigationController.navigationBarHidden = YES;
     UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), PSPDFToolbarHeightForOrientation(self.interfaceOrientation))];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
@@ -57,14 +55,20 @@
     
     NSMutableArray *toolbarItems = [NSMutableArray array];
     [toolbarItems addObjectsFromArray:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed:)], flexibleSpace, self.pdfController.searchButtonItem]];
-
+    
     if ([self.pdfController.outlineButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.outlineButtonItem]];
     if ([self.pdfController.annotationButtonItem isAvailableBlocking]) [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.annotationButtonItem]];
     [toolbarItems addObjectsFromArray:@[fixedSpace, self.pdfController.bookmarkButtonItem]];
-
+    
     toolbar.items = toolbarItems;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.navigationBarHidden = YES;
+    [self createPDFViewController];
 }
 
 - (void)viewWillLayoutSubviews {
