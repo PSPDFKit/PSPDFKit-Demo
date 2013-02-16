@@ -1484,6 +1484,13 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test block detection" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"block-detection-test.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        // Debug: Visualizes glyphs and text blocks.
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            for (PSPDFPageView *pageView in pdfController.visiblePageViews)
+                [pageView.selectionView showTextFlowData:YES animated:NO];
+
+            NSLog(@"%@", [document textParserForPage:0].glyphs);
+        });
         return pdfController;
     }]];
 
