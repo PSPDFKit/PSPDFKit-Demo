@@ -2,6 +2,11 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.5 - 16/February/2013__
+
+*  Fixes a text glyph frame calculation bug when a font contains both a unicode map and an encoding array.
+*  Improves glyph shadow detection to be more accurate, less false positives.
+
 __v2.8.4 - 16/February/2013__
 
 *  Improves text block detection speed.
