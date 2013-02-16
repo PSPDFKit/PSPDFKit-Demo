@@ -2,6 +2,12 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.4 - 16/February/2013__
+
+*  Improves text block detection speed.
+*  Fixes certain crashes when parsing malformed PDFs.
+*  Fixes an issue where outline elements linked to the same named destination would not all be correctly resolved.
+
 __v2.8.3 - 15/February/2013__
 
 *  Allow UIAppearance for PSPDFRoundedLabel.

@@ -25,7 +25,7 @@
 @property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.
-@property (nonatomic, assign, getter=isShowingSiteLabel) BOOL showingSiteLabel;
+@property (nonatomic, assign, getter=isShowingPageLabel) BOOL showingPageLabel;
 
 /// Call before re-showing (will update bookmark status)
 - (void)updateCell;
