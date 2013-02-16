@@ -79,8 +79,8 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     // progress bar
     if (!_progressView.hidden) {
         _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8, 21.f);
-        CGFloat siteLabelHeight = 0;//self.isShowingSiteLabel ? self.siteLabel.frame.size.width : 0.f;
-        _progressView.center = CGPointMake(roundf(CGRectGetMaxX(self.imageView.frame)/2.f), roundf(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - siteLabelHeight));
+        CGFloat pageLabelHeight = 0;//self.isShowingPageLabel ? self.pageLabel.frame.size.width : 0.f;
+        _progressView.center = CGPointMake(roundf(CGRectGetMaxX(self.imageView.frame)/2.f), roundf(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - pageLabelHeight));
     }
 }
 
@@ -94,7 +94,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 // override to change label (default is within the image, has rounded borders)
 - (void)updatePageLabel {
-    if (self.showingPageLabel && !self.pageLabel.superview) {
+    if (self.isShowingPageLabel && !self.pageLabel.superview) {
         UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         pageLabel.backgroundColor = [UIColor clearColor];
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
@@ -105,7 +105,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
-    }else if (!self.showingPageLabel && self.pageLabel.superview) {
+    }else if (!self.isShowingPageLabel && self.pageLabel.superview) {
         [self.pageLabel removeFromSuperview];
     }
 
@@ -227,9 +227,9 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             [self darkenView:!magazine.isAvailable animated:NO];
         }
 
-        NSString *siteLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
+        NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updatePageLabel]; // create lazily
-        self.pageLabel.text = [siteLabelText length] ? siteLabelText : magazine.title;
+        self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }
