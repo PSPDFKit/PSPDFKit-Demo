@@ -44,6 +44,8 @@
 }
 
 - (void)showRandomPDFController {
+    if (self.documents.count == 0) return;
+
     NSUInteger index = arc4random_uniform([self.documents count]);
     PSPDFDocument *randomDocument = self.documents[index]; // create a copy to better simulate memory issues
     NSLog(@"Loading %@", randomDocument);
