@@ -38,6 +38,7 @@
 #import "PSPDFSinglePageViewController.h"
 #import "PSPDFPageScrollViewController.h"
 #import "PSPDFTabbedViewController.h"
+#import "PSPDFMultiDocumentViewController.h"
 #import "PSPDFViewState.h"
 #import "PSPDFPasswordView.h"
 #import "PSPDFBookmark.h"

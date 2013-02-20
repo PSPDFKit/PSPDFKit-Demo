@@ -6,13 +6,12 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFBaseViewController.h"
-#import "PSPDFDocument.h"
+#import "PSPDFMultiDocumentViewController.h"
 
 @class PSPDFTabbedViewController, PSPDFTabBarView;
 
 /// Delegate for the PSPDFTabbedViewController.
-@protocol PSPDFTabbedViewControllerDelegate <NSObject>
+@protocol PSPDFTabbedViewControllerDelegate <PSPDFMultiDocumentViewControllerDelegate>
 @optional
 
 /// Will be called when the documents array changes.
@@ -35,18 +34,12 @@
 
 @end
 
-/// Allows displaying multiple PSPDFDocument's, easily switchable via a top tab bar.
-@interface PSPDFTabbedViewController : PSPDFBaseViewController
+/// Allows displaying multiple PSPDFDocuments, easily switchable via a top tab bar.
+@interface PSPDFTabbedViewController : PSPDFMultiDocumentViewController
 
 /// Initialize the controller.
 /// Set a custom pdfViewController to use a subclass. If nil, a default instance will be created.
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
-
-/// Currently visible document.
-@property (nonatomic, strong) PSPDFDocument *visibleDocument;
-
-/// Documents that are currently loaded.
-@property (nonatomic, copy) NSArray *documents;
 
 /// Add one or multiple documents to the documents array at the specified index.
 /// Documents that are already within documents (or are equal to those) are ignored.
@@ -62,28 +55,12 @@
 /// Delegate to capture events.
 @property (nonatomic, weak) IBOutlet id<PSPDFTabbedViewControllerDelegate> delegate;
 
-/// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
-@property (nonatomic, assign) BOOL enableAutomaticStatePersistance;
-
-/// Persists the state to NSUserDefaults.
-- (void)persistState;
-
-/// Restores state from NSUserDefaults. Returns YES on success.
-/// Will set the visibleDocument that is saved in the state.
-- (BOOL)restoreState;
-
-/// Restores the state and merges with new documents. First document in the array will be visibleDocument.
-- (BOOL)restoreStateAndMergeWithDocuments:(NSArray *)documents;
-
 /// Defaults to kPSPDFTabbedDocumentsPersistKey.
 /// Change if you use multiple instances of PSPDFTabbedViewController.
 @property (nonatomic, copy) NSString *statePersistanceKey;
 
 /// Minimum tab width. Defaults to 100.
 @property (nonatomic, assign) CGFloat minTabWidth;
-
-/// The embedded PDFViewController. Access to customize the properties.
-@property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
 
 /// Tab bar view.
 @property (nonatomic, strong, readonly) PSPDFTabBarView *tabBar;

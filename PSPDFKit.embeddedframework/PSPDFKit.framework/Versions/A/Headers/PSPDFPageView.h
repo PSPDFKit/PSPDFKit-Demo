@@ -15,7 +15,7 @@
 #import "PSPDFAnnotation.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController;
+@class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFNoteAnnotationController, PSPDFMenuItem;
 
 @interface PSPDFAnnotationContainerView : PSPDFHUDView @end
 
@@ -204,6 +204,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Returns available PSPDFMenuItem's to change the color.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
+
+/// Returns the opacity menu item.
+- (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController,
