@@ -181,6 +181,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Show or hide HUD controls, titlebar, status bar (depending on the statusBarStyleSetting).
 @property (nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
+
 /// Show or hide HUD controls. optionally animated.
 - (BOOL)setHUDVisible:(BOOL)show animated:(BOOL)animated;
 
@@ -204,9 +205,11 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// @warning Requires isToolbarEnabled = YES to work.
 @property (nonatomic, assign) BOOL allowToolbarTitleChange;
 
-/// Enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES. Animatable.
-/// There's some more logic involved, e.g. is the default white statusbar not hidden on a HUD change.
+/// Enables bottom scrobble bar [if HUD is displayed]. will be hidden automatically when in thumbnail mode. Defaults to YES.
 @property (nonatomic, assign, getter=isScrobbleBarEnabled) BOOL scrobbleBarEnabled;
+
+/// Shows/Hides the scrobble bar if appropriate. Animatable.
+- (void)setScrobbleBarEnabled:(BOOL)scrobbleBarEnabled animated:(BOOL)animated;
 
 /// Enables/Disables the bottom document site position overlay.
 /// Defaults to YES. Animatable. Will be added to the HUDView.
@@ -267,7 +270,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Enable/disable scrolling. Can be used in special cases where scrolling is turned off (temporarily). Defaults to YES.
 @property (nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
 
-/// Locks the view and the HUD. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
+/// Locks the view. Disables scrolling, zooming and gestures that would invoke scrolling/zooming.
 /// This is useful if you want to invoke a "drawing mode". (e.g. Ink Annotation drawing)
 /// This also blocks programmatically calls to scrollToPage.
 /// @warning This might be disabled after a reloadData.

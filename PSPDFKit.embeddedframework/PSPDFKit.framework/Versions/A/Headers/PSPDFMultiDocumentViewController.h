@@ -1,0 +1,77 @@
+//
+//  PSPDFMultiDocumentViewController.h
+//  PSPDFKit
+//
+//  Copyright (c) 2013 Peter Steinberger. All rights reserved.
+//
+
+#import "PSPDFKitGlobal.h"
+#import "PSPDFBaseViewController.h"
+#import "PSPDFDocument.h"
+
+@class PSPDFMultiDocumentViewController;
+
+/// Delegate for the PSPDFMultiDocumentViewController.
+@protocol PSPDFMultiDocumentViewControllerDelegate <NSObject>
+@optional
+
+/// Will be called when the documents array changes.
+- (BOOL)multiPDFController:(PSPDFMultiDocumentViewController *)multiPDFController shouldChangeDocuments:(NSArray *)newDocuments;
+
+/// Will be called after the documents array changed.
+- (void)multiPDFController:(PSPDFMultiDocumentViewController *)multiPDFController didChangeDocuments:(NSArray *)oldDocuments;
+
+/// Will be called when the visibleDocument changes.
+- (BOOL)multiPDFController:(PSPDFMultiDocumentViewController *)multiPDFController shouldChangeVisibleDocument:(PSPDFDocument *)newDocument;
+
+/// Will be called after the visibleDocument changed.
+- (void)multiPDFController:(PSPDFMultiDocumentViewController *)multiPDFController didChangeVisibleDocument:(PSPDFDocument *)oldDocument;
+
+@end
+
+/// Allows displaying multiple PSPDFDocuments.
+@interface PSPDFMultiDocumentViewController : PSPDFBaseViewController
+
+/// Initialize the controller.
+/// Set a custom pdfViewController to use a subclass. If nil, a default instance will be created.
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfController;
+
+/// Currently visible document.
+@property (nonatomic, strong) PSPDFDocument *visibleDocument;
+
+/// Documents that are currently loaded.
+@property (nonatomic, copy) NSArray *documents;
+
+/// Add one or multiple documents to the documents array at the specified index.
+/// Documents that are already within documents (or are equal to those) are ignored.
+/// If index is invalid or NSUIntegerMax they're appended at the end.
+- (void)addDocuments:(NSArray *)documents atIndex:(NSUInteger)index;
+
+/// Removes one or multiple documents to the documents array.
+/// Documents that are not in the documents array will be ignored.
+- (void)removeDocuments:(NSArray *)documents;
+
+/// Delegate to capture events.
+@property (nonatomic, weak) IBOutlet id<PSPDFMultiDocumentViewControllerDelegate> delegate;
+
+/// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
+@property (nonatomic, assign) BOOL enableAutomaticStatePersistance;
+
+/// Persists the state to NSUserDefaults.
+- (void)persistState;
+
+/// Restores state from NSUserDefaults. Returns YES on success.
+/// Will set the visibleDocument that is saved in the state.
+- (BOOL)restoreState;
+
+/// Restores the state and merges with new documents. First document in the array will be visibleDocument.
+- (BOOL)restoreStateAndMergeWithDocuments:(NSArray *)documents;
+
+/// Defaults to kPSPDFMultiDocumentsPersistKey.
+/// Change if you use multiple instances of PSPDFMultiDocumentViewController.
+@property (nonatomic, copy) NSString *statePersistanceKey;
+
+/// The embedded PDFViewController. Access to customize the properties.
+@property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
+
+@end

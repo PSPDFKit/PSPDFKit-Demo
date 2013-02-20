@@ -2,6 +2,21 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.6 - 20/February/2013__
+
+*  PSPDFShapeAnnotation now creates appearance stream data. This is needed to work around a bug in Adobe Acrobat for iOS. This behavior can be disabled with setting kPSPDFGenerateAPForShape to @NO in renderingOptions of PSPDFDocument. As a side effect, this also improves display of transparent shapes with Apple's Preview.app
+*  Improvements to smart zoom - text block choose method is now smarter.
+*  viewLock no longer locks the HUD (just the view state)
+*  Improves animation for the Table of Contents controller cells.
+*  Setting the pageRange now automatically invalidates the current document.
+*  PSPDFTabbedViewController has become more modular with the new superclass PSPDFMultiDocumentViewController.
+*  Fixes a rare crash when using the drawing tool very quickly with only one resulting draw point.
+*  Fixes a rendering issue with images added from the camera in pageCurl mode.
+*  Fixes an issue where the scrobble bar could be displayed even though it's disabled.
+*  Fixes a regression in the appearance stream generator.
+*  Fixes a regression with updating the bookmark bar button status when the toolbar is transparent.
+*  Titanium: Fixes toolbar detection for annotation toolbar.
+
 __v2.8.5 - 16/February/2013__
 
 *  Fixes a text glyph frame calculation bug when a font contains both a unicode map and an encoding array.

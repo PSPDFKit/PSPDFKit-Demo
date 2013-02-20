@@ -13,9 +13,11 @@ typedef NS_ENUM(NSInteger, PSPDFShapeAnnotationType) {
     PSPDFShapeAnnotationCircle
 };
 
-///
+// Controls if an AP stream should be generated for Shape annotations.
+// Enabled by default. Add this with @NO to the renderingOptions dict in PSPDFDocument to override.
+extern NSString *const kPSPDFGenerateAPForShape;
+
 /// PDF Shape Annotation.
-///
 @interface PSPDFShapeAnnotation : PSPDFAnnotation
 
 /// Initialize annotation with a shape type. Designated initializer.
