@@ -27,7 +27,6 @@
 		784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012D15CF247900849F81 /* PSCAppDelegate.m */; };
 		78525B2C15CF295E00854F49 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78525B2515CF295E00854F49 /* PSPDFKit.framework */; };
 		78525B2D15CF295E00854F49 /* ACKNOWLEDGEMENTS in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2715CF295E00854F49 /* ACKNOWLEDGEMENTS */; };
-		78525B2E15CF295E00854F49 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2815CF295E00854F49 /* LICENSE */; };
 		78525B2F15CF295E00854F49 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2915CF295E00854F49 /* PSPDFKit.bundle */; };
 		78525B3115CF295E00854F49 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 78525B2B15CF295E00854F49 /* VERSION */; };
 		785B160416692BA100F747B8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B15F616692BA100F747B8 /* DropboxSDK.framework */; };
@@ -58,7 +57,6 @@
 		7870EEDF16D5312800D3D4CC /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7870EEDA16D5312700D3D4CC /* HockeySDK.framework */; };
 		7870EEE016D5312800D3D4CC /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDC16D5312800D3D4CC /* HockeySDK.xcconfig */; };
 		7870EEE116D5312800D3D4CC /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDD16D5312800D3D4CC /* HockeySDKResources.bundle */; };
-		7870EEE216D5312800D3D4CC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDE16D5312800D3D4CC /* LICENSE */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
@@ -958,7 +956,6 @@
 			files = (
 				784F012815CF247900849F81 /* InfoPlist.strings in Resources */,
 				78525B2D15CF295E00854F49 /* ACKNOWLEDGEMENTS in Resources */,
-				78525B2E15CF295E00854F49 /* LICENSE in Resources */,
 				78525B2F15CF295E00854F49 /* PSPDFKit.bundle in Resources */,
 				78525B3115CF295E00854F49 /* VERSION in Resources */,
 				78A24A8D15CFDAD000328F4F /* balloon.png in Resources */,
@@ -1008,7 +1005,6 @@
 				78604CB416C51114003CB721 /* RotationUnlocked@2x.png in Resources */,
 				7870EEE016D5312800D3D4CC /* HockeySDK.xcconfig in Resources */,
 				7870EEE116D5312800D3D4CC /* HockeySDKResources.bundle in Resources */,
-				7870EEE216D5312800D3D4CC /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
