@@ -16,7 +16,6 @@
 		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */; };
-		781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC77915CF2F180030C730 /* libHockeySDK.a */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */; };
@@ -56,6 +55,10 @@
 		78604CB916C51129003CB721 /* PSCRotationLockBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */; };
 		786B5FCD1625AB73009CE5F7 /* PSCFullTextSearchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */; };
 		786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */; };
+		7870EEDF16D5312800D3D4CC /* HockeySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7870EEDA16D5312700D3D4CC /* HockeySDK.framework */; };
+		7870EEE016D5312800D3D4CC /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDC16D5312800D3D4CC /* HockeySDK.xcconfig */; };
+		7870EEE116D5312800D3D4CC /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDD16D5312800D3D4CC /* HockeySDKResources.bundle */; };
+		7870EEE216D5312800D3D4CC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7870EEDE16D5312800D3D4CC /* LICENSE */; };
 		78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78753588161F740300119B8E /* PSCAutoScrollViewController.m */; };
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
@@ -146,44 +149,11 @@
 		78DDC75815CF2EFF0030C730 /* LocalyticsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC71C15CF2EFF0030C730 /* LocalyticsSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78DDC75915CF2EFF0030C730 /* LocalyticsUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC71E15CF2EFF0030C730 /* LocalyticsUploader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		78DDC75B15CF2EFF0030C730 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC72315CF2EFF0030C730 /* SDURLCache.m */; };
-		78DDC78315CF2F1E0030C730 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC78215CF2F1E0030C730 /* CrashReporter.framework */; };
-		78DDC78915CF30C30030C730 /* HockeySDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */; };
 		78E306BC1601C4850051AF68 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78E306BB1601C4850051AF68 /* Default-568h@2x.png */; };
 		78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		78DDC77815CF2F180030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1E59544115B6C3DC00A03429;
-			remoteInfo = HockeySDK;
-		};
-		78DDC78015CF2F180030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1E59550A15B6F45800A03429;
-			remoteInfo = HockeySDKResources;
-		};
-		78DDC78415CF30B20030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E5954CB15B6F24A00A03429;
-			remoteInfo = HockeySDKLib;
-		};
-		78DDC78615CF30B50030C730 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1E59550915B6F45800A03429;
-			remoteInfo = HockeySDKResources;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDDelayedDocumentViewController.h; sourceTree = "<group>"; };
@@ -263,6 +233,10 @@
 		786B5FCC1625AB73009CE5F7 /* PSCFullTextSearchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFullTextSearchOperation.m; sourceTree = "<group>"; };
 		786E92C0163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomAnnotationProvider.m; sourceTree = "<group>"; };
 		786E92C1163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomAnnotationProvider.h; sourceTree = "<group>"; };
+		7870EEDA16D5312700D3D4CC /* HockeySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HockeySDK.framework; sourceTree = "<group>"; };
+		7870EEDC16D5312800D3D4CC /* HockeySDK.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = HockeySDK.xcconfig; sourceTree = "<group>"; };
+		7870EEDD16D5312800D3D4CC /* HockeySDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = HockeySDKResources.bundle; sourceTree = "<group>"; };
+		7870EEDE16D5312800D3D4CC /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		78753587161F740300119B8E /* PSCAutoScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAutoScrollViewController.h; sourceTree = "<group>"; };
 		78753588161F740300119B8E /* PSCAutoScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAutoScrollViewController.m; sourceTree = "<group>"; };
 		78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTimingTestViewController.m; sourceTree = "<group>"; };
@@ -412,8 +386,6 @@
 		78DDC71F15CF2EFF0030C730 /* WebserviceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceConstants.h; sourceTree = "<group>"; };
 		78DDC72215CF2EFF0030C730 /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
 		78DDC72315CF2EFF0030C730 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
-		78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HockeySDK.xcodeproj; path = Support/HockeySDK.xcodeproj; sourceTree = "<group>"; };
-		78DDC78215CF2F1E0030C730 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Vendor/CrashReporter.framework; sourceTree = "<group>"; };
 		78E306BB1601C4850051AF68 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		78E543FD164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomBookmarkBarButtonItem.h; sourceTree = "<group>"; };
 		78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomBookmarkBarButtonItem.m; sourceTree = "<group>"; };
@@ -429,7 +401,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				785B160F16692BB900F747B8 /* Security.framework in Frameworks */,
-				781F36D11663BEA500079B38 /* libHockeySDK.a in Frameworks */,
 				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */,
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
@@ -437,8 +408,8 @@
 				784F012015CF247900849F81 /* Foundation.framework in Frameworks */,
 				784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */,
 				78525B2C15CF295E00854F49 /* PSPDFKit.framework in Frameworks */,
-				78DDC78315CF2F1E0030C730 /* CrashReporter.framework in Frameworks */,
 				785B160416692BA100F747B8 /* DropboxSDK.framework in Frameworks */,
+				7870EEDF16D5312800D3D4CC /* HockeySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +576,25 @@
 				78604C9416C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m */,
 			);
 			path = BarButtonItems;
+			sourceTree = "<group>";
+		};
+		7870EED916D5312700D3D4CC /* HockeySDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				7870EEDA16D5312700D3D4CC /* HockeySDK.framework */,
+				7870EEDB16D5312700D3D4CC /* Resources */,
+			);
+			path = HockeySDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		7870EEDB16D5312700D3D4CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7870EEDC16D5312800D3D4CC /* HockeySDK.xcconfig */,
+				7870EEDD16D5312800D3D4CC /* HockeySDKResources.bundle */,
+				7870EEDE16D5312800D3D4CC /* LICENSE */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		78A24A1115CFDAAF00328F4F /* TabbedExample */ = {
@@ -831,10 +821,10 @@
 		78DDC6B015CF2EFF0030C730 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				7870EED916D5312700D3D4CC /* HockeySDK.embeddedframework */,
 				785B15F516692BA100F747B8 /* GSDropboxActivity */,
 				78DDC6B115CF2EFF0030C730 /* AFDownloadRequestOperation */,
 				78DDC6B515CF2EFF0030C730 /* AFNetworking */,
-				78DDC6CA15CF2EFF0030C730 /* HockeySDK-iOS */,
 				78DDC71715CF2EFF0030C730 /* Localytics */,
 				78DDC72015CF2EFF0030C730 /* SDURLCache */,
 				78D2CB1416A5F83800899C4A /* RNCryptor */,
@@ -878,15 +868,6 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
-		78DDC6CA15CF2EFF0030C730 /* HockeySDK-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */,
-				78DDC78215CF2F1E0030C730 /* CrashReporter.framework */,
-			);
-			path = "HockeySDK-iOS";
-			sourceTree = "<group>";
-		};
 		78DDC71715CF2EFF0030C730 /* Localytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -910,15 +891,6 @@
 			path = SDURLCache;
 			sourceTree = "<group>";
 		};
-		78DDC76D15CF2F180030C730 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78DDC77915CF2F180030C730 /* libHockeySDK.a */,
-				78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -933,8 +905,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				78DDC78715CF30B50030C730 /* PBXTargetDependency */,
-				78DDC78515CF30B20030C730 /* PBXTargetDependency */,
 			);
 			name = PSPDFCatalog;
 			productName = PSPDFCatalog;
@@ -974,12 +944,6 @@
 			mainGroup = 784F010E15CF247900849F81;
 			productRefGroup = 784F011A15CF247900849F81 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 78DDC76D15CF2F180030C730 /* Products */;
-					ProjectRef = 78DDC76C15CF2F180030C730 /* HockeySDK.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				784F011815CF247900849F81 /* PSPDFCatalog */,
@@ -987,29 +951,11 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		78DDC77915CF2F180030C730 /* libHockeySDK.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libHockeySDK.a;
-			remoteRef = 78DDC77815CF2F180030C730 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		78DDC78115CF2F180030C730 /* HockeySDKResources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = HockeySDKResources.bundle;
-			remoteRef = 78DDC78015CF2F180030C730 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		784F011715CF247900849F81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78DDC78915CF30C30030C730 /* HockeySDKResources.bundle in Resources */,
 				784F012815CF247900849F81 /* InfoPlist.strings in Resources */,
 				78525B2D15CF295E00854F49 /* ACKNOWLEDGEMENTS in Resources */,
 				78525B2E15CF295E00854F49 /* LICENSE in Resources */,
@@ -1060,6 +1006,9 @@
 				78604CB216C51114003CB721 /* RotationLocked@2x.png in Resources */,
 				78604CB316C51114003CB721 /* RotationUnlocked.png in Resources */,
 				78604CB416C51114003CB721 /* RotationUnlocked@2x.png in Resources */,
+				7870EEE016D5312800D3D4CC /* HockeySDK.xcconfig in Resources */,
+				7870EEE116D5312800D3D4CC /* HockeySDKResources.bundle in Resources */,
+				7870EEE216D5312800D3D4CC /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1158,19 +1107,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		78DDC78515CF30B20030C730 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HockeySDKLib;
-			targetProxy = 78DDC78415CF30B20030C730 /* PBXContainerItemProxy */;
-		};
-		78DDC78715CF30B50030C730 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = HockeySDKResources;
-			targetProxy = 78DDC78615CF30B50030C730 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		784F012615CF247900849F81 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -1261,6 +1197,7 @@
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
+					"\"$(SRCROOT)/PSPDFCatalog/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
@@ -1280,6 +1217,7 @@
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
+					"\"$(SRCROOT)/PSPDFCatalog/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
