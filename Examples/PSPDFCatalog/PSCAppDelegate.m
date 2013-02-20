@@ -7,7 +7,7 @@
 
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
-#import "HockeySDK.h"
+#import <HockeySDK/HockeySDK.h>
 #import "LocalyticsSession.h"
 #import <DropboxSDK/DropboxSDK.h>
 
