@@ -373,7 +373,7 @@ const char kPSCAlertViewKey;
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
-
+        
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
@@ -872,15 +872,16 @@ const char kPSCAlertViewKey;
         NSUInteger targetPage = 0;
         if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeShape] count] == 0) {
             PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
-            annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100, 100);
+            annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedPageRect, 100, 100);
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
-            annotation.alpha = 0.3f;
+            annotation.alpha = 0.5f;
             [document addAnnotations:@[annotation] forPage:targetPage];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.textSelectionEnabled = NO;
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.openInButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
 
@@ -1311,6 +1312,11 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test that Fullscren Audio doesn't flicker" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Lifescribe.pdf"]];
+        return [[PSPDFViewController alloc] initWithDocument:document];
+    }]];
+
     // Check that this doesn't auto-play, especially not on iOS5.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Video No-Autoplay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia-autostart-ios5.pdf"]];
@@ -1352,6 +1358,30 @@ const char kPSCAlertViewKey;
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
+        return pdfController;
+    }]];
+
+    // Test that the green shape is properly displayed in Adobe Acrobat for iOS.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Shape annotation AP test." block:^UIViewController *{
+        // Copy file from the bundle to a location where we can write on it.
+        NSURL *newURL = [self copyFileURLToDocumentFolder:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample] overrideFile:NO];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
+        // Add the annotation
+        PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
+        annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100, 100);
+        annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
+        annotation.fillColor = annotation.color;
+        annotation.alpha = 0.5f;
+        [document addAnnotations:@[annotation] forPage:0];
+        // Save it
+        NSError *error = nil;
+        if (![document saveChangedAnnotationsWithError:&error]) {
+            NSLog(@"Failed to save: %@", [error localizedDescription]);
+        }
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.openInButtonItem.openOptions = PSPDFOpenInOptionsOriginal;
+        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem];
         return pdfController;
     }]];
 
