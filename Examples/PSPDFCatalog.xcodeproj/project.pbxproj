@@ -108,6 +108,9 @@
 		78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A24AB015CFDB6800328F4F /* MapKit.framework */; };
 		78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A24AB215CFDB6D00328F4F /* CoreLocation.framework */; };
 		78A3815F15DABFEB003850E8 /* PSCustomTextSelectionMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A3815E15DABFEB003850E8 /* PSCustomTextSelectionMenuController.m */; };
+		78A50BCB16D67555003EFFC0 /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A50BC916D67555003EFFC0 /* closebox.png */; };
+		78A50BCC16D67555003EFFC0 /* closebox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78A50BCA16D67555003EFFC0 /* closebox@2x.png */; };
+		78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */; };
 		78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */; };
 		78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */; };
 		78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */; };
@@ -308,6 +311,10 @@
 		78A24AB215CFDB6D00328F4F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		78A3815D15DABFEB003850E8 /* PSCustomTextSelectionMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCustomTextSelectionMenuController.h; sourceTree = "<group>"; };
 		78A3815E15DABFEB003850E8 /* PSCustomTextSelectionMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCustomTextSelectionMenuController.m; sourceTree = "<group>"; };
+		78A50BC916D67555003EFFC0 /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
+		78A50BCA16D67555003EFFC0 /* closebox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closebox@2x.png"; sourceTree = "<group>"; };
+		78A50BCD16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomDefaultZoomScaleViewController.h; sourceTree = "<group>"; };
+		78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomDefaultZoomScaleViewController.m; sourceTree = "<group>"; };
 		78A8EE5A15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCEmbeddedAnnotationTestViewController.h; sourceTree = "<group>"; };
 		78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCEmbeddedAnnotationTestViewController.m; sourceTree = "<group>"; };
 		78AAC6EF15D1760E009B53C6 /* PSCBookmarkParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookmarkParser.h; sourceTree = "<group>"; };
@@ -664,6 +671,8 @@
 				78604CAF16C51114003CB721 /* RotationUnlocked.png */,
 				78604CB016C51114003CB721 /* RotationUnlocked@2x.png */,
 				78E306BB1601C4850051AF68 /* Default-568h@2x.png */,
+				78A50BC916D67555003EFFC0 /* closebox.png */,
+				78A50BCA16D67555003EFFC0 /* closebox@2x.png */,
 				78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */,
 				78BCC69815D31BF2006735A9 /* exampleimage.jpg */,
 				78BCC69915D31BF2006735A9 /* NightOwl.m4a */,
@@ -731,6 +740,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				78A50BCD16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.h */,
+				78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */,
 				780C820516B85C44009396AF /* PSCHeadlessSearchPDFViewController.h */,
 				780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */,
 				781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */,
@@ -1005,6 +1016,8 @@
 				78604CB416C51114003CB721 /* RotationUnlocked@2x.png in Resources */,
 				7870EEE016D5312800D3D4CC /* HockeySDK.xcconfig in Resources */,
 				7870EEE116D5312800D3D4CC /* HockeySDKResources.bundle in Resources */,
+				78A50BCB16D67555003EFFC0 /* closebox.png in Resources */,
+				78A50BCC16D67555003EFFC0 /* closebox@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1098,6 +1111,7 @@
 				78C7C5E216CB9C4D0006075D /* PSCSplitPDFViewController.m in Sources */,
 				78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */,
 				6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */,
+				78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
