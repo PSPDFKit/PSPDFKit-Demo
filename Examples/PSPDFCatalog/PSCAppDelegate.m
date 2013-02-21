@@ -59,7 +59,8 @@
 #else
     // Create catalog controller
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    self.catalog = [[UINavigationController alloc] initWithRootViewController:catalogController];
+    // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
+    self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
 #endif
     self.window.rootViewController = self.catalog;
     [self.window makeKeyAndVisible];
