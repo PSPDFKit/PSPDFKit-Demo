@@ -46,6 +46,7 @@
 #import "PSCCustomThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
 #import "PSCHideHUDDelayedDocumentViewController.h"
+#import "PSCCustomDefaultZoomScaleViewController.h"
 #import "PSCFontCacheTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
@@ -103,8 +104,8 @@ const char kPSCAlertViewKey;
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"X.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Mordor.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -1043,8 +1044,23 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-    [content addObject:subclassingSection];
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Set custom default zoom level" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Marketing.pdf"]];
+        PSPDFViewController *pdfController = [[PSCCustomDefaultZoomScaleViewController alloc] initWithDocument:document];
+        [self presentViewController:pdfController animated:YES completion:NULL];
+        return nil;
+    }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change font of the note controller" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        [PSPDFNoteAnnotationController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationController *noteController) {
+            noteController.textView.font = [UIFont fontWithName:@"Helvetica" size:20];
+        }];
+        return pdfController;
+    }]];
+
+    [content addObject:subclassingSection];
 
 
 
