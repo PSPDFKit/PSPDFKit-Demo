@@ -23,7 +23,13 @@
 /// @warning Don't change this while isShowingKeyboard is YES, else 
 @property (nonatomic, assign) BOOL enableKeyboardAvoidance;
 
-// Helper to resign first responder if the view is within the scrollView.
+/// Helper to resign first responder if the view is within the scrollView.
 - (BOOL)resignFirstResponderIfInsideView;
+
+/// Block will be called when the keyboard gets visible.
+@property (nonatomic, copy) void(^keyboardWillShowBlock)(PSPDFKeyboardAvoidingScrollView *, NSNotification *);
+
+/// Block will be called when the keyboard gets invisible.
+@property (nonatomic, copy) void(^keyboardWillHideBlock)(PSPDFKeyboardAvoidingScrollView *, NSNotification *);
 
 @end

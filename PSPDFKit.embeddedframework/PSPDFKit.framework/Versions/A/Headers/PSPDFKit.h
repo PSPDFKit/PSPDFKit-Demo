@@ -127,6 +127,8 @@
 #import "PSPDFColorButton.h"
 #import "PSPDFColorSelectionViewController.h"
 #import "PSPDFHSVColorPickerController.h"
+#import "PSPDFNavigationController.h"
+#import "PSPDFNoteAnnotationController.h"
 
 // categories
 #import "UIImage+PSPDFKitAdditions.h"
