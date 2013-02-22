@@ -283,6 +283,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Tap on begin/end of page scrolls to previous/next page. Defaults to YES.
 @property (nonatomic, assign, getter=isScrollOnTapPageEndEnabled) BOOL scrollOnTapPageEndEnabled;
 
+/// Page transition to next/prev page via scrollOnTapPageEndEnabled is enabled. Defaults to YES.
+/// @warning Only effective if scrollOnTapPageEndEnabled is set to YES.
+@property (nonatomic, assign, getter=isScrollOnTapPageEndAnimationEnabled) BOOL scrollOnTapPageEndAnimationEnabled;
+
 /// Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.
 @property (nonatomic, assign) CGFloat scrollOnTapPageEndMargin;
 
@@ -306,6 +310,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Set this to true to allow this controller to access the parent navigationBar/navigationController to add custom buttons.
 /// Has no effect if toolbarEnabled is false or there's no parentViewController. Defaults to NO.
 @property (nonatomic, assign) BOOL useParentNavigationBar;
+
+/// If YES, the navigation bar state before pushing this controller is captured and subsequently restored in viewWillDisappear.
+/// Set to NO to not restore the style. Defaults to YES.
+@property (nonatomic, assign) BOOL shouldRestoreNavigationBarStyle;
 
 /// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
 /// Note: if modal is set in the link, this property has no effect.
@@ -403,15 +411,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /**
  Defines the page transition.
 
- If you change the property dynamically depending on the screen orientation, don't use
- willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation,
- else the controller will get in an invalid state.
-
- Note that childViewControllers get rotation events AFTER the parent view controller,
- so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet,
- and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ ... }); to set.
- 
- You might just want to override updateSettingsForRotation: and set your properties there.
+ @warning If you change the property dynamically depending on the screen orientation, don't use willRotateToInterfaceOrientation but didRotateFromInterfaceOrientation, else the controller will get in an invalid state. ChildViewControllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a dispatch_async(dispatch_get_main_queue(), ^{ ... }); to set. You might just want to override updateSettingsForRotation: and set your properties there.
 */
 @property (nonatomic, assign) PSPDFPageTransition pageTransition;
 
@@ -442,6 +442,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) BOOL clipToPageBoundaries;
 
 /// Minimum zoom scale. Defaults to 1. You usually don't want to change this.
+/// @warning This might break certain pageTransitions if not set to 1.
 @property (nonatomic, assign) float minimumZoomScale;
 
 /// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.

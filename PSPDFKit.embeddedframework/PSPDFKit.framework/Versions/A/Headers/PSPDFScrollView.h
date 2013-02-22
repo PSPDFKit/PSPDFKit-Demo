@@ -141,6 +141,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 // Call to manually re-center the content.
 - (void)ensureContentIsCentered;
 
+// Update zoomScale from the values set in pdfController
+- (void)updateAllowedZoomScale;
+
 // Return the actual PSPDFPageView behind point.
 - (PSPDFPageView *)pageViewForPoint:(CGPoint)point;
 

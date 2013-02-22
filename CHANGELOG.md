@@ -2,6 +2,17 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.8.7 - 22/February/2013__
+
+*  Improved scrollview centering. Now allows to pan while bounce-zoomed out.
+*  PSPDFMultiDocumentController now can advance to next/prev document with tapping at the last page of the current one.
+*  Slightly increases the smart zoom border on iPad.
+*  New helper in PSPDFNoteAnnotationController to allow easy customization: setTextViewCustomizationBlock.
+*  New property in PSPDFViewController: scrollOnTapPageEndAnimationEnabled.
+*  New property in PSPDFViewController: shouldRestoreNavigationBarStyle (via Dropbox request)
+*  Fixes a rare scroll view locking issues that was triggered by an UIKit bug.
+*  Fixes an off-by-one error in PSPDFOutlineParser's resolveDestinationNameForOutlineElement.
+
 __v2.8.6 - 20/February/2013__
 
 *  PSPDFShapeAnnotation now creates appearance stream data. This is needed to work around a bug in Adobe Acrobat for iOS. This behavior can be disabled with setting kPSPDFGenerateAPForShape to @NO in renderingOptions of PSPDFDocument. As a side effect, this also improves display of transparent shapes with Apple's Preview.app
