@@ -43,7 +43,7 @@
 - (void)updateBarButtonItem {
     // it's quite tricky to get the height right.
     CGRect toolbarFrame = _toolbar.frame;
-    toolbarFrame.size.height = (PSIsIpad() || UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) ? 44 : 32;
+    toolbarFrame.size.height = (PSIsIpad() || UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation)) ? 44 : 32;
     _toolbar.frame = toolbarFrame;
 }
 

@@ -72,7 +72,7 @@
  - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
  
- self.pageCurlEnabled = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation);
+ self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation);
  }*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////

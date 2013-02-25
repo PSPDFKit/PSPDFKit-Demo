@@ -194,8 +194,8 @@
     [UIView animateWithDuration:0.25f animations:^{
         self.navigationController.navigationBar.alpha = 1.f;
     }];
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     _shadowView.shadowEnabled = YES;
 
     // If navigationBar is offset, we're fixing that.
@@ -247,7 +247,7 @@
             CGRect absoluteCellRect = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0]].frame;
             CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
 
-            self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)];
+            self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
 
             // Update image for a nicer animation (get the correct page)
             UIImage *coverImage = [self imageForMagazine:self.lastOpenedMagazine];
@@ -328,8 +328,8 @@
     // compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarSmartBlackHideOnIpad
     BOOL iPadFadesOutStatusBar = YES;
     if (!PSIsIpad() || iPadFadesOutStatusBar) {
-        CGRect statusBarFrame = [[UIApplication sharedApplication] statusBarFrame];
-        BOOL isPortrait = UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation);
+        CGRect statusBarFrame = [UIApplication.sharedApplication statusBarFrame];
+        BOOL isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation);
         CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
         newFrame.origin.y -= statusBarHeight;
         newFrame.size.height += statusBarHeight;
@@ -384,7 +384,7 @@
 
         // add a smooth status bar transition on the iPhone
         if (!PSIsIpad()) {
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
         }
 
         // if we have a different page, fade to that page.

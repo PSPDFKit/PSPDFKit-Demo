@@ -442,8 +442,8 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (PSPDFViewController *)currentPDFController {
     PSPDFViewController *pdfController = nil;
-    if ([[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController] isKindOfClass:[PSPDFViewController class]]) {
-        pdfController = (PSPDFViewController *)[(UINavigationController *)[[UIApplication sharedApplication] keyWindow].rootViewController topViewController];
+    if ([[(UINavigationController *)[UIApplication.sharedApplication keyWindow].rootViewController topViewController] isKindOfClass:[PSPDFViewController class]]) {
+        pdfController = (PSPDFViewController *)[(UINavigationController *)[UIApplication.sharedApplication keyWindow].rootViewController topViewController];
     }
     return pdfController;
 }
