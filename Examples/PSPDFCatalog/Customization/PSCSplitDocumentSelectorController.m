@@ -36,7 +36,7 @@
     UIWindow *window = self.view.window;
     // ensure popover is dismissed or we'll crash
     [self.masterVC.masterPopoverController dismissPopoverAnimated:NO];
-    window.rootViewController = ((PSCAppDelegate *)[UIApplication sharedApplication].delegate).catalog;
+    window.rootViewController = ((PSCAppDelegate *)UIApplication.sharedApplication.delegate).catalog;
 }
 
 // tests fast cycling through the pdf elements

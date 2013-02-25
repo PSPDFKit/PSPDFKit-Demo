@@ -260,7 +260,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedCache].thumbnailSize];
         }
 
-        [[UIApplication sharedApplication] setNewsstandIconImage:newsstandCoverImage];
+        [UIApplication.sharedApplication setNewsstandIconImage:newsstandCoverImage];
 
         // update user defaults
         if (magazine.UID) {
