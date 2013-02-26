@@ -87,6 +87,9 @@ const char kPSCAlertViewKey;
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:style])) {
         self.title = PSPDFLocalize(@"PSPDFKit Catalog");
+        if (PSIsIpad()) {
+            self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
+        }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
     }
@@ -222,7 +225,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.rightBarButtonItems = @[controller.searchButtonItem, controller.viewModeButtonItem];
-        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem, controller.printButtonItem];
         return controller;
     }]];
 
@@ -1702,7 +1705,6 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
-
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFProcessor PPTX (Microsoft Office) conversion" block:^UIViewController *{
         NSURL *URL = [NSURL fileURLWithPath:@"/Users/steipete/Documents/Projects/PSPDFKit_meta/converts/Neu_03_VZ3_Introduction.pptx"];
         NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
@@ -1731,7 +1733,6 @@ const char kPSCAlertViewKey;
 
     PSCSectionDescriptor *delegateSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Delegate" footer:!PSIsIpad() ? PSPDFVersionString() : @""];
     [delegateSection addContent:[[PSContent alloc] initWithTitle:@"Custom drawing" block:^UIViewController *{
-
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         document.title = @"Custom drawing";
         PSPDFViewController *pdfController = [[PSCCustomDrawingViewController alloc] initWithDocument:document];
@@ -1818,9 +1819,6 @@ const char kPSCAlertViewKey;
             }
         }
     }
-
-    // Cache the keyboard. (optional; makes search much more reactive)
-    //dispatch_async(dispatch_get_main_queue(), ^{PSPDFCacheKeyboard();});
 }
 
 // Support for iOS5. iOS6 does this differently and also correct by default.
