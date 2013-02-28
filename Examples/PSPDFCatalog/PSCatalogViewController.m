@@ -224,8 +224,8 @@ const char kPSCAlertViewKey;
         NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.viewModeButtonItem];
-        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem, controller.printButtonItem];
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.printButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
+        controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
 
