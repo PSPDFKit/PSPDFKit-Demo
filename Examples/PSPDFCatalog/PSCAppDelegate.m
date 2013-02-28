@@ -43,7 +43,9 @@
     });
 
     // Change log level to be more verbose.
-    //kPSPDFLogLevel = PSPDFLogLevelInfo;
+#ifdef DEBUG
+    kPSPDFLogLevel = PSPDFLogLevelInfo;
+#endif
 
     // Enable if you're having memory issues.
     //kPSPDFLowMemoryMode = YES;
