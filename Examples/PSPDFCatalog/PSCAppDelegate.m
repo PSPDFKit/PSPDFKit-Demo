@@ -79,6 +79,7 @@
 
         // HockeyApp (http://hockeyapp.net) is a *great* service to manage crashes. It's well worth the money.
 #if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE)
+        NSLog(@"This example project uses HockeyApp for crash reports and Localytics for user statistics. Make sure to either remove that or change the identifiers before shipping your app, if you use PSPDFCatalog/PSPDFKiosk as the foundation of your application.");
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
         [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
