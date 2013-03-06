@@ -127,9 +127,4 @@
     }
 }
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
-    NSLog(@"didTapOnPageView: %d coordinates: %@", pageView.page, pageCoordinates);
-    return NO;
-}
-
 @end
