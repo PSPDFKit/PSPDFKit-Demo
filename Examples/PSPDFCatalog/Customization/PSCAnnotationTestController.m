@@ -113,14 +113,6 @@
     NSLog(@"willUnloadPageView: page:%d", pageView.page);
 }
 
-/// if user tapped within page bounds, this will notify you.
-/// return YES if this touch was processed by you and need no further checking by PSPDFKit.
-/// Note that PSPDFPageInfo may has only page=1 if the optimization isAspectRatioEqual is enabled.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView info:(PSPDFPageInfo *)pageInfo coordinates:(PSPDFPageCoordinates *)pageCoordinates {
-    NSLog(@"didTapOnPageView: page:%d", pageView.page);
-    return NO;
-}
-
 - (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
     
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
