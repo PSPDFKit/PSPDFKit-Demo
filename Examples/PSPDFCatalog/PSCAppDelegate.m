@@ -22,7 +22,6 @@
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
 
-
     // Example how to localize strings in PSPDFKit.
     // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
     // You can also replace the strings in the PSPDFKit.bundle, but then make sure you merge your changes anytime the bundle is updated.
@@ -45,6 +44,9 @@
     // Change log level to be more verbose.
 #ifdef DEBUG
     kPSPDFLogLevel = PSPDFLogLevelInfo;
+
+    // Clear cache, better debugging
+    //[PSPDFCache.sharedCache clearCache];
 #endif
 
     // Enable if you're having memory issues.
