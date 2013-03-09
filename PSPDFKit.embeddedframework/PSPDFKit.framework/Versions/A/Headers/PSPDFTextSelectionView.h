@@ -53,9 +53,6 @@
 
 @interface PSPDFTextSelectionView (SubclassingHooks)
 
-/// Loupe View for text selection.
-@property (nonatomic, strong) PSPDFLoupeView *loupeView;
-
 // Returns the menu items for selected text. Can be customized here or in the shouldShowMenu: delegate.
 - (NSArray *)menuItemsForTextSelection:(NSString *)selectedText;
 

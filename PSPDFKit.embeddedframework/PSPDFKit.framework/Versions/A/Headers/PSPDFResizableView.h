@@ -10,9 +10,7 @@
 
 @class PSPDFResizableView;
 
-///
 /// Delegate to be notified on session begin/end and frame changes.
-///
 @protocol PSPDFResizableViewDelegate <NSObject>
 
 @optional
@@ -51,9 +49,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
     PSPDFSelectionBorderKnobTypeBottomRight
 };
 
-///
 /// Handles view selection with resize knobs.
-///
 @interface PSPDFResizableView : UIView <PSPDFLongPressGestureRecognizerDelegate>
 
 /// Designated initializer.

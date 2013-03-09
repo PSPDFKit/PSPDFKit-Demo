@@ -19,16 +19,19 @@ typedef NS_OPTIONS(NSUInteger, PSPDFOpenInOptions) {
 /// Defaults to NO.
 extern BOOL kPSPDFCheckIfCompatibleAppsAreInstalled;
 
-/**
- Open in is only possible if the PSPDFDocument is backed by exactly one file-based PDF.
- Before sending it to another application, annotations will be saved.
- */
+/// Open in is only possible if the PSPDFDocument is backed by exactly one file-based PDF.
+/// Before sending the file to another application, annotations will be saved.
 @interface PSPDFOpenInBarButtonItem : PSPDFBarButtonItem <UIDocumentInteractionControllerDelegate>
 
 /// Allow content-processing to merge multiple PDF pages into one PDF, and allow saving of NSData-based documents to a temp directory?
 /// If set to NO, Open In will only work if the document consists of exactly one fileURL (no data, no dataProvider)
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL allowFileMergingAndTempFiles;
+
+/// Shows the print action along with the application list. Defaults to NO.
+/// @warning If this is enabled, UIDocumentInteractionController will also show a "Mail" option.
+/// This will call presentOptionsMenuFromRect (or variations) if enabled, else presentOpenInMenuFromRect:.
+@property (nonatomic, assign) BOOL showPrintAction;
 
 /// Defines what we are sending. If more than one option is set, user will get a dialog to choose.
 /// Defaults to PSPDFOpenInOptionsOriginal | PSPDFOpenInOptionsFlattenAnnotations.

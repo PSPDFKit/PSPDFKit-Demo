@@ -37,9 +37,9 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @end
 
 /// PSPDFCache is an intelligent cache that pre-renders pdf pages based on a queue.
-/// Various image sizes and formats are supported. The system is designed to take as much memory
-/// as there's available, and free most of it on a memory warning event.
+/// Various image sizes and formats are supported. The system is designed to take as much memory as available, and free most of it on a memory warning event.
 /// You can manually call clearCache to remove all temporary files and clear the memory caches.
+/// There is no size limit on the cache. iOS will automatically clean all cached files once disk memory is low (when the app isn't active).
 @interface PSPDFCache : NSObject <NSCacheDelegate> 
 
 /// The cache is a singleton.
@@ -63,18 +63,12 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Creates image and will add that to the cache.
 - (UIImage *)renderAndCacheImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size error:(NSError **)error;
 
-// TODO was used in tiling view
-/// save native rendered image, then call delegate.
-//- (void)saveNativeRenderedImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page;
-
 /// Start document caching (update often to improve cache hits). Page starts at 0.
 - (void)cacheDocument:(PSPDFDocument *)aDocument startAtPage:(NSUInteger)startPage size:(PSPDFSize)size;
 
 /// Creates caches for both thumbnails and tiny images.
 ///
-/// Preloading the cache for PSPDFSizeNative would not be efficient. These images tend to become large in data size,
-/// which would in turn trigger the OS’ cache cleaning sooner.
-///
+/// Preloading the cache for PSPDFSizeNative would not be efficient. These images tend to become large in data size, which would in turn trigger the OS’ cache cleaning sooner.
 /// Note that PSPDFViewController will cache images in PSPDFSizeNative.
 ///
 /// Returns whether or not any preloading has to be done.
@@ -93,8 +87,7 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 
 /// Resumes caching, removes the specific service from the blocker list.
 /// Throws an exception if the service is invalid/not registered.
-/// Returns YES if the service continues running.
-/// Thread safe.
+/// Returns YES if the service continues running. Thread safe.
 - (BOOL)resumeCachingForService:(id)service;
 
 /// Clear cache for a specific document, optionally also deletes referenced document files. Operation is synchronous.
@@ -136,11 +129,11 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 @property (nonatomic, assign) CGInterpolationQuality downscaleInterpolationQuality;
 
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
-/// Defaults to CGSizeMake(200, 400).
+/// Defaults to (170, 220) on iPad and (85, 110) on iPhone.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
 /// The size of the images used in the scrobble bar.
-/// Defaults to CGSizeMake(50, 100).
+/// Defaults to CGSizeMake(50, 65).
 @property (nonatomic, assign) CGSize tinySize;
 
 /// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
@@ -158,6 +151,9 @@ typedef NS_ENUM(NSInteger, PSPDFSize) {
 /// Encrypt mutable data. PSPDFKit Annotate feature.
 /// If set to nil, the default implementation will be used.
 @property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data);
+
+/// Whether pages in the native size are generated in fit-to-width mode. Defaults to NO.
+@property (nonatomic, assign) BOOL nativePagesAreFitToWidth;
 
 @end
 

@@ -9,11 +9,9 @@
 #import "PSPDFViewController.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFPageCoordinates, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
+@class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
 
-///
 /// Implement this delegate in your UIViewController to get notified by PSPDFViewController events.
-///
 @protocol PSPDFViewControllerDelegate <NSObject>
 
 @optional
@@ -76,10 +74,6 @@
 
 /// Will be called after zoom level has been changed, either programmatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
-
-/// Callback for a render operation. Will be called on a thread (since rendering is async)
-/// You can use the context to add custom drawing.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Return a PSPDFDocument for a relative path.
 /// If this is unimplemented, we try to find the PDF ourselves with using the current document's basePath.

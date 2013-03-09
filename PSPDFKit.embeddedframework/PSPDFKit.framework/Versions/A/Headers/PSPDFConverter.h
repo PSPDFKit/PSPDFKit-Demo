@@ -57,7 +57,7 @@ extern CGFloat PSPDFScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize)
 /// Returns scale to fit a size within another size, with optional zooming.
 extern CGFloat PSPDFScaleForSizeWithinSizeWithOptions(CGSize targetSize, CGSize boundsSize, BOOL zoomMinimalSize, BOOL fitToWidthEnabled);
 
-/// helper to calculate new size for specific scale and size.
+/// Helper to calculate new size for specific scale and size.
 extern CGSize PSPDFSizeForScale(CGSize size, CGFloat scale);
 
 /// Helper that aligns rectangles depending on PSPDFRectAlignment. (usually used to center)

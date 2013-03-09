@@ -78,7 +78,7 @@
 /// @warning Only works if scrollOnTapPageEndMargin is set to YES in the pdfController.
 @property (nonatomic, assign) BOOL changeDocumentOnTapPageEndMargin;
 
-/// Whether to show only the first page of each document in thumbnail view mode, or all pages. Defaults to NO.
-@property (nonatomic, assign) BOOL firstPageOnly;
+/// Whether to show thumbnails only for the current document in thumbnail view mode, or for all documents. Defaults to YES.
+@property (nonatomic, assign) BOOL multiDocumentThumbnails;
 
 @end

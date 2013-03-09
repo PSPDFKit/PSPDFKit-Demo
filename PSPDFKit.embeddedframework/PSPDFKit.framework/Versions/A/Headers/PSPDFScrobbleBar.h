@@ -41,6 +41,9 @@
 /// Right border margin. Defaults to thumbnailMargin. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat rightBorderMargin;
 
+/// Taps left/right of the pages area (if there aren't enough pages to fill up space) by default count as first/last page. Defaults to YES.
+@property (nonatomic, assign) BOOL allowTapsOutsidePageArea;
+
 @end
 
 

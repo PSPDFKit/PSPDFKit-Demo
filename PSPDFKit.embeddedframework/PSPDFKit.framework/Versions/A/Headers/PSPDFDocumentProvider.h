@@ -76,7 +76,6 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 /// Iterate over all CGPDFPageRef pages. pageNumber starts at 1.
 - (void)iterateOverPageRef:(void(^)(PSPDFDocumentProvider *provider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger page))pageRefBlock;
 
-
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
@@ -97,14 +96,9 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 @property (nonatomic, assign, readonly) NSUInteger pageCountUnfiltered; // ignores pageRange
 @property (nonatomic, assign, readonly) NSUInteger firstPageIndex;      // first page, 0 if pageRange is not set.
 
-/**
- Limit pages to a certain page range.
-
- If document has a pageRange set, the visible pages can be limited to a certain subset.
- Defaults to nil.
-
- @warning Changing this will require a reloadData on the PSPDFViewController.
- */
+/// Limit pages to a certain page range. Defaults to nil.
+/// If document has a pageRange set, the visible pages can be limited to a certain subset.
+/// @warning Changing this will require a reloadData on the PSPDFViewController.
 @property (nonatomic, copy) NSIndexSet *pageRange;
 
 /// Translates the capped page to the real page.
@@ -145,6 +139,7 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
 
 /// Access the PDF metadata. (might be a slow operation)
+/// @warning Metadata is not guaranteed to be NSString. Check the type when acessing.
 @property (nonatomic, copy, readonly) NSDictionary *metadata;
 
 /// Return YES if metadata is already parsed.

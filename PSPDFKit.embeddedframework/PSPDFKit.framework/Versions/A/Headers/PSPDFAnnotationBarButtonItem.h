@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFBarButtonItem.h"
+#import "PSPDFAnnotationToolbar.h"
 
 @class PSPDFAnnotationToolbar;
 
@@ -22,13 +23,14 @@
  If not, PSPDFAnnotationBarButtonItem looks for the UIToolbar it is embedded in (you can override targetToolbarForBarButtonItem). The AnnotationToolbar will copy the style of the current UIToolbar. (barStyle, translucent, tintColor)
  If everything else fails, the toolbar will be displayed above the PSPDFViewController's view anchored at the top.
  */
-@interface PSPDFAnnotationBarButtonItem : PSPDFBarButtonItem
+@interface PSPDFAnnotationBarButtonItem : PSPDFBarButtonItem <PSPDFAnnotationToolbarDelegate>
 
 /// Non-async check for isAvailable.
 - (BOOL)isAvailableBlocking;
 
 /// Override if you are using multiple UIToolbars and want to change on what toolbar the annotation bar should be displayed.
-- (UIToolbar *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
+/// Returns UIToolbar or UINavigationBar.
+- (UIView *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 /// Internally used and displayed annotation toolbar.
 @property (nonatomic, strong, readonly) PSPDFAnnotationToolbar *annotationToolbar;

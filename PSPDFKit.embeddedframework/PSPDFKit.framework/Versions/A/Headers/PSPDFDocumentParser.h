@@ -55,7 +55,7 @@
 // Combines createAppearanceStreamDataWithRect and extractAppearanceStreamFromData.
 + (NSArray *)createAppearanceStreamWithRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
 
-// Debugging feature.
+// Debugging feature. Only works when compiled with the DEBUG flag on source code.
 - (void)printAllObjects;
 
 @end

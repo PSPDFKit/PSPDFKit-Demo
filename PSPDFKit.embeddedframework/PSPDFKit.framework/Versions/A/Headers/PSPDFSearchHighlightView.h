@@ -9,9 +9,7 @@
 
 @class PSPDFSearchResult;
 
-///
 /// Highlight view used to show where the search keyword is within the document.
-///
 @interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationView>
 
 /// Initialize with a search result. Coordinates are recalculated automatically.

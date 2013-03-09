@@ -48,6 +48,10 @@ extern NSString *const kPSPDFColorKey;
 /// @warning Allows maximum zoomScale of 5. Will be disabled for older devices (iPad1)
 @property (nonatomic, assign) CGFloat zoomScale;
 
+/// Scale value for the page on which drawing occurs.
+/// Used to compute approximate line widths during drawing.
+@property (nonatomic, assign) CGFloat scale;
+
 /// Draw Delegate.
 @property (atomic, weak) IBOutlet id<PSPDFDrawViewDelegate> delegate;
 

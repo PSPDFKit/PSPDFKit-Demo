@@ -88,6 +88,7 @@
 + (UIPopoverController *)popoverControllerForObject:(id)object;
 
 /// Subclass to build a completely custom action, overriding the default present/dismiss calls.
+/// @warning sender needs to be a *visible* bar button item.
 - (void)action:(PSPDFBarButtonItem *)sender;
 
 /// Subclass to react on long press events. Only invoked if isLongPressActionAvailable is set to YES.

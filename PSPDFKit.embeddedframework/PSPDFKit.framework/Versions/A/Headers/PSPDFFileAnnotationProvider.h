@@ -10,9 +10,7 @@
 
 @class PSPDFLinkAnnotation;
 
-/**
- Concrete implementation of the PSPDFAnnotationProvider protocol that uses the PDF document as a file source.
- */
+/// Concrete implementation of the PSPDFAnnotationProvider protocol that uses the PDF document as a file source.
 @interface PSPDFFileAnnotationProvider : NSObject <PSPDFAnnotationProvider>
 
 /// Designated initializer.
@@ -91,7 +89,7 @@
 /// Removes all annotations that are marked as deleted.
 - (NSUInteger)removeDeletedAnnotations;
 
-// Ensure document/page references are set correctly before adding annotations. Used internally.
+/// Ensure document/page references are set correctly before adding annotations. Used internally.
 - (void)updateAnnotationsPageAndDocumentReference:(NSArray *)annotations page:(NSUInteger)page;
 
 @end

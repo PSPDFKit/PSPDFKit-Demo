@@ -10,7 +10,6 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLinkAnnotationBaseView.h"
 
-@protocol PSPDFLinkAnnotationViewDelegate;
 @class PSPDFLinkAnnotation;
 
 /// Displays an annotation link.
