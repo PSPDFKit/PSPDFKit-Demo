@@ -9,6 +9,7 @@
 
 @implementation PSCCustomToolbarController {
     UISegmentedControl *_customViewModeSegment;
+    CGSize _originalThumbnailSize;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -40,12 +41,6 @@
     }
 
     self.delegate = self;
-
-    // use large thumbnails!
-    self.thumbnailSize = CGSizeMake(235, 305);
-
-    // don't forget to also set the large size in PSPDFCache!
-    //[PSPDFCache sharedCache].thumbnailSize = self.thumbnailSize;
 }
 
 - (void)dealloc {
@@ -57,8 +52,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    // use large thumbnails!
+    _originalThumbnailSize = self.thumbnailSize;
+    self.thumbnailSize = PSIsIpad() ? CGSizeMake(235, 305) : CGSizeMake(200, 250);
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    self.thumbnailSize = _originalThumbnailSize;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
