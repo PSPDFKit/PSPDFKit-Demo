@@ -7,13 +7,13 @@
 
 #import "PSPDFKitGlobal.h"
 
-// Button that shows a selected color.
+/// Button that shows a selected color. Highlightable.
 @interface PSPDFColorButton : UIButton
 
-// Current color.
+/// Current color.
 @property (nonatomic, strong) UIColor *color;
 
-// Drawing mode.
+/// Drawing mode.
 @property (nonatomic, assign) BOOL displayAsEllipse;
 
 @end

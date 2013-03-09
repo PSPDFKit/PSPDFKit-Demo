@@ -24,9 +24,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarImage,
 };
 
-///
 /// Delegate to be notified on toolbar actions/hiding.
-///
 @protocol PSPDFAnnotationToolbarDelegate <NSObject>
 
 @optional
@@ -61,12 +59,13 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 
 /// Hide the toolbar.
 /// You need to manually remove the toolbar from the view in the completion block. This is just to get the animation right.
+/// @warning This will restore the HUDViewMode that was set when showToolbarInRect:animated: has been called.
 - (void)hideToolbarAnimated:(BOOL)animated completion:(dispatch_block_t)completionBlock;
 
 /// Flash toolbar (e.g. if user tries to hide the HUD)
 - (void)flashToolbar;
 
-/// Annotation toolbar delegate. (Can be freely set to any receiver.)
+/// Annotation toolbar delegate. (Can be freely set to any receiver)
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> delegate;
 
 /// Attached pdfController.
@@ -91,7 +90,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// Since saving is slow, this defaults to NO.
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
 
-/// Allows to scroll with two fingers while annotation mode is active. Defaults to YES.
+/// Allows to scroll with two fingers while annotation mode is active. Defaults to NO.
 /// Not all annotation modes block scrolling (but highlight, drawing, etc. do).
 /// @warning Do not change this while we are in annotation mode.
 @property (nonatomic, assign) BOOL allowTwoFingerScrollPanDuringLock;

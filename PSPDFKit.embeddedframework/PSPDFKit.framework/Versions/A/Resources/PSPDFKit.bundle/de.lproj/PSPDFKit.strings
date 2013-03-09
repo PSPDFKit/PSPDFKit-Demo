@@ -27,6 +27,7 @@
 "Email visible pages" = "Aktuelle Seiten senden";
 "Email flattened pages" = "Aktuelle Seiten senden (eingebettet)";
 "Open in..." = "Öffnen in…";
+"Sending to %@..." = "Öffne %@…";
 "Open original document" = "Als Original öffnen";
 "Open flattened document" = "Mit Annotationen eingebettet öffnen";
 "Print with Annotations" = "Mit Annotationen drucken";
@@ -34,8 +35,9 @@
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
 "Annotations" = "Annotationen";
-"Add Bookmark" = "Bookmark hinzufügen";
-"Remove Bookmark" = "Bookmark entfernen";
+"Add Bookmark" = "Lesezeichen hinzufügen";
+"Remove Bookmark" = "Lesezeichen entfernen";
+"Bookmarked" = "Lesezeichen gesetzt";
 "Brightness" = "Helligkeit";
 "Share..." = "Teilen…";
 "Preparing..." = "Vorbereiten…";

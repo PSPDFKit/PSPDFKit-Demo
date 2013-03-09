@@ -7,7 +7,7 @@
 
 // PSPDFKit is compatible with iOS 5.0+, but needs a modern Xcode.
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.5+ with LLVM 4+)
+#error This project must be compiled with ARC (Xcode 4.6+ with LLVM 4+)
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
@@ -61,8 +61,10 @@
 #import "PSPDFSearchHighlightView.h"
 
 // thumbnails
-#import "PSPDFScrobbleBar.h"
+#import "PSPDFThumbnailViewController.h"
+#import "PSPDFMultiDocumentThumbnailViewController.h"
 #import "PSPDFThumbnailGridViewCell.h"
+#import "PSPDFScrobbleBar.h"
 #import "PSTCollectionView.h"
 #import "PSTCollectionViewCell.h"
 #import "PSTCollectionViewFlowLayout.h"
@@ -91,6 +93,7 @@
 #import "PSPDFHighlightAnnotationView.h"
 #import "PSPDFFreeTextAnnotationView.h"
 #import "PSPDFVideoAnnotationView.h"
+#import "PSPDFNoteAnnotationView.h"
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
 #import "PSPDFSelectionView.h"
@@ -98,6 +101,9 @@
 #import "PSPDFAnnotationToolbar.h"
 #import "PSPDFSignatureViewController.h"
 #import "PSPDFStampViewController.h"
+#import "PSPDFFontSelectorViewController.h"
+#import "PSPDFColorSelectionViewController.h"
+#import "PSPDFNoteAnnotationController.h"
 
 // labels
 #import "PSPDFLabelParser.h"
@@ -125,10 +131,8 @@
 #import "PSPDFProcessor.h"
 #import "PSPDFProgressHUD.h"
 #import "PSPDFColorButton.h"
-#import "PSPDFColorSelectionViewController.h"
 #import "PSPDFHSVColorPickerController.h"
 #import "PSPDFNavigationController.h"
-#import "PSPDFNoteAnnotationController.h"
 
 // categories
 #import "UIImage+PSPDFKitAdditions.h"

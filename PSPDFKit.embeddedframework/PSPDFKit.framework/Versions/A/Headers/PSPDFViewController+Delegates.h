@@ -8,7 +8,7 @@
 #import "PSPDFViewController.h"
 
 @protocol PSPDFAnnotationView;
-@class PSPDFPageView, PSPDFAnnotation, PSPDFPageCoordinates, PSPDFPageInfo, PSPDFImageInfo;
+@class PSPDFPageView, PSPDFAnnotation, PSPDFPageInfo, PSPDFImageInfo;
 
 // NSNotification equivalent to didLoadPageView: delegate.
 extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;

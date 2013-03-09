@@ -32,6 +32,9 @@
 /// List of detected words (PSPDFWord)
 @property (nonatomic, strong, readonly) NSArray *words;
 
+/// List of detected lines (PSPDFTextLine)
+@property (nonatomic, strong, readonly) NSArray *lines;
+
 /// List of detected images (PSPDFImageInfo)
 @property (nonatomic, strong, readonly) NSArray *images;
 

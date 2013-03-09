@@ -2,6 +2,37 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.9.0 - 9/March/2013__
+
+*  The loupe has been improved, it's now fast in every zoom level and now 100% matches UIKit's look. Developers can now easily update the magnification level.
+*  Greatly improved UIAccessibility support. Reading mode is now line-based and reading column-based layouts works much better.
+*  New feature: PSPDFScrobbleBar can control tap behavior outside the page area with allowTapsOutsidePageArea.
+*  Improved PDF rendering speed for pageCurl mode.
+*  RichMediaAnnotations (directly embedded video) now support autoplay set directly via Adobe Acrobat (Both page visibility modes will enable autoplay)
+*  Removes deprecated methods from PSPDFViewController and PSPDFPageView.
+*  NSNull entries are now properly filtered out from the PDF metadata.
+*  Greatly improves outline parsing speed. In some cases parsing of extremely complex outlines went down from 120 seconds to 2 seconds (in a ~5000 pages document)
+*  Add progress while data is transferring when using the "Open In…" feature.
+*  PSPDFAnnotation model version is now at 1, boundingBox is now serialized as string and no longer as NSValue (fixes JSON serialization)
+*  Improves animation when adding/removing bookmarks while the popover controller is resizing at the same time.
+*  Add support for long-press toolbar button detection when useBorderedToolbarStyle is enabled.
+*  useBorderedToolbarStyle is now also evaluated in PSPDFAnnotationToolbar.
+*  PSPDFOpenInBarButtonItem now has the option to directly add the 'print' action into the list of applications. Disabled by default. See 'showPrintAction'.
+*  UIMenuController is now smarter and no longer places the menu above the toolbar when there's space underneath as well.
+*  'allowTwoFingerScrollPanDuringLock' in PSPDFAnnotationToolbar now defaults to NO, since this delays drawing.
+*  API change: Refactored the thumbnail view out of PSPDFViewController into it's own controller: PSPDFThumbnailViewController. If your code relied on modifying the collection view delegates within PSPDFViewController, you must update your code to override PSPDFThumbnailViewController instead. PSPDFViewController' gridView has been deprecated. Use thumbnailController.collectionView instead.
+*  API change: Removed iPhoneThumbnailSizeReductionFactor. item size is now set conditionally during initialization. The best way to set this is in PSPDFCache.sharedCache.thumbnailSize.
+*  API change: The delegate didRenderPage:didRenderPage:inContext:withSize:clippedToRect:withAnnotations:options: has been moved over to PSPDFDocumentDelegate.
+*  Drawing Ink annotations now closely matches the line width when zoomed in.
+*  Fixes a possible scrolling "freezing" issue when pageCurl is enabled.
+*  Fixes a potential crash with extracting the page title of the PDF.
+*  Fixes a potential crash when the Open In... action was invoked multiple times too quickly. (Thanks to Evernote for this fix)
+*  Fixes a bug that could change the cursor position in the note annotation controller.
+*  Fixes various potential crashes when parsing invalid PDF data.
+*  Fixes an issue where thumbnails could not properly be selected with VoiceOver enabled.
+*  Fixes an issue with image selection on rotated documents.
+*  Fixes an issue with annotationViewClassForAnnotation: and the call ordering of defaultAnnotationViewClassForAnnotation.
+
 __v2.8.7 - 22/February/2013__
 
 *  Improved scrollview centering. Now allows to pan while bounce-zoomed out.

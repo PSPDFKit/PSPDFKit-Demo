@@ -8,30 +8,40 @@
 #import "PSPDFKitGlobal.h"
 
 typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
-	PSPDFLoupeViewModeCircular,
-	PSPDFLoupeViewModeDetailTop,
-	PSPDFLoupeViewModeDetailBottom
+	PSPDFLoupeViewModeCircular,     // Curcular loupe
+	PSPDFLoupeViewModeDetail,       // Detail (text selection) mode. No arrow.
+	PSPDFLoupeViewModeDetailTop,    // Arrow at the botton. High gap.
+	PSPDFLoupeViewModeDetailBottom  // Arrow at the bottom. Low gap.
 };
+
+extern const CGFloat PSPDFLoupeDefaultMagnification; // Defaults to Apple default 1.2
 
 /// Represents a loupe, modeled like the loupe used in UIKit.
 @interface PSPDFLoupeView : UIView
 
+/// Shared loupe instance.
++ (instancetype)sharedLoupe;
+
 /// Designated initializer.
+/// @note Usually you only ever want one loupe on the screen, thus using sharedLoupe is preferred.
 - (id)initWithReferenceView:(UIView *)referenceView;
 
-/// Loupe detail mode.
+/// Reference view. Can be set to any subview or the window.
+@property (nonatomic, strong) UIView *referenceView;
+
+/// Loupe detail mode. Defaults to PSPDFLoupeViewModeCircular.
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
 
-/// Target size for PSPDFLoupeViewModeDetailTop/PSPDFLoupeViewModeDetailBottom.
-@property (nonatomic, assign) CGSize targetSize;
+/// Position of the loupe in reference to the referenceView.
+@property(nonatomic, assign) CGPoint touchPoint;
 
-// Since the loupe uses a UIWindow that is added on the fly, call this before making calculations with the superview.
-- (void)prepareShow;
+/// The default mangnification is set to PSPDFLoupeDefaultMagnification.
+@property(nonatomic, assign) CGFloat magnification;
 
-// Show Loupe, optionally animated (mimics the UIKit loupe animation)
+// Show loupe, optionally animated.
 - (void)showLoupeAnimated:(BOOL)animated;
 
-// Hide Loupe, optionally animated (mimics the UIKit loupe animation)
+// Hide loupe, optionally animated.
 - (void)hideLoupeAnimated:(BOOL)animated;
 
 @end

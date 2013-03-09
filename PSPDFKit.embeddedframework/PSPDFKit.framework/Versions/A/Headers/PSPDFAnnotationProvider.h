@@ -39,17 +39,12 @@
 /// Defaults to YES if not implemented.
 - (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
 
-/**
- Any annotation that returns YES on isOverlay needs a view class to be displayed.
- Will be called on all annotationProviders until someone doesn't return nil.
- 
- If no class is found, the view will be ignored.
- */
+/// Any annotation that returns YES on isOverlay needs a view class to be displayed.
+/// Will be called on all annotationProviders until someone doesn't return nil.
+/// @note If no class is found, the view will be ignored.
 - (Class)annotationViewClassForAnnotation:(PSPDFAnnotation *)annotation;
 
-/**
- Handle adding annotations. A provider can decided that he doesn't want to add this annotation, in that case either don't implement addAnnotations at all or return NO. PSPDFAnnotationParser will query all registered annotationProviders until one returns YES on addAnnotations.
- */
+/// Handle adding annotations. A provider can decided that he doesn't want to add this annotation, in that case either don't implement addAnnotations at all or return NO. PSPDFAnnotationParser will query all registered annotationProviders until one returns YES on addAnnotations.
 - (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
 /// PSPDFKit requests a save. Can be ignored if you're instantly persisting.

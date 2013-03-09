@@ -83,6 +83,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 - (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
 
 /// Delegate. Used for annotation calls.
+/// @warning The document delegate should not be your view controller, since this could retain your controller and cause a release on a different thread than the main thread, which can be problematic in UIKit.
 @property (nonatomic, weak) id<PSPDFDocumentDelegate> delegate;
 
 /// @name File Access / Modification

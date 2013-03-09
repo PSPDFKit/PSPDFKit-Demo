@@ -27,6 +27,7 @@
 "Email visible pages" = "Envoyer les pages visibles par email";
 "Email flattened pages" = "Envoyer les pages aplaties par email";
 "Open in..." = "Ouvrir dans…";
+"Sending to %@..." = "Sending to %@�";
 "Open original document" = "Ouvrir le document d'origine";
 "Open flattened document" = "Ouvrir le document aplati";
 "Print with Annotations" = "Imprimer avec les annotations";
@@ -36,6 +37,7 @@
 "Annotations" = "Annotations";
 "Add Bookmark" = "Ajouter marque-page";
 "Remove Bookmark" = "Supprimer marque-page";
+"Bookmarked" = "Bookmarked";
 "Brightness" = "Luminosité";
 "Share..." = "Partager…";
 "Preparing..." = "Preparation…";

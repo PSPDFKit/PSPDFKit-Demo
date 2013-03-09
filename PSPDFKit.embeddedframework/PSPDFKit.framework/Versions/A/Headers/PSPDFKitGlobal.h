@@ -33,6 +33,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFailedToConvertToPDF = 800,
     PSPDFErrorCodeFailedToGeneratePDFInvalidArguments = 810,
     PSPDFErrorCodeFailedToGeneratePDFDocumentInvalid = 820,
+    PSPDFErrorCodeFailedToUpdatePageObject = 850,
     PSPDFErrorCodeUnknown = 900,
 };
 

@@ -76,7 +76,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 @interface PSPDFWebViewController (SubclassingHooks)
 
 /// Override if you have your own network activity manager.
-/// Defaults to [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+/// Defaults to [UIApplication.sharedApplication setNetworkActivityIndicatorVisible:YES];
 - (void)setActivityIndicatorEnabled:(BOOL)enabled;
 
 /// Called on error events if useCustomErrorPage is set.
