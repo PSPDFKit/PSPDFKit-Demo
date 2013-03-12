@@ -48,6 +48,7 @@
 #import "PSCHideHUDDelayedDocumentViewController.h"
 #import "PSCCustomDefaultZoomScaleViewController.h"
 #import "PSCFontCacheTest.h"
+#import "PSCTextParserTest.h"
 #import "PSCAppDelegate.h"
 #import <objc/runtime.h>
 
@@ -1243,6 +1244,11 @@ const char kPSCAlertViewKey;
             [pdfController searchForString:@"pdfo" animated:YES];
         });
         return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"TextParser test" block:^UIViewController *{
+        [PSCTextParserTest runWithDocumentAtPath:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample].path];
+        return nil;
     }]];
 
     // Page 26 of hackernews-12 has a very complex XObject setup with nested objects that reference objects that have a parent with the same name. If parsed from top to bottom with the wrong XObjects this will take 100^4 calls, thus clocks up the iPad for a very long time.
