@@ -33,9 +33,6 @@
 
 - (void)pdfDocument:(PSPDFDocument *)document didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options {
 
-    // Don't render text for cached pages.
-    if (options[kPSPDFCachedRenderRequest]) return;
-
     // Setup graphics context for current PDF page.
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];
     [PSPDFPageRenderer setupGraphicsContext:context inRectangle:clipRect pageInfo:pageInfo];
