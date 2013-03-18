@@ -28,7 +28,7 @@
 }
 
 - (UIImage *)image {
-    if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_imageToFitSize:CGSizeMake(24, 24) method:PSPDFImageResizeScale honorScaleFactor:YES opaque:NO];
+    if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(24, 24) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh];
 
     return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(_buttonImage) : _buttonImage;
 }
