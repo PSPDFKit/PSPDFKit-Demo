@@ -45,10 +45,10 @@
     
     // basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.basePath) {
-        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:self page:0 size:PSPDFSizeThumbnail];
+        coverImage = [PSPDFCache.sharedCache imageFromDocument:self andPage:0 withSize:size options:PSPDFCacheOptionRenderSync]; // PSPDFCacheOptionDiskLoadSync|
     }
     
-    // draw a custom, centered lock image if the magazine is password protected.
+    // Draw a custom, centered lock image if the magazine is password protected.
     @autoreleasepool {
         if (self.isLocked) {
             if (!CGSizeEqualToSize(size, CGSizeZero)) {
