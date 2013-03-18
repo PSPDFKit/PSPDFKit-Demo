@@ -142,12 +142,19 @@
     viewState.zoomScale = 1;
     viewState.contentOffset = CGPointMake(0, 0);
 
+    NSMutableDictionary *renderOptions = [self.document.renderOptions mutableCopy] ?: [NSMutableDictionary dictionary];
     NSDictionary *settings = [PSCSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
+        // renderOptions need special treatment.
+        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[kPSPDFBackgroundFillColor] = obj;
+        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[kPSPDFContentOpacity] = obj;
+        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[kPSPDFInvertRendering] = obj;
+        
+        else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
             [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
         }
     }];
+    self.document.renderOptions = renderOptions;
 
     // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
     NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");

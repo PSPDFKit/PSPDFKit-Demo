@@ -348,10 +348,7 @@
     if (!magazine) return nil;
     
     NSUInteger lastPage = magazine.lastViewState.page;
-    UIImage *coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:lastPage size:PSPDFSizeNative];
-    if (!coverImage) {
-        coverImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:lastPage size:PSPDFSizeThumbnail];
-    }
+    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
     return coverImage;
 }
 
@@ -360,7 +357,7 @@
     self.lastOpenedMagazine = magazine;
     [self.searchBar resignFirstResponder];
 
-    // speed up displaying with parsing several things PSPDFViewController needs.
+    // Speed up displaying with parsing several things PSPDFViewController needs.
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [magazine fillCache];
     });
@@ -382,15 +379,15 @@
         self.magazineView = coverImageView;
         _animationCellIndex = cellIndex;
 
-        // add a smooth status bar transition on the iPhone
+        // Add a smooth status bar transition on the iPhone
         if (!PSIsIpad()) {
             [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
         }
 
-        // if we have a different page, fade to that page.
+        // If we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;
         if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [[PSPDFCache sharedCache] cachedImageForDocument:magazine page:pdfController.page size:PSPDFSizeNative];
+            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;
@@ -421,7 +418,7 @@
         }];
     }else {
         if (animated) {
-            // add fake data so that we animate back
+            // Add fake data so that we animate back.
             _animateViewWillAppearWithFade = YES;
             [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         }

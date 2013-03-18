@@ -85,8 +85,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(emailButtonItem)] = @YES;
         _settings[StringSEL(viewModeButtonItem)] = @YES;
         _settings[StringSEL(useBorderedToolbarStyle)] = @NO;
-        _settings[StringSEL(renderBackgroundColor)] = [UIColor whiteColor];
-        _settings[StringSEL(renderContentOpacity)] = @(1.f);
+        _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
+        _settings[@"renderContentOpacity"] = @(1.f);
         _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
     }
 }
@@ -211,7 +211,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 - (void)paperColorChanged:(id)sender {
     if (_isSettingUpCells) return;
 	int paperColorIndex = [sender selectedSegmentIndex];
-    _settings[StringSEL(renderBackgroundColor)] = _paperColors[paperColorIndex];
+    _settings[@"renderBackgroundColor"] = _paperColors[paperColorIndex];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
@@ -219,7 +219,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     if (_isSettingUpCells) return;
 	int opacityIndex = [sender selectedSegmentIndex];
 	float opacity = 1.0 - ((float)opacityIndex * 0.1);
-    _settings[StringSEL(renderContentOpacity)] = @(opacity);
+    _settings[@"renderContentOpacity"] = @(opacity);
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
@@ -278,7 +278,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             }break;
         case PSPDFDisplaySettings: {
             switch (indexPath.row) {
-                case 0: _settings[StringSEL(renderInvertEnabled)] = value; break;
+                case 0: _settings[@"renderInvertEnabled"] = value; break;
                 default: break;
             }break;
         }break;
@@ -309,13 +309,13 @@ static CGFloat pscSettingsLastYOffset = 0;
 
     if (indexPath.section == PSPDFPaperColor) {
         _paperColorControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
-        UIColor *paperColor = _settings[StringSEL(renderBackgroundColor)];
+        UIColor *paperColor = _settings[@"renderBackgroundColor"];
         _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
         [cell addSubview:_paperColorControl];
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
         _contentOpacityControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
-        NSUInteger index = roundf((1 - [_settings[StringSEL(renderContentOpacity)] floatValue]) * 10);
+        NSUInteger index = roundf((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
     }
@@ -385,7 +385,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         }break;
         case PSPDFDisplaySettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[StringSEL(renderInvertEnabled)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[@"renderInvertEnabled"] boolValue]; break;
                 default: break;
             }
         }break;

@@ -18,7 +18,6 @@
 @interface PSCImageGridViewCell() {
     NSOperation *_imageLoadOperation;
     UIImage *_magazineOperationImage;
-    NSString *_magazineTitle;
     CGRect _defaultFrame;
 
     UIView *_progressViewBackground;
@@ -28,6 +27,7 @@
 @property (nonatomic, strong) UIImageView *magazineCounterBadgeImage;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
+@property (nonatomic, copy) NSString *magazineTitle;
 @end
 
 @implementation PSCImageGridViewCell
@@ -66,6 +66,21 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Static
+
+// Custom queue for thumbnail parsing.
++ (NSOperationQueue *)thumbnailQueue {
+    static NSOperationQueue *_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _queue = [[NSOperationQueue alloc] init];
+        _queue.maxConcurrentOperationCount = 4;
+        _queue.name = @"PSPDFThumbnailQueue";
+    });
+    return _queue;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
 - (void)layoutSubviews {
@@ -73,10 +88,10 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     self.deleteButton.frame = CGRectMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
     [self.contentView bringSubviewToFront:_deleteButton];
 
-    // image darkener
+    // image darkener.
     _progressViewBackground.frame = self.imageView.bounds;
 
-    // progress bar
+    // Progress bar.
     if (!_progressView.hidden) {
         _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8, 21.f);
         CGFloat pageLabelHeight = 0;//self.isShowingPageLabel ? self.pageLabel.frame.size.width : 0.f;
@@ -92,7 +107,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFThumbnailGridViewCell
 
-// override to change label (default is within the image, has rounded borders)
+// Override to change label (default is within the image, has rounded borders)
 - (void)updatePageLabel {
     if (self.isShowingPageLabel && !self.pageLabel.superview) {
         UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -109,7 +124,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         [self.pageLabel removeFromSuperview];
     }
 
-    // Calculate new frame and position correct
+    // Calculate new frame and position correct.
     self.pageLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
 
     if (self.pageLabel.superview) {
@@ -137,7 +152,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 [self updateProgressAnimated:YES];
             });
         }else if ([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
-            // check if magazine needs to be observed (if download progress is active)
+            // Check if magazine needs to be observed. (if download progress is active)
             if (self.magazine.isDownloading && ![_observedMagazineDownloads containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self checkMagazineAndObserveProgressIfDownloading:self.magazine];
@@ -179,17 +194,15 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                 if (!strongImageLoadOperation.isCancelled) {
                     _magazineOperationImage = [magazine coverImageForSize:self.frame.size];
                 }
-                // also may be slow, parsing the title from PDF metadata.
-                if (magazine.isTitleLoaded || _magazineOperationImage) {
-                    _magazineTitle = magazine.title;
-                }
+                // Also may be slow, parsing the title from PDF metadata.
+                self.magazineTitle = magazine.title;
+
                 BOOL imageLoadedFromWeb = NO;
                 if (!_magazineOperationImage && !strongImageLoadOperation.isCancelled) {
                     // try to download image
                     if (!self.image && magazine.imageURL) {
                         imageLoadedFromWeb = YES;
                         PSPDFDispatchIfNotOnMainThread(^{
-
                             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageURL];
                             [request setHTTPShouldHandleCookies:NO];
                             [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
@@ -418,6 +431,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     _magazineCounter = nil;
     [_magazineCounterBadgeImage removeFromSuperview];
     _magazineCounterBadgeImage = nil;
+    [_imageLoadOperation cancel];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -446,14 +460,11 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFCacheDelegate
 
-- (void)didCachePageForDocument:(PSPDFDocument *)document page:(NSUInteger)page image:(UIImage *)cachedImage size:(PSPDFSize)size{
-    PSCMagazine *magazine = self.magazine;
-    if (!magazine) {
-        magazine = [self.magazineFolder firstMagazine];
-    }
+- (void)didCacheImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size {
+    PSCMagazine *magazine = self.magazine ?: self.magazineFolder.firstMagazine;
 
-    if (magazine == document && page == 0 && size == PSPDFSizeThumbnail) {
-        [self setImage:cachedImage animated:YES];
+    if (magazine == document && page == 0 && PSPDFSizeAspectRatioEqualToSize(self.frame.size, size)) {
+        [self setImage:image animated:YES];
 
         if (magazine.isTitleLoaded) {
             _magazineTitle = magazine.title;
