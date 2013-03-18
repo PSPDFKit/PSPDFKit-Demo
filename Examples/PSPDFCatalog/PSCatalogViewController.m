@@ -50,6 +50,8 @@
 #import "PSCFontCacheTest.h"
 #import "PSCTextParserTest.h"
 #import "PSCAppDelegate.h"
+#import "PSCDropboxSplitViewController.h"
+#import "PSCDropboxPDFViewController.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -109,7 +111,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Mordor.pdf"]];
+//        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -180,6 +182,18 @@ const char kPSCAlertViewKey;
         controller.renderAnimationEnabled = NO;
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         return controller;
+    }]];
+
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox-like interface" block:^{
+        if (PSIsIpad()) {
+            PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
+            [self.view.window.layer addAnimation:PSPDFFadeTransition() forKey:nil];
+            self.view.window.rootViewController = splitViewController;
+            return (UIViewController *)nil;
+        }else {
+            PSCDropboxPDFViewController *dropboxPDFController = [PSCDropboxPDFViewController new];
+            return (UIViewController *)dropboxPDFController;
+        }
     }]];
 
     [content addObject:appSection];
@@ -1247,7 +1261,7 @@ const char kPSCAlertViewKey;
     }]];
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"TextParser test" block:^UIViewController *{
-        [PSCTextParserTest runWithDocumentAtPath:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample].path];
+        [PSCTextParserTest runWithDocumentAtPath:[samplesURL URLByAppendingPathComponent:@"protected.pdf"].path];
         return nil;
     }]];
 
@@ -1654,9 +1668,13 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument PDFDocumentWithURL:URL];
-        UIImage *thumbnail = [doc renderImageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero withAnnotations:nil options:nil];
-        NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_imageToFitSize:CGSizeMake(150, 150) method:PSPDFImageResizeScale honorScaleFactor:NO opaque:NO]);
-        NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_imageToFitSize:CGSizeMake(80, 80) method:PSPDFImageResizeScale honorScaleFactor:NO opaque:NO]);
+        NSError *error = nil;
+        UIImage *thumbnail = [doc renderImageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero withAnnotations:nil options:nil receipt:NULL error:&error];
+        if (!thumbnail) {
+            PSPDFLogError(@"Failed to generate thumbnail: %@", [error localizedDescription]);
+        }
+        NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
+        NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
         NSString *filePathMedium = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"medium.png"];
         NSString *filePathSmall = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"small.png"];
         NSLog(@"Writing %@", filePathMedium);
@@ -1666,6 +1684,13 @@ const char kPSCAlertViewKey;
         NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
         [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
         return nil;
+    }]];
+
+    // Check that there's a red note annotation in landscape mode or when you zoom out.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation outside of page" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"noteannotation-outside.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
     }]];
 
     // Test flattening, especially for notes.
