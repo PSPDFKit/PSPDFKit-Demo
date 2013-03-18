@@ -28,9 +28,12 @@ static PSCTextParserTest *instance = nil;
 - (void)runWithDocumentAtPath:(NSString *)path {
     self.path = path;
     self.document = [[PSPDFDocument alloc] initWithURL:[NSURL fileURLWithPath:path]];
+    NSLog(@"%@", self.document);
+    [self.document unlockWithPassword:@"test123"];
+    NSLog(@"%@", self.document);
     PSPDFTextSearch *search = [[PSPDFTextSearch alloc] initWithDocument:self.document];
     search.delegate = self;
-    [search searchForString:@"batman"];
+    [search searchForString:@"encrypted"];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
