@@ -34,6 +34,12 @@
 /// Displayed path.
 @property (nonatomic, copy, readonly) NSString *directory;
 
+/// Getting the PDF document title can be slow. If set to NO, the file name is used instead. Defaults to NO.
+@property (nonatomic, assign) BOOL useDocumentTitles;
+
+/// Enables section indexes. Enabled by default.
+@property (nonatomic, assign) BOOL showSectionIndexes;
+
 /// Enable to perform full-text search on all documents. Currently pretty slow. Defaults to NO.
 @property (nonatomic, assign) BOOL fullTextSearchEnabled;
 
