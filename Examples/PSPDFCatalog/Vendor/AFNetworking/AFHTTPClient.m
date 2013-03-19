@@ -81,7 +81,7 @@ static NSString * AFBase64EncodedStringFromString(NSString *string) {
 }
 
 static NSString * AFPercentEscapedQueryStringPairMemberFromStringWithEncoding(NSString *string, NSStringEncoding encoding) {
-    static NSString * const kAFCharactersToBeEscaped = @":/?&=;+!@#$()~'";
+    static NSString * const kAFCharactersToBeEscaped = @":/?&=;+!@#$()~',*";
     static NSString * const kAFCharactersToLeaveUnescaped = @"[].";
 
 	return (__bridge_transfer  NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, (__bridge CFStringRef)kAFCharactersToLeaveUnescaped, (__bridge CFStringRef)kAFCharactersToBeEscaped, CFStringConvertNSStringEncodingToEncoding(encoding));
@@ -517,12 +517,12 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
                                                     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
     AFHTTPRequestOperation *operation = nil;
-    NSString *className = nil;
-    NSEnumerator *enumerator = [self.registeredHTTPOperationClassNames reverseObjectEnumerator];
-    while (!operation && (className = [enumerator nextObject])) {
-        Class op_class = NSClassFromString(className);
-        if (op_class && [op_class canProcessRequest:urlRequest]) {
-            operation = [(AFHTTPRequestOperation *)[op_class alloc] initWithRequest:urlRequest];
+    
+    for (NSString *className in self.registeredHTTPOperationClassNames) {
+        Class operationClass = NSClassFromString(className);
+        if (operationClass && [operationClass canProcessRequest:urlRequest]) {
+            operation = [(AFHTTPRequestOperation *)[operationClass alloc] initWithRequest:urlRequest];
+            break;
         }
     }
 
@@ -819,6 +819,23 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     NSParameterAssert(fileURL);
     NSParameterAssert(name);
 
+    NSString *fileName = [fileURL lastPathComponent];
+    NSString *mimeType = AFContentTypeForPathExtension([fileURL pathExtension]);
+    
+    return [self appendPartWithFileURL:fileURL name:name fileName:fileName mimeType:mimeType error:error];
+}
+
+- (BOOL)appendPartWithFileURL:(NSURL *)fileURL
+                         name:(NSString *)name
+                     fileName:(NSString *)fileName
+                     mimeType:(NSString *)mimeType
+                        error:(NSError * __autoreleasing *)error
+{
+    NSParameterAssert(fileURL);
+    NSParameterAssert(name);
+    NSParameterAssert(fileName);
+    NSParameterAssert(mimeType);
+
     if (![fileURL isFileURL]) {
         NSDictionary *userInfo = [NSDictionary dictionaryWithObject:NSLocalizedStringFromTable(@"Expected URL to be a file URL", @"AFNetworking", nil) forKey:NSLocalizedFailureReasonErrorKey];
         if (error != NULL) {
@@ -836,8 +853,8 @@ NSTimeInterval const kAFUploadStream3GSuggestedDelay = 0.2;
     }
 
     NSMutableDictionary *mutableHeaders = [NSMutableDictionary dictionary];
-    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"%@\"", name, [fileURL lastPathComponent]] forKey:@"Content-Disposition"];
-    [mutableHeaders setValue:AFContentTypeForPathExtension([fileURL pathExtension]) forKey:@"Content-Type"];
+    [mutableHeaders setValue:[NSString stringWithFormat:@"form-data; name=\"%@\"; filename=\"%@\"", name, fileName] forKey:@"Content-Disposition"];
+    [mutableHeaders setValue:mimeType forKey:@"Content-Type"];
 
     AFHTTPBodyPart *bodyPart = [[AFHTTPBodyPart alloc] init];
     bodyPart.stringEncoding = self.stringEncoding;

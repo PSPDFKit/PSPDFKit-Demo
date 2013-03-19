@@ -29,7 +29,7 @@
 #import <Security/SecRandom.h>
 
 NSString *const kRNCryptorErrorDomain = @"net.robnapier.RNCryptManager";
-const uint8_t kRNCryptorFileVersion = 1;
+const uint8_t kRNCryptorFileVersion = 2;
 
 // TODO: This is a slightly expensive solution, but it's convenient. May want to create a "walkable" data object
 @implementation NSMutableData (RNCryptor)
@@ -81,9 +81,11 @@ const uint8_t kRNCryptorFileVersion = 1;
 
 #if !OS_OBJECT_USE_OBJC
   dispatch_release(sem);
-  if(queue) dispatch_release(queue);
+  if (queue) {
+    dispatch_release(queue);
+  }
 #endif
-    
+
   if (returnedError) {
     if (anError) {
       *anError = returnedError;
@@ -100,7 +102,7 @@ const uint8_t kRNCryptorFileVersion = 1;
 {
   NSMutableData *derivedKey = [NSMutableData dataWithLength:keySettings.keySize];
 
-  __unused int result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
+  int result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
                                     password.UTF8String,                // password
                                     password.length,                    // passwordLength
                                     salt.bytes,                         // salt
@@ -111,7 +113,7 @@ const uint8_t kRNCryptorFileVersion = 1;
                                     derivedKey.length);                 // derivedKeyLen
 
   // Do not log password here
-  // TODO: Is it safe to assert here? We read salt from a file (but salt.length is internal).
+  // TODO: Is is safe to assert here? We read salt from a file (but salt.length is internal).
   NSAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
 
   return derivedKey;
@@ -121,7 +123,7 @@ const uint8_t kRNCryptorFileVersion = 1;
 {
   NSMutableData *data = [NSMutableData dataWithLength:length];
 
-  __unused int result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
+  int result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
   NSAssert(result == 0, @"Unable to generate random bytes: %d", errno);
 
   return data;
@@ -132,12 +134,13 @@ const uint8_t kRNCryptorFileVersion = 1;
   NSParameterAssert(handler);
   self = [super init];
   if (self) {
-    _responseQueue = dispatch_get_current_queue();
-    
+      NSString *responseQueueName = [@"net.robnapier.response." stringByAppendingString:NSStringFromClass([self class])];
+      _responseQueue = dispatch_queue_create([responseQueueName UTF8String], NULL);
+
 #if !OS_OBJECT_USE_OBJC
     dispatch_retain(_responseQueue);
 #endif
-      
+
     NSString *queueName = [@"net.robnapier." stringByAppendingString:NSStringFromClass([self class])];
     _queue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_SERIAL);
     __outData = [NSMutableData data];
