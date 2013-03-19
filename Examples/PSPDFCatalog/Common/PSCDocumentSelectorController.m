@@ -8,7 +8,6 @@
 #import "PSCDocumentSelectorController.h"
 #import "PSCFullTextSearchOperation.h"
 #import "PSCDocumentSelectorCell.h"
-#import "PSPDFKitGlobal.h"
 #import <objc/message.h>
 
 #define kPSCPinSearchBarToHeader

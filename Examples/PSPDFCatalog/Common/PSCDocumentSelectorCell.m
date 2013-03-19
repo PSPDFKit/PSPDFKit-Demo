@@ -6,7 +6,6 @@
 //
 
 #import "PSCDocumentSelectorCell.h"
-#import "PSPDFKitGlobal.h"
 
 @implementation PSCDocumentSelectorCell
 
