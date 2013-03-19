@@ -456,7 +456,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     }
 
     UIViewController *configViewController = [PSCBasicViewController new];
-
+    configViewController.title = @"Configuration";
     UITextView *configView = [UITextView new];
     configView.font = [UIFont fontWithName:@"Courier" size:14];
     NSMutableString *codeString = [NSMutableString string];
@@ -482,6 +482,9 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (void)showPageInfoButton {
     PSPDFDocument *document = self.currentPDFController.document;
+    if (!document) {
+        [[[UIAlertView alloc] initWithTitle:nil message:@"Open a PDF to see the page info." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    };
     NSString *description = [[document pageInfoForPage:[[self currentPDFController] page]] description];
     description = [description stringByAppendingFormat:@"\n%@", [[document textParserForPage:0] description]];
     NSLog(@"%@", description);
