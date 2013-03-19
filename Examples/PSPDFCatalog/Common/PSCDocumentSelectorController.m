@@ -10,7 +10,7 @@
 #import "PSCDocumentSelectorCell.h"
 #import <objc/message.h>
 
-#define kPSCPinSearchBarToHeader
+#define kPSCAllowStickySearchBar
 
 @interface PSCDocumentSelectorController () <PSPDFCacheDelegate, PSCFullTextSearchOperationDelegate> {
     NSOperationQueue *_fullTextSearchQueue;
@@ -53,7 +53,6 @@
         _fullTextSearchQueue = [NSOperationQueue new];
         [_fullTextSearchQueue setName:@"PSCFullTextSearchQueue"];
         [_fullTextSearchQueue setMaxConcurrentOperationCount:1];
-
     }
     return self;
 }
@@ -68,18 +67,20 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-#ifdef kPSCPinSearchBarToHeader
+#ifdef kPSCAllowStickySearchBar
 - (void)loadView {
     [super loadView];
 
-    /*
-     For this scrolling behavior it is *essential* that the view controller is a subclass of UIViewController instead of UITableViewController, because UISearchDisplayController adds the dimming view to the searchContentsController's view and because UITableViewController's view is the table view, the dimming view is added to the table view and is only visible when the table view is scrolled to the top. If you can't change the superclass to UIViewController, you'll have to manually set the dimming view's frame by iterating through the table view's view hierarchy when the search begins which is very ugly.     
-     */
-    UITableView *tableView = self.tableView;
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    self.view = [[UIView alloc] initWithFrame:self.view.bounds];
-    tableView.frame = self.view.bounds;
-    [self.view addSubview:tableView];
+    if (self.stickySearchBar) {
+        /*
+         For this scrolling behavior it is *essential* that the view controller is a subclass of UIViewController instead of UITableViewController, because UISearchDisplayController adds the dimming view to the searchContentsController's view and because UITableViewController's view is the table view, the dimming view is added to the table view and is only visible when the table view is scrolled to the top. If you can't change the superclass to UIViewController, you'll have to manually set the dimming view's frame by iterating through the table view's view hierarchy when the search begins which is very ugly.
+         */
+        UITableView *tableView = self.tableView;
+        tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        self.view = [[UIView alloc] initWithFrame:self.view.bounds];
+        tableView.frame = self.view.bounds;
+        [self.view addSubview:tableView];
+    }
 }
 
 - (UITableView *)tableView {
@@ -104,7 +105,7 @@
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
     
-    // restore search settings if they were saved in didReceiveMemoryWarning.
+    // Restore search settings if they were saved in didReceiveMemoryWarning.
     if (self.savedSearchTerm) {
         [self.searchDisplayController setActive:self.searchWasActive];
         [self.searchDisplayController.searchBar setSelectedScopeButtonIndex:self.savedScopeButtonIndex];
@@ -119,10 +120,12 @@
      Obfustacting the string with using stringWithFormat is enough to pass the detection systems of the App Store, at least for now.
      Thanks to Fabian Kreiser for his great sample code: https://github.com/fabiankr/TableViewSearchBar
      */
-#ifdef kPSCPinSearchBarToHeader
-    SEL setPinsTableHeaderViewSelector = NSSelectorFromString([NSString stringWithFormat:@"%@set%@leHeaderView:", @"_", @"PinsTab"]);
-    if ([self.tableView respondsToSelector:setPinsTableHeaderViewSelector]) {
-        ((void(*)(id, SEL, BOOL))objc_msgSend)(self.tableView, setPinsTableHeaderViewSelector, YES);
+#ifdef kPSCAllowStickySearchBar
+    if (self.stickySearchBar) {
+        SEL setPinsTableHeaderViewSelector = NSSelectorFromString([NSString stringWithFormat:@"%@set%@leHeaderView:", @"_", @"PinsTab"]);
+        if ([self.tableView respondsToSelector:setPinsTableHeaderViewSelector]) {
+            ((void(*)(id, SEL, BOOL))objc_msgSend)(self.tableView, setPinsTableHeaderViewSelector, YES);
+        }
     }
 #endif
 
@@ -311,7 +314,11 @@
 }
 
 - (void)scrollTableViewToSearchBarAnimated:(BOOL)animated {
-//    NSAssert(YES, @"This method should be handled by a subclass!");
+    if (self.stickySearchBar) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    }else {
+        [self.tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:animated];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {

@@ -37,8 +37,11 @@
 /// Getting the PDF document title can be slow. If set to NO, the file name is used instead. Defaults to NO.
 @property (nonatomic, assign) BOOL useDocumentTitles;
 
-/// Enables section indexes. Enabled by default.
+/// Enables section indexes. Defaults to YES.
 @property (nonatomic, assign) BOOL showSectionIndexes;
+
+/// Enable to make search bar sticky. Defaults to NO. Needs to be set before the view is created.
+@property (nonatomic, assign) BOOL stickySearchBar;
 
 /// Enable to perform full-text search on all documents. Currently pretty slow. Defaults to NO.
 @property (nonatomic, assign) BOOL fullTextSearchEnabled;
