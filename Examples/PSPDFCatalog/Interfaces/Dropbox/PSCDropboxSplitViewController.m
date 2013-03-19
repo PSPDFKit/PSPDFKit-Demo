@@ -22,6 +22,7 @@
         _showLeftPaneInLandscape = YES;
 
         self.documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+        self.documentSelector.stickySearchBar = YES;
         self.documentSelector.delegate = self;
 
         self.pdfController = [PSCDropboxPDFViewController new];
