@@ -24,6 +24,7 @@
 #define _(string) NSLocalizedString(string, @"")
 
 #define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
+#define kPSCLargeThumbnailSize CGSizeMake(170, 240)
 
 // The delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
@@ -223,7 +224,6 @@
 
     // Animate back to grid cell?
     if (self.magazineView) {
-
         // If something changed, just don't animate.
         if (_animationCellIndex >= self.magazineFolder.magazines.count) {
             self.gridView.transform = CGAffineTransformIdentity;
@@ -429,11 +429,19 @@
 }
 
 - (void)diskDataLoaded {
-    // not finished yet? return early.
+    // Not finished yet? return early.
     if ([[PSCStoreManager sharedStoreManager].magazineFolders count] == 0) return;
 
-    // if we're in plain mode, pre-set a folder
-    if (kPSPDFStoreManagerPlain) self.magazineFolder = [[PSCStoreManager sharedStoreManager].magazineFolders lastObject];
+    // If we're in plain mode, pre-set a folder.
+    if (kPSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
+
+    // Preload all magazines. (copy to prevent mutation errors)
+    NSArray *magazines = [self.magazineFolder.magazines copy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        for (PSCMagazine *magazine in magazines) {
+            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground];
+        }
+    });
 
     [self updateGrid];
 }
@@ -573,7 +581,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return PSIsIpad() ? CGSizeMake(170, 240) : CGSizeMake(82, 130);
+    return PSIsIpad() ? kPSCLargeThumbnailSize : CGSizeMake(82, 130);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
