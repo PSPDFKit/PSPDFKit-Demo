@@ -39,6 +39,12 @@
  */
 @property (strong) NSString *targetPath;
 
+/**
+ A Boolean value that indicates if we should allow a downloaded file to overwrite
+ a previously downloaded file of the same name. Default is `NO`.
+ */
+@property (assign) BOOL shouldOverwrite;
+
 /** 
  A Boolean value that indicates if we should try to resume the download. Defaults is `YES`.
 
@@ -95,6 +101,6 @@
  
  @see setDownloadProgressBlock
  */
-- (void)setProgressiveDownloadProgressBlock:(void (^)(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile))block;
+- (void)setProgressiveDownloadProgressBlock:(void (^)(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile))block;
 
 @end

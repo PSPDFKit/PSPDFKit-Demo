@@ -36,6 +36,8 @@ static const NSUInteger kPreambleSize = 2;
 @property (nonatomic, readwrite, copy) NSData *encryptionKey;
 @property (nonatomic, readwrite, copy) NSData *HMACKey;
 @property (nonatomic, readwrite, copy) NSString *password;
+@property (nonatomic, readwrite, assign) BOOL hasV1HMAC;
+
 @end
 
 @implementation RNDecryptor
@@ -139,11 +141,20 @@ static const NSUInteger kPreambleSize = 2;
 - (BOOL)getSettings:(RNCryptorSettings *)settings forPreamble:(NSData *)preamble
 {
   const uint8_t *bytes = [preamble bytes];
+
+  // See http://robnapier.net/blog/rncryptor-hmac-vulnerability-827 for information on the v1 bad HMAC
+#ifdef RNCRYPTOR_ALLOW_V1_BAD_HMAC
+  if (bytes[0] == 1) {
+    *settings = kRNCryptorAES256Settings;
+    self.options = bytes[1];
+    self.hasV1HMAC = YES;
+    return YES;
+  }
+#endif
+
   if (bytes[0] == kRNCryptorFileVersion) {
     *settings = kRNCryptorAES256Settings;
-
     self.options = bytes[1];
-
     return YES;
   }
 
@@ -156,18 +167,17 @@ static const NSUInteger kPreambleSize = 2;
     return;
   }
 
-  RNCryptorSettings settings;
+  RNCryptorSettings settings = {};
   if (![self getSettings:&settings forPreamble:[data subdataWithRange:NSMakeRange(0, kPreambleSize)]]) {
     [self cleanupAndNotifyWithError:[NSError errorWithDomain:kRNCryptorErrorDomain
                                                         code:kRNCryptorUnknownHeader
                                                     userInfo:[NSDictionary dictionaryWithObject:@"Unknown header" /* DNL */
                                                                                          forKey:NSLocalizedDescriptionKey]]];
+    return;
   }
 
-
-#if !defined(__clang__)
-    NSUInteger headerSize = kPreambleSize + settings.IVSize;
-    if (self.options & kRNCryptorOptionHasPassword) {
+  NSUInteger headerSize = kPreambleSize + settings.IVSize;
+  if (self.options & kRNCryptorOptionHasPassword) {
     headerSize += settings.keySettings.saltSize + settings.HMACKeySettings.saltSize;
   }
 
@@ -175,7 +185,9 @@ static const NSUInteger kPreambleSize = 2;
     return;
   }
 
-  [data _RNConsumeToIndex:kPreambleSize]; // Throw away the preamble
+  NSData *header = [data subdataWithRange:NSMakeRange(0, headerSize)];  // We'll need this for the HMAC later
+
+  [[data _RNConsumeToIndex:kPreambleSize] mutableCopy]; // Throw away the preamble
 
   NSError *error = nil;
   if (self.options & kRNCryptorOptionHasPassword) {
@@ -183,7 +195,6 @@ static const NSUInteger kPreambleSize = 2;
 
     NSData *encryptionKeySalt = [data _RNConsumeToIndex:settings.keySettings.saltSize];
     NSData *HMACKeySalt = [data _RNConsumeToIndex:settings.HMACKeySettings.saltSize];
-
     self.encryptionKey = [[self class] keyForPassword:self.password salt:encryptionKeySalt settings:settings.keySettings];
     self.HMACKey = [[self class] keyForPassword:self.password salt:HMACKeySalt settings:settings.HMACKeySettings];
 
@@ -203,8 +214,11 @@ static const NSUInteger kPreambleSize = 2;
     CCHmacInit(&_HMACContext, settings.HMACAlgorithm, self.HMACKey.bytes, self.HMACKey.length);
     self.HMACLength = settings.HMACLength;
     self.HMACKey = nil; // Don't need this anymore
+
+    if (! self.hasV1HMAC) {
+      CCHmacUpdate(&_HMACContext, [header bytes], [header length]);
+    }
   }
-#endif
 }
 
 - (void)finish

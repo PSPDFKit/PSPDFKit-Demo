@@ -124,7 +124,7 @@
         self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;
     }];
-    [pdfRequest setProgressiveDownloadProgressBlock:^(NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
+    [pdfRequest setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
         self.downloadProgress = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
 
     }];    
