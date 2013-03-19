@@ -200,7 +200,7 @@
         }
         for (PSPDFDocument *document in self.documents) {
             NSInteger index = [collation sectionForObject:document collationStringSelector:titleSelector];
-            [[unsortedSections objectAtIndex:index] addObject:document];
+            [unsortedSections[index] addObject:document];
         }
         NSMutableArray *sortedSections = [[NSMutableArray alloc] initWithCapacity:unsortedSections.count];
         for (NSMutableArray *section in unsortedSections) {
@@ -218,12 +218,12 @@
     PSPDFDocument *document;
     if (tableView == self.tableView) {
         if (self.showSectionIndexes) {
-            document = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            document = (self.sections)[indexPath.section][indexPath.row];
         } else {
-            document = [self.documents objectAtIndex:indexPath.row];
+            document = (self.documents)[indexPath.row];
         }
     } else {
-        document = [self.filteredDocuments objectAtIndex:indexPath.row];
+        document = (self.filteredDocuments)[indexPath.row];
     }
     return document;
 }
@@ -231,7 +231,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView == self.tableView) {
         if (self.showSectionIndexes) {
-            return [[self.sections objectAtIndex:section] count];
+            return [(self.sections)[section] count];
         } else {
             return self.documents.count;
         }
@@ -295,7 +295,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     if (tableView == self.tableView && self.showSectionIndexes) {
-        return [[NSArray arrayWithObject:UITableViewIndexSearch] arrayByAddingObjectsFromArray:[[UILocalizedIndexedCollation currentCollation] sectionIndexTitles]];
+        return [@[UITableViewIndexSearch] arrayByAddingObjectsFromArray:[[UILocalizedIndexedCollation currentCollation] sectionIndexTitles]];
     } else {
         return nil;
     }
@@ -303,8 +303,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (tableView == self.tableView && self.showSectionIndexes) {
-        if ([[self.sections objectAtIndex:section] count] > 0) {
-            return [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section];
+        if ([(self.sections)[section] count] > 0) {
+            return [[UILocalizedIndexedCollation currentCollation] sectionTitles][section];
         } else {
             return nil;
         }
