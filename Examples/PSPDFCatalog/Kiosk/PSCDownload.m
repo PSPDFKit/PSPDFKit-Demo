@@ -114,7 +114,7 @@
         self.status = PSCStoreDownloadStatusFinished;
 
         // Start caching thumbnail and full-image sizes so that the document will render faster.
-        [PSPDFCache.sharedCache cacheDocument:self.magazine startAtPage:0 sizes:@[BOXED(PSPDFCache.sharedCache.thumbnailSize), BOXED(UIScreen.mainScreen.bounds.size)] strategy:PSPDFCacheStrategyNearPages];
+        [PSPDFCache.sharedCache cacheDocument:self.magazine startAtPage:0 sizes:@[BOXED(PSPDFCache.sharedCache.thumbnailSize), BOXED(UIScreen.mainScreen.bounds.size)] diskCacheStrategy:PSPDFDiskCacheStrategyNearPages];
 
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         [self addSkipBackupAttributeToItemAtURL:destinationURL];
