@@ -23,9 +23,6 @@
 #pragma mark - UIView
 
 - (void)layoutSubviews {
-    // We need to explicitly disable animations here, else image weirdly animates because of an implicit animation context when the popover animates.
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
     [super layoutSubviews];
 
     const CGFloat margin = 2;
@@ -38,8 +35,6 @@
     PSPDFRectDivideWithPadding(rem, &slice, &rem, CGRectGetWidth(imageRect), margin*4, CGRectMinXEdge);
     self.imageView.frame = slice;
     self.textLabel.frame = rem;
-
-    [CATransaction commit];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
