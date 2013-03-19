@@ -49,7 +49,7 @@
                         
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
-        // Disabled by default, since this is a bit slow.
+        // Disabled by default, since this can be slow.
         /*
         __weak typeof (self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
