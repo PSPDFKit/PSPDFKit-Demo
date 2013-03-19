@@ -52,6 +52,7 @@
 #import "PSCAppDelegate.h"
 #import "PSCDropboxSplitViewController.h"
 #import "PSCDropboxPDFViewController.h"
+#import "PSCAnnotationTrailerCaptureDocument.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -935,6 +936,16 @@ const char kPSCAlertViewKey;
     }]];
 
     // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture the annotation trailer" block:^UIViewController *{
+        NSURL *newURL = [self copyFileURLToDocumentFolder:hackerMagURL overrideFile:YES];
+        PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument PDFDocumentWithURL:newURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
+        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
+        return controller;
+    }]];
+
+    // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Dynamic fittingWidth on iPhone" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1323,7 +1334,6 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF annotation writing with nil color" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"annotation-missing-colors.pdf"];
