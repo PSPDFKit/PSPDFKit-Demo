@@ -409,7 +409,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFOpenAPIButton: {
             PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); break;)
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
-            [self.masterViewController presentModalViewController:webController animated:YES];
+            [self.masterViewController presentViewController:webController animated:YES completion:NULL];
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFPageInfoButton: [self showPageInfoButton]; break;
@@ -477,7 +477,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     navController.title = _(@"Current ");
     navController.modalPresentationStyle = UIModalPresentationFormSheet;
 
-    [self.masterViewController presentModalViewController:navController animated:YES];
+    [self.masterViewController presentViewController:navController animated:YES completion:NULL];
 }
 
 - (void)showPageInfoButton {

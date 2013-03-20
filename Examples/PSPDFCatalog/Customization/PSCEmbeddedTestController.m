@@ -239,7 +239,7 @@
         pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
     }
 
-    [self presentModalViewController:navCtrl animated:YES];
+    [self presentViewController:navCtrl animated:YES completion:NULL];
 }
 
 @end
