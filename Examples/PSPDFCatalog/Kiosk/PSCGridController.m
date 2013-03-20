@@ -297,7 +297,7 @@
 - (void)presentModalViewControllerWithCloseButton:(UIViewController *)controller animated:(BOOL)animated {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     controller.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStyleBordered target:self action:@selector(closeModalView)];
-    [self presentModalViewController:navController animated:animated];
+    [self presentViewController:navController animated:animated completion:NULL];
 }
 
 // toggle the options/settings button.
@@ -367,7 +367,7 @@
     // Try to get full-size image, if that fails try thumbnail.
     UIImage *coverImage = [self imageForMagazine:magazine];
     if (animated && coverImage && !magazine.isLocked) {
-        PSTCollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
+        PSUICollectionViewCell *cell = (PSUICollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
         cell.hidden = YES;
         CGRect cellCoords = [self.collectionView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
