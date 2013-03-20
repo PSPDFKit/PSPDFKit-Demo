@@ -138,16 +138,16 @@
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    self.gridView = collectionView;
+    self.collectionView = collectionView;
 
-    [self.view insertSubview:self.gridView belowSubview:_shadowView];
-    self.gridView.frame = CGRectIntegral(self.view.bounds);
-    self.gridView.dataSource = self; // auto-reloads
+    [self.view insertSubview:self.collectionView belowSubview:_shadowView];
+    self.collectionView.frame = CGRectIntegral(self.view.bounds);
+    self.collectionView.dataSource = self; // auto-reloads
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
     // Add the search bar.
     CGFloat searchBarWidth = 290.f;
-    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.gridView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.collectionView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
     _searchBar.tintColor = [UIColor blackColor];
     _searchBar.backgroundColor = [UIColor clearColor];
@@ -169,16 +169,16 @@
         }
     }
 
-    self.gridView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
-    [self.gridView addSubview:self.searchBar];
+    self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
+    [self.collectionView addSubview:self.searchBar];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     if (!self.isViewLoaded) {
-        self.gridView.delegate = nil;
-        self.gridView.dataSource = nil;
-        self.gridView = nil;
+        self.collectionView.delegate = nil;
+        self.collectionView.dataSource = nil;
+        self.collectionView = nil;
         self.shadowView = nil;
         self.searchBar.delegate = nil;
         self.searchBar = nil;
@@ -226,14 +226,14 @@
     if (self.magazineView) {
         // If something changed, just don't animate.
         if (_animationCellIndex >= self.magazineFolder.magazines.count) {
-            self.gridView.transform = CGAffineTransformIdentity;
-            self.gridView.alpha = 1.0f;
+            self.collectionView.transform = CGAffineTransformIdentity;
+            self.collectionView.alpha = 1.0f;
             [self.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.gridView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
-            [self.gridView layoutSubviews]; // ensure cells are laid out
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.collectionView layoutSubviews]; // ensure cells are laid out
             /*
              // ensure object is visible
              BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:_animationCellIndex partly:YES];
@@ -244,8 +244,8 @@
 
             // Convert the coordinates into view coordinate system.
             // We can't remember those, because the device might has been rotated.
-            CGRect absoluteCellRect = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0]].frame;
-            CGRect relativeCellRect = [self.gridView convertRect:absoluteCellRect toView:self.view];
+            CGRect absoluteCellRect = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0]].frame;
+            CGRect relativeCellRect = [self.collectionView convertRect:absoluteCellRect toView:self.view];
 
             self.magazineView.frame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl && UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation)];
 
@@ -255,10 +255,10 @@
 
             // Start animation!
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
-                self.gridView.transform = CGAffineTransformIdentity;
+                self.collectionView.transform = CGAffineTransformIdentity;
                 self.magazineView.frame = relativeCellRect;
                 [[self.magazineView.subviews lastObject] setAlpha:0.f];
-                self.gridView.alpha = 1.0f;
+                self.collectionView.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 [self.magazineView removeFromSuperview];
                 self.magazineView = nil;
@@ -283,7 +283,7 @@
         restoreKeyboard = YES;
     }
     
-    [self.gridView reloadData];
+    [self.collectionView reloadData];
 
     // UICollectionView is stealing the first responder.
     if (restoreKeyboard) {
@@ -348,7 +348,7 @@
     if (!magazine) return nil;
     
     NSUInteger lastPage = magazine.lastViewState.page;
-    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
+    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheMemoryStoreAlways];
     return coverImage;
 }
 
@@ -367,9 +367,9 @@
     // Try to get full-size image, if that fails try thumbnail.
     UIImage *coverImage = [self imageForMagazine:magazine];
     if (animated && coverImage && !magazine.isLocked) {
-        PSTCollectionViewCell *cell = [self.gridView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
+        PSTCollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
         cell.hidden = YES;
-        CGRect cellCoords = [self.gridView convertRect:cell.frame toView:self.view];
+        CGRect cellCoords = [self.collectionView convertRect:cell.frame toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = cellCoords;
@@ -387,7 +387,7 @@
         // If we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;
         if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
+            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheMemoryStoreAlways];
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;
@@ -401,14 +401,14 @@
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.navigationController.navigationBar.alpha = 0.f;
             _shadowView.shadowEnabled = NO;
-            self.gridView.transform = CGAffineTransformMakeScale(0.97, 0.97);
+            self.collectionView.transform = CGAffineTransformMakeScale(0.97, 0.97);
 
             _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
             CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
             coverImageView.frame = newFrame;
             targetPageImageView.alpha = 1.f;
 
-            self.gridView.alpha = 0.0f;
+            self.collectionView.alpha = 0.0f;
 
         } completion:^(BOOL finished) {
             [self.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
@@ -440,7 +440,7 @@
     NSArray *magazines = [self.magazineFolder.magazines copy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         for (PSCMagazine *magazine in magazines) {
-            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground];
+            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheMemoryStoreNever];
         }
     });
      */
@@ -462,7 +462,7 @@
 }
 
 - (void)updateEditingAnimated:(BOOL)animated {
-    NSArray *visibleCells = [self.gridView visibleCells];
+    NSArray *visibleCells = [self.collectionView visibleCells];
 
     for (PSCImageGridViewCell *cell in visibleCells) {
         if ([cell isKindOfClass:[PSCImageGridViewCell class]]) {
@@ -634,7 +634,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     // resign keyboard if we scroll down
-    if (self.gridView.contentOffset.y > 0) {
+    if (self.collectionView.contentOffset.y > 0) {
         [self.searchBar resignFirstResponder];
     }
 }
@@ -655,7 +655,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
@@ -668,7 +668,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
@@ -681,7 +681,7 @@
     if (!self.magazineFolder) {
         NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
-            [self.gridView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazineFolder);
         }
@@ -700,10 +700,15 @@
 - (void)magazineStoreMagazineDeleted:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
+    if (PSPDFIsCrappyDevice()) {
+        [self.collectionView reloadData];
+        return;
+    }
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
-            [self.gridView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazine);
         }
@@ -713,10 +718,15 @@
 - (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
+    if (PSPDFIsCrappyDevice()) {
+        [self.collectionView reloadData];
+        return;
+    }
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
-            [self.gridView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazine);
         }
@@ -726,10 +736,15 @@
 - (void)magazineStoreMagazineModified:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
+    if (PSPDFIsCrappyDevice()) {
+        [self.collectionView reloadData];
+        return;
+    }
+
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
-            [self.gridView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
+            [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
             PSCLog(@"index not found for %@", magazine);
         }
@@ -755,7 +770,7 @@
     _filteredData = nil;
 
     [self updateGrid];
-    self.gridView.contentOffset = CGPointMake(0, -self.gridView.contentInset.top);    
+    self.collectionView.contentOffset = CGPointMake(0, -self.collectionView.contentInset.top);    
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

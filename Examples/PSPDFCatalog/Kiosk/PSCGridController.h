@@ -20,7 +20,7 @@
 - (void)updateGrid;
 
 // Grid that's used internally. Either a PSCollectionView (iOS5) or UICollectionView (iOS6+)
-@property (nonatomic, strong) PSUICollectionView *gridView;
+@property (nonatomic, strong) PSUICollectionView *collectionView;
 
 // Magazine-folder, if one is selected.
 @property (nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
