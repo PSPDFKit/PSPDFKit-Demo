@@ -141,12 +141,6 @@ const char kPSCAlertViewKey;
     PSPDFDocument *hackerMagDoc = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
     hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
 
-    /*
-     // pre-cache whole document
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-     [[PSPDFCache sharedCache] cacheDocument:hackerMagDoc startAtPage:0 size:PSPDFSizeNative];
-     });*/
-
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
@@ -167,6 +161,10 @@ const char kPSCAlertViewKey;
         controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
         controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
         controller.pageLabel.showThumbnailGridButton = YES;
+
+        // Hide thumbnail filter bar.
+        controller.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithArray:@[@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterBookmarks)]];
+
         return controller;
     }]];
 
