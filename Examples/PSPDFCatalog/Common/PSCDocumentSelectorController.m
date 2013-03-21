@@ -27,6 +27,8 @@
 @property (nonatomic, assign) BOOL searchWasActive;
 @end
 
+#define kPSCThumbnailSize CGSizeMake(44.f, 80.f)
+
 @implementation PSCDocumentSelectorController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -251,11 +253,8 @@
     PSPDFDocument *document = [self documentForIndexPath:indexPath inTableView:tableView];
     // performSelector generates a warning.
     cell.textLabel.text = ((NSString*(*)(id, SEL))objc_msgSend)(document, self.titleSelector);
-    cell.pagePreviewImage = [PSPDFCache.sharedCache imageFromDocument:document andPage:0 withSize:PSPDFCache.sharedCache.tinySize options:PSPDFCacheOptionDiskLoadAsyncAndPreload|PSPDFCacheOptionSizeAllowLargerScaleAsync];
-
-    if (!cell.imageView.image) {
-        NSLog(@"Scheduling %@", document);
-    }
+    cell.pagePreviewImage = [PSPDFCache.sharedCache imageFromDocument:document andPage:0 withSize:kPSCThumbnailSize options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionSizeAllowLargerScaleAsync|PSPDFCacheOptionMemoryStoreAlways|PSPDFCacheOptionActualityIgnore];
+    cell.document = document; // For reference only
 
     return cell;
 }
@@ -379,12 +378,11 @@
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
 	[_filteredDocuments removeAllObjects]; // First clear the filtered array.
-
-    // ignore scope
+    
+    // ignore scope.
     if ([searchText length]) {
-
-        // Problem is, getting the title is SLOW.
-        NSString *predicate = [NSString stringWithFormat:@"title CONTAINS[cd] '%@' || fileURL.path CONTAINS[cd] '%@'", searchText, searchText];
+        // Getting the title can be quite expensive, so only use it if that one is already loaded.
+        NSString *predicate = [NSString stringWithFormat:@"(isTitleLoaded == 1 && title CONTAINS[cd] '%@') || fileURL.path CONTAINS[cd] '%@'", searchText, searchText];
         NSArray *filteredContent = [_documents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicate]];
         [_filteredDocuments addObjectsFromArray:filteredContent];
 
@@ -427,31 +425,18 @@
 #pragma mark - PSPDFCacheDelegate
 
 - (void)didCacheImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size {
-    if (page == 0 && PSPDFSizeAspectRatioEqualToSize(PSPDFCache.sharedCache.tinySize, size)) {
-        for (PSPDFDocument *aDocument in self.documents) {
-            if (document == aDocument) {
-                PSCDocumentSelectorCell *cell = nil;
-                if (self.showSectionIndexes) {
-                    for (NSArray *section in self.sections) {
-                        NSUInteger indexOfObject = [section indexOfObject:document];
-                        if (indexOfObject != NSNotFound) {
-                            cell = (PSCDocumentSelectorCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexOfObject inSection:[self.sections indexOfObject:section]]];
-                            break;
-                        }
-                    }
-                }else {
-                    NSUInteger index = [self.documents indexOfObject:document];
-                    cell = (PSCDocumentSelectorCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if (page == 0 && PSPDFSizeAspectRatioEqualToSize(kPSCThumbnailSize, size)) {
+        // Gather all cells,
+        NSMutableArray *cells = [self.tableView.visibleCells mutableCopy];
+        if (self.searchDisplayController.searchResultsTableView.visibleCells) {
+            [cells addObjectsFromArray:self.searchDisplayController.searchResultsTableView.visibleCells];
+        }
+        // Check cells against document match.
+        for (PSCDocumentSelectorCell *cell in cells) {
+            if ([cell isKindOfClass:PSCDocumentSelectorCell.class]) {
+                if (cell.document == document) {
+                    [cell setPagePreviewImage:image animated:YES];
                 }
-
-                //  Also update the search table view.
-                if (self.filteredDocuments.count) {
-                    NSUInteger searchIndex = [self.filteredDocuments indexOfObject:document];
-                    cell = (PSCDocumentSelectorCell *)[self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:searchIndex inSection:0]];
-                }
-
-                [cell setPagePreviewImage:image animated:YES];
-                break;
             }
         }
     }
