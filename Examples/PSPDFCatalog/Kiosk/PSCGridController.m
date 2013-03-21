@@ -41,6 +41,7 @@
 @property (nonatomic, strong) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) PSCShadowView *shadowView;
 @property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
 @implementation PSCGridController
@@ -214,6 +215,8 @@
         [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         _animateViewWillAppearWithFade = NO;
     }
+
+    [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -282,13 +285,39 @@
     if ([self.searchBar isFirstResponder]) {
         restoreKeyboard = YES;
     }
-    
+
     [self.collectionView reloadData];
 
     // UICollectionView is stealing the first responder.
     if (restoreKeyboard) {
         [self.searchBar becomeFirstResponder];
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Progress display
+
+- (void)setProgressIndicatorVisible:(BOOL)visible animated:(BOOL)animated {
+    if (visible) {
+        if (!self.activityView) {
+            UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            [activityView sizeToFit];
+            activityView.frame = PSPDFAlignRectangles(activityView.frame, self.view.frame, PSPDFRectAlignCenter);
+            [activityView startAnimating];
+            self.activityView = activityView;
+        }
+    }
+    if (visible) {
+        self.activityView.alpha = 0.f;
+        [self.view addSubview:self.activityView];
+    }
+    [UIView animateWithDuration:animated ? 0.25f : 0.f delay:0.f options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAllowUserInteraction animations:^{
+        self.activityView.alpha = visible ? 1.f : 0.f;
+    } completion:^(BOOL finished) {
+        if (finished && !visible) {
+            [self.activityView removeFromSuperview];
+        }
+    }];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -346,7 +375,7 @@
 
 - (UIImage *)imageForMagazine:(PSCMagazine *)magazine {
     if (!magazine) return nil;
-    
+
     NSUInteger lastPage = magazine.lastViewState.page;
     UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
     return coverImage;
@@ -429,6 +458,9 @@
 }
 
 - (void)diskDataLoaded {
+    // Update indicator
+    [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:YES];
+
     // Not finished yet? return early.
     if ([[PSCStoreManager sharedStoreManager].magazineFolders count] == 0) return;
 
@@ -437,12 +469,12 @@
 
     // Preload all magazines. (copy to prevent mutation errors)
     /*
-    NSArray *magazines = [self.magazineFolder.magazines copy];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        for (PSCMagazine *magazine in magazines) {
-            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheMemoryStoreNever];
-        }
-    });
+     NSArray *magazines = [self.magazineFolder.magazines copy];
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+     for (PSCMagazine *magazine in magazines) {
+     [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheMemoryStoreNever];
+     }
+     });
      */
 
     [self updateGrid];
@@ -509,7 +541,7 @@
     }else {
         _filteredData = [_filteredData copy];
     }
-    
+
     return [_filteredData count];
 }
 
@@ -770,7 +802,7 @@
     _filteredData = nil;
 
     [self updateGrid];
-    self.collectionView.contentOffset = CGPointMake(0, -self.collectionView.contentInset.top);    
+    self.collectionView.contentOffset = CGPointMake(0, -self.collectionView.contentInset.top);
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
