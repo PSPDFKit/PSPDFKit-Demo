@@ -62,7 +62,6 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)dealloc {
     [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:&kPSPDFKVOToken];
     [self clearProgressObservers];
-    [[PSPDFCache sharedCache] removeDelegate:self];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -187,53 +186,61 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
             self.magazineCount = 0;
 
-            NSBlockOperation *imageLoadOperation = [NSBlockOperation new];
-            __weak NSBlockOperation *weakImageLoadOperation = imageLoadOperation;
-            [imageLoadOperation addExecutionBlock:^{
-                NSBlockOperation *strongImageLoadOperation = weakImageLoadOperation;
-                if (!strongImageLoadOperation.isCancelled) {
-                    _magazineOperationImage = [magazine coverImageForSize:self.frame.size];
-                }
-                // Also may be slow, parsing the title from PDF metadata.
-                self.magazineTitle = magazine.title;
+            // First, check memory.
+            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:self.frame.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
+            [self setImage:memoryImage animated:NO];
+            if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
 
-                BOOL imageLoadedFromWeb = NO;
-                if (!_magazineOperationImage && !strongImageLoadOperation.isCancelled) {
-                    // try to download image
-                    if (!self.image && magazine.imageURL) {
-                        imageLoadedFromWeb = YES;
+            // If memory doesn't return anything, queue up here.
+            if (!memoryImage) {
+                NSBlockOperation *imageLoadOperation = [NSBlockOperation new];
+                __weak NSBlockOperation *weakImageLoadOperation = imageLoadOperation;
+                [imageLoadOperation addExecutionBlock:^{
+                    NSBlockOperation *strongImageLoadOperation = weakImageLoadOperation;
+                    if (!strongImageLoadOperation.isCancelled) {
+                        _magazineOperationImage = [magazine coverImageForSize:self.frame.size];
+                    }
+                    // Also may be slow, parsing the title from PDF metadata.
+                    self.magazineTitle = magazine.title;
+
+                    BOOL imageLoadedFromWeb = NO;
+                    if (!_magazineOperationImage && !strongImageLoadOperation.isCancelled) {
+                        // try to download image
+                        if (!self.image && magazine.imageURL) {
+                            imageLoadedFromWeb = YES;
+                            PSPDFDispatchIfNotOnMainThread(^{
+                                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageURL];
+                                [request setHTTPShouldHandleCookies:NO];
+                                [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+
+                                __weak typeof (self) weakSelf = self;
+                                [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request_, NSHTTPURLResponse *response, UIImage *image) {
+                                    [weakSelf setNeedsLayout];
+                                    weakSelf.imageView.image = image;
+                                } failure:^(NSURLRequest *aRequest, NSHTTPURLResponse *aResponse, NSError *error) {
+                                    PSCLog(@"Failed to download image: %@", error.localizedDescription);
+                                }];
+                            });
+                        }
+                    }
+
+                    if (!strongImageLoadOperation.isCancelled && !imageLoadedFromWeb) {
                         PSPDFDispatchIfNotOnMainThread(^{
-                            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:magazine.imageURL];
-                            [request setHTTPShouldHandleCookies:NO];
-                            [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
-
-                            __weak typeof (self) weakSelf = self;
-                            [self.imageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request_, NSHTTPURLResponse *response, UIImage *image) {
-                                [weakSelf setNeedsLayout];
-                                weakSelf.imageView.image = image;
-                            } failure:^(NSURLRequest *aRequest, NSHTTPURLResponse *aResponse, NSError *error) {
-                                PSCLog(@"Failed to download image: %@", error.localizedDescription);
-                            }];
+                            if (!strongImageLoadOperation.isCancelled) {
+                                // animating this is too expensive.
+                                [self setImage:_magazineOperationImage animated:NO];
+                                self.pageLabel.text = _magazineTitle;
+                            }
                         });
                     }
-                }
+                }];
 
-                if (!strongImageLoadOperation.isCancelled && !imageLoadedFromWeb) {
-                    PSPDFDispatchIfNotOnMainThread(^{
-                        if (!strongImageLoadOperation.isCancelled) {
-                            // animating this is too expensive.
-                            [self setImage:_magazineOperationImage animated:NO];
-                            self.pageLabel.text = _magazineTitle;
-                        }
-                    });
+                if (self.immediatelyLoadCellImages) {
+                    [imageLoadOperation start]; // start directly.
+                }else {
+                    [[self.class thumbnailQueue] addOperation:imageLoadOperation];
+                    _imageLoadOperation = imageLoadOperation;
                 }
-            }];
-
-            if (self.immediatelyLoadCellImages) {
-                [imageLoadOperation start]; // start directly.
-            }else {
-                [[self.class thumbnailQueue] addOperation:imageLoadOperation];
-                _imageLoadOperation = imageLoadOperation;
             }
 
             // dark out view if it needs to be downloaded
