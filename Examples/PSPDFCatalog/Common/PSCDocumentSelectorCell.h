@@ -16,4 +16,7 @@
 @property (nonatomic, strong) UIImage *pagePreviewImage;
 - (void)setPagePreviewImage:(UIImage *)pagePreviewImage animated:(BOOL)animated;
 
+// Associated document. Only for reference, not used.
+@property (nonatomic, weak) PSPDFDocument *document;
+
 @end
