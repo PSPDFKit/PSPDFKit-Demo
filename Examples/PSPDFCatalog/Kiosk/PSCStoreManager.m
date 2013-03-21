@@ -20,6 +20,7 @@
 }
 @property (nonatomic, strong) NSMutableArray *magazineFolders;
 @property (nonatomic, strong) NSMutableArray *downloadQueue;
+@property (nonatomic, assign, getter=isDiskDataLoaded) BOOL diskDataLoaded;
 @end
 
 @implementation PSCStoreManager
@@ -70,6 +71,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         _downloadQueue = [[NSMutableArray alloc] init];
 
         // load magazines from disk async
+        _diskDataLoaded = YES;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self loadMagazinesFromDisk];
         });
@@ -479,6 +481,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     dispatch_async(dispatch_get_main_queue(), ^{
         pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
             self.magazineFolders = magazineFolders;
+            self.diskDataLoaded = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
 
             // now start web-request.

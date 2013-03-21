@@ -62,6 +62,9 @@ extern NSString *const kPSPDFStoreDiskLoadFinishedNotification;
 // All available magazine folders.
 @property (nonatomic, strong, readonly) NSArray *magazineFolders;
 
+// Are we loading disk files?
+@property (nonatomic, assign, getter=isDiskDataLoaded, readonly) BOOL diskDataLoaded;
+
 // @name Download management
 
 // Start downloading a magazine.
