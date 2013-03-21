@@ -228,7 +228,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                         PSPDFDispatchIfNotOnMainThread(^{
                             if (!strongImageLoadOperation.isCancelled) {
                                 // animating this is too expensive.
-                                [self setImage:_magazineOperationImage animated:NO];
+                                [self setImage:_magazineOperationImage animated:YES];
                                 self.pageLabel.text = _magazineTitle;
                             }
                         });
