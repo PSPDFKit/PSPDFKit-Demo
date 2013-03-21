@@ -468,14 +468,15 @@
     if (kPSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
 
     // Preload all magazines. (copy to prevent mutation errors)
-    /*
-     NSArray *magazines = [self.magazineFolder.magazines copy];
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-     for (PSCMagazine *magazine in magazines) {
-     [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheMemoryStoreNever];
-     }
-     });
-     */
+    // Don't do this on old devices, might gobble up the render stack if there are slow documents.
+    if (!PSPDFIsCrappyDevice()) {
+        NSArray *magazines = [self.magazineFolder.magazines copy];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+            for (PSCMagazine *magazine in magazines) {
+                [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever];
+            }
+        });
+    }
 
     [self updateGrid];
 }
