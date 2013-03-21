@@ -348,7 +348,7 @@
     if (!magazine) return nil;
     
     NSUInteger lastPage = magazine.lastViewState.page;
-    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheMemoryStoreAlways];
+    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
     return coverImage;
 }
 
@@ -387,7 +387,7 @@
         // If we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;
         if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheMemoryStoreAlways];
+            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;
