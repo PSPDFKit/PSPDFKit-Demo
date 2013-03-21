@@ -73,7 +73,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _queue = [[NSOperationQueue alloc] init];
-        _queue.maxConcurrentOperationCount = 4;
+        _queue.maxConcurrentOperationCount = PSPDFIsCrappyDevice() ? 2 : 4;
         _queue.name = @"PSPDFThumbnailQueue";
     });
     return _queue;
