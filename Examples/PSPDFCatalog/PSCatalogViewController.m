@@ -96,6 +96,7 @@ const char kPSCAlertViewKey;
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
+        [self addDebugButtons];
     }
     return self;
 }
@@ -2015,6 +2016,24 @@ const char kPSCAlertViewKey;
     UIAlertView *alertView = objc_getAssociatedObject(textField, &kPSCAlertViewKey);
     if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
     }else return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Debug Helper
+
+- (void)addDebugButtons {
+#ifdef PSPDF_USE_SOURCE
+    UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
+    self.navigationItem.leftBarButtonItems = @[memoryButton];
+#endif
+}
+
+// Only for debugging - this will get you rejected on the App Store!
+- (void)debugCreateLowMemoryWarning {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [[UIApplication sharedApplication] performSelector:NSSelectorFromString(@"_performMemoryWarning")];
+#pragma clang diagnostic pop
 }
 
 @end
