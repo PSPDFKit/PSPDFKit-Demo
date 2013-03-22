@@ -10,6 +10,7 @@
 #import <HockeySDK/HockeySDK.h>
 #import "LocalyticsSession.h"
 #import <DropboxSDK/DropboxSDK.h>
+#import <objc/message.h>
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -91,8 +92,10 @@
 #ifndef PSPDF_USE_SOURCE
         [[LocalyticsSession sharedLocalyticsSession] startSession:@"3b7cb4552ea954d48d68f0e-3451f502-de39-11e1-4ab8-00ef75f32667"];
 #else
-        // useful for debugging
-        [PSPDFHangDetector startHangDetector];
+#ifdef DEBUG
+        // Only enabled during debugging.
+        ((void(*)(id, SEL))objc_msgSend)(NSClassFromString(@"PSPDFHangDetector"), NSSelectorFromString(@"startHangDetector"));
+#endif
 #endif
     });
     return YES;
