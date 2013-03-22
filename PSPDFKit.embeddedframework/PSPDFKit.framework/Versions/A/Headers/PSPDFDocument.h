@@ -12,7 +12,7 @@
 #import "PSPDFDocumentProvider.h"
 #import <CoreGraphics/CoreGraphics.h>
 
-@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmarkParser;
+@class PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationParser, PSPDFViewController, PSPDFTextParser, PSPDFDocumentParser, PSPDFDocumentProvider, PSPDFBookmarkParser, PSPDFRenderReceipt;
 
 // Annotations can be saved in the PDF or alongside in an external file.
 typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
@@ -117,13 +117,14 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 /// Helper that gets a suggested fileName for a specific page.
 - (NSString *)fileNameForPage:(NSUInteger)pageIndex;
+- (NSString *)fileName; // Uses page 0.
 
 /// Common base path for pdf files. Set to nil to use absolute paths for files.
 @property (nonatomic, strong) NSURL *basePath;
 
 /// Array of NSString pdf files. If basePath is set, this will be combined with the file name.
 /// If basePath is not set, add the full path (as NSString) to the files.
-/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.`
+/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.
 @property (nonatomic, copy) NSArray *files;
 
 /// Usually, you have one single file URL representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
@@ -153,11 +154,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// Access the PDF metadata of the first PDF document.
 /// A PDF might not have any metadata at all.
 /// See kPSPDFMetadataKeyTitle and the following defines for keys that might be set.
-/// It's possible that there are keys that don't have a PSPDFKit define.
-/// Loop the dictionary to find them all.
+/// It's possible that there are keys that don't have a PSPDFKit define, loop the dictionary to find them all.
 @property (nonatomic, copy, readonly) NSDictionary *metadata;
 
-/// For caching, provide a *UNIQUE* uid here. (Or clear cache after content changes for same uid. Appending content is no problem)
+/// For caching, provide a *UNIQUE* UID here. (Or clear cache after content changes for same UID. Appending content is no problem)
 @property (nonatomic, copy) NSString *UID;
 
 
@@ -318,10 +318,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// Make sure 'cacheDirectory' exists. Returns error if creation is not possible.
 - (BOOL)ensureCacheDirectoryExistsWithError:(NSError **)error;
 
-/// Overrides the global caching strategy in PSPDFCache.
+/// Overrides the global disk caching strategy in PSPDFCache.
 /// Defaults to -1; which equals to the setting in PSPDFCache.
-/// Set this to PSPDFCacheNothing for sensible/encrypted documents!
-@property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy;
+/// Set this to PSPDFDiskCacheNothing for sensible/encrypted documents!
+@property (nonatomic, assign) PSPDFDiskCacheStrategy diskCacheStrategy;
 
 
 /// @name Design and hints for PSPDFViewController
@@ -332,7 +332,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// If document is displayed, returns currently active pdfController. Don't set this yourself. Optimizes caching.
 @property (atomic, weak) PSPDFViewController *displayingPdfController;
 
-/// Currently displayed page. Updated by PSPDFViewController.
+/// Currently displayed page. Updated by PSPDFViewController. Used to make the memory cache smarter.
 @property (atomic, assign, readonly) NSUInteger displayingPage;
 
 /// @name Password Protection and Security
@@ -421,12 +421,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 - (PSPDFDocumentParser *)documentParserForPage:(NSUInteger)page;
 
 /// Outline extraction class for current document.
-///
 /// @warning Only returns the parser for the first PDF file.
 @property (nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
 
 /// Accesses the bookmark parser.
-///
 /// Bookmarks are handled on document level, not on documentProvider.
 @property (nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
 
@@ -440,16 +438,26 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 /// @name PDF Page Rendering
 
+// Special PDF rendering options for the methods in PSPDFDocument. For more options, see PSPDFPageRenderer.h
+extern NSString *const kPSPDFPreserveAspectRatio;     // If added to options, this will change size to fit the aspect ratio.
+extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with a 1.0 scale.
+
 /// Renders the page or a part of it with default display settings into a new image.
 /// @param fullSize		 The size of the page, in pixels, if it was rendered without clipping
 /// @param clippedToRect A rectangle, relative to fullSize, that specifies the area of the page that should be rendered. CGRectZero = automatic.
 /// @param annotations   Annotations that should be rendered with the view
 /// @param options       Dictionary with options that modify the render process (see PSPDFPageRenderer)
-/// @returns			A new UIImage with the rendered page content
+/// @param receit        Returns the render receipt for the render action.
+/// @param error         Returns an error object. (then image will be nil)
+/// @return              A new UIImage with the rendered page content
+- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError **)error;
+
+// Shorthand method.
 - (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Draw a page into a specified context.
-- (void)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+/// If for some reason renderPage: doesn't return a Render Receipt, an error occured.
+- (PSPDFRenderReceipt *)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options error:(NSError **)error;
 
 /// Set custom render options (see PSPDFPageRenderer.h for options)
 /// Options set here will override any options sent to renderImageForPage/renderPage.
@@ -457,6 +465,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// renderOptions = @{kPSPDFBackgroundFillColor : [UIColor blackColor]};
 /// This fixes tiny white/gray lines at the borders of a document that else might show up.
 @property (nonatomic, copy) NSDictionary *renderOptions;
+
+/// Set what annotations should be rendered. Defaults to PSPDFAnnotationTypeAll.
+/// Set this to PSPDFAnnotationTypeLink|PSPDFAnnotationTypeHighlight for PSPDFKit v1 rendering style.
+@property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes;
 
 /// @name Object Finder
 
@@ -565,3 +577,14 @@ extern NSString *const kPSPDFMetadataKeyProducer;
 extern NSString *const kPSPDFMetadataKeyCreationDate;
 extern NSString *const kPSPDFMetadataKeyModDate;
 extern NSString *const kPSPDFMetadataKeyTrapped;
+
+@interface PSPDFDocument (Deprecated)
+
+typedef NSInteger PSPDFCacheStrategy;
+#define PSPDFCacheNothing 0
+#define PSPDFCacheThumbnails 1
+#define PSPDFCacheThumbnailsAndNearPages 2
+#define PSPDFCacheOpportunistic 2
+@property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy __attribute__ ((deprecated));
+
+@end

@@ -1,9 +1,9 @@
 /*
- Localization.strings
- PSPDFKit
+  Localization.strings
+  PSPDFKit
 
- Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
- */
+  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
+*/
 
 // general
 "Close" = "Chiudi";
@@ -27,7 +27,7 @@
 "Email visible pages" = "Invia le pagine visibili per email";
 "Email flattened pages" = "Invia pagine appiattita per email";
 "Open in..." = "Apri con…";
-"Sending to %@..." = "Sending to %@�";
+"Sending to %@..." = "Inviando a %@…";
 "Open original document" = "Apri documento originale";
 "Open flattened document" = "Apri documento appiattito";
 "Print with Annotations" = "Stampa con annotazioni";
@@ -37,10 +37,15 @@
 "Annotations" = "Annotazioni";
 "Add Bookmark" = "Aggiungi segnalibro";
 "Remove Bookmark" = "Rimuovi segnalibro";
-"Bookmarked" = "Bookmarked";
+"Bookmark added" = "Segnalibro aggiunto";
 "Brightness" = "Luminosità";
 "Share..." = "Spartire…";
 "Preparing..." = "Preparando…";
+
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
 
 // password
 "Unlock" = "Sblocca";
@@ -90,7 +95,7 @@
 "Rainbow" = "Arcobaleno";
 "Monochrome" = "Monocromatico";
 "Color..." = "Colore…";
-"Opacity..." = "Opacit�…";
+"Opacity..." = "Opacità…";
 "Custom..." = "Personalizzata…";
 "Thickness..." = "Spessore…";
 "%@ pt" = "%@ pt";
@@ -131,9 +136,9 @@
 "Photo Library" = "Fototeca";
 "Camera" = "Macchina Fotografica";
 "Image" = "Immagine";
-"Low Quality" = "Qualit� Bassa";
-"Medium Quality" = "Qualit� Media";
-"High Quality" = "Qualit� Alta";
+"Low Quality" = "Qualità Bassa";
+"Medium Quality" = "Qualità Media";
+"High Quality" = "Qualità Alta";
 
 // link annotation editing
 "Create Link..." = "Crea link...";

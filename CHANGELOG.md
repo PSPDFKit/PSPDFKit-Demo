@@ -2,6 +2,48 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.10 - 22/March/2013__
+
+PSPDFKit 2.10 is another major milestone. The cache has been rewritten from the ground up to be both faster and more reliable. Annotations are now cached, they are no longer an "afterthought" and will show up in the thumbnails and even the scrobble bar. The disk cache now limits itself to 500MB (this is customizable) and cleans up the least recently used files. The memory cache is now also smarter and better limits itself to a fixed number of pixels (~50MB of modern devices in the default setting). Loading images from the cache is now more logical and highly customizable with PSPDFCacheOptions. The two render code paths have been unified, PSPDFRenderQueue now does all rendering and can now render multiple requests at the same time and also priorizes between low priority cache requests and high priority user zoom requests. In this process some very old code has been completely reworked (PSPDFGlobalLock) and is now much more solid.
+Several methods have been renamed, upgrading will require a little bit of effort to adapt to the new method names. It's definitely worth it. If you find any regressions or missing features for your particular use case, contact me at peter@pspdfkit.com.
+
+*  Completely rewritten cache that now renders all screen sizes and shows annotations.
+*  PSPDFThumbnailViewController now has a new filter to only show annotated/bookmarked pages. See filterOptions for details. http://twitter.com/PSPDFKit/status/314333301664006144/photo/1
+*  PSPDFViewController has a new setting: `showAnnotationMenuAfterCreation` to automatically show the menu after an annotation has been created. (disabled by default)
+*  On iPhone, scrolling down the search results will now automatically hide the keyboard.
+*  Text loupe no longer fades zoomed content. (looks better for text scope loupe)
+*  Prevent too fast tableView updates (and thus flickering) in PSPDFSearchViewController.
+*  Increases loupe magnification on iPhone to 1.6 and make kPSPDFLoupeDefaultMagnification customizable at runtime.
+*  A UISplitViewController in the hierarchy is automatically detected and the pan gesture will be blocked while the PSPDFViewController is in drawing mode (else this would interfere with drawing).
+*  The note annotation controller now no longer generates change events per typed key, but will wait for a viewWillDisappear/app background event to sync the changed text back into the annotation object.
+*  Expose availableLineWidths and availableFontSizes in PSPDFPageView to customize menu options.
+*  On iPhone, scrolling down the search results will now automatically hide the keyboard.
+*  Improves performance for overlay annotation rendering.
+*  Improves annotation selection, especially drawings are now pretty much pixel perfect.
+*  Disables the long press gesture (and the new annotation menu) when a toolbar annotation mode is active.
+*  Use PSPDFAnnotationBorderStyleNone instead of PSPDFAnnotationBorderStyleSolid when the border style is undefined (to match Adobe Acrobat)
+*  The annotation selection border is now independent of the zoomScale.
+*  FreeText annotations no longer "jitter" when resizing.
+*  The stamp controller now dismisses the keyboard when changing switches or pressing return on the keyboard.
+*  Allow note annotations outside the page area (to match Adobe Acrobat behavior).
+*  Allow overrideClassNames for PSPDFDocument when it's created from within PSPDFViewController (e.g. when an external annotation link target is touched)
+*  Add workaround against rdar://13446855 (UIMenuController doesn't properly reset state for multi-page menu)
+*  The selectionBackgroundColor of PSPDFSearchHighlightView can be updated after it's displayed now.
+*  PSPDFTabBarView of PSPDFTabbedViewController can now be overridden with the overrideClassNames dictionary.
+*  API change: The renderBackgroundColor, renderInvertEnabled, renderContentOpacity methods have been removed from PSPDFViewController. Please instead update the dictionary in PSPDFDocument to set these effects. (e.g. document.renderOptions = @{kPSPDFInvertRendering : @YES}).
+*  API change: PSPDFViewController's renderAnnotationTypes has been deprecated and will update the renderOptions in PSPDFDocument instead.
+*  API change: renderPage: and renderImageForPage: will now automatically fetch annotations if the annotations array is nil. To render a page without annotations, supply an empty array as the annotations array (as soon as an array is set, auto-fetching will be disabled).
+*  API change: PSPDFCacheStrategy is now PSPDFDiskCacheStrategy, the enum options have been updated as well.
+*  Fixes some minor problems and deprecation warnings when compiling PSPDFKit with iOS6 as minimum deployment target and autoretained GCD objects.
+*  Fixes an issue where some annotations got set to overlay and were not properly restored.
+*  Fixes an issue with centering after returning from thumbnails in continuous scrolling mode.
+*  Fixes an issue where a thumbnail could be animated that was not visible.
+*  Fixes an UIAcessibility mistake where Undo was labeled Redo in the drawing toolbar.
+*  Fixes encoding issues with localization files.
+*  Fixes some potential crashes when parsing certain PDF documents.
+*  Fixes several non-critical log warnings when opeing continuous scrolling with an invalid document.
+*  Fixes various potential crashes around screen annotations and stream extraction.
+
 __v2.9.0 - 9/March/2013__
 
 *  The loupe has been improved, it's now fast in every zoom level and now 100% matches UIKit's look. Developers can now easily update the magnification level.

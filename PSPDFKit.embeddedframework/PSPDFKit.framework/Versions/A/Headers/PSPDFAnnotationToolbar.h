@@ -73,6 +73,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
 /// Active annotation toolbar mode.
+/// @note Setting a toolbar mode will temporarily disable the long press gesture recognizer on the PSPDFScrollView to disable the new annotation menu.
 @property (nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode;
 
 /// Default/current drawing color (PSPDFAnnotationToolbarDraw).

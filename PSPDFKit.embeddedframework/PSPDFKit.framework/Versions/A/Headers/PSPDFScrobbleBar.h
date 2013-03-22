@@ -10,9 +10,7 @@
 
 @class PSPDFViewController;
 
-///
 /// PDF thumbnail scrobble bar - similar to iBooks.
-///
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// PDF controller delegate. We use KVO, so no weak here.
@@ -49,6 +47,9 @@
 
 @interface PSPDFScrobbleBar (SubclassingHooks)
 
+// Updates the frame and the visibility depending if toolbar is displayed or not.
+- (void)setToolbarFrameAndVisibility:(BOOL)shouldShow animated:(BOOL)animated;
+
 // Returns YES if toolbar is in landscape/iPhone mode.
 - (BOOL)isSmallToolbar;
 
@@ -57,6 +58,9 @@
 
 // Returns size of the bottom thumbnails. (depending on isSmallToolbar)
 - (CGSize)scrobbleBarThumbSize;
+
+// Called once for every thumbnail image.
+- (UIImageView *)emptyThumbnailImageView;
 
 // Margin between thumbnails. Defaults to 2.
 @property (nonatomic, assign) CGFloat thumbnailMargin;

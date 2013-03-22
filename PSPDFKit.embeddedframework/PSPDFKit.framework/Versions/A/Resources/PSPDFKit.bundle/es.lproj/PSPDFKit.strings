@@ -1,7 +1,7 @@
-/* 
+/*
   Localization.strings
   PSPDFKit
- 
+
   Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 */
 
@@ -9,43 +9,48 @@
 "Close" = "Cerrar";
 "Cancel" = "Cancelar";
 "Open" = "Abrir";
-"Untitled" = "Sin tÌtulo";
+"Untitled" = "Sin t√≠tulo";
 "File Not Found" = "Archivo no encontrado";
 "Unnamed PDF" = "PDF sin nombre";
 "Go to %@" = "Ir a %@";
-"Page %d" = "P·gina %d";
+"Page %d" = "P√°gina %d";
 
 // toolbar
-"Table Of Contents" = "Õndice";
+"Table Of Contents" = "√çndice";
 "Search" = "Buscar";
 "Email" = "Email";
 "Email document" = "Mandar el documento por email";
 "Email flattened document" = "Mandar el documento aplanado por email";
 "Email document files" = "Mandar los archivos por email";
-"Email visible page" = "Mandar la p·gina visible por email";
-"Email flattened page" = "Mandar la p·gina aplanada por email";
-"Email visible pages" = "Mandar las p·ginas visibles por email";
-"Email flattened pages" = "Mandar las p·ginas aplanadas por email";
+"Email visible page" = "Mandar la p√°gina visible por email";
+"Email flattened page" = "Mandar la p√°gina aplanada por email";
+"Email visible pages" = "Mandar las p√°ginas visibles por email";
+"Email flattened pages" = "Mandar las p√°ginas aplanadas por email";
 "Open in..." = "Abrir en‚Ä¶";
-"Sending to %@..." = "Sending to %@…";
+"Sending to %@..." = "Enviando a %@‚Ä¶";
 "Open original document" = "Abrir el documento original";
 "Open flattened document" = "Abrir el documento aplanado";
 "Print with Annotations" = "Imprimir con anotaciones";
 "Print document only" = "Imprimir el documento solamente";
-"No Applications found" = "Ninguna aplicaciÛn puede abrir el documento PDF.";
+"No Applications found" = "Ninguna aplicaci√≥n puede abrir el documento PDF.";
 "Print" = "Imprimir";
 "Annotations" = "Anotaciones";
 "Add Bookmark" = "Agregar marcador";
 "Remove Bookmark" = "Remover marcador";
-"Bookmarked" = "Bookmarked";
+"Bookmark added" = "Marcador agregado";
 "Brightness" = "Luminosidad";
 "Share..." = "Compartir‚Ä¶";
 "Preparing..." = "Preparando‚Ä¶";
 
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
+
 // password
 "Unlock" = "Desbloquear";
-"Please enter the password." = "Por favor introduzca la contraseÒa.";
-"This document cannot be unlocked. %@ is unsupported." = "Este documento no puede ser desbloqueado. %@ no est· soportado.";
+"Please enter the password." = "Por favor introduzca la contrase√±a.";
+"This document cannot be unlocked. %@ is unsupported." = "Este documento no puede ser desbloqueado. %@ no est√° soportado.";
 
 // page
 "%d of %d" = "%d de %d";
@@ -55,25 +60,25 @@
 // search
 "Search Document" = "Buscar en el documento";
 "No matches found" = "No se encontraron resultados";
-"One match found" = "Se encontrÛ un resultado";
+"One match found" = "Se encontr√≥ un resultado";
 "%d matches found" = "Se encontraron %d resultados";
-"Searching Page %d of %d..." = "Buscando en la p·gina %d de %d‚Ä¶";
-"Search Completed" = "B˙squeda completa";
-"Search Cancelled" = "B˙squeda cancelada";
+"Searching Page %d of %d..." = "Buscando en la p√°gina %d de %d‚Ä¶";
+"Search Completed" = "B√∫squeda completa";
+"Search Cancelled" = "B√∫squeda cancelada";
 
 // inline browser
 "Copy Link" = "Copiar enlace";
 "Open in Safari" = "Abrir en Safari";
-"Mail Link to this Page" = "Enviar enlace a esta p·gina por email";
-"Your %@ is not configured to send emails." = "Su %@ no est· configurado para enviar emails.";
+"Mail Link to this Page" = "Enviar enlace a esta p√°gina por email";
+"Your %@ is not configured to send emails." = "Su %@ no est√° configurado para enviar emails.";
 "The link is requesting to open %@Would you like to continue?" = "El enlace solicita abrir %@Desea continuar?";
-"an external application" = "una aplicaciÛn externa";
+"an external application" = "una aplicaci√≥n externa";
 "the App Store" = "la App Store";
 "Mail" = "Email";
-"No handler found for %@" = "No se encontrÛ manejador para %@";
+"No handler found for %@" = "No se encontr√≥ manejador para %@";
 
 // text selection
-"Save To Camera Roll" = "Guardar al rollo de la c·mara";
+"Save To Camera Roll" = "Guardar al rollo de la c√°mara";
 "Failed to extract image." = "No se pudo extraer la imagen.";
 
 // annotations
@@ -82,10 +87,10 @@
 "Undo" = "Deshacer";
 "Redo" = "Rehacer";
 "Type..." = "Tipo‚Ä¶";
-"Font..." = "TipografÌa‚Ä¶";
-"Size..." = "TamaÒo‚Ä¶";
-"Choose Font" = "Elija tipografÌa";
-"Choose Font Style" = "Elija estilo de tipografÌa";
+"Font..." = "Tipograf√≠a‚Ä¶";
+"Size..." = "Tama√±o‚Ä¶";
+"Choose Font" = "Elija tipograf√≠a";
+"Choose Font Style" = "Elija estilo de tipograf√≠a";
 "Choose Color" = "Elija un color";
 "Rainbow" = "Arco iris";
 "Monochrome" = "Monocromo";
@@ -129,7 +134,7 @@
 "Delete Free Text" = "Borrar el texto libre";
 "%@ could not be found." = "%@ no se pudo encontrar.";
 "Photo Library" = "Fototeca";
-"Camera" = "C·mara";
+"Camera" = "C√°mara";
 "Image" = "Imagen";
 "Low Quality" = "Baja Calidad";
 "Medium Quality" = "Media Calidad";
@@ -142,11 +147,11 @@
 "Move Link" = "Mover enlace";
 "Remove Link" = "Remover enlace";
 "Open Link" = "Abrir enlace";
-"Go to page %d" = "Ir a la p·gina %d";
+"Go to page %d" = "Ir a la p√°gina %d";
 "Save" = "Guardar";
 "Link Destination" = "Destino del enlace";
-"Enter page index or a http:// address to link to an URL." = "Introduzca un Ìndice de p·gina o una direcciÛn http:// para enlazar a un URL.";
+"Enter page index or a http:// address to link to an URL." = "Introduzca un √≠ndice de p√°gina o una direcci√≥n http:// para enlazar a un URL.";
 
 // voiceover accessibility
-"Page" = "P·gina";
-"Grid" = "CuadrÌcula";
+"Page" = "P√°gina";
+"Grid" = "Cuadr√≠cula";

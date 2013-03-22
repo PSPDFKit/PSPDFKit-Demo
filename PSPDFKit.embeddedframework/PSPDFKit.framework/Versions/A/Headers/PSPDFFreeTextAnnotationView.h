@@ -9,15 +9,9 @@
 #import "PSPDFHostingAnnotationView.h"
 #import "PSPDFResizableView.h"
 
-// Enables inline free text annotation editing. Enabled by default.
-// @warning This switch is temporary and will be removed in later updates.
-extern BOOL kPSPDFEnableInlineFreeTextAnnotations;
-
 @class PSPDFFreeTextAnnotation;
 
-///
 /// Free Text View. Allows inline text editing.
-///
 @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnotationView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate>
 
 /// Designated initializer.

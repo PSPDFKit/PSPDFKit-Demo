@@ -50,9 +50,6 @@
 /// Called when cell resizes. use in override class to re-position your content.
 - (void)setImageSize:(CGSize)imageSize;
 
-/// Internal static queue for thumbnail parsing.
-+ (NSOperationQueue *)thumbnailQueue;
-
 /// Updates the page label.
 - (void)updatePageLabel;
 

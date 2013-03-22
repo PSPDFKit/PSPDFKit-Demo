@@ -1,9 +1,9 @@
 /*
- Localization.strings
- PSPDFKit
+  Localization.strings
+  PSPDFKit
 
- Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
- */
+  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
+*/
 
 // general
 "Close" = "Fermer";
@@ -12,7 +12,7 @@
 "Untitled" = "Sans titre";
 "File Not Found" = "Fichier non trouvé";
 "Unnamed PDF" = "PDF sans nom";
-"Go to %@" = "Aller � %@";
+"Go to %@" = "Aller à %@";
 "Page %d" = "Page %d";
 
 // toolbar
@@ -27,7 +27,7 @@
 "Email visible pages" = "Envoyer les pages visibles par email";
 "Email flattened pages" = "Envoyer les pages aplaties par email";
 "Open in..." = "Ouvrir dans…";
-"Sending to %@..." = "Sending to %@�";
+"Sending to %@..." = "Envoyer à %@…";
 "Open original document" = "Ouvrir le document d'origine";
 "Open flattened document" = "Ouvrir le document aplati";
 "Print with Annotations" = "Imprimer avec les annotations";
@@ -37,10 +37,15 @@
 "Annotations" = "Annotations";
 "Add Bookmark" = "Ajouter marque-page";
 "Remove Bookmark" = "Supprimer marque-page";
-"Bookmarked" = "Bookmarked";
+"Bookmark added" = "Marque-page ajouté";
 "Brightness" = "Luminosité";
 "Share..." = "Partager…";
 "Preparing..." = "Preparation…";
+
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
 
 // password
 "Unlock" = "Déverrouiller";
@@ -66,7 +71,7 @@
 "Open in Safari" = "Ouvrir dans Safari";
 "Mail Link to this Page" = "Envoyer cette adresse URL";
 "Your %@ is not configured to send emails." = "Votre %@ n'est pas configuré pour envoyer des emails.";
-"The link is requesting to open %@Would you like to continue?" = "Ce lien demande � lancer %@Voulez vous continuer?";
+"The link is requesting to open %@Would you like to continue?" = "Ce lien demande à lancer %@Voulez vous continuer?";
 "an external application" = "une application externe";
 "the App Store" = "l'App Store";
 "Mail" = "Email";
@@ -88,7 +93,7 @@
 "Choose Font Style" = "Choisir un style de typographie";
 "Choose Color" = "Choisir une couleur";
 "Rainbow" = "Arc en ciel";
-"Monochrome" = "Cama�eu";
+"Monochrome" = "Camaïeu";
 "Color..." = "Couleur…";
 "Opacity..." = "Opacité…";
 "Custom..." = "Personnalisé…";
@@ -113,8 +118,8 @@
 "Stamp" = "Timbre";
 "Add Stamp" = "Ajouter timbre";
 "Custom" = "Personnalisé";
-"Create Stamp" = "Cr�er timbre";
-"Preview" = "Avant-premi�re";
+"Create Stamp" = "Créer timbre";
+"Preview" = "Avant-première";
 "Stamp Text" = "Texte du timbre";
 "Add Signature" = "Ajouter Signature";
 "My Signature" = "Ma Signature";
@@ -128,12 +133,12 @@
 "Delete Highlight" = "Supprimer le surlignage";
 "Delete Free Text" = "Supprimer le texte libre";
 "%@ could not be found." = "%@ n'a pu être trouvé.";
-"Photo Library" = "Phototh�que";
-"Camera" = "Cam�ra";
+"Photo Library" = "Photothèque";
+"Camera" = "Caméra";
 "Image" = "Image";
-"Low Quality" = "Qualit� Basse";
-"Medium Quality" = "Qualit� Moyenne";
-"High Quality" = "Qualit� Haute";
+"Low Quality" = "Qualité Basse";
+"Medium Quality" = "Qualité Moyenne";
+"High Quality" = "Qualité Haute";
 
 // link annotation editing
 "Create Link..." = "Créer hyperlien...";
@@ -142,10 +147,10 @@
 "Move Link" = "Déplacer hyperlien";
 "Remove Link" = "Supprimer hyperlien";
 "Open Link" = "Ouvrir hyperlien";
-"Go to page %d" = "Aller � la page %d";
+"Go to page %d" = "Aller à la page %d";
 "Save" = "Enregistrer";
 "Link Destination" = "Destination du lien";
-"Enter page index or a http:// address to link to an URL." = "Entrer l'index de page ou une adresse http:// pour lier � une URL.";
+"Enter page index or a http:// address to link to an URL." = "Entrer l'index de page ou une adresse http:// pour lier à une URL.";
 
 // voiceover accessibility
 "Page" = "Page";

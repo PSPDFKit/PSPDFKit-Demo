@@ -23,10 +23,16 @@ typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
 /// PDF Line annotation.
 @interface PSPDFLineAnnotation : PSPDFAnnotation
 
+/// Starting point.
 @property (nonatomic, assign) CGPoint point1;
+
+/// End point.
 @property (nonatomic, assign) CGPoint point2;
 
+/// Start line type.
 @property (nonatomic, assign) PSPDFLineEndType lineEnd1;
+
+/// End line type.
 @property (nonatomic, assign) PSPDFLineEndType lineEnd2;
 
 @end

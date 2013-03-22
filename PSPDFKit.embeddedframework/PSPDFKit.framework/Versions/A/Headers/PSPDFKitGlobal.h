@@ -23,6 +23,9 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeUnableToGetPageReference = 210,
+    PSPDFErrorCodePageRenderSizeIsEmpty = 220,
+    PSPDFErrorCodePageRenderClipRectTooLarge = 230,
+    PSPDFErrorCodePageRenderGraphicsContextNil = 240,
     PSPDFErrorCodeDocumentLocked = 300,
     PSPDFErrorCodeFailedToLoadAnnotations = 400,
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
@@ -127,7 +130,7 @@ extern inline dispatch_queue_t pspdf_dispatch_queue_create(const char *label, di
 // Helper for deadlock-free dispatch_sync.
 extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
 
-// Invoke sync or async, depending on condition
+// Invoke sync or async, depending on condition.
 extern inline void pspdf_dispatch_async_if(dispatch_queue_t queue, BOOL async, dispatch_block_t block);
 
 // Compensates the effect of SLOW ANIMATIONS in the iOS Simulator.
@@ -152,10 +155,16 @@ extern UIActionSheetStyle PSPDPFActionSheetStyleForBarButtonStyle(UIBarStyle bar
 extern CGFloat PSPDFToolbarHeightForOrientation(UIInterfaceOrientation orientation);
 extern CGFloat PSPDFToolbarHeight(BOOL isSmall);
 
+// Rounds to pixel boundaries (0.5 step on retina)
+extern CGRect PSPDFRoundRect(CGRect rect);
+
+// Compares sizes and allows aspect ratio changes.
+extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
+
 // combines fminf and fmaxf to limit a value between a range
 extern CGFloat psrangef(float minRange, float value, float maxRange);
 
-/// Trims down a string, removing characters like \n 's etc.
+// Trims down a string, removing characters like \n 's etc.
 extern NSString *PSPDFTrimString(NSString *string);
 
 // Checks if the current controller class is displayed in the popover (also checks UINavigationController)
@@ -170,9 +179,9 @@ extern void PSPDFCacheKeyboard(void);
 // Time tracking. Returns time in nanoseconds. Use result/1E9 to print seconds.
 extern double PSPDFPerformAndTrackTime(dispatch_block_t block, BOOL trackTime);
 
-/// Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
-/// This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
-/// Older variants still need shouldAutorotate* handling in the view controllers.
+// Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
+// This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
+// Older variants still need shouldAutorotate* handling in the view controllers.
 extern BOOL PSPDFIsRotationLocked(void);
 extern void PSPDFLockRotation(void);
 extern void PSPDFUnlockRotation(void);
@@ -181,7 +190,7 @@ extern void PSPDFUnlockRotation(void);
 extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
 
 // Returns whether both objects are identical or equal via -isEqual.
-BOOL PSPDFEqualObjects(id obj1, id obj2);
+extern BOOL PSPDFEqualObjects(id obj1, id obj2);
 
 #define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
@@ -236,8 +245,10 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 // Starting with iOS6, dispatch queue's can be objects and managed via ARC.
 #if OS_OBJECT_USE_OBJC
 #define PSPDFDispatchRelease(queue)
+#define kPSPDFGCDStrong strong
 #else
 #define PSPDFDispatchRelease(queue) dispatch_release(queue)
+#define kPSPDFGCDStrong assign
 #endif
 
 @interface NSArray (PSPDFCollections)
@@ -246,12 +257,6 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 @interface NSMutableArray (PSPDFCollections)
 - (void)ps_addObjectSafe:(id)anObject;
 - (void)ps_addObjectsFromArraySafe:(NSArray *)otherArray;
-@end
-
-// Smart little helper to find main thread hangs. Enable in appDidFinishLaunching.
-// Only available with source code in DEBUG mode.
-@interface PSPDFHangDetector : NSObject
-+ (void)startHangDetector;
 @end
 
 // Force a category to be loaded when an app starts up, see http://developer.apple.com/library/mac/#qa/qa2006/qa1490.html

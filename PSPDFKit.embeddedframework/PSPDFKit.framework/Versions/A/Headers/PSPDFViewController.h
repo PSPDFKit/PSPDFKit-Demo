@@ -154,31 +154,6 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 - (void)searchForString:(NSString *)searchText animated:(BOOL)animated;
 
 
-/// @name Page Rendering
-
-/*
- Changing those settings will affect PDF rendering.
- Currently the PDF cache still does not honor those settings.
- You need to manually call [self reloadData] after changing those properties.
-*/
-
-/// Change the PDF content opacity. Defaults to 1 (100%)
-@property (nonatomic, assign) CGFloat renderContentOpacity;
-
-/// Multiplies a color to the PDF background color.
-/// Does not change anything if the page color is black.
-/// This is useful to ease reading on mostly white documents. Defaults to [UIColor whiteColor]. (white)
-/// Can not be set to nil.
-@property (nonatomic, strong) UIColor *renderBackgroundColor;
-
-/// Inverts PDF rendering. Useful for people that need additional accessibility.
-@property (nonatomic, assign) BOOL renderInvertEnabled;
-
-/// Set what annotations should be rendered. Defaults to PSPDFAnnotationTypeAll.
-/// Set this to PSPDFAnnotationTypeLink|PSPDFAnnotationTypeHighlight for PSPDFKit v1 rendering style. 
-@property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes;
-
-
 /// @name Properties
 
 /// Set margin for document pages. Defaults to UIEdgeInsetsZero.
@@ -476,6 +451,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: delegate. (when annotation is nil)
 @property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
 
+/// if YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
+@property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
+
 
 /// @name Class Accessors
 
@@ -625,6 +603,9 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (UIStatusBarStyle)preferredStatusBarStyle;
 @end
 
-@interface PSPDFViewController (PSPDFDeprecated)
+@interface PSPDFViewController (Deprecated)
 @property (nonatomic, strong, readonly) PSUICollectionView *gridView __attribute__ ((deprecated("Use thumbnailController.collectionView instead")));
+
+@property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes __attribute__ ((deprecated("Use document.renderAnnotationTypes instead")));;
+
 @end

@@ -14,4 +14,7 @@
 /// Image View that shows the rendered annotation.
 @property (nonatomic, strong, readonly) UIImageView *annotationImageView;
 
+// Attach an internally cached image to the image view.
+- (void)attachImage;
+
 @end

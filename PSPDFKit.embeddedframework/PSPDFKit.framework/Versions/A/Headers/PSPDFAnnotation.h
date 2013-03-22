@@ -318,6 +318,9 @@ extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 // Will be called after document and page have been set.
 - (void)parse;
 
+// Draw the bounding box.
+- (void)drawBoundingBox:(CGContextRef)context;
+
 @end
 
 // Helper for pdfDataRepresentation creation.
