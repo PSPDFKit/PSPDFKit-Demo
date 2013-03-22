@@ -24,6 +24,8 @@ id PSPDFDictionaryGetObjectForPathOfType(CGPDFDictionaryRef pdfDict, NSString *k
 extern PSPDFStream *PSPDFDictionaryGetStreamForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSNumber *PSPDFDictionaryGetNumberForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSString *PSPDFDictionaryGetStringForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSArray *PSPDFDictionaryGetArrayForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSDictionary *PSPDFDictionaryGetDictionaryForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 
 /// Convert a single PDF object to the corresponding CoreFoundation-object.
 extern id PSPDFConvertPDFObject(CGPDFObjectRef objectRef);

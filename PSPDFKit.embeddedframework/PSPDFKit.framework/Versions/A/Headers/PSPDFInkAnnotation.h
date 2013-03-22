@@ -13,6 +13,9 @@ NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
 // Calculates the bounding box from lines.
 CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
 
+// Calculates a new rectangle expanded by a line width.
+CGRect PSPDFGrowRectByLineWidth(CGRect boundingBox, CGFloat lineWidth);
+
 // Will convert view lines to PDF lines (operates on every point)
 // Get the cropBox and rotation from PSPDFPageInfo.
 // bounds should be the size of the view.

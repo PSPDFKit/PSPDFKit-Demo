@@ -11,6 +11,12 @@
 
 @class PSPDFThumbnailViewController, PSPDFThumbnailGridViewCell;
 
+typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
+    PSPDFThumbnailViewFilterShowAll,     // Show all thumbnails.
+    PSPDFThumbnailViewFilterBookmarks,   // Show bookmarked thumbnails.
+    PSPDFThumbnailViewFilterAnnotations, // All annotation types except links.
+};
+
 /// Delegate for thumbnail actions.
 @protocol PSPDFThumbnailViewControllerDelegate <NSObject>
 
@@ -36,14 +42,28 @@
 /// Delegate for the thumbnail controller.
 @property (nonatomic, weak) id<PSPDFThumbnailViewControllerDelegate> delegate;
 
+/// Get the cell for certain page. Compensates against open filters.
+- (PSUICollectionViewCell *)cellForPage:(NSUInteger)page;
+
 /// Scrolls to specified page in the grid.
 - (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
 
 /// Stops an ongoing scroll animation.
 - (void)stopScrolling;
 
-/// Call to update all cells (e.g. to show bookmark changes)
-- (void)updateVisibleCells;
+/// Call to update any filter (if set) all visible cells (e.g. to show bookmark changes)
+- (void)updateFilterAndVisibleCells;
+
+/// Should the thumbnails be displayed in a fixed grid, or dynamically adapt to different page sizes?
+/// Defaults to YES. Most documents will look better when this is set to NO.
+@property (nonatomic , assign) BOOL fixedItemSizeEnabled;
+
+/// Defines the filter options. Set to nil or empty to hide the filter bar.
+/// Defaults to PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterBookmarks, PSPDFThumbnailViewFilterAnnotations.
+@property (nonatomic, copy) NSOrderedSet *filterOptions;
+
+/// Currently active filter. Make sure that one is also set in filterOptions.
+@property (nonatomic, assign, readonly) PSPDFThumbnailViewFilter activeFilter;
 
 /// Thumbnail size. Defaults to 170x220.
 /// @warning call reloadData on the collectionView after changing this.
@@ -54,7 +74,7 @@
 /// @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
 @property (nonatomic, assign) UIEdgeInsets thumbnailMargin;
 
-/// Row margin (minimumLineSpacing property of the flow layout). Defaults to 10.
+/// Row margin (minimumLineSpacing property of the flow layout). Defaults to 20.
 /// @warning Will be ignored if the layout is not a flow layout or a subclass thereof.
 @property (nonatomic, assign) CGFloat thumbnailRowMargin;
 
@@ -72,5 +92,8 @@
 // Internally used layout. Use this to access/set the layout before the view has been loaded.
 // The default layout is a UICollectionViewFlowLayout (PSTCollectionViewFlowLayout on iOS5)
 @property (nonatomic, strong) PSUICollectionViewLayout *layout;
+
+// The filter segment to filter bookmarked/annotated documents.
+@property (nonatomic, strong, readonly) UISegmentedControl *filterSegment;
 
 @end

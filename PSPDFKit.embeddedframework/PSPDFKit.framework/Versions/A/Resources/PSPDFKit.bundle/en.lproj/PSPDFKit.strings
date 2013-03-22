@@ -1,7 +1,7 @@
-/* 
+/*
   Localization.strings
   PSPDFKit
- 
+
   Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 */
 
@@ -37,10 +37,15 @@
 "Annotations" = "Annotations";
 "Add Bookmark" = "Add Bookmark";
 "Remove Bookmark" = "Remove Bookmark";
-"Bookmarked" = "Bookmarked";
+"Bookmark added" = "Bookmark added";
 "Brightness" = "Brightness";
 "Share..." = "Share…";
 "Preparing..." = "Preparing…";
+
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
 
 // password
 "Unlock" = "Unlock";

@@ -28,7 +28,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will be re-used during lifetime.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to all visible PSPDFPageView classes.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate,  UITextFieldDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// 'overrideClassNames' can be nil to simply use the stock classes.
@@ -251,6 +251,12 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Shows the color picker.
 - (void)showColorPickerForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
+/// Font sizes for the freetext annotation menu. Defaults to @[@(10), @(12), @(14), @(18), @(22), @(26), @(30), @(36), @(48), @(64)]
+- (NSArray *)availableFontSizes;
+
+/// Ink line thickness options. Defaults to @[@(1), @(3), @(6), @(9), @(12), @(16)];
+- (NSArray *)availableLineWidths;
+
 /// Returns the passthrough views for the popover controllers (e.g. color picker).
 /// By default this is fairly aggressive and returns the pdfController/navController. If you dislike this behavior return nil to enforce the rule first touch after popover = no reaction. However the passthroughViews allow a faster editing of annotations.
 - (NSArray *)passthroughViewsForPopoverController;
@@ -317,5 +323,8 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Will parse the text glyphs async to allow text selection. Override to disable.
 - (void)preloadTextParser;
+
+// Computes a scale value suitable for computation of the line width to use during drawing and selection.
+- (CGFloat)scaleForPageView;
 
 @end

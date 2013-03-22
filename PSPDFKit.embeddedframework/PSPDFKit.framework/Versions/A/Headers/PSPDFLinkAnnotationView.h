@@ -50,7 +50,7 @@
 
 @interface PSPDFLinkAnnotationView (SubclassingHooks)
 
-/// Called when the annotation Explicitly
+/// Called when the annotation was flashed explicitely via `flashBackground`.
 - (void)touchUp;
 
 @end

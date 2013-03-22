@@ -14,13 +14,16 @@ typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
 	PSPDFLoupeViewModeDetailBottom  // Arrow at the bottom. Low gap.
 };
 
-extern const CGFloat PSPDFLoupeDefaultMagnification; // Defaults to Apple default 1.2
+extern CGFloat kPSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.6 on iPhone.
 
 /// Represents a loupe, modeled like the loupe used in UIKit.
 @interface PSPDFLoupeView : UIView
 
 /// Shared loupe instance.
 + (instancetype)sharedLoupe;
+
+/// Returns YES if the singleton has been loaded already.
++ (BOOL)isSharedLoupeLoaded;
 
 /// Designated initializer.
 /// @note Usually you only ever want one loupe on the screen, thus using sharedLoupe is preferred.

@@ -14,15 +14,13 @@ extern CGColorSpaceRef pspdf_colorSpace;
 
 @interface UIImage (PSPDFKitAdditions)
 
-typedef NS_ENUM(NSInteger, PSPDFImageResizingMethod) {
-    PSPDFImageResizeCrop,	// analogous to UIViewContentModeScaleAspectFill, i.e. "best fit" with no space around.
-    PSPDFImageResizeCropStart,
-    PSPDFImageResizeCropEnd,
-    PSPDFImageResizeScale	// analogous to UIViewContentModeScaleAspectFit, i.e. scale down to fit, leaving space around if necessary.
-};
-
-/// Returns a new image that is resize to fitSize.
-- (UIImage *)pspdf_imageToFitSize:(CGSize)fitSize method:(PSPDFImageResizingMethod)resizeMethod honorScaleFactor:(BOOL)honorScaleFactor opaque:(BOOL)opaque;
+/// Returns a new image that is resize to bounds.
+/// Supported content modes: UIViewContentModeScaleAspectFill, UIViewContentModeScaleAspectFit, UIViewContentModeScaleToFill.
+/// if `honorScaleFactor` is set to NO, resulting image will not be retina scaled.
+- (UIImage *)pspdf_resizedImageWithContentMode:(UIViewContentMode)contentMode
+                                        bounds:(CGSize)bounds
+                              honorScaleFactor:(BOOL)honorScaleFactor
+                          interpolationQuality:(CGInterpolationQuality)quality;
 
 /// Load images via path, looking automatically for a @2x option.
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;

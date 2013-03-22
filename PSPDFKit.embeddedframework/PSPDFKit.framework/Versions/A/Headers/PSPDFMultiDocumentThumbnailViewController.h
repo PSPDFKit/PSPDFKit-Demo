@@ -8,8 +8,6 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFThumbnailViewController.h"
 
-@class PSPDFMultiDocumentThumbnailViewController;
-
 /// Allows displaying thumbnails for multiple PSPDFDocuments.
 @interface PSPDFMultiDocumentThumbnailViewController : PSPDFThumbnailViewController
 

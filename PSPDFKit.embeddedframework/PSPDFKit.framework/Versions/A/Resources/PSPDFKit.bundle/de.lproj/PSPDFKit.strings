@@ -1,4 +1,4 @@
-/* 
+/*
   Localization.strings
   PSPDFKit
 
@@ -37,10 +37,15 @@
 "Annotations" = "Annotationen";
 "Add Bookmark" = "Lesezeichen hinzufügen";
 "Remove Bookmark" = "Lesezeichen entfernen";
-"Bookmarked" = "Lesezeichen gesetzt";
+"Bookmark added" = "Lesezeichen gesetzt";
 "Brightness" = "Helligkeit";
 "Share..." = "Teilen…";
 "Preparing..." = "Vorbereiten…";
+
+// thumbnails
+"Bookmarked" = "Lesezeichen";
+"Annotated" = "Annotationen";
+"All" = "Alle";
 
 // password
 "Unlock" = "Entsperren";

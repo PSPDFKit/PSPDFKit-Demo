@@ -20,10 +20,8 @@
 
 @end
 
-///
 /// Allows to create/edit a custom text annotation stamp.
-///
-@interface PSPDFTextStampViewController : UITableViewController <PSPDFColorSelectionViewControllerDelegate>
+@interface PSPDFTextStampViewController : UITableViewController <PSPDFColorSelectionViewControllerDelegate, UITextFieldDelegate>
 
 /// Initialize controller to create a new stamp.
 - (id)init;
