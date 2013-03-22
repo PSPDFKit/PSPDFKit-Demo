@@ -190,7 +190,8 @@ const char kPSCAlertViewKey;
             self.view.window.rootViewController = splitViewController;
             return (UIViewController *)nil;
         }else {
-            PSCDropboxPDFViewController *dropboxPDFController = [PSCDropboxPDFViewController new];
+            PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+            PSCDropboxPDFViewController *dropboxPDFController = [[PSCDropboxPDFViewController alloc] initWithDocument:document];
             return (UIViewController *)dropboxPDFController;
         }
     }]];
