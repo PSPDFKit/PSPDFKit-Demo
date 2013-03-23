@@ -355,7 +355,6 @@
 #pragma mark UISearchDisplayController
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-
     [self filterContentForSearchText:searchString scope:
      [self.searchDisplayController.searchBar scopeButtonTitles][[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
 
