@@ -11,6 +11,31 @@
 #error "Compile this file with ARC"
 #endif
 
+@implementation PSCSectionDescriptor
+
+- (id)initWithTitle:(NSString *)title footer:(NSString *)footer {
+    if ((self = [super init])) {
+        _title = title;
+        _footer = footer;
+        _contentDescriptors = [NSMutableArray new];
+    }
+    return self;
+}
+
+- (void)setContentDescriptors:(NSArray *)contentDescriptors {
+    _contentDescriptors = [contentDescriptors mutableCopy];
+}
+
+- (void)addContent:(PSContent *)contentDescriptor {
+    [_contentDescriptors addObject:contentDescriptor];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p title:%@ footer:%@ content:%@>", self.class, self, self.title, self.footer, self.contentDescriptors];
+}
+
+@end
+
 @implementation PSContent
 
 - (id)initWithTitle:(NSString *)title class:(Class)class {
@@ -29,25 +54,8 @@
     return self;
 }
 
-@end
-
-@implementation PSCSectionDescriptor
-
-- (id)initWithTitle:(NSString *)title footer:(NSString *)footer {
-    if ((self = [super init])) {
-        _title = title;
-        _footer = footer;
-        _contentDescriptors = [NSMutableArray new];
-    }
-    return self;
-}
-
-- (void)setContentDescriptors:(NSArray *)contentDescriptors {
-    _contentDescriptors = [contentDescriptors mutableCopy];
-}
-
-- (void)addContent:(PSContent *)contentDescriptor {
-    [_contentDescriptors addObject:contentDescriptor];
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p title:%@ class:%@>", self.class, self, self.title, self.classToInvoke];
 }
 
 @end
