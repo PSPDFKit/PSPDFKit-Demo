@@ -129,7 +129,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
         _(@"Content Opacity"),
-        _(@"On iOS4, only the default transition (PSPDFPageScrollPerPageTransition) is available. Other settings will have no effect."),
+        _(@""),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // double page mode
         _(@"Relevant for double page mode."),

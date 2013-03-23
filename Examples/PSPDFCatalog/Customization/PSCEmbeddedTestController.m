@@ -26,13 +26,13 @@
 
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Embedded" image:[UIImage imageNamed:@"medical"] tag:1];
 
-        // prepare document to display, copy it do docs folder
-        // this is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
+        // Prepare document to display, copy it do docs folder.
+        // This is just for the replace copy example. You can display a document from anywhere within your app (e.g. bundle)
         [self copySampleToDocumentsFolder:kPSPDFCatalog];
         [self copySampleToDocumentsFolder:kDevelopersGuideFileName];
         [self copySampleToDocumentsFolder:kPaperExampleFileName];
 
-        // add button to push view
+        // Add button to push view.
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)];
 
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)];
@@ -101,7 +101,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    // show how controller can be animated
+    // Show how controller can be animated.
     dispatch_async(dispatch_get_main_queue(), ^{
 
         if (_testAnimationViewController.parentViewController) {
