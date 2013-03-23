@@ -67,10 +67,10 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = pspdf_dispatch_queue_create("com.PSPDFKit.store.magazineFolderQueue", NULL);
+        _magazineFolderQueue = pspdf_dispatch_queue_create("com.PSPDFCatalog.store.magazineFolderQueue", NULL);
         _downloadQueue = [[NSMutableArray alloc] init];
 
-        // load magazines from disk async
+        // Load magazines from disk, async.
         _diskDataLoaded = YES;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             [self loadMagazinesFromDisk];
@@ -199,14 +199,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 - (void)processStatusChangeForMagazineDownload:(PSCDownload *)download {
     if (download.status == PSCStoreDownloadStatusFinished) {
         [self finishDownload:download];
-        /*
-         [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Download for %@ finished!", @""), storeDownloadWeak.magazine.title]
-         message:nil
-         delegate:nil
-         cancelButtonTitle:NSLocalizedString(@"OK", @"")
-         otherButtonTitles:nil] show];
-         */
-
     }else if (download.status == PSCStoreDownloadStatusFailed) {
         if (!download.isCancelled) {
             NSString *magazineTitle = [download.magazine.title length] ? download.magazine.title : NSLocalizedString(@"Magazine", @"");
@@ -231,7 +223,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 #define kNewsstandIconUID @"kNewsstandIconUID"
 - (void)updateNewsstandIcon:(PSCMagazine *)magazine {
 
-    // if no magazine is given, find the current.
+    // If no magazine is given, find the current.
     if (!magazine) {
         NSString *UID = [[NSUserDefaults standardUserDefaults] objectForKey:kNewsstandIconUID];
         if (UID) {
@@ -244,32 +236,30 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         }
     }
 
-    // set new icon for newsstand, if newsstand exists
-    if (NSClassFromString(@"NKLibrary") != nil) {
-        UIImage *newsstandCoverImage = nil;
+    // Set new icon for newsstand.
+    UIImage *newsstandCoverImage = nil;
 
-        // if magazine or coverImage don't exist, the default newsstand icon is used (with sending nil)
-        if ([magazine coverImageForSize:CGSizeZero]) {
+    // if magazine or coverImage don't exist, the default newsstand icon is used (with sending nil)
+    if ([magazine coverImageForSize:CGSizeZero]) {
 
-            // example how to create blended cover + overlay
-            /*
-             UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0f);
-             [magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
-             [[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
-             newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
-             UIGraphicsEndImageContext();
-             */
-            newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedCache].thumbnailSize];
-        }
+        // example how to create blended cover + overlay
+        /*
+         UIGraphicsBeginImageContextWithOptions(CGSizeMake(362, 512), YES, 0.0f);
+         [magazine.coverImage drawInRect:CGRectMake(0, 0, 362, 512)];
+         [[UIImage imageNamed:@"newsstand-template"] drawAtPoint:CGPointMake(0, 0)];
+         newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
+         UIGraphicsEndImageContext();
+         */
+        newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedCache].thumbnailSize];
+    }
 
-        [UIApplication.sharedApplication setNewsstandIconImage:newsstandCoverImage];
+    [UIApplication.sharedApplication setNewsstandIconImage:newsstandCoverImage];
 
-        // update user defaults
-        if (magazine.UID) {
-            [[NSUserDefaults standardUserDefaults] setObject:magazine.UID forKey:kNewsstandIconUID];
-        }else {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kNewsstandIconUID];
-        }
+    // update user defaults
+    if (magazine.UID) {
+        [[NSUserDefaults standardUserDefaults] setObject:magazine.UID forKey:kNewsstandIconUID];
+    }else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kNewsstandIconUID];
     }
 }
 
@@ -495,7 +485,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
         magazineFolders = _magazineFolders;
     });
-
+    
     return magazineFolders;
 }
 

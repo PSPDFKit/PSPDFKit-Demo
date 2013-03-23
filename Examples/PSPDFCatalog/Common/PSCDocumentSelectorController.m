@@ -101,7 +101,7 @@
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableHeaderView = _searchBar;
-    
+
     _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
     _searchDisplayController.delegate = self;
     _searchDisplayController.searchResultsDataSource = self;
