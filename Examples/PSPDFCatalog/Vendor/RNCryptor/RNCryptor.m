@@ -102,7 +102,7 @@ const uint8_t kRNCryptorFileVersion = 2;
 {
   NSMutableData *derivedKey = [NSMutableData dataWithLength:keySettings.keySize];
 
-  int result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
+  __unused int result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
                                     password.UTF8String,                // password
                                     password.length,                    // passwordLength
                                     salt.bytes,                         // salt
@@ -123,7 +123,7 @@ const uint8_t kRNCryptorFileVersion = 2;
 {
   NSMutableData *data = [NSMutableData dataWithLength:length];
 
-  int result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
+  __unused int result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
   NSAssert(result == 0, @"Unable to generate random bytes: %d", errno);
 
   return data;
