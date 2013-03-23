@@ -72,11 +72,14 @@
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 //#define kDebugTextBlocks
 
-@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate> {
+    UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
-    NSArray *_content;
 }
+@property (nonatomic, strong) NSArray *content;
+@property (nonatomic, strong) NSArray *filteredContent;
+@property (nonatomic, strong) UISearchBar *searchBar;
 @end
 
 const char kPSCShowDocumentSelectorOpenInTabbedControllerKey;
@@ -1633,6 +1636,13 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Check that even extremely long pages are correctly rendered.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test extremely long pages" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pepsico-slow.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"View state restoration for continuous scrolling." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1823,6 +1833,22 @@ const char kPSCAlertViewKey;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
+    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tableView.tableHeaderView = _searchBar;
+
+    _searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+    _searchDisplayController.delegate = self;
+    _searchDisplayController.searchResultsDataSource = self;
+    _searchDisplayController.searchResultsDelegate = self;
+    
+    // Private API - don't ship this in App Store builds.
+    [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
@@ -1919,19 +1945,35 @@ const char kPSCAlertViewKey;
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_content count];
+    if (tableView == self.tableView) {
+        return [_content count];
+    }else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[_content[section] contentDescriptors] count];
+    if (tableView == self.tableView) {
+        return [[_content[section] contentDescriptors] count];
+    }else {
+        return self.filteredContent.count;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [_content[section] title];
+    if (tableView == self.tableView) {
+        return [_content[section] title];
+    }else {
+        return nil;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return [_content[section] footer];
+    if (tableView == self.tableView) {
+        return [_content[section] footer];
+    }else {
+        return nil;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -1942,7 +1984,13 @@ const char kPSCAlertViewKey;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    PSContent *contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+    PSContent *contentDescriptor;
+    if (tableView == self.tableView) {
+        contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+    }else {
+        contentDescriptor = self.filteredContent[indexPath.row];
+    }
+    
     cell.textLabel.text = contentDescriptor.title;
     return cell;
 }
@@ -1952,10 +2000,27 @@ const char kPSCAlertViewKey;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Invoking [NSIndexPath indexPathForRow:%d inSection:%d]", indexPath.row, indexPath.section);
-    PSContent *contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
 
-    // persist state
-    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:indexPath] forKey:kPSPDFLastIndexPath];
+    __block NSIndexPath *unfilteredIndexPath;
+    PSContent *contentDescriptor;
+    if (tableView == self.tableView) {
+        contentDescriptor = [_content[indexPath.section] contentDescriptors][indexPath.row];
+        unfilteredIndexPath = indexPath;
+    }else {
+        contentDescriptor = self.filteredContent[indexPath.row];
+        // Find original index path so we can persist.
+        [self.content enumerateObjectsUsingBlock:^(PSCSectionDescriptor *section, NSUInteger sectionIndex, BOOL *stop) {
+            [section.contentDescriptors enumerateObjectsUsingBlock:^(PSContent *content, NSUInteger contentIndex, BOOL *stop2) {
+                if (content == contentDescriptor) {
+                    unfilteredIndexPath = [NSIndexPath indexPathForRow:contentIndex inSection:sectionIndex];
+                    *stop = YES, *stop2 = YES;
+                }
+            }];
+        }];
+    }
+
+    // Persist state
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:unfilteredIndexPath] forKey:kPSPDFLastIndexPath];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _firstShown = YES; // don't re-show after saving it first.
 
@@ -2016,6 +2081,29 @@ const char kPSCAlertViewKey;
     UIAlertView *alertView = objc_getAssociatedObject(textField, &kPSCAlertViewKey);
     if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
     }else return NO;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark UISearchDisplayController and content filtering
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
+    [self filterContentForSearchText:searchString scope:
+     [self.searchDisplayController.searchBar scopeButtonTitles][[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
+    NSMutableArray *filteredContent = [NSMutableArray array];
+
+    if (searchText.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"self.title CONTAINS[cd] '%@'", searchText]];
+        for (PSCSectionDescriptor *section in self.content) {
+            [filteredContent addObjectsFromArray:[section.contentDescriptors filteredArrayUsingPredicate:predicate]];
+        }
+    }
+    self.filteredContent = filteredContent;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
