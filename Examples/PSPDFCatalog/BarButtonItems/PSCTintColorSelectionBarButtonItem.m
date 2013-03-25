@@ -59,7 +59,7 @@
         self.pdfController.popoverController = nil;
     }else {
         NSString *viewControllerTitle = NSLocalizedString(@"Tint Color", @"");
-        PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle delegate:self];
+        PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle delegate:self context:NULL];
         if (colorPicker) {
             [self.pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
         }else {
@@ -71,11 +71,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFColorSelectionViewControllerDelegate
 
-- (UIColor *)colorSelectionControllerSelectedColor:(PSPDFColorSelectionViewController *)controller {
+- (UIColor *)colorSelectionControllerSelectedColor:(PSPDFColorSelectionViewController *)controller context:(void *)context {
     return self.pdfController.tintColor;
 }
 
-- (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished {
+- (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished context:(void *)context {
     controller.navigationController.navigationBar.tintColor = color;
     self.pdfController.tintColor = color;
     [self dismissModalOrPopoverAnimated:YES];
