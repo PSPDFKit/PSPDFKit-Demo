@@ -96,6 +96,10 @@ const char kPSCAlertViewKey;
         self.title = PSPDFLocalize(@"PSPDFKit Catalog");
         if (PSIsIpad()) {
             self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
+        }else {
+#ifdef PSPDF_USE_SOURCE
+            self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"")];
+#endif
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
@@ -116,7 +120,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
-//        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
+//        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -202,7 +206,6 @@ const char kPSCAlertViewKey;
 
     [content addObject:appSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
-
 
     // PSPDFDocument data provider test
     PSCSectionDescriptor *documentTests = [[PSCSectionDescriptor alloc] initWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one."];
@@ -350,7 +353,6 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
-
     [content addObject:documentTests];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -386,12 +388,11 @@ const char kPSCAlertViewKey;
     }]];
     [content addObject:multimediaSection];
 
-
     PSCSectionDescriptor *annotationSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"PDF annotation writing" block:^{
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"weirdannots.pdf"];
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
@@ -478,7 +479,6 @@ const char kPSCAlertViewKey;
 
     [content addObject:annotationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
-
 
     PSCSectionDescriptor *storyboardSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Storyboards" footer:@""];
     [storyboardSection addContent:[[PSContent alloc] initWithTitle:@"Init with Storyboard" block:^UIViewController *{
@@ -1346,7 +1346,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
-
+    
     //    1. Run in iOS 5.1 in Simulator in landscape.
     //    2. Expand to fullscreen.
     //    3. Rotate to Portrait.
@@ -1882,7 +1882,7 @@ const char kPSCAlertViewKey;
     }
 #endif
 
-    // load last state
+    // Load last state
     if (!_firstShown) {
         NSData *indexData = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFLastIndexPath];
         if (indexData) {
@@ -1891,9 +1891,12 @@ const char kPSCAlertViewKey;
             @catch (NSException *exception) {}
             if ([self isValidIndexPath:indexPath]) {
                 [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
-                _firstShown = YES;
             }
         }
+        _firstShown = YES;
+    }else {
+        // Second display, remove user default.
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPSPDFLastIndexPath];
     }
 }
 
@@ -2111,8 +2114,11 @@ const char kPSCAlertViewKey;
 
 - (void)addDebugButtons {
 #ifdef PSPDF_USE_SOURCE
-    UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
-    self.navigationItem.leftBarButtonItems = @[memoryButton];
+    UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
+    self.navigationItem.leftBarButtonItem = memoryButton;
+
+    UIBarButtonItem *cacheButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(debugClearCache)];
+    self.navigationItem.rightBarButtonItem = cacheButton;
 #endif
 }
 
@@ -2122,6 +2128,11 @@ const char kPSCAlertViewKey;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [[UIApplication sharedApplication] performSelector:NSSelectorFromString(@"_performMemoryWarning")];
 #pragma clang diagnostic pop
+}
+
+- (void)debugClearCache {
+    [PSPDFRenderQueue.sharedRenderQueue cancelAllJobs];
+    [PSPDFCache.sharedCache clearCache];
 }
 
 @end
