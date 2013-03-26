@@ -47,6 +47,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         // incomplete downloads stay here
         _observedMagazineDownloads = [[NSMutableSet alloc] init];
 
+        self.imageView.clipsToBounds = YES;
         self.showingPageLabel = YES;
         self.edgeInsets = UIEdgeInsetsMake(0, 0, 10, 0);
 
