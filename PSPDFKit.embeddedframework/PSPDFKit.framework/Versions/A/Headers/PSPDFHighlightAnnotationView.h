@@ -14,10 +14,10 @@
 /// Embedded UIButton.
 @property (nonatomic, strong, readonly) UIButton *button;
 
-/// called when button is pressed.
+/// Called when button is pressed.
 - (void)touchDown;
 
-/// called when button is released.
+/// Called when button is released.
 - (void)touchUp;
 
 @end

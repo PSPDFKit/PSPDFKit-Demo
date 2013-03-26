@@ -46,6 +46,9 @@
 #import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFBrightnessViewController.h"
 
+// rendering
+#import "PSPDFRenderQueue.h"
+
 // views
 #import "PSPDFPageLabelView.h"
 #import "PSPDFDocumentLabelView.h"

@@ -334,3 +334,6 @@ extern NSData *PSPDFUTF16EncodedStringWithTitle(NSString *string, NSString *titl
 
 // Helper to properly escape ASCII strings.
 extern NSString *PSPDFEscapedString(NSString *string);
+
+// Calculates a new rectangle expanded by a line width.
+extern CGRect PSPDFGrowRectByLineWidth(CGRect boundingBox, CGFloat lineWidth);

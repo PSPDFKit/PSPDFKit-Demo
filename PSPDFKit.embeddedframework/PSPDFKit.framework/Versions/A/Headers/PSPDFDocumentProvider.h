@@ -23,10 +23,8 @@
 
 @end
 
-extern NSString *PSPDFKCloseCachedDocumentRefNotification;
-
 /// A PSPDFDocument consists of one or multiple PSPDFDocumentProvider's.
-/// Note: This class is used within PSPDFDocument and should not be instantiated externally.
+/// @note This class is used within PSPDFDocument and should not be instantiated externally.
 @interface PSPDFDocumentProvider : NSObject
 
 /// Initialize with a local file URL.
@@ -86,7 +84,8 @@ extern NSString *PSPDFKCloseCachedDocumentRefNotification;
 
 /// For optimization reasons, the internal documentRef might be cached.
 /// This force-clears the cache.
-- (void)flushDocumentReference;
+/// @return YES if document could be flushed instantly (or was already nil), NO otherwise.
+- (BOOL)flushDocumentReference;
 
 /// Cached rotation and aspect ratio data for specific page. Page starts at 0.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;

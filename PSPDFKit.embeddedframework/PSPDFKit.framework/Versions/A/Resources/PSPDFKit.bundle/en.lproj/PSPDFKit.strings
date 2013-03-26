@@ -95,6 +95,8 @@
 "Rainbow" = "Rainbow";
 "Monochrome" = "Monochrome";
 "Color..." = "Color…";
+"Border..." = "Border…";
+"Fill Color..." = "Fill Color…";
 "Opacity..." = "Opacity…";
 "Custom..." = "Custom…";
 "Thickness..." = "Thickness…";

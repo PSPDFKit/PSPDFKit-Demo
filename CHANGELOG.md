@@ -2,7 +2,22 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-__v2.10 - 22/March/2013__
+__v2.10.1 - 26/March/2013__
+
+*  Shape annotations border and fill color can now be customized.
+*  Clearing the memory cache will now also clear any open document references.
+*  Add white color to common color picker colors (except for highlights, replacing purple)
+*  PSPDFRenderQueue now has a cancelAllJobs to clear any running requests.
+*  The render queue now better priorizes between cache requests and user requests (zooms) to allow even faster rendering.
+*  FreeText annotations can now no longer be created outside boundaries.
+*  Add support for text alignment for FreeText annotations. (It seems that Adobe Acrobat has a bug here and ignores this property - other Applications are compliant to the PDF spec and do display this, e.g. Apple's Preview.app)
+*  Edit mode now directly hides the HUDView.
+*  API change: The color picker now has a context: flag to allow state storage. Update your delegates if you use this class directly.
+*  Fixes some minor issues with the new cache.
+*  Fixes a UI weirdness where the scrollview had a slow scroll-back animation when text was edited at the very top.
+*  Titanium: Add new linkAnnotationHighlightColor property.
+
+__v2.10.0 - 22/March/2013__
 
 PSPDFKit 2.10 is another major milestone. The cache has been rewritten from the ground up to be both faster and more reliable. Annotations are now cached, they are no longer an "afterthought" and will show up in the thumbnails and even the scrobble bar. The disk cache now limits itself to 500MB (this is customizable) and cleans up the least recently used files. The memory cache is now also smarter and better limits itself to a fixed number of pixels (~50MB of modern devices in the default setting). Loading images from the cache is now more logical and highly customizable with PSPDFCacheOptions. The two render code paths have been unified, PSPDFRenderQueue now does all rendering and can now render multiple requests at the same time and also priorizes between low priority cache requests and high priority user zoom requests. In this process some very old code has been completely reworked (PSPDFGlobalLock) and is now much more solid.
 Several methods have been renamed, upgrading will require a little bit of effort to adapt to the new method names. It's definitely worth it. If you find any regressions or missing features for your particular use case, contact me at peter@pspdfkit.com.

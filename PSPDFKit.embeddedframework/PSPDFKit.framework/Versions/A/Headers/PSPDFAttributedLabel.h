@@ -32,6 +32,8 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
     PSPDFAttributedLabelVerticalAlignmentBottom   = 2,
 };
 
+extern CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment);
+
 @protocol PSPDFAttributedLabelDelegate;
 
 // Override UILabel @property to accept both NSString and NSAttributedString

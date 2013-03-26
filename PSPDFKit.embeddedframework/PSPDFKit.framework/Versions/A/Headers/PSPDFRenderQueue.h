@@ -40,6 +40,9 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// Use NSNotFound for `page` to delete all requests for the document.
 - (void)cancelRenderingForDocument:(PSPDFDocument *)document forPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate async:(BOOL)async;
 
+/// Cancel all queued and running jobs.
+- (void)cancelAllJobs;
+
 /// Cancels all queued render-calls.
 /// Async will perform on the next thread. (don't use async in dealloc)
 - (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate async:(BOOL)async;
@@ -69,7 +72,7 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 @property (nonatomic, copy,   readonly) NSArray *annotations;
 @property (nonatomic, assign) PSPDFRenderQueuePriority priority;
 @property (nonatomic, copy)   NSDictionary *options;
-@property (atomic, weak)      id<PSPDFRenderDelegate> delegate;
+@property (atomic,    weak)   id<PSPDFRenderDelegate> delegate;
 @property (nonatomic, strong) UIImage *renderedImage;
 @property (nonatomic, strong) PSPDFRenderReceipt *renderReceipt;
 

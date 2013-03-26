@@ -70,9 +70,6 @@ extern CGFloat kPSPDFAnimationDuration;
 /// Evaluates if devices is modern enough to support proper animation (depends on kPSPDFAnimateOption setting)
 extern BOOL PSPDFShouldAnimate(void);
 
-/// Number of open CGPDFDocument's.
-extern NSUInteger kPSPDFMaximumNumberOfOpenDocumentRefs;
-
 /// Improves scroll performance.
 extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 
@@ -245,10 +242,8 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 // Starting with iOS6, dispatch queue's can be objects and managed via ARC.
 #if OS_OBJECT_USE_OBJC
 #define PSPDFDispatchRelease(queue)
-#define kPSPDFGCDStrong strong
 #else
 #define PSPDFDispatchRelease(queue) dispatch_release(queue)
-#define kPSPDFGCDStrong assign
 #endif
 
 @interface NSArray (PSPDFCollections)
