@@ -7,16 +7,20 @@
 
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
-#import <HockeySDK/HockeySDK.h>
-#import "LocalyticsSession.h"
 #import <DropboxSDK/DropboxSDK.h>
 #import <objc/message.h>
-
+#ifdef HOCKEY_ENABLED
+#import <HockeySDK/HockeySDK.h>
+#endif
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
 #endif
 
-@interface PSCAppDelegate () <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> @end
+@interface PSCAppDelegate ()
+#ifdef HOCKEY_ENABLED
+<BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate>
+#endif
+@end
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
@@ -79,23 +83,16 @@
 
     // Perform non-important actions on the next runloop, for faster app-starting.
     dispatch_async(dispatch_get_main_queue(), ^{
-
-        // HockeyApp (http://hockeyapp.net) is a *great* service to manage crashes. It's well worth the money.
-#if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE)
+        // HockeyApp (http://hockeyapp.net) is a *great* service to manage crashes and distribute beta builds. It's well worth the money.
+#if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE) && defined(HOCKEY_ENABLED)
         NSLog(@"This example project uses HockeyApp for crash reports and Localytics for user statistics. Make sure to either remove that or change the identifiers before shipping your app, if you use PSPDFCatalog/PSPDFKiosk as the foundation of your application.");
         [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
         [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
 #endif
-        // Localytics helps me to track PSPDFCatalog launches
-        // Remove this or replace with your own Localytics ID if you are using PSPDFCatalog as a template for your own app.
-#ifndef PSPDF_USE_SOURCE
-        [[LocalyticsSession sharedLocalyticsSession] startSession:@"3b7cb4552ea954d48d68f0e-3451f502-de39-11e1-4ab8-00ef75f32667"];
-#else
-#ifdef DEBUG
+#if defined(PSPDF_USE_SOURCE) && defined(DEBUG)
         // Only enabled during debugging.
         ((void(*)(id, SEL))objc_msgSend)(NSClassFromString(@"PSPDFHangDetector"), NSSelectorFromString(@"startHangDetector"));
-#endif
 #endif
     });
     return YES;
@@ -129,6 +126,7 @@
 }
 
 #pragma mark - BITUpdateManagerDelegate
+#ifdef HOCKEY_ENABLED
 - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
 #ifndef CONFIGURATION_AppStore
     if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
@@ -136,5 +134,6 @@
 #endif
     return nil;
 }
+#endif
 
 @end
