@@ -95,6 +95,8 @@
 "Rainbow" = "Arcobaleno";
 "Monochrome" = "Monocromatico";
 "Color..." = "Colore…";
+"Border..." = "Border…";
+"Fill Color..." = "Fill Color…";
 "Opacity..." = "Opacità…";
 "Custom..." = "Personalizzata…";
 "Thickness..." = "Spessore…";

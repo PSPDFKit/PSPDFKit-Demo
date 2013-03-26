@@ -147,7 +147,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Saves the view state into a serializable object. (page/zoom/position/HUD)
 @property (nonatomic, strong) PSPDFViewState *viewState;
 
-/// Saves the view state into a serializable object, optionally animated. (page/zoom/position/HUD)
+/// Restores the view state, optionally animated. (page/zoom/position/HUD)
 - (void)setViewState:(PSPDFViewState *)viewState animated:(BOOL)animated;
 
 /// Opens the PSPDFSearchViewController with the searchString.

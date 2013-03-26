@@ -17,12 +17,14 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 };
 
 @protocol PSPDFColorSelectionViewControllerDelegate;
+@class PSPDFColorSelectionViewController;
 
 /// Beautiful color selection controller.
 @interface PSPDFColorSelectionViewController : UIViewController
 
 /// Used to show the color pickers in PSPDF. Uses defaultColorArrays.
-+ (PSPDFSimplePageViewController *)defaultColorPickerWithTitle:(NSString *)title delegate:(id<PSPDFColorSelectionViewControllerDelegate>)delegate;
+/// `context` can be used to store additional context that gets sent to the delegates.
++ (PSPDFSimplePageViewController *)defaultColorPickerWithTitle:(NSString *)title delegate:(id<PSPDFColorSelectionViewControllerDelegate>)delegate context:(void *)context;
 
 /// Set array of NSNumber-enums of PSPDFColorPickerStyle.
 /// Defaults to @[@(PSPDFColorPickerStyleRainbow), @(PSPDFColorPickerStyleModern), @(PSPDFColorPickerStyleVintage), @(PSPDFColorPickerStyleMonochrome), @(PSPDFColorPickerStyleHSVPicker)].
@@ -59,9 +61,9 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 @required
 
 /// Asks for the currently selected color.
-- (UIColor *)colorSelectionControllerSelectedColor:(UIViewController *)controller;
+- (UIColor *)colorSelectionControllerSelectedColor:(UIViewController *)controller context:(void *)context;
 
 /// Sent when a color has been selected.
-- (void)colorSelectionController:(UIViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished;
+- (void)colorSelectionController:(UIViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished context:(void *)context;
 
 @end

@@ -95,7 +95,9 @@
 "Rainbow" = "Regenbogen";
 "Monochrome" = "Monochrom";
 "Color..." = "Farbe…";
-"Opacity..." = "Alpha…";
+"Border..." = "Rand…";
+"Fill Color..." = "Füllfarbe…";
+"Opacity..." = "Transparenz…";
 "Custom..." = "Mehr…";
 "Thickness..." = "Stärke…";
 "%@ pt" = "%@ pt";

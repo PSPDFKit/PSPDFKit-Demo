@@ -1242,7 +1242,6 @@
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
-					"\"$(SRCROOT)/PSPDFCatalog/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
@@ -1262,7 +1261,6 @@
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
-					"\"$(SRCROOT)/PSPDFCatalog/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";

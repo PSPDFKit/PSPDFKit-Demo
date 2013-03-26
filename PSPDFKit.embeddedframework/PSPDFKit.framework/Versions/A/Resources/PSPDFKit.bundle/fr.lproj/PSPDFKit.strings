@@ -95,6 +95,8 @@
 "Rainbow" = "Arc en ciel";
 "Monochrome" = "Camaïeu";
 "Color..." = "Couleur…";
+"Border..." = "Border…";
+"Fill Color..." = "Fill Color…";
 "Opacity..." = "Opacité…";
 "Custom..." = "Personnalisé…";
 "Thickness..." = "Epaisseur…";

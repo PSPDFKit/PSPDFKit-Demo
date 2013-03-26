@@ -95,6 +95,8 @@
 "Rainbow" = "Arco iris";
 "Monochrome" = "Monocromo";
 "Color..." = "Color…";
+"Border..." = "Border…";
+"Fill Color..." = "Fill Color…";
 "Opacity..." = "Opacidad…";
 "Custom..." = "Personalizado…";
 "Thickness..." = "Espesor…";

@@ -234,8 +234,11 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
+/// Returns available PSPDFMenuItem's to change the fill color (only applies to certain annotations)    
+- (NSArray *)fillColorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
+
 /// Returns the opacity menu item (used inside colorMenuItemsForAnnotation:)
-- (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation;
+- (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation withColor:(UIColor *)color;
 
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController, except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
@@ -254,7 +257,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Font sizes for the freetext annotation menu. Defaults to @[@(10), @(12), @(14), @(18), @(22), @(26), @(30), @(36), @(48), @(64)]
 - (NSArray *)availableFontSizes;
 
-/// Ink line thickness options. Defaults to @[@(1), @(3), @(6), @(9), @(12), @(16)];
+/// Line thickness options (ink, border). Defaults to @[@(1), @(3), @(6), @(9), @(12), @(16)];
 - (NSArray *)availableLineWidths;
 
 /// Returns the passthrough views for the popover controllers (e.g. color picker).
