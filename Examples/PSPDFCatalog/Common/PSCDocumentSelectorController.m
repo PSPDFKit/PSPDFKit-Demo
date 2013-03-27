@@ -17,6 +17,7 @@
     UISearchDisplayController *_searchDisplayController;
     UISearchBar *_searchBar;
     NSMutableArray *_filteredDocuments;
+    NSMutableDictionary *_deletableFileStatus;
 }
 @property (nonatomic, copy) NSString *directory;
 @property (nonatomic, copy) NSArray *filteredDocuments;
@@ -46,6 +47,7 @@
         _delegate = delegate;
         _documents = [self.class documentsFromDirectory:_directory];
         _filteredDocuments = [NSMutableArray new];
+        _deletableFileStatus = [NSMutableDictionary new];
         [[PSPDFCache sharedCache] addDelegate:self];
 
         _showSectionIndexes = YES;
@@ -259,6 +261,17 @@
     return cell;
 }
 
+// Cache status.
+- (BOOL)isDeletableFileAtPath:(NSString *)path {
+    NSNumber *deletable = _deletableFileStatus[path];
+    if (!deletable) {
+        BOOL isDeletable = [NSFileManager.defaultManager isDeletableFileAtPath:path];
+        deletable = @(isDeletable);
+        _deletableFileStatus[path] = deletable;
+    }
+    return deletable.boolValue;
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     PSPDFDocument *document = nil;
 
@@ -267,7 +280,7 @@
         document = self.documents[indexPath.row];
     }
 
-    return [NSFileManager.defaultManager isDeletableFileAtPath:[document.fileURL.path stringByDeletingLastPathComponent]];
+    return [self isDeletableFileAtPath:[document.fileURL.path stringByDeletingLastPathComponent]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
