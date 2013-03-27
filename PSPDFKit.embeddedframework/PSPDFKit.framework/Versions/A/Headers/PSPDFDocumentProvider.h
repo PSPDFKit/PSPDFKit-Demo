@@ -65,7 +65,7 @@
 - (CGPDFDocumentRef)requestDocumentRefWithOwner:(id)owner;
 
 /// Releases the lock on the documentRef.
-/// Note: the parameter is to *check* if the returned documentRef is the same as the internal one.
+/// @note The parameter is to *check* if the returned documentRef is the same as the internal one.
 - (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef withOwner:(id)owner;
 
 /// Use documentRef within the block. Will be automatically cleaned up.
@@ -145,7 +145,7 @@
 @property (nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
 
 /// Access the PDF title. (".pdf" will be truncated)
-/// Note: if there's no title in the PDF metadata, the file name will be used.
+/// @note If there's no title in the PDF metadata, the file name will be used.
 @property (nonatomic, copy, readonly) NSString *title;
 
 /// Return a textParser for the specific document page. Page starts at 0.

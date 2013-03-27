@@ -36,8 +36,8 @@ typedef NS_ENUM(NSInteger, PSPDFViewMode) {
 /// Active page mode.
 typedef NS_ENUM(NSInteger, PSPDFPageMode) {
     PSPDFPageModeSingle,   // Default on iPhone.
-    PSPDFPageModeDouble,
-    PSPDFPageModeAutomatic // single in portrait, double in landscape if the document's height > width. Default on iPad.
+    PSPDFPageModeDouble,   // Always show double pages.
+    PSPDFPageModeAutomatic // Single in portrait, double in landscape if the document's height > width. Default on iPad.
 };
 
 /// Active scrolling direction. Only relevant for scrolling page transitions.
@@ -48,36 +48,36 @@ typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
 
 /// Status bar style. (old status will be restored regardless of the style chosen)
 typedef NS_ENUM(NSInteger, PSPDFStatusBarStyleSetting) {
-    PSPDFStatusBarInherit,             /// Don't change status bar style, but show/hide statusbar on HUD events.
-    PSPDFStatusBarSmartBlack,          /// UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
-    PSPDFStatusBarSmartBlackHideOnIpad,/// Similar to PSPDFStatusBarSmartBlack, but also hides statusBar on iPad.
-    PSPDFStatusBarBlackOpaque,         /// Opaque Black everywhere.
-    PSPDFStatusBarDefault,             /// Default statusbar (white on iPhone/black on iPad).
-    PSPDFStatusBarDisable,             /// Never show status bar.
+    PSPDFStatusBarInherit,             // Don't change status bar style, but show/hide statusbar on HUD events.
+    PSPDFStatusBarSmartBlack,          // UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
+    PSPDFStatusBarSmartBlackHideOnIpad,// Similar to PSPDFStatusBarSmartBlack, but also hides statusBar on iPad.
+    PSPDFStatusBarBlackOpaque,         // Opaque Black everywhere.
+    PSPDFStatusBarDefault,             // Default statusbar (white on iPhone/black on iPad).
+    PSPDFStatusBarDisable,             // Never show status bar.
 };
 
 typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
-    PSPDFHUDViewAlways,                   /// Always show the HUD.
-    PSPDFHUDViewAutomatic,                /// Show HUD on touch and first/last page.
-    PSPDFHUDViewAutomaticNoFirstLastPage, /// Show HUD on touch.
-    PSPDFHUDViewNever                     /// Never show the HUD.
+    PSPDFHUDViewAlways,                   // Always show the HUD.
+    PSPDFHUDViewAutomatic,                // Show HUD on touch and first/last page.
+    PSPDFHUDViewAutomaticNoFirstLastPage, // Show HUD on touch.
+    PSPDFHUDViewNever                     // Never show the HUD.
 };
 
 /// Default action for PDF link annotations.
 typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
-    PSPDFLinkActionNone,         /// Link actions are ignored.
-    PSPDFLinkActionAlertView,    /// Link actions open an UIAlertView.
-    PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
-    PSPDFLinkActionInlineBrowser /// Link actions open in an inline browser.
+    PSPDFLinkActionNone,         // Link actions are ignored.
+    PSPDFLinkActionAlertView,    // Link actions open an UIAlertView.
+    PSPDFLinkActionOpenSafari,   // Link actions directly open Safari.
+    PSPDFLinkActionInlineBrowser // Link actions open in an inline browser.
 };
 
 // Customize how a single page should be displayed.
 typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
-    PSPDFPageRenderingModeThumbnailThenFullPage, /// load cached page async
-    PSPDFPageRenderingModeFullPage,              /// load cached page async, no upscaled thumb
-    PSPDFPageRenderingModeFullPageBlocking,      /// load cached page directly
-    PSPDFPageRenderingModeThumbnailThenRender,   /// don't use cached page but thumb
-    PSPDFPageRenderingModeRender                 /// don't use cached page nor thumb
+    PSPDFPageRenderingModeThumbnailThenFullPage, // Load cached page async.
+    PSPDFPageRenderingModeFullPage,              // Load cached page async, no upscaled thumb.
+    PSPDFPageRenderingModeFullPageBlocking,      // Load cached page directly.
+    PSPDFPageRenderingModeThumbnailThenRender,   // Don't use cached page but thumb.
+    PSPDFPageRenderingModeRender                 // Don't use cached page nor thumb.
 };
 
 /**
@@ -87,7 +87,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
  
  For subclassing, please use overrideClassNames to register your custom subclasses. (Cast the key class to (id) to hide the copy warning - classes can be copied without a problem)
  
- The best time for setting the properties is during initialization, in commonInitWithDocument:. Some properties require a call to reloadData if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. viewWillAppear is bad, viewDidAppear is ok) since that could corrupt internal state. Instead use updateSettingsForRotation:.
+ The best time for setting the properties is during initialization, in commonInitWithDocument:. Some properties require a call to reloadData if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. viewWillAppear is bad, viewDidAppear is ok) since that could corrupt internal state, instead use updateSettingsForRotation:.
 */
 @interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
@@ -221,7 +221,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) BOOL shouldRestoreNavigationBarStyle;
 
 /// Set the default link action for pressing on PSPDFLinkAnnotations. Default is PSPDFLinkActionInlineBrowser.
-/// Note: if modal is set in the link, this property has no effect.
+/// @note If modal is set in the link, this property has no effect.
 @property (nonatomic, assign) PSPDFLinkAction linkAction;
 
 
@@ -378,7 +378,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign, getter=isZoomingSmallDocumentsEnabled) BOOL zoomingSmallDocumentsEnabled;
 
 /// For Left-To-Right documents, this sets the pagecurl to go backwards. Defaults to NO.
-/// Note: doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
+/// @note Doesn't re-order document pages. There's currently no real LTR support in PSPDFKit.
 @property (nonatomic, assign, getter=isPageCurlDirectionLeftToRight) BOOL pageCurlDirectionLeftToRight;
 
 /// If true, pages are fit to screen width, not to either height or width (which one is larger - usually height.) Defaults to NO.
@@ -595,6 +595,10 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 
 // Allows access to the annotation cache.
 @property (nonatomic, strong, readonly) PSPDFAnnotationController *annotationController;
+
+// Called when a PDF action requests to load a new document in a new controller (modally).
+// Will copy all important settings from the current controller to the new controller.
+- (PSPDFViewController *)createNewControllerForDocument:(PSPDFDocument *)document;
 
 @end
 

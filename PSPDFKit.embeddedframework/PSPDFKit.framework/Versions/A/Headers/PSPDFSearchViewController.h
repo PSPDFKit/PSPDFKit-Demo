@@ -31,14 +31,14 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// initializes controller.
 - (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
 
-/// Current searchText. If set, keyboard is not shown
+/// Current searchText. If set, keyboard is not shown.
 @property (nonatomic, copy) NSString *searchText;
 
-/// different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
-/// Note: this is set from PSPDFViewController in presentModalViewController:embeddedInNavigationController:withCloseButton:animated.
+/// Different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
+/// @note This is set from PSPDFViewController in presentModalViewController:embeddedInNavigationController:withCloseButton:animated.
 @property (nonatomic, assign) BOOL showsCancelButton;
 
-/// search bar for controller.
+/// Search bar for controller.
 /// You can change attributes (e.g. barStyle) but don't change the delegate!
 @property (nonatomic, strong, readonly) UISearchBar *searchBar;
 
@@ -55,7 +55,7 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// If not set, the natural page order is searched.
 @property (nonatomic, assign) BOOL searchVisiblePagesFirst;
 
-/// Internally used textSearch (is a copy of the textSearch class in document)
+/// Internally used textSearch. (is a copy of the textSearch class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 
 /// Attached pdfController.
@@ -69,7 +69,7 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 
 @interface PSPDFSearchViewController (SubclassingHooks)
 
-// called every time the text in the search bar changes. Scope is currently ignored.
+// Called every time the text in the search bar changes. Scope is currently ignored.
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 
 // Will update the status and insert/reload/remove search rows

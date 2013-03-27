@@ -32,10 +32,10 @@
 
 /**
  You can add your own annotations (like videos, links) here.
- Note: Usually it's a better idea to implement a custom AnnotationProvider, but this is kept for backwards compatibility.
+ @note Usually it's a better idea to implement a custom AnnotationProvider, but this is kept for backwards compatibility.
 
  You will override any already set annotations, so if you want to mix in annotations from the PDF, use addAnnotations:forPage: instead.
- Note: Setting nil as annotations will re-evaluate the pdf for annotations on the next access. Use an empty array if you want to clear annotations instead.
+ Setting nil as annotations will re-evaluate the pdf for annotations on the next access. Use an empty array if you want to clear annotations instead.
 */
 - (void)setAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 

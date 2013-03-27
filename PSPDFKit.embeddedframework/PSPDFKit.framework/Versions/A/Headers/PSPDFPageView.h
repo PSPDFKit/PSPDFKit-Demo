@@ -16,6 +16,7 @@
 #import "PSPDFFontSelectorViewController.h"
 #import "PSPDFFontStyleViewController.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFCache.h"
 
 @protocol PSPDFAnnotationView;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
@@ -28,7 +29,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will be re-used during lifetime.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to all visible PSPDFPageView classes.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, UITextFieldDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// 'overrideClassNames' can be nil to simply use the stock classes.
@@ -138,7 +139,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// @name Accessors
 
 /// Access parent PSPDFScrollView if available. (zoom controller)
-/// Note: this only lets you access the scrollView if it's in the view hierarchy.
+/// @note this only lets you access the scrollView if it's in the view hierarchy.
 /// If we use pageCurl mode, we have a global scrollView which can be accessed with pdfController.pagingScrollView
 - (PSPDFScrollView *)scrollView;
 

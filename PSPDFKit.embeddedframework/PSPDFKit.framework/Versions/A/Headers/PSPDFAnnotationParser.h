@@ -42,7 +42,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
  You can even remove the default PSPDFFileAnnotationProvider if you don't want file-based annotations.
  
  On default, this array will contain the fileAnnotationProvider.
- Note: The order of the array is important. Setting/getting is thread safe.
+ @note The order of the array is important. Setting/getting is thread safe.
  */
 @property (nonatomic, copy) NSArray *annotationProviders;
 
@@ -52,12 +52,12 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 
 /**
  Return annotation array for specified page.
- Note: fetching annotations may take a while. You can do this in a background thread.
- 
+
  This method will be called OFTEN. Multiple times during a page display, and basically each time you're scrolling or zooming. Ensure it is fast.
  This will query all annotationProviders and merge the result.
- 
  For example, to get all annotations except links, use PSPDFAnnotationTypeAll &~ PSPDFAnnotationTypeLink as type.
+ 
+ @note Fetching annotations may take a while. You can do this in a background thread.
 */
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
@@ -96,8 +96,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
  Call will be relayed to all annotationProviders.
  
  This method will be called on ALL annotations, not just the ones that you provided.
- Note: If you have custom code that changes annotations and you rely on the didChangeAnnotation: event,
- you need to call it manually.
+ @note If you have custom code that changes annotations and you rely on the didChangeAnnotation: event, you need to call it manually.
  
  For file-based annotations we might have to make a copy before the annotation can be edited. (see copyAndDeleteOriginalIfNeeded on PSPDFAnnotation.h)
  If the annotation object wasn't changed itself, set originalAnnotation = annotation.

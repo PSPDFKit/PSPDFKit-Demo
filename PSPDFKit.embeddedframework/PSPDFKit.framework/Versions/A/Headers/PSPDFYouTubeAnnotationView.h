@@ -13,7 +13,7 @@
 @class PSPDFVideoAnnotationView, PSPDFAnnotation;
 
 /// Encapsulates the YouTube plugin of UIWebView
-/// Note: The YouTube plugin doesn't show up in the Simulator. Test on the device!
+/// @note The YouTube plugin doesn't show up in the Simulator under iOS5. Test on the device!
 @interface PSPDFYouTubeAnnotationView : PSPDFLinkAnnotationBaseView <UIWebViewDelegate>
 
 /// Keep a reference at the annotation.

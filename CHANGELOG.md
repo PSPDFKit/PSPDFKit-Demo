@@ -2,6 +2,21 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.10.2 - 27/March/2013__
+
+*  PSPDFCache is even smarter and faster when using PDF documents that are very slow to render.
+*  PSPDFCache no longer deadlocks if you remove the delegate while the delegate is being called.
+*  If a new PSPDFViewController is created based on a PDF action that links to a new document modally, all important settings are copied over to the new controller.
+*  PSPDFKit will no longer create empty highlight annotations when using the annotation toolbar and tapping on a point without text.
+*  No longer retains the view controller while the document background cache is being build (less memory pressure)
+*  Adds some more safeguards against abuse of certain methods.
+*  The render queue now retains the document while rendering. This fixes cases where image requests never returned because the document disappeared before.
+*  Fixes a regression from 2.10 where through an event optimization sometimes the text of a note annotation was not properly saved. PSPDFDocument now sends out a PSPDFDocumentWillSaveNotification before a save will be made to give all open editors a chance to persist it's last state in time.
+*  Fixes an issue where the contentRect was calculated wrong for uncommon view embedding use cases.
+*  Fixes an issue where the thumbnail filter values were hardcoded.
+*  Fixes a potential timing-related crash on iOS5 when the search controller was shown too fast.
+*  Titanium: Add thumbnailFilterOptions property.
+
 __v2.10.1 - 26/March/2013__
 
 *  Shape annotations border and fill color can now be customized.
