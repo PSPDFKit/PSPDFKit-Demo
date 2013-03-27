@@ -29,6 +29,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
     PSPDFTextCheckingTypeAll         = UINT_MAX
 };
 
+// Called before the document starts to save annotations. Use to save any unsaved changes.
+extern NSString *const PSPDFDocumentWillSaveNotification;
+
 /**
  PSPDFDocument represents a single document for the user.
  Internally it might come from several different sources, files or data.
@@ -93,7 +96,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 - (void)appendFile:(NSString *)file;
 
 /// Returns path for a single page (in case pages are split up). Page starts at 0.
-/// Note: uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.
+/// @note Uses fileIndexForPage and URLForFileIndex internally. Override those instead of pathForPage.
 - (NSURL *)pathForPage:(NSUInteger)page;
 
 /// Returns position of the internal file array.
@@ -124,7 +127,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 /// Array of NSString pdf files. If basePath is set, this will be combined with the file name.
 /// If basePath is not set, add the full path (as NSString) to the files.
-/// Note: it's currently not possible to add the file multiple times, this will fail to display correctly.
+/// @note It's currently not possible to add the file multiple times, this will fail to display correctly.
 @property (nonatomic, copy) NSArray *files;
 
 /// Usually, you have one single file URL representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
@@ -136,7 +139,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 @property (nonatomic, copy, readonly) NSData *data;
 
 /// A document can also have multiple NSData objects.
-/// Note: If writing annotations is enabled, the dataArray's content will change after a save.
+/// @note If writing annotations is enabled, the dataArray's content will change after a save.
 @property (nonatomic, copy, readonly) NSArray *dataArray;
 
 /// PDF dataProvider (can be used to dynamically decrypt a document). Will be retained when set.
@@ -179,17 +182,12 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 @property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
 /// Can PDF annotations be embedded?
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 /// This might block for a while since the PDF needs to be parsed to determine this.
 @property (nonatomic, assign, readonly) BOOL canEmbedAnnotations;
 
-/**
- Control if and where custom created PSPDFAnnotations are saved.
- Defaults to PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback.
- 
- Note: Currently PSPDFLinkAnnotations cannot be saved.
- (See editableAnnotationTypes for annotations that can be written)
-*/
+/// Control if and where custom created PSPDFAnnotations are saved.
+/// Possible options are PSPDFAnnotationSaveModeDisabled, PSPDFAnnotationSaveModeExternalFile, PSPDFAnnotationSaveModeEmbedded and PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback. (default)
 @property (nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
 
 /// Default annotation username. Defaults to nil.
@@ -211,7 +209,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 /// Link annotation parser class for current document.
 /// Can be overridden to use a subclassed annotation parser.
-/// Note: Only returns the parser for the first PDF file.
+/// @note Only returns the parser for the first PDF file.
 @property (nonatomic, strong, readonly) PSPDFAnnotationParser *annotationParser;
 
 /**
@@ -227,7 +225,12 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 /// Shorthand accessor that compensates the page. See PSPDFAnnotationParser for details.
 - (void)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
-/// Get all annotations of all documentProviders.
+/**
+ Returns all annotations of all documentProviders.
+
+ Returns dictionary NSNumber->NSArray. Only adds entries for a page if there are annotations.
+ @warning This might take some time if the annotation cache hasn't been built yet.
+ */
 - (NSDictionary *)allAnnotationsOfType:(PSPDFAnnotationType)annotationType;
 
 /**
@@ -290,7 +293,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 /// Scan the whole document and analyzes if the aspect ratio is equal or not.
 /// If this returns 0 or a very small value, it's perfectly suitable for pageCurl.
-/// Note: this might take a second on larger documents, as the page structure needs to be parsed.
+/// @note this might take a second on larger documents, as the page structure needs to be parsed.
 - (CGFloat)aspectRatioVariance;
 
 
@@ -333,6 +336,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 @property (atomic, weak) PSPDFViewController *displayingPdfController;
 
 /// Currently displayed page. Updated by PSPDFViewController. Used to make the memory cache smarter.
+/// Set to NSNotFound if no controller displays the document.
 @property (atomic, assign, readonly) NSUInteger displayingPage;
 
 /// @name Password Protection and Security
@@ -367,24 +371,24 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 @property (nonatomic, assign, readonly, getter=isValid) BOOL valid;
 
 /// Do the PDF digital right allow for printing?
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL allowsPrinting;
 
 /// Was the PDF file encrypted at file creation time?
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL isEncrypted;
 
 /// Name of the encryption filter used, e.g. Adobe.APS. If this is set, the document can't be unlocked.
 /// See "Adobe LifeCycle DRM, http://www.adobe.com/products/livecycle/rightsmanagement
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, copy, readonly) NSString *encryptionFilter;
 
 /// Has the PDF file been unlocked? (is it still locked?).
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL isLocked;
 
 /// A flag that indicates whether copying text is allowed
-/// Note: only evaluates the first file if multiple files are set.
+/// @note Only evaluates the first file if multiple files are set.
 /// Can also be overridden manually.
 @property (nonatomic, assign) BOOL allowsCopying;
 
@@ -443,17 +447,17 @@ extern NSString *const kPSPDFPreserveAspectRatio;     // If added to options, th
 extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with a 1.0 scale.
 
 /// Renders the page or a part of it with default display settings into a new image.
-/// @param fullSize		 The size of the page, in pixels, if it was rendered without clipping
-/// @param clippedToRect A rectangle, relative to fullSize, that specifies the area of the page that should be rendered. CGRectZero = automatic.
+/// @param size		     The size of the page, in pixels, if it was rendered without clipping
+/// @param clippedToRect A rectangle, relative to size, that specifies the area of the page that should be rendered. CGRectZero = automatic.
 /// @param annotations   Annotations that should be rendered with the view
 /// @param options       Dictionary with options that modify the render process (see PSPDFPageRenderer)
 /// @param receit        Returns the render receipt for the render action.
 /// @param error         Returns an error object. (then image will be nil)
 /// @return              A new UIImage with the rendered page content
-- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError **)error;
+- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError **)error;
 
 // Shorthand method.
-- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+- (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Draw a page into a specified context.
 /// If for some reason renderPage: doesn't return a Render Receipt, an error occured.
@@ -513,7 +517,7 @@ extern NSString *const kPSPDFImages;
 /// e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] as key/value pair to use the custom subclass. (MyCustomAnnotationParser must be a subclass of PSPDFAnnotationParser)
 /// Throws an exception if the overriding class is not a subclass of the overridden class.
 /// Hide the warning "Incompatible pointer types sending 'Class' to parameter of type 'id<NSCopying>' " with casting class to (id). It's perfectly safe to do so. Alternatively you can also use NSStrings.
-/// Note: does not get serialized when saved to disk.
+/// @note Does not get serialized when saved to disk.
 @property (nonatomic, copy) NSDictionary *overrideClassNames;
 
 /// Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
@@ -544,7 +548,7 @@ extern NSString *const kPSPDFImages;
 
 /// Can be overridden to provide custom text. Defaults to nil.
 /// if this returns nil for a site, we'll try to extract text ourselves.
-/// Note: If you return text here, text highlighting cannot be used for this page.
+/// @note If you return text here, text highlighting cannot be used for this page.
 - (NSString *)pageContentForPage:(NSUInteger)page;
 
 /// Override if you want custom *page* background colors. Only displayed while loading, and when no thumbnail is yet available. Defaults to backgroundColor.

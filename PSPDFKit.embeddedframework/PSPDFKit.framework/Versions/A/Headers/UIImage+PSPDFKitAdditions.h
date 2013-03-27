@@ -7,9 +7,6 @@
 
 #import "PSPDFKitGlobal.h"
 
-// Note: If you see an error like "Terminating app due to uncaught exception 'NSInvalidArgumentException"
-// you've missed adding the linker flag -ObjC.
-
 extern CGColorSpaceRef pspdf_colorSpace;
 
 @interface UIImage (PSPDFKitAdditions)

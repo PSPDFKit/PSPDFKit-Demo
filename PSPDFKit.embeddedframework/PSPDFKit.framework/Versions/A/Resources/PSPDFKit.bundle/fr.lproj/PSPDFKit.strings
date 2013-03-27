@@ -43,9 +43,9 @@
 "Preparing..." = "Preparation…";
 
 // thumbnails
-"Bookmarked" = "Bookmarked";
-"Annotated" = "Annotated";
-"All" = "All";
+"Bookmarked" = "Marquées";
+"Annotated" = "Annotées";
+"All" = "Toutes";
 
 // password
 "Unlock" = "Déverrouiller";
@@ -95,8 +95,8 @@
 "Rainbow" = "Arc en ciel";
 "Monochrome" = "Camaïeu";
 "Color..." = "Couleur…";
-"Border..." = "Border…";
-"Fill Color..." = "Fill Color…";
+"Border..." = "Bordure…";
+"Fill Color..." = "Couleur De Remplissage…";
 "Opacity..." = "Opacité…";
 "Custom..." = "Personnalisé…";
 "Thickness..." = "Epaisseur…";
@@ -107,8 +107,8 @@
 "Red" = "Rouge";
 "Blue" = "Bleu";
 "Pink" = "Rose";
-"Black" = "Black";
-"Define" = "Definir";
+"Black" = "Noir";
+"Define" = "Définir";
 "Wikipedia" = "Wikipedia";
 "Copy" = "Copier";
 "Highlight" = "Surligner";

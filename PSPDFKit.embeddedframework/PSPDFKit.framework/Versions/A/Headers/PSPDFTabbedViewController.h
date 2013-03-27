@@ -44,12 +44,12 @@
 /// Add one or multiple documents to the documents array at the specified index.
 /// Documents that are already within documents (or are equal to those) are ignored.
 /// If index is invalid or NSUIntegerMax they're appended at the end.
-/// Note: animated is a placeholder, doesn't yet animate.
+/// @note Animated is a placeholder, doesn't yet animate.
 - (void)addDocuments:(NSArray *)documents atIndex:(NSUInteger)index animated:(BOOL)animated;
 
 /// Removes one or multiple documents to the documents array.
 /// Documents that are not in the documents array will be ignored.
-/// Note: animated is a placeholder, doesn't yet animate.
+/// @note Animated is a placeholder, doesn't yet animate.
 - (void)removeDocuments:(NSArray *)documents animated:(BOOL)animated;
 
 /// Delegate to capture events.

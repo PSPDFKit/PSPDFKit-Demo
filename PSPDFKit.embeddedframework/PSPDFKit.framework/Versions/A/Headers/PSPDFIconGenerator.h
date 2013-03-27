@@ -28,7 +28,8 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
 /// Generates various icons on the fly and caches them for later use.
 @interface PSPDFIconGenerator : NSObject
 
-/// Access singleton. Note: can be overridden with changing global kPSPDFIconGeneratorClassName.
+/// Access singleton.
+/// @note can be overridden with changing global kPSPDFIconGeneratorClassName.
 + (instancetype)sharedGenerator;
 
 /// Generates in-code images on the fly. Cached, Thread-safe.

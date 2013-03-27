@@ -38,7 +38,7 @@
 /// @name Scroll and Page Events
 ///--------------------------------------------
 
-// Note: If you need more scroll events, subclass PSPDFScrollView and relay your custom scroll events. Don't forget calling super though.
+// If you need more scroll events, subclass PSPDFScrollView and relay your custom scroll events. Don't forget calling super though.
 
 /// Control scrolling to pages. Not implementing this will return YES.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page;
@@ -65,7 +65,7 @@
  - scrollViewWillEndDragging / scrollViewDidEndDragging
  - scrollViewDidEndDecelerating
 
- Note: be careful to not dereference a nil pointer in targetContentOffset.
+ @note Be careful to not dereference a nil pointer in targetContentOffset.
  */
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
@@ -83,7 +83,7 @@
  didTapOnPageView will be called if a user taps on the screen. Taps outside pageView will be reported too (with negative offset)
  Return YES if you want to set this touch as processed; this will disable automatic touch processing like showing/hiding the HUDView or scrolling to the next/previous page.
  
- Note: This will not send events when we are in the thumbnail view.
+ @note This will not send events when we are in the thumbnail view.
 
  PSPDFPageCoordinates has been replaced by just CGPoint viewPoint.
  You can easily calculate other needed coordinates:

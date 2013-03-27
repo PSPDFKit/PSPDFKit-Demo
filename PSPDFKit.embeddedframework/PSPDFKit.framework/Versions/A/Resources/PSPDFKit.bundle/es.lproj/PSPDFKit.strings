@@ -43,9 +43,9 @@
 "Preparing..." = "Preparando…";
 
 // thumbnails
-"Bookmarked" = "Bookmarked";
-"Annotated" = "Annotated";
-"All" = "All";
+"Bookmarked" = "Marcadas";
+"Annotated" = "Anotadas";
+"All" = "Todas";
 
 // password
 "Unlock" = "Desbloquear";
@@ -95,8 +95,8 @@
 "Rainbow" = "Arco iris";
 "Monochrome" = "Monocromo";
 "Color..." = "Color…";
-"Border..." = "Border…";
-"Fill Color..." = "Fill Color…";
+"Border..." = "Borde…";
+"Fill Color..." = "Color De Relleno…";
 "Opacity..." = "Opacidad…";
 "Custom..." = "Personalizado…";
 "Thickness..." = "Espesor…";
