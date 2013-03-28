@@ -1669,6 +1669,13 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // There was a bug where free text annotations with a too small boundingBox were not drawn.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test small freetext annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"SmallTextAnnotationTest.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // If the encoding is wrong, the freeText annotation will not be displayed.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation encoding" block:^UIViewController *{
         NSURL *URL = [self copyFileURLToDocumentFolder:[samplesURL URLByAppendingPathComponent:@"A.pdf"] overrideFile:YES];
