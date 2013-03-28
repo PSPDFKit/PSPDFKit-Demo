@@ -12,7 +12,6 @@
 #import "PSCSettingsBarButtonItem.h"
 
 #ifdef PSPDFCatalog
-#import "PSCAnnotationTableBarButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
 #import "PSCMetadataBarButtonItem.h"
 #endif
@@ -27,7 +26,6 @@
     PSCSettingsBarButtonItem *_settingsButtomItem;
 #ifdef PSPDFCatalog
     PSCMetadataBarButtonItem *_metadataButtonItem;
-    PSCAnnotationTableBarButtonItem *_annotationListButtonItem;
 #endif
 }
 @end
@@ -117,7 +115,7 @@
 #ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
     // Dynamically adapt toolbar (in landscape mode, we have a lot more space!)
-    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem, _annotationListButtonItem] : @[_closeButtonItem, _settingsButtomItem];
+    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
     // Simple performance optimization.
     if ([leftToolbarItems count] != [self.leftBarButtonItems count] || force) {
@@ -163,7 +161,6 @@
 
 #ifdef PSPDFCatalog
     _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
-    _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
     [self updateSettingsForRotation:self.interfaceOrientation force:YES];
 #endif
 

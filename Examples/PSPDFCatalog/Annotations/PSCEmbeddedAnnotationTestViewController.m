@@ -6,7 +6,6 @@
 //
 
 #import "PSCEmbeddedAnnotationTestViewController.h"
-#import "PSCAnnotationTableBarButtonItem.h"
 
 @implementation PSCEmbeddedAnnotationTestViewController
 
@@ -19,9 +18,8 @@
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Save", @"") style:UIBarButtonItemStyleBordered target:self action:@selector(saveAnnotations)];
-        PSCAnnotationTableBarButtonItem *annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
 
-        self.leftBarButtonItems = @[self.closeButtonItem, saveButton, annotationListButtonItem];
+        self.leftBarButtonItems = @[self.closeButtonItem, saveButton];
 
         if (PSIsIpad()) {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
