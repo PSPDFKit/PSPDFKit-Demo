@@ -2135,6 +2135,9 @@ const char kPSCAlertViewKey;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [[UIApplication sharedApplication] performSelector:NSSelectorFromString(@"_performMemoryWarning")];
 #pragma clang diagnostic pop
+
+    // Clear any reference of items that would retain controllers/pages.
+    [[UIMenuController sharedMenuController] setMenuItems:nil];
 }
 
 - (void)debugClearCache {
