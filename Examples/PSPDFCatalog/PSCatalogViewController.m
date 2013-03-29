@@ -16,7 +16,6 @@
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCSplitPDFViewController.h"
 #import "PSCBookmarkParser.h"
-#import "PSCSettingsBarButtonItem.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
 #import "PSCustomTextSelectionMenuController.h"
@@ -36,7 +35,6 @@
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
 #import "PSCLinkEditorViewController.h"
-#import "PSCSettingsController.h"
 #import "PSCTintablePDFViewController.h"
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
@@ -47,11 +45,9 @@
 #import "PSCHideHUDForThumbnailsViewController.h"
 #import "PSCHideHUDDelayedDocumentViewController.h"
 #import "PSCCustomDefaultZoomScaleViewController.h"
-#import "PSCFontCacheTest.h"
 #import "PSCTextParserTest.h"
 #import "PSCAppDelegate.h"
 #import "PSCDropboxSplitViewController.h"
-#import "PSCDropboxPDFViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import <objc/runtime.h>
 

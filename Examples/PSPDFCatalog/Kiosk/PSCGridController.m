@@ -5,15 +5,12 @@
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "PSCGridController.h"
 #import "PSCImageGridViewCell.h"
 #import "PSCMagazine.h"
 #import "PSCMagazineFolder.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCSettingsController.h"
-#import "PSCDownload.h"
-#import "PSCImageGridViewCell.h"
 #import "PSCShadowView.h"
 #import "SDURLCache.h"
 
@@ -815,7 +812,7 @@
 
 // Fixes the missing action method crash on updating when the keyboard is visible.
 #import <objc/runtime.h>
-#import <objc/message.h>
+
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
     PSPDF_IF_PRE_IOS6(return;) // stop if we're on iOS5.
     @autoreleasepool {

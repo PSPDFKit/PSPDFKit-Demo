@@ -9,7 +9,6 @@
 #import "PSCPlayBarButtonItem.h"
 #import "PSCSelectionZoomBarButtonItem.h"
 #import <MapKit/MapKit.h>
-#import <MediaPlayer/MediaPlayer.h>
 
 @implementation PSCAnnotationTestController
 

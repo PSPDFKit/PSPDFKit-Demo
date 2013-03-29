@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 PSPDFKit. All rights reserved.
 //
 
-#import "PSCAppDelegate.h"
-#import "PSCGridController.h"
-
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

@@ -6,7 +6,6 @@
 //
 
 #import "PSCChildViewController.h"
-#import "PSCAppDelegate.h"
 
 @interface PSCChildViewController() <PSPDFViewControllerDelegate>
 @property (nonatomic, strong) PSPDFViewController *pdfController;
