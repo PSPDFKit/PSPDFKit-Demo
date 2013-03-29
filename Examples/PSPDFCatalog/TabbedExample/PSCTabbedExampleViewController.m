@@ -8,7 +8,6 @@
 #import "PSCTabbedExampleViewController.h"
 #import "PSCAddDocumentsBarButtonItem.h"
 #import "PSCClearTabsButtonItem.h"
-#import <objc/runtime.h>
 
 @implementation PSCTabbedExampleViewController
 

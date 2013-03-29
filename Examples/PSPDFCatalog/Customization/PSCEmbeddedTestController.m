@@ -6,9 +6,7 @@
 //
 
 #import "PSCEmbeddedTestController.h"
-#import "PSCatalogViewController.h"
 #import "PSCAppDelegate.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface PSCEmbeddedTestController () {
     UITableViewController *_testAnimationViewController;

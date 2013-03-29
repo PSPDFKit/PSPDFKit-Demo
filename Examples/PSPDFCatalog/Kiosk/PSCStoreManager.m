@@ -10,7 +10,6 @@
 #import "PSCMagazineFolder.h"
 #import "PSCDownload.h"
 #import "AFJSONRequestOperation.h"
-#include <sys/xattr.h>
 #include <objc/runtime.h>
 
 @interface PSCStoreManager() {

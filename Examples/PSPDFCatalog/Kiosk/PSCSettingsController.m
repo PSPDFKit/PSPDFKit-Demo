@@ -7,7 +7,6 @@
 
 #import "PSCSettingsController.h"
 #import "PSCBasicViewController.h"
-#import <UIKit/UIKit.h>
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
