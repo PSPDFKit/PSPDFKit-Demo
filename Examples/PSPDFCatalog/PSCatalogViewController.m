@@ -1403,13 +1403,18 @@ const char kPSCAlertViewKey;
     }]];
 
     // Test that stamps are correctly displayed and movable.
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamps test" block:^UIViewController *{
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamp annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        // as a second test, ensure that annotation info can still be displayed, even if they are set to be readonly.
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationTypeStringStamp];
-
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
+        return pdfController;
+    }]];
+
+    // Line annotations generic, display, endings.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Line annotation test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 7;
         return pdfController;
     }]];
 
