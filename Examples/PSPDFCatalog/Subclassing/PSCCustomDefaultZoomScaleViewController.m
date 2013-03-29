@@ -73,7 +73,7 @@
     }
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
     if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
         PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;
         videoView.autoplayEnabled = YES;
@@ -90,7 +90,7 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController
-    didShowAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView
+    didShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView
                onPageView:(PSPDFPageView *)pageView {
     if([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
         PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;

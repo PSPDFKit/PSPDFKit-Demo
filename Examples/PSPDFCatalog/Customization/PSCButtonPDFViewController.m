@@ -8,7 +8,7 @@
 #import "PSCButtonPDFViewController.h"
 
 // Container to add a UIButton always centered at the page.
-@interface PSCButtonContainerView : UIView <PSPDFAnnotationView>
+@interface PSCButtonContainerView : UIView <PSPDFAnnotationViewProtocol>
 @property (nonatomic, strong) UIButton *button;
 @end
 

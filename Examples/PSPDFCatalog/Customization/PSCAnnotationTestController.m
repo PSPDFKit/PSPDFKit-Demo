@@ -112,7 +112,7 @@
     NSLog(@"willUnloadPageView: page:%d", pageView.page);
 }
 
-- (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
+- (UIView <PSPDFAnnotationViewProtocol> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
     
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
@@ -135,7 +135,7 @@
                 
                 MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
                 [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
-                return (UIView <PSPDFAnnotationView> *)mapView;
+                return (UIView <PSPDFAnnotationViewProtocol> *)mapView;
             }
         }
     }
@@ -143,12 +143,12 @@
 }
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
     NSLog(@"willShowAnnotationView: %@ page:%d", annotationView, pageView.page);
 }
 
 /// Invoked after animation used to present the annotation view
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
     NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
 }
 
