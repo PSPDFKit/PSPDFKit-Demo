@@ -43,7 +43,7 @@
 - (UIImage *)coverImageForSize:(CGSize)size {
     UIImage *coverImage = nil;
     
-    // basic check if file is available - don't check for pageCount here, it's lazy evaluated.
+    // Basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.basePath) {
         coverImage = [PSPDFCache.sharedCache imageFromDocument:self andPage:0 withSize:size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
     }
