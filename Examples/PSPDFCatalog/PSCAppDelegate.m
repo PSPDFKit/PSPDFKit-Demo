@@ -39,12 +39,14 @@
 
     // You can also customize localization with a block.
     // If you return nil, the default PSPDFKit language system will be used.
+    /*
     PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
         // This will look up strings in language/PSPDFKit.strings inside resources.
         // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
         return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
         //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
     });
+     */
 
     // Change log level to be more verbose.
 #ifdef DEBUG
