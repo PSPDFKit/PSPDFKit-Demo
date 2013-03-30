@@ -134,8 +134,8 @@
 #endif
 
     // Reload the table
-	[self.tableView reloadData];
-	self.tableView.scrollEnabled = YES;
+    [self.tableView reloadData];
+    self.tableView.scrollEnabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -389,7 +389,7 @@
 #pragma mark - Content Filtering
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
-	[_filteredDocuments removeAllObjects]; // First clear the filtered array.
+    [_filteredDocuments removeAllObjects]; // First clear the filtered array.
 
     // ignore scope.
     if ([searchText length]) {
