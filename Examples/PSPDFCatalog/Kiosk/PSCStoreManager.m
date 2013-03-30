@@ -484,7 +484,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
         magazineFolders = _magazineFolders;
     });
-    
+
     return magazineFolders;
 }
 

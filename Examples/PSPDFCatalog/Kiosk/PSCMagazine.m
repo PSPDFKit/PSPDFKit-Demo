@@ -40,12 +40,12 @@
 
 - (UIImage *)coverImageForSize:(CGSize)size {
     UIImage *coverImage = nil;
-    
+
     // Basic check if file is available - don't check for pageCount here, it's lazy evaluated.
     if (self.basePath) {
         coverImage = [PSPDFCache.sharedCache imageFromDocument:self andPage:0 withSize:size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
     }
-    
+
     // Draw a custom, centered lock image if the magazine is password protected.
     @autoreleasepool {
         if (self.isLocked) {
@@ -61,13 +61,13 @@
             }
         }
     }
-    
+
     return coverImage;
 }
 
 - (PSPDFViewState *)lastViewState {
     PSPDFViewState *viewState = nil;
-    
+
     // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error)
     if (self.isValid) {
         NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.UID];
@@ -112,7 +112,7 @@
     dispatch_once(&onceToken, ^{
         bundlePath = [[NSBundle mainBundle] bundlePath];
     });
-    
+
     // if magazine is within the app bundle, we can't delete it.
     BOOL deletable = ![[[self pathForPage:0] path] hasPrefix:bundlePath];
     return deletable;
@@ -124,11 +124,11 @@
 - (void)setDownloading:(BOOL)downloading {
     if (downloading != _downloading) {
         _downloading = downloading;
-        
+
         if (!downloading) {
             // clear cache, needed to recalculate pageCount
             [self clearCache];
-            
+
             // request coverImage - grid listens for those events
             [self coverImageForSize:CGSizeZero];
         }

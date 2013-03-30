@@ -393,7 +393,7 @@ const char kPSCAlertViewKey;
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
-        
+
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationTypeStringLink, // not added by default.
                                             PSPDFAnnotationTypeStringHighlight,
@@ -1342,7 +1342,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:newURL];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
-    
+
     //    1. Run in iOS 5.1 in Simulator in landscape.
     //    2. Expand to fullscreen.
     //    3. Rotate to Portrait.
@@ -1852,7 +1852,7 @@ const char kPSCAlertViewKey;
     _searchDisplayController.delegate = self;
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
-    
+
     // Private API - don't ship this in App Store builds.
     [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
 }
@@ -2001,7 +2001,7 @@ const char kPSCAlertViewKey;
     }else {
         contentDescriptor = self.filteredContent[indexPath.row];
     }
-    
+
     cell.textLabel.text = contentDescriptor.title;
     return cell;
 }

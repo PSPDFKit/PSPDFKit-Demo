@@ -17,14 +17,14 @@
     // only apply this if our destination is a PSPDFViewController.
     if ([segue.destinationViewController isKindOfClass:[PSPDFViewController class]]) {
         PSPDFViewController *pdfController = (PSPDFViewController *)segue.destinationViewController;
-        
+
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             UITableViewCell *cell = (UITableViewCell *)sender;
-            
+
             // this works, because document also accepts NSString and does a conversion.
             // This allows setting document via keyPath directly in Interface Builder.
             pdfController.document = (PSPDFDocument *)[NSString stringWithFormat:@"Samples/%@", cell.textLabel.text];
-            
+
             /*
             // ideally, you would do it like this:
             NSString *pdfPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:cell.textLabel.text];

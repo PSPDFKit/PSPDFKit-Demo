@@ -108,7 +108,7 @@
     _searchDisplayController.delegate = self;
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
-    
+
     // Restore search settings if they were saved in didReceiveMemoryWarning.
     if (self.savedSearchTerm) {
         [self.searchDisplayController setActive:self.searchWasActive];
@@ -299,7 +299,7 @@
             NSMutableArray *documents = [self.documents mutableCopy];
             [documents removeObjectAtIndex:indexPath.row];
             self.documents = documents;
-            
+
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }
@@ -359,7 +359,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Pressed index %d.", indexPath.row);
-    
+
     PSPDFDocument *document = [self documentForIndexPath:indexPath inTableView:tableView];
     [_delegate documentSelectorController:self didSelectDocument:document];
 }
@@ -377,7 +377,7 @@
 
 /*
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-    
+
     [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
      [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
 
@@ -390,7 +390,7 @@
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
 	[_filteredDocuments removeAllObjects]; // First clear the filtered array.
-    
+
     // ignore scope.
     if ([searchText length]) {
         // Getting the title can be quite expensive, so only use it if that one is already loaded.

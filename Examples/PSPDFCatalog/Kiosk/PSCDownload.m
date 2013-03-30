@@ -127,7 +127,7 @@
     [pdfRequest setProgressiveDownloadProgressBlock:^(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile) {
         self.downloadProgress = totalBytesReadForFile/(float)totalBytesExpectedToReadForFile;
 
-    }];    
+    }];
     [pdfRequest start];
 
     self.request = pdfRequest; // save request

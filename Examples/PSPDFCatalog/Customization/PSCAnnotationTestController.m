@@ -26,7 +26,7 @@
         self.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
         self.tintColor = [UIColor orangeColor];
         self.maximumZoomScale = 100; // as we have the selection zoom-in tool
-        
+
         PSPDFBarButtonItem *playButtonItem = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:self];
         PSCSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSCSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
 
@@ -70,7 +70,7 @@
  don't change the property within willRotateToInterfaceOrientation.
  - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
  [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
- 
+
  self.pageCurlEnabled = UIInterfaceOrientationIsLandscape(UIApplication.sharedApplication.statusBarOrientation);
  }*/
 
@@ -79,7 +79,7 @@
 
 /// time to adjust PSPDFViewController before a PSPDFDocument is displayed
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
-    NSLog(@"willDisplayDocument: %@", document);    
+    NSLog(@"willDisplayDocument: %@", document);
 }
 
 /// delegate to be notified when pdfController finished loading
@@ -94,12 +94,12 @@
 
 /// page was fully rendered at zoomlevel = 1
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didRenderPageView: page:%d", pageView.page);    
+    NSLog(@"didRenderPageView: page:%d", pageView.page);
 }
 
 /// will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
-    NSLog(@"didChangeViewMode: %d", viewMode);        
+    NSLog(@"didChangeViewMode: %d", viewMode);
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView.
@@ -113,7 +113,7 @@
 }
 
 - (UIView <PSPDFAnnotationViewProtocol> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
-    
+
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
         // example how to add a MapView with the url protocol map://lat,long,latspan,longspan
@@ -121,18 +121,18 @@
             // parse annotation data
             NSString *mapData = [linkAnnotation.siteLinkTarget stringByReplacingOccurrencesOfString:@"map://" withString:@""];
             NSArray *token = [mapData componentsSeparatedByString:@","];
-            
+
             // ensure we have token count of 4 (latitude, longitude, span la, span lo)
             if ([token count] == 4) {
                 CLLocationCoordinate2D location = CLLocationCoordinate2DMake([token[0] doubleValue],
                                                                              [token[1] doubleValue]);
-                
+
                 MKCoordinateSpan span = MKCoordinateSpanMake([token[2] doubleValue],
                                                              [token[3] doubleValue]);
-                
+
                 // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
                 CGRect frame = [annotation rectForPageRect:pageView.bounds];
-                
+
                 MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
                 [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];
                 return (UIView <PSPDFAnnotationViewProtocol> *)mapView;
@@ -149,12 +149,12 @@
 
 /// Invoked after animation used to present the annotation view
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);    
+    NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
     NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
-    
+
     // example how to intercept PSPDFSearchViewController and change the barStyle to black
     if ([viewController isKindOfClass:[PSPDFSearchViewController class]]) {
         PSPDFSearchViewController *searchController = (PSPDFSearchViewController *)viewController;

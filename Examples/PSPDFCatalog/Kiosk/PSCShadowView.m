@@ -47,7 +47,7 @@
     CAGradientLayer *newShadow = [[CAGradientLayer alloc] init];
     CGRect newShadowFrame = CGRectMake(0.f, 0.f, self.frame.size.width,inverse ? SHADOW_INVERSE_HEIGHT : SHADOW_HEIGHT);
     newShadow.frame = newShadowFrame;
-    
+
     UIColor *lightColor = [self.backgroundColor colorWithAlphaComponent:0.f];
     UIColor *darkColor = [UIColor colorWithRed:0.f green:0.f blue:0.f alpha:inverse ? (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT) * 0.5f : 0.5f];
 
@@ -61,7 +61,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
     if (self.isShadowEnabled) {
         // Construct the origin shadow if needed
         if (!_originShadow) {
@@ -71,16 +71,16 @@
         else if (![(self.layer.sublayers)[0] isEqual:_originShadow]) {
             [self.layer insertSublayer:_originShadow atIndex:9999];
         }
-        
+
         [CATransaction begin];
         [CATransaction setDisableActions:YES];
-        
+
         // Stretch and place the origin shadow
         CGRect originShadowFrame = _originShadow.frame;
         originShadowFrame.size.width = self.frame.size.width;
         originShadowFrame.origin.y = _shadowOffset;
         _originShadow.frame = originShadowFrame;
-        
+
         [CATransaction commit];
     }else {
         if (_originShadow) {
