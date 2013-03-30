@@ -22,7 +22,7 @@
     NSArray *_sectionTitle;
     NSArray *_sectionFooter;
     UISegmentedControl *_contentOpacityControl;
-	UISegmentedControl *_paperColorControl;
+    UISegmentedControl *_paperColorControl;
     NSArray *_paperColors;
 }
 @end
@@ -139,7 +139,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
 
         _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:@[@"100%", @"90%", @"80%", @"70%", @"60%"]];
-		[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
+    	[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
 
         _paperColors = @[[UIColor whiteColor],
             // 1-4: sepia, light to dark
@@ -209,15 +209,15 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (void)paperColorChanged:(id)sender {
     if (_isSettingUpCells) return;
-	int paperColorIndex = [sender selectedSegmentIndex];
+    int paperColorIndex = [sender selectedSegmentIndex];
     _settings[@"renderBackgroundColor"] = _paperColors[paperColorIndex];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
 - (void)contentOpacityChanged:(id)sender {
     if (_isSettingUpCells) return;
-	int opacityIndex = [sender selectedSegmentIndex];
-	float opacity = 1.0 - ((float)opacityIndex * 0.1);
+    int opacityIndex = [sender selectedSegmentIndex];
+    float opacity = 1.0 - ((float)opacityIndex * 0.1);
     _settings[@"renderContentOpacity"] = @(opacity);
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
