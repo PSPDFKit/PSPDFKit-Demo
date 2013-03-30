@@ -37,8 +37,8 @@
     // dismiss any open popovers
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    } 
-    
+    }
+
     // anyway, set document
     self.document = document;
 }
@@ -64,7 +64,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     if (pageView.document) {
         // internally, pages start at 0. But be user-friendly and start at 1.
-        self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];    
+        self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];
     }else {
         self.title = @"No document loaded.";
         [self setHUDVisible:NO animated:NO]; // ensure HUD is disabled if no document is loaded.

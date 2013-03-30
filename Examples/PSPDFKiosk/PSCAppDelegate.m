@@ -11,7 +11,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    PSCGridController *gridController = [[PSCGridController alloc] init];    
+    PSCGridController *gridController = [[PSCGridController alloc] init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:gridController];
     [self.window makeKeyAndVisible];
     return YES;

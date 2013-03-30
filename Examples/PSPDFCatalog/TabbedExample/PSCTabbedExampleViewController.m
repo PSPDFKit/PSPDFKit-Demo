@@ -19,7 +19,7 @@ const char *clearAllActionSheetToken;
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
     if ((self = [super initWithPDFViewController:pdfViewController])) {
         self.delegate = self;
-        
+
         // change status bar setting
         //self.pdfViewController.statusBarStyleSetting = PSPDFStatusBarSmartBlack;
 

@@ -66,7 +66,7 @@
         // this is essential for the swipe recognizers to work
         [multitouchPan requireGestureRecognizerToFail:self.leftSwipeRecognizer];
         [multitouchPan requireGestureRecognizerToFail:self.rightSwipeRecognizer];
-        
+
         [self.pinchGestureRecognizer requireGestureRecognizerToFail:self.leftSwipeRecognizer];
         [self.pinchGestureRecognizer requireGestureRecognizerToFail:self.rightSwipeRecognizer];
     }

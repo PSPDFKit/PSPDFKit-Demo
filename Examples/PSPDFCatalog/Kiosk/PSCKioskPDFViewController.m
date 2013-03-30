@@ -41,10 +41,10 @@
 
         // Initially update vars.
         [self globalVarChanged];
-        
+
         // Register for global var change notifications from PSPDFCacheSettingsController.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
-                        
+
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
         // Disabled by default, since this can be slow.
@@ -71,11 +71,11 @@
         // Change color.
         //self.tintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
         //self.statusBarStyleSetting = PSPDFStatusBarDefault;
-        
+
         // Change statusbar setting to your preferred style.
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
         //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
-    }    
+    }
     return self;
 }
 
@@ -147,7 +147,7 @@
         if ([key isEqual:@"renderBackgroundColor"])     renderOptions[kPSPDFBackgroundFillColor] = obj;
         else if ([key isEqual:@"renderContentOpacity"]) renderOptions[kPSPDFContentOpacity] = obj;
         else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[kPSPDFInvertRendering] = obj;
-        
+
         else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
             [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
         }

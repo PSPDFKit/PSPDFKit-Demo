@@ -39,7 +39,7 @@ static PSCFontCacheTest *instance = nil;
 - (void)didFinishSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm
           searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch {
   NSLog(@"%@\n\n\n\n\n\n\n\n\n\n\n\n-----------------------------------------------------------------------------------------------------------------------", [self.doc textParserForPage:9].text);
-  
+
   self.doc = nil;
   [self performSelector:@selector(runWithDocumentAtPath:) withObject:self.path afterDelay:2];
 }

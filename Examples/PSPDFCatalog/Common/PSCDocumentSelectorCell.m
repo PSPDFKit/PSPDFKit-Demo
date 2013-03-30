@@ -59,7 +59,7 @@
 - (void)setPagePreviewImage:(UIImage *)pagePreviewImage animated:(BOOL)animated {
     if (animated) [self.imageView.layer addAnimation:PSPDFFadeTransition() forKey:nil];
     self.imageView.image = pagePreviewImage ?: self.placeholderImage;
-    
+
     if (pagePreviewImage) self.rotatedPageRect = (CGRect){.size=pagePreviewImage.size};
     [self layoutSubviews];
 }

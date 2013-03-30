@@ -167,7 +167,7 @@
         CGFloat cutX = pageInfo.pageRect.size.width * diff/2;
         pageInfo.pageRect = CGRectIntegral(CGRectMake(cutX/2, 0, pageInfo.pageRect.size.width-cutX, pageInfo.pageRect.size.height));
     }
-    
+
     return pageInfo;
 }
 

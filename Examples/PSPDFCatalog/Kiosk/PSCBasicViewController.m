@@ -36,7 +36,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [self.popoverController dismissPopoverAnimated:animated];
     self.popoverController = nil;
-    [super viewWillDisappear:animated];  
+    [super viewWillDisappear:animated];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@
     if (popoverController != popoverController_) {
         // hide last popup
         [popoverController_ dismissPopoverAnimated:NO];
-        
+
         popoverController_ = popoverController;
         popoverController_.delegate = self; // set delegate to be notified when popover controller closes!
     }

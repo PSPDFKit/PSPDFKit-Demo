@@ -47,7 +47,7 @@
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
         pageInfo.pageRotation = PSPDFNormalizeRotation(pageInfo.pageRotation - 90);
     }
-    
+
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
     [PSPDFCache.sharedCache imageFromDocument:self.document andPage:self.page withSize:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 
