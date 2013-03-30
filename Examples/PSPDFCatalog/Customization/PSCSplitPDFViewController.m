@@ -34,13 +34,16 @@
 #pragma mark - Public
 
 - (void)displayDocument:(PSPDFDocument *)document; {
-    // dismiss any open popovers
+    // Dismiss any open popovers.
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
 
     // anyway, set document
     self.document = document;
+
+    // Initially manually call the delegate for first load.
+    [self updateTitle];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -61,14 +64,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    if (pageView.document) {
-        // internally, pages start at 0. But be user-friendly and start at 1.
-        self.title = [NSString stringWithFormat:@"%@ - Page %d", pageView.document.title, pageView.page + 1];
+- (void)updateTitle {
+    if (self.document) {
+        // Internally, pages start at 0. But be user-friendly and start at 1.
+        self.title = [NSString stringWithFormat:@"%@ - Page %d", self.document.title, self.document.displayingPage + 1];
     }else {
         self.title = @"No document loaded.";
         [self setHUDVisible:NO animated:NO]; // ensure HUD is disabled if no document is loaded.
     }
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
+    [self updateTitle];
 }
 
 @end
