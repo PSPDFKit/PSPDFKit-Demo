@@ -402,6 +402,7 @@ const char kPSCAlertViewKey;
                                             PSPDFAnnotationTypeStringNote,
                                             PSPDFAnnotationTypeStringFreeText,
                                             PSPDFAnnotationTypeStringInk,
+                                            PSPDFAnnotationTypeStringLine,
                                             PSPDFAnnotationTypeStringSquare,
                                             PSPDFAnnotationTypeStringCircle,
                                             PSPDFAnnotationTypeStringSignature,
