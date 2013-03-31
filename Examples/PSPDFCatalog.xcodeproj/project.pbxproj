@@ -48,8 +48,6 @@
 		785B160C16692BA100F747B8 /* GSDropboxUploadJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B160216692BA100F747B8 /* GSDropboxUploadJob.m */; };
 		785B160F16692BB900F747B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B160E16692BB900F747B8 /* Security.framework */; };
 		78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */; };
-		78604C9616C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8816C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.m */; };
-		78604C9716C50CB2003CB721 /* PSCAnnotationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8A16C50CB2003CB721 /* PSCAnnotationTableViewController.m */; };
 		78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */; };
 		78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8E16C50CB2003CB721 /* PSCMetadataBarButtonItem.m */; };
 		78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C9016C50CB2003CB721 /* PSCPlayBarButtonItem.m */; };
@@ -226,10 +224,6 @@
 		785B160E16692BB900F747B8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78604C8516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAddDocumentsBarButtonItem.h; sourceTree = "<group>"; };
 		78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAddDocumentsBarButtonItem.m; sourceTree = "<group>"; };
-		78604C8716C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAnnotationTableBarButtonItem.h; sourceTree = "<group>"; };
-		78604C8816C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationTableBarButtonItem.m; sourceTree = "<group>"; };
-		78604C8916C50CB2003CB721 /* PSCAnnotationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAnnotationTableViewController.h; sourceTree = "<group>"; };
-		78604C8A16C50CB2003CB721 /* PSCAnnotationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationTableViewController.m; sourceTree = "<group>"; };
 		78604C8B16C50CB2003CB721 /* PSCGoToPageButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGoToPageButtonItem.h; sourceTree = "<group>"; };
 		78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGoToPageButtonItem.m; sourceTree = "<group>"; };
 		78604C8D16C50CB2003CB721 /* PSCMetadataBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMetadataBarButtonItem.h; sourceTree = "<group>"; };
@@ -582,10 +576,6 @@
 				78604CB816C51129003CB721 /* PSCRotationLockBarButtonItem.h */,
 				78604C8516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.h */,
 				78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */,
-				78604C8716C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.h */,
-				78604C8816C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.m */,
-				78604C8916C50CB2003CB721 /* PSCAnnotationTableViewController.h */,
-				78604C8A16C50CB2003CB721 /* PSCAnnotationTableViewController.m */,
 				78604C8B16C50CB2003CB721 /* PSCGoToPageButtonItem.h */,
 				78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */,
 				78604C8D16C50CB2003CB721 /* PSCMetadataBarButtonItem.h */,
@@ -1120,8 +1110,6 @@
 				78D2CB2116A5F83800899C4A /* RNEncryptor.m in Sources */,
 				780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */,
 				78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */,
-				78604C9616C50CB2003CB721 /* PSCAnnotationTableBarButtonItem.m in Sources */,
-				78604C9716C50CB2003CB721 /* PSCAnnotationTableViewController.m in Sources */,
 				78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */,
 				78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */,
 				78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */,
