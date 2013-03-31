@@ -337,6 +337,28 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Extract single pages with PSPDFProcessor, the fast way" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+
+        // Here we use the pageRange feature to skip the intermediate NSDate objects we had to create in the last example.
+        NSMutableIndexSet *pageIndexes = [[NSMutableIndexSet alloc] initWithIndex:1];
+        [pageIndexes addIndex:3];
+        [pageIndexes addIndex:5];
+        [pageIndexes addIndex:document.pageCount + 3]; // next document!
+
+        [document appendFile:kPSPDFCatalog]; // Append second file
+        document.pageRange = pageIndexes;    // Define new page range.
+
+        // Merge pages into new document.
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"temp", @"pdf");
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil error:NULL];
+        PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+
+        // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
+        return controller;
+    }]];
+
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
         // cache needs to be cleared since pages will change.
         [[PSPDFCache sharedCache] clearCache];
