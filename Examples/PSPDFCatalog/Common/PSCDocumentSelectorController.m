@@ -15,7 +15,6 @@
 @interface PSCDocumentSelectorController () <PSPDFCacheDelegate, PSCFullTextSearchOperationDelegate> {
     NSOperationQueue *_fullTextSearchQueue;
     UISearchDisplayController *_searchDisplayController;
-    UISearchBar *_searchBar;
     NSMutableArray *_filteredDocuments;
     NSMutableDictionary *_deletableFileStatus;
 }
@@ -26,6 +25,7 @@
 @property (nonatomic, copy) NSString *savedSearchTerm;
 @property (nonatomic, assign) NSInteger savedScopeButtonIndex;
 @property (nonatomic, assign) BOOL searchWasActive;
+@property (nonatomic, strong) UISearchBar *searchBar;
 @end
 
 #define kPSCThumbnailSize CGSizeMake(44.f, 80.f)
