@@ -16,4 +16,7 @@
 /// Drawing mode.
 @property (nonatomic, assign) BOOL displayAsEllipse;
 
+/// Border width. Defaults to 3.0
+@property (nonatomic, assign) CGFloat borderWidth;
+
 @end

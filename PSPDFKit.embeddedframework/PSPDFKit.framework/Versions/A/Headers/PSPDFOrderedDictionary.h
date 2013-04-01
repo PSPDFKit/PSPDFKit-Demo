@@ -25,6 +25,7 @@
 
 #import "PSPDFKitGlobal.h"
 
+/// Ordered dictionary.
 @interface PSPDFOrderedDictionary : NSMutableDictionary
 
 /// Internal array for ordering. Only move, do not add/remove items here,
@@ -32,8 +33,16 @@
 /// Can be used for sorting.
 @property (nonatomic, strong, readonly) NSMutableArray *keyArray;
 
+/// Insert key for object at index.
 - (void)insertObject:(id)anObject forKey:(id)aKey atIndex:(NSUInteger)anIndex;
+
+/// Get key at index.
 - (id)keyAtIndex:(NSUInteger)anIndex;
+
+/// Get object at index.
+- (id)objectAtIndex:(NSUInteger)anIndex;
+
+/// Reverse object enumerator.
 - (NSEnumerator *)reverseKeyEnumerator;
 
 @end

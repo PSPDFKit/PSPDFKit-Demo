@@ -58,13 +58,13 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 
  Certain documents might not have the correct pagination.
  (Try to manually define kPSPDFProcessorPageRect to fine-tune this)
- 
+
  'options' can contain both the kPSPDF constants listed above and any kCGPDFContext constants.
  For example, to password protect the pdf, you can use:
  @{(id)kCGPDFContextUserPassword  : password, (id)kCGPDFContextOwnerPassword : password,
    (id)kCGPDFContextEncryptionKeyLength : @(128)}
- 
- Other useful properties are: 
+
+ Other useful properties are:
  - kCGPDFContextAllowsCopying
  - kCGPDFContextAllowsPrinting
  - kCGPDFContextKeywords
@@ -73,9 +73,9 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
  Experimental feature.
  Don't manually override NSOperation's completionBlock.
  If this helper is used, operation will be automatically queued in conversionOperationQueue.
- 
+
  PSPDFKit Annotate feature.
- 
+
  @warning When a password is set, only link annotations can be added as dictionary (this does not affect flattening)
 */
 - (PSPDFConversionOperation *)generatePDFFromURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputURL options:(NSDictionary *)options completionBlock:(PSPDFCompletionBlockWithError)completionBlock;

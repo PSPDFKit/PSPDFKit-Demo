@@ -18,12 +18,8 @@
 
 @end
 
-/**
- Outline (Table of Contents) view controller.
- 
- As always, you can easily customize this controller using the overrideClassName system in PSPDFViewController.
- */
-@interface PSPDFOutlineViewController : UITableViewController
+/// Outline (Table of Contents) view controller.
+@interface PSPDFOutlineViewController : UITableViewController <UISearchDisplayDelegate>
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
@@ -31,9 +27,12 @@
 /// Allow to long-press to copy the title. Defaults to YES.
 @property (nonatomic, assign) BOOL allowCopy;
 
+/// Allows search. Defaults to YES.
+@property (nonatomic, assign) BOOL searchEnabled;
+
 /**
  How many lines should be displayed for a cell. Defaults to 4.
- 
+
  Set this to 1 for PSPDFKit v1 behavior (tail truncation, one line)
  Set to 0 to show the full text, no matter how long the entry is.
  */

@@ -16,7 +16,7 @@
 "Page %d" = "Page %d";
 
 // toolbar
-"Table Of Contents" = "Sommaire";
+"Outline" = "Sommaire";
 "Search" = "Rechercher";
 "Email" = "Email";
 "Email document" = "Envoyer le document par email";
@@ -35,6 +35,9 @@
 "No Applications found" = "Aucune application pouvant ouvrir le document PDF.";
 "Print" = "Imprimer";
 "Annotations" = "Annotations";
+"No Annotations" = "Aucune Annotations";
+"Bookmarks" = "Marque-page";
+"No Bookmarks" = "Aucune Marque-page";
 "Add Bookmark" = "Ajouter marque-page";
 "Remove Bookmark" = "Supprimer marque-page";
 "Bookmark added" = "Marque-page ajouté";
@@ -115,6 +118,9 @@
 "Underline" = "Souligner";
 "Strikeout" = "Barrer";
 "Sketch" = "Esquisse";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Line" = "Ligne";
 "Signature" = "Signature";
 "Signatures" = "Signatures";
 "Stamp" = "Timbre";
@@ -141,6 +147,23 @@
 "Low Quality" = "Qualité Basse";
 "Medium Quality" = "Qualité Moyenne";
 "High Quality" = "Qualité Haute";
+"Clear All" = "Clear All";
+"Appearance" = "Appearance";
+"Appearance..." = "Appearance…";
+
+// line annotations
+"Start..." = "Start…";
+"End..." = "End…";
+"None" = "None";
+"ClosedArrow" = "Closed Arrow";
+"OpenArrow" = "Open Arrow";
+"Square" = "Square";
+"Circle" = "Circle";
+"Diamond" = "Diamond";
+"ROpenArrow" = "Reverse Open Arrow";
+"RClosedArrow" = "Reverse Closed Arrow";
+"Slash" = "Slash";
+"Butt" = "Butt";
 
 // link annotation editing
 "Create Link..." = "Créer hyperlien...";

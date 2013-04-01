@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLongPressGestureRecognizer.h"
 
-@class PSPDFResizableView;
+@class PSPDFResizableView, PSPDFAnnotation;
 
 /// Delegate to be notified on session begin/end and frame changes.
 @protocol PSPDFResizableViewDelegate <NSObject>
@@ -26,13 +26,14 @@
 
 @end
 
-///
 /// If trackedView responds to this delegate, we will set it.
-///
 @protocol PSPDFResizableTrackedViewDelegate <NSObject>
 
 /// The resizable tracker, if currently available.
 @property (nonatomic, weak) PSPDFResizableView *resizableView;
+
+/// Query the annotation of the tracked view.
+- (PSPDFAnnotation *)annotation;
 
 @end
 
@@ -46,7 +47,8 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
     PSPDFSelectionBorderKnobTypeMiddleRight,
     PSPDFSelectionBorderKnobTypeBottomLeft,
     PSPDFSelectionBorderKnobTypeBottomMiddle,
-    PSPDFSelectionBorderKnobTypeBottomRight
+    PSPDFSelectionBorderKnobTypeBottomRight,
+    PSPDFSelectionBorderKnobTypeCustom
 };
 
 /// Handles view selection with resize knobs.
@@ -103,7 +105,7 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 
 // All knobs. Can be hidden individually.
 // Note that properties like allowEditing/allowReszing will update the hidden property.
-// To properly hide a know, remove it from the superview.
+// To properly hide a knob, remove it from the superview.
 @property (nonatomic, strong, readonly) UIImageView *knobTopLeft;
 @property (nonatomic, strong, readonly) UIImageView *knobTopMiddle;
 @property (nonatomic, strong, readonly) UIImageView *knobTopRight;

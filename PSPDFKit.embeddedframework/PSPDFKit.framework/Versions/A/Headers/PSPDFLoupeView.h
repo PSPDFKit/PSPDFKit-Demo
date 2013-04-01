@@ -8,10 +8,10 @@
 #import "PSPDFKitGlobal.h"
 
 typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
-	PSPDFLoupeViewModeCircular,     // Curcular loupe
-	PSPDFLoupeViewModeDetail,       // Detail (text selection) mode. No arrow.
-	PSPDFLoupeViewModeDetailTop,    // Arrow at the botton. High gap.
-	PSPDFLoupeViewModeDetailBottom  // Arrow at the bottom. Low gap.
+    PSPDFLoupeViewModeCircular,     // Curcular loupe
+    PSPDFLoupeViewModeDetail,       // Detail (text selection) mode. No arrow.
+    PSPDFLoupeViewModeDetailTop,    // Arrow at the botton. High gap.
+    PSPDFLoupeViewModeDetailBottom  // Arrow at the bottom. Low gap.
 };
 
 extern CGFloat kPSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.6 on iPhone.

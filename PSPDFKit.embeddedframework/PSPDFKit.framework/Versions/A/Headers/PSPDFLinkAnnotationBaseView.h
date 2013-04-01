@@ -6,12 +6,12 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFAnnotationView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 
 @class PSPDFLinkAnnotation;
 
 /// Base class for all link-annotation subclasses.
-@interface PSPDFLinkAnnotationBaseView : UIView <PSPDFAnnotationView>
+@interface PSPDFLinkAnnotationBaseView : UIView <PSPDFAnnotationViewProtocol>
 
 /// All annotation views are initialized with a frame.
 - (id)initWithFrame:(CGRect)frame;

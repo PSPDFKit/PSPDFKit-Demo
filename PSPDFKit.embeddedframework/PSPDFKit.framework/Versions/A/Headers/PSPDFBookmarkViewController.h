@@ -5,7 +5,7 @@
 //  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFBaseViewController.h"
+#import "PSPDFEmptyTableViewController.h"
 #import "PSPDFStyleable.h"
 
 @class PSPDFDocument, PSPDFBookmark, PSPDFBookmarkViewController;
@@ -21,13 +21,11 @@
 
 @end
 
-/**
- Show list of bookmarks for the current document and allows editing/reordering of the bookmarks.
- */
-@interface PSPDFBookmarkViewController : UITableViewController <PSPDFStyleable>
+/// Show list of bookmarks for the current document and allows editing/reordering of the bookmarks.
+@interface PSPDFBookmarkViewController : PSPDFEmptyTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
-- (instancetype)initWithDocument:(PSPDFDocument *)document;
+- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
 
 /// Will also reload tableView if changed.
 @property (nonatomic, strong) PSPDFDocument *document;
@@ -51,7 +49,7 @@
 
 @end
 
-// Custom cell used for bookmarks.
+/// Custom cell used for bookmarks.
 @interface PSPDFBookmarkTableViewCell : UITableViewCell <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) PSPDFBookmark *bookmark;

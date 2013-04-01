@@ -1,5 +1,5 @@
 //
-//  PSPDFAnnotationView.h
+//  PSPDFAnnotationViewProtocol.h
 //  PSPDFKit
 //
 //  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
@@ -10,7 +10,7 @@
 @class PSPDFAnnotation;
 
 /// Conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
-@protocol PSPDFAnnotationView <NSObject>
+@protocol PSPDFAnnotationViewProtocol <NSObject>
 
 @optional
 
@@ -42,3 +42,6 @@
 - (void)didChangePageFrame:(CGRect)frame;
 
 @end
+
+// Deprecated.
+__attribute__ ((deprecated("This protocol has been renamed to PSPDFAnnotationViewProtocol"))) @protocol PSPDFAnnotationView <PSPDFAnnotationViewProtocol> @end

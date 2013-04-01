@@ -13,9 +13,9 @@
 /**
  With the annotation provider, you can mix in PDF annotations from any source (custom database, web, etc)
  Implement your custom provider class and register it in the PSPDFAnnotationParser.
- 
+
  (Make sure to register the provider in the PSPDFDocument's didCreateDocumentProvider method, since a PSPDFDocument can have multiple PSPDFDocumentProviders and thus multiple PSPDFAnnotationProviders - and they can also be discarded on low memory situations.)
- 
+
  Ensure everything is thread safe here - methods will be called from any threads and sometimes even concurrently at the same time.
  (If you're doing parsing, block and then in the queue re-check so you're not parsing multiple times for the same page)
  */
@@ -24,9 +24,9 @@
 /**
  Return any annotations that should be displayed on that page.
  This method needs to be accessible FROM ANY THREAD.
- 
+
  You can block here and do your processing but try to cache the result, this method is called often. (e.g. on every zoom change/rerendering)
- 
+
  You're only getting the zero-based page index here. If needed, add a reference to PSPDFDocumentProvider during init or query the change notifier delegate.
  */
 - (NSArray *)annotationsForPage:(NSUInteger)page;
@@ -58,7 +58,7 @@
 /**
  Callback if an annotation has been changed by PSPDFKit.
  This method will be called on ALL annotations, not just the ones that you provided.
- 
+
  Also be sure to check if originalAnnotation might has been deleted because of a change operation (keyPaths will not include deleted, unless the *only* operation that has been performed was a deleted.)
  */
 - (void)didChangeAnnotation:(PSPDFAnnotation *)annotation originalAnnotation:(PSPDFAnnotation *)originalAnnotation keyPaths:(NSArray *)keyPaths options:(NSDictionary *)options;
@@ -78,7 +78,7 @@
 /**
  Call this from your code as soon as annotations change.
  This method can be called from any thread. (try to avoid the main thread)
- 
+
  @warning Don't dynamically change the value that isOverlay returns, else you'll confuse the updater.
  If you delete annotations, simply set the isDeleted-flag to YES.
   */

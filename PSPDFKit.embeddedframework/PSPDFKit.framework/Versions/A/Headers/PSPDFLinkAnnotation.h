@@ -24,12 +24,12 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 
 /**
  The PSPDFLinkAnnotation represents both classic PDF page/document/web links, and more types not supported by other PDF readers (video, audio, image, etc)
- 
+
  PSPDFKit will automatically figure out the type for PDF link annotations loaded from a document, based on the file type. ("mpg" belongs to PSPDFLinkAnnotationVideo; a YouTube-URL to PSPDFLinkAnnotationYouTube, etc)
- 
+
  If you create a PSPDFLinkAnnotation at runtime, be sure to set the correct type and use the URL parameter for your link.
  BoundingBox defines the frame, in PDF space coordinates.
- 
+
  If you want to customize how links look in the PDF, customize PSPDFLinkAnnotationView's properties. There's currently no mapping between color/lineWidth/etc and the properties of the view. This might change in future releases.
  */
 @interface PSPDFLinkAnnotation : PSPDFAnnotation
@@ -55,14 +55,14 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
 /// Returns true for any linkType >= PSPDFLinkAnnotationVideo
 @property (nonatomic, assign, readonly, getter=isMultimediaExtension) BOOL multimediaExtension;
 
-/** 
+/**
  Link if target is a website.
- 
+
  If you create a PSPDFLinkAnnotation in code, setting the siteLinkTarget will invoke the parsing at the time you're adding the annotation to the PSPDFAnnotationParser.
- 
+
  After parsing, the linkType will be set and the generate URL will be set.
  If you don't want this processing, directly set the URL and the linkType and don't use siteLinkTarget.
- 
+
  An example for a siteLinkTarget to an image annotation would be:
  PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
  annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]];
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
  annotation.boundingBox = [self.document pageInfoForPage:0].pageRect;
  // annotation.page/document is autodetecting set.
  [self.document.annotationParser addAnnotations:@[annotation] forPage:0];
- 
+
  @note Do not add NSURL-encoded strings to siteLinkTarget.(no %20 - real space!)
  If you convert a path from NSURL, use URL.path and NOT [url description]. (Actually, never use URL description, except when you're debugging)
 */

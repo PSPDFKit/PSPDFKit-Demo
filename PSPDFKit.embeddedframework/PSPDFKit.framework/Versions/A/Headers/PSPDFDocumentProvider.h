@@ -9,7 +9,7 @@
 
 @class PSPDFTextSearch, PSPDFTextParser, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
 
-/// Delegate for writing annotations. 
+/// Delegate for writing annotations.
 @protocol PSPDFDocumentProviderDelegate <NSObject>
 
 @optional
@@ -58,7 +58,7 @@
 /// Delegate for writing annotations. Is set to PSPDFDocument per default.
 @property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
 
-/// Access the CGPDFDocumentRef and locks the internal document. 
+/// Access the CGPDFDocumentRef and locks the internal document.
 ///
 /// Increases the internal reference count
 /// We need to keep around the document when accessing a CGPDFPage. Retaining the page alone is not enough.
@@ -79,7 +79,7 @@
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page;
 
-/// Releases a page reference. 
+/// Releases a page reference.
 - (void)releasePageRef:(CGPDFPageRef)pageRef;
 
 /// For optimization reasons, the internal documentRef might be cached.

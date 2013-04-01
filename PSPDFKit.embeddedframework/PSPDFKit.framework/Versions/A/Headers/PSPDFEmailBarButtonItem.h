@@ -22,10 +22,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
 
 /**
  Allows to send the whole PDF or the visible page(s) as PDF.
- 
+
  If the PDF consists of multiple files, a temporary PDF will be created merging all pages.
  To figure out the name, PSPDFDocument's fileNamesWithDataDictionary will be used.
- 
+
  IF you want to customize the body text, use the shouldShowController: delegate in PSPDFViewController. To check that this mail controller was created via PSPDFEmailBarButtonItem, compare the delegate destination.
  */
 @interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <MFMailComposeViewControllerDelegate>
@@ -37,7 +37,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
  ***Flattened control if annotations should be flattened.
  Annotations that are not flattened are not displayed in Mobile Mail/Mobile Safari.
  Note that annotations will be removed if this is set to NO for every option but PSPDFEmailSendOriginalDocumentFiles.
- 
+
  PSPDFEmailSendMergedFilesIfNeeded will be equal to PSPDFEmailSendOriginalDocumentFiles if the document has just one document provider.
  */
 @property (nonatomic, assign) PSPDFEmailSendOptions sendOptions;

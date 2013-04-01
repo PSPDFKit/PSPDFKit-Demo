@@ -16,7 +16,7 @@
 - (id)initWithTransitionViewController:(UIViewController<PSPDFTransitionProtocol> *)viewController;
 
 /// References the pageController
-// atomic, might be accessed from a background thread during deallocation
+// atomic, might be accessed from a background thread during deallocation.
 @property (nonatomic, strong, readonly) UIViewController<PSPDFTransitionProtocol> *contentController;
 
 @end

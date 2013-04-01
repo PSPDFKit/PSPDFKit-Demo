@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFViewController.h"
 
-@protocol PSPDFAnnotationView;
+@protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
 
 /// Implement this delegate in your UIViewController to get notified by PSPDFViewController events.
@@ -55,12 +55,12 @@
 /// Called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
 
-/** 
+/**
  Will be called after page rect has been dragged.
  If decelerate is YES, this will be called again after deceleration is complete.
- 
+
  You can also change the target with changing targetContentOffset.
- 
+
  This delegate combines following scrollViewDelegates:
  - scrollViewWillEndDragging / scrollViewDidEndDragging
  - scrollViewDidEndDecelerating
@@ -82,7 +82,7 @@
 /**
  didTapOnPageView will be called if a user taps on the screen. Taps outside pageView will be reported too (with negative offset)
  Return YES if you want to set this touch as processed; this will disable automatic touch processing like showing/hiding the HUDView or scrolling to the next/previous page.
- 
+
  @note This will not send events when we are in the thumbnail view.
 
  PSPDFPageCoordinates has been replaced by just CGPoint viewPoint.
@@ -97,11 +97,11 @@
 
 /**
  Similar to didTapOnPageView; invoked after 0.35 sec of tap-holding. LongPress and tap are mutually exclusive. Return YES if you custom-process that event.
- 
+
  Default handling is (if available) text selection; showing the magnification-loupe.
- 
+
  The gestureRecognizer helps you evaluating the state; as this delegate is called on every touch-move.
- 
+
  Note that there may be unexpected results if you only capture *some* events (thus, return YES on some movements during the recognition state) as e.g. you might not give the system a chance to clean up the magnification loupe. Either consume all or no events for a recognition cycle.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
@@ -127,7 +127,7 @@
 
  Using PSPDFMenuItem will help with adding custom menu's w/o hacking the responder chain.
  Default returns menuItems if not implemented. Return nil or an empty array to not show the menu.
- 
+
  Use PSPDFMenuItem's 'identifier' to check and modify the menu items. This string will not be translated (vs the title property)
 */
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
@@ -150,16 +150,16 @@
 
 /**
  Delegate for tapping annotations. Will be called before the more general didTapOnPageView if an annotationView is hit.
- 
+
  Return YES to override the default action and custom-handle this.
  Default actions might be scroll to target page, open Safari, show a menu, ...
- 
+
  Some annotations might not have an annotationView attached. (because they are rendered with the page content, for example highlight annotations)
- 
+
  AnnotationPoint is the point relative to PSPDFAnnotation, in PDF coordinate space.
     viewPoint is the point relative to the PSPDFPageView.
  */
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationView> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
 
 /// Called before an annotation will be selected. (but after didTapOnAnnotation)
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
@@ -170,17 +170,17 @@
 /// Returns a pre-generated annotationView that can be modified before being added to the view.
 /// If no generator for a custom annotation is found, annotationView will be nil (as a replacement to viewForAnnotation)
 /// To get the targeted rect use [annotation rectForPageRect:pageView.bounds];
-- (UIView <PSPDFAnnotationView> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationView> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+- (UIView <PSPDFAnnotationViewProtocol> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
 /// @warning This will only be called for annotations that render as an overlay (that return YES for isOverlay)
 /// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 /// Invoked after animation used to present the annotation view
 /// @warning This will only be called for annotations that render as an overlay (that return YES for isOverlay)
 /// PSPDFLinkAnnotations are handled differently (they don't have a selected state) - delegate will not be called for those.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationView> *)annotationView onPageView:(PSPDFPageView *)pageView;
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 ///--------------------------------------------
 /// @name View Controller Management
@@ -188,9 +188,9 @@
 
 /**
  Called before we show a internal controller (color picker, note editor, ...) modally or in a popover. Allows last minute modifications.
- 
+
  The embeddedInController is either a UINavigationController, a UIPopoverController or nil. viewController is of type id because controller like UIPrintInteractionController are no subclasses of UIViewController.
- 
+
  Return NO to process the displaying manually.
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;

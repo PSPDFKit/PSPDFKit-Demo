@@ -6,18 +6,19 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFAnnotationView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFRenderQueue.h"
 
 @class PSPDFAnnotation;
 
-///
 /// Generic annotation view that listens on annotation changes.
-///
-@interface PSPDFGenericAnnotationView : UIView <PSPDFAnnotationView>
+@interface PSPDFGenericAnnotationView : UIView <PSPDFAnnotationViewProtocol>
 
 /// Designated initializer.
 - (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
+
+/// The currently set annotation.
+@property (nonatomic, strong) PSPDFAnnotation *annotation;
 
 @end
 

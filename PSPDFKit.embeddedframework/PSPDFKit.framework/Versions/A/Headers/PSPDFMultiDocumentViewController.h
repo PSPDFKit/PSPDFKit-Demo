@@ -75,7 +75,7 @@
 @property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
 
 /// If YES, a tap on the right side of the last page in a document will move to the next document, a tap on the left side of the first page will move to the previous document. Defaults to NO.
-/// @warning Only works if scrollOnTapPageEndMargin is set to YES in the pdfController.
+/// @warning Only works if scrollOnTapPageEndEnabled is set to YES in the pdfController.
 @property (nonatomic, assign) BOOL changeDocumentOnTapPageEndMargin;
 
 /// Whether to show thumbnails only for the current document in thumbnail view mode, or for all documents. Defaults to YES.

@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFShapeAnnotation.h"
 #import <QuartzCore/QuartzCore.h>
 
 @class PSPDFDrawView, PSPDFDrawAction;
@@ -18,7 +19,7 @@
 /// Draw View did begin (touching down)
 - (void)drawViewDidBeginDrawing:(PSPDFDrawView *)drawView;
 
-/// New line has been added.
+/// New sketch, shape or line has been added.
 - (void)drawView:(PSPDFDrawView *)drawView didChange:(PSPDFDrawAction *)drawAction;
 
 @end
@@ -66,6 +67,12 @@ extern NSString *const kPSPDFColorKey;
 
 /// Redo last action, update view.
 - (BOOL)redo;
+
+/// Current annotation type.
+@property (nonatomic, assign) PSPDFAnnotationType annotationType;
+
+/// Current shape annotation type (to be specified when annotationType is PSPDFAnnotationTypeShape).
+@property (nonatomic, assign) PSPDFShapeAnnotationType shapeType;
 
 @end
 

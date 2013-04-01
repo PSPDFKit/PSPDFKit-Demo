@@ -9,7 +9,7 @@
 
 /**
  PDF Stamp annotation.
- 
+
  PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
 */
 @interface PSPDFStampAnnotation : PSPDFAnnotation

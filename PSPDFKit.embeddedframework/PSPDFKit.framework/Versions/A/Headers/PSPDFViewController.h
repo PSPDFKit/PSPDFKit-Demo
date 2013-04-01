@@ -16,9 +16,10 @@
 #import "PSPDFWebViewController.h"
 #import "PSPDFBookmarkViewController.h"
 #import "PSPDFThumbnailViewController.h"
+#import "PSPDFAnnotationTableViewController.h"
 
 @protocol PSPDFViewControllerDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationController;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache;
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
@@ -82,14 +83,14 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /**
  This is the main view controller to display PDFs. Can be displayed in full-screen or embedded. Everything in PSPDFKit is based around PSPDFViewController. This is the class you want to override and customize.
- 
+
  Make sure to correctly use viewController containment when adding this as a child view controller. If you override this class, ensure all UIViewController methods you're using do call super. (e.g. viewWillAppear).
- 
+
  For subclassing, please use overrideClassNames to register your custom subclasses. (Cast the key class to (id) to hide the copy warning - classes can be copied without a problem)
- 
+
  The best time for setting the properties is during initialization, in commonInitWithDocument:. Some properties require a call to reloadData if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. viewWillAppear is bad, viewDidAppear is ok) since that could corrupt internal state, instead use updateSettingsForRotation:.
 */
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization and esential properties
 
@@ -594,7 +595,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 @property (nonatomic, strong, readonly) PSPDFScrobbleBar *scrobbleBar;
 
 // Allows access to the annotation cache.
-@property (nonatomic, strong, readonly) PSPDFAnnotationController *annotationController;
+@property (nonatomic, strong, readonly) PSPDFAnnotationViewCache *annotationViewCache;
 
 // Called when a PDF action requests to load a new document in a new controller (modally).
 // Will copy all important settings from the current controller to the new controller.

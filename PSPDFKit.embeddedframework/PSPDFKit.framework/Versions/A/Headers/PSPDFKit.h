@@ -91,7 +91,7 @@
 #import "PSPDFLinkAnnotation.h"
 #import "PSPDFShapeAnnotation.h"
 #import "PSPDFStampAnnotation.h"
-#import "PSPDFAnnotationView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"
 #import "PSPDFFreeTextAnnotationView.h"

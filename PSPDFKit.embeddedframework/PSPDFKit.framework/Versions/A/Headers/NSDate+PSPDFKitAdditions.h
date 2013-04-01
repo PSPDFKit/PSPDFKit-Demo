@@ -15,7 +15,7 @@
  Returns a new date represented by an ISO8601 string.
 
  @param iso8601String An ISO8601 string
- 
+
  Borrowed from the excellent SSToolkit by Sam Soffes, MIT licensed.
  */
 + (NSDate *)pspdf_dateFromISO8601String:(NSString *)iso8601String;
@@ -48,8 +48,7 @@
  */
 + (NSDate *)pspdf_dateFromPDFDateString:(NSString *)PDFDateString;
 
-/**
- */
+// Converts a date to a PDF formatted date string.
 - (NSString *)pspdf_PDFDateString;
 
 @end

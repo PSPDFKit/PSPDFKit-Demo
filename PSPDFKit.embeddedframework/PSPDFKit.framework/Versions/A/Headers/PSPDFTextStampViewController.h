@@ -7,6 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFColorSelectionViewController.h"
+#import "PSPDFStaticTableViewController.h"
 
 @class PSPDFStampAnnotation, PSPDFTextStampViewController;
 
@@ -21,7 +22,7 @@
 @end
 
 /// Allows to create/edit a custom text annotation stamp.
-@interface PSPDFTextStampViewController : UITableViewController <PSPDFColorSelectionViewControllerDelegate, UITextFieldDelegate>
+@interface PSPDFTextStampViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, UITextFieldDelegate>
 
 /// Initialize controller to create a new stamp.
 - (id)init;
@@ -37,9 +38,7 @@
 /// If controller isn't initialize with a stamp, a new one will be created.
 @property (nonatomic, strong, readonly) PSPDFStampAnnotation *stampAnnotation;
 
-/// The default stamp text if stamp is created.
-///
-/// Defaults to nil.
+/// The default stamp text if stamp is created. Defaults to nil.
 @property (nonatomic, copy) NSString *defaultStampText;
 
 @end

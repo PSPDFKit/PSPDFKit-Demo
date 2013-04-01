@@ -45,7 +45,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
     PSPDFCacheOptionMemoryStoreIfVisible      = 0,       // Default. Store into the memory cache if document is visible.
     PSPDFCacheOptionMemoryStoreAlways         = 1,       // Always store into the memory cache.
     PSPDFCacheOptionMemoryStoreNever          = 2,       // Never store into memory cache (unless it's already there)
-    
+
     PSPDFCacheOptionDiskLoadAsyncAndPreload   = 0 << 3,  // Default. Queue disk load and preload.
     PSPDFCacheOptionDiskLoadAsync             = 1 << 3,  // Queue disk load, don't decompress JPG.
     PSPDFCacheOptionDiskLoadSyncAndPreload    = 2 << 3,  // Load image on current thread + decompress.

@@ -16,7 +16,7 @@
 "Page %d" = "Seite %d";
 
 // toolbar
-"Table Of Contents" = "Inhaltsverzeichnis";
+"Outline" = "Inhalt";
 "Search" = "Suchen";
 "Email" = "Email";
 "Email document" = "Dokument senden";
@@ -35,6 +35,9 @@
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
 "Annotations" = "Annotationen";
+"No Annotations" = "Keine Annotationen vorhanden";
+"Bookmarks" = "Lesezeichen";
+"No Bookmarks" = "Keine Lesezeichen gesetzt";
 "Add Bookmark" = "Lesezeichen hinzufügen";
 "Remove Bookmark" = "Lesezeichen entfernen";
 "Bookmark added" = "Lesezeichen gesetzt";
@@ -115,6 +118,9 @@
 "Underline" = "Unterstreichen";
 "Strikeout" = "Durchstreichen";
 "Sketch" = "Zeichnen";
+"Rectangle" = "Rechteck";
+"Ellipse" = "Ellipse";
+"Line" = "Linie";
 "Signature" = "Unterschrift";
 "Signatures" = "Unterschriften";
 "Stamp" = "Stempel";
@@ -141,6 +147,23 @@
 "Low Quality" = "Niedrige Qualität";
 "Medium Quality" = "Mittlere Qualität";
 "High Quality" = "Hohe Qualität";
+"Clear All" = "Alles löschen";
+"Appearance" = "Styling";
+"Appearance..." = "Styling…";
+
+// line annotations
+"Start..." = "Start…";
+"End..." = "Ende…";
+"None" = "Keine";
+"ClosedArrow" = "Geschlossener Pfeil";
+"OpenArrow" = "Offener Pfeil";
+"Square" = "Viereck";
+"Circle" = "Kreis";
+"Diamond" = "Diamant";
+"ROpenArrow" = "Rotierter geschlossener Pfeil";
+"RClosedArrow" = "Rotierter offener Pfeil";
+"Slash" = "Schlitz";
+"Butt" = "Knauf";
 
 // link annotation editing
 "Create Link..." = "Link erstellen...";
