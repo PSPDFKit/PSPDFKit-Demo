@@ -18,7 +18,7 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFCache.h"
 
-@protocol PSPDFAnnotationView;
+@protocol PSPDFAnnotationViewProtocol;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
 
 @interface PSPDFAnnotationContainerView : PSPDFHUDView @end
@@ -55,7 +55,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
 /// (Most PDF annotations are actually rendered into the page; except annotations that return YES for isOverlay, like links or notes.
-- (UIView<PSPDFAnnotationView> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
+- (UIView<PSPDFAnnotationViewProtocol> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView displaying the whole document. Readonly.
 @property (nonatomic, strong, readonly) UIImageView *contentView;
@@ -65,13 +65,13 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /**
  Container view for all overlay annotations.
- 
+
  This is just a named subclass of UIView that will always track the frame of the PSPDFPageView.
  It's useful to coordinate this with your own subviews to get the zIndex right.
- 
+
  @warning Most annotations will not be rendered as overlays or only when they are currently being selected.
  Rendering annotations within the pageView has several advantages including performance or view color multiplication (in case of highlight annotations)
- Do not manually add/remove views into the container view. Contents is managed. Views should respond to the <PSPDFAnnotationView> protocol, especially the annotation method.
+ Do not manually add/remove views into the container view. Contents is managed. Views should respond to the <PSPDFAnnotationViewProtocol> protocol, especially the annotation method.
  */
 @property (nonatomic, strong, readonly) PSPDFAnnotationContainerView *annotationContainerView;
 
@@ -143,7 +143,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// If we use pageCurl mode, we have a global scrollView which can be accessed with pdfController.pagingScrollView
 - (PSPDFScrollView *)scrollView;
 
-/// Returns an array of UIView <PSPDFAnnotationView> objects currently in the view hierarchy.
+/// Returns an array of UIView <PSPDFAnnotationViewProtocol> objects currently in the view hierarchy.
 - (NSArray *)visibleAnnotationViews;
 
 /// Access the attached pdfController.
@@ -182,17 +182,23 @@ extern NSString *const kPSPDFHidePageHUDElements;
 // Extensions to handle annotations.
 @interface PSPDFPageView (AnnotationViews)
 
+// Associate an annotation with an annotation view
+- (void)setAnnotation:(PSPDFAnnotation *)annotation forAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView;
+
+// Recall the annotation associated with an annotation view
+- (PSPDFAnnotation *)getAnnotationForAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView;
+
 /// Currently selected annotation (selected by a tap; showing a menu)
 @property (nonatomic, strong) PSPDFAnnotation *selectedAnnotation;
 
 /**
  Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
  Returns YES if the tap has been handled, else NO.
-    
+
  All annotations for the current page are loaded and hit-tested (except PSPDFAnnotationTypeLink; which has already been handled by now)
-    
+
  If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
- 
+
  If the tap didn't hit an annotation but we are showing a UIMenuController menu; we hide that and set the touch as processed.
  */
 - (BOOL)singleTapped:(UITapGestureRecognizer *)recognizer;
@@ -235,7 +241,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Returns available PSPDFMenuItem's to change the fill color (only applies to certain annotations)    
+/// Returns available PSPDFMenuItem's to change the fill color (only applies to certain annotations)
 - (NSArray *)fillColorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Returns the opacity menu item (used inside colorMenuItemsForAnnotation:)
@@ -316,7 +322,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (void)removeViewOnNextPageUpdate:(UIView *)view;
 
 /// Allow to update the boundingBox correctly for isOverlay = YES annotations.
-- (void)updatePageAnnotationView:(UIView<PSPDFAnnotationView> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
+- (void)updatePageAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
 
 /// View for the selected annotation.
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;

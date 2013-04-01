@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFBaseViewController.h"
 
 @protocol PSPDFSimplePageViewControllerDelegate <NSObject>
 
@@ -17,7 +18,7 @@
 
 /// Simple view controller that paginates a set of viewControllers.
 /// (Apple added something like this in iOS6, but we can't use that yet)
-@interface PSPDFSimplePageViewController : UIViewController <UIScrollViewDelegate>
+@interface PSPDFSimplePageViewController : PSPDFBaseViewController <UIScrollViewDelegate>
 
 /// Designated initializer.
 - (id)initWithViewControllers:(NSArray *)viewControllers;

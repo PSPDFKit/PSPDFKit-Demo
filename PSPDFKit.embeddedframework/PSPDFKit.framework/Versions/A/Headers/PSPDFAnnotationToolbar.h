@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
     PSPDFAnnotationToolbarUnderline,
     PSPDFAnnotationToolbarFreeText,
     PSPDFAnnotationToolbarDraw,
+    PSPDFAnnotationToolbarRectangle,
+    PSPDFAnnotationToolbarEllipse,
+    PSPDFAnnotationToolbarLine,
     PSPDFAnnotationToolbarSignature,
     PSPDFAnnotationToolbarStamp,
     PSPDFAnnotationToolbarImage,
@@ -43,9 +46,9 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 
 /**
  Toolbar to quickly create annotations.
- 
- This is just one way to create annotations. They can also be created in code, but PSPDFAnnotationToolbar does a lot of work/view/state management for you - if you implement your own annotation UI, you should still use PSPDFAnnotationToolbar underneath (just don't show it, but call the methods). 
- 
+
+ This is just one way to create annotations. They can also be created in code, but PSPDFAnnotationToolbar does a lot of work/view/state management for you - if you implement your own annotation UI, you should still use PSPDFAnnotationToolbar underneath (just don't show it, but call the methods).
+
  To customize which annotation icons should be displayed, simply edit editableAnnotationTypes in PSPDFDocument.
  */
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
@@ -76,7 +79,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// @note Setting a toolbar mode will temporarily disable the long press gesture recognizer on the PSPDFScrollView to disable the new annotation menu.
 @property (nonatomic, assign) PSPDFAnnotationToolbarMode toolbarMode;
 
-/// Default/current drawing color (PSPDFAnnotationToolbarDraw).
+/// Default/current drawing color (PSPDFAnnotationToolbarDraw, PSPDFAnnotationToolbarRectangle, PSPDFAnnotationToolbarEllipse, PSPDFAnnotationToolbarLine).
 /// Defaults to [UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]
 /// PSPDFKit will save the last used drawing color in the NSUserDefaults.
 @property (nonatomic, strong) UIColor *drawColor;
@@ -90,6 +93,13 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// This will issue a save event after the toolbar has been dismissed.
 /// Since saving is slow, this defaults to NO.
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
+
+/// Enable to cause the toolbar to fade in and out. Defaults to YES.
+@property (nonatomic, assign) BOOL fadeToolbar;
+
+/// Enable to cause the toolbar to slide into place. Defaults to YES.
+/// @warning Only effective if fadeToolbar is set to YES.
+@property (nonatomic, assign) BOOL slideToolbar;
 
 /// Allows to scroll with two fingers while annotation mode is active. Defaults to NO.
 /// Not all annotation modes block scrolling (but highlight, drawing, etc. do).
@@ -107,13 +117,16 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 - (void)underlineButtonPressed:(id)sender;
 // Draw replaces the toolbar items with custom items and later restores the original items via using the 'originalItems' property.
 - (void)drawButtonPressed:(id)sender;
+- (void)rectangleButtonPressed:(id)sender;
+- (void)ellipseButtonPressed:(id)sender;
+- (void)lineButtonPressed:(id)sender;
 - (void)freeTextButtonPressed:(id)sender;
 - (void)signatureButtonPressed:(id)sender;
 - (void)stampButtonPressed:(id)sender;
 - (void)imageButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender;
 
-// Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw.
+// Only allowed during toolbarMode == PSPDFAnnotationToolbarDraw, PSPDFAnnotationToolbarRectangle, PSPDFAnnotationToolbarEllipse, PSPDFAnnotationToolbarLine.
 - (void)cancelDrawingAnimated:(BOOL)animated;
 - (void)doneDrawingAnimated:(BOOL)animated;
 - (void)selectStrokeColor:(id)sender;

@@ -14,12 +14,12 @@ extern NSString *const kPSPDFBookmarksChangedNotification;
 
 /**
  Manages bookmarks for a PSPDFDocument.
- 
+
  There is no notion of "bookmarks" in a PDF.
- (PDF "bookmarks" are entries in the Table Of Contents; which are parsed in PSPDFKit by the PSPDFOutlineParser class)
- 
+ (PDF "bookmarks" are entries in the outline (Table Of Contents); which are parsed in PSPDFKit by the PSPDFOutlineParser class)
+
  Bookmarks are saved in <APP>/Library/PrivateDocuments/<DocumentUID>/bookmark.plist
- 
+
  All calls are thread safe.
  */
 @interface PSPDFBookmarkParser : NSObject {

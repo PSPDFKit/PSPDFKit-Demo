@@ -17,7 +17,7 @@
 
 /**
  Returns a single outline element for the specified page.
- 
+
  If exactPageOnly is set, the outline will only be returned if it's from the specific page.
  Else the last active set outline will be returned.
 */

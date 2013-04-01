@@ -7,9 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-///
 /// Implement in your UIViewController subclass to be able to match the style of PSPDFViewController.
-///
 @protocol PSPDFStyleable <NSObject>
 
 @optional

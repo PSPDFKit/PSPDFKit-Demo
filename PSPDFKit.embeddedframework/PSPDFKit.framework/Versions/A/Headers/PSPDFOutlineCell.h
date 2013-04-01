@@ -9,13 +9,13 @@
 
 @class PSPDFOutlineCell, PSPDFOutlineElement;
 
+/// The delegate of an outline cell.
 @protocol PSPDFOutlineCellDelegate <NSObject>
 
 /// Delegate for expand/collapse button
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)outlineCell;
 
 @end
-
 
 /// Single cell for the outline controller.
 @interface PSPDFOutlineCell : UITableViewCell
@@ -29,9 +29,12 @@
 /// Single outline element.
 @property (nonatomic, strong) PSPDFOutlineElement *outlineElement;
 
+/// Shows the expand/collapse button.
+@property (nonatomic, assign) BOOL showExpandCollapseButton;
+
 @end
 
-@interface PSPDFOutlineCell (Subclassing)
+@interface PSPDFOutlineCell (SubclassingHooks)
 
 // Button that controls the open/close of cells
 @property (nonatomic, strong) UIButton *disclosureButton;

@@ -5,12 +5,12 @@
 //  Copyright (c) 2011-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFAnnotationView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 
 @class PSPDFSearchResult;
 
 /// Highlight view used to show where the search keyword is within the document.
-@interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationView>
+@interface PSPDFSearchHighlightView : UIView <PSPDFAnnotationViewProtocol>
 
 /// Initialize with a search result. Coordinates are recalculated automatically.
 - (id)initWithSearchResult:(PSPDFSearchResult *)searchResult;

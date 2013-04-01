@@ -41,7 +41,7 @@ extern NSString *const kPSPDFGenerateAPForInk;
 @property (nonatomic, copy) NSArray *lines;
 
 /// Array of UIBezierPath.
-/// Will be dynamically crated from the lines array. 
+/// Will be dynamically crated from the lines array.
 @property (nonatomic, copy, readonly) NSArray *paths;
 
 /// By default, setting the boundingBox will transform all points in the lines array.

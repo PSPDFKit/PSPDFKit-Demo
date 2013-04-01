@@ -11,13 +11,13 @@
 
 /**
  Custom subclass that handles a UIBarButtonItem within the UINavigationBar of PSPDFViewController.
- 
+
  The toolbar system in PSPDFViewController is designed to work with both stock UIBarButtonItem and PSPDFBarButtonItem; but if you want to use additionalRightBarButtonItems (where the items are listed inside a UIActionSheet) you must use a subclass of PSPDFBarButtonItem.
- 
+
  PSPDFBarButtonItem also gives you access to the pdfController and ways to dynamically enable/disable your icon.
- 
+
  Call updateBarButtonItem:animated: if you need to change tie image/customView/systemImage after the barButton has been displayed.
- 
+
  Do not change target/selector - if the case of UIActionSheet/moreButton we call target/selector of the selected barButtonItem but with the sender argument of the PSPDFMoreBarButtonItem. This is needed to get the correct coordinates in case a UIPopoverController follows (which will originate from that moreBarButtonItem). If you override target/selector to something generic, you'll never know what button has been selected.
  */
 @interface PSPDFBarButtonItem : UIBarButtonItem <NSCopying>

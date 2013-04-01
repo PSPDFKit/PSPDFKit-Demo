@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 
 @optional
 
-/// Called when search is started. 
+/// Called when search is started.
 - (void)willStartSearchOperation:(PSPDFSearchOperation *)operation forString:(NSString *)searchTerm isFullSearch:(BOOL)isFullSearch;
 
 @end

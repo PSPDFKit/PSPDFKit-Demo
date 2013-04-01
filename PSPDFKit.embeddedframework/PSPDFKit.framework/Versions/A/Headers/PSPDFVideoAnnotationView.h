@@ -58,7 +58,7 @@
 /// Might return something else; check type before using it as an NSURL.
 - (NSURL *)coverURL;
 
-/// Adds the coverView if not yet added. 
+/// Adds the coverView if not yet added.
 - (void)addCoverView;
 
 @end

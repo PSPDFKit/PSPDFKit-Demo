@@ -35,14 +35,14 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /**
  PSPDFDocument represents a single document for the user.
  Internally it might come from several different sources, files or data.
- 
+
  Ensure that a document is only opened within *one* PSPDFViewController at a time.
  Documents fully support copy or serialization.
- 
+
  To speed up PSPDFViewController display, you can invoke fillCache on any thread. Most methods are thread safe. If you change settings here while the document is already being displayed, you most likely need to call reloadData on  PSPDFViewController to refresh.
- 
+
  Remember that rendered images of PSPDFDocument will be cached using PSPDFCache. If you replace/modify a PDF that has already been cached, you need to clear the cache for that document.
- 
+
  PSPDFDocument is the default delegate for PSPDFDocumentProviderDelegate.
  */
 @interface PSPDFDocument : NSObject <NSCopying, NSCoding, PSPDFDocumentProviderDelegate>
@@ -113,7 +113,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
  Memory-maps files; works with all available input types.
  If there's no file name, we use the PDF title or "Untitled PDF" if all fails.
  Uses PSPDFDocumentProviders dataRepresentationWithError. Errors are only logged.
- 
+
  Returns an ordered NSDictionary (PSPDFOrderedDictionary).
  */
 - (NSDictionary *)fileNamesWithDataDictionary;
@@ -172,12 +172,12 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /**
  Defines the annotations that can be edited (if annotationsEnabled is set to YES)
  Set this to an empty set to disable annotation editing/creation.
- 
+
  Defaults to all available STRING constants (PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk, etc).
- 
+
  Since PSPDFKit 2.8, this now is an ordered set - the order will change the button order in the toolbar and the page menu.
- 
- @warning Some annotation types are only behaviorally different in PSPDFKit but in are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See PSPDFAnnotation.h for comments 
+
+ @warning Some annotation types are only behaviorally different in PSPDFKit but in are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See PSPDFAnnotation.h for comments
 */
 @property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
@@ -196,10 +196,10 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 
 /**
  Saves changed annotations back into the PDF sources (files/data).
- 
+
  Returns NO if annotations cannot be embedded. Then most likely error is set.
  Returns YES if there are no annotations that need to be saved.
- 
+
  Only available in PSPDFKit Annotate.
  */
 - (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
@@ -252,14 +252,9 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Might need file operations to parse the document (slow)
 @property (nonatomic, assign, readonly) NSUInteger pageCount;
 
-/**
- Limit pages to a certain page range.
-
- If document has a pageRange set, the visible pages can be limited to a certain subset.
- Defaults to nil.
-
- @warning This is still an experimental feature and doesn't yet support multiple document sources. Changing this will require a reloadData on the PSPDFViewController and also a clearCache for this document (as the cached pages will be different after changing this!)
- */
+/// Limit pages to a certain page range.
+/// If document has a pageRange set, the visible pages can be limited to a certain subset. Defaults to nil.
+/// @warning Changing this will require a reloadData on the PSPDFViewController and also a clearCache for this document (as the cached pages will be different after changing this!)
 @property (nonatomic, copy) NSIndexSet *pageRange;
 
 /// Return PDF page number (PDF pages start at 1).
@@ -303,7 +298,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
  Will clear all cached objects (annotations, pageCount, ouline, textParser, ...)
 
  This is called implicitly if you change the files array or append a file.
- 
+
  Important! Unless you disable it, PSPDFKit also has an image cache who is not affected by this. If you replace the PDF document with new content, you also need to clear the image cache:
  [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
  */
@@ -344,19 +339,19 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /**
  Unlock documents with a password.
  Only saves the password if unlocking was successful (vs setPassword that saves the password always)
- 
+
  If the password is correct, this method returns YES. Once unlocked, you cannot use this function to relock the document.
 
  If you attempt to unlock an already unlocked document, one of the following occurs:
  If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The password string is ignored.
  If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the password string.
  If the string fails, the document maintains its user permissions. In either case, this method returns YES.
- 
+
  After unlocking a document, you need to call reloadData on the PSPDFViewController.
- 
+
  If you're using multiple files or appendFile, all new files will be unlocked with the password.
  This doesn't harm if the document is already unlocked.
- 
+
  If you have a mixture of files with multiple different passwords, you need to subclass didCreateDocumentProvider: and unlock the documentProvider directly there.
  */
 - (BOOL)unlockWithPassword:(NSString *)password;
@@ -432,9 +427,13 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Bookmarks are handled on document level, not on documentProvider.
 @property (nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
 
+/// Set to NO to disable the custom PDF page labels and simply use page numbers. Defaults to YES.
+@property (nonatomic, assign) BOOL pageLabelsEnabled;
+
 /// Page labels (NSString) for the current document.
 /// Might be nil if PageLabels isn't set in the PDF.
 /// If substituteWithPlainLabel is set to YES then this always returns a valid string.
+/// @note If `pageLabelsEnabled` is set to NO, then this method will either return nil or the plain label if `substite` is YES.
 - (NSString *)pageLabelForPage:(NSUInteger)page substituteWithPlainLabel:(BOOL)substite;
 
 /// Find page of a pageLabel.
@@ -447,7 +446,7 @@ extern NSString *const kPSPDFPreserveAspectRatio;     // If added to options, th
 extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with a 1.0 scale.
 
 /// Renders the page or a part of it with default display settings into a new image.
-/// @param size		     The size of the page, in pixels, if it was rendered without clipping
+/// @param size          The size of the page, in pixels, if it was rendered without clipping
 /// @param clippedToRect A rectangle, relative to size, that specifies the area of the page that should be rendered. CGRectZero = automatic.
 /// @param annotations   Annotations that should be rendered with the view
 /// @param options       Dictionary with options that modify the render process (see PSPDFPageRenderer)
@@ -523,7 +522,6 @@ extern NSString *const kPSPDFImages;
 /// Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
 /// During PSPDFDocument lifetime, document providers might be created at any time, lazily, and destroyed when memory is low.
 /// This might be used to change the delegate of the PSPDFDocumentProvider.
-/// Don't forget calling super on this!
 - (PSPDFDocumentProvider *)didCreateDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Register a block that is called in didCreateDocumentProvider.
@@ -532,16 +530,16 @@ extern NSString *const kPSPDFImages;
 /**
  Return URL to a thumbnail/full sized image (png; jpg preferred). Use this if you want to pre-supply rendered images.
  Returns nil in the default implementation.
- 
+
  Replaces thumbnailPathForPage from PSPDFKit v1.
- 
+
  For example, you can use the fully pre-rendered images from the iPhone Simulator (or iPad) and copy them into your bundle.
  Then, you write a method that returns the file URL for those files.
-    
+
  In PSPDFKit, files have the name "p1" (PSPDFSizeNative), "t1" (PSPDFSizeThumbnail) or "y1" (PSPDFSizeTiny).
  The '1' is the first page. Careful; the accessor here is zero-based.
  (So page:0 andSize:PSPDFSizeNative would map to the file "p1.jpg".
- 
+
  There are additional checks in place, if the URL you're returning is invalid the image will be rendered on the fly.
 */
 - (NSURL *)cachedImageURLForPage:(NSUInteger)page andSize:(PSPDFSize)size;

@@ -9,7 +9,7 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationProvider.h"
 
-@protocol PSPDFAnnotationView;
+@protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
 
 // Sent when a new annotation is added to the default PSPDFFileAnnotationProvider.
@@ -29,7 +29,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 
  Usually you want to add your custom PSPDFAnnotationProvider instead of subclassing this.
  If you subclass, use overrideClassNames in PSPDFDocument.
- 
+
  This class will set the documentProvider on both annotation adding and retrieving. You don't have to handle this in your annotationProvider subclass.
 */
 @interface PSPDFAnnotationParser : NSObject <PSPDFAnnotationProviderChangeNotifier>
@@ -40,7 +40,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /**
  The simplest way to extend PSPDFAnnotationParser is to register a custom PSPDFAnnotationProvider.
  You can even remove the default PSPDFFileAnnotationProvider if you don't want file-based annotations.
- 
+
  On default, this array will contain the fileAnnotationProvider.
  @note The order of the array is important. Setting/getting is thread safe.
  */
@@ -56,14 +56,14 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
  This method will be called OFTEN. Multiple times during a page display, and basically each time you're scrolling or zooming. Ensure it is fast.
  This will query all annotationProviders and merge the result.
  For example, to get all annotations except links, use PSPDFAnnotationTypeAll &~ PSPDFAnnotationTypeLink as type.
- 
+
  @note Fetching annotations may take a while. You can do this in a background thread.
 */
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
 
 /**
  Returns all annotations of all annotationProviders.
- 
+
  Returns dictionary NSNumber->NSArray. Only adds entries for a page if there are annotations.
  @warning This might take some time if the annotation cache hasn't been built yet.
  */
@@ -83,10 +83,10 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 
 /**
  Add annotations at a specific page.
- 
+
  PSPDFAnnotationParser will query all registered annotationProviders until one returns YES on addAnnotations.
  Will return false if no annotationProviders handled the annotation. (By default, the PSPDFFileAnnotationProvider will handle all annotation additions.)
- 
+
  If you're just interested in being notified, you can register a custom annotationProvider and set in the array before the file annotationProvider. Implement addAnnotations:forPage: and return NO. You'll be notified of all add operations.
  */
 - (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
@@ -94,13 +94,13 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /**
  Will be called by PSPDF internally every time an annotation is changed.
  Call will be relayed to all annotationProviders.
- 
+
  This method will be called on ALL annotations, not just the ones that you provided.
  @note If you have custom code that changes annotations and you rely on the didChangeAnnotation: event, you need to call it manually.
- 
+
  For file-based annotations we might have to make a copy before the annotation can be edited. (see copyAndDeleteOriginalIfNeeded on PSPDFAnnotation.h)
  If the annotation object wasn't changed itself, set originalAnnotation = annotation.
- 
+
  Options is used internally to determine of the file annotation provider should request an annotation update. (the userInfo notification dict will be forwarded.)
  */
 - (void)didChangeAnnotation:(PSPDFAnnotation *)annotation originalAnnotation:(PSPDFAnnotation *)originalAnnotation keyPaths:(NSArray *)keyPaths options:(NSDictionary *)options;

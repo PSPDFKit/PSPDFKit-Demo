@@ -2,6 +2,26 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.11.0 - 1/April/2013__
+
+*  Allows to create Rectangle, Ellipse and Line annotations.
+*  Line thickness can now be chosen from the drawing toolbar.
+*  Improvements to line annotation drawing.
+*  Line annotation endings can now be customized (Square, Circle, Diamond, Arrow, ...)
+*  Drawing is now instantly smoothened.
+*  New annotation list controller (PSPDFAnnotationListViewController) to quickly see all annotations, zoom onto them or delete them.
+*  Renamed Table of Contents to Outline.
+*  OutlineBarButton now can show both the new annotation list and the bookmarks. Both are enabled by default.
+*  The outline is now searchable.
+*  Several menu items have been reorganized to both fit better on iPad and iPhone.
+*  The long-press to show the bookmark view controller is now disabled by default.
+*  The PSPDFKit folder has been restructured.
+*  The `pageRange` feature if PSPDFDocument now works across multiple data sources. (This allows more flexibility for PSPDFProcessor and faster document creation)
+*  It's now easier to disable the PDF page label feature with the new property `pageLabelsEnabled` in PSPDFDocument. (enabled by default, disable if you see 'weird' page labels)
+*  API: PSPDFAnnotationView has been deprecated and renamed into PSPDFAnnotationViewProtocol.
+*  Fixes an issue where small text on free text annotations was not rendered at all when the boundingBox was too small for it.
+*  Fixes a potential crash on iOS5.
+
 __v2.10.2 - 27/March/2013__
 
 *  PSPDFCache is even smarter and faster when using PDF documents that are very slow to render.

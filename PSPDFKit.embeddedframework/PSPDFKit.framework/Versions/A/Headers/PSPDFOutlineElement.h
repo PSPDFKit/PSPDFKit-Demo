@@ -15,8 +15,11 @@
 /// Init with title, page, child elements and indentation level.
 - (id)initWithTitle:(NSString *)title page:(NSUInteger)page relativePath:(NSString *)relativePath children:(NSArray *)children level:(NSUInteger)level;
 
-/// Returns all elements + flattened subelements.
+/// Returns all elements + flattened subelements if they are expanded
 - (NSArray *)flattenedChildren;
+
+/// All elements, ignores expanded state.
+- (NSArray *)allFlattenedChildren;
 
 /// Outline title.
 @property (nonatomic, copy) NSString *title;

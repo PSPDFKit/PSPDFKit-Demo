@@ -3,7 +3,7 @@
 //  PSPDFKit
 //
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.
-// 
+//
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFModel.h"
@@ -21,6 +21,7 @@ extern NSString *const PSPDFAnnotationTypeStringFreeText;
 extern NSString *const PSPDFAnnotationTypeStringInk;
 extern NSString *const PSPDFAnnotationTypeStringSquare;
 extern NSString *const PSPDFAnnotationTypeStringCircle;
+extern NSString *const PSPDFAnnotationTypeStringLine;
 extern NSString *const PSPDFAnnotationTypeStringSignature;  // Signature is an image annotation.
 extern NSString *const PSPDFAnnotationTypeStringStamp;
 
@@ -37,8 +38,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeText      = 1 << 3,  // FreeText
     PSPDFAnnotationTypeInk       = 1 << 4,  // Ink (includes Signatures)
     PSPDFAnnotationTypeShape     = 1 << 5,  // Square, Circle
-    PSPDFAnnotationTypeLine      = 1 << 6,
-    PSPDFAnnotationTypeNote      = 1 << 7,
+    PSPDFAnnotationTypeLine      = 1 << 6,  // Line
+    PSPDFAnnotationTypeNote      = 1 << 7,  // Note
     PSPDFAnnotationTypeStamp     = 1 << 8,  // Stamp (includes images)
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
@@ -61,13 +62,13 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 /**
  Defines a PDF annotation.
- 
+
  PSPDFAnnotationParser searches the runtime for subclasses of PSPDFAnnotation and builds up a dictionary using supportedTypes.
- 
+
  Don't directly make an instance of this class, use subclasses like PSPDFNoteAnnotations or PSPDFLinkAnnotations. This class will return nil if initialized directly, unless with the type PSPDFAnnotationTypeUndefined.
 
  Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.
- 
+
  Ensure that custom subclasses also correctly implement hash and isEqual.
 */
 @interface PSPDFAnnotation : PSPDFModel
@@ -84,7 +85,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 /// Returns YES if this annotation type is resizable (all but note annotations usually are).
 - (BOOL)isResizable;
 
-/// Use this to create custom user annotations. 
+/// Use this to create custom user annotations.
 - (id)initWithType:(PSPDFAnnotationType)annotationType;
 
 /// Designated initializer. Also used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
@@ -110,7 +111,7 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
  Use PSPDFConvertViewRectToPDFRect to convert your coordinates accordingly.
  (For performance considerations, you want to do this once, not every time drawInContext is called)
- 
+
  This draws the annotation border.
  Some annotations handle borders differently, so decide in your subclass if you call [super drawInContext] or not.
  */
@@ -160,10 +161,10 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 
 /**
  Fill color. Only used for certain annotation types. ("IC" key, e.g. Shape Annotations)
- 
+
  FillColor might be nil - treat like clearColor in that case.
  FillColor will *share* the alpha value set in the .alpha property, and will ignore any custom alpha value set here.
- 
+
  Note: Apple Preview.app will not show you transparency in the fillColor. (tested under 10.8.2)
  */
 @property (nonatomic, strong) UIColor *fillColor;
@@ -209,6 +210,9 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Certain annotation types like highlight might have multiple rects.
 @property (nonatomic, copy) NSArray *rects;
 
+/// Line, Polyline and Polygon annotations have points.
+@property (nonatomic, copy) NSArray *points;
+
 /// User (title) flag. ("T" property)
 @property (nonatomic, copy) NSString *user;
 
@@ -234,7 +238,7 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 
 /**
  Returns YES if a custom appearance stream is attached to this annotation.
- 
+
  An appearance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for appearance streams, currently only for stamp/ink annotations and that only under certain conditions.
  */
 @property (nonatomic, assign, readonly) BOOL hasAppearanceStream;
@@ -242,6 +246,9 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Allows to save arbitrary data (e.g. a CoreData Object ID)
 /// Will be preserved within app sessions and copy, but NOT serialized to disk or within the PDF.
 @property (atomic, copy) NSDictionary *userInfo;
+
+/// Returns self.contents or something appropriate per annotation type to describe the object.
+- (NSString *)infoDescription;
 
 /// Compare.
 - (BOOL)isEqualToAnnotation:(PSPDFAnnotation *)otherAnnotation;

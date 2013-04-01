@@ -16,7 +16,7 @@
 "Page %d" = "Page %d";
 
 // toolbar
-"Table Of Contents" = "Table Of Contents";
+"Outline" = "Outline";
 "Search" = "Search";
 "Email" = "Email";
 "Email document" = "Email document";
@@ -35,6 +35,9 @@
 "No Applications found" = "There are no applications installed that can open PDF documents.";
 "Print" = "Print";
 "Annotations" = "Annotations";
+"No Annotations" = "No Annotations";
+"Bookmarks" = "Bookmarks";
+"No Bookmarks" = "No Bookmarks";
 "Add Bookmark" = "Add Bookmark";
 "Remove Bookmark" = "Remove Bookmark";
 "Bookmark added" = "Bookmark added";
@@ -115,6 +118,9 @@
 "Underline" = "Underline";
 "Strikeout" = "Strike Out";
 "Sketch" = "Sketch";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Line" = "Line";
 "Signature" = "Signature";
 "Signatures" = "Signatures";
 "Stamp" = "Stamp";
@@ -141,6 +147,23 @@
 "Low Quality" = "Low Quality";
 "Medium Quality" = "Medium Quality";
 "High Quality" = "High Quality";
+"Clear All" = "Clear All";
+"Appearance" = "Appearance";
+"Appearance..." = "Appearance…";
+
+// line annotations
+"Start..." = "Start…";
+"End..." = "End…";
+"None" = "None";
+"ClosedArrow" = "Closed Arrow";
+"OpenArrow" = "Open Arrow";
+"Square" = "Square";
+"Circle" = "Circle";
+"Diamond" = "Diamond";
+"ROpenArrow" = "Reverse Open Arrow";
+"RClosedArrow" = "Reverse Closed Arrow";
+"Slash" = "Slash";
+"Butt" = "Butt";
 
 // link annotation editing
 "Create Link..." = "Create Link...";

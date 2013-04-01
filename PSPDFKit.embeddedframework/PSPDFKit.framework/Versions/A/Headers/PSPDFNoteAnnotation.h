@@ -13,12 +13,15 @@ extern CGSize kPSPDFNoteAnnotationViewFixedSize;
 /// PDF Note (Text) Annotation.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
+/// Designated initializer.
+- (id)init;
+
 /// Note Icon name (see PSPDFKit.bundle for available icon names)
 /// If set to zero, it will return to the default "Comment".
 @property (nonatomic, copy) NSString *iconName;
 
-/// Designated initializer.
-- (id)init;
+/// Loads a matching image from the PSPDFKit.bundle.
+- (UIImage *)noteImage;
 
 /// Custom HitTest because we have custom width/height here.
 - (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;

@@ -29,8 +29,8 @@
 /// Invalidate all images that match `UID`.
 - (BOOL)invalidateAllImagesWithUID:(NSString *)UID;
 
-/// Invalidate all images that match `UID` and `page`.
-- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page;
+/// Invalidate all images that match `UID` and `page` and match `infoSelector`.
+- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
 /// Clears all entries in the memory cache.
 - (void)clearCache;

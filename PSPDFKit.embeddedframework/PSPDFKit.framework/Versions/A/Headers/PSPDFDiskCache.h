@@ -11,6 +11,7 @@
 
 // Cache selector (to fetch sizes)
 typedef PSPDFCacheInfo* (^PSPDFCacheInfoSelector)(NSOrderedSet *);
+typedef NSArray* (^PSPDFCacheInfoArraySelector)(NSOrderedSet *);
 
 // Encryption/Decryption Helper.
 typedef UIImage* (^PSPDFCacheDecryptionHelper)(NSString *path);
@@ -46,12 +47,12 @@ typedef NSData* (^PSPDFCacheEncryptionHelper)(UIImage *image);
 /// Invalidate all images that match `UID`. Will also invalidate any open writes.
 - (BOOL)invalidateAllImagesWithUID:(NSString *)UID;
 
-/// Invalidate all images that match `UID` and `page`. Will also invalidate any open writes.
-- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page;
+/// Invalidate all images that match `UID` and `page` that match `infoSelector`. Will also invalidate any open writes.
+- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
-/// Invalidate cancel all write requests that match `UID` and `page`.
+/// Invalidate cancel all write requests that match `UID` and `page` that match `infoSelector`.
 /// Use NSNotFound as a wildcard for all pages.
-- (void)cancelWriteRequestsWithUID:(NSString *)UID andPage:(NSUInteger)page;
+- (void)cancelWriteRequestsWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
 /// Removes all entries in the disk cache.
 - (void)clearCache;

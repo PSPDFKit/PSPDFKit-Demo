@@ -6,7 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFAnnotationView.h"
+#import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLinkAnnotationBaseView.h"
 

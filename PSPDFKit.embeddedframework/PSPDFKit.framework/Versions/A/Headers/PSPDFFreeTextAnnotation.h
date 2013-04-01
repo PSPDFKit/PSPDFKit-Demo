@@ -9,9 +9,9 @@
 
 /**
  PDF FreeText Annotation.
- 
+
  A free text annotation (PDF 1.3) displays text directly on the page. Unlike an ordinary text annotation (see 12.5.6.4, “Text Annotations”), a free text annotation has no open or closed state; instead of being displayed in a pop-up window, the text shall be always visible.
- 
+
  @note fillColor is not supported for free text annotations. (at least not for PDF writing)
  */
 @interface PSPDFFreeTextAnnotation : PSPDFAnnotation

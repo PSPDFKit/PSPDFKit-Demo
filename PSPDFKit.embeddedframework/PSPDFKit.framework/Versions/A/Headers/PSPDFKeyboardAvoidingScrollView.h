@@ -20,7 +20,7 @@
 @property (nonatomic, assign, readonly) BOOL firstResponderIsTextInput;
 
 /// Enable/Disable keyboard avoidance features. Defaults to YES.
-/// @warning Don't change this while isShowingKeyboard is YES, else 
+/// @warning Don't change this while isShowingKeyboard is YES, else
 @property (nonatomic, assign) BOOL enableKeyboardAvoidance;
 
 /// Helper to resign first responder if the view is within the scrollView.

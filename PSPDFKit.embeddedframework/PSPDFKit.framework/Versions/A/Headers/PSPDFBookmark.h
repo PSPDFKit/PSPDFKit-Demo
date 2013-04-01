@@ -10,7 +10,7 @@
 
 /**
  A bookmark is a simple object that encapsulates a page and a name.
- 
+
  @warning: Bookmarks don't have any representation in the PDF standard, thus they are saved in an external file.
   */
 @interface PSPDFBookmark : PSPDFModel

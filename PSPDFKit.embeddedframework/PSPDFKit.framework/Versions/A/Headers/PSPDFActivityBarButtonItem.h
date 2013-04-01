@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSArray *applicationActivities;
 
 /// Excluded activities. Defaults to UIActivityTypeAssignToContact.
-@property (nonatomic, copy) NSArray *excludedActivityTypes; 
+@property (nonatomic, copy) NSArray *excludedActivityTypes;
 
 /// The UIActivityViewController will be created during presentAnimated.
 @property (nonatomic, strong, readonly) UIActivityViewController *activityController;

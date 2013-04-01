@@ -36,6 +36,9 @@ extern NSArray *PSPDFGradientColorsForColorWithOptions(UIColor *color, CGFloat v
 + (UIColor *)pspdf_selectionColor;
 + (CGFloat)pspdf_selectionAlpha;
 
+/// Color for detail elements in the grouped table view.
++ (UIColor *)pspdf_groupTableViewBlueColor;
+
 /// Property list support
 + (UIColor *)pspdf_colorFromPropertyRepresentation:(id)colorObject;
 - (NSString *)pspdf_stringFromColor;

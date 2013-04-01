@@ -22,7 +22,7 @@
 /// To handle external URLS.
 - (BOOL)handleExternalURL:(NSURL *)URL buttonCompletionBlock:(void (^)(PSPDFAlertView *alert, NSUInteger buttonIndex))completionBlock;
 
-@end 
+@end
 
 /// Enable to completely match the toolbar style with the PSPDFViewController.
 /// Defaults to NO because IMO it doesn't look that great.

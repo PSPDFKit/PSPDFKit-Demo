@@ -13,8 +13,8 @@
 @interface PSPDFGradientView : UIView
 
 typedef NS_ENUM(NSInteger, PSPDFGradientViewDirection) {
-	PSPDFGradientViewDirectionHorizontal,
-	PSPDFGradientViewDirectionVertical
+    PSPDFGradientViewDirectionHorizontal,
+    PSPDFGradientViewDirectionVertical
 };
 
 /// Gradient direction. Defaults to PSPDFGradientViewDirectionHorizontal.
