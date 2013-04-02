@@ -49,6 +49,7 @@
 #import "PSCAppDelegate.h"
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
+#import "PSCImageOverlayPDFViewController.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -622,6 +623,11 @@ const char kPSCAlertViewKey;
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Adding a simple UIButton" block:^{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         return [[PSCButtonPDFViewController alloc] initWithDocument:document];
+    }]];
+
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Adding multiple UIButtons" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        return [[PSCImageOverlayPDFViewController alloc] initWithDocument:document];
     }]];
 
     // Other image replacements work similar.
