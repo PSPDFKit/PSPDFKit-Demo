@@ -2,6 +2,14 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.11.1 - 3/April/2013__
+
+*  Add switch to globally enable/disable bookmarks (`bookmarksEnabled` in PSPDFDocument)
+*  `annotationsEnabled` in PSPDFDocument now also enabled/disables the annotation menus.
+*  The thumbnail view now listens for annotation changes/bookmark changes and updates accordingly.
+*  Fixes an issue where the toolbar in the new PSPDFContainerViewController was sometimes not displayed initially.
+*  Fixes an issue where the delegate didLoadPageView: was called multiple times with the pageCurl transition.
+
 __v2.11.0 - 1/April/2013__
 
 *  Allows to create Rectangle, Ellipse and Line annotations.
