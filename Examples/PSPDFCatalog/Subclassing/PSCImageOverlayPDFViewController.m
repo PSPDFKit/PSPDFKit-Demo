@@ -22,6 +22,7 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
+    self.pageTransition = PSPDFPageCurlTransition;
     self.delegate = self;
 }
 
