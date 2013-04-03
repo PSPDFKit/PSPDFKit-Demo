@@ -59,6 +59,7 @@
 #import "PSPDFGlyph.h"
 #import "PSPDFWord.h"
 #import "PSPDFTextBlock.h"
+#import "PSPDFImageInfo.h"
 #import "PSPDFSearchViewController.h"
 #import "PSPDFSearchResult.h"
 #import "PSPDFSearchHighlightView.h"

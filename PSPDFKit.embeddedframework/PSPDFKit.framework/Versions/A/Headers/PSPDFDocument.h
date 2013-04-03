@@ -167,6 +167,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// @name Annotations
 
 /// Annotation link extraction. Defaults to YES.
+/// @note This will disable the creation of the PSPDFAnnotationParser and will automatically return nil on `editableAnnotationTypes`.
 @property (nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
 
 /**
@@ -422,6 +423,9 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Outline extraction class for current document.
 /// @warning Only returns the parser for the first PDF file.
 @property (nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
+
+/// Globally enable/disable bookmarks. Defaults to YES.
+@property (nonatomic, assign, getter=isBookmarksEnabled) BOOL bookmarksEnabled;
 
 /// Accesses the bookmark parser.
 /// Bookmarks are handled on document level, not on documentProvider.

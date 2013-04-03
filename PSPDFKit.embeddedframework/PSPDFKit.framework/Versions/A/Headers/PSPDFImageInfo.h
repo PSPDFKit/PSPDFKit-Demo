@@ -9,12 +9,10 @@
 
 @class PSPDFDocument;
 
-///
 /// Defines the position if an image in the PDF.
-///
 @interface PSPDFImageInfo : NSObject
 
-@property (nonatomic, copy) NSString* imageID;
+@property (nonatomic, copy)   NSString *imageID;
 @property (nonatomic, assign) int pixelWidth;
 @property (nonatomic, assign) int pixelHeight;
 @property (nonatomic, assign) int bitsPerComponent;
@@ -23,11 +21,12 @@
 @property (nonatomic, assign) double horizontalResolution;
 @property (nonatomic, assign) double verticalResolution;
 @property (nonatomic, assign) CGAffineTransform ctm; // global transform state.
-@property (nonatomic, readonly, assign) CGPoint *vertices;
+@property (nonatomic, assign, readonly) CGPoint *vertices;
 
-@property (atomic, weak) PSPDFDocument *document;
+@property (atomic,    weak)   PSPDFDocument *document;
 @property (nonatomic, assign) NSUInteger page;
 
+/// Hit-Testing.
 - (BOOL)isPointInImage:(CGPoint)point;
 
 /// Rect that spans the 4 points.
@@ -40,6 +39,5 @@
 /// (UIImageJPEGRepresentation will return nil in that case)
 /// This method checks against this case and converts the image into RGB color space.
 - (UIImage *)imageInRGBColorSpace;
-
 
 @end
