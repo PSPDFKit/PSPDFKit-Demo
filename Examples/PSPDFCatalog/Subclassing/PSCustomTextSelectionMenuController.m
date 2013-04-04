@@ -27,10 +27,10 @@
 
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
 
-
     // disable wikipedia
     // be sure to check for PSPDFMenuItem class; there might also be classic UIMenuItems in the array.
     // Note that for words that are in the iOS dictionary, instead of Wikipedia we show the "Define" menu item with the native dict.
+    // There is also a simpler way to disable wikipedia (document.allowedMenuActions)
     NSMutableArray *newMenuItems = [menuItems mutableCopy];
     for (PSPDFMenuItem *menuItem in menuItems) {
         if ([menuItem isKindOfClass:[PSPDFMenuItem class]] && [menuItem.identifier isEqualToString:@"Wikipedia"]) {
