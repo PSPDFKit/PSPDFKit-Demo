@@ -235,6 +235,14 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
+- (void)pdfViewControllerWillDismiss:(PSPDFViewController *)pdfController {
+    NSLog(@"Controller is about to be dismissed.");
+}
+
+- (void)pdfViewControllerDidDismiss:(PSPDFViewController *)pdfController {
+    NSLog(@"Controller has been dismissed.");
+}
+
 // Allow control if a page should be scrolled to.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldScrollToPage:(NSUInteger)page {
     return YES;
