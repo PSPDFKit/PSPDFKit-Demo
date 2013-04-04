@@ -40,9 +40,9 @@ extern NSString *const kPSPDFGenerateAPForInk;
 /// @warning: After setting lines, the boundingBox will be automatically recalculated.
 @property (nonatomic, copy) NSArray *lines;
 
-/// Array of UIBezierPath.
+/// UIBezierPath.
 /// Will be dynamically crated from the lines array.
-@property (nonatomic, copy, readonly) NSArray *paths;
+@property (nonatomic, copy, readonly) UIBezierPath *path;
 
 /// By default, setting the boundingBox will transform all points in the lines array.
 /// Use this setter to manually change the boundingBox without changing lines.
