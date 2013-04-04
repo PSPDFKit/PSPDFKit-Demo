@@ -106,7 +106,6 @@
  */
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
-
 ///--------------------------------------------
 /// @name Text Selection
 ///--------------------------------------------
@@ -210,6 +209,15 @@
 
 /// Will be called when viewMode changes.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode;
+
+/// Called before the view controller will be dismissed (either by modal dismissal, or popping from the navigation stack).
+/// Called before PSPDFKit tries to save any dirty annotation.
+/// @note If you use child view containment then the dismissal might not be properly detected.
+- (void)pdfViewControllerWillDismiss:(PSPDFViewController *)pdfController;
+
+/// Called after the view controller has been dismissed (either by modal dismissal, or popping from the navigation stack).
+/// @note If you use child view containment then the dismissal might not be properly detected.
+- (void)pdfViewControllerDidDismiss:(PSPDFViewController *)pdfController;
 
 ///--------------------------------------------
 /// @name HUD

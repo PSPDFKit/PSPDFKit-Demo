@@ -26,6 +26,7 @@ extern NSString *const kPSPDFProcessorAdditionalDelay;  // Defaults to 0.05 seco
 extern NSString *const kPSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
 typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
+typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
 @interface PSPDFProcessor : NSObject
@@ -34,11 +35,11 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 + (instancetype)defaultProcessor;
 
 /// Generate a PDF from a PSPDFDocument into a file. 'options' can also contain CGPDFContext options.
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error;
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
 
 /// Generate a PDF from a PSPDFDocument into data. 'options' can also contain CGPDFContext options.
 /// @warning Don't use with large files, since iOS has no virtual memory the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe in-memory usage.
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options error:(NSError **)error;
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
 
 /**
  Generates a PDF from a string. Does allow simple html tags.
@@ -103,5 +104,13 @@ typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 
 /// Error if something went wrong.
 @property (nonatomic, strong, readonly) NSError *error;
+
+@end
+
+@interface PSPDFProcessor (Deprecated)
+
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error __attribute__ ((deprecated("Use the new variant with progressBlock")));
+
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options error:(NSError **)error __attribute__ ((deprecated("Use the new variant with progressBlock")));
 
 @end

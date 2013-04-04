@@ -264,7 +264,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Font sizes for the freetext annotation menu. Defaults to @[@(10), @(12), @(14), @(18), @(22), @(26), @(30), @(36), @(48), @(64)]
 - (NSArray *)availableFontSizes;
 
-/// Line thickness options (ink, border). Defaults to @[@(1), @(3), @(6), @(9), @(12), @(16)];
+/// Line thickness options (ink, border). Defaults to @[@(1), @(3), @(6), @(9), @(12), @(16), @(25), @(40)];
 - (NSArray *)availableLineWidths;
 
 /// Returns the passthrough views for the popover controllers (e.g. color picker).
@@ -320,9 +320,6 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Remove a page annotation/view as soon as the page has been refreshed. Will also refresh page.
 - (BOOL)removeAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
 - (void)removeViewOnNextPageUpdate:(UIView *)view;
-
-/// Allow to update the boundingBox correctly for isOverlay = YES annotations.
-- (void)updatePageAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView usingBlock:(void (^)(PSPDFAnnotation *annotation))block;
 
 /// View for the selected annotation.
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;
