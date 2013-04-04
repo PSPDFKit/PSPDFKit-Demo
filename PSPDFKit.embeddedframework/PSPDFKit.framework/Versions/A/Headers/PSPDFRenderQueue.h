@@ -31,17 +31,23 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// Render Queue is a singleton.
 + (instancetype)sharedRenderQueue;
 
+/// @name Requests
+
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 /// For options, see PSPDFPageRender.
 /// IF `queueAsNext` is set, the request will be processed ASAP, skipping the current queue.
 - (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate;
 
-/// Cancel job.
-/// Use NSNotFound for `page` to delete all requests for the document.
-- (void)cancelRenderingForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate async:(BOOL)async;
-
 /// Return all queued jobs for the current `document` and `page`. (bound to `delegate`)
 - (NSArray *)renderJobsForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
+
+/// Returns YES if currently a RenderJob is scheduled or running for delegate.
+- (BOOL)hasRenderJobsForDelegate:(id<PSPDFRenderDelegate>)delegate;
+
+/// Return how many jobs are currently queued.
+- (NSUInteger)numberOfQueuedJobs;
+
+/// @name Cancellation
 
 /// Cancel a single render job.
 /// @return YES if cancellation was successful, NO if not found.
@@ -50,15 +56,14 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// Cancel all queued and running jobs.
 - (void)cancelAllJobs;
 
+/// Cancel job.
+/// Use NSNotFound for `page` to delete all requests for the document.
+- (void)cancelRenderingForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
+
 /// Cancels all queued render-calls.
-/// Async will perform on the next thread. (don't use async in dealloc)
-- (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate async:(BOOL)async;
+- (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate;
 
-/// Returns YES if currently a RenderJob is scheduled or running for delegate.
-- (BOOL)hasRenderJobsForDelegate:(id<PSPDFRenderDelegate>)delegate;
-
-/// Return how many jobs are currently queued.
-- (NSUInteger)numberOfQueuedJobs;
+/// @name Settings
 
 /// The minimum priority for requests. Defaults to PSPDFRenderQueuePriorityVeryLow.
 /// Set to PSPDFRenderQueuePriorityNormal to temporarily pause cache requests.

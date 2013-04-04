@@ -29,6 +29,13 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
     PSPDFTextCheckingTypeAll         = UINT_MAX
 };
 
+// Menu options when text is selected on this document.
+typedef NS_OPTIONS(NSUInteger, PSPDFDocumentMenuAction) {
+    PSPDFDocumentMenuActionSearch,
+    PSPDFDocumentMenuActionDefine,
+    PSPDFDocumentMenuActionWikipediaAsFallback // Only displayed if Define fails/is missing.
+};
+
 // Called before the document starts to save annotations. Use to save any unsaved changes.
 extern NSString *const PSPDFDocumentWillSaveNotification;
 
@@ -140,7 +147,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 
 /// A document can also have multiple NSData objects.
 /// @note If writing annotations is enabled, the dataArray's content will change after a save.
-@property (nonatomic, copy, readonly) NSArray *dataArray;
+@property (atomic, copy, readonly) NSArray *dataArray;
 
 /// PDF dataProvider (can be used to dynamically decrypt a document). Will be retained when set.
 @property (nonatomic, assign, readonly) CGDataProviderRef dataProvider;
@@ -366,10 +373,6 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Might need file operations to parse the document (slow)
 @property (nonatomic, assign, readonly, getter=isValid) BOOL valid;
 
-/// Do the PDF digital right allow for printing?
-/// @note Only evaluates the first file if multiple files are set.
-@property (nonatomic, assign, readonly) BOOL allowsPrinting;
-
 /// Was the PDF file encrypted at file creation time?
 /// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL isEncrypted;
@@ -383,10 +386,19 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// @note Only evaluates the first file if multiple files are set.
 @property (nonatomic, assign, readonly) BOOL isLocked;
 
+/// Do the PDF digital right allow for printing?
+/// @note Only evaluates the first file if multiple files are set.
+@property (nonatomic, assign, readonly) BOOL allowsPrinting;
+
 /// A flag that indicates whether copying text is allowed
 /// @note Only evaluates the first file if multiple files are set.
 /// Can also be overridden manually.
 @property (nonatomic, assign) BOOL allowsCopying;
+
+/// Allows to customize other displayed menu actions when text is selected.
+/// Defaults to PSPDFDocumentMenuActionSearch|PSPDFDocumentMenuActionDefine|PSPDFDocumentMenuActionWikipediaAsFallback
+/// @note This is no flag that gets parsed from the document (like allowsCopying) but seems to be  a better fit here than on the controller, since almost all menu related options are controller from the document.
+@property (nonatomic, assign) PSPDFDocumentMenuAction allowedMenuActions;
 
 
 /// @name Attached Parsers
@@ -414,7 +426,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 - (NSUInteger)pageOffsetForDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Get an array of documentProviders to easily manage documents with multiple files.
-@property (nonatomic, copy, readonly) NSArray *documentProviders;
+- (NSArray *)documentProviders;
 
 /// Document Parser is per file, so might return the same parser for different pages.
 /// (But we need to check as a PSPDFDocument can contain multiple files)
@@ -583,6 +595,13 @@ extern NSString *const kPSPDFMetadataKeyProducer;
 extern NSString *const kPSPDFMetadataKeyCreationDate;
 extern NSString *const kPSPDFMetadataKeyModDate;
 extern NSString *const kPSPDFMetadataKeyTrapped;
+
+@interface PSPDFDocument (SubclassingHooks)
+
+// Override to customize file name for the send via email feature.
+- (NSString *)fileNameForIndex:(NSUInteger)fileIndex;
+
+@end
 
 @interface PSPDFDocument (Deprecated)
 

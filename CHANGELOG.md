@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.11.2 - 4/April/2013__
+
+*  Drawing annotations is now always sharp, even when the document is zoomed in. (This required changes to the public API of PSPDFDrawView, check your code if you use that class directly)
+*  Annotation flattening now shows a circular progress indicator instead of the default spinning indicator.
+*  PSPDFProcessor now has a new progressBlock property that calls back on each processed page.
+*  New delegates: pdfViewControllerWillDismiss: and pdfViewControllerDidDismiss: to detect controller dismissal.
+*  Add allowedMenuActions property to PSPDFDocument to allow easy disabling of Wikipedia, Search, Define text selection menu entries.
+*  Internal locking of PSPDFDocument and PSPDFRenderQueue has been improved and is now faster in many situations.
+*  Getting all annotations of a document is now faster in some situations.
+*  Titanium: setEditableAnnotations: is now exposed (PSPDFKit Basic upwards)
+*  Fixes an issue with line annotation selection where sometimes a selection knob was not visible.
+
 __v2.11.1 - 3/April/2013__
 
 *  Add switch to globally enable/disable bookmarks (`bookmarksEnabled` in PSPDFDocument)

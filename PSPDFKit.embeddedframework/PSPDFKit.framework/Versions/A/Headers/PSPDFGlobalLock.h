@@ -10,7 +10,7 @@
 @class PSPDFDocumentProvider;
 
 /// PDF reading needs memory, which is a rare resource. So we lock access very carefully.
-@interface PSPDFGlobalLock : NSObject
+@interface PSPDFGlobalLock : NSObject <NSLocking>
 
 /// Get global singleton.
 + (instancetype)sharedGlobalLock;
