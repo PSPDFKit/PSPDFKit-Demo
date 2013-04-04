@@ -933,6 +933,32 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a highlight annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples.
+
+        // Let's create a highlight for all occurences of BATMAN on the first 10 pages, in Orange.
+        NSUInteger annotationCounter = 0;
+        for (NSUInteger pageIndex = 0; pageIndex < 10; pageIndex++) {
+            for (PSPDFWord *word in [document textParserForPage:pageIndex].words) {
+                if ([word.stringValue isEqualToString:@"Batman"]) {
+                    CGRect boundingBox;
+                    NSArray *highlighedRects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:pageIndex].pageRotationTransform, &boundingBox);
+                    PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+                    annotation.color = [UIColor orangeColor];
+                    annotation.boundingBox = boundingBox;
+                    annotation.rects = highlighedRects;
+                    annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%d", annotationCounter];
+                    [document addAnnotations:@[annotation] forPage:pageIndex];
+                    annotationCounter++;
+                }
+            }
+        }
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.page = 8;
+        return controller;
+    }]];
+
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add an ink annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
