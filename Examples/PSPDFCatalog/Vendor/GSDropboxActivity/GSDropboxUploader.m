@@ -93,7 +93,7 @@ NSString *const GSDropboxUploaderProgressKey = @"GSDropboxUploaderProgressKey";
 
 #pragma mark - Dropbox client delegate methods
 
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString *)destPath from:(NSString *)srcPath metadata:(DBMetadata*)metadata {
     [[NSNotificationCenter defaultCenter] postNotificationName:GSDropboxUploaderDidFinishUploadingFileNotification
                                                         object:self
                                                       userInfo:@{GSDropboxUploaderFileURLKey: self._inFlightUploadJob.fileURL}];
@@ -112,7 +112,7 @@ NSString *const GSDropboxUploaderProgressKey = @"GSDropboxUploaderProgressKey";
 }
 
 - (void)restClient:(DBRestClient*)client uploadProgress:(CGFloat)progress
-           forFile:(NSString*)destPath from:(NSString*)srcPath
+           forFile:(NSString *)destPath from:(NSString *)srcPath
 {
     NSDictionary *userInfo = @{
         GSDropboxUploaderFileURLKey: self._inFlightUploadJob.fileURL,
