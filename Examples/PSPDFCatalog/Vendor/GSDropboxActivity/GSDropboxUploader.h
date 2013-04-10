@@ -22,7 +22,7 @@ extern NSString *const GSDropboxUploaderProgressKey;
 /* The singleton Dropbox uploader - use this for all your Dropbox uploads */
 + (GSDropboxUploader*)sharedUploader;
 
-- (void)uploadFileWithURL:(NSURL *)fileURL toPath:(NSString*)destinationPath;
+- (void)uploadFileWithURL:(NSURL *)fileURL toPath:(NSString *)destinationPath;
 
 /* Uploads are processed one at a time. If you call uploadFileWithURL:toPath: while an upload's already in progress the new upload will be queued. pendingUploadCount returns the number of uploads currently in the queue pending processing. */
 - (NSUInteger)pendingUploadCount;
