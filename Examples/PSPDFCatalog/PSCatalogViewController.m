@@ -50,6 +50,7 @@
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCImageOverlayPDFViewController.h"
+#import "PSCColoredHighlightAnnotation.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -387,7 +388,7 @@ const char kPSCAlertViewKey;
         multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
         // dynamically add video box
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
+        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
         [multimediaDoc addAnnotations:@[aVideo] forPage:0];
 
@@ -399,7 +400,7 @@ const char kPSCAlertViewKey;
         multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
         // dynamically add video box
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
+        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
         [multimediaDoc addAnnotations:@[aVideo] forPage:0];
 
@@ -453,11 +454,11 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:files];
 
         // We're lazy here. 2 = UIViewContentModeScaleAspectFill
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
+        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
         [document addAnnotations:@[aVideo ] forPage:5];
 
-        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithSiteLinkTarget:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
+        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
         anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
         [document addAnnotations:@[anImage] forPage:2];
 
@@ -963,6 +964,13 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change default highlight annotation color" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        [document overrideClass:PSPDFHighlightAnnotation.class withClass:PSCColoredHighlightAnnotation.class];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add an ink annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
@@ -1268,7 +1276,14 @@ const char kPSCAlertViewKey;
     // Check that even multiple different pageLabel enumerations work properly, compare with Acrobat.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
-        [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.viewMode = PSPDFViewModeThumbnails;
+        return pdfController;
+    }]];
+
+    // Check that we don't get weird page labels like 11 for 1.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"PageLabels test (numbered, needs to be ignored)" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"broken pagelabels.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
         return pdfController;
@@ -1460,6 +1475,14 @@ const char kPSCAlertViewKey;
     // Test that stamps are correctly displayed and movable.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamp annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 1;
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamp annotation test, only allow stamp editing." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationTypeStringStamp];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
         return pdfController;
