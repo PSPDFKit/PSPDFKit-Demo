@@ -564,7 +564,7 @@ const char kPSCAlertViewKey;
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
             NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
 #pragma clang diagnostic pop
-            if (![website hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
+            if (![website.lowercaseString hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
             NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
             //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
@@ -1198,6 +1198,20 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Test that we don't get in a state where the toolbar disappeared completely.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Drawing invoked with menu while toolbar is visible" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController.annotationButtonItem action:pdfController.annotationButtonItem];
+            [[[UIAlertView alloc] initWithTitle:@"Testcase" message:@"Now long-press on the page, invoke draw action, check that toolbar changes, press done or cancel, verify that the annotation toolbar is still there. Press done on the bar and verify that the main toolbar is still visible." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        });
+        return pdfController;
+    }]];
+
     // additional test cases, just for developing and testing PSPDFKit.
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
@@ -1726,10 +1740,19 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Test that all links on page 92 do work as expected.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test JavaScript actions" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"US-GardeningMain2013-US.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 91;
+        return pdfController;
+    }]];
+
+    // Check that external URLs are displayed in the inline browser (http and Http should be handled equally)
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test links with Http:// uppercase protocol" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"testcase_Http_tdn130209_1.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 13;
         return pdfController;
     }]];
 
