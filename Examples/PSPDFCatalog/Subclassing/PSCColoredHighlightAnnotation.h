@@ -1,13 +1,13 @@
 //
 //  PSCColoredHighlightAnnotation.h
-//  PSPDFCatalog-static
+//  PSPDFCatalog
 //
-//  Created by Peter Steinberger on 4/10/13.
 //  Copyright (c) 2013 Peter Steinberger. All rights reserved.
 //
 
 #import "PSPDFHighlightAnnotation.h"
 
+// Colors new highlight annotations blue.
 @interface PSCColoredHighlightAnnotation : PSPDFHighlightAnnotation
 
 @end
