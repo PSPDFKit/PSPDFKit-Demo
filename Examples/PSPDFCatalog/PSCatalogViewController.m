@@ -1726,6 +1726,13 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test JavaScript actions" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"US-GardeningMain2013-US.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 91;
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"View state restoration for continuous scrolling." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1773,7 +1780,6 @@ const char kPSCAlertViewKey;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
