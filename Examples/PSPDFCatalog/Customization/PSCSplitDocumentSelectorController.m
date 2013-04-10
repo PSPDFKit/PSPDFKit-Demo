@@ -44,23 +44,15 @@
     [[PSPDFCache sharedCache] clearCache];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        for (int i = 0; i < [self.documents count]; i++) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-                [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-            });
-            //[NSThread sleepForTimeInterval:0.1];
-        }
-
-        // and back up!
-        for (int i = [self.documents count]-1; i >= 0; i--) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:i inSection:0];
-                [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
-                [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-            });
-           // [NSThread sleepForTimeInterval:0.05];
+        for (NSUInteger sectionIndex = 0; sectionIndex < [self numberOfSectionsInTableView:self.tableView]; sectionIndex++) {
+            for (NSUInteger rowIndex = 0; rowIndex < [self tableView:self.tableView numberOfRowsInSection:sectionIndex]; rowIndex++) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
+                    [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
+                    [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
+                    //[NSThread sleepForTimeInterval:0.1];
+                });
+            }
         }
     });
 }
