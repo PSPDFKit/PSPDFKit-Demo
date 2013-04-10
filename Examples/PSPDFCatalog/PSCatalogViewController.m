@@ -1781,6 +1781,21 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // If the encoding is wrong, the freeText annotation will not be displayed correctly.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation encoding 2" block:^UIViewController *{
+        NSURL *URL = [self copyFileURLToDocumentFolder:[samplesURL URLByAppendingPathComponent:@"A.pdf"] overrideFile:YES];
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:URL];
+
+        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
+        freeText.contents = @"小森 test";
+        freeText.boundingBox = CGRectMake(100, 100, 400, 400);
+        [document addAnnotations:@[freeText] forPage:0];
+        [document saveChangedAnnotationsWithError:NULL];
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument PDFDocumentWithURL:URL];
