@@ -32,8 +32,7 @@
     // You can also replace the strings in the PSPDFKit.bundle, but then make sure you merge your changes anytime the bundle is updated.
     // If you have created custom translations, feel free to submit them to peter@pspdfkit.com for inclusion.
     PSPDFSetLocalizationDictionary(@{@"en" :
-                                   @{@"Go to %@" : @"%@",
-                                     @"%d of %d" : @"Page %d of %d",
+                                   @{@"%d of %d" : @"Page %d of %d",
                                      @"%d-%d of %d" : @"Pages %d-%d of %d",
                                    }});
 
