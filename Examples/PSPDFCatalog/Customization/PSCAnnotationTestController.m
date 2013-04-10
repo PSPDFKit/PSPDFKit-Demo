@@ -49,7 +49,7 @@
             // Note that we need to explicitly set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folder, this we can't use the auto-path mode.
             // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnotationView)
             // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
-            annotation.siteLinkTarget = [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/TokenTest/exampleimage.jpg", UIViewContentModeScaleAspectFill];
+            annotation.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/TokenTest/exampleimage.jpg", UIViewContentModeScaleAspectFill]];
 
             // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
             // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
@@ -117,9 +117,9 @@
     if ([annotation isKindOfClass:[PSPDFLinkAnnotation class]]) {
         PSPDFLinkAnnotation *linkAnnotation = (PSPDFLinkAnnotation *)annotation;
         // example how to add a MapView with the url protocol map://lat,long,latspan,longspan
-        if (linkAnnotation.linkType == PSPDFLinkAnnotationCustom && [linkAnnotation.siteLinkTarget hasPrefix:@"map://"]) {
+        if (linkAnnotation.linkType == PSPDFLinkAnnotationCustom && [linkAnnotation.URL.absoluteString hasPrefix:@"map://"]) {
             // parse annotation data
-            NSString *mapData = [linkAnnotation.siteLinkTarget stringByReplacingOccurrencesOfString:@"map://" withString:@""];
+            NSString *mapData = [linkAnnotation.URL.absoluteString stringByReplacingOccurrencesOfString:@"map://" withString:@""];
             NSArray *token = [mapData componentsSeparatedByString:@","];
 
             // ensure we have token count of 4 (latitude, longitude, span la, span lo)
