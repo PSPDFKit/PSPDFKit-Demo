@@ -2,7 +2,12 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-__v2.12 - 11/April/2013__
+__v2.12.1 - 12/April/2013__
+
+*  Uses a sensible default for allowedMenuActions in PSPDFDocument.
+*  Fixes an issue with Appcelerator.
+
+__v2.12.0 - 11/April/2013__
 
 *  New class cluster: PSPDFAction. This unifies action between PSPDFOutlineElement, PSPDFBookmark and PSPDFLinkAnnotation. Now you can create outline elements and bookmark that have the same flexibility as links in PSPDFLinkAnnotation, supporting pspdfkit:// style URLs. The parsing code has been unified as well with the best of both worlds (e.g. the 'Launch' action is now supported universally). This improvement required deprecating certain methods - update your code if you used one of those classes directly)
 *  Add support for GoBack/GoForward named annotations.

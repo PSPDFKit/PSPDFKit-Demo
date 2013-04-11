@@ -31,9 +31,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
 
 // Menu options when text is selected on this document.
 typedef NS_OPTIONS(NSUInteger, PSPDFDocumentMenuAction) {
-    PSPDFDocumentMenuActionSearch,
-    PSPDFDocumentMenuActionDefine,
-    PSPDFDocumentMenuActionWikipediaAsFallback // Only displayed if Define fails/is missing.
+    PSPDFDocumentMenuActionSearch              = 1 << 0,
+    PSPDFDocumentMenuActionDefine              = 1 << 1,
+    PSPDFDocumentMenuActionWikipediaAsFallback = 1 << 2, // Only displayed if Define fails/is missing.
+    PSPDFDocumentMenuActionAll                 = UINT_MAX
 };
 
 // Called before the document starts to save annotations. Use to save any unsaved changes.
