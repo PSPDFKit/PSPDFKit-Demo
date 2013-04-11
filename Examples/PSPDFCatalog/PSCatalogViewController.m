@@ -1747,6 +1747,13 @@ const char kPSCAlertViewKey;
         pdfController.page = 91;
         return pdfController;
     }]];
+    
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test GoBack/GoForward named actions" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GoBack-GoForward.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        //pdfController.page = 91;
+        return pdfController;
+    }]];
 
     // Check that external URLs are displayed in the inline browser (http and Http should be handled equally)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test links with Http:// uppercase protocol" block:^UIViewController *{
