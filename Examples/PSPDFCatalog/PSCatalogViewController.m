@@ -1938,6 +1938,22 @@ const char kPSCAlertViewKey;
         }];
         return nil;
     }]];
+
+    // Test that merging both document (first page each) correctly preserves the aspect ratio.
+    [documentTests addContent:[[PSContent alloc] initWithTitle:@"Merge landscape with portrait page" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithBaseURL:samplesURL files:@[@"Testcase_consolidate_A.pdf", @"Testcase_consolidate_B.pdf"]];
+        NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndex:0];
+        [pageRange addIndex:5];
+        document.pageRange = pageRange;
+
+        // Merge pages into new document.
+        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"temp-merged", @"pdf");
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
+        PSPDFDocument *mergedDocument = [PSPDFDocument PDFDocumentWithURL:tempURL];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
+        return controller;
+    }]];
+
     [content addObject:textExtractionSection];
 
 #endif
