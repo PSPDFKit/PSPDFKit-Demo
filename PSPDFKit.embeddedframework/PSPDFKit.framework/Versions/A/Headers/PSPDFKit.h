@@ -14,6 +14,7 @@
 #error PSPDFKit supports iOS 5.0 upwards.
 #endif
 
+// common
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
@@ -45,6 +46,14 @@
 #import "PSPDFBookmarkParser.h"
 #import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFBrightnessViewController.h"
+
+// actions
+#import "PSPDFAction.h"
+#import "PSPDFActionGoTo.h"
+#import "PSPDFActionRemoteGoTo.h"
+#import "PSPDFActionURL.h"
+#import "PSPDFActionNamed.h"
+#import "PSPDFActionJavaScript.h"
 
 // rendering
 #import "PSPDFRenderQueue.h"

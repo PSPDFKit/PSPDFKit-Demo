@@ -7,6 +7,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFResizableView.h"
+#import "PSPDFHighlightAnnotation.h"
 
 @class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
 
@@ -58,6 +59,9 @@
 
 // Returns the menu items for selected image. Can be customized here or in the shouldShowMenu: delegate.
 - (NSArray *)menuItemsForImageSelection:(PSPDFImageInfo *)imageSelection;
+
+// Called when we're adding a new highlight annotation via selected text.
+- (void)addHighlightAnnotationWithType:(PSPDFHighlightAnnotationType)highlightType;
 
 // Debugging feature, visualizes the text blocks.
 - (void)showTextFlowData:(BOOL)show animated:(BOOL)animated;

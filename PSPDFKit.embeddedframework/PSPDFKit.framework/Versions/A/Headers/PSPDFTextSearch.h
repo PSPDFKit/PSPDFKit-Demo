@@ -73,11 +73,3 @@
 
 @end
 
-
-@interface PSPDFTextSearch (Deprecated)
-
-- (void)searchForString:(NSString *)searchTerm visiblePages:(NSArray *)visiblePages onlyVisible:(BOOL)onlyVisible __attribute__ ((deprecated("Use searchForString:inRanges: instead.")));
-- (BOOL)hasTextForPage:(NSUInteger)page __attribute__ ((deprecated("Use [document hasLoadedTextParserForPage:] instead.")));
-- (NSString *)textForPage:(NSUInteger)page __attribute__ ((deprecated("Use [document textParserForPage:] instead.")));
-
-@end

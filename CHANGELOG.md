@@ -2,6 +2,28 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12 - 11/April/2013__
+
+*  New class cluster: PSPDFAction. This unifies action between PSPDFOutlineElement, PSPDFBookmark and PSPDFLinkAnnotation. Now you can create outline elements and bookmark that have the same flexibility as links in PSPDFLinkAnnotation, supporting pspdfkit:// style URLs. The parsing code has been unified as well with the best of both worlds (e.g. the 'Launch' action is now supported universally). This improvement required deprecating certain methods - update your code if you used one of those classes directly)
+*  Add support for GoBack/GoForward named annotations.
+*  Add basic support for JavaScript actions that link to another page.
+*  PSPDFNoteAnnotationController now honors the allowEditing state also for the textView and blocks editing if set to NO.
+*  New helper to better override classes: overrideClass:withClass: in both PSPDFViewController and PSPDFDocument.
+*  Annotation types in the annotation table view are now localized.
+*  New delegates in PSPDFViewControllerDelegate to get notified on page dragging and zooming.
+*  PSPDFViewState no longer saves the HUD status (this should be handled separately and was confusing for the tabbed controller)
+*  Removed legacy coder support for data models that were serialized before 2.7.0.
+*  Removes deprecated API support in PSPDFTextSearch and PSPDFAnnotationParser.
+*  Fixes an issue in the label parser where page label prefixes were defined without style.
+*  Fixes an issue where hiding the progress HUD could make the wrong window keyWindow (if at that time there is more than one visible), thus leading to keyboard problems.
+*  Fixes an issue in the document parser that could lead to a recursion for cyclic XRef references for certain PDF documents.
+*  Fixes a situation where touch handling could become sluggish when a crazy amount of link annotation is on a page (>500!)
+*  Fixes a annotation text encoding issue that could result in breaking serialization of certain character combinations like 小森.
+*  Fixes a UI issue where invoking the draw action from the menu while at the same time having the annotation toolbar visible could lead to a hidden toolbar if that one is transparent.
+*  Fixes an issue with the text extraction engine for certain PDF files.
+*  Appcelerator: Allow setting size properties like thumbnailSize: [300,300]
+*  Appcelerator: Add support to set outline controller filter options (outlineControllerFilterOptions = ["Outline"])
+
 __v2.11.2 - 4/April/2013__
 
 *  Drawing annotations is now always sharp, even when the document is zoomed in. (This required changes to the public API of PSPDFDrawView, check your code if you use that class directly)

@@ -30,15 +30,20 @@
 /// For Note annotations, special options will be displayed.
 @interface PSPDFNoteAnnotationController : PSPDFBaseViewController <PSPDFStyleable>
 
-/// Designated Initializer.
+/// Initializes with annotation, allows to override the editable state.
 - (id)initWithAnnotation:(PSPDFAnnotation *)annotation editable:(BOOL)allowEditing;
+
+/// Initializes with annotation, automatically sets the editable state.
+- (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Attached annotation.
 /// Allowed types are PSPDFNoteAnnotation, PSPDFHighlightAnnotation and PSPDFFreeTextAnnotation.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 
 /// If NO, the Edit/Delete buttons are not displayed and the text will be readonly.
-@property (nonatomic, assign, readonly) BOOL allowEditing;
+/// @note While you could set `allowEditing` here with a value different than the annotation, it's not advised to do so as the content won't be saved.
+/// Use annotation.isEditable && [self.document.editableAnnotationTypes containsObject:annotation.typeString] to test for edit capabilities.
+@property (nonatomic, assign) BOOL allowEditing;
 
 /// If YES, the edit button will be displayed to show color/icon editing. Defaults to YES.
 /// Will be ignored if allowEditing is NO or annotation type is not PSPDFAnnotationTypeNote.

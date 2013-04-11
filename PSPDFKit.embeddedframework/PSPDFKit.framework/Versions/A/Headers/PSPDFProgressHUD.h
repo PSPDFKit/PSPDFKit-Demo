@@ -1,26 +1,34 @@
 //
 //  PSPDFProgressHUD.h
+//  PSPDFKit
 //
-//  Created by Sam Vermette on 27.03.11.
-//  Copyright 2011-2012 Sam Vermette. All rights reserved.
-//
-//  Code is Public Domain, no attribution required.
-//  https://github.com/samvermette/SVProgressHUD
+//  Based on code by Sam Vermette, MIT licensed.
+//  Copyright 2011 Sam Vermette. All rights reserved.
+//  https://github.com/samvermette/PSPDFProgressHUD
 //
 
-#import "PSPDFKitGlobal.h"
+#import <UIKit/UIKit.h>
+
+extern NSString * const PSPDFProgressHUDDidReceiveTouchEventNotification;
+extern NSString * const PSPDFProgressHUDWillDisappearNotification;
+extern NSString * const PSPDFProgressHUDDidDisappearNotification;
+
+extern NSString * const PSPDFProgressHUDStatusUserInfoKey;
 
 typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
     PSPDFProgressHUDMaskTypeNone = 1, // allow user interactions while HUD is displayed
-    PSPDFProgressHUDMaskTypeClear,    // don't allow
-    PSPDFProgressHUDMaskTypeBlack,    // don't allow and dim the UI in the back of the HUD
-    PSPDFProgressHUDMaskTypeGradient  // don't allow and dim the UI with a a-la-alert-view bg gradient
+    PSPDFProgressHUDMaskTypeClear, // don't allow
+    PSPDFProgressHUDMaskTypeBlack, // don't allow and dim the UI in the back of the HUD
+    PSPDFProgressHUDMaskTypeGradient // don't allow and dim the UI with a a-la-alert-view bg gradient
 };
 
-///
-/// Simple Progress HUD.
-///
+/// Apple-like progress HUD.
 @interface PSPDFProgressHUD : UIView
+
+@property (readwrite, nonatomic, retain) UIColor *hudBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIColor *hudForegroundColor UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIColor *hudStatusShadowColor UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIFont *hudFont UI_APPEARANCE_SELECTOR;
 
 + (void)show;
 + (void)showWithMaskType:(PSPDFProgressHUDMaskType)maskType;
@@ -38,6 +46,7 @@ typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
 + (void)showErrorWithStatus:(NSString *)string;
 + (void)showImage:(UIImage *)image status:(NSString *)status; // use 28x28 white pngs
 
++ (void)popActivity;
 + (void)dismiss;
 
 + (BOOL)isVisible;
