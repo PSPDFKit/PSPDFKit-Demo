@@ -1237,6 +1237,19 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    // Check that 'ipsum' can be found.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Search for ipsum" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"testcase_Search ipsum fails.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        int64_t delayInSeconds = 1.f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController searchForString:@"lorem" animated:YES];
+        });
+
+        return pdfController;
+    }]];
+
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
