@@ -52,7 +52,9 @@ extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 - (void)delegateDidShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 - (void)delegateDidEndPageScrollingAnimation:(UIScrollView *)scrollView;
+- (void)delegateDidBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view;
 - (void)delegateDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale;
+- (void)delegateDidBeginPageDragging:(UIScrollView *)scrollView;
 - (void)delegateDidEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
 - (PSPDFDocument *)delegateDocumentForRelativePath:(NSString *)relativePath;
@@ -91,8 +93,10 @@ typedef struct {
     unsigned int delegateDidShowAnnotationView:1;
     unsigned int delegateDidLoadPageView:1;
     unsigned int delegateWillUnloadPageView:1;
+    unsigned int delegateDidBeginPageDragging:1;
     unsigned int delegateDidEndPageDraggingWillDecelerate:1;
     unsigned int delegateDidEndPageScrollingAnimation:1;
+    unsigned int delegateDidBeginZooming:1;
     unsigned int delegateDidEndZoomingAtScale:1;
     unsigned int delegateShouldShowControllerAnimated:1;
     unsigned int delegateDidShowControllerAnimated:1;

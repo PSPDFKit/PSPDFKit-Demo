@@ -543,11 +543,13 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (void)commonInitWithDocument:(PSPDFDocument *)document;
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
-///
-/// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] as key/value pair to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
-/// Throws an exception if the overriding class is not a subclass of the overridden class.
-/// Hide the warning "Incompatible pointer types sending 'Class' to parameter of type 'id<NSCopying>' " with casting class to (id). It's perfectly safe to do so. Alternatively you can also use NSStrings.
-/// e.g.: overrideClassNames = @{(id)[PSPDFCloseBarButtonItem class] : [MyCustomButtonSubclass class]};
+/// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
+/// @throws an exception if the overriding class is not a subclass of the overridden class.
+/// @note Only set from the main thread, before you first use the object.
+/// Model objects will use the overrideClass entries from the set document instead.
+- (void)overrideClass:(Class)builtinClass withClass:(Class)subclass;
+
+/// Dictionary with key/value pairs of classes to override.
 @property (nonatomic, copy) NSDictionary *overrideClassNames;
 
 /// Override if you're changing the toolbar to your own.

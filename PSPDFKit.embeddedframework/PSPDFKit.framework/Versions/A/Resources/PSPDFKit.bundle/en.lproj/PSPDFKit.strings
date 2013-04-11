@@ -12,7 +12,6 @@
 "Untitled" = "Untitled";
 "File Not Found" = "File Not Found";
 "Unnamed PDF" = "Unnamed PDF";
-"Go to %@" = "%@";
 "Page %d" = "Page %d";
 
 // toolbar
@@ -150,6 +149,24 @@
 "Clear All" = "Clear All";
 "Appearance" = "Appearance";
 "Appearance..." = "Appearance…";
+"Link" = "Link";
+"Ink" = "Ink";
+"FreeText" = "Free Text";
+"Screen" = "Screen";
+"RichMedia" = "Rich Media";
+
+// named actions
+"NextPage" = "Next Page";
+"PrevPage" = "Previous Page";
+"FirstPage" = "First Page";
+"LastPage" = "Last Page";
+"GoBack" = "Go Back";
+"GoForward" = "Go Forward";
+"GoToPage" = "Go To Page";
+"Find" = "Find";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zoom In";
+"ZoomOut" = "Zoom Out";
 
 // line annotations
 "Start..." = "Start…";

@@ -14,11 +14,9 @@ typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
     PSPDFHighlightAnnotationStrikeOut
 };
 
-/**
- * Text Highlight Annotation (Highlight, StrikeOut, Underline)
- *
- * @warning If you programmatically create a highlight annotation, you need to both set the boundingBox AND the rects array. The rects array contains boxed variants of CGRect (NSValue).
- */
+/// Text Highlight Annotation (Highlight, StrikeOut, Underline)
+///
+/// @warning If you programmatically create a highlight annotation, you need to both set the boundingBox AND the rects array. The rects array contains boxed variants of CGRect (NSValue).
 @interface PSPDFHighlightAnnotation : PSPDFAnnotation
 
 /// Initialize annotation with a highlight type. Designated initializer.
@@ -38,5 +36,12 @@ typedef NS_ENUM(NSInteger, PSPDFHighlightAnnotationType) {
 ///
 /// Sample usage: PSPDFHighlightAnnotationType highlightType = [[self.class.highlightTypeTransformer transformedValue:self.typeString] integerValue];
 + (NSValueTransformer *)highlightTypeTransformer;
+
+@end
+
+@interface PSPDFHighlightAnnotation (SubclassingHooks)
+
+// Updates the type and sets a new default color (if set)
+- (void)setType:(PSPDFHighlightAnnotationType)highlightType withDefaultColor:(BOOL)useDefaultColor;
 
 @end

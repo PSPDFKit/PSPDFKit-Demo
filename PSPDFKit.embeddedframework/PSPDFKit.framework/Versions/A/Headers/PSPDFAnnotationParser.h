@@ -115,7 +115,16 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /// If no objects were replace, you can set originalAnnotations to nil. Ensure that originalAnnotations is either nil or has the same item count as annotations.
 - (void)updateAnnotations:(NSArray *)annotations originalAnnotations:(NSArray *)originalAnnotations animated:(BOOL)animated;
 
-/// document provider for annotation parser. weak.
+/// Change the protocol that's used to parse pspdfkit-additions (links, audio, video). Defaults to 'pspdfkit://'.
+/// @note This will affect all parsers that generate PSPDFAction objects.
+/// @warning Set this early on or manually clear the cache to update the parsers.
+@property (nonatomic, copy) NSString *protocolString;
+
+/// The fileType translation table is used when we encounter pspdfkit:// links (or whatever is set to document.protocolString)
+/// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo. (NSString -> NSNumber)
+@property (nonatomic, copy) NSDictionary *fileTypeTranslationTable;
+
+/// Document provider for annotation parser. weak.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
 @end
@@ -131,18 +140,7 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /// Dictionary key are the pages, object an array of annotations.
 - (NSDictionary *)dirtyAnnotations;
 
-@end
-
-
-// Lots of methods have been moved to PSPDFFileAnnotationProvider.
-@interface PSPDFAnnotationParser (Deprecated)
-
-@property (nonatomic, copy) NSString *protocolString __attribute__ ((deprecated("Use fileAnnotationProvider.protocolString instead")));
-
-@property (nonatomic, copy) NSString *annotationsPath __attribute__ ((deprecated("Use fileAnnotationProvider.annotationsPath instead")));
-
-- (void)setAnnotations:(NSArray *)annotations forPage:(NSUInteger)page __attribute__ ((deprecated("Use the method in fileAnnotationProvider instead.")));
-
-- (void)clearCache __attribute__ ((deprecated("Use the method in fileAnnotationProvider instead.")));
+/// Filtered fileTypeTranslationTable that only returns video or audio elements.
+- (NSArray *)mediaFileTypes;
 
 @end

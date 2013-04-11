@@ -529,10 +529,13 @@ extern NSString *const kPSPDFImages;
 @interface PSPDFDocument (Subclassing)
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
-/// e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] as key/value pair to use the custom subclass. (MyCustomAnnotationParser must be a subclass of PSPDFAnnotationParser)
-/// Throws an exception if the overriding class is not a subclass of the overridden class.
-/// Hide the warning "Incompatible pointer types sending 'Class' to parameter of type 'id<NSCopying>' " with casting class to (id). It's perfectly safe to do so. Alternatively you can also use NSStrings.
-/// @note Does not get serialized when saved to disk.
+/// e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] to use the custom subclass.
+/// (MyCustomAnnotationParser must be a subclass of PSPDFAnnotationParser)
+/// @throws an exception if the overriding class is not a subclass of the overridden class.
+/// @note Does not get serialized when saved to disk. Only set from the main thread, before you first use the object.
+- (void)overrideClass:(Class)builtinClass withClass:(Class)subclass;
+
+/// Dictionary with key/value pairs of classes to override.
 @property (nonatomic, copy) NSDictionary *overrideClassNames;
 
 /// Hook to modify/return a different document provider. Called each time a documentProvider is created (which is usually on first access, and cached afterwards)
@@ -610,6 +613,6 @@ typedef NSInteger PSPDFCacheStrategy;
 #define PSPDFCacheThumbnails 1
 #define PSPDFCacheThumbnailsAndNearPages 2
 #define PSPDFCacheOpportunistic 2
-@property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy __attribute__ ((deprecated));
+@property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy __attribute__ ((deprecated("Use diskCacheStragegy instead")));
 
 @end

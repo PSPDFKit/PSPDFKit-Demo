@@ -195,4 +195,8 @@
 /// You can override this if you need to manually change the rotation value of a page.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
+/// Resolves a path like /localhost/Library/test.pdf into a full path.
+- (NSString *)resolveTokenizedPath:(NSString *)path;
+- (NSURL *)URLForTokenizedPath:(NSString *)path;
+
 @end
