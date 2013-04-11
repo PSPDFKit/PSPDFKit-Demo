@@ -161,6 +161,7 @@ const char kPSCAlertViewKey;
         PSCRotationLockBarButtonItem *rotationLock = [[PSCRotationLockBarButtonItem alloc] initWithPDFViewController:controller];
 
         // setup toolbar
+        controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFOutlineBarButtonItemOptionOutline), @(PSPDFOutlineBarButtonItemOptionBookmarks), nil];
         controller.rightBarButtonItems = PSIsIpad() ? @[rotationLock, controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
