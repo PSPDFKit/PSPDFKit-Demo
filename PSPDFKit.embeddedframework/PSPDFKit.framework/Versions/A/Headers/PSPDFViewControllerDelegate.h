@@ -55,24 +55,31 @@
 /// Called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView;
 
+/// Will be called before the page rect has been dragged.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didBeginPageDragging:(UIScrollView *)scrollView;
+
 /**
- Will be called after page rect has been dragged.
+ Will be called after the page rect has been dragged.
  If decelerate is YES, this will be called again after deceleration is complete.
 
  You can also change the target with changing targetContentOffset.
 
- This delegate combines following scrollViewDelegates:
+ This delegate combines the following scrollViewDelegates:
  - scrollViewWillEndDragging / scrollViewDidEndDragging
  - scrollViewDidEndDecelerating
 
  @note Be careful to not dereference a nil pointer in targetContentOffset.
+ To get more delegate options, you can subclass PSPDFScrollView and use all available delegates of UIScrollViewDelegate (don't forget calling super)
  */
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
-/// Will be called after zooming animation is complete.
+/// Will be called after the zooming animation is complete.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageScrollingAnimation:(UIScrollView *)scrollView;
 
-/// Will be called after zoom level has been changed, either programmatically or manually.
+/// Will be called before the zoom level starts to change.
+- (void)pdfViewController:(PSPDFViewController *)pdfController didBeginPageZooming:(UIScrollView *)scrollView;
+
+/// Will be called after the zoom level has been changed, either programmatically or manually.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
 /// Return a PSPDFDocument for a relative path.

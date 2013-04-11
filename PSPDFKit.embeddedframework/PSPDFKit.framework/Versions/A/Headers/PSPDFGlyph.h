@@ -21,9 +21,8 @@ extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
 /// Scans glyphs and reduces the selection to columns.
 extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 
-///
+
 /// Represents a single character (glyph, quad) on the PDF page.
-///
 @interface PSPDFGlyph : NSObject <NSCopying, NSCoding>
 
 /// Designated initializer.

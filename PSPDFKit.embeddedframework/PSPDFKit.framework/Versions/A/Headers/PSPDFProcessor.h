@@ -35,6 +35,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 + (instancetype)defaultProcessor;
 
 /// Generate a PDF from a PSPDFDocument into a file. 'options' can also contain CGPDFContext options.
+/// For `pageRange` you can use [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] to convert the whole document.
 - (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
 
 /// Generate a PDF from a PSPDFDocument into data. 'options' can also contain CGPDFContext options.

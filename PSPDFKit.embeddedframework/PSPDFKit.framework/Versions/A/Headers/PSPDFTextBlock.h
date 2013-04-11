@@ -16,11 +16,11 @@
 /// Frame of the text block. Not rotated.
 @property (nonatomic, assign, readonly) CGRect frame;
 
-/// All words of the current text block. Evaluated lazily.
-@property (nonatomic, copy, readonly) NSArray *words;
-
 /// All glyphs of the current text block.
 @property (nonatomic, copy) NSArray *glyphs;
+
+/// All words of the current text block. Evaluated lazily.
+@property (nonatomic, copy, readonly) NSArray *words;
 
 /// Returns the content of the text block (all words merged together)
 @property (nonatomic, copy, readonly) NSString *content;
