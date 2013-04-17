@@ -19,7 +19,7 @@
 @end
 
 // Needed to optimize animations in the PSPDFAnnotationCell.
-const char kPPSPDFIsResizingAnnotationTableViewPopover;
+extern const char kPSPDFIsResizingAnnotationTableViewPopover;
 
 /// Shows an overview of all annotations in the current document.
 @interface PSPDFAnnotationTableViewController : PSPDFEmptyTableViewController <PSPDFStyleable>

@@ -21,7 +21,7 @@
 ///--------------------------------------------
 
 /// Allow/disallow document setting.
-/// Can be useful if you e.g. want to block the opening of a different document reference via a outline entry.
+/// Can be useful if you e.g. want to block the opening of a different document reference via an outline entry.
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSetDocument:(PSPDFDocument *)document;
 
 /// Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
@@ -83,7 +83,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController didEndPageZooming:(UIScrollView *)scrollView atScale:(CGFloat)scale;
 
 /// Return a PSPDFDocument for a relative path.
-/// If this is unimplemented, we try to find the PDF ourselves with using the current document's basePath.
+/// If this returns nil, we try to find the PDF ourselves with using the current document's basePath.
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
 /**

@@ -62,6 +62,9 @@
 /// Minimum tab width. Defaults to 100.
 @property (nonatomic, assign) CGFloat minTabWidth;
 
+/// Enabled by default. Will create a new tab entry for PDF actions that open an external file.
+@property (nonatomic, assign) BOOL openDocumentActionInNewTab;
+
 /// Tab bar view.
 @property (nonatomic, strong, readonly) PSPDFTabBarView *tabBar;
 
