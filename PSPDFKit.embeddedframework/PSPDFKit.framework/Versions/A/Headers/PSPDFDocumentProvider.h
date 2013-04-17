@@ -196,7 +196,7 @@
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 /// Resolves a path like /localhost/Library/test.pdf into a full path.
-- (NSString *)resolveTokenizedPath:(NSString *)path;
+- (NSString *)resolveTokenizedPath:(NSString *)path alwaysLocal:(BOOL)alwaysLocal;
 - (NSURL *)URLForTokenizedPath:(NSString *)path;
 
 @end

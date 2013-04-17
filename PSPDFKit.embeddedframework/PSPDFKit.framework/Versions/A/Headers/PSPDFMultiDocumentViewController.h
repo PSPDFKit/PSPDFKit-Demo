@@ -82,3 +82,10 @@
 @property (nonatomic, assign) BOOL multiDocumentThumbnails;
 
 @end
+
+@interface PSPDFMultiDocumentViewController (SubclassingHooks)
+
+// Prepares the controller to interact with the multi document container.
+- (void)swizzlePDFController:(PSPDFViewController *)pdfController;
+
+@end

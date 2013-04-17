@@ -33,7 +33,6 @@
 #import "PSPDFPageRenderer.h"
 #import "PSPDFPageInfo.h"
 #import "PSPDFHUDView.h"
-#import "PSPDFPageLabelView.h"
 #import "PSPDFContentScrollView.h"
 #import "PSPDFPageViewController.h"
 #import "PSPDFSinglePageViewController.h"
