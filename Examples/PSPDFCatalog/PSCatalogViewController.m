@@ -1177,6 +1177,37 @@ const char kPSCAlertViewKey;
         return nil; // don't push anything
     }]];
 
+    // Check that a new tab will be opened
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Controller + External references test" block:^UIViewController *{
+        PSPDFTabbedViewController *tabbedController = [[PSPDFTabbedViewController alloc] init];
+        PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+
+        // Create a custom outline for testing.
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFActionRemoteGoTo alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
+        multimediaDoc.outlineParser.outline = rootOutline;
+
+        tabbedController.documents = @[multimediaDoc,
+                                       [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]]];
+        return tabbedController;
+    }]];
+
+    // Check that the current tab title changes.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Controller + Update tab within" block:^UIViewController *{
+        PSPDFTabbedViewController *tabbedController = [[PSPDFTabbedViewController alloc] init];
+        tabbedController.openDocumentActionInNewTab = NO;
+        PSPDFDocument *multimediaDoc = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+
+        // Create a custom outline for testing.
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFActionRemoteGoTo alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
+        multimediaDoc.outlineParser.outline = rootOutline;
+
+        tabbedController.documents = @[multimediaDoc,
+                                       [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]]];
+        return tabbedController;
+    }]];
+
     // Tests if we're correctly reloading the controller.
     // Check if scrolling works after the document is set delayed.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Delayed document set" block:^UIViewController *{
