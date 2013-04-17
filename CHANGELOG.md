@@ -2,6 +2,19 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.2 - 18/April/2013__
+
+*  PSPDFTabbedViewController learned `openDocumentActionInNewTab`, opens a document in a new tab if set to YES (new default)
+*  pdfViewController:documentForRelativePath: now gets the *original* path from the PDF action for resolvement.
+*  Respect alpha for fillColor for FreeText annotations.
+*  Disable iOS "Speak Selection" menu entries since this does not work. A DTS for this feature is ongoing.
+*  Fixes rendering of textAlignment for FreeText annotations.
+*  Fixes an issue when pageRange is set with multiple documents and retain documents are completely blocked through it.
+*  Fixes PDF generation for different-sized PDFs.
+*  Fixes missing update when "Clear All" is used.
+*  Fixes a rare race condition on freeing document providers.
+*  Fixes a rare issue that could lead to an empty view on loading a document.
+
 __v2.12.1 - 12/April/2013__
 
 *  Uses a sensible default for allowedMenuActions in PSPDFDocument.
