@@ -2,6 +2,15 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.3 - 19/April/2013__
+
+*  The setDidCreateDocumentProviderBlock and the didCreateDocumentProvider method will now be called after the documentProviders are fully created, fixing recursion issues if methods are called that require the documentProvider from within that block.
+*  Setting a different annotationPath in the PSPDFFileAnnotationProvider will remove all current annotations and try to load new annotations from that path.
+*  Fixes an issue where in PSPDFTextSearch didFinishSearch: was always called, even when the search was cancelled (instead of didCancelSearch:)
+*  Fixes an issue where changing the note icon could result in restoring the previously set note text.
+*  Titanium: Fixes a bug where under certain conditions `useParentNavigationBar` would not work on the first push of the view controller.
+*  Titanium: Add setAllowedMenuActions (document setting)
+
 __v2.12.2 - 18/April/2013__
 
 *  PSPDFTabbedViewController learned `openDocumentActionInNewTab`, opens a document in a new tab if set to YES (new default)
