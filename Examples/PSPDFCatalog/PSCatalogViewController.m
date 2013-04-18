@@ -51,6 +51,7 @@
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCColoredHighlightAnnotation.h"
+#import "PSCMultipleUsersPDFViewController.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -1009,6 +1010,13 @@ const char kPSCAlertViewKey;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
+        return controller;
+    }]];
+
+    // Allows multiple annotation sets (e.g. different users)
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Multiple annotation sets / user switch" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSCMultipleUsersPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
