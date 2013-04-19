@@ -29,7 +29,8 @@
 /// @name Style
 
 /// Custom tintColor. Set to nil for the default style.
-@property (nonatomic, strong) UIColor *tintColor;
+/// @note Because the alert view is displayed in it's own window, the appearance can only be set globally.
+@property (nonatomic, strong) UIColor *tintColor UI_APPEARANCE_SELECTOR;
 
 /// Show with tint color. Use to conveniently create a one-line alertView with the classic init methods.
 - (void)showWithTintColor:(UIColor *)tintColor;

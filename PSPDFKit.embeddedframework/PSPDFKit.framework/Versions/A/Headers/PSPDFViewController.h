@@ -590,6 +590,10 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 /// Document page label view.
 @property (nonatomic, strong) PSPDFPageLabelView *pageLabel;
 
+/// Specifies the distance between the page label view and the top of the scrobble bar or the
+/// bottom of the screen, depending on whether the scrobble bar is enabled. Defaults to 30.f
+@property (nonatomic, assign) CGFloat pageLabelDistance;
+
 /// Document title label view. (default iPhone only)
 @property (nonatomic, strong) PSPDFDocumentLabelView *documentLabel;
 
@@ -613,6 +617,6 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 @interface PSPDFViewController (Deprecated)
 @property (nonatomic, strong, readonly) PSUICollectionView *gridView __attribute__ ((deprecated("Use thumbnailController.collectionView instead")));
 
-@property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes __attribute__ ((deprecated("Use document.renderAnnotationTypes instead")));;
+@property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes __attribute__ ((deprecated("Use document.renderAnnotationTypes instead")));
 
 @end

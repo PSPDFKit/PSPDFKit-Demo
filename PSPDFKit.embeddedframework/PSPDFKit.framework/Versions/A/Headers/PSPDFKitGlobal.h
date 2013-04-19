@@ -146,7 +146,7 @@ extern CATransition *PSPDFFadeTransitionWithDuration(CGFloat duration);
 extern void PSPDFFixNavigationBarForNavigationControllerAnimated(UINavigationController *navController, BOOL animated);
 
 // Matches actionSheet style via barStyle.
-extern UIActionSheetStyle PSPDPFActionSheetStyleForBarButtonStyle(UIBarStyle barStyle, BOOL translucent);
+extern UIActionSheetStyle PSPDFActionSheetStyleForBarButtonStyle(UIBarStyle barStyle, BOOL translucent);
 
 // Returns toolbar height (44; except on iPhone)
 extern CGFloat PSPDFToolbarHeightForOrientation(UIInterfaceOrientation orientation);

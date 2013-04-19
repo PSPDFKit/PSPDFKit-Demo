@@ -74,6 +74,8 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 
 @end
 
+// A render job is designed to be created and then treated as immutable.
+// The internal hash is cached and you'll get weird results if renderJob is changed after being added to the queue.
 @interface PSPDFRenderJob : NSObject
 
 @property (nonatomic, strong, readonly) PSPDFDocument *document;

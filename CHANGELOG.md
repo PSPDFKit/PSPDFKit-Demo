@@ -2,6 +2,17 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.4 - 19/April/2013__
+
+*  Performance improvements for page scrolling.
+*  Improves support for UIAppearance (e.g. navigation bar images)
+*  Bookmark and annotation controller now fully respect the tintColor property.
+*  API: PSPDFDocument convenience contstructors have been renamed from PDFDocumentWith... to simply documentWith....
+*  Improves compatibility with certain GoToR PDF actions that don't define a target page.
+*  Fixes an issue where pausing a video without controls could fail on iOS5.
+*  Fixes an issue where showing multiple videos with autostart enabled could lead to a crash on iOS5.
+*  Fixes a small memory leak when drawing stamp annotations.
+
 __v2.12.3 - 19/April/2013__
 
 *  The setDidCreateDocumentProviderBlock and the didCreateDocumentProvider method will now be called after the documentProviders are fully created, fixing recursion issues if methods are called that require the documentProvider from within that block.
