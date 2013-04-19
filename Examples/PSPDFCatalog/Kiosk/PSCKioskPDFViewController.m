@@ -318,7 +318,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    PSCLog(@"Page %d rendered. (document: %@)", pageView.page, pageView.document.title);
+    //PSCLog(@"Page %d rendered. (document: %@)", pageView.page, pageView.document.title);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
