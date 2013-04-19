@@ -52,6 +52,7 @@
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCColoredHighlightAnnotation.h"
 #import "PSCMultipleUsersPDFViewController.h"
+#import "PSCAppearancePDFViewController.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -654,6 +655,16 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCTintablePDFViewController alloc] initWithDocument:document];
         return pdfController;
+    }]];
+
+    // this the default recommended way to customize the toolbar
+    [customizationSection addContent:[[PSContent alloc] initWithTitle:@"UIAppearance examples" block:^{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSCAppearancePDFViewController alloc] initWithDocument:document];
+        // Present modally to enable new appearance code.
+        UINavigationController *navController = [[PSCAppearanceNavigationController alloc] initWithRootViewController:pdfController];
+        [self presentViewController:navController animated:YES completion:NULL];
+        return (PSPDFViewController *)nil;
     }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Use a Bottom Toolbar" block:^{
@@ -1504,6 +1515,14 @@ const char kPSCAlertViewKey;
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test that Fullscren Audio doesn't flicker" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"Lifescribe.pdf"]];
         return [[PSPDFViewController alloc] initWithDocument:document];
+    }]];
+
+    // Test on iOS5
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test that Video is pause/playable via touch." block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 4;
+        return pdfController;
     }]];
 
     // Check that this doesn't auto-play, especially not on iOS5.
