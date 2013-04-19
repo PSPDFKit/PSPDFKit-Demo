@@ -1017,7 +1017,7 @@ const char kPSCAlertViewKey;
     // This example is actually the recommended way. Add this snipped to dynamically enable/disable fittingWidth on the iPhone.
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture the annotation trailer" block:^UIViewController *{
         NSURL *newURL = [self copyFileURLToDocumentFolder:hackerMagURL overrideFile:YES];
-        PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument PDFDocumentWithURL:newURL];
+        PSCAnnotationTrailerCaptureDocument *document = [PSCAnnotationTrailerCaptureDocument documentWithURL:newURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
@@ -1824,6 +1824,26 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GoBack-GoForward.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         //pdfController.page = 91;
+        return pdfController;
+    }]];
+
+    // Test that the link correctly opens a new document.
+    // Correct if it doesn't crash and then shows "PROCEDURES" as document.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test GoToR actions" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GotoR-FCOM.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
+
+        double delayInSeconds = 0.5;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController.outlineButtonItem action:pdfController.outlineButtonItem];
+
+            // Tap on PRO Procedures
+            PSPDFOutlineViewController *outlineController = (PSPDFOutlineViewController *)([(UINavigationController *)(pdfController.popoverController.contentViewController) topViewController]);
+            [outlineController tableView:outlineController.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:0]];
+        });
+
         return pdfController;
     }]];
 
