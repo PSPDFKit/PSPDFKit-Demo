@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
     PSPDFTextCheckingTypeLink        = 1 << 0,  // URLs
     PSPDFTextCheckingTypePhoneNumber = 1 << 1,  // Phone numbers
-    PSPDFTextCheckingTypeAll         = UINT_MAX
+    PSPDFTextCheckingTypeAll         = NSUIntegerMax
 };
 
 // Menu options when text is selected on this document.
@@ -34,7 +34,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentMenuAction) {
     PSPDFDocumentMenuActionSearch              = 1 << 0,
     PSPDFDocumentMenuActionDefine              = 1 << 1,
     PSPDFDocumentMenuActionWikipediaAsFallback = 1 << 2, // Only displayed if Define fails/is missing.
-    PSPDFDocumentMenuActionAll                 = UINT_MAX
+    PSPDFDocumentMenuActionAll                 = NSUIntegerMax
 };
 
 // Called before the document starts to save annotations. Use to save any unsaved changes.
@@ -58,29 +58,29 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// @name Initialization
 
 /// Initialize empty PSPDFDocument.
-+ (instancetype)PDFDocument;
++ (instancetype)document;
 
 /// Initialize PSPDFDocument with a single file.
-+ (instancetype)PDFDocumentWithURL:(NSURL *)URL;
++ (instancetype)documentWithURL:(NSURL *)URL;
 
 /// Initialize PSPDFDocument with data.
 /// @warning You might want to set a custom UID when initialized with NSData, else the UID will be calculated from the PDF contents, which might be the same for two equal files.
-+ (instancetype)PDFDocumentWithData:(NSData *)data;
++ (instancetype)documentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with multiple data objects
-+ (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray;
++ (instancetype)documentWithDataArray:(NSArray *)dataArray;
 
 /// Initialize PSPDFDocument with a dataProvider.
 /// @warning You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
-+ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider;
++ (instancetype)documentWithDataProvider:(CGDataProviderRef)dataProvider;
 
 /// Initialize PSPDFDocument with distinct path and an array of files.
-+ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
++ (instancetype)documentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
 
 /// If you have files that have the pattern XXX_Page_0001 - XXX_Page_0200 use this initializer.
 /// fileTemplate needs to have exactly one '%d' marker where the page should be.
 /// For leading zeros, use the default printf syntax. (%04d = 0001)
-+ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
++ (instancetype)documentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 - (id)init;
 - (id)initWithURL:(NSURL *)URL;
@@ -615,5 +615,13 @@ typedef NSInteger PSPDFCacheStrategy;
 #define PSPDFCacheThumbnailsAndNearPages 2
 #define PSPDFCacheOpportunistic 2
 @property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy __attribute__ ((deprecated("Use diskCacheStragegy instead")));
+
++ (instancetype)PDFDocument __attribute__ ((deprecated("Use document instead")));
++ (instancetype)PDFDocumentWithURL:(NSURL *)URL __attribute__ ((deprecated("Use documentWithURL: instead")));
++ (instancetype)PDFDocumentWithData:(NSData *)data __attribute__ ((deprecated("Use documentWithData: instead")));
++ (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray __attribute__ ((deprecated("Use documentWithDataArrayL instead")));
++ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider __attribute__ ((deprecated("Use PDFDocumentWithDataProvider: instead")));
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files __attribute__ ((deprecated("Use PDFDocumentWithBaseURL:files: instead")));
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage __attribute__ ((deprecated("Use PDFDocumentWithBaseURL:fileTemplate:startPage:endPage: instead")));
 
 @end
