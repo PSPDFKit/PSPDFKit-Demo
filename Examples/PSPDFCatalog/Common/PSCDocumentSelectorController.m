@@ -177,7 +177,7 @@
         BOOL isDir;
         if ([[NSFileManager defaultManager] fileExistsAtPath:fullPath isDirectory:&isDir]) {
             if (!isDir && [[fullPath lowercaseString] hasSuffix:@"pdf"]) {
-                PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:fullPath isDirectory:NO]];
+                PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:fullPath isDirectory:NO]];
                 document.aspectRatioEqual = NO; // let them calculate!
                 [folders addObject:document];
             }

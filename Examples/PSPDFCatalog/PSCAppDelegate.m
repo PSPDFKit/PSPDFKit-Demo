@@ -63,7 +63,7 @@
 #if 0
     // Directly push a PSPDFViewController
     NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
     PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
     self.catalog = [[UINavigationController alloc] initWithRootViewController:viewController];
 #else
@@ -115,7 +115,7 @@
 
     // Directly open the PDF.
     if ([launchURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
-        PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:launchURL];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:launchURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
