@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeStamp     = 1 << 8,  // Stamp (includes images)
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
-    PSPDFAnnotationTypeAll       = UINT_MAX
+    PSPDFAnnotationTypeAll       = NSUIntegerMax
 };
 
 // Converts an annotation type into the string representation.

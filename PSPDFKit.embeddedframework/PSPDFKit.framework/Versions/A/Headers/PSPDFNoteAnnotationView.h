@@ -20,3 +20,10 @@
 @property (nonatomic, strong) UIImageView *annotationImageView;
 
 @end
+
+@interface PSPDFNoteAnnotationView (SubclassingHooks)
+
+// Override to customize the image tinting.
+- (UIImage *)renderNoteImage;
+
+@end
