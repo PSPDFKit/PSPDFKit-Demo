@@ -65,6 +65,7 @@
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
 		78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */; };
+		7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7897BD631721368900236576 /* PSCAppearancePDFViewController.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
 		78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */; };
@@ -257,6 +258,8 @@
 		787B07CC1695B65300852825 /* PSCFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFontCacheTest.m; sourceTree = "<group>"; };
 		78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCReaderPDFViewController.m; sourceTree = "<group>"; };
 		78803912167F2B49008AEBAE /* PSCReaderPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCReaderPDFViewController.h; sourceTree = "<group>"; };
+		7897BD631721368900236576 /* PSCAppearancePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAppearancePDFViewController.m; sourceTree = "<group>"; };
+		7897BD641721368900236576 /* PSCAppearancePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAppearancePDFViewController.h; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
 		78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTabbedExampleViewController.m; sourceTree = "<group>"; };
 		78A24A1715CFDAAF00328F4F /* PSCStoryboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardTableViewController.h; sourceTree = "<group>"; };
@@ -746,6 +749,8 @@
 		78AAC6EE15D1760E009B53C6 /* Subclassing */ = {
 			isa = PBXGroup;
 			children = (
+				7897BD631721368900236576 /* PSCAppearancePDFViewController.m */,
+				7897BD641721368900236576 /* PSCAppearancePDFViewController.h */,
 				783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */,
 				783535F517209800009F8088 /* PSCMultipleUsersPDFViewController.h */,
 				78B49A541715D9BA007B69A1 /* PSCColoredHighlightAnnotation.h */,
@@ -1152,6 +1157,7 @@
 				78B29DC9170B150600806DE0 /* PSCImageOverlayPDFViewController.m in Sources */,
 				78B49A561715D9BA007B69A1 /* PSCColoredHighlightAnnotation.m in Sources */,
 				783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */,
+				7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
