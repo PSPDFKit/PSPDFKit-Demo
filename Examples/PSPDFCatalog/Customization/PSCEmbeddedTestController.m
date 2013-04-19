@@ -50,9 +50,9 @@
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithDataProvider:dataProvider];
+    PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:dataProvider];
     CGDataProviderRelease(dataProvider);
-    //PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    //PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
 
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
@@ -172,7 +172,7 @@
 
     // create new document
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
 
     // if we mix documents, they sure have different aspect ratios. This is a bit slower, though.
     document.aspectRatioEqual = NO;
@@ -214,7 +214,7 @@
 
 - (void)pushView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFCatalog];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.additionalBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
     //pdfController.hidesBottomBarWhenPushed = YES;
@@ -223,7 +223,7 @@
 
 - (void)openModalView {
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:kPSPDFCatalog];
-    PSPDFDocument *document = [PSPDFDocument PDFDocumentWithURL:[NSURL fileURLWithPath:path]];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.pageMode = PSPDFPageModeSingle;

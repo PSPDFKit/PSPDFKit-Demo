@@ -28,7 +28,7 @@
             /*
             // ideally, you would do it like this:
             NSString *pdfPath = [[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Samples"] stringByAppendingPathComponent:cell.textLabel.text];
-            pdfController.document = [PSPDFDocument PDFDocumentWithUrl:[NSURL fileURLWithPath:pdfPath]];
+            pdfController.document = [PSPDFDocument documentWithUrl:[NSURL fileURLWithPath:pdfPath]];
             */
         }
     }
