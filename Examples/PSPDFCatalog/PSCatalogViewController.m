@@ -1054,7 +1054,6 @@ const char kPSCAlertViewKey;
         return controller;
     }]];
 
-
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
@@ -1178,7 +1177,9 @@ const char kPSCAlertViewKey;
     [content addObject:subclassingSection];
 
 
-
+    ///
+    /// TEST SECTION
+    ///
     PSCSectionDescriptor *testSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Tests" footer:@""];
 
     // Used for stability testing.
@@ -1563,6 +1564,12 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Caret annotations" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Annotation_Caret.PDF"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
