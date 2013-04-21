@@ -2,6 +2,14 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.5 - 21/April/2013__
+
+*  FreeText annotations now support fill color (Note: This is only partially implemented in Apple's Preview.app but works fine in Adobe Acrobat)
+*  FillColor settings now includes transparent (useful for shapes, free text, lines)
+*  Improves color parsing for FreeText annotations.
+*  Add basic support for Caret annotations.
+*  Improves rendering of rotated stamps.
+
 __v2.12.4 - 19/April/2013__
 
 *  Performance improvements for page scrolling.
