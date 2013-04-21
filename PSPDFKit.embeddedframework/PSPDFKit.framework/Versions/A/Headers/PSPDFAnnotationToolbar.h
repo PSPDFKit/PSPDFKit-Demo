@@ -68,6 +68,9 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 /// Flash toolbar (e.g. if user tries to hide the HUD)
 - (void)flashToolbar;
 
+/// Load the buttons into the toolbar.
+- (void)updateToolbarButtons;
+
 /// Annotation toolbar delegate. (Can be freely set to any receiver)
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> delegate;
 
@@ -109,6 +112,9 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @end
 
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
+
+/// Load the buttons into the drawing toolbar.
+- (void)setupWithMode:(PSPDFAnnotationToolbarMode)mode;
 
 // Toolbar might be used "headless" but for state management. Manually call buttons here.
 - (void)noteButtonPressed:(id)sender;

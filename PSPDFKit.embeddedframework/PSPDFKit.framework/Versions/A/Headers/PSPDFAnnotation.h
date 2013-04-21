@@ -24,6 +24,7 @@ extern NSString *const PSPDFAnnotationTypeStringCircle;
 extern NSString *const PSPDFAnnotationTypeStringLine;
 extern NSString *const PSPDFAnnotationTypeStringSignature;  // Signature is an image annotation.
 extern NSString *const PSPDFAnnotationTypeStringStamp;
+extern NSString *const PSPDFAnnotationTypeStringCaret; // There's no menu entry for Caret yet.
 
 // UIImagePickerController used in the image add feature will throw a UIApplicationInvalidInterfaceOrientation exception if your app does not include portrait in UISupportedInterfaceOrientations (Info.plist).
 // For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in UIViewController's auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use UIImagePickerController.
@@ -41,6 +42,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeLine      = 1 << 6,  // Line
     PSPDFAnnotationTypeNote      = 1 << 7,  // Note
     PSPDFAnnotationTypeStamp     = 1 << 8,  // Stamp (includes images)
+    PSPDFAnnotationTypeCaret     = 1 << 9,  // Caret
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
     PSPDFAnnotationTypeAll       = NSUIntegerMax
@@ -273,6 +275,7 @@ extern NSString *PSPDFRectStringFromRect(CGRect rect);
 
 // Color string representation (/C [%f %f %f])
 - (NSString *)pdfColorString;
+- (NSString *)pdfColorStringWithKey:(NSString *)key andColor:(UIColor *)color;
 
 // Fill Color string representation (/IC [%f %f %f])
 - (NSString *)pdfFillColorString;
