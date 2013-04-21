@@ -53,6 +53,7 @@
 #import "PSCColoredHighlightAnnotation.h"
 #import "PSCMultipleUsersPDFViewController.h"
 #import "PSCAppearancePDFViewController.h"
+#import "PSCTopScrobbleBar.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -639,7 +640,7 @@ const char kPSCAlertViewKey;
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.title = @"Custom toolbar icon for bookmark item";
-        pdfController.overrideClassNames = @{(id)[PSPDFBookmarkBarButtonItem class] : [PSCCustomBookmarkBarButtonItem class]};
+        [pdfController overrideClass:[PSPDFBookmarkBarButtonItem class] withClass:[PSCCustomBookmarkBarButtonItem class]];
         pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
         pdfController.rightBarButtonItems = @[pdfController.bookmarkButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
@@ -902,7 +903,7 @@ const char kPSCAlertViewKey;
     // Bookmarks
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Capture Bookmarks" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        document.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
+        [document overrideClass:[PSPDFBookmarkParser class] withClass:[PSCBookmarkParser class]];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.rightBarButtonItems = @[controller.bookmarkButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         return controller;
@@ -911,7 +912,7 @@ const char kPSCAlertViewKey;
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change link background color to red" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.overrideClassNames = @{(id)[PSPDFLinkAnnotationView class] : [PSCCustomLinkAnnotationView class]};
+        [controller overrideClass:PSPDFLinkAnnotationView.class withClass:PSCCustomLinkAnnotationView.class];
         return controller;
     }]];
 
@@ -1171,6 +1172,18 @@ const char kPSCAlertViewKey;
         [PSPDFNoteAnnotationController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationController *noteController) {
             noteController.textView.font = [UIFont fontWithName:@"Helvetica" size:20];
         }];
+        return pdfController;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change scrobble bar position" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        // Register our subclass.
+        [pdfController overrideClass:PSPDFScrobbleBar.class withClass:PSCTopScrobbleBar.class];
+
+
+        pdfController.pageLabelDistance = 0.f;
         return pdfController;
     }]];
 
