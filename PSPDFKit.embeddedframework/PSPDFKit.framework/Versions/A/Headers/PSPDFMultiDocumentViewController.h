@@ -81,6 +81,9 @@
 /// Whether to show thumbnails only for the current document in thumbnail view mode, or for all documents. Defaults to YES.
 @property (nonatomic, assign) BOOL multiDocumentThumbnails;
 
+/// Whether to show the document title for the current document in the toolbar. Defaults to YES.
+@property (nonatomic, assign) BOOL showTitle;
+
 @end
 
 @interface PSPDFMultiDocumentViewController (SubclassingHooks)
