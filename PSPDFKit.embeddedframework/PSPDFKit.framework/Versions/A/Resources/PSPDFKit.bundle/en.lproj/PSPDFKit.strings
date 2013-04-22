@@ -155,6 +155,10 @@
 "FreeText" = "Free Text";
 "Screen" = "Screen";
 "RichMedia" = "Rich Media";
+"Left" = "Left";
+"Center" = "Center";
+"Right" = "Right";
+"Alignment..." = "Alignment…";
 
 // named actions
 "NextPage" = "Next Page";

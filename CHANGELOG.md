@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.6 - 22/April/2013__
+
+*  FreeText annotations now have a text alignment property (compatible with both Preview.app and Adobe Acrobat)
+*  Ink annotations now allow setting a fill color (this is an extension to the PDF spec but works fine because we emit an appearance stream)
+*  Allows subclassing of PSPDFStampViewController.
+*  Expose the drawView of the PSPDFSignatureController.
+*  FreeText annotations: Improve parsing of style strings.
+*  Don't do expensive (xpc) dictionary lookups on older devices. (iPad1)
+*  Fixes an issue where the outline controller could show menu items from the text selection view on iPad.
+*  Fixes a crash with a missing selector (didReceiveMemoryWarning) on PSPDFDrawView.
+*  Fixes a rare crash with parsing certain malformed PDF documents.
+
 __v2.12.5 - 21/April/2013__
 
 *  FreeText annotations now support fill color (Note: This is only partially implemented in Apple's Preview.app but works fine in Adobe Acrobat)

@@ -50,6 +50,9 @@
 // Updates the frame and the visibility depending if toolbar is displayed or not.
 - (void)setToolbarFrameAndVisibility:(BOOL)shouldShow animated:(BOOL)animated;
 
+// Implementation detail: if you override setToolbarFrameAndVisibility, you need to set this to NO after you're done setting/animating the frame.
+@property (nonatomic, assign, getter=isViewLocked) BOOL viewLocked;
+
 // Returns YES if toolbar is in landscape/iPhone mode.
 - (BOOL)isSmallToolbar;
 
