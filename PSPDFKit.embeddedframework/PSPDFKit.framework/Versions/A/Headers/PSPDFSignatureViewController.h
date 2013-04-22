@@ -15,9 +15,7 @@
 extern NSString *const PSPDFSignatureControllerShouldSave;
 extern NSString *const PSPDFSignatureControllerTargetPoint;
 
-///
 /// Delegate to be notified on signature actions.
-///
 @protocol PSPDFSignatureViewControllerDelegate <NSObject>
 
 @optional
@@ -31,9 +29,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @end
 
 
-///
 /// Allows adding signatures or drawings as ink annotations.
-///
 @interface PSPDFSignatureViewController : PSPDFBaseViewController
 
 /// Designated initializer.
@@ -44,6 +40,9 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 /// Signature controller delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFSignatureViewControllerDelegate> delegate;
+
+/// Internally used draw view. Allows line color/thickness customization.
+@property (nonatomic, strong, readonly) PSPDFDrawView *drawView;
 
 /// Save additional properties here. This will not be used by the signature controller.
 @property (nonatomic, copy) NSDictionary *userInfo;
@@ -65,9 +64,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
 
-///
 /// Delegate to be notified when the PSPDFSignatureSelectorViewController has a valid selection.
-///
 @protocol PSPDFSignatureSelectorViewControllerDelegate <NSObject>
 
 /// A signature has been selected.
@@ -79,10 +76,8 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @end
 
 
-///
 /// Shows a list of signatures to select one.
 /// Will show up in landscape on iOS6 (preferredInterfaceOrientationForPresentation)
-///
 @interface PSPDFSignatureSelectorViewController : UITableViewController <PSPDFStyleable>
 
 /// Designated initializer.
@@ -100,9 +95,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 @end
 
 
-///
 /// Allows to securely store signatures (as ink annotations) in the keychain.
-///
 @interface PSPDFSignatureStore : NSObject
 
 /// Shared object.
