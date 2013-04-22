@@ -73,7 +73,7 @@
 //#define kPSPDFAutoSelectCellNumber [NSIndexPath indexPathForRow:0 inSection:0]
 //#define kDebugTextBlocks
 
-@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSCDocumentSelectorControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate> {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
@@ -85,6 +85,7 @@
 
 const char kPSCShowDocumentSelectorOpenInTabbedControllerKey;
 const char kPSCAlertViewKey;
+const char kPSPDFSignatureCompletionBlock = 0;
 #define kPSPDFLastIndexPath @"kPSPDFLastIndexPath"
 
 @implementation PSCatalogViewController
@@ -121,7 +122,7 @@ const char kPSCAlertViewKey;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-//        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
+        //        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -1187,6 +1188,98 @@ const char kPSCAlertViewKey;
         return pdfController;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Sign all pages." block:^UIViewController *{
+        UIColor *penBlueColor = [UIColor colorWithRed:0.000 green:0.030 blue:0.516 alpha:1.000];
+
+        // Show the signature controller
+        PSPDFSignatureViewController *signatureController = [[PSPDFSignatureViewController alloc] init];
+        signatureController.drawView.strokeColor = penBlueColor;
+        signatureController.drawView.lineWidth = 3.f;
+        signatureController.delegate = self;
+        UINavigationController *signatureContainer = [[UINavigationController alloc] initWithRootViewController:signatureController];
+        signatureContainer.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:signatureContainer animated:YES completion:NULL];
+
+        // To make the example more concise, we're using a callback block here.
+        void(^signatureCompletionBlock)(PSPDFSignatureViewController *theSignatureController) = ^(PSPDFSignatureViewController *theSignatureController) {
+            // Create the document.
+            PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+            document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // Don't pollute other examples.
+
+            // We want to add signture at the bottom of the page.
+            for (NSUInteger pageIndex = 0; pageIndex < document.pageCount; pageIndex++) {
+
+                // Check if we're already signed and ignore.
+                BOOL alreadySigned = NO;
+                NSArray *annotationsForPage = [document annotationsForPage:pageIndex type:PSPDFAnnotationTypeInk];
+                for (PSPDFInkAnnotation *ann in annotationsForPage) {
+                    if ([ann.name isEqualToString:@"Signature"]) {
+                        alreadySigned = YES; break;
+                    }
+                }
+
+                // Not yet signed -> create new Ink annotation.
+                if (!alreadySigned) {
+                    const CGFloat margin = 10.f;
+                    const CGSize maxSize = CGSizeMake(150, 75);
+
+                    // Prepare the lines and convert them from view space to PDF space. (PDF space is mirrored!)
+                    PSPDFPageInfo *pageInfo = [document pageInfoForPage:pageIndex];
+                    NSArray *lines = PSPDFConvertViewLinesToPDFLines(signatureController.lines, pageInfo.pageRect, pageInfo.pageRotation, pageInfo.pageRect);
+
+                    // Calculate the size, aspect ratio correct.
+                    CGSize annotationSize = PSPDFBoundingBoxFromLines(lines, 2).size;
+                    annotationSize = PSPDFSizeForScale(annotationSize, PSPDFScaleForSizeWithinSize(annotationSize, maxSize));
+
+                    // Create the annotation.
+                    PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
+                    annotation.name = @"Signature"; // Arbitrary string, will be persisted in the PDF.
+                    annotation.lines = lines;
+                    annotation.lineWidth = 3.f;
+                    // Add lines to bottom right. (PDF zero is bottom left)
+                    annotation.boundingBox = CGRectMake(pageInfo.pageRect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
+                    annotation.color = penBlueColor;
+                    annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
+
+                    // Add annotation.
+                    [document addAnnotations:@[annotation] forPage:pageIndex];
+                }
+            }
+
+            // Now we could flatten the PDF so that the signature is "burned in".
+            PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
+            [flattenAlert addButtonWithTitle:@"Flatten" block:^{
+                NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
+                // Perform in background to allow progress showing.
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
+                        // Access UI only from main thread.
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [PSPDFProgressHUD showProgress:(numberOfProcessedPages+1)/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
+                        });
+                    } error:NULL];
+
+                    // completion
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [PSPDFProgressHUD dismiss];
+                        PSPDFDocument *flattenedDocument = [PSPDFDocument documentWithURL:tempURL];
+                        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:flattenedDocument];
+                        [self.navigationController pushViewController:pdfController animated:YES];
+                    });
+                });
+            }];
+            [flattenAlert addButtonWithTitle:@"Allow Editing" block:^{
+                PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+                [self.navigationController pushViewController:pdfController animated:YES];
+            }];
+            [flattenAlert show];
+        };
+
+        objc_setAssociatedObject(signatureController, &kPSPDFSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);
+
+        return (UIViewController *)nil;
+    }]];
+
     [content addObject:subclassingSection];
 
 
@@ -1839,7 +1932,7 @@ const char kPSCAlertViewKey;
         pdfController.page = 91;
         return pdfController;
     }]];
-    
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test GoBack/GoForward named actions" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GoBack-GoForward.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2379,13 +2472,22 @@ const char kPSCAlertViewKey;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFSignatureViewControllerDelegate
+
+// Sign all pages example
+- (void)signatureViewControllerDidSave:(PSPDFSignatureViewController *)signatureController {
+    void(^signatureCompletionBlock)(PSPDFSignatureViewController *signatureController) = objc_getAssociatedObject(signatureController, &kPSPDFSignatureCompletionBlock);
+    if (signatureCompletionBlock) signatureCompletionBlock(signatureController);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Debug Helper
 
 - (void)addDebugButtons {
 #ifdef PSPDF_USE_SOURCE
     UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
     self.navigationItem.leftBarButtonItem = memoryButton;
-
+    
     UIBarButtonItem *cacheButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(debugClearCache)];
     self.navigationItem.rightBarButtonItem = cacheButton;
 #endif
@@ -2397,7 +2499,7 @@ const char kPSCAlertViewKey;
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [[UIApplication sharedApplication] performSelector:NSSelectorFromString(@"_performMemoryWarning")];
 #pragma clang diagnostic pop
-
+    
     // Clear any reference of items that would retain controllers/pages.
     [[UIMenuController sharedMenuController] setMenuItems:nil];
 }
