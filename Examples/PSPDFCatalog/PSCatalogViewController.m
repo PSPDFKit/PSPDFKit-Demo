@@ -1836,6 +1836,16 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Test that document opens without crashing.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test document parsing" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_crash_missing_object_reference.pdf"]];
+        PSPDFHighlightAnnotation *test = [PSPDFHighlightAnnotation new];
+        [document addAnnotations:@[test] forPage:0];
+        [document saveChangedAnnotationsWithError:NULL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // Ensure that parsing completes and doesn't loop. If the document opens, everything is OK.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test parsing of recursive XRef table" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"recursive-xref-table.pdf"]];
