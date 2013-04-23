@@ -298,23 +298,6 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     //PSCLog(@"page %d displayed. (document: %@)", pageView.page, pageView.document.title);
-
-    if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
-                [self.document textParserForPage:visiblePageView.page];
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
-                    [visiblePageView.selectionView showTextFlowData:YES animated:NO];
-                }
-            });
-        });
-    }else {
-        for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
-            [visiblePageView.selectionView showTextFlowData:NO animated:NO];
-        }
-    }
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
@@ -323,8 +306,21 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
-        for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
-            [visiblePageView.selectionView showTextFlowData:NO animated:NO];
+        if ([[PSCSettingsController settings][@"showTextBlocks"] boolValue]) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
+                    [self.document textParserForPage:visiblePageView.page];
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
+                        [visiblePageView.selectionView showTextFlowData:YES animated:NO];
+                    }
+                });
+            });
+        }else {
+            for (PSPDFPageView *visiblePageView in self.visiblePageViews) {
+                [visiblePageView.selectionView showTextFlowData:NO animated:NO];
+            }
         }
     }
 }
