@@ -1868,6 +1868,16 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Check that text can be properly selected
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test text selection" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_text_selection_not_working.pdf"]];
+        NSLog(@"Page size: %@", [document pageInfoForPage:0]);
+        NSLog(@"glyphs: %@", [document textParserForPage:0].glyphs);
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that GIFs are animated.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
