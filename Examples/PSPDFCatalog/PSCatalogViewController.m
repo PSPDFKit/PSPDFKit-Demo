@@ -1877,6 +1877,35 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Check that text can be properly selected
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test bookmark + pageRange" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        [document.bookmarkParser addBookmarkForPage:0];
+        [document.bookmarkParser addBookmarkForPage:1];
+        [document.bookmarkParser addBookmarkForPage:2];
+        [document.bookmarkParser addBookmarkForPage:3];
+        [document.bookmarkParser addBookmarkForPage:4];
+        [document.bookmarkParser addBookmarkForPage:5];
+        NSMutableIndexSet *pageRange = [[NSMutableIndexSet alloc] initWithIndex:1];
+        [pageRange addIndex:3];
+        [pageRange addIndex:5];
+        document.pageRange = pageRange;
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Test that showing all annotations doesn't kill the app due to memory pressure.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test 5500 pages with annotations" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_5500_pages.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController.outlineButtonItem action:pdfController.outlineButtonItem];
+        });
+        return pdfController;
+    }]];
+
     // Check that GIFs are animated.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
