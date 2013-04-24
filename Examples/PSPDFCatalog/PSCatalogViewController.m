@@ -217,7 +217,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
     [documentTests addContent:[[PSContent alloc] initWithTitle:@"NSURL" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.emailButtonItem, controller.printButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         return controller;
     }]];
 
