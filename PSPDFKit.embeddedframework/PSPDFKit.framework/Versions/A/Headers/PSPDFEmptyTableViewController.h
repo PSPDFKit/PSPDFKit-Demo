@@ -7,17 +7,34 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, PSPDFEmptyTableViewState) {
+    PSPDFEmptyTableViewStateLoading,  // Controller is querying data
+    PSPDFEmptyTableViewStateEmpty,    // Controller finished loading, has no data.
+    PSPDFEmptyTableViewStateFinished  // Controller has data.
+};
+
 /// Shows a message when the controller is empty.
 @interface PSPDFEmptyTableViewController : UITableViewController
 
-/// Empty label.
-@property (nonatomic, strong, readonly) UILabel *emptyLabel;
+/// Empty view.
+@property (nonatomic, strong) UIView *emptyView;
+
+/// Loading view.
+@property (nonatomic, strong) UIView *loadingView;
 
 /// Implement in subclass.
-- (BOOL)isEmpty;
+@property (nonatomic, assign) PSPDFEmptyTableViewState controllerState;
 
-/// Call to check and update state.
-/// @note `animated` currently is just a placeholder.
-- (void)updateEmptyStateAnimated:(BOOL)animated;
+@end
+
+
+// Preconfigured label subclass that optionally shows an activity indicator.
+@interface PSPDFGrayBackgroundLabel : UILabel
+
+// Convenience constructor.
++ (instancetype)labelWithText:(NSString *)text showActivity:(BOOL)showActivity;
+
+// Enable spinning wheel next to text.
+@property (nonatomic, assign) BOOL showActivity;
 
 @end

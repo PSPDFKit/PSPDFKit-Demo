@@ -52,8 +52,8 @@
 /// Returns the fileSize of this documentProvider.
 - (unsigned long long)fileSize;
 
-/// Weak-linked parent document.
-@property (nonatomic, weak, readonly) PSPDFDocument *document;
+/// Parent document, not retained.
+@property (nonatomic, unsafe_unretained, readonly) PSPDFDocument *document;
 
 /// Delegate for writing annotations. Is set to PSPDFDocument per default.
 @property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;

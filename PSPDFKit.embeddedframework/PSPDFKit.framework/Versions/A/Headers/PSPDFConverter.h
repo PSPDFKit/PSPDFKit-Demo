@@ -19,10 +19,14 @@ extern inline NSString *PSPDFArrayGetString(CGPDFArrayRef pdfArray, size_t index
 /// Get the PDF object at the specific PDF path. Can access arrays or streams with #0 syntax.
 extern id PSPDFDictionaryGetObjectForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 
+/// Get the PDF date (converted from string/name)
+extern NSDate *PSPDFDictionaryGetDateC(CGPDFDictionaryRef pdfDict, const char *key);
+
 /// Like PSPDFDictionaryGetObjectForPath, but type safe.
 id PSPDFDictionaryGetObjectForPathOfType(CGPDFDictionaryRef pdfDict, NSString *keyPath, Class returnClass);
 extern PSPDFStream *PSPDFDictionaryGetStreamForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
-extern NSNumber *PSPDFDictionaryGetNumberForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSNumber *PSPDFDictionaryGetNumberC(CGPDFDictionaryRef pdfDict, const char *key);
+extern NSUInteger PSPDFDictionaryGetIntegerC(CGPDFDictionaryRef pdfDict, const char *key);
 extern NSString *PSPDFDictionaryGetStringForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSArray *PSPDFDictionaryGetArrayForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSDictionary *PSPDFDictionaryGetDictionaryForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);

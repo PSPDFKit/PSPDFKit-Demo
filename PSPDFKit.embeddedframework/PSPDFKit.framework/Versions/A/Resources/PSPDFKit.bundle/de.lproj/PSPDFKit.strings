@@ -16,6 +16,7 @@
 
 // toolbar
 "Outline" = "Inhalt";
+"No Outline" = "Kein Inhalt";
 "Search" = "Suchen";
 "Email" = "Email";
 "Email document" = "Dokument senden";
@@ -29,7 +30,7 @@
 "Sending to %@..." = "Öffne %@…";
 "Open original document" = "Als Original öffnen";
 "Open flattened document" = "Mit Annotationen eingebettet öffnen";
-"Print with Annotations" = "Mit Annotationen drucken";
+"Print with annotations" = "Mit Annotationen drucken";
 "Print document only" = "Ohne Annotationen drucken";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
