@@ -7,6 +7,7 @@
 
 #import "PSPDFEmptyTableViewController.h"
 #import "PSPDFStyleable.h"
+#import "PSPDFBookmarkTableViewCell.h"
 
 @class PSPDFDocument, PSPDFBookmark, PSPDFBookmarkViewController;
 
@@ -21,14 +22,19 @@
 
 @end
 
+extern const char kPSPDFBookmarkViewControllerIsResizingPopover;
+
 /// Show list of bookmarks for the current document and allows editing/reordering of the bookmarks.
-@interface PSPDFBookmarkViewController : PSPDFEmptyTableViewController <PSPDFStyleable>
+@interface PSPDFBookmarkViewController : PSPDFEmptyTableViewController <PSPDFBookmarkTableViewCellDelegate, PSPDFStyleable>
 
 /// Designated initializer.
 - (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
 
 /// Will also reload tableView if changed.
 @property (nonatomic, strong) PSPDFDocument *document;
+
+/// Allow to long-press to copy the title. Defaults to YES.
+@property (nonatomic, assign) BOOL allowCopy;
 
 /// Delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFBookmarkViewControllerDelegate> delegate;
@@ -47,10 +53,4 @@
 - (void)addBookmarkAction:(id)sender;
 - (void)doneAction:(id)sender;
 
-@end
-
-/// Custom cell used for bookmarks.
-@interface PSPDFBookmarkTableViewCell : UITableViewCell <UITextFieldDelegate>
-@property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) PSPDFBookmark *bookmark;
 @end

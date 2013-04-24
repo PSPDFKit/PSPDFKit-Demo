@@ -444,6 +444,10 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Bookmarks are handled on document level, not on documentProvider.
 @property (nonatomic, strong) PSPDFBookmarkParser *bookmarkParser;
 
+/// Returns the bookmarks, with the pageRange of the document factored in.
+/// @note The PSPDFBookmark objects themselves are not changed, only those who are not visible are filtered out.
+- (NSArray *)bookmarks;
+
 /// Set to NO to disable the custom PDF page labels and simply use page numbers. Defaults to YES.
 @property (nonatomic, assign) BOOL pageLabelsEnabled;
 
@@ -604,6 +608,9 @@ extern NSString *const kPSPDFMetadataKeyTrapped;
 
 // Override to customize file name for the send via email feature.
 - (NSString *)fileNameForIndex:(NSUInteger)fileIndex;
+
+// Returns the page of the pageRange feature
+- (NSUInteger)pageWithPageRange:(NSUInteger)page;
 
 @end
 
