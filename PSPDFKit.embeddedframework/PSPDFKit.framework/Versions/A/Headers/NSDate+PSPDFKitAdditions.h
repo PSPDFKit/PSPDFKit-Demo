@@ -47,6 +47,7 @@
  EXAMPLE For example, December 23, 1998, at 7:52 PM, U.S. Pacific Standard Time, is represented by the string D : 199812231952 - 08 ' 00
  */
 + (NSDate *)pspdf_dateFromPDFDateString:(NSString *)PDFDateString;
++ (NSDate *)pspdf_dateFromPDFDateCString:(const char *)str; // Performance
 
 // Converts a date to a PDF formatted date string.
 - (NSString *)pspdf_PDFDateString;

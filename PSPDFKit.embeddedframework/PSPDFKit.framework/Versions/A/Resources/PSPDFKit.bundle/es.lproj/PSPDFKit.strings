@@ -16,6 +16,7 @@
 
 // toolbar
 "Outline" = "Índice";
+"No Outline" = "Ningún Índice";
 "Search" = "Buscar";
 "Email" = "Email";
 "Email document" = "Mandar el documento por email";
@@ -29,7 +30,7 @@
 "Sending to %@..." = "Enviando a %@…";
 "Open original document" = "Abrir el documento original";
 "Open flattened document" = "Abrir el documento aplanado";
-"Print with Annotations" = "Imprimir con anotaciones";
+"Print with annotations" = "Imprimir con anotaciones";
 "Print document only" = "Imprimir el documento solamente";
 "No Applications found" = "Ninguna aplicación puede abrir el documento PDF.";
 "Print" = "Imprimir";

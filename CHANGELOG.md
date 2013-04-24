@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.7 - 24/April/2013__
+
+*  Major performance improvements on annotation parsing.
+*  Outline and annotation parsing has been moved to a thread, the controller has now a loading state until parsing is complete.
+*  The bookmark controller now supports the pageRange feature, hiding bookmarks that are not accessible.
+*  Bookmark cells now allow copy.
+*  Bookmark now also uses the PSPDFAction system to execute actions. (allows links, etc)
+*  Improves the text parser to better deal with malformed PDF font encodings.
+*  Improves accessibility localization in the thumbnail grid view cell. (thanks to Dropbox for providing this patch!)
+*  Adds missing localization for text alignment property of free text annotations.
+*  Fixes a regression where search table view updates with rapid cancellation could lead to an exception.
+
 __v2.12.6 - 22/April/2013__
 
 *  FreeText annotations now have a text alignment property (compatible with both Preview.app and Adobe Acrobat)
