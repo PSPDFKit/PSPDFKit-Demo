@@ -1520,8 +1520,9 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Search performance test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"PDFReference16.pdf"]];
+        document.diskCacheStrategy = PSPDFDiskCacheStrategyNothing; // we want to focus on search alone.
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        int64_t delayInSeconds = 1.f;
+        int64_t delayInSeconds = 5.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [pdfController searchForString:@"pdfo" animated:YES];
