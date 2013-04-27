@@ -298,6 +298,9 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
 @end
 
 // deadlock-free variant of dispatch_sync
+// TODO: PSPDFKit is in the progress of removing this approach completely.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 void dispatch_sync_afreentrant(dispatch_queue_t queue, dispatch_block_t block);
 inline void dispatch_sync_afreentrant(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_get_current_queue() == queue ? block() : dispatch_sync(queue, block);
@@ -307,6 +310,7 @@ void dispatch_async_afreentrant(dispatch_queue_t queue, dispatch_block_t block);
 inline void dispatch_async_afreentrant(dispatch_queue_t queue, dispatch_block_t block) {
 	dispatch_get_current_queue() == queue ? block() : dispatch_async(queue, block);
 }
+#pragma clang diagnostic pop
 
 @interface SDURLCache ()
 @property (nonatomic, copy) NSString *diskCachePath;
