@@ -471,11 +471,12 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         dispatch_barrier_sync(_magazineFolderQueue, ^{
             self.magazineFolders = magazineFolders;
             self.diskDataLoaded = NO;
-            [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
 
             // now start web-request.
             [self loadMagazinesAvailableFromWeb];
         });
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
     });
 }
 
