@@ -27,10 +27,9 @@
 
 #endif
 
-// Logging (NSLog is slow, so async it)
 #define kPSCLogEnabled
 #ifdef kPSCLogEnabled
-#define PSCLog(fmt, ...) pspdf_dispatch_async_if (dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), !NSThread.isMainThread, ^{NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);});
+#define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);;
 #else
 #define PSCLog(...)
 #endif

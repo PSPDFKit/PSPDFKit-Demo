@@ -66,7 +66,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = pspdf_dispatch_queue_create("com.PSPDFCatalog.store.magazineFolderQueue", NULL);
+        _magazineFolderQueue = dispatch_queue_create("com.PSPDFCatalog.store.magazineFolderQueue", DISPATCH_QUEUE_CONCURRENT);
         _downloadQueue = [[NSMutableArray alloc] init];
 
         // Load magazines from disk, async.
@@ -458,7 +458,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)clearCache {
-    pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
+    dispatch_barrier_sync(_magazineFolderQueue, ^{
         self.magazineFolders = nil;
     });
 }
@@ -468,7 +468,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     NSMutableArray *magazineFolders = [self searchForMagazineFolders];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
+        dispatch_barrier_sync(_magazineFolderQueue, ^{
             self.magazineFolders = magazineFolders;
             self.diskDataLoaded = NO;
             [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
@@ -481,7 +481,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (NSMutableArray *)magazineFolders {
     __block NSMutableArray *magazineFolders;
-    pspdf_dispatch_sync_reentrant(_magazineFolderQueue, ^{
+    dispatch_sync(_magazineFolderQueue, ^{
         magazineFolders = _magazineFolders;
     });
 
