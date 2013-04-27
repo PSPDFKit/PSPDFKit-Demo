@@ -115,8 +115,13 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
         pageLabel.shadowColor = [UIColor blackColor];
         pageLabel.shadowOffset = CGSizeMake(0, 1);
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
         pageLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
         pageLabel.textAlignment = UITextAlignmentCenter;
+#else
+        pageLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        pageLabel.textAlignment = NSTextAlignmentCenter;
+#endif
         pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
@@ -306,7 +311,11 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         _magazineCounter.shadowOffset = CGSizeMake(1, 1);
         _magazineCounter.backgroundColor = [UIColor clearColor];
         _magazineCounter.frame = CGRectMake(1, 1, 25, 25);
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
         _magazineCounter.textAlignment = UITextAlignmentCenter;
+#else
+        _magazineCounter.textAlignment = NSTextAlignmentCenter;
+#endif
         [_magazineCounterBadgeImage addSubview:_magazineCounter];
     }
 
