@@ -121,15 +121,6 @@ extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
 /// Queries subviews for a specific class prefix. Usually used for subview-querying.
 extern UIView *PSPDFGetViewInsideView(UIView *view, NSString *classNamePrefix);
 
-// In order for pspdf_dispatch_sync_reentrant to work, you need to create your queues with this helper.
-extern inline dispatch_queue_t pspdf_dispatch_queue_create(const char *label, dispatch_queue_attr_t attr);
-
-// Helper for deadlock-free dispatch_sync.
-extern inline void pspdf_dispatch_sync_reentrant(dispatch_queue_t queue, dispatch_block_t block);
-
-// Invoke sync or async, depending on condition.
-extern inline void pspdf_dispatch_async_if(dispatch_queue_t queue, BOOL async, dispatch_block_t block);
-
 // Compensates the effect of SLOW ANIMATIONS in the iOS Simulator.
 // Use for CATransition etc. UIKit animations are automatically slowed down.
 extern CGFloat PSPDFSimulatorAnimationDragCoefficient(void);
@@ -243,7 +234,7 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 #if OS_OBJECT_USE_OBJC
 #define PSPDFDispatchRelease(queue)
 #else
-#define PSPDFDispatchRelease(queue) dispatch_release(queue)
+#define PSPDFDispatchRelease(queue) if (queue) dispatch_release(queue)
 #endif
 
 @interface NSArray (PSPDFCollections)

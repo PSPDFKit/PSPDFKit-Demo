@@ -7,16 +7,17 @@
 
 #import "PSPDFKitGlobal.h"
 
-///
 /// Encapsulates formatting and encoding data of a  PDF font.
 /// This is a class cluster and part of the text parser engine.
-///
 @interface PSPDFFontInfo : NSObject <NSCopying, NSCoding> {
 @public
     CGFloat _ascent;
     CGFloat _descent;
     NSArray *_encodingArray;
     NSDictionary *_toUnicodeMap;
+    CGFloat *_widths;
+    size_t _widthSize;
+    BOOL _isMultiByteFont;
 }
 
 /// The font name as defined in the PDF dictionary.
@@ -46,7 +47,7 @@
 - (CGFloat)widthForCharacter:(uint16_t)character;
 
 /// Returns YES if font is a composite/multibyte font.
-- (BOOL)isMultiByteFont;
+@property (nonatomic, assign, readonly) BOOL isMultiByteFont;
 
 - (void)parseToUnicodeMapWithString:(NSString *)cmapString;
 

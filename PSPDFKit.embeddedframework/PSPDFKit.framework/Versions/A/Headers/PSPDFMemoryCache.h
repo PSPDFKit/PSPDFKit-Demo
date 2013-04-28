@@ -22,7 +22,7 @@
 /// @name Storing Data
 
 /// Store images into the cache. Storing is async.
-- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page withReceipt:(PSPDFRenderReceipt *)renderReceipt;
+- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page withReceipt:(NSString *)renderReceipt;
 
 /// @name Invalidating Cache Entries
 

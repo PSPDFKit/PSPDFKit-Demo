@@ -32,7 +32,9 @@ typedef NS_ENUM(NSInteger, PSPDFAttributedLabelVerticalAlignment) {
     PSPDFAttributedLabelVerticalAlignmentBottom   = 2,
 };
 
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
 extern CTTextAlignment CTTextAlignmentFromUITextAlignment(UITextAlignment alignment);
+#endif
 
 @protocol PSPDFAttributedLabelDelegate;
 

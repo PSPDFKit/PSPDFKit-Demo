@@ -2,6 +2,16 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.8 - 28/April/2013__
+
+*  Huge performance and memory improvements for text extraction/search.
+*  Performance improvements at serializing annotations.
+*  Memory improvements, especially for large documents. (>5000 pages)
+*  API: useApplicationAudioSession in PSPDFVideoAnnotationView has been removed, since the underlying property is deprecated by Apple. Subclass and change this on the MPMoviePlayerController directly if you rely on the old behavior, but note that this might be gone as of iOS7.
+*  New brightnessControllerCustomizationBlock in PSPDFBrightnessBarButtonItem.
+*  Fixes an issue that could lead to a crash on deallocating certain objects when OS_OBJECT_USE_OBJC was enabled. (Sourcecode, iSO6 only ARC builds)
+*  Fixes an issue where PSPDFKit was sometimes too slow freeing up memory with lots of background task running on low memory sitations.
+
 __v2.12.7 - 24/April/2013__
 
 *  Major performance improvements on annotation parsing.
