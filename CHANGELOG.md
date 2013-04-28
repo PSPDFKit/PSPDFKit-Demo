@@ -2,6 +2,10 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.9 - 28/April/2013__
+
+*  Fixes an issue with text selection handle dragging.
+
 __v2.12.8 - 28/April/2013__
 
 *  Huge performance and memory improvements for text extraction/search.
