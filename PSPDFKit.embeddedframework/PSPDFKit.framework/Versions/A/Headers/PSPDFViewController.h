@@ -290,7 +290,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// @name Toolbar button items
 
 // You can change the button/icons with using the subclassing system:
-// overrideClassNames = @{(id)PSPDFCloseBarButtonItem.class : MyCustomButtonSubclass.class};
+// [self overrideClass:PSPDFCloseBarButtonItem.class withClass:MyCustomButtonSubclass.class]
 
 /// Default button in leftBarButtonItems if view is presented modally.
 @property (nonatomic, strong, readonly) PSPDFCloseBarButtonItem *closeButtonItem;

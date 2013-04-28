@@ -11,7 +11,7 @@
 @interface PSPDFCacheInfo : NSObject <NSCoding>
 
 /// Designated initializer.
-- (id)initWithUID:(NSString *)UID andPage:(NSUInteger)page ofSize:(CGSize)size withReceipt:(PSPDFRenderReceipt *)renderReceipt;
+- (id)initWithUID:(NSString *)UID andPage:(NSUInteger)page ofSize:(CGSize)size withReceipt:(NSString *)renderReceipt;
 
 /// UID of the document this image is referenced.
 @property (nonatomic, copy, readonly) NSString *UID;
@@ -23,7 +23,7 @@
 @property (nonatomic, assign, readonly) CGSize size;
 
 /// The render receipt. Allows to detect changes in the PDF such as annotation changes.
-@property (nonatomic, strong) PSPDFRenderReceipt *renderReceipt;
+@property (nonatomic, strong) NSString *renderFingerprintString;
 
 /// The last time the image has been accessed.
 @property (atomic, strong) NSDate *lastAccessTime;
@@ -32,7 +32,7 @@
 @property (nonatomic, assign) NSUInteger diskSize;
 
 /// The cached image (if memory cache or image is about to be written to disk)
-@property (nonatomic, copy) UIImage *image;
+@property (atomic, strong) UIImage *image;
 
 /// Returns `YES` if the image can be scaled down to `size`.
 - (BOOL)canBeScaledDownToSize:(CGSize)size;

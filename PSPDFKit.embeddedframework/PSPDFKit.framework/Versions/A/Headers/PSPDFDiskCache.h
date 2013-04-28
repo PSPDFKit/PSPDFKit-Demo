@@ -40,7 +40,7 @@ typedef NSData* (^PSPDFCacheEncryptionHelper)(UIImage *image);
 
 /// Store images into the cache.
 /// The `encryptionHelper` is mandatory.
-- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper withReceipt:(PSPDFRenderReceipt *)renderReceipt;
+- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper withReceipt:(NSString *)renderReceipt;
 
 /// @name Invalidating Cache Entries
 
