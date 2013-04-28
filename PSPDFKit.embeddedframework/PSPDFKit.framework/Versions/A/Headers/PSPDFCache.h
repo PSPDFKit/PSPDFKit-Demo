@@ -93,7 +93,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// Caches the image in memory and disk for later re-use.
 /// PSPDFCache will decide at runtime if the image is worth saving into memory or just disk. (And disk will only be hit if the image is different)
-- (void)saveImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withReceipt:(PSPDFRenderReceipt *)renderReceipt;
+- (void)saveImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withReceipt:(NSString *)renderReceipt;
 
 /// @name Document preprocessing
 

@@ -7,9 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-///
 /// ScrollView subclass that listens to keyboard events and moves itself up accordingly.
-///
 @interface PSPDFKeyboardAvoidingScrollView : UIScrollView
 
 /// YES if keyboard is currently displayed.

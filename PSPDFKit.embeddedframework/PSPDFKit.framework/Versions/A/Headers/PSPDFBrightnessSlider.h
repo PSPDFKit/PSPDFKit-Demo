@@ -26,7 +26,7 @@ typedef enum {
 
 @property (nonatomic, assign) PSPDFThumbImageStyle thumbImageStyle;
 @property (nonatomic, assign) PSPDFSliderBackgroundStyle backgroundStyle;
-@property (nonatomic, weak) IBOutlet PSPDFColorPickerView* colorPicker;
+@property (nonatomic, weak) IBOutlet PSPDFColorPickerView *colorPicker;
 
 - (void)updateBackground;
 

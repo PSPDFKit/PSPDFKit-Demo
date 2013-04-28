@@ -19,8 +19,7 @@
 /// preview text snippet.
 @property (nonatomic, copy) NSString *previewText;
 
-/// Text coordinates. Usually the text block contains only one word,
-/// Unless the search is split across two lines.
+/// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
 @property (nonatomic, strong) PSPDFTextBlock *selection;
 
 /// Range within full page text.

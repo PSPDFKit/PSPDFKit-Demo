@@ -549,6 +549,7 @@ extern NSString *const kPSPDFImages;
 - (PSPDFDocumentProvider *)didCreateDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
 /// Register a block that is called in didCreateDocumentProvider.
+/// @warning This needs to be set before the document providers have been created (thus, before accessing properties like pageCount or setting it to the view controller)
 - (void)setDidCreateDocumentProviderBlock:(void (^)(PSPDFDocumentProvider *documentProvider))block;
 
 /**

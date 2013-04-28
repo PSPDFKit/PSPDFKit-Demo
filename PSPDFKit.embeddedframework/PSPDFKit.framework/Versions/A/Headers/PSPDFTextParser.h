@@ -13,18 +13,15 @@
 @interface PSPDFTextParser : NSObject
 
 /// Designated initializer.
-/// fontCache is optional, share only between one PSPDFDocumentProvider.
-/// Page is absolute to PSPDFDocument
+/// `fontCache` is optional, share only between one PSPDFDocumentProvider.
+/// `page` is absolute to PSPDFDocument.
 - (id)initWithPDFPage:(CGPDFPageRef)pageRef page:(NSUInteger)page document:(PSPDFDocument *)document fontCache:(NSMutableDictionary *)fontCache hideGlyphsOutsidePageRect:(BOOL)hideGlyphsOutsidePageRect PDFBox:(CGPDFBox)PDFBox;
 
 /// Directly parse a specific stream.
 - (id)initWithStream:(CGPDFStreamRef)stream;
 
-/// Complete page text.
+/// The complete page text, including extrapolated spaces and newline characters.
 @property (nonatomic, strong) NSString *text;
-
-/// Uses glyphs to return the corresponding page text, including newlines and spaces.
-- (NSString *)textWithGlyphs:(NSArray *)glyphs;
 
 /// Complete list of PSPDFGlyph objects. Corresponds to the text.
 @property (nonatomic, strong, readonly) NSArray *glyphs;
@@ -43,5 +40,8 @@
 
 /// Associated document.
 @property (atomic, weak) PSPDFDocument *document;
+
+/// Uses glyphs to return the corresponding page text, including newlines and spaces.
+- (NSString *)textWithGlyphs:(NSArray *)glyphs;
 
 @end
