@@ -20,6 +20,9 @@
 /// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbarAnimated:(BOOL)animated;
 
+/// Updates the toolbar position.
+- (void)updateToolbarPositionAnimated:(BOOL)animated;
+
 /// *Instantly* updates toolbar.
 - (void)updateToolbarForced;
 
