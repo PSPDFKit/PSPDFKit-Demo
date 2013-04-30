@@ -64,6 +64,12 @@ typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
     PSPDFHUDViewNever                     // Never show the HUD.
 };
 
+typedef NS_ENUM(NSInteger, PSPDFHUDViewAnimation) {
+    PSPDFHUDViewAnimationNone,            // Don't animate HUD appearance
+    PSPDFHUDViewAnimationFade,            // Fade HUD in/out
+    PSPDFHUDViewAnimationSlide,           // Slide HUD.
+};
+
 /// Default action for PDF link annotations.
 typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
     PSPDFLinkActionNone,         // Link actions are ignored.
@@ -237,6 +243,9 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// @warning HUD will not change when changing this mode after controller is visible. Use setHUDVisible:animated: instead.
 /// Does not affect manual calls to setHUDVisible.
 @property (nonatomic, assign) PSPDFHUDViewMode HUDViewMode;
+
+/// Sets the way the HUD will be animated. Defaults to PSPDFHUDViewAnimationFade.
+@property (nonatomic, assign) PSPDFHUDViewAnimation HUDViewAnimation;
 
 /// Show or hide HUD controls, titlebar, status bar (depending on the statusBarStyleSetting).
 @property (nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;

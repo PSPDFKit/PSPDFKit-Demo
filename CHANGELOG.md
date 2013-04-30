@@ -2,6 +2,13 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.11 - 30/April/2013__
+
+*  Add new styles for HUD showing/hiding: PSPDFHUDViewAnimationSlide (in addition to the default fade)
+*  Tapping in the previous/next range on first/last page will now toggle the HUD instead of force-showing it.
+*  Fixes a UI issue where the document label view could be slightly offset under certain conditions on iPhone after a rotation from portrait to landscape with hidden HUD.
+*  Fixes an issue with text extraction for certain PDF encodings.
+
 __v2.12.10 - 30/April/2013__
 
 *  Improves the Loading... state when there's already content in PSPDFTableAnnotationViewController.
