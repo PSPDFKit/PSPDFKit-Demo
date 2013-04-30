@@ -2,6 +2,14 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.10 - 30/April/2013__
+
+*  Improves the Loading... state when there's already content in PSPDFTableAnnotationViewController.
+*  Fixes an issue with adding/removing bookmarks.
+*  Fixes an issue where fixedVerticalPositionForFitToWidthEnabledMode could lead to off-centered pages.
+*  Fixes an issue with search and certain PDF encodings that only happened on release builds.
+*  PSPDFCatalog: Fixes the map view example with a map:// annotation link.
+
 __v2.12.9 - 28/April/2013__
 
 *  Fixes an issue with text selection handle dragging.

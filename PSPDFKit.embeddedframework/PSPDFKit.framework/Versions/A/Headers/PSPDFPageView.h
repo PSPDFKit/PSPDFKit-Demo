@@ -224,6 +224,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 - (void)addAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Remove an annotation from the view.
+/// @note This will only update the view - you also need to delete/remove the annotation from the document.
 - (BOOL)removeAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 @end
