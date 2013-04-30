@@ -156,6 +156,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
+        controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
         controller.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
 
         // don't use thumbnails if the PDF is not rendered.
