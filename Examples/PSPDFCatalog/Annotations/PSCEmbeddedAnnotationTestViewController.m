@@ -14,6 +14,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
+        self.delegate = self;
         document.delegate = self;
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
@@ -68,6 +69,14 @@
 
 - (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error {
     NSLog(@"Failed to save annotations: %@", [error localizedDescription]);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewControllerDelegate
+
+// This is the default. Set to no to disable annotation selection.
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
+    return YES;
 }
 
 @end
