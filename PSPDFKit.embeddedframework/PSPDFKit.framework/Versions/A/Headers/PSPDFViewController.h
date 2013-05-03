@@ -500,9 +500,6 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// @name Helpers
 
-/// Show a modal view controller with automatically added close button on the left side.
-- (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated;
-
 extern NSString *const PSPDFPresentOptionRect;                          // target rect, if sender is nil for UIPopoverController
 extern NSString *const PSPDFPresentOptionPopoverContentSize;            // content size for UIPopoverController
 extern NSString *const PSPDFPresentOptionAllowedPopoverArrowDirections; // customize default arrow directions for popover.
@@ -515,6 +512,9 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 /// Show a modal view controller or a popover with automatically added close button on the left side.
 /// Use sender (UIBarButtonitem or UIView) OR rect in options (both only needed for the popover)
 - (id)presentViewControllerModalOrPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
+
+/// Show a modal view controller with automatically added close button on the left side.
+- (void)presentModalViewController:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated options:(NSDictionary *)options;
 
 /// Return an NSNumber-Array of currently visible page numbers.
 /// @warning This might return more numbers than actually visible if it's queried during a scroll animation.
