@@ -2,6 +2,15 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.12.12 - 4/May/2013__
+
+*  The note view controller now will detect links.
+*  pdfViewController:shouldSelectAnnotation: is now also honored for long press actions.
+*  Fixes an issue where annotations sometimes were not parsed correctly with password protected PDFs.
+*  Fixes an issue related to checking the annotation cache receipt.
+*  Fixes an encoding issue with annotation links that contained spaces.
+*  Fixes a potential crash with an PSPDFActionURL with an nil URL.
+
 __v2.12.11 - 30/April/2013__
 
 *  Add new styles for HUD showing/hiding: PSPDFHUDViewAnimationSlide (in addition to the default fade)

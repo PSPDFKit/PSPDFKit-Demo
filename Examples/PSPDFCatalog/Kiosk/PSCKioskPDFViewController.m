@@ -94,7 +94,13 @@
     if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridController class]]) {
         animated = NO;
     }
-    [self.navigationController popViewControllerAnimated:animated];
+    // Support the case where we pop in the nav stack
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:animated];
+    }else {
+        // We might have opened a linked document modally.
+        [self.navigationController dismissViewControllerAnimated:YES completion:NULL];
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
