@@ -1408,6 +1408,14 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Check that words can be selected 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test word block separation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_word_separation_ascii2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 1;
+        return pdfController;
+    }]];
+
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
