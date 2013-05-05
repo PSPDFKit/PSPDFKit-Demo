@@ -263,6 +263,8 @@
 
 // Cache status.
 - (BOOL)isDeletableFileAtPath:(NSString *)path {
+    if (!path) return NO;
+
     NSNumber *deletable = _deletableFileStatus[path];
     if (!deletable) {
         BOOL isDeletable = [NSFileManager.defaultManager isDeletableFileAtPath:path];
