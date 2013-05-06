@@ -386,7 +386,9 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Multimedia PDF example" block:^{
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
-        return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem];
+        return pdfController;
     }]];
 
     [multimediaSection addContent:[[PSContent alloc] initWithTitle:@"Dynamically added video example" block:^{
@@ -1698,11 +1700,35 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
-    // Test that stamps are correctly displayed and movable.
+    // Test that buttons are correctly displayed.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Widget annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_WidgetAnnotations.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 4;
+        return pdfController;
+    }]];
+
+    // Test that Sound is playable
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Sound annotation test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"SoundAnnotation.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
+        return pdfController;
+    }]];
+
+    // Test that Sound is playable
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Sound annotation test 2" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"SoundAnnotation2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
+        return pdfController;
+    }]];
+
+    // Test that the files can be opened.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"FileAttachment annotation test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"FileAttachments.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
         return pdfController;
     }]];
 
@@ -2018,6 +2044,12 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // Test audio controls on the top left.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test Rendition actions" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rendition-action.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test RichMediaExecute actions" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_RichMediaExecute.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
