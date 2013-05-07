@@ -65,4 +65,3 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 - (BOOL)isEqualToGlyph:(PSPDFGlyph *)otherGlyph;
 
 @end
-

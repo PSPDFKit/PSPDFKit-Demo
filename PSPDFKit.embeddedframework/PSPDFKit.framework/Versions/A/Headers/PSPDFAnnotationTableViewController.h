@@ -5,7 +5,7 @@
 //  Copyright (c) 2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFEmptyTableViewController.h"
+#import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
 
 @class PSPDFDocument, PSPDFAnnotation, PSPDFAnnotationTableViewController;
@@ -22,7 +22,7 @@
 extern const char kPSPDFIsResizingAnnotationTableViewPopover;
 
 /// Shows an overview of all annotations in the current document.
-@interface PSPDFAnnotationTableViewController : PSPDFEmptyTableViewController <PSPDFStyleable>
+@interface PSPDFAnnotationTableViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFAnnotationTableViewControllerDelegate>)delegate;

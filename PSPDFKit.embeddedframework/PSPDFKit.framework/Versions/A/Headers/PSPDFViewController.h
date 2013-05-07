@@ -17,6 +17,8 @@
 #import "PSPDFBookmarkViewController.h"
 #import "PSPDFThumbnailViewController.h"
 #import "PSPDFAnnotationTableViewController.h"
+#import "PSPDFSearchViewController.h"
+#import "PSPDFStatusBarStyleHint.h"
 
 @protocol PSPDFViewControllerDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache;
@@ -96,7 +98,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
  The best time for setting the properties is during initialization, in commonInitWithDocument:. Some properties require a call to reloadData if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. viewWillAppear is bad, viewDidAppear is ok) since that could corrupt internal state, instead use updateSettingsForRotation:.
 */
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFSearchViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /// @name Initialization and esential properties
 
@@ -618,14 +620,8 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 
 @end
 
-// Allows better guessing of the status bar style.
-@protocol PSPDFStatusBarStyleHint <NSObject>
-- (UIStatusBarStyle)preferredStatusBarStyle;
-@end
 
 @interface PSPDFViewController (Deprecated)
 @property (nonatomic, strong, readonly) PSUICollectionView *gridView __attribute__ ((deprecated("Use thumbnailController.collectionView instead")));
-
 @property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes __attribute__ ((deprecated("Use document.renderAnnotationTypes instead")));
-
 @end

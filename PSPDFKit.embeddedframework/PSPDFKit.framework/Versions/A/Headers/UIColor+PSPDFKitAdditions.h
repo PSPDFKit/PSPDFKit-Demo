@@ -12,6 +12,9 @@
 extern NSArray *PSPDFGradientColorsForColor(UIColor *color);
 extern NSArray *PSPDFGradientColorsForColorWithOptions(UIColor *color, CGFloat variance[2], BOOL subsituteBlackWithYellow);
 
+/// Compares colors
+extern BOOL PSPDFIsColorAboutEqualToColor(UIColor *left, UIColor *right);
+
 @interface UIColor (PSPDFKitAdditions)
 
 /// Given an array of floats, applies the rules described in the PDF 1.7 Reference (page 607) to derive a UIColor instance.

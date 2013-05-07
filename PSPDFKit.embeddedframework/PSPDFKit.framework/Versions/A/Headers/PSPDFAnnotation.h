@@ -25,6 +25,9 @@ extern NSString *const PSPDFAnnotationTypeStringLine;
 extern NSString *const PSPDFAnnotationTypeStringSignature;  // Signature is an image annotation.
 extern NSString *const PSPDFAnnotationTypeStringStamp;
 extern NSString *const PSPDFAnnotationTypeStringCaret; // There's no menu entry for Caret yet.
+extern NSString *const PSPDFAnnotationTypeStringWidget; // Widget is currently handled similar to Link.
+extern NSString *const PSPDFAnnotationTypeStringFile;
+extern NSString *const PSPDFAnnotationTypeStringSound;
 
 // UIImagePickerController used in the image add feature will throw a UIApplicationInvalidInterfaceOrientation exception if your app does not include portrait in UISupportedInterfaceOrientations (Info.plist).
 // For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in UIViewController's auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use UIImagePickerController.
@@ -45,6 +48,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeCaret     = 1 << 9,  // Caret
     PSPDFAnnotationTypeRichMedia = 1 << 10, // Embedded PDF videos
     PSPDFAnnotationTypeScreen    = 1 << 11, // Embedded PDF videos
+    PSPDFAnnotationTypeWidget    = 1 << 12, // Widget
+    PSPDFAnnotationTypeFile      = 1 << 13, // FileAttachment
+    PSPDFAnnotationTypeSound     = 1 << 14, // Sound
     PSPDFAnnotationTypeAll       = NSUIntegerMax
 };
 
@@ -92,10 +98,10 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 
 /// Designated initializer. Also used for generic PSPDFAnnotations (those that are not recognized by PSPDFAnnotationParser)
 /// Implement this in your subclass.
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray;
+- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict inAnnotsArray:(CGPDFArrayRef)annotsArray documentRef:(CGPDFDocumentRef)documentRef;
 
 /// Initialize annotation with the corresponding PDF dictionary. Call this from your direct subclass.
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray type:(PSPDFAnnotationType)annotationType;
+- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray documentRef:(CGPDFDocumentRef)documentRef type:(PSPDFAnnotationType)annotationType;
 
 /// Check if point is inside annotation area.
 - (BOOL)hitTest:(CGPoint)point;
@@ -140,7 +146,7 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 
 /// If YES, the annotation will be rendered as a overlay. If NO, it will be statically rendered within the PDF content image.
 /// PSPDFAnnotationTypeLink and PSPDFAnnotationTypeNote currently are rendered as overlay.
-/// If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser's annotationClassForAnnotation)
+/// If overlay is set to YES, you must also register the corresponding *annotationView class to render (override PSPDFAnnotationParser's defaultAnnotationViewClassForAnnotation)
 @property (nonatomic, assign, getter=isOverlay) BOOL overlay;
 
 /// Per default, annotations are editable when isWriteable returns YES.

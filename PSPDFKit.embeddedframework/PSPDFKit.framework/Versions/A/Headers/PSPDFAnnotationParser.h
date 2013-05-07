@@ -124,8 +124,8 @@ extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; 
 /// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo. (NSString -> NSNumber)
 @property (nonatomic, copy) NSDictionary *fileTypeTranslationTable;
 
-/// Document provider for annotation parser. weak.
-@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
+/// Document provider for annotation parser.
+@property (nonatomic, unsafe_unretained, readonly) PSPDFDocumentProvider *documentProvider;
 
 @end
 
