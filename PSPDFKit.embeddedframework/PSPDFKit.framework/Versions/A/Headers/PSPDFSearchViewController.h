@@ -9,8 +9,9 @@
 #import "PSPDFAttributedLabel.h"
 #import "PSPDFTextSearch.h"
 #import "PSPDFCache.h"
-#import "PSPDFViewController.h"
 #import "PSPDFExtendedPopoverController.h"
+#import "PSPDFStatusBarStyleHint.h"
+#import "PSPDFStyleable.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
 
@@ -25,11 +26,32 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
 // (In the latin alphabet; searching for a single character is of not much use)
 extern NSUInteger kPSPDFMinimumSearchLength;
 
+@class PSPDFSearchViewController;
+
+/// Delegate for the search view controller.
+@protocol PSPDFSearchViewControllerDelegate <PSPDFTextSearchDelegate>
+
+@optional
+
+/// Called when the user taps on a controller result cell.
+- (void)searchViewController:(PSPDFSearchViewController *)searchController didTapSearchResult:(PSPDFSearchResult *)searchResult;
+
+/// Will be called when the controller clears all search results.
+- (void)searchViewControllerDidClearAllSearchResults:(PSPDFSearchViewController *)searchController;
+
+/// Asks for the visible pages to optimize search ordering.
+- (NSArray *)searchViewControllerGetVisiblePages:(PSPDFSearchViewController *)searchController;
+
+/// Allows to provide custom subclasses of PSPDFSearchStatusCell/PSPDFSearchResultCell.
+- (Class)searchViewController:(PSPDFSearchViewController *)searchController cellForClass:(Class)cellClass;
+
+@end
+
 /// The PDF search controller.
-@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFPopoverControllerDismissable>
+@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
 
 /// initializes controller.
-- (id)initWithDocument:(PSPDFDocument *)document pdfController:(PSPDFViewController *)pdfController;
+- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate;
 
 /// Current searchText. If set, keyboard is not shown.
 @property (nonatomic, copy) NSString *searchText;
@@ -58,8 +80,8 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// Internally used textSearch. (is a copy of the textSearch class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 
-/// Attached pdfController.
-@property (nonatomic, weak, readonly) PSPDFViewController *pdfController;
+/// The delegate.
+@property (nonatomic, weak) id<PSPDFSearchViewControllerDelegate> delegate;
 
 // Updates the search result cell. Can be subclassed.
 // To customize the label search the subviews for the PSPDFAttributedLabel class.
@@ -76,6 +98,9 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 - (void)setSearchStatus:(PSPDFSearchStatus)searchStatus updateTable:(BOOL)updateTable;
 
 // Returns the searchResult for a cell.
-- (PSPDFSearchResult *)searchResultsForIndexPath:(NSIndexPath *)indexPath;
+- (PSPDFSearchResult *)searchResultForIndexPath:(NSIndexPath *)indexPath;
+
+// Currently loaded search results
+@property (nonatomic, copy, readonly) NSArray *searchResults;
 
 @end

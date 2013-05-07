@@ -53,6 +53,8 @@
 #import "PSPDFActionURL.h"
 #import "PSPDFActionNamed.h"
 #import "PSPDFActionJavaScript.h"
+#import "PSPDFActionRendition.h"
+#import "PSPDFActionRichMediaExecute.h"
 
 // rendering
 #import "PSPDFRenderQueue.h"
@@ -100,6 +102,11 @@
 #import "PSPDFLinkAnnotation.h"
 #import "PSPDFShapeAnnotation.h"
 #import "PSPDFStampAnnotation.h"
+#import "PSPDFCaretAnnotation.h"
+#import "PSPDFWidgetAnnotation.h"
+#import "PSPDFScreenAnnotation.h"
+#import "PSPDFRichMediaAnnotation.h"
+#import "PSPDFFileAnnotation.h"
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"

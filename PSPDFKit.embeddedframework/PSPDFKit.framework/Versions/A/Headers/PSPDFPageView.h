@@ -29,7 +29,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Compound view for a single pdf page. Will be re-used during lifetime.
 /// You can add your own views on top of the UIView (e.g. custom annotations)
 /// Events from a attached UIScrollView will be relayed to all visible PSPDFPageView classes.
-@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, UITextFieldDelegate>
+@interface PSPDFPageView : UIView <UIScrollViewDelegate, PSPDFRenderDelegate, PSPDFCacheDelegate, PSPDFResizableViewDelegate, PSPDFLongPressGestureRecognizerDelegate, PSPDFStampViewControllerDelegate, UIImagePickerControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, UITextFieldDelegate>
 
 /// Designated initializer.
 /// 'overrideClassNames' can be nil to simply use the stock classes.
@@ -229,7 +229,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 @end
 
-@interface PSPDFPageView (AnnotationMenu)
+@interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate>
 
 /// Returns available PSPDFMenuItem's for the current annotation.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
@@ -262,6 +262,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Shows the color picker.
 - (void)showColorPickerForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
+/// Show the signature controller.
+- (void)showSignatureControllerAtPoint:(CGPoint)point withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
+
 /// Font sizes for the freetext annotation menu. Defaults to @[@(10), @(12), @(14), @(18), @(22), @(26), @(30), @(36), @(48), @(64)]
 - (NSArray *)availableFontSizes;
 
@@ -287,6 +290,9 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Will be called automatically after kPSPDFInitialAnnotationLoadDelay.
 /// Call manually to speed up rendering. Has no effect if called multiple times.
 - (void)loadPageAnnotationsAnimated:(BOOL)animated blockWhileParsing:(BOOL)blockWhileParsing;
+
+/// Internally used to add annotations.
+- (void)insertAnnotation:(PSPDFAnnotation *)annotation forPage:(NSUInteger)page inDocument:(PSPDFDocument *)document;
 
 /// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
 /// The point will have a variance of a few pixels to improve touch recognition.

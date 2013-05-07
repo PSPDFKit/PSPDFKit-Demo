@@ -35,7 +35,7 @@
 - (BOOL)becomeFirstResponder;
 
 /// Document. Can be changed.
-@property (nonatomic, weak) PSPDFDocument *document;
+@property (nonatomic, strong) PSPDFDocument *document;
 
 /// Delegate to control the password unlock.
 @property (nonatomic, weak) IBOutlet id<PSPDFPasswordViewDelegate> delegate;

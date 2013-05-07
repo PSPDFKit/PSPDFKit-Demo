@@ -320,10 +320,10 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 /// Path where backupable cache data like bookmarks are saved.
 /// Defaults to &lt;AppDirectory&gt;/Library/PrivateDocuments/PSPDFKit. Cannot be nil.
 /// Will *always* be appended by UID. Don't manually append UID.
-@property (nonatomic, copy) NSString *cacheDirectory;
+@property (nonatomic, copy) NSString *dataDirectory;
 
-/// Make sure 'cacheDirectory' exists. Returns error if creation is not possible.
-- (BOOL)ensureCacheDirectoryExistsWithError:(NSError **)error;
+/// Make sure 'dataDirectory' exists. Returns error if creation is not possible.
+- (BOOL)ensureDataDirectoryExistsWithError:(NSError **)error;
 
 /// Overrides the global disk caching strategy in PSPDFCache.
 /// Defaults to -1; which equals to the setting in PSPDFCache.
@@ -624,12 +624,13 @@ typedef NSInteger PSPDFCacheStrategy;
 #define PSPDFCacheOpportunistic 2
 @property (nonatomic, assign) PSPDFCacheStrategy cacheStrategy __attribute__ ((deprecated("Use diskCacheStragegy instead")));
 
+@property (nonatomic, copy) NSString *cacheDirectory __attribute__ ((deprecated("Use dataDirectory instead")));
 + (instancetype)PDFDocument __attribute__ ((deprecated("Use document instead")));
 + (instancetype)PDFDocumentWithURL:(NSURL *)URL __attribute__ ((deprecated("Use documentWithURL: instead")));
 + (instancetype)PDFDocumentWithData:(NSData *)data __attribute__ ((deprecated("Use documentWithData: instead")));
-+ (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray __attribute__ ((deprecated("Use documentWithDataArrayL instead")));
-+ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider __attribute__ ((deprecated("Use PDFDocumentWithDataProvider: instead")));
-+ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files __attribute__ ((deprecated("Use PDFDocumentWithBaseURL:files: instead")));
-+ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage __attribute__ ((deprecated("Use PDFDocumentWithBaseURL:fileTemplate:startPage:endPage: instead")));
++ (instancetype)PDFDocumentWithDataArray:(NSArray *)dataArray __attribute__ ((deprecated("Use documentWithDataArray: instead")));
++ (instancetype)PDFDocumentWithDataProvider:(CGDataProviderRef)dataProvider __attribute__ ((deprecated("Use documentWithDataProvider: instead")));
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL files:(NSArray *)files __attribute__ ((deprecated("Use documentWithBaseURL:files: instead")));
++ (instancetype)PDFDocumentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage __attribute__ ((deprecated("Use documentWithBaseURL:fileTemplate:startPage:endPage: instead")));
 
 @end
