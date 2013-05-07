@@ -94,7 +94,7 @@
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {
-    PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:self.document pdfController:self];
+    PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:self.document delegate:self];
     [self presentViewControllerModalOrPopover:searchController embeddedInNavigationController:NO withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAllowedPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
 }
 
