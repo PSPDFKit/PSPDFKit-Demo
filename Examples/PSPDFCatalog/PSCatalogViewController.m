@@ -1391,6 +1391,94 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"UITabBarController/UINavigationController embedding" block:^UIViewController *{
+        NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+        NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
+        NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+        NSURL *file4 = [samplesURL URLByAppendingPathComponent:@"D.pdf"];
+        PSPDFViewController *pdfController1 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file1]];
+        PSPDFViewController *pdfController2 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file2]];
+        PSPDFViewController *pdfController3 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file3]];
+        PSPDFViewController *pdfController4 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file4]];
+
+        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewAutomaticNoFirstLastPage;
+        pdfController1.HUDViewAnimation = pdfController2.HUDViewAnimation = pdfController3.HUDViewAnimation = pdfController4.HUDViewAnimation = PSPDFHUDViewAnimationNone;
+        pdfController1.HUDVisible       = pdfController2.HUDVisible       = pdfController3.HUDVisible       = pdfController4.HUDVisible       = NO;
+        pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
+        pdfController1.viewMode = pdfController2.viewMode = pdfController3.viewMode = pdfController4.viewMode = PSPDFViewModeThumbnails;
+
+        pdfController1.leftBarButtonItems  = @[pdfController1.annotationButtonItem];
+        pdfController1.rightBarButtonItems = @[pdfController1.viewModeButtonItem];
+        pdfController1.useParentNavigationBar = YES;
+        pdfController1.useBorderedToolbarStyle = YES;
+        pdfController2.leftBarButtonItems  = @[pdfController2.annotationButtonItem];
+        pdfController2.rightBarButtonItems = @[pdfController2.viewModeButtonItem];
+        pdfController2.useParentNavigationBar = YES;
+        pdfController2.useBorderedToolbarStyle = NO;
+        pdfController3.leftBarButtonItems  = @[pdfController3.annotationButtonItem];
+        pdfController3.rightBarButtonItems = @[pdfController3.viewModeButtonItem];
+        pdfController3.useParentNavigationBar = NO;
+        pdfController3.useBorderedToolbarStyle = YES;
+        pdfController4.leftBarButtonItems  = @[pdfController4.annotationButtonItem];
+        pdfController4.rightBarButtonItems = @[pdfController4.viewModeButtonItem];
+        pdfController4.useParentNavigationBar = NO;
+        pdfController4.useBorderedToolbarStyle = NO;
+
+        UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:pdfController1];
+        UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:pdfController2];
+        UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:pdfController3];
+        UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:pdfController4];
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
+        return tabBarController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Multi-document UITabBarController/UINavigationController embedding" block:^UIViewController *{
+        NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+        NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
+        NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
+        NSURL *file4 = [samplesURL URLByAppendingPathComponent:@"D.pdf"];
+        PSPDFViewController *pdfController1 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file1]];
+        PSPDFViewController *pdfController2 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file2]];
+        PSPDFViewController *pdfController3 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file3]];
+        PSPDFViewController *pdfController4 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file4]];
+        PSPDFMultiDocumentViewController *pdfMultiDocController1 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController1];
+        PSPDFMultiDocumentViewController *pdfMultiDocController2 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController2];
+        PSPDFMultiDocumentViewController *pdfMultiDocController3 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController3];
+        PSPDFMultiDocumentViewController *pdfMultiDocController4 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController4];
+
+        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewAutomaticNoFirstLastPage;
+        pdfController1.HUDViewAnimation = pdfController2.HUDViewAnimation = pdfController3.HUDViewAnimation = pdfController4.HUDViewAnimation = PSPDFHUDViewAnimationNone;
+        pdfController1.HUDVisible       = pdfController2.HUDVisible       = pdfController3.HUDVisible       = pdfController4.HUDVisible       = NO;
+        pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
+        pdfController1.viewMode = pdfController2.viewMode = pdfController3.viewMode = pdfController4.viewMode = PSPDFViewModeThumbnails;
+
+        pdfController1.leftBarButtonItems  = @[pdfController1.annotationButtonItem];
+        pdfController1.rightBarButtonItems = @[pdfController1.viewModeButtonItem];
+        pdfController1.useParentNavigationBar = YES;
+        pdfController1.useBorderedToolbarStyle = YES;
+        pdfController2.leftBarButtonItems  = @[pdfController2.annotationButtonItem];
+        pdfController2.rightBarButtonItems = @[pdfController2.viewModeButtonItem];
+        pdfController2.useParentNavigationBar = YES;
+        pdfController2.useBorderedToolbarStyle = NO;
+        pdfController3.leftBarButtonItems  = @[pdfController3.annotationButtonItem];
+        pdfController3.rightBarButtonItems = @[pdfController3.viewModeButtonItem];
+        pdfController3.useParentNavigationBar = NO;
+        pdfController3.useBorderedToolbarStyle = YES;
+        pdfController4.leftBarButtonItems  = @[pdfController4.annotationButtonItem];
+        pdfController4.rightBarButtonItems = @[pdfController4.viewModeButtonItem];
+        pdfController4.useParentNavigationBar = NO;
+        pdfController4.useBorderedToolbarStyle = NO;
+
+        UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:pdfMultiDocController1];
+        UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:pdfMultiDocController2];
+        UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:pdfMultiDocController3];
+        UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:pdfMultiDocController4];
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
+        return tabBarController;
+    }]];
+
     // Tests if the placement of the search controller is correct, even for zoomed documents.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Inline search test" block:^UIViewController *{
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
