@@ -1191,6 +1191,20 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Open and immediately request signing" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        // Delay the presentation of the controller until after the present animation is finished.
+        double delayInSeconds = 0.3f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [pdfController.visiblePageViews.ps_firstObject showSignatureControllerAtPoint:CGPointZero withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
+        });
+
+        return pdfController;
+    }]];
+
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Sign all pages." block:^UIViewController *{
         UIColor *penBlueColor = [UIColor colorWithRed:0.000 green:0.030 blue:0.516 alpha:1.000];
 
@@ -1559,6 +1573,13 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // Check that the free text annotation has a 5px red border around it.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation with border" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"textbox.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Check that free text annotation doesn't has a fillColor set.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation with border, no fill color" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_FreeText_no_background.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
