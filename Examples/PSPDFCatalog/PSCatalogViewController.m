@@ -1689,6 +1689,14 @@ const char kPSPDFSignatureCompletionBlock = 0;
         pdfController.page = 1;
         return pdfController;
     }]];
+    
+    // Test that polylines are correctly displayed.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Polyline annotation test" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = 9;
+        return pdfController;
+    }]];
 
     // Test that stamps are correctly displayed and movable.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Widget annotation test" block:^UIViewController *{
