@@ -1,5 +1,5 @@
 //
-//  PSPDFEmptyTableViewController.h
+//  PSPDFStatefulTableViewController.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013 Peter Steinberger. All rights reserved.
@@ -7,14 +7,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, PSPDFEmptyTableViewState) {
-    PSPDFEmptyTableViewStateLoading,  // Controller is querying data
-    PSPDFEmptyTableViewStateEmpty,    // Controller finished loading, has no data.
-    PSPDFEmptyTableViewStateFinished  // Controller has data.
+typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
+    PSPDFStatefulTableViewStateLoading,  // Controller is querying data
+    PSPDFStatefulTableViewStateEmpty,    // Controller finished loading, has no data.
+    PSPDFStatefulTableViewStateFinished  // Controller has data.
 };
 
 /// Shows a message when the controller is empty.
-@interface PSPDFEmptyTableViewController : UITableViewController
+@interface PSPDFStatefulTableViewController : UITableViewController
 
 /// Empty view.
 @property (nonatomic, strong) UIView *emptyView;
@@ -22,8 +22,8 @@ typedef NS_ENUM(NSUInteger, PSPDFEmptyTableViewState) {
 /// Loading view.
 @property (nonatomic, strong) UIView *loadingView;
 
-/// Implement in subclass.
-@property (nonatomic, assign) PSPDFEmptyTableViewState controllerState;
+/// Changes the controller state and shows/hides the emptyView/loadingView depending on the state.
+@property (nonatomic, assign) PSPDFStatefulTableViewState controllerState;
 
 @end
 

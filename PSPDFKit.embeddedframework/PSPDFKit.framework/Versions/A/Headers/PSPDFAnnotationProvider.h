@@ -64,7 +64,7 @@
 - (void)didChangeAnnotation:(PSPDFAnnotation *)annotation originalAnnotation:(PSPDFAnnotation *)originalAnnotation keyPaths:(NSArray *)keyPaths options:(NSDictionary *)options;
 
 /// Provides a back-channel to PSPDFKit if you need to change annotations on the fly. (e.g. new changes from your server are coming in)
-@property (nonatomic, weak) id <PSPDFAnnotationProviderChangeNotifier> providerDelegate;
+@property (atomic, weak) id <PSPDFAnnotationProviderChangeNotifier> providerDelegate;
 
 @end
 

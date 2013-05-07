@@ -2,6 +2,29 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+_v2.13.0 - 7/May/2013__
+
+PSPDFKit now requires QuickLook.framework, AudioToolbox.framework and sqlite3. Please update your framework dependencies accordingly.
+
+*  Initial support for 'Widget' annotations, supports action and rendering. (not yet writable)
+*  Support for 'File' annotations. Will offer QuickLook support on touch.
+*  Basic read support for 'Sound' annotations.
+*  Add support for 'Rendition' and 'RichMediaExecute' actions that can control Screen/RichMedia annotations. (video/audio. JavaScript is not supported.)
+*  Ink/Circle/Ellipse/Line now each save their last used color independently.
+*  FreeText and other annotation types inside the annotation toolbar now remember the last used color.
+*  Add missing translation for "%d Annotations" and added special case for "%d Annotation" (singular).
+*  Add missing "No Annotations" and "Loading..." state text for the PSPDFAnnotationTableViewController.
+*  For text selection, the text knob is now priorized over near annotations.
+*  API: `cacheDirectory` in PSPDFDocument has been renamed to `dataDirectory`, so that won't be confused with the cache directory setting of PSPDFCache.
+*  Improves text parser to properly detect word boundaries for documents that use invalid characters for word separation.
+*  For pspdfkit:// based videos controls are now enabled by default if the option is not set.
+*  PSPDFProgressHUD now checks if the keyWindow is visible before restoring, fixes an edge case with multiple windows that have rootViewControllers attached.
+*  PSPDFSearchViewController now has a protocol to communicate with PSPDFViewController instead of owning that object directly.
+*  PSPDFViewController no longer will change the viewMode to document when the view will disappear.
+*  Fixes a rare crash when moving the text selection handle.
+*  Fixes an issue with writing the page annotation object on malformed PDFs which could lead to annotations being written but not being displayed.
+*  Fixes an issue with where sometimes fillColor was set on FreeText annotations even though there shouldn't be one set.
+
 __v2.12.12 - 4/May/2013__
 
 *  The note view controller now will detect links.

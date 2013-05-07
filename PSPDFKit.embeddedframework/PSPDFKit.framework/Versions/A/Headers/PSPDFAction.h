@@ -14,6 +14,8 @@ typedef NS_ENUM(NSUInteger, PSPDFActionType) {
     PSPDFActionTypeNamed,
     PSPDFActionTypeLaunch,
     PSPDFActionTypeJavaScript,
+    PSPDFActionTypeRendition,
+    PSPDFActionTypeRichMediaExecute // See Adobe® Supplement to the ISO 32000, Page 40ff
 };
 
 @class PSPDFDocumentProvider;

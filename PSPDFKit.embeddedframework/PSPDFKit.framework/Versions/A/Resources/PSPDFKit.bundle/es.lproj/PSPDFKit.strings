@@ -36,6 +36,8 @@
 "Print" = "Imprimir";
 "Annotations" = "Anotaciones";
 "No Annotations" = "Ninguna Anotación";
+"%d Annotation" = "%d Anotación";
+"%d Annotations" = "%d Anotaciones";
 "Bookmarks" = "Marcador";
 "No Bookmarks" = "Ningún Marcador";
 "Add Bookmark" = "Agregar marcador";
@@ -44,6 +46,7 @@
 "Brightness" = "Luminosidad";
 "Share..." = "Compartir…";
 "Preparing..." = "Preparando…";
+"Loading..." = "Loading…";
 
 // thumbnails
 "Bookmarked" = "Marcadas";
@@ -98,11 +101,14 @@
 "Rainbow" = "Arco iris";
 "Monochrome" = "Monocromo";
 "Color..." = "Color…";
+"Color" = "Color";
 "Border..." = "Borde…";
 "Fill Color..." = "Color De Relleno…";
 "Opacity..." = "Opacidad…";
+"Opacity" = "Opacidad";
 "Custom..." = "Personalizado…";
 "Thickness..." = "Espesor…";
+"Thickness" = "Espesor";
 "%@ pt" = "%@ puntos";
 "Text..." = "Texto…";
 "Yellow" = "Amarillo";
@@ -160,6 +166,7 @@
 "Center" = "Center";
 "Right" = "Right";
 "Alignment..." = "Alignment…";
+"Preview File" = "Preview File";
 
 // named actions
 "NextPage" = "Next Page";

@@ -114,7 +114,7 @@ extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSStr
 @interface PSPDFAnnotationToolbar (PSPDFSubclassing)
 
 /// Load the buttons into the drawing toolbar.
-- (void)setupWithMode:(PSPDFAnnotationToolbarMode)mode;
+- (void)showDrawingToolbarWithMode:(PSPDFAnnotationToolbarMode)mode;
 
 // Toolbar might be used "headless" but for state management. Manually call buttons here.
 - (void)noteButtonPressed:(id)sender;

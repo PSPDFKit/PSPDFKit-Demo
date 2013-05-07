@@ -5,7 +5,7 @@
 //  Copyright (c) 2012-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSPDFEmptyTableViewController.h"
+#import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFBookmarkTableViewCell.h"
 
@@ -25,7 +25,7 @@
 extern const char kPSPDFBookmarkViewControllerIsResizingPopover;
 
 /// Show list of bookmarks for the current document and allows editing/reordering of the bookmarks.
-@interface PSPDFBookmarkViewController : PSPDFEmptyTableViewController <PSPDFBookmarkTableViewCellDelegate, PSPDFStyleable>
+@interface PSPDFBookmarkViewController : PSPDFStatefulTableViewController <PSPDFBookmarkTableViewCellDelegate, PSPDFStyleable>
 
 /// Designated initializer.
 - (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
