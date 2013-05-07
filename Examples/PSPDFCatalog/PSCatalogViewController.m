@@ -7,7 +7,7 @@
 
 #import "PSCatalogViewController.h"
 #import "PSCSectionDescriptor.h"
-#import "PSCGridController.h"
+#import "PSCGridViewController.h"
 #import "PSCTabbedExampleViewController.h"
 #import "PSCDocumentSelectorController.h"
 #import "PSCEmbeddedTestController.h"
@@ -129,7 +129,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return controller;
     }]];
 
-    [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridController class]]];
+    [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFKit Kiosk" class:[PSCGridViewController class]]];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Tabbed Browser" block:^{
         if (PSIsIpad()) {

@@ -28,6 +28,7 @@
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		78344B5515DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */; };
 		783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */; };
+		78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D1E17393F140006D87D /* PSCGridViewController.m */; };
 		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		784F012015CF247900849F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011F15CF247900849F81 /* Foundation.framework */; };
 		784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F012115CF247900849F81 /* CoreGraphics.framework */; };
@@ -71,7 +72,6 @@
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
 		78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */; };
 		78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2015CFDAAF00328F4F /* PSCDownload.m */; };
-		78A24A5215CFDAAF00328F4F /* PSCGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2215CFDAAF00328F4F /* PSCGridController.m */; };
 		78A24A5315CFDAAF00328F4F /* PSCImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2415CFDAAF00328F4F /* PSCImageGridViewCell.m */; };
 		78A24A5415CFDAAF00328F4F /* PSCKioskPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2615CFDAAF00328F4F /* PSCKioskPDFViewController.m */; };
 		78A24A5515CFDAAF00328F4F /* PSCMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A2815CFDAAF00328F4F /* PSCMagazine.m */; };
@@ -199,6 +199,8 @@
 		78344B5315DBB6B1002491BF /* PSCVerticalAnnotationToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCVerticalAnnotationToolbar.m; sourceTree = "<group>"; };
 		783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMultipleUsersPDFViewController.m; sourceTree = "<group>"; };
 		783535F517209800009F8088 /* PSCMultipleUsersPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMultipleUsersPDFViewController.h; sourceTree = "<group>"; };
+		78479D1D17393F140006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
+		78479D1E17393F140006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
 		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784F011D15CF247900849F81 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		784F011F15CF247900849F81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -271,8 +273,6 @@
 		78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBasicViewController.m; sourceTree = "<group>"; };
 		78A24A1F15CFDAAF00328F4F /* PSCDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDownload.h; sourceTree = "<group>"; };
 		78A24A2015CFDAAF00328F4F /* PSCDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDownload.m; sourceTree = "<group>"; };
-		78A24A2115CFDAAF00328F4F /* PSCGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridController.h; sourceTree = "<group>"; };
-		78A24A2215CFDAAF00328F4F /* PSCGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridController.m; sourceTree = "<group>"; };
 		78A24A2315CFDAAF00328F4F /* PSCImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCImageGridViewCell.h; sourceTree = "<group>"; };
 		78A24A2415CFDAAF00328F4F /* PSCImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCImageGridViewCell.m; sourceTree = "<group>"; };
 		78A24A2515CFDAAF00328F4F /* PSCKioskPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCKioskPDFViewController.h; sourceTree = "<group>"; };
@@ -633,8 +633,8 @@
 				78A24A1E15CFDAAF00328F4F /* PSCBasicViewController.m */,
 				78A24A1F15CFDAAF00328F4F /* PSCDownload.h */,
 				78A24A2015CFDAAF00328F4F /* PSCDownload.m */,
-				78A24A2115CFDAAF00328F4F /* PSCGridController.h */,
-				78A24A2215CFDAAF00328F4F /* PSCGridController.m */,
+				78479D1D17393F140006D87D /* PSCGridViewController.h */,
+				78479D1E17393F140006D87D /* PSCGridViewController.m */,
 				78A24A2315CFDAAF00328F4F /* PSCImageGridViewCell.h */,
 				78A24A2415CFDAAF00328F4F /* PSCImageGridViewCell.m */,
 				78A24A2515CFDAAF00328F4F /* PSCKioskPDFViewController.h */,
@@ -1092,7 +1092,6 @@
 				78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */,
 				78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */,
 				78A24A5115CFDAAF00328F4F /* PSCDownload.m in Sources */,
-				78A24A5215CFDAAF00328F4F /* PSCGridController.m in Sources */,
 				78A24A5315CFDAAF00328F4F /* PSCImageGridViewCell.m in Sources */,
 				78A24A5415CFDAAF00328F4F /* PSCKioskPDFViewController.m in Sources */,
 				78A24A5515CFDAAF00328F4F /* PSCMagazine.m in Sources */,
@@ -1164,6 +1163,7 @@
 				783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */,
 				7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */,
 				7876ED9617246BC9002422BE /* PSCTopScrobbleBar.m in Sources */,
+				78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

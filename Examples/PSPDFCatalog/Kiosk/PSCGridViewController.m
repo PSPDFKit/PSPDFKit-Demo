@@ -5,7 +5,7 @@
 //  Copyright 2011-2013 Peter Steinberger. All rights reserved.
 //
 
-#import "PSCGridController.h"
+#import "PSCGridViewController.h"
 #import "PSCImageGridViewCell.h"
 #import "PSCMagazine.h"
 #import "PSCMagazineFolder.h"
@@ -26,7 +26,7 @@
 // The delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
 
-@interface PSCGridController() <UISearchBarDelegate> {
+@interface PSCGridViewController() <UISearchBarDelegate> {
     NSArray *_filteredData;
     NSUInteger _animationCellIndex;
     BOOL _animationDoubleWithPageCurl;
@@ -41,7 +41,7 @@
 @property (nonatomic, strong) UIActivityIndicatorView *activityView;
 @end
 
-@implementation PSCGridController
+@implementation PSCGridViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
@@ -283,11 +283,16 @@
         restoreKeyboard = YES;
     }
 
+    // This, sadly steals our first responder. Why, Apple, why?
     [self.collectionView reloadData];
 
     // UICollectionView is stealing the first responder.
     if (restoreKeyboard) {
+        // Block the fade-in-animation.
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
         [self.searchBar becomeFirstResponder];
+        [CATransaction commit];
     }
 }
 
@@ -646,7 +651,7 @@
             [self openMagazine:magazine animated:YES cellIndex:indexPath.item];
         }
     }else {
-        PSCGridController *gridController = [[PSCGridController alloc] initWithMagazineFolder:folder];
+        PSCGridViewController *gridController = [[PSCGridViewController alloc] initWithMagazineFolder:folder];
 
         // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
         if (!PSIsIpad()) {
@@ -826,4 +831,3 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
         }
     }
 }
-
