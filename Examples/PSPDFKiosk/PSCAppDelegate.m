@@ -7,14 +7,14 @@
 //
 
 #import "PSCAppDelegate.h"
-#import "PSCGridController.h"
+#import "PSCGridViewController.h"
 
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    PSCGridController *gridController = [[PSCGridController alloc] init];
+    PSCGridViewController *gridController = [[PSCGridViewController alloc] init];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:gridController];
     [self.window makeKeyAndVisible];
     return YES;
