@@ -8,7 +8,7 @@
 #import "PSCKioskPDFViewController.h"
 #import "PSCMagazine.h"
 #import "PSCSettingsController.h"
-#import "PSCGridController.h"
+#import "PSCGridViewController.h"
 #import "PSCSettingsBarButtonItem.h"
 
 #ifdef PSPDFCatalog
@@ -91,7 +91,7 @@
     // If parent is PSCGridController, we have a custom animation in place.
     BOOL animated = YES;
     NSUInteger controllerCount = [self.navigationController.viewControllers count];
-    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridController class]]) {
+    if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridViewController class]]) {
         animated = NO;
     }
     // Support the case where we pop in the nav stack

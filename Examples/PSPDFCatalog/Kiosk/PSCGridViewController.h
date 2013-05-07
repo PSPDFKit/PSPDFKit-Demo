@@ -11,7 +11,7 @@
 @class PSCMagazineFolder;
 
 // Displays a grid of elements from the PSCStoreManager
-@interface PSCGridController : PSCBasicViewController <PSCStoreManagerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate>
+@interface PSCGridViewController : PSCBasicViewController <PSCStoreManagerDelegate, PSUICollectionViewDataSource, PSUICollectionViewDelegate>
 
 // Designated initializer.
 - (id)initWithMagazineFolder:(PSCMagazineFolder *)aMagazineFolder;

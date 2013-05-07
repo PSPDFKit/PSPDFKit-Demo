@@ -15,6 +15,7 @@
 		783043A016FBE2F600D3EAB4 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830439816FBE2F600D3EAB4 /* Icon-Small@2x.png */; };
 		783043A116FBE2F600D3EAB4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830439916FBE2F600D3EAB4 /* Icon.png */; };
 		783043A216FBE2F600D3EAB4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830439A16FBE2F600D3EAB4 /* Icon@2x.png */; };
+		78479D2217393F430006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D2117393F430006D87D /* PSCGridViewController.m */; };
 		785DD9B0167B9BAE00559562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9AF167B9BAE00559562 /* UIKit.framework */; };
 		785DD9B2167B9BAE00559562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B1167B9BAE00559562 /* Foundation.framework */; };
 		785DD9B4167B9BAE00559562 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B3167B9BAE00559562 /* CoreGraphics.framework */; };
@@ -28,7 +29,6 @@
 		785DD9F0167B9BD000559562 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 785DD9D6167B9BD000559562 /* iTunesArtwork@2x */; };
 		785DD9F1167B9BD000559562 /* PSCBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9DA167B9BD000559562 /* PSCBasicViewController.m */; };
 		785DD9F2167B9BD000559562 /* PSCDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9DC167B9BD000559562 /* PSCDownload.m */; };
-		785DD9F3167B9BD000559562 /* PSCGridController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9DE167B9BD000559562 /* PSCGridController.m */; };
 		785DD9F4167B9BD000559562 /* PSCImageGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E0167B9BD000559562 /* PSCImageGridViewCell.m */; };
 		785DD9F5167B9BD000559562 /* PSCKioskPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E2167B9BD000559562 /* PSCKioskPDFViewController.m */; };
 		785DD9F6167B9BD000559562 /* PSCMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9E4167B9BD000559562 /* PSCMagazine.m */; };
@@ -80,6 +80,8 @@
 		7830439816FBE2F600D3EAB4 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "PSPDFCatalog/Resources/Icon-Small@2x.png"; sourceTree = SOURCE_ROOT; };
 		7830439916FBE2F600D3EAB4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = PSPDFCatalog/Resources/Icon.png; sourceTree = SOURCE_ROOT; };
 		7830439A16FBE2F600D3EAB4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "PSPDFCatalog/Resources/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
+		78479D2017393F430006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
+		78479D2117393F430006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
 		785DD9AC167B9BAE00559562 /* PSPDFKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		785DD9AF167B9BAE00559562 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		785DD9B1167B9BAE00559562 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,8 +101,6 @@
 		785DD9DA167B9BD000559562 /* PSCBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBasicViewController.m; sourceTree = "<group>"; };
 		785DD9DB167B9BD000559562 /* PSCDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDownload.h; sourceTree = "<group>"; };
 		785DD9DC167B9BD000559562 /* PSCDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDownload.m; sourceTree = "<group>"; };
-		785DD9DD167B9BD000559562 /* PSCGridController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridController.h; sourceTree = "<group>"; };
-		785DD9DE167B9BD000559562 /* PSCGridController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridController.m; sourceTree = "<group>"; };
 		785DD9DF167B9BD000559562 /* PSCImageGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCImageGridViewCell.h; sourceTree = "<group>"; };
 		785DD9E0167B9BD000559562 /* PSCImageGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCImageGridViewCell.m; sourceTree = "<group>"; };
 		785DD9E1167B9BD000559562 /* PSCKioskPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCKioskPDFViewController.h; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 				785DD9DA167B9BD000559562 /* PSCBasicViewController.m */,
 				785DD9DB167B9BD000559562 /* PSCDownload.h */,
 				785DD9DC167B9BD000559562 /* PSCDownload.m */,
-				785DD9DD167B9BD000559562 /* PSCGridController.h */,
-				785DD9DE167B9BD000559562 /* PSCGridController.m */,
+				78479D2017393F430006D87D /* PSCGridViewController.h */,
+				78479D2117393F430006D87D /* PSCGridViewController.m */,
 				785DD9DF167B9BD000559562 /* PSCImageGridViewCell.h */,
 				785DD9E0167B9BD000559562 /* PSCImageGridViewCell.m */,
 				785DD9E1167B9BD000559562 /* PSCKioskPDFViewController.h */,
@@ -495,7 +495,6 @@
 				785DD9C0167B9BAE00559562 /* PSCAppDelegate.m in Sources */,
 				785DD9F1167B9BD000559562 /* PSCBasicViewController.m in Sources */,
 				785DD9F2167B9BD000559562 /* PSCDownload.m in Sources */,
-				785DD9F3167B9BD000559562 /* PSCGridController.m in Sources */,
 				785DD9F4167B9BD000559562 /* PSCImageGridViewCell.m in Sources */,
 				785DD9F5167B9BD000559562 /* PSCKioskPDFViewController.m in Sources */,
 				785DD9F6167B9BD000559562 /* PSCMagazine.m in Sources */,
@@ -515,6 +514,7 @@
 				785DDA2D167B9C8200559562 /* UIImageView+AFNetworking.m in Sources */,
 				785DDA2F167B9C8200559562 /* SDURLCache.m in Sources */,
 				785DDA34167B9C8C00559562 /* AFDownloadRequestOperation.m in Sources */,
+				78479D2217393F430006D87D /* PSCGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
