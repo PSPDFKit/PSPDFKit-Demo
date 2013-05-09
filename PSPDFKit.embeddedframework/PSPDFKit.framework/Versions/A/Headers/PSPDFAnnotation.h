@@ -28,6 +28,8 @@ extern NSString *const PSPDFAnnotationTypeStringCaret; // There's no menu entry 
 extern NSString *const PSPDFAnnotationTypeStringWidget; // Widget is currently handled similar to Link.
 extern NSString *const PSPDFAnnotationTypeStringFile;
 extern NSString *const PSPDFAnnotationTypeStringSound;
+extern NSString *const PSPDFAnnotationTypeStringPolygon;
+extern NSString *const PSPDFAnnotationTypeStringPolyLine;
 
 // UIImagePickerController used in the image add feature will throw a UIApplicationInvalidInterfaceOrientation exception if your app does not include portrait in UISupportedInterfaceOrientations (Info.plist).
 // For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in UIViewController's auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use UIImagePickerController.
@@ -51,6 +53,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeWidget    = 1 << 12, // Widget
     PSPDFAnnotationTypeFile      = 1 << 13, // FileAttachment
     PSPDFAnnotationTypeSound     = 1 << 14, // Sound
+    PSPDFAnnotationTypePolygon   = 1 << 15, // Polygon (includes PolyLine)
     PSPDFAnnotationTypeAll       = NSUIntegerMax
 };
 

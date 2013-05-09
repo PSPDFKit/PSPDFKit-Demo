@@ -186,7 +186,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 
  Since PSPDFKit 2.8, this now is an ordered set - the order will change the button order in the toolbar and the page menu.
 
- @warning Some annotation types are only behaviorally different in PSPDFKit but in are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See PSPDFAnnotation.h for comments
+ @warning Some annotation types are only behaviorally different in PSPDFKit but are mapped to basic annotation types, so adding those will only change the creation of those types, not editing. Example: If you add PSPDFAnnotationTypeStringInk but not PSPDFAnnotationTypeStringSignature, signatures added in previous session will still be editable (since they are Ink annotations). On the other hand, if you set PSPDFAnnotationTypeStringSignature but not PSPDFAnnotationTypeStringInk, then your newly created signatures will not be movable. See PSPDFAnnotation.h for comments
 */
 @property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 

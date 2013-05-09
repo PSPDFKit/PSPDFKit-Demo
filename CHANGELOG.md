@@ -2,7 +2,14 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-_v2.13.0 - 7/May/2013__
+__v2.13.1 - 9/May/2013__
+
+*  Adds read support for Polygon/Polyline annotations, including support for all line ending types.
+*  The tinted UIPopoverController subclasses now look much better and now very closely resemble the original including gradients and alpha value.
+*  PSPDFTextParser now fully complies to NSCoding, so search results can be persisted and cached. (Thanks to ForeFlight!)
+*  Fixes an unbalanced locking call when a page was requested that couldn't be rendered.
+
+__v2.13.0 - 7/May/2013__
 
 PSPDFKit now requires QuickLook.framework, AudioToolbox.framework and sqlite3. Please update your framework dependencies accordingly.
 

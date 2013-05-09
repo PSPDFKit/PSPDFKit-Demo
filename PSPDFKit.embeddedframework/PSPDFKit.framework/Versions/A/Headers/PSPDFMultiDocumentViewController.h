@@ -88,6 +88,9 @@
 
 @interface PSPDFMultiDocumentViewController (SubclassingHooks)
 
+/// Override this initializer to allow all use cases (storyboard loading, etc)
+- (void)commonInitWithPDFController:(PSPDFViewController *)pdfController;
+
 // Prepares the controller to interact with the multi document container.
 - (void)swizzlePDFController:(PSPDFViewController *)pdfController;
 

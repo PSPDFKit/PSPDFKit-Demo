@@ -28,10 +28,9 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 
 @end
 
-///
 /// Search operation to find text inside a all or specific pages of a PSPDFDocument.
 /// Usually created within PSPDFTextSearch, but can also be used externally.
-///
+/// @note Normally you want to use the PSPDFTextSearch instead of using this operation directly.
 @interface PSPDFSearchOperation : NSOperation
 
 /// Initialize with document reference and the search term.
@@ -45,7 +44,7 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 /// If NO, only pageRanges will be searched.
 @property (nonatomic, assign) BOOL shouldSearchAllPages;
 
-/// Set the searchMode for the search.
+/// Set the searchMode for the search. Defaults to PSPDFSearchModeHighlighting.
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
 
 /// Set compareOptions for the search.
