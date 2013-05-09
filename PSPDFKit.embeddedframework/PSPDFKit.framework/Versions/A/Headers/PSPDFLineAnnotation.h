@@ -6,19 +6,7 @@
 //
 
 #import "PSPDFAnnotation.h"
-
-typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
-    PSPDFLineEndTypeNone,
-    PSPDFLineEndTypeSquare,
-    PSPDFLineEndTypeCircle,
-    PSPDFLineEndTypeDiamond,
-    PSPDFLineEndTypeOpenArrow,
-    PSPDFLineEndTypeClosedArrow,
-    PSPDFLineEndTypeButt,
-    PSPDFLineEndTypeReverseOpenArrow,
-    PSPDFLineEndTypeReverseClosedArrow,
-    PSPDFLineEndTypeSlash
-};
+#import "PSPDFLineHelper.h"
 
 /// PDF Line annotation.
 @interface PSPDFLineAnnotation : PSPDFAnnotation
@@ -39,7 +27,7 @@ typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
 /// Use this setter to manually change the boundingBox without changing the line.
 - (void)setBoundingBox:(CGRect)boundingBox transformLine:(BOOL)transformLine;
 
-/// Transforms line enumeration <-> line strings (PDF reference).
+/// Transforms line end type <-> line end string (PDF reference).
 + (NSValueTransformer *)lineEndTypeTransformer;
 
 @end
