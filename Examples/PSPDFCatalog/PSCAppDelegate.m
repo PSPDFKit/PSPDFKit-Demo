@@ -62,8 +62,8 @@
 
 #if 0
     // Directly push a PSPDFViewController
-    NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples" isDirectory:NO];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample isDirectory:YES]];
     PSPDFViewController *viewController = [[PSPDFViewController alloc] initWithDocument:document];
     self.catalog = [[UINavigationController alloc] initWithRootViewController:viewController];
 #else
