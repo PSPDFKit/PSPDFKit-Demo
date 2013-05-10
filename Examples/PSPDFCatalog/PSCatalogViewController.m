@@ -1705,6 +1705,50 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Test that PSPDFProcessor doesn't flatten when you add annotations programmatically.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Ink annotation + PSPDFProcessor" block:^UIViewController *{
+
+        NSURL *URL = [self copyFileURLToDocumentFolder:hackerMagURL overrideFile:YES];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:URL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
+
+        // add shape annotation if there isn't one already.
+        NSUInteger targetPage = 0;
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk] count] == 0) {
+
+            // Check the header for more helper methods; PSPDFBezierPathGetPoints() might be useful depending on your use case.
+            PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
+
+            // example how to create a line rect. Boxed is just shorthand for [NSValue valueWithCGRect:]
+            NSArray *lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
+                               @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
+                               ];
+
+            // convert view line points into PDF line points.
+            PSPDFPageInfo *pageInfo = [document pageInfoForPage:targetPage];
+            CGRect viewRect = [UIScreen mainScreen].bounds; // this is your drawing view rect - we don't have one yet, so lets just assume the whole screen for this example. You can also directly write the points in PDF coordinate space, then you don't need to convert, but usually your user draws and you need to convert the points afterwards.
+            annotation.lineWidth = 5;
+            annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
+
+            annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
+            [document addAnnotations:@[annotation] forPage:targetPage];
+        }
+
+        //Here we should figure out which pages have annotations
+        NSDictionary *annotationsDictionary = [document allAnnotationsOfType:PSPDFAnnotationTypeInk];
+        NSArray *annotatedPages = annotationsDictionary.allKeys;
+        NSIndexSet *pageNumbers = PSPDFIndexSetFromArray(annotatedPages);
+        NSDictionary *processorOptions = @{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)};
+
+        NSURL *outputFileURL = document.fileURL;
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageNumbers outputFileURL:outputFileURL options:processorOptions progressBlock:NULL error:NULL];
+
+        [document clearCache];
+
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
     // Test that stamps are correctly displayed and movable.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamp annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
