@@ -481,6 +481,7 @@ extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with
 
 /// Draw a page into a specified context.
 /// If for some reason renderPage: doesn't return a Render Receipt, an error occured.
+/// @note if `annotations` is nil, they will be auto-fetched. Add an empty array if you don't want to render annotations.
 - (PSPDFRenderReceipt *)renderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options error:(NSError **)error;
 
 /// Set custom render options (see PSPDFPageRenderer.h for options)

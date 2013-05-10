@@ -2,6 +2,13 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.13.2 - 10/May/2013__
+
+*  The text selection delegate pdfViewController:didSelectText:withGlyphs:atRect:onPageView: is now also called for deselection.
+*  Fixes an issue where PSPDFProcessor would flatten AND add annotations if kPSPDFProcessorAnnotationAsDictionary was used.
+*  Fixes an issue with annotation drawing on iPhone on iOS5 where views could be reloaded after a memory warning and then the current drawing was missing.
+*  Fixes a small memory leak.
+
 __v2.13.1 - 9/May/2013__
 
 *  Adds read support for Polygon/Polyline annotations, including support for all line ending types.

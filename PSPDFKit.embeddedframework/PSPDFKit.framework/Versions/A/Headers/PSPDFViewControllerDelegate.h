@@ -121,6 +121,7 @@
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 /// Called after text has been selected.
+/// Will also be called when text has been deselected. Delselection sometimes cannot be stopped, so the shouldSelectText: will be skipped.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 ///--------------------------------------------
