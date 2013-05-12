@@ -30,7 +30,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 
 /// Allows adding signatures or drawings as ink annotations.
-@interface PSPDFSignatureViewController : PSPDFBaseViewController
+@interface PSPDFSignatureViewController : PSPDFBaseViewController <PSPDFStyleable>
 
 /// Designated initializer.
 - (id)init;

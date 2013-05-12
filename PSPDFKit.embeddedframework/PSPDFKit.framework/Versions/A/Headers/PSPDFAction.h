@@ -7,7 +7,7 @@
 
 #import "PSPDFModel.h"
 
-typedef NS_ENUM(NSUInteger, PSPDFActionType) {
+typedef NS_ENUM(UInt8, PSPDFActionType) {
     PSPDFActionTypeURL,
     PSPDFActionTypeGoTo,
     PSPDFActionTypeRemoteGoTo,

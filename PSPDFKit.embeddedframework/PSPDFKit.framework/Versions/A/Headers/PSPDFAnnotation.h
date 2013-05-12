@@ -31,6 +31,17 @@ extern NSString *const PSPDFAnnotationTypeStringSound;
 extern NSString *const PSPDFAnnotationTypeStringPolygon;
 extern NSString *const PSPDFAnnotationTypeStringPolyLine;
 
+// Sent when a new annotation is added to the default PSPDFFileAnnotationProvider.
+// Will also be sent if an annotation is added because a editable copy is created.
+extern NSString *const PSPDFAnnotationAddedNotification;  // object = new PSPDFAnnotation.
+
+// Internal events to notify the annotation providers when annotations are being changed.
+extern NSString *const PSPDFAnnotationChangedNotification;                      // object = new PSPDFAnnotation.
+extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;           // set to NO to not animate updates (if it can be animated, that is)
+extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;       // set to YES to disable handling by views.
+extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            // NSArray of selector names.
+extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; // original PSPDFAnnotation.
+
 // UIImagePickerController used in the image add feature will throw a UIApplicationInvalidInterfaceOrientation exception if your app does not include portrait in UISupportedInterfaceOrientations (Info.plist).
 // For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in UIViewController's auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use UIImagePickerController.
 extern NSString *const PSPDFAnnotationTypeStringImage;      // Image is a stamp annotation.
@@ -264,6 +275,9 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Compare.
 - (BOOL)isEqualToAnnotation:(PSPDFAnnotation *)otherAnnotation;
 
+/// Copy to UIPasteboard.
+- (void)copyToClipboard;
+
 /// Color string <-> UIColor transformer.
 + (NSValueTransformer *)colorTransformer;
 
@@ -274,6 +288,9 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 + (NSValueTransformer *)lastModifiedTransformer;
 
 @end
+
+// Private UIPasteboard support.
+extern NSString *const PSPDFAnnotationPasteboardPrivateData;
 
 
 @interface PSPDFAnnotation (PSPDFAnnotationWriting)

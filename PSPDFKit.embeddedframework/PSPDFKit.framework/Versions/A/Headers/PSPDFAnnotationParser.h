@@ -12,17 +12,6 @@
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocumentProvider, PSPDFFileAnnotationProvider;
 
-// Sent when a new annotation is added to the default PSPDFFileAnnotationProvider.
-// Will also be sent if an annotation is added because a editable copy is created.
-extern NSString *const PSPDFAnnotationAddedNotification;  // object = new PSPDFAnnotation.
-
-// Internal events to notify the providers when annotations are being changed.
-extern NSString *const PSPDFAnnotationChangedNotification;                  // object = new PSPDFAnnotation.
-extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;       // set to NO to not animate updates (if it can be animated, that is)
-extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;   // set to YES to disable handling by views.
-extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;        // NSArray of selector names.
-extern NSString *const PSPDFAnnotationChangedNotificationOriginalAnnotationKey; // original PSPDFAnnotation.
-
 /**
  Parses and saves annotations for each page in a PDF.
  Supports many sources with the PSPDFAnnotationProvider protocol.
