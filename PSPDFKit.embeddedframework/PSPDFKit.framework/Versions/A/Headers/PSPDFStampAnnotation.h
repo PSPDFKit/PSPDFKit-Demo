@@ -7,11 +7,13 @@
 
 #import "PSPDFAnnotation.h"
 
-/**
- PDF Stamp annotation.
+/// Set this in the userInfo of the annotation to 'suggest' a size when the annotation is added to the pageView.
+/// This value is used for the example stamps in PSPDFStampViewController and will not be persisted.
+extern NSString *const PSPDFStampAnnotationSuggestedSizeKey;
 
- PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
-*/
+/// PDF Stamp annotation.
+///
+/// PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
 @interface PSPDFStampAnnotation : PSPDFAnnotation
 
 /// Returns predefined colors for special subjects, like red for "void" or green for "completed".

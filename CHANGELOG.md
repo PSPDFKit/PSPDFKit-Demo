@@ -2,6 +2,25 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.0 - 12/May/2013__
+
+*  Add support to Copy/Paste annotations. This creates a global UIPasteboard and will work for all apps that use the PSPDFKit framework with 2.14 and up. Alternatively a JSON object is created as well, so that other applications can add support to parse and support PSPDFKit-style-annotations as well.
+*  Paste also supports general pasteboard types like Text, URL or Image and will create the appropriate annotations (if this is allowed)
+
+*  New global PSPDFStyleManager that saves various annotation properties and applies them to new annotations. For example, if you change the color of a highlight to red, all future annotations are created red until you change the color back. This already worked in the PSPDFAnnotationToolbar before but is now unified and applied globally (will also save properties like fillColor or fontName). You can disable this with nilling out the styleKeys property of PSPDFStyleManager.
+
+*  The PSPDFFreeTextAnnotationView is now always sharp, even when zoomed in. Because we have to work around the broken contentsScale property, the API has changed a bit. If you previously had textView overridden, you now need to subclass PSPDFFreeTextAnnotationView and change the textViewForEditing method to apply your custom textView.
+*  PSPDFStampViewController is now more flexible and will evaluate the new PSPDFStampAnnotationSuggestedSizeKey key for the default annotations. Images in default annotations are now supported as well and the checkmark and X annotation are now added with the correct aspect ratio size. With the new setDefaultStampAnnotations: a different set of default annotations can be set.
+*  Various smaller UX fixes inside the  PSPDFNoteViewController.
+*  Improves memory usage with very large documents (1000 pages and up)
+*  Various smaller performance improvements in the cache.
+*  Tinting has been improved for various view controllers.
+*  The global "Text..." option has been renamed to "Note..." to make its function more clear.
+*  The global "Appearance..." has ben renamed to "Style..." because this is more concise and better fits the iPhone.
+*  Fixes an issue where unless controls:YES was set the wrong default was used for web links in the internal browser.
+*  Fixes an edge case where the PSPDFPasswordView would not adapt itself correctly if the keyboard was already up before the controller has been pushed.
+*  Fixes an issue with opening external URLs via dialog where the preview of the URL could fail.
+
 __v2.13.2 - 10/May/2013__
 
 *  The text selection delegate pdfViewController:didSelectText:withGlyphs:atRect:onPageView: is now also called for deselection.

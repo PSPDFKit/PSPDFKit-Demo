@@ -8,7 +8,7 @@
 #import "PSPDFAnnotation.h"
 
 // PSPDFKit has some custom sub-sets of the PSPDFAnnotationTypeLink that can be resolved to Video, Audio, Image or Browser views.
-typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
+typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationPage = 0,
     PSPDFLinkAnnotationWebURL,  // 1
     PSPDFLinkAnnotationDocument,// 2
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationAudio,   // 5
     PSPDFLinkAnnotationImage,   // 6
     PSPDFLinkAnnotationBrowser, // 7
-    PSPDFLinkAnnotationCustom  /// any annotation format that is not recognized is custom (e.g. tel://)
+    PSPDFLinkAnnotationCustom   // any annotation format that is not recognized is custom (e.g. tel://)
 };
 
 @class PSPDFAction, PSPDFActionURL, PSPDFActionGoTo;

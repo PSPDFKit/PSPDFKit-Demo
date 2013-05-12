@@ -23,11 +23,17 @@
 /// Ends editing, hides the keyboard
 - (void)endEditing;
 
-/// Internally used textView.
-/// @warning If you set this, do early on and not while edit mode is active.
-@property (nonatomic, strong) UITextView *textView;
+/// Internally used textView. Only valid during begin and before endEditing.
+@property (nonatomic, strong, readonly) UITextView *textView;
 
 /// The dragging view, if we are currently dragged.
 @property (nonatomic, weak) PSPDFResizableView *resizableView;
+
+@end
+
+@interface PSPDFFreeTextAnnotationView (SubclassingHooks)
+
+// Creates a textView on the fly once we enter edit mode.
+- (UITextView *)textViewForEditing;
 
 @end

@@ -110,7 +110,7 @@
 "Thickness..." = "Spessore…";
 "Thickness" = "Spessore";
 "%@ pt" = "%@ pt";
-"Text..." = "Testo…";
+"Note..." = "Testo…";
 "Yellow" = "Giallo";
 "Green" = "Verde";
 "Red" = "Rosso";
@@ -155,8 +155,8 @@
 "Medium Quality" = "Qualità Media";
 "High Quality" = "Qualità Alta";
 "Clear All" = "Clear All";
-"Appearance" = "Appearance";
-"Appearance..." = "Appearance…";
+"Style" = "Style";
+"Style..." = "Style…";
 "Link" = "Link";
 "Ink" = "Ink";
 "FreeText" = "Free Text";
@@ -167,6 +167,8 @@
 "Right" = "Right";
 "Alignment..." = "Alignment…";
 "Preview File" = "Preview File";
+"Copy" = "Copy";
+"Paste" = "Paste";
 
 // named actions
 "NextPage" = "Next Page";
