@@ -40,10 +40,6 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarMode) {
 
 @end
 
-// constants which are used for NSUserDefaults.
-extern NSString *const kPSPDFLastUsedDrawingWidth; // float
-extern NSString *const kPSPDFLastUsedColorForAnnotationType; // Dictionary NSString (annotation type) -> NSColor (encoded via NSKeyedArchiver)
-
 /**
  Toolbar to quickly create annotations.
 

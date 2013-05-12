@@ -8,6 +8,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSTCollectionView.h"
 #import "PSPDFTextStampViewController.h"
+#import "PSPDFStyleable.h"
 
 @class PSPDFStampViewController, PSPDFStampAnnotation;
 
@@ -27,10 +28,13 @@
 @end
 
 /// Allows adding signatures or drawings as ink annotations.
-@interface PSPDFStampViewController : PSPDFBaseViewController <PSPDFTextStampViewControllerDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface PSPDFStampViewController : PSPDFBaseViewController <PSPDFTextStampViewControllerDelegate, PSUICollectionViewDelegate, PSUICollectionViewDataSource, PSPDFStyleable>
 
 /// Return default available set of stamp annotations.
 + (NSArray *)defaultStampAnnotations;
+
+/// Allows to set a different set of default annotations. Thread safe.
+- (void)setDefaultStampAnnotations:(NSArray *)defaultStampAnnotations;
 
 /// Designated initializer.
 - (id)init;
@@ -61,6 +65,7 @@
 /// Stamp Cell.
 @interface PSPDFStampCell : PSUICollectionViewCell
 
+/// The annotation visible in the stamp cell.
 @property (nonatomic, strong) PSPDFStampAnnotation *annotation;
 
 @end

@@ -341,4 +341,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 // Computes a scale value suitable for computation of the line width to use during drawing and selection.
 - (CGFloat)scaleForPageView;
 
+// Helper to properly place an annotation.
+- (void)centerAnnotation:(PSPDFAnnotation *)annotation aroundViewPoint:(CGPoint)viewPoint;
+
 @end
