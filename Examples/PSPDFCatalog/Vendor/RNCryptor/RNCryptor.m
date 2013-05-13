@@ -114,7 +114,7 @@ const uint8_t kRNCryptorFileVersion = 2;
 
   // Do not log password here
   // TODO: Is is safe to assert here? We read salt from a file (but salt.length is internal).
-  NSAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
+  PSPDFAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
 
   return derivedKey;
 }
@@ -124,7 +124,7 @@ const uint8_t kRNCryptorFileVersion = 2;
   NSMutableData *data = [NSMutableData dataWithLength:length];
 
   __unused int result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
-  NSAssert(result == 0, @"Unable to generate random bytes: %d", errno);
+  PSPDFAssert(result == 0, @"Unable to generate random bytes: %d", errno);
 
   return data;
 }

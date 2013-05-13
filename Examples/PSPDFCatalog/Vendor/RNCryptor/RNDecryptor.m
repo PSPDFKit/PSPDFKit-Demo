@@ -191,7 +191,7 @@ static const NSUInteger kPreambleSize = 2;
 
   NSError *error = nil;
   if (self.options & kRNCryptorOptionHasPassword) {
-    NSAssert(!self.encryptionKey && !self.HMACKey, @"Both password and the key (%d) or HMACKey (%d) are set.", self.encryptionKey != nil, self.HMACKey != nil);
+    PSPDFAssert(!self.encryptionKey && !self.HMACKey, @"Both password and the key (%d) or HMACKey (%d) are set.", self.encryptionKey != nil, self.HMACKey != nil);
 
     NSData *encryptionKeySalt = [data _RNConsumeToIndex:settings.keySettings.saltSize];
     NSData *HMACKeySalt = [data _RNConsumeToIndex:settings.HMACKeySettings.saltSize];
