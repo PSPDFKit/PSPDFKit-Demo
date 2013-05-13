@@ -1921,7 +1921,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         NSArray *newAnnotations = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
         NSLog(@"Created %d new annotations: %@", newAnnotations.count, newAnnotations);
         __unused NSArray *newAnnotations2 = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
-        NSAssert(newAnnotations2.count == 0, @"A second run should not create new annotations");
+        PSPDFAssert(newAnnotations2.count == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];

@@ -163,7 +163,7 @@
 #pragma mark - Static
 
 + (NSArray *)documentsFromDirectory:(NSString *)directory {
-    NSParameterAssert(directory);
+    PSPDFAssert(directory);
 
     directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
 
