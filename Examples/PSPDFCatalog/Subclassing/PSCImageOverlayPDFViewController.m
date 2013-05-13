@@ -52,7 +52,7 @@
 #pragma mark - Private
 
 - (void)imageButtonPressed:(PSCAutoResizeButton *)button {
-    NSParameterAssert([button isKindOfClass:PSCAutoResizeButton.class]);
+    PSPDFAssert([button isKindOfClass:PSCAutoResizeButton.class]);
 
     PSPDFImageInfo *imageInfo = button.imageInfo;
     UIImage *image = imageInfo.image;
