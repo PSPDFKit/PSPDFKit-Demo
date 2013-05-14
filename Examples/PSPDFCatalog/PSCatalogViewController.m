@@ -148,10 +148,9 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return documentSelector;
     }]];
 
-    PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
-    hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
-
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Settings for a magazine" block:^{
+        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
+        hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         controller.pageTransition = PSPDFPageCurlTransition;
@@ -763,6 +762,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
     }]];
 
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Hide HUD with delayed document set" block:^UIViewController *{
+        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCHideHUDDelayedDocumentViewController alloc] init];
 
         int64_t delayInSeconds = 2.0;
@@ -799,11 +799,13 @@ const char kPSPDFSignatureCompletionBlock = 0;
         // create new file that is protected
         NSString *password = @"test123";
         NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
+        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @(128), kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
             [PSPDFProgressHUD showProgress:numberOfProcessedPages/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
         } error:NULL];
+
         [PSPDFProgressHUD dismiss];
 
         // show file
@@ -1355,6 +1357,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // Check if scrolling works after the document is set delayed.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Delayed document set" block:^UIViewController *{
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] init];
+        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
         int64_t delayInSeconds = 2.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
@@ -1367,6 +1370,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     // Tests if the placement of the search controller is correct, even for zoomed documents.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Inline search test" block:^UIViewController *{
+        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
         pdfController.fitToWidthEnabled = YES;
         pdfController.rightBarButtonItems = @[pdfController.viewModeButtonItem];
