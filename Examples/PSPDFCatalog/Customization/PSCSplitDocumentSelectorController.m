@@ -50,8 +50,8 @@
                     NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
                     [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
                     [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
-                    //[NSThread sleepForTimeInterval:0.1];
                 });
+                [NSThread sleepForTimeInterval:0.05 * arc4random_uniform(5)];
             }
         }
     });
