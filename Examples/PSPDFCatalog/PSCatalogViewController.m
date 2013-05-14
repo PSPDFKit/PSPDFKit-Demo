@@ -1596,6 +1596,29 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // There's a ffi ligature on the first page.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test ffi ligature parsing" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_ffi-glyph-manyongeAMS89-92-2012.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        NSArray *glyphs = [[document textParserForPage:0] glyphs];
+        NSLog(@"glyphs: %@", glyphs);
+
+        BOOL foundWord = NO;
+        NSArray *words = [document textParserForPage:0].words;
+        for (PSPDFWord *word in words) {
+            if ([word.stringValue isEqualToString:@"Coefficient"]) {
+                foundWord = YES;
+                break;
+            }
+        }
+
+        // One day this will be a real testcase. For now, that'll have to do.
+        PSPDFAssert(foundWord, @"Test failed!");
+
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test bfrange-Cmaps with array syntax" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"HT-newspaper-textextraction.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
