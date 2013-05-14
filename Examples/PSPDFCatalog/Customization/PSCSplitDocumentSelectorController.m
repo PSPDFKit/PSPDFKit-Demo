@@ -66,6 +66,11 @@
 #pragma mark - PSCDocumentSelectorControllerDelegate
 
 - (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
+#if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
+    // Copy is purely there as a stress test.
+    document = [document copy];
+#endif
+
     [self.masterVC displayDocument:document];
 
     // hide controller
