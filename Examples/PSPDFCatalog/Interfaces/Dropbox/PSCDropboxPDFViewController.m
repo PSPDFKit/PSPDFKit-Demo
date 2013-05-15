@@ -21,7 +21,7 @@
     self.statusBarStyleSetting = PSPDFStatusBarDefault;
     self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
-    self.scrobbleBarEnabled = NO;
+    self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
     self.leftBarButtonItems = nil;
     self.rightBarButtonItems = nil;
     self.delegate = self;
