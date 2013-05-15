@@ -32,8 +32,8 @@
 /// Referenced page.
 @property (nonatomic, assign, readonly) NSUInteger page;
 
-/// Referenced document provider, weak.
-@property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
+/// Referenced document provider.
+@property (nonatomic, unsafe_unretained, readonly) PSPDFDocumentProvider *documentProvider;
 
 /// Compare.
 - (BOOL)isEqualToPageInfo:(PSPDFPageInfo *)otherPageInfo;
