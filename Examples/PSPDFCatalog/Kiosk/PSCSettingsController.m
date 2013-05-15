@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, PSPDFSettings) {
     PSPDFScrollDirectionSettings,
     PSPDFPageModeSettings,
     PSPDFCoverSettings,
+    PSPDFThumbnailModeSettings,
     PSPDFPageRenderingSettings,
     PSPDFGeneralSettings,
     PSPDFToolbarSettings,
@@ -66,10 +67,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
         _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
         _settings[StringSEL(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
-        _settings[StringSEL(isScrobbleBarEnabled)] = @YES;
+        _settings[StringSEL(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
         _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @YES;
         _settings[StringSEL(isPageLabelEnabled)] = @YES;
-        _settings[StringSEL(isScrobbleBarEnabled)] = @YES;
         _settings[StringSEL(isTextSelectionEnabled)] = @YES;
         _settings[StringSEL(isSmartZoomEnabled)] = @YES;
         _settings[StringSEL(isScrollOnTapPageEndEnabled)] = @YES;
@@ -104,8 +104,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
         @[_(@"Single First Page"), _(@"No Cover Page")],
+        @[_(@"No thumbnail bar"), _(@"Scrobble Bar (iBooks)"), _(@"Scrollable Thumbnails")],
         @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
-        @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Scrobblebar"), _(@"Page Position View")],
+        @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View")],
         @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode"), _(@"Bordered Toolbar")],
         @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
         @[_(@"No Disk Cache"), _(@"Thumbnails only"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
@@ -117,13 +118,14 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
+        @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
         @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
-        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"),  _(@"scrobbleBarEnabled"), _(@"pageLabelEnabled")],
+        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
         @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
         ];
-        _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Thumbnail Bar"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
         _sectionFooter = @[@"", @"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
@@ -131,6 +133,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@""),
         _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
         _(@""), // double page mode
+        _(@""), // PSPDFThumbnailBarMode
         _(@"Relevant for double page mode."),
         _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingModeFullPageBlocking is a great option for magazine apps that use pageCurl."),
         _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
@@ -251,8 +254,8 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 1: _settings[StringSEL(isTextSelectionEnabled)] = value; break;
                 case 2: _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = value; break;
                 case 3: _settings[StringSEL(isFitToWidthEnabled)] = value; break;
-                case 5: _settings[StringSEL(isScrobbleBarEnabled)] = value; break;
-                case 6: _settings[StringSEL(isPageLabelEnabled)] = value; break;
+                case 4: _settings[StringSEL(isScrollOnTapPageEndEnabled)] = value; break;
+                case 5: _settings[StringSEL(isPageLabelEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
@@ -340,6 +343,11 @@ static CGFloat pscSettingsLastYOffset = 0;
             BOOL hasCoverPage = [_settings[StringSEL(isDoublePageModeOnFirstPage)] integerValue];
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
+        case PSPDFThumbnailModeSettings: {
+            NSUInteger thumbnailBarMode = [_settings[StringSEL(thumbnailBarMode)] integerValue];
+            cell.accessoryType = (indexPath.row == thumbnailBarMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        }break;
+
         case PSPDFGeneralSettings: {
             switch (indexPath.row) {
                 case 0: cellSwitch.on = [_settings[StringSEL(isSmartZoomEnabled)] boolValue]; break;
@@ -347,8 +355,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 2: cellSwitch.on = [_settings[StringSEL(isZoomingSmallDocumentsEnabled)] boolValue]; break;
                 case 3: cellSwitch.on = [_settings[StringSEL(isFitToWidthEnabled)] boolValue]; break;
                 case 4: cellSwitch.on = [_settings[StringSEL(isScrollOnTapPageEndEnabled)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[StringSEL(isScrobbleBarEnabled)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[StringSEL(isPageLabelEnabled)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[StringSEL(isPageLabelEnabled)] boolValue]; break;
                 default: break;
             }
         }break;
@@ -425,6 +432,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFPageModeSettings: _settings[StringSEL(pageMode)] = @(indexPath.row); break;
         case PSPDFPageRenderingSettings: _settings[StringSEL(renderingMode)] = @(indexPath.row); break;
         case PSPDFCoverSettings: _settings[StringSEL(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
+        case PSPDFThumbnailModeSettings: _settings[StringSEL(thumbnailBarMode)] = @(indexPath.row); break;
         case PSPDFLinkActionSettings: _settings[StringSEL(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
             [[PSPDFCache sharedCache] clearCache];

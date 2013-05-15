@@ -162,16 +162,18 @@ const char kPSPDFSignatureCompletionBlock = 0;
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
-        PSCRotationLockBarButtonItem *rotationLock = [[PSCRotationLockBarButtonItem alloc] initWithPDFViewController:controller];
+        //PSCRotationLockBarButtonItem *rotationLock = [[PSCRotationLockBarButtonItem alloc] initWithPDFViewController:controller];
 
         // setup toolbar
-        controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFOutlineBarButtonItemOptionOutline), @(PSPDFOutlineBarButtonItemOptionBookmarks), nil];
-        controller.rightBarButtonItems = PSIsIpad() ? @[rotationLock, controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
+        controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
+        controller.rightBarButtonItems = PSIsIpad() ? @[controller.brightnessButtonItem, controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem] : @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
         // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
         controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
         controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
         controller.pageLabel.showThumbnailGridButton = YES;
+
+        controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 
         // Hide thumbnail filter bar.
         controller.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithArray:@[@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterBookmarks)]];
@@ -676,7 +678,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         // simple subclass that shows/hides the navigationController bottom toolbar
         PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
         pdfController.statusBarStyleSetting = PSPDFStatusBarDefault;
-        pdfController.scrobbleBarEnabled = NO; // would look to crowded.
+        pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
         pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
         pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
@@ -839,7 +841,6 @@ const char kPSPDFSignatureCompletionBlock = 0;
     }
 
     // Encrypting the images will be a 5-10% slowdown, nothing substantial at all.
-    // TODO: Update RNCryptor as soon as file format v2 has been released: http://robnapier.net/blog/rncryptor-hmac-vulnerability-827
     [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Enable PSPDFCache encryption" block:^UIViewController *{
         PSPDFCache *cache = [PSPDFCache sharedCache];
         // Clear existing cache
