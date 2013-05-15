@@ -78,7 +78,7 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 // The internal hash is cached and you'll get weird results if renderJob is changed after being added to the queue.
 @interface PSPDFRenderJob : NSObject
 
-@property (nonatomic, strong, readonly) PSPDFDocument *document;
+@property (atomic,    strong, readonly) PSPDFDocument *document;
 @property (nonatomic, assign, readonly) NSUInteger page;
 @property (nonatomic, assign, readonly) CGSize size;
 @property (nonatomic, assign, readonly) CGRect clipRect;
