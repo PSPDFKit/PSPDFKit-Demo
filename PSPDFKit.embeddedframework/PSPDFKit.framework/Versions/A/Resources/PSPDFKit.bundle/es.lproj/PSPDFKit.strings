@@ -17,6 +17,7 @@
 // toolbar
 "Outline" = "Índice";
 "No Outline" = "Ningún Índice";
+"Search Outline" = "Search Índice";
 "Search" = "Buscar";
 "Email" = "Email";
 "Email document" = "Mandar el documento por email";

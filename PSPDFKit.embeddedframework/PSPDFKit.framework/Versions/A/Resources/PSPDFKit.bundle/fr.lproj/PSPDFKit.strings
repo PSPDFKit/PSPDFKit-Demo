@@ -17,6 +17,7 @@
 // toolbar
 "Outline" = "Sommaire";
 "No Outline" = "Aucune Sommaire";
+"Search Outline" = "Search Outline";
 "Search" = "Rechercher";
 "Email" = "Email";
 "Email document" = "Envoyer le document par email";

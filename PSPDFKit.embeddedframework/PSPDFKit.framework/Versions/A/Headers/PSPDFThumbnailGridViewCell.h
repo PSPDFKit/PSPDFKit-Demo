@@ -18,7 +18,7 @@
 /// Referenced page.
 @property (nonatomic, assign) NSUInteger page;
 
-/// Allow a margin. Defaults to 0,0,0,0.
+/// Allow a margin. Defaults to UIEdgeInsetsZero.
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
 /// Enables thumbnail shadow. defaults to YES, except on old devices.
@@ -26,6 +26,10 @@
 
 /// Enable page label.
 @property (nonatomic, assign, getter=isShowingPageLabel) BOOL showingPageLabel;
+
+/// This is simply a redeclaration of the property in UICollectionViewCell.
+/// Modify this to change the look of the selection/highlight state.
+@property (nonatomic, strong) UIView *selectedBackgroundView;
 
 /// Call before re-showing (will update bookmark status)
 - (void)updateCell;

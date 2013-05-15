@@ -14,6 +14,9 @@ extern NSString *const kPSPDFStyleManagerLastUsedStylesKey;
 // This key will mark styles as generic, thus they'll be returned with all other style types except the last used trait.
 extern NSString *const kPSPDFStyleManagerGenericStylesKey;
 
+// Can be used to use a custom subclass of the PSPDFStyleManager. Defaults to nil, which will use PSPDFStyleManager.class.
+// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
+extern Class PSPDFStyleManagerClass;
 
 /// The style manager will save UI-specific properties for annotations and apply them after creation.
 /// It also offers a selection of user-defined styles.

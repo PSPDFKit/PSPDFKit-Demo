@@ -250,13 +250,10 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 @property (nonatomic, assign, getter=isDirty) BOOL dirty;
 
 /// Corresponding documentProvider, weak.
-@property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
+@property (atomic, weak) PSPDFDocumentProvider *documentProvider;
 
 /// Document is inferred from the documentProvider.
 @property (nonatomic, assign, readonly) PSPDFDocument *document;
-
-/// Rotation value, copied from the PSPDFPageInfo and set when documentProvider is set.
-@property (nonatomic, assign) NSInteger pageRotation;
 
 /**
  Returns YES if a custom appearance stream is attached to this annotation.

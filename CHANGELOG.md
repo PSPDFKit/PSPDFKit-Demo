@@ -2,6 +2,20 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.1 - 15/May/2013__
+
+*  Add write support for Polygon/Polyline annotations. (In the API, there's no UI for creating yet, but editing the points works)
+*  Add new PSPDFThumbnailBar to display scrollable thumbnails as an alternative to the scrobbleBar. The thumbnail bar is a preview and might change API/Featureset in the next releases. We have some big plans for this but couldn't wait to get it out of the door!
+*  The PSPDFOutlineViewController now no longer shows a title on iPad if no modes are set. As a detail, its search bar now is named as "Search Outline" instead of just "Search".
+*  FreeText annotation is now correctly rotated on rotated PDF pages and also respects the annotation rotation setting (0, 90, 180, 270).
+*  Fix password view state positioning when the keyboard is up and the parent resizes itself.
+*  Fixes a potential regression/assertion when the PSPDFViewController was used without a navigationController.
+*  Fixes an regression where words with ligatures (like the ffi liagure glyph) would be split into two words with certain encodings.
+*  Fixes a race condition that could lead to a warning named '<NSRecursiveLock> deallocated while still in use'.
+*  Fixes a line annotation serialization issue where line endings would only be serialized if both are set.
+*  Fixes an issue for Copy/Paste where preexisting annotations could disappear after they have been copied and edited.
+*  Fixes an exception in the PDF parser if a PDF with a corrupt stream object is analyzed.
+
 __v2.14.0 - 12/May/2013__
 
 *  Add support to Copy/Paste annotations. This creates a global UIPasteboard and will work for all apps that use the PSPDFKit framework with 2.14 and up. Alternatively a JSON object is created as well, so that other applications can add support to parse and support PSPDFKit-style-annotations as well.
