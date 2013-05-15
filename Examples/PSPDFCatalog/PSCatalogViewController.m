@@ -2268,6 +2268,26 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Ensure that a word is highlighted and that the we don't crash in saveChangedAnnotationsWithError
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation writing with invalid page object 2" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_corrupt_stream_add_annotations.pdf"]];
+
+        for (NSUInteger idx = 0; idx < 6; idx++) {
+            PSPDFWord *word = [[document textParserForPage:0].words objectAtIndex:idx];
+            PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+            CGRect boundingBox;
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
+            annotation.boundingBox = boundingBox;
+            [document addAnnotations:@[annotation] forPage:0];
+            [document saveChangedAnnotationsWithError:NULL];
+        }
+        // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
+
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+    
+
     // If the encoding is wrong, the freeText annotation will not be displayed.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation encoding" block:^UIViewController *{
         NSURL *URL = [self copyFileURLToDocumentFolder:[samplesURL URLByAppendingPathComponent:@"A.pdf"] overrideFile:YES];
