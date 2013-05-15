@@ -1581,6 +1581,33 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation on rotated PDF" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rotated PDF.pdf"]];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
+        freeText.contents = @"This is a test.\n1\n2\n3\n4\n5";
+        freeText.boundingBox = CGRectMake(100, 100, 400, 200);
+        freeText.fillColor = UIColor.yellowColor;
+        freeText.fontSize = 40;
+        [document addAnnotations:@[freeText] forPage:0];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation on 90g rotated PDF" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_rotated-northern.pdf"]];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
+        freeText.contents = @"This is a test.\n1\n2\n3\n4\n5";
+        freeText.boundingBox = CGRectMake(100, 100, 400, 200);
+        freeText.fillColor = UIColor.yellowColor;
+        freeText.fontSize = 30;
+        [document addAnnotations:@[freeText] forPage:0];
+        [document addAnnotations:@[[freeText copy]] forPage:1];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // Check that free text annotation doesn't has a fillColor set.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Freetext annotation with border, no fill color" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_FreeText_no_background.pdf"]];
