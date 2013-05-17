@@ -959,6 +959,28 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return controller;
     }]];
 
+    // As a second test, this example disables text selection, test that the shape still can be resized.
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a Polyline annotation" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
+        // add shape annotation if there isn't one already.
+        NSUInteger targetPage = 0;
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypePolygon] count] == 0) {
+            PSPDFPolygonAnnotation *polyline = [[PSPDFPolygonAnnotation alloc] initWithPolygonType:PSPDFPolygonAnnotationPolyLine];
+            polyline.points = @[[NSValue valueWithCGPoint:CGPointMake(52, 633)], [NSValue valueWithCGPoint:CGPointMake(67, 672)], [NSValue valueWithCGPoint:CGPointMake(131, 685)], [NSValue valueWithCGPoint:CGPointMake(178, 654)], [NSValue valueWithCGPoint:CGPointMake(115, 622)]];
+            polyline.color = [UIColor colorWithRed:0.0 green:1.f blue:0.f alpha:1.f];
+            polyline.fillColor = UIColor.yellowColor;
+            polyline.lineEnd2 = PSPDFLineEndTypeClosedArrow;
+            polyline.lineWidth = 5.f;
+            [document addAnnotations:@[polyline] forPage:targetPage];
+        }
+
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+        controller.textSelectionEnabled = NO;
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.openInButtonItem, controller.viewModeButtonItem];
+        return controller;
+    }]];
+
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Programmatically add a highlight annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples.
@@ -1510,6 +1532,15 @@ const char kPSPDFSignatureCompletionBlock = 0;
         [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
         _clearCacheNeeded = YES;
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 15)];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.viewMode = PSPDFViewModeThumbnails;
+        return pdfController;
+    }]];
+
+    // Check that there's no transparent border around images.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Thumbnails Aspect Ratio Test" block:^UIViewController *{
+        [[PSPDFCache sharedCache] clearCache];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_aspectratio.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
         return pdfController;
