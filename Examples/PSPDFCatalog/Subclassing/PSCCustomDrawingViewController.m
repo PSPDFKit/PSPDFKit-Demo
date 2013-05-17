@@ -35,7 +35,7 @@
 
     // Setup graphics context for current PDF page.
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];
-    [PSPDFPageRenderer setupGraphicsContext:context inRectangle:clipRect pageInfo:pageInfo];
+    [[PSPDFPageRenderer sharedPageRenderer] setupGraphicsContext:context inRectangle:clipRect pageInfo:pageInfo];
 
     // Flip drawing.
     CGContextTranslateCTM(context, 0, pageInfo.rotatedPageRect.size.height);
