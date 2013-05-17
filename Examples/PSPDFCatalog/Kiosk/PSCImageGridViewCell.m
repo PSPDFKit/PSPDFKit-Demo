@@ -56,6 +56,9 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         [_deleteButton sizeToFit];
         [self.contentView addSubview:_deleteButton];
         _deleteButton.hidden = YES;
+
+        // Remove selection set in superclass
+        self.selectedBackgroundView = nil;
     }
     return self;
 }
