@@ -421,7 +421,6 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"PDF annotation writing" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
@@ -441,6 +440,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
                                             PSPDFAnnotationTypeStringSignature,
                                             PSPDFAnnotationTypeStringStamp,
                                             PSPDFAnnotationTypeStringImage,
+                                            PSPDFAnnotationTypeStringPolygon,
                                             nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
