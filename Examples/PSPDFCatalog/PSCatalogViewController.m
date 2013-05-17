@@ -2276,7 +2276,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
             PSPDFWord *word = [[document textParserForPage:0].words objectAtIndex:idx];
             PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
             CGRect boundingBox;
-            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation] forPage:0];
             [document saveChangedAnnotationsWithError:NULL];
