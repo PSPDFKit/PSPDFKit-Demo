@@ -2307,6 +2307,13 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Check that there's a link inside that document.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test URL parsing" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_URL-broken.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // Test that the link correctly opens a new document.
     // Correct if it doesn't crash and then shows "PROCEDURES" as document.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test GoToR actions" block:^UIViewController *{
