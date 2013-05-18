@@ -9,6 +9,8 @@
 
 @interface PSCOverlayFileAnnotationProvider : PSPDFFileAnnotationProvider @end
 
+// This is an example how to modify all annotations to render as overlay.
+// Note that this is a corner case and isn't as greatly tested.
 @implementation PSCCustomSubviewPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////
