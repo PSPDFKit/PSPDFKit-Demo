@@ -122,10 +122,11 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        //        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
+        // PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+        controller.imageSelectionEnabled = NO;
         return controller;
     }]];
 
