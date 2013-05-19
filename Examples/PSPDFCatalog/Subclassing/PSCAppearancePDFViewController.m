@@ -24,7 +24,7 @@
     [[UIToolbar appearanceWhenContainedIn:PSCAppearancePDFViewController.class, nil] setTintColor:UIColor.orangeColor];
 
     // All buttons as well.
-    UIColor *skyBlue = [UIColor colorWithRed:0.250 green:0.339 blue:0.486 alpha:1.000];
+    UIColor *skyBlue = [UIColor colorWithRed:0.250f green:0.339f blue:0.486f alpha:1.000f];
     [[UIBarButtonItem appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setTintColor:skyBlue];
     [[UISegmentedControl appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setTintColor:skyBlue];
 

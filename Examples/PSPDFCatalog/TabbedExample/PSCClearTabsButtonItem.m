@@ -16,12 +16,13 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
+    PSPDFViewController *pdfController = self.pdfController;
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
     _isDismissingSheet = NO;
 
     [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Close all tabs") block:^{
-        if ([self.pdfController.parentViewController isKindOfClass:[PSPDFTabbedViewController class]]) {
-            PSPDFTabbedViewController *tabbedController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
+        if ([pdfController.parentViewController isKindOfClass:[PSPDFTabbedViewController class]]) {
+            PSPDFTabbedViewController *tabbedController = (PSPDFTabbedViewController *)pdfController.parentViewController;
             [tabbedController removeDocuments:tabbedController.documents animated:animated];
         }
     }];
@@ -33,9 +34,9 @@
         [self didDismiss];
     }];
 
-    BOOL shouldShow = [self.pdfController delegateShouldShowController:actionSheet embeddedInController:nil animated:animated];
+    BOOL shouldShow = [pdfController delegateShouldShowController:actionSheet embeddedInController:nil animated:animated];
     if (shouldShow) {
-        [actionSheet showWithSender:sender fallbackView:[self.pdfController masterViewController].view animated:animated];
+        [actionSheet showWithSender:sender fallbackView:[pdfController masterViewController].view animated:animated];
         self.actionSheet = actionSheet;
         return self.actionSheet;
     }else {

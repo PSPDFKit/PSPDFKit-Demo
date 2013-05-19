@@ -50,8 +50,8 @@
     @autoreleasepool {
         if (self.isLocked) {
             if (!CGSizeEqualToSize(size, CGSizeZero)) {
-                UIGraphicsBeginImageContextWithOptions(size, YES, 0.0);
-                [[UIColor colorWithWhite:0.9 alpha:1.f] setFill];
+                UIGraphicsBeginImageContextWithOptions(size, YES, 0.0f);
+                [[UIColor colorWithWhite:0.9f alpha:1.f] setFill];
                 CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
                 UIImage *lockImage = [UIImage imageNamed:@"lock"];
                 CGSize lockImageTargetSize = PSPDFSizeForScale(lockImage.size, PSIsIpad() ? 0.6f : 0.3f);

@@ -36,15 +36,16 @@ const char kPSCAlertViewKey;
 - (void)action:(PSPDFBarButtonItem *)sender {
     [self.class dismissPopoverAnimated:YES];
 
+    PSPDFViewController *pdfController = self.pdfController;
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to Page") message:nil];
-    websitePrompt.tintColor = [self.pdfController alertViewTintColor];
+    websitePrompt.tintColor = [pdfController alertViewTintColor];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
     [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") extendedBlock:^(PSPDFAlertView *alert, NSInteger buttonIndex) {
 
         NSString *pageLabel = [alert textFieldAtIndex:0].text ?: @"";
-        NSUInteger pageIndex = [self.pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
+        NSUInteger pageIndex = [pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
 
         // if input is just numeric, convert to page
         if (pageIndex == NSNotFound) {
@@ -58,8 +59,8 @@ const char kPSCAlertViewKey;
         if (pageIndex == NSNotFound) {
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Page %@ not found"), pageLabel] message:nil delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
         }else {
-            [self.pdfController setViewMode:PSPDFViewModeDocument animated:YES];
-            [self.pdfController setPage:pageIndex animated:YES];
+            [pdfController setViewMode:PSPDFViewModeDocument animated:YES];
+            [pdfController setPage:pageIndex animated:YES];
         }
     }];
 
