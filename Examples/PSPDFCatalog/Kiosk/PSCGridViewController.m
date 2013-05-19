@@ -646,6 +646,7 @@
         } else if (!magazine.isAvailable && !magazine.isDownloading) {
             if (!self.isEditing) {
                 [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
+                [collectionView deselectItemAtIndexPath:indexPath animated:YES];
             }
         } else {
             [self openMagazine:magazine animated:YES cellIndex:indexPath.item];
