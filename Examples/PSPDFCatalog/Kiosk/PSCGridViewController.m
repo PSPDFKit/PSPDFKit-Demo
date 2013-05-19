@@ -399,9 +399,9 @@
     // Try to get full-size image, if that fails try thumbnail.
     UIImage *coverImage = [self imageForMagazine:magazine];
     if (animated && coverImage && !magazine.isLocked) {
-        PSUICollectionViewCell *cell = (PSUICollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
+        PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
         cell.hidden = YES;
-        CGRect cellCoords = [self.collectionView convertRect:cell.frame toView:self.view];
+        CGRect cellCoords = [cell.imageView convertRect:cell.imageView.bounds toView:self.view];
         UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
         coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         coverImageView.frame = cellCoords;
