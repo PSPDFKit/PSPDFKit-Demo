@@ -103,12 +103,12 @@
 }
 
 /// called after pdf page has been loaded and added to the pagingScrollView.
-- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     NSLog(@"didLoadPageView: page:%d", pageView.page);
 }
 
 /// called before a pdf page will be unloaded and removed from the pagingScrollView.
-- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView {
     NSLog(@"willUnloadPageView: page:%d", pageView.page);
 }
 

@@ -76,7 +76,7 @@ static const NSUInteger kPreambleSize = 2;
   return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
 }
 
-+ (NSData *)decryptData:(NSData *)theCipherText withEncryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(NSError **)anError;
++ (NSData *)decryptData:(NSData *)theCipherText withEncryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(NSError **)anError
 {
   RNDecryptor *cryptor = [[self alloc] initWithEncryptionKey:encryptionKey
                                                      HMACKey:HMACKey
