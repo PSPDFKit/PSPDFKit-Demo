@@ -10,6 +10,7 @@
 /// Shows how to change the UI in a way like Dropbox did.
 @interface PSCDropboxPDFViewController : PSPDFViewController
 
+/// Conntected floating toolbar.
 @property (nonatomic, strong) PSCDropboxFloatingToolbar *floatingToolbar;
 
 @end
