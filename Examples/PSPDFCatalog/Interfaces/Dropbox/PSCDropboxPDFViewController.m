@@ -8,7 +8,6 @@
 #import "PSCDropboxPDFViewController.h"
 
 @interface PSCDropboxPDFViewController () <PSPDFViewControllerDelegate>
-
 @end
 
 @implementation PSCDropboxPDFViewController
@@ -22,9 +21,16 @@
     self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
+    self.thumbnailController.filterOptions = nil;
+    self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
     self.leftBarButtonItems = nil;
     self.rightBarButtonItems = nil;
     self.delegate = self;
+
+    if (!PSIsIpad()) {
+        self.title = document.title;
+        self.documentLabelEnabled = NO;
+    }
 }
 
 - (void)viewDidLoad {
@@ -32,7 +38,7 @@
 
     // Add the floating toolbar to the HUD
     self.floatingToolbar = [PSCDropboxFloatingToolbar new];
-    self.floatingToolbar.frame = CGRectMake(20, 20, 0, 0);
+    self.floatingToolbar.frame = CGRectMake(20.f, 20.f, 0.f, 0.f);
     [self updateFloatingToolbarAnimated:NO]; // will update size.
     [self.HUDView addSubview:self.floatingToolbar];
 }
@@ -49,7 +55,7 @@
 #pragma mark - Private
 
 - (void)updateFloatingToolbarAnimated:(BOOL)animated {
-    [UIView animateWithDuration:animated ? 0.25 : 0.f animations:^{
+    [UIView animateWithDuration:animated ? 0.25f : 0.f animations:^{
         BOOL showToolbar = self.document.isValid && self.viewMode == PSPDFViewModeDocument;
         self.floatingToolbar.alpha = showToolbar ? 0.8f : 0.f;
     }];
