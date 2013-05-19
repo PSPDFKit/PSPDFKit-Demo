@@ -19,7 +19,7 @@
 
     // Only use the PSCThumbnailGridViewCell subclass so that we don't override all examples here.
     // In your code you can simply use PSPDFThumbnailGridViewCell.
-    [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setRectColor:[UIColor colorWithRed:0.165 green:0.226 blue:0.650 alpha:0.800]];
+    [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setRectColor:[UIColor colorWithRed:0.165f green:0.226f blue:0.650f alpha:0.800f]];
     [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setCornerRadius:20];
 
     // Register our custom cell as subclass.

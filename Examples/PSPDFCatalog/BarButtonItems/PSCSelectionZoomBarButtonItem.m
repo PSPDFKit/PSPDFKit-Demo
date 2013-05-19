@@ -44,9 +44,10 @@
 
 - (BOOL)cleanup {
     if (_selectionView) {
-        self.pdfController.rotationLockEnabled = _savedRotationLock;
-        self.pdfController.viewLockEnabled = _savedViewLock;
-        self.pdfController.textSelectionEnabled = _savedTextSelection;
+        PSPDFViewController *pdfController = self.pdfController;
+        pdfController.rotationLockEnabled = _savedRotationLock;
+        pdfController.viewLockEnabled = _savedViewLock;
+        pdfController.textSelectionEnabled = _savedTextSelection;
         _selectionView.delegate = nil;
         [_selectionView removeFromSuperview];
         _selectionView = nil;
@@ -61,14 +62,15 @@
 
     if (![self cleanup]) {
         // disable various features to lock UI
-        _savedViewLock = self.pdfController.isViewLockEnabled;
-        _savedRotationLock = self.pdfController.isRotationLockEnabled;
-        _savedTextSelection = self.pdfController.isTextSelectionEnabled;
-        self.pdfController.viewLockEnabled = YES;
-        self.pdfController.rotationLockEnabled = YES;
-        self.pdfController.textSelectionEnabled = NO;
+        PSPDFViewController *pdfController = self.pdfController;
+        _savedViewLock = pdfController.isViewLockEnabled;
+        _savedRotationLock = pdfController.isRotationLockEnabled;
+        _savedTextSelection = pdfController.isTextSelectionEnabled;
+        pdfController.viewLockEnabled = YES;
+        pdfController.rotationLockEnabled = YES;
+        pdfController.textSelectionEnabled = NO;
 
-        PSPDFPageView *pageView = [self.pdfController pageViewForPage:self.pdfController.page];
+        PSPDFPageView *pageView = [pdfController pageViewForPage:pdfController.page];
 
         _selectionView = [[PSPDFSelectionView alloc] initWithFrame:pageView.bounds delegate:self];
         [pageView addSubview:_selectionView];

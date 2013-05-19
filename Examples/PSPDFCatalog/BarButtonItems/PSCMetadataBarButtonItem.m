@@ -59,8 +59,10 @@
 #pragma mark - UITableViewDataSource
 
 - (NSString *)metadataForRow:(NSUInteger)row {
-    NSArray *sortedKeys = [[self.document.metadata allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    NSString *metadata = self.document.metadata[sortedKeys[row]];
+    PSPDFDocument *document = self.document;
+    
+    NSArray *sortedKeys = [[document.metadata allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSString *metadata = document.metadata[sortedKeys[row]];
     if (![metadata isKindOfClass:[NSString class]]) {
         if ([metadata isKindOfClass:[NSArray class]]) {
             metadata = [(NSArray *)metadata componentsJoinedByString:@", "];

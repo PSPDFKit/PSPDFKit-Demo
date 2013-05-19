@@ -695,7 +695,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         self.navigationController.navigationBarHidden = YES;
 
         // pop back after 5 seconds.
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 5.f * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [self.navigationController popViewControllerAnimated:YES];
             [alertView dismissWithClickedButtonIndex:1 animated:YES];
@@ -1232,7 +1232,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
     }]];
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Sign all pages." block:^UIViewController *{
-        UIColor *penBlueColor = [UIColor colorWithRed:0.000 green:0.030 blue:0.516 alpha:1.000];
+        UIColor *penBlueColor = [UIColor colorWithRed:0.000f green:0.030f blue:0.516f alpha:1.000f];
 
         // Show the signature controller
         PSPDFSignatureViewController *signatureController = [[PSPDFSignatureViewController alloc] init];
@@ -2116,8 +2116,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         pdfController.page = 12;
         //[PSPDFFontCacheTest runWithDocumentAtPath:[document.fileURL path]];
 
-        int64_t delayInSeconds = 0.5f;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             [pdfController searchForString:@"control points" animated:YES];
         });

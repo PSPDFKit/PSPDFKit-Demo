@@ -22,12 +22,12 @@
     if ((self = [super init])) {
         _pdfController = pdfController;
 
-        self.toolbar = self.pdfController.annotationButtonItem.annotationToolbar;
+        self.toolbar = pdfController.annotationButtonItem.annotationToolbar;
         self.toolbar.delegate = self;
         self.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.8f];
 
         // draw button
-        if ([self.pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringInk]) {
+        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringInk]) {
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
             UIImage *sketchImage = [UIImage imageNamed:@"PSPDFKit.bundle/sketch"];
             [drawButton setImage:sketchImage forState:UIControlStateNormal];
@@ -37,7 +37,7 @@
         }
 
         // draw button
-        if ([self.pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringFreeText]) {
+        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringFreeText]) {
         UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *freeTextImage = [UIImage imageNamed:@"PSPDFKit.bundle/freetext"];
         [freetextButton setImage:freeTextImage forState:UIControlStateNormal];
@@ -66,23 +66,25 @@
 #pragma mark - Events
 
 - (void)drawButtonPressed:(id)sender {
+    PSPDFViewController *pdfController = self.pdfController;
+
     if (self.toolbar.toolbarMode != PSPDFAnnotationToolbarDraw) {
-        self.pdfController.HUDViewMode = PSPDFHUDViewAlways;
+        pdfController.HUDViewMode = PSPDFHUDViewAlways;
         if (!self.toolbar.window) {
             // match style
-            self.toolbar.barStyle = self.pdfController.navigationBarStyle;
-            self.toolbar.translucent = self.pdfController.isTransparentHUD;
-            self.toolbar.tintColor = self.pdfController.tintColor;
+            self.toolbar.barStyle = pdfController.navigationBarStyle;
+            self.toolbar.translucent = pdfController.isTransparentHUD;
+            self.toolbar.tintColor = pdfController.tintColor;
 
             // add the toolbar to the view hierarchy for color picking etc
-            if (self.pdfController.navigationController) {
-                CGRect targetRect = self.pdfController.navigationController.navigationBar.frame;
-                [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:self.pdfController.navigationController.navigationBar];
+            if (pdfController.navigationController) {
+                CGRect targetRect = pdfController.navigationController.navigationBar.frame;
+                [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:pdfController.navigationController.navigationBar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }else {
-                CGRect contentRect = self.pdfController.contentRect;
-                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, self.pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(self.pdfController.interfaceOrientation));
-                [self.pdfController.view addSubview:self.toolbar];
+                CGRect contentRect = pdfController.contentRect;
+                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(pdfController.interfaceOrientation));
+                [pdfController.view addSubview:self.toolbar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }
         }
@@ -90,7 +92,7 @@
         // call draw mode of the toolbar
         [self.toolbar drawButtonPressed:sender];
     }else {
-        self.pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
+        pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
         // remove toolbar
         [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
         [self.toolbar finishDrawingAnimated:YES andSaveAnnotation:NO];

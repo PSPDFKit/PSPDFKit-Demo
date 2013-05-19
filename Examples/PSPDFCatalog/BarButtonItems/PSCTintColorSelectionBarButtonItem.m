@@ -53,15 +53,17 @@
 #pragma mark - Private
 
 - (void)selectStrokeColor:(id)sender {
-    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopoverAndVisible(self.pdfController.popoverController, [PSPDFSimplePageViewController class]);
+    PSPDFViewController *pdfController = self.pdfController;
+    
+    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopoverAndVisible(pdfController.popoverController, [PSPDFSimplePageViewController class]);
     if (alreadyDisplayed) {
-        [self.pdfController.popoverController dismissPopoverAnimated:YES];
-        self.pdfController.popoverController = nil;
+        [pdfController.popoverController dismissPopoverAnimated:YES];
+        pdfController.popoverController = nil;
     }else {
         NSString *viewControllerTitle = NSLocalizedString(@"Tint Color", @"");
         PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle delegate:self context:NULL];
         if (colorPicker) {
-            [self.pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
+            [pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
         }else {
             PSPDFLogError(@"Color picker can't be displayed. Is PSPDFKit.bundle missing?");
         }
@@ -77,9 +79,10 @@
 
 - (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished context:(void *)context {
     controller.navigationController.navigationBar.tintColor = color;
-    self.pdfController.tintColor = color;
+    PSPDFViewController *pdfController = self.pdfController;
+    pdfController.tintColor = color;
     [self dismissModalOrPopoverAnimated:YES];
-    [self.pdfController createToolbarAnimated:NO];
+    [pdfController createToolbarAnimated:NO];
 }
 
 @end
