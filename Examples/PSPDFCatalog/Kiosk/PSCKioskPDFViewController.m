@@ -49,7 +49,7 @@
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
         // Disabled by default, since this can be slow.
         /*
-        __weak typeof (self) weakSelf = self;
+        __weak typeof(self) weakSelf = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             CGFloat variance = [document aspectRatioVariance];
             dispatch_async(dispatch_get_main_queue(), ^{
