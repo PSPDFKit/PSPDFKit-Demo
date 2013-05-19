@@ -43,10 +43,10 @@ const uint8_t kRNCryptorFileVersion = 2;
 @implementation NSMutableData (RNCryptor)
 - (NSData *)_RNConsumeToIndex:(NSUInteger)index
 {
-  NSData *removed = [self subdataWithRange:NSMakeRange(0, index)];
-  [self replaceBytesInRange:NSMakeRange(0, self.length - index) withBytes:([self mutableBytes] + index)];
-  [self setLength:self.length - index];
-  return removed;
+    NSData *removed = [self subdataWithRange:NSMakeRange(0, index)];
+    [self replaceBytesInRange:NSMakeRange(0, self.length - index) withBytes:([self mutableBytes] + index)];
+    [self setLength:self.length - index];
+    return removed;
 }
 @end
 
@@ -64,45 +64,45 @@ const uint8_t kRNCryptorFileVersion = 2;
 
 + (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(NSError **)anError
 {
-  dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 
-  NSMutableData *data = [NSMutableData data];
-  __block NSError *returnedError = nil;
+    NSMutableData *data = [NSMutableData data];
+    __block NSError *returnedError = nil;
 
-  RNCryptorHandler handler = ^(RNCryptor *c, NSData *d) {
-    [data appendData:d];
-    if (c.isFinished) {
-      returnedError = c.error;
-      dispatch_semaphore_signal(sem);
-    }
-  };
+    RNCryptorHandler handler = ^(RNCryptor *c, NSData *d) {
+        [data appendData:d];
+        if (c.isFinished) {
+            returnedError = c.error;
+            dispatch_semaphore_signal(sem);
+        }
+    };
 
-  cryptor.handler = handler;
+    cryptor.handler = handler;
 
-  dispatch_queue_t queue = dispatch_queue_create("net.robnapier.RNEncryptor.response", DISPATCH_QUEUE_SERIAL);
-  cryptor.responseQueue = queue;
-  [cryptor addData:inData];
-  [cryptor finish];
+    dispatch_queue_t queue = dispatch_queue_create("net.robnapier.RNEncryptor.response", DISPATCH_QUEUE_SERIAL);
+    cryptor.responseQueue = queue;
+    [cryptor addData:inData];
+    [cryptor finish];
 
 
-  dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
 
 #if !OS_OBJECT_USE_OBJC
-  dispatch_release(sem);
-  if (queue) {
-    dispatch_release(queue);
-  }
+    dispatch_release(sem);
+    if (queue) {
+        dispatch_release(queue);
+    }
 #endif
 
-  if (returnedError) {
-    if (anError) {
-      *anError = returnedError;
+    if (returnedError) {
+        if (anError) {
+            *anError = returnedError;
+        }
+        return nil;
     }
-    return nil;
-  }
-  else {
-    return data;
-  }
+    else {
+        return data;
+    }
 }
 
 // For use with OS X 10.6
@@ -166,14 +166,14 @@ PRF(CCPseudoRandomAlgorithm prf, const char *password, size_t passwordLen, u_int
 
 static int
 RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_t passwordLen,
-                     const uint8_t *salt, size_t saltLen,
-                     CCPseudoRandomAlgorithm prf, uint rounds,
-                     uint8_t *derivedKey, size_t derivedKeyLen)
+                        const uint8_t *salt, size_t saltLen,
+                        CCPseudoRandomAlgorithm prf, uint rounds,
+                        uint8_t *derivedKey, size_t derivedKeyLen)
 {
 	u_int8_t oldbuffer[CC_MAX_PRF_WORKSPACE], newbuffer[CC_MAX_PRF_WORKSPACE],
-  saltCopy[CC_MAX_PRF_WORKSPACE+4], collector[CC_MAX_PRF_WORKSPACE];
+    saltCopy[CC_MAX_PRF_WORKSPACE+4], collector[CC_MAX_PRF_WORKSPACE];
 	int rawblock, i, j;
-  size_t r, nblocks;
+    size_t r, nblocks;
 	size_t	hlen, offset;
 
 	if(algorithm != kCCPBKDF2) return -1;
@@ -188,6 +188,7 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 		return -1; // out of bounds parameters
 
 	hlen = getPRFhlen(prf);
+    if (hlen == 0) hlen = 1; // don't divide through zero.
 
 	/*
 	 * FromSpec: Let l be the number of hLen-octet blocks in the derived key, rounding up,
@@ -196,7 +197,7 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 
 	nblocks = (derivedKeyLen+hlen-1)/hlen; // in the spec nblocks is referred to as l
 	r = derivedKeyLen % hlen;
-  r = (r) ? r: hlen;
+    r = (r) ? r: hlen;
 
 	/*
 	 * Make a copy of the salt buffer so we can concatenate the
@@ -254,7 +255,7 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 	bzero(newbuffer, CC_MAX_PRF_WORKSPACE);
 	bzero(collector, CC_MAX_PRF_WORKSPACE);
 	bzero(saltCopy, CC_MAX_PRF_WORKSPACE+4);
-	
+
 	return 0;
 }
 
@@ -263,37 +264,37 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
 
 + (NSData *)keyForPassword:(NSString *)password salt:(NSData *)salt settings:(RNCryptorKeyDerivationSettings)keySettings
 {
-  NSMutableData *derivedKey = [NSMutableData dataWithLength:keySettings.keySize];
+    NSMutableData *derivedKey = [NSMutableData dataWithLength:keySettings.keySize];
 
-  int result;
-  if (CCKeyDerivationPBKDF != NULL) {
-    result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
-                                  password.UTF8String,                // password
-                                  password.length,                    // passwordLength
-                                  salt.bytes,                         // salt
-                                  salt.length,                        // saltLen
-                                  keySettings.PRF,                    // PRF
-                                  keySettings.rounds,                 // rounds
-                                  derivedKey.mutableBytes,            // derivedKey
-                                  derivedKey.length);                 // derivedKeyLen
-  }
-  else {
-    result = RN_CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
-                                     password.UTF8String,                // password
-                                     password.length,                    // passwordLength
-                                     salt.bytes,                         // salt
-                                     salt.length,                        // saltLen
-                                     keySettings.PRF,                    // PRF
-                                     keySettings.rounds,                 // rounds
-                                     derivedKey.mutableBytes,            // derivedKey
-                                     derivedKey.length);                 // derivedKeyLen
-  }
+    int result;
+    if (CCKeyDerivationPBKDF != NULL) {
+        result = CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
+                                      password.UTF8String,                // password
+                                      password.length,                    // passwordLength
+                                      salt.bytes,                         // salt
+                                      salt.length,                        // saltLen
+                                      keySettings.PRF,                    // PRF
+                                      keySettings.rounds,                 // rounds
+                                      derivedKey.mutableBytes,            // derivedKey
+                                      derivedKey.length);                 // derivedKeyLen
+    }
+    else {
+        result = RN_CCKeyDerivationPBKDF(keySettings.PBKDFAlgorithm,         // algorithm
+                                         password.UTF8String,                // password
+                                         password.length,                    // passwordLength
+                                         salt.bytes,                         // salt
+                                         salt.length,                        // saltLen
+                                         keySettings.PRF,                    // PRF
+                                         keySettings.rounds,                 // rounds
+                                         derivedKey.mutableBytes,            // derivedKey
+                                         derivedKey.length);                 // derivedKeyLen
+    }
 
-  // Do not log password here
-  // TODO: Is is safe to assert here? We read salt from a file (but salt.length is internal).
-  NSAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
+    // Do not log password here
+    // TODO: Is is safe to assert here? We read salt from a file (but salt.length is internal).
+    NSAssert(result == kCCSuccess, @"Unable to create AES key for password: %d", result);
 
-  return derivedKey;
+    return derivedKey;
 }
 
 // For use on OS X 10.6
@@ -322,27 +323,27 @@ RN_CCKeyDerivationPBKDF( CCPBKDFAlgorithm algorithm, const char *password, size_
  * @APPLE_LICENSE_HEADER_END@
  */
 static int RN_SecRandomCopyBytes(void *rnd, size_t count, uint8_t *bytes) {
-  static int kSecRandomFD;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    kSecRandomFD = open("/dev/random", O_RDONLY);
-  });
+    static int kSecRandomFD;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kSecRandomFD = open("/dev/random", O_RDONLY);
+    });
 
-  if (kSecRandomFD < 0)
-    return -1;
-  while (count) {
-    ssize_t bytes_read = read(kSecRandomFD, bytes, count);
-    if (bytes_read == -1) {
-      if (errno == EINTR)
-        continue;
-      return -1;
+    if (kSecRandomFD < 0)
+        return -1;
+    while (count) {
+        ssize_t bytes_read = read(kSecRandomFD, bytes, count);
+        if (bytes_read == -1) {
+            if (errno == EINTR)
+                continue;
+            return -1;
+        }
+        if (bytes_read == 0) {
+            return -1;
+        }
+        bytes += bytes_read;
+        count -= bytes_read;
     }
-    if (bytes_read == 0) {
-      return -1;
-    }
-    bytes += bytes_read;
-    count -= bytes_read;
-  }
 
 	return 0;
 }
@@ -350,96 +351,96 @@ static int RN_SecRandomCopyBytes(void *rnd, size_t count, uint8_t *bytes) {
 
 + (NSData *)randomDataOfLength:(size_t)length
 {
-  NSMutableData *data = [NSMutableData dataWithLength:length];
+    NSMutableData *data = [NSMutableData dataWithLength:length];
 
-  int result;
-  if (SecRandomCopyBytes != NULL) {
-    result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
-  }
-  else {
-    result = RN_SecRandomCopyBytes(NULL, length, data.mutableBytes);
-  }
-  NSAssert(result == 0, @"Unable to generate random bytes: %d", errno);
+    int result;
+    if (SecRandomCopyBytes != NULL) {
+        result = SecRandomCopyBytes(NULL, length, data.mutableBytes);
+    }
+    else {
+        result = RN_SecRandomCopyBytes(NULL, length, data.mutableBytes);
+    }
+    NSAssert(result == 0, @"Unable to generate random bytes: %d", errno);
 
-  return data;
+    return data;
 }
 
 - (id)initWithHandler:(RNCryptorHandler)handler
 {
-  NSParameterAssert(handler);
-  self = [super init];
-  if (self) {
-    NSString *responseQueueName = [@"net.robnapier.response." stringByAppendingString:NSStringFromClass([self class])];
-    _responseQueue = dispatch_queue_create([responseQueueName UTF8String], NULL);
+    NSParameterAssert(handler);
+    self = [super init];
+    if (self) {
+        NSString *responseQueueName = [@"net.robnapier.response." stringByAppendingString:NSStringFromClass([self class])];
+        _responseQueue = dispatch_queue_create([responseQueueName UTF8String], NULL);
 
-    NSString *queueName = [@"net.robnapier." stringByAppendingString:NSStringFromClass([self class])];
-    _queue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_SERIAL);
-    __outData = [NSMutableData data];
+        NSString *queueName = [@"net.robnapier." stringByAppendingString:NSStringFromClass([self class])];
+        _queue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_SERIAL);
+        __outData = [NSMutableData data];
 
-    _handler = [handler copy];
-  }
-  return self;
+        _handler = [handler copy];
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-  if (_responseQueue) {
+    if (_responseQueue) {
 #if !OS_OBJECT_USE_OBJC
-    dispatch_release(_responseQueue);
+        dispatch_release(_responseQueue);
 #endif
-    _responseQueue = NULL;
-  }
+        _responseQueue = NULL;
+    }
 
-  if (_queue) {
+    if (_queue) {
 #if !OS_OBJECT_USE_OBJC
-    dispatch_release(_queue);
+        dispatch_release(_queue);
 #endif
-    _queue = NULL;
-  }
+        _queue = NULL;
+    }
 }
 
 - (void)setResponseQueue:(dispatch_queue_t)aResponseQueue
 {
-  if (aResponseQueue) {
+    if (aResponseQueue) {
 #if !OS_OBJECT_USE_OBJC
-    dispatch_retain(aResponseQueue);
+        dispatch_retain(aResponseQueue);
 #endif
-  }
-
-  if (_responseQueue) {
+    }
+    
+    if (_responseQueue) {
 #if !OS_OBJECT_USE_OBJC
-    dispatch_release(_responseQueue);
+        dispatch_release(_responseQueue);
 #endif
-  }
-
-  _responseQueue = aResponseQueue;
+    }
+    
+    _responseQueue = aResponseQueue;
 }
 
 - (void)addData:(NSData *)data
 {
-
+    
 }
 
 - (void)finish
 {
-
+    
 }
 
 - (void)cleanupAndNotifyWithError:(NSError *)error
 {
-  self.error = error;
-  self.finished = YES;
-  if (self.handler) {
-    dispatch_sync(self.responseQueue, ^{
-      self.handler(self, self.outData);
-    });
-    self.handler = nil;
-  }
+    self.error = error;
+    self.finished = YES;
+    if (self.handler) {
+        dispatch_sync(self.responseQueue, ^{
+            self.handler(self, self.outData);
+        });
+        self.handler = nil;
+    }
 }
 
 - (BOOL)hasHMAC
 {
-  return self.HMACLength > 0;
+    return self.HMACLength > 0;
 }
 
 
