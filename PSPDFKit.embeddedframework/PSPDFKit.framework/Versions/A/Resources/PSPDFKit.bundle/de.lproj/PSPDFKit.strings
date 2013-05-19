@@ -96,8 +96,8 @@
 "Type..." = "Typ…";
 "Font..." = "Schrift…";
 "Size..." = "Größe…";
-"Choose Font" = "Schriftart auswählen";
-"Choose Font Style" = "Schrifttyp auswählen";
+"Font" = "Schriftart";
+"Regular" = "Normal";
 "Choose Color" = "Farbe wählen";
 "Rainbow" = "Regenbogen";
 "Monochrome" = "Monochrom";

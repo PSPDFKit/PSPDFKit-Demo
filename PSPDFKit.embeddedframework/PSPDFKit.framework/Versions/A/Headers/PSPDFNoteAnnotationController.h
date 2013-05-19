@@ -55,7 +55,7 @@
 
 /// Set a global block that allows to customize the UITextView and other properties of PSPDFNoteAnnotationController.
 /// Will be called in viewWillAppear. This is the best way to customize the font.
-+ (void)setTextViewCustomizationBlock:(void(^)(PSPDFNoteAnnotationController *))block;
++ (void)setTextViewCustomizationBlock:(void (^)(PSPDFNoteAnnotationController *))block;
 
 /// Attached delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFNoteAnnotationControllerDelegate> delegate;

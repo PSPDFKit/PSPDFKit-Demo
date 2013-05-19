@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class PSPDFRenderReceipt;
 
 @interface PSPDFCacheInfo : NSObject <NSCoding>

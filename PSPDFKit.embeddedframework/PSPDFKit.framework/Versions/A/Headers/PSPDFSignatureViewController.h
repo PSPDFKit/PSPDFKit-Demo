@@ -57,6 +57,7 @@ extern NSString *const PSPDFSignatureControllerTargetPoint;
 
 // To make custom buttons.
 - (void)cancel:(id)sender;
+
 - (void)done:(id)sender;
 
 @end

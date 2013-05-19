@@ -14,7 +14,7 @@
 @interface PSPDFNoteAnnotationView : PSPDFGenericAnnotationView
 
 /// Designated initializer.
-- (id)initWithAnnotation:(PSPDFNoteAnnotation *)noteAnnotation;
+- (id)initWithAnnotation:(PSPDFAnnotation *)noteAnnotation;
 
 /// Image of the rendered annotation.
 @property (nonatomic, strong) UIImageView *annotationImageView;

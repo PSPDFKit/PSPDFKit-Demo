@@ -48,9 +48,13 @@ extern const char kPSPDFBookmarkViewControllerIsResizingPopover;
 @interface PSPDFBookmarkViewController (SubclassingHooks)
 
 - (void)createBarButtonItems;
+
 - (void)updatePopoverSize;
+
 - (void)updateBookmarkView;
+
 - (void)addBookmarkAction:(id)sender;
+
 - (void)doneAction:(id)sender;
 
 @end

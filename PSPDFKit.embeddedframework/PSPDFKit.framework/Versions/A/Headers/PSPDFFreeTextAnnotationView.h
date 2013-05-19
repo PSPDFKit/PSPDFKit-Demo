@@ -15,7 +15,7 @@
 @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnotationView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate>
 
 /// Designated initializer.
-- (id)initWithAnnotation:(PSPDFFreeTextAnnotation *)freeTextAnnotation;
+- (id)initWithAnnotation:(PSPDFAnnotation *)freeTextAnnotation;
 
 /// Start editing, shows the keyboard.
 - (void)beginEditing;

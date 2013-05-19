@@ -6,7 +6,6 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFResizableView.h"
 #import "PSPDFHighlightAnnotation.h"
 
 @class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
@@ -68,7 +67,9 @@
 
 // gesture handling
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
+
 - (BOOL)pressRecognizerShouldHandlePressImmediately:(PSPDFLongPressGestureRecognizer *)recognizer;
+
 - (BOOL)isDragHandleSelected;
 
 @end

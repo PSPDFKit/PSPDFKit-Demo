@@ -46,4 +46,5 @@
 // Helper, useful when dealing with appearance streams.
 // Returns CGRectZero if stream BBox not found.
 extern CGRect PSPDFBoundingBoxFromStream(CGPDFStreamRef streamRef);
+
 extern CGAffineTransform PSPDFMatrixFromStream(CGPDFStreamRef streamRef);

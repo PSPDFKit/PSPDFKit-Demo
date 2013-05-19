@@ -36,10 +36,10 @@ extern CGFloat kPSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
 
 /// Position of the loupe in reference to the referenceView.
-@property(nonatomic, assign) CGPoint touchPoint;
+@property (nonatomic, assign) CGPoint touchPoint;
 
 /// The default mangnification is set to PSPDFLoupeDefaultMagnification.
-@property(nonatomic, assign) CGFloat magnification;
+@property (nonatomic, assign) CGFloat magnification;
 
 // Show loupe, optionally animated.
 - (void)showLoupeAnimated:(BOOL)animated;

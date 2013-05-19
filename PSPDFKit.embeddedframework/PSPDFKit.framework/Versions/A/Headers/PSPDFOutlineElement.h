@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSString *title;
 
 /// Child elements.
-@property (nonatomic, copy, readonly) NSArray *children;
+@property (nonatomic, readonly) NSArray *children;
 
 /// Current outline level.
 @property (nonatomic, assign) NSUInteger level;
@@ -36,7 +36,7 @@
 
 @interface PSPDFOutlineElement (Deprecated)
 
-@property (nonatomic, copy, readonly) NSString *destinationName __attribute__ ((deprecated("Use action.destinationName instead")));
+@property (nonatomic, readonly) NSString *destinationName __attribute__ ((deprecated("Use action.destinationName instead")));
 @property (nonatomic, copy) NSString *relativePath __attribute__ ((deprecated("Use action.relativePath instead")));
 
 @end

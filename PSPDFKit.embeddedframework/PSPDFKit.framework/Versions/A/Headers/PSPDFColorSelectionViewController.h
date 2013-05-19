@@ -32,9 +32,13 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 
 /// Convenience initializers
 + (instancetype)monoChromeSelectionViewController;
+
 + (instancetype)modernColorsSelectionViewController;
+
 + (instancetype)vintageColorsSelectionViewController;
+
 + (instancetype)rainbowSelectionViewController;
+
 + (instancetype)colorSelectionViewControllerFromColors:(NSArray *)colorsArray addDarkenedVariants:(BOOL)darkenedVariants;
 
 /// Helper that generates a color array from a saved plist. See PSPDFKit.bundle for examples.

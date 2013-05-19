@@ -43,11 +43,13 @@
 /// The tab bar delegate.
 @protocol PSPDFTabBarViewDelegate <NSObject>
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectTabAtIndex:(NSUInteger)index;
+
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectCloseButtonOfTabAtIndex:(NSUInteger)index;
 @end
 
 /// The tab bar dataSource.
 @protocol PSPDFTabBarViewDataSource <NSObject>
 - (NSInteger)numberOfTabsInTabBarView:(PSPDFTabBarView *)tabBarView;
+
 - (NSString *)tabBarView:(PSPDFTabBarView *)tabBarView titleForTabAtIndex:(NSUInteger)index;
 @end

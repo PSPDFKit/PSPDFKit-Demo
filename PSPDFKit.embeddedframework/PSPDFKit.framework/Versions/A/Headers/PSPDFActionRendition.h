@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, PSPDFActionRenditionOperation) {
 
 /// Designated initializers
 - (id)init;
+
 - (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
 
 /// The rendition action operation.

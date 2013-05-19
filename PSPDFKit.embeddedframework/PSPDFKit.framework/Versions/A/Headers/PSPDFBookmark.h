@@ -25,7 +25,7 @@
 @property (nonatomic, strong) PSPDFAction *action;
 
 /// Convenience shortcut for self.action.pageIndex (if action is of type PSPDFActionGoTo)
-/// @return NSNotFound if action is nil or a different type.
+/// Page is set to NSNotFound if action is nil or a different type.
 @property (nonatomic, assign) NSUInteger page;
 
 /// Bookmark can have a name. This is optional and can be displayed on the PSPDFBookmarkViewController.

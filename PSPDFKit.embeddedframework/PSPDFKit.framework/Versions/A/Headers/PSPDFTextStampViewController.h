@@ -31,7 +31,7 @@
 - (id)initWithStampAnnotation:(PSPDFStampAnnotation *)stampAnnotation;
 
 /// Text Stamp controller delegate.
-@property (nonatomic, weak) IBOutlet id <PSPDFTextStampViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFTextStampViewControllerDelegate> delegate;
 
 /// The stamp annotation.
 ///

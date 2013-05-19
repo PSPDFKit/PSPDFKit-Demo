@@ -453,6 +453,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 
 /// Enable to allow tinting of PSPDFAlertView. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldTintAlertView;
+
 - (UIColor *)alertViewTintColor; // Helper
 
 /// If not set, we'll use scrollViewTexturedBackgroundColor as default.
@@ -533,6 +534,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 
 /// Depending on pageMode, this returns true if two pages are displayed.
 - (BOOL)isDoublePageMode;
+
 - (BOOL)isDoublePageModeForOrientation:(UIInterfaceOrientation)interfaceOrientation;
 
 /// There are certain cases where even in double page situations one page has to be displayed. (e.g. cover page; last page)
@@ -572,6 +574,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 /// Override if you're changing the toolbar to your own.
 /// The toolbar is only displayed, if PSPDFViewController is inside a UINavigationController.
 - (void)createToolbarAnimated:(BOOL)animated;
+
 - (void)updateToolbarAnimated:(BOOL)animated;
 
 /// Request to update a specific barButton. Might be more efficient than using createToolbar.
@@ -614,8 +617,11 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 /// Document title label view. (default iPhone only)
 @property (nonatomic, strong) PSPDFDocumentLabelView *documentLabel;
 
-/// Scrobble bar. Created lazily.
+/// Scrobble bar. Created lazily. Available if PSPDFThumbnailBarModeScrobbleBar is set.
 @property (nonatomic, strong, readonly) PSPDFScrobbleBar *scrobbleBar;
+
+/// Thumbnail bar. Created lazily. Available if PSPDFThumbnailBarModeScrollable is set.
+@property (nonatomic, strong, readonly) PSPDFThumbnailBar *thumbnailBar;
 
 // Allows access to the annotation cache.
 @property (nonatomic, strong, readonly) PSPDFAnnotationViewCache *annotationViewCache;

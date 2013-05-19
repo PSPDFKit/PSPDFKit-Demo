@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFModel.h"
+
 @class PSPDFAnnotation;
 
 /// Defines an annotation style.

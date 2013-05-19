@@ -76,12 +76,6 @@ extern CGFloat kPSPDFInitialAnnotationLoadDelay;
 /// Detect if it's a crappy device (everything before iPhone4 or iPad2 is defined as "crap")
 extern BOOL PSPDFIsCrappyDevice(void);
 
-/// Class name for PSPDFCache singleton. Change this at the very beginning of your app to support a custom subclass.
-extern NSString *kPSPDFCacheClassName;
-
-/// Class name for PSPDFIconGenerator singleton. Change this at the very beginning of your app to support a custom subclass.
-extern NSString *kPSPDFIconGeneratorClassName;
-
 // Returns the (localized) name of the current app.
 extern NSString *PSPDFAppName(void);
 
@@ -102,7 +96,7 @@ extern void PSPDFSetLocalizationDictionary(NSDictionary *localizationDict);
 
 /// Register a custom block that handles translation.
 /// If this block returns nil, the PSPDFKit.bundle + localizationDict will be used.
-extern void PSPDFSetLocalizationBlock(NSString* (^localizationBlock)(NSString *stringToLocalize));
+extern void PSPDFSetLocalizationBlock(NSString *(^localizationBlock)(NSString *stringToLocalize));
 
 /// Resolves paths like "Documents" or "Bundle" to their real path.
 /// If no name is found, the bundle string is always attached, unless fallbackPath is set.
@@ -110,6 +104,7 @@ extern void PSPDFSetLocalizationBlock(NSString* (^localizationBlock)(NSString *s
 /// Resolvable tokens must start with a slash. (e.g. /Bundle/Samples)
 /// If the path is from root directory, it won't be resolved.
 extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
+
 extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath, NSString *(^resolveUnknownPathBlock)(NSString *unknownPath));
 
 /// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to YES. Defaults to NO.
@@ -141,6 +136,7 @@ extern UIActionSheetStyle PSPDFActionSheetStyleForBarButtonStyle(UIBarStyle barS
 
 // Returns toolbar height (44; except on iPhone)
 extern CGFloat PSPDFToolbarHeightForOrientation(UIInterfaceOrientation orientation);
+
 extern CGFloat PSPDFToolbarHeight(BOOL isSmall);
 
 // Rounds to pixel boundaries (0.5 step on retina)
@@ -171,7 +167,9 @@ extern double PSPDFPerformAndTrackTime(dispatch_block_t block, BOOL trackTime);
 // This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
 // Older variants still need shouldAutorotate* handling in the view controllers.
 extern BOOL PSPDFIsRotationLocked(void);
+
 extern void PSPDFLockRotation(void);
+
 extern void PSPDFUnlockRotation(void);
 
 // Returns a unique temporary file URL.
@@ -250,8 +248,10 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0 || _
 @interface NSArray (PSPDFCollections)
 - (id)ps_firstObject;
 @end
+
 @interface NSMutableArray (PSPDFCollections)
 - (void)ps_addObjectSafe:(id)anObject;
+
 - (void)ps_addObjectsFromArraySafe:(NSArray *)otherArray;
 @end
 

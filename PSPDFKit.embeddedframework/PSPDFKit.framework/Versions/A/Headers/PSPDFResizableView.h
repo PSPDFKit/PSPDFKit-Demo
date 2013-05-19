@@ -8,7 +8,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLongPressGestureRecognizer.h"
 
-@class PSPDFResizableView, PSPDFAnnotation;
+@class PSPDFResizableView, PSPDFAnnotation, PSPDFPageView;
 
 /// Delegate to be notified on session begin/end and frame changes.
 @protocol PSPDFResizableViewDelegate <NSObject>
@@ -37,18 +37,11 @@
 
 @end
 
-typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
-    PSPDFSelectionBorderKnobTypeNone,
-    PSPDFSelectionBorderKnobTypeMove,
-    PSPDFSelectionBorderKnobTypeTopLeft,
-    PSPDFSelectionBorderKnobTypeTopMiddle,
-    PSPDFSelectionBorderKnobTypeTopRight,
-    PSPDFSelectionBorderKnobTypeMiddleLeft,
-    PSPDFSelectionBorderKnobTypeMiddleRight,
-    PSPDFSelectionBorderKnobTypeBottomLeft,
-    PSPDFSelectionBorderKnobTypeBottomMiddle,
-    PSPDFSelectionBorderKnobTypeBottomRight,
-    PSPDFSelectionBorderKnobTypeCustom
+typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
+    PSPDFResizableViewModeIdle,   /// Nothing is currently happening.
+    PSPDFResizableViewModeMove,   /// The annotation is being moved.
+    PSPDFResizableViewModeResize, /// The annotation is being resized.
+    PSPDFResizableViewModeAdjust  /// The shape of the annotation is being adjusted.
 };
 
 /// Handles view selection with resize knobs.
@@ -64,12 +57,23 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 /// Set zoomscale to be able to draw the page knobs at the correct size.
 @property (nonatomic, assign) CGFloat zoomScale;
 
+/// Will be applied to the contentFrame to calculate frame if an annotation has more than 2 points.
+/// Use negative values to add space around the tracked annotation view. Defaults to -20.0f for top, bottom, right, and left.
+@property (nonatomic, assign) UIEdgeInsets edgeInsets;
+
+/// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or edgeInsets.
+- (UIEdgeInsets)effectiveEdgeInsets;
+
 /// If set to NO, won't show selection knobs and dragging. Defaults to YES.
 @property (nonatomic, assign) BOOL allowEditing;
 
 /// Allows view resizing, shows resize knobs.
-/// If set to NO, view can only be moved, no resize knobs will be displayed. Depends on allowEditing. Defaults to YES.
+/// If set to NO, view can only be moved or adjusted, no resize knobs will be displayed. Depends on allowEditing. Defaults to YES.
 @property (nonatomic, assign) BOOL allowResizing;
+
+/// Allows view adjusting, shows knobs to move single points.
+/// If set to NO, view can only be moved or resized, no adjust knobs will be displayed. Depends on allowEditing. Defaults to YES.
+@property (nonatomic, assign) BOOL allowAdjusting;
 
 /// Enables resizing helper so that aspect ration can be preserved easily.
 /// Defaults to YES.
@@ -90,14 +94,23 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 /// Border color. Defaults to [[UIColor pspdf_selectionColor] colorWithAlphaComponent:0.6f].
 @property (nonatomic, strong) UIColor *selectionBorderColor;
 
-/// Active knob when we're dragging.
-@property (nonatomic, assign) PSPDFSelectionBorderKnobType activeKnobType;
-
 // forward parent gesture recognizer longPress action.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 
 /// Delegate called on frame change.
 @property (nonatomic, weak) IBOutlet id<PSPDFResizableViewDelegate> delegate;
+
+/// The frame of the resizable content. This might be smaller than the frame of the view. Changing
+/// the content frame affects the frame.
+///
+/// @warning Always change the view's frame by setting this property. Do not use the frame property
+/// directly!
+@property (nonatomic, assign) CGRect contentFrame;
+
+/// The mode that the resizable view is currently in.
+@property (nonatomic, assign) PSPDFResizableViewMode mode;
+
+@property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end
 
@@ -114,5 +127,8 @@ typedef NS_ENUM(NSUInteger, PSPDFSelectionBorderKnobType) {
 @property (nonatomic, strong, readonly) UIImageView *knobBottomLeft;
 @property (nonatomic, strong, readonly) UIImageView *knobBottomMiddle;
 @property (nonatomic, strong, readonly) UIImageView *knobBottomRight;
+
+@property (nonatomic, strong, readonly) UIImage *outerKnobImage;
+@property (nonatomic, strong, readonly) UIImage *innerKnobImage;
 
 @end

@@ -45,6 +45,7 @@
 #import "PSPDFBookmarkParser.h"
 #import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFBrightnessViewController.h"
+#import "PSPDFGeometry.h"
 
 // actions
 #import "PSPDFAction.h"
@@ -79,6 +80,7 @@
 #import "PSPDFMultiDocumentThumbnailViewController.h"
 #import "PSPDFThumbnailGridViewCell.h"
 #import "PSPDFScrobbleBar.h"
+#import "PSPDFThumbnailBar.h"
 #import "PSTCollectionView.h"
 #import "PSTCollectionViewCell.h"
 #import "PSTCollectionViewFlowLayout.h"
@@ -107,6 +109,7 @@
 #import "PSPDFScreenAnnotation.h"
 #import "PSPDFRichMediaAnnotation.h"
 #import "PSPDFFileAnnotation.h"
+#import "PSPDFPolygonAnnotation.h"
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"

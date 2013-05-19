@@ -21,21 +21,28 @@ extern NSString *const kPSPDFAllowAntiAliasing;       // Enabled/Disables antial
 extern NSString *const kPSPDFBackgroundFillColor;     // Allows custom render color. Default is white.
 extern NSString *const kPSPDFPDFBox;                  // Allows custom PDF box (if pageInfo is nil)
 
+// Can be used to use a custom subclass of the PSPDFPageRenderer. Defaults to nil, which will use PSPDFPageRenderer.class.
+// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
+extern Class PSPDFPageRendererClass;
+
 /// PDF rendering code.
 @interface PSPDFPageRenderer : NSObject
 
+/// Access the style manager singleton.
++ (instancetype)sharedPageRenderer;
+
 /// Setup the graphics context to the current PDF.
-+ (void)setupGraphicsContext:(CGContextRef)context inRectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
+- (void)setupGraphicsContext:(CGContextRef)context inRectangle:(CGRect)displayRectangle pageInfo:(PSPDFPageInfo *)pageInfo;
 
 /// Renders a page inside a rectangle. Set context CTM and ClipRect to control rendering.
 /// Returns the renderingRectangle.
-+ (CGRect)renderPageRef:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+- (CGRect)renderPageRef:(CGPDFPageRef)page inContext:(CGContextRef)context inRectangle:(CGRect)rectangle pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Render a page; defined by point and zoom. Use zoom=100 and point = CGPointMake(0, 0) for defaults.
-+ (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+- (CGSize)renderPage:(CGPDFPageRef)page inContext:(CGContextRef)context atPoint:(CGPoint)point withZoom:(float)zoom pageInfo:(PSPDFPageInfo *)pageInfo withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Renders a particular appearance stream (A PDF within a PDF) into a context.
 /// Will return NO if rendering failed.
-+ (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context;
+- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context;
 
 @end

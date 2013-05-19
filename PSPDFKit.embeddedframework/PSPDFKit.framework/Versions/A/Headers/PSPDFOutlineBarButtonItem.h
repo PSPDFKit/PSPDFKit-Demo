@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, PSPDFOutlineBarButtonItemOption) {
 
 // Subclass both to allow adding/customizing controllers.
 - (NSString *)titleForOption:(PSPDFOutlineBarButtonItemOption)option;
+
 - (UIViewController *)controllerForOption:(PSPDFOutlineBarButtonItemOption)option;
 
 @end

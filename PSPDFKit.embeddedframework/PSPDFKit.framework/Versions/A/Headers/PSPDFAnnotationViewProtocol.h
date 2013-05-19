@@ -44,4 +44,5 @@
 @end
 
 // Deprecated.
-__attribute__ ((deprecated("This protocol has been renamed to PSPDFAnnotationViewProtocol"))) @protocol PSPDFAnnotationView <PSPDFAnnotationViewProtocol> @end
+__attribute__ ((deprecated("This protocol has been renamed to PSPDFAnnotationViewProtocol"))) @protocol PSPDFAnnotationView <PSPDFAnnotationViewProtocol>
+@end

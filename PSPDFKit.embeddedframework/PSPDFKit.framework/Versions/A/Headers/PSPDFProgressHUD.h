@@ -9,11 +9,11 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString * const PSPDFProgressHUDDidReceiveTouchEventNotification;
-extern NSString * const PSPDFProgressHUDWillDisappearNotification;
-extern NSString * const PSPDFProgressHUDDidDisappearNotification;
+extern NSString *const PSPDFProgressHUDDidReceiveTouchEventNotification;
+extern NSString *const PSPDFProgressHUDWillDisappearNotification;
+extern NSString *const PSPDFProgressHUDDidDisappearNotification;
 
-extern NSString * const PSPDFProgressHUDStatusUserInfoKey;
+extern NSString *const PSPDFProgressHUDStatusUserInfoKey;
 
 typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
     PSPDFProgressHUDMaskTypeNone = 1, // allow user interactions while HUD is displayed
@@ -31,22 +31,30 @@ typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
 @property (readwrite, nonatomic, retain) UIFont *hudFont UI_APPEARANCE_SELECTOR;
 
 + (void)show;
+
 + (void)showWithMaskType:(PSPDFProgressHUDMaskType)maskType;
+
 + (void)showWithStatus:(NSString *)status;
+
 + (void)showWithStatus:(NSString *)status maskType:(PSPDFProgressHUDMaskType)maskType;
 
 + (void)showProgress:(CGFloat)progress;
+
 + (void)showProgress:(CGFloat)progress status:(NSString *)status;
+
 + (void)showProgress:(CGFloat)progress status:(NSString *)status maskType:(PSPDFProgressHUDMaskType)maskType;
 
 + (void)setStatus:(NSString *)string; // change the HUD loading status while it's showing
 
 // stops the activity indicator, shows a glyph + status, and dismisses HUD 1s later
 + (void)showSuccessWithStatus:(NSString *)string;
+
 + (void)showErrorWithStatus:(NSString *)string;
+
 + (void)showImage:(UIImage *)image status:(NSString *)status; // use 28x28 white pngs
 
 + (void)popActivity;
+
 + (void)dismiss;
 
 + (BOOL)isVisible;
