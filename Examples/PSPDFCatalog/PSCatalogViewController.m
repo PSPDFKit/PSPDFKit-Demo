@@ -158,6 +158,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
         controller.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
+        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
