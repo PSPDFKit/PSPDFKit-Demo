@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "AFURLConnectionOperation.h"
 
 #import <Availability.h>
 
@@ -80,14 +81,14 @@ typedef enum {
     AFNetworkReachabilityStatusReachableViaWiFi = 2,
 } AFNetworkReachabilityStatus;
 #else
-#warning SystemConfiguration framework not found in project, or not included in precompiled header. Network reachability functionality will not be available.
+#pragma message("SystemConfiguration framework not found in project, or not included in precompiled header. Network reachability functionality will not be available.")
 #endif
 
 #ifndef __UTTYPE__
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-#warning MobileCoreServices framework not found in project, or not included in precompiled header. Automatic MIME type detection when uploading files in multipart requests will not be available.
+#pragma message("MobileCoreServices framework not found in project, or not included in precompiled header. Automatic MIME type detection when uploading files in multipart requests will not be available.")
 #else
-#warning CoreServices framework not found in project, or not included in precompiled header. Automatic MIME type detection when uploading files in multipart requests will not be available.
+#pragma message("CoreServices framework not found in project, or not included in precompiled header. Automatic MIME type detection when uploading files in multipart requests will not be available.")
 #endif
 #endif
 
@@ -137,6 +138,20 @@ typedef enum {
 @property (readonly, nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
 #endif
 
+/**
+ Default SSL pinning mode for each `AFHTTPRequestOperation` created by `HTTPRequestOperationWithRequest:success:failure:`.
+ */
+#ifdef _AFNETWORKING_PIN_SSL_CERTIFICATES_
+@property (nonatomic, assign) AFURLConnectionOperationSSLPinningMode defaultSSLPinningMode;
+#endif
+
+/**
+ Whether each `AFHTTPRequestOperation` created by `HTTPRequestOperationWithRequest:success:failure:` should accept an invalid SSL certificate. 
+ 
+ If `_AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_` is set, this property defaults to `YES` for backwards compatibility. Otherwise, this property defaults to `NO`.
+ */
+@property (nonatomic, assign) BOOL allowsInvalidSSLCertificate;
+
 ///---------------------------------------------
 /// @name Creating and Initializing HTTP Clients
 ///---------------------------------------------
@@ -152,10 +167,10 @@ typedef enum {
 
 /**
  Initializes an `AFHTTPClient` object with the specified base URL.
+ 
+ This is the designated initializer.
 
  @param url The base URL for the HTTP client. This argument must not be `nil`.
-
- @discussion This is the designated initializer.
 
  @return The newly-initialized HTTP client
  */
@@ -183,11 +198,11 @@ typedef enum {
 /**
  Attempts to register a subclass of `AFHTTPRequestOperation`, adding it to a chain to automatically generate request operations from a URL request.
 
+ When `enqueueHTTPRequestOperationWithRequest:success:failure` is invoked, each registered class is consulted in turn to see if it can handle the specific request. The first class to return `YES` when sent a `canProcessRequest:` message is used to create an operation using `initWithURLRequest:` and do `setCompletionBlockWithSuccess:failure:`. There is no guarantee that all registered classes will be consulted. Classes are consulted in the reverse order of their registration. Attempting to register an already-registered class will move it to the top of the list.
+ 
  @param operationClass The subclass of `AFHTTPRequestOperation` to register
 
  @return `YES` if the registration is successful, `NO` otherwise. The only failure condition is if `operationClass` is not a subclass of `AFHTTPRequestOperation`.
-
- @discussion When `enqueueHTTPRequestOperationWithRequest:success:failure` is invoked, each registered class is consulted in turn to see if it can handle the specific request. The first class to return `YES` when sent a `canProcessRequest:` message is used to create an operation using `initWithURLRequest:` and do `setCompletionBlockWithSuccess:failure:`. There is no guarantee that all registered classes will be consulted. Classes are consulted in the reverse order of their registration. Attempting to register an already-registered class will move it to the top of the list.
  */
 - (BOOL)registerHTTPOperationClass:(Class)operationClass;
 
@@ -275,12 +290,12 @@ typedef enum {
 /**
  Creates an `NSMutableURLRequest` object with the specified HTTP method and path, and constructs a `multipart/form-data` HTTP body, using the specified parameters and multipart form data block. See http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.2
 
+ Multipart form requests are automatically streamed, reading files directly from disk along with in-memory data in a single HTTP body. The resulting `NSMutableURLRequest` object has an `HTTPBodyStream` property, so refrain from setting `HTTPBodyStream` or `HTTPBody` on this request object, as it will clear out the multipart form body stream.
+ 
  @param method The HTTP method for the request. This parameter must not be `GET` or `HEAD`, or `nil`.
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and set in the request HTTP body.
  @param block A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the `AFMultipartFormData` protocol. This can be used to upload files, encode HTTP body as JSON or XML, or specify multiple values for the same parameter, as one might for array values.
-
- @discussion Multipart form requests are automatically streamed, reading files directly from disk along with in-memory data in a single HTTP body. The resulting `NSMutableURLRequest` object has an `HTTPBodyStream` property, so refrain from setting `HTTPBodyStream` or `HTTPBody` on this request object, as it will clear out the multipart form body stream.
 
  @return An `NSMutableURLRequest` object
  */
@@ -319,11 +334,11 @@ typedef enum {
 
 /**
  Cancels all operations in the HTTP client's operation queue whose URLs match the specified HTTP method and path.
+ 
+ This method only cancels `AFHTTPRequestOperations` whose request URL matches the HTTP client base URL with the path appended. For complete control over the lifecycle of enqueued operations, you can access the `operationQueue` property directly, which allows you to, for instance, cancel operations filtered by a predicate, or simply use `-cancelAllRequests`. Note that the operation queue may include non-HTTP operations, so be sure to check the type before attempting to directly introspect an operation's `request` property.
 
  @param method The HTTP method to match for the cancelled requests, such as `GET`, `POST`, `PUT`, or `DELETE`. If `nil`, all request operations with URLs matching the path will be cancelled.
  @param path The path appended to the HTTP client base URL to match against the cancelled requests. If `nil`, no path will be appended to the base URL.
-
- @discussion This method only cancels `AFHTTPRequestOperations` whose request URL matches the HTTP client base URL with the path appended. For complete control over the lifecycle of enqueued operations, you can access the `operationQueue` property directly, which allows you to, for instance, cancel operations filtered by a predicate, or simply use `-cancelAllRequests`. Note that the operation queue may include non-HTTP operations, so be sure to check the type before attempting to directly introspect an operation's `request` property.
  */
 - (void)cancelAllHTTPOperationsWithMethod:(NSString *)method path:(NSString *)path;
 
@@ -334,11 +349,11 @@ typedef enum {
 /**
  Creates and enqueues an `AFHTTPRequestOperation` to the HTTP client's operation queue for each specified request object into a batch. When each request operation finishes, the specified progress block is executed, until all of the request operations have finished, at which point the completion block also executes.
 
+ Operations are created by passing the specified `NSURLRequest` objects in `requests`, using `-HTTPRequestOperationWithRequest:success:failure:`, with `nil` for both the `success` and `failure` parameters.
+ 
  @param urlRequests The `NSURLRequest` objects used to create and enqueue operations.
  @param progressBlock A block object to be executed upon the completion of each request operation in the batch. This block has no return value and takes two arguments: the number of operations that have already finished execution, and the total number of operations.
  @param completionBlock A block object to be executed upon the completion of all of the request operations in the batch. This block has no return value and takes a single argument: the batched request operations.
-
- @discussion Operations are created by passing the specified `NSURLRequest` objects in `requests`, using `-HTTPRequestOperationWithRequest:success:failure:`, with `nil` for both the `success` and `failure` parameters.
  */
 - (void)enqueueBatchOfHTTPRequestOperationsWithRequests:(NSArray *)urlRequests
                                           progressBlock:(void (^)(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations))progressBlock
@@ -365,7 +380,7 @@ typedef enum {
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and appended as the query string for the request URL.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.
- @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the `NSError` object describing the network or parsing error that occurred.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the created request operation and the `NSError` object describing the network or parsing error that occurred.
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
@@ -380,7 +395,7 @@ typedef enum {
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and set in the request HTTP body.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.
- @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the `NSError` object describing the network or parsing error that occurred.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the created request operation and the `NSError` object describing the network or parsing error that occurred.
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
@@ -395,7 +410,7 @@ typedef enum {
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and set in the request HTTP body.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.
- @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the `NSError` object describing the network or parsing error that occurred.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the created request operation and the `NSError` object describing the network or parsing error that occurred.
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
@@ -410,7 +425,7 @@ typedef enum {
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and appended as the query string for the request URL.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.
- @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the `NSError` object describing the network or parsing error that occurred.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the created request operation and the `NSError` object describing the network or parsing error that occurred.
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
@@ -425,7 +440,7 @@ typedef enum {
  @param path The path to be appended to the HTTP client's base URL and used as the request URL.
  @param parameters The parameters to be encoded and set in the request HTTP body.
  @param success A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.
- @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the `NSError` object describing the network or parsing error that occurred.
+ @param failure A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments: the created request operation and the `NSError` object describing the network or parsing error that occurred.
 
  @see -HTTPRequestOperationWithRequest:success:failure:
  */
@@ -440,7 +455,7 @@ typedef enum {
 ///----------------
 
 /**
- ### Network Reachability
+ ## Network Reachability
 
  The following constants are provided by `AFHTTPClient` as possible network reachability statuses.
 
@@ -471,7 +486,7 @@ typedef enum {
  A key in the userInfo dictionary in a `AFNetworkingReachabilityDidChangeNotification` notification.
  The corresponding value is an `NSNumber` object representing the `AFNetworkReachabilityStatus` value for the current reachability status.
 
- ### Parameter Encoding
+ ## Parameter Encoding
 
  The following constants are provided by `AFHTTPClient` as possible methods for serializing parameters into query string or message body values.
 
@@ -498,12 +513,12 @@ typedef enum {
 /**
  Returns a query string constructed by a set of parameters, using the specified encoding.
 
+ Query strings are constructed by collecting each key-value pair, percent escaping a string representation of the key-value pair, and then joining the pairs with "&".
+ 
+ If a query string pair has a an `NSArray` for its value, each member of the array will be represented in the format `field[]=value1&field[]value2`. Otherwise, the pair will be formatted as "field=value". String representations of both keys and values are derived using the `-description` method. The constructed query string does not include the ? character used to delimit the query component.
+ 
  @param parameters The parameters used to construct the query string
  @param encoding The encoding to use in constructing the query string. If you are uncertain of the correct encoding, you should use UTF-8 (`NSUTF8StringEncoding`), which is the encoding designated by RFC 3986 as the correct encoding for use in URLs.
-
- @discussion Query strings are constructed by collecting each key-value pair, percent escaping a string representation of the key-value pair, and then joining the pairs with "&".
-
- If a query string pair has a an `NSArray` for its value, each member of the array will be represented in the format `field[]=value1&field[]value2`. Otherwise, the pair will be formatted as "field=value". String representations of both keys and values are derived using the `-description` method. The constructed query string does not include the ? character used to delimit the query component.
 
  @return A percent-escaped query string
  */
@@ -537,13 +552,13 @@ extern NSTimeInterval const kAFUploadStream3GSuggestedDelay;
 /**
  Appends the HTTP header `Content-Disposition: file; filename=#{generated filename}; name=#{name}"` and `Content-Type: #{generated mimeType}`, followed by the encoded file data and the multipart form boundary.
 
+ The filename and MIME type for this data in the form will be automatically generated, using the last path component of the `fileURL` and system associated MIME type for the `fileURL` extension, respectively.
+ 
  @param fileURL The URL corresponding to the file whose content will be appended to the form. This parameter must not be `nil`.
  @param name The name to be associated with the specified data. This parameter must not be `nil`.
  @param error If an error occurs, upon return contains an `NSError` object that describes the problem.
 
  @return `YES` if the file data was successfully appended, otherwise `NO`.
-
- @discussion The filename and MIME type for this data in the form will be automatically generated, using the last path component of the `fileURL` and system associated MIME type for the `fileURL` extension, respectively.
  */
 - (BOOL)appendPartWithFileURL:(NSURL *)fileURL
                          name:(NSString *)name
@@ -565,6 +580,21 @@ extern NSTimeInterval const kAFUploadStream3GSuggestedDelay;
                      fileName:(NSString *)fileName
                      mimeType:(NSString *)mimeType
                         error:(NSError * __autoreleasing *)error;
+
+/**
+ Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the data from the input stream and the multipart form boundary.
+
+ @param inputStream The input stream to be appended to the form data
+ @param name The name to be associated with the specified input stream. This parameter must not be `nil`.
+ @param fileName The filename to be associated with the specified input stream. This parameter must not be `nil`.
+ @param length The length of the specified input stream in bytes.
+ @param mimeType The MIME type of the specified data. (For example, the MIME type for a JPEG image is image/jpeg.) For a list of valid MIME types, see http://www.iana.org/assignments/media-types/. This parameter must not be `nil`.
+ */
+- (void)appendPartWithInputStream:(NSInputStream *)inputStream
+                             name:(NSString *)name
+                         fileName:(NSString *)fileName
+                           length:(unsigned long long)length
+                         mimeType:(NSString *)mimeType;
 
 /**
  Appends the HTTP header `Content-Disposition: file; filename=#{filename}; name=#{name}"` and `Content-Type: #{mimeType}`, followed by the encoded file data and the multipart form boundary.
@@ -589,6 +619,7 @@ extern NSTimeInterval const kAFUploadStream3GSuggestedDelay;
 - (void)appendPartWithFormData:(NSData *)data
                           name:(NSString *)name;
 
+
 /**
  Appends HTTP headers, followed by the encoded data and the multipart form boundary.
 
@@ -601,10 +632,10 @@ extern NSTimeInterval const kAFUploadStream3GSuggestedDelay;
 /**
  Throttles request bandwidth by limiting the packet size and adding a delay for each chunk read from the upload stream.
 
+ When uploading over a 3G or EDGE connection, requests may fail with "request body stream exhausted". Setting a maximum packet size and delay according to the recommended values (`kAFUploadStream3GSuggestedPacketSize` and `kAFUploadStream3GSuggestedDelay`) lowers the risk of the input stream exceeding its allocated bandwidth. Unfortunately, as of iOS 6, there is no definite way to distinguish between a 3G, EDGE, or LTE connection. As such, it is not recommended that you throttle bandwidth based solely on network reachability. Instead, you should consider checking for the "request body stream exhausted" in a failure block, and then retrying the request with throttled bandwidth.
+
  @param numberOfBytes Maximum packet size, in number of bytes. The default packet size for an input stream is 32kb.
  @param delay Duration of delay each time a packet is read. By default, no delay is set.
-
- @discussion When uploading over a 3G or EDGE connection, requests may fail with "request body stream exhausted". Setting a maximum packet size and delay according to the recommended values (`kAFUploadStream3GSuggestedPacketSize` and `kAFUploadStream3GSuggestedDelay`) lowers the risk of the input stream exceeding its allocated bandwidth. Unfortunately, as of iOS 6, there is no definite way to distinguish between a 3G, EDGE, or LTE connection. As such, it is not recommended that you throttle bandwidth based solely on network reachability. Instead, you should consider checking for the "request body stream exhausted" in a failure block, and then retrying the request with throttled bandwidth.
  */
 - (void)throttleBandwidthWithPacketSize:(NSUInteger)numberOfBytes
                                   delay:(NSTimeInterval)delay;
