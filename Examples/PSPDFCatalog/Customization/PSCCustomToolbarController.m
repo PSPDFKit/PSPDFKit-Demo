@@ -92,7 +92,7 @@
     self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", pageView.page];
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode; {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
     [_customViewModeSegment setSelectedSegmentIndex:(NSUInteger)viewMode];
 }
 

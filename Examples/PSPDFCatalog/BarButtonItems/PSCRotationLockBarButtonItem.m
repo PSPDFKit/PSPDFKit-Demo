@@ -32,8 +32,9 @@
 }
 
 - (void)action:(PSPDFBarButtonItem *)sender {
+    PSPDFViewController *pdfController = self.pdfController;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        self.pdfController.rotationLockEnabled = !self.pdfController.rotationLockEnabled;
+        pdfController.rotationLockEnabled = !pdfController.rotationLockEnabled;
         [self customView];
     }];
 }

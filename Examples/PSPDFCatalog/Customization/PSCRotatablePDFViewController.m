@@ -84,11 +84,12 @@
         PSCLog(@"Snap rotation to: %d", pageInfo.pageRotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
-        [PSPDFCache.sharedCache imageFromDocument:self.document andPage:self.page withSize:self.pdfController.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+        PSPDFViewController *pdfController = self.pdfController;
+        [PSPDFCache.sharedCache imageFromDocument:self.document andPage:self.page withSize:pdfController.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;
-        [self.pdfController reloadData];
+        [pdfController reloadData];
     }else {
         // Transform the current view.
         gestureRecognizer.view.transform = CGAffineTransformRotate(gestureRecognizer.view.transform, gestureRecognizer.rotation);

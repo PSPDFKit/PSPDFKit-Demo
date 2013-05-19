@@ -54,13 +54,14 @@
         annotations = _annotationDict[@(page)];
         if (!annotations) {
             // create new note annotation and add it to the dict.
+            PSPDFDocumentProvider *documentProvider = [self.providerDelegate parentDocumentProvider];
             PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
             noteAnnotation.page = page;
-            noteAnnotation.documentProvider = [self.providerDelegate parentDocumentProvider];
+            noteAnnotation.documentProvider = documentProvider;
             noteAnnotation.contents = [NSString stringWithFormat:@"Annotation from the custom annotationProvider for page %d.", page+1];
 
             // place it top left (PDF coordinate space starts from bottom left)
-            PSPDFPageInfo *pageInfo = [noteAnnotation.documentProvider.document pageInfoForPage:page];
+            PSPDFPageInfo *pageInfo = [documentProvider.document pageInfoForPage:page];
             noteAnnotation.boundingBox = CGRectMake(100.f, pageInfo.rotatedPageRect.size.height-100.f, 32.f, 32.f);
             _annotationDict[@(page)] = @[noteAnnotation];
             annotations = @[noteAnnotation];

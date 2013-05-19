@@ -33,7 +33,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
-- (void)displayDocument:(PSPDFDocument *)document; {
+- (void)displayDocument:(PSPDFDocument *)document {
     // Dismiss any open popovers.
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];

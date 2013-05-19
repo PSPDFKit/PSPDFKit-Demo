@@ -79,7 +79,7 @@
             // add the toolbar to the view hierarchy for color picking etc
             if (pdfController.navigationController) {
                 CGRect targetRect = pdfController.navigationController.navigationBar.frame;
-                [self.pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:pdfController.navigationController.navigationBar];
+                [pdfController.navigationController.view insertSubview:self.toolbar aboveSubview:pdfController.navigationController.navigationBar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }else {
                 CGRect contentRect = pdfController.contentRect;
