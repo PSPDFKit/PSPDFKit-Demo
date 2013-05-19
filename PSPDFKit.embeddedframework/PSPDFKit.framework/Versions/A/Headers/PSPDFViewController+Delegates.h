@@ -20,49 +20,68 @@ extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 @interface PSPDFViewController (Delegates)
 
 - (BOOL)delegateShouldSetDocument:(PSPDFDocument *)document;
+
 - (void)delegateWillDisplayDocument;
+
 - (void)delegateDidDisplayDocument;
 
 - (void)delegateDidShowPage:(NSUInteger)page; // legacy bridge
 - (void)delegateDidShowPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateDidRenderPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateDidChangeViewMode:(PSPDFViewMode)viewMode;
+
 - (BOOL)delegateShouldScrollToPage:(NSUInteger)page;
 
 - (BOOL)delegateDidTapOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint;
+
 - (BOOL)delegateDidLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer;
 
 // text selection
 - (BOOL)delegateShouldSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateDidSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView;
 
 - (NSArray *)delegateShouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedText:(NSString *)selectedText inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
+
 - (NSArray *)delegateShouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forSelectedImage:(PSPDFImageInfo *)selectedImage inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 // annotations
-- (BOOL)delegateDidTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
+- (BOOL)delegateDidTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
+
 - (BOOL)delegateShouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateDidSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
 - (NSArray *)delegateShouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 - (BOOL)delegateShouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 - (UIView <PSPDFAnnotationViewProtocol> *)delegateAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateWillShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateDidShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
 
 - (void)delegateDidEndPageScrollingAnimation:(UIScrollView *)scrollView;
+
 - (void)delegateDidBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view;
+
 - (void)delegateDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale;
+
 - (void)delegateDidBeginPageDragging:(UIScrollView *)scrollView;
+
 - (void)delegateDidEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
 - (PSPDFDocument *)delegateDocumentForRelativePath:(NSString *)relativePath;
 
 - (void)delegateDidLoadPageView:(PSPDFPageView *)pageView;
+
 - (void)delegateWillUnloadPageView:(PSPDFPageView *)pageView;
 
 - (BOOL)delegateShouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+
 - (void)delegateDidShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
 
 - (void)updateDelegateFlags; // implemented in PSPDFViewController (Delegates)

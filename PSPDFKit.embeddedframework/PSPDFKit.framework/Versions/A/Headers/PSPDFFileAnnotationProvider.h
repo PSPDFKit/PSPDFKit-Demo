@@ -82,10 +82,3 @@
 - (void)updateAnnotationsPageAndDocumentReference:(NSArray *)annotations page:(NSUInteger)page;
 
 @end
-
-@interface PSPDFFileAnnotationProvider (Deprecated)
-
-@property (nonatomic, copy) NSString *protocolString __attribute__ ((deprecated("Set protocolString in the annotationParser.")));
-@property (nonatomic, copy) NSString *fileTypeTranslationTable __attribute__ ((deprecated("Set fileTypeTranslationTable in the annotationParser.")));
-
-@end

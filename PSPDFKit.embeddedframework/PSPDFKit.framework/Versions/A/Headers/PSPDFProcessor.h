@@ -26,6 +26,7 @@ extern NSString *const kPSPDFProcessorAdditionalDelay;  // Defaults to 0.05 seco
 extern NSString *const kPSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
 typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
+
 typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
@@ -101,7 +102,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @property (nonatomic, strong, readonly) NSURL *outputFileURL;
 
 /// Options set for conversion. See generatePDFFromURL:outputFileURL:options:completionBlock: for a list of options.
-@property (nonatomic, copy  , readonly) NSDictionary *options;
+@property (nonatomic, copy, readonly) NSDictionary *options;
 
 /// Error if something went wrong.
 @property (nonatomic, strong, readonly) NSError *error;

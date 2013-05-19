@@ -14,6 +14,7 @@
 
 /// Designated initializers
 - (id)init;
+
 - (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
 
 /// The rich media action command.

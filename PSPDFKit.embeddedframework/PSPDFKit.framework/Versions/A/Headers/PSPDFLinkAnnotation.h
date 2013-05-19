@@ -97,6 +97,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 @interface PSPDFLinkAnnotation (Deprecated)
 
 - (id)initWithSiteLinkTarget:(NSString *)siteLinkTarget __attribute__ ((deprecated("Use initWithURLString: instead")));
+
 @property (nonatomic, assign) NSUInteger pageLinkTarget __attribute__ ((deprecated("Use GoToAction.pageIndex instead (which is zero-based)")));
 @property (nonatomic, copy) NSString *siteLinkTarget __attribute__ ((deprecated("Use URL instead")));
 @property (nonatomic, copy) NSDictionary *options __attribute__ ((deprecated("Use action.options instead")));

@@ -15,6 +15,7 @@
 #import "PSPDFNoteAnnotationController.h"
 #import "PSPDFFontSelectorViewController.h"
 #import "PSPDFFontStyleViewController.h"
+#import "PSPDFAnnotationStyleViewController.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFCache.h"
 
@@ -55,7 +56,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
 /// (Most PDF annotations are actually rendered into the page; except annotations that return YES for isOverlay, like links or notes.
-- (UIView<PSPDFAnnotationViewProtocol> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
+- (UIView <PSPDFAnnotationViewProtocol> *)cachedAnnotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// UIImageView displaying the whole document. Readonly.
 @property (nonatomic, strong, readonly) UIImageView *contentView;
@@ -229,7 +230,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 @end
 
-@interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate>
+@interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate>
 
 /// Returns available PSPDFMenuItem's for the current annotation.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
@@ -248,10 +249,13 @@ extern NSString *const kPSPDFHidePageHUDElements;
 /// Returns the opacity menu item (used inside colorMenuItemsForAnnotation:)
 - (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation withColor:(UIColor *)color;
 
+/// See showMenuForAnnotation:edgeInsets:animated: for details.
+- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+
 /// Called when a annotation was found ad the tapped location.
 /// This will usually call menuItemsForAnnotation to show a UIMenuController, except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
 /// @note The better way to extend this is to use the shouldShowMenuItems:* delegates.
-- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (void)showMenuForAnnotation:(PSPDFAnnotation *)annotation edgeInsets:(UIEdgeInsets)edgeInsets animated:(BOOL)animated;
 
 /// Shows a popover/modal controller to edit a PSPDFAnnotation.
 - (PSPDFNoteAnnotationController *)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation showKeyboard:(BOOL)showKeyboard animated:(BOOL)animated;
@@ -326,6 +330,7 @@ extern NSString *const kPSPDFHidePageHUDElements;
 
 /// Remove a page annotation/view as soon as the page has been refreshed. Will also refresh page.
 - (BOOL)removeAnnotationOnNextPageUpdate:(PSPDFAnnotation *)annotation;
+
 - (void)removeViewOnNextPageUpdate:(UIView *)view;
 
 /// View for the selected annotation.

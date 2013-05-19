@@ -58,7 +58,6 @@ extern NSString *const kPSPDFActionOptionModal;
 @end
 
 
-
 @interface PSPDFAction (PageResolving)
 
 /// Static helper, resolves named destination entries, returns dict with name -> page NSNumber

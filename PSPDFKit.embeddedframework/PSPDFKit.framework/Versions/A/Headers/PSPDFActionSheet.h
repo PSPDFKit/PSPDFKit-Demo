@@ -19,16 +19,19 @@
 /// @name Adding Buttons
 
 /// Adds a cancel button. Use only once.
-- (void)setCancelButtonWithTitle:(NSString *) title block:(void (^)())block;
-- (void)setCancelButtonWithTitle:(NSString *) title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
+
+- (void)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// Adds a destructive button. Use only once.
-- (void)setDestructiveButtonWithTitle:(NSString *) title block:(void (^)())block;
-- (void)setDestructiveButtonWithTitle:(NSString *) title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block;
+
+- (void)setDestructiveButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// Add regular button.
-- (void)addButtonWithTitle:(NSString *) title block:(void (^)())block;
-- (void)addButtonWithTitle:(NSString *) title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
+- (void)addButtonWithTitle:(NSString *)title block:(void (^)())block;
+
+- (void)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// @name Properties and show/destroy
 

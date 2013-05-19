@@ -15,9 +15,9 @@ extern CGColorSpaceRef pspdf_colorSpace;
 /// Supported content modes: UIViewContentModeScaleAspectFill, UIViewContentModeScaleAspectFit, UIViewContentModeScaleToFill.
 /// if `honorScaleFactor` is set to NO, resulting image will not be retina scaled.
 - (UIImage *)pspdf_resizedImageWithContentMode:(UIViewContentMode)contentMode
-                                        bounds:(CGSize)bounds
-                              honorScaleFactor:(BOOL)honorScaleFactor
-                          interpolationQuality:(CGInterpolationQuality)quality;
+        bounds:(CGSize)bounds
+        honorScaleFactor:(BOOL)honorScaleFactor
+        interpolationQuality:(CGInterpolationQuality)quality;
 
 /// Load images via path, looking automatically for a @2x option.
 - (id)initWithContentsOfResolutionIndependentFile_pspdf:(NSString *)path;

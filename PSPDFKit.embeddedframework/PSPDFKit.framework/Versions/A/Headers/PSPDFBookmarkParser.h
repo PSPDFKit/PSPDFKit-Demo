@@ -39,6 +39,7 @@ extern NSString *const kPSPDFBookmarksChangedNotification;
 /// Convenience methods. Will return NO if page is invalid or bookmark doesn't exist.
 /// If you manually add bookmarks, you might need to call createToolbarAnimated to update.
 - (BOOL)addBookmarkForPage:(NSUInteger)page;
+
 - (BOOL)removeBookmarkForPage:(NSUInteger)page;
 
 /// Clears all bookmarks. Also deletes file.

@@ -10,6 +10,7 @@
 /// Returns a lighter and a darker color to make a gradient out of 'color'.
 /// variance has to be > 0 and <= 1.
 extern NSArray *PSPDFGradientColorsForColor(UIColor *color);
+
 extern NSArray *PSPDFGradientColorsForColorWithOptions(UIColor *color, CGFloat variance[2], BOOL subsituteBlackWithYellow);
 
 /// Compares colors
@@ -37,6 +38,7 @@ extern BOOL PSPDFIsColorAboutEqualToColor(UIColor *left, UIColor *right);
 
 /// Color that matches the system color for selection.
 + (UIColor *)pspdf_selectionColor;
+
 + (CGFloat)pspdf_selectionAlpha;
 
 /// Color for detail elements in the grouped table view.
@@ -44,12 +46,16 @@ extern BOOL PSPDFIsColorAboutEqualToColor(UIColor *left, UIColor *right);
 
 /// Property list support
 + (UIColor *)pspdf_colorFromPropertyRepresentation:(id)colorObject;
+
 - (NSString *)pspdf_stringFromColor;
 
 /// Derived colors. Default delta is 0.1f.
 - (UIColor *)pspdf_lightenedColor;
+
 - (UIColor *)pspdf_lightenedColorWithDelta:(CGFloat)delta;
+
 - (UIColor *)pspdf_darkenedColor;
+
 - (UIColor *)pspdf_darkenedColorWithDelta:(CGFloat)delta;
 
 // Ensures the underlying color space of the UIColor is RGB.
@@ -68,3 +74,12 @@ extern BOOL PSPDFIsColorAboutEqualToColor(UIColor *left, UIColor *right);
 - (CGFloat)pspdf_alphaComponent;
 
 @end
+
+/// Convert RGB to HSV colorspace
+extern void PSPDFRGBtoHSV(float r, float g, float b, float *h, float *s, float *v);
+
+/// Convert from RGB to HSB colorspace
+extern void PSPDFRGBtoHSB(float r, float g, float b, float *h, float *s, float *v);
+
+/// Convert from HSB to RGB colorspace
+extern void PSPDFHSBtoRGB(float *r, float *g, float *b, float h, float s, float v);

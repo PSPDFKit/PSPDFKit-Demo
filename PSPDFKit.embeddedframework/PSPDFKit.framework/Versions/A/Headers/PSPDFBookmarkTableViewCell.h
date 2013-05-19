@@ -25,7 +25,7 @@
 @property (nonatomic, copy) NSString *bookmarkString;
 
 /// Delegate to communicate with the controller.
-@property (nonatomic, weak) id <PSPDFBookmarkTableViewCellDelegate> delegate;
+@property (nonatomic, weak) id<PSPDFBookmarkTableViewCellDelegate> delegate;
 
 @end
 

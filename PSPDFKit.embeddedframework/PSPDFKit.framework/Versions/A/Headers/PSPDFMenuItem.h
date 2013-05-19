@@ -19,17 +19,17 @@
 @interface PSPDFMenuItem : UIMenuItem
 
 /// Initialize PSPDFMenuItem with a block.
-- (id)initWithTitle:(NSString *)title block:(void(^)())block;
+- (id)initWithTitle:(NSString *)title block:(void (^)())block;
 
 /// Initialize PSPDFMenuItem with a block and an unlocalized identifier for later manipulation.
-- (id)initWithTitle:(NSString *)title block:(void(^)())block identifier:(NSString *)identifier;
+- (id)initWithTitle:(NSString *)title block:(void (^)())block identifier:(NSString *)identifier;
 
 /// Initialize PSPDFMenuItem with an image, a block and an unlocalized identifier for later manipulation.
 /// Will not allow image colors.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void(^)())block identifier:(NSString *)identifier;
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier;
 
 /// Initialize PSPDFMenuItem with an image, a block and an unlocalized identifier for later manipulation.
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void(^)())block identifier:(NSString *)identifier allowImageColors:(BOOL)allowImageColors;
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier allowImageColors:(BOOL)allowImageColors;
 
 /// Menu item can be enabled/disabled. (disable simply hides it from the UIMenuController)
 @property (nonatomic, assign, getter=isEnabled) BOOL enabled;
@@ -38,14 +38,14 @@
 @property (nonatomic, copy) NSString *identifier;
 
 /// Title of the menu item.
-@property(nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 /// Image of the menu item.
 ///
 /// If set, will hide the title.
 /// This is prefixed to make sure it will work even when Apple decides to add support for images in future releases.
 /// @warning Due to implementation details, this will actually change 'title'. Use identifier to compare menuItems instead.
-@property(nonatomic, copy) UIImage *ps_image;
+@property (nonatomic, copy) UIImage *ps_image;
 
 // Action block.
 @property (nonatomic, copy) void(^actionBlock)();

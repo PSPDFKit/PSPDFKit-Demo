@@ -14,16 +14,19 @@
 
 /// Default initializer.
 - (id)initWithTitle:(NSString *)title;
+
 - (id)initWithTitle:(NSString *)title message:(NSString *)message;
 
 /// @name Adding Buttons
 
 /// Add a cancel button. (use only once!)
 - (NSInteger)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
+
 - (NSInteger)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
 
 /// Add regular button.
 - (NSInteger)addButtonWithTitle:(NSString *)title block:(void (^)())block;
+
 - (NSInteger)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
 
 /// @name Style

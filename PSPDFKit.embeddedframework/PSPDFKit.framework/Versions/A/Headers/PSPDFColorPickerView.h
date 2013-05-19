@@ -11,9 +11,7 @@
 
 @class PSPDFColorPickerView, PSPDFLoupeLayer, PSPDFBrightnessSlider;
 
-///
 /// Color Picker delegate.
-///
 @protocol PSPDFColorPickerViewDelegate <NSObject>
 
 @optional
@@ -23,9 +21,7 @@
 
 @end
 
-///
 /// Color Picker view control. (circle)
-///
 @interface PSPDFColorPickerView : UIControl
 
 /// Current selection point.
@@ -48,7 +44,7 @@
 @property (nonatomic, weak) IBOutlet id<PSPDFColorPickerViewDelegate> delegate;
 
 /// The internally used brightness slider.
-@property (nonatomic, weak) IBOutlet PSPDFBrightnessSlider* brightnessSlider;
+@property (nonatomic, weak) IBOutlet PSPDFBrightnessSlider *brightnessSlider;
 
 /// Conversion helper.
 - (void)selectionToHue:(CGFloat *)pH saturation:(CGFloat *)pS brightness:(CGFloat *)pV;

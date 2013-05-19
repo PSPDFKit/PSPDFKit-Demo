@@ -85,10 +85,15 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 
 // Toolbar items
 - (void)goBack:(id)sender;
+
 - (void)goForward:(id)sender;
+
 - (void)reload:(id)sender;
+
 - (void)stop:(id)sender;
+
 - (void)action:(id)sender;
+
 - (void)doneButtonClicked:(id)sender;
 
 @end

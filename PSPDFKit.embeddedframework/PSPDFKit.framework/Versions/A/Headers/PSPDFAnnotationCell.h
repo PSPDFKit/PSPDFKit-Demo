@@ -6,7 +6,8 @@
 //
 
 #import "PSPDFKitGlobal.h"
-@class  PSPDFAnnotation;
+
+@class PSPDFAnnotation;
 
 /// Represents an annotation.
 @interface PSPDFAnnotationCell : UITableViewCell

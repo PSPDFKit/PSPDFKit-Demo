@@ -39,21 +39,24 @@
 - (NSInteger)numberForNewObject;
 
 - (BOOL)isObjectCompressedForPageIndex:(NSUInteger)pageIndex;
+
 - (NSInteger)objectNumberForPageIndex:(NSUInteger)pageIndex;
+
 - (NSUInteger)objectNumberForAnnotationIndex:(NSUInteger)annotationIndex onPageIndex:(NSUInteger)pageIndex;
 
 - (NSString *)objectDictionaryForPageIndex:(NSUInteger)pageIndex;
+
 - (NSString *)objectDictionaryForNumber:(NSUInteger)number;
 
 // Will create PDF data from the drawingBlock.
-+ (NSData *)createAppearanceStreamDataWithRect:(CGRect)rect drawingBlock:(void(^)(CGContextRef context))drawingBlock;
++ (NSData *)createAppearanceStreamDataWithRect:(CGRect)rect drawingBlock:(void (^)(CGContextRef context))drawingBlock;
 
 // Uses a PDF to extract the AP stream from the document. (first page only)
 + (NSArray *)extractAppearanceStreamFromData:(NSData *)pdfData withRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber;
 
 // Will return the PDF appearance stream and helper objects for the drawing operations inside drawingBlock.
 // Combines createAppearanceStreamDataWithRect and extractAppearanceStreamFromData.
-+ (NSArray *)createAppearanceStreamWithRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void(^)(CGContextRef context))drawingBlock;
++ (NSArray *)createAppearanceStreamWithRect:(CGRect)rect firstFreeObjectNumber:(NSUInteger)firstFreeObjectNumber drawingBlock:(void (^)(CGContextRef context))drawingBlock;
 
 // Debugging feature. Only works when compiled with the DEBUG flag on source code.
 - (void)printAllObjects;

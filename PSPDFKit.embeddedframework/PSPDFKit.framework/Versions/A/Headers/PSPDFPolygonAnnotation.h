@@ -17,6 +17,9 @@ typedef NS_ENUM(NSInteger, PSPDFPolygonAnnotationType) {
 /// Polygon annotations (PDF 1.5) display closed polygons on the page. Such polygons may have any number of vertices connected by straight lines. Polyline annotations (PDF 1.5) are similar to polygons, except that the first and last vertex are not implicitly connected.
 @interface PSPDFPolygonAnnotation : PSPDFAnnotation
 
+/// Initialize annotation with a polygon type. Designated initializer.
+- (id)initWithPolygonType:(PSPDFPolygonAnnotationType)polygonType;
+
 /// Polygon Type.
 ///
 /// The highlight type is inferred from typeString and will not be serialized to disk.
