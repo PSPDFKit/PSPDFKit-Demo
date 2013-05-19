@@ -2,6 +2,33 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.2 - 19/May/2013__
+
+*  PSPDFViewController now unloads its views when not visible on a memory warning even on iOS6. This saves memory especially when multiple stacks of viewControllers are used in a navigationController.
+*  Improves the thumbnail quality.
+*  Polyline/Polygon how shows boundingBox resize knobs + knobs for each line end point. Inner points are green.
+*  When no fillColor is defined, color will be used instead of black. This is not defined in the PDF Reference, but more closely matches Apple's Preview.app and looks better.
+*  Glyph ligature breaks (e.g. ffi) now no longer are marked as WordBreaker.
+*  Improves default boundingBox calculation for new annotations on rotated PDF documents.
+*  PSPDFPageRenderer can now be subclassed/changed.
+*  Improves bounding box calculation for small FreeText annotations.
+*  Stamps are now properly rendered on rotated pages.
+*  If a stamp annotation is an appearance stream, PSPDFKit now tries to extract the image when using Copy/Paste.
+*  Font variant picker now shows font in title and filters name for better display, e.g. 'Helvetivca-Bold' becomes just 'Bold'.
+*  Several improvements to the PSPDFMultiDocumentController.
+*  The thumbnail selection background now properly sizes itself based on the negative edgeInsets of the thumbnail cell (= looks better for non-portrait documents)
+*  Dashed border now factors in lineWidth.
+*  Improves parsing of certain GoToR Actions.
+*  Made the color preview in UITableViewCell pixel perfect.
+*  Improves title detection to filter out white space, now correctly handles cases where the title is missing but ' ' is set instead.
+*  PSPDFKit is now compiled with -O3 (instead of -Os) and and uses link-time optimization to further improve performance.
+*  Fixes placement of the image and signature picker for rotated documents.
+*  Fixes a rare issue where a annotation could stuck in an invisible state because of a bug in the trackedView when selecting + scrolling happened at the same time.
+*  Fixes a regression where thumbnail images could become sized wrongly in their aspect ratio under certain conditions for non-uniformly sized documents.
+*  Fixes an offset by one error when resolving named destinations for a specific outline action destination type when there are > 500 outline entries.
+*  Fixes a potential crash related to the color picker.
+*  Fixes a crash related to parsing invalid outline elements.
+
 __v2.14.1 - 15/May/2013__
 
 *  Add write support for Polygon/Polyline annotations. (In the API, there's no UI for creating yet, but editing the points works)

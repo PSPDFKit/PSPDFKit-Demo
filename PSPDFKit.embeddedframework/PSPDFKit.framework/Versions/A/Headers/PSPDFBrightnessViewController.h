@@ -47,7 +47,9 @@
 
 // Used for additional software dimming.
 - (PSPDFDimmingView *)dimmingView;
+
 - (PSPDFDimmingView *)addDimmingView;
+
 - (void)removeDimmingView;
 
 @end

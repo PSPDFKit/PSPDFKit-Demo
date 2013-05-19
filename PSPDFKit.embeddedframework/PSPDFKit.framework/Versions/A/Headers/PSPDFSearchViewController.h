@@ -13,7 +13,7 @@
 #import "PSPDFStatusBarStyleHint.h"
 #import "PSPDFStyleable.h"
 
-@class PSPDFDocument, PSPDFViewController, PSPDFSearchResult;
+@class PSPDFDocument, PSPDFViewController, PSPDFSearchResult, PSPDFSearchResultCell;
 
 typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
     PSPDFSearchStatusIdle,
@@ -85,7 +85,7 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 
 // Updates the search result cell. Can be subclassed.
 // To customize the label search the subviews for the PSPDFAttributedLabel class.
-- (void)updateResultCell:(UITableViewCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
+- (void)updateResultCell:(PSPDFSearchResultCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
 @end
 

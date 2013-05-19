@@ -95,7 +95,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 
 /// Delegate. Used for annotation calls.
 /// @warning The document delegate should not be your view controller, since this could retain your controller and cause a release on a different thread than the main thread, which can be problematic in UIKit.
-@property (nonatomic, weak) id<PSPDFDocumentDelegate> delegate;
+@property (atomic, weak) id<PSPDFDocumentDelegate> delegate;
 
 /// @name File Access / Modification
 
@@ -468,10 +468,10 @@ extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with
 
 /// Renders the page or a part of it with default display settings into a new image.
 /// @param size          The size of the page, in pixels, if it was rendered without clipping
-/// @param clippedToRect A rectangle, relative to size, that specifies the area of the page that should be rendered. CGRectZero = automatic.
+/// @param clipRect      A rectangle, relative to size, that specifies the area of the page that should be rendered. CGRectZero = automatic.
 /// @param annotations   Annotations that should be rendered with the view
 /// @param options       Dictionary with options that modify the render process (see PSPDFPageRenderer)
-/// @param receit        Returns the render receipt for the render action.
+/// @param receipt       Returns the render receipt for the render action.
 /// @param error         Returns an error object. (then image will be nil)
 /// @return              A new UIImage with the rendered page content
 - (UIImage *)renderImageForPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options receipt:(PSPDFRenderReceipt **)receipt error:(NSError **)error;

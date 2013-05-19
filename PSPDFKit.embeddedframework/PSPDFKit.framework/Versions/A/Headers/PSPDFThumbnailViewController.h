@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @property (nonatomic, strong) PSPDFDocument *document;
 
 /// Delegate for the thumbnail controller.
-@property (nonatomic, weak) id<PSPDFThumbnailViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFThumbnailViewControllerDelegate> delegate;
 
 /// Get the cell for certain page. Compensates against open filters.
 - (PSUICollectionViewCell *)cellForPage:(NSUInteger)page;

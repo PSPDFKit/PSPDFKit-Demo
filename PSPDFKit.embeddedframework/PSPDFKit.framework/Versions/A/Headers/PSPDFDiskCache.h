@@ -10,12 +10,14 @@
 @class PSPDFCacheInfo, PSPDFRenderReceipt;
 
 // Cache selector (to fetch sizes)
-typedef PSPDFCacheInfo* (^PSPDFCacheInfoSelector)(NSOrderedSet *);
-typedef NSArray* (^PSPDFCacheInfoArraySelector)(NSOrderedSet *);
+typedef PSPDFCacheInfo *(^PSPDFCacheInfoSelector)(NSOrderedSet *);
+
+typedef NSArray *(^PSPDFCacheInfoArraySelector)(NSOrderedSet *);
 
 // Encryption/Decryption Helper.
-typedef UIImage* (^PSPDFCacheDecryptionHelper)(NSString *path);
-typedef NSData* (^PSPDFCacheEncryptionHelper)(UIImage *image);
+typedef UIImage *(^PSPDFCacheDecryptionHelper)(NSString *path);
+
+typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 
 /// The disk cache is designed to store and get images including metadata in a performant way.
 /// No actual images will be held in memory (besides during the time they are scheduled for a disk write)

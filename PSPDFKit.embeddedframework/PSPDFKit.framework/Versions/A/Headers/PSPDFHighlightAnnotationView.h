@@ -12,7 +12,7 @@
 @interface PSPDFHighlightAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// Embedded UIButton.
-@property (nonatomic, strong, readonly) UIButton *button;
+@property (nonatomic, readonly) UIButton *button;
 
 /// Called when button is pressed.
 - (void)touchDown;

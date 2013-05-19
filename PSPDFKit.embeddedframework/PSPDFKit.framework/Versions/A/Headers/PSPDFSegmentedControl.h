@@ -11,6 +11,7 @@
 @interface PSPDFSegmentedControl : UISegmentedControl
 
 - (void)setSelectedImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment;
+
 - (UIImage *)selectedImageForSegmentAtIndex:(NSUInteger)segment;
 
 @end

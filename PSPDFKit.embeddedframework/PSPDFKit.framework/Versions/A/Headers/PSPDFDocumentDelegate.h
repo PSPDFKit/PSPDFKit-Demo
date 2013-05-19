@@ -6,6 +6,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+
 @class PSPDFViewController;
 
 /// Delegate to receive events regarding PSPDFDocument (annotation saving; path resolving)

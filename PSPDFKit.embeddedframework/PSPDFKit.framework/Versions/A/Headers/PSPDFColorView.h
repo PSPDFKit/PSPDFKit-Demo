@@ -12,16 +12,22 @@ typedef NS_ENUM(NSInteger, PSPDFColorViewBorderStyle) {
     PSPDFColorViewBorderStyleTop,
     PSPDFColorViewBorderStyleMiddle,
     PSPDFColorViewBorderStyleBottom,
+    PSPDFColorViewBorderStyleSingleNoShadow
 };
 
 // Draws a shape with the set color.
 @interface PSPDFColorView : UIControl
 
+// Creates the view
 + (id)colorViewWithColor:(UIColor *)color borderStyle:(PSPDFColorViewBorderStyle)borderStyle;
 
+// Current set color.
 @property (nonatomic, strong) UIColor *color;
+
+// Current border style. Defaults to PSPDFColorViewBorderStyleSingle.
 @property (nonatomic, assign) PSPDFColorViewBorderStyle borderStyle;
 
+// Animate selection.
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
 @end

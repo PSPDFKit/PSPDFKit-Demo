@@ -16,6 +16,7 @@
 
 /// Just restores the status bar
 - (void)restoreStatusBarStateAnimated:(BOOL)animated;
+
 - (void)restoreStatusBarStateWithAnimation:(UIStatusBarAnimation)animation;
 
 /// Be smart about animations.

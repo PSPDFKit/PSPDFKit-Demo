@@ -12,6 +12,10 @@
 
 @class PSPDFDocument, PSPDFRenderReceipt;
 
+// Can be used to use a custom subclass of the PSPDFCache. Defaults to nil, which will use PSPDFCache.class.
+// Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
+extern Class PSPDFCacheClass;
+
 // Enable this to see a detailed log output. (slow)
 extern BOOL kPSPDFCacheDebug;
 #define PSPDFCacheLog(...) do { if (kPSPDFCacheDebug) PSPDFLog(__VA_ARGS__); }while(0)
@@ -177,6 +181,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
 /// This will load the pdf and remove any jpg artifacts.
 @property (nonatomic, assign) CGFloat JPGFormatCompression;
+
+/// Will allow image resizing instead of re-rendering to generate thumbnails.
+/// This is conditionally enabled for older devices. This is a tradeoff between performance or quality.
+/// @note You will need to clear the cache after changing this to see a difference.
+@property (nonatomic, assign) BOOL allowImageResize;
 
 /// @name Encryption/Decryption Handlers
 

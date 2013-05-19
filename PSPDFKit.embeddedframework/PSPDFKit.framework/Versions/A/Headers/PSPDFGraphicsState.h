@@ -11,7 +11,7 @@
 
 @interface PSPDFGraphicsState : NSObject <NSCopying> {
     // tuned for speed, thus no properties
-    @public
+@public
     PSPDFFontInfo *font;
     CGAffineTransform textMatrix;
     CGAffineTransform lineMatrix;

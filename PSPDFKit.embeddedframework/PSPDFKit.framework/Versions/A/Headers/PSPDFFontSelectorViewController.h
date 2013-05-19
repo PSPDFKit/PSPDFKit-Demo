@@ -9,9 +9,7 @@
 
 @class PSPDFFontSelectorViewController;
 
-///
 /// Delegate for PSPDFFontSelectorViewController.
-///
 @protocol PSPDFFontSelectorViewControllerDelegate <NSObject>
 
 /// A font has been selected.
@@ -19,9 +17,7 @@
 
 @end
 
-///
 /// Simple table view that allows to select a font.
-///
 @interface PSPDFFontSelectorViewController : UITableViewController
 
 /// All available font family names. This is set on init by querying [UIFont familyNames].

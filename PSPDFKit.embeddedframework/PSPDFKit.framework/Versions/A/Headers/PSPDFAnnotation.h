@@ -124,7 +124,9 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
 - (CGRect)rectForPageRect:(CGRect)pageRect;
 
 - (NSComparisonResult)compareByPositionOnPage:(PSPDFAnnotation *)otherAnnotation;
+
 - (CGRect)rectFromPDFArray:(CGPDFArrayRef)array;
+
 - (NSArray *)rectsFromQuadPointsInArray:(CGPDFArrayRef)quadPointsArray;
 
 /**
@@ -151,9 +153,6 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 
 /// Renders annotation into an image.
 - (UIImage *)imageWithSize:(CGSize)size withOptions:(NSDictionary *)options;
-
-/// Helper that will prepare the context for the border style.
-- (void)prepareBorderStyleInContext:(CGContextRef)context;
 
 /// Current annotation type.
 @property (nonatomic, assign, readonly) PSPDFAnnotationType type;
@@ -294,10 +293,12 @@ extern NSString *const PSPDFAnnotationPasteboardPrivateData;
 
 // PDF rect string representation (/Rect [%f %f %f %f])
 - (NSString *)pdfRectString;
+
 extern NSString *PSPDFRectStringFromRect(CGRect rect);
 
 // Color string representation (/C [%f %f %f])
 - (NSString *)pdfColorString;
+
 - (NSString *)pdfColorStringWithKey:(NSString *)key andColor:(UIColor *)color;
 
 // Fill Color string representation (/IC [%f %f %f])
@@ -325,6 +326,7 @@ extern NSString *PSPDFRectStringFromRect(CGRect rect);
 /// Returns NSData string representations in the PDF standard.
 /// Per convention, the first returned object has to be an annotation objects, all other can be supportive objects.
 - (NSArray *)pdfDataRepresentationsWithOptions:(NSDictionary *)streamOptions;
+
 extern NSString *const kPSPDFRepresentationAPStreamNumber;
 extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 
@@ -336,10 +338,10 @@ extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 /// If indexOnPage is set, it's a native PDF annotation.
 /// If this is -1, it's not yet saved in the PDF.
 /// Annotations that have indexOnPage >= 0 will be copied before they're modified.
-@property (nonatomic, assign, readonly) NSInteger indexOnPage;
+@property (nonatomic, readonly) NSInteger indexOnPage;
 
 /// If this is a copy of a deleted annotation, we still need to track the index.
-@property (nonatomic, assign, readonly) NSInteger previousIndexOnPage;
+@property (nonatomic, readonly) NSInteger previousIndexOnPage;
 
 /// Some annotations may have a popupIndex. Defaults to -1.
 @property (nonatomic, assign) NSInteger popupIndex;
@@ -353,6 +355,12 @@ extern NSString *const kPSPDFRepresentationFirstObjectNumber;
 
 // Draw the bounding box.
 - (void)drawBoundingBox:(CGContextRef)context;
+
+// Helper that will prepare the context for the border style.
+- (void)prepareBorderStyleInContext:(CGContextRef)context;
+
+// Helper that queries the page rotation.
+- (NSInteger)pageRotation;
 
 @end
 
@@ -370,3 +378,6 @@ extern NSString *PSPDFEscapedString(NSString *string);
 
 // Calculates a new rectangle expanded by a line width.
 extern CGRect PSPDFGrowRectByLineWidth(CGRect boundingBox, CGFloat lineWidth);
+
+// Rotates a rect by `rotation`. Basically only switches width/height.
+extern CGRect PSPDFRotateRect(CGRect rect, NSUInteger rotation);

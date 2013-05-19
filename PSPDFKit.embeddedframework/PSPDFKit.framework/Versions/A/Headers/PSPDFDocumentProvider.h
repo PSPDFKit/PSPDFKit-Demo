@@ -37,14 +37,14 @@
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
 
 /// Referenced NSURL. If this is set, data is nil.
-@property (nonatomic, strong, readonly) NSURL *fileURL;
+@property (nonatomic, readonly) NSURL *fileURL;
 
 /// Referenced NSData. If this is set, fileURL is nil.
 /// NOT readonly, since we may write back annotation data.
 @property (nonatomic, strong) NSData *data;
 
 /// Referenced dataProvider. (if data is set, or directly). Will be retained.
-@property (nonatomic, assign, readonly) CGDataProviderRef dataProvider;
+@property (nonatomic, readonly) CGDataProviderRef dataProvider;
 
 /// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
 - (NSData *)dataRepresentationWithError:(NSError **)error;
@@ -69,14 +69,15 @@
 - (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef withOwner:(id)owner;
 
 /// Use documentRef within the block. Will be automatically cleaned up.
-- (void)performBlock:(void(^)(PSPDFDocumentProvider *docProvider, CGPDFDocumentRef documentRef))documentRefBlock;
+- (void)performBlock:(void (^)(PSPDFDocumentProvider *docProvider, CGPDFDocumentRef documentRef))documentRefBlock;
 
 /// Iterate over all CGPDFPageRef pages. pageNumber starts at 1.
-- (void)iterateOverPageRef:(void(^)(PSPDFDocumentProvider *provider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger page))pageRefBlock;
+- (void)iterateOverPageRef:(void (^)(PSPDFDocumentProvider *provider, CGPDFDocumentRef documentRef, CGPDFPageRef pageRef, NSUInteger page))pageRefBlock;
 
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
+
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page;
 
 /// Releases a page reference.
@@ -91,9 +92,9 @@
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
 /// Number of pages in the PDF. Nil if source is invalid. Will be filtered by pageRange.
-@property (nonatomic, assign, readonly) NSUInteger pageCount;
-@property (nonatomic, assign, readonly) NSUInteger pageCountUnfiltered; // ignores pageRange
-@property (nonatomic, assign, readonly) NSUInteger firstPageIndex;      // first page, 0 if pageRange is not set.
+@property (nonatomic, readonly) NSUInteger pageCount;
+@property (nonatomic, readonly) NSUInteger pageCountUnfiltered; // ignores pageRange
+@property (nonatomic, readonly) NSUInteger firstPageIndex;      // first page, 0 if pageRange is not set.
 
 /// Limit pages to a certain page range. Defaults to nil.
 /// If document has a pageRange set, the visible pages can be limited to a certain subset.
@@ -129,7 +130,7 @@
 @property (nonatomic, copy, readonly) NSString *encryptionFilter;
 
 /// Has the PDF file been unlocked? (is it still locked?).
-@property (nonatomic, assign, readonly) BOOL isLocked;
+@property (nonatomic, readonly) BOOL isLocked;
 
 /// Are we able to add/change annotations in this file?
 /// Annotations can't be added to encrypted documents or if there are parsing errors.
@@ -146,7 +147,7 @@
 
 /// Access the PDF title. (".pdf" will be truncated)
 /// @note If there's no title in the PDF metadata, the file name will be used.
-@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, readonly) NSString *title;
 
 /// Return a textParser for the specific document page. Page starts at 0.
 /// Will parse the page contents before returning. Might take a while.
@@ -186,7 +187,7 @@
 // We need to allow writing to data to change annotations.
 @property (nonatomic, strong) NSData *data;
 
-@property (nonatomic, assign, readonly) BOOL hasOpenDocumentRef;
+@property (nonatomic, readonly) BOOL hasOpenDocumentRef;
 
 /// Queries the PageInfo, but doesn't fetch new data.
 - (PSPDFPageInfo *)pageInfoForPageNoFetching:(NSUInteger)page;
@@ -197,6 +198,7 @@
 
 /// Resolves a path like /localhost/Library/test.pdf into a full path.
 - (NSString *)resolveTokenizedPath:(NSString *)path alwaysLocal:(BOOL)alwaysLocal;
+
 - (NSURL *)URLForTokenizedPath:(NSString *)path;
 
 @end

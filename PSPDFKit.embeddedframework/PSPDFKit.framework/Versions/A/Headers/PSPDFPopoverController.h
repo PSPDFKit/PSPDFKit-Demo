@@ -19,10 +19,12 @@
 
 /// The content view controller is the `UIViewController` instance in charge of the content view of the displayed popover. This property can be changed while the popover is displayed to allow different view controllers in the same popover session.
 @property (nonatomic, strong) UIViewController *contentViewController;
+
 - (void)setContentViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 /// This property allows direction manipulation of the content size of the popover. Changing the property directly is equivalent to animated=YES. The content size is limited to a minimum width of 320 and a maximum width of 600.
 @property (nonatomic) CGSize popoverContentSize;
+
 - (void)setPopoverContentSize:(CGSize)size animated:(BOOL)animated;
 
 /// Returns whether the popover is visible (presented) or not.

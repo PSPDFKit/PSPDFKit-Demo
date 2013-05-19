@@ -183,6 +183,6 @@ extern NSString *const PSPDFModelJSONFormat;
 
 /// Returns whether `model` is of the exact same class as the receiver, and
 /// whether its dictionaryValue compares equal to the receiver's.
-- (BOOL)isEqual:(PSPDFModel *)model;
+- (BOOL)isEqual:(id)model;
 
 @end

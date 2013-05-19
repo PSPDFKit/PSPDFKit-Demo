@@ -96,8 +96,8 @@
 "Type..." = "Tipo…";
 "Font..." = "Tipografia…";
 "Size..." = "Taglia…";
-"Choose Font" = "Scegli la tipografia";
-"Choose Font Style" = "Scegli il stile della tipografia";
+"Font" = "Tipografia";
+"Regular" = "Regular";
 "Choose Color" = "Scegli il colore";
 "Rainbow" = "Arcobaleno";
 "Monochrome" = "Monocromatico";

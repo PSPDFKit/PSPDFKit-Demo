@@ -31,6 +31,7 @@
 
 /// Access visible page numbers or a PSPDFPageView
 - (NSArray *)visiblePageNumbers;
+
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
 /// Set Page, animated.

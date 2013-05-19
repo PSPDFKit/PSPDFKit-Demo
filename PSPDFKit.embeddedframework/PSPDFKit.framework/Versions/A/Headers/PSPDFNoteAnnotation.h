@@ -25,6 +25,7 @@ extern CGSize kPSPDFNoteAnnotationViewFixedSize;
 
 /// Custom HitTest because we have custom width/height here.
 - (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;
+
 - (CGRect)boundingBoxForPageViewBounds:(CGRect)pageBounds;
 
 @end

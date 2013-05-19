@@ -28,15 +28,17 @@
 @interface PSPDFTransitionHelper : NSObject <PSPDFSinglePageViewControllerDelegate>
 
 /// Create page controller using the master pdf controller.
-- (id)initWithDelegate:(UIViewController<PSPDFTransitionHelperDelegate> *)delegate;
+- (id)initWithDelegate:(UIViewController <PSPDFTransitionHelperDelegate> *)delegate;
 
-@property (nonatomic, weak, readonly) UIViewController<PSPDFTransitionHelperDelegate> *delegate;
+@property (nonatomic, weak, readonly) UIViewController <PSPDFTransitionHelperDelegate> *delegate;
 
 /// Set new page.
 @property (nonatomic, assign) NSUInteger page;
+
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
 
 - (NSArray *)visiblePageNumbers;
+
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
 @end
@@ -48,6 +50,7 @@
 - (NSUInteger)fixPageNumberForDoublePageMode:(NSUInteger)page forceDoublePageMode:(BOOL)forceDualPageMode;
 
 - (PSPDFSinglePageViewController *)viewControllerAfterViewController:(UIViewController *)viewController;
+
 - (PSPDFSinglePageViewController *)viewControllerBeforeViewController:(UIViewController *)viewController;
 
 - (void)setPageInternal:(NSUInteger)page;
