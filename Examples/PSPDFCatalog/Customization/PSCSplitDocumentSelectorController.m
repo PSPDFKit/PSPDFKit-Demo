@@ -71,10 +71,11 @@
     document = [document copy];
 #endif
 
-    [self.masterVC displayDocument:document];
+    PSCSplitPDFViewController *masterVC = self.masterVC;
+    [masterVC displayDocument:document];
 
     // hide controller
-    [self.masterVC.popoverController dismissPopoverAnimated:YES];
+    [masterVC.popoverController dismissPopoverAnimated:YES];
 }
 
 @end

@@ -146,14 +146,14 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
         _paperColors = @[[UIColor whiteColor],
             // 1-4: sepia, light to dark
-            [UIColor colorWithRed:0.980 green:0.976 blue:0.949 alpha:1.0],
-            [UIColor colorWithRed:0.965 green:0.957 blue:0.906 alpha:1.0],
-            [UIColor colorWithRed:0.953 green:0.941 blue:0.871 alpha:1.0],
-            [UIColor colorWithRed:0.937 green:0.922 blue:0.831 alpha:1.0],
+            [UIColor colorWithRed:0.980f green:0.976f blue:0.949f alpha:1.0f],
+            [UIColor colorWithRed:0.965f green:0.957f blue:0.906f alpha:1.0f],
+            [UIColor colorWithRed:0.953f green:0.941f blue:0.871f alpha:1.0f],
+            [UIColor colorWithRed:0.937f green:0.922f blue:0.831f alpha:1.0f],
             // 5-7: gray, light to dark
-            [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0],
-            [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0],
-            [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1.0]];
+            [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.0f],
+            [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1.0f],
+            [UIColor colorWithRed:0.85f green:0.85f blue:0.85f alpha:1.0f]];
 
         NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:[_paperColors count]];
         [_paperColors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -220,7 +220,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 - (void)contentOpacityChanged:(id)sender {
     if (_isSettingUpCells) return;
     int opacityIndex = [sender selectedSegmentIndex];
-    float opacity = 1.0 - ((float)opacityIndex * 0.1);
+    float opacity = 1.f - ((float)opacityIndex * 0.1f);
     _settings[@"renderContentOpacity"] = @(opacity);
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
@@ -317,7 +317,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
         _contentOpacityControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
-        NSUInteger index = roundf((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10);
+        NSUInteger index = (NSUInteger)roundf((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10.f);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
     }
@@ -340,7 +340,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             cell.accessoryType = (indexPath.row == renderingMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCoverSettings: {
-            BOOL hasCoverPage = [_settings[StringSEL(isDoublePageModeOnFirstPage)] integerValue];
+            BOOL hasCoverPage = [_settings[StringSEL(isDoublePageModeOnFirstPage)] integerValue] == 1;
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFThumbnailModeSettings: {

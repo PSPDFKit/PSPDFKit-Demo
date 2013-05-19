@@ -97,10 +97,11 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 #pragma mark - Public
 
 - (void)deleteMagazineFolder:(PSCMagazineFolder *)magazineFolder {
-    [_delegate magazineStoreBeginUpdate];
+    id<PSCStoreManagerDelegate> delegate = self.delegate;
+    [delegate magazineStoreBeginUpdate];
 
     for (PSCMagazine *magazine in magazineFolder.magazines) {
-        [_delegate magazineStoreMagazineDeleted:magazine];
+        [delegate magazineStoreMagazineDeleted:magazine];
 
         // cancel eventual download!
         if (magazine.isDownloading) {
@@ -113,38 +114,39 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         });
     }
 
-    [_delegate magazineStoreFolderDeleted:magazineFolder];
+    [delegate magazineStoreFolderDeleted:magazineFolder];
     dispatch_barrier_sync(_magazineFolderQueue, ^{
         [_magazineFolders removeObject:magazineFolder];
     });
 
-    [_delegate magazineStoreEndUpdate];
+    [delegate magazineStoreEndUpdate];
 
     // ensure set icon is not deleted.
     [self updateNewsstandIcon:nil];
 }
 
 - (void)deleteMagazine:(PSCMagazine *)magazine {
-    [_delegate magazineStoreBeginUpdate];
+    id<PSCStoreManagerDelegate> delegate = self.delegate;
+    [delegate magazineStoreBeginUpdate];
 
     PSCMagazineFolder *folder = magazine.folder;
 
-    // first notify, then delete from the backing store.
+    // First notify, then delete from the backing store.
     if (!magazine.URL) {
-        [_delegate magazineStoreMagazineDeleted:magazine];
+        [delegate magazineStoreMagazineDeleted:magazine];
 
         if ([folder.magazines count] == 1) {
-            [_delegate magazineStoreFolderDeleted:folder];
+            [delegate magazineStoreFolderDeleted:folder];
         }
     }
 
-    // cancel eventual download!
+    // Cancel eventual download!
     if (magazine.isDownloading) {
         PSCDownload *downloadObject = [self downloadObjectForMagazine:magazine];
         [downloadObject cancelDownload];
     }
 
-    // clear everything
+    // Clear everything
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES error:nil];
     });
@@ -154,7 +156,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         [folder removeMagazine:magazine];
 
         if ([folder.magazines count] > 0) {
-            [_delegate magazineStoreFolderModified:folder]; // was just modified
+            [delegate magazineStoreFolderModified:folder]; // was just modified
         }else {
             dispatch_barrier_sync(_magazineFolderQueue, ^{
                 [_magazineFolders removeObject:folder]; // remove!
@@ -163,12 +165,12 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     }else {
         // just set availability to now - needs redownloading!
         magazine.available = NO;
-        [_delegate magazineStoreMagazineModified:magazine];
+        [delegate magazineStoreMagazineModified:magazine];
     }
 
-    [_delegate magazineStoreEndUpdate];
+    [delegate magazineStoreEndUpdate];
 
-    // ensure set icon is not deleted
+    // Ensure set icon is not deleted.
     [self updateNewsstandIcon:nil];
 }
 
@@ -273,7 +275,9 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     }
 
     if ([newMagazines count] > 0) {
-        [_delegate magazineStoreBeginUpdate];
+        id<PSCStoreManagerDelegate> delegate = self.delegate;
+
+        [delegate magazineStoreBeginUpdate];
 
         for (PSCMagazine *magazine in magazines) {
             PSCMagazineFolder *folder = [self addMagazineToFolder:magazine];
@@ -281,15 +285,15 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
             // folder fresh or updated?
             if ([folder.magazines count] == 1) {
-                [_delegate magazineStoreFolderAdded:folder];
+                [delegate magazineStoreFolderAdded:folder];
             }else {
-                [_delegate magazineStoreFolderModified:folder];
+                [delegate magazineStoreFolderModified:folder];
             }
 
-            [_delegate magazineStoreMagazineAdded:magazine];
+            [delegate magazineStoreMagazineAdded:magazine];
         }
 
-        [_delegate magazineStoreEndUpdate];
+        [delegate magazineStoreEndUpdate];
 
         // update newsstand icon
         [self updateNewsstandIcon:[newMagazines lastObject]];
