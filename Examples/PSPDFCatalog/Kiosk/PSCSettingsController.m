@@ -406,7 +406,8 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 // allow both iPhone (self) and iPad use. (iPad will crash if we push from self in a popover)
 - (UIViewController *)masterViewController {
-    return self.owningViewController.view.window ? self.owningViewController : self;
+    UIViewController *owningViewController = self.owningViewController;
+    return owningViewController.view.window ? owningViewController : self;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

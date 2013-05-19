@@ -27,10 +27,11 @@
 // a UIToolbar is used instead of an UIButton to get the automatic shadows on UIBarButtonItem icons.
 - (UIToolbar *)toolbar {
     if (!_toolbar) {
+        PSPDFViewController *pdfController = self.pdfController;
         _toolbar = [[PSPDFTransparentToolbar alloc] initWithFrame:CGRectMake(0.f, 0.f, 22.f, 44.f)];
         _toolbar.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        _toolbar.barStyle = self.pdfController.navigationController.navigationBar.barStyle;
-        _toolbar.tintColor = self.pdfController.tintColor;
+        _toolbar.barStyle = pdfController.navigationController.navigationBar.barStyle;
+        _toolbar.tintColor = pdfController.tintColor;
         [self updatePlayButton];
     }
     return _toolbar;
