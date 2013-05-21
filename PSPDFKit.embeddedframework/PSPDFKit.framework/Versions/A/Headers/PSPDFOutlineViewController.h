@@ -61,4 +61,7 @@
 // Cell delegate - expand/shrink content.
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;
 
+// Allows to change the outlineCell class. Defaults to PSPDFOutlineCell.class
+@property (nonatomic, strong) Class outlineCellClass;
+
 @end

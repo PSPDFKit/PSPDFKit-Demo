@@ -2,6 +2,14 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.3 - 21/May/2013__
+
+*  Allow to override PSPDFOutlineCell via overrideClass:withClass:.
+*  Fixes a nasty issue with one-pixel white thumbnail borders on certain page aspect rations.
+*  Fixes an edge case where the menu could appear while the PSPDFViewController is being popped from the navigation stack.
+*  Fixes an issue with multiple calls to overrideClass:withClass:
+*  Fixes a parsing bug with remote GoToR actions that have a page destination set. The page destination is now evaluated correctly.
+
 __v2.14.2 - 19/May/2013__
 
 *  PSPDFViewController now unloads its views when not visible on a memory warning even on iOS6. This saves memory especially when multiple stacks of viewControllers are used in a navigationController.
