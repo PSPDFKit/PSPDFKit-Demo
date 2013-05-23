@@ -70,6 +70,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
 
 /// Initialize PSPDFDocument with data.
 /// @warning You might want to set a custom UID when initialized with NSData, else the UID will be calculated from the PDF contents, which might be the same for two equal files.
+/// In most cases, you really want to use a fileURL instead. When using NSData, PSPDFKit is unable to automatically save annotation changes back into the PDF. Also, keep in mind that iOS is an environment without virtual memory. Loading a 100MB PDF will simply get your app killed by the iOS watchdog while you try to allocate more memory than is available. If you use NSData because of encryption, look into CGDataProvider instead for a way to dynamically decrypt the needed portions of the PDF.
 + (instancetype)documentWithData:(NSData *)data;
 
 /// Initialize PSPDFDocument with multiple data objects

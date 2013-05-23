@@ -62,12 +62,18 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Set zoomscale to be able to draw the page knobs at the correct size.
 @property (nonatomic, assign) CGFloat zoomScale;
 
-/// Will be applied to the contentFrame to calculate frame if an annotation has more than 2 points.
-/// Use negative values to add space around the tracked annotation view. Defaults to -20.0f for top, bottom, right, and left.
-@property (nonatomic, assign) UIEdgeInsets edgeInsets;
+/// The inner edge insets are used to create space between the bounding box (blue) and inner knobs (green).
+/// Will be applied to the contentFrame to calculate frame if an annotation has more than 2 points. Use negative
+/// values to add space around the tracked annotation view. Defaults to -20.0f for top, bottom, right, and left.
+@property (nonatomic, assign) UIEdgeInsets innerEdgeInsets;
+
+/// The outer edge insets are used to create space between the bounding box (blue) and the view bounds.
+/// Will be applied to the contentFrame to calculate frame. Use negative values to add space around the
+/// tracked annnotation view. Defaults to -40.0f for top, bottom, right, and left.
+@property (nonatomic, assign) UIEdgeInsets outerEdgeInsets;
 
 /// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or edgeInsets.
-- (UIEdgeInsets)effectiveEdgeInsets;
+- (UIEdgeInsets)effectiveInnerEdgeInsets;
 
 /// If set to NO, won't show selection knobs and dragging. Defaults to YES.
 @property (nonatomic, assign) BOOL allowEditing;
@@ -84,7 +90,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL enableResizingGuides;
 
-/// Defines how agressive the guide works. Defaults to 30.f
+/// Defines how agressive the guide works. Defaults to 20.f
 @property (nonatomic, assign) CGFloat guideSnapAllowance;
 
 /// Set minimum allowed width (unless the view is smaller to begin width). Default is 32.0.
@@ -98,6 +104,9 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 
 /// Border color. Defaults to [[UIColor pspdf_selectionColor] colorWithAlphaComponent:0.6f].
 @property (nonatomic, strong) UIColor *selectionBorderColor;
+
+/// Guide color. Defaults to [UIColor pspdf_guideColor].
+@property (nonatomic, strong) UIColor *guideBorderColor;
 
 // forward parent gesture recognizer longPress action.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;

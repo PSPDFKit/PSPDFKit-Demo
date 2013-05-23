@@ -24,6 +24,12 @@ extern CGRect PSPDFCalculateMinimumBoundingRect(CGPoint *points, NSUInteger coun
 /// Inverts edge insets by multiplying top, bottom, left, and right with -1.0.
 extern UIEdgeInsets PSPDFInvertEdgeInsets(UIEdgeInsets edgeInsets);
 
+/// Adds two content edge insets and returns the result.
+extern UIEdgeInsets PSPDFAddEdgeInsets(UIEdgeInsets edgeInsets1, UIEdgeInsets edgeInsets2);
+
+/// Calculates the shortes distance between a point and line.
+extern CGFloat PSPDFCalculateDistanceBetweenPointAndLine(CGPoint point, CGPoint linePoint1, CGPoint linePoint2);
+
 typedef NS_ENUM(NSInteger, PSPDFRectAlignment) {
     PSPDFRectAlignCenter = 0,
     PSPDFRectAlignTop,
@@ -59,6 +65,9 @@ extern NSUInteger PSPDFNormalizeRotation(NSInteger rotation);
 
 /// Apply rotation to specific rect
 extern CGRect PSPDFApplyRotationToRect(CGRect pageRect, NSInteger rotation);
+
+/// Rotate a rect around its center point
+extern CGRect PSPDFRotateRectAroundCenter(CGRect rect, NSInteger rotation);
 
 /// Get the affine transform for specific pageRect and rotation.
 extern CGAffineTransform PSPDFGetTransformFromPageRectAndRotation(CGRect pageRect, NSInteger rotation);
