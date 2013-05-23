@@ -35,6 +35,9 @@
 /// Allows search. Defaults to YES.
 @property (nonatomic, assign) BOOL searchEnabled;
 
+/// Enables displaying page labels.
+@property (nonatomic, assign) BOOL showPageLabels;
+
 /**
  How many lines should be displayed for a cell. Defaults to 4.
 

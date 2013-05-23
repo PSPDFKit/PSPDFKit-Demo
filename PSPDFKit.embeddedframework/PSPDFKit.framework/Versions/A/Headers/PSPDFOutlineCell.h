@@ -26,7 +26,7 @@
 @interface PSPDFOutlineCell : UITableViewCell
 
 /// Dynamically calculates the height for a cell.
-+ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier;
++ (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier showPageLabel:(BOOL)showPageLabel;
 
 /// Delegate for cell button.
 @property (nonatomic, weak) IBOutlet id<PSPDFOutlineCellDelegate> delegate;
@@ -37,6 +37,9 @@
 /// Shows the expand/collapse button.
 @property (nonatomic, assign) BOOL showExpandCollapseButton;
 
+/// Enables the page label on the right side of the cell.
+@property (nonatomic, assign) BOOL showPageLabel;
+
 @end
 
 @interface PSPDFOutlineCell (SubclassingHooks)
@@ -44,11 +47,14 @@
 // Button that controls the open/close of cells
 @property (nonatomic, strong) UIButton *disclosureButton;
 
+// The page label displayed on the right side. Only valid if `showPageLabel` is set.
+@property (nonatomic, strong) UILabel *pageLabel;
+
 // Subclass to change the font. Default is 17 for level 1; 15 for level > 1.
 + (UIFont *)fontForOutlineElement:(PSPDFOutlineElement *)outlineElement;
 
 // Set transform according to expansion state.
-- (void)updateOutlineButton;
+- (void)updateDisclosureButton;
 
 // Button action. Animates and calls the delegate.
 - (void)expandOrCollapse;
