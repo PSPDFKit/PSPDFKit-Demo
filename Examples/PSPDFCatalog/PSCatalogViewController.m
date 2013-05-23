@@ -428,6 +428,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [annotationSection addContent:[[PSContent alloc] initWithTitle:@"PDF annotation writing" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Rotated PDF.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = [self copyFileURLToDocumentFolder:annotationSavingURL overrideFile:NO];
