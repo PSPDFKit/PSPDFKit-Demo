@@ -112,9 +112,6 @@ extern NSString *PSPDFResolvePathNames(NSString *path, NSString *fallbackPath);
 
 extern BOOL PSPDFResolvePathNamesInMutableString(NSMutableString *mutableString, NSString *fallbackPath, NSString *(^resolveUnknownPathBlock)(NSString *unknownPath));
 
-/// If you need the 1.9-style path resolving (no marker = bundle path, not pdf path) set this to YES. Defaults to NO.
-extern BOOL PSPDFResolvePathNamesEnableLegacyBehavior;
-
 /// Removes the ".pdf" or a cased derivation of it from the fileName, if it exists.
 extern NSString *PSPDFStripPDFFileType(NSString *pdfFileName);
 

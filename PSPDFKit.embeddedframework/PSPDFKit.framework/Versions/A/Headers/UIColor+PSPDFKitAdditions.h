@@ -46,6 +46,9 @@ extern BOOL PSPDFIsColorAboutEqualToColor(UIColor *left, UIColor *right);
 
 + (CGFloat)pspdf_selectionAlpha;
 
+/// Color for guide helpers.
++ (UIColor *)pspdf_guideColor;
+
 /// Color for detail elements in the grouped table view.
 + (UIColor *)pspdf_groupTableViewBlueColor;
 

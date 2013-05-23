@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.4 - 23/May/2013__
+
+*  The annotation resize control now shows guides for aspect ratio and square resizing.
+*  The outline controller now shows the target page and properly highlights the outline button.
+*  Improves rendering of rotated stamps/images on rotated pages.
+*  Allow class overriding for PSPDFSearchResultCell and PSPDFSearchStatusCell.
+*  The grid control now loads faster for huge documents on iOS5.
+*  Adds some additional safeguards that will now warn if methods of UIViewController/PSPDFViewController are overridden without calling super.
+*  Removes legacy PSPDFResolvePathNamesEnableLegacyBehavior.
+*  Fixes a small memory leak related to stamp annotations.
+*  Fixes an issue where the search controller could get into an "empty" state without showing the search bar.
+
 __v2.14.3 - 21/May/2013__
 
 *  Allow to override PSPDFOutlineCell via overrideClass:withClass:.
