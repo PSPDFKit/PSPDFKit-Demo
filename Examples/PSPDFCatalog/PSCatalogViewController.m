@@ -2657,6 +2657,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    [self.navigationController setToolbarHidden:YES animated:animated];
 
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
