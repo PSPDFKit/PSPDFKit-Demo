@@ -1649,6 +1649,11 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return picker;
     }]];
 
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Internal WebBrowser test" block:^UIViewController *{
+        PSPDFWebViewController *browser = [[PSPDFWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://pspdfkit.com"]];
+        return browser;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test that § can be found." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Entwurf AIFM-UmsG.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1743,8 +1748,8 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
-    // Check that "Griffin" is correctly parsed and only one word.
-    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test ligature parsing" block:^UIViewController *{
+    // Check that "Griffin" is correctly parsed and only one word. (fi ligature)
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test fi ligature parsing 1" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
@@ -1754,6 +1759,18 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
         return pdfController;
     }]];
+
+    // Check that "rather than fight" is correctly parsed and 3 words without stray spaces. (fi ligature)
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test fi ligature parsing 2" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_rather_than_fight.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        NSArray *glyphs = [[document textParserForPage:0] glyphs];
+        NSLog(@"glyphs: %@", glyphs);
+
+        return pdfController;
+    }]];
+
 
     // There's a ffi ligature on the first page.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test ffi ligature parsing" block:^UIViewController *{
