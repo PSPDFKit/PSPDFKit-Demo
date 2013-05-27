@@ -50,3 +50,12 @@
 - (NSString *)textWithGlyphs:(NSArray *)glyphs;
 
 @end
+
+@interface PSPDFTextParser (SubclassingHooks)
+
+// Performance.
+@property (atomic, strong) NSString *transformedText;
+
+- (BOOL)fillFontsFromCache:(NSDictionary *)fontCache;
+
+@end

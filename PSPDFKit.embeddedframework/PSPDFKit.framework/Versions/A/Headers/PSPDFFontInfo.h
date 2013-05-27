@@ -28,12 +28,15 @@
 /// The font name as defined in the PDF dictionary.
 @property (nonatomic, copy, readonly) NSString *name;
 
-// Since PSPDFKit 2.8, ascend, descend and width are normalized (divided by 1000 vs the PDF spec)
-// This has been done for performance reasons.
+/// The `fontKey` is a document-global identifier for the fontKey.
+@property (nonatomic, copy, readonly) NSString *fontKey;
+
 /// Font ascent parameter.
+/// @note This parameter is normalized (divided by 1000 vs the PDF spec)
 @property (nonatomic, assign, readonly) CGFloat ascent;
 
 /// Font descent parameter.
+/// @note This parameter is normalized (divided by 1000 vs the PDF spec)
 @property (nonatomic, assign, readonly) CGFloat descent;
 
 /// A font can have either an encodingArray or a unicode map.
@@ -45,10 +48,11 @@
 /// Version that boxes the keys at runtime. Slower, will be recreated on every access.
 @property (nonatomic, copy, readonly) NSDictionary *boxedToUnicodeMap;
 
-/// Designated initializer
-- (id)initWithFontDictionary:(CGPDFDictionaryRef)font;
+/// Designated initializer. fontKey is optional.
+- (id)initWithFontDictionary:(CGPDFDictionaryRef)font fontKey:(NSString *)fontKey;
 
 /// Returns the width for the specific character.
+/// @note This parameter is normalized (divided by 1000 vs the PDF spec)
 - (CGFloat)widthForCharacter:(uint16_t)character;
 
 /// Returns YES if font is a composite/multibyte font.
@@ -58,7 +62,6 @@
 
 /// Default glyph dictionaries. Loaded lazily.
 + (NSDictionary *)glyphNames;
-
 + (NSDictionary *)standardFontWidths;
 
 /// Compare two fonts.

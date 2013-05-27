@@ -87,6 +87,20 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
     PSPDFAnnotationBorderStyleUnknown
 };
 
+// A set of flags specifying various characteristics of the annotation. PSPDFKit doesn't yet support all of those flag settings.
+typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationFlags) {
+    PSPDFAnnotationFlagInvisible      = 1 << 0, // If set, ignore annotation AP stream if there is no handler available.
+    PSPDFAnnotationFlagHidden         = 1 << 1, // [TODO] If set, do not display or print the annotation or allow it to interact with the user.
+    PSPDFAnnotationFlagPrint          = 1 << 2, // [TODO] If set, print the annotation when the page is printed. Default value.
+    PSPDFAnnotationFlagNoZoom         = 1 << 3, // [TODO] If set, don't scale the annotation’s appearance to match the magnification of the page.
+    PSPDFAnnotationFlagNoRotate       = 1 << 4, // [TODO] If set, don't rotate the annotation’s appearance to match the rotation of the page.
+    PSPDFAnnotationFlagNoView         = 1 << 5, // [TODO] If set, don't display the annotation on the screen. (But printing might be allowed)
+    PSPDFAnnotationFlagReadOnly       = 1 << 6, // [TODO] If set, don't allow the annotation to interact with the user. Ignored for Widget.
+    PSPDFAnnotationFlagLocked         = 1 << 7, // [TODO] If set, don't allow the annotation to be deleted or properties modified (except contents)
+    PSPDFAnnotationFlagToggleNoView   = 1 << 8, // [TODO] If set, invert the interpretation of the NoView flag for certain events.
+    PSPDFAnnotationFlagLockedContents = 1 << 9, // [TODO] If set, don't allow the contents of the annotation to be modified by the user.
+};
+
 /**
  Defines a PDF annotation.
 
@@ -97,6 +111,8 @@ typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
  Subclasses need to implement - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotationDictionary inAnnotsArray:(CGPDFArrayRef)annotsArray.
 
  Ensure that custom subclasses also correctly implement hash and isEqual.
+ 
+ Annotation objects should only ever be edited on ONE thread. Modify properties on the main thread only if they are already active (for creation, it doesn't matter which thread creates them). Before rendering, obtain a copy of the annotation to ensure it's not mutated while properties are read.
 */
 @interface PSPDFAnnotation : PSPDFModel
 
@@ -200,6 +216,9 @@ extern NSString *const kPSPDFAnnotationMargin;       // UIEdgeInsets.
 
 /// Optional. Various annotation types may contain text.
 @property (nonatomic, copy) NSString *contents;
+
+/// Annotation flags.
+@property (nonatomic, assign) NSUInteger flags;
 
 /// The annotation name, a text string uniquely identifying it among all the annotations on its page.
 /// (Optional; PDF1.4, "NM" key)
@@ -328,6 +347,9 @@ extern NSString *PSPDFRectStringFromRect(CGRect rect);
 // Converts an array of CGRect-NSString's into a array of NSValue-CGRect's.
 + (NSArray *)rectsFromStringsArray:(NSArray *)rectStrings;
 
+/// Starts the mutable data for writing.
+- (NSMutableData *)pdfMutableDataRepresentationHeader;
+
 /// Returns NSData string representations in the PDF standard.
 /// Per convention, the first returned object has to be an annotation objects, all other can be supportive objects.
 - (NSArray *)pdfDataRepresentationsWithOptions:(NSDictionary *)streamOptions;
@@ -383,6 +405,3 @@ extern NSString *PSPDFEscapedString(NSString *string);
 
 // Calculates a new rectangle expanded by a line width.
 extern CGRect PSPDFGrowRectByLineWidth(CGRect boundingBox, CGFloat lineWidth);
-
-// Rotates a rect by `rotation`. Basically only switches width/height.
-extern CGRect PSPDFRotateRect(CGRect rect, NSUInteger rotation);

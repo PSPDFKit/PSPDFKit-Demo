@@ -58,7 +58,7 @@
 - (unsigned long long)fileSize;
 
 /// Parent document, not retained.
-@property (nonatomic, unsafe_unretained, readonly) PSPDFDocument *document;
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
 
 /// Delegate for writing annotations. Is set to PSPDFDocument per default.
 @property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
@@ -82,7 +82,6 @@
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
-
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page;
 
 /// Releases a page reference.
@@ -160,6 +159,9 @@
 
 /// Checks if the text parser has already been loaded.
 - (BOOL)hasLoadedTextParserForPage:(NSUInteger)page;
+
+/// Clear all text parsers, releases memory.
+- (void)clearAllTextParsers;
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
