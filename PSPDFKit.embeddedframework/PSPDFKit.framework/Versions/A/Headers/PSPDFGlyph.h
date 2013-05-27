@@ -64,7 +64,7 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 - (BOOL)isOnSameLineAs:(PSPDFGlyph *)glyph;
 
 /// Compare glyph with other glyph if it's approximately on the same line segment (block detection).
-- (BOOL)isOnSameLineSegmentAs:(PSPDFGlyph *)glyph;
+extern BOOL PSPDFGlyphIsOnSameLineSegmentAsGlyph(PSPDFGlyph *glyph1, PSPDFGlyph *glyph2);
 
 /// Compare glyph.
 - (BOOL)isEqualToGlyph:(PSPDFGlyph *)otherGlyph;

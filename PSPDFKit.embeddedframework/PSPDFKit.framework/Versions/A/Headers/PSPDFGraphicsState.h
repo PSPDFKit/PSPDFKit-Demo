@@ -14,10 +14,11 @@
 
 @class PSPDFFontInfo;
 
+// The current graphics state needed to track glyphs/images.
 @interface PSPDFGraphicsState : NSObject <NSCopying> {
-    // tuned for speed, thus no properties
-@public
-    PSPDFFontInfo *font;
+@public // tuned for speed, thus no properties.
+    __unsafe_unretained PSPDFFontInfo *font;
+    uint16_t fontIndex;
     CGAffineTransform textMatrix;
     CGAffineTransform lineMatrix;
     CGAffineTransform ctm;
@@ -27,9 +28,7 @@
     CGFloat horizontalScaling;
     CGFloat leading;
     CGFloat rise;
-    NSUInteger renderingMode;
+    uint8_t renderingMode;
 }
-
-@property (nonatomic, strong) PSPDFFontInfo *font;
 
 @end

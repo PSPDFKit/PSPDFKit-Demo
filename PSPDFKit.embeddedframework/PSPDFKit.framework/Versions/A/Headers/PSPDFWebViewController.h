@@ -24,7 +24,7 @@
 
 @optional
 
-/// To handle external URLS.
+/// Callback to handle external URLs.
 - (BOOL)handleExternalURL:(NSURL *)URL buttonCompletionBlock:(void (^)(PSPDFAlertView *alert, NSUInteger buttonIndex))completionBlock;
 
 @end
@@ -42,6 +42,10 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsStopReload       = 1 << 4,
     PSPDFWebViewControllerAvailableActionsBack             = 1 << 5,
     PSPDFWebViewControllerAvailableActionsForward          = 1 << 6,
+    // Following actions can only be used on iOS6 and later with UIActivityViewController.
+    PSPDFWebViewControllerAvailableActionsFacebook         = 1 << 7,
+    PSPDFWebViewControllerAvailableActionsTwitter          = 1 << 8,
+    PSPDFWebViewControllerAvailableActionsMessage          = 1 << 9,
     PSPDFWebViewControllerAvailableActionsAll              = 0xFFFFFF
 };
 
@@ -76,6 +80,10 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL useCustomErrorPage;
 
+/// Uses UIActivityViewController on iOS6 and later. Defaults to YES.
+/// IF set to NO, the behavior on iOS5 and iOS6 will be the same, both use an UIActionSheet.
+@property (nonatomic, assign) BOOL useActivitySheetIfAvailable;
+
 @end
 
 @interface PSPDFWebViewController (SubclassingHooks)
@@ -88,17 +96,15 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Uses the "StandardError.html" inside PSPDFKit.bundle.
 - (void)showHTMLWithError:(NSError *)error;
 
+// This is your chance to modify the settings on the activity controller before it's displayed.
+- (UIActivityViewController *)createDefaultActivityViewController;
+
 // Toolbar items
 - (void)goBack:(id)sender;
-
 - (void)goForward:(id)sender;
-
 - (void)reload:(id)sender;
-
 - (void)stop:(id)sender;
-
 - (void)action:(id)sender;
-
 - (void)doneButtonClicked:(id)sender;
 
 @end

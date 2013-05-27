@@ -17,9 +17,7 @@
 
 @class PSPDFPageView, PSPDFPagingScrollView;
 
-///
 /// Controller for Safari-like continuous scrolling.
-///
 @interface PSPDFContinuousScrollViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
 
 /// Designated initializer.
