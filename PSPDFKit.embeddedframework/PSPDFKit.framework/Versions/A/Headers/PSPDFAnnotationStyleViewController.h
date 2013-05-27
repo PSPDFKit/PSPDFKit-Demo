@@ -58,7 +58,7 @@
 @property (nonatomic, assign) CGFloat minimumTextWidth;
 
 // Called whenever the slider changes to update the slider label.
-@property (nonatomic, copy) void (^sliderLabelUpdateBlock)(UITableViewCell *cell);
+@property (nonatomic, copy) void (^sliderLabelUpdateBlock)(PSPDFSliderCell *cell, UISlider *slider);
 
 @end
 
@@ -68,5 +68,8 @@
 
 // The segment visible.
 @property (nonatomic, strong, readonly) UISegmentedControl *segmentedControl;
+
+// Called when the segment changes.
+@property (nonatomic, copy) void (^segmentedControlUpdateBlock)(PSPDFSegmentedCell *cell, UISegmentedControl *segmentedControl);
 
 @end

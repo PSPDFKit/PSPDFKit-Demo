@@ -82,6 +82,9 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 /// Autoplay video/audio. Only valid for PSPDFLinkAnnotationVideo and PSPDFLinkAnnotationAudio. Defaults to NO.
 @property (nonatomic, assign, getter=isAutoplayEnabled) BOOL autoplayEnabled;
 
+/// Loop media. Only valid for PSPDFLinkAnnotationVideo and PSPDFLinkAnnotationAudio. Defaults to NO.
+@property (nonatomic, assign, getter=isLoopEnabled) BOOL loopEnabled;
+
 /// Used for the preview string when the user long-presses on a link annotation.
 /// Forwards to action.localizedDescription.
 - (NSString *)targetString;

@@ -14,13 +14,15 @@
 
 @class PSPDFFontStyleViewController;
 
+/// Font style delegate.
 @protocol PSPDFFontStyleViewControllerDelegate <NSObject>
 
+/// Delegate is fired when a font is selected.
 - (void)fontStyleViewController:(PSPDFFontStyleViewController *)fontStyleViewController didSelectFont:(UIFont *)selectedFont;
 
 @end
 
-/// Select the font style (bold, italic, etc IF font is available0
+/// Select the font style (bold, italic, etc IF font is available.
 @interface PSPDFFontStyleViewController : UITableViewController
 
 /// Designated initializer.

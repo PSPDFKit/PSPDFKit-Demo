@@ -2,6 +2,19 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.5 - 27/May/2013__
+
+*  PSPDFWebViewController will now use UIActivityViewController on iOS6 by default.
+*  Support new "loop" option for video annotations.
+*  Use images for the text alignment setting.
+*  Improve HSV color picker brightness style.
+*  Improve word detection for PDF types that already have spaces added and also improves word-break-behavior for ligatures.
+*  PSPDFKit will now attempt to render even unknown annotation as long as they define an appearance stream.
+*  Improve search and glyph extraction performance.
+*  Fixes an issue that could result in the HUD being in a hidden state after adding line/ellipse annotations from the annotation menu while the annotation toolbar is visible.
+*  Fixes a potential crash when the PSPDFDocument was deallocated early.
+*  Fixes a rare crash with a malformed PDF in the text extractor.
+
 __v2.14.4 - 23/May/2013__
 
 *  The annotation resize control now shows guides for aspect ratio and square resizing.

@@ -9,7 +9,7 @@
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
 //
-//  Created by Matt Gallagher on 19/12/08.
+//  Based on code by Matt Gallagher on 19/12/08.
 //  Copyright 2008 Matt Gallagher. All rights reserved.
 //
 //  This software is provided 'as-is', without any express or implied
