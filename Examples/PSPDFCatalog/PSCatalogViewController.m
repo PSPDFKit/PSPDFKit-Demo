@@ -926,6 +926,9 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Change link background color to red" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        // Note: You can also globally change the color using:
+        // We don't use this in the example here since it would change the color globally for all examples.
+        //[PSPDFLinkAnnotationView setGlobalBorderColor:[UIColor greenColor]];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller overrideClass:PSPDFLinkAnnotationView.class withClass:PSCCustomLinkAnnotationView.class];
         return controller;
@@ -1513,6 +1516,14 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // additional test cases, just for developing and testing PSPDFKit.
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
+
+    // Test immensely large PDF.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test huge sized PDF" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_HugelyOversizedMap.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Zoom out UIKit freeze bug" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2110,6 +2121,13 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // Also check that the inline web view shows a nice error message + image as html.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test link on page 1" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"weblink-page1.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    // Test that those links are properly visible and NOT covered by a webview (white box).
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test localhost links" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_WhiteBox.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
