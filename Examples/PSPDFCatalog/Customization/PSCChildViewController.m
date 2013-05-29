@@ -45,6 +45,11 @@
     self.pdfController.shadowEnabled = NO;
     self.pdfController.smartZoomEnabled = NO;
     self.pdfController.delegate = self;
+
+    // Those need to be nilled out if you use the barButton items externally!
+    self.pdfController.leftBarButtonItems = nil;
+    self.pdfController.rightBarButtonItems = nil;
+
     [self addChildViewController:self.pdfController];
     [self.pdfController didMoveToParentViewController:self];
     [self.view addSubview:self.pdfController.view];
