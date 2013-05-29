@@ -1708,6 +1708,17 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return nil;
     }]];
 
+    // Test if all words are complete.
+    // Output: Preocupa la violencia contra
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"TextParser test missing glypgs" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_MissingGlyphs_focussed.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        NSLog(@"Text: %@", [[document textParserForPage:0] text]);
+        NSLog(@"Glyphs: %@", [[document textParserForPage:0] glyphs]);
+        NSLog(@"Words: %@", [[document textParserForPage:0] words]);
+        return pdfController;
+    }]];
+
     // Page 26 of hackernews-12 has a very complex XObject setup with nested objects that reference objects that have a parent with the same name. If parsed from top to bottom with the wrong XObjects this will take 100^4 calls, thus clocks up the iPad for a very long time.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test for cyclic XObject references." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
