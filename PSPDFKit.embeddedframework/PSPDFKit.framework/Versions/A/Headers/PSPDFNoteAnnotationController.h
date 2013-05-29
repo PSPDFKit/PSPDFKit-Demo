@@ -70,13 +70,19 @@
 
 @interface PSPDFNoteAnnotationController (SubclassingHooks)
 
-/// Called when we're about to show the annotation delete menu.
+// Called when we're about to show the annotation delete menu.
 - (void)deleteAnnotation:(UIBarButtonItem *)barButtonItem;
 
-/// Returns "Delete Note", "Delete Free Text", "Delete Highlight" etc.
+// Returns "Delete Note", "Delete Free Text", "Delete Highlight" etc.
 - (NSString *)deleteAnnotationActionTitle;
 
+// Background gradient.
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;
+
+// Option view (note annotations)
 @property (nonatomic, strong) UIView *optionsView;
+
+// Tap gesture on the textView to enable/disable edit mode.
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
 
 @end

@@ -20,6 +20,12 @@
 /// Displays an annotation link.
 @interface PSPDFLinkAnnotationView : PSPDFLinkAnnotationBaseView
 
+/// Allows you to globally change the default link annotation border color.
+/// Defaults to the default borderColor set in the class (blue).
+/// @note Like all UI-related classes, you need to call this from the main thread.
++ (void)setGlobalBorderColor:(UIColor *)color;
++ (UIColor *)getGlobalBorderColor;
+
 /// Flash background, show that annotation was touched.
 - (void)flashBackground;
 

@@ -117,7 +117,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 /// Initialize with a document.
 /// Document can be nil. In this case, just the background is displayed and the HUD stays visible.
 /// Also supports creation via initWithCoder to allow usage in Storyboards.
-- (id)initWithDocument:(PSPDFDocument *)document __attribute__((objc_requires_super));
+- (id)initWithDocument:(PSPDFDocument *)document NS_REQUIRES_SUPER;
 
 /// Register delegate to capture events, change properties.
 @property (nonatomic, weak) IBOutlet id<PSPDFViewControllerDelegate> delegate;
@@ -564,7 +564,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 @interface PSPDFViewController (SubclassingHooks)
 
 /// Override this initializer to allow all use cases (storyboard loading, etc)
-- (void)commonInitWithDocument:(PSPDFDocument *)document __attribute__((objc_requires_super));
+- (void)commonInitWithDocument:(PSPDFDocument *)document NS_REQUIRES_SUPER;
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
 /// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)

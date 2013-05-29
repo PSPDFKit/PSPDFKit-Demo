@@ -138,8 +138,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Settings
 
-/// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit".
-/// @note The cache directory is not backed up by iClound and will be purged when memory is low.
+/// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit/Pages".
+/// @note The cache directory is not backed up by iCloud and will be purged when memory is low.
 /// @warning Set this early during class initialization. Will clear the current chache before changing.
 @property (nonatomic, copy) NSString *cacheDirectory;
 
