@@ -2433,7 +2433,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_invalid_first_page_object.pdf"]];
 
         for (NSUInteger idx = 0; idx < 6; idx++) {
-            PSPDFWord *word = [[document textParserForPage:0].words objectAtIndex:idx];
+            PSPDFWord *word = ([document textParserForPage:0].words)[idx];
             PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
@@ -2452,7 +2452,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_corrupt_stream_add_annotations.pdf"]];
 
         for (NSUInteger idx = 0; idx < 6; idx++) {
-            PSPDFWord *word = [[document textParserForPage:0].words objectAtIndex:idx];
+            PSPDFWord *word = ([document textParserForPage:0].words)[idx];
             PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
