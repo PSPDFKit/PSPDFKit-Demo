@@ -144,6 +144,9 @@ extern CGFloat PSPDFToolbarHeight(BOOL isSmall);
 // Rounds to pixel boundaries (0.5 step on retina)
 extern CGRect PSPDFRoundRect(CGRect rect);
 
+// Rounds to pixels (0.5 step on retina)
+CGPoint PSPDFRoundPoint(CGPoint point);
+
 // Compares sizes and allows aspect ratio changes.
 extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
 
@@ -169,9 +172,7 @@ extern double PSPDFPerformAndTrackTime(dispatch_block_t block, BOOL trackTime);
 // This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
 // Older variants still need shouldAutorotate* handling in the view controllers.
 extern BOOL PSPDFIsRotationLocked(void);
-
 extern void PSPDFLockRotation(void);
-
 extern void PSPDFUnlockRotation(void);
 
 // Returns a unique temporary file URL.
@@ -202,6 +203,15 @@ extern BOOL PSPDFEqualObjects(id obj1, id obj2);
 do { if(!(expression)) { \
 NSLog(@"%@", [NSString stringWithFormat: @"Assertion failure: %s in %s on line %s:%d. %@", #expression, __PRETTY_FUNCTION__, __FILE__, __LINE__, [NSString stringWithFormat:@"" __VA_ARGS__]]); \
 abort(); }} while(0)
+
+// Defines a yet undocumented method to add a warning if super isn't called.
+#ifndef NS_REQUIRES_SUPER
+#if __has_attribute(objc_requires_super)
+#define NS_REQUIRES_SUPER __attribute((objc_requires_super))
+#else
+#define NS_REQUIRES_SUPER
+#endif
+#endif
 
 // Log helper
 #ifdef kPSPDFKitDebugEnabled

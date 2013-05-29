@@ -72,8 +72,11 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// tracked annnotation view. Defaults to -40.0f for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets outerEdgeInsets;
 
-/// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or edgeInsets.
+/// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or innerEdgeInsets.
 - (UIEdgeInsets)effectiveInnerEdgeInsets;
+
+/// Returns the edge insets that are currently in effect. This is outerEdgeInsets / zoomScale.
+- (UIEdgeInsets)effectiveOuterEdgeInsets;
 
 /// If set to NO, won't show selection knobs and dragging. Defaults to YES.
 @property (nonatomic, assign) BOOL allowEditing;
@@ -114,16 +117,16 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Delegate called on frame change.
 @property (nonatomic, weak) IBOutlet id<PSPDFResizableViewDelegate> delegate;
 
-/// The frame of the resizable content. This might be smaller than the frame of the view. Changing
-/// the content frame affects the frame.
+/// The frame of the resizable content. This might be smaller than the frame of the view.
+/// Changing the content frame affects the frame.
 ///
-/// @warning Always change the view's frame by setting this property. Do not use the frame property
-/// directly!
+/// @warning Always change the view's frame by setting this property. Do not use the frame property directly!
 @property (nonatomic, assign) CGRect contentFrame;
 
 /// The mode that the resizable view is currently in.
 @property (nonatomic, assign) PSPDFResizableViewMode mode;
 
+/// The associated pageView.
 @property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end

@@ -27,6 +27,9 @@ extern UIEdgeInsets PSPDFInvertEdgeInsets(UIEdgeInsets edgeInsets);
 /// Adds two content edge insets and returns the result.
 extern UIEdgeInsets PSPDFAddEdgeInsets(UIEdgeInsets edgeInsets1, UIEdgeInsets edgeInsets2);
 
+/// Multiplies two content edge insets and returns the result.
+extern UIEdgeInsets PSPDFMultiplyEdgeInsets(UIEdgeInsets edgeInsets1, UIEdgeInsets edgeInsets2);
+
 /// Calculates the shortes distance between a point and line.
 extern CGFloat PSPDFCalculateDistanceBetweenPointAndLine(CGPoint point, CGPoint linePoint1, CGPoint linePoint2);
 

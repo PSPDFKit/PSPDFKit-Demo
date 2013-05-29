@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.6 - 29/May/2013__
+
+*  It's now easier than ever to change the link border color: [PSPDFLinkAnnotationView setGlobalBorderColor:[UIColor greenColor]].
+*  Thumbnail loading in the scrobble bar is now higher priorized, loads faster.
+*  The bounding box calculation for line annotation now correctly calculates the size for line endings. Line ending size has also been increased to better match Adobe Acrobat. (Thanks Tony Tomc!)
+*  The PSPDFRenderStatusView is now a public class that allows to customize the loading spinner displayed while rendering a PDF page.
+*  Annotation resizing when zoomed in deeply has been greatly improved.
+*  Further improves text parsing speed and word boundary detection.
+*  Fixes an issue where in some cases annotation resizing could fail when changed via the menubar directly before the resize action.
+*  Fixes a potential one-pixel rendering bug that could result in thumbnails for certain aspect ratio combinations having white lines at one end of the image.
+*  Fixes an issue that would sometimes mark certain PDF links to localhost as "webview" when they in fact only are regular links.
+
 __v2.14.5 - 27/May/2013__
 
 *  PSPDFWebViewController will now use UIActivityViewController on iOS6 by default.

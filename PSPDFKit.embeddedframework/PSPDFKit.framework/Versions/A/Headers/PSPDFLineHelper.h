@@ -12,6 +12,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define kAllLineEndsAreInside   1   // Define to 1 to keep all line endings extruding from the line/polyline coordinates to a minimum
+                                    // (i.e. reverse arrow line ends are kept from jutting out past the line/polyline endpoints).
+                                    // The PDF spec is conveniently unclear on this topic, do what is most appealing visually, but
+                                    // since every other line ending is kept inside the endpoints, this is enabled here for consistency.
+
 typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
     PSPDFLineEndTypeNone,
     PSPDFLineEndTypeSquare,
@@ -34,6 +39,9 @@ extern void PSPDFDrawLine(CGContextRef context, CGPoint point1, CGPoint point2, 
 /// Returns whether the line end type requires a full line.
 /// A full line is required if the line end type directly "connects" to the line, e.g. for an open arrow.
 extern BOOL PSPDFLineEndNeedsFullLine(PSPDFLineEndType lineEnd);
+
+/// Returns the fill and stroke paths corresponding to a given line end type.
+extern void PSPDFGetPathsForLineEndType(PSPDFLineEndType endType, CGPoint *points, NSUInteger pointsCount, CGFloat lineWidth, CGPathRef *storedFillPath, CGPathRef *storedStrokePath);
 
 /// Transforms line end type <-> line end string (PDF reference).
 extern NSValueTransformer *PSPDFGetLineEndTypeTransformer(void);
