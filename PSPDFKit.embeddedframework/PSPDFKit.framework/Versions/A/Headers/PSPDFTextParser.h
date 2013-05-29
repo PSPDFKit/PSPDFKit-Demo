@@ -56,6 +56,4 @@
 // Performance.
 @property (atomic, strong) NSString *transformedText;
 
-- (BOOL)fillFontsFromCache:(NSDictionary *)fontCache;
-
 @end

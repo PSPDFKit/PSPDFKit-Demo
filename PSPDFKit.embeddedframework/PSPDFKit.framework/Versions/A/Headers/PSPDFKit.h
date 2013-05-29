@@ -68,6 +68,7 @@
 // views
 #import "PSPDFPageLabelView.h"
 #import "PSPDFDocumentLabelView.h"
+#import "PSPDFRenderStatusView.h"
 
 // search
 #import "PSPDFTextSearch.h"

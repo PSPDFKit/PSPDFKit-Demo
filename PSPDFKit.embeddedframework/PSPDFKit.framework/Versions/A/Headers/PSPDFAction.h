@@ -27,6 +27,7 @@ typedef NS_ENUM(UInt8, PSPDFActionType) {
 
 // Is inside the option dictionary if a pspdfkit:// URL has been detected.
 extern NSString *const kPSPDFActionIsPSPDFPrefixedURL;
+extern NSString *const kPSPDFActionURLProcessed;
 extern NSString *const kPSPDFActionOptionModal;
 
 /// Defines an action that is defined in the PDF spec, either from an outline or an annotation object.
