@@ -407,7 +407,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 // Text Selection
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didSelectText:(NSString *)text withGlyphs:(NSArray *)glyphs atRect:(CGRect)rect onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"Selected: %@", text);
+    //NSLog(@"Selected: %@", text);
 }
 
 @end
