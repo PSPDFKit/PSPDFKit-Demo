@@ -2264,6 +2264,15 @@ const char kPSPDFSignatureCompletionBlock = 0;
         return pdfController;
     }]];
 
+    // Check that showing this won't crash the iPad1.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test memory intensive document" block:^UIViewController *{
+        [[PSPDFCache sharedCache] clearCache];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Dictionary of American Idioms and Phrasal Verbs.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+
     // Check that GIFs are animated.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
