@@ -60,7 +60,7 @@
     PSPDFAssert([button isKindOfClass:PSCAutoResizeButton.class]);
 
     PSPDFImageInfo *imageInfo = button.imageInfo;
-    UIImage *image = imageInfo.image;
+    UIImage *image = [imageInfo imageWithError:NULL];
     
     // Show view controller
     if (image) {
