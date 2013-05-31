@@ -90,5 +90,11 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 /// Normalizes a rect. PDF rect's might have negative width/height, this turns them around.
 extern inline CGRect PSPDFNormalizeRect(CGRect rect);
 
+// Rounds to pixel boundaries (0.5 step on retina)
+extern inline CGRect PSPDFRoundRect(CGRect rect);
+
+// Rounds to pixels (0.5 step on retina)
+extern inline CGPoint PSPDFRoundPoint(CGPoint point);
+
 /// Builds a rect out of two CGPoints.
 extern inline CGRect PSPDFCGRectFromPoints(CGPoint p1, CGPoint p2);

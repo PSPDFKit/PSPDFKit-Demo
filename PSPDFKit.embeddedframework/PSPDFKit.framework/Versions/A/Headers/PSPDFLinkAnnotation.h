@@ -47,7 +47,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 
 /// Initialze link annotation with target URL string.
 /// Can also be used for pspdfkit:// URLs.
-/// For example, to add a pdpdfkit image annotation, use [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [[NSBundle mainBundle] bundlePath]] as URLString.
+/// For example, to add a pdpdfkit image annotation, use [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [NSBundle.mainBundle bundlePath]] as URLString.
 - (id)initWithURLString:(NSString *)URLString;
 
 /// Initalize link annotation with target page.
