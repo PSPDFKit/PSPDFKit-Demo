@@ -19,6 +19,7 @@
     CGFloat _ascent;
     CGFloat _descent;
     NSArray *_encodingArray;
+    NSUInteger _encodingArrayCount;
     NSDictionary *_toUnicodeMap;
     CGFloat *_widths;
     size_t _widthSize;

@@ -25,7 +25,7 @@
 /// Simple table view that allows to select a font.
 @interface PSPDFFontSelectorViewController : UITableViewController
 
-/// All available font family names. This is set on init by querying [UIFont familyNames].
+/// All available font family names. This is set on init by querying UIFont.familyNames.
 @property (nonatomic, strong) NSArray *fontFamilyNames;
 
 /// The currently selected font.

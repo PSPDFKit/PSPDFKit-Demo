@@ -43,7 +43,7 @@ extern NSString *const PSPDFStampAnnotationSuggestedSizeKey;
 
 /// Parses the AP stream, searches for an image and loads it.
 /// Will also update imageTransform.
-- (UIImage *)loadImage;
+- (UIImage *)loadImageWithError:(NSError **)error;
 
 /// Stamp image transform. Defaults to CGAffineTransformIdentity.
 @property (nonatomic, assign) CGAffineTransform imageTransform;

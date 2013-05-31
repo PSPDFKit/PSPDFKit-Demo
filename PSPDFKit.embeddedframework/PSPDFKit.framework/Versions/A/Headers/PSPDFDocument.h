@@ -315,7 +315,7 @@ extern NSString *const PSPDFDocumentWillSaveNotification;
  This is called implicitly if you change the files array or append a file.
 
  Important! Unless you disable it, PSPDFKit also has an image cache who is not affected by this. If you replace the PDF document with new content, you also need to clear the image cache:
- [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+ [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
  */
 - (void)clearCache;
 
@@ -493,7 +493,7 @@ extern NSString *const kPSPDFIgnoreDisplaySettings;   // Always draw pixels with
 /// Set custom render options (see PSPDFPageRenderer.h for options)
 /// Options set here will override any options sent to renderImageForPage/renderPage.
 /// This is the perfect place to change the background fill color, e.g. you would do this for a black document:
-/// renderOptions = @{kPSPDFBackgroundFillColor : [UIColor blackColor]};
+/// renderOptions = @{kPSPDFBackgroundFillColor : UIColor.blackColor};
 /// This fixes tiny white/gray lines at the borders of a document that else might show up.
 @property (nonatomic, copy) NSDictionary *renderOptions;
 
@@ -541,7 +541,7 @@ extern NSString *const kPSPDFImages;
 @interface PSPDFDocument (Subclassing)
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
-/// e.g. add an entry of [PSPDFAnnotationParser class] / [MyCustomAnnotationParser class] to use the custom subclass.
+/// e.g. add an entry of PSPDFAnnotationParser.class / MyCustomAnnotationParser.class to use the custom subclass.
 /// (MyCustomAnnotationParser must be a subclass of PSPDFAnnotationParser)
 /// @throws an exception if the overriding class is not a subclass of the overridden class.
 /// @note Does not get serialized when saved to disk. Only set from the main thread, before you first use the object.

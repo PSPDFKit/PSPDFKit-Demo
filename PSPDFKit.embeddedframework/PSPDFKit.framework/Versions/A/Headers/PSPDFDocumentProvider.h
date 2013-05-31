@@ -82,7 +82,6 @@
 /// Requests a page for the current loaded document. Needs to be returned in releasePageRef.
 /// pageNumber starts at 1.
 - (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page error:(NSError **)error;
-- (CGPDFPageRef)requestPageRefForPageNumber:(NSUInteger)page;
 
 /// Releases a page reference.
 - (void)releasePageRef:(CGPDFPageRef)pageRef;
