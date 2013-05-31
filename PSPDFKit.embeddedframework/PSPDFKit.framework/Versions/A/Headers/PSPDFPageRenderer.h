@@ -48,6 +48,6 @@ extern Class PSPDFPageRendererClass;
 
 /// Renders a particular appearance stream (A PDF within a PDF) into a context.
 /// Will return NO if rendering failed.
-- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context;
+- (BOOL)renderAppearanceStream:(PSPDFAnnotation *)annotation inContext:(CGContextRef)context error:(NSError **)error;
 
 @end

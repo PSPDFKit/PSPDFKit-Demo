@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeUnableToGetPageReference = 210,
+    PSPDFErrorCodeUnableToGetStream = 220,
     PSPDFErrorCodePageRenderSizeIsEmpty = 220,
     PSPDFErrorCodePageRenderClipRectTooLarge = 230,
     PSPDFErrorCodePageRenderGraphicsContextNil = 240,
@@ -141,12 +142,6 @@ extern CGFloat PSPDFToolbarHeightForOrientation(UIInterfaceOrientation orientati
 
 extern CGFloat PSPDFToolbarHeight(BOOL isSmall);
 
-// Rounds to pixel boundaries (0.5 step on retina)
-extern CGRect PSPDFRoundRect(CGRect rect);
-
-// Rounds to pixels (0.5 step on retina)
-CGPoint PSPDFRoundPoint(CGPoint point);
-
 // Compares sizes and allows aspect ratio changes.
 extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
 
@@ -181,7 +176,7 @@ extern NSURL *PSPDFTempFileURLWithPathExtension(NSString *prefix, NSString *path
 // Returns whether both objects are identical or equal via -isEqual.
 extern BOOL PSPDFEqualObjects(id obj1, id obj2);
 
-#define PSIsIpad() ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+#define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
 #define ps_swapf(a,b) { float c = (a); (a) = (b); (b) = c; }
 #define BOXED(val) ({ typeof(val) _tmp_val = (val); [NSValue valueWithBytes:&(_tmp_val) objCType:@encode(typeof(val))]; })
 

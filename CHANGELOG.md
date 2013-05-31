@@ -2,6 +2,13 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v2.14.7 - 31/May/2013__
+
+*  Improved memory management for older devices like iPad1 or when kPSPDFLowMemoryEnabled is set. This helps against possible memory exhaustion on very complex documents.
+*  Fixes an issue where the play button of an embedded video sometimes would not change to its actual state (playing) when pressed.
+*  Fixes an issue with draw mode restoration after showing a modal view controller while in draw mode when using pageCurl transition.
+*  Further tweaks to the text extraction engine.
+
 __v2.14.6 - 29/May/2013__
 
 *  It's now easier than ever to change the link border color: [PSPDFLinkAnnotationView setGlobalBorderColor:[UIColor greenColor]].

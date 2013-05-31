@@ -361,7 +361,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, copy) NSArray *rightBarButtonItems;
 
 /// Displayed at the left of the rightBarButtonItems inside an action sheet. Items must be PSPDFBarButtonItem instances.
-/// If [additionalRightToolbarButtonItems count] == 1 then no action sheet is displayed
+/// If additionalRightToolbarButtonItems.count == 1 then no action sheet is displayed
 @property (nonatomic, copy) NSArray *additionalBarButtonItems; // defaults to nil
 
 /// Add your custom UIBarButtonItems so that they won't be automatically enabled/disabled.
@@ -447,6 +447,7 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 @property (nonatomic, assign) BOOL shouldHideNavigationBarWithHUD;
 
 /// If YES, the status bar will be hidden when the HUD is hidden.
+/// @note Needs to be set before the view is loaded.
 /// @warning While you *can* set this to YES and leave shouldHideNavigationBarWithHUD at NO, this won't make much sense.
 @property (nonatomic, assign) BOOL shouldHideStatusBarWithHUD;
 
@@ -567,7 +568,7 @@ extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispa
 - (void)commonInitWithDocument:(PSPDFDocument *)document NS_REQUIRES_SUPER;
 
 /// Use this to use specific subclasses instead of the default PSPDF* classes.
-/// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of [PSPDFPageView class] / [MyCustomPageView class] to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
+/// This works across the whole framework and allows you to subclass all usages of a class. For example add an entry of PSPDFPageView.class / MyCustomPageView.class to use the custom subclass. (MyCustomPageView must be a subclass of PSPDFPageView)
 /// @throws an exception if the overriding class is not a subclass of the overridden class.
 /// @note Only set from the main thread, before you first use the object.
 /// Model objects will use the overrideClass entries from the set document instead.
