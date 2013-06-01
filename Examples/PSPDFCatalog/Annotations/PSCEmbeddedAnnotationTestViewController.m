@@ -39,13 +39,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-// Note: This is just an examply how to explicitly force saving. PSPDFKit will do this automatically on various events (app background, view dismissal).
+// Note: This is just an example how to explicitly force saving. PSPDFKit will do this automatically on various events (app background, view dismissal).
 // Further you don't have to call reloadData after saving - this is done for testing the saving (since annotations that are not saved would disappear)
 // If you want immediate saving after creating annotations either hook onto PSPDFAnnotationAddedNotification and PSPDFAnnotationChangedNotification or set saveAfterToolbarHiding to YES in PSPDFAnnotationToolbar (this will not be the same, but most of the time good enough).
 - (void)saveAnnotations {
-    NSLog(@"Annotations before saving: %@", [self.document.annotationParser annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+    NSLog(@"Annotations before saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
 
-    NSDictionary *dirtyAnnotations = [self.document.annotationParser dirtyAnnotations];
+    NSDictionary *dirtyAnnotations = [[self.document annotationParserForPage:0] dirtyAnnotations];
     NSLog(@"Dirty Annotations: %@", dirtyAnnotations);
 
     if (self.document.data) NSLog(@"Length of NSData before saving: %d", self.document.data.length);
@@ -56,7 +56,7 @@
     }else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
-        NSLog(@"Annotations after saving: %@", [self.document.annotationParser annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+        NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
         //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
 
         if (self.document.data) NSLog(@"Length of NSData after saving: %d", self.document.data.length);
