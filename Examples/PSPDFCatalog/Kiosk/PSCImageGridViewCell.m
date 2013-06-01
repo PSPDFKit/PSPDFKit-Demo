@@ -159,7 +159,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == &kPSPDFKVOToken) {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(downloadProgress))]) {
+        if ([keyPath isEqualToString:PROPERTY(downloadProgress)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
@@ -469,7 +469,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             PSPDFLogError(@"failed to find associated download object for %@", magazine); return;
         }
         [_observedMagazineDownloads addObject:download];
-        [download addObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
+        [download addObserver:self forKeyPath:PROPERTY(downloadProgress) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
         [self updateProgressAnimated:NO];
     }
 }
@@ -477,7 +477,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)clearProgressObservers {
     // clear all observed magazines
     for (PSCDownload *download in _observedMagazineDownloads) {
-        [download removeObserver:self forKeyPath:NSStringFromSelector(@selector(downloadProgress)) context:&kPSPDFKVOToken];
+        [download removeObserver:self forKeyPath:PROPERTY(downloadProgress) context:&kPSPDFKVOToken];
     }
     [_observedMagazineDownloads removeAllObjects];
 }
