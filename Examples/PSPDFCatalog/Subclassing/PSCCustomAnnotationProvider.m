@@ -93,7 +93,7 @@ static UIColor *PSCRandomColor(void) {
     @synchronized(self) {
         [_annotationDict enumerateKeysAndObjectsUsingBlock:^(NSNumber *page, NSArray *annotations, BOOL *stop) {
             [annotations makeObjectsPerformSelector:@selector(setColor:) withObject:color];
-            [self.providerDelegate updateAnnotations:annotations originalAnnotations:nil animated:YES];
+            [self.providerDelegate updateAnnotations:annotations animated:YES];
         }];
     }
 }
