@@ -2510,7 +2510,7 @@ const char kPSPDFSignatureCompletionBlock = 0;
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
         NSError *error = nil;
-        UIImage *thumbnail = [doc renderImageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero withAnnotations:nil options:nil receipt:NULL error:&error];
+        UIImage *thumbnail = [doc imageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
         if (!thumbnail) {
             PSPDFLogError(@"Failed to generate thumbnail: %@", [error localizedDescription]);
         }
