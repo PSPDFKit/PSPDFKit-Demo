@@ -90,7 +90,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == &kPSCKVOToken) {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(status))]) {
+        if ([keyPath isEqualToString:PROPERTY(status)]) {
             [self processStatusChangeForMagazineDownload:object];
         }else {
             [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -184,7 +184,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     storeDownload.magazine = magazine;
 
     // Use KVO to track status.
-    [storeDownload addObserver:self forKeyPath:NSStringFromSelector(@selector(status)) options:0 context:&kPSCKVOToken];
+    [storeDownload addObserver:self forKeyPath:PROPERTY(status) options:0 context:&kPSCKVOToken];
 
     [_downloadQueue addObject:storeDownload];
     [storeDownload startDownload];
@@ -499,7 +499,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)finishDownload:(PSCDownload *)storeDownload {
-    [storeDownload removeObserver:self forKeyPath:NSStringFromSelector(@selector(status))];
+    [storeDownload removeObserver:self forKeyPath:PROPERTY(status)];
     [_downloadQueue removeObject:storeDownload];
 }
 
