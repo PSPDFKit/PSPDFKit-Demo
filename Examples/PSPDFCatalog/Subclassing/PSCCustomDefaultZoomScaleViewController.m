@@ -25,7 +25,7 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
-    document.overrideClassNames = @{(id<NSCopying>)PSPDFDocumentProvider.class : PSCCustomDocumentProvider.class};
+    [document overrideClass:PSPDFDocumentProvider.class withClass:PSCCustomDocumentProvider.class];
 
     self.delegate = self;
     self.toolbarEnabled = NO;

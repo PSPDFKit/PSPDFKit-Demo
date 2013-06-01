@@ -27,7 +27,7 @@
     self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
 
     // register our custom annotation provider as subclass.
-    document.overrideClassNames = @{(id)[PSPDFFileAnnotationProvider class] : [PSCOverlayFileAnnotationProvider class]};
+    [document overrideClass:PSPDFFileAnnotationProvider.class withClass:PSCOverlayFileAnnotationProvider.class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
