@@ -2146,10 +2146,21 @@ const char kPSPDFSignatureCompletionBlock = 0;
     // Check that telephone numbers are dynamically converted to annotations.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Detect Telephone Numbers and Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"detect-telephone-numbers.pdf"]];
-        NSArray *newAnnotations = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
-        NSLog(@"Created %d new annotations: %@", newAnnotations.count, newAnnotations);
-        __unused NSArray *newAnnotations2 = [document detectLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]];
-        PSPDFAssert(newAnnotations2.count == 0, @"A second run should not create new annotations");
+
+        // Detect URLs in the document and create annotations
+        NSIndexSet *allPagesIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)];
+        NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
+            NSLog(@"Detected %@ on %d", annotations, page);
+        } error:NULL];
+
+        // Add those annotations to the page.
+        [annotationsPerPage enumerateKeysAndObjectsUsingBlock:^(NSNumber *pageNumber, NSArray *annotations, BOOL *stop) {
+            [document addAnnotations:annotations forPage:pageNumber.unsignedIntegerValue];
+        }];
+
+        NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
+        NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
+        PSPDFAssert(annotationCount == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
