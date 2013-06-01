@@ -18,7 +18,6 @@
 #endif
 
 #define _(string) NSLocalizedString(string, @"")
-#define StringSEL(string) NSStringFromSelector(@selector(string))
 
 @interface PSCSettingsController() {
     BOOL _isSettingUpCells;
@@ -67,31 +66,31 @@ static NSMutableDictionary *_settings;
 __attribute__((constructor)) static void setupDefaults(void) {
     @autoreleasepool {
         _settings = [NSMutableDictionary new];
-        _settings[StringSEL(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[StringSEL(isFitToWidthEnabled)] = @(!PSIsIpad());
-        _settings[StringSEL(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[StringSEL(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
-        _settings[StringSEL(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
-        _settings[StringSEL(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
-        _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = @YES;
-        _settings[StringSEL(isPageLabelEnabled)] = @YES;
-        _settings[StringSEL(isTextSelectionEnabled)] = @YES;
-        _settings[StringSEL(isSmartZoomEnabled)] = @YES;
-        _settings[StringSEL(isScrollOnTapPageEndEnabled)] = @YES;
-        _settings[StringSEL(viewModeButtonItem)] = @YES;
-        _settings[StringSEL(searchButtonItem)] = @YES;
-        _settings[StringSEL(annotationButtonItem)] = @YES;
-        _settings[StringSEL(bookmarkButtonItem)] = @YES;
-        _settings[StringSEL(brightnessButtonItem)] = @YES;
-        _settings[StringSEL(outlineButtonItem)] = @YES;
-        _settings[StringSEL(printButtonItem)] = @YES;
-        _settings[StringSEL(openInButtonItem)] = @YES;
-        _settings[StringSEL(emailButtonItem)] = @YES;
-        _settings[StringSEL(viewModeButtonItem)] = @YES;
-        _settings[StringSEL(useBorderedToolbarStyle)] = @NO;
+        _settings[PROPERTY(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+        _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSIsIpad());
+        _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+        _settings[PROPERTY(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
+        _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
+        _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
+        _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
+        _settings[PROPERTY(isPageLabelEnabled)] = @YES;
+        _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
+        _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
+        _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
+        _settings[PROPERTY(viewModeButtonItem)] = @YES;
+        _settings[PROPERTY(searchButtonItem)] = @YES;
+        _settings[PROPERTY(annotationButtonItem)] = @YES;
+        _settings[PROPERTY(bookmarkButtonItem)] = @YES;
+        _settings[PROPERTY(brightnessButtonItem)] = @YES;
+        _settings[PROPERTY(outlineButtonItem)] = @YES;
+        _settings[PROPERTY(printButtonItem)] = @YES;
+        _settings[PROPERTY(openInButtonItem)] = @YES;
+        _settings[PROPERTY(emailButtonItem)] = @YES;
+        _settings[PROPERTY(viewModeButtonItem)] = @YES;
+        _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
         _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
         _settings[@"renderContentOpacity"] = @(1.f);
-        _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
+        _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
     }
 }
 
@@ -255,27 +254,27 @@ static CGFloat pscSettingsLastYOffset = 0;
     switch (indexPath.section) {
         case PSPDFGeneralSettings:
             switch (indexPath.row) {
-                case 0: _settings[StringSEL(isSmartZoomEnabled)] = value; break;
-                case 1: _settings[StringSEL(isTextSelectionEnabled)] = value; break;
-                case 2: _settings[StringSEL(isZoomingSmallDocumentsEnabled)] = value; break;
-                case 3: _settings[StringSEL(isFitToWidthEnabled)] = value; break;
-                case 4: _settings[StringSEL(isScrollOnTapPageEndEnabled)] = value; break;
-                case 5: _settings[StringSEL(isPageLabelEnabled)] = value; break;
+                case 0: _settings[PROPERTY(isSmartZoomEnabled)] = value; break;
+                case 1: _settings[PROPERTY(isTextSelectionEnabled)] = value; break;
+                case 2: _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = value; break;
+                case 3: _settings[PROPERTY(isFitToWidthEnabled)] = value; break;
+                case 4: _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = value; break;
+                case 5: _settings[PROPERTY(isPageLabelEnabled)] = value; break;
                 default: break;
             }break;
         case PSPDFToolbarSettings:
             switch (indexPath.row) {
-                case 0: _settings[StringSEL(searchButtonItem)] = value; break;
-                case 1: _settings[StringSEL(outlineButtonItem)] = value; break;
-                case 2: _settings[StringSEL(printButtonItem)] = value; break;
-                case 3: _settings[StringSEL(openInButtonItem)] = value; break;
-                case 4: _settings[StringSEL(emailButtonItem)] = value; break;
-                case 5: _settings[StringSEL(brightnessButtonItem)] = value; break;
-                case 6: _settings[StringSEL(annotationButtonItem)] = value; break;
-                case 7: _settings[StringSEL(bookmarkButtonItem)] = value; break;
-                case 8: _settings[StringSEL(activityButtonItem)] = value; break;
-                case 9: _settings[StringSEL(viewModeButtonItem)] = value; break;
-                case 10: _settings[StringSEL(useBorderedToolbarStyle)] = value; break;
+                case 0: _settings[PROPERTY(searchButtonItem)] = value; break;
+                case 1: _settings[PROPERTY(outlineButtonItem)] = value; break;
+                case 2: _settings[PROPERTY(printButtonItem)] = value; break;
+                case 3: _settings[PROPERTY(openInButtonItem)] = value; break;
+                case 4: _settings[PROPERTY(emailButtonItem)] = value; break;
+                case 5: _settings[PROPERTY(brightnessButtonItem)] = value; break;
+                case 6: _settings[PROPERTY(annotationButtonItem)] = value; break;
+                case 7: _settings[PROPERTY(bookmarkButtonItem)] = value; break;
+                case 8: _settings[PROPERTY(activityButtonItem)] = value; break;
+                case 9: _settings[PROPERTY(viewModeButtonItem)] = value; break;
+                case 10: _settings[PROPERTY(useBorderedToolbarStyle)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -329,59 +328,59 @@ static CGFloat pscSettingsLastYOffset = 0;
 
     switch (indexPath.section) {
         case PSPDFPageTransitionSettings: {
-            PSPDFPageTransition pageTransition = [_settings[StringSEL(pageTransition)] integerValue];
+            PSPDFPageTransition pageTransition = [_settings[PROPERTY(pageTransition)] integerValue];
             cell.accessoryType = (indexPath.row == pageTransition) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFScrollDirectionSettings: {
-            PSPDFScrollDirection scrollDirection = [_settings[StringSEL(scrollDirection)] integerValue];
+            PSPDFScrollDirection scrollDirection = [_settings[PROPERTY(scrollDirection)] integerValue];
             cell.accessoryType = (indexPath.row == scrollDirection) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageModeSettings: {
-            PSPDFPageMode pageMode = [_settings[StringSEL(pageMode)] integerValue];
+            PSPDFPageMode pageMode = [_settings[PROPERTY(pageMode)] integerValue];
             cell.accessoryType = (indexPath.row == pageMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFPageRenderingSettings: {
-            PSPDFPageRenderingMode renderingMode = [_settings[StringSEL(renderingMode)] integerValue];
+            PSPDFPageRenderingMode renderingMode = [_settings[PROPERTY(renderingMode)] integerValue];
             cell.accessoryType = (indexPath.row == renderingMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCoverSettings: {
-            BOOL hasCoverPage = [_settings[StringSEL(isDoublePageModeOnFirstPage)] integerValue] == 1;
+            BOOL hasCoverPage = [_settings[PROPERTY(isDoublePageModeOnFirstPage)] integerValue] == 1;
             cell.accessoryType = (indexPath.row == hasCoverPage) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFThumbnailModeSettings: {
-            NSUInteger thumbnailBarMode = [_settings[StringSEL(thumbnailBarMode)] integerValue];
+            NSUInteger thumbnailBarMode = [_settings[PROPERTY(thumbnailBarMode)] integerValue];
             cell.accessoryType = (indexPath.row == thumbnailBarMode) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
 
         case PSPDFGeneralSettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[StringSEL(isSmartZoomEnabled)] boolValue]; break;
-                case 1: cellSwitch.on = [_settings[StringSEL(isTextSelectionEnabled)] boolValue]; break;
-                case 2: cellSwitch.on = [_settings[StringSEL(isZoomingSmallDocumentsEnabled)] boolValue]; break;
-                case 3: cellSwitch.on = [_settings[StringSEL(isFitToWidthEnabled)] boolValue]; break;
-                case 4: cellSwitch.on = [_settings[StringSEL(isScrollOnTapPageEndEnabled)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[StringSEL(isPageLabelEnabled)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[PROPERTY(isSmartZoomEnabled)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[PROPERTY(isTextSelectionEnabled)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[PROPERTY(isZoomingSmallDocumentsEnabled)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[PROPERTY(isFitToWidthEnabled)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[PROPERTY(isScrollOnTapPageEndEnabled)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[PROPERTY(isPageLabelEnabled)] boolValue]; break;
                 default: break;
             }
         }break;
         case PSPDFToolbarSettings: {
             switch (indexPath.row) {
-                case 0: cellSwitch.on = [_settings[StringSEL(searchButtonItem)] boolValue]; break;
-                case 1: cellSwitch.on = [_settings[StringSEL(outlineButtonItem)] boolValue]; break;
-                case 2: cellSwitch.on = [_settings[StringSEL(printButtonItem)] boolValue]; break;
-                case 3: cellSwitch.on = [_settings[StringSEL(openInButtonItem)] boolValue]; break;
-                case 4: cellSwitch.on = [_settings[StringSEL(emailButtonItem)] boolValue]; break;
-                case 5: cellSwitch.on = [_settings[StringSEL(brightnessButtonItem)] boolValue]; break;
-                case 6: cellSwitch.on = [_settings[StringSEL(annotationButtonItem)] boolValue]; break;
-                case 7: cellSwitch.on = [_settings[StringSEL(bookmarkButtonItem)] boolValue]; break;
-                case 8: cellSwitch.on = [_settings[StringSEL(activityButtonItem)] boolValue]; break;
-                case 9: cellSwitch.on = [_settings[StringSEL(viewModeButtonItem)] boolValue]; break;
-                case 10: cellSwitch.on = [_settings[StringSEL(useBorderedToolbarStyle)] boolValue]; break;
+                case 0: cellSwitch.on = [_settings[PROPERTY(searchButtonItem)] boolValue]; break;
+                case 1: cellSwitch.on = [_settings[PROPERTY(outlineButtonItem)] boolValue]; break;
+                case 2: cellSwitch.on = [_settings[PROPERTY(printButtonItem)] boolValue]; break;
+                case 3: cellSwitch.on = [_settings[PROPERTY(openInButtonItem)] boolValue]; break;
+                case 4: cellSwitch.on = [_settings[PROPERTY(emailButtonItem)] boolValue]; break;
+                case 5: cellSwitch.on = [_settings[PROPERTY(brightnessButtonItem)] boolValue]; break;
+                case 6: cellSwitch.on = [_settings[PROPERTY(annotationButtonItem)] boolValue]; break;
+                case 7: cellSwitch.on = [_settings[PROPERTY(bookmarkButtonItem)] boolValue]; break;
+                case 8: cellSwitch.on = [_settings[PROPERTY(activityButtonItem)] boolValue]; break;
+                case 9: cellSwitch.on = [_settings[PROPERTY(viewModeButtonItem)] boolValue]; break;
+                case 10: cellSwitch.on = [_settings[PROPERTY(useBorderedToolbarStyle)] boolValue]; break;
                 default: break;
             }
         }break;
         case PSPDFLinkActionSettings: {
-            PSPDFLinkAction linkAction = [_settings[StringSEL(linkAction)] integerValue];
+            PSPDFLinkAction linkAction = [_settings[PROPERTY(linkAction)] integerValue];
             cell.accessoryType = (indexPath.row == linkAction) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
         }break;
         case PSPDFCacheSettings: {
@@ -428,18 +427,18 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFTextReflow: [self showTextReflowController]; break;
         case PSPDFPageTransitionSettings: {
             PSPDFPageTransition pageTransition = indexPath.row;
-            _settings[StringSEL(pageTransition)] = @(pageTransition);
+            _settings[PROPERTY(pageTransition)] = @(pageTransition);
             // set recommended render mode for pageCurl.
             if (pageTransition == PSPDFPageCurlTransition) {
-                _settings[StringSEL(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
+                _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
             }
         }break;
-        case PSPDFScrollDirectionSettings: _settings[StringSEL(scrollDirection)] = @(indexPath.row); break;
-        case PSPDFPageModeSettings: _settings[StringSEL(pageMode)] = @(indexPath.row); break;
-        case PSPDFPageRenderingSettings: _settings[StringSEL(renderingMode)] = @(indexPath.row); break;
-        case PSPDFCoverSettings: _settings[StringSEL(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
-        case PSPDFThumbnailModeSettings: _settings[StringSEL(thumbnailBarMode)] = @(indexPath.row); break;
-        case PSPDFLinkActionSettings: _settings[StringSEL(linkAction)] = @(indexPath.row); break;
+        case PSPDFScrollDirectionSettings: _settings[PROPERTY(scrollDirection)] = @(indexPath.row); break;
+        case PSPDFPageModeSettings: _settings[PROPERTY(pageMode)] = @(indexPath.row); break;
+        case PSPDFPageRenderingSettings: _settings[PROPERTY(renderingMode)] = @(indexPath.row); break;
+        case PSPDFCoverSettings: _settings[PROPERTY(isDoublePageModeOnFirstPage)] = @(indexPath.row == 1); break;
+        case PSPDFThumbnailModeSettings: _settings[PROPERTY(thumbnailBarMode)] = @(indexPath.row); break;
+        case PSPDFLinkActionSettings: _settings[PROPERTY(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
             [[PSPDFCache sharedCache] clearCache];
             [PSPDFCache sharedCache].diskCacheStrategy = indexPath.row;

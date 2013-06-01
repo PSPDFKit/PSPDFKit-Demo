@@ -178,52 +178,52 @@
     self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
 
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-    if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(annotationButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.annotationButtonItem];
     }
     if (PSIsIpad()) {
-        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.outlineButtonItem];
         }
-        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.searchButtonItem];
         }
-        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.bookmarkButtonItem];
         }
     }
-    if ([settings[NSStringFromSelector(@selector(brightnessButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(brightnessButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.brightnessButtonItem];
     }
 
-    if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(viewModeButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
     }
     self.rightBarButtonItems = rightBarButtonItems;
 
     // Define additional buttons with an action icon.
     NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
-    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(printButtonItem)] boolValue]) {
         [additionalRightBarButtonItems addObject:self.printButtonItem];
     }
-    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
         [additionalRightBarButtonItems addObject:self.openInButtonItem];
     }
-    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
         [additionalRightBarButtonItems addObject:self.emailButtonItem];
     }
-    if ([settings[NSStringFromSelector(@selector(activityButtonItem))] boolValue]) {
+    if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
         [additionalRightBarButtonItems addObject:self.activityButtonItem];
     }
 
     if (!PSIsIpad()) {
-        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.outlineButtonItem];
         }
-        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.searchButtonItem];
         }
-        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
+        if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
         }
     }
