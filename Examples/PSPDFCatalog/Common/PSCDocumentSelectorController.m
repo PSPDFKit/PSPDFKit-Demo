@@ -45,7 +45,7 @@
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
 
         // resolve directory, default to Documents if no name token is issued.
-        _directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
+        _directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
         self.title = [_directory lastPathComponent];
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
@@ -170,7 +170,7 @@
 + (NSArray *)documentsFromDirectory:(NSString *)directory {
     PSPDFAssert(directory);
 
-    directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) ps_firstObject]);
+    directory = PSPDFResolvePathNames(directory, [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
 
     NSError *error = nil;
     NSArray *documentContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directory error:&error];
