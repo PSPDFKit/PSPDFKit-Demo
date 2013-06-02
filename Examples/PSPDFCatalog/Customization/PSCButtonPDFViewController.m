@@ -74,7 +74,8 @@
 
 // called initially and on rotation change
 - (void)didChangePageFrame:(CGRect)frame {
-    self.frame = PSPDFAlignRectangles(self.frame, self.superview.bounds, PSPDFRectAlignCenter); // helper to center frame.
+    self.center = self.superview.center;
+    self.frame = CGRectIntegral(self.frame);
 }
 
 @end

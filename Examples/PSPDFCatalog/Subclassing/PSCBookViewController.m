@@ -95,7 +95,7 @@
     }
 
     // rely on super layoutPage to lay out the page and then just alter the coordinates.
-    CGSize newSize = PSPDFSizeForScale(self.pageView.bounds.size, 0.87f);
+    CGSize newSize = CGSizeMake(roundf(self.pageView.bounds.size.width * 0.87f), roundf(self.pageView.bounds.size.height * 0.87f));
     CGRect newFrame = CGRectInset(self.pageView.frame, self.pageView.bounds.size.width - newSize.width, self.pageView.bounds.size.height - newSize.height);
     self.pageView.frame = newFrame;
 }

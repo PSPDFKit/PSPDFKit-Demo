@@ -309,7 +309,8 @@
         if (!self.activityView) {
             UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
             [activityView sizeToFit];
-            activityView.frame = PSPDFAlignRectangles(activityView.frame, self.view.frame, PSPDFRectAlignCenter);
+            activityView.center = self.view.center;
+            activityView.frame = CGRectIntegral(activityView.frame);
             activityView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
             [activityView startAnimating];
             self.activityView = activityView;

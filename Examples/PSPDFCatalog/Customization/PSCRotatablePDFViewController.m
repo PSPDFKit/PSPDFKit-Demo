@@ -37,6 +37,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
+static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
+    rotation %= 360;
+    while (rotation < 0) rotation += 360;
+    return rotation;
+}
+
 - (void)rotateAction:(id)sender {
     // We need to invalidate the cache of the current page.
     [PSPDFCache.sharedCache invalidateImageFromDocument:self.document andPage:self.page];
@@ -46,11 +52,11 @@
     if (rotateAll) {
         for (NSUInteger pageIndex=0; pageIndex < self.document.pageCount; pageIndex++) {
             PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:pageIndex];
-            pageInfo.pageRotation = PSPDFNormalizeRotation(pageInfo.pageRotation - 90);
+            pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation - 90);
         }
     }else {
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        pageInfo.pageRotation = PSPDFNormalizeRotation(pageInfo.pageRotation - 90);
+        pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation - 90);
     }
 
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
@@ -77,6 +83,8 @@
     return self;
 }
 
+#define PSCRadiansToDegrees(degrees) ((CGFloat)degrees * (180.f / (CGFloat)M_PI))
+
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         // Invalidate the cache.
@@ -84,8 +92,8 @@
 
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        CGFloat degrees = PSPDFRadiansToDegrees(atan2f(self.transform.b, self.transform.a));
-        pageInfo.pageRotation = PSPDFNormalizeRotation(pageInfo.pageRotation+degrees);
+        CGFloat degrees = PSCRadiansToDegrees(atan2f(self.transform.b, self.transform.a));
+        pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation+degrees);
         PSCLog(@"Snap rotation to: %d", pageInfo.pageRotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
