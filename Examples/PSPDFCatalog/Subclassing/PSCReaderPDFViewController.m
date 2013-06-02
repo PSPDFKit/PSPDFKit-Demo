@@ -63,7 +63,9 @@
     if (!self.currentWords) [self prepareNewPage];
 
     if (!self.currentWord) {
-        self.currentWord = [self.currentWords ps_firstObject];
+        if (self.currentWords.count > 0) {
+            self.currentWord = [self.currentWords objectAtIndex:0];
+        }
     }else {
         NSUInteger index = [self.currentWords indexOfObjectIdenticalTo:self.currentWord];
         index++;

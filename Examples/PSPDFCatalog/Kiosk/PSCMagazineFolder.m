@@ -105,7 +105,7 @@
 
 - (void)sortMagazines {
     [_magazines sortUsingComparator:^NSComparisonResult(PSPDFDocument *document1, PSPDFDocument *document2) {
-        return [[document1.files ps_firstObject] compare:[document2.files ps_firstObject]];
+        return [[document1.files lastObject] compare:[document2.files lastObject]];
     }];
 }
 

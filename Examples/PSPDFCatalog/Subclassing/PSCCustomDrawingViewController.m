@@ -36,7 +36,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentDelegate
 
-- (void)pdfDocument:(PSPDFDocument *)document didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options {
+- (void)PDFDocument:(PSPDFDocument *)document didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options {
 
     // Setup graphics context for current PDF page.
     PSPDFPageInfo *pageInfo = [document pageInfoForPage:page];

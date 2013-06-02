@@ -1235,7 +1235,8 @@ const char kPSPDFSignatureCompletionBlock = 0;
         double delayInSeconds = 0.3f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController.visiblePageViews.ps_firstObject showSignatureControllerAtPoint:CGPointZero withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
+            PSPDFPageView *pageView = pdfController.visiblePageViews.count > 0 ? pdfController.visiblePageViews[0] : nil;
+            [pageView showSignatureControllerAtPoint:CGPointZero withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
         });
 
         return pdfController;
@@ -2917,11 +2918,11 @@ const char kPSPDFSignatureCompletionBlock = 0;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentDelegate
 
-- (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
+- (void)PDFDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
     PSCLog(@"\n\nSaving of %@ successful: %@", document, annotations);
 }
 
-- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error {
+- (void)PDFDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
     PSCLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
 }
 
