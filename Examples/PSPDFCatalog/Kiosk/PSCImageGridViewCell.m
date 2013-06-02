@@ -261,7 +261,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             [self darkenView:!magazine.isAvailable animated:NO];
         }
 
-        NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
+        NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files lastObject]);
         [self updatePageLabel]; // create lazily
         self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
