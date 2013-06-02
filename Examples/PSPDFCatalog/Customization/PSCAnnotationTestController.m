@@ -197,7 +197,7 @@
 #pragma mark - PSPDFDocumentDelegate
 
 /// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
-- (NSString *)pdfDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken {
+- (NSString *)PDFDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken {
     NSString *resolvedPath = nil;
     if ([pathToken isEqualToString:@"TokenTest"]) {
         resolvedPath = [[NSBundle mainBundle] bundlePath];

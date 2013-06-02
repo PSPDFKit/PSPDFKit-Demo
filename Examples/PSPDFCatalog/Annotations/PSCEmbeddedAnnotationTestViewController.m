@@ -66,13 +66,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentDelegate
 
-- (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
+- (void)PDFDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
     NSLog(@"Successfully saved annotations: %@", annotations);
 
     if (document.data) NSLog(@"This is your time to save the updated data!");
 }
 
-- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error {
+- (void)PDFDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
     NSLog(@"Failed to save annotations: %@", [error localizedDescription]);
 }
 
