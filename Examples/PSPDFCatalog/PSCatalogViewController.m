@@ -95,6 +95,13 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
 @implementation PSCatalogViewController
 
+static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
+    CGFloat xScale = boundsSize.width / targetSize.width;
+    CGFloat yScale = boundsSize.height / targetSize.height;
+    CGFloat minScale = fminf(xScale, yScale);
+    return minScale > 1.f ? 1.f : minScale;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
@@ -1283,7 +1290,8 @@ const char kPSPDFSignatureCompletionBlock = 0;
 
                     // Calculate the size, aspect ratio correct.
                     CGSize annotationSize = PSPDFBoundingBoxFromLines(lines, 2).size;
-                    annotationSize = PSPDFSizeForScale(annotationSize, PSPDFScaleForSizeWithinSize(annotationSize, maxSize));
+                    CGFloat scale = PSCScaleForSizeWithinSize(annotationSize, maxSize);
+                    annotationSize = CGSizeMake(roundf(annotationSize.width * scale), roundf(annotationSize.height * scale));
 
                     // Create the annotation.
                     PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];

@@ -62,7 +62,7 @@
     [super layoutSubviews];
 
     CGRect rem = self.bounds, slice;
-    PSPDFRectDivideWithPadding(rem, &slice, &rem, 44.f, 0, CGRectMinYEdge);
+    CGRectDivide(rem, &slice, &rem, 44.f, CGRectMinYEdge);
     self.drawButton.frame = slice;
     self.freeTextButton.frame = rem;
 }

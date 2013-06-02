@@ -27,6 +27,25 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView
 
+static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
+    CGFloat xScale = boundsSize.width / targetSize.width;
+    CGFloat yScale = boundsSize.height / targetSize.height;
+    CGFloat minScale = fminf(xScale, yScale);
+    return minScale > 1.f ? 1.f : minScale;
+}
+
+static void PSCRectDivideWithPadding(CGRect rect, CGRect *slicePtr, CGRect *remainderPtr, CGFloat sliceAmount, CGFloat padding, CGRectEdge edge) {
+    CGRect slice;
+
+    // slice
+    CGRectDivide(rect, &slice, &rect, sliceAmount, edge);
+    if (slicePtr) *slicePtr = slice;
+
+    // padding / remainder
+    CGRectDivide(rect, &slice, &rect, padding, edge);
+    if (remainderPtr) *remainderPtr = rect;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
 
@@ -34,10 +53,10 @@
     CGRect slice, rem = CGRectInset(self.bounds, margin, margin);
     rem.size.width -= margin * 3; // more text margin
 
-    CGFloat scale = PSPDFScaleForSizeWithinSize(self.rotatedPageRect.size, CGSizeMake(80.f, CGRectGetHeight(self.frame)));
-    CGRect imageRect = PSPDFRoundRect(CGRectMake(0, 0, self.rotatedPageRect.size.width * scale, self.rotatedPageRect.size.height * scale));
+    CGFloat scale = PSCScaleForSizeWithinSize(self.rotatedPageRect.size, CGSizeMake(80.f, CGRectGetHeight(self.frame)));
+    CGRect imageRect = CGRectIntegral(CGRectMake(0, 0, self.rotatedPageRect.size.width * scale, self.rotatedPageRect.size.height * scale));
 
-    PSPDFRectDivideWithPadding(rem, &slice, &rem, CGRectGetWidth(imageRect), margin*4, CGRectMinXEdge);
+    PSCRectDivideWithPadding(rem, &slice, &rem, CGRectGetWidth(imageRect), margin*4, CGRectMinXEdge);
     self.imageView.frame = slice;
     self.textLabel.frame = rem;
 }
