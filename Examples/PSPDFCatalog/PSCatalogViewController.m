@@ -1728,6 +1728,16 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return pdfController;
     }]];
 
+    // Creating press-ready artwork
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"TextParser test word spaces" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_wordspace.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        NSLog(@"Text: %@", [[document textParserForPage:0] text]);
+        NSLog(@"Glyphs: %@", [[document textParserForPage:0] glyphs]);
+        NSLog(@"Words: %@", [[document textParserForPage:0] words]);
+        return pdfController;
+    }]];
+
     // Page 26 of hackernews-12 has a very complex XObject setup with nested objects that reference objects that have a parent with the same name. If parsed from top to bottom with the wrong XObjects this will take 100^4 calls, thus clocks up the iPad for a very long time.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test for cyclic XObject references." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
