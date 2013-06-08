@@ -41,7 +41,7 @@
     PSCSettingsController *settingsController = [PSCSettingsController new];
     PSPDFViewController *pdfController = self.pdfController;
     settingsController.owningViewController = pdfController;
-    return [pdfController presentViewControllerModalOrPopover:settingsController embeddedInNavigationController:PSIsIpad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAlwaysPopover : @YES}];
+    return [pdfController presentModalOrInPopover:settingsController embeddedInNavigationController:PSIsIpad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAlwaysPopover : @YES}];
 }
 
 @end

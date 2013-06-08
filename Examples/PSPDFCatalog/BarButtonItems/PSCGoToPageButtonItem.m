@@ -43,7 +43,7 @@ const char kPSCAlertViewKey;
 
     PSPDFViewController *pdfController = self.pdfController;
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to Page") message:nil];
-    websitePrompt.tintColor = [pdfController alertViewTintColor];
+    websitePrompt.tintColor = pdfController.shouldTintAlertView ? pdfController.tintColor : nil;
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
