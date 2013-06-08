@@ -2099,7 +2099,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction with CMYK images" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2109,7 +2109,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - top left" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"image-topleft.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2119,7 +2119,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - not inverted" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"inverted-image.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document rectBoxForPage:0] page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];

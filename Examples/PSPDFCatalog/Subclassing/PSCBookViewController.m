@@ -30,10 +30,8 @@
         self.shadowEnabled = NO;
 
         // override certain classes to achieve the book-style layout
-        self.overrideClassNames = @{
-            (id)PSPDFPageViewController.class : [PSCBookPageViewController class],
-            (id)[PSPDFSinglePageViewController class] : [PSCBookSinglePageViewController class]
-        };
+        [self overrideClass:PSPDFPageViewController.class withClass:PSCBookPageViewController.class];
+        [self overrideClass:PSPDFSinglePageViewController.class withClass:PSCBookSinglePageViewController.class];
     }
     return self;
 }
