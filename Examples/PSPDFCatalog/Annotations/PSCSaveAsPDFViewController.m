@@ -78,22 +78,22 @@
 
         NSError *error;
         if (![[NSFileManager defaultManager] copyItemAtURL:self.document.fileURL toURL:newURL error:&error]) {
-            PSPDFLogWarning(@"Failed to copy file to %@: %@", newURL.path, [error localizedDescription]);
+            NSLog(@"Failed to copy file to %@: %@", newURL.path, [error localizedDescription]);
         }else {
             // Since the annotation has already been edited, we copy the file *before* it will be saved
             // then save the current state and switch out the documents.
             if (![self.document saveChangedAnnotationsWithError:&error]) {
-                PSPDFLogWarning(@"Failed to save annotations: %@", [error localizedDescription]);
+                NSLog(@"Failed to save annotations: %@", [error localizedDescription]);
             }
             NSURL *tmpURL = [newURL URLByAppendingPathExtension:@"temp"];
             if (![[NSFileManager defaultManager] moveItemAtURL:self.document.fileURL toURL:tmpURL error:&error]) {
-                PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                NSLog(@"Failed to move file: %@", [error localizedDescription]); return;
             }
             if (![[NSFileManager defaultManager] moveItemAtURL:newURL toURL:self.document.fileURL error:&error]) {
-                PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                NSLog(@"Failed to move file: %@", [error localizedDescription]); return;
             }
             if (![[NSFileManager defaultManager] moveItemAtURL:tmpURL toURL:newURL error:&error]) {
-                PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                NSLog(@"Failed to move file: %@", [error localizedDescription]); return;
             }
             // Finally update the fileURL, this will clear the current document cache.
             self.document.fileURL = newURL;

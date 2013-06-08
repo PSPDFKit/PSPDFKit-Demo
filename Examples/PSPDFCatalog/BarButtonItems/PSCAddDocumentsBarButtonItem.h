@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSCDocumentSelectorController.h"
-
 /// Sample subclass for PSPDFBarButtonItem. Shows/hides the PSPDFDocumentSelectorController.
 @interface PSCAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSCDocumentSelectorControllerDelegate>
 

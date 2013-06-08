@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSCDocumentSelectorController.h"
+#import "PSPDFDocumentSelectorController.h"
 
-@interface PSCDropboxDocumentSelectorController : PSCDocumentSelectorController
+@interface PSCDropboxDocumentSelectorController : PSPDFDocumentSelectorController
 
 @end

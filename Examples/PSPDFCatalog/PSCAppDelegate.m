@@ -122,7 +122,7 @@
     }
 
     // Directly open the PDF.
-    if ([launchURL isFileURL] && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
+    if (launchURL.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
         PSPDFDocument *document = [PSPDFDocument documentWithURL:launchURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];

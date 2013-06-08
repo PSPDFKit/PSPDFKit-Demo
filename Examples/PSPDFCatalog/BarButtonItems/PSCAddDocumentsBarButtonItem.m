@@ -31,7 +31,7 @@
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
-    PSCDocumentSelectorController *documentsController = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+    PSPDFDocumentSelectorController *documentsController = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
     UINavigationController *documentsNavController = [[UINavigationController alloc] initWithRootViewController:documentsController];
     return [self presentModalOrInPopover:documentsNavController sender:sender];
 }
@@ -39,7 +39,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentSelectorController:(PSCDocumentSelectorController *)documentSelectorController didSelectDocument:(PSPDFDocument *)document {
+- (void)documentSelectorController:(PSPDFDocumentSelectorController *)documentSelectorController didSelectDocument:(PSPDFDocument *)document {
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
 
     // add new document, and set as current

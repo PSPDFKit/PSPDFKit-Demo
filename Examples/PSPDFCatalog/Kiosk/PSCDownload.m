@@ -160,7 +160,7 @@
         NSError *error = nil;
         success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
         if (!success){
-            PSPDFLogError(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+            NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
         }
     // only works with 5.0.1 and above
     }else {
