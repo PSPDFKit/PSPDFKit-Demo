@@ -63,6 +63,9 @@
     // Enable if you're having memory issues.
     //kPSPDFLowMemoryMode = YES;
 
+    // enable global Undo/Redo
+    application.applicationSupportsShakeToEdit = YES;
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 #if 0
