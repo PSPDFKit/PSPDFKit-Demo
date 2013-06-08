@@ -131,6 +131,13 @@
     return NO;
 }
 
+// If you need to block certain interface orientation, that's the place you want to add it. iOS6 only.
+/*
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    return UIInterfaceOrientationMaskPortrait;
+}
+*/
+
 #pragma mark - BITUpdateManagerDelegate
 #ifdef HOCKEY_ENABLED
 - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
