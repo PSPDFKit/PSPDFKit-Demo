@@ -68,7 +68,7 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCDocumentSelectorControllerDelegate
+#pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
 #if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
