@@ -398,7 +398,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 - (PSCMagazineFolder *)addMagazineToFolder:(PSCMagazine *)magazine {
     PSCMagazineFolder *folder = [self.magazineFolders lastObject];
     [folder addMagazine:magazine];
-    PSPDFAssert([folder isKindOfClass:[PSCMagazineFolder class]], @"incorrect type");
+    NSAssert([folder isKindOfClass:[PSCMagazineFolder class]], @"incorrect type");
     return folder;
 }
 

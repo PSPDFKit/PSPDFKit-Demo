@@ -45,7 +45,7 @@ const char *clearAllActionSheetToken;
 
         // choose *some* documents randomly if state could not be restored.
         if (![self restoreState] || [self.documents count] == 0) {
-            NSArray *documents = [PSCDocumentSelectorController documentsFromDirectory:@"/Bundle/Samples"];
+            NSArray *documents = [PSPDFDocumentSelectorController documentsFromDirectory:@"/Bundle/Samples"];
             self.documents = [documents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 return arc4random_uniform(2) > 0; // returns 0 or 1 randomly.
             }]];

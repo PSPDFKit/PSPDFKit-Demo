@@ -11,13 +11,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PSCDocumentSelectorController.h"
+#import "PSPDFDocumentSelectorController.h"
 #import "PSCDropboxPDFViewController.h"
 
 @interface PSCDropboxSplitViewController : UISplitViewController
 
 /// Right pane document selector.
-@property (nonatomic, strong, readonly) PSCDocumentSelectorController *documentSelector;
+@property (nonatomic, strong, readonly) PSPDFDocumentSelectorController *documentSelector;
 
 /// Content pane PDF controller.
 @property (nonatomic, strong, readonly) PSCDropboxPDFViewController *pdfController;

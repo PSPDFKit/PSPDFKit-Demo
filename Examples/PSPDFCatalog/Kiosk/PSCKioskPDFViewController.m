@@ -63,9 +63,6 @@
         });
          */
 
-        // UI: Parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
-        //if (!PSPDFIsCrappyDevice()) [self.document.outlineParser outline];
-
         // Restore viewState.
         if ([self.document isKindOfClass:PSCMagazine.class]) {
             [self setViewState:((PSCMagazine *)self.document).lastViewState];
@@ -259,12 +256,19 @@
     return YES;
 }
 
+static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
+    if (pdfFileName) {
+        pdfFileName = [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
+    }
+    return pdfFileName;
+}
+
 // Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     // show pdf title and fileURL
     if (document) {
-        NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
+        NSString *fileName = PSCStripPDFFileType([document.fileURL lastPathComponent]);
         if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
             self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
         }

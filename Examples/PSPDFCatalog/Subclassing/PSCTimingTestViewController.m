@@ -11,7 +11,7 @@
 //
 
 #import "PSCTimingTestViewController.h"
-#import "PSCDocumentSelectorController.h"
+#import "PSPDFDocumentSelectorController.h"
 
 @interface PSCTimingTestViewController ()
 @property (nonatomic, strong) PSPDFViewController *pdfController;
@@ -27,7 +27,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 
         // load sample documents
-        PSCDocumentSelectorController *documentsController = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:NULL];
+        PSPDFDocumentSelectorController *documentsController = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:NULL];
         _documents = documentsController.documents;
     }
     return self;
