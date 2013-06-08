@@ -19,6 +19,7 @@
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
 
+// This is used internally where PSPDFKit-lib.xcproj is used.
 #ifdef PSPDF_USE_SOURCE
     #import "PSPDFKit.h"
 #else
@@ -27,9 +28,13 @@
 
 #endif
 
+// Logging
 #define kPSCLogEnabled
 #ifdef kPSCLogEnabled
 #define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);;
 #else
 #define PSCLog(...)
 #endif
+
+// Availability Macros
+#define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
