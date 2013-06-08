@@ -28,7 +28,7 @@
     [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setCornerRadius:20];
 
     // Register our custom cell as subclass.
-    self.overrideClassNames = @{(id)[PSPDFThumbnailGridViewCell class] : [PSCThumbnailGridViewCell class]};
+    [self overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCThumbnailGridViewCell.class];
 }
 
 @end

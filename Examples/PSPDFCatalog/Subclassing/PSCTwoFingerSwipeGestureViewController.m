@@ -29,7 +29,8 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
-    self.overrideClassNames = @{(id)[PSPDFPagingScrollView class] : [PSCSwipePagingScrollView class], (id)[PSPDFScrollView class] : [PSCSwipeScrollView class]};
+    [self overrideClass:PSPDFPagingScrollView.class withClass:PSCSwipePagingScrollView.class];
+    [self overrideClass:PSPDFScrollView.class withClass:PSCSwipeScrollView.class];
 }
 
 @end
