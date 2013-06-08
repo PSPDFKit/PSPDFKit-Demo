@@ -100,7 +100,7 @@
         }
     }];
 #pragma clang diagnostic pop
-    [self.annotationSaveAlertView showWithTintColor:self.alertViewTintColor];
+    [self.annotationSaveAlertView showWithTintColor:self.shouldTintAlertView ? self.tintColor : nil];
 }
 
 @end

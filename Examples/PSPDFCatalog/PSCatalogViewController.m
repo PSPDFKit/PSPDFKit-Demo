@@ -25,7 +25,6 @@
 #import "PSCustomTextSelectionMenuController.h"
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
-#import "PSCBookViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayBarButtonItem.h"
 #import "PSCGoToPageButtonItem.h"
@@ -1098,12 +1097,6 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                 pdfController.pageTransition = PSPDFPageCurlTransition;
             }
         }];
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Book example" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCBookViewController alloc] initWithDocument:document];
         return controller;
     }]];
 

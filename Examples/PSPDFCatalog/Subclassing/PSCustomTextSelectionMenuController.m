@@ -56,7 +56,7 @@
         browser.delegate = pdfController;
         browser.contentSizeForViewInPopover = CGSizeMake(600, 500);
 
-        [pdfController presentViewControllerModalOrPopover:browser embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionRect : BOXED(rect)}];
+        [pdfController presentModalOrInPopover:browser embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionRect : BOXED(rect)}];
 
     } identifier:@"Google"];
     [newMenuItems addObject:googleItem];

@@ -526,7 +526,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
 
-    [pdfController presentViewControllerModalOrPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
+    [pdfController presentModalOrInPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
