@@ -26,7 +26,7 @@
     self.delegate = self;
 
     // register the override to use a custom search highlight view subclass.
-    self.overrideClassNames = @{(id)PSPDFSearchHighlightView.class : PSCNonAnimatingSearchHighlightView.class};
+    [self overrideClass:PSPDFSearchHighlightView.class withClass:PSCNonAnimatingSearchHighlightView.class];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -32,7 +32,7 @@
         self.fitToWidthEnabled = YES;
 
         // override all usages of PSPDFContentScrollView with the subclass PSCStoppingContentScrollView.
-        self.overrideClassNames = @{(id)[PSPDFContentScrollView class] : [PSCStoppingContentScrollView class]};
+        [self overrideClass:PSPDFContentScrollView.class withClass:PSCStoppingContentScrollView.class];
     }
     return self;
 }

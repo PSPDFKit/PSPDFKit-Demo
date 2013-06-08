@@ -12,7 +12,7 @@
 
 #import "PSCRotatablePDFViewController.h"
 
-@interface PSPDFRotatableScrollView : PSPDFScrollView @end
+@interface PSCRotatableScrollView : PSPDFScrollView @end
 
 @implementation PSCRotatablePDFViewController
 
@@ -26,7 +26,7 @@
     self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
     // Optional: Allow rotation via a gesture.
-    self.overrideClassNames = @{(id)[PSPDFScrollView class] : [PSPDFRotatableScrollView class]};
+    [self overrideClass:PSPDFScrollView.class withClass:PSCRotatableScrollView.class];
 
     // Add manual rotation button.
     UIBarButtonItem *rotate = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(rotateAction:)];
@@ -71,7 +71,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFRotatableScrollView
 
-@implementation PSPDFRotatableScrollView
+@implementation PSCRotatableScrollView
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
