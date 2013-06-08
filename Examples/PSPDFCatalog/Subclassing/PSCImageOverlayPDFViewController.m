@@ -69,7 +69,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imagePreviewController.view = imageView;
-        [self presentViewControllerModalOrPopover:imagePreviewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:button options:@{PSPDFPresentOptionAlwaysModal : @YES, PSPDFPresentOptionModalPresentationStyle : @(UIModalPresentationFormSheet)}];
+        [self presentModalOrInPopover:imagePreviewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:button options:@{PSPDFPresentOptionAlwaysModal : @YES, PSPDFPresentOptionModalPresentationStyle : @(UIModalPresentationFormSheet)}];
     }
 }
 
