@@ -174,6 +174,13 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
+static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
+    if (pdfFileName) {
+        pdfFileName = [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
+    }
+    return pdfFileName;
+}
+
 - (void)setMagazine:(PSCMagazine *)magazine {
     if (self.magazineFolder) {
         self.magazineFolder = nil;
@@ -256,7 +263,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             [self darkenView:!magazine.isAvailable animated:NO];
         }
 
-        NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files lastObject]);
+        NSString *pageLabelText = PSCStripPDFFileType([magazine.files lastObject]);
         [self updatePageLabel]; // create lazily
         self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
@@ -457,7 +464,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     if (magazine.isDownloading) {
         PSCDownload *download = [[PSCStoreManager sharedStoreManager] downloadObjectForMagazine:magazine];
         if (!download) {
-            PSPDFLogError(@"failed to find associated download object for %@", magazine); return;
+            NSLog(@"failed to find associated download object for %@", magazine); return;
         }
         [_observedMagazineDownloads addObject:download];
         [download addObserver:self forKeyPath:PROPERTY(downloadProgress) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];

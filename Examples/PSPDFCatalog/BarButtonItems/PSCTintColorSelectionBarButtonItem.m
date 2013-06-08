@@ -70,7 +70,7 @@
         if (colorPicker) {
             [pdfController presentViewControllerModalOrPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
         }else {
-            PSPDFLogError(@"Color picker can't be displayed. Is PSPDFKit.bundle missing?");
+            NSLog(@"Color picker can't be displayed. Is PSPDFKit.bundle missing?");
         }
     }
 }

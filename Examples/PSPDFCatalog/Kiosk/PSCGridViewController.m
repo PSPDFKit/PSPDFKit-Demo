@@ -833,7 +833,7 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
             Method method = class_getInstanceMethod([UICollectionViewUpdateItem class], @selector(action));
             const char *encoding = method_getTypeEncoding(method);
             if (!class_addMethod([UICollectionViewUpdateItem class], @selector(action), updateIMP, encoding)) {
-                PSPDFLogError(@"Failed to add action: workaround");
+                NSLog(@"Failed to add action: workaround");
             }
         }
     }

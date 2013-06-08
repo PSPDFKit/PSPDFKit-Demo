@@ -14,7 +14,6 @@
 #import "PSCSectionDescriptor.h"
 #import "PSCGridViewController.h"
 #import "PSCTabbedExampleViewController.h"
-#import "PSCDocumentSelectorController.h"
 #import "PSCEmbeddedTestController.h"
 #import "PSCCustomToolbarController.h"
 #import "PSCAnnotationTestController.h"
@@ -149,14 +148,14 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+            PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
             objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Open In... Inbox" block:^{
-        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
+        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
@@ -373,7 +372,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         document.pageRange = pageIndexes;    // Define new page range.
 
         // Merge pages into new document.
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"temp", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp", @"pdf");
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
         PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
 
@@ -542,7 +541,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
     [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Full-Text Search" block:^UIViewController *{
-        PSCDocumentSelectorController *documentSelector = [[PSCDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
@@ -560,7 +559,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
             NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
 #pragma clang diagnostic pop
-            NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
+            NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
 
             // create pdf (blocking)
             [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{kPSPDFProcessorNumberOfPages : @(1), kPSPDFProcessorDocumentTitle : @"Generated PDF"}];
@@ -590,7 +589,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 #pragma clang diagnostic pop
             if (![website.lowercaseString hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
             NSURL *URL = [NSURL URLWithString:website];
-            NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
+            NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
             //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
 
             // start the conversion
@@ -815,7 +814,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [passwordSection addContent:[[PSContent alloc] initWithTitle:@"Create password protected PDF." block:^UIViewController *{
         // create new file that is protected
         NSString *password = @"test123";
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"protected", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"protected", @"pdf");
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
@@ -873,7 +872,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                                                     password:password
                                                        error:&error];
             if (!encryptedData) {
-                PSPDFLogWarning(@"Failed to encrypt: %@", [error localizedDescription]);
+                NSLog(@"Failed to encrypt: %@", [error localizedDescription]);
                 [data setData:[NSData data]]; // clear data - better save nothing than unencrypted!
             }else {
                 [data setData:encryptedData];
@@ -888,7 +887,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                                                 withPassword:password
                                                        error:&error];
             if (!decryptedData) {
-                PSPDFLogWarning(@"Failed to decrypt: %@", [error localizedDescription]);
+                NSLog(@"Failed to decrypt: %@", [error localizedDescription]);
             }
             return decryptedData;
         }];
@@ -1311,7 +1310,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             // Now we could flatten the PDF so that the signature is "burned in".
             PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
             [flattenAlert addButtonWithTitle:@"Flatten" block:^{
-                NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
+                NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
                 // Perform in background to allow progress showing.
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                     [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
@@ -1831,7 +1830,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         }
 
         // One day this will be a real testcase. For now, that'll have to do.
-        PSPDFAssert(foundWord, @"Test failed!");
+        NSAssert(foundWord, @"Test failed!");
 
         return pdfController;
     }]];
@@ -2179,7 +2178,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
         NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
         NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
-        PSPDFAssert(annotationCount == 0, @"A second run should not create new annotations");
+        NSAssert(annotationCount == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -2542,7 +2541,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         NSError *error = nil;
         UIImage *thumbnail = [doc imageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
         if (!thumbnail) {
-            PSPDFLogError(@"Failed to generate thumbnail: %@", [error localizedDescription]);
+            NSLog(@"Failed to generate thumbnail: %@", [error localizedDescription]);
         }
         NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
         NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
@@ -2566,7 +2565,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     // Test flattening, especially for notes.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
@@ -2577,7 +2576,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     }]];
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening 2" block:^UIViewController *{
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest2", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest2", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
@@ -2594,7 +2593,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     // Check that annotations are there, links work.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
@@ -2606,7 +2605,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     // Check that annotations are there.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 2" block:^UIViewController *{
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"annotationtest", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
@@ -2618,7 +2617,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFProcessor PPTX (Microsoft Office) conversion" block:^UIViewController *{
         NSURL *URL = [NSURL fileURLWithPath:@"/Users/steipete/Documents/Projects/PSPDFKit_meta/converts/Neu_03_VZ3_Introduction.pptx"];
-        NSURL *outputURL = PSPDFTempFileURLWithPathExtension(@"converted", @"pdf");
+        NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
         [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
         [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
@@ -2643,7 +2642,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         document.pageRange = pageRange;
 
         // Merge pages into new document.
-        NSURL *tempURL = PSPDFTempFileURLWithPathExtension(@"temp-merged", @"pdf");
+        NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp-merged", @"pdf");
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
         PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
@@ -2914,7 +2913,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentSelectorController:(PSCDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
@@ -3013,6 +3012,19 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 - (void)debugClearCache {
     [PSPDFRenderQueue.sharedRenderQueue cancelAllJobs];
     [PSPDFCache.sharedCache clearCache];
+}
+
+static NSURL *PSCTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension) {
+    if (pathExtension && ![pathExtension hasPrefix:@"."]) pathExtension = [NSString stringWithFormat:@".%@", pathExtension];
+    if (!pathExtension) pathExtension = @"";
+
+    CFUUIDRef UDIDRef = CFUUIDCreate(NULL);
+    NSString *UDIDString = (NSString *)CFBridgingRelease(CFUUIDCreateString(NULL, UDIDRef));
+    CFRelease(UDIDRef);
+    if (prefix) UDIDString = [NSString stringWithFormat:@"_%@", UDIDString];
+
+    NSURL *tempURL = [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@%@%@", prefix, UDIDString, pathExtension] isDirectory:NO];
+    return tempURL;
 }
 
 @end
