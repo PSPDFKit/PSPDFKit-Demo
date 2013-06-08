@@ -11,6 +11,6 @@
 //
 
 /// Sample subclass for PSPDFBarButtonItem. Shows/hides the PSPDFDocumentSelectorController.
-@interface PSCAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSCDocumentSelectorControllerDelegate>
+@interface PSCAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSelectorControllerDelegate>
 
 @end
