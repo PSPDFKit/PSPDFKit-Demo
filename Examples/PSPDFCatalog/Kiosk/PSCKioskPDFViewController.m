@@ -388,7 +388,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 
 /// Called before we're showing the menu for an annotation.
 - (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView {
-    PSCLog(@"showing menu %@ for %@", menuItems, annotation);
+    //PSCLog(@"showing menu %@ for %@", menuItems, annotation);
 
     // Print highlight contents
     if ([annotation isKindOfClass:PSPDFHighlightAnnotation.class]) {
