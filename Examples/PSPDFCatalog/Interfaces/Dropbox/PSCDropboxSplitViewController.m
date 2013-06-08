@@ -13,7 +13,7 @@
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAppDelegate.h"
 
-@interface PSCDropboxSplitViewController () <UISplitViewControllerDelegate, PSCDocumentSelectorControllerDelegate>
+@interface PSCDropboxSplitViewController () <UISplitViewControllerDelegate, PSPDFDocumentSelectorControllerDelegate>
 @property (nonatomic, strong) PSPDFDocumentSelectorController *documentSelector;
 @property (nonatomic, strong) PSCDropboxPDFViewController *pdfController;
 @property (nonatomic, strong) UIBarButtonItem *backToCatalogButton;
@@ -79,7 +79,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCDocumentSelectorControllerDelegate
+#pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
     self.pdfController.document = document;

@@ -14,7 +14,7 @@
 
 @class  PSCSplitPDFViewController;
 
-@interface PSCSplitDocumentSelectorController : PSPDFDocumentSelectorController <PSCDocumentSelectorControllerDelegate>
+@interface PSCSplitDocumentSelectorController : PSPDFDocumentSelectorController <PSPDFDocumentSelectorControllerDelegate>
 
 @property (nonatomic, weak) PSCSplitPDFViewController *masterVC;
 
