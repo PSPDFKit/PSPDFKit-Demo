@@ -28,7 +28,7 @@
         _pdfController = pdfController;
 
         self.toolbar = pdfController.annotationButtonItem.annotationToolbar;
-        self.toolbar.delegate = self;
+        self.toolbar.annotationToolbarDelegate = self;
         self.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.8f];
 
         // draw button
