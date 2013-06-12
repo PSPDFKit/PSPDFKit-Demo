@@ -15,6 +15,9 @@ OR
 
 This software is provided by PSPDFKit GmbH i.G. "as is" and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall PSPDFKit GmbH be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data or profits; or other business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
 
+Both parties agree to the application of the laws of Austria with the exclusions of its conflict of law rules to govern, interpret and enforce all of Licensee’s and Licensor’s rights, duties, and obligations arising from or relating in any manner to this Agreement. The United Nations Convention on Contracts for the International Sale of Goods does not apply. For all disputes arising out of or related to this Agreement or during the initiation of a contract to license PSPDFKit, the sole place of jurisdiction shall be the relevant court in Vienna, Austria.
+
+If any provision of this Agreement is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make it enforceable. The failure of PSPDFKit GmbH to act with respect to a breach of this Agreement by Licensee or others does not constitute a waiver and shall not limit PSPDFKit GmbH's rights with respect to such breach or any subsequent breaches. PSPDFKit GmbH expressly reserves the right to assign this Agreement and to delegate any of its obligations hereunder.
 
 Commercial Development License
 ------------------------------
