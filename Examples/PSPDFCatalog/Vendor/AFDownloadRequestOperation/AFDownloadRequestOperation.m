@@ -51,6 +51,16 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
 #pragma mark - NSObject
 
+- (void)dealloc
+{
+    if (_progressiveDownloadCallbackQueue) {
+#if !OS_OBJECT_USE_OBJC
+        dispatch_release(_progressiveDownloadCallbackQueue);
+#endif
+        _progressiveDownloadCallbackQueue = NULL;
+    }
+}
+
 - (id)initWithRequest:(NSURLRequest *)urlRequest targetPath:(NSString *)targetPath shouldResume:(BOOL)shouldResume {
     if ((self = [super initWithRequest:urlRequest])) {
         NSParameterAssert(targetPath != nil && urlRequest != nil);
@@ -135,6 +145,25 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     self.progressiveDownloadProgress = block;
 }
 
+- (void)setProgressiveDownloadCallbackQueue:(dispatch_queue_t)progressiveDownloadCallbackQueue {
+    if (progressiveDownloadCallbackQueue != _progressiveDownloadCallbackQueue) {
+        if (_progressiveDownloadCallbackQueue) {
+#if !OS_OBJECT_USE_OBJC
+            dispatch_release(_progressiveDownloadCallbackQueue);
+#endif
+            _progressiveDownloadCallbackQueue = NULL;
+        }
+        
+        if (progressiveDownloadCallbackQueue) {
+#if !OS_OBJECT_USE_OBJC
+            dispatch_retain(progressiveDownloadCallbackQueue);
+#endif
+            _progressiveDownloadCallbackQueue = progressiveDownloadCallbackQueue;
+        }
+    }
+}
+
+
 #pragma mark - Private
 
 - (unsigned long long)fileSizeForPath:(NSString *)path {
@@ -148,6 +177,15 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
         }
     }
     return fileSize;
+}
+
+#pragma mark - AFHTTPRequestOperation
+
++ (NSIndexSet *)acceptableStatusCodes {
+	NSMutableIndexSet *acceptableStatusCodes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
+	[acceptableStatusCodes addIndex:416];
+	
+	return acceptableStatusCodes;
 }
 
 #pragma mark - AFURLRequestOperation
@@ -239,13 +277,16 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data  {
+    if (![self hasAcceptableStatusCode] || ![self hasAcceptableContentType])
+        return; // don't write to output stream if any error occurs
+
     [super connection:connection didReceiveData:data];
 
     // track custom bytes read because totalBytesRead persists between pause/resume.
     self.totalBytesReadPerDownload += [data length];
 
     if (self.progressiveDownloadProgress) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(self.progressiveDownloadCallbackQueue ?: dispatch_get_main_queue(), ^{
             self.progressiveDownloadProgress(self,(long long)[data length], self.totalBytesRead, self.response.expectedContentLength,self.totalBytesReadPerDownload + self.offsetContentLength, self.totalContentLength);
         });
     }
