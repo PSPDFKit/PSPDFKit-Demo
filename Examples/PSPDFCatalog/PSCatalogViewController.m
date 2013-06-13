@@ -1848,6 +1848,18 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return pdfController;
     }]];
 
+
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test glyph count = text length" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GlyphCount.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+
+        PSPDFTextParser *textParser = [document textParserForPage:33];
+        NSString *text = textParser.text;
+        NSAssert(text.length == textParser.glyphs.count, @"Text length needs to equal glyph count");
+
+        return pdfController;
+    }]];
+
     // Test that file actually opens.
     // CoreGraphics is picky about AES-128 and will fail if the document is parsed before we enter a password with a "failed to create default crypt filter."
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test AES-128 password protected file" block:^UIViewController *{
