@@ -119,7 +119,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
 #pragma mark - Public
 
-- (BOOL)deleteTempFileWithError:(NSError **)error {
+- (BOOL)deleteTempFileWithError:(__autoreleasing NSError **)error {
     NSFileManager *fileManager = [NSFileManager new];
     BOOL success = YES;
     @synchronized(self) {
