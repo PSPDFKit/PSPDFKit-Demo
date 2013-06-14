@@ -52,7 +52,7 @@ static const NSUInteger kPreambleSize = 2;
 @synthesize password = _password;
 @synthesize settings = _settings;
 
-+ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings password:(NSString *)aPassword error:(NSError **)anError
++ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings password:(NSString *)aPassword error:(__autoreleasing NSError **)anError
 {
   RNDecryptor *cryptor = [[self alloc] initWithPassword:aPassword
                                                 handler:^(RNCryptor *c, NSData *d) {}];
@@ -60,7 +60,7 @@ static const NSUInteger kPreambleSize = 2;
   return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
 }
 
-+ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings encryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(NSError **)anError
++ (NSData *)decryptData:(NSData *)theCipherText withSettings:(RNCryptorSettings)settings encryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(__autoreleasing NSError **)anError
 {
   RNDecryptor *cryptor = [[self alloc] initWithEncryptionKey:encryptionKey
                                                      HMACKey:HMACKey
@@ -69,14 +69,14 @@ static const NSUInteger kPreambleSize = 2;
   return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
 }
 
-+ (NSData *)decryptData:(NSData *)theCipherText withPassword:(NSString *)aPassword error:(NSError **)anError
++ (NSData *)decryptData:(NSData *)theCipherText withPassword:(NSString *)aPassword error:(__autoreleasing NSError **)anError
 {
   RNDecryptor *cryptor = [[self alloc] initWithPassword:aPassword
                                                 handler:^(RNCryptor *c, NSData *d) {}];
   return [self synchronousResultForCryptor:cryptor data:theCipherText error:anError];
 }
 
-+ (NSData *)decryptData:(NSData *)theCipherText withEncryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(NSError **)anError
++ (NSData *)decryptData:(NSData *)theCipherText withEncryptionKey:(NSData *)encryptionKey HMACKey:(NSData *)HMACKey error:(__autoreleasing NSError **)anError
 {
   RNDecryptor *cryptor = [[self alloc] initWithEncryptionKey:encryptionKey
                                                      HMACKey:HMACKey
