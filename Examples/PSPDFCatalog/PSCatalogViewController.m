@@ -1853,7 +1853,9 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_GlyphCount.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
-        PSPDFTextParser *textParser = [document textParserForPage:33];
+        [[document textParserForPage:0] glyphs];
+
+        PSPDFTextParser *textParser = [document textParserForPage:27];
         NSString *text = textParser.text;
         NSAssert(text.length == textParser.glyphs.count, @"Text length needs to equal glyph count");
 
