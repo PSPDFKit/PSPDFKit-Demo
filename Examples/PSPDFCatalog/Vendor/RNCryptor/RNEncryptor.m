@@ -46,7 +46,7 @@
 @synthesize haveWrittenHeader = _haveWrittenHeader;
 
 
-+ (NSData *)encryptData:(NSData *)thePlaintext withSettings:(RNCryptorSettings)theSettings password:(NSString *)aPassword error:(NSError **)anError
++ (NSData *)encryptData:(NSData *)thePlaintext withSettings:(RNCryptorSettings)theSettings password:(NSString *)aPassword error:(__autoreleasing NSError **)anError
 {
   RNEncryptor *cryptor = [[self alloc] initWithSettings:theSettings
                                                password:aPassword
@@ -54,7 +54,7 @@
   return [self synchronousResultForCryptor:cryptor data:thePlaintext error:anError];
 }
 
-+ (NSData *)encryptData:(NSData *)thePlaintext withSettings:(RNCryptorSettings)theSettings encryptionKey:(NSData *)anEncryptionKey HMACKey:(NSData *)anHMACKey error:(NSError **)anError
++ (NSData *)encryptData:(NSData *)thePlaintext withSettings:(RNCryptorSettings)theSettings encryptionKey:(NSData *)anEncryptionKey HMACKey:(NSData *)anHMACKey error:(__autoreleasing NSError **)anError
 {
   RNEncryptor *cryptor = [[self alloc] initWithSettings:theSettings
                                           encryptionKey:anEncryptionKey

@@ -62,7 +62,7 @@ const uint8_t kRNCryptorFileVersion = 2;
 @synthesize options = _options;
 @synthesize handler = _handler;
 
-+ (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(NSError **)anError
++ (NSData *)synchronousResultForCryptor:(RNCryptor *)cryptor data:(NSData *)inData error:(__autoreleasing NSError **)anError
 {
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 
