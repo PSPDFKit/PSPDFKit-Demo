@@ -56,6 +56,7 @@
 #import "PSCColoredHighlightAnnotation.h"
 #import "PSCMultipleUsersPDFViewController.h"
 #import "PSCAppearancePDFViewController.h"
+#import "PSCShowHighlightNotesPDFController.h"
 #import "PSCTopScrobbleBar.h"
 #import <objc/runtime.h>
 
@@ -1128,6 +1129,26 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Draw all annotations as overlay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCCustomSubviewPDFViewController alloc] initWithDocument:document];
+        return controller;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Directly show note controller for highlight annotations" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+
+        // Create some highlights
+        NSUInteger page = 5;
+        for (NSUInteger idx = 0; idx < 6; idx++) {
+            PSPDFWord *word = ([document textParserForPage:page].words)[idx];
+            PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+            CGRect boundingBox;
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
+            annotation.boundingBox = boundingBox;
+            [document addAnnotations:@[annotation] forPage:page];
+        }
+
+        PSPDFViewController *controller = [[PSCShowHighlightNotesPDFController alloc] initWithDocument:document];
+        controller.page = page;
         return controller;
     }]];
 
