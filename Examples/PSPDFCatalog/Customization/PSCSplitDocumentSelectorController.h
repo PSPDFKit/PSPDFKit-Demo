@@ -10,8 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFDocumentSelectorController.h"
-
 @class  PSCSplitPDFViewController;
 
 @interface PSCSplitDocumentSelectorController : PSPDFDocumentSelectorController <PSPDFDocumentSelectorControllerDelegate>
