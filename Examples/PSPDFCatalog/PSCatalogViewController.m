@@ -2677,6 +2677,13 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return controller;
     }]];
 
+    // Form support
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF Forms" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     [content addObject:textExtractionSection];
 
 #endif
