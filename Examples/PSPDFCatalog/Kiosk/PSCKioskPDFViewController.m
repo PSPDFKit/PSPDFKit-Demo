@@ -148,7 +148,7 @@
     viewState.zoomScale = 1;
     viewState.contentOffset = CGPointMake(0, 0);
 
-    NSMutableDictionary *renderOptions = [self.document.renderOptions mutableCopy] ?: [NSMutableDictionary dictionary];
+    NSMutableDictionary *renderOptions = [NSMutableDictionary dictionaryWithDictionary:self.document.renderOptions];
     NSDictionary *settings = [PSCSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         // renderOptions need special treatment.
