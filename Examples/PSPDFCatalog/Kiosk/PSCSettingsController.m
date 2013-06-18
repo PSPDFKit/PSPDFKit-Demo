@@ -418,7 +418,9 @@ static CGFloat pscSettingsLastYOffset = 0;
     switch (indexPath.section) {
         case PSPDFClearCacheButton: [[PSPDFCache sharedCache] clearCache]; break;
         case PSPDFOpenAPIButton: {
-            PSPDF_IF_SIMULATOR(system("open 'http://pspdfkit.com/documentation/'"); break;)
+#if TARGET_IPHONE_SIMULATOR
+            system("open 'http://pspdfkit.com/documentation/'"); break;
+#endif
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
             [self.masterViewController presentViewController:webController animated:YES completion:NULL];
         }break;

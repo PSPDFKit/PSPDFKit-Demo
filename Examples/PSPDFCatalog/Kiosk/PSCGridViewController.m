@@ -477,15 +477,12 @@
     if (kPSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
 
     // Preload all magazines. (copy to prevent mutation errors)
-    // Don't do this on old devices, might gobble up the render stack if there are slow documents.
-    if (!PSPDFIsCrappyDevice()) {
-        NSArray *magazines = [self.magazineFolder.magazines copy];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            for (PSCMagazine *magazine in magazines) {
-                [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever|PSPDFCacheOptionActualityIgnore];
-            }
-        });
-    }
+    NSArray *magazines = [self.magazineFolder.magazines copy];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        for (PSCMagazine *magazine in magazines) {
+            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever|PSPDFCacheOptionActualityIgnore];
+        }
+    });
 
     [self updateGrid];
 }
@@ -743,11 +740,6 @@
 - (void)magazineStoreMagazineDeleted:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
-    if (PSPDFIsCrappyDevice()) {
-        [self.collectionView reloadData];
-        return;
-    }
-
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
@@ -761,11 +753,6 @@
 - (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
-    if (PSPDFIsCrappyDevice()) {
-        [self.collectionView reloadData];
-        return;
-    }
-
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
         if (cellIndex != NSNotFound) {
@@ -778,11 +765,6 @@
 
 - (void)magazineStoreMagazineModified:(PSCMagazine *)magazine {
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
-
-    if (PSPDFIsCrappyDevice()) {
-        [self.collectionView reloadData];
-        return;
-    }
 
     if (self.magazineFolder) {
         NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
@@ -826,7 +808,8 @@
 #import <objc/runtime.h>
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
-    PSPDF_IF_PRE_IOS6(return;) // stop if we're on iOS5.
+    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0) return; // stop if we're on iOS5.
+    
     @autoreleasepool {
         if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
             IMP updateIMP = imp_implementationWithBlock(^(id _self) {});
