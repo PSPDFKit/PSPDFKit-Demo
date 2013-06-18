@@ -38,3 +38,8 @@
 
 // Availability Macros
 #define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+
+// iOS6 compatibility
+#ifndef kCFCoreFoundationVersionNumber_iOS_6_0
+#define kCFCoreFoundationVersionNumber_iOS_6_0 788.0
+#endif
