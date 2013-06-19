@@ -11,7 +11,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PSPDFDocumentSelectorController.h"
 #import "PSCDropboxPDFViewController.h"
 
 @interface PSCDropboxSplitViewController : UISplitViewController
