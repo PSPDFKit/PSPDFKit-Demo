@@ -11,7 +11,6 @@
 //
 
 #import "PSCTimingTestViewController.h"
-#import "PSPDFDocumentSelectorController.h"
 
 @interface PSCTimingTestViewController ()
 @property (nonatomic, strong) PSPDFViewController *pdfController;
