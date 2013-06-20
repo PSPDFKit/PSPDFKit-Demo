@@ -58,6 +58,7 @@
 #import "PSCAppearancePDFViewController.h"
 #import "PSCShowHighlightNotesPDFController.h"
 #import "PSCTopScrobbleBar.h"
+#import "PSCExportPDFPagesViewController.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -1355,6 +1356,12 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         objc_setAssociatedObject(signatureController, &kPSPDFSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);
 
         return (UIViewController *)nil;
+    }]];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSCExportPDFPagesViewController *pdfController = [[PSCExportPDFPagesViewController alloc] initWithDocument:document];
+        return pdfController;
     }]];
 
     [content addObject:subclassingSection];
