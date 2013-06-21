@@ -26,7 +26,7 @@
         self.delegate = self;
         _showLeftPaneInLandscape = YES;
 
-        self.documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+        self.documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
         self.documentSelector.stickySearchBar = YES;
         self.documentSelector.delegate = self;
 
