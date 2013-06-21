@@ -149,14 +149,14 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+            PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
             objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Open In... Inbox" block:^{
-        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"Inbox" delegate:self];
+        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"Inbox" library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
@@ -542,7 +542,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     PSCSectionDescriptor *textExtractionSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Text Extraction / PDF creation" footer:@""];
     [textExtractionSection addContent:[[PSContent alloc] initWithTitle:@"Full-Text Search" block:^UIViewController *{
-        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" delegate:self];
+        PSPDFDocumentSelectorController *documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
