@@ -45,7 +45,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
 - (void)rotateAction:(id)sender {
     // We need to invalidate the cache of the current page.
-    [PSPDFCache.sharedCache invalidateImageFromDocument:self.document andPage:self.page];
+    [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:self.page];
 
     // rotate 90 degree counter-clock-wise (and make sure we don't set something >= 360)
     BOOL rotateAll = NO;
@@ -60,7 +60,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     }
 
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
-    [PSPDFCache.sharedCache imageFromDocument:self.document andPage:self.page withSize:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+    [PSPDFCache.sharedCache imageFromDocument:self.document page:self.page size:self.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 
     // reload the controller
     [self reloadData];
@@ -88,7 +88,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 - (void)handleRotation:(UIRotationGestureRecognizer *)gestureRecognizer {
     if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         // Invalidate the cache.
-        [PSPDFCache.sharedCache invalidateImageFromDocument:self.document andPage:self.page];
+        [PSPDFCache.sharedCache invalidateImageFromDocument:self.document page:self.page];
 
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
@@ -98,7 +98,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
         PSPDFViewController *pdfController = self.pdfController;
-        [PSPDFCache.sharedCache imageFromDocument:self.document andPage:self.page withSize:pdfController.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
+        [PSPDFCache.sharedCache imageFromDocument:self.document page:self.page size:pdfController.view.frame.size options:PSPDFCacheOptionSizeRequireExact|PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderSync];
 
         // Reset view and reload the controller. (this is efficient and will re-use views)
         gestureRecognizer.view.transform = CGAffineTransformIdentity;

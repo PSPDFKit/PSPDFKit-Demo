@@ -152,9 +152,9 @@
     NSDictionary *settings = [PSCSettingsController settings];
     [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         // renderOptions need special treatment.
-        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[kPSPDFBackgroundFillColor] = obj;
-        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[kPSPDFContentOpacity] = obj;
-        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[kPSPDFInvertRendering] = obj;
+        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[PSPDFRenderBackgroundFillColor] = obj;
+        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[PSPDFRenderContentOpacity] = obj;
+        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[PSPDFRenderInverted] = obj;
 
         else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]) {
             [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
@@ -225,7 +225,7 @@
         }
     }
 
-#ifdef kPSPDFEnableAllBarButtonItems
+#ifdef PSPDFEnableAllBarButtonItems
     [rightBarButtonItems addObjectsFromArray:additionalRightBarButtonItems];
     self.rightBarButtonItems = rightBarButtonItems;
 #endif

@@ -31,7 +31,7 @@ const char *clearAllActionSheetToken;
         self.navigationItem.leftItemsSupplementBackButton = YES;
 
         // enable automatic persistance and restore the last state
-        self.enableAutomaticStatePersistance = YES;
+        self.enableAutomaticStatePersistence = YES;
 
         // on iPhone, we want a backButton here.
         PSCClearTabsButtonItem *clearTabsButton = [[PSCClearTabsButtonItem alloc] initWithPDFViewController:self.pdfController];

@@ -32,7 +32,7 @@
         }
     }];
     [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
-    [actionSheet setDestroyBlock:^(PSPDFActionSheet *sheet, NSInteger buttonIndex) {
+    [actionSheet setDidDismissBlock:^(PSPDFActionSheet *sheet, NSInteger buttonIndex) {
         // we don't get any delegates for the slide down animation on iPhone.
         // if we'd call dismissWithClickedButtonIndex again, the animation would be nil.
         _isDismissingSheet = YES;
