@@ -139,6 +139,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         controller.imageSelectionEnabled = NO;
+        controller.page = 3;
         return controller;
     }]];
 
@@ -324,7 +325,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFDocument *document = [PSPDFDocument documentWithDataArray:dataArray];
 
         // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
-        NSDictionary *options = @{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
+        NSDictionary *options = @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
         NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] options:options progressBlock:NULL error:NULL];
         PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument documentWithData:consolidatedData];
 
@@ -500,7 +501,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         for (int i=0; i<5; i++) {
             PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
             // width/height will be ignored for note annotations.
-            noteAnnotation.boundingBox = (CGRect){CGPointMake(100, 50 + i*maxHeight/5), kPSPDFNoteAnnotationViewFixedSize};
+            noteAnnotation.boundingBox = (CGRect){CGPointMake(100, 50 + i*maxHeight/5), PSPDFNoteAnnotationViewFixedSize};
             noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
             [annotations addObject:noteAnnotation];
         }
@@ -563,7 +564,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
 
             // create pdf (blocking)
-            [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{kPSPDFProcessorNumberOfPages : @(1), kPSPDFProcessorDocumentTitle : @"Generated PDF"}];
+            [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"}];
 
             // generate document and show it
             PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
@@ -751,7 +752,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [customizationSection addContent:[[PSContent alloc] initWithTitle:@"Night Mode" block:^{
         [[PSPDFCache sharedCache] clearCache];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        document.renderOptions = @{kPSPDFInvertRendering : @YES};
+        document.renderOptions = @{PSPDFRenderInverted : @YES};
         document.backgroundColor = [UIColor blackColor];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.backgroundColor = [UIColor blackColor];
@@ -819,7 +820,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:hackerMagDoc pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
             [PSPDFProgressHUD showProgress:numberOfProcessedPages/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
         } error:NULL];
 
@@ -1330,7 +1331,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                 NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
                 // Perform in background to allow progress showing.
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
+                    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
                         // Access UI only from main thread.
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [PSPDFProgressHUD showProgress:(numberOfProcessedPages+1)/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
@@ -1892,6 +1893,18 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return pdfController;
     }]];
 
+    // PSPDFKit had some problem swith the font included in this file and calculated the height as too small.
+    [testSection addContent:[[PSContent alloc] initWithTitle:@"Test text frame size" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_negative-descent.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        double delayInSeconds = 0.5f;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [[pdfController pageViewForPage:0].selectionView showTextFlowData:YES animated:NO];
+        });
+        return pdfController;
+    }]];
+
     // Test that file actually opens.
     // CoreGraphics is picky about AES-128 and will fail if the document is parsed before we enter a password with a "failed to create default crypt filter."
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test AES-128 password protected file" block:^UIViewController *{
@@ -2014,7 +2027,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         NSDictionary *annotationsDictionary = [document allAnnotationsOfType:PSPDFAnnotationTypeInk];
         NSArray *annotatedPages = annotationsDictionary.allKeys;
         NSIndexSet *pageNumbers = PSPDFIndexSetFromArray(annotatedPages);
-        NSDictionary *processorOptions = @{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)};
+        NSDictionary *processorOptions = @{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)};
 
         NSURL *outputFileURL = document.fileURL;
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageNumbers outputFileURL:outputFileURL options:processorOptions progressBlock:NULL error:NULL];
@@ -2135,7 +2148,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction with CMYK images" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2145,7 +2158,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - top left" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"image-topleft.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2155,7 +2168,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test image extraction - not inverted" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"inverted-image.pdf"]];
 
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{kPSPDFObjectsImages : @YES}];
+        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
         NSLog(@"Detected images: %@", images);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2604,7 +2617,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation flattening" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -2620,7 +2633,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
         noteAnnotation.contents = @"This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening.";
         [document addAnnotations:@[noteAnnotation] forPage:0];
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -2632,7 +2645,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 1" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];
@@ -2644,7 +2657,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test PDF generation + annotation adding 2" block:^UIViewController *{
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"annotationtest", @"pdf");
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{kPSPDFProcessorAnnotationAsDictionary : @YES, kPSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+        [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
         PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:tempURL];

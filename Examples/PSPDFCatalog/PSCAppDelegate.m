@@ -54,14 +54,14 @@
 
     // Change log level to be more verbose.
 #ifdef DEBUG
-    kPSPDFLogLevel = PSPDFLogLevelInfo;
+    PSPDFGlobalLogLevel = PSPDFLogLevelInfo;
 
     // Clear cache, better debugging
     //[PSPDFCache.sharedCache clearCache];
 #endif
 
     // Enable if you're having memory issues.
-    //kPSPDFLowMemoryMode = YES;
+    //PSPDFLowMemoryMode = YES;
 
     // enable global Undo/Redo
     application.applicationSupportsShakeToEdit = YES;

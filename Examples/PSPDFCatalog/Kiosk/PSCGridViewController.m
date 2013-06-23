@@ -386,7 +386,7 @@
     if (!magazine) return nil;
 
     NSUInteger lastPage = magazine.lastViewState.page;
-    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:lastPage withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
+    UIImage *coverImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:lastPage size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync|PSPDFCacheOptionMemoryStoreAlways];
     return coverImage;
 }
 
@@ -425,7 +425,7 @@
         // If we have a different page, fade to that page.
         UIImageView *targetPageImageView = nil;
         if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
+            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:pdfController.page size:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
             if (targetPageImage) {
                 targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
                 targetPageImageView.frame = self.magazineView.bounds;
@@ -480,7 +480,7 @@
     NSArray *magazines = [self.magazineFolder.magazines copy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         for (PSCMagazine *magazine in magazines) {
-            [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever|PSPDFCacheOptionActualityIgnore];
+            [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever|PSPDFCacheOptionActualityIgnore];
         }
     });
 
