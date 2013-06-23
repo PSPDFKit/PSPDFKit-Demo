@@ -202,7 +202,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             self.magazineCount = 0;
 
             // First, check memory.
-            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:self.frame.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
+            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:self.frame.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
             [self setImage:memoryImage animated:NO];
             if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
 
@@ -483,7 +483,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFCacheDelegate
 
-- (void)didCacheImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size {
+- (void)didCacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size {
     PSCMagazine *magazine = self.magazine ?: self.magazineFolder.firstMagazine;
 
     if (magazine == document && page == 0 && PSPDFSizeAspectRatioEqualToSize(self.frame.size, size)) {
