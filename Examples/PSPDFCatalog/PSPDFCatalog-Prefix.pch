@@ -36,10 +36,19 @@
 #define PSCLog(...)
 #endif
 
-// Availability Macros
-#define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-
 // iOS6 compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_6_0
 #define kCFCoreFoundationVersionNumber_iOS_6_0 788.0
 #endif
+
+// iOS7 compatibility [BETA 1]
+#ifndef kCFCoreFoundationVersionNumber_iOS_7_0
+#define kCFCoreFoundationVersionNumber_iOS_7_0 838.0
+#endif
+
+// Availability Macros
+#define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+#define PSIsIOS7() (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
+
+// Background
+#define PSCDefaultBackgroundColor() (PSIsIOS7() ? [UIColor colorWithWhite:0.12f alpha:1.f] : [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]])
