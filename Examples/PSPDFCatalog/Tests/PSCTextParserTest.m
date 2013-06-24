@@ -44,8 +44,8 @@ static PSCTextParserTest *instance = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFTextSearchDelegate
 
-- (void)didFinishSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm
-          searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch {
+- (void)didFinishSearch:(PSPDFTextSearch *)textSearch term:(NSString *)searchTerm
+        searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch {
 
     NSLog(@"Search results: %@", searchResults);
 }
