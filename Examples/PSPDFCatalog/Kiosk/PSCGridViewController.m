@@ -178,6 +178,12 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+
+    // Manually unload view to save memory.
+    if (self.isViewLoaded && self.view.window == nil) {
+        self.view = nil;
+    }
+    
     if (!self.isViewLoaded) {
         self.collectionView.delegate = nil;
         self.collectionView.dataSource = nil;
