@@ -124,7 +124,7 @@
     // Use custom view to match background with PSPDFViewController.
     UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
     backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    backgroundTextureView.backgroundColor = PSCDefaultBackgroundColor();
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
     // Init the collection view.

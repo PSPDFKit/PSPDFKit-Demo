@@ -265,7 +265,8 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
 // Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
-    pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
+    pdfController.backgroundColor = PSCDefaultBackgroundColor();
+
     // show pdf title and fileURL
     if (document) {
         NSString *fileName = PSCStripPDFFileType([document.fileURL lastPathComponent]);
