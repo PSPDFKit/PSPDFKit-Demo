@@ -414,7 +414,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo] forPage:0];
+        [multimediaDoc addAnnotations:@[aVideo] page:0];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
@@ -426,7 +426,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo] forPage:0];
+        [multimediaDoc addAnnotations:@[aVideo] page:0];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
@@ -481,11 +481,11 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         // We're lazy here. 2 = UIViewContentModeScaleAspectFill
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
-        [document addAnnotations:@[aVideo ] forPage:5];
+        [document addAnnotations:@[aVideo] page:5];
 
         PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
         anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
-        [document addAnnotations:@[anImage] forPage:2];
+        [document addAnnotations:@[anImage] page:2];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -505,7 +505,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
             [annotations addObject:noteAnnotation];
         }
-        [document addAnnotations:annotations forPage:0];
+        [document addAnnotations:annotations page:0];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -969,7 +969,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
             annotation.alpha = 0.5f;
-            [document addAnnotations:@[annotation] forPage:targetPage];
+            [document addAnnotations:@[annotation] page:targetPage];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -991,7 +991,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             polyline.fillColor = UIColor.yellowColor;
             polyline.lineEnd2 = PSPDFLineEndTypeClosedArrow;
             polyline.lineWidth = 5.f;
-            [document addAnnotations:@[polyline] forPage:targetPage];
+            [document addAnnotations:@[polyline] page:targetPage];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1016,7 +1016,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                     annotation.boundingBox = boundingBox;
                     annotation.rects = highlighedRects;
                     annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%d", annotationCounter];
-                    [document addAnnotations:@[annotation] forPage:pageIndex];
+                    [document addAnnotations:@[annotation] page:pageIndex];
                     annotationCounter++;
                 }
             }
@@ -1056,7 +1056,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
-            [document addAnnotations:@[annotation] forPage:targetPage];
+            [document addAnnotations:@[annotation] page:targetPage];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1146,7 +1146,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] forPage:page];
+            [document addAnnotations:@[annotation] page:page];
         }
 
         PSPDFViewController *controller = [[PSCShowHighlightNotesPDFController alloc] initWithDocument:document];
@@ -1321,7 +1321,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                     annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
 
                     // Add annotation.
-                    [document addAnnotations:@[annotation] forPage:pageIndex];
+                    [document addAnnotations:@[annotation] page:pageIndex];
                 }
             }
 
@@ -1786,7 +1786,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         freeText.boundingBox = CGRectMake(100, 100, 400, 200);
         freeText.fillColor = UIColor.yellowColor;
         freeText.fontSize = 40;
-        [document addAnnotations:@[freeText] forPage:0];
+        [document addAnnotations:@[freeText] page:0];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1799,8 +1799,8 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         freeText.boundingBox = CGRectMake(100, 100, 400, 200);
         freeText.fillColor = UIColor.yellowColor;
         freeText.fontSize = 30;
-        [document addAnnotations:@[freeText] forPage:0];
-        [document addAnnotations:@[[freeText copy]] forPage:1];
+        [document addAnnotations:@[freeText] page:0];
+        [document addAnnotations:@[[freeText copy]] page:1];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -2020,7 +2020,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
-            [document addAnnotations:@[annotation] forPage:targetPage];
+            [document addAnnotations:@[annotation] page:targetPage];
         }
 
         //Here we should figure out which pages have annotations
@@ -2119,7 +2119,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
         annotation.fillColor = annotation.color;
         annotation.alpha = 0.5f;
-        [document addAnnotations:@[annotation] forPage:0];
+        [document addAnnotations:@[annotation] page:0];
         // Save it
         NSError *error = nil;
         if (![document saveChangedAnnotationsWithError:&error]) {
@@ -2217,16 +2217,16 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
         // Detect URLs in the document and create annotations
         NSIndexSet *allPagesIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)];
-        NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
+        NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
             NSLog(@"Detected %@ on %d", annotations, page);
         } error:NULL];
 
         // Add those annotations to the page.
         [annotationsPerPage enumerateKeysAndObjectsUsingBlock:^(NSNumber *pageNumber, NSArray *annotations, BOOL *stop) {
-            [document addAnnotations:annotations forPage:pageNumber.unsignedIntegerValue];
+            [document addAnnotations:annotations page:pageNumber.unsignedIntegerValue];
         }];
 
-        NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll forPagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
+        NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
         NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
         NSAssert(annotationCount == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2270,7 +2270,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test document parsing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_crash_missing_object_reference.pdf"]];
         PSPDFHighlightAnnotation *test = [PSPDFHighlightAnnotation new];
-        [document addAnnotations:@[test] forPage:0];
+        [document addAnnotations:@[test] page:0];
         [document saveChangedAnnotationsWithError:NULL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -2279,7 +2279,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     // Ensure that parsing completes and doesn't loop. If the document opens, everything is OK.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test parsing of recursive XRef table" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"recursive-xref-table.pdf"]];
-        [[document documentParserForPage:0] objectNumberForAnnotationIndex:0 onPageIndex:0]; // start parsing
+        [[document documentParserForPage:0] objectNumberForAnnotationIndex:0 pageIndex:0]; // start parsing
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -2526,7 +2526,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] forPage:0];
+            [document addAnnotations:@[annotation] page:0];
             [document saveChangedAnnotationsWithError:NULL];
         }
        // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
@@ -2545,7 +2545,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] forPage:0];
+            [document addAnnotations:@[annotation] page:0];
             [document saveChangedAnnotationsWithError:NULL];
         }
         // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
@@ -2563,7 +2563,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
         freeText.contents = @"發音正確\n眼睛看聽眾\n準備充足\n聲音響亮\n運用適當的語氣\n用自己的話講故事\n內容";
         freeText.boundingBox = CGRectMake(100, 100, 400, 400);
-        [document addAnnotations:@[freeText] forPage:0];
+        [document addAnnotations:@[freeText] page:0];
         [document saveChangedAnnotationsWithError:NULL];
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2578,7 +2578,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
         freeText.contents = @"小森 test";
         freeText.boundingBox = CGRectMake(100, 100, 400, 400);
-        [document addAnnotations:@[freeText] forPage:0];
+        [document addAnnotations:@[freeText] page:0];
         [document saveChangedAnnotationsWithError:NULL];
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2589,7 +2589,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
         NSError *error = nil;
-        UIImage *thumbnail = [doc imageForPage:0 withSize:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
+        UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
         if (!thumbnail) {
             NSLog(@"Failed to generate thumbnail: %@", [error localizedDescription]);
         }
@@ -2632,7 +2632,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
         noteAnnotation.contents = @"This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening.";
-        [document addAnnotations:@[noteAnnotation] forPage:0];
+        [document addAnnotations:@[noteAnnotation] page:0];
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
