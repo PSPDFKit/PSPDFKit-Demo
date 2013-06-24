@@ -64,7 +64,7 @@
             annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
 
             // annotation.page/document is autodetecting set.
-            [self.document addAnnotations:@[annotation] forPage:0];
+            [self.document addAnnotations:@[annotation] page:0];
         }
     }
     return self;

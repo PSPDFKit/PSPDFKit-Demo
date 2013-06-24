@@ -41,8 +41,8 @@ static PSCFontCacheTest *instance = nil;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFTextSearchDelegate
 
-- (void)didFinishSearch:(PSPDFTextSearch *)textSearch forTerm:(NSString *)searchTerm
-          searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch {
+- (void)didFinishSearch:(PSPDFTextSearch *)textSearch term:(NSString *)searchTerm
+        searchResults:(NSArray *)searchResults isFullSearch:(BOOL)isFullSearch {
   NSLog(@"%@\n\n\n\n\n\n\n\n\n\n\n\n-----------------------------------------------------------------------------------------------------------------------", [self.doc textParserForPage:9].text);
 
   self.doc = nil;
