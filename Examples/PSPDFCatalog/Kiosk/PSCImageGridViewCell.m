@@ -53,7 +53,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         _observedMagazineDownloads = [[NSMutableSet alloc] init];
 
         self.imageView.clipsToBounds = YES;
-        self.showingPageLabel = YES;
+        self.pageLabelEnabled = YES;
         self.edgeInsets = UIEdgeInsetsMake(0.f, 0.f, 10.f, 0.f);
 
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -116,7 +116,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 // Override to change label (default is within the image, has rounded borders)
 - (void)updatePageLabel {
-    if (self.isShowingPageLabel && !self.pageLabel.superview) {
+    if (self.isPageLabelEnabled && !self.pageLabel.superview) {
         UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         pageLabel.backgroundColor = [UIColor clearColor];
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
@@ -127,7 +127,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16.f : 12.f];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
-    }else if (!self.isShowingPageLabel && self.pageLabel.superview) {
+    }else if (!self.isPageLabelEnabled && self.pageLabel.superview) {
         [self.pageLabel removeFromSuperview];
     }
 
