@@ -13,10 +13,6 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCSettingsController.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 @implementation PSCSettingsBarButtonItem
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -24,13 +20,18 @@
 
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    UIImage *image = [UIImage imageNamed:@"settings"];
+    UIImage *image = [UIImage imageNamed:PSIsIOS7() ? @"settings" : @"settings-legacy"];
     return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
 }
 
 - (UIImage *)landscapeImagePhone {
-    UIImage *image = [UIImage imageNamed:@"settings_landscape"];
-    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
+    if (PSIsIOS7()) {
+        // We don't yet have landscape image resource files
+        return [super landscapeImagePhone];
+    }else {
+        UIImage *image = [UIImage imageNamed:@"settings-landscape-legacy"];
+        return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
+    }
 }
 
 - (NSString *)actionName {
