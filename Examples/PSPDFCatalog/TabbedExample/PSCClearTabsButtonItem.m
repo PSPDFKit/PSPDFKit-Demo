@@ -12,8 +12,13 @@
 
 #import "PSCClearTabsButtonItem.h"
 
-@implementation PSCClearTabsButtonItem {
-    BOOL _isDismissingSheet;
+@implementation PSCClearTabsButtonItem
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIBarButtonItem
+
+- (BOOL)isAvailable {
+    return self.tabbedController.documents.count > 0;
 }
 
 - (UIBarButtonSystemItem)systemItem {
@@ -23,40 +28,29 @@
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
-    _isDismissingSheet = NO;
 
     [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Close all tabs") block:^{
-        if ([pdfController.parentViewController isKindOfClass:[PSPDFTabbedViewController class]]) {
-            PSPDFTabbedViewController *tabbedController = (PSPDFTabbedViewController *)pdfController.parentViewController;
-            [tabbedController removeDocuments:tabbedController.documents animated:animated];
-        }
+        PSPDFTabbedViewController *tabbedController = self.tabbedController;
+        [tabbedController removeDocuments:tabbedController.documents animated:animated];
     }];
     [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
-    [actionSheet setDidDismissBlock:^(PSPDFActionSheet *sheet, NSInteger buttonIndex) {
-        // we don't get any delegates for the slide down animation on iPhone.
-        // if we'd call dismissWithClickedButtonIndex again, the animation would be nil.
-        _isDismissingSheet = YES;
-        [self didDismiss];
-    }];
 
+    // Be a nice citizen and first ask the delegate system if we are allowed to present this popover/actionSheet.
     BOOL shouldShow = [pdfController delegateShouldShowController:actionSheet embeddedInController:nil animated:animated];
     if (shouldShow) {
-        [actionSheet showWithSender:sender fallbackView:[pdfController masterViewController].view animated:animated];
-        self.actionSheet = actionSheet;
-        return self.actionSheet;
+        [actionSheet showWithSender:sender fallbackView:pdfController.masterViewController.view animated:animated];
+        return actionSheet;
     }else {
         return nil;
     }
 }
 
-- (void)dismissAnimated:(BOOL)animated {
-    if (_isDismissingSheet) return;
-    [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:animated];
-}
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Private Helper
 
-- (void)didDismiss {
-    [super didDismiss];
-    self.actionSheet = nil;
+- (PSPDFTabbedViewController *)tabbedController {
+    PSPDFViewController *pdfController = self.pdfController;
+    return [pdfController.parentViewController isKindOfClass:PSPDFTabbedViewController.class] ? (PSPDFTabbedViewController *) pdfController.parentViewController : nil;
 }
 
 @end
