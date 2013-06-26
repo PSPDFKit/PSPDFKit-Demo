@@ -35,6 +35,7 @@ const char *clearAllActionSheetToken;
 
         // on iPhone, we want a backButton here.
         PSCClearTabsButtonItem *clearTabsButton = [[PSCClearTabsButtonItem alloc] initWithPDFViewController:self.pdfController];
+        self.pdfController.barButtonItemsAlwaysEnabled = @[clearTabsButton];
         if (PSIsIpad()) {
             PSCAddDocumentsBarButtonItem *addDocumentsButton = [[PSCAddDocumentsBarButtonItem alloc] initWithPDFViewController:self.pdfController];
             self.pdfController.leftBarButtonItems = @[addDocumentsButton, clearTabsButton];
@@ -48,7 +49,7 @@ const char *clearAllActionSheetToken;
             NSArray *documents = [PSPDFDocumentSelectorController documentsFromDirectory:@"/Bundle/Samples"];
             self.documents = [documents filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
                 return arc4random_uniform(2) > 0; // returns 0 or 1 randomly.
-            }]];
+            }]] ;
         }
     }
     return self;
