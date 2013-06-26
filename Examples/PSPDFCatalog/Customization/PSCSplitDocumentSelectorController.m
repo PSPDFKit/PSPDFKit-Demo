@@ -70,7 +70,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document {
 #if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
     // Copy is purely there as a stress test.
     document = [document copy];

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-/// Sample subclass for PSPDFBarButtonItem. Shows/hides the PSPDFDocumentSelectorController.
-@interface PSCAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSelectorControllerDelegate>
+/// Sample subclass for PSPDFBarButtonItem. Shows/hides the PSPDFDocumentPickerController.
+@interface PSCAddDocumentsBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentPickerControllerDelegate>
 
 @end
