@@ -415,4 +415,9 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     //NSLog(@"Selected: %@", text);
 }
 
+UIColor *PSCDefaultBackgroundColor(void) {
+    PSC_IF_IOS7_OR_GREATER(return [UIColor colorWithWhite:0.12f alpha:1.f];)
+    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]]; // iOS6
+}
+
 @end

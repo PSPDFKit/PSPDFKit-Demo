@@ -48,7 +48,13 @@
 
 // Availability Macros
 #define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
-#define PSIsIOS7() (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0)
 
-// Background
-#define PSCDefaultBackgroundColor() (PSIsIOS7() ? [UIColor colorWithWhite:0.12f alpha:1.f] : [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]])
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+#define PSC_IF_IOS7_OR_GREATER(...) \
+if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) { __VA_ARGS__ }
+#else
+#define PSC_IF_IOS7_OR_GREATER(...)
+#endif
+
+#define PSC_IF_PRE_IOS7(...)  \
+if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0 || __IPHONE_OS_VERSION_MAX_ALLOWED < 70000) { __VA_ARGS__ }
