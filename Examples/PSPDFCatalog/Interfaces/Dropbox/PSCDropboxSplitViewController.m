@@ -13,8 +13,8 @@
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAppDelegate.h"
 
-@interface PSCDropboxSplitViewController () <UISplitViewControllerDelegate, PSPDFDocumentSelectorControllerDelegate>
-@property (nonatomic, strong) PSPDFDocumentSelectorController *documentSelector;
+@interface PSCDropboxSplitViewController () <UISplitViewControllerDelegate, PSPDFDocumentPickerControllerDelegate>
+@property (nonatomic, strong) PSPDFDocumentPickerController *documentSelector;
 @property (nonatomic, strong) PSCDropboxPDFViewController *pdfController;
 @property (nonatomic, strong) UIBarButtonItem *backToCatalogButton;
 @end
@@ -26,7 +26,7 @@
         self.delegate = self;
         _showLeftPaneInLandscape = YES;
 
-        self.documentSelector = [[PSPDFDocumentSelectorController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
+        self.documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
         self.documentSelector.stickySearchBar = YES;
         self.documentSelector.delegate = self;
 
@@ -81,7 +81,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentSelectorController:(PSPDFDocumentSelectorController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document {
     self.pdfController.document = document;
 }
 

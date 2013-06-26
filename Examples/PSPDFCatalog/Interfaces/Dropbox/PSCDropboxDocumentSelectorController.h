@@ -10,6 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-@interface PSCDropboxDocumentSelectorController : PSPDFDocumentSelectorController
+@interface PSCDropboxDocumentSelectorController : PSPDFDocumentPickerController
 
 @end
