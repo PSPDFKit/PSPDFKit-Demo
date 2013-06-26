@@ -170,9 +170,9 @@ __attribute__((constructor)) static void setupDefaults(void) {
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color {
-    CGSize imageSize = CGSizeMake(20, 20);
+    CGSize imageSize = CGSizeMake(20.f, 20.f);
     UIImage *renderedImage = nil;
-    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
+    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [color setFill];
     [[UIColor blackColor] setStroke];
