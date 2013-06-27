@@ -17,9 +17,13 @@
 @property (nonatomic, strong) PSPDFDocumentPickerController *documentSelector;
 @property (nonatomic, strong) PSCDropboxPDFViewController *pdfController;
 @property (nonatomic, strong) UIBarButtonItem *backToCatalogButton;
+@property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @end
 
 @implementation PSCDropboxSplitViewController
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -54,6 +58,7 @@
 #pragma mark - Private
 
 - (void)backToCatalog:(id)sender {
+    [self.masterPopoverController dismissPopoverAnimated:NO];
     [self.view.window.layer addAnimation:PSPDFFadeTransition() forKey:nil];
     self.view.window.rootViewController = ((PSCAppDelegate *)UIApplication.sharedApplication.delegate).catalog;
 }
@@ -68,15 +73,14 @@
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
     [self.pdfController.navigationItem setLeftBarButtonItems:@[barButtonItem, self.backToCatalogButton] animated:YES];
-    //self.masterPopoverController = popoverController;
+    self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
     [self.pdfController.navigationItem setLeftBarButtonItem:self.backToCatalogButton animated:YES];
-    //self.masterPopoverController = nil;
+    self.masterPopoverController = nil;
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
