@@ -76,7 +76,7 @@
 
         // Change statusbar setting to your preferred style.
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
-        //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
+        //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;        
     }
     return self;
 }
