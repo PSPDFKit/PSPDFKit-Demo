@@ -82,7 +82,7 @@
     return self.pdfController.tintColor;
 }
 
-- (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectedColor:(UIColor *)color finishedSelection:(BOOL)finished context:(void *)context {
+- (void)colorSelectionController:(PSPDFColorSelectionViewController *)controller didSelectColor:(UIColor *)color finishedSelection:(BOOL)finished context:(void *)context {
     controller.navigationController.navigationBar.tintColor = color;
     PSPDFViewController *pdfController = self.pdfController;
     pdfController.tintColor = color;
