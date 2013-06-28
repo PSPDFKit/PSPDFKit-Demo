@@ -37,24 +37,25 @@
     // You can also replace the strings in the PSPDFKit.bundle, but then make sure you merge your changes anytime the bundle is updated.
     // If you have created custom translations, feel free to submit them to peter@pspdfkit.com for inclusion.
     PSPDFSetLocalizationDictionary(@{@"en" :
-                                   @{@"%d of %d" : @"Page %d of %d",
-                                     @"%d-%d of %d" : @"Pages %d-%d of %d",
-                                   }});
+                                         @{@"%d of %d" : @"Page %d of %d",
+                                           @"%d-%d of %d" : @"Pages %d-%d of %d",
+                                           }
+                                     });
 
     // You can also customize localization with a block.
     // If you return nil, the default PSPDFKit language system will be used.
     /*
-    PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
-        // This will look up strings in language/PSPDFKit.strings inside resources.
-        // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
-        return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
-        //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
-    });
+     PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
+     // This will look up strings in language/PSPDFKit.strings inside resources.
+     // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
+     return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
+     //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
+     });
      */
 
     // Change log level to be more verbose.
 #ifdef DEBUG
-    PSPDFGlobalLogLevel = PSPDFLogLevelInfo;
+    PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
 
     // Clear cache, better debugging
     //[PSPDFCache.sharedCache clearCache];
@@ -66,7 +67,7 @@
     // enable global Undo/Redo
     application.applicationSupportsShakeToEdit = YES;
 
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
 #if 0
     // Directly push a PSPDFViewController
@@ -99,10 +100,6 @@
         [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
         [[BITHockeyManager sharedHockeyManager] startManager];
 #endif
-#if defined(PSPDF_USE_SOURCE) && defined(DEBUG)
-        // Only enabled during debugging.
-        ((void(*)(id, SEL))objc_msgSend)(NSClassFromString(@"PSPDFHangDetector"), NSSelectorFromString(@"startHangDetector"));
-#endif
     });
     return YES;
 }
@@ -115,7 +112,7 @@
 - (BOOL)handleOpenURL:(NSURL *)launchURL {
     // Add Dropbox hook
     if ([[DBSession sharedSession] handleOpenURL:launchURL]) {
-        if ([[DBSession sharedSession] isLinked]) {
+        if (DBSession.sharedSession.isLinked) {
             PSCLog(@"App linked successfully!");
         }
         return YES;
@@ -136,10 +133,10 @@
 
 // If you need to block certain interface orientation, that's the place you want to add it. iOS6 only.
 /*
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-    return UIInterfaceOrientationMaskPortrait;
-}
-*/
+ - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+ return UIInterfaceOrientationMaskPortrait;
+ }
+ */
 
 #pragma mark - BITUpdateManagerDelegate
 #ifdef HOCKEY_ENABLED

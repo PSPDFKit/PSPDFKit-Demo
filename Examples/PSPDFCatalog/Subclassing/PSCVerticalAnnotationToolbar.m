@@ -100,7 +100,7 @@
         pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
         // remove toolbar
         [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
-        [self.toolbar finishDrawingAnimated:YES andSaveAnnotation:NO];
+        [self.toolbar finishDrawingAnimated:YES saveAnnotation:NO];
     }
 }
 
