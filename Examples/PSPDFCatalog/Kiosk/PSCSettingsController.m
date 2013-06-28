@@ -181,6 +181,10 @@ __attribute__((constructor)) static void setupDefaults(void) {
     CGContextStrokeRect(context, (CGRect){.size=imageSize});
     renderedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    // Don't tint on iOS7
+    if ([UIImage instanceMethodForSelector:@selector(imageWithRenderingMode:)]) {
+        renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
     return renderedImage;
 }
 
@@ -274,7 +278,7 @@ static CGFloat pscSettingsLastYOffset = 0;
                 case 7: _settings[PROPERTY(bookmarkButtonItem)] = value; break;
                 case 8: _settings[PROPERTY(activityButtonItem)] = value; break;
                 case 9: _settings[PROPERTY(viewModeButtonItem)] = value; break;
-                case 10: _settings[PROPERTY(useBorderedToolbarStyle)] = value; break;
+                case 10:_settings[PROPERTY(useBorderedToolbarStyle)] = value; break;
                 default: break;
             }break;
         case PSPDFDebugSettings:
@@ -291,6 +295,12 @@ static CGFloat pscSettingsLastYOffset = 0;
         default: break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
+}
+
+// This is a bit of a hack, matching the segmented control to the group style is tricky.
+- (CGRect)rectForSegmentedControl {
+    PSC_IF_PRE_IOS7(return CGRectMake(9, 0, self.view.frame.size.width-18, 46);)
+    return CGRectMake(0, 0, self.view.frame.size.width, 44.f); // TODO: dynamic cell height?
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -314,13 +324,13 @@ static CGFloat pscSettingsLastYOffset = 0;
     }
 
     if (indexPath.section == PSPDFPaperColor) {
-        _paperColorControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
+        _paperColorControl.frame = self.rectForSegmentedControl;
         UIColor *paperColor = _settings[@"renderBackgroundColor"];
         _paperColorControl.selectedSegmentIndex = [_paperColors indexOfObject:paperColor];
         [cell addSubview:_paperColorControl];
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
-        _contentOpacityControl.frame = CGRectMake(9, 0, self.view.frame.size.width-18, 46);
+        _contentOpacityControl.frame = self.rectForSegmentedControl;
         NSUInteger index = (NSUInteger)roundf((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10.f);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
