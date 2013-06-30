@@ -14,7 +14,7 @@
 #import "PSCAppDelegate.h"
 
 @interface PSCDropboxSplitViewController () <UISplitViewControllerDelegate, PSPDFDocumentPickerControllerDelegate>
-@property (nonatomic, strong) PSPDFDocumentPickerController *documentSelector;
+@property (nonatomic, strong) PSPDFDocumentPickerController *documentPicker;
 @property (nonatomic, strong) PSCDropboxPDFViewController *pdfController;
 @property (nonatomic, strong) UIBarButtonItem *backToCatalogButton;
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;
@@ -27,19 +27,25 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.delegate = self;
         _showLeftPaneInLandscape = YES;
 
-        self.documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
-        self.documentSelector.stickySearchBar = YES;
-        self.documentSelector.delegate = self;
+        // Create global back button
+        self.backToCatalogButton = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered target:self action:@selector(backToCatalog:)];
 
+        // Create the document picker
+        self.documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
+        self.documentPicker.stickySearchBar = YES;
+        self.documentPicker.delegate = self;
+
+        // Create the PDF controller
         self.pdfController = [PSCDropboxPDFViewController new];
+        self.pdfController.barButtonItemsAlwaysEnabled = @[self.backToCatalogButton];
+        self.pdfController.leftBarButtonItems = @[self.backToCatalogButton];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.pdfController];
 
-        self.viewControllers = @[self.documentSelector, navController];
-
-        self.backToCatalogButton = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered target:self action:@selector(backToCatalog:)];
+        // Set up the split controller
+        self.viewControllers = @[self.documentPicker, navController];
+        self.delegate = self;
     }
     return self;
 }
@@ -72,13 +78,14 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
-    [self.pdfController.navigationItem setLeftBarButtonItems:@[barButtonItem, self.backToCatalogButton] animated:YES];
+    self.pdfController.barButtonItemsAlwaysEnabled = @[barButtonItem, self.backToCatalogButton];
+    self.pdfController.leftBarButtonItems = @[barButtonItem, self.backToCatalogButton];
     self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
     // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.pdfController.navigationItem setLeftBarButtonItem:self.backToCatalogButton animated:YES];
+    self.pdfController.leftBarButtonItems = @[self.backToCatalogButton];
     self.masterPopoverController = nil;
 }
 
