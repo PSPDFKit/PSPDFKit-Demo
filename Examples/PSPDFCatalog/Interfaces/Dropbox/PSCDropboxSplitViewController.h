@@ -16,7 +16,7 @@
 @interface PSCDropboxSplitViewController : UISplitViewController
 
 /// Right pane document selector.
-@property (nonatomic, strong, readonly) PSPDFDocumentPickerController *documentSelector;
+@property (nonatomic, strong, readonly) PSPDFDocumentPickerController *documentPicker;
 
 /// Content pane PDF controller.
 @property (nonatomic, strong, readonly) PSCDropboxPDFViewController *pdfController;
