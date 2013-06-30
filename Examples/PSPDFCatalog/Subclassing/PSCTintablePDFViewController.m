@@ -40,7 +40,7 @@
 
 - (void)testAlert {
     [self.popoverController dismissPopoverAnimated:NO];
-    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom tintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] showWithTintColor:self.tintColor];
+    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom alertViewTintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] showWithTintColor:self.tintColor];
 }
 
 @end
