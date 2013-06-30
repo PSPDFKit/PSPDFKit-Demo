@@ -39,12 +39,12 @@
     [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setBackgroundImage:gradientPortrait forBarMetrics:UIBarMetricsDefault];
 
     /// Because the alert view is displayed in it's own window, the appearance can only be set globally.
-    [[PSPDFAlertView appearance] setTintColor:UIColor.yellowColor];
+    [[PSPDFAlertView appearance] setAlertViewTintColor:UIColor.yellowColor];
 }
 
 - (void)dealloc {
     // Restore appearance setting
-    [[PSPDFAlertView appearance] setTintColor:nil];
+    [[PSPDFAlertView appearance] setAlertViewTintColor:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@
 
 - (void)testAlert {
     [self.popoverController dismissPopoverAnimated:NO];
-    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom tintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom alertViewTintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 @end
