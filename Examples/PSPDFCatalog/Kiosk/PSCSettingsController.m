@@ -183,7 +183,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
     UIGraphicsEndImageContext();
     // Don't tint on iOS7
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-    if ([UIImage instanceMethodForSelector:@selector(imageWithRenderingMode:)]) {
+    if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
         renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
 #endif
