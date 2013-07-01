@@ -172,7 +172,12 @@
         }
     }
 
-    self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);
+    PSC_IF_PRE_IOS7(self.collectionView.contentInset = UIEdgeInsetsMake(64.f, 0, 0, 0);)
+
+    // TODO iOS7. Wait for topLayoutGuide to not crash after accessing.
+    PSC_IF_IOS7_OR_GREATER(CGFloat topLayoutHeight = 55.f;
+                           self.collectionView.contentInset = UIEdgeInsetsMake(64.f + topLayoutHeight, 0, 0, 0);)
+
     [self.collectionView addSubview:self.searchBar];
 }
 
