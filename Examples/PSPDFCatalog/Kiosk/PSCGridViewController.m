@@ -832,3 +832,21 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
         }
     }
 }
+
+// Fixes a missing selector crash for [UISearchBar _isInUpdateAnimation:]
+// TODO: Test during iOS7 betas if this has been fixed.
+__attribute__((constructor)) static void PSPDFFixCollectionViewSearchBarDisplayed(void) {
+    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS5/6.
+
+    @autoreleasepool {
+        SEL isInUpdate = NSSelectorFromString([NSString stringWithFormat:@"%@is%@Update%@", @"_", @"In", @"Animation"]);
+        if (![UISearchBar instancesRespondToSelector:isInUpdate]) {
+            IMP updateIMP = imp_implementationWithBlock(^(id _self) {return NO;});
+            Method method = class_getInstanceMethod([UISearchBar class], isInUpdate);
+            const char *encoding = method_getTypeEncoding(method);
+            if (!class_addMethod([UISearchBar class], isInUpdate, updateIMP, encoding)) {
+                NSLog(@"Failed to add [is In Update Animation:] workaround");
+            }
+        }
+    }
+}
