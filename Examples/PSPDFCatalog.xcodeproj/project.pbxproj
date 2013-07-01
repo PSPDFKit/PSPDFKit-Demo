@@ -422,6 +422,7 @@
 		78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCatalogViewController.m; sourceTree = "<group>"; };
 		78FDE16316CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDForThumbnailsViewController.h; sourceTree = "<group>"; };
 		78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDForThumbnailsViewController.m; sourceTree = "<group>"; };
+		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +504,7 @@
 				78C7C5C716CB9C4D0006075D /* Customization */,
 				78C6842016F7E5330080427B /* Interfaces */,
 				7814630B1688BD9D0002E7C8 /* Tests */,
+				78FFE52F1781874E00FBA7DF /* Helper */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
 				78A24AAE15CFDAE200328F4F /* PSCSectionDescriptor.h */,
@@ -934,6 +936,14 @@
 				78DDC72315CF2EFF0030C730 /* SDURLCache.m */,
 			);
 			path = SDURLCache;
+			sourceTree = "<group>";
+		};
+		78FFE52F1781874E00FBA7DF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				78FFE5301781874E00FBA7DF /* PSCAvailability.h */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
