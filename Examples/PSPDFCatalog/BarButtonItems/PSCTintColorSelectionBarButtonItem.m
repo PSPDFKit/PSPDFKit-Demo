@@ -66,7 +66,7 @@
         pdfController.popoverController = nil;
     }else {
         NSString *viewControllerTitle = NSLocalizedString(@"Tint Color", @"");
-        PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle delegate:self context:NULL];
+        PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle wantTransparency:NO delegate:self context:NULL];
         if (colorPicker) {
             [pdfController presentModalOrInPopover:colorPicker embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:self options:@{PSPDFPresentOptionPassthroughViews : @[sender]}];
         }else {
