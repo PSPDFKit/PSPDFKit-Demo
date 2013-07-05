@@ -133,13 +133,13 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        // PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
         controller.imageSelectionEnabled = NO;
-        controller.page = 3;
+        //controller.page = 3;
         return controller;
     }]];
 
