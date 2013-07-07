@@ -3,6 +3,7 @@
     <entity name="PSCCoreDataAnnotation" representedClassName="PSCCoreDataAnnotation" syncable="YES">
         <attribute name="annotationData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="page" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="PSCCoreDataAnnotation" positionX="0" positionY="0" width="0" height="0"/>
