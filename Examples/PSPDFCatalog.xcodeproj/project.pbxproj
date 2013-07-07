@@ -495,7 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				78604C8416C50CB2003CB721 /* BarButtonItems */,
-				78A24A4015CFDAAF00328F4F /* Common */,
 				78A24A1115CFDAAF00328F4F /* TabbedExample */,
 				78A24A1415CFDAAF00328F4F /* Storyboards */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
@@ -655,13 +654,6 @@
 			path = Kiosk;
 			sourceTree = "<group>";
 		};
-		78A24A4015CFDAAF00328F4F /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		78A24A6615CFDAD000328F4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,8 +741,8 @@
 			isa = PBXGroup;
 			children = (
 				78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */,
-				78FB05E317737F670006CE08 /* PSCExportPDFPagesViewController.h */,
 				78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */,
+				78FB05E317737F670006CE08 /* PSCExportPDFPagesViewController.h */,
 				78E76577176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.h */,
 				7876ED9417246BC9002422BE /* PSCTopScrobbleBar.m */,
 				7876ED9517246BC9002422BE /* PSCTopScrobbleBar.h */,

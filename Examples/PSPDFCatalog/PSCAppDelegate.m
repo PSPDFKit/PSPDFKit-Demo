@@ -4,10 +4,8 @@
 //
 //  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
-//  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
-//  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
-//  This notice may not be removed from this file.
+//  The PSPDFKit Sample applications are licensed with a modified BSD license.
+//  Please see License for details. This notice may not be removed from this file.
 //
 
 #import "PSCAppDelegate.h"
@@ -29,8 +27,6 @@
 @implementation PSCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-    NSLog(@"Starting Catalog Example %@ with %@", appVersion, PSPDFVersionString());
 
     // Example how to localize strings in PSPDFKit.
     // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
@@ -69,6 +65,16 @@
 
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
 
+    PSPDFSetLicenseKey("fdfqSCYNKUWegznURyw849L+jz3BPdzGQQr6ZsJuarQb7wlVlmLm1SmsvfHv5YX"
+                       "uMn1iCqH4965ooaE96ltFB58pDIJRwOzYOUZdNaYr9C0Vut0c+cwGv0xJaiS"
+                       "ltSPvtlQL0XOp6kp35MvGtQGVTunJLXl3N4vEnllJjlcpBCWjqw7xnL8WMgY"
+                       "RbB+dtV8Osx+GmPo4lfi5X+7/CpJamGZcP0PB3Cgw2LaoifWDPF+xD4y+gp5"
+                       "hUuvd7sVtCKs5nIxQ3cu/RAMTTQWG12EUndFp60QD3rhXJ8YxebwY04l+90S"
+                       "hpwd1eg3yigTMaVu1fgnf/OxGmdhvSURHErOkrDbxKUv1PBQJxs2V9QOzUah"
+                       "yT4ZwYIQ6ML00AFljeW2lP0/zVJ2IpFEh0EbUu+cZKBXbOqdwSpA4oZloK5v"
+                       "MWNqPFun6bx0nj2XBB+hSAHUuoizOH5/MGkoUHRj3JF59rt3xm7HGfk9q6kh"
+                       "KGLiNZK6Nlk=");
+    
 #if 0
     // Directly push a PSPDFViewController
     NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples" isDirectory:NO];
