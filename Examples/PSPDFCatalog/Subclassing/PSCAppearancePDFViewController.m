@@ -33,8 +33,8 @@
 
     // Add example background image and tint color.
     [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setTintColor:UIColor.redColor];
-    UIImage *gradientPortrait = [[UIImage imageNamed:@"exampleimage.jpg"] pspdf_cropImageWithCropRect:CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 44.f) aspectFitBounds:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 44.f) fillColor:nil];
-    [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setBackgroundImage:gradientPortrait forBarMetrics:UIBarMetricsDefault];
+//    UIImage *gradientPortrait = [UIImage imageNamed:@"exampleimage.jpg"];
+//    [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setBackgroundImage:gradientPortrait forBarMetrics:UIBarMetricsDefault];
 
     /// Because the alert view is displayed in it's own window, the appearance can only be set globally.
     [[PSPDFAlertView appearance] setAlertViewTintColor:UIColor.yellowColor];

@@ -30,10 +30,8 @@
     return NSLocalizedString(@"Metadata", @"");
 }
 
-- (UIImage *)image {
-    if (!_buttonImage) _buttonImage = [[UIImage imageNamed:@"PSPDFKit.bundle/Help"] pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(24, 24) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh];
-
-    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(_buttonImage) : _buttonImage;
+- (UIBarButtonSystemItem)systemItem {
+    return UIBarButtonSystemItemOrganize;
 }
 
 - (id)presentAnimated:(BOOL)animated sender:(id)sender {
