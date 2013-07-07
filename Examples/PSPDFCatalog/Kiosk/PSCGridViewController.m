@@ -156,7 +156,7 @@
     _searchBar.delegate = self;
 
     // Doesn't matter much if this fails, but the background doesn't look great within our grid.
-    [PSPDFGetViewInsideView(_searchBar, @"UISearchBarBack") removeFromSuperview];
+    [PSCGetViewInsideView(_searchBar, @"UISearchBarBack") removeFromSuperview];
 
     // Set the return key and keyboard appearance of the search bar.
     // Since we do live-filtering, the search bar should just dismiss the keyboard.
@@ -212,7 +212,7 @@
     _shadowView.shadowEnabled = YES;
 
     // If navigationBar is offset, we're fixing that.
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
     // Only one delegate at a time (only one grid is displayed at a time)
     [PSCStoreManager sharedStoreManager].delegate = self;
@@ -223,7 +223,7 @@
     self.immediatelyLoadCellImages = NO;
 
     if (_animateViewWillAppearWithFade) {
-        [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+        [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
         _animateViewWillAppearWithFade = NO;
     }
 
@@ -234,7 +234,7 @@
     [super viewDidAppear:animated];
 
     // If navigationBar is offset, we're fixing that.
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
     // Animate back to grid cell?
     if (self.magazineView) {
@@ -242,7 +242,7 @@
         if (_animationCellIndex >= self.magazineFolder.magazines.count) {
             self.collectionView.transform = CGAffineTransformIdentity;
             self.collectionView.alpha = 1.0f;
-            [self.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+            [self.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
@@ -458,7 +458,7 @@
             self.collectionView.alpha = 0.0f;
 
         } completion:^(BOOL finished) {
-            [self.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+            [self.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
             [self.navigationController pushViewController:pdfController animated:NO];
 
             cell.hidden = NO;
@@ -467,7 +467,7 @@
         if (animated) {
             // Add fake data so that we animate back.
             _animateViewWillAppearWithFade = YES;
-            [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+            [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
         }
         [self.navigationController pushViewController:pdfController animated:NO];
     }
@@ -668,7 +668,7 @@
 
         // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
         if (!PSIsIpad()) {
-            CATransition *transition = PSPDFFadeTransitionWithDuration(0.3f);
+            CATransition *transition = PSCFadeTransitionWithDuration(0.3f);
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
             [self.navigationController pushViewController:gridController animated:NO];
 
