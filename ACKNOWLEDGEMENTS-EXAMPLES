@@ -1,17 +1,16 @@
 ACKNOWLEDGEMENTS FOR PSPDFKIT EXAMPLES
 
 The PSPDFKit sample code uses several open source 3rd-party components.
-If you use parts of PSPDFCatalog in your app, make sure to also honor affected 3rd party licenses.
-
-To simplify the licenses, first a list of vendors is provided following the licenses used.
+If you use parts of PSPDFCatalog in your app, make sure to also honor
+following 3rd party licenses:
 
 AFNetworking by Gowalla, MIT licensed.
 RNCryptor by Rob Napier, MIT licensed.
 SDURLCache by Olivier Poitrey, MIT licensed.
 
-PSPDFCatalog may also include a CC-by licensed video called "big_buck_bunny.mp4" from http://www.bigbuckbunny.org/.
+PSPDFCatalog may also include a CC-by licensed video called
+"big_buck_bunny.mp4" from http://www.bigbuckbunny.org/.
 
-----------------------------------------------------------------------------
 MIT License:
 
 Permission is hereby granted, free of charge, to any person obtaining
