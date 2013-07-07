@@ -2583,6 +2583,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return pdfController;
     }]];
 
+    /*
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
         NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
@@ -2602,7 +2603,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
         [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
         return nil;
-    }]];
+    }]];*/
 
     // Check that there's a red note annotation in landscape mode or when you zoom out.
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Test annotation outside of page" block:^UIViewController *{
