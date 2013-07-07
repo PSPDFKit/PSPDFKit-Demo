@@ -12,6 +12,6 @@ PSPDFKit supports fast PDF viewing, annotating and signing of documents. Its bat
 
 Licensing
 ---------
-This is the example project including a DEMO version of the PSPDFKit framework.
+This is the example project including a evaluation version of the PSPDFKit framework.
 [The code is bound to the PSPDFKit Evaluation License.](http://pspdfkit.com/documentation.html#license)
 PSPDFKit also uses 3rd-party code, see [ACKNOWLEDGEMENTS](https://github.com/PSPDFKit/PSPDFKit-Demo/blob/master/ACKNOWLEDGEMENTS) for the list of contributions.
