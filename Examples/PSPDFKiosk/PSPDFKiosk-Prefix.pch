@@ -18,6 +18,7 @@
     #import <MobileCoreServices/MobileCoreServices.h>
 
     #import "PSCAvailability.h"
+    #import "PSCViewHelper.h"
 #endif
 
 // Logging
