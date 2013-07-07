@@ -213,7 +213,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [appSection addContent:[[PSContent alloc] initWithTitle:@"Dropbox-like interface" block:^{
         if (PSIsIpad()) {
             PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
-            [self.view.window.layer addAnimation:PSPDFFadeTransition() forKey:nil];
+            [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
             self.view.window.rootViewController = splitViewController;
             return (UIViewController *)nil;
         }else {
@@ -2794,7 +2794,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
+    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [self.navigationController setToolbarHidden:YES animated:animated];
 
@@ -2807,7 +2807,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+    PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
 #ifdef kPSPDFAutoSelectCellNumber
     if (!_firstShown && kPSPDFAutoSelectCellNumber) {
@@ -2989,7 +2989,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
-    [controller.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+    [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
 
     if (showInGrid) {
         // create controller and merge new documents with last saved state.

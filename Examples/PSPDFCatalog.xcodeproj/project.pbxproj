@@ -149,6 +149,10 @@
 		78D909A91789886600E7D4D5 /* PSPDFKit-Version in Resources */ = {isa = PBXBuildFile; fileRef = 78D909A21789886600E7D4D5 /* PSPDFKit-Version */; };
 		78D909AA1789886600E7D4D5 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78D909A31789886600E7D4D5 /* PSPDFKit.bundle */; };
 		78D909AB1789886600E7D4D5 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78D909A41789886600E7D4D5 /* PSPDFKit.xcconfig */; };
+		78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78D909E81789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld */; };
+		78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */; };
+		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
+		78D90A0D178A089300E7D4D5 /* PSPDFViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
@@ -389,6 +393,13 @@
 		78D909A21789886600E7D4D5 /* PSPDFKit-Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "PSPDFKit-Version"; sourceTree = "<group>"; };
 		78D909A31789886600E7D4D5 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
 		78D909A41789886600E7D4D5 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
+		78D909E91789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataAnnotationExample.xcdatamodel; sourceTree = "<group>"; };
+		78D909EA1789FFF700E7D4D5 /* PSCCoreDataAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCoreDataAnnotation.h; sourceTree = "<group>"; };
+		78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotation.m; sourceTree = "<group>"; };
+		78D909EC1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCoreDataAnnotationProvider.h; sourceTree = "<group>"; };
+		78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotationProvider.m; sourceTree = "<group>"; };
+		78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSPDFViewHelper.m; path = ../../../../PSPDFKit/Helper/PSPDFViewHelper.m; sourceTree = "<group>"; };
+		78D90A0C178A089300E7D4D5 /* PSPDFViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSPDFViewHelper.h; path = ../../../../PSPDFKit/Helper/PSPDFViewHelper.h; sourceTree = "<group>"; };
 		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
 		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
 		78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -498,6 +509,7 @@
 		784F012315CF247900849F81 /* PSPDFCatalog */ = {
 			isa = PBXGroup;
 			children = (
+				78D909E61789FFF700E7D4D5 /* AnnotationProviders */,
 				78604C8416C50CB2003CB721 /* BarButtonItems */,
 				78A24A1115CFDAAF00328F4F /* TabbedExample */,
 				78A24A1415CFDAAF00328F4F /* Storyboards */,
@@ -878,6 +890,26 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		78D909E61789FFF700E7D4D5 /* AnnotationProviders */ = {
+			isa = PBXGroup;
+			children = (
+				78D909E71789FFF700E7D4D5 /* CoreDataBackend */,
+			);
+			path = AnnotationProviders;
+			sourceTree = "<group>";
+		};
+		78D909E71789FFF700E7D4D5 /* CoreDataBackend */ = {
+			isa = PBXGroup;
+			children = (
+				78D909E81789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld */,
+				78D909EA1789FFF700E7D4D5 /* PSCCoreDataAnnotation.h */,
+				78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */,
+				78D909EC1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.h */,
+				78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */,
+			);
+			path = CoreDataBackend;
+			sourceTree = "<group>";
+		};
 		78DDC6B015CF2EFF0030C730 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +970,8 @@
 		78FFE52F1781874E00FBA7DF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				78D90A0C178A089300E7D4D5 /* PSPDFViewHelper.h */,
+				78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */,
 				78FFE5301781874E00FBA7DF /* PSCAvailability.h */,
 			);
 			path = Helper;
@@ -1084,6 +1118,7 @@
 			files = (
 				784F012A15CF247900849F81 /* main.m in Sources */,
 				784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */,
+				78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */,
 				78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */,
 				78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */,
 				78DDC72915CF2EFF0030C730 /* AFHTTPClient.m in Sources */,
@@ -1117,11 +1152,14 @@
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
 				78753589161F740300119B8E /* PSCAutoScrollViewController.m in Sources */,
+				78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */,
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
 				78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */,
+				78D90A0D178A089300E7D4D5 /* PSPDFViewHelper.m in Sources */,
 				78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */,
 				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
+				78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */,
 				78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */,
 				785B160516692BA100F747B8 /* GSDropboxActivity.m in Sources */,
 				785B160A16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m in Sources */,
@@ -1360,6 +1398,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		78D909E81789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78D909E91789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodel */,
+			);
+			currentVersion = 78D909E91789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodel */;
+			path = CoreDataAnnotationExample.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 784F011015CF247900849F81 /* Project object */;
 }
