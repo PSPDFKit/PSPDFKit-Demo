@@ -165,6 +165,9 @@
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
+    // Create folder
+    [[NSFileManager new] createDirectoryAtPath:[self.storePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:NULL];
+
 	// Setup persistent store coordinator
 	NSURL *storeURL = [NSURL fileURLWithPath:self.storePath];
 	NSError *error = nil;
