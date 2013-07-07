@@ -53,15 +53,7 @@
     // Set your license key here. PSPDFKit is commercial software.
     // Each PSPDFKit license is bound to a specific app bundle id.
     // Visit http://customers.pspdfkit.com to get your license key.
-    PSPDFSetLicenseKey("fdfqSCYNKUWegznURyw849L+jz3BPdzGQQr6ZsJuarQb7wlVlmLm1SmsvfHv5YX"
-                       "uMn1iCqH4965ooaE96ltFB58pDIJRwOzYOUZdNaYr9C0Vut0c+cwGv0xJaiS"
-                       "ltSPvtlQL0XOp6kp35MvGtQGVTunJLXl3N4vEnllJjlcpBCWjqw7xnL8WMgY"
-                       "RbB+dtV8Osx+GmPo4lfi5X+7/CpJamGZcP0PB3Cgw2LaoifWDPF+xD4y+gp5"
-                       "hUuvd7sVtCKs5nIxQ3cu/RAMTTQWG12EUndFp60QD3rhXJ8YxebwY04l+90S"
-                       "hpwd1eg3yigTMaVu1fgnf/OxGmdhvSURHErOkrDbxKUv1PBQJxs2V9QOzUah"
-                       "yT4ZwYIQ6ML00AFljeW2lP0/zVJ2IpFEh0EbUu+cZKBXbOqdwSpA4oZloK5v"
-                       "MWNqPFun6bx0nj2XBB+hSAHUuoizOH5/MGkoUHRj3JF59rt3xm7HGfk9q6kh"
-                       "KGLiNZK6Nlk=");
+    PSPDFSetLicenseKey("DEMO");
 
     // Create catalog controller
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];

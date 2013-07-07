@@ -20,6 +20,7 @@
     #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "PSCAvailability.h"
+#import "PSCViewHelper.h"
 
 // This is used internally where PSPDFKit-lib.xcproj is used.
 #ifdef PSPDF_USE_SOURCE

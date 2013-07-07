@@ -86,7 +86,7 @@
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }else {
                 CGRect contentRect = pdfController.contentRect;
-                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, pdfController.view.bounds.size.width, PSPDFToolbarHeightForOrientation(pdfController.interfaceOrientation));
+                CGRect targetRect = CGRectMake(contentRect.origin.x, contentRect.origin.y, pdfController.view.bounds.size.width, PSCToolbarHeightForOrientation(pdfController.interfaceOrientation));
                 [pdfController.view addSubview:self.toolbar];
                 [self.toolbar showToolbarInRect:targetRect animated:YES];
             }

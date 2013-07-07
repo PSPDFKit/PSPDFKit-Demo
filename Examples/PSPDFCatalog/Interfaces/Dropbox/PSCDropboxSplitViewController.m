@@ -63,7 +63,7 @@
 
 - (void)backToCatalog:(id)sender {
     [self.masterPopoverController dismissPopoverAnimated:NO];
-    [self.view.window.layer addAnimation:PSPDFFadeTransition() forKey:nil];
+    [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
     self.view.window.rootViewController = ((PSCAppDelegate *)UIApplication.sharedApplication.delegate).catalog;
 }
 
