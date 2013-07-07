@@ -152,7 +152,7 @@
 		78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 78D909E81789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld */; };
 		78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */; };
 		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
-		78D90A0D178A089300E7D4D5 /* PSPDFViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */; };
+		78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
 		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
@@ -398,8 +398,8 @@
 		78D909EB1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotation.m; sourceTree = "<group>"; };
 		78D909EC1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCoreDataAnnotationProvider.h; sourceTree = "<group>"; };
 		78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotationProvider.m; sourceTree = "<group>"; };
-		78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSPDFViewHelper.m; path = ../../../../PSPDFKit/Helper/PSPDFViewHelper.m; sourceTree = "<group>"; };
-		78D90A0C178A089300E7D4D5 /* PSPDFViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSPDFViewHelper.h; path = ../../../../PSPDFKit/Helper/PSPDFViewHelper.h; sourceTree = "<group>"; };
+		78D90A12178A0A0300E7D4D5 /* PSCViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCViewHelper.h; sourceTree = "<group>"; };
+		78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCViewHelper.m; sourceTree = "<group>"; };
 		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
 		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
 		78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -970,8 +970,8 @@
 		78FFE52F1781874E00FBA7DF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				78D90A0C178A089300E7D4D5 /* PSPDFViewHelper.h */,
-				78D90A0B178A089300E7D4D5 /* PSPDFViewHelper.m */,
+				78D90A12178A0A0300E7D4D5 /* PSCViewHelper.h */,
+				78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */,
 				78FFE5301781874E00FBA7DF /* PSCAvailability.h */,
 			);
 			path = Helper;
@@ -1131,6 +1131,7 @@
 				78DDC73015CF2EFF0030C730 /* AFXMLRequestOperation.m in Sources */,
 				78DDC73215CF2EFF0030C730 /* UIImageView+AFNetworking.m in Sources */,
 				78DDC75B15CF2EFF0030C730 /* SDURLCache.m in Sources */,
+				78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */,
 				78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */,
 				78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */,
 				78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */,
@@ -1156,7 +1157,6 @@
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
 				78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */,
-				78D90A0D178A089300E7D4D5 /* PSPDFViewHelper.m in Sources */,
 				78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */,
 				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
 				78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */,
