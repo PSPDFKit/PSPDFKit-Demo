@@ -17,5 +17,6 @@
 
 @property (nonatomic, strong) NSData *annotationData;
 @property (nonatomic, assign) NSUInteger page;
+@property (nonatomic, copy)   NSString *uuid;
 
 @end

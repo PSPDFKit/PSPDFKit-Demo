@@ -57,6 +57,7 @@
 #import "PSCShowHighlightNotesPDFController.h"
 #import "PSCTopScrobbleBar.h"
 #import "PSCExportPDFPagesViewController.h"
+#import "PSCCoreDataAnnotationProvider.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -1360,6 +1361,21 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSCExportPDFPagesViewController *pdfController = [[PSCExportPDFPagesViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
+    [content addObject:subclassingSection];
+
+    [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Custom CoreData AnnotationProvider" block:^UIViewController *{
+        // Create document.
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
+        // Set annotation provider block.
+        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+            PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider];
+            documentProvider.annotationParser.annotationProviders = @[provider];
+        }];
+        // Create controller.
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 

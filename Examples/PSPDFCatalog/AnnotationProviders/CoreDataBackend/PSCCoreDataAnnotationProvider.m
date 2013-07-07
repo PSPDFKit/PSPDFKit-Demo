@@ -46,12 +46,11 @@
 
 - (NSArray *)annotationsForPage:(NSUInteger)page {
     __block NSArray *annotations = nil;
-    
+
     dispatch_sync(_annotationProviderQueue, ^{
         annotations = _annotationCache[@(page)];
         if (!annotations) {
             [self.managedObjectContext performBlockAndWait:^{
-
                 // We don't care about sorting
                 NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
                 request.predicate = [NSPredicate predicateWithFormat:@"page = %d", page];
@@ -61,29 +60,97 @@
                     NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
                 }
 
+                NSMutableArray *newAnnotations = [NSMutableArray array];
+                for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
+                    PSPDFAnnotation *annotation = nil;
+                    @try {
+                        annotation = [NSKeyedUnarchiver unarchiveObjectWithData:coreDataAnnotation.annotationData];
+                    }
+                    @catch (NSException *exception) {
+                        NSLog(@"Failed to unarchive annotation: %@", exception);
+                    }
+                    if (annotation) [newAnnotations addObject:annotation];
+                }
+
                 // Save in the annotation cache
-                self.annotationCache[@(page)] = [NSArray arrayWithArray:fetchedAnnotations];
+                annotations = [NSArray arrayWithArray:newAnnotations];
+                self.annotationCache[@(page)] = annotations;
             }];
         }
     });
     return annotations;
-    
-/*
-    Document *document = (Document *)[[NSManagedObjectContext contextForCurrentThread] existingObjectWithID:self.documentID error:nil];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"page = %d AND document = %@", page, document];
-    NSArray *annotations = [Annotation findAllWithPredicate:predicate inContext:[NSManagedObjectContext contextForCurrentThread]];
-    if (page == 0) {
-        NSLog(@"core data annotations %@ in page %d", annotations, page);
-    }
-    return annotations;
+}
 
+- (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page {
+    dispatch_async(_annotationProviderQueue, ^{
+        [_managedObjectContext performBlock:^{
+            // Iterate over all annotations and create objects in CoreData.
+            for (PSPDFAnnotation *annotation in annotations) {
+                annotation.page = page;
+                [self convertAnnotationToCoreData:annotation initialInsert:YES];
+            }
+        }];
+        // Clear cache
+        [self.annotationCache removeObjectForKey:@(page)];
+    });
+    return YES;
+}
 
-    NSArray *annotationsForPage = nil;
-    @synchronized (self) {
-        NSArray *cachedAnnotationsForPage = [self pageCacheForPage:page];
-        annotationsForPage = [cachedAnnotationsForPage valueForKey:@"annotation"];
-    }
-    return annotationsForPage;*/
+- (void)convertAnnotationToCoreData:(PSPDFAnnotation *)annotation initialInsert:(BOOL)initialInsert {
+    // Fetch or Create root user data managed object
+    [_managedObjectContext performBlock:^{
+        PSCCoreDataAnnotation *coreDataAnnotation = nil;
+        if (!initialInsert) {
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
+            request.predicate = [NSPredicate predicateWithFormat:@"uuid = %@", annotation.name];
+            request.fetchLimit = 1; // We only check
+            NSArray *result = [_managedObjectContext executeFetchRequest:request error:NULL];
+            if (result.count) coreDataAnnotation = result[0];
+        }else {
+            // Use 'name' to create a UUID for every annotation so we can uniquify them.
+            // PSPDFKit v3 already sets a UUID in name, but we need to manually add this in v2.
+            if (!annotation.name) {
+                CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+                annotation.name = CFBridgingRelease(CFUUIDCreateString(NULL, uuidRef));
+                CFRelease(uuidRef);
+            }
+        }
+
+        // If we can't find the annotation in the database, insert a new one.
+        if (!coreDataAnnotation) {
+            coreDataAnnotation = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(PSCCoreDataAnnotation.class) inManagedObjectContext:_managedObjectContext];
+            coreDataAnnotation.uuid = annotation.name;
+        }
+
+        // Serialize annotations and set page.
+        coreDataAnnotation.annotationData = [NSKeyedArchiver archivedDataWithRootObject:annotation];
+        coreDataAnnotation.page = annotation.page;
+    }];
+}
+
+- (void)didChangeAnnotation:(PSPDFAnnotation *)annotation keyPaths:(NSArray *)keyPaths options:(NSDictionary *)options {
+    // Immediately serialize annotation to CoreData.
+    [self convertAnnotationToCoreData:annotation initialInsert:NO];
+}
+
+// Saves the context.
+- (BOOL)saveAnnotationsWithError:(NSError * __autoreleasing *)error {
+    __block BOOL success;
+    dispatch_sync(_annotationProviderQueue, ^{
+        success = [_managedObjectContext save:error];
+    });
+    return success;
+}
+
+// Return all cached annotations so we tell PSPDFKit that we always want to be saved.
+- (NSDictionary *)dirtyAnnotations {
+    NSMutableDictionary *dirtyAnnotations = [[NSMutableDictionary alloc] init];
+    dispatch_sync(_annotationProviderQueue, ^{
+        [self.annotationCache enumerateKeysAndObjectsUsingBlock:^(NSNumber *page, NSArray *annotations, BOOL *stop) {
+            dirtyAnnotations[page] = [annotations copy];
+        }];
+    });
+    return dirtyAnnotations;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +162,7 @@
 
 - (void)setupCoreDataStack {
 	// Load the model
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"PSCCoreDataAnnotationExample" withExtension:@"momd"];
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
 	// Setup persistent store coordinator

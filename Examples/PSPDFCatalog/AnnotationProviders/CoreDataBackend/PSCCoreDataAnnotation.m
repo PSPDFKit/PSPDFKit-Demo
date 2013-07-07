@@ -15,6 +15,6 @@
 
 @implementation PSCCoreDataAnnotation
 
-@dynamic annotationData, page;
+@dynamic annotationData, page, uuid;
 
 @end
