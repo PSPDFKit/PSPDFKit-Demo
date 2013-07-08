@@ -71,7 +71,7 @@
 - (void)drawButtonPressed:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
 
-    if (self.toolbar.toolbarMode != PSPDFAnnotationToolbarDraw) {
+    if (self.toolbar.toolbarMode != PSPDFAnnotationToolbarModeDraw) {
         pdfController.HUDViewMode = PSPDFHUDViewAlways;
         if (!self.toolbar.window) {
             // match style
@@ -111,7 +111,7 @@
 
 // Called after a mode change is set (button pressed; drawing finished, etc)
 - (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(PSPDFAnnotationToolbarMode)newMode {
-    if (newMode == PSPDFAnnotationToolbarNone && annotationToolbar.window) {
+    if (newMode == PSPDFAnnotationToolbarModeNone && annotationToolbar.window) {
         // don't show all toolbar features, hide instead.
         [annotationToolbar hideToolbarAnimated:YES completion:^{
             [annotationToolbar removeFromSuperview];
@@ -119,8 +119,8 @@
     }
 
     // update button selection status
-    self.drawButton.backgroundColor = newMode == PSPDFAnnotationToolbarDraw ? [UIColor whiteColor] : [UIColor clearColor];
-    self.freeTextButton.backgroundColor = newMode == PSPDFAnnotationToolbarFreeText ? [UIColor whiteColor] : [UIColor clearColor];
+    self.drawButton.backgroundColor = newMode == PSPDFAnnotationToolbarModeDraw ? [UIColor whiteColor] : [UIColor clearColor];
+    self.freeTextButton.backgroundColor = newMode == PSPDFAnnotationToolbarModeFreeText ? [UIColor whiteColor] : [UIColor clearColor];
 }
 
 @end
