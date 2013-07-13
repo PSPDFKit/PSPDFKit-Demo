@@ -115,6 +115,7 @@
 		78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B1E1CC1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m */; };
 		78B29DC9170B150600806DE0 /* PSCImageOverlayPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B29DC8170B150600806DE0 /* PSCImageOverlayPDFViewController.m */; };
 		78B49A561715D9BA007B69A1 /* PSCColoredHighlightAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B49A551715D9BA007B69A1 /* PSCColoredHighlightAnnotation.m */; };
+		78B4D6B017914D5700568A26 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B4D6AF17914D5700568A26 /* CoreData.framework */; };
 		78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */; };
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
@@ -337,6 +338,7 @@
 		78B29DC8170B150600806DE0 /* PSCImageOverlayPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCImageOverlayPDFViewController.m; sourceTree = "<group>"; };
 		78B49A541715D9BA007B69A1 /* PSCColoredHighlightAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCColoredHighlightAnnotation.h; sourceTree = "<group>"; };
 		78B49A551715D9BA007B69A1 /* PSCColoredHighlightAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCColoredHighlightAnnotation.m; sourceTree = "<group>"; };
+		78B4D6AF17914D5700568A26 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
 		78BCC69815D31BF2006735A9 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78B4D6B017914D5700568A26 /* CoreData.framework in Frameworks */,
 				785B160F16692BB900F747B8 /* Security.framework in Frameworks */,
 				78D909A51789886600E7D4D5 /* PSPDFKit.framework in Frameworks */,
 				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
@@ -546,6 +549,7 @@
 		78525C4215CF2CEF00854F49 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				78B4D6AF17914D5700568A26 /* CoreData.framework */,
 				785B160E16692BB900F747B8 /* Security.framework */,
 				78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */,
 				78A24AB215CFDB6D00328F4F /* CoreLocation.framework */,
