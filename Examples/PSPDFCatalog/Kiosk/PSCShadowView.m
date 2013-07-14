@@ -81,7 +81,7 @@
         // Stretch and place the origin shadow
         CGRect originShadowFrame = _originShadow.frame;
         originShadowFrame.size.width = self.frame.size.width;
-        originShadowFrame.origin.y = _shadowOffset;
+        originShadowFrame.origin.y = _topShadowOffset;
         _originShadow.frame = originShadowFrame;
 
         [CATransaction commit];
@@ -96,8 +96,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
-- (void)setShadowOffset:(CGFloat)shadowOffset {
-    _shadowOffset = shadowOffset;
+- (void)setTopShadowOffset:(CGFloat)topShadowOffset {
+    _topShadowOffset = topShadowOffset;
     [self setNeedsLayout];
 }
 
