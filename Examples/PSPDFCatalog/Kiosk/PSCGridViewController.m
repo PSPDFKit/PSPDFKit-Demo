@@ -113,7 +113,7 @@
     // Add global shadow.
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSCShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
-    _shadowView.shadowOffset = toolbarHeight;
+    _shadowView.topShadowOffset = toolbarHeight;
     _shadowView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _shadowView.backgroundColor = [UIColor clearColor];
     _shadowView.userInteractionEnabled = NO;
@@ -349,7 +349,7 @@
 
 // toggle the options/settings button.
 - (void)optionsButtonPressed {
-    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopoverAndVisible(self.popoverController, [PSCSettingsController class]);
+    BOOL alreadyDisplayed = PSPDFIsControllerClassAndVisible(self.popoverController, [PSCSettingsController class]);
     if (alreadyDisplayed) {
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController = nil;
