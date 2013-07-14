@@ -842,7 +842,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             NSString *passphrase = @"afghadöghdgdhfgöhapvuenröaoeruhföaeiruaerub";
             NSString *salt = @"ducrXn9WaRdpaBfMjDTJVjUf3FApA6gtim0e61LeSGWV9sTxB0r26mPs59Lbcexn";
 
-            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF passphrase:passphrase salt:salt];
+            PSPDFAESCryptoDataProvider *cryptoWrapper = [[PSPDFAESCryptoDataProvider alloc] initWithURL:encryptedPDF passphrase:passphrase salt:salt rounds:PSPDFDefaultPBKDFNumberOfRounds];
 
             PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:cryptoWrapper.dataProvider];
             document.UID = [encryptedPDF lastPathComponent]; // manually set an UID for encrypted documents.

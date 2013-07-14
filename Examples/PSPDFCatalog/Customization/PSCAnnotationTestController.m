@@ -134,7 +134,7 @@
                                                              [token[3] doubleValue]);
 
                 // frame is set in PSPDFViewController, but MKMapView needs the position before setting the region.
-                CGRect frame = [annotation rectForPageRect:pageView.bounds];
+                CGRect frame = [annotation boundingBoxForPageRect:pageView.bounds];
 
                 MKMapView *mapView = [[MKMapView alloc] initWithFrame:frame];
                 [mapView setRegion:MKCoordinateRegionMake(location, span) animated:NO];

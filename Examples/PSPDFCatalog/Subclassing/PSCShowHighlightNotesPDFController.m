@@ -23,7 +23,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)annotationRect onPageView:(PSPDFPageView *)pageView {
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotations:(NSArray *)annotations inRect:(CGRect)annotationRect onPageView:(PSPDFPageView *)pageView {
+    PSPDFAnnotation *annotation = annotations.count == 1 ? annotations.lastObject : nil;
     if (annotation.type == PSPDFAnnotationTypeHighlight) {
         // Show note controller directly, skipping the menu.
         [pageView showNoteControllerForAnnotation:annotation showKeyboard:NO animated:YES];
