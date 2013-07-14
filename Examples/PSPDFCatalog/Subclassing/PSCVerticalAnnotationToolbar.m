@@ -30,7 +30,7 @@
         self.backgroundColor = [UIColor colorWithWhite:0.5f alpha:0.8f];
 
         // draw button
-        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringInk]) {
+        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringInk]) {
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
             UIImage *sketchImage = [UIImage imageNamed:@"PSPDFKit.bundle/sketch"];
             [drawButton setImage:sketchImage forState:UIControlStateNormal];
@@ -40,7 +40,7 @@
         }
 
         // draw button
-        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationTypeStringFreeText]) {
+        if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringFreeText]) {
         UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *freeTextImage = [UIImage imageNamed:@"PSPDFKit.bundle/freetext"];
         [freetextButton setImage:freeTextImage forState:UIControlStateNormal];
@@ -71,7 +71,7 @@
 - (void)drawButtonPressed:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
 
-    if (self.toolbar.toolbarMode != PSPDFAnnotationToolbarModeDraw) {
+    if (![self.toolbar.toolbarMode isEqualToString:PSPDFAnnotationStringInk]) {
         pdfController.HUDViewMode = PSPDFHUDViewAlways;
         if (!self.toolbar.window) {
             // match style
@@ -110,8 +110,8 @@
 #pragma mark - PSPDFAnnotationToolbarDelegate
 
 // Called after a mode change is set (button pressed; drawing finished, etc)
-- (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(PSPDFAnnotationToolbarMode)newMode {
-    if (newMode == PSPDFAnnotationToolbarModeNone && annotationToolbar.window) {
+- (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(NSString *)newMode {
+    if (!newMode && annotationToolbar.window) {
         // don't show all toolbar features, hide instead.
         [annotationToolbar hideToolbarAnimated:YES completion:^{
             [annotationToolbar removeFromSuperview];
@@ -119,8 +119,8 @@
     }
 
     // update button selection status
-    self.drawButton.backgroundColor = newMode == PSPDFAnnotationToolbarModeDraw ? [UIColor whiteColor] : [UIColor clearColor];
-    self.freeTextButton.backgroundColor = newMode == PSPDFAnnotationToolbarModeFreeText ? [UIColor whiteColor] : [UIColor clearColor];
+    self.drawButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringInk] ? [UIColor whiteColor] : [UIColor clearColor];
+    self.freeTextButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringFreeText] ? [UIColor whiteColor] : [UIColor clearColor];
 }
 
 @end

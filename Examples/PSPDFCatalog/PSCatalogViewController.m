@@ -132,8 +132,8 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     PSCSectionDescriptor *appSection = [[PSCSectionDescriptor alloc] initWithTitle:@"Full Example Apps" footer:@"Can be used as a template for your own apps."];
 
     [appSection addContent:[[PSContent alloc] initWithTitle:@"PSPDFViewController playground" block:^{
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarDefault;
@@ -442,21 +442,21 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
 
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                                            PSPDFAnnotationTypeStringLink, // not added by default.
-                                            PSPDFAnnotationTypeStringHighlight,
-                                            PSPDFAnnotationTypeStringUnderline,
-                                            PSPDFAnnotationTypeStringStrikeout,
-                                            PSPDFAnnotationTypeStringNote,
-                                            PSPDFAnnotationTypeStringFreeText,
-                                            PSPDFAnnotationTypeStringInk,
-                                            PSPDFAnnotationTypeStringLine,
-                                            PSPDFAnnotationTypeStringSquare,
-                                            PSPDFAnnotationTypeStringCircle,
-                                            PSPDFAnnotationTypeStringSignature,
-                                            PSPDFAnnotationTypeStringStamp,
-                                            PSPDFAnnotationTypeStringImage,
-                                            PSPDFAnnotationTypeStringPolygon,
-                                            nil];
+                PSPDFAnnotationStringLink, // not added by default.
+                PSPDFAnnotationStringHighlight,
+                PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringStrikeOut,
+                PSPDFAnnotationStringNote,
+                PSPDFAnnotationStringFreeText,
+                PSPDFAnnotationStringInk,
+                PSPDFAnnotationStringLine,
+                PSPDFAnnotationStringSquare,
+                PSPDFAnnotationStringCircle,
+                PSPDFAnnotationStringSignature,
+                PSPDFAnnotationStringStamp,
+                PSPDFAnnotationStringImage,
+                PSPDFAnnotationStringPolygon,
+                nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
@@ -906,17 +906,17 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     [subclassingSection addContent:[[PSContent alloc] initWithTitle:@"Annotation Link Editor" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                                            PSPDFAnnotationTypeStringLink, // important!
-                                            PSPDFAnnotationTypeStringHighlight,
-                                            PSPDFAnnotationTypeStringUnderline,
-                                            PSPDFAnnotationTypeStringStrikeout,
-                                            PSPDFAnnotationTypeStringNote,
-                                            PSPDFAnnotationTypeStringFreeText,
-                                            PSPDFAnnotationTypeStringInk,
-                                            PSPDFAnnotationTypeStringSquare,
-                                            PSPDFAnnotationTypeStringCircle,
-                                            PSPDFAnnotationTypeStringStamp,
-                                            nil];
+                PSPDFAnnotationStringLink, // important!
+                PSPDFAnnotationStringHighlight,
+                PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringStrikeOut,
+                PSPDFAnnotationStringNote,
+                PSPDFAnnotationStringFreeText,
+                PSPDFAnnotationStringInk,
+                PSPDFAnnotationStringSquare,
+                PSPDFAnnotationStringCircle,
+                PSPDFAnnotationStringStamp,
+                nil];
 
         PSPDFViewController *controller = [[PSCLinkEditorViewController alloc] initWithDocument:document];
         return controller;
@@ -1207,7 +1207,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
-        [editableTypes removeObject:PSPDFAnnotationTypeStringInk];
+        [editableTypes removeObject:PSPDFAnnotationStringInk];
         pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
     }]];
@@ -1615,7 +1615,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithArray:@[PSPDFAnnotationTypeStringHighlight, PSPDFAnnotationTypeStringInk]];
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithArray:@[PSPDFAnnotationStringHighlight, PSPDFAnnotationStringInk]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
@@ -2108,7 +2108,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 
     [testSection addContent:[[PSContent alloc] initWithTitle:@"Stamp annotation test, only allow stamp editing." block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationTypeStringStamp];
+        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationStringStamp];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 1;
         return pdfController;
