@@ -34,7 +34,7 @@
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
             UIImage *sketchImage = [UIImage imageNamed:@"PSPDFKit.bundle/sketch"];
             [drawButton setImage:sketchImage forState:UIControlStateNormal];
-            [drawButton addTarget:self action:@selector(drawButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [drawButton addTarget:self action:@selector(inkButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:drawButton];
             self.drawButton = drawButton;
         }
@@ -44,7 +44,7 @@
         UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *freeTextImage = [UIImage imageNamed:@"PSPDFKit.bundle/freetext"];
         [freetextButton setImage:freeTextImage forState:UIControlStateNormal];
-        [freetextButton addTarget:self action:@selector(freeTextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [freetextButton addTarget:self action:@selector(freetextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:freetextButton];
         self.freeTextButton = freetextButton;
         }
@@ -68,7 +68,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Events
 
-- (void)drawButtonPressed:(id)sender {
+- (void)inkButtonPressed:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
 
     if (![self.toolbar.toolbarMode isEqualToString:PSPDFAnnotationStringInk]) {
@@ -93,7 +93,7 @@
         }
 
         // call draw mode of the toolbar
-        [self.toolbar drawButtonPressed:sender];
+        [self.toolbar inkButtonPressed:sender];
     }else {
         pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
         // remove toolbar
@@ -102,8 +102,8 @@
     }
 }
 
-- (void)freeTextButtonPressed:(id)sender {
-    [self.toolbar freeTextButtonPressed:sender];
+- (void)freetextButtonPressed:(id)sender {
+    [self.toolbar freetextButtonPressed:sender];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
