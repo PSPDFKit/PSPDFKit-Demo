@@ -58,7 +58,7 @@
 - (void)selectStrokeColor:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
     
-    BOOL alreadyDisplayed = PSPDFIsControllerClassInPopoverAndVisible(pdfController.popoverController, [PSPDFSimplePageViewController class]);
+    BOOL alreadyDisplayed = PSPDFIsControllerClassAndVisible(pdfController.popoverController, [PSPDFSimplePageViewController class]);
     if (alreadyDisplayed) {
         [pdfController.popoverController dismissPopoverAnimated:YES];
         pdfController.popoverController = nil;

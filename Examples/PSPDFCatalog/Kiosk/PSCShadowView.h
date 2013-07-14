@@ -17,6 +17,6 @@
 @property (nonatomic, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// top offset for shadow.
-@property (nonatomic) CGFloat shadowOffset;
+@property (nonatomic) CGFloat topShadowOffset;
 
 @end
