@@ -18,17 +18,17 @@
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                                            PSPDFAnnotationTypeStringLink, // not added by default.
-                                            PSPDFAnnotationTypeStringHighlight,
-                                            PSPDFAnnotationTypeStringUnderline,
-                                            PSPDFAnnotationTypeStringStrikeout,
-                                            PSPDFAnnotationTypeStringNote,
-                                            PSPDFAnnotationTypeStringFreeText,
-                                            PSPDFAnnotationTypeStringInk,
-                                            PSPDFAnnotationTypeStringSquare,
-                                            PSPDFAnnotationTypeStringCircle,
-                                            PSPDFAnnotationTypeStringStamp,
-                                            nil];
+                PSPDFAnnotationStringLink, // not added by default.
+                PSPDFAnnotationStringHighlight,
+                PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringStrikeOut,
+                PSPDFAnnotationStringNote,
+                PSPDFAnnotationStringFreeText,
+                PSPDFAnnotationStringInk,
+                PSPDFAnnotationStringSquare,
+                PSPDFAnnotationStringCircle,
+                PSPDFAnnotationStringStamp,
+                nil];
     }
     return self;
 }
