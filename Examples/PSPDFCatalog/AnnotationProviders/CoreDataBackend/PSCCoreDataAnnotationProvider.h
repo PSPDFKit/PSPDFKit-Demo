@@ -22,5 +22,4 @@
 // Associated documentProvider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
-
 @end
