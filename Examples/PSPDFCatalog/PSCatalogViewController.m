@@ -457,6 +457,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                 PSPDFAnnotationStringStamp,
                 PSPDFAnnotationStringImage,
                 PSPDFAnnotationStringPolygon,
+                PSPDFAnnotationStringSound,
                 nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
