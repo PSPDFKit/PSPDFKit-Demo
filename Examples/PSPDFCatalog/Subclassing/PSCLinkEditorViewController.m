@@ -21,6 +21,7 @@
                 PSPDFAnnotationStringLink, // not added by default.
                 PSPDFAnnotationStringHighlight,
                 PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringSquiggly,
                 PSPDFAnnotationStringStrikeOut,
                 PSPDFAnnotationStringNote,
                 PSPDFAnnotationStringFreeText,
