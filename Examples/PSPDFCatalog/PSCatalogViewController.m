@@ -445,6 +445,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                 PSPDFAnnotationStringLink, // not added by default.
                 PSPDFAnnotationStringHighlight,
                 PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringSquiggly,
                 PSPDFAnnotationStringStrikeOut,
                 PSPDFAnnotationStringNote,
                 PSPDFAnnotationStringFreeText,
@@ -909,6 +910,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
                 PSPDFAnnotationStringLink, // important!
                 PSPDFAnnotationStringHighlight,
                 PSPDFAnnotationStringUnderline,
+                PSPDFAnnotationStringSquiggly,
                 PSPDFAnnotationStringStrikeOut,
                 PSPDFAnnotationStringNote,
                 PSPDFAnnotationStringFreeText,
