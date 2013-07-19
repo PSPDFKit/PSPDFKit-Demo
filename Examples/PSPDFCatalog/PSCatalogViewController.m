@@ -524,6 +524,42 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
         return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
     }]];
 
+    // This example shows how you can create an XFDF provider instead of the default file-based one.
+    // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
+    [annotationSection addContent:[[PSContent alloc] initWithTitle:@"XFDF Annotation Provider" block:^{
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+
+        // Load from an example XFDF file.
+        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
+
+        // Create an example XFDF from the current document if one doesn't already exist.
+        if (![[NSFileManager defaultManager] fileExistsAtPath:fileXML.path]) {
+            // Collect all existing annotations from the document
+            PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
+            NSMutableArray *annotations = [NSMutableArray array];
+            for (NSArray *pageAnnots in [tempDocument allAnnotationsOfType:PSPDFAnnotationTypeAll]) {
+                [annotations addObjectsFromArray:pageAnnots];
+            }
+            // Write the file
+            NSError *error = nil;
+            NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
+            if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders.firstObject error:&error]) {
+                NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
+            }
+            [outputStream close];
+        }
+
+        // Create document and set up the XFDF provider
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
+        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+            PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
+            documentProvider.annotationParser.annotationProviders = @[XFDFProvider];
+        }];
+
+        return [[PSPDFViewController alloc] initWithDocument:document];
+    }]];
+
     [content addObject:annotationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
