@@ -538,7 +538,7 @@ static CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
             // Collect all existing annotations from the document
             PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
             NSMutableArray *annotations = [NSMutableArray array];
-            for (NSArray *pageAnnots in [tempDocument allAnnotationsOfType:PSPDFAnnotationTypeAll]) {
+            for (NSArray *pageAnnots in [tempDocument allAnnotationsOfType:PSPDFAnnotationTypeAll].allValues) {
                 [annotations addObjectsFromArray:pageAnnots];
             }
             // Write the file
