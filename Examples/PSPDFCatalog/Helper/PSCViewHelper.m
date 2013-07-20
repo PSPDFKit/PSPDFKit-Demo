@@ -68,3 +68,13 @@ void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *
     // This will trigger _updateBarsForCurrentInterfaceOrientation as well, but will also call this in the topViewController.
     [navController willAnimateRotationToInterfaceOrientation:navController.interfaceOrientation duration:0.f];
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Geometry
+
+CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
+    CGFloat xScale = boundsSize.width / targetSize.width;
+    CGFloat yScale = boundsSize.height / targetSize.height;
+    CGFloat minScale = fminf(xScale, yScale);
+    return minScale > 1.f ? 1.f : minScale;
+}

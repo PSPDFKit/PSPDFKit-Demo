@@ -14,7 +14,13 @@
 #error "Compile this file with ARC"
 #endif
 
-@implementation PSCSectionDescriptor
+@implementation PSCSectionDescriptor {
+    NSMutableArray *_contentDescriptors;
+}
+
++ (instancetype)sectionWithTitle:(NSString *)title footer:(NSString *)footer {
+    return [[self alloc] initWithTitle:title footer:footer];
+}
 
 - (id)initWithTitle:(NSString *)title footer:(NSString *)footer {
     if ((self = [super init])) {
@@ -41,12 +47,8 @@
 
 @implementation PSContent
 
-- (id)initWithTitle:(NSString *)title class:(Class)class {
-    if ((self = [super init])) {
-        _title = title;
-        _classToInvoke = class;
-    }
-    return self;
++ (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block {
+    return [(PSContent *)[self alloc] initWithTitle:title block:block];
 }
 
 - (id)initWithTitle:(NSString *)title block:(PSControllerBlock)block {
@@ -58,7 +60,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p title:%@ class:%@>", self.class, self, self.title, self.classToInvoke];
+    return [NSString stringWithFormat:@"<%@: %p title:%@>", self.class, self, self.title];
 }
 
 @end
