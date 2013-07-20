@@ -12,11 +12,9 @@ typedef UIViewController* (^PSControllerBlock)();
 @class PSContent;
 
 // Simple model class to describe static section.
-@interface PSCSectionDescriptor : NSObject {
-    NSMutableArray *_contentDescriptors;
-}
+@interface PSCSectionDescriptor : NSObject
 
-- (id)initWithTitle:(NSString *)title footer:(NSString *)footer;
++ (instancetype)sectionWithTitle:(NSString *)title footer:(NSString *)footer;
 - (void)addContent:(PSContent *)contentDescriptor;
 
 @property (nonatomic, copy) NSArray *contentDescriptors;
@@ -28,11 +26,9 @@ typedef UIViewController* (^PSControllerBlock)();
 // Simple model class to describe static content.
 @interface PSContent : NSObject
 
-- (id)initWithTitle:(NSString *)title class:(Class)class;
-- (id)initWithTitle:(NSString *)title block:(PSControllerBlock)block;
++ (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block;
 
-@property (nonatomic, copy)   NSString *title;
-@property (nonatomic, strong) Class classToInvoke;
-@property (nonatomic, copy)   PSControllerBlock block;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) PSControllerBlock block;
 
 @end

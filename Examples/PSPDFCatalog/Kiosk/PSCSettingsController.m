@@ -97,7 +97,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
 
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-        self.title = _(@"Options");
+        self.title = _(@"Display Options");
         _content = @[
         @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")], @[_(@"Show Page Rect & Rotation")],
         @[_(@"Show Text Blocks")],
@@ -106,7 +106,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"Horizontal"), _(@"Vertical")],
         @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
         @[_(@"Single First Page"), _(@"No Cover Page")],
-        @[_(@"No thumbnail bar"), _(@"Scrobble Bar (iBooks)"), _(@"Scrollable Thumbnails")],
+        @[_(@"No Thumbnail Bar"), _(@"Scrobble Bar (like iBooks)"), _(@"Scrollable Thumbnails")],
         @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
         @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View")],
         @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode"), _(@"Bordered Toolbar")],
@@ -127,13 +127,13 @@ __attribute__((constructor)) static void setupDefaults(void) {
         @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
         @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
         ];
-        _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition (pageTransition)"), _(@"Scroll Direction (scrollDirection)"), _(@"Double Page Mode (pageMode)"), _(@"Cover"), _(@"Thumbnail Bar"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
+        _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition"), _(@"Scroll Direction"), _(@"Double Page Mode"), _(@"Cover"), _(@"Thumbnail Bar"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
         _sectionFooter = @[@"", @"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
         _(@"Useful to easy readability of white documents."),
         _(@"Paper Color"),
         _(@"Content Opacity"),
         _(@""),
-        _(@"Scroll direction is only relevant for PSPDFPageScrollPerPageTransition or PSPDFPageScrollContinuousTransition."),
+        _(@"Scroll direction will be ignored for PSPDFPageCurlTransition mode."),
         _(@""), // double page mode
         _(@""), // PSPDFThumbnailBarMode
         _(@"Relevant for double page mode."),
