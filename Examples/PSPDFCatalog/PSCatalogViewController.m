@@ -866,7 +866,6 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     /// The crypto feature is only available in PSPDFKit Annotate.
     if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
         [passwordSection addContent:[PSContent contentWithTitle:@"Encrypted CGDocumentProvider" block:^{
-
             NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
 
             // Note: For shipping apps, you need to protect this string better, making it harder for hacker to simply disassemble and receive the key from the binary. Or add an internet service that fetches the key from an SSL-API. But then there's still the slight risk of memory dumping with an attached gdb. Or screenshots. Security is never 100% perfect; but using AES makes it way harder to get the PDF. You can even combine AES and a PDF password.
@@ -881,7 +880,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
             // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
             // document.cacheStrategy = PSPDFCacheNothing;
-
+            
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
@@ -2322,14 +2321,6 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    // Ensure that parsing completes and doesn't loop. If the document opens, everything is OK.
-    [testSection addContent:[PSContent contentWithTitle:@"Test parsing of recursive XRef table" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"recursive-xref-table.pdf"]];
-        [[document documentParserForPage:0] objectNumberForAnnotationIndex:0 pageIndex:0]; // start parsing
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
     // Check that blocks are recognized and that it is fast (not 10 seconds!)
     [testSection addContent:[PSContent contentWithTitle:@"Test block detection" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"block-detection-test.pdf"]];
@@ -2599,37 +2590,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-    
 
-    // If the encoding is wrong, the freeText annotation will not be displayed.
-    [testSection addContent:[PSContent contentWithTitle:@"Test annotation encoding" block:^UIViewController *{
-        NSURL *URL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:@"A.pdf"], YES);
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:URL];
-
-        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
-        freeText.contents = @"發音正確\n眼睛看聽眾\n準備充足\n聲音響亮\n運用適當的語氣\n用自己的話講故事\n內容";
-        freeText.boundingBox = CGRectMake(100, 100, 400, 400);
-        [document addAnnotations:@[freeText] page:0];
-        [document saveChangedAnnotationsWithError:NULL];
-
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // If the encoding is wrong, the freeText annotation will not be displayed correctly.
-    [testSection addContent:[PSContent contentWithTitle:@"Test annotation encoding 2" block:^UIViewController *{
-        NSURL *URL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:@"A.pdf"], YES);
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:URL];
-
-        PSPDFFreeTextAnnotation *freeText = [PSPDFFreeTextAnnotation new];
-        freeText.contents = @"小森 test";
-        freeText.boundingBox = CGRectMake(100, 100, 400, 400);
-        [document addAnnotations:@[freeText] page:0];
-        [document saveChangedAnnotationsWithError:NULL];
-
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
 
     /*
     [testSection addContent:[PSContent contentWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
