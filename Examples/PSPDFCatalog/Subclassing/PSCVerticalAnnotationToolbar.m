@@ -72,7 +72,7 @@
     PSPDFViewController *pdfController = self.pdfController;
 
     if (![self.toolbar.toolbarMode isEqualToString:PSPDFAnnotationStringInk]) {
-        pdfController.HUDViewMode = PSPDFHUDViewAlways;
+        pdfController.HUDViewMode = PSPDFHUDViewModeAlways;
         if (!self.toolbar.window) {
             // match style
             self.toolbar.barStyle = pdfController.navigationBarStyle;
@@ -95,7 +95,7 @@
         // call draw mode of the toolbar
         [self.toolbar inkButtonPressed:sender];
     }else {
-        pdfController.HUDViewMode = PSPDFHUDViewAutomatic;
+        pdfController.HUDViewMode = PSPDFHUDViewModeAutomatic;
         // remove toolbar
         [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
         [self.toolbar finishDrawingAnimated:YES saveAnnotation:NO];
