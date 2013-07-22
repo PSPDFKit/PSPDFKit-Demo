@@ -59,6 +59,7 @@
 #import "PSCTopScrobbleBar.h"
 #import "PSCExportPDFPagesViewController.h"
 #import "PSCCoreDataAnnotationProvider.h"
+#import "UIBarButtonItem+PSCBlockSupport.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -374,8 +375,11 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
         return controller;
     }]];
+    [sections addObject:documentTests];
 
-    [documentTests addContent:[PSContent contentWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
+    PSCSectionDescriptor *pageRangeTests = [PSCSectionDescriptor sectionWithTitle:@"pageRange feature" footer:@"With pageRange, the pages visible can be filtered"];
+
+    [pageRangeTests addContent:[PSContent contentWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
         // cache needs to be cleared since pages will change.
         [[PSPDFCache sharedCache] clearCache];
         _clearCacheNeeded = YES;
@@ -388,7 +392,40 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return controller;
     }]];
 
-    [sections addObject:documentTests];
+    [pageRangeTests addContent:[PSContent contentWithTitle:@"Add pageRange filter for bookmarked pages" block:^{
+        // Set up document and controller
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+
+        // Create the filter barButton
+        __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender){
+            BOOL isFilterSet = document.pageRange.count > 0;
+            filterBarButton.title = isFilterSet ? @"Filter" : @"Disable Filter";
+
+            // Update filter
+            NSMutableIndexSet *set = nil;
+            if (!isFilterSet) {
+                set = [NSMutableIndexSet indexSet];
+                for (PSPDFBookmark *bookmark in document.bookmarks) [set addIndex:bookmark.page];
+            }
+            document.pageRange = set;
+
+            // After setting pageRange, we need to clear the cache and reload the controller
+            [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:nil];
+            [controller reloadData];
+
+            // cache needs to be cleared since pages will change.
+            _clearCacheNeeded = YES;
+        }];
+
+        controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.viewModeButtonItem];
+        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
+        controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
+        return controller;
+    }]];
+
+    [sections addObject:pageRangeTests];
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *multimediaSection = [PSCSectionDescriptor sectionWithTitle:@"Multimedia examples" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
@@ -1490,7 +1527,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFViewController *pdfController3 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file3]];
         PSPDFViewController *pdfController4 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file4]];
 
-        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewAutomaticNoFirstLastPage;
+        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewModeAutomaticNoFirstLastPage;
         pdfController1.HUDViewAnimation = pdfController2.HUDViewAnimation = pdfController3.HUDViewAnimation = pdfController4.HUDViewAnimation = PSPDFHUDViewAnimationNone;
         pdfController1.HUDVisible       = pdfController2.HUDVisible       = pdfController3.HUDVisible       = pdfController4.HUDVisible       = NO;
         pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
@@ -1536,7 +1573,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFMultiDocumentViewController *pdfMultiDocController3 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController3];
         PSPDFMultiDocumentViewController *pdfMultiDocController4 = [[PSPDFMultiDocumentViewController alloc] initWithPDFViewController:pdfController4];
 
-        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewAutomaticNoFirstLastPage;
+        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewModeAutomaticNoFirstLastPage;
         pdfController1.HUDViewAnimation = pdfController2.HUDViewAnimation = pdfController3.HUDViewAnimation = pdfController4.HUDViewAnimation = PSPDFHUDViewAnimationNone;
         pdfController1.HUDVisible       = pdfController2.HUDVisible       = pdfController3.HUDVisible       = pdfController4.HUDVisible       = NO;
         pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
