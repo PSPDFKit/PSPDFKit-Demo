@@ -19,7 +19,7 @@
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
-    self.statusBarStyleSetting = PSPDFStatusBarDefault;
+    self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
     UIBarButtonItem *alertButtonTest = [[UIBarButtonItem alloc] initWithTitle:@"Alert" style:UIBarButtonItemStyleBordered target:self action:@selector(testAlert)];
     self.leftBarButtonItems = @[self.closeButtonItem, alertButtonTest];
 

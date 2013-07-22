@@ -27,7 +27,7 @@
 
     self.delegate = self;
     self.toolbarEnabled = NO;
-    self.statusBarStyleSetting = PSPDFStatusBarDisable;
+    self.statusBarStyleSetting = PSPDFStatusBarStyleDisable;
     self.HUDViewMode = PSPDFHUDViewNever;
     self.pageTransition = PSPDFPageCurlTransition;
     self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
