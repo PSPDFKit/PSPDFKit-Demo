@@ -60,7 +60,7 @@
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
+    self.pdfController.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
     //self.pdfController.pageMode = PSPDFPageModeSingle;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
     self.pdfController.scrollOnTapPageEndEnabled = NO;
@@ -237,7 +237,7 @@
         navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     }else {
         navCtrl.modalPresentationStyle = UIModalPresentationFormSheet;
-        pdfController.statusBarStyleSetting = PSPDFStatusBarInherit;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
     }
 
     [self presentViewController:navCtrl animated:YES completion:NULL];

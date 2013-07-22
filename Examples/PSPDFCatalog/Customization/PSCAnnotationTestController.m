@@ -26,7 +26,7 @@
         self.pageTransition = PSPDFPageCurlTransition;
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         self.linkAction = PSPDFLinkActionInlineBrowser;
-        self.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
+        self.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         self.tintColor = [UIColor orangeColor];
         self.maximumZoomScale = 100; // as we have the selection zoom-in tool
 

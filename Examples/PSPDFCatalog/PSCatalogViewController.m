@@ -125,7 +125,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
-        controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         controller.imageSelectionEnabled = NO;
         //controller.page = 3;
         return controller;
@@ -160,7 +160,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         controller.pageTransition = PSPDFPageCurlTransition;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // don't use thumbnails if the PDF is not rendered.
@@ -199,7 +199,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSPDFStatusBarDefault;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         return controller;
     }]];
 
@@ -384,6 +384,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
+        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
         return controller;
     }]];
 
@@ -723,7 +724,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         // simple subclass that shows/hides the navigationController bottom toolbar
         PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarDefault;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
         pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
@@ -1580,7 +1581,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Drawing invoked with menu while toolbar is visible" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarSmartBlackHideOnIpad;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         double delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
