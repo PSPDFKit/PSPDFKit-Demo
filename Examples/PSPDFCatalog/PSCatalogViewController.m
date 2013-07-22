@@ -537,7 +537,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             // Write the file
             NSError *error = nil;
             NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
-            if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders.firstObject error:&error]) {
+            if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders[0] error:&error]) {
                 NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
             }
             [outputStream close];
