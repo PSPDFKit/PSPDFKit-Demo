@@ -25,7 +25,7 @@
 
     // disable default toolbar
     [self setToolbarEnabled:NO];
-    self.statusBarStyleSetting = PSPDFStatusBarBlackOpaque;
+    self.statusBarStyleSetting = UIStatusBarStyleBlackOpaque;
     self.renderAnimationEnabled = NO; // custom implementation here
 
     // add custom controls to our toolbar
