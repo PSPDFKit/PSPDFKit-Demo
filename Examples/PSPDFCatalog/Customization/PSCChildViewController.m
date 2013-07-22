@@ -38,7 +38,7 @@
     self.pdfController.scrollDirection = PSPDFScrollDirectionVertical;
     self.pdfController.fitToWidthEnabled = YES;
     //self.pdfController.toolbarEnabled = NO;
-    //self.pdfController.HUDViewMode = PSPDFHUDViewNever;
+    //self.pdfController.HUDViewMode = PSPDFHUDViewModeNever;
     self.pdfController.pagePadding = 0.f;
     self.pdfController.shadowEnabled = NO;
     self.pdfController.smartZoomEnabled = NO;

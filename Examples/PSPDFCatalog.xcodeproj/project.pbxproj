@@ -61,6 +61,7 @@
 		78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78783DF5164DBDB700076EDD /* PSCTimingTestViewController.m */; };
 		787B07CD1695B65300852825 /* PSCFontCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 787B07CC1695B65300852825 /* PSCFontCacheTest.m */; };
 		78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */; };
+		7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */; };
 		78897E24179A8C8000BAAE73 /* PSCFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E21179A8C8000BAAE73 /* PSCFileHelper.m */; };
 		78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */; };
 		7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7897BD631721368900236576 /* PSCAppearancePDFViewController.m */; };
@@ -263,6 +264,8 @@
 		787B07CC1695B65300852825 /* PSCFontCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFontCacheTest.m; sourceTree = "<group>"; };
 		78803911167F2B49008AEBAE /* PSCReaderPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCReaderPDFViewController.m; sourceTree = "<group>"; };
 		78803912167F2B49008AEBAE /* PSCReaderPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCReaderPDFViewController.h; sourceTree = "<group>"; };
+		7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+PSCBlockSupport.h"; sourceTree = "<group>"; };
+		7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+PSCBlockSupport.m"; sourceTree = "<group>"; };
 		78897E20179A8C8000BAAE73 /* PSCFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCFileHelper.h; sourceTree = "<group>"; };
 		78897E21179A8C8000BAAE73 /* PSCFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFileHelper.m; sourceTree = "<group>"; };
 		78897E22179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+PSCKeyboardDismissal.h"; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 		78FFE52F1781874E00FBA7DF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */,
+				7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */,
 				78D90A12178A0A0300E7D4D5 /* PSCViewHelper.h */,
 				78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */,
 				78897E20179A8C8000BAAE73 /* PSCFileHelper.h */,
@@ -1144,6 +1149,7 @@
 				78DDC72F15CF2EFF0030C730 /* AFURLConnectionOperation.m in Sources */,
 				78DDC73015CF2EFF0030C730 /* AFXMLRequestOperation.m in Sources */,
 				78DDC73215CF2EFF0030C730 /* UIImageView+AFNetworking.m in Sources */,
+				7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */,
 				78DDC75B15CF2EFF0030C730 /* SDURLCache.m in Sources */,
 				78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */,
 				78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */,
