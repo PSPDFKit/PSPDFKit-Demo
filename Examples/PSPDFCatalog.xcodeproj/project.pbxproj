@@ -158,7 +158,6 @@
 		78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D909ED1789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m */; };
 		78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */; };
 		78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */; };
-		78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */; };
 		78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */; };
 		78DDC72915CF2EFF0030C730 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B715CF2EFF0030C730 /* AFHTTPClient.m */; };
 		78DDC72A15CF2EFF0030C730 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DDC6B915CF2EFF0030C730 /* AFHTTPRequestOperation.m */; };
@@ -413,7 +412,6 @@
 		78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCViewHelper.m; sourceTree = "<group>"; };
 		78DA0200161201270097CA7D /* PSCClearTabsButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCClearTabsButtonItem.h; sourceTree = "<group>"; };
 		78DA0213161201E90097CA7D /* PSCClearTabsButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCClearTabsButtonItem.m; sourceTree = "<group>"; };
-		78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		78DDC6B215CF2EFF0030C730 /* AFDownloadRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFDownloadRequestOperation.h; sourceTree = "<group>"; };
 		78DDC6B315CF2EFF0030C730 /* AFDownloadRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFDownloadRequestOperation.m; sourceTree = "<group>"; };
 		78DDC6B615CF2EFF0030C730 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -462,7 +460,6 @@
 				784F011E15CF247900849F81 /* UIKit.framework in Frameworks */,
 				78A24AB315CFDB6D00328F4F /* CoreLocation.framework in Frameworks */,
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
-				78DDC67D15CF2E4F0030C730 /* libsqlite3.dylib in Frameworks */,
 				784F012015CF247900849F81 /* Foundation.framework in Frameworks */,
 				784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */,
 				785B160416692BA100F747B8 /* DropboxSDK.framework in Frameworks */,
@@ -560,7 +557,6 @@
 			children = (
 				78B4D6AF17914D5700568A26 /* CoreData.framework */,
 				785B160E16692BB900F747B8 /* Security.framework */,
-				78DDC67C15CF2E4F0030C730 /* libsqlite3.dylib */,
 				78A24AB215CFDB6D00328F4F /* CoreLocation.framework */,
 				78A24AB015CFDB6800328F4F /* MapKit.framework */,
 				784F011D15CF247900849F81 /* UIKit.framework */,
