@@ -23,7 +23,7 @@
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Annotations" image:[UIImage imageNamed:@"movie"] tag:4];
         self.delegate = self; // set PSPDFViewControllerDelegate to self
         document.delegate = self;
-        self.pageTransition = PSPDFPageCurlTransition;
+        self.pageTransition = PSPDFPageTransitionCurl;
         self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         self.linkAction = PSPDFLinkActionInlineBrowser;
         self.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;

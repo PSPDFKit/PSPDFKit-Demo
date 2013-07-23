@@ -25,7 +25,7 @@
 
 - (id)initWithDocument:(PSPDFDocument *)document {
     if ((self = [super initWithDocument:document])) {
-        self.pageTransition = PSPDFPageScrollContinuousTransition;
+        self.pageTransition = PSPDFPageTransitionScrollContinuous;
         self.scrollDirection = PSPDFScrollDirectionVertical;
         self.fitToWidthEnabled = YES;
 

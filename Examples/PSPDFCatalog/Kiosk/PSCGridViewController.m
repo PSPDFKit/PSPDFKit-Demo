@@ -450,7 +450,7 @@
             _shadowView.shadowEnabled = NO;
             self.collectionView.transform = CGAffineTransformMakeScale(0.97, 0.97);
 
-            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
+            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
             CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
             coverImageView.frame = newFrame;
             targetPageImageView.alpha = 1.f;
