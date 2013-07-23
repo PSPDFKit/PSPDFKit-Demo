@@ -26,7 +26,6 @@ const char PSCBlockSupportKey;
 - (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style block:(void (^)(id))block {
     // Call correct initializer. Provide the block callback as action, but no target yet
     if ((self = [self initWithTitle:title style:style target:nil action:@selector(psc_callbackBlockWithSender:)])) {
-
         objc_setAssociatedObject(self, &PSCBlockSupportKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
         self.target = objc_getAssociatedObject(self, &PSCBlockSupportKey);
     }
