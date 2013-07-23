@@ -32,7 +32,7 @@
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringInk]) {
             UIButton *drawButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            UIImage *sketchImage = [UIImage imageNamed:@"PSPDFKit.bundle/sketch"];
+            UIImage *sketchImage = PSPDFBundleImage(@"ink");
             [drawButton setImage:sketchImage forState:UIControlStateNormal];
             [drawButton addTarget:self action:@selector(inkButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:drawButton];
@@ -42,7 +42,7 @@
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringFreeText]) {
         UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *freeTextImage = [UIImage imageNamed:@"PSPDFKit.bundle/freetext"];
+        UIImage *freeTextImage = PSPDFBundleImage(@"freetext");
         [freetextButton setImage:freeTextImage forState:UIControlStateNormal];
         [freetextButton addTarget:self action:@selector(freetextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:freetextButton];
