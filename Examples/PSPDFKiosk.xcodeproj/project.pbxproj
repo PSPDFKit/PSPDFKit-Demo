@@ -72,7 +72,6 @@
 		78D909B9178988A400E7D4D5 /* PSPDFKit-Version in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B2178988A400E7D4D5 /* PSPDFKit-Version */; };
 		78D909BA178988A400E7D4D5 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B3178988A400E7D4D5 /* PSPDFKit.bundle */; };
 		78D909BB178988A400E7D4D5 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B4178988A400E7D4D5 /* PSPDFKit.xcconfig */; };
-		78D909BE1789890900E7D4D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D909BD1789890900E7D4D5 /* libsqlite3.dylib */; };
 		78D90A1B178A126600E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A1A178A126600E7D4D5 /* PSCViewHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -170,7 +169,6 @@
 		78D909B3178988A400E7D4D5 /* PSPDFKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PSPDFKit.bundle; sourceTree = "<group>"; };
 		78D909B4178988A400E7D4D5 /* PSPDFKit.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = PSPDFKit.xcconfig; sourceTree = "<group>"; };
 		78D909BC178988CE00E7D4D5 /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCAvailability.h; path = PSPDFCatalog/Helper/PSCAvailability.h; sourceTree = SOURCE_ROOT; };
-		78D909BD1789890900E7D4D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		78D90A18178A126600E7D4D5 /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
 		78D90A19178A126600E7D4D5 /* PSCViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCViewHelper.h; sourceTree = "<group>"; };
 		78D90A1A178A126600E7D4D5 /* PSCViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCViewHelper.m; sourceTree = "<group>"; };
@@ -181,7 +179,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78D909BE1789890900E7D4D5 /* libsqlite3.dylib in Frameworks */,
 				785DDA3B167B9D3700559562 /* MobileCoreServices.framework in Frameworks */,
 				78D909B5178988A400E7D4D5 /* PSPDFKit.framework in Frameworks */,
 				785DDA39167B9D3200559562 /* SystemConfiguration.framework in Frameworks */,
@@ -418,7 +415,6 @@
 				785DD9B3167B9BAE00559562 /* CoreGraphics.framework */,
 				785DDA3A167B9D3700559562 /* MobileCoreServices.framework */,
 				785DDA38167B9D3200559562 /* SystemConfiguration.framework */,
-				78D909BD1789890900E7D4D5 /* libsqlite3.dylib */,
 			);
 			name = System;
 			sourceTree = "<group>";
