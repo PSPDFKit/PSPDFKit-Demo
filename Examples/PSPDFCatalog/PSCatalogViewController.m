@@ -398,11 +398,12 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
         // Create the filter barButton
+        __weak PSPDFViewController *weakController = controller;
         __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender){
-            BOOL isFilterSet = document.pageRange.count > 0;
+            BOOL isFilterSet = document.pageRange != nil;
             filterBarButton.title = isFilterSet ? @"Filter" : @"Disable Filter";
 
-            // Update filter
+            // Update pageRange-filter
             NSMutableIndexSet *set = nil;
             if (!isFilterSet) {
                 set = [NSMutableIndexSet indexSet];
@@ -411,14 +412,15 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             document.pageRange = set;
 
             // After setting pageRange, we need to clear the cache and reload the controller
-            [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:nil];
-            [controller reloadData];
+            [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:nil];
+            [weakController reloadData];
 
-            // cache needs to be cleared since pages will change.
+            // (Example-Global) Cache needs to be cleared since pages will change.
             _clearCacheNeeded = YES;
         }];
 
-        controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+        controller.barButtonItemsAlwaysEnabled = @[filterBarButton];
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
         return controller;
