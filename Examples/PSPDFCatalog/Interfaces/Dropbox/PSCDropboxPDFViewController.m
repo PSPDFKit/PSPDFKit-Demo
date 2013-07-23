@@ -18,7 +18,7 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
 
-    self.pageTransition = PSPDFPageScrollContinuousTransition;
+    self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
     self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
     self.shouldHideStatusBarWithHUD = NO;

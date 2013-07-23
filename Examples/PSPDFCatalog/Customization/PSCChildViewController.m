@@ -34,7 +34,7 @@
 - (void)createPDFViewController {
     // configure the PSPDF controller
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document];
-    self.pdfController.pageTransition = PSPDFPageScrollContinuousTransition;
+    self.pdfController.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.pdfController.scrollDirection = PSPDFScrollDirectionVertical;
     self.pdfController.fitToWidthEnabled = YES;
     //self.pdfController.toolbarEnabled = NO;

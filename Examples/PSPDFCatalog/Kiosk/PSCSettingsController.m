@@ -67,7 +67,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[PROPERTY(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
         _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSIsIpad());
         _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[PROPERTY(pageTransition)] = @(PSPDFPageScrollPerPageTransition);
+        _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
         _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
         _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
         _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
@@ -116,7 +116,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""], @[@""],
         @[_(@"(See PSPDFSelectionView)")],
         @[@""], @[@""], @[@""],
-        @[_(@"PSPDFPageScrollPerPageTransition"), _(@"PSPDFPageScrollContinuousTransition"), _(@"PSPDFPageCurlTransition")],
+        @[_(@"PSPDFPageTransitionScrollPerPage"), _(@"PSPDFPageTransitionScrollContinuous"), _(@"PSPDFPageTransitionCurl")],
         @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
         @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
         @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
@@ -133,12 +133,12 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _(@"Paper Color"),
         _(@"Content Opacity"),
         _(@""),
-        _(@"Scroll direction will be ignored for PSPDFPageCurlTransition mode."),
+        _(@"Scroll direction will be ignored for PSPDFPageTransitionCurl mode."),
         _(@""), // double page mode
         _(@""), // PSPDFThumbnailBarMode
         _(@"Relevant for double page mode."),
         _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingModeFullPageBlocking is a great option for magazine apps that use pageCurl."),
-        _(@"Zoom to width is not available with PSPDFPageCurlTransition. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
+        _(@"Zoom to width is not available with PSPDFPageTransitionCurl. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
         _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
         _(@"Default is PSPDFLinkActionInlineBrowser."),
         _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
@@ -441,7 +441,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             PSPDFPageTransition pageTransition = indexPath.row;
             _settings[PROPERTY(pageTransition)] = @(pageTransition);
             // set recommended render mode for pageCurl.
-            if (pageTransition == PSPDFPageCurlTransition) {
+            if (pageTransition == PSPDFPageTransitionCurl) {
                 _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeFullPageBlocking);
             }
         }break;

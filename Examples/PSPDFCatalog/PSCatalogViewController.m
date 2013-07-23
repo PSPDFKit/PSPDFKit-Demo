@@ -158,14 +158,14 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12"; // Override document title.
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
-        controller.pageTransition = PSPDFPageCurlTransition;
+        controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
         controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // don't use thumbnails if the PDF is not rendered.
-        // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageScrollContinuousTransition.
+        // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
         // setup toolbar
@@ -195,7 +195,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
-        controller.pageTransition = PSPDFPageScrollContinuousTransition;
+        controller.pageTransition = PSPDFPageTransitionScrollContinuous;
         controller.scrollDirection = PSPDFScrollDirectionVertical;
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
@@ -695,7 +695,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.pageMode = PSPDFPageModeSingle;
-        pdfController.pageTransition = PSPDFPageCurlTransition;
+        pdfController.pageTransition = PSPDFPageTransitionCurl;
         return pdfController;
     }]];
 
@@ -787,7 +787,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         });
 
         // sample settings
-        pdfController.pageTransition = PSPDFPageCurlTransition;
+        pdfController.pageTransition = PSPDFPageTransitionCurl;
         pdfController.toolbarEnabled = NO;
         pdfController.fitToWidthEnabled = NO;
 
@@ -1165,9 +1165,9 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
             if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)) {
-                pdfController.pageTransition = PSPDFPageScrollPerPageTransition;
+                pdfController.pageTransition = PSPDFPageTransitionScrollPerPage;
             }  else {
-                pdfController.pageTransition = PSPDFPageCurlTransition;
+                pdfController.pageTransition = PSPDFPageTransitionCurl;
             }
         }];
         return controller;
@@ -1185,7 +1185,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSCPlayBarButtonItem *playButton = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:controller];
         playButton.autoplaying = YES;
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-        controller.pageTransition = PSPDFPageCurlTransition;
+        controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         return controller;
     }]];
@@ -1706,7 +1706,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.pageTransition = PSPDFPageCurlTransition;
+        pdfController.pageTransition = PSPDFPageTransitionCurl;
         return pdfController;
     }]];
 
@@ -2564,7 +2564,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 10;
-        pdfController.pageTransition = PSPDFPageScrollContinuousTransition;
+        pdfController.pageTransition = PSPDFPageTransitionScrollContinuous;
         return pdfController;
     }]];
 

@@ -29,7 +29,7 @@
     self.toolbarEnabled = NO;
     self.statusBarStyleSetting = PSPDFStatusBarStyleDisable;
     self.HUDViewMode = PSPDFHUDViewModeNever;
-    self.pageTransition = PSPDFPageCurlTransition;
+    self.pageTransition = PSPDFPageTransitionCurl;
     self.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
     self.smartZoomEnabled = NO;
     self.zoomingSmallDocumentsEnabled = YES;
