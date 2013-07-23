@@ -1479,7 +1479,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
 
         // Create a custom outline for testing.
-        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFActionRemoteGoTo alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
         PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
         multimediaDoc.outlineParser.outline = rootOutline;
 
@@ -1495,7 +1495,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
 
         // Create a custom outline for testing.
-        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFActionRemoteGoTo alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
+        PSPDFOutlineElement *openExternalAction = [[PSPDFOutlineElement alloc] initWithTitle:@"Open External" action:[[PSPDFRemoteGoToAction alloc] initWithRemotePath:@"A.pdf" pageIndex:0] children:nil level:1];
         PSPDFOutlineElement *rootOutline = [[PSPDFOutlineElement alloc] initWithTitle:@"Root" action:nil children:@[openExternalAction] level:0];
         multimediaDoc.outlineParser.outline = rootOutline;
 
