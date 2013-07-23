@@ -64,7 +64,7 @@
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:[randomDocument copy]];
         [self addChildViewController:pdfController];
         pdfController.view.frame = CGRectInset(self.view.bounds, 20, 20);
-        pdfController.pageTransition = PSPDFPageCurlTransition;
+        pdfController.pageTransition = PSPDFPageTransitionCurl;
         pdfController.pageMode = PSPDFPageModeAutomatic;
         [self.view addSubview:pdfController.view];
         [pdfController didMoveToParentViewController:self];
