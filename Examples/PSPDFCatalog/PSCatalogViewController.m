@@ -52,7 +52,6 @@
 #import "PSCDropboxSplitViewController.h"
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCImageOverlayPDFViewController.h"
-#import "PSCColoredHighlightAnnotation.h"
 #import "PSCMultipleUsersPDFViewController.h"
 #import "PSCAppearancePDFViewController.h"
 #import "PSCShowHighlightNotesPDFController.h"
@@ -1033,8 +1032,8 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeShape] count] == 0) {
-            PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeSquare] count] == 0) {
+            PSPDFSquareAnnotation *annotation = [[PSPDFSquareAnnotation alloc] init];
             annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedPageRect, 100, 100);
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
@@ -1049,13 +1048,13 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }]];
 
     // As a second test, this example disables text selection, test that the shape still can be resized.
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Programmatically add a Polyline annotation" block:^UIViewController *{
+    [subclassingSection addContent:[PSContent contentWithTitle:@"Programmatically add a PolyLine annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypePolygon] count] == 0) {
-            PSPDFPolygonAnnotation *polyline = [[PSPDFPolygonAnnotation alloc] initWithPolygonType:PSPDFPolygonAnnotationPolyLine];
+        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypePolyLine] count] == 0) {
+            PSPDFPolyLineAnnotation *polyline = [PSPDFPolyLineAnnotation new];
             polyline.points = @[[NSValue valueWithCGPoint:CGPointMake(52, 633)], [NSValue valueWithCGPoint:CGPointMake(67, 672)], [NSValue valueWithCGPoint:CGPointMake(131, 685)], [NSValue valueWithCGPoint:CGPointMake(178, 654)], [NSValue valueWithCGPoint:CGPointMake(115, 622)]];
             polyline.color = [UIColor colorWithRed:0.0 green:1.f blue:0.f alpha:1.f];
             polyline.fillColor = UIColor.yellowColor;
@@ -1081,7 +1080,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
                 if ([word.stringValue isEqualToString:@"Batman"]) {
                     CGRect boundingBox;
                     NSArray *highlighedRects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:pageIndex].pageRotationTransform, &boundingBox);
-                    PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+                    PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
                     annotation.color = [UIColor orangeColor];
                     annotation.boundingBox = boundingBox;
                     annotation.rects = highlighedRects;
@@ -1093,13 +1092,6 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         }
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         controller.page = 8;
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Change default highlight annotation color" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        [document overrideClass:PSPDFHighlightAnnotation.class withClass:PSCColoredHighlightAnnotation.class];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
@@ -1212,7 +1204,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         NSUInteger page = 5;
         for (NSUInteger idx = 0; idx < 6; idx++) {
             PSPDFWord *word = ([document textParserForPage:page].words)[idx];
-            PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+            PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
@@ -2199,7 +2191,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:kHackerMagazineExample], NO);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
         // Add the annotation
-        PSPDFShapeAnnotation *annotation = [[PSPDFShapeAnnotation alloc] initWithShapeType:PSPDFShapeAnnotationSquare];
+        PSPDFSquareAnnotation *annotation = [PSPDFSquareAnnotation new];
         annotation.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100, 100);
         annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
         annotation.fillColor = annotation.color;
@@ -2599,7 +2591,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         for (NSUInteger idx = 0; idx < 6; idx++) {
             PSPDFWord *word = ([document textParserForPage:0].words)[idx];
-            PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+            PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
             annotation.boundingBox = boundingBox;
@@ -2618,7 +2610,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         for (NSUInteger idx = 0; idx < 6; idx++) {
             PSPDFWord *word = ([document textParserForPage:0].words)[idx];
-            PSPDFHighlightAnnotation *annotation = [[PSPDFHighlightAnnotation alloc] initWithHighlightType:PSPDFHighlightAnnotationHighlight];
+            PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
