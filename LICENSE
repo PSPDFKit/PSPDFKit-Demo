@@ -2,7 +2,10 @@ The PSPDFKit Sample applications are licensed with a modified BSD
 license. In plain language: you're allowed to do whatever you wish
 with the code, modify, redistribute, embed in your products (free or
 commercial), but you must include copyright, terms of usage and
-disclaimer as stated in the license. 
+disclaimer as stated in the license.
+
+You will require a PSPDFKit License to run these examples in non-demo
+mode. Please refer to http://pspdfkit.com/license.html for details.
 
 Copyright (c) 2010-2013, PSPDFKit GmbH.
 All rights reserved.
