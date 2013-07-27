@@ -358,10 +358,10 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 - (NSMutableArray *)searchForMagazineFolders {
     NSMutableArray *folders = [NSMutableArray array];
 
-    NSString *sampleFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+    NSString *sampleFolder = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Samples"];
     [folders addObjectsFromArray:[self searchFolder:sampleFolder]];
 
-    NSString *dirPath = [[PSCStoreManager storagePath] stringByAppendingPathComponent:@"downloads"];
+    NSString *dirPath = [PSCStoreManager.storagePath stringByAppendingPathComponent:@"downloads"];
     [folders addObjectsFromArray:[self searchFolder:dirPath]];
 
     // flatten hierarchy
@@ -394,7 +394,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 // Add a magazine to folder, then re-sort it.
 - (PSCMagazineFolder *)addMagazineToFolder:(PSCMagazine *)magazine {
-    PSCMagazineFolder *folder = [self.magazineFolders lastObject];
+    PSCMagazineFolder *folder = self.magazineFolders.lastObject;
     [folder addMagazine:magazine];
     NSAssert([folder isKindOfClass:[PSCMagazineFolder class]], @"incorrect type");
     return folder;

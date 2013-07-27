@@ -1,4 +1,4 @@
-//
+    //
 //  PSCatalogViewController.m
 //  PSPDFCatalog
 //
@@ -111,7 +111,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
 - (void)createTableContent {
     // Common paths
-    NSURL *samplesURL = [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"];
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
     NSMutableOrderedSet *sections = [NSMutableOrderedSet orderedSet];
@@ -126,6 +126,8 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+        //controller.shouldHideNavigationBarWithHUD = YES;
+        //controller.shouldHideStatusBarWithHUD = YES;
         controller.imageSelectionEnabled = NO;
         //controller.page = 3;
         return controller;
@@ -2626,7 +2628,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
     /*
     [testSection addContent:[PSContent contentWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
-        NSURL *URL = [[[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
+        NSURL *URL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
         PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
         NSError *error = nil;
         UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
