@@ -261,7 +261,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             [self darkenView:!magazine.isAvailable animated:NO];
         }
 
-        NSString *pageLabelText = PSCStripPDFFileType([magazine.files lastObject]);
+        NSString *pageLabelText = PSCStripPDFFileType(magazine.files.lastObject);
         [self updatePageLabel]; // create lazily
         self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
