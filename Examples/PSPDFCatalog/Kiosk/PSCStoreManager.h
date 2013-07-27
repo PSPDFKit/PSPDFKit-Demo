@@ -9,7 +9,7 @@
 //
 
 /// Enable to make the view plain, no folders supported.
-#define kPSPDFStoreManagerPlain YES
+#define PSPDFStoreManagerPlain YES
 
 /// Notification emitted when magazines were successfully loaded form disk.
 extern NSString *const kPSPDFStoreDiskLoadFinishedNotification;
