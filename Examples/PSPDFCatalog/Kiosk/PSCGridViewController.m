@@ -271,7 +271,7 @@
             [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
                 self.collectionView.transform = CGAffineTransformIdentity;
                 self.magazineView.frame = relativeCellRect;
-                [[self.magazineView.subviews lastObject] setAlpha:0.f];
+                [self.magazineView.subviews.lastObject setAlpha:0.f];
                 self.collectionView.alpha = 1.0f;
             } completion:^(BOOL finished) {
                 [self.magazineView removeFromSuperview];
