@@ -67,7 +67,7 @@
     }else {
         NSUInteger index = [self.currentWords indexOfObjectIdenticalTo:self.currentWord];
         index++;
-        if (index < [self.currentWords count]) {
+        if (index < self.currentWords.count) {
             self.currentWord = self.currentWords[index];
         }else {
             // we hit the end of the page.

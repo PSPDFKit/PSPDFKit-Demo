@@ -1034,7 +1034,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeSquare] count] == 0) {
+        if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypeSquare].count == 0) {
             PSPDFSquareAnnotation *annotation = [[PSPDFSquareAnnotation alloc] init];
             annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedPageRect, 100, 100);
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
@@ -1055,7 +1055,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // don't confuse other examples
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypePolyLine] count] == 0) {
+        if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypePolyLine].count == 0) {
             PSPDFPolyLineAnnotation *polyline = [PSPDFPolyLineAnnotation new];
             polyline.points = @[[NSValue valueWithCGPoint:CGPointMake(52, 633)], [NSValue valueWithCGPoint:CGPointMake(67, 672)], [NSValue valueWithCGPoint:CGPointMake(131, 685)], [NSValue valueWithCGPoint:CGPointMake(178, 654)], [NSValue valueWithCGPoint:CGPointMake(115, 622)]];
             polyline.color = [UIColor colorWithRed:0.0 green:1.f blue:0.f alpha:1.f];
@@ -1103,7 +1103,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk] count] == 0) {
+        if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk].count == 0) {
 
             // Check the header for more helper methods; PSPDFBezierPathGetPoints() might be useful depending on your use case.
             PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
@@ -2082,7 +2082,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         // add shape annotation if there isn't one already.
         NSUInteger targetPage = 0;
-        if ([[document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk] count] == 0) {
+        if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypeInk].count == 0) {
 
             // Check the header for more helper methods; PSPDFBezierPathGetPoints() might be useful depending on your use case.
             PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
@@ -2885,7 +2885,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return tableView == self.tableView ? [[_content[section] contentDescriptors] count] : self.filteredContent.count;
+    return tableView == self.tableView ? [_content[section] contentDescriptors].count : self.filteredContent.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {

@@ -23,7 +23,7 @@
 #pragma mark - PSPDFBarButtonItem
 
 - (BOOL)isAvailable {
-    return [self.pdfController.document.metadata count] > 0;
+    return self.pdfController.document.metadata.count > 0;
 }
 
 - (NSString *)actionName {
@@ -51,8 +51,8 @@
     if ((self = [super init])) {
         _document = document;
         self.title = [document.fileURL lastPathComponent];
-        PSC_IF_PRE_IOS7(self.contentSizeForViewInPopover = CGSizeMake(350.f, [document.metadata count] * 44.f);)
-        PSC_IF_IOS7_OR_GREATER(self.preferredContentSize = CGSizeMake(350.f, [document.metadata count] * 44.f);)
+        PSC_IF_PRE_IOS7(self.contentSizeForViewInPopover = CGSizeMake(350.f, document.metadata.count * 44.f);)
+        PSC_IF_IOS7_OR_GREATER(self.preferredContentSize = CGSizeMake(350.f, document.metadata.count * 44.f);)
     }
     return self;
 }
@@ -81,11 +81,11 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.document.metadata count] > 0 ? 1 : 0;
+    return self.document.metadata.count > 0 ? 1 : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.document.metadata count];
+    return self.document.metadata.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
