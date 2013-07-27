@@ -162,7 +162,7 @@
 
 - (void)setupCoreDataStack {
 	// Load the model
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
+    NSURL *modelURL = [NSBundle.mainBundle URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
     // Create folder

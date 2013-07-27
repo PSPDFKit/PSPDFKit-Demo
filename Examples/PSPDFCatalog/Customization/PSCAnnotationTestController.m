@@ -56,7 +56,7 @@
 
             // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
             // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
-            //annotation.URL = [NSURL fileURLWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"exampleimage.jpg"]];
+            //annotation.URL = [NSURL fileURLWithPath:NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"exampleimage.jpg"]];
 
             // annotation frame is in PDF coordinate space. Use pageRect for the full page.
             annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
@@ -198,7 +198,7 @@
 - (NSString *)PDFDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken {
     NSString *resolvedPath = nil;
     if ([pathToken isEqualToString:@"TokenTest"]) {
-        resolvedPath = [[NSBundle mainBundle] bundlePath];
+        resolvedPath = NSBundle.mainBundle.bundlePath;
     }else {
         PSCLog(@"Token not recognized: %@", pathToken);
     }

@@ -200,7 +200,7 @@
 }
 
 - (NSString *)samplesFolder {
-    NSString *samplesFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+    NSString *samplesFolder = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Samples"];
     return samplesFolder;
 }
 

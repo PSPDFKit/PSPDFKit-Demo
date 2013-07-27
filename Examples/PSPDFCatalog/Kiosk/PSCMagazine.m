@@ -110,11 +110,11 @@
     static NSString *bundlePath;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        bundlePath = [[NSBundle mainBundle] bundlePath];
+        bundlePath = NSBundle.mainBundle.bundlePath;
     });
 
     // if magazine is within the app bundle, we can't delete it.
-    BOOL deletable = ![[[self pathForPage:0] path] hasPrefix:bundlePath];
+    BOOL deletable = ![[self pathForPage:0].path hasPrefix:bundlePath];
     return deletable;
 }
 
