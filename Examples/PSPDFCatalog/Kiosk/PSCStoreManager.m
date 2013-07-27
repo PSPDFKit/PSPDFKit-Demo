@@ -299,7 +299,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         [delegate magazineStoreEndUpdate];
 
         // update newsstand icon
-        [self updateNewsstandIcon:[newMagazines lastObject]];
+        [self updateNewsstandIcon:newMagazines.lastObject];
     }
 }
 
