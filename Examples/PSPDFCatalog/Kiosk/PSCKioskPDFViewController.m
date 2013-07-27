@@ -90,7 +90,7 @@
 - (void)close:(id)sender {
     // If parent is PSCGridController, we have a custom animation in place.
     BOOL animated = YES;
-    NSUInteger controllerCount = [self.navigationController.viewControllers count];
+    NSUInteger controllerCount = self.navigationController.viewControllers.count;
     if (controllerCount > 1 && [self.navigationController.viewControllers[controllerCount-2] isKindOfClass:[PSCGridViewController class]]) {
         animated = NO;
     }
@@ -124,7 +124,7 @@
     NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtomItem];
 
     // Simple performance optimization.
-    if ([leftToolbarItems count] != [self.leftBarButtonItems count] || force) {
+    if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
         self.leftBarButtonItems = leftToolbarItems;
     }
 }

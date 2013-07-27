@@ -157,7 +157,7 @@ __attribute__((constructor)) static void setupDefaults(void) {
             [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1.0f],
             [UIColor colorWithRed:0.85f green:0.85f blue:0.85f alpha:1.0f]];
 
-        NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:[_paperColors count]];
+        NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:_paperColors.count];
         [_paperColors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             [imageArray addObject:[self imageWithColor:obj]];
         }];
@@ -245,7 +245,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [_content count];
+    return _content.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -529,9 +529,9 @@ static CGFloat pscSettingsLastYOffset = 0;
     NSArray *visiblePageNumbers = [pdfController visiblePageNumbers];
     for (NSNumber *pageNumber in visiblePageNumbers) {
         NSUInteger page = [pageNumber unsignedIntegerValue];
-        if ([visiblePageNumbers count] > 1) [text appendFormat:@"Page %d:\n\n", page+1];
+        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %d:\n\n", page+1];
         [text appendString:[pdfController.document textParserForPage:page].text];
-        if ([visiblePageNumbers count] > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
+        if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }
     configView.text = text;
     configView.editable = NO;

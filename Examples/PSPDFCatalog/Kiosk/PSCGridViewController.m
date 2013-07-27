@@ -480,10 +480,10 @@
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:YES];
 
     // Not finished yet? return early.
-    if ([[PSCStoreManager sharedStoreManager].magazineFolders count] == 0) return;
+    if (PSCStoreManager.sharedStoreManager.magazineFolders.count == 0) return;
 
     // If we're in plain mode, pre-set a folder.
-    if (kPSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
+    if (PSPDFStoreManagerPlain) self.magazineFolder = PSCStoreManager.sharedStoreManager.magazineFolders.lastObject;
 
     // Preload all magazines. (copy to prevent mutation errors)
     NSArray *magazines = [self.magazineFolder.magazines copy];
@@ -503,7 +503,7 @@
             editing =  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
         }else {
             NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
-            editing = [fixedMagazines count] == 0;
+            editing = fixedMagazines.count == 0;
         }
     }
     return editing;
@@ -558,14 +558,14 @@
         _filteredData = [_filteredData copy];
     }
 
-    return [_filteredData count];
+    return _filteredData.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PSCImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class]) forIndexPath:indexPath];
 
     // connect the delete button
-    if ([[cell.deleteButton allTargets] count] == 0) {
+    if (cell.deleteButton.allTargets.count == 0) {
         [cell.deleteButton addTarget:self action:@selector(processDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
     }
 
@@ -590,8 +590,8 @@
 
     BOOL canDelete = YES;
     __unused NSString *message = nil;
-    if ([folder.magazines count] > 1 && !self.magazineFolder) {
-        message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, [folder.magazines count]];
+    if (folder.magazines.count > 1 && !self.magazineFolder) {
+        message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, folder.magazines.count];
     }else {
         message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
         if (kPSPDFShouldShowDeleteConfirmationDialog) {

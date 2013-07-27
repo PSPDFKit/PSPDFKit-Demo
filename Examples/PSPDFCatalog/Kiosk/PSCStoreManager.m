@@ -138,7 +138,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     if (!magazine.URL) {
         [delegate magazineStoreMagazineDeleted:magazine];
 
-        if ([folder.magazines count] == 1) {
+        if (folder.magazines.count == 1) {
             [delegate magazineStoreFolderDeleted:folder];
         }
     }
@@ -158,7 +158,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     if (!magazine.URL) {
         [folder removeMagazine:magazine];
 
-        if ([folder.magazines count] > 0) {
+        if (folder.magazines.count > 0) {
             [delegate magazineStoreFolderModified:folder]; // was just modified
         }else {
             dispatch_barrier_sync(_magazineFolderQueue, ^{
@@ -235,7 +235,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         }
 
         // if magazine doesn't exist anymore, choose the first magazine in the list
-        if (!magazine && [self.magazineFolders count]) {
+        if (!magazine && self.magazineFolders.count) {
             magazine = [(self.magazineFolders)[0] firstMagazine];
         }
     }
@@ -287,7 +287,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 
             // folder fresh or updated?
-            if ([folder.magazines count] == 1) {
+            if (folder.magazines.count == 1) {
                 [delegate magazineStoreFolderAdded:folder];
             }else {
                 [delegate magazineStoreFolderModified:folder];
@@ -338,7 +338,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
                     }
                 }
 
-                if ([contentFolder.magazines count]) {
+                if (contentFolder.magazines.count) {
                     [folders addObject:contentFolder];
                 }
             }else if ([[fullPath lowercaseString] hasSuffix:@"pdf"]) {
@@ -349,7 +349,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
     }
-    if ([rootFolder.magazines count]) [folders addObject:rootFolder];
+    if (rootFolder.magazines.count > 0) [folders addObject:rootFolder];
 
     return folders;
 }
@@ -365,9 +365,9 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     [folders addObjectsFromArray:[self searchFolder:dirPath]];
 
     // flatten hierarchy
-    if (kPSPDFStoreManagerPlain) {
+    if (PSPDFStoreManagerPlain) {
         // if we don't have any folders, create one
-        if ([folders count] == 0) {
+        if (folders.count == 0) {
             PSCMagazineFolder *aFolder = [PSCMagazineFolder folderWithTitle:@""];
             [folders addObject:aFolder];
         }
@@ -414,7 +414,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 - (PSCMagazine *)magazineForFileName:(NSString *)fileName {
     for (PSCMagazineFolder *folder in self.magazineFolders) {
         for (PSCMagazine *magazine in folder.magazines) {
-            if ([magazine.files count] && [(magazine.files)[0] isEqualToString:fileName]) {
+            if (magazine.files.count && [(magazine.files)[0] isEqualToString:fileName]) {
                 return magazine;
             }
         }

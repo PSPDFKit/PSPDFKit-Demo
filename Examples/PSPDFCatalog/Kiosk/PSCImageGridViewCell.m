@@ -143,7 +143,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 - (void)updateProgressAnimated:(BOOL)animated {
     float progressTotal = 1.f;
 
-    if ([_observedMagazineDownloads count]) {
+    if (_observedMagazineDownloads.count > 0) {
         progressTotal = [[_observedMagazineDownloads valueForKeyPath:@"@avg.downloadProgress"] floatValue];
     }
 
@@ -284,7 +284,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
         // setup for folder
         if (magazineFolder) {
-            NSUInteger magazineCount = [magazineFolder.magazines count];
+            NSUInteger magazineCount = magazineFolder.magazines.count;
             self.magazineCount = magazineCount;
 
             PSCMagazine *coverMagazine = [magazineFolder firstMagazine];
