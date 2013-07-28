@@ -37,7 +37,7 @@
 
 static char kPSPDFKVOToken;
 static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
-    if (block) { [NSThread isMainThread] ? block() : dispatch_async(dispatch_get_main_queue(), block); }
+    if (block) { NSThread.isMainThread ? block() : dispatch_async(dispatch_get_main_queue(), block); }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
