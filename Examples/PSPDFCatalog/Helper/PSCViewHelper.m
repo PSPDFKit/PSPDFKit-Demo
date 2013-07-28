@@ -28,8 +28,7 @@ static CGFloat PSCSimulatorAnimationDragCoefficient(void) {
 #import <dlfcn.h>
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        void *UIKit = dlopen([[[NSBundle bundleForClass:UIApplication.class] executablePath] fileSystemRepresentation], RTLD_LAZY);
-        UIAnimationDragCoefficient = (CGFloat (*)(void))dlsym(UIKit, "UIAnimationDragCoefficient");
+        UIAnimationDragCoefficient = (CGFloat (*)(void))dlsym(RTLD_DEFAULT, "UIAnimationDragCoefficient");
     });
 #endif
     return UIAnimationDragCoefficient ? UIAnimationDragCoefficient() : 1.f;
