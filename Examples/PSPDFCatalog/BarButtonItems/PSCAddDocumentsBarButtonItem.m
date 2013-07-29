@@ -37,7 +37,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)documentSelectorController didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)documentPickerController didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
 
     // add new document, and set as current
@@ -45,9 +45,13 @@
     tabbedViewController.visibleDocument = document;
     tabbedViewController.pdfController.page = pageIndex;
 
+    if (searchString && documentPickerController.fullTextSearchEnabled) {
+        [tabbedViewController.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} animated:YES];
+    }
+
     // hide controller
     if (PSIsIpad())[self.class dismissPopoverAnimated:YES];
-    else [documentSelectorController dismissViewControllerAnimated:YES completion:NULL];
+    else [documentPickerController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
