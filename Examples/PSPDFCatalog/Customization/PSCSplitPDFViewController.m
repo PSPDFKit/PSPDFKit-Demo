@@ -36,7 +36,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
-- (void)displayDocument:(PSPDFDocument *)document {
+- (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
     // Dismiss any open popovers.
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
@@ -44,6 +44,7 @@
 
     // anyway, set document
     self.document = document;
+    self.page = pageIndex;
 
 #if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{

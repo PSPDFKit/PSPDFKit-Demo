@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong, readonly) UIPopoverController *masterPopoverController;
 
-- (void)displayDocument:(PSPDFDocument *)document;
+- (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex;
 
 @end
