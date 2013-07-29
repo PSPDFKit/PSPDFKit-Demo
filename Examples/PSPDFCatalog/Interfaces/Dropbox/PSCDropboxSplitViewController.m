@@ -99,4 +99,8 @@
     }
 }
 
+- (void)documentPickerControllerWillEndSearch:(PSPDFDocumentPickerController *)documentPickerController {
+    [self.pdfController clearHighlightedSearchResults];
+}
+
 @end
