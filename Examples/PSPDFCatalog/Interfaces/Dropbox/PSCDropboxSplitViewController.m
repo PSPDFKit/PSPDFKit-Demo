@@ -88,11 +88,15 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFDocumentSelectorControllerDelegate
+#pragma mark - PSPDFDocumentPickerControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)documentPickerController didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     self.pdfController.document = document;
     self.pdfController.page = pageIndex;
+
+    if (searchString && documentPickerController.fullTextSearchEnabled) {
+        [self.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} animated:YES];
+    }
 }
 
 @end

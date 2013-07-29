@@ -16,5 +16,4 @@
 
 @implementation PSCDropboxDocumentSelectorController
 
-
 @end
