@@ -144,10 +144,10 @@
         NSString *path = [[self samplesFolder] stringByAppendingPathComponent:kPaperExampleFileName];
         NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
         if (![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
-            NSLog(@"error while deleting: %@", [error localizedDescription]);
+            NSLog(@"error while deleting: %@", error.localizedDescription);
         }
         if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:&error]) {
-            NSLog(@"error while copying: %@", [error localizedDescription]);
+            NSLog(@"error while copying: %@", error.localizedDescription);
         }
         replace = NO;
     }else {
@@ -210,7 +210,7 @@
     NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
     if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
-        NSLog(@"error while deleting: %@", [error localizedDescription]);
+        NSLog(@"error while deleting: %@", error.localizedDescription);
     }
     [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];
 }
