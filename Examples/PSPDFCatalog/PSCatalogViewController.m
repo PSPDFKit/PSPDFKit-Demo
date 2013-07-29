@@ -1653,7 +1653,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         int64_t delayInSeconds = 1.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"Drammen" animated:YES];
+            [pdfController searchForString:@"Drammen" options:nil animated:YES];
         });
 
         return pdfController;
@@ -1666,7 +1666,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         int64_t delayInSeconds = 1.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"lorem" animated:YES];
+            [pdfController searchForString:@"lorem" options:nil animated:YES];
         });
 
         return pdfController;
@@ -1787,7 +1787,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         int64_t delayInSeconds = 1.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"§ " animated:YES];
+            [pdfController searchForString:@"§ " options:nil animated:YES];
         });
 
         return pdfController;
@@ -1800,7 +1800,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         int64_t delayInSeconds = 1.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"In Vitro Amplification" animated:YES];
+            [pdfController searchForString:@"In Vitro Amplification" options:nil animated:YES];
         });
         return pdfController;
     }]];
@@ -1812,7 +1812,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         int64_t delayInSeconds = 5.f;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"pdfo" animated:YES];
+            [pdfController searchForString:@"pdfo" options:nil animated:YES];
         });
         return pdfController;
     }]];
@@ -2332,7 +2332,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"control points" animated:YES];
+            [pdfController searchForString:@"control points" options:nil animated:YES];
         });
 
         NSLog(@"%@", [[document textParserForPage:12] glyphs]);
@@ -2960,9 +2960,9 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFDocumentSelectorControllerDelegate
+#pragma mark - PSPDFDocumentPickerControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
@@ -2972,6 +2972,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         // create controller and merge new documents with last saved state.
         PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
         [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
+        tabbedViewController.pdfController.page = pageIndex;
         [controller.navigationController pushViewController:tabbedViewController animated:YES];
     }else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
