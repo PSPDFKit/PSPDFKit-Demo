@@ -122,7 +122,7 @@
         // don't back up the downloaded pdf - iCloud is for self-created files only.
         [self addSkipBackupAttributeToItemAtURL:destinationURL];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        PSCLog(@"Download failed: %@. Reason: %@.", self.URL, [error localizedDescription]);
+        PSCLog(@"Download failed: %@. Reason: %@.", self.URL, error.localizedDescription);
         self.status = PSCStoreDownloadStatusFailed;
         self.error = pdfRequestWeak.error;
         self.magazine.downloading = NO;

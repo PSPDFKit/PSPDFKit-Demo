@@ -673,7 +673,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
                 if (error) {
                     [PSPDFProgressHUD dismiss];
-                    [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                    [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
                 }else {
                     // generate document and show it
                     [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
@@ -947,7 +947,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
                                                     password:password
                                                        error:&error];
             if (!encryptedData) {
-                NSLog(@"Failed to encrypt: %@", [error localizedDescription]);
+                NSLog(@"Failed to encrypt: %@", error.localizedDescription);
                 [data setData:[NSData data]]; // clear data - better save nothing than unencrypted!
             }else {
                 [data setData:encryptedData];
@@ -962,7 +962,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
                                                 withPassword:password
                                                        error:&error];
             if (!decryptedData) {
-                NSLog(@"Failed to decrypt: %@", [error localizedDescription]);
+                NSLog(@"Failed to decrypt: %@", error.localizedDescription);
             }
             return decryptedData;
         }];
@@ -2205,7 +2205,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         // Save it
         NSError *error = nil;
         if (![document saveChangedAnnotationsWithError:&error]) {
-            NSLog(@"Failed to save: %@", [error localizedDescription]);
+            NSLog(@"Failed to save: %@", error.localizedDescription);
         }
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2636,7 +2636,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         NSError *error = nil;
         UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
         if (!thumbnail) {
-            NSLog(@"Failed to generate thumbnail: %@", [error localizedDescription]);
+            NSLog(@"Failed to generate thumbnail: %@", error.localizedDescription);
         }
         NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
         NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
@@ -2717,7 +2717,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
                 [PSPDFProgressHUD dismiss];
-                [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }else {
                 // generate document and show it
                 [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
