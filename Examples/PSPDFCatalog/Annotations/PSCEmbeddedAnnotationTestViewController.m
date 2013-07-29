@@ -50,7 +50,7 @@
 
     NSError *error = nil;
     if (![self.document saveChangedAnnotationsWithError:&error]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:[error localizedDescription] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
@@ -71,7 +71,7 @@
 }
 
 - (void)PDFDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
-    NSLog(@"Failed to save annotations: %@", [error localizedDescription]);
+    NSLog(@"Failed to save annotations: %@", error.localizedDescription);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
