@@ -62,20 +62,20 @@
 
 - (void)deselectAction {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    [self.masterVC displayDocument:nil];
+    [self.masterVC displayDocument:nil page:0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
 #if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
     // Copy is purely there as a stress test.
     document = [document copy];
 #endif
 
     PSCSplitPDFViewController *masterVC = self.masterVC;
-    [masterVC displayDocument:document];
+    [masterVC displayDocument:document page:pageIndex];
 
     // hide controller
     [masterVC.popoverController dismissPopoverAnimated:YES];

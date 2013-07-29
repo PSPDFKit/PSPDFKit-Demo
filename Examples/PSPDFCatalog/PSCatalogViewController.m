@@ -2962,7 +2962,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
@@ -2975,6 +2975,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         [controller.navigationController pushViewController:tabbedViewController animated:YES];
     }else {
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.page = pageIndex;
         pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
         pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
         [controller.navigationController pushViewController:pdfController animated:YES];

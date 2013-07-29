@@ -37,12 +37,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
-- (void)documentPickerController:(PSPDFDocumentPickerController *)documentSelectorController didSelectDocument:(PSPDFDocument *)document {
+- (void)documentPickerController:(PSPDFDocumentPickerController *)documentSelectorController didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
     PSPDFTabbedViewController *tabbedViewController = (PSPDFTabbedViewController *)self.pdfController.parentViewController;
 
     // add new document, and set as current
     [tabbedViewController addDocuments:@[document] atIndex:NSUIntegerMax animated:YES];
     tabbedViewController.visibleDocument = document;
+    tabbedViewController.pdfController.page = pageIndex;
 
     // hide controller
     if (PSIsIpad())[self.class dismissPopoverAnimated:YES];
