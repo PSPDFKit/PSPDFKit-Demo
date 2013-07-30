@@ -113,9 +113,11 @@
 - (void)annotationToolbar:(PSPDFAnnotationToolbar *)annotationToolbar didChangeMode:(NSString *)newMode {
     if (!newMode && annotationToolbar.window) {
         // don't show all toolbar features, hide instead.
-        [annotationToolbar hideToolbarAnimated:YES completion:^{
-            [annotationToolbar removeFromSuperview];
-        }];
+        [annotationToolbar hideToolbarAnimated:YES completion:^(BOOL finished) {
+			if (finished) {
+				[annotationToolbar removeFromSuperview];
+			}
+		}];
     }
 
     // update button selection status
