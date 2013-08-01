@@ -48,7 +48,7 @@
 }
 
 - (NSUInteger)hash {
-    return [self.title hash];
+    return self.title.hash;
 }
 
 - (BOOL)isEqual:(id)other {
