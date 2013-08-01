@@ -155,7 +155,7 @@
     NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);
 }
 
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
     NSLog(@"willShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
 
     // example how to intercept PSPDFSearchViewController and change the barStyle to black
@@ -167,7 +167,7 @@
     return YES;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
     NSLog(@"didShowViewController: %@ embeddedIn:%@ animated: %d", viewController, controller, animated);
 }
 
