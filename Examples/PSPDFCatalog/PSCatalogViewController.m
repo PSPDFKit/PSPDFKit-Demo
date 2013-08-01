@@ -1,4 +1,4 @@
-    //
+//
 //  PSCatalogViewController.m
 //  PSPDFCatalog
 //
@@ -59,6 +59,7 @@
 #import "PSCExportPDFPagesViewController.h"
 #import "PSCCoreDataAnnotationProvider.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
+#import "NSObject+PSCDeallocationBlock.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -479,23 +480,23 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
 
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                PSPDFAnnotationStringLink, // not added by default.
-                PSPDFAnnotationStringHighlight,
-                PSPDFAnnotationStringUnderline,
-                PSPDFAnnotationStringSquiggly,
-                PSPDFAnnotationStringStrikeOut,
-                PSPDFAnnotationStringNote,
-                PSPDFAnnotationStringFreeText,
-                PSPDFAnnotationStringInk,
-                PSPDFAnnotationStringLine,
-                PSPDFAnnotationStringSquare,
-                PSPDFAnnotationStringCircle,
-                PSPDFAnnotationStringSignature,
-                PSPDFAnnotationStringStamp,
-                PSPDFAnnotationStringImage,
-                PSPDFAnnotationStringPolygon,
-                PSPDFAnnotationStringSound,
-                nil];
+                                            PSPDFAnnotationStringLink, // not added by default.
+                                            PSPDFAnnotationStringHighlight,
+                                            PSPDFAnnotationStringUnderline,
+                                            PSPDFAnnotationStringSquiggly,
+                                            PSPDFAnnotationStringStrikeOut,
+                                            PSPDFAnnotationStringNote,
+                                            PSPDFAnnotationStringFreeText,
+                                            PSPDFAnnotationStringInk,
+                                            PSPDFAnnotationStringLine,
+                                            PSPDFAnnotationStringSquare,
+                                            PSPDFAnnotationStringCircle,
+                                            PSPDFAnnotationStringSignature,
+                                            PSPDFAnnotationStringStamp,
+                                            PSPDFAnnotationStringImage,
+                                            PSPDFAnnotationStringPolygon,
+                                            PSPDFAnnotationStringSound,
+                                            nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
@@ -866,6 +867,32 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
+    [customizationSection addContent:[PSContent contentWithTitle:@"Set custom stamps" block:^UIViewController *{
+        NSMutableArray *defaultStamps = [NSMutableArray array];
+        for (NSString *stampSubject in @[@"Great!", @"Stamp", @"Like"]) {
+            PSPDFStampAnnotation *stamp = [[PSPDFStampAnnotation alloc] initWithSubject:stampSubject];
+            stamp.userInfo = @{PSPDFStampAnnotationSuggestedSizeKey : BOXED(CGSizeMake(200, 70))};
+            [defaultStamps addObject:stamp];
+        }
+        // Careful with memory - you don't wanna add large images here.
+        PSPDFStampAnnotation *imageStamp = [[PSPDFStampAnnotation alloc] init];
+        imageStamp.image = [UIImage imageNamed:@"exampleimage.jpg"];
+        imageStamp.userInfo = @{PSPDFStampAnnotationSuggestedSizeKey : BOXED(imageStamp.image.size)};
+        [defaultStamps addObject:imageStamp];
+        [PSPDFStampViewController setDefaultStampAnnotations:defaultStamps];
+
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
+
+        // Add cleanup block so other examples will use the default stamps.
+        [pdfController psc_addDeallocBlock:^{
+            [PSPDFStampViewController setDefaultStampAnnotations:nil];
+        }];
+
+        return pdfController;
+    }]];
+
     [sections addObject:customizationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -924,7 +951,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
             // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
             // document.cacheStrategy = PSPDFCacheNothing;
-            
+
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
@@ -980,18 +1007,18 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Annotation Link Editor" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                PSPDFAnnotationStringLink, // important!
-                PSPDFAnnotationStringHighlight,
-                PSPDFAnnotationStringUnderline,
-                PSPDFAnnotationStringSquiggly,
-                PSPDFAnnotationStringStrikeOut,
-                PSPDFAnnotationStringNote,
-                PSPDFAnnotationStringFreeText,
-                PSPDFAnnotationStringInk,
-                PSPDFAnnotationStringSquare,
-                PSPDFAnnotationStringCircle,
-                PSPDFAnnotationStringStamp,
-                nil];
+                                            PSPDFAnnotationStringLink, // important!
+                                            PSPDFAnnotationStringHighlight,
+                                            PSPDFAnnotationStringUnderline,
+                                            PSPDFAnnotationStringSquiggly,
+                                            PSPDFAnnotationStringStrikeOut,
+                                            PSPDFAnnotationStringNote,
+                                            PSPDFAnnotationStringFreeText,
+                                            PSPDFAnnotationStringInk,
+                                            PSPDFAnnotationStringSquare,
+                                            PSPDFAnnotationStringCircle,
+                                            PSPDFAnnotationStringStamp,
+                                            nil];
 
         PSPDFViewController *controller = [[PSCLinkEditorViewController alloc] initWithDocument:document];
         return controller;
@@ -1258,7 +1285,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
                     [PSPDFProgressHUD showErrorWithStatus:@"Upload failed."];
                 }];
             });
-            
+
             return controller;
         }]];
     }
@@ -1672,7 +1699,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    // Check that words can be selected 
+    // Check that words can be selected
     [testSection addContent:[PSContent contentWithTitle:@"Test word block separation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_word_separation_ascii2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2127,7 +2154,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         pdfController.page = 1;
         return pdfController;
     }]];
-    
+
     // Test that polylines are correctly displayed.
     [testSection addContent:[PSContent contentWithTitle:@"Polyline annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
@@ -2603,7 +2630,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             [document addAnnotations:@[annotation] page:0];
             [document saveChangedAnnotationsWithError:NULL];
         }
-       // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
+        // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -2630,26 +2657,26 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
 
     /*
-    [testSection addContent:[PSContent contentWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
-        NSURL *URL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
-        PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
-        NSError *error = nil;
-        UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
-        if (!thumbnail) {
-            NSLog(@"Failed to generate thumbnail: %@", error.localizedDescription);
-        }
-        NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
-        NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
-        NSString *filePathMedium = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"medium.png"];
-        NSString *filePathSmall = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"small.png"];
-        NSLog(@"Writing %@", filePathMedium);
-        [thumbnailMedium writeToFile:filePathMedium atomically:YES];
-        NSLog(@"Writing %@", filePathSmall);
-        [thumbnailSmall writeToFile:filePathSmall atomically:YES];
-        NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
-        [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
-        return nil;
-    }]];*/
+     [testSection addContent:[PSContent contentWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
+     NSURL *URL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
+     PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
+     NSError *error = nil;
+     UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
+     if (!thumbnail) {
+     NSLog(@"Failed to generate thumbnail: %@", error.localizedDescription);
+     }
+     NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
+     NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
+     NSString *filePathMedium = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"medium.png"];
+     NSString *filePathSmall = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"small.png"];
+     NSLog(@"Writing %@", filePathMedium);
+     [thumbnailMedium writeToFile:filePathMedium atomically:YES];
+     NSLog(@"Writing %@", filePathSmall);
+     [thumbnailSmall writeToFile:filePathSmall atomically:YES];
+     NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
+     [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
+     return nil;
+     }]];*/
 
     // Check that there's a red note annotation in landscape mode or when you zoom out.
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation outside of page" block:^UIViewController *{
