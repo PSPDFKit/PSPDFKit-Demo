@@ -35,13 +35,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-
     [self performSelector:@selector(showRandomPDFController) withObject:nil afterDelay:0.1];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showRandomPDFController) object:nil];
 }
 
