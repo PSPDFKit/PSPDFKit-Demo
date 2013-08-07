@@ -95,7 +95,7 @@
 - (void)pdfViewController:(PSPDFViewController *)pdfController
     didShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView
                onPageView:(PSPDFPageView *)pageView {
-    if([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
+    if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
         PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;
         MPMoviePlayerController *player = videoView.player;
         player.scalingMode = MPMovieScalingModeAspectFill;

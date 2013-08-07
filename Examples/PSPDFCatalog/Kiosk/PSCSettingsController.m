@@ -526,7 +526,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     UITextView *configView = [UITextView new];
 
     NSMutableString *text = [NSMutableString string];
-    NSArray *visiblePageNumbers = [pdfController visiblePageNumbers];
+    NSOrderedSet *visiblePageNumbers = pdfController.visiblePageNumbers;
     for (NSNumber *pageNumber in visiblePageNumbers) {
         NSUInteger page = [pageNumber unsignedIntegerValue];
         if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %d:\n\n", page+1];
