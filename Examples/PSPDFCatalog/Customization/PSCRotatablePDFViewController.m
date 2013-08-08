@@ -38,6 +38,16 @@
 static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     rotation %= 360;
     while (rotation < 0) rotation += 360;
+
+    // correct weird rotation values. (Only 0, 90, 180, 270 are allowed)
+    if (rotation % 90 != 0) {
+        if (rotation < 45) rotation = 0;
+        else if (rotation < 135) rotation = 90;
+        else if (rotation < 225) rotation = 180;
+        else if (rotation < 315) rotation = 270;
+        else rotation = 0;
+    }
+
     return rotation;
 }
 
