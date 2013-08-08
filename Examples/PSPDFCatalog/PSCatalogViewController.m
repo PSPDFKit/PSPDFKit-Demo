@@ -3093,3 +3093,23 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 }
 
 @end
+
+
+// Fixes a missing selector crash for [UIToolbarButton imageForState:]:
+// TODO: Test during iOS7 betas if this has been fixed.
+__attribute__((constructor)) static void PSPDFFixUIToolbarButtonSelectorCrash(void) {
+    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS5/6.
+
+    @autoreleasepool {
+        Class toolbarButtonClass = NSClassFromString([NSString stringWithFormat:@"UI%@Button", @"Toolbar"]);
+        SEL imageForState = NSSelectorFromString([NSString stringWithFormat:@"image%@State:", @"For"]);
+        if (![toolbarButtonClass instancesRespondToSelector:imageForState]) {
+            IMP updateIMP = imp_implementationWithBlock(^(id _self, int state) {return nil;});
+            Method method = class_getInstanceMethod(toolbarButtonClass, imageForState);
+            const char *encoding = method_getTypeEncoding(method);
+            if (!class_addMethod(toolbarButtonClass, imageForState, updateIMP, encoding)) {
+                NSLog(@"Failed to add [UIToolbarButton imageForState:] workaround");
+            }
+        }
+    }
+}
