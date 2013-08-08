@@ -61,7 +61,7 @@
             // annotation frame is in PDF coordinate space. Use pageRect for the full page.
             annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
 
-            // annotation.page/document is autodetecting set.
+            // annotation.page/document is auto detecting set.
             [self.document addAnnotations:@[annotation] page:0];
         }
     }
@@ -80,37 +80,31 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-/// time to adjust PSPDFViewController before a PSPDFDocument is displayed
-- (void)pdfViewController:(PSPDFViewController *)pdfController willDisplayDocument:(PSPDFDocument *)document {
-    NSLog(@"willDisplayDocument: %@", document);
+- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldChangeDocument:(PSPDFDocument *)document {
+    NSLog(@"shouldChangeDocument: %@", document);
+    return YES;
 }
 
-/// delegate to be notified when pdfController finished loading
-- (void)pdfViewController:(PSPDFViewController *)pdfController didDisplayDocument:(PSPDFDocument *)document {
+- (void)pdfViewController:(PSPDFViewController *)pdfController didChangeDocument:(PSPDFDocument *)document {
     NSLog(@"didDisplayDocument: %@", document);
 }
 
-/// controller did show/scrolled to a new page (at least 51% of it is visible)
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
     NSLog(@"didShowPageView: page:%d", pageView.page);
 }
 
-/// page was fully rendered at zoomlevel = 1
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
     NSLog(@"didRenderPageView: page:%d", pageView.page);
 }
 
-/// will be called when viewMode changes
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
     NSLog(@"didChangeViewMode: %d", viewMode);
 }
 
-/// called after pdf page has been loaded and added to the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     NSLog(@"didLoadPageView: page:%d", pageView.page);
 }
 
-/// called before a pdf page will be unloaded and removed from the pagingScrollView.
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView {
     NSLog(@"willUnloadPageView: page:%d", pageView.page);
 }
