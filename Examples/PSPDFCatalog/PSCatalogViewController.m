@@ -914,7 +914,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return controller;
     }]];
 
-    [passwordSection addContent:[PSContent contentWithTitle:@"Create password protected PDF." block:^UIViewController *{
+    [passwordSection addContent:[PSContent contentWithTitle:@"Create password protected PDF" block:^UIViewController *{
         // create new file that is protected
         NSString *password = @"test123";
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"protected", @"pdf");
@@ -1360,7 +1360,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Sign all pages." block:^UIViewController *{
+    [subclassingSection addContent:[PSContent contentWithTitle:@"Sign all pages" block:^UIViewController *{
         UIColor *penBlueColor = [UIColor colorWithRed:0.000f green:0.030f blue:0.516f alpha:1.000f];
 
         // Show the signature controller
@@ -1806,7 +1806,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return browser;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Test that § can be found." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Test that § can be found" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Entwurf AIFM-UmsG.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 5;
@@ -1820,7 +1820,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Test that 'In Vitro Amplification' can be found." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Test that 'In Vitro Amplification' can be found" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"In Vitro Amplification - search.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
 
@@ -1871,7 +1871,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }]];
 
     // Page 26 of hackernews-12 has a very complex XObject setup with nested objects that reference objects that have a parent with the same name. If parsed from top to bottom with the wrong XObjects this will take 100^4 calls, thus clocks up the iPad for a very long time.
-    [testSection addContent:[PSContent contentWithTitle:@"Test for cyclic XObject references." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Test for cyclic XObject references" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 26;
@@ -2063,7 +2063,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }]];
 
     // Test on iOS5
-    [testSection addContent:[PSContent contentWithTitle:@"Test that Video is pause/playable via touch." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Test that Video is pause/playable via touch" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 4;
@@ -2201,7 +2201,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Stamp annotation test, only allow stamp editing." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Stamp annotation test, only allow stamp editing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationStringStamp];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2218,7 +2218,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }]];
 
     // Test that the green shape is properly displayed in Adobe Acrobat for iOS.
-    [testSection addContent:[PSContent contentWithTitle:@"Shape annotation AP test." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Shape annotation AP test" block:^UIViewController *{
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride([samplesURL URLByAppendingPathComponent:kHackerMagazineExample], NO);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
@@ -2284,7 +2284,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }]];
 
     // test that even many links don't create any performance problem on saving.
-    [testSection addContent:[PSContent contentWithTitle:@"Performance with many links." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Performance with many links" block:^UIViewController *{
 
         NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"PDFReference17.pdf"];
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
@@ -2481,7 +2481,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Parse weird outline format." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"Parse weird outline format" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-outline.pdf"]];
         [document.outlineParser outline]; // PARSE!
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2583,7 +2583,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"View state restoration for continuous scrolling." block:^UIViewController *{
+    [testSection addContent:[PSContent contentWithTitle:@"View state restoration for continuous scrolling" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 10;
