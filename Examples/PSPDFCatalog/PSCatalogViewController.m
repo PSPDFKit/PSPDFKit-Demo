@@ -2774,6 +2774,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test PDF Forms" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
     }]];
 
