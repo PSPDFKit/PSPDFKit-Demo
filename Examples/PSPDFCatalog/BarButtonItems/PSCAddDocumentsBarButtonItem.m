@@ -50,7 +50,7 @@
     }
 
     // hide controller
-    if (PSIsIpad())[self.class dismissPopoverAnimated:YES];
+    if (PSIsIpad())[self.class dismissPopoverAnimated:YES completion:NULL];
     else [documentPickerController dismissViewControllerAnimated:YES completion:NULL];
 }
 
