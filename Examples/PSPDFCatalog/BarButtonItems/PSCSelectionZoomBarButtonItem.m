@@ -61,7 +61,7 @@
 
 // override default handler
 - (void)action:(PSPDFBarButtonItem *)sender {
-    [self.class dismissPopoverAnimated:YES];
+    [self.class dismissPopoverAnimated:YES completion:NULL];
 
     if (![self cleanup]) {
         // disable various features to lock UI

@@ -2236,7 +2236,6 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         }
 
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.openInButtonItem.openOptions = PSPDFOpenInOptionsOriginal;
         pdfController.rightBarButtonItems = @[pdfController.openInButtonItem];
         return pdfController;
     }]];
