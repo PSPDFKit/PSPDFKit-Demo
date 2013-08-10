@@ -84,7 +84,7 @@
     controller.navigationController.navigationBar.tintColor = color;
     PSPDFViewController *pdfController = self.pdfController;
     pdfController.tintColor = color;
-    [self dismissModalOrPopoverAnimated:YES];
+    [self dismissModalOrPopoverAnimated:YES completion:NULL];
     [pdfController createToolbarAnimated:NO];
 }
 

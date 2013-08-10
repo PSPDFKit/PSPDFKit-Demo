@@ -59,7 +59,7 @@
 }
 
 - (void)playPauseAction:(id)sender {
-    [self.class dismissPopoverAnimated:NO];
+    [self.class dismissPopoverAnimated:NO completion:NULL];
 
     if (!self.isAutoplaying) {
         _autoplaying = YES;
