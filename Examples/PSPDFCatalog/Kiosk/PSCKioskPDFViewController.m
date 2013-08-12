@@ -24,9 +24,8 @@
 #endif
 
 @interface PSCKioskPDFViewController () {
-    BOOL _hasLoadedLastPage;
     UIBarButtonItem *_closeButtonItem;
-    PSCSettingsBarButtonItem *_settingsButtomItem;
+    PSCSettingsBarButtonItem *_settingsButtonItem;
 #ifdef PSPDFCatalog
     PSCMetadataBarButtonItem *_metadataButtonItem;
 #endif
@@ -121,7 +120,7 @@
 #ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
     // Dynamically adapt toolbar (in landscape mode, we have a lot more space!)
-    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtomItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtomItem];
+    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtonItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtonItem];
 
     // Simple performance optimization.
     if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
@@ -163,7 +162,7 @@
     // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
     NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
     _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-    _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
+    _settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
 
 #ifdef PSPDFCatalog
     _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];

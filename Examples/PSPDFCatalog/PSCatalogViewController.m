@@ -57,6 +57,7 @@
 #import "PSCShowHighlightNotesPDFController.h"
 #import "PSCTopScrobbleBar.h"
 #import "PSCExportPDFPagesViewController.h"
+#import "PSCiBooksHighlightingViewController.h"
 #import "PSCCoreDataAnnotationProvider.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
 #import "NSObject+PSCDeallocationBlock.h"
@@ -87,10 +88,10 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 @end
 
-const char kPSCShowDocumentSelectorOpenInTabbedControllerKey;
-const char kPSCAlertViewKey;
-const char kPSPDFSignatureCompletionBlock = 0;
-static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
+const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
+const char PSCAlertViewKey;
+const char PSCSignatureCompletionBlock = 0;
+static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
 
@@ -109,6 +110,9 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }
     return self;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Content Creation
 
 - (void)createTableContent {
     // Common paths
@@ -144,7 +148,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
             PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
-            objc_setAssociatedObject(documentSelector, &kPSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            objc_setAssociatedObject(documentSelector, &PSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];
@@ -472,8 +476,8 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"PDF annotation writing" block:^{
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
@@ -685,7 +689,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             }];
         }];
         [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
-        objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &kPSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         [websitePrompt show];
         return nil;
     }]];
@@ -890,6 +894,12 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             [PSPDFStampViewController setDefaultStampAnnotations:nil];
         }];
 
+        return pdfController;
+    }]];
+
+    [customizationSection addContent:[PSContent contentWithTitle:@"iBooks-like highlighting" block:^{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        PSPDFViewController *pdfController = [[PSCiBooksHighlightingViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -1448,7 +1458,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
             [flattenAlert show];
         };
 
-        objc_setAssociatedObject(signatureController, &kPSPDFSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);
+        objc_setAssociatedObject(signatureController, &PSCSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);
 
         return (UIViewController *)nil;
     }]];
@@ -2868,7 +2878,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
     // Load last state
     if (!_firstShown) {
-        NSData *indexData = [[NSUserDefaults standardUserDefaults] objectForKey:kPSPDFLastIndexPath];
+        NSData *indexData = [[NSUserDefaults standardUserDefaults] objectForKey:PSCLastIndexPath];
         if (indexData) {
             NSIndexPath *indexPath = nil;
             @try { indexPath = [NSKeyedUnarchiver unarchiveObjectWithData:indexData]; }
@@ -2880,7 +2890,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
         _firstShown = YES;
     }else {
         // Second display, remove user default.
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kPSPDFLastIndexPath];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCLastIndexPath];
     }
 }
 
@@ -2971,7 +2981,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
     }
 
     // Persist state
-    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:unfilteredIndexPath] forKey:kPSPDFLastIndexPath];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:unfilteredIndexPath] forKey:PSCLastIndexPath];
     [[NSUserDefaults standardUserDefaults] synchronize];
     _firstShown = YES; // don't re-show after saving it first.
 
@@ -2990,7 +3000,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 #pragma mark - PSPDFDocumentPickerControllerDelegate
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
-    BOOL showInGrid = [objc_getAssociatedObject(controller, &kPSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
+    BOOL showInGrid = [objc_getAssociatedObject(controller, &PSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
 
     // add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
@@ -3026,7 +3036,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
 // enable the return key on the alert view
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    UIAlertView *alertView = objc_getAssociatedObject(textField, &kPSCAlertViewKey);
+    UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
     if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
     }else return NO;
 }
@@ -3059,7 +3069,7 @@ static NSString *const kPSPDFLastIndexPath = @"kPSPDFLastIndexPath";
 
 // Sign all pages example
 - (void)signatureViewControllerDidSave:(PSPDFSignatureViewController *)signatureController {
-    void(^signatureCompletionBlock)(PSPDFSignatureViewController *signatureController) = objc_getAssociatedObject(signatureController, &kPSPDFSignatureCompletionBlock);
+    void(^signatureCompletionBlock)(PSPDFSignatureViewController *signatureController) = objc_getAssociatedObject(signatureController, &PSCSignatureCompletionBlock);
     if (signatureCompletionBlock) signatureCompletionBlock(signatureController);
 }
 

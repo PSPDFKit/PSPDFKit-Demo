@@ -41,7 +41,7 @@
         [buttonContainer.button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [buttonContainer sizeToFit];
         [pageView.annotationContainerView addSubview:buttonContainer];
-        [buttonContainer didChangePageFrame:pageView.bounds]; // layout initially
+        [buttonContainer didChangePageBounds:pageView.bounds]; // layout initially
     }
 }
 
@@ -71,7 +71,7 @@
 }
 
 // called initially and on rotation change
-- (void)didChangePageFrame:(CGRect)frame {
+- (void)didChangePageBounds:(CGRect)bounds {
     self.center = self.superview.center;
     self.frame = CGRectIntegral(self.frame);
 }
