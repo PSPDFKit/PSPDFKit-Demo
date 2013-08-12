@@ -76,7 +76,7 @@
 @implementation PSCAutoResizeButton
 
 // Will resize the view anytime the parent changes.
-- (void)didChangePageFrame:(CGRect)frame {
+- (void)didChangePageBounds:(CGRect)bounds {
     PSPDFPageView *pageView = (PSPDFPageView *)self.superview.superview;
     self.frame = [pageView convertPDFRectToViewRect:self.targetPDFRect];
 }

@@ -15,7 +15,6 @@
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
         self.borderColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
-        self.highlightBackgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5f];
     }
     return self;
 }
