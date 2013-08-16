@@ -77,9 +77,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate
 
-// This is the default. Set to no to disable annotation selection.
-- (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
-    return YES;
+// This is the default. Return nil to disable annotation selection.
+- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotations:(NSArray *)annotations onPageView:(PSPDFPageView *)pageView {
+    return annotations;
 }
 
 @end
