@@ -96,16 +96,42 @@
     return YES;
 }
 
+- (BOOL)removeAnnotations:(NSArray *)annotations {
+    __block BOOL success = YES;
+
+    dispatch_sync(_annotationProviderQueue, ^{
+        [_managedObjectContext performBlock:^{
+            for (PSPDFAnnotation *annotation in annotations) {
+                // Iterate over all annotations and create objects in CoreData.
+                PSCCoreDataAnnotation *coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
+                if (coreDataAnnotation) {
+                    [_managedObjectContext deleteObject:coreDataAnnotation];
+                }else {
+                    success = NO;
+                }
+                // Clear cache
+                [self.annotationCache removeObjectForKey:@(annotation.page)];
+            }
+        }];
+    });
+    return success;
+}
+
+- (PSCCoreDataAnnotation *)coreDataAnnotationFromAnnotation:(PSPDFAnnotation *)annotation {
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
+    request.predicate = [NSPredicate predicateWithFormat:@"uuid = %@", annotation.name];
+    request.fetchLimit = 1; // We only check
+    NSArray *result = [_managedObjectContext executeFetchRequest:request error:NULL];
+    return result.firstObject;
+
+}
+
 - (void)convertAnnotationToCoreData:(PSPDFAnnotation *)annotation initialInsert:(BOOL)initialInsert {
     // Fetch or Create root user data managed object
     [_managedObjectContext performBlock:^{
         PSCCoreDataAnnotation *coreDataAnnotation = nil;
         if (!initialInsert) {
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
-            request.predicate = [NSPredicate predicateWithFormat:@"uuid = %@", annotation.name];
-            request.fetchLimit = 1; // We only check
-            NSArray *result = [_managedObjectContext executeFetchRequest:request error:NULL];
-            if (result.count) coreDataAnnotation = result[0];
+            coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
         }else {
             // Use 'name' to create a UUID for every annotation so we can uniquify them.
             // PSPDFKit v3 already sets a UUID in name, but we need to manually add this in v2.
