@@ -25,15 +25,25 @@
     self.rightBarButtonItems = @[self.annotationButtonItem, self.viewModeButtonItem];
 
     // PSPDFViewController will unregister all notifications on dealloc.
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationChangedOrAddedNotification:) name:PSPDFAnnotationChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationChangedOrAddedNotification:) name:PSPDFAnnotationAddedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationChangedNotification:) name:PSPDFAnnotationChangedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationAddedOrRemovedNotification:) name:PSPDFAnnotationsAddedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationAddedOrRemovedNotification:) name:PSPDFAnnotationsRemovedNotification object:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
-- (void)annotationChangedOrAddedNotification:(NSNotification *)notification {
-    PSPDFAnnotation *annotation = notification.object;
+- (void)annotationChangedNotification:(NSNotification *)notification {
+    [self processChangeForAnnotation:notification.object];
+}
+- (void)annotationAddedOrRemovedNotification:(NSNotification *)notification {
+    for (PSPDFAnnotation *annotation in notification.object) {
+        [self processChangeForAnnotation:annotation];
+    }
+}
+
+
+- (void)processChangeForAnnotation:(PSPDFAnnotation *)annotation {
     if (annotation.document == self.document) {
         if (!self.hasUserBeenAskedAboutSaveLocation) {
             // notification might not be on main thread.
