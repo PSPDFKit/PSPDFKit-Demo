@@ -476,8 +476,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"PDF annotation writing" block:^{
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
@@ -500,6 +501,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                                             PSPDFAnnotationStringImage,
                                             PSPDFAnnotationStringPolygon,
                                             PSPDFAnnotationStringSound,
+
+                                            PSPDFAnnotationStringSelectionTool,
+                                            PSPDFAnnotationStringEraser,
                                             nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
