@@ -186,7 +186,7 @@
     if (self.isViewLoaded && self.view.window == nil) {
         self.view = nil;
     }
-    
+
     if (!self.isViewLoaded) {
         self.collectionView.delegate = nil;
         self.collectionView.dataSource = nil;
@@ -366,28 +366,28 @@
     }
 }
 
-// calculates where the document view will be on screen
+// Calculates where the document view will be on screen.
 - (CGRect)magazinePageCoordinatesWithDoublePageCurl:(BOOL)doublePageCurl {
     CGRect newFrame = self.view.frame;
-    newFrame.origin.y -= self.navigationController.navigationBar.frame.size.height;
-    newFrame.size.height += self.navigationController.navigationBar.frame.size.height;
+    CGRect navBarFrame = self.navigationController.navigationBar.frame;
 
-    // compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleSmartBlackHideOnIpad
-    BOOL iPadFadesOutStatusBar = YES;
-    if (!PSIsIpad() || iPadFadesOutStatusBar) {
-        CGRect statusBarFrame = [UIApplication.sharedApplication statusBarFrame];
-        BOOL isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation);
-        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
-        newFrame.origin.y -= statusBarHeight;
-        newFrame.size.height += statusBarHeight;
-    }
+    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleSmartBlackHideOnIpad.
+    PSC_IF_PRE_IOS7(newFrame.origin.y -= navBarFrame.size.height;
+                    newFrame.size.height += navBarFrame.size.height;
+                    BOOL iPadFadesOutStatusBar = YES;
+                    if (!PSIsIpad() || iPadFadesOutStatusBar) {
+                        CGRect statusBarFrame = UIApplication.sharedApplication.statusBarFrame;
+                        BOOL isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation);
+                        CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
+                        newFrame.origin.y -= statusBarHeight;
+                        newFrame.size.height += statusBarHeight;
+                    })
 
-    // animation needs to be different if we are in pageCurl mode
+    // Animation needs to be different if we are in pageCurl mode.
     if (doublePageCurl) {
         newFrame.size.width /= 2;
         newFrame.origin.x += newFrame.size.width;
     }
-
     return newFrame;
 }
 
@@ -818,7 +818,7 @@
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
     if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0) return; // stop if we're on iOS5.
-    
+
     @autoreleasepool {
         if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
             IMP updateIMP = imp_implementationWithBlock(^(id _self) {});
