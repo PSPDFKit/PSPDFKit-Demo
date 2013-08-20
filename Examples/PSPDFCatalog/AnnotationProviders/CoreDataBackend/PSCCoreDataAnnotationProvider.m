@@ -122,7 +122,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"uuid = %@", annotation.name];
     request.fetchLimit = 1; // We only check
     NSArray *result = [_managedObjectContext executeFetchRequest:request error:NULL];
-    return result.firstObject;
+    return result.count > 0 ? result[0] : nil;
 
 }
 
