@@ -879,13 +879,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSMutableArray *defaultStamps = [NSMutableArray array];
         for (NSString *stampSubject in @[@"Great!", @"Stamp", @"Like"]) {
             PSPDFStampAnnotation *stamp = [[PSPDFStampAnnotation alloc] initWithSubject:stampSubject];
-            stamp.userInfo = @{PSPDFStampAnnotationSuggestedSizeKey : BOXED(CGSizeMake(200, 70))};
+            stamp.boundingBox = CGRectMake(0, 0, 200, 70);
             [defaultStamps addObject:stamp];
         }
         // Careful with memory - you don't wanna add large images here.
         PSPDFStampAnnotation *imageStamp = [[PSPDFStampAnnotation alloc] init];
         imageStamp.image = [UIImage imageNamed:@"exampleimage.jpg"];
-        imageStamp.userInfo = @{PSPDFStampAnnotationSuggestedSizeKey : BOXED(imageStamp.image.size)};
+        imageStamp.boundingBox = CGRectMake(0, 0, imageStamp.image.size.width, imageStamp.image.size.height);
         [defaultStamps addObject:imageStamp];
         [PSPDFStampViewController setDefaultStampAnnotations:defaultStamps];
 
