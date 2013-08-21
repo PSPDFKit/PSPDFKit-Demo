@@ -81,22 +81,22 @@
     return annotations;
 }
 
-- (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page {
+- (NSArray *)addAnnotations:(NSArray *)annotations {
     dispatch_async(_annotationProviderQueue, ^{
         [_managedObjectContext performBlock:^{
             // Iterate over all annotations and create objects in CoreData.
             for (PSPDFAnnotation *annotation in annotations) {
-                annotation.page = page;
                 [self convertAnnotationToCoreData:annotation initialInsert:YES];
+
+                // Clear cache
+                [self.annotationCache removeObjectForKey:@(annotation.page)];
             }
         }];
-        // Clear cache
-        [self.annotationCache removeObjectForKey:@(page)];
     });
-    return YES;
+    return annotations;
 }
 
-- (BOOL)removeAnnotations:(NSArray *)annotations {
+- (NSArray *)removeAnnotations:(NSArray *)annotations {
     __block BOOL success = YES;
 
     dispatch_sync(_annotationProviderQueue, ^{
@@ -114,7 +114,7 @@
             }
         }];
     });
-    return success;
+    return annotations;
 }
 
 - (PSCCoreDataAnnotation *)coreDataAnnotationFromAnnotation:(PSPDFAnnotation *)annotation {
