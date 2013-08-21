@@ -31,7 +31,7 @@
 
     // Updates the path at the right time.
     [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-    documentProvider.annotationParser.fileAnnotationProvider.annotationsPath = [documentProvider.document.dataDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"annotations_%@.pspdfkit", self.currentUsername]];
+    documentProvider.annotationManager.fileAnnotationProvider.annotationsPath = [documentProvider.document.dataDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"annotations_%@.pspdfkit", self.currentUsername]];
     }];
 }
 
