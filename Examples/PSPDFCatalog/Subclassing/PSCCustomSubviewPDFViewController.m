@@ -51,7 +51,7 @@
     // make all annotations overlay annotations (they will be rendered in their own views instead of within the page image)
     for (PSPDFAnnotation *annotation in annotations) {
         // Making highlights as overlay really really doesn't look good. (since they are multiplied into the page content, this is not possible with regular UIView composition, so you'd completely overlap the text, unless you make them semi-transparent)
-        if (![annotation isKindOfClass:[PSPDFHighlightAnnotation class]]) {
+        if (!(annotation.type & PSPDFAnnotationTypeTextMarkup) == 0) {
             annotation.overlay = YES;
         }
     }
@@ -59,13 +59,13 @@
 }
 
 // Set annotations to render as overlay right after they are inserted.
-- (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page {
+- (NSArray *)addAnnotations:(NSArray *)annotations {
     for (PSPDFAnnotation *annotation in annotations) {
         if (![annotation isKindOfClass:[PSPDFHighlightAnnotation class]]) {
             annotation.overlay = YES;
         }
     }
-    return [super addAnnotations:annotations forPage:page];
+    return [super addAnnotations:annotations];
 }
 
 @end

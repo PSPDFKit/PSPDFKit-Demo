@@ -42,13 +42,13 @@
         }
 
         // example how to add custom image annotation
-        NSArray *linkAnnotations = [[self.document annotationParserForPage:0] annotationsForPage:0 type:PSPDFAnnotationTypeLink];
+        NSArray *linkAnnotations = [[self.document annotationManagerForPage:0] annotationsForPage:0 type:PSPDFAnnotationTypeLink];
         if (linkAnnotations.count <= 2) {
             PSPDFLinkAnnotation *annotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
 
             // with setting the path, you can use two different ways:
 
-            // either set the siteLinkTarget, which needs the pspdfkit syntax and invokes parseAnnotationLinkTarget in PSPDFAnnotationParser to parse the type, options and the path.
+            // either set the siteLinkTarget, which needs the pspdfkit syntax and invokes parseAnnotationLinkTarget in PSPDFAnnotationManager to parse the type, options and the path.
             // Note that we need to explicitly set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folder, this we can't use the auto-path mode.
             // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnotationView)
             // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
@@ -60,9 +60,10 @@
 
             // annotation frame is in PDF coordinate space. Use pageRect for the full page.
             annotation.boundingBox = [self.document pageInfoForPage:0].rotatedPageRect;
+            annotation.page = 0;
 
             // annotation.page/document is auto detecting set.
-            [self.document addAnnotations:@[annotation] page:0];
+            [self.document addAnnotations:@[annotation]];
         }
     }
     return self;

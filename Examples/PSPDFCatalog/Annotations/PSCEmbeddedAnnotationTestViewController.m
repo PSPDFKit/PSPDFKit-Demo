@@ -43,7 +43,7 @@
 - (void)saveAnnotations {
     NSLog(@"Annotations before saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
 
-    NSDictionary *dirtyAnnotations = [[self.document annotationParserForPage:0] dirtyAnnotations];
+    NSDictionary *dirtyAnnotations = [[self.document annotationManagerForPage:0] dirtyAnnotations];
     NSLog(@"Dirty Annotations: %@", dirtyAnnotations);
 
     if (self.document.data) NSLog(@"Length of NSData before saving: %d", self.document.data.length);

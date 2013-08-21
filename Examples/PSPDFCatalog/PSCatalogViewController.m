@@ -455,7 +455,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo] page:0];
+        [multimediaDoc addAnnotations:@[aVideo]];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
@@ -467,7 +467,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // dynamically add video box
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo] page:0];
+        [multimediaDoc addAnnotations:@[aVideo]];
 
         return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     }]];
@@ -528,11 +528,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // We're lazy here. 2 = UIViewContentModeScaleAspectFill
         PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
         aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
-        [document addAnnotations:@[aVideo] page:5];
+        aVideo.page = 5;
+        [document addAnnotations:@[aVideo]];
 
         PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
         anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
-        [document addAnnotations:@[anImage] page:2];
+        anImage.page = 2;
+        [document addAnnotations:@[anImage]];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -552,7 +554,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
             [annotations addObject:noteAnnotation];
         }
-        [document addAnnotations:annotations page:0];
+        [document addAnnotations:annotations];
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -600,7 +602,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
             PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
-            documentProvider.annotationParser.annotationProviders = @[XFDFProvider];
+            documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
         }];
 
         return [[PSPDFViewController alloc] initWithDocument:document];
@@ -1060,7 +1062,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Custom AnnotationProvider" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            documentProvider.annotationParser.annotationProviders = @[[PSCCustomAnnotationProvider new], documentProvider.annotationParser.fileAnnotationProvider];
+            documentProvider.annotationManager.annotationProviders = @[[PSCCustomAnnotationProvider new], documentProvider.annotationManager.fileAnnotationProvider];
         }];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
@@ -1084,7 +1086,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
             annotation.alpha = 0.5f;
-            [document addAnnotations:@[annotation] page:targetPage];
+            annotation.page = targetPage;
+            [document addAnnotations:@[annotation]];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1106,7 +1109,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             polyline.fillColor = UIColor.yellowColor;
             polyline.lineEnd2 = PSPDFLineEndTypeClosedArrow;
             polyline.lineWidth = 5.f;
-            [document addAnnotations:@[polyline] page:targetPage];
+            polyline.page = targetPage;
+            [document addAnnotations:@[polyline]];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1131,7 +1135,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     annotation.boundingBox = boundingBox;
                     annotation.rects = highlighedRects;
                     annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%d", annotationCounter];
-                    [document addAnnotations:@[annotation] page:pageIndex];
+                    annotation.page = pageIndex;
+                    [document addAnnotations:@[annotation]];
                     annotationCounter++;
                 }
             }
@@ -1164,7 +1169,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
-            [document addAnnotations:@[annotation] page:targetPage];
+            annotation.page = targetPage;
+            [document addAnnotations:@[annotation]];
         }
 
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1254,7 +1260,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] page:page];
+            annotation.page = page;
+            [document addAnnotations:@[annotation]];
         }
 
         PSPDFViewController *controller = [[PSCShowHighlightNotesPDFController alloc] initWithDocument:document];
@@ -1427,9 +1434,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     annotation.boundingBox = CGRectMake(pageInfo.pageRect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
                     annotation.color = penBlueColor;
                     annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
+                    annotation.page = pageIndex;
 
                     // Add annotation.
-                    [document addAnnotations:@[annotation] page:pageIndex];
+                    [document addAnnotations:@[annotation]];
                 }
             }
 
@@ -1481,7 +1489,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Set annotation provider block.
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
             PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider];
-            documentProvider.annotationParser.annotationProviders = @[provider];
+            documentProvider.annotationManager.annotationProviders = @[provider];
         }];
         // Create controller.
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1909,7 +1917,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         freeText.boundingBox = CGRectMake(100, 100, 400, 200);
         freeText.fillColor = UIColor.yellowColor;
         freeText.fontSize = 40;
-        [document addAnnotations:@[freeText] page:0];
+        [document addAnnotations:@[freeText]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1922,8 +1930,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         freeText.boundingBox = CGRectMake(100, 100, 400, 200);
         freeText.fillColor = UIColor.yellowColor;
         freeText.fontSize = 30;
-        [document addAnnotations:@[freeText] page:0];
-        [document addAnnotations:@[[freeText copy]] page:1];
+        [document addAnnotations:@[freeText]];
+        PSPDFAnnotation *secondAnnotation = [freeText copy];
+        secondAnnotation.page = 1;
+        [document addAnnotations:@[secondAnnotation]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -2143,7 +2153,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
 
             annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
-            [document addAnnotations:@[annotation] page:targetPage];
+            annotation.page = targetPage;
+            [document addAnnotations:@[annotation]];
         }
 
         //Here we should figure out which pages have annotations
@@ -2242,7 +2253,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
         annotation.fillColor = annotation.color;
         annotation.alpha = 0.5f;
-        [document addAnnotations:@[annotation] page:0];
+        [document addAnnotations:@[annotation]];
         // Save it
         NSError *error = nil;
         if (![document saveChangedAnnotationsWithError:&error]) {
@@ -2345,7 +2356,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         // Add those annotations to the page.
         [annotationsPerPage enumerateKeysAndObjectsUsingBlock:^(NSNumber *pageNumber, NSArray *annotations, BOOL *stop) {
-            [document addAnnotations:annotations page:pageNumber.unsignedIntegerValue];
+            [document addAnnotations:annotations];
         }];
 
         NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
@@ -2392,7 +2403,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test document parsing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_crash_missing_object_reference.pdf"]];
         PSPDFHighlightAnnotation *test = [PSPDFHighlightAnnotation new];
-        [document addAnnotations:@[test] page:0];
+        [document addAnnotations:@[test]];
         [document saveChangedAnnotationsWithError:NULL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -2640,7 +2651,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] page:0];
+            [document addAnnotations:@[annotation]];
             [document saveChangedAnnotationsWithError:NULL];
         }
         // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
@@ -2659,7 +2670,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             CGRect boundingBox;
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
-            [document addAnnotations:@[annotation] page:0];
+            [document addAnnotations:@[annotation]];
             [document saveChangedAnnotationsWithError:NULL];
         }
         // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
@@ -2717,7 +2728,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         noteAnnotation.boundingBox = CGRectMake(100, 100, 50, 50);
         noteAnnotation.contents = @"This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening. This is a test for the note annotation flattening.";
-        [document addAnnotations:@[noteAnnotation] page:0];
+        [document addAnnotations:@[noteAnnotation]];
         [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
         // show file
