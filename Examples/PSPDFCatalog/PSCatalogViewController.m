@@ -2803,6 +2803,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
+    // Form support
+    [testSection addContent:[PSContent contentWithTitle:@"Test PDF Button Show/Hide" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_TouchDownButton.pdf"]];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
+        return pdfController;
+    }]];
+
     [sections addObject:textExtractionSection];
 
 #endif
