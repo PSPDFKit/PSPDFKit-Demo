@@ -1348,7 +1348,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Change font of the note controller" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        [PSPDFNoteAnnotationController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationController *noteController) {
+        [PSPDFNoteAnnotationViewController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationViewController *noteController) {
             noteController.textView.font = [UIFont fontWithName:@"Helvetica" size:20];
         }];
         return pdfController;
