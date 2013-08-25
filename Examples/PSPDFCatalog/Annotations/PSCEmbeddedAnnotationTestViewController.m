@@ -28,7 +28,7 @@
         if (PSIsIpad()) {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
         }else {
-            self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem];
+            self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.viewModeButtonItem];
         }
     }
     return self;
