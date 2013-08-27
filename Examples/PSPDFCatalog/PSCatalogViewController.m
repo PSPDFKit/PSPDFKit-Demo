@@ -1483,7 +1483,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [sections addObject:subclassingSection];
 
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Custom CoreData AnnotationProvider" block:^UIViewController *{
+    [subclassingSection addContent:[PSContent contentWithTitle:@"Core Data Annotation Provider" block:^UIViewController *{
         // Create document.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
         // Set annotation provider block.
