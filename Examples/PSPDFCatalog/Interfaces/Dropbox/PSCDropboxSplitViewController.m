@@ -31,7 +31,7 @@
         self.backToCatalogButton = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStyleBordered target:self action:@selector(backToCatalog:)];
 
         // Create the document picker
-        self.documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
+        self.documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         self.documentPicker.delegate = self;
 
         // Create the PDF controller
