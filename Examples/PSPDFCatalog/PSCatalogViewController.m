@@ -147,14 +147,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
-            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
+            PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
             objc_setAssociatedObject(documentSelector, &PSCShowDocumentSelectorOpenInTabbedControllerKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             return (UIViewController *)documentSelector;
         }
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" block:^{
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"Inbox" library:PSPDFLibrary.defaultLibrary delegate:self];
+        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"Inbox" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
@@ -628,7 +628,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     PSCSectionDescriptor *textExtractionSection = [PSCSectionDescriptor sectionWithTitle:@"Text Extraction / PDF creation" footer:@""];
     [textExtractionSection addContent:[PSContent contentWithTitle:@"Full-Text Search" block:^UIViewController *{
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
+        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
