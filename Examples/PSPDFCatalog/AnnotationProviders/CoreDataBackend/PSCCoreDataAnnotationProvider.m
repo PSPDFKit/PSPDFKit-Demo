@@ -160,7 +160,7 @@
 }
 
 // Saves the context.
-- (BOOL)saveAnnotationsWithError:(NSError * __autoreleasing *)error {
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error {
     __block BOOL success;
     dispatch_sync(_annotationProviderQueue, ^{
         success = [_managedObjectContext save:error];
