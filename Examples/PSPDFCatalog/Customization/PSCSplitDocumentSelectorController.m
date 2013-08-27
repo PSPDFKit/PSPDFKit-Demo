@@ -18,7 +18,7 @@
 #pragma mark - NSObject
 
 - (id)init {
-    if ((self = [super initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self])) {
+    if ((self = [super initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self])) {
         self.clearsSelectionOnViewWillAppear = NO;
         self.contentSizeForViewInPopover = CGSizeMake(320.f, 600.f);
 
