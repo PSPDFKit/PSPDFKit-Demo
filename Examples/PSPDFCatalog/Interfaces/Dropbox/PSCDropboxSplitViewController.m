@@ -32,7 +32,6 @@
 
         // Create the document picker
         self.documentPicker = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" library:PSPDFLibrary.defaultLibrary delegate:self];
-        self.documentPicker.stickySearchBar = YES;
         self.documentPicker.delegate = self;
 
         // Create the PDF controller
