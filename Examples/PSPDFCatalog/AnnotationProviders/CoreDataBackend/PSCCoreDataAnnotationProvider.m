@@ -179,6 +179,10 @@
     return dirtyAnnotations;
 }
 
+- (BOOL)shouldSaveAnnotations {
+    return YES; // always save.
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Core Data Initialization
 
