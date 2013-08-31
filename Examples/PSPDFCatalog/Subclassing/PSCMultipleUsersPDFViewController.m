@@ -46,7 +46,7 @@
 // This could be a lot sexier - e.g. showing all available users in a nice table with edit/delete all etc.
 - (void)switchUser {
     // Save existing documents.
-    [self.document saveChangedAnnotationsWithError:NULL];
+    [self.document saveAnnotationsWithError:NULL];
     
     PSPDFAlertView *userPrompt = [[PSPDFAlertView alloc] initWithTitle:@"Switch user" message:@"Enter username."];
     userPrompt.alertViewStyle = UIAlertViewStylePlainTextInput;

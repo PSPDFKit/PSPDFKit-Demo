@@ -408,7 +408,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender) {
 
             // Before setting anything, save.
-            [document saveChangedAnnotationsWithError:NULL];
+            [document saveAnnotationsWithError:NULL];
 
             // Update pageRange-filter
             BOOL isFilterSet = document.pageRange != nil;
@@ -575,7 +575,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // This example shows how you can create an XFDF provider instead of the default file-based one.
     // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
     [annotationSection addContent:[PSContent contentWithTitle:@"XFDF Annotation Provider" block:^{
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Testcase_IncomeTaxRegulations_Crash.pdf"];
 
         // Load from an example XFDF file.
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
@@ -2256,7 +2256,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [document addAnnotations:@[annotation]];
         // Save it
         NSError *error = nil;
-        if (![document saveChangedAnnotationsWithError:&error]) {
+        if (![document saveAnnotationsWithError:&error]) {
             NSLog(@"Failed to save: %@", error.localizedDescription);
         }
 
@@ -2404,7 +2404,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_crash_missing_object_reference.pdf"]];
         PSPDFHighlightAnnotation *test = [PSPDFHighlightAnnotation new];
         [document addAnnotations:@[test]];
-        [document saveChangedAnnotationsWithError:NULL];
+        [document saveAnnotationsWithError:NULL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -2652,7 +2652,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation]];
-            [document saveChangedAnnotationsWithError:NULL];
+            [document saveAnnotationsWithError:NULL];
         }
         // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
 
@@ -2671,7 +2671,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation]];
-            [document saveChangedAnnotationsWithError:NULL];
+            [document saveAnnotationsWithError:NULL];
         }
         // NSLog(@"annots: %@", [document allAnnotationsOfType:PSPDFAnnotationTypeHighlight]);
 
@@ -3046,11 +3046,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentDelegate
 
-- (void)PDFDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
+- (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
     PSCLog(@"\n\nSaving of %@ successful: %@", document, annotations);
 }
 
-- (void)PDFDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
+- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
     PSCLog(@"\n\n Warning: Saving of %@ failed: %@", document, error);
 }
 

@@ -90,7 +90,7 @@
         }else {
             // Since the annotation has already been edited, we copy the file *before* it will be saved
             // then save the current state and switch out the documents.
-            if (![self.document saveChangedAnnotationsWithError:&error]) {
+            if (![self.document saveAnnotationsWithError:&error]) {
                 NSLog(@"Failed to save annotations: %@", error.localizedDescription);
             }
             NSURL *tmpURL = [newURL URLByAppendingPathExtension:@"temp"];

@@ -49,7 +49,7 @@
     if (self.document.data) NSLog(@"Length of NSData before saving: %d", self.document.data.length);
 
     NSError *error = nil;
-    if (![self.document saveChangedAnnotationsWithError:&error]) {
+    if (![self.document saveAnnotationsWithError:&error]) {
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
         [self reloadData];
@@ -64,13 +64,13 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDocumentDelegate
 
-- (void)PDFDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
+- (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations {
     NSLog(@"Successfully saved annotations: %@", annotations);
 
     if (document.data) NSLog(@"This is your time to save the updated data!");
 }
 
-- (void)PDFDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
+- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error {
     NSLog(@"Failed to save annotations: %@", error.localizedDescription);
 }
 
