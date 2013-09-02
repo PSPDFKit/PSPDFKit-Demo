@@ -82,6 +82,8 @@
 }
 
 - (NSArray *)addAnnotations:(NSArray *)annotations {
+    if (annotations.count == 0) return annotations;
+
     dispatch_async(_annotationProviderQueue, ^{
         [_managedObjectContext performBlock:^{
             // Iterate over all annotations and create objects in CoreData.
@@ -93,11 +95,17 @@
             }
         }];
     });
+
+    // Send notification.
+    [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsAddedNotification object:annotations];
+
     return annotations;
 }
 
 - (NSArray *)removeAnnotations:(NSArray *)annotations {
-    __block BOOL success = YES;
+    if (annotations.count == 0) return annotations;
+
+    NSMutableArray *removedAnnotations = [NSMutableArray array];
 
     dispatch_sync(_annotationProviderQueue, ^{
         [_managedObjectContext performBlock:^{
@@ -106,15 +114,20 @@
                 PSCCoreDataAnnotation *coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
                 if (coreDataAnnotation) {
                     [_managedObjectContext deleteObject:coreDataAnnotation];
-                }else {
-                    success = NO;
+                    [removedAnnotations addObject:annotation];
                 }
                 // Clear cache
                 [self.annotationCache removeObjectForKey:@(annotation.page)];
             }
         }];
     });
-    return annotations;
+    
+    // Send notification.
+    if (removedAnnotations.count > 0) {
+        [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsRemovedNotification object:removedAnnotations];
+    }
+
+    return removedAnnotations;
 }
 
 - (PSCCoreDataAnnotation *)coreDataAnnotationFromAnnotation:(PSPDFAnnotation *)annotation {
