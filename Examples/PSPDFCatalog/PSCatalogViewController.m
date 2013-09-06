@@ -2634,6 +2634,18 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
+    [testSection addContent:[PSContent contentWithTitle:@"Test rotated documents" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_rotated-northern.pdf"]];
+        [document appendFile:@"test1.pdf"];
+        [document appendFile:@"test2.pdf"];
+        [document appendFile:@"test3.pdf"];
+        [document appendFile:@"test4.pdf"];
+        [document appendFile:@"test5.pdf"];
+        [document appendFile:@"Testcase_AllPageRotations.pdf"];
+        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+        return pdfController;
+    }]];
+
     // There was a bug where free text annotations with a too small boundingBox were not drawn.
     [testSection addContent:[PSContent contentWithTitle:@"Test small freetext annotation" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"SmallTextAnnotationTest.pdf"]];
