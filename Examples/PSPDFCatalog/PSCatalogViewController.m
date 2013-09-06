@@ -3139,7 +3139,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @end
 
-
 // Fixes a missing selector crash for [UIToolbarButton imageForState:]:
 // TODO: Test during iOS7 betas if this has been fixed.
 __attribute__((constructor)) static void PSPDFFixUIToolbarButtonSelectorCrash(void) {
