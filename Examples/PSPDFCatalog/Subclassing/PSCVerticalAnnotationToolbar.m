@@ -97,7 +97,6 @@
     }else {
         pdfController.HUDViewMode = PSPDFHUDViewModeAutomatic;
         // remove toolbar
-        [self.toolbar unlockPDFControllerAnimated:YES showControls:YES ensureToStayOnTop:NO];
         [self.toolbar finishDrawingAnimated:YES saveAnnotation:NO];
     }
 }
