@@ -61,6 +61,8 @@
 #import "PSCCoreDataAnnotationProvider.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
 #import "NSObject+PSCDeallocationBlock.h"
+#import "PSCAssetLoader.h"
+#import "PSCExampleManager.h"
 #import <objc/runtime.h>
 
 // Dropbox support
@@ -437,6 +439,25 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [sections addObject:pageRangeTests];
 
+
+    // Get all examples
+    NSArray *examples = PSCExampleManager.defaultManager.allExamples;
+
+    // Add examples and map categories to sections.
+    PSCExampleCategory currentCategory = -1;
+    PSCSectionDescriptor *currentSection = nil;
+    for (PSCExample *example in examples) {
+        if (currentCategory != example.category) {
+            currentCategory = example.category;
+            currentSection = [PSCSectionDescriptor sectionWithTitle:PSPDFStringFromExampleCategory(currentCategory) footer:nil];
+            [sections addObject:currentSection];
+        }
+
+        [currentSection addContent:[PSContent contentWithTitle:example.title block:^UIViewController *{
+            return [example invoke];
+        }]];
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *multimediaSection = [PSCSectionDescriptor sectionWithTitle:@"Multimedia examples" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
@@ -473,9 +494,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
     [sections addObject:multimediaSection];
 
-    PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"Annotation Tests" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
+    PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
-    [annotationSection addContent:[PSContent contentWithTitle:@"PDF annotation writing" block:^{
+    [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
@@ -484,6 +505,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
 
+        // Allows to configure each annotation type.
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
                                             PSPDFAnnotationStringLink, // not added by default.
                                             PSPDFAnnotationStringHighlight,
@@ -513,6 +535,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
+    }]];
+
+    [annotationSection addContent:[PSContent contentWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
+        return controller;
     }]];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"Add image annotation and a MapView" block:^{
@@ -1065,12 +1093,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             documentProvider.annotationManager.annotationProviders = @[[PSCCustomAnnotationProvider new], documentProvider.annotationManager.fileAnnotationProvider];
         }];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
         return controller;
     }]];
 
