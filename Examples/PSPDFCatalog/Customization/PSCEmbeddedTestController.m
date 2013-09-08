@@ -10,6 +10,7 @@
 
 #import "PSCEmbeddedTestController.h"
 #import "PSCAppDelegate.h"
+#import "PSCAssetLoader.h"
 
 @interface PSCEmbeddedTestController () {
     UITableViewController *_testAnimationViewController;
