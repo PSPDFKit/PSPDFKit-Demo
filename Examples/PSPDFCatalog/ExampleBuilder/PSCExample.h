@@ -11,7 +11,8 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
-    PSCExampleCategoryAnnotations
+    PSCExampleCategoryAnnotations,
+    PSCExampleCategoryBarButtons
 };
 
 extern NSString *PSPDFStringFromExampleCategory(PSCExampleCategory category);

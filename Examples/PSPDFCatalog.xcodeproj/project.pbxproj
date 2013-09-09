@@ -180,6 +180,7 @@
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
 		78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */; };
+		78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FE606B17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -461,6 +462,8 @@
 		78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDForThumbnailsViewController.m; sourceTree = "<group>"; };
 		78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomAnnotationToolbarButtonsExample.m; sourceTree = "<group>"; };
 		78FE606217DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomAnnotationToolbarButtonsExample.h; sourceTree = "<group>"; };
+		78FE606B17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSearchBarButtonImageExample.m; sourceTree = "<group>"; };
+		78FE606C17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomSearchBarButtonImageExample.h; sourceTree = "<group>"; };
 		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -605,16 +608,18 @@
 		78604C8416C50CB2003CB721 /* BarButtonItems */ = {
 			isa = PBXGroup;
 			children = (
-				78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */,
-				78604CB816C51129003CB721 /* PSCRotationLockBarButtonItem.h */,
 				78604C8516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.h */,
 				78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */,
+				78FE606C17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.h */,
+				78FE606B17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m */,
 				78604C8B16C50CB2003CB721 /* PSCGoToPageButtonItem.h */,
 				78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */,
 				78604C8D16C50CB2003CB721 /* PSCMetadataBarButtonItem.h */,
 				78604C8E16C50CB2003CB721 /* PSCMetadataBarButtonItem.m */,
 				78604C8F16C50CB2003CB721 /* PSCPlayBarButtonItem.h */,
 				78604C9016C50CB2003CB721 /* PSCPlayBarButtonItem.m */,
+				78604CB816C51129003CB721 /* PSCRotationLockBarButtonItem.h */,
+				78604CB716C51129003CB721 /* PSCRotationLockBarButtonItem.m */,
 				78604C9116C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.h */,
 				78604C9216C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m */,
 				78604C9316C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.h */,
@@ -1220,6 +1225,7 @@
 				785B160A16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m in Sources */,
 				785B160B16692BA100F747B8 /* GSDropboxUploader.m in Sources */,
 				785B160C16692BA100F747B8 /* GSDropboxUploadJob.m in Sources */,
+				78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */,
 				780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */,
 				78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */,
 				781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */,
