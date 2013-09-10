@@ -992,10 +992,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:cryptoWrapper.dataProvider];
             document.UID = [encryptedPDF lastPathComponent]; // manually set an UID for encrypted documents.
 
-            // When PSPDFAESCryptoDataProvider is used, the cacheStrategy of PSPDFDocument is *automatically* set to PSPDFCacheNothing.
+            // When PSPDFAESCryptoDataProvider is used, the diskCacheStrategy of PSPDFDocument is *automatically* set to PSPDFDiskCacheStrategyNothing.
             // If you use your custom crypto solution, don't forget to set this to not leak out encrypted data as cached images.
-            // document.cacheStrategy = PSPDFCacheNothing;
-
+            // document.diskCacheStrategy = PSPDFDiskCacheStrategyNothing;
             return [[PSPDFViewController alloc] initWithDocument:document];
         }]];
     }
