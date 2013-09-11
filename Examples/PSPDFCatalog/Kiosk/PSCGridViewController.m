@@ -246,15 +246,8 @@
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:(UICollectionViewScrollPosition)PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
             [self.collectionView layoutSubviews]; // ensure cells are laid out
-            /*
-             // ensure object is visible
-             BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:_animationCellIndex partly:YES];
-             if (!isCellVisible) {
-             [self.gridView scrollToObjectAtIndex:_animationCellIndex atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
-             [self.gridView layoutSubviews]; // ensure cells are laid out
-             };*/
 
             // Convert the coordinates into view coordinate system.
             // We can't remember those, because the device might has been rotated.
