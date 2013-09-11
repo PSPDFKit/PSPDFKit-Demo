@@ -9,6 +9,7 @@
 //
 
 #import "PSCMagazine.h"
+#include <tgmath.h>
 
 @implementation PSCMagazine
 
@@ -31,7 +32,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%d URL:%@ basePath:%@, files:%@>", self.class, self, self.UID, self.pageCount, self.URL, self.basePath, self.files];
+    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%lu URL:%@ basePath:%@, files:%@>", self.class, self, self.UID, (unsigned long)self.pageCount, self.URL, self.basePath, self.files];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -54,8 +55,8 @@
                 CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
                 UIImage *lockImage = [UIImage imageNamed:@"lock"];
                 CGFloat scale = PSIsIpad() ? 0.6f : 0.3f;
-                CGSize lockImageTargetSize = CGSizeMake(roundf(lockImage.size.width * scale), roundf(lockImage.size.height * scale));
-                [lockImage drawInRect:(CGRect){.origin={floorf((size.width-lockImageTargetSize.width)/2), floorf((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
+                CGSize lockImageTargetSize = CGSizeMake(__tg_round(lockImage.size.width * scale), __tg_round(lockImage.size.height * scale));
+                [lockImage drawInRect:(CGRect){.origin={__tg_floor((size.width-lockImageTargetSize.width)/2), __tg_floor((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
                 coverImage = UIGraphicsGetImageFromCurrentImageContext();
                 UIGraphicsEndImageContext();
             }

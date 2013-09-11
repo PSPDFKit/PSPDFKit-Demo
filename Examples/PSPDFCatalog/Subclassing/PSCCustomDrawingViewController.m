@@ -9,6 +9,7 @@
 //
 
 #import "PSCCustomDrawingViewController.h"
+#import <tgmath.h>
 
 @interface PSCDocumentDrawer : NSObject <PSPDFDocumentDelegate> @end
 
@@ -55,7 +56,7 @@
 
     // Calculate the font box to center it.
     CGSize boundingBox = [overlayText sizeWithFont:[UIFont fontWithName:fontName size:fontSize]];
-    CGContextSetTextPosition(context, roundf((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), roundf((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
+    CGContextSetTextPosition(context, __tg_round((pageInfo.rotatedPageRect.size.width-boundingBox.width)/2), __tg_round((pageInfo.rotatedPageRect.size.height-boundingBox.height)/2));
 
     // Finally draw text.
     CGContextShowText(context, [overlayText cStringUsingEncoding:NSUTF8StringEncoding], [overlayText length]);

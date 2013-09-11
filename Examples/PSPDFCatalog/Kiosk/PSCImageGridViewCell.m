@@ -323,7 +323,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         [_magazineCounterBadgeImage addSubview:_magazineCounter];
     }
 
-    _magazineCounter.text = [NSString stringWithFormat:@"%d", newMagazineCount];
+    _magazineCounter.text = [NSString stringWithFormat:@"%lu", (unsigned long)newMagazineCount];
     _magazineCounter.hidden = newMagazineCount < 2;
     _magazineCounterBadgeImage.hidden = newMagazineCount < 2;
     [self updateMagazineBadgeFrame];

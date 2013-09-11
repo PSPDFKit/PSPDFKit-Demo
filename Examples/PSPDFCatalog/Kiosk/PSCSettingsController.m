@@ -220,15 +220,15 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (void)paperColorChanged:(id)sender {
     if (_isSettingUpCells) return;
-    int paperColorIndex = [sender selectedSegmentIndex];
+    NSInteger paperColorIndex = [sender selectedSegmentIndex];
     _settings[@"renderBackgroundColor"] = _paperColors[paperColorIndex];
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
 
 - (void)contentOpacityChanged:(id)sender {
     if (_isSettingUpCells) return;
-    int opacityIndex = [sender selectedSegmentIndex];
-    float opacity = 1.f - ((float)opacityIndex * 0.1f);
+    NSInteger opacityIndex = [sender selectedSegmentIndex];
+    CGFloat opacity = 1.f - ((CGFloat)opacityIndex * 0.1f);
     _settings[@"renderContentOpacity"] = @(opacity);
     [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
 }
@@ -305,7 +305,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     _isSettingUpCells = YES;
-    NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%d", indexPath.section];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%ld", (long)indexPath.section];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -529,7 +529,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     NSOrderedSet *visiblePageNumbers = pdfController.visiblePageNumbers;
     for (NSNumber *pageNumber in visiblePageNumbers) {
         NSUInteger page = [pageNumber unsignedIntegerValue];
-        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %d:\n\n", page+1];
+        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %lu:\n\n", (unsigned long)page+1];
         [text appendString:[pdfController.document textParserForPage:page].text];
         if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }

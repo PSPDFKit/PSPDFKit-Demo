@@ -9,6 +9,7 @@
 //
 
 #import "PSCViewHelper.h"
+#import <tgmath.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Common Metrics
@@ -74,6 +75,6 @@ void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *
 CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
     CGFloat xScale = boundsSize.width / targetSize.width;
     CGFloat yScale = boundsSize.height / targetSize.height;
-    CGFloat minScale = fminf(xScale, yScale);
+    CGFloat minScale = __tg_fmin(xScale, yScale);
     return minScale > 1.f ? 1.f : minScale;
 }

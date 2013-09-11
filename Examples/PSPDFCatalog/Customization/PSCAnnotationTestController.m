@@ -52,7 +52,7 @@
             // Note that we need to explicitly set the bundlePath here. As a default, PSPDFKit will set the path where the PDF file is; but in this example the PDF file is in a folder called "Samples" and the image is in the root bundle folder, this we can't use the auto-path mode.
             // Also note how we set a custom contentMode (this will get parsed and added to the options dict of PSPDFLinkAnnotation and later parsed in PSPDFImageAnnotationView)
             // Using siteLinkTarget the value you're initially setting the link annotation type to (here: PSPDFLinkAnnotation) will be overridden.
-            annotation.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/TokenTest/exampleimage.jpg", UIViewContentModeScaleAspectFill]];
+            annotation.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%ld]localhost/TokenTest/exampleimage.jpg", (long)UIViewContentModeScaleAspectFill]];
 
             // Variant two is directly setting the URL. Here PSPDFKit will not further parse the annotation, so the path must be correct (can't use relative path's here.)
             // Also note that while we are accepting a URL, annotations will only work with file-based URL's (unless it's invoking a UIWebView). Loading a remote image here is not (yet) supported.
@@ -91,23 +91,23 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowPageView: page:%d", pageView.page);
+    NSLog(@"didShowPageView: page:%lu", (unsigned long)pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didRenderPageView: page:%d", pageView.page);
+    NSLog(@"didRenderPageView: page:%lu", (unsigned long)pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
-    NSLog(@"didChangeViewMode: %d", viewMode);
+    NSLog(@"didChangeViewMode: %d", (int)viewMode);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didLoadPageView: page:%d", pageView.page);
+    NSLog(@"didLoadPageView: page:%lu", (unsigned long)pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView {
-    NSLog(@"willUnloadPageView: page:%d", pageView.page);
+    NSLog(@"willUnloadPageView: page:%lu", (unsigned long)pageView.page);
 }
 
 - (UIView <PSPDFAnnotationViewProtocol> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
@@ -142,12 +142,12 @@
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"willShowAnnotationView: %@ page:%d", annotationView, pageView.page);
+    NSLog(@"willShowAnnotationView: %@ page:%lu", annotationView, (unsigned long)pageView.page);
 }
 
 /// Invoked after animation used to present the annotation view
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowAnnotationView: %@ page:%d", annotationView, pageView.page);
+    NSLog(@"didShowAnnotationView: %@ page:%lu", annotationView, (unsigned long)pageView.page);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {
