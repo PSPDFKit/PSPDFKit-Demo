@@ -10,7 +10,6 @@
 
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
-#import <DropboxSDK/DropboxSDK.h>
 
 #ifdef HOCKEY_ENABLED
 #import <HockeySDK/HockeySDK.h>
@@ -88,12 +87,6 @@
 }
 
 - (BOOL)handleOpenURL:(NSURL *)launchURL {
-    // Add Dropbox hook
-    if ([[DBSession sharedSession] handleOpenURL:launchURL]) {
-        if (DBSession.sharedSession.isLinked) PSCLog(@"App linked successfully!");
-        return YES;
-    }
-
     // Directly open the PDF.
     if (launchURL.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
         PSPDFDocument *document = [PSPDFDocument documentWithURL:launchURL];

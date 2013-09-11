@@ -112,7 +112,7 @@
         [indicator sizeToFit];
         [indicator startAnimating];
         indicator.tag = PSPDFLoadingViewTag;
-        indicator.frame = CGRectMake(floorf((pageView.frame.size.width - indicator.frame.size.width)/2), floorf((pageView.frame.size.height - indicator.frame.size.height)/2), indicator.frame.size.width, indicator.frame.size.height);
+        indicator.frame = CGRectMake(floor((pageView.frame.size.width - indicator.frame.size.width)/2), floor((pageView.frame.size.height - indicator.frame.size.height)/2), indicator.frame.size.width, indicator.frame.size.height);
         [pageView addSubview:indicator];
     }
 }
