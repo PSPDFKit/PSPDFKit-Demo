@@ -65,11 +65,6 @@
 #import "PSCExampleManager.h"
 #import <objc/runtime.h>
 
-// Dropbox support
-#import <DropboxSDK/DropboxSDK.h>
-#import "GSDropboxActivity.h"
-#import "GSDropboxUploader.h"
-
 // Crypto support
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
@@ -1296,41 +1291,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.page = 3;
         return controller;
     }]];
-
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0) {
-        [subclassingSection addContent:[PSContent contentWithTitle:@"Dropbox Activity (iOS6 only)" block:^UIViewController *{
-            PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-            PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-            controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-
-            // To use this in your own app, replace the key/secret with your own API.
-            // and update the Info.plist with the new URL scheme.
-            // See https://www.dropbox.com/developers/start/authentication#ios for details.
-            DBSession *dbSession = [[DBSession alloc] initWithAppKey:@"tlgd0ci9254huta"
-                                                           appSecret:@"jbel7nqasuc63wt"
-                                                                root:kDBRootAppFolder];
-            [DBSession setSharedSession:dbSession];
-            controller.activityButtonItem.applicationActivities = @[[GSDropboxActivity new]];
-
-            // Very simple approach to show upload status.
-            static dispatch_once_t onceToken;
-            dispatch_once(&onceToken, ^{
-                [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidGetProgressUpdateNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-                    [PSPDFProgressHUD showProgress:[note.userInfo[GSDropboxUploaderProgressKey] floatValue] status:@"Uploading..."];
-                }];
-
-                [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidFinishUploadingFileNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-                    [PSPDFProgressHUD showSuccessWithStatus:@"Upload Finished."];
-                }];
-
-                [[NSNotificationCenter defaultCenter] addObserverForName:GSDropboxUploaderDidFailNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-                    [PSPDFProgressHUD showErrorWithStatus:@"Upload failed."];
-                }];
-            });
-
-            return controller;
-        }]];
-    }
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Search for Batman, without controller" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
