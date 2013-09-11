@@ -79,7 +79,8 @@ __attribute__((constructor)) static void setupDefaults(void) {
         _settings[PROPERTY(searchButtonItem)] = @YES;
         _settings[PROPERTY(annotationButtonItem)] = @YES;
         _settings[PROPERTY(bookmarkButtonItem)] = @YES;
-        _settings[PROPERTY(brightnessButtonItem)] = @YES;
+        _settings[PROPERTY(brightnessButtonItem)] = @NO;
+        PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
         _settings[PROPERTY(outlineButtonItem)] = @YES;
         _settings[PROPERTY(printButtonItem)] = @YES;
         _settings[PROPERTY(openInButtonItem)] = @YES;
