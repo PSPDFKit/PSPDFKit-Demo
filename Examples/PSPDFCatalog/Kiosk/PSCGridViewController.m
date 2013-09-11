@@ -246,7 +246,7 @@
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:(UICollectionViewScrollPosition)PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
             [self.collectionView layoutSubviews]; // ensure cells are laid out
             /*
              // ensure object is visible
@@ -646,7 +646,7 @@
         magazine = [folder firstMagazine];
     }
 
-    PSCLog(@"Magazine selected: %d %@", indexPath.item, magazine);
+    PSCLog(@"Magazine selected: %lu %@", (unsigned long)indexPath.item, magazine);
 
     if (folder.magazines.count == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {

@@ -9,6 +9,7 @@
 //
 
 #import "PSCTintColorSelectionBarButtonItem.h"
+#import <tgmath.h>
 
 @interface PSCTintColorSelectionBarButtonItem () <PSPDFColorSelectionViewControllerDelegate> {
     PSPDFColorButton *_strokeColorButton;
@@ -36,7 +37,7 @@
 
 - (void)updateButtonSize {
     // as we lock orientation, button size needs to be checked only here.
-    CGFloat buttonSize = roundf(PSCToolbarHeightForOrientation(self.pdfController.interfaceOrientation) * 0.75f);
+    CGFloat buttonSize = __tg_round(PSCToolbarHeightForOrientation(self.pdfController.interfaceOrientation) * 0.75f);
     _strokeColorButton.frame = (CGRect){.origin = _strokeColorButton.frame.origin, .size=CGSizeMake(buttonSize, buttonSize)};
 }
 

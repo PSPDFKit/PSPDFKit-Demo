@@ -92,7 +92,7 @@
 
 #define PSPDFLoadingViewTag 225475
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %d", pageView.page];
+    self.navigationItem.title = [NSString stringWithFormat:@"Custom always visible header bar. Page %lu", (unsigned long)pageView.page];
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
