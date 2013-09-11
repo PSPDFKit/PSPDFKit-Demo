@@ -13,12 +13,12 @@
 @implementation PSCBookmarkParser
 
 - (BOOL)addBookmarkForPage:(NSUInteger)page {
-    NSLog(@"Add Bookmark: %d", page);
+    NSLog(@"Add Bookmark: %lu", (unsigned long)page);
     return [super addBookmarkForPage:page];
 }
 
 - (BOOL)removeBookmarkForPage:(NSUInteger)page {
-    NSLog(@"Remove Bookmark: %d", page);
+    NSLog(@"Remove Bookmark: %lu", (unsigned long)page);
     return [super removeBookmarkForPage:page];
 }
 

@@ -78,7 +78,7 @@
 - (void)updateTitle {
     if (self.document) {
         // Internally, pages start at 0. But be user-friendly and start at 1.
-        self.title = [NSString stringWithFormat:@"%@ - Page %d", self.document.title, self.document.displayingPage + 1];
+        self.title = [NSString stringWithFormat:@"%@ - Page %lu", self.document.title, (unsigned long)self.document.displayingPage + 1];
     }else {
         self.title = @"No document loaded.";
         [self setHUDVisible:NO animated:NO]; // ensure HUD is disabled if no document is loaded.

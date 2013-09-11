@@ -282,7 +282,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didTapOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint {
     CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
     CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
-    PSCLog(@"Page %d tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
+    PSCLog(@"Page %lu tapped at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f.", (unsigned long)pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale);
 
     return NO; // touch not used.
 }
@@ -304,7 +304,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         CGPoint screenPoint = [self.view convertPoint:viewPoint fromView:pageView];
         CGPoint pdfPoint = [pageView convertViewPointToPDFPoint:viewPoint];
-        PSCLog(@"Page %d long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSCGestureStateToString(gestureRecognizer.state));
+        PSCLog(@"Page %lu long pressed at %@ screenPoint:%@ PDFPoint%@ zoomScale:%.1f. (state: %@)", (unsigned long)pageView.page, NSStringFromCGPoint(viewPoint), NSStringFromCGPoint(screenPoint), NSStringFromCGPoint(pdfPoint), pageView.scrollView.zoomScale, PSCGestureStateToString(gestureRecognizer.state));
     }
     return NO; // Touch not used.
 }

@@ -100,9 +100,9 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        CGFloat degrees = PSCRadiansToDegrees(atan2f(self.transform.b, self.transform.a));
+        CGFloat degrees = PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
         pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation+degrees);
-        PSCLog(@"Snap rotation to: %d", pageInfo.pageRotation);
+        PSCLog(@"Snap rotation to: %lu", (unsigned long)pageInfo.pageRotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
         PSPDFViewController *pdfController = self.pdfController;

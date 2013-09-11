@@ -283,14 +283,14 @@ static NSDate *_parseHTTPDate(const char *buf, size_t bufLen) {
     [coder encodeObject:self.data forKey:@"data"];
     [coder encodeObject:self.response forKey:@"response"];
     [coder encodeObject:self.userInfo forKey:@"userInfo"];
-    [coder encodeInt:self.storagePolicy forKey:@"storagePolicy"];
+    [coder encodeInteger:self.storagePolicy forKey:@"storagePolicy"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
     return [self initWithResponse:[coder decodeObjectForKey:@"response"]
                              data:[coder decodeObjectForKey:@"data"]
                          userInfo:[coder decodeObjectForKey:@"userInfo"]
-                    storagePolicy:[coder decodeIntForKey:@"storagePolicy"]];
+                    storagePolicy:[coder decodeIntegerForKey:@"storagePolicy"]];
 }
 
 #pragma clang diagnostic pop
@@ -336,7 +336,7 @@ inline void dispatch_async_afreentrant(dispatch_queue_t queue, dispatch_block_t 
 + (NSString *)cacheKeyForURL:(NSURL *)url {
     const char *str = [url.absoluteString UTF8String];
     unsigned char r[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(str, strlen(str), r);
+    CC_MD5(str, (CC_LONG)strlen(str), r);
     static NSString *cacheFormatVersion = @"2";
     return [NSString stringWithFormat:@"%@_%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             cacheFormatVersion, r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];

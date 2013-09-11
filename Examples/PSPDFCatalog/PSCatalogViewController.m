@@ -1155,7 +1155,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     annotation.color = [UIColor orangeColor];
                     annotation.boundingBox = boundingBox;
                     annotation.rects = highlighedRects;
-                    annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%d", annotationCounter];
+                    annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%lu", (unsigned long)annotationCounter];
                     annotation.page = pageIndex;
                     [document addAnnotations:@[annotation]];
                     annotationCounter++;
@@ -1444,7 +1444,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     // Calculate the size, aspect ratio correct.
                     CGSize annotationSize = PSPDFBoundingBoxFromLines(lines, 2).size;
                     CGFloat scale = PSCScaleForSizeWithinSize(annotationSize, maxSize);
-                    annotationSize = CGSizeMake(roundf(annotationSize.width * scale), roundf(annotationSize.height * scale));
+                    annotationSize = CGSizeMake(lround(annotationSize.width * scale), lround(annotationSize.height * scale));
 
                     // Create the annotation.
                     PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
@@ -2372,7 +2372,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Detect URLs in the document and create annotations
         NSIndexSet *allPagesIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)];
         NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
-            NSLog(@"Detected %@ on %d", annotations, page);
+            NSLog(@"Detected %@ on %lu", annotations, (unsigned long)page);
         } error:NULL];
 
         // Add those annotations to the page.
@@ -3024,7 +3024,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Invoking [NSIndexPath indexPathForRow:%d inSection:%d]", indexPath.row, indexPath.section);
+    NSLog(@"Invoking [NSIndexPath indexPathForRow:%ld inSection:%ld]", (long)indexPath.row, (long)indexPath.section);
 
     __block NSIndexPath *unfilteredIndexPath;
     PSContent *contentDescriptor;
@@ -3167,22 +3167,3 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 }
 
 @end
-
-// Fixes a missing selector crash for [UIToolbarButton imageForState:]:
-// TODO: Test during iOS7 betas if this has been fixed.
-__attribute__((constructor)) static void PSPDFFixUIToolbarButtonSelectorCrash(void) {
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS5/6.
-
-    @autoreleasepool {
-        Class toolbarButtonClass = NSClassFromString([NSString stringWithFormat:@"UI%@Button", @"Toolbar"]);
-        SEL imageForState = NSSelectorFromString([NSString stringWithFormat:@"image%@State:", @"For"]);
-        if (![toolbarButtonClass instancesRespondToSelector:imageForState]) {
-            IMP updateIMP = imp_implementationWithBlock(^(id _self, int state) {return nil;});
-            Method method = class_getInstanceMethod(toolbarButtonClass, imageForState);
-            const char *encoding = method_getTypeEncoding(method);
-            if (!class_addMethod(toolbarButtonClass, imageForState, updateIMP, encoding)) {
-                NSLog(@"Failed to add [UIToolbarButton imageForState:] workaround");
-            }
-        }
-    }
-}
