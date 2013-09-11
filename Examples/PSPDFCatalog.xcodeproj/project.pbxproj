@@ -34,15 +34,6 @@
 		784F012815CF247900849F81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 784F012615CF247900849F81 /* InfoPlist.strings */; };
 		784F012A15CF247900849F81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012915CF247900849F81 /* main.m */; };
 		784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012D15CF247900849F81 /* PSCAppDelegate.m */; };
-		785B160416692BA100F747B8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B15F616692BA100F747B8 /* DropboxSDK.framework */; };
-		785B160516692BA100F747B8 /* GSDropboxActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B15F816692BA100F747B8 /* GSDropboxActivity.m */; };
-		785B160616692BA100F747B8 /* GSDropboxActivityIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B15F916692BA100F747B8 /* GSDropboxActivityIcon.png */; };
-		785B160716692BA100F747B8 /* GSDropboxActivityIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B15FA16692BA100F747B8 /* GSDropboxActivityIcon@2x.png */; };
-		785B160816692BA100F747B8 /* GSDropboxActivityIcon@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B15FB16692BA100F747B8 /* GSDropboxActivityIcon@2x~ipad.png */; };
-		785B160916692BA100F747B8 /* GSDropboxActivityIcon~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 785B15FC16692BA100F747B8 /* GSDropboxActivityIcon~ipad.png */; };
-		785B160A16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B15FE16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m */; };
-		785B160B16692BA100F747B8 /* GSDropboxUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B160016692BA100F747B8 /* GSDropboxUploader.m */; };
-		785B160C16692BA100F747B8 /* GSDropboxUploadJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 785B160216692BA100F747B8 /* GSDropboxUploadJob.m */; };
 		785B160F16692BB900F747B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B160E16692BB900F747B8 /* Security.framework */; };
 		78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */; };
 		78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */; };
@@ -225,19 +216,6 @@
 		784F012B15CF247900849F81 /* PSPDFCatalog-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PSPDFCatalog-Prefix.pch"; sourceTree = "<group>"; };
 		784F012C15CF247900849F81 /* PSCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSCAppDelegate.h; sourceTree = "<group>"; };
 		784F012D15CF247900849F81 /* PSCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSCAppDelegate.m; sourceTree = "<group>"; };
-		785B15F616692BA100F747B8 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
-		785B15F716692BA100F747B8 /* GSDropboxActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDropboxActivity.h; sourceTree = "<group>"; };
-		785B15F816692BA100F747B8 /* GSDropboxActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDropboxActivity.m; sourceTree = "<group>"; };
-		785B15F916692BA100F747B8 /* GSDropboxActivityIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GSDropboxActivityIcon.png; sourceTree = "<group>"; };
-		785B15FA16692BA100F747B8 /* GSDropboxActivityIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GSDropboxActivityIcon@2x.png"; sourceTree = "<group>"; };
-		785B15FB16692BA100F747B8 /* GSDropboxActivityIcon@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GSDropboxActivityIcon@2x~ipad.png"; sourceTree = "<group>"; };
-		785B15FC16692BA100F747B8 /* GSDropboxActivityIcon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GSDropboxActivityIcon~ipad.png"; sourceTree = "<group>"; };
-		785B15FD16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDropboxDestinationSelectionViewController.h; sourceTree = "<group>"; };
-		785B15FE16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDropboxDestinationSelectionViewController.m; sourceTree = "<group>"; };
-		785B15FF16692BA100F747B8 /* GSDropboxUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDropboxUploader.h; sourceTree = "<group>"; };
-		785B160016692BA100F747B8 /* GSDropboxUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDropboxUploader.m; sourceTree = "<group>"; };
-		785B160116692BA100F747B8 /* GSDropboxUploadJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDropboxUploadJob.h; sourceTree = "<group>"; };
-		785B160216692BA100F747B8 /* GSDropboxUploadJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDropboxUploadJob.m; sourceTree = "<group>"; };
 		785B160E16692BB900F747B8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		78604C8516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAddDocumentsBarButtonItem.h; sourceTree = "<group>"; };
 		78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAddDocumentsBarButtonItem.m; sourceTree = "<group>"; };
@@ -480,7 +458,6 @@
 				78A24AB115CFDB6800328F4F /* MapKit.framework in Frameworks */,
 				784F012015CF247900849F81 /* Foundation.framework in Frameworks */,
 				784F012215CF247900849F81 /* CoreGraphics.framework in Frameworks */,
-				785B160416692BA100F747B8 /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,26 +560,6 @@
 				784F012115CF247900849F81 /* CoreGraphics.framework */,
 			);
 			name = System;
-			sourceTree = "<group>";
-		};
-		785B15F516692BA100F747B8 /* GSDropboxActivity */ = {
-			isa = PBXGroup;
-			children = (
-				785B15F616692BA100F747B8 /* DropboxSDK.framework */,
-				785B15F716692BA100F747B8 /* GSDropboxActivity.h */,
-				785B15F816692BA100F747B8 /* GSDropboxActivity.m */,
-				785B15F916692BA100F747B8 /* GSDropboxActivityIcon.png */,
-				785B15FA16692BA100F747B8 /* GSDropboxActivityIcon@2x.png */,
-				785B15FB16692BA100F747B8 /* GSDropboxActivityIcon@2x~ipad.png */,
-				785B15FC16692BA100F747B8 /* GSDropboxActivityIcon~ipad.png */,
-				785B15FD16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.h */,
-				785B15FE16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m */,
-				785B15FF16692BA100F747B8 /* GSDropboxUploader.h */,
-				785B160016692BA100F747B8 /* GSDropboxUploader.m */,
-				785B160116692BA100F747B8 /* GSDropboxUploadJob.h */,
-				785B160216692BA100F747B8 /* GSDropboxUploadJob.m */,
-			);
-			path = GSDropboxActivity;
 			sourceTree = "<group>";
 		};
 		78604C8416C50CB2003CB721 /* BarButtonItems */ = {
@@ -945,7 +902,6 @@
 		78DDC6B015CF2EFF0030C730 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				785B15F516692BA100F747B8 /* GSDropboxActivity */,
 				78DDC6B115CF2EFF0030C730 /* AFDownloadRequestOperation */,
 				78DDC6B515CF2EFF0030C730 /* AFNetworking */,
 				78DDC72015CF2EFF0030C730 /* SDURLCache */,
@@ -1135,10 +1091,6 @@
 				78AE9C6A177AFB12000E308D /* settings@2x.png in Resources */,
 				78E306BC1601C4850051AF68 /* Default-568h@2x.png in Resources */,
 				78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */,
-				785B160616692BA100F747B8 /* GSDropboxActivityIcon.png in Resources */,
-				785B160716692BA100F747B8 /* GSDropboxActivityIcon@2x.png in Resources */,
-				785B160816692BA100F747B8 /* GSDropboxActivityIcon@2x~ipad.png in Resources */,
-				785B160916692BA100F747B8 /* GSDropboxActivityIcon~ipad.png in Resources */,
 				78604CB116C51114003CB721 /* RotationLocked.png in Resources */,
 				78604CB216C51114003CB721 /* RotationLocked@2x.png in Resources */,
 				78AE9C69177AFB12000E308D /* settings.png in Resources */,
@@ -1221,10 +1173,6 @@
 				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
 				78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */,
 				78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */,
-				785B160516692BA100F747B8 /* GSDropboxActivity.m in Sources */,
-				785B160A16692BA100F747B8 /* GSDropboxDestinationSelectionViewController.m in Sources */,
-				785B160B16692BA100F747B8 /* GSDropboxUploader.m in Sources */,
-				785B160C16692BA100F747B8 /* GSDropboxUploadJob.m in Sources */,
 				78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */,
 				780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */,
 				78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */,
@@ -1302,6 +1250,7 @@
 			baseConfigurationReference = 78D909A41789886600E7D4D5 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -1342,7 +1291,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1355,6 +1304,7 @@
 			baseConfigurationReference = 78D909A41789886600E7D4D5 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -1390,7 +1340,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LLVM_LTO = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
