@@ -331,7 +331,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     }
     else if (indexPath.section == PSPDFPaperOpacity) {
         _contentOpacityControl.frame = self.rectForSegmentedControl;
-        NSUInteger index = (NSUInteger)roundf((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10.f);
+        NSUInteger index = (NSUInteger)round((1 - [_settings[@"renderContentOpacity"] floatValue]) * 10.f);
         _contentOpacityControl.selectedSegmentIndex = index;
         [cell addSubview:_contentOpacityControl];
     }
