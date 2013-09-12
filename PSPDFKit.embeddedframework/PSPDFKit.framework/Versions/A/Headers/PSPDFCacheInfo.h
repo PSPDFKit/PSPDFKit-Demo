@@ -14,10 +14,11 @@
 
 @class PSPDFRenderReceipt;
 
+/// Equality checks for page, size and UID.
 @interface PSPDFCacheInfo : NSObject <NSCoding>
 
 /// Designated initializer.
-- (id)initWithUID:(NSString *)UID andPage:(NSUInteger)page ofSize:(CGSize)size withReceipt:(NSString *)renderReceipt;
+- (id)initWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size receipt:(NSString *)renderReceipt;
 
 /// UID of the document this image is referenced.
 @property (nonatomic, copy, readonly) NSString *UID;
@@ -31,7 +32,7 @@
 /// The render receipt. Allows to detect changes in the PDF such as annotation changes.
 @property (nonatomic, strong) NSString *renderFingerprintString;
 
-/// The last time the image has been accessed.
+/// The last time the image has been accessed. Atomic because it might change at any time.
 @property (atomic, strong) NSDate *lastAccessTime;
 
 /// If the entry has a disk representation, it's set here.

@@ -22,6 +22,7 @@
     NSUInteger _encodingArrayCount;
     NSDictionary *_toUnicodeMap;
     CGFloat *_widths;
+    CGFloat _defaultWidth;
     size_t _widthSize;
     BOOL _isMultiByteFont;
 }
@@ -41,10 +42,10 @@
 @property (nonatomic, assign, readonly) CGFloat descent;
 
 /// A font can have either an encodingArray or a unicode map.
-@property (nonatomic, copy, readonly) NSArray *encodingArray;
+@property (nonatomic, strong, readonly) NSArray *encodingArray;
 
 /// Specialized dictionary that uses raw values as key pointers (use CFDictionaryGetValue)
-@property (nonatomic, copy, readonly) NSDictionary *toUnicodeMap;
+@property (nonatomic, strong, readonly) NSDictionary *toUnicodeMap;
 
 /// Version that boxes the keys at runtime. Slower, will be recreated on every access.
 @property (nonatomic, copy, readonly) NSDictionary *boxedToUnicodeMap;
@@ -58,8 +59,6 @@
 
 /// Returns YES if font is a composite/multibyte font.
 @property (nonatomic, assign, readonly) BOOL isMultiByteFont;
-
-- (void)parseToUnicodeMapWithString:(NSString *)cmapString;
 
 /// Default glyph dictionaries. Loaded lazily.
 + (NSDictionary *)glyphNames;

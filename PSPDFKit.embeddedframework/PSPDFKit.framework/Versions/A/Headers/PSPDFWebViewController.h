@@ -17,6 +17,7 @@
 
 @class PSPDFViewController, PSPDFAlertView;
 
+/// Delegate for the PSPDFWebViewController to customize URL handling.
 @protocol PSPDFWebViewControllerDelegate <NSObject>
 
 /// Controller where the webViewController has been pushed to (to dismiss modally)
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsStopReload       = 1 << 4,
     PSPDFWebViewControllerAvailableActionsBack             = 1 << 5,
     PSPDFWebViewControllerAvailableActionsForward          = 1 << 6,
-    // Following actions can only be used on iOS6 and later with UIActivityViewController.
+    // Following actions can only be used on iOS6+ with UIActivityViewController.
     PSPDFWebViewControllerAvailableActionsFacebook         = 1 << 7,
     PSPDFWebViewControllerAvailableActionsTwitter          = 1 << 8,
     PSPDFWebViewControllerAvailableActionsMessage          = 1 << 9,
@@ -59,11 +60,14 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 /// Creates a new PSPDFWebViewController with the specified URL.
 - (id)initWithURL:(NSURL *)URL;
 
+/// Creates a new PSPDFWebViewController with the specified custom URL request.
+- (id)initWithURLRequest:(NSURLRequest *)urlRequest;
+
 /// Controls the available actions under the more icon.
 /// Defaults to all actions available in PSPDFWebViewControllerAvailableActions.
 @property (nonatomic, assign) PSPDFWebViewControllerAvailableActions availableActions;
 
-/// Internal webview used.
+/// Internal webview.
 @property (nonatomic, strong, readonly) UIWebView *webView;
 
 /// Access popover controller, if attached.
@@ -99,7 +103,7 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 // This is your chance to modify the settings on the activity controller before it's displayed.
 - (UIActivityViewController *)createDefaultActivityViewController;
 
-// Toolbar items
+// Toolbar items. Subclass as needed.
 - (void)goBack:(id)sender;
 - (void)goForward:(id)sender;
 - (void)reload:(id)sender;

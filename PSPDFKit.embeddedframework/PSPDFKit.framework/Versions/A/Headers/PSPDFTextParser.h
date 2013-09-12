@@ -56,4 +56,7 @@
 // Performance.
 @property (atomic, strong) NSString *transformedText;
 
+// Access the internal lock.
+@property (nonatomic, assign, readonly) dispatch_queue_t parsingQueue;
+
 @end

@@ -1,0 +1,26 @@
+//  PSPDFKit.xcconfig
+//  PSPDFKit
+//
+//  Copyright 2012-2013 PSPDFKit GmbH. All rights reserved.
+//
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+//  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+//  This notice may not be removed from this file.
+//
+//
+//  Note: Xcode only allows one .xcconfig file. You can add the requested frameworks manually or
+//  create a merge xcconfig that includes both configurations if you run into such an issue of needing two xcconfig files.
+//
+//  For example, with using cocoapods this could look as follows:
+//  #include "../Pods/Pods.xcconfig"
+//  #include "../Vendor/PSPDFKit.embeddedframework/Resources/PSPDFKit.xcconfig"
+//
+//  More information:
+//  - http://stackoverflow.com/questions/1393987/how-to-append-values-in-xcconfig-variables
+//  - http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/XcodeConfig/subconfig/GTMMerge.xcconfig
+//
+
+// Remote -lsqlite3 if you integrate your own build of sqlite.
+PSPDFKIT_LDFLAGS=-ObjC -fobjc-arc -lz -lxml2 -framework CoreText -framework CoreMedia -framework MediaPlayer -framework AVFoundation -framework ImageIO -framework MessageUI -framework CoreGraphics -framework Foundation -framework QuartzCore -framework CFNetwork -framework MobileCoreServices -framework SystemConfiguration -framework AssetsLibrary -framework Security -framework UIKit -framework QuickLook -framework AudioToolbox -framework CoreData
+OTHER_LDFLAGS=$(inherited) $(PSPDFKIT_LDFLAGS)

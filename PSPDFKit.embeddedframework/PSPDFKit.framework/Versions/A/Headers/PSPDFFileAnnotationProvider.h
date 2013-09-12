@@ -12,10 +12,11 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationProvider.h"
+#import "PSPDFDocument.h"
 
-@class PSPDFLinkAnnotation;
+@class PSPDFLinkAnnotation, PSPDFDocument;
 
-/// Concrete implementation of the PSPDFAnnotationProvider protocol that uses the PDF document as a file source.
+/// Default implementation of the `PSPDFAnnotationProvider` protocol that uses the PDF document as source/target to load/save annotations. You almost always want to use the `PSPDFFileAnnotationProvider` in your `PSPDFAnnotationManager`. You can also use the `PSPDFFileAnnotationProvider` inside a custom annotation provider, to parse PDF annotations once and then manage them in your custom database.
 @interface PSPDFFileAnnotationProvider : NSObject <PSPDFAnnotationProvider>
 
 /// Designated initializer.
@@ -28,6 +29,10 @@
 /// Written as the "T" (title/user) property of newly created annotations.
 @property (atomic, copy) NSString *defaultAnnotationUsername;
 
+/// Set to enable auto-detection of various link types. Defaults to PSPDFTextCheckingTypeNone.
+/// @warning Detecting links might be an expensive operation.
+@property (nonatomic, assign) PSPDFTextCheckingType autodetectTextLinkTypes;
+
 /**
  Performance optimized access.
 
@@ -39,13 +44,17 @@
  You can add your own annotations (like videos, links) here.
  @note Usually it's a better idea to implement a custom AnnotationProvider, but this is kept for backwards compatibility.
 
- You will override any already set annotations, so if you want to mix in annotations from the PDF, use addAnnotations:forPage: instead.
+ You will override any already set annotations, so if you want to mix in annotations from the PDF, use addAnnotations:page: instead.
  Setting nil as annotations will re-evaluate the pdf for annotations on the next access. Use an empty array if you want to clear annotations instead.
 */
 - (void)setAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
 /// Will add the annotation to the current annotation array. Will accept any annotations.
-- (BOOL)addAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
+- (NSArray *)addAnnotations:(NSArray *)annotations;
+
+/// Annotations are either removed (PSPDFAnnotationsRemovedNotification) or soft-deleted if they are already saved in the PDF.
+/// In case they are soft-deleted, a PSPDFAnnotationChangedNotification with isDeleted as keyPath is sent instead.
+- (NSArray *)removeAnnotations:(NSArray *)annotations;
 
 /// Removes all annotation and re-evaluates the document on next access.
 - (void)clearCache;
@@ -69,7 +78,7 @@
 - (NSArray *)parseAnnotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
 /// Saving code.
-- (BOOL)saveAnnotationsWithError:(NSError **)error;
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
 /// Load annotations (returning NO + eventually an error if it fails)
 - (NSDictionary *)loadAnnotationsWithError:(NSError **)error;

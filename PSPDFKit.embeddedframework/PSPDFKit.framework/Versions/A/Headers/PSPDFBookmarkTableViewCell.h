@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFTableViewCell.h"
 
 @class PSPDFBookmarkTableViewCell;
 
@@ -24,7 +25,7 @@
 
 
 /// Custom cell used for bookmarks.
-@interface PSPDFBookmarkTableViewCell : UITableViewCell <UITextFieldDelegate>
+@interface PSPDFBookmarkTableViewCell : PSPDFTableViewCell <UITextFieldDelegate>
 
 /// Visible string.
 @property (nonatomic, copy) NSString *bookmarkString;

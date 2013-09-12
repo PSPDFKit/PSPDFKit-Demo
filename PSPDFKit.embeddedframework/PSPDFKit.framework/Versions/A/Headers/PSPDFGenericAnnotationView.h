@@ -19,9 +19,6 @@
 /// Generic annotation view that listens on annotation changes.
 @interface PSPDFGenericAnnotationView : UIView <PSPDFAnnotationViewProtocol>
 
-/// Designated initializer.
-- (id)initWithAnnotation:(PSPDFAnnotation *)annotation;
-
 /// The currently set annotation.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 

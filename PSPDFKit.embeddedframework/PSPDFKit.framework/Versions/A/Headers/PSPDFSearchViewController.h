@@ -17,6 +17,7 @@
 #import "PSPDFExtendedPopoverController.h"
 #import "PSPDFStatusBarStyleHint.h"
 #import "PSPDFStyleable.h"
+#import "PSPDFBaseTableViewController.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult, PSPDFSearchResultCell;
 
@@ -27,14 +28,14 @@ typedef NS_ENUM(NSInteger, PSPDFSearchStatus) {
     PSPDFSearchStatusCancelled
 };
 
-// Default value is 2. You might want to change this for asian languages.
-// (In the latin alphabet; searching for a single character is of not much use)
-extern NSUInteger kPSPDFMinimumSearchLength;
+// Default value is 2. You might want to change this for Asian languages.
+// (In the Latin alphabet; searching for a single character is of not much use)
+extern NSUInteger PSPDFMinimumSearchLength;
 
 @class PSPDFSearchViewController;
 
 /// Delegate for the search view controller.
-@protocol PSPDFSearchViewControllerDelegate <PSPDFTextSearchDelegate>
+@protocol PSPDFSearchViewControllerDelegate <PSPDFTextSearchDelegate, PSPDFOverridable>
 
 @optional
 
@@ -47,18 +48,15 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// Asks for the visible pages to optimize search ordering.
 - (NSArray *)searchViewControllerGetVisiblePages:(PSPDFSearchViewController *)searchController;
 
-/// Allows to provide custom subclasses of PSPDFSearchStatusCell/PSPDFSearchResultCell.
-- (Class)searchViewController:(PSPDFSearchViewController *)searchController cellForClass:(Class)cellClass;
-
 @end
 
 /// The PDF search controller.
-@interface PSPDFSearchViewController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
+@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
 
-/// initializes controller.
+/// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate;
 
-/// Current searchText. If set, keyboard is not shown.
+/// Current searchText. If set before showing the controller, keyboard will not be added.
 @property (nonatomic, copy) NSString *searchText;
 
 /// Different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
@@ -78,7 +76,7 @@ extern NSUInteger kPSPDFMinimumSearchLength;
 /// Defaults to 600. A too high number will be slow.
 @property (nonatomic, assign) NSUInteger maximumNumberOfSearchResultsDisplayed;
 
-/// Set to enable searching on the visible pages, then all. Was default until PSPDFKit 2.4.1. Defaults to NO.
+/// Set to enable searching on the visible pages, then all. Defaults to NO.
 /// If not set, the natural page order is searched.
 @property (nonatomic, assign) BOOL searchVisiblePagesFirst;
 

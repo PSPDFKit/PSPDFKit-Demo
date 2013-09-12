@@ -19,9 +19,6 @@
 /// Free Text View. Allows inline text editing.
 @interface PSPDFFreeTextAnnotationView : PSPDFHostingAnnotationView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate>
 
-/// Designated initializer.
-- (id)initWithAnnotation:(PSPDFAnnotation *)freeTextAnnotation;
-
 /// Start editing, shows the keyboard.
 - (void)beginEditing;
 

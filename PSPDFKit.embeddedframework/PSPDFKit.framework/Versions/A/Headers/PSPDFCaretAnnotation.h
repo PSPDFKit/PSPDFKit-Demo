@@ -12,6 +12,7 @@
 
 #import "PSPDFAnnotation.h"
 
+/// A caret annotation (PDF 1.5) is a visual symbol that indicates the presence of text edits, and share much similarity with note (text) annotations.
 @interface PSPDFCaretAnnotation : PSPDFAnnotation
 
 @end

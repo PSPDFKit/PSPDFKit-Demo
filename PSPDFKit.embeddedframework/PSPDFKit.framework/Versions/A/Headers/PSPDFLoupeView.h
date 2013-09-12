@@ -13,13 +13,13 @@
 #import "PSPDFKitGlobal.h"
 
 typedef NS_ENUM(NSInteger, PSPDFLoupeViewMode) {
-    PSPDFLoupeViewModeCircular,     // Curcular loupe
+    PSPDFLoupeViewModeCircular,     // Circular loupe
     PSPDFLoupeViewModeDetail,       // Detail (text selection) mode. No arrow.
-    PSPDFLoupeViewModeDetailTop,    // Arrow at the botton. High gap.
+    PSPDFLoupeViewModeDetailTop,    // Arrow at the bottom. High gap.
     PSPDFLoupeViewModeDetailBottom  // Arrow at the bottom. Low gap.
 };
 
-extern CGFloat kPSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.6 on iPhone.
+extern CGFloat PSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.6 on iPhone.
 
 /// Represents a loupe, modeled like the loupe used in UIKit.
 @interface PSPDFLoupeView : UIView
@@ -43,7 +43,7 @@ extern CGFloat kPSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1
 /// Position of the loupe in reference to the referenceView.
 @property (nonatomic, assign) CGPoint touchPoint;
 
-/// The default mangnification is set to PSPDFLoupeDefaultMagnification.
+/// The default magnification is set to PSPDFLoupeDefaultMagnification.
 @property (nonatomic, assign) CGFloat magnification;
 
 // Show loupe, optionally animated.

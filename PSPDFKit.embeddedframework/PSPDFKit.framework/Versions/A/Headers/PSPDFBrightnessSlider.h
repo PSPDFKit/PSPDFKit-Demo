@@ -14,12 +14,6 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    PSPDFThumbImageStyleDefault = 0,
-    PSPDFThumbImageStyleHourGlass,
-    PSPDFThumbImageStyleArrowLoop,
-}PSPDFThumbImageStyle;
-
-typedef enum {
     PSPDFSliderBackgroundStyleDefault = 0,
     PSPDFSliderBackgroundStyleGrayscale,
     PSPDFSliderBackgroundStyleColorful,
@@ -27,9 +21,9 @@ typedef enum {
 
 @class PSPDFColorPickerView;
 
+// Allows to customize the color brightness.
 @interface PSPDFBrightnessSlider : UISlider
 
-@property (nonatomic, assign) PSPDFThumbImageStyle thumbImageStyle;
 @property (nonatomic, assign) PSPDFSliderBackgroundStyle backgroundStyle;
 @property (nonatomic, weak) IBOutlet PSPDFColorPickerView *colorPicker;
 

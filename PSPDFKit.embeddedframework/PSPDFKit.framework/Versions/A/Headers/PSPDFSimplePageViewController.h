@@ -30,7 +30,6 @@
 
 /// Get/set current page, optionally animated. Page starts at 0.
 @property (nonatomic, assign) NSUInteger page;
-
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
 
 @end

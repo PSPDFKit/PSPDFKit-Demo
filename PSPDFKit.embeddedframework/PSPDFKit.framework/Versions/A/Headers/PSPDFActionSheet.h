@@ -25,17 +25,14 @@
 
 /// Adds a cancel button. Use only once.
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
-
 - (void)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// Adds a destructive button. Use only once.
 - (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block;
-
 - (void)setDestructiveButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// Add regular button.
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block;
-
 - (void)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFActionSheet *sheet, NSInteger buttonIndex))block;
 
 /// @name Properties and show/destroy
@@ -49,7 +46,16 @@
 /// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.
 - (void)destroy;
 
-/// Call block when action sheet gets dismissed.
-@property (nonatomic, copy) void (^destroyBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
+/// Call block when action sheet is about to be dismissed.
+@property (nonatomic, copy) void (^willDismissBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
+
+/// Call block when action sheet has been dismissed.
+@property (nonatomic, copy) void (^didDismissBlock)(PSPDFActionSheet *sheet, NSInteger buttonIndex);
+
+@end
+
+@interface PSPDFActionSheet (PSPDFSuperclassBlock)
+
+- (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
 
 @end

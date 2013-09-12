@@ -15,7 +15,7 @@
 #import "PSPDFKeyboardAvoidingScrollView.h"
 
 @protocol PSPDFAnnotationViewProtocol;
-@class PSPDFDocument, PSPDFPageView, PSPDFViewController, PSPDFLoupeView;
+@class PSPDFDocument, PSPDFPageView, PSPDFViewController;
 
 typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
     PSPDFShadowStyleFlat,   // flat shadow style (Default)
@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 - (void)displayDocument:(PSPDFDocument *)document withPage:(NSUInteger)page;
 
 /// Releases document, removes all caches. Call before releasing. Can be called multiple times w/o error.
-- (void)releaseDocument;
+- (void)prepareForReuse;
 
 /// Current displayed page.
 @property (nonatomic, assign) NSUInteger page;
@@ -118,41 +118,15 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer;
 
 // Allows changing the shadow path.
-- (id)pathShadowForView:(UIView *)imgView; // returns CGPathRef
-
-// Creates and sets up the double tap gesture. Override and return nil to remove it.
-- (UITapGestureRecognizer *)createDoubleTapGesture;
-
-@end
-
-@interface PSPDFScrollView (PSPDFInternal)
-
-// View that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
-@property (nonatomic, strong, readonly) UIView *compoundView;
-
-/// Global loupe view.
-@property (nonatomic, strong, readonly) PSPDFLoupeView *loupeView;
-
-// Used for improved rotation handling.
-@property (nonatomic, assign, getter=isRotationActive) BOOL rotationActive;
-
-/// Track animations of zoomToRect:animated: if we're zooming IN.
-/// (Used to decide when it's best to tile pages in ContinuousScroll)
-@property (nonatomic, assign, getter=isAnimatingZoomIn, readonly) BOOL animatingZoomIn;
-
-// Internal use for smooth rotations. Don't call unless you know exactly what you're doing.
-- (void)switchPages;
+- (id)pathShadowForView:(UIView *)view; // returns CGPathRef
 
 // Call to manually re-center the content.
 - (void)ensureContentIsCentered;
 
-// Update zoomScale from the values set in pdfController
-- (void)updateAllowedZoomScale;
+// Creates and sets up the double tap gesture. Override and return nil to remove it.
+- (UITapGestureRecognizer *)createDoubleTapGesture;
 
-// Return the actual PSPDFPageView behind point.
-- (PSPDFPageView *)pageViewForPoint:(CGPoint)point;
+// View that gets zoomed. attach your views here instead of the PSPDFScrollView to get them zoomed.
+@property (nonatomic, strong, readonly) UIView *compoundView;
 
 @end
-
-// Round rect to nearest size, if it's close.
-CGRect PSPDFRoundCompoundViewSize(CGRect compoundViewRect, UIView *superview);

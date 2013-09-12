@@ -14,6 +14,7 @@
 
 /// Applies the barButton shadow if style is UIBarButtonItemStyleBorder.
 /// This is not needed, UIBarButtonItemStylePlain is managed by the system.
+/// @note As of iOS7, this is a NOP and will simply return `oldImage`.
 extern UIImage *PSPDFApplyToolbarShadowToImage(UIImage *oldImage);
 
 // Can be used to use a custom subclass of the PSPDFIconGenerator. Defaults to nil, which will use PSPDFIconGenerator.class.
@@ -27,18 +28,14 @@ typedef NS_ENUM(NSInteger, PSPDFIconType) {
     PSPDFIconTypeBackArrow,
     PSPDFIconTypeBackArrowSmall,
     PSPDFIconTypeForwardArrow,
-    PSPDFIconTypePrint,
     PSPDFIconTypeEmail,
-    PSPDFIconTypeAnnotations,
-    PSPDFIconTypeBookmark,
-    PSPDFIconTypeBookmarkActive
 };
 
 /// Generates various icons on the fly and caches them for later use.
 @interface PSPDFIconGenerator : NSObject
 
 /// Access singleton.
-/// @note can be overridden with changing global kPSPDFIconGeneratorClassName.
+/// @note can be overridden with changing global PSPDFIconGeneratorClassName.
 + (instancetype)sharedGenerator;
 
 /// Generates in-code images on the fly. Cached, Thread-safe.

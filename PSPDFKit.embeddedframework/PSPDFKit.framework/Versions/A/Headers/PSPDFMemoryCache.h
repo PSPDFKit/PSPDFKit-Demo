@@ -22,12 +22,12 @@
 /// @name Accessing Data
 
 /// Access an image from the memory cache.
-- (PSPDFCacheInfo *)cacheInfoForImageWithUID:(NSString *)UID andPage:(NSUInteger)page withSize:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector;
+- (PSPDFCacheInfo *)cacheInfoForImageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector;
 
 /// @name Storing Data
 
 /// Store images into the cache. Storing is async.
-- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page withReceipt:(NSString *)renderReceipt;
+- (void)storeImage:(UIImage *)image UID:(NSString *)UID page:(NSUInteger)page receipt:(NSString *)renderReceipt;
 
 /// @name Invalidating Cache Entries
 
@@ -35,7 +35,7 @@
 - (BOOL)invalidateAllImagesWithUID:(NSString *)UID;
 
 /// Invalidate all images that match `UID` and `page` and match `infoSelector`.
-- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
+- (BOOL)invalidateAllImagesWithUID:(NSString *)UID page:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
 /// Clears all entries in the memory cache.
 - (void)clearCache;
@@ -49,10 +49,10 @@
 /// One pixel roughly needs 4 byte (+structure overhead).
 @property (nonatomic, assign, readonly) NSUInteger numberOfPixels;
 
-/// Maximum number of pixels allowed to be cached. Device dependant.
+/// Maximum number of pixels allowed to be cached. Device dependent.
 @property (nonatomic, assign) NSUInteger maxNumberOfPixels;
 
-/// Maximum number of pixels allowed to be cached after a memory warning. Device dependant.
+/// Maximum number of pixels allowed to be cached after a memory warning. Device dependent.
 @property (nonatomic, assign) NSUInteger maxNumberOfPixelsUnderStress;
 
 @end

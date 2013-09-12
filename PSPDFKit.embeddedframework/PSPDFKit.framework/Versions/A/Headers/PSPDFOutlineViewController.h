@@ -33,6 +33,7 @@
 @property (nonatomic, assign) BOOL allowCopy;
 
 /// Allows search. Defaults to YES.
+/// @warning This is currently broken and disabled on iOS 7.
 @property (nonatomic, assign) BOOL searchEnabled;
 
 /// Enables displaying page labels.
@@ -62,9 +63,6 @@
 
 
 @interface PSPDFOutlineViewController (SubclassingHooks)
-
-// subclass if you change the default cell height of 44 pixels.
-- (void)updatePopoverSize;
 
 // Cell delegate - expand/shrink content.
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;

@@ -34,8 +34,8 @@
 /// Page padding width between single/double pages.
 @property (nonatomic, assign) CGFloat pagePadding;
 
-/// Access visible page numbers or a PSPDFPageView
-- (NSArray *)visiblePageNumbers;
+/// Access visible page numbers or a PSPDFPageView.
+- (NSOrderedSet *)visiblePageNumbers;
 
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;
 
@@ -44,16 +44,5 @@
 
 /// Explicitly reload the view.
 - (void)reloadData;
-
-@end
-
-
-@interface PSPDFPageScrollViewController (PSPDFInternal)
-
-// Rotation Helper.
-@property (nonatomic, assign) NSUInteger targetPageAfterRotation;
-
-// Will configure the PSPDFScrollView and set the properties on it.
-- (void)configureScrollView:(PSPDFScrollView *)page forPageIndex:(NSUInteger)pageIndex;
 
 @end

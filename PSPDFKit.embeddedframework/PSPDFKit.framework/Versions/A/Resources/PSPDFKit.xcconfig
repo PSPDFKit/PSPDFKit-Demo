@@ -21,5 +21,6 @@
 //  - http://code.google.com/p/google-toolbox-for-mac/source/browse/trunk/XcodeConfig/subconfig/GTMMerge.xcconfig
 //
 
-PSPDFKIT_LDFLAGS=-ObjC -fobjc-arc -lz -framework CoreText -framework CoreMedia -framework MediaPlayer -framework AVFoundation -framework ImageIO -framework MessageUI -framework CoreGraphics -framework Foundation -framework QuartzCore -framework CFNetwork -framework MobileCoreServices -framework SystemConfiguration -framework AssetsLibrary -framework Security -framework UIKit -framework QuickLook -framework AudioToolbox
+// Remote -lsqlite3 if you integrate your own build of sqlite.
+PSPDFKIT_LDFLAGS=-ObjC -fobjc-arc -lsqlite3 -lz -lxml2 -framework CoreText -framework CoreMedia -framework MediaPlayer -framework AVFoundation -framework ImageIO -framework MessageUI -framework CoreGraphics -framework Foundation -framework QuartzCore -framework CFNetwork -framework MobileCoreServices -framework SystemConfiguration -framework AssetsLibrary -framework Security -framework UIKit -framework QuickLook -framework AudioToolbox -framework CoreData
 OTHER_LDFLAGS=$(inherited) $(PSPDFKIT_LDFLAGS)

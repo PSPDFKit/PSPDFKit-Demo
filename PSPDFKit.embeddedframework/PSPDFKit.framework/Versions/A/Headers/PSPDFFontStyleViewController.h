@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFBaseViewController.h"
+#import "PSPDFBaseTableViewController.h"
 
 @class PSPDFFontStyleViewController;
 
 /// Font style delegate.
-@protocol PSPDFFontStyleViewControllerDelegate <NSObject>
+@protocol PSPDFFontStyleViewControllerDelegate <PSPDFOverridable>
 
 /// Delegate is fired when a font is selected.
 - (void)fontStyleViewController:(PSPDFFontStyleViewController *)fontStyleViewController didSelectFont:(UIFont *)selectedFont;
@@ -23,16 +23,16 @@
 @end
 
 /// Select the font style (bold, italic, etc IF font is available.
-@interface PSPDFFontStyleViewController : UITableViewController
+@interface PSPDFFontStyleViewController : PSPDFBaseTableViewController
 
 /// Designated initializer.
 - (id)initWithFontFamilyName:(NSString *)fontFamilyName;
 
 /// Font name. Set before showing.
-@property (nonatomic, strong) NSString *fontFamilyName;
+@property (nonatomic, copy) NSString *fontFamilyName;
 
-/// Font names, will be evaluated in init.
-@property (nonatomic, strong) NSArray *fontNames;
+/// Font descriptors (PSPDFFontDescriptors), will be evaluated in init.
+@property (nonatomic, copy) NSArray *fontDescriptors;
 
 /// The final selected font.
 @property (nonatomic, strong) UIFont *selectedFont;

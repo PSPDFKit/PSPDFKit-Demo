@@ -1,10 +1,9 @@
 ACKNOWLEDGEMENTS
 
 PSPDFKit uses several open source 3rd-party components.
-You need to keep this file in your resource bundle to satisfy the licenses.
-Adding this text file to your about screen under "Attribution" would be a nice gesture, but is not required.
-
-To simplify the licenses, first a list of vendors is provided following the licenses used.
+This file needs to be inside your application bundle.
+Adding this text file to your about screen under 
+"Attribution" would be a nice gesture, but is not required.
 
 Keychain code by Sam Soffes, MIT licensed.
 Model code by GitHub, MIT licensed.
@@ -15,11 +14,15 @@ Drawing code by by Benjamin Guest, 3-Clause-BSD licensed.
 Drawing code by by Ryan (RSully), 2-Clause BSD licensed.
 HUD code by by Sam Vermette, 2-Clause BSD licensed.
 IDNSDK, VeriSign Inc., 3-Clause-BSD licensed.
-Proton framework, Bitswift, Inc., 3-Clause-BSD without binary attribution
+Proton framework, Bitswift, Inc., 3-Clause-BSD without binary attribution.
+LZ4 compression algorithm by Yann Collet, 2-Clause BSD licensed.
+BASE64 by Internet Software Consortium and IBM, Inc, MIT-like license.
+SQLite 3, Public Domain. (optionally, if included)
 
-MIT and BSD are very liberal licenses that allow commercial use. For more information please visit www.opensource.org.
+MIT and BSD are very liberal licenses that allow commercial use.
+For more information please visit www.opensource.org.
 
-----------------------------------------------------------------------------
+
 MIT License:
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -41,7 +44,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-----------------------------------------------------------------------------
+
 2-Clause BSD License:
 
 Redistribution and use in source and binary forms, with or without
@@ -65,7 +68,7 @@ modification, are permitted provided that the following conditions are met:
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
 
-----------------------------------------------------------------------------
+
 3-Clause-BSD without binary attribution License:
 
 Redistribution and use in source and binary forms, with or without
@@ -89,7 +92,7 @@ modification, are permitted provided that the following conditions are met:
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
 
-----------------------------------------------------------------------------
+
 3-Clause BSD License:
 
 Redistribution and use in source and binary forms, with or without
@@ -115,3 +118,49 @@ modification, are permitted provided that the following conditions are met:
  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  POSSIBILITY OF SUCH DAMAGE.
+
+
+BASE64 License:
+
+Copyright (c) 1996-1999 by Internet Software Consortium.
+ 
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+ 
+THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
+ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
+CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+SOFTWARE.
+
+Portions Copyright (c) 1995 by International Business Machines, Inc.
+
+International Business Machines, Inc. (hereinafter called IBM) grants
+permission under its copyrights to use, copy, modify, and distribute this
+Software with or without fee, provided that the above copyright notice and
+all paragraphs of this notice appear in all copies, and that the name of IBM
+not be used in connection with the marketing of any product incorporating
+the Software or modifications thereof, without specific, written prior
+permission.
+
+To the extent it has a right to do so, IBM grants an immunity from suit
+under its patents, if any, for the use, sale or manufacture of products to
+the extent that such products are used for performing Domain Name System
+dynamic updates in TCP/IP networks by means of the Software.  No immunity is
+granted for any product per se or for any other function of any product.
+
+THE SOFTWARE IS PROVIDED "AS IS", AND IBM DISCLAIMS ALL WARRANTIES,
+INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE.  IN NO EVENT SHALL IBM BE LIABLE FOR ANY SPECIAL,
+DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER ARISING
+OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE, EVEN
+IF IBM IS APPRISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+
+SQLite License:
+
+All of the deliverable code in SQLite has been dedicated to the public domain by the authors. All code authors, and representatives of the companies they work for, have signed affidavits dedicating their contributions to the public domain and originals of those signed affidavits are stored in a firesafe at the main offices of Hwaci. Anyone is free to copy, modify, publish, use, compile, sell, or distribute the original SQLite code, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.

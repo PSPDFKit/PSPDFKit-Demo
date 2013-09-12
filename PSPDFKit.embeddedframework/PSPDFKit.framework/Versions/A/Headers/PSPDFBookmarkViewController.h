@@ -17,7 +17,7 @@
 @class PSPDFDocument, PSPDFBookmark, PSPDFBookmarkViewController;
 
 /// Delegate for the bookmark controller.
-@protocol PSPDFBookmarkViewControllerDelegate <NSObject>
+@protocol PSPDFBookmarkViewControllerDelegate <PSPDFOverridable>
 
 /// Query the page that should be bookmarked when pressed the [+] button.
 - (NSUInteger)currentPageForBookmarkViewController:(PSPDFBookmarkViewController *)bookmarkController;
@@ -27,13 +27,11 @@
 
 @end
 
-extern const char kPSPDFBookmarkViewControllerIsResizingPopover;
-
 /// Show list of bookmarks for the current document and allows editing/reordering of the bookmarks.
 @interface PSPDFBookmarkViewController : PSPDFStatefulTableViewController <PSPDFBookmarkTableViewCellDelegate, PSPDFStyleable>
 
 /// Designated initializer.
-- (instancetype)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
+- (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFBookmarkViewControllerDelegate>)delegate;
 
 /// Will also reload tableView if changed.
 @property (nonatomic, strong) PSPDFDocument *document;
@@ -53,13 +51,8 @@ extern const char kPSPDFBookmarkViewControllerIsResizingPopover;
 @interface PSPDFBookmarkViewController (SubclassingHooks)
 
 - (void)createBarButtonItems;
-
-- (void)updatePopoverSize;
-
 - (void)updateBookmarkView;
-
 - (void)addBookmarkAction:(id)sender;
-
 - (void)doneAction:(id)sender;
 
 @end

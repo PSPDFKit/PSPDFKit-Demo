@@ -19,17 +19,17 @@
 /// @warning: Bookmarks don't have any representation in the PDF standard, thus they are saved in an external file.
 @interface PSPDFBookmark : PSPDFModel
 
-/// Initialize with page. Convenience initialization that will create a PSPDFActionGoTo.
+/// Initialize with page. Convenience initialization that will create a PSPDFGoToAction.
 - (id)initWithPage:(NSUInteger)page;
 
-/// Initalize with action.
+/// Initialize with action.
 - (id)initWithAction:(PSPDFAction *)action;
 
-/// The PDF action. Usually this will be of type PSPDFActionGoTo, but all action types are possible.
-/// @note A PSPDFActionGoTo might has a `namedDestination` set. If so, the target page hasn't yet been resolved, use PSPDFAction to resolve.
+/// The PDF action. Usually this will be of type PSPDFGoToAction, but all action types are possible.
+/// @note A PSPDFGoToAction might has a `namedDestination` set. If so, the target page hasn't yet been resolved, use PSPDFAction to resolve.
 @property (nonatomic, strong) PSPDFAction *action;
 
-/// Convenience shortcut for self.action.pageIndex (if action is of type PSPDFActionGoTo)
+/// Convenience shortcut for self.action.pageIndex (if action is of type PSPDFGoToAction)
 /// Page is set to NSNotFound if action is nil or a different type.
 @property (nonatomic, assign) NSUInteger page;
 
