@@ -12,10 +12,6 @@
 
 #import "PSPDFAnnotation.h"
 
-/// Set this in the userInfo of the annotation to 'suggest' a size when the annotation is added to the pageView.
-/// This value is used for the example stamps in PSPDFStampViewController and will not be persisted.
-extern NSString *const PSPDFStampAnnotationSuggestedSizeKey;
-
 /// PDF Stamp annotation.
 ///
 /// PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
@@ -30,11 +26,7 @@ extern NSString *const PSPDFStampAnnotationSuggestedSizeKey;
 /// Init with a default subject and uses a matching color.
 - (id)initWithSubject:(NSString *)subject;
 
-/// Stamp subject. Will be displayed uppercase italic bold.
-@property (nonatomic, copy) NSString *subject;
-
 /// Stamp subtext.
-///
 /// Used for custom stamps, will render beneath the subject or as the subject if subject is not set.
 @property (nonatomic, copy) NSString *subtext;
 
@@ -47,6 +39,15 @@ extern NSString *const PSPDFStampAnnotationSuggestedSizeKey;
 
 /// Stamp image transform. Defaults to CGAffineTransformIdentity.
 @property (nonatomic, assign) CGAffineTransform imageTransform;
+
+/// @name Sizing
+
+/// Return 'best' size to fit given size. does not actually resize the `boundingBox`.
+/// Will only work for simple stamp annotations with a subtext.
+- (CGSize)sizeThatFits:(CGSize)size;
+
+/// Calls `sizeThatFits:` with the current `boundingBox` and changes the `boundingBox`.
+- (void)sizeToFit;
 
 @end
 

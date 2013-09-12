@@ -12,7 +12,7 @@
 
 #import "PSPDFLinkAnnotation.h"
 
-/// Support for Screen (video) annotations.
+/// A screen annotation (PDF 1.5) specifies a region of a page upon which media clips may be played. It also serves as an object from which actions can be triggered. PSPDFKit also supports the matching Rendition Actions to control the video play state.
 /// @note iOS cannot play all video formats that can be used for PDF.
 @interface PSPDFScreenAnnotation : PSPDFLinkAnnotation
 

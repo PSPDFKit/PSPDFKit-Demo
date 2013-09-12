@@ -54,7 +54,11 @@
 
 /// The tab bar dataSource.
 @protocol PSPDFTabBarViewDataSource <NSObject>
+
+/// Returns the number of tabs that should be displayed.
 - (NSInteger)numberOfTabsInTabBarView:(PSPDFTabBarView *)tabBarView;
 
+/// Returns the title for the tab bar at the specific index.
 - (NSString *)tabBarView:(PSPDFTabBarView *)tabBarView titleForTabAtIndex:(NSUInteger)index;
+
 @end

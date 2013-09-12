@@ -14,24 +14,26 @@
 
 @class PSPDFDocument, PSPDFConversionOperation;
 
-// Available keys for options. kPSPDFProcessorAnnotationDict in form of pageIndex -> annotations.
-// Annotations will be flattened when type is set, unless kPSPDFProcessorAnnotationAsDictionary is also set.
-extern NSString *const kPSPDFProcessorAnnotationTypes;
-extern NSString *const kPSPDFProcessorAnnotationDict;
-extern NSString *const kPSPDFProcessorAnnotationAsDictionary; // Set to @YES to add annotations as dictionary and don't flatten them. Dictionary keys are the *original* page indexes.
-//extern NSString *const kPSPDFProcessorForceRecreation; // Set to @YES to force the creation of a new PDF. (This is NO by default, and can speed up generation under certain conditions, e.g. when flattening is disabled and pageRange is the whole document)(
+// Available keys for options. PSPDFProcessorAnnotationDict in form of pageIndex -> annotations.
+// Annotations will be flattened when type is set, unless PSPDFProcessorAnnotationAsDictionary is also set.
+extern NSString *const PSPDFProcessorAnnotationTypes;
+extern NSString *const PSPDFProcessorAnnotationDict;
+extern NSString *const PSPDFProcessorAnnotationAsDictionary; // Set to @YES to add annotations as dictionary and don't flatten them. Dictionary keys are the *original* page indexes.
 
 // Settings for the string/URL -> PDF generators.
-extern NSString *const kPSPDFProcessorPageRect;         // Defaults to CGRectMake(0, 0, 595, 842)
-extern NSString *const kPSPDFProcessorNumberOfPages;    // Defaults to 10. Set lower to optimize, higher if you have a lot of content.
-extern NSString *const kPSPDFProcessorPageBorderMargin; // Defaults to UIEdgeInsetsMake(5, 5, 5, 5).
-extern NSString *const kPSPDFProcessorAdditionalDelay;  // Defaults to 0.05 seconds. Set higher if you get blank pages.
+extern NSString *const PSPDFProcessorPageRect;         // Defaults to PSPDFPaperSizeA4
+extern NSString *const PSPDFProcessorNumberOfPages;    // Defaults to 10. Set lower to optimize, higher if you have a lot of content.
+extern NSString *const PSPDFProcessorPageBorderMargin; // Defaults to UIEdgeInsetsMake(5, 5, 5, 5).
+extern NSString *const PSPDFProcessorAdditionalDelay;  // Defaults to 0.05 seconds. Set higher if you get blank pages.
+
+// Common page sizes. Use for PSPDFProcessorPageRect.
+extern CGRect const PSPDFPaperSizeA4;
+extern CGRect const PSPDFPaperSizeLetter;
 
 // common options
-extern NSString *const kPSPDFProcessorDocumentTitle;    // Will override any defaults if set.
+extern NSString *const PSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
 typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
-
 typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
@@ -57,6 +59,9 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
  */
 - (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options;
 
+/// Like the above, but create a temporary PDF in memory.
+- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options;
+
 /**
  Renders a PDF from a URL (web or fileURL). This will take a while and is non-blocking.
  Upon completion, the completionBlock will be called.
@@ -65,12 +70,13 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
  See https://developer.apple.com/library/ios/#qa/qa2008/qa1630.html for the full list.
 
  Certain documents might not have the correct pagination.
- (Try to manually define kPSPDFProcessorPageRect to fine-tune this)
+ (Try to manually define PSPDFProcessorPageRect to fine-tune this)
 
- 'options' can contain both the kPSPDF constants listed above and any kCGPDFContext constants.
+ 'options' can contain both the PSPDF constants listed above and any kCGPDFContext constants.
  For example, to password protect the pdf, you can use:
- @{(id)kCGPDFContextUserPassword  : password, (id)kCGPDFContextOwnerPassword : password,
-   (id)kCGPDFContextEncryptionKeyLength : @(128)}
+ @{(id)kCGPDFContextUserPassword  : password,
+   (id)kCGPDFContextOwnerPassword : password,
+   (id)kCGPDFContextEncryptionKeyLength : @128}
 
  Other useful properties are:
  - kCGPDFContextAllowsCopying
@@ -94,7 +100,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @end
 
 /// Operation that converts many file formats to PDF.
-/// Needs to be executed from a thread.  PSPDFKit Annotate feature.
+/// Needs to be executed from a thread. PSPDFKit Annotate feature.
 @interface PSPDFConversionOperation : NSOperation
 
 /// Designated initializer.
@@ -111,13 +117,5 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
 /// Error if something went wrong.
 @property (nonatomic, strong, readonly) NSError *error;
-
-@end
-
-@interface PSPDFProcessor (Deprecated)
-
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error __attribute__ ((deprecated("Use the new variant with progressBlock")));
-
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options error:(NSError **)error __attribute__ ((deprecated("Use the new variant with progressBlock")));
 
 @end

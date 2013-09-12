@@ -12,18 +12,7 @@
 
 #import "PSPDFBarButtonItem.h"
 #import <MessageUI/MessageUI.h>
-
-@class PSPDFActionSheet;
-
-typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
-    PSPDFEmailSendCurrentPageOnly              = 1<<0, // Only page set in .page of PSPDFViewController.
-    PSPDFEmailSendCurrentPageOnlyFlattened     = 1<<1,
-    PSPDFEmailSendVisiblePages                 = 1<<2, // All visible pages (is ignored if only one page is visible).
-    PSPDFEmailSendVisiblePagesFlattened        = 1<<3,
-    PSPDFEmailSendMergedFilesIfNeeded          = 1<<4,
-    PSPDFEmailSendMergedFilesIfNeededFlattened = 1<<5, // Will merge your annotations, even if you have just one file.
-    PSPDFEmailSendOriginalDocumentFiles        = 1<<6
-};
+#import "PSPDFDocumentSharingViewController.h"
 
 /**
  Allows to send the whole PDF or the visible page(s) as PDF.
@@ -33,40 +22,25 @@ typedef NS_OPTIONS(NSUInteger, PSPDFEmailSendOptions) {
 
  IF you want to customize the body text, use the shouldShowController: delegate in PSPDFViewController. To check that this mail controller was created via PSPDFEmailBarButtonItem, compare the delegate destination.
  */
-@interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <MFMailComposeViewControllerDelegate>
+@interface PSPDFEmailBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 /**
- Control what data is sent. Defaults to PSPDFEmailSendVisiblePagesFlattened|PSPDFEmailSendMergedFilesIfNeeded|PSPDFEmailSendMergedFilesIfNeededFlattened.
+ Control what data is sent. Defaults to PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionAnnotationsSummary|PSPDFDocumentSharingOptionOfferMergeFiles.
  If only one option is set here, no menu will be displayed.
 
- ***Flattened control if annotations should be flattened.
- Annotations that are not flattened are not displayed in Mobile Mail/Mobile Safari.
- Note that annotations will be removed if this is set to NO for every option but PSPDFEmailSendOriginalDocumentFiles.
-
- PSPDFEmailSendMergedFilesIfNeeded will be equal to PSPDFEmailSendOriginalDocumentFiles if the document has just one document provider.
+ *Flattened controls if annotations should be flattened.
+ Annotations that are not flattened are not displayed in Mobile Mail/Mobile Safari (partly as of iOS 7).
  */
-@property (nonatomic, assign) PSPDFEmailSendOptions sendOptions;
+@property (nonatomic, assign) PSPDFDocumentSharingOptions sendOptions;
 
 /// Allows customization of the mail compose controller before it's displayed. (e.g. set custom body text)
 @property (nonatomic, copy) void (^mailComposeViewControllerCustomizationBlock)(MFMailComposeViewController *);
-
-/// Allows to add custom buttons in the action sheet. Will be called before the Cancel button is added.
-@property (nonatomic, copy) void (^actionSheetCustomizationBlock)(PSPDFActionSheet *);
 
 @end
 
 @interface PSPDFEmailBarButtonItem (SubclassingHooks)
 
-// Merges/flattens/attaches the files.
-- (void)attachDocumentToMailController:(MFMailComposeViewController *)mailViewController withMode:(PSPDFEmailSendOptions)mode completionBlock:(void (^)(BOOL success))completionBlock;
-
-// Finally shows the email controller.
-- (void)showEmailControllerWithSendOptions:(PSPDFEmailSendOptions)sendOptions sender:(id)sender animated:(BOOL)animated;
-
-// Hook to customize the fileName generation.
-- (NSString *)fileNameForPage:(NSUInteger)pageIndex sendOptions:(PSPDFEmailSendOptions)sendOptions;
-
-// Action sheet used internally if there are different options.
-@property (nonatomic, strong) UIActionSheet *actionSheet;
+// Shows the email controller.
+- (void)showEmailControllerWithSendOptions:(PSPDFDocumentSharingOptions)sendOptions dataArray:(NSArray *)dataArray fileNames:(NSArray *)fileNames sender:(id)sender animated:(BOOL)animated;
 
 @end

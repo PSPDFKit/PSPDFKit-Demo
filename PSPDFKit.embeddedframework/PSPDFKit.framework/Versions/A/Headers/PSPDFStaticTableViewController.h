@@ -10,10 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFBaseTableViewController.h"
+#import "PSPDFAnnotation.h"
+#import "PSPDFLineHelper.h"
+#import "PSPDFTableViewCell.h"
 
 // Helps to create controllers that show static table view content.
-@interface PSPDFStaticTableViewController : UITableViewController
+@interface PSPDFStaticTableViewController : PSPDFBaseTableViewController
 
 // Table view sections (PSPDFSectionModel)
 @property (nonatomic, strong) NSArray *sections;
@@ -21,26 +24,32 @@
 // Calls the update block on all visible cells.
 - (void)updateVisibleCells;
 
-// Calculates the size needed for the static content.
-- (CGSize)staticContentPopoverSize;
-
 @end
 
+@class PSPDFSectionModel;
 
 // Defines the content for a UITableViewCells.
 @interface PSPDFCellModel : NSObject
 
 + (instancetype)cellWithTitle:(NSString *)title;
 
+@property (nonatomic, weak) PSPDFSectionModel *section;
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *subtitle;
 @property (nonatomic, strong) UIView *accessoryView;
 @property (nonatomic, strong) Class cellClass; // Defaults to UITableViewCell if nil.
 @property (nonatomic, assign) UITableViewCellSelectionStyle selectionStyle;
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
 @property (nonatomic, assign) CGFloat height; // Defaults to 44.f
+@property (nonatomic, copy) NSDictionary *userInfo; // save custom data.
+// Returns YES if cell is currently checked.
+@property (nonatomic, assign, getter=isChecked) BOOL checked;
 @property (nonatomic, copy) void (^actionBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
 @property (nonatomic, copy) void (^updateBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
-@property (nonatomic, copy) void (^createBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cell);
+@property (nonatomic, copy) void (^createBlock)(PSPDFStaticTableViewController *viewController, UITableViewCell *cellt);
+
+// Calculates the needed height for `width`. Useful if `subtitle` is set.
+- (CGFloat)heightForWidth:(CGFloat)width;
 
 @end
 
@@ -54,10 +63,26 @@
 
 @end
 
-
 // Shows a color.
-@interface PSPDFColorCell : UITableViewCell
+@interface PSPDFColorCell : PSPDFNeverAnimatingTableViewCell
 
 @property (nonatomic, strong) UIColor *color;
 
 @end
+
+// Shows a line end.
+@interface PSPDFLineEndCell : PSPDFColorCell
+
+- (void)setLineEnd:(PSPDFLineEndType)lineEnd annotation:(PSPDFAnnotation *)annotation forStart:(BOOL)isStart;
+
+@end
+
+// Handles changing the checkboxes on tap.
+@interface PSPDFCheckboxSectionModel : PSPDFSectionModel
+@property (nonatomic, strong) PSPDFCellModel *checkedCellModel;
+@end
+
+// Automatically handles checkbox setting within a section.
+@interface PSPDFCheckBoxCellModel : PSPDFCellModel
+@end
+

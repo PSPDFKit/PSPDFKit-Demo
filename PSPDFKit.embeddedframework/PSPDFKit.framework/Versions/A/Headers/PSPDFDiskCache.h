@@ -16,15 +16,13 @@
 
 // Cache selector (to fetch sizes)
 typedef PSPDFCacheInfo *(^PSPDFCacheInfoSelector)(NSOrderedSet *);
-
 typedef NSArray *(^PSPDFCacheInfoArraySelector)(NSOrderedSet *);
 
 // Encryption/Decryption Helper.
 typedef UIImage *(^PSPDFCacheDecryptionHelper)(NSString *path);
-
 typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 
-/// The disk cache is designed to store and get images including metadata in a performant way.
+/// The disk cache is designed to store and get images including metadata in a fast way.
 /// No actual images will be held in memory (besides during the time they are scheduled for a disk write)
 @interface PSPDFDiskCache : NSObject
 
@@ -34,20 +32,20 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 /// @name Accessing Data
 
 /// Check if there's an matching entry in the cache.
-- (PSPDFCacheInfo *)cacheInfoForImageWithUID:(NSString *)UID andPage:(NSUInteger)page withSize:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector;
+- (PSPDFCacheInfo *)cacheInfoForImageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector;
 
 /// Will load the image synchronously. The `decryptionHelper` is mandatory.
-- (UIImage *)imageWithUID:(NSString *)UID andPage:(NSUInteger)page withSize:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper cacheInfo:(PSPDFCacheInfo **)outCacheInfo;
+- (UIImage *)imageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper cacheInfo:(PSPDFCacheInfo **)outCacheInfo;
 
 /// Accessing data will take some time, calls completionBlock when done. The `decryptionHelper` is mandatory.
 /// Returns `YES` if an image was found and a loading operation is scheduled.
-- (PSPDFCacheInfo *)scheduleLoadImageWithUID:(NSString *)UID andPage:(NSUInteger)page withSize:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper completionBlock:(void (^)(UIImage *cachedImage, PSPDFCacheInfo *cacheInfo))completionBlock;
+- (PSPDFCacheInfo *)scheduleLoadImageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper completionBlock:(void (^)(UIImage *cachedImage, PSPDFCacheInfo *cacheInfo))completionBlock;
 
 /// @name Storing Data
 
 /// Store images into the cache.
 /// The `encryptionHelper` is mandatory.
-- (void)storeImage:(UIImage *)image withUID:(NSString *)UID andPage:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper withReceipt:(NSString *)renderReceipt;
+- (void)storeImage:(UIImage *)image UID:(NSString *)UID page:(NSUInteger)page encryptionHelper:(PSPDFCacheEncryptionHelper)encryptionHelper receipt:(NSString *)renderReceipt;
 
 /// @name Invalidating Cache Entries
 
@@ -55,11 +53,11 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 - (BOOL)invalidateAllImagesWithUID:(NSString *)UID;
 
 /// Invalidate all images that match `UID` and `page` that match `infoSelector`. Will also invalidate any open writes.
-- (BOOL)invalidateAllImagesWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
+- (BOOL)invalidateAllImagesWithUID:(NSString *)UID page:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
 /// Invalidate cancel all write requests that match `UID` and `page` that match `infoSelector`.
 /// Use NSNotFound as a wildcard for all pages.
-- (void)cancelWriteRequestsWithUID:(NSString *)UID andPage:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
+- (void)cancelWriteRequestsWithUID:(NSString *)UID page:(NSUInteger)page infoArraySelector:(PSPDFCacheInfoArraySelector)infoSelector;
 
 /// Removes all entries in the disk cache.
 - (void)clearCache;

@@ -24,11 +24,8 @@ extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 
 @interface PSPDFViewController (Delegates)
 
-- (BOOL)delegateShouldSetDocument:(PSPDFDocument *)document;
-
-- (void)delegateWillDisplayDocument;
-
-- (void)delegateDidDisplayDocument;
+- (BOOL)delegateShouldChangeDocument:(PSPDFDocument *)document;
+- (void)delegateDidChangeDocument;
 
 - (void)delegateDidShowPage:(NSUInteger)page; // legacy bridge
 - (void)delegateDidShowPageView:(PSPDFPageView *)pageView;
@@ -55,74 +52,64 @@ extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 // annotations
 - (BOOL)delegateDidTapOnAnnotation:(PSPDFAnnotation *)annotation annotationPoint:(CGPoint)annotationPoint annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView pageView:(PSPDFPageView *)pageView viewPoint:(CGPoint)viewPoint;
 
-- (BOOL)delegateShouldSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
+- (NSArray *)delegateShouldSelectAnnotations:(NSArray *)annotations onPageView:(PSPDFPageView *)pageView;
+- (void)delegateDidSelectAnnotations:(NSArray *)annotations onPageView:(PSPDFPageView *)pageView;
 
-- (void)delegateDidSelectAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
-
-- (NSArray *)delegateShouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotation:(PSPDFAnnotation *)annotation inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
+- (NSArray *)delegateShouldShowMenuItems:(NSArray *)menuItems atSuggestedTargetRect:(CGRect)rect forAnnotations:(NSArray *)annotations inRect:(CGRect)textRect onPageView:(PSPDFPageView *)pageView;
 
 - (BOOL)delegateShouldDisplayAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 - (UIView <PSPDFAnnotationViewProtocol> *)delegateAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView;
 
 - (void)delegateWillShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
-
 - (void)delegateDidShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView;
-
 - (void)delegateDidEndPageScrollingAnimation:(UIScrollView *)scrollView;
-
 - (void)delegateDidBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view;
-
-- (void)delegateDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale;
-
+- (void)delegateDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale;
 - (void)delegateDidBeginPageDragging:(UIScrollView *)scrollView;
-
 - (void)delegateDidEndPageDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
 
 - (PSPDFDocument *)delegateDocumentForRelativePath:(NSString *)relativePath;
 
 - (void)delegateDidLoadPageView:(PSPDFPageView *)pageView;
-
 - (void)delegateWillUnloadPageView:(PSPDFPageView *)pageView;
 
-- (BOOL)delegateShouldShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
-
-- (void)delegateDidShowController:(id)viewController embeddedInController:(id)controller animated:(BOOL)animated;
+- (BOOL)delegateShouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
+- (void)delegateDidShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
 
 - (void)updateDelegateFlags; // implemented in PSPDFViewController (Delegates)
 
 @end
 
 typedef struct {
-    unsigned int delegateShouldSetDocument:1;
-    unsigned int delegateWillDisplayDocument:1;
-    unsigned int delegateDidDisplayDocument:1;
-    unsigned int delegateDidShowPageView:1;
-    unsigned int delegateDidRenderPageView:1;
-    unsigned int delegateDidChangeViewMode:1;
-    unsigned int delegateDidTapOnPageView:1;
-    unsigned int delegateDidLongPressOnPageView:1;
-    unsigned int delegateShouldSelectText:1;
-    unsigned int delegateDidSelectText:1;
-    unsigned int delegateShouldShowMenuItemsForSelectedText:1;
-    unsigned int delegateShouldShowMenuItemsForSelectedImage:1;
-    unsigned int delegateShouldSelectAnnotation:1;
-    unsigned int delegateDidSelectAnnotation:1;
-    unsigned int delegateShouldShowMenuItemsForAnnotation:1;
-    unsigned int delegateDidTapOnAnnotation:1;
-    unsigned int delegateShouldDisplayAnnotation:1;
-    unsigned int delegateShouldScrollToPage:1;
-    unsigned int delegateAnnotationViewForAnnotation:1;
-    unsigned int delegateWillShowAnnotationView:1;
-    unsigned int delegateDidShowAnnotationView:1;
-    unsigned int delegateDidLoadPageView:1;
-    unsigned int delegateWillUnloadPageView:1;
-    unsigned int delegateDidBeginPageDragging:1;
-    unsigned int delegateDidEndPageDraggingWillDecelerate:1;
-    unsigned int delegateDidEndPageScrollingAnimation:1;
-    unsigned int delegateDidBeginZooming:1;
-    unsigned int delegateDidEndZoomingAtScale:1;
-    unsigned int delegateShouldShowControllerAnimated:1;
-    unsigned int delegateDidShowControllerAnimated:1;
-    unsigned int delegateDocumentForRelativePath:1;
+    unsigned int shouldChangeDocument:1;
+    unsigned int didChangeDocument:1;
+    unsigned int didShowPageView:1;
+    unsigned int didRenderPageView:1;
+    unsigned int didChangeViewMode:1;
+    unsigned int didTapOnPageView:1;
+    unsigned int didLongPressOnPageView:1;
+    unsigned int shouldSelectText:1;
+    unsigned int didSelectText:1;
+    unsigned int shouldShowMenuItemsForSelectedText:1;
+    unsigned int shouldShowMenuItemsForSelectedImage:1;
+    unsigned int shouldSelectAnnotations:1;
+    unsigned int didSelectAnnotations:1;
+    unsigned int shouldShowMenuItemsForAnnotation:1;
+    unsigned int didTapOnAnnotation:1;
+    unsigned int shouldDisplayAnnotation:1;
+    unsigned int shouldScrollToPage:1;
+    unsigned int annotationViewForAnnotations:1;
+    unsigned int willShowAnnotationView:1;
+    unsigned int didShowAnnotationView:1;
+    unsigned int didLoadPageView:1;
+    unsigned int willUnloadPageView:1;
+    unsigned int didBeginPageDragging:1;
+    unsigned int didEndPageDraggingWillDecelerate:1;
+    unsigned int didEndPageScrollingAnimation:1;
+    unsigned int didBeginZooming:1;
+    unsigned int didEndZoomingAtScale:1;
+    unsigned int shouldShowControllerAnimated:1;
+    unsigned int didShowControllerAnimated:1;
+    unsigned int documentForRelativePath:1;
 }PSPDFDelegateFlags;

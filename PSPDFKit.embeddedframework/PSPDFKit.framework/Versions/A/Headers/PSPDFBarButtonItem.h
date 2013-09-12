@@ -27,20 +27,21 @@
  */
 @interface PSPDFBarButtonItem : UIBarButtonItem <NSCopying>
 
-/// Global helper to dismiss any open popover handled by PSPDFViewController
-+ (void)dismissPopoverAnimated:(BOOL)animated;
+/// Global helper to dismiss any open popover handled by PSPDFViewController.
+/// This will even dismiss popovers that don't expose their popover, such as UIActionSheet or UIPrintInteractionController.
++ (BOOL)dismissPopoverAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
 
+/// Returns if any of the bar button items is active. Takes UIKit-managed popovers into account.
 + (BOOL)isPopoverVisible;
 
 /// Init with pdfController reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
-/// PDF controller. (weak, do not use KVO on it)
+/// Attached PDF controller. (weak, do not use KVO on it!)
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
-/// Implement customView, image or systemItem in your subclass (via overriding the method)
+/// Implement customView, image or systemItem in your subclass. (via overriding the method)
 - (UIView *)customView;
-
 - (UIImage *)image;
 
 /// Defaults to (UIBarButtonSystemItem)-1. If you want to e.g. override the searchBarButtonItem that uses a system item, you need to override the PSPDFSearchBarButtonItem class, register it at overrideClassNames, return (UIBarButtonSystemItem)-1 here and implement image/landscapeImagePhone.
@@ -76,9 +77,7 @@
 /// Return a UIPopoverController if you presented a popover or a "parent" object if you indirectly presented a popover controller
 /// Sender can be either a UIBarButtonItem or a generic view.
 - (id)presentAnimated:(BOOL)animated sender:(id)sender;
-
-- (void)dismissAnimated:(BOOL)animated;
-
+- (BOOL)dismissAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
 - (void)didDismiss;
 
 /// Use if presentModal needs to return nil because of a long-running process.
@@ -87,8 +86,7 @@
 
 /// Helper method to present and dismiss a view controller inside a popover controller on iPad or modally on iPhone.
 - (id)presentModalOrInPopover:(UIViewController *)viewController sender:(id)sender;
-
-- (void)dismissModalOrPopoverAnimated:(BOOL)animated;
+- (BOOL)dismissModalOrPopoverAnimated:(BOOL)animated completion:(dispatch_block_t)completion;
 
 /**
  Peeks into certain Apple classes to get the internal UIPopoverController. (e.g. UIPrintInteractionController. I've written rdars to allow access to the internal popoverController - but this is the best way in the mean time)

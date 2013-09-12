@@ -22,8 +22,8 @@
 extern Class PSPDFCacheClass;
 
 // Enable this to see a detailed log output. (slow)
-extern BOOL kPSPDFCacheDebug;
-#define PSPDFCacheLog(...) do { if (kPSPDFCacheDebug) PSPDFLog(__VA_ARGS__); }while(0)
+extern BOOL PSPDFCacheDebug;
+#define PSPDFCacheLog(...) do { if (PSPDFCacheDebug) PSPDFLog(__VA_ARGS__); }while(0)
 
 /// Cache delegate. Add yourself to the delegate list via addDelegate and get notified of new cache events.
 @protocol PSPDFCacheDelegate <NSObject>
@@ -32,7 +32,7 @@ extern BOOL kPSPDFCacheDebug;
 
 /// Requested image has been rendered or loaded from disk.
 /// `size` is the requested image size, not the final image size. (due to document aspect ratio)
-- (void)didCacheImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size;
+- (void)didCacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size;
 
 @end
 
@@ -79,7 +79,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 };
 
 /// This singleton manages both memory and disk cache, and adds new render requests to PSPDFRenderQueue.
-/// Most settings are device dependant.
+/// Most settings are device dependent.
 @interface PSPDFCache : NSObject <PSPDFRenderDelegate>
 
 /// The cache object is a singleton.
@@ -88,23 +88,23 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// @name Access cache
 
 /// Get the cache status of a rendered image.
-/// `options` will ignore all entires except PSPDFCacheOptionSize*.
-- (PSPDFCacheStatus)cacheStatusForImageFromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size options:(PSPDFCacheOptions)options;
+/// `options` will ignore all entities except PSPDFCacheOptionSize*.
+- (PSPDFCacheStatus)cacheStatusForImageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size options:(PSPDFCacheOptions)options;
 
 /// Get the image for a certain document page.
 /// Will first check the memory cache, then the disk cache and lastly queues a request to render.
 /// Returns the image instantly if the memory cache was filled, else will queue and call the delegate.
 /// If `requireExactSize` is set, images will either be downscaled or dynamically rendered. (There's no point in upscaling)
 /// @note The cache will always return an aspect ratio corrected size of the image, so resulting size might be different.
-- (UIImage *)imageFromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size options:(PSPDFCacheOptions)options;
+- (UIImage *)imageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size options:(PSPDFCacheOptions)options;
 
 /// @name Store into cache
 
 /// Caches the image in memory and disk for later re-use.
 /// PSPDFCache will decide at runtime if the image is worth saving into memory or just disk. (And disk will only be hit if the image is different)
-- (void)saveImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withReceipt:(NSString *)renderReceipt;
+- (void)saveImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page receipt:(NSString *)renderReceipt;
 
-/// @name Document preprocessing
+/// @name Document pre-processing
 
 /// Starts caching the document. setting `diskCacheStrategy` to PSPDFDiskCacheStrategyEverything will pre-cache the whole document, and PSPDFDiskCacheStrategyNearPages will render a few pages around `page`.
 - (void)cacheDocument:(PSPDFDocument *)document startAtPage:(NSUInteger)page sizes:(NSArray *)sizes diskCacheStrategy:(PSPDFDiskCacheStrategy)diskCacheStrategy;
@@ -115,11 +115,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// @name Cache invalidation
 
 /// Cancels any open image request (disk load/render).
-- (void)cancelRequestForImageFromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size;
+- (void)cancelRequestForImageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size;
 
 /// Allows to invalidate a single page in the document.
 /// This usually is called after an annotation changes (and thus the image needs to be re-rendered)
-- (void)invalidateImageFromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page;
+- (void)invalidateImageFromDocument:(PSPDFDocument *)document page:(NSUInteger)page;
 
 /// Removes the whole cache (memory/disk) for `document`. Will cancel any open writes as well.
 /// Enable `deleteDocument` to remove the document and the associated metadata.
@@ -140,11 +140,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit/Pages".
 /// @note The cache directory is not backed up by iCloud and will be purged when memory is low.
-/// @warning Set this early during class initialization. Will clear the current chache before changing.
+/// @warning Set this early during class initialization. Will clear the current cache before changing.
 @property (nonatomic, copy) NSString *cacheDirectory;
 
 /// Defines the global disk cache strategy. Defaults to PSPDFDiskCacheStrategyEverything.
-/// If PSPDFDocument also defines a strategy, that one is priorized.
+/// If PSPDFDocument also defines a strategy, that one is prioritized.
 @property (nonatomic, assign) PSPDFDiskCacheStrategy diskCacheStrategy;
 
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
@@ -169,7 +169,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Delegate
 
-/// Register a delegate to be notifiec of new cache load events.
+/// Register a delegate to be notified of new cache load events.
 - (void)addDelegate:(id<PSPDFCacheDelegate>)aDelegate;
 
 /// Deregisters a delegate.
@@ -182,13 +182,13 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// If you have very text-like pages, you might want to set this to NO.
 @property (nonatomic, assign) BOOL useJPGFormat;
 
-/// Compression strength for JPG. (PNG is lossless)
+/// Compression strength for JPG. (PNG is loss-less)
 /// The higher the compression, the larger the files and the slower is decompression. Defaults to 0.9.
 /// This will load the pdf and remove any jpg artifacts.
 @property (nonatomic, assign) CGFloat JPGFormatCompression;
 
 /// Will allow image resizing instead of re-rendering to generate thumbnails.
-/// This is conditionally enabled for older devices. This is a tradeoff between performance or quality.
+/// This is conditionally enabled for older devices. This is a trade-off between performance or quality.
 /// @note You will need to clear the cache after changing this to see a difference.
 @property (nonatomic, assign) BOOL allowImageResize;
 
@@ -201,26 +201,5 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// Encrypt mutable data. PSPDFKit Annotate feature.
 /// If set to nil, the default implementation will be used.
 @property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data);
-
-@end
-
-
-@interface PSPDFCache (Deprecated)
-
-// Up to PSPDFKit 2.9.0, those costants were used to set the cache sizes.
-// The new cache is now much more capable and can cache any sizes, thus those constants are no longer needed.
-typedef NSInteger PSPDFSize;
-#define PSPDFSizeNative 0
-#define PSPDFSizeThumbnail 1
-#define PSPDFSizeTiny 2
-
-- (UIImage *)cachedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size __attribute__ ((deprecated));
-- (void)cacheDocument:(PSPDFDocument *)document startAtPage:(NSUInteger)page size:(PSPDFSize)size __attribute__ ((deprecated));
-- (void)cacheThumbnailsForDocument:(PSPDFDocument *)document __attribute__ ((deprecated));
-- (UIImage *)renderAndCacheImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(PSPDFSize)size error:(NSError **)error __attribute__ ((deprecated));
-- (void)clearMemoryCache __attribute__ ((deprecated));
-- (unsigned long long int)currentDiskUsage __attribute__ ((deprecated));
-// Instead of the downscaleInterpolationQuality property, simply set kPSPDFInterpolationQuality in the renderOptions dictionary of PSPDFDocument.
-// Instead of numberOfNearCachedPages and numberOfMaximumCachedDocuments, customize maxNumberOfPixels in PSPDFMemoryCache.
 
 @end

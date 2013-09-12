@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFBaseViewController.h"
+#import "PSPDFBaseTableViewController.h"
 
 @class PSPDFFontSelectorViewController;
 
 /// Delegate for PSPDFFontSelectorViewController.
-@protocol PSPDFFontSelectorViewControllerDelegate <NSObject>
+@protocol PSPDFFontSelectorViewControllerDelegate <PSPDFOverridable>
 
 /// A font has been selected.
 - (void)fontSelectorViewController:(PSPDFFontSelectorViewController *)fontSelectorViewController didSelectFont:(UIFont *)selectedFont;
@@ -23,10 +23,10 @@
 @end
 
 /// Simple table view that allows to select a font.
-@interface PSPDFFontSelectorViewController : UITableViewController
+@interface PSPDFFontSelectorViewController : PSPDFBaseTableViewController
 
-/// All available font family names. This is set on init by querying UIFont.familyNames.
-@property (nonatomic, strong) NSArray *fontFamilyNames;
+/// All available font family names as PSPDFFontDescriptors. This is set on init by querying UIFont.familyNames.
+@property (nonatomic, copy) NSArray *fontFamilyDescriptors;
 
 /// The currently selected font.
 @property (nonatomic, strong) UIFont *selectedFont;

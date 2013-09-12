@@ -21,7 +21,7 @@
 - (void)setPage:(NSUInteger)page animated:(BOOL)animated;
 
 // Returns an array of NSNumber's for the current visible page numbers. (ordered)
-- (NSArray *)visiblePageNumbers;
+- (NSOrderedSet *)visiblePageNumbers;
 
 // Get pageView for a specific page. Returns nil if page isn't currently loaded.
 - (PSPDFPageView *)pageViewForPage:(NSUInteger)page;

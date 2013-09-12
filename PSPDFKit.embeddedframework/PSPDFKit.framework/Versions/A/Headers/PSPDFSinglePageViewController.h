@@ -18,9 +18,8 @@
 /// Delegate protocol to show when the controller will be deallocated.
 @protocol PSPDFSinglePageViewControllerDelegate <NSObject>
 
-- (void)pspdfSinglePageViewControllerReadyForReuse:(PSPDFSinglePageViewController *)singlePageViewController;
-
-- (void)pspdfSinglePageViewControllerWillDealloc:(PSPDFSinglePageViewController *)singlePageViewController;
+- (void)singlePageViewControllerReadyForReuse:(PSPDFSinglePageViewController *)singlePageViewController;
+- (void)singlePageViewControllerWillDealloc:(PSPDFSinglePageViewController *)singlePageViewController;
 
 @end
 
@@ -56,6 +55,3 @@
 - (void)layoutPage;
 
 @end
-
-// named view for better debugging
-@interface PSPDFSinglePageView : UIView @end

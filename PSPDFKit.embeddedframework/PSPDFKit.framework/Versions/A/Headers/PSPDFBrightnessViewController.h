@@ -13,9 +13,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGradientView.h"
 
-///
 /// Controller to change the brightness.
-///
 @interface PSPDFBrightnessViewController : PSPDFBaseViewController
 
 /// Enables software dimming. Defaults to YES.
@@ -41,7 +39,6 @@
 
 @end
 
-
 @interface PSPDFBrightnessViewController (SubclassingHooks)
 
 // Slider used to regulate brightness.
@@ -52,9 +49,7 @@
 
 // Used for additional software dimming.
 - (PSPDFDimmingView *)dimmingView;
-
 - (PSPDFDimmingView *)addDimmingView;
-
 - (void)removeDimmingView;
 
 @end

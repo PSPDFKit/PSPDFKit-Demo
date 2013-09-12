@@ -17,7 +17,7 @@
 @class PSPDFStampAnnotation, PSPDFTextStampViewController;
 
 /// Delegate to be notified on signature actions.
-@protocol PSPDFTextStampViewControllerDelegate <NSObject>
+@protocol PSPDFTextStampViewControllerDelegate <PSPDFOverridable>
 
 @optional
 

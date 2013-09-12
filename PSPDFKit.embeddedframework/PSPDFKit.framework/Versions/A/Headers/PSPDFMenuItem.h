@@ -26,14 +26,14 @@
 /// Initialize PSPDFMenuItem with a block.
 - (id)initWithTitle:(NSString *)title block:(void (^)())block;
 
-/// Initialize PSPDFMenuItem with a block and an unlocalized identifier for later manipulation.
+/// Initialize PSPDFMenuItem with a block and an non-localized identifier for later manipulation.
 - (id)initWithTitle:(NSString *)title block:(void (^)())block identifier:(NSString *)identifier;
 
-/// Initialize PSPDFMenuItem with an image, a block and an unlocalized identifier for later manipulation.
+/// Initialize PSPDFMenuItem with an image, a block and an non-localized identifier for later manipulation.
 /// Will not allow image colors.
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier;
 
-/// Initialize PSPDFMenuItem with an image, a block and an unlocalized identifier for later manipulation.
+/// Initialize PSPDFMenuItem with an image, a block and an non-localized identifier for later manipulation.
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image block:(void (^)())block identifier:(NSString *)identifier allowImageColors:(BOOL)allowImageColors;
 
 /// Menu item can be enabled/disabled. (disable simply hides it from the UIMenuController)
@@ -77,4 +77,4 @@
 // PSPDFMenuItem also adds support for images. This doesn't use private API but requires some method swizzling.
 // Disable the image feature by setting this variable to NO before you set any image (e.g. in your AppDelegate)
 // Defaults to YES.
-extern BOOL kPSPDFAllowImagesForMenuItems;
+extern BOOL PSPDFAllowImagesForMenuItems;

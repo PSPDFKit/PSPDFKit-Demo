@@ -11,11 +11,11 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFTransitionHelper.h"
+#import "PSPDFTransitionProtocol.h"
 
 /// Implements the PageCurl-style famously presented in iBooks.
 /// @note Due to the nature of the animation, it doesn't look well with non-equal sized documents.
-@interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionProtocol, PSPDFTransitionHelperDelegate, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@interface PSPDFPageViewController : UIPageViewController <PSPDFTransitionProtocol, UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
 /// Designated initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;

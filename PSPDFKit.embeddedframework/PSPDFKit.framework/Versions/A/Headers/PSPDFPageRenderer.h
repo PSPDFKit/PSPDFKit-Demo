@@ -15,16 +15,17 @@
 @class PSPDFPageInfo, PSPDFAnnotation;
 
 // PDF rendering options.
-extern NSString *const kPSPDFPageColor;               // Multiplies a color used to color a page.
-extern NSString *const kPSPDFContentOpacity;          // Opacity of the pdf content can be adjusted.
-extern NSString *const kPSPDFInvertRendering;         // Inverts the rendering output. Default is NO.
-extern NSString *const kPSPDFInterpolationQuality;    // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
-extern NSString *const kPSPDFDisablePageRendering;    // Set to YES to NOT draw page content. (Use to just draw an annotation)
-extern NSString *const kPSPDFRenderOverlayAnnotations;// Set to YES to render annotations that have isOverlay = YES set.
-extern NSString *const kPSPDFIgnorePageClip;          // If YES, will draw outside of page area.
-extern NSString *const kPSPDFAllowAntiAliasing;       // Enabled/Disables antialiasing. Defaults to YES.
-extern NSString *const kPSPDFBackgroundFillColor;     // Allows custom render color. Default is white.
-extern NSString *const kPSPDFPDFBox;                  // Allows custom PDF box (if pageInfo is nil)
+extern NSString *const PSPDFRenderPageColor;               // Multiplies a color used to color a page.
+extern NSString *const PSPDFRenderContentOpacity;          // Opacity of the pdf content can be adjusted.
+extern NSString *const PSPDFRenderInverted;                // Inverts the rendering output. Default is NO.
+extern NSString *const PSPDFRenderInterpolationQuality;    // Set custom interpolation quality. Defaults to kCGInterpolationHigh.
+extern NSString *const PSPDFRenderSkipPageContent;         // Set to YES to NOT draw page content. (Use to just draw an annotation)
+extern NSString *const PSPDFRenderOverlayAnnotations;      // Set to YES to render annotations that have isOverlay = YES set.
+extern NSString *const PSPDFRenderSkipAnnotationArray;     // Skip rendering of any annotations that are in this array.
+extern NSString *const PSPDFRenderIgnorePageClip;          // If YES, will draw outside of page area.
+extern NSString *const PSPDFRenderAllowAntiAliasing;       // Enabled/Disables antialiasing. Defaults to YES.
+extern NSString *const PSPDFRenderBackgroundFillColor;     // Allows custom render color. Default is white.
+extern NSString *const PSPDFRenderPDFBox;                  // Allows custom PDF box (if pageInfo is nil)
 
 // Can be used to use a custom subclass of the PSPDFPageRenderer. Defaults to nil, which will use PSPDFPageRenderer.class.
 // Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.

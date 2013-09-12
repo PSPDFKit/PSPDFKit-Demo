@@ -44,10 +44,6 @@
 - (void)didHidePage:(NSUInteger)page;
 
 /// Called initially and when the parent page size is changed. (e.g. rotation)
-- (void)didChangePageFrame:(CGRect)frame;
+- (void)didChangePageBounds:(CGRect)bounds;
 
-@end
-
-// Deprecated.
-__attribute__ ((deprecated("This protocol has been renamed to PSPDFAnnotationViewProtocol"))) @protocol PSPDFAnnotationView <PSPDFAnnotationViewProtocol>
 @end

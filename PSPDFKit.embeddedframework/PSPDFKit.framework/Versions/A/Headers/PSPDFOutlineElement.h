@@ -37,11 +37,3 @@
 @property (nonatomic, assign, getter=isExpanded) BOOL expanded;
 
 @end
-
-
-@interface PSPDFOutlineElement (Deprecated)
-
-@property (nonatomic, readonly) NSString *destinationName __attribute__ ((deprecated("Use action.destinationName instead")));
-@property (nonatomic, copy) NSString *relativePath __attribute__ ((deprecated("Use action.relativePath instead")));
-
-@end

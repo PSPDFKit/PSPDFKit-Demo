@@ -15,12 +15,11 @@
 @interface PSPDFTabBarCloseButton : UIButton
 @end
 
-/// One tab-bar element.
+/// Tab bar button
 @interface PSPDFTabBarButton : UIButton
 
 /// Mark select/select state.
 @property (nonatomic, assign, getter=isSelected) BOOL selected;
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 
 /// The [x] close button.

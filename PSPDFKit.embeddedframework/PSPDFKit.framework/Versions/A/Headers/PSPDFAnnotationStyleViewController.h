@@ -12,6 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFColorSelectionViewController.h"
+#import "PSPDFLineEndSelectionViewController.h"
 #import "PSPDFFontSelectorViewController.h"
 #import "PSPDFFontStyleViewController.h"
 #import "PSPDFStaticTableViewController.h"
@@ -19,57 +20,64 @@
 @class PSPDFAnnotationStyleViewController, PSPDFAnnotation;
 
 /// Delegate for PSPDFAnnotationStyleViewController.
-@protocol PSPDFAnnotationStyleViewControllerDelegate <NSObject>
+@protocol PSPDFAnnotationStyleViewControllerDelegate <PSPDFOverridable>
 
 /// Called whenever a style property of PSPDFAnnotationStyleViewController changes.
 - (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController didChangeProperty:(NSString *)propertyName;
 
+@optional
+
+/// Called when a user starts changing a property (e.g. touch down on the slider)
+/// @warning There might not be a call to didChangeProperty if the user doesn't actually change the value (just touches it)
+/// @note Will not be fired for all properties.
+- (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController willStartChangingProperty:(NSString *)propertyName;
+
+/// Called when a user finishes changing a property (e.g. slider touch up)
+/// @note Will not be fired for all properties.
+- (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController didEndChangingProperty:(NSString *)propertyName;
+
 @end
 
 
-/// Allows to set/change the style of an annotation.
-@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
+/// Allows to set/change the style of an annotation. The annotation "Inspector".
+/// @note: The inspector currently only supports setting *one* annotation, but since long-term we want multi-select-change, the API has already been prepared for.
+@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFLineEndSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
+
+/// Returns YES if we can edit this annotation.
++ (BOOL)hasPropertiesForAnnotations:(NSArray *)annotations;
 
 /// Designated initializer.
-- (id)initWithAnnotation:(PSPDFAnnotation *)annotation delegate:(id<PSPDFAnnotationStyleViewControllerDelegate>)delegate;
+- (id)initWithAnnotations:(NSArray *)annotations delegate:(id<PSPDFAnnotationStyleViewControllerDelegate>)delegate;
 
 /// Controller delegate.
-@property (nonatomic, weak) id<PSPDFAnnotationStyleViewControllerDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<PSPDFAnnotationStyleViewControllerDelegate> delegate;
 
-/// The current selected annotation
-@property (nonatomic, strong) PSPDFAnnotation *annotation;
+/// The current selected annotations.
+@property (nonatomic, copy) NSArray *annotations;
 
 /// Shows a preview area on top. Defaults to NO.
 @property (nonatomic, assign) BOOL showPreviewArea;
 
-@end
+/// @name Customization
 
+/// Customize the inspector globally. Dictionary in format annotation type string : array of property strings.
+/// @note Setting `properties` to nil will re-set the default properties dictionary.
+/// @warning Only set on main thread. Set before the annotation controller is being accessed/opened.
++ (void)setPropertiesForAnnotations:(NSDictionary *)properties;
 
-// Cell that shows a slider with value text.
-@interface PSPDFSliderCell : UITableViewCell
-
-// Slider.
-@property (nonatomic, strong, readonly) UISlider *slider;
-
-// Slider value text (automatically updated)
-@property (nonatomic, strong, readonly) UILabel *sliderLabel;
-
-// Set a minimum text width to allow aligning of multiple slider cells. Defaults to 0.
-@property (nonatomic, assign) CGFloat minimumTextWidth;
-
-// Called whenever the slider changes to update the slider label.
-@property (nonatomic, copy) void (^sliderLabelUpdateBlock)(PSPDFSliderCell *cell, UISlider *slider);
+/// Return current dictionary of properties.
++ (NSDictionary *)propertiesForAnnotations;
 
 @end
 
 
-// A cell that is one big segmented control.
-@interface PSPDFSegmentedCell : UITableViewCell
+@interface PSPDFAnnotationStyleViewController (SubclassingHooks)
 
-// The segment visible.
-@property (nonatomic, strong, readonly) UISegmentedControl *segmentedControl;
+// Returns the list of properties (NSString) where we want to build cells for.
+- (NSArray *)propertiesForAnnotations:(NSArray *)annotations;
 
-// Called when the segment changes.
-@property (nonatomic, copy) void (^segmentedControlUpdateBlock)(PSPDFSegmentedCell *cell, UISegmentedControl *segmentedControl);
+// Allows to customize what cell models (PSPDFCellModel) we return for `property`.
+// You might also return nil here to block a property from being edited.
+- (NSArray *)cellModelsForProperty:(NSString *)property;
 
 @end

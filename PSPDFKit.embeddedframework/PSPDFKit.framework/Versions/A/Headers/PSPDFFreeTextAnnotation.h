@@ -30,14 +30,13 @@
 /// Font size as defined in the DA appearance string.
 @property (nonatomic, assign) CGFloat fontSize;
 
-/// Text justification. Allows PSPDFTextAlignmentLeft, PSPDFTextAlignmentCenter and PSPDFTextAlignmentRight.
+/// The line height for fontName and fontSize. Changes if you change either of these values.
+@property (nonatomic, assign, readonly) CGFloat lineHeight;
+
+/// Text justification. Allows NSTextAlignmentLeft, NSTextAlignmentCenter and NSTextAlignmentRight.
 /// @note Toll-free 'bridges' to both NSTextAlignment and UITextAlignment.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
-@property (nonatomic, assign) UITextAlignment textAlignment;
-#else
 @property (nonatomic, assign) NSTextAlignment textAlignment;
-#endif
 
 /// Return a default font size if not defined in the annotation.
 - (CGFloat)defaultFontSize;
@@ -47,5 +46,24 @@
 
 /// Returns the currently set font (calculated from defaultFontSize)
 - (UIFont *)defaultFont;
+
+/// Resizes the annotation to fit the entire text by increasing or decreasing the height.
+/// The width and origin of the annotation are maintained.
+- (void)sizeToFit;
+
+/// Returns the size of the annotation with respect to the given constraints. If you don't want to
+/// constrain the height or width, use CGFLOAT_MAX for that value. The suggested size takes the
+/// rotation of the annotation into account.
+- (CGSize)sizeWithConstraints:(CGSize)constraints;
+
+/// Enables automatic vertical resizing. If this property is set to YES, the annotation will
+/// adjust its bounding box as the user types in more text.
+/// Defaults to NO.
+@property (nonatomic, assign) BOOL enableVerticalResizing;
+
+/// Enables automatic horizontal resizing. If this property is set to YES, the annotation will
+/// adjust its bounding box as the user types in more text.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL enableHorizontalResizing;
 
 @end
