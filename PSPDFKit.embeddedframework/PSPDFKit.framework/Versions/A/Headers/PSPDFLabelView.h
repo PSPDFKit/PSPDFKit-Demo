@@ -16,8 +16,9 @@
 @class PSPDFViewController;
 
 typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
-    PSPDFLabelStyleFlat,
-    PSPDFLabelStyleBordered
+    PSPDFLabelStyleFlat,     // <= iOS6 default.
+    PSPDFLabelStyleBordered,
+    PSPDFLabelStyleModern,   // iOS7 and newer.
 };
 
 @interface PSPDFLabelView : PSPDFGradientView
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
 /// Margin that is between the text and this view. Defaults to 5.
 @property (nonatomic, assign) CGFloat labelMargin;
 
-/// Customize label style. Defaults to PSPDFLabelStyleFlat.
+/// Customize label style. Defaults to PSPDFLabelStyleFlat on iOS6 and PSPDFLabelStyleModern on iOS7+.
 @property (nonatomic, assign) PSPDFLabelStyle labelStyle;
 
 /// Weak reference to the pdf controller. We use KVO for updates.

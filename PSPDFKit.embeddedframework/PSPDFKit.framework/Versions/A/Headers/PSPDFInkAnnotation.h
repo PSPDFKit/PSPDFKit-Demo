@@ -32,9 +32,8 @@ NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUIntege
 // Will convert PDF lines to view lines (operates on every point)
 NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
-// Controls if an AP stream should be generated for Ink annotations.
-// Enabled by default. Add this with @NO to the renderingOptions dict in PSPDFDocument to override.
-extern NSString *const kPSPDFGenerateAPForInk;
+// Constant to convert the NSArray of NSStrings <-> NSArray of CGRects NSValueTransformer.
+extern NSString *const PSPDFLinesTransformerName;
 
 /// PDF Ink Annotation. (Free Drawing)
 /// Lines are automatically transformed when the boundingBox is changed.
@@ -50,7 +49,7 @@ extern NSString *const kPSPDFGenerateAPForInk;
 
 /// UIBezierPath.
 /// Will be dynamically crated from the lines array.
-@property (nonatomic, copy, readonly) UIBezierPath *path;
+@property (nonatomic, copy, readonly) UIBezierPath *bezierPath;
 
 /// By default, setting the boundingBox will transform all points in the lines array.
 /// Use this setter to manually change the boundingBox without changing lines.
@@ -59,8 +58,5 @@ extern NSString *const kPSPDFGenerateAPForInk;
 /// Generate new line array by applying transform.
 /// This is used internally when boundingBox is changed.
 - (NSArray *)copyLinesByApplyingTransform:(CGAffineTransform)transform;
-
-/// NSArray of NSStrings <-> NSArray of CGRects transformer.
-+ (NSValueTransformer *)linesTransformer;
 
 @end

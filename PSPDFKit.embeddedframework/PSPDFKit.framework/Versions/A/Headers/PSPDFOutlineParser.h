@@ -51,11 +51,3 @@
 @property (nonatomic, assign) NSUInteger namedDestinationResolveThreshold;
 
 @end
-
-@interface PSPDFOutlineParser (Deprecated)
-
-/// Resolve the destinationName of an outline element.
-/// Will return NO if destinationName is nil or couldn't be resolved.
-- (BOOL)resolveDestinationNameForOutlineElement:(PSPDFOutlineElement *)outlineElement __attribute__ ((deprecated("Use [action resolveNamedDestionationWithDocumentProvider]")));
-
-@end

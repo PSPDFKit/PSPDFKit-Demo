@@ -60,7 +60,7 @@
 @property (nonatomic, weak) IBOutlet id<PSPDFMultiDocumentViewControllerDelegate> delegate;
 
 /// Set to YES to enable automatic state persisting. Will be saved to NSUserDefaults. Defaults to NO.
-@property (nonatomic, assign) BOOL enableAutomaticStatePersistance;
+@property (nonatomic, assign) BOOL enableAutomaticStatePersistence;
 
 /// Persists the state to NSUserDefaults.
 - (void)persistState;
@@ -74,7 +74,7 @@
 
 /// Defaults to kPSPDFMultiDocumentsPersistKey.
 /// Change if you use multiple instances of PSPDFMultiDocumentViewController.
-@property (nonatomic, copy) NSString *statePersistanceKey;
+@property (nonatomic, copy) NSString *statePersistenceKey;
 
 /// The embedded PDFViewController. Access to customize the properties.
 @property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
@@ -94,7 +94,7 @@
 @interface PSPDFMultiDocumentViewController (SubclassingHooks)
 
 /// Override this initializer to allow all use cases (storyboard loading, etc)
-- (void)commonInitWithPDFController:(PSPDFViewController *)pdfController;
+- (void)commonInitWithPDFController:(PSPDFViewController *)pdfController NS_REQUIRES_SUPER;
 
 // Prepares the controller to interact with the multi document container.
 - (void)swizzlePDFController:(PSPDFViewController *)pdfController;

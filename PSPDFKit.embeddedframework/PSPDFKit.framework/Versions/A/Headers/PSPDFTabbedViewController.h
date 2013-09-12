@@ -12,6 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFMultiDocumentViewController.h"
+#import "PSPDFTabBarView.h"
 
 @class PSPDFTabbedViewController, PSPDFTabBarView;
 
@@ -40,7 +41,7 @@
 @end
 
 /// Allows displaying multiple PSPDFDocuments, easily switchable via a top tab bar.
-@interface PSPDFTabbedViewController : PSPDFMultiDocumentViewController
+@interface PSPDFTabbedViewController : PSPDFMultiDocumentViewController <PSPDFTabBarViewDelegate, PSPDFTabBarViewDataSource>
 
 /// Initialize the controller.
 /// Set a custom pdfViewController to use a subclass. If nil, a default instance will be created.
@@ -62,7 +63,7 @@
 
 /// Defaults to kPSPDFTabbedDocumentsPersistKey.
 /// Change if you use multiple instances of PSPDFTabbedViewController.
-@property (nonatomic, copy) NSString *statePersistanceKey;
+@property (nonatomic, copy) NSString *statePersistenceKey;
 
 /// Minimum tab width. Defaults to 100.
 @property (nonatomic, assign) CGFloat minTabWidth;

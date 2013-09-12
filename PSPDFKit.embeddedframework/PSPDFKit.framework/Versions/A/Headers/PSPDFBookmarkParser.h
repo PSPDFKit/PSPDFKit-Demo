@@ -15,7 +15,7 @@
 @class PSPDFBookmark, PSPDFDocument;
 
 /// Register to get notified by bookmark changes. Object is the PSPDFBookmarkParser object.
-extern NSString *const kPSPDFBookmarksChangedNotification;
+extern NSString *const PSPDFBookmarksChangedNotification;
 
 /**
  Manages bookmarks for a PSPDFDocument.

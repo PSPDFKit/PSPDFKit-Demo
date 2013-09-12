@@ -30,7 +30,7 @@
 @property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.
-@property (nonatomic, assign, getter=isShowingPageLabel) BOOL showingPageLabel;
+@property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
 
 /// This is simply a redeclaration of the property in UICollectionViewCell.
 /// Modify this to change the look of the selection/highlight state.
@@ -49,6 +49,9 @@
 
 /// Page label. (By default a PSPDFRoundedLabel, but can be set to any UILabel subclass, simply do a cast)
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
+
+/// Allows to update the bookmark image.
+@property (nonatomic, strong, readonly) UIImageView *bookmarkImageView;
 
 /// Creates the shadow. Subclass to change. Returns a CGPathRef.
 - (id)pathShadowForView:(UIView *)imgView;

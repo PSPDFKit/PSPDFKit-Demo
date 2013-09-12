@@ -14,23 +14,27 @@
 
 @class PSPDFViewController;
 
-/// Delegate to receive events regarding PSPDFDocument (annotation saving; path resolving)
+/// Delegate to receive events regarding PSPDFDocument.
 @protocol PSPDFDocumentDelegate <NSObject>
 
 @optional
 
 /// Callback for a render operation. Will be called on a thread (since rendering is async)
 /// You can use the context to add custom drawing.
-- (void)pdfDocument:(PSPDFDocument *)document didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options;
+- (void)pdfDocument:(PSPDFDocument *)document didRenderPage:(NSUInteger)page inContext:(CGContextRef)context withSize:(CGSize)fullSize clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options;
 
 /// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
 - (NSString *)pdfDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken; // return nil if unknown.
 
 /// Called after saving was successful.
 /// If there are no dirty annotations, delegates will not be called.
+/// @note `annotations` might not include all changes, especially if annotations have been deleted or an annotation provider didn't implement dirtyAnnotations.
+/// @warning Might be called from a thread.
 - (void)pdfDocument:(PSPDFDocument *)document didSaveAnnotations:(NSArray *)annotations;
 
 /// Called after saving failed. When an error occurs, annotations will not be the complete set in multi-file documents.
-- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations withError:(NSError *)error;
+/// @note `annotations` might not include all changes, especially if annotations have been deleted or an annotation provider didn't implement dirtyAnnotations.
+/// @warning Might be called from a thread.
+- (void)pdfDocument:(PSPDFDocument *)document failedToSaveAnnotations:(NSArray *)annotations error:(NSError *)error;
 
 @end

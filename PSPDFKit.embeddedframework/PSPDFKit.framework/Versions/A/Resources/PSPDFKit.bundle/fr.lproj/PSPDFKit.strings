@@ -18,6 +18,9 @@
 "File Not Found" = "Fichier non trouvé";
 "Unnamed PDF" = "PDF sans nom";
 "Page %d" = "Page %d";
+"All (%d Pages)" = "All (%d Pages)";
+"Next" = "Next";
+"Previous" = "Previous";
 
 // toolbar
 "Outline" = "Sommaire";
@@ -25,17 +28,13 @@
 "Search Outline" = "Search Outline";
 "Search" = "Rechercher";
 "Email" = "Email";
-"Email document" = "Envoyer le document par email";
-"Email flattened document" = "Envoyer e document aplati par email";
-"Email document files" = "Envoyer les fichier par email";
-"Email visible page" = "Envoyer la page en cours par email";
-"Email flattened page" = "Envoyer la page aplatie par email";
-"Email visible pages" = "Envoyer les pages visibles par email";
-"Email flattened pages" = "Envoyer les pages aplaties par email";
+"Send via Email" = "Send via Email";
+"Send" = "Send";
 "Open in..." = "Ouvrir dans…";
+"Open" = "Open";
+"Commit" = "Commit";
 "Sending to %@..." = "Envoyer à %@…";
-"Open original document" = "Ouvrir le document d'origine";
-"Open flattened document" = "Ouvrir le document aplati";
+"Pages" = "Pages";
 "Print with annotations" = "Imprimer avec les annotations";
 "Print document only" = "Imprimer le document seul";
 "No Applications found" = "Aucune application pouvant ouvrir le document PDF.";
@@ -94,6 +93,8 @@
 "Failed to extract image." = "Failed to extract image.";
 
 // annotations
+"Add %@" = "Add %@";
+"Remove %@" = "Remove %@";
 "Remove" = "Supprimer";
 "Edit" = "Editer";
 "Undo" = "Défaire";
@@ -102,6 +103,7 @@
 "Font..." = "Typographie…";
 "Size..." = "Taille…";
 "Font" = "Typographie";
+"Fonts" = "Typographie";
 "Choose Color" = "Choisir une couleur";
 "Rainbow" = "Arc en ciel";
 "Monochrome" = "Camaïeu";
@@ -125,7 +127,6 @@
 "Transparent" = "Transparent";
 "Define" = "Définir";
 "Wikipedia" = "Wikipedia";
-"Copy" = "Copier";
 "Highlight" = "Surligner";
 "Underline" = "Souligner";
 "Strikeout" = "Barrer";
@@ -133,10 +134,12 @@
 "Rectangle" = "Rectangle";
 "Ellipse" = "Ellipse";
 "Line" = "Ligne";
+"Polyline" = "Polyligne";
+"Polygon" = "Polygon";
 "Signature" = "Signature";
 "Signatures" = "Signatures";
 "Stamp" = "Timbre";
-"Add Stamp" = "Ajouter timbre";
+"Stamps" = "Timbre";
 "Custom" = "Personnalisé";
 "Create Stamp" = "Créer timbre";
 "Preview" = "Avant-première";
@@ -144,14 +147,12 @@
 "Add Signature" = "Ajouter Signature";
 "My Signature" = "Ma Signature";
 "Customer Signature" = "Signature Du Client";
-"New Note" = "Nouvelle Note";
 "Note" = "Note";
 "Text" = "Texte";
 "Drawing Color" = "Couleur de dessin";
-"Free Text" = "Texte libre";
 "Delete Note" = "Supprimer la note";
 "Delete Highlight" = "Supprimer le surlignage";
-"Delete Free Text" = "Supprimer le texte libre";
+"Delete Free Text" = "Supprimer le texte";
 "%@ could not be found." = "%@ n'a pu être trouvé.";
 "Photo Library" = "Photothèque";
 "Camera" = "Caméra";
@@ -164,7 +165,7 @@
 "Style..." = "Style…";
 "Link" = "Link";
 "Ink" = "Ink";
-"FreeText" = "Free Text";
+"FreeText" = "Texte";
 "Screen" = "Screen";
 "RichMedia" = "Rich Media";
 "Left" = "Left";
@@ -172,8 +173,16 @@
 "Right" = "Right";
 "Alignment..." = "Alignment…";
 "Preview File" = "Preview File";
-"Copy" = "Copy";
+"Copy" = "Copier";
 "Paste" = "Paste";
+"Inspector..." = "Inspector...";
+"Group" = "Group";
+"Ungroup" = "Ungroup";
+
+// PDF annotation name overrides
+"Square" = "Rectangle";
+"Circle" = "Ellipse";
+"PolyLine" = "Polyligne";
 
 // named actions
 "NextPage" = "Next Page";
@@ -187,20 +196,31 @@
 // Print, Outline, Search, Brightness are translated via toolbar
 "ZoomIn" = "Zoom In";
 "ZoomOut" = "Zoom Out";
+"Execute JavaScript" = "Execute JavaScript";
+"Rich Media Action" = "Rich Media Action";
+"Rendition Action" = "Rendition Action";
+"Hide Action" = "Hide Action";
+"Submit Form" = "Submit Form";
+"Reset" = "Reset";
 
 // line annotations
 "Start..." = "Start…";
 "End..." = "End…";
-"None" = "None";
-"ClosedArrow" = "Closed Arrow";
-"OpenArrow" = "Open Arrow";
-"Square" = "Square";
-"Circle" = "Circle";
-"Diamond" = "Diamond";
-"ROpenArrow" = "Reverse Open Arrow";
-"RClosedArrow" = "Reverse Closed Arrow";
-"Slash" = "Slash";
-"Butt" = "Butt";
+"Line.None" = "None";
+"Line.ClosedArrow" = "Closed Arrow";
+"Line.OpenArrow" = "Open Arrow";
+"Line.Square" = "Square";
+"Line.Circle" = "Circle";
+"Line.Diamond" = "Diamond";
+"Line.ROpenArrow" = "Reverse Open Arrow";
+"Line.RClosedArrow" = "Reverse Closed Arrow";
+"Line.Slash" = "Slash";
+"Line.Butt" = "Butt";
+"Start Point" = "Start Point";
+"End Point" = "End Point";
+"Line Start" = "Line Start";
+"Line End" = "Line End";
+"%d Points" = "%d Points";
 
 // link annotation editing
 "Create Link..." = "Créer hyperlien...";
@@ -209,7 +229,7 @@
 "Move Link" = "Déplacer hyperlien";
 "Remove Link" = "Supprimer hyperlien";
 "Open Link" = "Ouvrir hyperlien";
-"Go to page %d" = "Aller à la page %d";
+"Go to Page %d" = "Aller à la page %d";
 "Save" = "Enregistrer";
 "Link Destination" = "Destination du lien";
 "Enter page index or a http:// address to link to an URL." = "Entrer l'index de page ou une adresse http:// pour lier à une URL.";
@@ -217,3 +237,34 @@
 // voiceover accessibility
 "Page" = "Page";
 "Grid" = "Grille";
+
+// PSPDFDocumentSharingViewController
+"Ignore Annotations" = "Ignore Annotations";
+"The PDF will not contain any annotations." = "The PDF will not contain any annotations.";
+"Embed Annotations" = "Embed Annotations";
+"Annotations will remain editable and are embedded into the PDF." = "Annotations will remain editable and are embedded into the PDF.";
+"Flatten Annotations" = "Flatten Annotations";
+"Annotations are drawn into the PDF and are readonly." = "Annotations are drawn into the PDF and are readonly.";
+"Annotation Summary" = "Annotation Summary";
+"Embed Annotations into the PDF and also list them in the email." = "Embed Annotations into the PDF and also list them in the email.";
+"Files" = "Files";
+"Send as single files" = "Send as single files";
+"Merge files" = "Merge files";
+
+// sound annotations
+"Audio Problem" = "Audio Problem";
+"Mic Permission Not Granted" = "Mic Permission Not Granted";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
+"Sorry, but there was a problem trying to record audio." = "Sorry, but there was a problem trying to record audio.";
+"Sorry, but there was a problem trying to play this audio." = "Sorry, but there was a problem trying to play this audio.";
+"Already Recording" = "Already Recording";
+"You are already recording on page %@." = "You are already recording on page %@.";
+"Go to Page %@" = "Go to Page %@";
+
+// Forms
+"Form Element" = "Form Element";
+"Text Field" = "Text Field";
+"Button" = "Button";
+"Choice Field" = "Choice Field";
+"Signature Field" = "Signature Field";
+"Clear Field" = "Clear Field";

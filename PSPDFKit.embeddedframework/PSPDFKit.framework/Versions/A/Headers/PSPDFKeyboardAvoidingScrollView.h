@@ -35,4 +35,8 @@
 /// Block will be called when the keyboard gets invisible.
 @property (nonatomic, copy) void(^keyboardWillHideBlock)(PSPDFKeyboardAvoidingScrollView *, NSNotification *);
 
+// Allows to manually fake a keyboard.
+- (void)moveScrollViewUpForRect:(CGRect)rect focusRect:(CGRect)focusRect animated:(BOOL)animated;
+- (void)moveScrollViewDownAnimated:(BOOL)animated;
+
 @end

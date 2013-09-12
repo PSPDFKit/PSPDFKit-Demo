@@ -26,7 +26,7 @@
 /// Attached search result.
 @property (nonatomic, strong) PSPDFSearchResult *searchResult;
 
-/// Default backgroundColor is Yellow, 50% alpha.
+/// Default backgroundColor is yellow, 50% alpha.
 @property (nonatomic, strong) UIColor *selectionBackgroundColor;
 
 @end

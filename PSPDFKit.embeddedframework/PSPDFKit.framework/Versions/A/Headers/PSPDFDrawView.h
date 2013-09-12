@@ -11,7 +11,9 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFShapeAnnotation.h"
+#import "PSPDFSquareAnnotation.h"
+#import "PSPDFPolygonAnnotation.h"
+#import "PSPDFLineHelper.h"
 #import <QuartzCore/QuartzCore.h>
 
 @class PSPDFDrawView, PSPDFDrawAction;
@@ -24,22 +26,31 @@
 /// Draw View did begin (touching down)
 - (void)drawViewDidBeginDrawing:(PSPDFDrawView *)drawView;
 
-/// New sketch, shape or line has been added.
-- (void)drawView:(PSPDFDrawView *)drawView didChange:(PSPDFDrawAction *)drawAction;
+/// New sketch, shape, line or polygon has been added.
+- (void)drawView:(PSPDFDrawView *)drawView didChange:(PSPDFDrawAction *)drawAction isNew:(BOOL)isNew;
 
 @end
 
 /// Class that allows drawing on top of a PSPDFPageView.
 @interface PSPDFDrawView : UIView
 
-/// Current line width.
-@property (nonatomic, assign) CGFloat lineWidth;
-
 /// Current stroke color.
 @property (nonatomic, strong) UIColor *strokeColor;
 
+/// Current fill color.
+@property (nonatomic, strong) UIColor *fillColor;
+
+/// Current line width.
+@property (nonatomic, assign) CGFloat lineWidth;
+
+/// Starting line end type for lines and polylines.
+@property (nonatomic, assign) PSPDFLineEndType lineEnd1;
+
+/// Ending line end type for lines and polylines.
+@property (nonatomic, assign) PSPDFLineEndType lineEnd2;
+
 /// Path of the current draw operation.
-@property (nonatomic, strong, readonly) UIBezierPath *path;
+@property (nonatomic, strong, readonly) UIBezierPath *strokePath;
 
 /// Array of dictionaries of all lines, including color and width used.
 /// If you want to create a PSPDFInkAnnotation from this, convert the points to PDF coordinates first.
@@ -55,9 +66,6 @@
 
 /// Current annotation type.
 @property (nonatomic, assign) PSPDFAnnotationType annotationType;
-
-/// Current shape annotation type (to be specified when annotationType is PSPDFAnnotationTypeShape).
-@property (nonatomic, assign) PSPDFShapeAnnotationType shapeType;
 
 /// Draw Delegate.
 @property (atomic, weak) IBOutlet id<PSPDFDrawViewDelegate> delegate;
@@ -77,12 +85,17 @@
 /// Redo last action, update view.
 - (BOOL)redo;
 
+/// Clear all actions. No delegate method will be called. Doesn't count as undo/redo operation.
+- (void)clearAllActions;
+
 @end
 
 @interface PSPDFDrawView (SubclassingHooks)
 
-// Current active drawing.
-@property (nonatomic, strong, readonly) CAShapeLayer *shapeLayer;
+// Current active drawing layers.
+@property (nonatomic, strong, readonly) CAShapeLayer *strokeLayer;
+@property (nonatomic, strong, readonly) CAShapeLayer *fillLayer;
+@property (nonatomic, strong, readonly) CALayer *previewLayer;
 
 @end
 
@@ -96,7 +109,16 @@
 // Stroke color.
 @property (nonatomic, strong, readonly) UIColor *strokeColor;
 
+// Fill color.
+@property (nonatomic, strong, readonly) UIColor *fillColor;
+
 // Line width.
 @property (nonatomic, assign, readonly) CGFloat lineWidth;
+
+/// Starting line end type for lines and polylines.
+@property (nonatomic, assign, readonly) PSPDFLineEndType lineEnd1;
+
+/// Ending line end type for lines and polylines.
+@property (nonatomic, assign, readonly) PSPDFLineEndType lineEnd2;
 
 @end

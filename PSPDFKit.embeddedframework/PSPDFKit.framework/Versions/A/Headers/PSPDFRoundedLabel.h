@@ -15,7 +15,7 @@
 /// Simple rounded label.
 @interface PSPDFRoundedLabel : UILabel
 
-/// Corner radius. Defaults to 10.
+/// Corner radius. Defaults to 10 for iOS6 and 5 for iOS7.
 @property (nonatomic, assign) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
 
 /// Label background. Defaults to [UIColor colorWithWhite:0.f alpha:0.6f]

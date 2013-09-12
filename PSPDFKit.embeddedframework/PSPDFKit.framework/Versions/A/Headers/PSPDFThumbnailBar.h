@@ -47,6 +47,10 @@
 /// Thumbnail size. Defaults to 100x130.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
+/// Set the default height of the thumbnail bar. Defaults to 135 on iPad and 85 on iPhone.
+/// @note Set this before the toolbar is displayed.
+@property (nonatomic, assign) CGFloat thumbnailBarHeight;
+
 /// Class used for thumbnails (defaults to PSPDFThumbnailGridViewCell)
 @property (nonatomic, strong) Class thumbnailCellClass;
 

@@ -10,9 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-// PSPDFKit is compatible with iOS 5.0+, but needs a modern Xcode.
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.6+ with LLVM 4+)
+#error This project must be compiled with ARC (Xcode 4.6.3+ with LLVM 4+)
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
@@ -33,6 +32,7 @@
 #import "PSPDFTextSelectionView.h"
 #import "PSPDFScrollView.h"
 #import "PSPDFDocumentProvider.h"
+#import "PSPDFDocumentProviderDelegate.h"
 #import "PSPDFCache.h"
 #import "PSPDFTransparentToolbar.h"
 #import "PSPDFPageRenderer.h"
@@ -42,33 +42,34 @@
 #import "PSPDFPageViewController.h"
 #import "PSPDFSinglePageViewController.h"
 #import "PSPDFPageScrollViewController.h"
-#import "PSPDFTabbedViewController.h"
 #import "PSPDFMultiDocumentViewController.h"
 #import "PSPDFViewState.h"
-#import "PSPDFPasswordView.h"
 #import "PSPDFBookmark.h"
 #import "PSPDFBookmarkParser.h"
-#import "PSPDFAESCryptoDataProvider.h"
 #import "PSPDFBrightnessViewController.h"
-#import "PSPDFGeometry.h"
+#import "PSPDFLicenseManager.h"
+#import "PSPDFRenderQueue.h"
+#import "PSPDFStyleManager.h"
 
 // actions
 #import "PSPDFAction.h"
-#import "PSPDFActionGoTo.h"
-#import "PSPDFActionRemoteGoTo.h"
-#import "PSPDFActionURL.h"
-#import "PSPDFActionNamed.h"
-#import "PSPDFActionJavaScript.h"
-#import "PSPDFActionRendition.h"
-#import "PSPDFActionRichMediaExecute.h"
-
-// rendering
-#import "PSPDFRenderQueue.h"
+#import "PSPDFGoToAction.h"
+#import "PSPDFRemoteGoToAction.h"
+#import "PSPDFURLAction.h"
+#import "PSPDFNamedAction.h"
+#import "PSPDFJavaScriptAction.h"
+#import "PSPDFRenditionAction.h"
+#import "PSPDFRichMediaExecuteAction.h"
+#import "PSPDFSubmitFormAction.h"
+#import "PSPDFResetFormAction.h"
+#import "PSPDFHideAction.h"
 
 // views
 #import "PSPDFPageLabelView.h"
 #import "PSPDFDocumentLabelView.h"
 #import "PSPDFRenderStatusView.h"
+#import "PSPDFPasswordView.h"
+#import "PSPDFActivityLabel.h"
 
 // search
 #import "PSPDFTextSearch.h"
@@ -96,26 +97,36 @@
 #import "PSPDFOutlineElement.h"
 #import "PSPDFOutlineViewController.h"
 
+// labels
+#import "PSPDFLabelParser.h"
+
 // annotations
-#import "PSPDFAnnotationParser.h"
-#import "PSPDFDocumentParser.h"
+#import "PSPDFAnnotationManager.h"
 #import "PSPDFAnnotation.h"
+#import "PSPDFAnnotationSet.h"
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFFileAnnotationProvider.h"
 #import "PSPDFHighlightAnnotation.h"
+#import "PSPDFUnderlineAnnotation.h"
+#import "PSPDFStrikeOutAnnotation.h"
+#import "PSPDFSquigglyAnnotation.h"
 #import "PSPDFFreeTextAnnotation.h"
 #import "PSPDFNoteAnnotation.h"
 #import "PSPDFInkAnnotation.h"
 #import "PSPDFLineAnnotation.h"
 #import "PSPDFLinkAnnotation.h"
-#import "PSPDFShapeAnnotation.h"
+#import "PSPDFSquareAnnotation.h"
+#import "PSPDFCircleAnnotation.h"
 #import "PSPDFStampAnnotation.h"
 #import "PSPDFCaretAnnotation.h"
+#import "PSPDFPopupAnnotation.h"
 #import "PSPDFWidgetAnnotation.h"
 #import "PSPDFScreenAnnotation.h"
 #import "PSPDFRichMediaAnnotation.h"
 #import "PSPDFFileAnnotation.h"
+#import "PSPDFSoundAnnotation.h"
 #import "PSPDFPolygonAnnotation.h"
+#import "PSPDFPolyLineAnnotation.h"
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFHighlightAnnotationView.h"
@@ -131,10 +142,17 @@
 #import "PSPDFStampViewController.h"
 #import "PSPDFFontSelectorViewController.h"
 #import "PSPDFColorSelectionViewController.h"
-#import "PSPDFNoteAnnotationController.h"
+#import "PSPDFLineEndSelectionViewController.h"
+#import "PSPDFNoteAnnotationViewController.h"
+#import "PSPDFAnnotationTableViewController.h"
+#import "PSPDFAnnotationCell.h"
+#import "PSPDFSavedAnnotationsViewController.h"
+#import "PSPDFContainerViewController.h"
 
-// labels
-#import "PSPDFLabelParser.h"
+// tab bar
+#import "PSPDFTabbedViewController.h"
+#import "PSPDFTabBarView.h"
+#import "PSPDFTabBarButton.h"
 
 // toolbar (subclass buttons to change image)
 #import "PSPDFIconGenerator.h"
@@ -162,12 +180,27 @@
 #import "PSPDFHSVColorPickerController.h"
 #import "PSPDFNavigationController.h"
 
-// categories
-#import "UIImage+PSPDFKitAdditions.h"
-#import "NSDate+PSPDFKitAdditions.h"
-#import "UIColor+PSPDFKitAdditions.h"
-#import "NSValueTransformer+PSPDFPredefinedTransformerAdditions.h"
-
 // model
 #import "PSPDFModel.h"
 #import "PSPDFValueTransformer.h"
+
+// full-text search
+#import "PSPDFLibrary.h"
+#import "PSPDFDocumentPickerController.h"
+
+// XFDF
+#import "PSPDFXFDFParser.h"
+#import "PSPDFXFDFWriter.h"
+#import "PSPDFXFDFAnnotationProvider.h"
+
+// encryption
+#import "PSPDFAESCryptoDataProvider.h"
+#import "PSPDFCryptor.h"
+
+// forms
+#import "PSPDFFormParser.h"
+#import "PSPDFFormElement.h"
+#import "PSPDFButtonFormElement.h"
+#import "PSPDFChoiceFormElement.h"
+#import "PSPDFSignatureFormElement.h"
+#import "PSPDFTextFieldFormElement.h"

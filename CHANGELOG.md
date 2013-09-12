@@ -2,6 +2,165 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.0 - 12/Sept/2013__
+
+PSPDFKit v3 is a major new milestone with several new features and countless improvements.
+
+Some of the highlights are:
+
+*  Full support for iOS 7, Xcode 5 including new icons and default styles to fully match the new iOS 7 appearance, while also maintaining full backwards compatibility for iOS 5/6.
+*  The prebuilt binary is now ready for 64 bit and includes 5 architecture slices: armv7, armv7s, arm64, i386 and x86_64.
+*  Support for filling out Adobe AcroForm PDF forms. (PSPDFKit Complete/Enterprise only)
+*  Full-Text-Indexed-Search across all available PSPDFDocuments via PSPDFLibrary. (PSPDFKit Complete/Enterprise only)
+*  New PSPDFDocumentPickerController for easy selection and search within your documents.
+*  Support of the XFDF (XML Forms Data Format) Adobe standard for saving/loading/sharing annotations and forms.
+*  Completely redesigned annotation toolbar that groups common annotation types together.
+*  New annotation inspector for faster and more convenient annotation editing.
+*  Global Undo/Redo for annotation creation/editing.
+*  Drawing no longer locks the view, you can scroll and zoom with two fingers without any drawing delay.
+*  New PSPDFDocumentSharingViewController to unify annotation flattening from email and open in feature and allow a better page selection.
+*  Record and play back sounds from sound annotations (fully compatible with Adobe Acrobat)
+*  FreeText annotations autoresize as you type.
+*  Squiggly text highlighting.
+*  Draw and edit Polygon/Polyline annotations.
+*  Stamp annotations are now added aspect ratio correct.
+*  Improved PDF generation support in PSPDFProcessor (website/office conversion)
+*  Improves handling for very small annotations.
+*  Support for non-default locations for PSPDFKit.bundle.
+*  The delays for adding/removing annotations has been removed.
+*  Link/Widget annotations can now be tapped instantly.
+*  The logic for the keyboard avoidance code has been greatly improved.
+*  Additional Actions and Action Chains are now properly supported.
+*  Supports various new touch actions like Hide, Submit Form, Reset Form and adds support for more Named Actions.
+*  Countless performance improvements and bug fixes across the whole framework.
+
+Important! Currently PSPDFKit v3 requires that you set the key UIViewControllerBasedStatusBarAppearance to false in your project Info.plist file. We're working on supporting view controller based status bar appearance in a future update.
+
+Note: Several methods and constants have been updated and renamed to make the API cleaner.
+Read the [PSPDFKit 3.0 Migration Guide](https://github.com/PSPDFKit/PSPDFKit-Demo/wiki/PSPDFKit-3.0-Migration-Guide) if you're updating from v2.
+
+Important: PSPDFKit v3 requires a serial number and will run in demo-mode by default.
+Visit https://customers.pspdfkit.com to register your app bundle ID and get the serial.
+If you are a v2 customer with a license that includes a free v3 update, please contact support@pspdfkit.com with your PET* purchase number to get an invite.
+
+PSPDFKit v3 still supports iOS5, however we plan to drop support for it later this year.
+We already see less than 5% usage and expect this number to drop further in the future.
+
+With the release of v3 we will focus development on this version and won't be able to offer support for v2 anymore.
+Most customers who bought PSPDFKit after January 14th are eligible for a free update,
+if your update window is still open (6 months for Binary/Viewer, 12 months for Source/Enterprise)
+Contact us with your PET* purchase number (or invoice ID) for details on your status.
+
+
+__v2.14.21 - 12/Sept/2013__
+
+*  Adds a workaround for a bug where thumbnail icons could disappear in iOS 7 legacy mode.
+*  Ensures we always have a document UID set. Fixes an assert for conditions where this was missing.
+*  Fixes a rare crash related to an over-release in certain high-load conditions.
+*  Fixes the logic that checks and filters glyphs that are outside of the visible page area.
+
+__v2.14.20 - 29/Aug/2013__
+
+Note: This will likely be the last update of PSPDFKit v2. We're very close to release v3, our next major version.
+Try the demo here: http://customers.pspdfkit.com/demo.
+
+*  Fixes an issue where scroll to page doesn't work for zoom levels < 1 in continuous scrolling mode.
+*  Fixes an initializer issue in PSPDFOrderedDictionary.
+*  Fixes a very rare crash on enqueuing render jobs.
+
+__v2.14.19 - 6/Aug/2013__
+
+*  Ensure didShowPageView is called on the initial display of the controller.
+*  Ensure we don't create multiple PSPDFMoreBarButtonItems while creating the toolbar.
+*  Ensure 'fileName' only ever uses the last path component. Fixes an issue where the full path would be used in the email send feature.
+*  Fixes an issue when using the bookmark filter in the thumbnail controller with a `pageRange` filter set.
+
+__v2.14.18 - 28/Jul/2013__
+
+*  Fixes an issue with setting certain status bar styles.
+*  Fixes a regression that could result in a crash "cannot form weak reference" on iOS5.
+
+__v2.14.17 - 26/Jul/2013__
+
+*  Improves memory handling and search performance for very large documents. (> 10.000 pages)
+*  Improve URL encoding handling for link annotations, fixing various endoding issues.
+*  Fixes an issue where the scrollable thumbnail bar wouldn't properly update when a new document was set.
+*  Fixes an exception when the tabs of the container view controller change after being presented (e.g. outline parser detects that there's no outline to show)
+*  Fixes a rare crash in PSPDFHighlightAnnotation's highlightedString.
+
+__v2.14.16 - 19/Jul/2013__
+
+*  Further improves text extraction performance (faster searching).
+*  Enables to subclass PSPDFAnnotationCell in the PSPDFAnnotationTableViewController.
+*  Fixes an issue where logging the PSPDFDocumentProvider within dealloc could lead to resurrection.
+*  Fixes an issue with managing certain PDF caches.
+
+__v2.14.15 - 12/Jul/2013__
+
+*  Allow PSPDFMoreBarButtonItem to be subclassable.
+*  Improve text parser compatibility with PDFs that have deeply nested XObject structures.
+*  Fixes an issue where font metrics could be too small/too large within XObjects when the font key had the same name between global resources and XObject resources.
+*  Fixes an issue where the word boundaries could be off-by-one due to manually inserted spaces at the wrong index.
+*  Fixes an issue where annotation views were not properly cached when a different view was returned via the annotationView: delegate.
+
+__v2.14.14 - 2/Jul/2013__
+
+*  Improve compatibility of the PSPDFMenuItem image support on iOS7.
+*  Fixes a compile issue when the Dropbox SDK is linked in combination with PSPDFKit.
+*  Fixes an assert when a link action is long-pressed and no action is set.
+*  Fixes an issue when the internal webview receives a NSURLErrorCancelled from an async operation.
+*  Fixes an issue when annotation notifications are generated from threads other than main.
+*  Fixes a crash in the Titanium proxy for certain link annotation actions.
+
+__v2.14.13 - 27/Jun/2013__
+
+*  Fixes an issue where the tab bar views could be placed inside the navigation bar in PSPDFTabbedViewController when rotated without the HUD being visible.
+*  Fixes an issue where the thumbnail bar could show stale information when the document changes.
+*  Fixes an assertion when an empty action is evaluated through a long-press.
+*  Fixes an issue where under certain conditions the note annotation controller could show redundant toolbar buttons.
+*  Fixes a potential crash for documents with weird glyph indexes when moving the text selection handles.
+*  Fixes a potential recursion crash while supportedInterfaceOrientations is evaluated.
+*  Fixes a potential empty context log warning for iOS7.
+
+__v2.14.12 - 24/Jun/2013__
+
+*  Improves thumbnail animations on device rotation.
+*  Improves the efficiency of the memory cache.
+*  When adding an image and the size picker is dismissed on iPad, we now use high quality instead of throwing away the image.
+*  Be more conservative about memory when kPSPDFLowMemoryMode is enabled. (Enable this if you have complex PDFs and/or memory related issues)
+*  Fixes a potential recursive call problem when editing link annotations.
+*  Fixes an issue where certain glyph frames could be calculated too small if the PDF is encoded incorrectly.
+*  Fixes an issue with generating JSON from stamp annotations.
+*  Fixes an issue where images could be rendered upside down/incorrectly when they have certain EXIF rotation settings.
+*  Fixes an UI issue when annotations couldn't be fully restored from the Copy/Paste action and created an zero-sized object.
+
+__v2.14.11 - 19/Jun/2013__
+
+*  Allow subclassing of the UIImagePickerController used within PSPDFKit for special use (e.g. to block portrait display for landscape-only apps). Use overrideClass:withClass: for that.
+*  Ensure the outline page label frame is properly update in landscape mode.
+*  Fixes an issue where the annotation table view controller didn't check the editableAnnotationTypes array before offering a delete.
+*  Fixes an issue where highlightedString on PSPDFHighlightAnnotation could return incorrect results.
+*  Fixes an issue with text extraction.
+
+__v2.14.10 - 13/Jun/2013__
+
+*  Fixes an issue where the outline controller could hang in the "Loading..." state on older devices.
+*  Fixes an issue where in rare cases the stamp annotation text could be larger than the stamp itself.
+*  Fixes an issue where search could throw an out of range exception for specific PDF encodings.
+
+__v2.14.9 - 11/Jun/2013__
+
+*  Various smaller fixes for iOS7. The source code now again compiles without any warnings.
+*  API: change `delegate` to `annotationToolbarDelegate` for the PSPDFAnnotationToolbar because UIKit now added a delegate property on the toolbar.
+*  API: The setDefaultStampAnnotations method in PSPDFStampViewController is now a class method.
+*  Fixes an issue where the thumbnail controller could mis-place the filter header after a frame resize.
+*  Fixes a potential crash when the search view controller was both scrolled and the search keyword changed at the same time.
+
+__v2.14.8 - 3/Jun/2013__
+
+*  Improves glyph word space detection.
+*  Fixes a potential crash on a yet unreleased future version of iOS.
+
 __v2.14.7 - 31/May/2013__
 
 *  Improved memory management for older devices like iPad1 or when kPSPDFLowMemoryEnabled is set. This helps against possible memory exhaustion on very complex documents.

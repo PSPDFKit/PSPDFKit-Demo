@@ -13,7 +13,7 @@
 #import "PSPDFAnnotation.h"
 
 // We extend the width/height of note annotation to make them easier touch targets.
-extern CGSize kPSPDFNoteAnnotationViewFixedSize;
+extern CGSize PSPDFNoteAnnotationViewFixedSize;
 
 /// PDF Note (Text) Annotation.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
@@ -24,9 +24,6 @@ extern CGSize kPSPDFNoteAnnotationViewFixedSize;
 /// Note Icon name (see PSPDFKit.bundle for available icon names)
 /// If set to zero, it will return to the default "Comment".
 @property (nonatomic, copy) NSString *iconName;
-
-/// Loads a matching image from the PSPDFKit.bundle.
-- (UIImage *)noteImage;
 
 /// Custom HitTest because we have custom width/height here.
 - (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;

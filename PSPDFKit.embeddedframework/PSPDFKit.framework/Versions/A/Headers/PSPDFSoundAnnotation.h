@@ -18,7 +18,25 @@
 /// The sound icon name.
 @property (nonatomic, copy) NSString *iconName;
 
-/// URL to the file content.
-@property (nonatomic, strong) NSURL *URL;
+/// URL to the sound content.
+@property (nonatomic, strong) NSURL *soundURL;
+
+/// Bits of the sound stream.
+@property (nonatomic, assign, readonly) NSUInteger bits;
+
+/// Sampling rate of the sound stream.
+@property (nonatomic, assign, readonly) NSUInteger rate;
+
+/// Channel count of the sound stream.
+@property (nonatomic, assign, readonly) NSUInteger channels;
+
+/// Encoding of the sound stream.
+@property (nonatomic, copy, readonly) NSString *encoding;
+
+- (id)initWithRate:(NSUInteger)rate channels:(UInt32)channels bits:(UInt32)bits encoding:(NSString *)encoding;
+
+- (NSData *)soundStreamData;
+
+- (void)setStreamPropertiesWithDescription:(NSDictionary *)streamDescription;
 
 @end

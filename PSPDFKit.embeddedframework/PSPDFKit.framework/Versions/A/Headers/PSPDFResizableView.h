@@ -38,7 +38,7 @@
 @property (nonatomic, weak) PSPDFResizableView *resizableView;
 
 /// Query the annotation of the tracked view.
-- (PSPDFAnnotation *)annotation;
+@property (nonatomic, strong, readonly) PSPDFAnnotation *annotation;
 
 @end
 
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 - (id)initWithTrackedView:(UIView *)trackedView;
 
 /// View that will be changed on selection change.
-@property (nonatomic, strong) UIView *trackedView;
+@property (nonatomic, copy) NSSet *trackedViews;
 
 /// Set zoomscale to be able to draw the page knobs at the correct size.
 @property (nonatomic, assign) CGFloat zoomScale;
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 
 /// The outer edge insets are used to create space between the bounding box (blue) and the view bounds.
 /// Will be applied to the contentFrame to calculate frame. Use negative values to add space around the
-/// tracked annnotation view. Defaults to -40.0f for top, bottom, right, and left.
+/// tracked annotation view. Defaults to -40.0f for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets outerEdgeInsets;
 
 /// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or innerEdgeInsets.
@@ -93,13 +93,19 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL enableResizingGuides;
 
-/// Defines how agressive the guide works. Defaults to 20.f
+/// Shows the bounding box.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL showBoundingBox;
+
+/// Defines how aggressively the guide works. Defaults to 20.f
 @property (nonatomic, assign) CGFloat guideSnapAllowance;
 
-/// Set minimum allowed width (unless the view is smaller to begin width). Default is 32.0.
+/// Override the minimum allowed width. This value is ignored if the view is smaller to begin with
+/// or the annotation specifies a bigger minimum width. Default is 0.0.
 @property (nonatomic, assign) CGFloat minWidth;
 
-/// Set minimum allowed height (unless the view is smaller to begin width). Default is 32.0.
+/// Override the minimum allowed height. This value is ignored if the view is smaller to begin with
+/// or the annotation specifies a bigger minimum height. Default is 0.0.
 @property (nonatomic, assign) CGFloat minHeight;
 
 /// Disables dragging the view outside of the parent. Defaults to YES.
@@ -147,5 +153,10 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 
 @property (nonatomic, strong, readonly) UIImage *outerKnobImage;
 @property (nonatomic, strong, readonly) UIImage *innerKnobImage;
+
+@property (nonatomic, strong, readonly) PSPDFAnnotation *trackedAnnotation;
+
+// Update the knobs.
+- (void)updateKnobsAnimated:(BOOL)animated;
 
 @end

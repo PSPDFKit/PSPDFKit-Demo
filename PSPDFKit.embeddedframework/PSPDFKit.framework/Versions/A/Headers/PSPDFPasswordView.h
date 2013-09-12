@@ -26,7 +26,7 @@
 - (void)passwordView:(PSPDFPasswordView *)passwordView didFailToUnlockWithPassword:(NSString *)password;
 
 /// Should perform unlock? Return false to cancel.
-- (BOOL)passwordView:(PSPDFPasswordView *)passwordView shouldlUnlockWithPassword:(NSString *)password;
+- (BOOL)passwordView:(PSPDFPasswordView *)passwordView shouldUnlockWithPassword:(NSString *)password;
 
 // will try to unlock with password
 - (void)passwordView:(PSPDFPasswordView *)passwordView willUnlockWithPassword:(NSString *)password;

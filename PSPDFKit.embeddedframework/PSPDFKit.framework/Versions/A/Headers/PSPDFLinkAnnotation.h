@@ -25,7 +25,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationCustom   // any annotation format that is not recognized is custom (e.g. tel://)
 };
 
-@class PSPDFAction, PSPDFActionURL, PSPDFActionGoTo;
+@class PSPDFAction, PSPDFURLAction, PSPDFGoToAction;
 
 /**
  The PSPDFLinkAnnotation represents both classic PDF page/document/web links, and more types not supported by other PDF readers (video, audio, image, etc)
@@ -42,15 +42,15 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 /// Designated initializer for custom, at runtime created PSPDFLinkAnnotations.
 - (id)initWithLinkAnnotationType:(PSPDFLinkAnnotationType)linkAnotationType;
 
-/// Initialze link annotation with target URL.
+/// Initialize link annotation with target URL.
 - (id)initWithURL:(NSURL *)URL;
 
-/// Initialze link annotation with target URL string.
+/// Initialize link annotation with target URL string.
 /// Can also be used for pspdfkit:// URLs.
-/// For example, to add a pdpdfkit image annotation, use [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [NSBundle.mainBundle bundlePath]] as URLString.
+/// For example, to add a PSPDFKit image annotation, use [NSString stringWithFormat:@"pspdfkit://[contentMode=%d]localhost/%@/exampleimage.jpg", UIViewContentModeScaleAspectFill, [NSBundle.mainBundle bundlePath]] as URLString.
 - (id)initWithURLString:(NSString *)URLString;
 
-/// Initalize link annotation with target page.
+/// Initialize link annotation with target page.
 - (id)initWithPage:(NSUInteger)page;
 
 /// PSPDFKit addition - set if the pspdfkit:// protocol is detected.
@@ -62,9 +62,9 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 @property (nonatomic, strong) PSPDFAction *action;
 
 /// Convenience cast. Will return the URL action if action is of type PSPDFActionTypeURL, else nil.
-- (PSPDFActionURL *)URLAction;
+- (PSPDFURLAction *)URLAction;
 
-/// Convenience method, will create a new PSPDFActionURL and get the URL from it.
+/// Convenience method, will create a new PSPDFURLAction and get the URL from it.
 @property (nonatomic, strong) NSURL *URL;
 
 /// Will be YES if this is a regular link or a multimedia link annotation that should be displayed as link. (e.g. if isPopover/isModal is set to yes)
@@ -88,28 +88,5 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 /// Used for the preview string when the user long-presses on a link annotation.
 /// Forwards to action.localizedDescription.
 - (NSString *)targetString;
-
-/// Link Type String <-> PSPDFLinkAnnotationType transformer.
-+ (NSValueTransformer *)linkTypeTransformer;
-
-@end
-
-@interface PSPDFLinkAnnotation (Internal)
-
-/// Will update `linkType` depending on the current set action.
-/// @note This will be invoked automatically, you usually don't need to manually call this.
-- (void)updateLinkTypeForCurrentAction;
-
-@end
-
-@interface PSPDFLinkAnnotation (Deprecated)
-
-- (id)initWithSiteLinkTarget:(NSString *)siteLinkTarget __attribute__ ((deprecated("Use initWithURLString: instead")));
-
-@property (nonatomic, assign) NSUInteger pageLinkTarget __attribute__ ((deprecated("Use GoToAction.pageIndex instead (which is zero-based)")));
-@property (nonatomic, copy) NSString *siteLinkTarget __attribute__ ((deprecated("Use URL instead")));
-@property (nonatomic, copy) NSDictionary *options __attribute__ ((deprecated("Use action.options instead")));
-@property (nonatomic, assign, getter=isModal) BOOL modal __attribute__ ((deprecated("Use URLAction.isModal instead")));
-@property (nonatomic, assign, getter=isPopover) BOOL popover __attribute__ ((deprecated("Use URLAction.isPopover instead")));
 
 @end

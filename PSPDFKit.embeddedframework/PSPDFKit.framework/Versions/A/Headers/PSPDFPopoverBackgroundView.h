@@ -1,5 +1,5 @@
 //
-//  PSPDFPopoverBackgroundView.m
+//  PSPDFPopoverBackgroundView.h
 //  PSPDFKit
 //
 //  Copyright (C) 2013 CRedit360, MIT licensed.

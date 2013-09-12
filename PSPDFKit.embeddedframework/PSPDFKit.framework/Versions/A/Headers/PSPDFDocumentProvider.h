@@ -11,22 +11,9 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFDocumentProviderDelegate.h"
 
-@class PSPDFTextSearch, PSPDFTextParser, PSPDFDocumentParser, PSPDFOutlineParser, PSPDFAnnotationParser, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
-
-/// Delegate for writing annotations.
-@protocol PSPDFDocumentProviderDelegate <NSObject>
-
-@optional
-
-/// Called before we append data to a PDF. Return NO to stop writing annotations.
-/// Defaults to YES if not implemented, and will set a new NSData object.
-- (BOOL)documentProvider:(PSPDFDocumentProvider *)documentProvider shouldAppendData:(NSData *)data;
-
-// Called after the write is completed.
-- (void)documentProvider:(PSPDFDocumentProvider *)documentProvider didAppendData:(NSData *)data;
-
-@end
+@class PSPDFFormParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
 
 /// A PSPDFDocument consists of one or multiple PSPDFDocumentProvider's.
 /// @note This class is used within PSPDFDocument and should not be instantiated externally.
@@ -54,13 +41,13 @@
 /// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
 - (NSData *)dataRepresentationWithError:(NSError **)error;
 
-/// Returns the fileSize of this documentProvider.
+/// Returns the `fileSize` of this documentProvider.
 - (unsigned long long)fileSize;
 
-/// Parent document, not retained.
+/// Accesses the parent document.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
-/// Delegate for writing annotations. Is set to PSPDFDocument per default.
+/// Delegate for writing annotations. Defaults to the current set document.
 @property (nonatomic, weak) id<PSPDFDocumentProviderDelegate> delegate;
 
 /// Access the CGPDFDocumentRef and locks the internal document.
@@ -71,7 +58,7 @@
 
 /// Releases the lock on the documentRef.
 /// @note The parameter is to *check* if the returned documentRef is the same as the internal one.
-- (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef withOwner:(id)owner;
+- (void)releaseDocumentRef:(CGPDFDocumentRef)documentRef owner:(id)owner;
 
 /// Use documentRef within the block. Will be automatically cleaned up.
 - (void)performBlock:(void (^)(PSPDFDocumentProvider *docProvider, CGPDFDocumentRef documentRef))documentRefBlock;
@@ -139,10 +126,8 @@
 /// Annotations can't be added to encrypted documents or if there are parsing errors.
 @property (nonatomic, assign, readwrite) BOOL canEmbedAnnotations;
 
-- (BOOL)saveChangedAnnotationsWithError:(NSError **)error;
-
 /// Access the PDF metadata. (might be a slow operation)
-/// @warning Metadata is not guaranteed to be NSString. Check the type when acessing.
+/// @warning Metadata is not guaranteed to be NSString. Check the type when accessing.
 @property (nonatomic, copy, readonly) NSDictionary *metadata;
 
 /// Return YES if metadata is already parsed.
@@ -167,19 +152,13 @@
 /// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
 @property (nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
-/// PDF parser that lists the PDF XRef structure and writes annotations.
-/// Lazy initialized. Can be subclassed or set externally.
-/// Parses the PDF on first access. Might be slow.
-/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
-@property (nonatomic, strong) PSPDFDocumentParser *documentParser;
-
-/// Determine if lazy-loaded documentParser is already available.
-@property (nonatomic, assign, readonly) BOOL isDocumentParserLoaded;
+/// AcroForm parser for current PDF.
+@property (nonatomic, strong) PSPDFFormParser *formParser;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
 /// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
-@property (nonatomic, strong) PSPDFAnnotationParser *annotationParser;
+@property (nonatomic, strong) PSPDFAnnotationManager *annotationManager;
 
 /// Page labels found in the current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
@@ -188,23 +167,19 @@
 
 @end
 
-@interface PSPDFDocumentProvider (PSPDFInternal)
+@interface PSPDFDocumentProvider (SubclassingHooks)
 
-// We need to allow writing to data to change annotations.
-@property (nonatomic, strong) NSData *data;
-
-@property (nonatomic, readonly) BOOL hasOpenDocumentRef;
-
-/// Queries the PageInfo, but doesn't fetch new data.
-- (PSPDFPageInfo *)pageInfoForPageNoFetching:(NSUInteger)page;
-
-/// Cached rotation and aspect ratio data for specific page. Page starts at 0.
-/// You can override this if you need to manually change the rotation value of a page.
+// Cached rotation and aspect ratio data for specific page. Page starts at 0.
+// You can override this if you need to manually change the rotation value of a page.
+// `pageRef` is used for caching and might be nil.
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
-/// Resolves a path like /localhost/Library/test.pdf into a full path.
-- (NSString *)resolveTokenizedPath:(NSString *)path alwaysLocal:(BOOL)alwaysLocal;
+/// Saves changed annotations.
+/// @warning You shouldn't call this method directly, use the high-level save method in PSPDFDocument instead.
+- (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
-- (NSURL *)URLForTokenizedPath:(NSString *)path;
+// Resolves a path like /localhost/Library/test.pdf into a full path.
+// If either `alwaysLocal` is set or `localhost` is part of the path, we'll handle this as a local URL.
+- (NSString *)resolveTokenizedPath:(NSString *)path alwaysLocal:(BOOL)alwaysLocal;
 
 @end

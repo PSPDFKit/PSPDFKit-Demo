@@ -29,7 +29,6 @@ void PSPDFSetNextLineIfCloserDistance(__unsafe_unretained PSPDFTextLine *self, _
 void PSPDFSetPrevLineIfCloserDistance(__unsafe_unretained PSPDFTextLine *self, __unsafe_unretained PSPDFTextLine *prevLine);
 
 @property (nonatomic, assign, readonly) PSPDFTextLineBorder borderType;
-
 @property (nonatomic, assign) NSInteger blockID;
 
 @end

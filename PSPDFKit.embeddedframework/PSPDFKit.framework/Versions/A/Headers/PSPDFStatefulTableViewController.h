@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFBaseTableViewController.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
     PSPDFStatefulTableViewStateLoading,  // Controller is querying data
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
 };
 
 /// Shows a message when the controller is empty.
-@interface PSPDFStatefulTableViewController : UITableViewController
+@interface PSPDFStatefulTableViewController : PSPDFBaseTableViewController
 
 /// Empty view.
 @property (nonatomic, strong) UIView *emptyView;
@@ -29,17 +29,5 @@ typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
 
 /// Changes the controller state and shows/hides the emptyView/loadingView depending on the state.
 @property (nonatomic, assign) PSPDFStatefulTableViewState controllerState;
-
-@end
-
-
-// Preconfigured label subclass that optionally shows an activity indicator.
-@interface PSPDFGrayBackgroundLabel : UILabel
-
-// Convenience constructor.
-+ (instancetype)labelWithText:(NSString *)text showActivity:(BOOL)showActivity;
-
-// Enable spinning wheel next to text.
-@property (nonatomic, assign) BOOL showActivity;
 
 @end

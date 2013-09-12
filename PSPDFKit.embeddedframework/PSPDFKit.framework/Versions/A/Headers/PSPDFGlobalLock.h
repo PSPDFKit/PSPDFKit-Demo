@@ -37,7 +37,7 @@
 /// Removes any document provider who closed the document reference.
 - (void)deregisterDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
 
-/// Requests a document close on all providers - might not be instant if they curently work with the reference.
+/// Requests a document close on all providers - might not be instant if they currently work with the reference.
 - (void)freeAllDocumentProviders;
 
 /// Number of requests we allow to keep in memory for faster access.

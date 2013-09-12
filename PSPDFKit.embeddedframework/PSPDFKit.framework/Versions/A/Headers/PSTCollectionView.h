@@ -34,11 +34,11 @@ typedef NS_ENUM(NSUInteger, PSTCollectionElementCategory) {
     PSTCollectionElementCategoryDecorationView
 };
 
-/**
- Replacement for UICollectionView for iOS4/5.
- Only supports a subset of the features of UICollectionView.
- e.g. animations won't be handled.
- */
+/// Define the `PSTCollectionViewDisableForwardToUICollectionViewSentinel` to disable the automatic forwarding to UICollectionView on iOS 6+. (Copy below line into your AppDelegate.m)
+//@interface PSTCollectionViewDisableForwardToUICollectionViewSentinel : NSObject @end @implementation PSTCollectionViewDisableForwardToUICollectionViewSentinel @end
+
+/// API-compatible replacement for UICollectionView.
+/// Works on iOS 4.3 upwards (including iOS 6).
 @interface PSTCollectionView : UIScrollView
 
 - (id)initWithFrame:(CGRect)frame collectionViewLayout:(PSTCollectionViewLayout *)layout; // the designated initializer
@@ -103,27 +103,18 @@ typedef NS_ENUM(NSUInteger, PSTCollectionElementCategory) {
 
 // These methods allow dynamic modification of the current set of items in the collection view
 - (void)insertSections:(NSIndexSet *)sections;
-
 - (void)deleteSections:(NSIndexSet *)sections;
-
 - (void)reloadSections:(NSIndexSet *)sections;
-
 - (void)moveSection:(NSInteger)section toSection:(NSInteger)newSection;
-
 - (void)insertItemsAtIndexPaths:(NSArray *)indexPaths;
-
 - (void)deleteItemsAtIndexPaths:(NSArray *)indexPaths;
-
 - (void)reloadItemsAtIndexPaths:(NSArray *)indexPaths;
-
 - (void)moveItemAtIndexPath:(NSIndexPath *)indexPath toIndexPath:(NSIndexPath *)newIndexPath;
-
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion; // allows multiple insert/delete/reload/move calls to be animated simultaneously. Nestable.
 
 @end
 
 // To dynamically switch between PSTCollectionView and UICollectionView, use the PSUICollectionView* classes.
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
 #define PSUICollectionView PSUICollectionView_
 #define PSUICollectionViewCell PSUICollectionViewCell_
 #define PSUICollectionReusableView PSUICollectionReusableView_
@@ -143,16 +134,3 @@ typedef NS_ENUM(NSUInteger, PSTCollectionElementCategory) {
 @protocol PSUICollectionViewDelegateFlowLayout_ <PSTCollectionViewDelegateFlowLayout> @end
 @interface PSUICollectionViewLayoutAttributes_ : PSTCollectionViewLayoutAttributes @end
 @interface PSUICollectionViewController_ : PSTCollectionViewController <PSUICollectionViewDelegate, PSUICollectionViewDataSource> @end
-
-#else
-#define PSUICollectionView UICollectionView
-#define PSUICollectionViewCell UICollectionViewCell
-#define PSUICollectionReusableView UICollectionReusableView
-#define PSUICollectionViewDelegate UICollectionViewDelegate
-#define PSUICollectionViewDataSource UICollectionViewDataSource
-#define PSUICollectionViewLayout UICollectionViewLayout
-#define PSUICollectionViewFlowLayout UICollectionViewFlowLayout
-#define PSUICollectionViewDelegateFlowLayout UICollectionViewDelegateFlowLayout
-#define PSUICollectionViewLayoutAttributes UICollectionViewLayoutAttributes
-#define PSUICollectionViewController UICollectionViewController
-#endif

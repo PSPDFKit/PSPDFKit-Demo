@@ -19,28 +19,33 @@
 
 /// Default initializer.
 - (id)initWithTitle:(NSString *)title;
-
 - (id)initWithTitle:(NSString *)title message:(NSString *)message;
 
 /// @name Adding Buttons
 
 /// Add a cancel button. (use only once!)
 - (NSInteger)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block;
-
 - (NSInteger)setCancelButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
 
 /// Add regular button.
 - (NSInteger)addButtonWithTitle:(NSString *)title block:(void (^)())block;
-
 - (NSInteger)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
 
 /// @name Style
 
-/// Custom tintColor. Set to nil for the default style.
-/// @note Because the alert view is displayed in it's own window, the appearance can only be set globally.
-@property (nonatomic, strong) UIColor *tintColor UI_APPEARANCE_SELECTOR;
+/// Custom alertViewTintColor. Set to nil for the default style.
+/// @note Because the alert view is displayed in its own window, the appearance can only be set globally.
+/// @warning alertViewTintColor is unavailable for iOS7+.
+@property (nonatomic, strong) UIColor *alertViewTintColor UI_APPEARANCE_SELECTOR;
 
 /// Show with tint color. Use to conveniently create a one-line alertView with the classic init methods.
+/// @warning alertViewTintColor is unavailable for iOS7+.
 - (void)showWithTintColor:(UIColor *)tintColor;
+
+@end
+
+@interface PSPDFAlertView (PSPDFSuperclassBlock)
+
+- (id)initWithTitle:(NSString *)title delegate:(id<UIActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... __attribute__((unavailable("Please use initWithTitle:")));
 
 @end

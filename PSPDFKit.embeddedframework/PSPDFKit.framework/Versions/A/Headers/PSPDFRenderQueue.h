@@ -41,13 +41,13 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
 /// For options, see PSPDFPageRender.
 /// IF `queueAsNext` is set, the request will be processed ASAP, skipping the current queue.
-- (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size clippedToRect:(CGRect)clipRect withAnnotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate;
+- (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate;
 
 /// Return all queued jobs for the current `document` and `page`. (bound to `delegate`)
-- (NSArray *)renderJobsForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
+- (NSArray *)renderJobsForDocument:(PSPDFDocument *)document page:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
 
 /// Returns YES if currently a RenderJob is scheduled or running for delegate.
-- (BOOL)hasRenderJobsForDelegate:(id<PSPDFRenderDelegate>)delegate;
+- (BOOL)hasRenderJobsForDelegate:(__unsafe_unretained id<PSPDFRenderDelegate>)delegate;
 
 /// Return how many jobs are currently queued.
 - (NSUInteger)numberOfQueuedJobs;
@@ -61,12 +61,12 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// Cancel all queued and running jobs.
 - (void)cancelAllJobs;
 
-/// Cancel job.
+/// Cancel job. Must be the identical object to the job queued.
 /// Use NSNotFound for `page` to delete all requests for the document.
-- (void)cancelRenderingForDocument:(PSPDFDocument *)document andPage:(NSUInteger)page delegate:(id<PSPDFRenderDelegate>)delegate;
+- (void)cancelJobsForDocument:(PSPDFDocument *)document page:(NSUInteger)page delegate:(__unsafe_unretained id<PSPDFRenderDelegate>)delegate includeRunning:(BOOL)includeRunning;
 
 /// Cancels all queued render-calls.
-- (void)cancelRenderingForDelegate:(id<PSPDFRenderDelegate>)delegate;
+- (void)cancelJobsForDelegate:(__unsafe_unretained id<PSPDFRenderDelegate>)delegate;
 
 /// @name Settings
 
@@ -88,20 +88,21 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 @property (nonatomic, assign, readonly) CGSize size;
 @property (nonatomic, assign, readonly) CGRect clipRect;
 @property (nonatomic, assign, readonly) float zoomScale;
-@property (nonatomic, copy,   readonly) NSArray *annotations;
+@property (nonatomic, copy)   NSArray *annotations;
 @property (nonatomic, assign) PSPDFRenderQueuePriority priority;
 @property (nonatomic, copy)   NSDictionary *options;
 @property (atomic,    weak)   id<PSPDFRenderDelegate> delegate;
 @property (nonatomic, strong) UIImage *renderedImage;
 @property (nonatomic, strong) PSPDFRenderReceipt *renderReceipt;
+@property (nonatomic, assign) uint64_t renderTime;
 
 @end
 
 /// Gets a 'receipt' of the current render operation, allows to compare different renders of the same page.
 @interface PSPDFRenderReceipt : NSObject <NSCoding>
 
-- (id)initWithDocument:(PSPDFDocument *)document andPage:(NSUInteger)page ofSize:(CGSize)size
-              clipRect:(CGRect)clipRect annotations:(NSArray *)annotations options: (NSDictionary *)options;
+- (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size
+        clipRect:(CGRect)clipRect annotations:(NSArray *)annotations options: (NSDictionary *)options;
 
 @property (nonatomic, copy) NSString *renderFingerprintString;
 @property (nonatomic, assign) double timeInNanoseconds; // Not persisted. Statistic feature only.

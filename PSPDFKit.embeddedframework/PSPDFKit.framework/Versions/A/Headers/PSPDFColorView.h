@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, PSPDFColorViewBorderStyle) {
     PSPDFColorViewBorderStyleTop,
     PSPDFColorViewBorderStyleMiddle,
     PSPDFColorViewBorderStyleBottom,
-    PSPDFColorViewBorderStyleSingleNoShadow
+    PSPDFColorViewBorderStyleSingleNoShadow // When run on iOS 7, no shadow will be rendered, regardless of the option set.
 };
 
 // Draws a shape with the set color.
@@ -31,6 +31,9 @@ typedef NS_ENUM(NSInteger, PSPDFColorViewBorderStyle) {
 
 // Current border style. Defaults to PSPDFColorViewBorderStyleSingle.
 @property (nonatomic, assign) PSPDFColorViewBorderStyle borderStyle;
+
+// If enabled, transparent color will have a red cross line. Defaults to YES.
+@property (nonatomic, assign) BOOL markTransparentColor;
 
 // Animate selection.
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated;

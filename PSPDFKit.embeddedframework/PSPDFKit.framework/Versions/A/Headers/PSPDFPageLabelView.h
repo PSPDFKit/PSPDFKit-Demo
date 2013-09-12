@@ -23,7 +23,7 @@
 
 @interface PSPDFPageLabelView (SubclassingHooks)
 
-/// Calculates the new frame of this view and it's subviews. Subclass to change frame position.
+/// Calculates the new frame of this view and its subviews. Subclass to change frame position.
 - (void)updateFrame;
 
 @end

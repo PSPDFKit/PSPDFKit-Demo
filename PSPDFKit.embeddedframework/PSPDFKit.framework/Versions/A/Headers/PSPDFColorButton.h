@@ -24,4 +24,7 @@
 /// Border width. Defaults to 3.0
 @property (nonatomic, assign) CGFloat borderWidth;
 
+/// Indicator size. Defaults to the bounds size
+@property (nonatomic, assign) CGSize indicatorSize;
+
 @end
