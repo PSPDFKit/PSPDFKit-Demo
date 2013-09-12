@@ -2,6 +2,10 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.1 - 13/Sept/2013__
+
+*  Fixes an issue with the demo.
+
 __v3.0.0 - 12/Sept/2013__
 
 PSPDFKit v3 is a major new milestone with several new features and countless improvements.
