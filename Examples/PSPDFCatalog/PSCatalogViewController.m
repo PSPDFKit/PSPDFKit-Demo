@@ -343,7 +343,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil progressBlock:NULL error:NULL];
 
         // add a page from a second document
-        PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPSPDFCatalog]];
+        PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         NSData *newLandscapeDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:landscapeDocument pageRange:[NSIndexSet indexSetWithIndex:0] options:nil progressBlock:NULL error:NULL];
 
         // merge into new PDF
@@ -366,7 +366,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [pageIndexes addIndex:5];
         [pageIndexes addIndex:document.pageCount + 3]; // next document!
 
-        [document appendFile:kPSPDFCatalog]; // Append second file
+        [document appendFile:kPaperExampleFileName]; // Append second file
         document.pageRange = pageIndexes;    // Define new page range.
 
         // Merge pages into new document.
@@ -536,12 +536,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
         return controller;
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Add image annotation and a MapView" block:^{
-        NSURL *pspdfURL = [samplesURL URLByAppendingPathComponent:kPSPDFCatalog];
-        PSPDFDocument *hackerDocument = [PSPDFDocument documentWithURL:pspdfURL];
-        return [[PSCAnnotationTestController alloc] initWithDocument:hackerDocument];
     }]];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"Custom annotations with multiple files" block:^{
