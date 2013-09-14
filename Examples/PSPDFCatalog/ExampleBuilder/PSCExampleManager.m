@@ -80,6 +80,7 @@ static inline NSArray *PSCGetAllExampleSubclasses(void) {
             [annotations addObject:class];
         }
     }
+    free(classList);
     return annotations;
 }
 
