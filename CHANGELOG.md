@@ -2,6 +2,13 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.2 - 14/Sept/2013__
+
+*  Exposes some additional helpers in PSPDFDocument.
+*  Improves the document sharing controller UI for legacy UIKit mode.
+*  Improves support for RichMedia extraction of PDF documents created with Adobe XI 11.0.04.
+*  Fixes an issue with rotation when annotations are selected.
+
 __v3.0.1 - 13/Sept/2013__
 
 *  Fixes an issue with the demo.

@@ -33,7 +33,6 @@ extern CGRect const PSPDFPaperSizeLetter;
 // common options
 extern NSString *const PSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
-typedef void (^PSPDFCompletionBlockWithError)(NSURL *fileURL, NSError *error);
 typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
@@ -92,7 +91,10 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
  @warning When a password is set, only link annotations can be added as dictionary (this does not affect flattening)
 */
-- (PSPDFConversionOperation *)generatePDFFromURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputURL options:(NSDictionary *)options completionBlock:(PSPDFCompletionBlockWithError)completionBlock;
+- (PSPDFConversionOperation *)generatePDFFromURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputURL options:(NSDictionary *)options completionBlock:(void (^)(NSURL *fileURL, NSError *error))completionBlock;
+
+/// Will create a PDF in-memory.
+- (PSPDFConversionOperation *)generatePDFFromURL:(NSURL *)inputURL options:(NSDictionary *)options completionBlock:(void (^)(NSData *fileData, NSError *error))completionBlock;
 
 /// Default queue for conversion operations.
 + (NSOperationQueue *)conversionOperationQueue;
@@ -104,13 +106,17 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @interface PSPDFConversionOperation : NSOperation
 
 /// Designated initializer.
-- (id)initWithURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputFileURL options:(NSDictionary *)options completionBlock:(PSPDFCompletionBlockWithError)completionBlock;
+- (id)initWithURL:(NSURL *)inputURL outputFileURL:(NSURL *)outputFileURL options:(NSDictionary *)options completionBlock:(void (^)(NSURL *fileURL, NSError *error))completionBlock;
+- (id)initWithURL:(NSURL *)inputURL options:(NSDictionary *)options completionBlock:(void (^)(NSData *fileData, NSError *error))completionBlock;
 
 /// Input. Needs to be a file URL.
 @property (nonatomic, strong, readonly) NSURL *inputURL;
 
 /// Output. Needs to be a file URL.
 @property (nonatomic, strong, readonly) NSURL *outputFileURL;
+
+/// Output data, if data constructor was used.
+@property (nonatomic, strong, readonly) NSData *outputData;
 
 /// Options set for conversion. See generatePDFFromURL:outputFileURL:options:completionBlock: for a list of options.
 @property (nonatomic, copy, readonly) NSDictionary *options;
