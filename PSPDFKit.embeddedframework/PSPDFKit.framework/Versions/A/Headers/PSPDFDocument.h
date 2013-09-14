@@ -345,7 +345,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 /// Returns annotations for a specific `page`.
 ///
 /// This replaces following code:
-/// NSUInteger compensatedPage = [document compensatedPageForPage:self.page];
+/// NSUInteger compensatedPage = [document documentProviderRelativePageWithPageRangeCompensated:self.page];
 /// PSPDFAnnotationManager *annotationManager = [document annotationManagerForPage:self.page];
 /// NSArray *annotations = [annotationManager annotationsForPage:compensatedPage type:PSPDFAnnotationTypeAll];
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type;
@@ -365,7 +365,7 @@ typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
 
 /// Returns the annotationManager for the documentProvider matched by `page`.
 /// @note Remember that page within the PSPDFAnnotationManager is relative to the documentProvider.
-/// Use NSUInteger compensatedPage = [self compensatedPageForPage:page] to compensate when working with the annotation parser.
+/// Use NSUInteger compensatedPage = [self documentProviderRelativePageWithPageRangeCompensated:page] to compensate when working with the annotation parser.
 - (PSPDFAnnotationManager *)annotationManagerForPage:(NSUInteger)page;
 
 @end
@@ -620,5 +620,9 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 // The undo manager attached to the document. Set to nil to disable undo/redo management.
 // @Note Undo/Redo has a small performance impact since all annotation operations are tracked.
 @property (nonatomic, strong) PSPDFUndoController *undoController;
+
+// To calculate pages between multiple document providers and if you use the `pageRange` feature.
+- (NSUInteger)documentProviderRelativePageForPage:(NSUInteger)page;
+- (NSUInteger)documentProviderRelativePageWithPageRangeCompensated:(NSUInteger)page;
 
 @end
