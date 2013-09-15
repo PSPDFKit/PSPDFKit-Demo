@@ -2636,7 +2636,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFWord *word = ([document textParserForPage:0].words)[idx];
             PSPDFHighlightAnnotation *annotation = [PSPDFHighlightAnnotation new];
             CGRect boundingBox;
-            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);;
+            annotation.rects = PSPDFRectsFromGlyphs(word.glyphs, [document pageInfoForPage:0].pageRotationTransform, &boundingBox);
             annotation.boundingBox = boundingBox;
             [document addAnnotations:@[annotation]];
             [document saveAnnotationsWithError:NULL];
