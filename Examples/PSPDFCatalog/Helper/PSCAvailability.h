@@ -13,7 +13,7 @@
 // Logging
 #define kPSCLogEnabled
 #ifdef kPSCLogEnabled
-#define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);;
+#define PSCLog(fmt, ...) NSLog((@"%s/%d " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
 #else
 #define PSCLog(...)
 #endif
