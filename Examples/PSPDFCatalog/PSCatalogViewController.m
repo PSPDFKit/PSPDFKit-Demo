@@ -517,6 +517,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                                             PSPDFAnnotationStringStamp,
                                             PSPDFAnnotationStringImage,
                                             PSPDFAnnotationStringPolygon,
+                                            PSPDFAnnotationStringPolyLine,
                                             PSPDFAnnotationStringSound,
 
                                             PSPDFAnnotationStringSelectionTool,
