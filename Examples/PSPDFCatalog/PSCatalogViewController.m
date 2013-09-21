@@ -522,6 +522,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
                                             PSPDFAnnotationStringSelectionTool,
                                             PSPDFAnnotationStringEraser,
+                                            PSPDFAnnotationStringSavedAnnotations,
                                             nil];
         document.delegate = self;
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
