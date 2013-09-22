@@ -218,6 +218,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
             [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
             self.view.window.rootViewController = splitViewController;
+            PSC_IF_IOS7_OR_GREATER(splitViewController.view.tintColor = [UIColor blueColor];)
             return (UIViewController *)nil;
         }else {
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
@@ -2003,7 +2004,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [[document textParserForPage:0] glyphs];
 
         PSPDFTextParser *textParser = [document textParserForPage:27];
-        NSString *text = textParser.text;
+        __unused NSString *text = textParser.text;
         NSAssert(text.length == textParser.glyphs.count, @"Text length needs to equal glyph count");
 
         return pdfController;
@@ -2343,7 +2344,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }];
 
         NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
-        NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
+        __unused NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
         NSAssert(annotationCount == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
