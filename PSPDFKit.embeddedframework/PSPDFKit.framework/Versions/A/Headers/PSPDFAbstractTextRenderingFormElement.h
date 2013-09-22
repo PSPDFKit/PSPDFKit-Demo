@@ -25,6 +25,7 @@
 - (CTFontRef)createFontRef;
 - (UIEdgeInsets)edgeInsets;
 - (CGRect)clippingBox;
+- (BOOL)isMultiline;
 @end
 
 @interface PSPDFTextOptions : NSObject <PSPDFTextOptionsProtocol>
@@ -39,6 +40,7 @@
 @property (nonatomic, assign) CTFontRef fontRef;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 @property (nonatomic, assign) CGRect clippingBox;
+@property (nonatomic, assign) BOOL isMultiline;
 - (id)initWithOptions:(id<PSPDFTextOptionsProtocol>)options;
 @end
 
@@ -79,6 +81,7 @@
 @property (nonatomic, assign) CTFontRef fontRef;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 @property (nonatomic, assign) CGRect clippingBox;
+@property (nonatomic, assign) BOOL isMultiline;
 
 // Text rendering
 - (void)drawText:(NSString *)contents inContext:(CGContextRef)context;

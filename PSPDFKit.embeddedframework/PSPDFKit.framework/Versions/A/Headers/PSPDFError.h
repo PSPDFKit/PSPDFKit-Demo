@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeXFDFParserAlreadyStarted = 1020,
     PSPDFErrorCodeXMLParserError = 1100,
     PSPDFErrorCodeXFDFWriterCannotWriteToStream = 1200,
+    PSPDFErrorCodeFDFWriterCannotWriteToStream = 1250,
     PSPDFErrorCodeSoundEncoderInvalidInput = 1300,
     PSPDFErrorFeatureNotEnabled = 100000,
     PSPDFErrorCodeUnknown = NSIntegerMax

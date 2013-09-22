@@ -37,3 +37,10 @@
 @property (nonatomic, strong) id<PSPDFAnnotationSetStore> annotationStore;
 
 @end
+
+@interface PSPDFSavedAnnotationsViewController (SubclassingHooks)
+
+// Updates the toolbar.
+- (void)updateToolbarAnimated:(BOOL)animated;
+
+@end
