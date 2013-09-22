@@ -28,7 +28,7 @@
 "Search Outline" = "Inhaltsverzeichnis durchsuchen";
 "Search" = "Suchen";
 "Email" = "Email";
-"Send via Email" = "Send via Email";
+"Send via Email" = "Via Email senden";
 "Send" = "Senden";
 "Open in..." = "Öffnen in…";
 "Open" = "Öffnen";
@@ -40,7 +40,7 @@
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
 "Annotations" = "Annotationen";
-"No Annotations" = "Keine Annotationen vorhanden";
+"No Annotations" = "Keine Annotationen";
 "%d Annotation" = "%d Annotation";
 "%d Annotations" = "%d Annotationen";
 "Bookmarks" = "Lesezeichen";
@@ -111,6 +111,7 @@
 "Color" = "Farbe";
 "Border..." = "Rand…";
 "Fill Color..." = "Füllfarbe…";
+"Fill Color" = "Füllfarbe";
 "Opacity..." = "Transparenz…";
 "Opacity" = "Transparenz";
 "Custom..." = "Mehr…";
@@ -239,13 +240,13 @@
 "Grid" = "Thumbnails";
 
 // PSPDFDocumentSharingViewController
-"Ignore Annotations" = "Ignore Annotations";
+"Ignore Annotations" = "Annotationen ignorieren";
 "The PDF will not contain any annotations." = "Das PDF wird keine Annotationen enthalten.";
-"Embed Annotations" = "Embed Annotations";
+"Embed Annotations" = "Annotationen speichern";
 "Annotations will remain editable and are embedded into the PDF." = "Annotationen bleiben editierbar und werden im PDF gespeichert.";
-"Flatten Annotations" = "Flatten Annotations";
+"Flatten Annotations" = "Annotationen zeichnen";
 "Annotations are drawn into the PDF and are readonly." = "Annotationen werden in das PDF gezeichnet und sind nicht änderbar.";
-"Annotation Summary" = "Annotation Summary";
+"Annotation Summary" = "Annotationsübersicht";
 "Embed Annotations into the PDF and also list them in the email." = "Annotationen werden im PDF gespeichert und im Email gelistet.";
 "Files" = "Dateien";
 "Send as single files" = "Als einzelne Dateien schicken";

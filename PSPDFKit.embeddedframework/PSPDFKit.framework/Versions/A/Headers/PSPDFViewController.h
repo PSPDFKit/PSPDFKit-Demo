@@ -409,10 +409,11 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Set global toolbar tint color. Overrides defaults. Default is nil (depends on statusBarStyleSetting)
 @property (nonatomic, strong) UIColor *tintColor;
 
-/// Enable to add tinting to UIPopoverController using a custom UIPopoverView subclass. Defaults to YES.
+/// Enable to add tinting to UIPopoverController using a custom UIPopoverView subclass. Defaults to NO.
 @property (nonatomic, assign) BOOL shouldTintPopovers;
 
 /// Enable to allow tinting of PSPDFAlertView. Defaults to YES.
+/// @note This is ignored as of iOS 7.
 @property (nonatomic, assign) BOOL shouldTintAlertView;
 
 /// If not set, we'll use the PSPDFKit default.
@@ -519,7 +520,7 @@ extern NSString *const PSPDFPresentOptionHalfModalMode;                 // Shows
 extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set to enable a persistent close button.
 
 /// Show a modal view controller or a popover with automatically added close button on the left side.
-/// Use sender (UIBarButtonitem or UIView) OR rect in options (both only needed for the popover)
+/// Use sender (UIBarButtonItem or UIView) OR rect in options (both only needed for the popover)
 - (id)presentModalOrInPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
 
 @end
