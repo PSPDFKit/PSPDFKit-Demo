@@ -21,24 +21,18 @@
     self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
     self.tintColor = [UIColor colorWithRed:0.092 green:0.608 blue:0.000 alpha:1.000];
     PSCTintColorSelectionBarButtonItem *tintColorButtonItem = [[PSCTintColorSelectionBarButtonItem alloc] initWithPDFViewController:self];
-    UIBarButtonItem *alertButtonTest = [[UIBarButtonItem alloc] initWithTitle:@"Alert" style:UIBarButtonItemStyleBordered target:self action:@selector(testAlert)];
 
     self.useBorderedToolbarStyle = YES;
-    self.leftBarButtonItems = @[self.closeButtonItem, tintColorButtonItem, alertButtonTest];
-    self.rightBarButtonItems = @[self.brightnessButtonItem, self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+    self.leftBarButtonItems = @[self.closeButtonItem, tintColorButtonItem];
+    self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
     self.linkAction = PSPDFLinkActionAlertView; // touch a link to test tint.
 
-    // both default, but set explicitly here for demonstration purposes
     self.shouldTintPopovers = YES;
-    self.shouldTintAlertView = YES;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)testAlert {
-    [self.popoverController dismissPopoverAnimated:NO];
-    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom alertViewTintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] showWithTintColor:self.tintColor];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.tintColor = UIColor.blackColor;
 }
 
 @end

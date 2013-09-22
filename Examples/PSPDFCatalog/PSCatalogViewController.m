@@ -104,6 +104,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
         [self addDebugButtons];
+
+        PSC_IF_IOS7_OR_GREATER(self.edgesForExtendedLayout = UIRectEdgeNone;)
     }
     return self;
 }
@@ -124,10 +126,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Structured-checked.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+        if (PSPDFIsUIKitFlatMode()) {
+            controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlack;
+            controller.tintColor = UIColor.pspdfColor;
+        }
         //controller.shouldHideNavigationBarWithHUD = YES;
         //controller.shouldHideStatusBarWithHUD = YES;
         controller.imageSelectionEnabled = NO;
@@ -492,8 +498,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WNTestBook.pdf"];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
@@ -2870,7 +2876,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     _searchDisplayController.searchResultsDataSource = self;
     _searchDisplayController.searchResultsDelegate = self;
 
-    // Private API - don't ship this in App Store builds.
+    // Private API to improve search result style - don't ship this in App Store builds.
     [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
 }
 
@@ -2879,7 +2885,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
+    if (PSPDFIsUIKitFlatMode()) {
+        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
+        PSC_IF_IOS7_OR_GREATER(self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;)
+        self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
+    }else {
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
+    }
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;

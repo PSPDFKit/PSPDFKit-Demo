@@ -21,6 +21,7 @@
 
 #import "PSCAvailability.h"
 #import "PSCViewHelper.h"
+#import "UIColor+PSPDFCatalog.h"
 
 // This is used internally where PSPDFKit-lib.xcproj is used.
 #ifdef PSPDF_USE_SOURCE
@@ -30,3 +31,6 @@
 #endif
 
 #endif
+
+// Helper to detect if we run in legacy or flat mode.
+extern BOOL PSPDFIsUIKitFlatMode(void);
