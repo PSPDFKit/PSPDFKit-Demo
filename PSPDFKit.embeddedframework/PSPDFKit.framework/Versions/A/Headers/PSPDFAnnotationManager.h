@@ -18,7 +18,8 @@
 extern NSString *const PSPDFAnnotationsAddedNotification;    // object = array of new PSPDFAnnotation(s).
 extern NSString *const PSPDFAnnotationsRemovedNotification;  // object = array of removed PSPDFAnnotation(s).
 
-// Internal events to notify the annotation providers when annotations are being changed.
+/// Internal events to notify the annotation providers when annotations are being changed.
+/// @warning Only send from main thread!
 extern NSString *const PSPDFAnnotationChangedNotification;                      // object = new PSPDFAnnotation.
 extern NSString *const PSPDFAnnotationChangedNotificationAnimatedKey;           // set to NO to not animate updates (if it can be animated, that is)
 extern NSString *const PSPDFAnnotationChangedNotificationIgnoreUpdateKey;       // set to YES to disable handling by views.

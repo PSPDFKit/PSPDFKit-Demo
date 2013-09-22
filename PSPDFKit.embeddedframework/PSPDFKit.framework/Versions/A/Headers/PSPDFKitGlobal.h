@@ -23,7 +23,7 @@ extern NSString *PSPDFVersionString(void); // Returns "PSPDFKit 3.x.x"
 extern NSDate   *PSPDFVersionDate(void);   // Returns date of compilation.
 
 typedef NS_ENUM(NSInteger, PSPDFLogLevelMask) {
-    PSPDFLogLevelMasklNothing = 0,
+    PSPDFLogLevelMaskNothing  = 0,
     PSPDFLogLevelMaskError    = 1 << 0,
     PSPDFLogLevelMaskWarning  = 1 << 1,
     PSPDFLogLevelMaskInfo     = 1 << 2,

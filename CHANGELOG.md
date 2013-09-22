@@ -2,6 +2,26 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.3 - 22/Sept/2013__
+
+*  The default PSPDFKit binary is now again compatible with iOS 5. We added a new 64-bit enabled binary for apps that are already iOS 7 exclusive.
+*  Greatly improve tintColor handling on iOS 7.
+*  Support FDF, XFDF and PDF Form submission methods (next to the existing HTTP)
+*  Improves speed for the memory image cache internals.
+*  Increase the allowed handle size for the text selection knobs on iOS 7 to make it easier to change the selection.
+*  Improves the placement for the page label view on iPhone.
+*  Ensure toolbar is set for the PSPDFSavedAnnotationViewController when used standalone.
+*  Adds missing localization in various places.
+*  Improve animation when a popover resizes on iOS 7.
+*  No longer draws the form field background when forms are flattened.
+*  Optimized handling of documents that take a huge amount of memory to render.
+*  Parsing performance for annotation saving is now up to 3x faster for certain complex documents.
+*  Improve `localizedDescription` for form elements.
+*  Fixes an issue where the color picker in the half-modal controller on iOS 7 could be sized too small.
+*  Fixes an issue where adding annotations could hide the page contents when annotations were added directly to the page dictionary.
+*  Fixes an issue where partial label matching was too eager and sometimes picked non-optimal matches.
+*  Fixes various rare crashes.
+
 __v3.0.2 - 14/Sept/2013__
 
 *  Exposes some additional helpers in PSPDFDocument.
