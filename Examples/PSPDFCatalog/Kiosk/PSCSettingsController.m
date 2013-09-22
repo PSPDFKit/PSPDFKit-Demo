@@ -61,36 +61,34 @@ static NSMutableDictionary *_settings;
 + (NSDictionary *)settings { return _settings; }
 
 // perform a appropriate choice of defaults.
-__attribute__((constructor)) static void setupDefaults(void) {
-    @autoreleasepool {
-        _settings = [NSMutableDictionary new];
-        _settings[PROPERTY(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-        _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSIsIpad());
-        _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-        _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
-        _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
-        _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
-        _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
-        _settings[PROPERTY(isPageLabelEnabled)] = @YES;
-        _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
-        _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
-        _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
-        _settings[PROPERTY(viewModeButtonItem)] = @YES;
-        _settings[PROPERTY(searchButtonItem)] = @YES;
-        _settings[PROPERTY(annotationButtonItem)] = @YES;
-        _settings[PROPERTY(bookmarkButtonItem)] = @YES;
-        _settings[PROPERTY(brightnessButtonItem)] = @NO;
-        PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
-        _settings[PROPERTY(outlineButtonItem)] = @YES;
-        _settings[PROPERTY(printButtonItem)] = @YES;
-        _settings[PROPERTY(openInButtonItem)] = @YES;
-        _settings[PROPERTY(emailButtonItem)] = @YES;
-        _settings[PROPERTY(viewModeButtonItem)] = @YES;
-        _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
-        _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
-        _settings[@"renderContentOpacity"] = @(1.f);
-        _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
-    }
++ (void)load {
+    _settings = [NSMutableDictionary new];
+    _settings[PROPERTY(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+    _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSIsIpad());
+    _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+    _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
+    _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
+    _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
+    _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
+    _settings[PROPERTY(isPageLabelEnabled)] = @YES;
+    _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
+    _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
+    _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
+    _settings[PROPERTY(viewModeButtonItem)] = @YES;
+    _settings[PROPERTY(searchButtonItem)] = @YES;
+    _settings[PROPERTY(annotationButtonItem)] = @YES;
+    _settings[PROPERTY(bookmarkButtonItem)] = @YES;
+    _settings[PROPERTY(brightnessButtonItem)] = @NO;
+    PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
+    _settings[PROPERTY(outlineButtonItem)] = @YES;
+    _settings[PROPERTY(printButtonItem)] = @YES;
+    _settings[PROPERTY(openInButtonItem)] = @YES;
+    _settings[PROPERTY(emailButtonItem)] = @YES;
+    _settings[PROPERTY(viewModeButtonItem)] = @YES;
+    _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
+    _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
+    _settings[@"renderContentOpacity"] = @(1.f);
+    _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -100,63 +98,63 @@ __attribute__((constructor)) static void setupDefaults(void) {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
         self.title = _(@"Display Options");
         _content = @[
-        @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")], @[_(@"Show Page Rect & Rotation")],
-        @[_(@"Show Text Blocks")],
-        @[_(@"Invert")], @[_(@"")], @[_(@"")],
-        @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)")],
-        @[_(@"Horizontal"), _(@"Vertical")],
-        @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
-        @[_(@"Single First Page"), _(@"No Cover Page")],
-        @[_(@"No Thumbnail Bar"), _(@"Scrobble Bar (like iBooks)"), _(@"Scrollable Thumbnails")],
-        @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
-        @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View")],
-        @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode"), _(@"Bordered Toolbar")],
-        @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
-        @[_(@"No Disk Cache"), _(@"Thumbnails only"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
-        ];
+                     @[_(@"Clear Disk Cache")], @[_(@"Open Documentation")], @[_(@"Show Current Configuration")], @[_(@"Extract Page Text")], @[_(@"Show Page Rect & Rotation")],
+                     @[_(@"Show Text Blocks")],
+                     @[_(@"Invert")], @[_(@"")], @[_(@"")],
+                     @[_(@"Scroll Per Page"), _(@"Scroll Continuous"), _(@"PageCurl (iBooks)")],
+                     @[_(@"Horizontal"), _(@"Vertical")],
+                     @[_(@"Single Page"), _(@"Double Pages"), _(@"Automatic on Rotation")],
+                     @[_(@"Single First Page"), _(@"No Cover Page")],
+                     @[_(@"No Thumbnail Bar"), _(@"Scrobble Bar (like iBooks)"), _(@"Scrollable Thumbnails")],
+                     @[_(@"Thumbnail, then Page"), _(@"Page (async)"), _(@"Page (blocking)"), _(@"Thumbnails, Render"), _(@"Render only")],
+                     @[_(@"Smart Zoom"), _(@"Allow Text Selection"), _(@"Zoom Small Files"), _(@"Zoom To Width"), _(@"Scroll On Tap Page"), _(@"Page Position View")],
+                     @[_(@"Search"), _(@"Outline"), _(@"Print"), _(@"OpenIn"), _(@"Email"), _(@"Brightness"), _(@"Annotations"), _(@"Bookmarks"), _(@"Activity"), _(@"View Mode"), _(@"Bordered Toolbar")],
+                     @[_(@"Ignore Links"), _(@"Show Alert View"), _(@"Open Safari"), _(@"Open Internal Webview")],
+                     @[_(@"No Disk Cache"), _(@"Thumbnails only"), _(@"Thumbnails & Near Pages"), _(@"Cache everything")],
+                     ];
         _contentSubtitle = @[@[@""], @[@""], @[@""], @[@""], @[@""],
-        @[_(@"(See PSPDFSelectionView)")],
-        @[@""], @[@""], @[@""],
-        @[_(@"PSPDFPageTransitionScrollPerPage"), _(@"PSPDFPageTransitionScrollContinuous"), _(@"PSPDFPageTransitionCurl")],
-        @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
-        @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
-        @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
-        @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
-        @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
-        @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
-        @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
-        @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
-        @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
-        ];
+                             @[_(@"(See PSPDFSelectionView)")],
+                             @[@""], @[@""], @[@""],
+                             @[_(@"PSPDFPageTransitionScrollPerPage"), _(@"PSPDFPageTransitionScrollContinuous"), _(@"PSPDFPageTransitionCurl")],
+                             @[_(@"PSPDFScrollDirectionHorizontal"), _(@"PSPDFScrollDirectionVertical")],
+                             @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
+                             @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
+                             @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
+                             @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
+                             @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
+                             @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
+                             @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
+                             @[_(@"PSPDFDiskCacheStrategyNothing"), _(@"PSPDFDiskCacheStrategyThumbnails"), _(@"PSPDFDiskCacheStrategyNearPages"), _(@"PSPDFDiskCacheStrategyEverything")],
+                             ];
         _sectionTitle = @[@"", @"", @"", @"", @"", @"", _(@"Debug"), _(@"Display Options"), @"", _(@"Page Transition"), _(@"Scroll Direction"), _(@"Double Page Mode"), _(@"Cover"), _(@"Thumbnail Bar"), _(@"Page Render Mode"), _(@"Display"), _(@"Toolbar"), _(@"Link Action"), _(@"Cache")];
         _sectionFooter = @[@"", @"", @"", @"", PSPDFVersionString(), _(@"See PSPDFKitGlobal.h for more debugging options."),
-        _(@"Useful to easy readability of white documents."),
-        _(@"Paper Color"),
-        _(@"Content Opacity"),
-        _(@""),
-        _(@"Scroll direction will be ignored for PSPDFPageTransitionCurl mode."),
-        _(@""), // double page mode
-        _(@""), // PSPDFThumbnailBarMode
-        _(@"Relevant for double page mode."),
-        _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingModeFullPageBlocking is a great option for magazine apps that use pageCurl."),
-        _(@"Zoom to width is not available with PSPDFPageTransitionCurl. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
-        _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
-        _(@"Default is PSPDFLinkActionInlineBrowser."),
-        _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
+                           _(@"Useful to easy readability of white documents."),
+                           _(@"Paper Color"),
+                           _(@"Content Opacity"),
+                           _(@""),
+                           _(@"Scroll direction will be ignored for PSPDFPageTransitionCurl mode."),
+                           _(@""), // double page mode
+                           _(@""), // PSPDFThumbnailBarMode
+                           _(@"Relevant for double page mode."),
+                           _(@"Here, you can trade interface speed versus feeling. For certain content, upscaled thumbnails don't look well. PSPDFPageRenderingModeFullPageBlocking is a great option for magazine apps that use pageCurl."),
+                           _(@"Zoom to width is not available with PSPDFPageTransitionCurl. Smart Zoom tries to find a text block and zoom into that block. Falls back to regular zooming if no suited block was found."),
+                           _(@"PSPDFKit manages the toolbar for you. Don't directly change left/rightBarButtonItem(s) in the navigationController, use leftBarButtonItems, rightBarButtonItems and additionalRightBarButtonItems. There are some PSPDFBarButtonItem's prepared in PSPDFViewController. You can also add regular UIBarButtonItems."),
+                           _(@"Default is PSPDFLinkActionInlineBrowser."),
+                           _(@"Cache everything is usually the preferred choice. Cache settings are global.")];
 
         _contentOpacityControl = [[UISegmentedControl alloc] initWithItems:@[@"100%", @"90%", @"80%", @"70%", @"60%"]];
     	[_contentOpacityControl addTarget:self action:@selector(contentOpacityChanged:) forControlEvents:UIControlEventValueChanged];
 
         _paperColors = @[[UIColor whiteColor],
-            // 1-4: sepia, light to dark
-            [UIColor colorWithRed:0.980f green:0.976f blue:0.949f alpha:1.0f],
-            [UIColor colorWithRed:0.965f green:0.957f blue:0.906f alpha:1.0f],
-            [UIColor colorWithRed:0.953f green:0.941f blue:0.871f alpha:1.0f],
-            [UIColor colorWithRed:0.937f green:0.922f blue:0.831f alpha:1.0f],
-            // 5-7: gray, light to dark
-            [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.0f],
-            [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1.0f],
-            [UIColor colorWithRed:0.85f green:0.85f blue:0.85f alpha:1.0f]];
+                         // 1-4: sepia, light to dark
+                         [UIColor colorWithRed:0.980f green:0.976f blue:0.949f alpha:1.0f],
+                         [UIColor colorWithRed:0.965f green:0.957f blue:0.906f alpha:1.0f],
+                         [UIColor colorWithRed:0.953f green:0.941f blue:0.871f alpha:1.0f],
+                         [UIColor colorWithRed:0.937f green:0.922f blue:0.831f alpha:1.0f],
+                         // 5-7: gray, light to dark
+                         [UIColor colorWithRed:0.95f green:0.95f blue:0.95f alpha:1.0f],
+                         [UIColor colorWithRed:0.9f green:0.9f blue:0.9f alpha:1.0f],
+                         [UIColor colorWithRed:0.85f green:0.85f blue:0.85f alpha:1.0f]];
 
         NSMutableArray *imageArray = [NSMutableArray arrayWithCapacity:_paperColors.count];
         [_paperColors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -538,7 +536,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     configView.editable = NO;
     configView.font = [UIFont systemFontOfSize:15];
     configViewController.view = configView;
-
+    
     [pdfController presentModalOrInPopover:configViewController embeddedInNavigationController:YES withCloseButton:YES animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];
 }
 
