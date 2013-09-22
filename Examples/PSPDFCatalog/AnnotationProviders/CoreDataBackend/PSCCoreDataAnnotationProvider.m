@@ -97,7 +97,9 @@
     });
 
     // Send notification.
-    [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsAddedNotification object:annotations];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsAddedNotification object:annotations];
+    });
 
     return annotations;
 }
@@ -124,7 +126,9 @@
     
     // Send notification.
     if (removedAnnotations.count > 0) {
-        [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsRemovedNotification object:removedAnnotations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsRemovedNotification object:removedAnnotations];
+        });
     }
 
     return removedAnnotations;
