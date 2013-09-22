@@ -59,6 +59,7 @@
     // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
     self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
     self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    self.window.tintColor = UIColor.whiteColor;
     self.window.rootViewController = self.catalog;
     [self.window makeKeyAndVisible];
 

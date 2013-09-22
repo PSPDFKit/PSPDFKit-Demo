@@ -166,6 +166,7 @@
 		78E4E06617DD151C005ED42D /* PSCExampleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06417DD151B005ED42D /* PSCExampleManager.m */; };
 		78E4E06917DD1532005ED42D /* PSCAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E4E06817DD1532005ED42D /* PSCAssetLoader.m */; };
 		78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */; };
+		78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */; };
 		78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */; };
 		78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
@@ -430,6 +431,8 @@
 		78E4E06817DD1532005ED42D /* PSCAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAssetLoader.m; sourceTree = "<group>"; };
 		78E543FD164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomBookmarkBarButtonItem.h; sourceTree = "<group>"; };
 		78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomBookmarkBarButtonItem.m; sourceTree = "<group>"; };
+		78E6EF0917EF03050017E8B3 /* UIColor+PSPDFCatalog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PSPDFCatalog.h"; sourceTree = "<group>"; };
+		78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PSPDFCatalog.m"; sourceTree = "<group>"; };
 		78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCShowHighlightNotesPDFController.m; sourceTree = "<group>"; };
 		78E76577176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCShowHighlightNotesPDFController.h; sourceTree = "<group>"; };
 		78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportPDFPagesViewController.m; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 				78D90A13178A0A0300E7D4D5 /* PSCViewHelper.m */,
 				7885F488179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.h */,
 				7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */,
+				78E6EF0917EF03050017E8B3 /* UIColor+PSPDFCatalog.h */,
+				78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */,
 				78897E22179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.h */,
 				78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */,
 			);
@@ -1206,6 +1211,7 @@
 				6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */,
 				78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */,
 				78C6842A16F7E5330080427B /* PSCDropboxDocumentSelectorController.m in Sources */,
+				78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */,
 				78C6842B16F7E5330080427B /* PSCDropboxFloatingToolbar.m in Sources */,
 				78C6842C16F7E5330080427B /* PSCDropboxPDFViewController.m in Sources */,
 				78C6842D16F7E5330080427B /* PSCDropboxSplitViewController.m in Sources */,
