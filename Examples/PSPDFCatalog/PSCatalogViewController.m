@@ -499,8 +499,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WNTestBook.pdf"];
+        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WNTestBook.pdf"];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
