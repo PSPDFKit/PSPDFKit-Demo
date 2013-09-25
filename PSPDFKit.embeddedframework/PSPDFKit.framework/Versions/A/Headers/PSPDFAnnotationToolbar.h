@@ -77,7 +77,7 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 @property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> annotationToolbarDelegate;
 
 /// Attached pdfController.
-/// @note If you update alertViewTintColor, barStyle, etc - this needs to be set again to re-capture changed states.
+/// @note If you update tintColor, barStyle, etc - this needs to be set again to re-capture changed states.
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
 /// Active annotation toolbar mode. Mode is an annotation type, e.g. PSPDFAnnotationStringHighlight.

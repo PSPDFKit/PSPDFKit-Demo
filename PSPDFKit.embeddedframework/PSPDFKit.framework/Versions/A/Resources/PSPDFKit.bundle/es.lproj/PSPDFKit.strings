@@ -102,6 +102,7 @@
 "Type..." = "Tipo…";
 "Font..." = "Tipografía…";
 "Size..." = "Tamaño…";
+"Size" = "Tamaño";
 "Font" = "Tipografía";
 "Fonts" = "Tipografía";
 "Choose Color" = "Elija un color";
@@ -179,6 +180,7 @@
 "Inspector..." = "Inspector...";
 "Group" = "Group";
 "Ungroup" = "Ungroup";
+"Sample" = "Sample";
 
 // PDF annotation name overrides
 "Square" = "Rectángulo";

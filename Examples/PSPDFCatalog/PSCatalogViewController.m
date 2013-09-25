@@ -496,12 +496,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
     [sections addObject:multimediaSection];
 
-    PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotations, including Highlighing, Underscore, Strikeout, Comment and Ink."];
+    PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotation types."];
 
     [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WNTestBook.pdf"];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Feedback_Form FULL.pdf"];
+        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Forms_V-Kg1-Antrag.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
@@ -3115,7 +3115,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     UIBarButtonItem *memoryButton = [[UIBarButtonItem alloc] initWithTitle:@"Memory" style:UIBarButtonItemStyleBordered target:self action:@selector(debugCreateLowMemoryWarning)];
     self.navigationItem.leftBarButtonItem = memoryButton;
     
-    UIBarButtonItem *cacheButton = [[UIBarButtonItem alloc] initWithTitle:@"Clear Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(debugClearCache)];
+    UIBarButtonItem *cacheButton = [[UIBarButtonItem alloc] initWithTitle:@"Cache" style:UIBarButtonItemStyleBordered target:self action:@selector(debugClearCache)];
     self.navigationItem.rightBarButtonItem = cacheButton;
 #endif
 }
