@@ -132,7 +132,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         if (PSPDFIsUIKitFlatMode()) {
             controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlack;
-            controller.tintColor = UIColor.pspdfColor;
+            controller.tintColor = UIColor.pspdfColor;      // navBarTintColor
         }
         //controller.shouldHideNavigationBarWithHUD = YES;
         //controller.shouldHideStatusBarWithHUD = YES;
@@ -2889,6 +2889,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     if (PSPDFIsUIKitFlatMode()) {
         PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
         PSC_IF_IOS7_OR_GREATER(self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;)
+        PSC_IF_IOS7_OR_GREATER(self.navigationController.view.tintColor = UIColor.whiteColor;)
         self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
