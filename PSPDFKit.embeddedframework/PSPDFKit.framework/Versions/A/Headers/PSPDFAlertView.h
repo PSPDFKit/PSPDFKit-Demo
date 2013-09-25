@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 /// Helper to add block features to UIAlertView.
-/// After block has been executed, it is set to nil, breaking potential retain cycles.
+/// @note After block has been executed, it is set to nil, breaking potential retain cycles.
 @interface PSPDFAlertView : UIAlertView
 
 /// @name Initialization
@@ -30,17 +30,6 @@
 /// Add regular button.
 - (NSInteger)addButtonWithTitle:(NSString *)title block:(void (^)())block;
 - (NSInteger)addButtonWithTitle:(NSString *)title extendedBlock:(void (^)(PSPDFAlertView *alert, NSInteger buttonIndex))block;
-
-/// @name Style
-
-/// Custom alertViewTintColor. Set to nil for the default style.
-/// @note Because the alert view is displayed in its own window, the appearance can only be set globally.
-/// @warning alertViewTintColor is unavailable for iOS7+.
-@property (nonatomic, strong) UIColor *alertViewTintColor UI_APPEARANCE_SELECTOR;
-
-/// Show with tint color. Use to conveniently create a one-line alertView with the classic init methods.
-/// @warning alertViewTintColor is unavailable for iOS7+.
-- (void)showWithTintColor:(UIColor *)tintColor;
 
 @end
 

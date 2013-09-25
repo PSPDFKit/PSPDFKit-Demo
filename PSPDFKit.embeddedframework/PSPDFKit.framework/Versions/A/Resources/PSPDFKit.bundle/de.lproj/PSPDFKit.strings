@@ -102,6 +102,7 @@
 "Type..." = "Typ…";
 "Font..." = "Schrift…";
 "Size..." = "Größe…";
+"Size" = "Größe";
 "Font" = "Schriftart";
 "Fonts" = "Schriftarten";
 "Choose Color" = "Farbe wählen";
@@ -179,6 +180,7 @@
 "Inspector..." = "Inspektor...";
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
+"Sample" = "Beispiel";
 
 // PDF annotation name overrides
 "Square" = "Rechteck";

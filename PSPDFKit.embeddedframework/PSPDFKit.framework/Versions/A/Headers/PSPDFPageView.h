@@ -354,3 +354,10 @@ extern NSString *const PSPDFHidePageHUDElements;
 - (CGFloat)scaleForPageView;
 
 @end
+
+// Helpers for the UIMenuController-based approach to annotation changes (like in v2)
+@interface PSPDFPageView (OldStyleMenuHooks)
+
+- (void)selectColorForAnnotation:(PSPDFAnnotation *)annotation isFillColor:(BOOL)isFillColor;
+
+@end

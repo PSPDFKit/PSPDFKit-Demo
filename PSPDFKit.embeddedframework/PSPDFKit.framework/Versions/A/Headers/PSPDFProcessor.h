@@ -25,6 +25,7 @@ extern NSString *const PSPDFProcessorPageRect;         // Defaults to PSPDFPaper
 extern NSString *const PSPDFProcessorNumberOfPages;    // Defaults to 10. Set lower to optimize, higher if you have a lot of content.
 extern NSString *const PSPDFProcessorPageBorderMargin; // Defaults to UIEdgeInsetsMake(5, 5, 5, 5).
 extern NSString *const PSPDFProcessorAdditionalDelay;  // Defaults to 0.05 seconds. Set higher if you get blank pages.
+extern NSString *const PSPDFProcessorStripEmptyPages;  // Defaults to NO. Adds an additional step to strip white pages if you're getting any at the end.
 
 // Common page sizes. Use for PSPDFProcessorPageRect.
 extern CGRect const PSPDFPaperSizeA4;
