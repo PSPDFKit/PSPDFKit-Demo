@@ -103,6 +103,7 @@
 "Type..." = "Type…";
 "Font..." = "Font…";
 "Size..." = "Size…";
+"Size" = "Size";
 "Font" = "Font";
 "Fonts" = "Fonts";
 "Choose Color" = "Choose Color";
@@ -180,6 +181,7 @@
 "Inspector..." = "Inspector...";
 "Group" = "Group";
 "Ungroup" = "Ungroup";
+"Sample" = "Sample";
 
 // PDF annotation name overrides
 "Square" = "Rectangle";

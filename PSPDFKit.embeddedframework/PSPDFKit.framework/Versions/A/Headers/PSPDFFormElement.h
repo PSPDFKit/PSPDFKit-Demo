@@ -77,6 +77,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// (Optional; inheritable) The default value to which the field reverts when a reset-form action is executed (see 12.7.5.3, “Reset-Form Action”). The format of this value is the same as that of V.
 @property (nonatomic, strong) id defaultValue;
 
+/// (Required if the appearance dictionary AP contains one or more subdictionaries; PDF 1.2) The annotation’s appearance state, which selects the applicable appearance stream from an appearance subdictionary.
+@property (nonatomic, strong) NSString *appearanceState;
+
 /// The value which the field is to export when submitted. Can return either a string or an array of strings in the case of multiple selection.
 @property (nonatomic, readonly) id exportValue;
 

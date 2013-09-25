@@ -8,7 +8,6 @@
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
-//  Parts of this code is based on https://github.com/samvermette/SVWebViewController.
 //
 
 #import "PSPDFKitGlobal.h"
@@ -29,10 +28,6 @@
 - (BOOL)handleExternalURL:(NSURL *)URL buttonCompletionBlock:(void (^)(PSPDFAlertView *alert, NSUInteger buttonIndex))completionBlock;
 
 @end
-
-/// Enable to completely match the toolbar style with the PSPDFViewController.
-/// Defaults to NO because IMO it doesn't look that great.
-extern BOOL PSPDFHonorBlackAndTranslucentSettingsOnWebViewController;
 
 typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsNone             = 0,

@@ -2,6 +2,20 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.4 - 25/Sept/2013__
+
+*  Further tweaks and changes how tintColor is handled on iOS 7.
+*  Improve detection code for checked state of radio/ceckboxes in the AcroForm parser.
+*  Improve search controller animation.
+*  Improve status bar face/slide animtations for iOS 7.
+*  Better protect the undo controller against mis-use.
+*  Add a new option to PSPDFProcessor: PSPDFProcessorStripEmptyPages. This will post-process the HTML-to-PDF result to remove any blank pages there might be.
+*  The 'contentView' of the PSPDFViewController is now always above the PDF content and below the HUD.
+*  Fixes an issue where the scrollable thumbnail bar could sometimes disappear.
+*  Fixes an issue where the changes of a open note annotation where not saved when tapping on the note again while the popover was already visible.
+*  Fixes various smaller potential crashes for malformed PDF documents.
+*  Removes support for the optional alertViewTintColor (was iOS 5/6 only)
+
 __v3.0.3 - 22/Sept/2013__
 
 *  The default PSPDFKit binary is now again compatible with iOS 5. We added a new 64-bit enabled binary for apps that are already iOS 7 exclusive.

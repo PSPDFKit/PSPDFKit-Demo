@@ -57,12 +57,12 @@ typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
 
 /// Status bar style. (old status will be restored regardless of the style chosen)
 typedef NS_ENUM(NSInteger, PSPDFStatusBarStyle) {
-    PSPDFStatusBarStyleInherit,             // Don't change status bar style, but show/hide status bar on HUD events.
-    PSPDFStatusBarStyleSmartBlack,          // UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
-    PSPDFStatusBarStyleSmartBlackHideOnIpad,// Similar to PSPDFStatusBarStyleSmartBlack, but also hides statusBar on iPad.
-    PSPDFStatusBarStyleBlackOpaque,         // Opaque Black everywhere.
-    PSPDFStatusBarStyleDefault,             // Default status bar (white on iPhone/black on iPad).
-    PSPDFStatusBarStyleDisable              // Never show status bar.
+    PSPDFStatusBarStyleInherit,             /// Don't change status bar style, but show/hide status bar on HUD events.
+    PSPDFStatusBarStyleSmartBlack,          /// UIStatusBarStyleBlackOpaque on iPad, UIStatusBarStyleBlackTranslucent on iPhone.
+    PSPDFStatusBarStyleSmartBlackHideOnIpad,/// Similar to PSPDFStatusBarStyleSmartBlack (iOS 7: white), but also hides statusBar on iPad.
+    PSPDFStatusBarStyleBlackOpaque,         /// Opaque Black everywhere. (iOS 7: white)
+    PSPDFStatusBarStyleDefault,             /// Default status bar (iOS 6: white on iPhone/black on iPad iOS 7: Black).
+    PSPDFStatusBarStyleDisable              /// Never show status bar.
 };
 
 typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
