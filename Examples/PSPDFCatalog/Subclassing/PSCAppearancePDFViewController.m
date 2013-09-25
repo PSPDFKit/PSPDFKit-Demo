@@ -35,14 +35,6 @@
     [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setTintColor:UIColor.redColor];
 //    UIImage *gradientPortrait = [UIImage imageNamed:@"exampleimage.jpg"];
 //    [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setBackgroundImage:gradientPortrait forBarMetrics:UIBarMetricsDefault];
-
-    /// Because the alert view is displayed in it's own window, the appearance can only be set globally.
-    [[PSPDFAlertView appearance] setAlertViewTintColor:UIColor.yellowColor];
-}
-
-- (void)dealloc {
-    // Restore appearance setting
-    [[PSPDFAlertView appearance] setAlertViewTintColor:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

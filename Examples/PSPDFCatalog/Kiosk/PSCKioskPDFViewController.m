@@ -68,7 +68,6 @@
         self.leftBarButtonItems = @[_closeButtonItem];
 
         // Change color.
-        //self.alertViewTintColor = [UIColor colorWithRed:60.f/255.f green:100.f/255.f blue:160.f/255.f alpha:1.f];
         //self.statusBarStyleSetting = PSPDFStatusBarDefault;
 
         // Change statusbar setting to your preferred style.
