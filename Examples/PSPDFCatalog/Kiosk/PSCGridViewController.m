@@ -208,7 +208,12 @@
         self.navigationController.navigationBar.alpha = 1.f;
     }];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    if (PSPDFIsUIKitFlatMode()) {
+        PSC_IF_IOS7_OR_GREATER([[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
+    }else {
+        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
+
     _shadowView.shadowEnabled = YES;
 
     // If navigationBar is offset, we're fixing that.
