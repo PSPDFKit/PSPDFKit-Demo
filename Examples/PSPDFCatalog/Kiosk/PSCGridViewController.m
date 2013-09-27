@@ -793,6 +793,11 @@
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    UIScrollView *wrap = (UIScrollView *)searchBar.superview;
+    searchBar.frame = CGRectMake(wrap.frame.origin.x, wrap.frame.origin.y, searchBar.frame.size.width, searchBar.frame.size.height);
+    [wrap.superview addSubview:searchBar];
+    [wrap removeFromSuperview];
+
     [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
         searchBar.alpha = 0.5f;
     } completion:NULL];
@@ -807,6 +812,16 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    // Sadly there is no way to un-smart the UISearchBar. It tries to scroll to visiblity even though it is already visible.
+    // We wrap it into a dummy scroll view to prevent this "smart" logic.
+    UIScrollView *wrap = [[UIScrollView alloc] initWithFrame:searchBar.frame];
+    [searchBar.superview addSubview:wrap];
+    searchBar.frame = CGRectMake(0, 0, searchBar.frame.size.width, searchBar.frame.size.height);
+    [wrap addSubview:searchBar];
+    return YES;
 }
 
 @end
