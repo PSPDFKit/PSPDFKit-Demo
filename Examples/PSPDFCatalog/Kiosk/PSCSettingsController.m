@@ -256,7 +256,13 @@ static CGFloat pscSettingsLastYOffset = 0;
 }
 
 - (void)switchChanged:(UISwitch *)cellSwitch {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)cellSwitch.superview];
+    // iOS 7 changed the view hierarchy here.
+    UITableViewCell *cell = (UITableViewCell *)cellSwitch.superview;
+    while (![cell isKindOfClass:UITableViewCell.class]) {
+        cell = (UITableViewCell *)cell.superview;
+    }
+
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     NSValue *value = @(cellSwitch.on);
     switch (indexPath.section) {
         case PSPDFGeneralSettings:
