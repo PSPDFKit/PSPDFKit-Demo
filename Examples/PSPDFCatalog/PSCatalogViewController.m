@@ -2906,9 +2906,17 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }
 }
 
+#define PSCResetKey @"psc_reset"
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
+
+    // Support reset from settings.
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PSCResetKey]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCResetKey];
+        _firstShown = YES;
+    }
 
     // Load last state
     if (!_firstShown) {
