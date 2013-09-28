@@ -169,6 +169,7 @@
 		78E543FF164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E543FE164AC7F100A28AF7 /* PSCCustomBookmarkBarButtonItem.m */; };
 		78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */; };
 		78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */; };
+		78F0ADE817F790D600F5C499 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0ADE717F790D600F5C499 /* Settings.bundle */; };
 		78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
@@ -438,6 +439,7 @@
 		78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PSPDFCatalog.m"; sourceTree = "<group>"; };
 		78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCShowHighlightNotesPDFController.m; sourceTree = "<group>"; };
 		78E76577176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCShowHighlightNotesPDFController.h; sourceTree = "<group>"; };
+		78F0ADE717F790D600F5C499 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportPDFPagesViewController.m; sourceTree = "<group>"; };
 		78FB05E317737F670006CE08 /* PSCExportPDFPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExportPDFPagesViewController.h; sourceTree = "<group>"; };
 		78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCatalogViewController.h; sourceTree = "<group>"; };
@@ -644,6 +646,7 @@
 		78A24A6615CFDAD000328F4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78F0ADE717F790D600F5C499 /* Settings.bundle */,
 				78604CAD16C51114003CB721 /* RotationLocked.png */,
 				78604CAE16C51114003CB721 /* RotationLocked@2x.png */,
 				78604CAF16C51114003CB721 /* RotationUnlocked.png */,
@@ -1087,6 +1090,7 @@
 				78A24AA015CFDAD000328F4F /* Localizable.strings in Resources */,
 				78A24AA115CFDAD000328F4F /* delete.png in Resources */,
 				78A24AA215CFDAD000328F4F /* delete@2x.png in Resources */,
+				78F0ADE817F790D600F5C499 /* Settings.bundle in Resources */,
 				78A24AA515CFDAD000328F4F /* linen_texture_dark.png in Resources */,
 				78A24AA615CFDAD000328F4F /* linen_texture_dark@2x.png in Resources */,
 				78AE9C67177AFB12000E308D /* settings-legacy.png in Resources */,
