@@ -170,6 +170,8 @@
 		78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */; };
 		78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */; };
 		78F0ADE817F790D600F5C499 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0ADE717F790D600F5C499 /* Settings.bundle */; };
+		78F2BAEC17F8E04300BBC1A3 /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2BAE917F8E04300BBC1A3 /* PSCMergeDocumentsExample.m */; };
+		78F2BAED17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78F2BAEB17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.m */; };
 		78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
@@ -440,6 +442,10 @@
 		78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCShowHighlightNotesPDFController.m; sourceTree = "<group>"; };
 		78E76577176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCShowHighlightNotesPDFController.h; sourceTree = "<group>"; };
 		78F0ADE717F790D600F5C499 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		78F2BAE817F8E04300BBC1A3 /* PSCMergeDocumentsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsExample.h; sourceTree = "<group>"; };
+		78F2BAE917F8E04300BBC1A3 /* PSCMergeDocumentsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsExample.m; sourceTree = "<group>"; };
+		78F2BAEA17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsViewController.h; sourceTree = "<group>"; };
+		78F2BAEB17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsViewController.m; sourceTree = "<group>"; };
 		78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportPDFPagesViewController.m; sourceTree = "<group>"; };
 		78FB05E317737F670006CE08 /* PSCExportPDFPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExportPDFPagesViewController.h; sourceTree = "<group>"; };
 		78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCatalogViewController.h; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 				78FFE52F1781874E00FBA7DF /* Helper */,
 				78C6842016F7E5330080427B /* Interfaces */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
+				78F2BAE717F8E04300BBC1A3 /* Merging */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
 				78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */,
@@ -977,6 +984,17 @@
 			path = ExampleBuilder;
 			sourceTree = "<group>";
 		};
+		78F2BAE717F8E04300BBC1A3 /* Merging */ = {
+			isa = PBXGroup;
+			children = (
+				78F2BAE817F8E04300BBC1A3 /* PSCMergeDocumentsExample.h */,
+				78F2BAE917F8E04300BBC1A3 /* PSCMergeDocumentsExample.m */,
+				78F2BAEA17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.h */,
+				78F2BAEB17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.m */,
+			);
+			path = Merging;
+			sourceTree = "<group>";
+		};
 		78FFE52F1781874E00FBA7DF /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -1228,6 +1246,8 @@
 				78C6843C16F8C3EF0080427B /* PSCAnnotationTrailerCaptureDocument.m in Sources */,
 				78B29DC9170B150600806DE0 /* PSCImageOverlayPDFViewController.m in Sources */,
 				783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */,
+				78F2BAED17F8E04300BBC1A3 /* PSCMergeDocumentsViewController.m in Sources */,
+				78F2BAEC17F8E04300BBC1A3 /* PSCMergeDocumentsExample.m in Sources */,
 				7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */,
 				7876ED9617246BC9002422BE /* PSCTopScrobbleBar.m in Sources */,
 				78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */,
