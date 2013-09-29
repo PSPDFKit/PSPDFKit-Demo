@@ -32,7 +32,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%lu URL:%@ basePath:%@, files:%@>", self.class, self, self.UID, (unsigned long)self.pageCount, self.URL, self.basePath, self.files];
+    return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%lu URL:%@ baseURL:%@, files:%@>", self.class, self, self.UID, (unsigned long)self.pageCount, self.URL, self.baseURL, self.files];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@
     UIImage *coverImage = nil;
 
     // Basic check if file is available - don't check for pageCount here, it's lazy evaluated.
-    if (self.basePath) {
+    if (self.baseURL) {
         coverImage = [PSPDFCache.sharedCache imageFromDocument:self page:0 size:size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSync];
     }
 
