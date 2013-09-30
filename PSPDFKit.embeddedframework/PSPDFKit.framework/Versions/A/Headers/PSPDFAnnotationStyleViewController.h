@@ -16,6 +16,7 @@
 #import "PSPDFFontSelectorViewController.h"
 #import "PSPDFFontStyleViewController.h"
 #import "PSPDFStaticTableViewController.h"
+#import "PSPDFStyleable.h"
 
 @class PSPDFAnnotationStyleViewController, PSPDFAnnotation;
 
@@ -41,7 +42,7 @@
 
 /// Allows to set/change the style of an annotation. The annotation "Inspector".
 /// @note: The inspector currently only supports setting *one* annotation, but since long-term we want multi-select-change, the API has already been prepared for.
-@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFLineEndSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
+@interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFLineEndSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFStyleable>
 
 /// Returns YES if we can edit this annotation.
 + (BOOL)hasPropertiesForAnnotations:(NSArray *)annotations;

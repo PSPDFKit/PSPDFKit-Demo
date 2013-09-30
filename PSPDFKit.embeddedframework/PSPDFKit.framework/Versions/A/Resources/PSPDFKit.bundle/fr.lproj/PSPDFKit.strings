@@ -105,6 +105,7 @@
 "Size" = "Taille";
 "Font" = "Typographie";
 "Fonts" = "Typographie";
+"Downloadable Fonts" = "Downloadable Fonts";
 "Choose Color" = "Choisir une couleur";
 "Rainbow" = "Arc en ciel";
 "Monochrome" = "Camaïeu";
@@ -174,6 +175,7 @@
 "Center" = "Center";
 "Right" = "Right";
 "Alignment..." = "Alignment…";
+"Alignment" = "Alignment";
 "Preview File" = "Preview File";
 "Copy" = "Copier";
 "Paste" = "Paste";

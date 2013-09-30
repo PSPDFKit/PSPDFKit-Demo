@@ -2,6 +2,24 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.5 - 30/Sept/2013__
+
+*  Font picker now is searchable and shows downloadable fonts.
+*  The eraser UI properties can now be changed via UIApperance proxies.
+*  The form text field update logic is now more clever and won't change form objects if they are only tapped.
+*  Improves styling of the mail sharing view controller on iOS 7.
+*  Improves interoperability with Objective-C++.
+*  Improves support for a white global tintColor on iOS 7. (check boxes are no longer white)
+*  Improves spacing for the half-modal annotation style inspector on iPhone/iOS 7.
+*  The annotation manager now continues to look into other providers if the previous one returns nil.
+*  Prevent a case where the HUD could be hidden while we're in the thumbnail transition.
+*  Changes 'basePath' to 'baseURL' to fix an API inconsistency in PSPDFDocument.
+*  Creating a large set of PSPDFDocument objects is now much faster (e.g. while using PSPDFDocumentPickerController)
+*  Fixes an issue that could prevent saving annotations into certain documents.
+*  Fixes an issue where rotating the signature controller would increase the line thickness.
+*  Fixes an issue that prevented committing the rename action in the PSPDFBookmarkViewController.
+*  Fixes a potential crash related to the annotation selection view.
+
 __v3.0.4 - 25/Sept/2013__
 
 *  Further tweaks and changes how tintColor is handled on iOS 7.
