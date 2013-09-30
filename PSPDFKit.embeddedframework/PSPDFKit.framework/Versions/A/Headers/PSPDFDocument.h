@@ -617,6 +617,9 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 /// If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property (nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 
+// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES.
+@property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;
+
 // The undo manager attached to the document. Set to nil to disable undo/redo management.
 // @Note Undo/Redo has a small performance impact since all annotation operations are tracked.
 @property (nonatomic, strong) PSPDFUndoController *undoController;

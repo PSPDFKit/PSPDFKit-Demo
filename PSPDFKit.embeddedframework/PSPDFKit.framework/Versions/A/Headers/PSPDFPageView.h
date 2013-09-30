@@ -36,7 +36,7 @@
 @interface PSPDFAnnotationContainerView : PSPDFHUDView @end
 
 /// Send this event to hide any selections, menus or other interactive page elements.
-extern NSString *const PSPDFHidePageHUDElements;
+extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 /// Compound view for a single PDF page. Will be re-used.
 /// You can add your own views on top of the `annotationContainerView` (e.g. custom annotations)
