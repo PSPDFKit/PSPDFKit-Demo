@@ -2,6 +2,16 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.6 - 1/Oct/2013__
+
+*  Always updates bar button items on a document change. Fixes conditions where a button could be in an disabled state if not used in the main toolbar.
+*  The status bar state captured at viewWillAppear is now only restored when the PSPDFVC is poppoed from the stack, not on every disappear.
+*  Makes it easier to disable undo/redo. (new undoEnabled property on PSPDFDocument)
+*  Improves error return code when saving annotations.
+*  Fixes an issue where unsaved annotations could be lost during an low memory event when using the tabbed view controller.
+*  Fixes a potential non-main-thread call while preparing for saving.
+*  Fixes an issue with saving certain documents.
+
 __v3.0.5 - 30/Sept/2013__
 
 *  Font picker now is searchable and shows downloadable fonts.

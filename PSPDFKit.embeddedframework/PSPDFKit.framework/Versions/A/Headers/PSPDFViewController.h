@@ -396,6 +396,7 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Defines if the HUD is transparent or not.
 /// This is set depending on the `statusBarStyle` and always enabled by default on iOS7.
 /// @warning If this is set to NO, shouldHideNavigationBarWithHUD and shouldHideStatusBarWithHUD won't work as expected.
+/// Setting this to no is not possible on iOS 7.
 @property (nonatomic, assign, getter=isTransparentHUD) BOOL transparentHUD;
 
 /// If YES, the navigation bar will be hidden when the HUD is hidden.

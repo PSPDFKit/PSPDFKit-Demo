@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeDocumentLocked = 300,
     PSPDFErrorCodeFailedToLoadAnnotations = 400,
     PSPDFErrorCodeFailedToWriteAnnotations = 410,
+    PSPDFErrorCodeCannotEmbedAnnotations = 420,
     PSPDFErrorCodeFailedToLoadBookmarks = 450,
     PSPDFErrorCodeOutlineParser = 500,
     PSPDFErrorCodeUnableToConvertToDataRepresentation = 600,
