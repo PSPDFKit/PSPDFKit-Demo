@@ -31,3 +31,6 @@ void PSCFixNavigationBarForNavigationControllerAnimated(UINavigationController *
 #pragma mark - Geometry
 
 CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize);
+
+// Detect modern UIKit
+BOOL PSCIsUIKitFlatMode(void);

@@ -63,6 +63,7 @@
 #import "NSObject+PSCDeallocationBlock.h"
 #import "PSCAssetLoader.h"
 #import "PSCExampleManager.h"
+#import "PSCViewHelper.h"
 #import <objc/runtime.h>
 
 // Crypto support
@@ -130,7 +131,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-        if (PSPDFIsUIKitFlatMode()) {
+        if (PSCIsUIKitFlatMode()) {
             controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlack;
             controller.tintColor = UIColor.pspdfColor;      // navBarTintColor
         }
@@ -2889,7 +2890,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
-    if (PSPDFIsUIKitFlatMode()) {
+    if (PSCIsUIKitFlatMode()) {
         PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
         PSC_IF_IOS7_OR_GREATER(self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;)
         PSC_IF_IOS7_OR_GREATER(self.navigationController.view.tintColor = UIColor.whiteColor;)
