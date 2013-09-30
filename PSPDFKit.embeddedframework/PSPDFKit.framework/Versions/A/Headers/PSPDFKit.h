@@ -55,6 +55,7 @@ extern "C" {
 #import "PSPDFLicenseManager.h"
 #import "PSPDFRenderQueue.h"
 #import "PSPDFStyleManager.h"
+#import "PSPDFUndoController.h"
 
 // actions
 #import "PSPDFAction.h"

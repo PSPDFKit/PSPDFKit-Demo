@@ -15,7 +15,7 @@
 
 typedef NS_ENUM(NSUInteger, PSPDFViewModeBarButtonStyle) {
     PSPDFViewModeBarButtonStyleToggle, // Show single button that transforms from page to thumbnail. PSPDFKit 3.x. Better fits with iOS7.
-    PSPDFViewModeBarButtonStyleSwitch  // Show switch-like control where grid/page is both visible.  PSPDFKit 2.x default
+    PSPDFViewModeBarButtonStyleSwitch  // Show switch-like control where grid/page is both visible.  PSPDFKit 2.x default.
 };
 
 /// Offers a way to switch between thumbnail and page mode.
