@@ -33,20 +33,8 @@
     if (self = [super init]) {
         _leftDocument = leftDocument;
         _rightDocument = rightDocument;
-
         PSC_IF_IOS7_OR_GREATER(self.edgesForExtendedLayout = UIRectEdgeAll & ~UIRectEdgeTop;)
-
-        self.title = @"Merge Documents";
-
-        UIBarButtonItem *addPage = [[UIBarButtonItem alloc] initWithTitle:@"Add Page" style:UIBarButtonItemStyleBordered target:self action:@selector(addPage)];
-        UIBarButtonItem *replacePage = [[UIBarButtonItem alloc] initWithTitle:@"Replace Page" style:UIBarButtonItemStyleBordered target:self action:@selector(replacePage)];
-        UIBarButtonItem *removePage = [[UIBarButtonItem alloc] initWithTitle:@"Remove Page" style:UIBarButtonItemStyleBordered target:self action:@selector(removePage)];
-
-
-        UIBarButtonItem *saveDocument = [[UIBarButtonItem alloc] initWithTitle:@"Save Document" style:UIBarButtonItemStyleBordered target:self action:@selector(saveDocument)];
-
-        self.navigationItem.rightBarButtonItems = @[addPage, replacePage, removePage];
-        self.navigationItem.leftBarButtonItems = @[saveDocument];
+        //self.title = @"Merge Documents";
     }
     return self;
 }
@@ -78,6 +66,22 @@
     // Allow to change source document.
     UIBarButtonItem *loadDocumentButton = [[UIBarButtonItem alloc] initWithTitle:@"Source" style:UIBarButtonItemStyleBordered target:self action:@selector(selectLeftSource:)];
     self.leftController.leftBarButtonItems = @[loadDocumentButton];
+
+    // Allow to save document
+    UIBarButtonItem *saveDocument = [[UIBarButtonItem alloc] initWithTitle:@"Save Document" style:UIBarButtonItemStyleBordered target:self action:@selector(saveDocument)];
+    self.rightController.leftBarButtonItems = @[saveDocument];
+
+    // Page modification bar
+    UIBarButtonItem *addPage = [[UIBarButtonItem alloc] initWithTitle:@"Add Page" style:UIBarButtonItemStyleBordered target:self action:@selector(addPage)];
+    UIBarButtonItem *replacePage = [[UIBarButtonItem alloc] initWithTitle:@"Replace Page" style:UIBarButtonItemStyleBordered target:self action:@selector(replacePage)];
+    UIBarButtonItem *removePage = [[UIBarButtonItem alloc] initWithTitle:@"Remove Page" style:UIBarButtonItemStyleBordered target:self action:@selector(removePage)];
+
+    UIBarButtonItem *mergeAnnotations = [[UIBarButtonItem alloc] initWithTitle:@"Merge Annotations" style:UIBarButtonItemStyleBordered target:self action:@selector(mergeAnnotations)];
+    UIBarButtonItem *replaceAnnotations = [[UIBarButtonItem alloc] initWithTitle:@"Replace Annotations" style:UIBarButtonItemStyleBordered target:self action:@selector(replaceAnnotations)];
+
+    UIBarButtonItem *spacing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL];
+    spacing.width = 30.f;
+    self.navigationItem.rightBarButtonItems = @[removePage, replacePage, addPage, spacing, replaceAnnotations, mergeAnnotations];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -155,9 +159,53 @@
     }];
 }
 
+- (void)mergeAnnotations {
+    NSUInteger page = self.rightController.page;
+
+    // Build set of current annotation names.
+    NSArray *currentAnnotations = [self.rightDocument annotationsForPage:page type:PSPDFAnnotationTypeAll & ~PSPDFAnnotationTypeLink];
+    NSMutableSet *currentNames = [NSMutableSet set];
+    for (PSPDFAnnotation *currentAnnotation in currentAnnotations) {
+        if (currentAnnotation.name.length > 0) [currentNames addObject:currentAnnotation.name];
+    }
+
+    // Extract annotations from left document.
+    NSArray *newAnnotations = [self.leftDocument annotationsForPage:self.leftController.page type:PSPDFAnnotationTypeAll & ~PSPDFAnnotationTypeLink];
+    for (PSPDFAnnotation *annotation in newAnnotations) {
+        // Check if we already have an annotation with the same name in the document, and delete if so.
+        if ([currentNames containsObject:annotation.name]) {
+            for (PSPDFAnnotation *currentAnnotation in currentAnnotations) {
+                if ([currentAnnotation.name isEqualToString:annotation.name]) {
+                    [self.rightDocument removeAnnotations:@[currentAnnotation]];
+                    break;
+                }
+            }
+        }
+
+        // Copy annotation object - else we would remove them from the current document.
+        PSPDFAnnotation *copiedAnnotation = [annotation copy];
+        copiedAnnotation.documentProvider = nil; // separate from old document.
+        copiedAnnotation.absolutePage = page;
+        [self.rightDocument addAnnotations:@[copiedAnnotation]];
+    }
+}
+
+- (void)clearAnnotations {
+    // Clear all current annotations (except links)
+    NSArray *currentAnnotations = [self.rightDocument annotationsForPage:self.rightController.page type:PSPDFAnnotationTypeAll & ~PSPDFAnnotationTypeLink];
+    [self.rightDocument removeAnnotations:currentAnnotations];
+}
+
+- (void)replaceAnnotations {
+    [self clearAnnotations];
+    [self mergeAnnotations];
+}
+
 - (void)saveDocument {
     // Save current and create the new document.
     [self.rightDocument saveAnnotationsWithError:NULL];
+    [self.rightController reloadData];
+
     NSURL *savedDocumentURL = PSCTempFileURLWithPathExtension(@"final", @"pdf");
     [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:self.rightDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.rightDocument.pageCount)] outputFileURL:savedDocumentURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
@@ -188,12 +236,15 @@
 
 - (void)splitAllDocumentsIfRequired {
     [self performWithPreservingPages:^{
+        // Splitting up the left document is wasteful - we could extract the file on-the-fly,
+        // but for the sake of this simple example we just split the whole document.
         self.leftDocument  = [self splitDocumentIfRequired:self.leftDocument];
         self.rightDocument = [self splitDocumentIfRequired:self.rightDocument];
     }];
 }
 
 // To make the right document customizable, we need to split it up into single pages.
+// TODO: Misses progress display and error handling.
 - (PSPDFDocument *)splitDocumentIfRequired:(PSPDFDocument *)document {
     if (document.isValid && document.files.count != document.pageCount) {
         NSURL *baseURL = nil;
@@ -235,14 +286,31 @@
     self.allowToolbarTitleChange = NO;
 
     self.leftBarButtonItems = nil; // hide close button
-    self.rightBarButtonItems = @[self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+    self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
+
+    // If the annotation toolbar is invoked, there's not enough space for the default configuration.
+    self.annotationButtonItem.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
+
+    // Disable the long press menu.
+    self.createAnnotationMenuEnabled = NO;
 
     // fit 3 thumbs nicely next to each other on iPad/landscape.
     self.thumbnailSize = CGSizeMake(150, 200);
 
+    // Hide bookmark filter
+    self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];
+    [self updateDocumentSettings:document];
+}
+
+- (void)setDocument:(PSPDFDocument *)document {
+    [self updateDocumentSettings:document];
+    [super setDocument:document];
+}
+
+- (void)updateDocumentSettings:(PSPDFDocument *)document {
     // We don't care about bookmarks.
     document.bookmarksEnabled = NO;
-    self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded; // only allow saving into the PDF.
 }
 
 @end
