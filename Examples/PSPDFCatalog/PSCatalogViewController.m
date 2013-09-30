@@ -1473,7 +1473,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Create document.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
         // The Core Data Annotation Provider doesn't support undo/redo.
-        document.undoController.undoEnabled = NO;
+        document.undoEnabled = NO;
         // Set annotation provider block.
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
             PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider];
