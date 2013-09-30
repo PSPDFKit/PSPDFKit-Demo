@@ -260,7 +260,7 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Date where the annotation was last modified.
 /// Saved into the PDF as the "M" property (Optional, since PDF 1.1)
 /// Will be updated by PSPDFKit as soon as a property is changed.
-@property (nonatomic, strong) NSDate *lastModified;
+@property (atomic, strong) NSDate *lastModified;
 
 /// Date when the annotation was created. Might be nil.
 /// PSPDFKit will set this for newly created annotations.

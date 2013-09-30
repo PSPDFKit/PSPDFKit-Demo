@@ -106,6 +106,7 @@
 "Size" = "Size";
 "Font" = "Font";
 "Fonts" = "Fonts";
+"Downloadable Fonts" = "Downloadable Fonts";
 "Choose Color" = "Choose Color";
 "Rainbow" = "Rainbow";
 "Monochrome" = "Monochrome";
@@ -175,6 +176,7 @@
 "Center" = "Center";
 "Right" = "Right";
 "Alignment..." = "Alignment…";
+"Alignment" = "Alignment";
 "Preview File" = "Preview File";
 "Copy" = "Copy";
 "Paste" = "Paste";
