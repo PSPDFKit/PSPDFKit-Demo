@@ -90,8 +90,13 @@
             for (PSPDFAnnotation *annotation in annotations) {
                 [self convertAnnotationToCoreData:annotation initialInsert:YES];
 
-                // Clear cache
-                [self.annotationCache removeObjectForKey:@(annotation.page)];
+                // Update cache, add annotation
+                NSArray *cachedAnnotations = self.annotationCache[@(annotation.page)];
+                if ([cachedAnnotations indexOfObjectIdenticalTo:annotation] == NSNotFound) {
+                    NSMutableArray *newCachedAnnotations = [NSMutableArray arrayWithArray:cachedAnnotations];
+                    [newCachedAnnotations addObject:annotation];
+                    self.annotationCache[@(annotation.page)] = newCachedAnnotations;
+                }
             }
         }];
     });
