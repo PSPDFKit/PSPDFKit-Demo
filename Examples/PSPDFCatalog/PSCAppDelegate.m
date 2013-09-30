@@ -22,7 +22,6 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
     // Example how to localize strings in PSPDFKit.
     // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
     PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
