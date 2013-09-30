@@ -76,8 +76,8 @@
 - (id)initWithDataArray:(NSArray *)data;
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider;
 - (id)initWithDataProviderArray:(NSArray *)dataProviders;
-- (id)initWithBaseURL:(NSURL *)basePath files:(NSArray *)files;
-- (id)initWithBaseURL:(NSURL *)basePath fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
+- (id)initWithBaseURL:(NSURL *)baseURL files:(NSArray *)files;
+- (id)initWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 /// Compare two documents.
 - (BOOL)isEqualToDocument:(PSPDFDocument *)otherDocument;
@@ -115,8 +115,8 @@
 - (NSString *)fileNameForPage:(NSUInteger)pageIndex;
 - (NSString *)fileName; // Page 0
 
-/// Common base path for pdf files. Set to nil to use absolute paths for files.
-@property (nonatomic, strong) NSURL *basePath;
+/// Common base URL for PDF files. Set to nil to use absolute paths for files.
+@property (nonatomic, strong) NSURL *baseURL;
 
 /// Array of NSString pdf files. If basePath is set, this will be combined with the file name.
 /// If basePath is not set, add the full path (as NSString) to the files.

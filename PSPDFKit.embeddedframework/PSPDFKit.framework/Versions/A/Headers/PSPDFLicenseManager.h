@@ -22,6 +22,15 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
     PSPDFFeatureMaskAll               = UINT_MAX,
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Needs to be set in your App Delegate to enable PSPDFKit.
+/// @note Should be called from the main thread.
 /// @return the features available for the give license key.
 extern PSPDFFeatureMask PSPDFSetLicenseKey(const char *licenseKey);
+
+#ifdef __cplusplus
+}
+#endif

@@ -11,7 +11,7 @@
 //
 
 #if !defined(__clang__) || __clang_major__ < 4
-#error This project must be compiled with ARC (Xcode 4.6.3+ with LLVM 4+)
+#error PSPDFKit must be compiled with ARC (Xcode 4.6.3+ with LLVM 4+)
 #endif
 
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
@@ -20,6 +20,11 @@
 
 // common
 #import <UIKit/UIKit.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"
@@ -204,3 +209,7 @@
 #import "PSPDFChoiceFormElement.h"
 #import "PSPDFSignatureFormElement.h"
 #import "PSPDFTextFieldFormElement.h"
+
+#ifdef __cplusplus
+}
+#endif

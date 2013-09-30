@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
 /// PSPDFLibrary implements a sqlite-based full-text-search engine.
 /// You can register documents to be indexed in the background and then search for keywords within that collection.
 /// There can be multiple libraries, although usually one is enough for the common use case.
-/// @note PSPDFLibrary is not available in PSPDFKit Viewer.
+/// @note PSPDFLibrary is only available in some license packages.
 /// @warning Processing PDFs takes quite some memory. We advise against running this in the background on an iPad 1, due to its hard memory limitations.
 @interface PSPDFLibrary : NSObject
 
