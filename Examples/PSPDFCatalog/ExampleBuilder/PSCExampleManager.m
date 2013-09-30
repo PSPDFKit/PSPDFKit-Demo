@@ -44,8 +44,12 @@
     // Get all subclasses and instantiate them.
     NSArray *exampleSubclasses = PSCGetAllExampleSubclasses();
     NSMutableArray *examples = [NSMutableArray array];
+    PSCExampleTargetDeviceMask currentDevice = PSIsIpad() ? PSCExampleTargetDeviceMaskPad : PSCExampleTargetDeviceMaskPhone;
     for (Class exampleObj in exampleSubclasses) {
-        [examples addObject:[exampleObj new]];
+        PSCExample *example = [exampleObj new];
+        if ((example.targetDevice & currentDevice) > 0) {
+            [examples addObject:example];
+        }
     }
 
     // Sort all examples depending on category.
