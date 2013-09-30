@@ -31,6 +31,3 @@
 #endif
 
 #endif
-
-// Helper to detect if we run in legacy or flat mode.
-extern BOOL PSPDFIsUIKitFlatMode(void);
