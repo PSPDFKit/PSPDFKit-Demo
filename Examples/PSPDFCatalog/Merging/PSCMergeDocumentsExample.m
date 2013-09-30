@@ -22,6 +22,7 @@
     if (self = [super init]) {
         self.title = @"Build a merge view to consolidate different document versions";
         self.category = PSCExampleCategoryAnnotations;
+        self.targetDevice = PSCExampleTargetDeviceMaskPad;
     }
     return self;
 }
