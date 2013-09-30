@@ -12,6 +12,16 @@
 
 @implementation PSCExample
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - NSObject
+
+- (id)init {
+    if (self = [super init]) {
+        _targetDevice = PSCExampleTargetDeviceMaskPhone|PSCExampleTargetDeviceMaskPad;
+    }
+    return self;
+}
+
 - (UIViewController *)invoke {
     return nil;
 }

@@ -16,6 +16,11 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryViewCustomization
 };
 
+typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {
+    PSCExampleTargetDeviceMaskPhone = 1 << 0,
+    PSCExampleTargetDeviceMaskPad   = 1 << 1
+};
+
 extern NSString *PSPDFStringFromExampleCategory(PSCExampleCategory category);
 
 // Base class for examples.
@@ -29,6 +34,9 @@ extern NSString *PSPDFStringFromExampleCategory(PSCExampleCategory category);
 
 // The category for this example.
 @property (nonatomic, assign) PSCExampleCategory category;
+
+// Target device. Defaults to PSCExampleTargetDeviceMaskPhone|PSCExampleTargetDeviceMaskPad.
+@property (nonatomic, assign) PSCExampleTargetDeviceMask targetDevice;
 
 // Builds the sample and returns a new view controller that will then be pushed.
 - (UIViewController *)invoke;
