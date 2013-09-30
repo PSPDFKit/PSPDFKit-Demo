@@ -149,14 +149,6 @@
         PSCCoreDataAnnotation *coreDataAnnotation = nil;
         if (!initialInsert) {
             coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
-        }else {
-            // Use 'name' to create a UUID for every annotation so we can uniquify them.
-            // PSPDFKit v3 already sets a UUID in name, but we need to manually add this in v2.
-            if (!annotation.name) {
-                CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-                annotation.name = CFBridgingRelease(CFUUIDCreateString(NULL, uuidRef));
-                CFRelease(uuidRef);
-            }
         }
 
         // If we can't find the annotation in the database, insert a new one.
