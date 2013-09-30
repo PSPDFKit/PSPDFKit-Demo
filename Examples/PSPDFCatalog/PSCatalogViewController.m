@@ -502,12 +502,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
         NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WNTestBook.pdf"];
         //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Forms_V-Kg1-Antrag.pdf"];
 
         // Copy file from the bundle to a location where we can write on it.
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
+        document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
 
         // Allows to configure each annotation type.
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
