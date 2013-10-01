@@ -2,6 +2,13 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.7 - 1/Oct/2013__
+
+*  Improves compatibility with resolving named actions.
+*  Ensures that the PDF outline is hidden if no page action targets could be resolved.
+*  Reenable undo/redo by default.
+*  Fixes a tiny memory leak.
+
 __v3.0.6 - 1/Oct/2013__
 
 *  Always updates bar button items on a document change. Fixes conditions where a button could be in an disabled state if not used in the main toolbar.
