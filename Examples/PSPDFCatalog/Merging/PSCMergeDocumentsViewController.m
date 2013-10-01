@@ -93,6 +93,11 @@
     self.rightNavigator.view.frame = CGRectMake(bounds.size.width/2, 0, bounds.size.width/2, bounds.size.height);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    PSC_IF_IOS7_OR_GREATER([[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
+}
+
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
     return UIInterfaceOrientationLandscapeLeft;
 }
@@ -278,7 +283,9 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
 
-    self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+    // Match styling. Set statusbar to inherit, and bars to light color.
+    self.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
+    self.navigationBarStyle = UIBarStyleDefault;
     self.HUDViewMode = PSPDFHUDViewModeAlways;
     self.pageMode = PSPDFPageModeSingle; // prevent two-page mode.
 
