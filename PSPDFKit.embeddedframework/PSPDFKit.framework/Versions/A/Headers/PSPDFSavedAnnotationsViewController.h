@@ -16,11 +16,12 @@
 /// Protocol for the annotation store implementation.
 @protocol PSPDFAnnotationSetStore <NSObject>
 
+/// The annotation set to read/write.
 @property (nonatomic, copy) NSArray *annotationSets;
 
 @end
 
-/// A default store that saves annotations into the keychain.
+// A default store that saves annotations into the keychain.
 @interface PSPDFKeychainAnnotationSetsStore : NSObject <PSPDFAnnotationSetStore> @end
 
 
