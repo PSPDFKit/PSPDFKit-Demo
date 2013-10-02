@@ -1569,20 +1569,22 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
         pdfController1.viewMode = pdfController2.viewMode = pdfController3.viewMode = pdfController4.viewMode = PSPDFViewModeThumbnails;
 
-        pdfController1.leftBarButtonItems  = @[pdfController1.annotationButtonItem];
-        pdfController1.rightBarButtonItems = @[pdfController1.viewModeButtonItem];
+        void (^configureVC)(PSPDFViewController *pdfController) = ^void(PSPDFViewController *pdfController) {
+            pdfController1.leftBarButtonItems  = @[pdfController1.annotationButtonItem];
+            pdfController1.rightBarButtonItems = @[pdfController1.viewModeButtonItem];
+            pdfController1.shouldHideStatusBarWithHUD = NO;
+        };
+
+        configureVC(pdfController1);
         pdfController1.useParentNavigationBar = YES;
         pdfController1.useBorderedToolbarStyle = YES;
-        pdfController2.leftBarButtonItems  = @[pdfController2.annotationButtonItem];
-        pdfController2.rightBarButtonItems = @[pdfController2.viewModeButtonItem];
+        configureVC(pdfController2);
         pdfController2.useParentNavigationBar = YES;
         pdfController2.useBorderedToolbarStyle = NO;
-        pdfController3.leftBarButtonItems  = @[pdfController3.annotationButtonItem];
-        pdfController3.rightBarButtonItems = @[pdfController3.viewModeButtonItem];
+        configureVC(pdfController3);
         pdfController3.useParentNavigationBar = NO;
         pdfController3.useBorderedToolbarStyle = YES;
-        pdfController4.leftBarButtonItems  = @[pdfController4.annotationButtonItem];
-        pdfController4.rightBarButtonItems = @[pdfController4.viewModeButtonItem];
+        configureVC(pdfController4);
         pdfController4.useParentNavigationBar = NO;
         pdfController4.useBorderedToolbarStyle = NO;
 
@@ -1592,6 +1594,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:pdfController4];
         UITabBarController *tabBarController = [[UITabBarController alloc] init];
         tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
+        PSC_IF_IOS7_OR_GREATER(tabBarController.tabBar.translucent = NO;)
         return tabBarController;
     }]];
 
