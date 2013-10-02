@@ -2,6 +2,17 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.8 - 2/Oct/2013__
+
+*  Use a background task to save annotations when the application enters the background to make sure it finishes before the app gets killed.
+*  Thumbnail page label is now re-enabled by default. (Control this via subclassing PSPDFThumbnailGridViewCell and setting the pageLabelEnabled property.)
+*  Ensure the status bar is visible if it was originally visible when showing the note view controller on iPhone.
+*  Improves various details for the note controller, bookmark controller, annotation controller and outline controller related to iOS 7 tinting.
+*  Fixes an issue where saved note annotations sometimes were not correctly removed from the page view until the page was changed.
+*  Fixes an issue where ink annotations could end up on the wrong page when using multiple document providers.
+*  Fixes an issue that could prevent the grouping menu from appear in the annotation toolbar.
+*  Updated some graphics in the PSPDFKit.bundle.
+
 __v3.0.7 - 1/Oct/2013__
 
 *  Improves compatibility with resolving named actions.
