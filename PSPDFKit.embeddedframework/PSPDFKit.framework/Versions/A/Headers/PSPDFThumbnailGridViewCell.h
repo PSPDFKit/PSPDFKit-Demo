@@ -14,7 +14,7 @@
 #import "PSPDFRoundedLabel.h"
 #import "PSTCollectionViewCell.h"
 
-/// Simple thumbnail cell.
+/// The thumbnail cell classed used for the thumbnail grid and thumbnail scroll bar.
 @interface PSPDFThumbnailGridViewCell : PSUICollectionViewCell <PSPDFCacheDelegate>
 
 /// Referenced document.
@@ -36,7 +36,7 @@
 /// Modify this to change the look of the selection/highlight state.
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 
-/// Call before re-showing (will update bookmark status)
+/// Call before re-showing the cell. (will update bookmark status)
 - (void)updateCell;
 
 @end
@@ -47,7 +47,7 @@
 /// Internal image view.
 @property (nonatomic, strong) UIImageView *imageView;
 
-/// Page label. (By default a PSPDFRoundedLabel, but can be set to any UILabel subclass, simply do a cast)
+/// Page label. (By default a PSPDFRoundedLabel, but can be set to any UILabel subclass, simply do a cast.)
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
 
 /// Allows to update the bookmark image.
