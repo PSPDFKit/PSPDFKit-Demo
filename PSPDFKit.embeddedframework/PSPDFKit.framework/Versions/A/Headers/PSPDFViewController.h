@@ -424,29 +424,6 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// The navigationBar is animated. Check this to get the proper value, even if navigationBar.navigationBarHidden is not yet set (but will be in the animation block)
 @property (nonatomic, assign, getter=isNavigationBarHidden, readonly) BOOL navigationBarHidden;
 
-/// Overlay annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
-@property (nonatomic, assign) CGFloat annotationAnimationDuration;
-
-/// If set to YES, you can group/ungroup annotations with the multi-select tool.
-/// Defaults to YES.
-@property (nonatomic, assign) BOOL annotationGroupingEnabled;
-
-/// If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
-/// If set to NO, there's no menu displayed and the loupe is simply hidden. Only available in PSPDFKit Annotate.
-/// Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: delegate. (when annotation is nil)
-@property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
-
-/// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
-@property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
-
-/// Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
-/// (The most probable candidate for this is PSPDFFreeTextAnnotation)
-@property (nonatomic, assign) BOOL annotationEntersEditModeAfterSecondTapEnabled;
-
-/// The save method will be invoked when the view controller is dismissed. For compatibility reasons, the default value for this method is NO. Make sure that you don't re-create the PSPDFDocument object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
-/// Enabling this will speed up controller dismissal.
-@property (nonatomic, assign) BOOL allowBackgroundSaving;
-
 /// @name Class Accessors
 
 /// Return the pageView for a given page. Returns nil if page is not Initialized (e.g. page is not visible.)
@@ -523,6 +500,37 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// Show a modal view controller or a popover with automatically added close button on the left side.
 /// Use sender (UIBarButtonItem or UIView) OR rect in options (both only needed for the popover)
 - (id)presentModalOrInPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
+
+@end
+
+@interface PSPDFViewController (Annotations)
+
+/// Overlay annotations are faded in. Set global duration for this fade here. Defaults to 0.25f.
+@property (nonatomic, assign) CGFloat annotationAnimationDuration;
+
+/// If set to YES, you can group/ungroup annotations with the multi-select tool.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL annotationGroupingEnabled;
+
+/// If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
+/// If set to NO, there's no menu displayed and the loupe is simply hidden. Only available in PSPDFKit Annotate.
+/// Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: delegate. (when annotation is nil)
+@property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
+
+/// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
+@property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
+
+/// Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
+/// (The most probable candidate for this is PSPDFFreeTextAnnotation)
+@property (nonatomic, assign) BOOL annotationEntersEditModeAfterSecondTapEnabled;
+
+/// Controls if PSPDFKit should save at specific points, like when the app enters background.
+/// Defaults to YES. Implement PSPDFDocumentDelegate to be notified of those saving actions.
+@property (nonatomic, assign, getter=isAutosaveEnabled) BOOL autosaveEnabled;
+
+/// The save method will be invoked when the view controller is dismissed. For compatibility reasons, the default value for this method is NO. Make sure that you don't re-create the PSPDFDocument object if you enable background saving, else you might run into race conditions where the old object is still saving and the new one might load outdated/corrupted data.
+/// Enabling this will speed up controller dismissal.
+@property (nonatomic, assign) BOOL allowBackgroundSaving;
 
 @end
 
