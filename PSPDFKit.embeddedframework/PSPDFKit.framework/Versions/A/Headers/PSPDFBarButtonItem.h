@@ -35,6 +35,7 @@
 + (BOOL)isPopoverVisible;
 
 /// Init with pdfController reference (later calls presentModalViewController:embeddedInNavigationController:withCloseButton:animated:)
+/// @note This is the only allowed contructor for PSPDFBarButtonItem.
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
 /// Attached PDF controller. (weak, do not use KVO on it!)

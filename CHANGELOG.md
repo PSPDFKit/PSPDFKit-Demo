@@ -2,6 +2,18 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.9 - 4/Oct/2013__
+
+*  Greatly improves compatibility with text extraction/search, especially for Chinese/Japanese/Korean fonts.
+*  The autosave feature of the PSPDFViewController can now be controller via the 'autosaveEnabled' property. Defaults to YES.
+*  Improves the transition between stamps and saved annotations for iOS 7 legacy mode.
+*  Hide the downloadable fonts section if there are no fonts to download.
+*  Disables an unwanted implicit animation in the annotation style inspector for iOS 7 legacy mode.
+*  The "Paste" menu is now more clever and will check if creating the new annotations is allowed before it's displayed instead of failing silently.
+*  Re-enables search for the outline controller on iOS 7.
+*  Fixes an issue in the PSPDFMultiDocumentViewController when the array of documents was set to nil.
+*  Fixes a potential crash when parsing invalid PDFs with AcroForm data.
+
 __v3.0.8 - 2/Oct/2013__
 
 *  Use a background task to save annotations when the application enters the background to make sure it finishes before the app gets killed.
@@ -142,6 +154,9 @@ Most customers who bought PSPDFKit after January 14th are eligible for a free up
 if your update window is still open (6 months for Binary/Viewer, 12 months for Source/Enterprise)
 Contact us with your PET* purchase number (or invoice ID) for details on your status.
 
+__v2.14.22 - 1/Oct/2013__
+
+*  Fixes a crash when parsing certain documents with invalid font references.
 
 __v2.14.21 - 12/Sept/2013__
 
