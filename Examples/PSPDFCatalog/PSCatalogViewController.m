@@ -270,7 +270,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
         PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:files];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.printButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
         controller.additionalBarButtonItems = @[controller.openInButtonItem, controller.emailButtonItem];
         return controller;
     }]];
