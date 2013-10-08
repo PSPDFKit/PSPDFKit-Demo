@@ -804,13 +804,18 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [customizationSection addContent:[PSContent contentWithTitle:@"Use a Bottom Toolbar" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        // simple subclass that shows/hides the navigationController bottom toolbar
+        // Simple subclass that shows/hides the navigationController bottom toolbar
         PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
         pdfController.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
         UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
         pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
+        pdfController.leftBarButtonItems = nil;
+        pdfController.rightBarButtonItems = nil; // Important! BarButtonItems can only be displayed at one location.
         pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
+
+        // Since we show thetoolbar from the bottom, match the tint.
+        PSC_IF_IOS7_OR_GREATER(pdfController.annotationButtonItem.annotationToolbar.barTintColor = self.navigationController.toolbar.barTintColor;)
         return pdfController;
     }]];
 
@@ -2896,6 +2901,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     if (PSCIsUIKitFlatMode()) {
         PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
         PSC_IF_IOS7_OR_GREATER(self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;)
+        PSC_IF_IOS7_OR_GREATER(self.navigationController.toolbar.tintColor = UIColor.blackColor;)
         PSC_IF_IOS7_OR_GREATER(self.navigationController.view.tintColor = UIColor.whiteColor;)
         self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
     }else {
