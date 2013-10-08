@@ -603,11 +603,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // This example shows how you can create an XFDF provider instead of the default file-based one.
     // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
     [annotationSection addContent:[PSContent contentWithTitle:@"XFDF Annotation Provider" block:^{
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Testcase_IncomeTaxRegulations_Crash.pdf"];
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
 
         // Load from an example XFDF file.
         NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
         NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
+        NSLog(@"Using XFDF file at %@", fileXML.path);
 
         // Create an example XFDF from the current document if one doesn't already exist.
         if (![[NSFileManager defaultManager] fileExistsAtPath:fileXML.path]) {
@@ -625,6 +626,66 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             }
             [outputStream close];
         }
+
+        // Create document and set up the XFDF provider
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
+        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
+            PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
+            documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
+        }];
+
+        return [[PSPDFViewController alloc] initWithDocument:document];
+    }]];
+
+    [annotationSection addContent:[PSContent contentWithTitle:@"XFDF Writing" block:^{
+        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
+
+        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
+        NSLog(@"fileXML: %@",fileXML);
+
+        // Collect all existing annotations from the document
+        PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
+        NSMutableArray *annotations = [NSMutableArray array];
+
+
+        PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"http://pspdfkit.com"];
+        linkAnnotation.boundingBox = CGRectMake(100, 80, 200, 300);
+        linkAnnotation.page = 1;
+        [annotations addObject:linkAnnotation];
+
+        PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"];
+        aStream.boundingBox = CGRectMake(100, 100, 200, 300);
+        aStream.page = 0;
+        [annotations addObject:aStream];
+
+        //        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
+        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"];
+        anImage.boundingBox = CGRectMake(100, 100, 200, 300);
+        anImage.page = 3;
+        [annotations addObject:anImage];
+
+
+        PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"];
+        aVideo2.boundingBox = CGRectMake(100, 100, 200, 300);
+        aVideo2.page = 2;
+        [annotations addObject:aVideo2];
+
+        PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
+        anImage3.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]];
+        anImage3.boundingBox = CGRectMake(100, 100, 200, 300);
+        anImage3.page = 4;
+        [annotations addObject:anImage3];
+
+        NSLog(@"annotations: %@", annotations);
+
+        // Write the file
+        NSError *error = nil;
+        NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
+        if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders[0] error:&error]) {
+            NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
+        }
+        [outputStream close];
 
         // Create document and set up the XFDF provider
         PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
@@ -2807,7 +2868,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test PDF Forms" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
     }]];
 
