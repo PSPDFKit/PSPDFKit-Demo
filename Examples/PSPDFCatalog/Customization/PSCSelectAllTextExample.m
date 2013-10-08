@@ -46,6 +46,7 @@
         selectAllMenu = [[PSPDFMenuItem alloc] initWithTitle:@"Select All" block:^{
             // We need to manually sort glyphs.
             pageView.selectionView.selectedGlyphs = [pageView.selectionView sortedGlyphs:allGlyphs];
+            [pageView showMenuIfSelectedAnimated:YES];
         } identifier:@"Select All"];
     }
     return selectAllMenu;
