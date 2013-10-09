@@ -113,9 +113,8 @@
     if (annotations.count == 0) return annotations;
 
     NSMutableArray *removedAnnotations = [NSMutableArray array];
-
     dispatch_sync(_annotationProviderQueue, ^{
-        [_managedObjectContext performBlock:^{
+        [_managedObjectContext performBlockAndWait:^{
             for (PSPDFAnnotation *annotation in annotations) {
                 // Iterate over all annotations and create objects in CoreData.
                 PSCCoreDataAnnotation *coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
