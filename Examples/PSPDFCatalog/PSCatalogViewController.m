@@ -3168,11 +3168,30 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     return YES;
 }
 
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    // HACK: You would expect this to work on iOS 7, but it doesn't actually hide the navigationbar - so we'll help out.
+    // Works fine on iPhone though. Weird bug.
+    // TODO: This breaks on rotation; but really should be something that needs to be fixed on Apple's side.
+    // UISearchDisplayController automatically restores alpha when exiting search mode.
+    if (PSIsIpad() && PSCIsUIKitFlatMode()) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.25f animations:^{
+                self.navigationController.navigationBar.alpha = 0.01f;
+            }];
+        });
+    }
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
+    // HACK: Tapping twice on the search bar on iOS 7 will make it disappear. This is a workaround for this UIKit bug.
+    [self.view addSubview:controller.searchBar];
+}
+
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
     NSMutableArray *filteredContent = [NSMutableArray array];
 
     if (searchText.length > 0) {
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"self.title CONTAINS[cd] '%@'", searchText]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self.title CONTAINS[cd] %@", searchText];
         for (PSCSectionDescriptor *section in self.content) {
             [filteredContent addObjectsFromArray:[section.contentDescriptors filteredArrayUsingPredicate:predicate]];
         }
