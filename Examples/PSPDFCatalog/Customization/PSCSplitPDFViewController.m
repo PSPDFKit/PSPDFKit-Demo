@@ -34,6 +34,13 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFViewController
+
+- (void)setLeftBarButtonItems:(NSArray *)leftBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated {
+    // NOP. We manage that part ourselves.
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex {
