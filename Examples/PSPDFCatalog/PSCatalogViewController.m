@@ -468,7 +468,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [multimediaSection addContent:[PSContent contentWithTitle:@"Multimedia PDF example" block:^{
         PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
-        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem];
+        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
     }]];
 
