@@ -21,8 +21,43 @@ extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
 // NSNotification equivalent to didShowPageView: delegate.
 extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 
+typedef struct {
+    unsigned int shouldChangeDocument:1;
+    unsigned int didChangeDocument:1;
+    unsigned int didShowPageView:1;
+    unsigned int didRenderPageView:1;
+    unsigned int didChangeViewMode:1;
+    unsigned int didTapOnPageView:1;
+    unsigned int didLongPressOnPageView:1;
+    unsigned int shouldSelectText:1;
+    unsigned int didSelectText:1;
+    unsigned int shouldShowMenuItemsForSelectedText:1;
+    unsigned int shouldShowMenuItemsForSelectedImage:1;
+    unsigned int shouldSelectAnnotations:1;
+    unsigned int didSelectAnnotations:1;
+    unsigned int shouldShowMenuItemsForAnnotation:1;
+    unsigned int didTapOnAnnotation:1;
+    unsigned int shouldDisplayAnnotation:1;
+    unsigned int shouldScrollToPage:1;
+    unsigned int annotationViewForAnnotations:1;
+    unsigned int willShowAnnotationView:1;
+    unsigned int didShowAnnotationView:1;
+    unsigned int didLoadPageView:1;
+    unsigned int willUnloadPageView:1;
+    unsigned int didBeginPageDragging:1;
+    unsigned int didEndPageDraggingWillDecelerate:1;
+    unsigned int didEndPageScrollingAnimation:1;
+    unsigned int didBeginZooming:1;
+    unsigned int didEndZoomingAtScale:1;
+    unsigned int shouldShowControllerAnimated:1;
+    unsigned int didShowControllerAnimated:1;
+    unsigned int documentForRelativePath:1;
+}PSPDFDelegateFlags;
 
 @interface PSPDFViewController (Delegates)
+
+// Performance: Don't do expensive calculation if delegates aren't called.
+@property (nonatomic, assign, readonly) PSPDFDelegateFlags delegateFlags;
 
 - (BOOL)delegateShouldChangeDocument:(PSPDFDocument *)document;
 - (void)delegateDidChangeDocument;
@@ -80,36 +115,3 @@ extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 - (void)updateDelegateFlags; // implemented in PSPDFViewController (Delegates)
 
 @end
-
-typedef struct {
-    unsigned int shouldChangeDocument:1;
-    unsigned int didChangeDocument:1;
-    unsigned int didShowPageView:1;
-    unsigned int didRenderPageView:1;
-    unsigned int didChangeViewMode:1;
-    unsigned int didTapOnPageView:1;
-    unsigned int didLongPressOnPageView:1;
-    unsigned int shouldSelectText:1;
-    unsigned int didSelectText:1;
-    unsigned int shouldShowMenuItemsForSelectedText:1;
-    unsigned int shouldShowMenuItemsForSelectedImage:1;
-    unsigned int shouldSelectAnnotations:1;
-    unsigned int didSelectAnnotations:1;
-    unsigned int shouldShowMenuItemsForAnnotation:1;
-    unsigned int didTapOnAnnotation:1;
-    unsigned int shouldDisplayAnnotation:1;
-    unsigned int shouldScrollToPage:1;
-    unsigned int annotationViewForAnnotations:1;
-    unsigned int willShowAnnotationView:1;
-    unsigned int didShowAnnotationView:1;
-    unsigned int didLoadPageView:1;
-    unsigned int willUnloadPageView:1;
-    unsigned int didBeginPageDragging:1;
-    unsigned int didEndPageDraggingWillDecelerate:1;
-    unsigned int didEndPageScrollingAnimation:1;
-    unsigned int didBeginZooming:1;
-    unsigned int didEndZoomingAtScale:1;
-    unsigned int shouldShowControllerAnimated:1;
-    unsigned int didShowControllerAnimated:1;
-    unsigned int documentForRelativePath:1;
-}PSPDFDelegateFlags;

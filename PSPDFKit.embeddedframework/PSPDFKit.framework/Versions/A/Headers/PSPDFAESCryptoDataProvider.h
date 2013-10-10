@@ -23,7 +23,7 @@ extern uint const PSPDFDefaultPBKDFNumberOfRounds;
  Ensure your passphrase/salt are also protected within the binary, or at least obfuscated.
 
  Encryption marginally slows down rendering, since everything is decrypted on the fly.
- Only available in PSPDFKit Annotate or Source.
+ Only available in PSPDFKit Basic/Complete
  */
 @interface PSPDFAESCryptoDataProvider : NSObject
 

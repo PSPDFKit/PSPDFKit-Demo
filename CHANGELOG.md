@@ -2,6 +2,31 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.10 - 10/Oct/2013__
+
+*  The search contoller header is now sticky on iPhone (especially improves display on iOS 7)
+*  Greatly improves text selection performance when a large number of glyphs is selected.
+*  Improves eraser mode - faster, and no longer changes the view port when enabling/disabling.
+*  Adds a new convenience method (sortedGlyphs:) when glyphs are manually selected in PSPDFTextSelectionView.
+*  Improve various details in the XFDF writer.
+*  Allow pspdfkit:// URLs within the PSPDFXFDFAnnotationProvider.
+*  Remove confusing search controller animation when it's first presented on iOS 7.
+*  Improves outline searching on iOS 7 / iPhone.
+*  Various other smaller tweaks related to iOS 7.
+*  Don't show the PSPDFDocumentSharingViewController if there are no options available.
+*  Ensure the annotation style picker closes when the annotation mode changes.
+*  Improves type detection when pspdfkit:// links are used within URLs that have query parameters.
+*  Adds a workaround for documents with invalid /Pages structure which previously prevented annotation saving.
+*  Add missing localizaton for "Choose Fill Color".
+*  The text selection end handle is now prioritized, makes it easier to extend selection for small text.
+*  Fixes an issue where changing the position of a note annotation could fail on the first try.
+*  Fixes an issue with calling the didCreateDocumentProviderBlock for multiple files.
+*  Fixes a 20-pixel offset in the annotation inspector on iPhone/iOS 7.
+*  Fixes updating the thumbnail button state.
+*  Fixes an issue when showing the annotation toolbar from the bottom.
+*  Fixes an issue where popovers could have a width/height of 0 when presented from a bottom toolbar on iOS 7.
+*  Fixes a crash on iOS 5 related to the font picker, rotation and early dismissal.
+
 __v3.0.9 - 4/Oct/2013__
 
 *  Greatly improves compatibility with text extraction/search, especially for Chinese/Japanese/Korean fonts.

@@ -45,3 +45,6 @@
 - (BOOL)isEqualToWord:(PSPDFWord *)otherWord;
 
 @end
+
+// Converts a bunch of glyphs to a string.
+extern NSString *PSPDFStringFromGlyphs(NSArray *glyphs);

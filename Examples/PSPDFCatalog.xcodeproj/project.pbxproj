@@ -1398,7 +1398,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
-					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";
@@ -1417,7 +1416,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../PSPDFKit.embeddedframework\"",
 					"\"$(SRCROOT)/PSPDFCatalog/Vendor/\"/**",
-					"\"$(SRCROOT)/PSPDFCatalog/Vendor/GSDropboxActivity\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFCatalog/PSPDFCatalog-Prefix.pch";

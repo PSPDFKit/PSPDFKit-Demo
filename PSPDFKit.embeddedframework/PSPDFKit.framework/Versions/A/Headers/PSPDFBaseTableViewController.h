@@ -17,10 +17,10 @@
 // Can be used to prevent stray cell animations when the popover animation shows new cells.
 extern const char PSPDFTableViewIsResizing;
 
-// Generic table view controller with popover resizing code.
+/// Generic table view controller with popover resizing code.
 @interface PSPDFBaseTableViewController : UITableViewController
 
-// Will adjust the table view for the status bar. Defaults to NO.
+/// Will adjust the table view for the status bar. Defaults to NO.
 @property (nonatomic, assign) BOOL automaticallyAdjustsTableViewInsets;
 
 /// If enabled, popover size is changed as items are expanded/collapsed.
@@ -33,12 +33,6 @@ extern const char PSPDFTableViewIsResizing;
 
 /// Save additional properties here. Will not be used by PSPDFKit.
 @property (nonatomic, copy) NSDictionary *userInfo;
-
-// Tries to force a popover size update.
-- (void)forcePopoverSize;
-
-// Will swap the background to be blurry. Available on iOS7 and later.
-- (void)setBlurryBackground;
 
 @end
 
