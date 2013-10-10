@@ -2,6 +2,10 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.0.11 - 10/Oct/2013__
+
+*  Fixes another issue related to UISearchDisplayController and iOS 6/7.
+
 __v3.0.10 - 10/Oct/2013__
 
 *  The search contoller header is now sticky on iPhone (especially improves display on iOS 7)
