@@ -2636,7 +2636,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     // Test that merging both document (first page each) correctly preserves the aspect ratio.
-    [documentTests addContent:[PSContent contentWithTitle:@"Merge landscape with portrait page" block:^{
+    [testSection addContent:[PSContent contentWithTitle:@"Merge landscape with portrait page" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[@"Testcase_consolidate_A.pdf", @"Testcase_consolidate_B.pdf"]];
         NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndex:0];
         [pageRange addIndex:5];
