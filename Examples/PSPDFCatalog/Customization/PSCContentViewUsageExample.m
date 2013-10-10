@@ -36,6 +36,8 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCCustomContentViewPDFController
 
 @implementation PSCCustomContentViewPDFController
 
