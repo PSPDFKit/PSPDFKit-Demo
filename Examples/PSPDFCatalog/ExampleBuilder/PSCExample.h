@@ -13,7 +13,8 @@
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryAnnotations,
     PSCExampleCategoryBarButtons,
-    PSCExampleCategoryViewCustomization
+    PSCExampleCategoryViewCustomization,
+    PSCExampleCategoryPageRange
 };
 
 typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {
@@ -21,7 +22,8 @@ typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {
     PSCExampleTargetDeviceMaskPad   = 1 << 1
 };
 
-extern NSString *PSPDFStringFromExampleCategory(PSCExampleCategory category);
+extern NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category);
+extern NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category);
 
 // Base class for examples.
 @interface PSCExample : NSObject
