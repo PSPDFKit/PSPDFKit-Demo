@@ -105,8 +105,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
         [self addDebugButtons];
-
-        PSC_IF_IOS7_OR_GREATER(self.edgesForExtendedLayout = UIRectEdgeNone;)
     }
     return self;
 }
@@ -2958,20 +2956,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Return YES to cause the search result table view to be reloaded.
     return YES;
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    // HACK: You would expect this to work on iOS 7, but it doesn't actually hide the navigationbar - so we'll help out.
-    // Works fine on iPhone though. Weird bug.
-    // TODO: This breaks on rotation; but really should be something that needs to be fixed on Apple's side.
-    // UISearchDisplayController automatically restores alpha when exiting search mode.
-    if (PSIsIpad() && PSCIsUIKitFlatMode()) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25f animations:^{
-                self.navigationController.navigationBar.alpha = 0.01f;
-            }];
-        });
-    }
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
