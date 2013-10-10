@@ -17,6 +17,9 @@
 
 @implementation PSCContentViewUsageExample
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCExample
+
 - (id)init {
     if (self = [super init]) {
         self.title = @"Use the 'contentView' to add always visible content.";

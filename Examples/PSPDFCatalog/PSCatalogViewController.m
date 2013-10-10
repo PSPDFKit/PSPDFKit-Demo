@@ -388,60 +388,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
     [sections addObject:documentTests];
 
-    PSCSectionDescriptor *pageRangeTests = [PSCSectionDescriptor sectionWithTitle:@"pageRange feature" footer:@"With pageRange, the pages visible can be filtered"];
-
-    [pageRangeTests addContent:[PSContent contentWithTitle:@"Limit pages to 5-10 via pageRange" block:^{
-        // cache needs to be cleared since pages will change.
-        [[PSPDFCache sharedCache] clearCache];
-        _clearCacheNeeded = YES;
-
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
-        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
-        return controller;
-    }]];
-
-    [pageRangeTests addContent:[PSContent contentWithTitle:@"Add pageRange filter for bookmarked pages" block:^{
-        // Set up document and controller
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-
-        // Create the filter barButton
-        __weak PSPDFViewController *weakController = controller;
-        __block UIBarButtonItem *filterBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered block:^(id sender) {
-
-            // Before setting anything, save.
-            [document saveAnnotationsWithError:NULL];
-
-            // Update pageRange-filter
-            BOOL isFilterSet = document.pageRange != nil;
-            filterBarButton.title = isFilterSet ? @"Filter" : @"Disable Filter";
-            NSMutableIndexSet *set = nil;
-            if (!isFilterSet) {
-                set = [NSMutableIndexSet indexSet];
-                for (PSPDFBookmark *bookmark in document.bookmarks) [set addIndex:bookmark.page];
-            }
-            document.pageRange = set;
-
-            // After setting pageRange, we need to clear the cache and reload the controller
-            [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
-            [weakController reloadData];
-
-            // (Example-Global) Cache needs to be cleared since pages will change.
-            _clearCacheNeeded = YES;
-        }];
-
-        controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];
-        controller.barButtonItemsAlwaysEnabled = @[filterBarButton];
-        controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
-        controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
-        return controller;
-    }]];
-
-    [sections addObject:pageRangeTests];
-
 
     // Get all examples
     NSArray *examples = PSCExampleManager.defaultManager.allExamples;
@@ -452,7 +398,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     for (PSCExample *example in examples) {
         if (currentCategory != example.category) {
             currentCategory = example.category;
-            currentSection = [PSCSectionDescriptor sectionWithTitle:PSPDFStringFromExampleCategory(currentCategory) footer:nil];
+            currentSection = [PSCSectionDescriptor sectionWithTitle:PSPDFHeaderFromExampleCategory(currentCategory) footer:PSPDFFooterFromExampleCategory(currentCategory)];
             [sections addObject:currentSection];
         }
 
