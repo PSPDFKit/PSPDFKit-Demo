@@ -38,6 +38,8 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
             return @"ViewCustomization";
         case PSCExampleCategoryPageRange:
             return @"PageRange";
+        case PSCExampleCategoryDocumentDataProvider:
+            return @"PSPDFDocument data providers";
         default:
             return nil;
     }
@@ -50,6 +52,8 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryAnnotations:
         case PSCExampleCategoryBarButtons:
         case PSCExampleCategoryViewCustomization:
+        case PSCExampleCategoryDocumentDataProvider:
+            return @"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one.";
         default:
             return nil;
     }
