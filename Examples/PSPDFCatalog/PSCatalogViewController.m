@@ -695,7 +695,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // Text selection feature is only available in PSPDFKit Annotate.
+    // Text selection feature is only available in PSPDFKit Complete.
     if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
         [customizationSection addContent:[PSContent contentWithTitle:@"Custom Text Selection Menu" block:^{
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
@@ -836,7 +836,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
-    /// The crypto feature is only available in PSPDFKit Annotate.
+    /// The crypto feature is only available in PSPDFKit Basic/Complete.
     if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
         [passwordSection addContent:[PSContent contentWithTitle:@"Encrypted CGDocumentProvider" block:^{
             NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
