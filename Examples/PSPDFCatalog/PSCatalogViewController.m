@@ -2741,7 +2741,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     _searchDisplayController.searchResultsDelegate = self;
 
     // Private API to improve search result style - don't ship this in App Store builds.
-    [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
+    if (!PSCIsUIKitFlatMode()) {
+        [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
