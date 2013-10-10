@@ -229,10 +229,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:appSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    // PSPDFDocument data provider test
-    PSCSectionDescriptor *documentTests = [PSCSectionDescriptor sectionWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one."];
-
-
     // Get all examples
     NSArray *examples = PSCExampleManager.defaultManager.allExamples;
 
