@@ -16,6 +16,7 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryViewCustomization,
     PSCExampleCategoryPageRange,
     PSCExampleCategoryDocumentDataProvider
+    PSCExampleCategoryMultimedia
 };
 
 typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {
