@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFStatefulTableViewController.h"
+#import "PSPDFStyleable.h"
 
 @class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement, PSPDFOutlineCell;
 
@@ -24,7 +25,7 @@
 @end
 
 /// Outline (Table of Contents) view controller.
-@interface PSPDFOutlineViewController : PSPDFStatefulTableViewController <UISearchDisplayDelegate>
+@interface PSPDFOutlineViewController : PSPDFStatefulTableViewController <UISearchDisplayDelegate, PSPDFStyleable>
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFOutlineViewControllerDelegate>)delegate;
