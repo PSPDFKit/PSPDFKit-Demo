@@ -613,9 +613,7 @@
         if (canDelete) {
             PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
             deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:^{
-                deleteBlock();
-            }];
+            [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:deleteBlock];
             [deleteAction setCancelButtonWithTitle:_(@"Cancel") block:nil];
             CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
             [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
