@@ -184,6 +184,7 @@
 		9AA5BDFF180FEB10003A3865 /* PSCPSPDFViewControllerCustomizationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BDFE180FEB10003A3865 /* PSCPSPDFViewControllerCustomizationExample.m */; };
 		9AA5BE02180FEB27003A3865 /* PSCTextExtractionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */; };
 		9AA5BE05180FEB58003A3865 /* PSCStoryboardsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */; };
+		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -478,6 +479,8 @@
 		9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTextExtractionExample.m; sourceTree = "<group>"; };
 		9AA5BE03180FEB58003A3865 /* PSCStoryboardsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardsExample.h; sourceTree = "<group>"; };
 		9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardsExample.m; sourceTree = "<group>"; };
+		8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGalleryExample.h; sourceTree = "<group>"; };
+		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +559,8 @@
 				78FFE52F1781874E00FBA7DF /* Helper */,
 				78C6842016F7E5330080427B /* Interfaces */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
+				78F2BAE717F8E04300BBC1A3 /* Merging */,
+				8CDCCD5B17F96E9000AE525F /* Multimedia */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
 				78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */,
@@ -1044,6 +1049,15 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		8CDCCD5B17F96E9000AE525F /* Multimedia */ = {
+			isa = PBXGroup;
+			children = (
+				8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */,
+				8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */,
+			);
+			path = Multimedia;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1271,6 +1285,7 @@
 				78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */,
 				6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */,
 				9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */,
+				8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */,
 				78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */,
 				78C6842A16F7E5330080427B /* PSCDropboxDocumentSelectorController.m in Sources */,
 				78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */,
