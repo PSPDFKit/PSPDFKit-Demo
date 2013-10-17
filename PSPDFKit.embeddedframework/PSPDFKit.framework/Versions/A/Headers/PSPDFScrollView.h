@@ -112,6 +112,9 @@ typedef NS_ENUM(NSInteger, PSPDFShadowStyle) {
  Next, the didTapOnPageView:atPoint: delegate is called if the touch still hasn't been processed.
 
  Lastly, if even the delegate returned NO, we look if isScrollOnTapPageEndEnabled and scroll to the next/previous page if the border is near enough; or just toggle the HUD (if that is allowed)
+ 
+ Do note that the single and double tap gestures do not have dependencies. This has been made to improve single tap performance.
+ If your app requires this, you can manually add this dependency.
  */
 - (void)singleTapped:(UITapGestureRecognizer *)recognizer;
 - (void)doubleTapped:(UITapGestureRecognizer *)recognizer;

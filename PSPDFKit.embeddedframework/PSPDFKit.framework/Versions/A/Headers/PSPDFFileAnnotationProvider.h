@@ -62,6 +62,17 @@
 /// Try to load annotations from file and set them if successful.
 - (BOOL)tryLoadAnnotationsFromFileWithError:(NSError **)error;
 
+@end
+
+@interface PSPDFFileAnnotationProvider (Advanced)
+
+/// This defaults to `PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink` by default.
+/// Change this to PSPDFAnnotationTypeAll to also allow link annotation saving.
+/// Links are not saved by default since some documents have a crazy high amount of link annotations which would make saving slow.
+/// @warning The default behavior previous to PSPDFKit 3.1 was `PSPDFAnnotationTypeAll`. Existing save files will be migrated after the first save. If you rely on custom link annotations to be saved, make sure you set this back to the old default.
+/// @warning Never exclude PSPDFAnnotationTypeWidget - Forms are specially handled.
+@property (nonatomic, assign) PSPDFAnnotationType saveableTypes;
+
 /// Path where annotations are being saved if saving to external file is enabled.
 /// Default's to self.documentProvider.document.cacheDirectory + "annotations_%d.pspdfkit" (%d = number of the documentProvider)
 /// If set to nil, will revert back to the default value.
@@ -72,27 +83,24 @@
 
 @interface PSPDFFileAnnotationProvider (SubclassingHooks)
 
-/// Parses the page annotation dictionary and returns the newly created annotations.
-/// Want to customize annotations right after parsing? This is the perfect place.
-/// Will be called from annotationsForPage:pageRef: in a thread safe manner and later cached.
+// Parses the page annotation dictionary and returns the newly created annotations.
+// Want to customize annotations right after parsing? This is the perfect place.
+// Will be called from annotationsForPage:pageRef: in a thread safe manner and later cached.
 - (NSArray *)parseAnnotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
 
-/// Saving code.
+// Saving code.
 - (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
-/// Load annotations (returning NO + eventually an error if it fails)
+// Load annotations (returning NO + eventually an error if it fails)
 - (NSDictionary *)loadAnnotationsWithError:(NSError **)error;
 
-/// Parses annotation link target. Override to support custom link protocols.
+// Parses annotation link target. Override to support custom link protocols.
 - (void)parseAnnotationLinkTarget:(PSPDFLinkAnnotation *)linkAnnotation;
 
-/// Resolves a PSPDFKit-style URL to the appropriate NSURL.
+// Resolves a PSPDFKit-style URL to the appropriate NSURL.
 + (NSURL *)resolvePath:(NSString *)path forDocument:(PSPDFDocument *)document page:(NSUInteger)page;
 
-/// Removes all annotations that are marked as deleted.
+// Removes all annotations that are marked as deleted.
 - (NSUInteger)removeDeletedAnnotations;
-
-/// Ensure document/page references are set correctly before adding annotations. Used internally.
-- (void)updateAnnotationsPageAndDocumentReference:(NSArray *)annotations page:(NSUInteger)page;
 
 @end
