@@ -276,7 +276,21 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     self.totalBytesReadPerDownload = 0;
     self.offsetContentLength = MAX(fileOffset, 0);
     self.totalContentLength = totalContentLength;
-    [self.outputStream setProperty:@(_offsetContentLength) forKey:NSStreamFileCurrentOffsetKey];
+
+    // Truncate cache file to offset provided by server.
+    // Using self.outputStream setProperty:@(_offsetContentLength) forKey:NSStreamFileCurrentOffsetKey]; will not work (in contrary to the documentation)
+    NSString *tempPath = [self tempPath];
+    if ([self fileSizeForPath:tempPath] != _offsetContentLength) {
+        [self.outputStream close];
+        BOOL isResuming = _offsetContentLength > 0;
+        if (isResuming) {
+            NSFileHandle *file = [NSFileHandle fileHandleForWritingAtPath:tempPath];
+            [file truncateFileAtOffset:_offsetContentLength];
+            [file closeFile];
+        }
+        self.outputStream = [NSOutputStream outputStreamToFileAtPath:tempPath append:isResuming];
+        [self.outputStream open];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data  {
@@ -298,18 +312,20 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 #pragma mark - Static
 
 + (NSString *)cacheFolder {
+    NSFileManager *filemgr = [NSFileManager new];
     static NSString *cacheFolder;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+
+    if (!cacheFolder) {
         NSString *cacheDir = NSTemporaryDirectory();
         cacheFolder = [cacheDir stringByAppendingPathComponent:kAFNetworkingIncompleteDownloadFolderName];
+    }
 
-        // ensure all cache directories are there (needed only once)
-        NSError *error = nil;
-        if(![[NSFileManager new] createDirectoryAtPath:cacheFolder withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"Failed to create cache directory at %@", cacheFolder);
-        }
-    });
+    // ensure all cache directories are there
+    NSError *error = nil;
+    if(![filemgr createDirectoryAtPath:cacheFolder withIntermediateDirectories:YES attributes:nil error:&error]) {
+        NSLog(@"Failed to create cache directory at %@", cacheFolder);
+        cacheFolder = nil;
+    }
     return cacheFolder;
 }
 
@@ -317,7 +333,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 + (NSString *)md5StringForString:(NSString *)string {
     const char *str = [string UTF8String];
     unsigned char r[CC_MD5_DIGEST_LENGTH];
-    CC_MD5(str, (CC_LONG)strlen(str), r);
+    CC_MD5(str, strlen(str), r);
     return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
             r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], r[8], r[9], r[10], r[11], r[12], r[13], r[14], r[15]];
 }
