@@ -138,7 +138,13 @@
 /// PDF dataProviders (can be used to dynamically decrypt a document). Will be retained when set.
 @property (nonatomic, copy, readonly) NSArray *dataProviderArray;
 
-/// For caching, provide a *UNIQUE* UID here. (Or clear cache after content changes for same UID. Appending content is no problem)
+/// The unique UID for the document.
+///
+/// The UID will be created automatically based on `files`, `dataArray` and `dataProviderArray`.
+/// You can manually set an UID here as well. Just make sure to set this before the document is used/cached/displayed.
+/// If you change the PDF *contents*, you will either have to set a new UID or clear the cache.
+/// The UID is built based on the first file name and an MD5 hash of the path (or a part of data if the document is used).
+/// @note The way the UID is generated has been changed in 3.1, see the notes on `PSPDFUseLegacyUIDGenerationMethod` if you're upgrading from an older version.
 @property (nonatomic, copy) NSString *UID;
 
 /// Returns YES if the document is valid (if it has at least one page)
@@ -629,3 +635,7 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 - (NSUInteger)documentProviderRelativePageWithPageRangeCompensated:(NSUInteger)page;
 
 @end
+
+// The way how the document UID is generated has been changed in PSPDFKit 2.1.0. Previously, for files it used the full app path. However since the app UID could change after an upgrade, we had to change this behavior. This is only important if you used bookmarks or allowed annotations saving into the internal storage - not for embedded annotation data. Set the global variable `PSPDFUseLegacyUIDGenerationMethod` to YES to continue using the old path. Those files are in Library/PrivateDocuments. You might want to write a custom migration step to rename the custom data paths from the old UID to the new UID system. The `PSPDFUseLegacyUIDGenerationMethod` can be changed at any time to switch between old and new UID (generate a new PSPDFDocument instance to force UID regeneration). The default for this is NO.
+extern BOOL PSPDFUseLegacyUIDGenerationMethod;
+

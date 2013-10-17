@@ -13,6 +13,9 @@
 #import <Foundation/Foundation.h>
 #import "PSPDFUndoProtocol.h"
 
+// Sent once we have new undo operations available.
+extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
+
 /// This is a custom undo manager that can coalesce similar changes within the same group.
 /// This class is also completely thread safe.
 @interface PSPDFUndoController : NSObject
