@@ -46,6 +46,12 @@
 
 @end
 
+//@interface PSPDFDocumentDataProvidersMergeLandscapeWithPortraitPageExample : PSCExample
+//
+//@end
+
+
+
 
 
 

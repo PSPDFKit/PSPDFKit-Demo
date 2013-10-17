@@ -22,7 +22,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     return nil;
 }
 
@@ -40,6 +40,16 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
             return @"PageRange";
         case PSCExampleCategoryDocumentDataProvider:
             return @"PSPDFDocument data providers";
+        case PSCExampleCategoryMultimedia:
+            return @"Multimedia examples";
+        case PSCExampleCategoryPDFAnnotations:
+            return @"PDF Annotations";
+        case PSCExampleCategoryStoryboards:
+            return @"Storyboards";
+        case PSCExampleCategoryTextExtraction:
+            return @"Text Extraction / PDF creation";
+        case PSCExampleCategoryPSPDFViewControllerCustomization:
+            return @"PSPDFViewController customization";
         default:
             return nil;
     }
@@ -49,11 +59,18 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
     switch (category) {
         case PSCExampleCategoryPageRange:
             return @"With pageRange, the pages visible can be filtered";
+        case PSCExampleCategoryDocumentDataProvider:
+            return @"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one.";
+        case PSCExampleCategoryMultimedia:
+            return @"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details.";
+        case PSCExampleCategoryPDFAnnotations:
+            return @"PSPDFKit supports all common PDF annotation types.";
         case PSCExampleCategoryAnnotations:
         case PSCExampleCategoryBarButtons:
         case PSCExampleCategoryViewCustomization:
-        case PSCExampleCategoryDocumentDataProvider:
-            return @"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one.";
+        case PSCExampleCategoryStoryboards:
+        case PSCExampleCategoryTextExtraction:
+        case PSCExampleCategoryPSPDFViewControllerCustomization:
         default:
             return nil;
     }

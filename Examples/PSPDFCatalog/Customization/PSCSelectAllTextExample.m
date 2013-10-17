@@ -27,7 +27,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.delegate = self;

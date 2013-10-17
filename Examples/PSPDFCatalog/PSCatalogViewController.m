@@ -76,7 +76,7 @@
 
 //#define kDebugTextBlocks
 
-@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSPDFDocumentPickerControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSPDFDocumentPickerControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate, PSCExampleRunner> {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
@@ -231,16 +231,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:appSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    // PSPDFDocument data provider test
-    PSCSectionDescriptor *documentTests = [PSCSectionDescriptor sectionWithTitle:@"PSPDFDocument data providers" footer:@"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one."];
-
-
     // Get all examples
     NSArray *examples = PSCExampleManager.defaultManager.allExamples;
 
     // Add examples and map categories to sections.
     PSCExampleCategory currentCategory = -1;
     PSCSectionDescriptor *currentSection = nil;
+    __weak PSCatalogViewController *weakSelf = self;
     for (PSCExample *example in examples) {
         if (currentCategory != example.category) {
             currentCategory = example.category;
@@ -249,401 +246,16 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
 
         [currentSection addContent:[PSContent contentWithTitle:example.title block:^UIViewController *{
-            return [example invoke];
+            return [example invokeWithDelegate:weakSelf];
         }]];
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    PSCSectionDescriptor *multimediaSection = [PSCSectionDescriptor sectionWithTitle:@"Multimedia examples" footer:@"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details."];
-
-    [multimediaSection addContent:[PSContent contentWithTitle:@"Multimedia PDF example" block:^{
-        PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
-        pdfController.rightBarButtonItems = @[pdfController.openInButtonItem, pdfController.viewModeButtonItem];
-        return pdfController;
-    }]];
-
-    [multimediaSection addContent:[PSContent contentWithTitle:@"Dynamically added video example" block:^{
-        PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-
-        // dynamically add video box
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo]];
-
-        return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
-    }]];
-
-    [multimediaSection addContent:[PSContent contentWithTitle:@"Dynamically added video with cover" block:^{
-        PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-
-        // dynamically add video box
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
-        [multimediaDoc addAnnotations:@[aVideo]];
-
-        return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
-    }]];
-    [sections addObject:multimediaSection];
-
-    PSCSectionDescriptor *annotationSection = [PSCSectionDescriptor sectionWithTitle:@"PDF Annotations" footer:@"PSPDFKit supports all common PDF annotation types."];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Write annotations into the PDF" block:^{
-        NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
-        //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Forms_V-Kg1-Antrag.pdf"];
-
-        // Copy file from the bundle to a location where we can write on it.
-        NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
-        document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
-
-        // Allows to configure each annotation type.
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                                            PSPDFAnnotationStringLink, // not added by default.
-                                            PSPDFAnnotationStringHighlight,
-                                            PSPDFAnnotationStringUnderline,
-                                            PSPDFAnnotationStringSquiggly,
-                                            PSPDFAnnotationStringStrikeOut,
-                                            PSPDFAnnotationStringNote,
-                                            PSPDFAnnotationStringFreeText,
-                                            PSPDFAnnotationStringInk,
-                                            PSPDFAnnotationStringLine,
-                                            PSPDFAnnotationStringSquare,
-                                            PSPDFAnnotationStringCircle,
-                                            PSPDFAnnotationStringSignature,
-                                            PSPDFAnnotationStringStamp,
-                                            PSPDFAnnotationStringImage,
-                                            PSPDFAnnotationStringPolygon,
-                                            PSPDFAnnotationStringPolyLine,
-                                            PSPDFAnnotationStringSound,
-
-                                            PSPDFAnnotationStringSelectionTool,
-                                            PSPDFAnnotationStringEraser,
-                                            PSPDFAnnotationStringSavedAnnotations,
-                                            nil];
-        document.delegate = self;
-        return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"PDF annotation writing with NSData" block:^{
-        NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
-        return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Vertical always-visible annotation bar" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
-        return controller;
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Custom annotations with multiple files" block:^{
-        NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
-        PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:files];
-
-        // We're lazy here. 2 = UIViewContentModeScaleAspectFill
-        PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo.boundingBox = [document pageInfoForPage:5].rotatedPageRect;
-        aVideo.page = 5;
-        [document addAnnotations:@[aVideo]];
-
-        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
-        anImage.boundingBox = [document pageInfoForPage:2].rotatedPageRect;
-        anImage.page = 2;
-        [document addAnnotations:@[anImage]];
-
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        return controller;
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Programmatically create annotations" block:^{
-        // we use a NSData document here but it'll work even better with a file-based variant.
-        PSPDFDocument *document = [PSPDFDocument documentWithData:[NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL]];
-        document.title = @"Programmatically create annotations";
-
-        NSMutableArray *annotations = [NSMutableArray array];
-        CGFloat maxHeight = [document pageInfoForPage:0].rotatedPageRect.size.height;
-        for (int i=0; i<5; i++) {
-            PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
-            // width/height will be ignored for note annotations.
-            noteAnnotation.boundingBox = (CGRect){CGPointMake(100, 50 + i*maxHeight/5), PSPDFNoteAnnotationViewFixedSize};
-            noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
-            [annotations addObject:noteAnnotation];
-        }
-        [document addAnnotations:annotations];
-
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
-        return controller;
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Annotation Links to external documents" block:^{
-        PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
-        return [[PSPDFViewController alloc] initWithDocument:linkDocument];
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"Save as... for annotation editing" block:^{
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        NSURL *writableDocumentURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
-        PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:writableDocumentURL];
-        return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
-    }]];
-
-    // This example shows how you can create an XFDF provider instead of the default file-based one.
-    // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
-    [annotationSection addContent:[PSContent contentWithTitle:@"XFDF Annotation Provider" block:^{
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-
-        // Load from an example XFDF file.
-        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
-        NSLog(@"Using XFDF file at %@", fileXML.path);
-
-        // Create an example XFDF from the current document if one doesn't already exist.
-        if (![[NSFileManager defaultManager] fileExistsAtPath:fileXML.path]) {
-            // Collect all existing annotations from the document
-            PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
-            NSMutableArray *annotations = [NSMutableArray array];
-            for (NSArray *pageAnnots in [tempDocument allAnnotationsOfType:PSPDFAnnotationTypeAll].allValues) {
-                [annotations addObjectsFromArray:pageAnnots];
-            }
-            // Write the file
-            NSError *error = nil;
-            NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
-            if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders[0] error:&error]) {
-                NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
-            }
-            [outputStream close];
-        }
-
-        // Create document and set up the XFDF provider
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
-        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
-            documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
-        }];
-
-        return [[PSPDFViewController alloc] initWithDocument:document];
-    }]];
-
-    [annotationSection addContent:[PSContent contentWithTitle:@"XFDF Writing" block:^{
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
-
-        NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-        NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
-        NSLog(@"fileXML: %@",fileXML);
-
-        // Collect all existing annotations from the document
-        PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
-        NSMutableArray *annotations = [NSMutableArray array];
-
-
-        PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"http://pspdfkit.com"];
-        linkAnnotation.boundingBox = CGRectMake(100, 80, 200, 300);
-        linkAnnotation.page = 1;
-        [annotations addObject:linkAnnotation];
-
-        PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"];
-        aStream.boundingBox = CGRectMake(100, 100, 200, 300);
-        aStream.page = 0;
-        [annotations addObject:aStream];
-
-        //        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
-        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"];
-        anImage.boundingBox = CGRectMake(100, 100, 200, 300);
-        anImage.page = 3;
-        [annotations addObject:anImage];
-
-
-        PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"];
-        aVideo2.boundingBox = CGRectMake(100, 100, 200, 300);
-        aVideo2.page = 2;
-        [annotations addObject:aVideo2];
-
-        PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
-        anImage3.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]];
-        anImage3.boundingBox = CGRectMake(100, 100, 200, 300);
-        anImage3.page = 4;
-        [annotations addObject:anImage3];
-
-        NSLog(@"annotations: %@", annotations);
-
-        // Write the file
-        NSError *error = nil;
-        NSOutputStream *outputStream = [NSOutputStream outputStreamWithURL:fileXML append:NO];
-        if (![[PSPDFXFDFWriter new] writeAnnotations:annotations toOutputStream:outputStream documentProvider:tempDocument.documentProviders[0] error:&error]) {
-            NSLog(@"Failed to write XFDF file: %@", error.localizedDescription);
-        }
-        [outputStream close];
-
-        // Create document and set up the XFDF provider
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
-        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
-            documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
-        }];
-
-        return [[PSPDFViewController alloc] initWithDocument:document];
-    }]];
-
-    [sections addObject:annotationSection];
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    PSCSectionDescriptor *storyboardSection = [PSCSectionDescriptor sectionWithTitle:@"Storyboards" footer:@""];
-    [storyboardSection addContent:[PSContent contentWithTitle:@"Init with Storyboard" block:^UIViewController *{
-        UIViewController *controller = nil;
-        @try {
-            // will throw an exception if the file MainStoryboard.storyboard is missing
-            controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
-        }
-        @catch (NSException *exception) {
-            [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"You need to manually add the file MainStoryboard.storyboard." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-        }
-        return controller;
-    }]];
-    [sections addObject:storyboardSection];
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
-    PSCSectionDescriptor *textExtractionSection = [PSCSectionDescriptor sectionWithTitle:@"Text Extraction / PDF creation" footer:@""];
-    [textExtractionSection addContent:[PSContent contentWithTitle:@"Full-Text Search" block:^UIViewController *{
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
-        documentSelector.fullTextSearchEnabled = YES;
-        return documentSelector;
-    }]];
-
-    [textExtractionSection addContent:[PSContent contentWithTitle:@"Convert markup string to PDF" block:^UIViewController *{
-
-        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
-        websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
-
-        [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-        [websitePrompt addButtonWithTitle:@"Convert" block:^{
-            // get data
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-            NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
-            NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
-
-            // create pdf (blocking)
-            [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"}];
-
-            // generate document and show it
-            PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
-            PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-            [self.navigationController pushViewController:pdfController animated:YES];
-        }];
-        [websitePrompt show];
-        return nil;
-    }]];
-
-    // Experimental feature
-    [textExtractionSection addContent:[PSContent contentWithTitle:@"Convert Website/Files to PDF" block:^UIViewController *{
-
-        PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
-        websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
-        [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
-
-        [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-        [websitePrompt addButtonWithTitle:@"Convert" block:^{
-            // get URL
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-            NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
-            if (![website.lowercaseString hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
-            NSURL *URL = [NSURL URLWithString:website];
-            NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
-            //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
-
-            // start the conversion
-            [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
-            [[PSPDFProcessor defaultProcessor] generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
-                if (error) {
-                    [PSPDFProgressHUD dismiss];
-                    [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-                }else {
-                    // generate document and show it
-                    [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
-                    PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
-                    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-                    [self.navigationController pushViewController:pdfController animated:YES];
-                }
-            }];
-        }];
-        [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
-        objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [websitePrompt show];
-        return nil;
-    }]];
-    [sections addObject:textExtractionSection];
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [PSCSectionDescriptor sectionWithTitle:@"PSPDFViewController customization" footer:@""];
 
-    [customizationSection addContent:[PSContent contentWithTitle:@"PageCurl example" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.pageMode = PSPDFPageModeSingle;
-        pdfController.pageTransition = PSPDFPageTransitionCurl;
-        return pdfController;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Using a NIB" block:^{
-        return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
-    }]];
-
-    // one way to speed up PSPDFViewController display is calling fillCache on the document.
-    /*
-     PSPDFDocument *childDocument = [PSPDFDocument documentWithURL:hackerMagURL];
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-     [childDocument fillCache];
-     });
-     */
-    [customizationSection addContent:[PSContent contentWithTitle:@"Child View Controller containment" block:^{
-        NSURL *testURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-        PSPDFDocument *childDocument = [PSPDFDocument documentWithURL:testURL];
-        return [[PSCChildViewController alloc] initWithDocument:childDocument];
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Adding a simple UIButton" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        return [[PSCButtonPDFViewController alloc] initWithDocument:document];
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Adding multiple UIButtons" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        return [[PSCImageOverlayPDFViewController alloc] initWithDocument:document];
-    }]];
-
-    // Other image replacements work similar.
-    [customizationSection addContent:[PSContent contentWithTitle:@"Custom toolbar icon for bookmark item" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.title = @"Custom toolbar icon for bookmark item";
-        [pdfController overrideClass:[PSPDFBookmarkBarButtonItem class] withClass:[PSCCustomBookmarkBarButtonItem class]];
-        pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
-        pdfController.rightBarButtonItems = @[pdfController.bookmarkButtonItem, pdfController.viewModeButtonItem];
-        return pdfController;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Completely Custom Toolbar" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        return [[PSCCustomToolbarController alloc] initWithDocument:document];
-    }]];
-
-    // this the default recommended way to customize the toolbar
-    [customizationSection addContent:[PSContent contentWithTitle:@"Tinted Toolbar, Popovers, AlertView" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSCTintablePDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
 
     // this the default recommended way to customize the toolbar
     [customizationSection addContent:[PSContent contentWithTitle:@"UIAppearance examples" block:^{
@@ -2642,7 +2254,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     // Test that merging both document (first page each) correctly preserves the aspect ratio.
-    [documentTests addContent:[PSContent contentWithTitle:@"Merge landscape with portrait page" block:^{
+    [testSection addContent:[PSContent contentWithTitle:@"Merge landscape with portrait page" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[@"Testcase_consolidate_A.pdf", @"Testcase_consolidate_B.pdf"]];
         NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndex:0];
         [pageRange addIndex:5];
@@ -2679,8 +2291,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
         return pdfController;
     }]];
-
-    [sections addObject:textExtractionSection];
 
 #endif
 
@@ -3027,6 +2637,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)debugClearCache {
     [PSPDFRenderQueue.sharedRenderQueue cancelAllJobs];
     [PSPDFCache.sharedCache clearCache];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCExampleRunner
+
+- (UIViewController *)currentViewController {
+    return self;
 }
 
 @end
