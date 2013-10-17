@@ -171,11 +171,13 @@
 		78E6EF0B17EF03050017E8B3 /* UIColor+PSPDFCatalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E6EF0A17EF03050017E8B3 /* UIColor+PSPDFCatalog.m */; };
 		78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */; };
 		78F0ADE817F790D600F5C499 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78F0ADE717F790D600F5C499 /* Settings.bundle */; };
+		78F6E8C4180DFD8C0077DE1E /* sample.gallery in Resources */ = {isa = PBXBuildFile; fileRef = 78F6E8C3180DFD8C0077DE1E /* sample.gallery */; };
 		78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */; };
 		78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FD8D0715CF280B00779E91 /* PSCatalogViewController.m */; };
 		78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FDE16416CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m */; };
 		78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */; };
 		78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FE606B17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m */; };
+		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
 		9A6534B51806BD5300A7D0D0 /* PSCPageRangeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */; };
 		9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */; };
 		9AA5BDF6180FEA93003A3865 /* PSCPDFAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BDF5180FEA93003A3865 /* PSCPDFAnnotationsExample.m */; };
@@ -452,6 +454,7 @@
 		78E76576176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCShowHighlightNotesPDFController.m; sourceTree = "<group>"; };
 		78E76577176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCShowHighlightNotesPDFController.h; sourceTree = "<group>"; };
 		78F0ADE717F790D600F5C499 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		78F6E8C3180DFD8C0077DE1E /* sample.gallery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.gallery; sourceTree = "<group>"; };
 		78FB05E217737F670006CE08 /* PSCExportPDFPagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportPDFPagesViewController.m; sourceTree = "<group>"; };
 		78FB05E317737F670006CE08 /* PSCExportPDFPagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCExportPDFPagesViewController.h; sourceTree = "<group>"; };
 		78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCatalogViewController.h; sourceTree = "<group>"; };
@@ -463,6 +466,8 @@
 		78FE606B17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSearchBarButtonImageExample.m; sourceTree = "<group>"; };
 		78FE606C17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomSearchBarButtonImageExample.h; sourceTree = "<group>"; };
 		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
+		8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGalleryExample.h; sourceTree = "<group>"; };
+		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
 		9A6534B31806BD5300A7D0D0 /* PSCPageRangeExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCPageRangeExample.h; sourceTree = "<group>"; };
 		9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeExample.m; sourceTree = "<group>"; };
 		9A6534B61806BEC100A7D0D0 /* PSCPageRangeFilterExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCPageRangeFilterExample.h; sourceTree = "<group>"; };
@@ -559,7 +564,6 @@
 				78FFE52F1781874E00FBA7DF /* Helper */,
 				78C6842016F7E5330080427B /* Interfaces */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
-				78F2BAE717F8E04300BBC1A3 /* Merging */,
 				8CDCCD5B17F96E9000AE525F /* Multimedia */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
@@ -680,6 +684,7 @@
 		78A24A6615CFDAD000328F4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				78F6E8C3180DFD8C0077DE1E /* sample.gallery */,
 				78F0ADE717F790D600F5C499 /* Settings.bundle */,
 				78604CAD16C51114003CB721 /* RotationLocked.png */,
 				78604CAE16C51114003CB721 /* RotationLocked@2x.png */,
@@ -1137,6 +1142,7 @@
 				78A24A9615CFDAD000328F4F /* lock@2x.png in Resources */,
 				78A24A9715CFDAD000328F4F /* medical.png in Resources */,
 				78A24A9815CFDAD000328F4F /* medical@2x.png in Resources */,
+				78F6E8C4180DFD8C0077DE1E /* sample.gallery in Resources */,
 				78D909A81789886600E7D4D5 /* PSPDFKit-License.pdf in Resources */,
 				78D909AA1789886600E7D4D5 /* PSPDFKit.bundle in Resources */,
 				78A24A9915CFDAD000328F4F /* movie.png in Resources */,
