@@ -190,6 +190,7 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 
 /// Searches for `searchText` within the current document.
 /// Opens the PSPDFSearchViewController unless specified differently in `options`.
+/// The only valid option is `PSPDFViewControllerSearchHeadlessKey` to disable the search UI.
 - (void)searchForString:(NSString *)searchText options:(NSDictionary *)options animated:(BOOL)animated;
 
 
@@ -235,11 +236,11 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Margin at which the scroll to next/previous tap should be invoked. Defaults to 60.
 @property (nonatomic, assign) CGFloat scrollOnTapPageEndMargin;
 
-/// Allows text selection. Defaults to YES. Only available in PSPDFKit Annotate.
+/// Allows text selection. Defaults to YES. Only available in PSPDFKit Basic/Complete.
 /// @warning This implies that the PDF file actually contains text glyphs. Sometimes text is represented via embedded images or vectors, in that case PSPDFKit can't select it.
 @property (nonatomic, assign, getter=isTextSelectionEnabled) BOOL textSelectionEnabled;
 
-/// Allows image selection. Defaults to NO. Only available in PSPDFKit Annotate.
+/// Allows image selection. Defaults to NO. Only available in PSPDFKit Basic/Complete.
 /// @warning Will only work if textSelectionEnabled is also set to YES. This implies that the image is not in vector format. Only supports a subset of all possible image types in PDF.
 @property (nonatomic, assign, getter=isImageSelectionEnabled) BOOL imageSelectionEnabled;
 
@@ -513,7 +514,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 @property (nonatomic, assign) BOOL annotationGroupingEnabled;
 
 /// If set to YES, a long-tap that ends on a page area that is not a text/image will show a new menu to create annotations. Defaults to YES.
-/// If set to NO, there's no menu displayed and the loupe is simply hidden. Only available in PSPDFKit Annotate.
+/// If set to NO, there's no menu displayed and the loupe is simply hidden. Only available in PSPDFKit Basic/Complete.
 /// Menu can be intercepted and customized with the shouldShowMenuItems:atSuggestedTargetRect:forAnnotation:inRect:onPageView: delegate. (when annotation is nil)
 @property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
 
@@ -562,7 +563,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// Send current pdf via email. Only works with single-file/data pdf's.
 @property (nonatomic, strong, readonly) PSPDFEmailBarButtonItem *emailButtonItem;
 
-/// Show the annotation menu. Only available in PSPDFKit Annotate.
+/// Show the annotation menu. Only available in PSPDFKit Basic/Complete.
 @property (nonatomic, strong, readonly) PSPDFAnnotationBarButtonItem *annotationButtonItem;
 
 /// Show the bookmarks menu.
@@ -631,6 +632,10 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 
 /// Updates the toolbar buttons.
 - (void)updateToolbarAnimated:(BOOL)animated;
+
+// Fine-tune what buttons are being set on left/right side of the navigation bar.
+- (void)setLeftBarButtonItems:(NSArray *)leftBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated;
+- (void)setRightBarButtonItems:(NSArray *)leftBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated;
 
 /// Request to update a specific barButton. Might be more efficient than using createToolbar.
 - (void)updateBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;

@@ -56,6 +56,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 /// `completionHandler` will be called if the user selects an option. Will not be called in case of cancellation.
 - (id)initWithDocument:(PSPDFDocument *)document visiblePages:(NSOrderedSet *)visiblePages allowedSharingOptions:(PSPDFDocumentSharingOptions)sharingOptions delegate:(id <PSPDFDocumentSharingViewControllerDelegate>)delegate;
 
+/// Checks if the controller has options *at all* - and simply calls the delegate if not.
+/// This prevents showing the controller without any options and just a commit button.
+/// Will return YES if the controller has options availble, NO if the delegate has been called.
+- (BOOL)checkIfControllerHasOptionsAvailableAndCallDelegateIfNot;
+
 /// The current document.
 @property (nonatomic, strong, readonly) PSPDFDocument *document;
 

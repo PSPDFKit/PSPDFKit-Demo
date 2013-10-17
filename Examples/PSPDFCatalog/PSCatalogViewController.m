@@ -105,8 +105,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self createTableContent];
         [self addDebugButtons];
-
-        PSC_IF_IOS7_OR_GREATER(self.edgesForExtendedLayout = UIRectEdgeNone;)
     }
     return self;
 }
@@ -307,7 +305,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // Text selection feature is only available in PSPDFKit Annotate.
+    // Text selection feature is only available in PSPDFKit Complete.
     if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
         [customizationSection addContent:[PSContent contentWithTitle:@"Custom Text Selection Menu" block:^{
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
@@ -448,7 +446,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
-    /// The crypto feature is only available in PSPDFKit Annotate.
+    /// The crypto feature is only available in PSPDFKit Basic/Complete.
     if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
         [passwordSection addContent:[PSContent contentWithTitle:@"Encrypted CGDocumentProvider" block:^{
             NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
@@ -2353,7 +2351,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     _searchDisplayController.searchResultsDelegate = self;
 
     // Private API to improve search result style - don't ship this in App Store builds.
-    [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
+    if (!PSCIsUIKitFlatMode()) {
+        [_searchDisplayController setValue:@(UITableViewStyleGrouped) forKey:[NSString stringWithFormat:@"%@TableViewStyle", @"searchResults"]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -2568,20 +2568,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Return YES to cause the search result table view to be reloaded.
     return YES;
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    // HACK: You would expect this to work on iOS 7, but it doesn't actually hide the navigationbar - so we'll help out.
-    // Works fine on iPhone though. Weird bug.
-    // TODO: This breaks on rotation; but really should be something that needs to be fixed on Apple's side.
-    // UISearchDisplayController automatically restores alpha when exiting search mode.
-    if (PSIsIpad() && PSCIsUIKitFlatMode()) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.25f animations:^{
-                self.navigationController.navigationBar.alpha = 0.01f;
-            }];
-        });
-    }
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {

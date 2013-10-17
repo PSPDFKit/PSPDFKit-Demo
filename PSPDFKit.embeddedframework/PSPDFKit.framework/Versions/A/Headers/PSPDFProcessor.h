@@ -88,7 +88,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
  Don't manually override NSOperation's completionBlock.
  If this helper is used, operation will be automatically queued in conversionOperationQueue.
 
- PSPDFKit Annotate feature.
+ PSPDFKit Basic/Complete feature.
 
  @warning When a password is set, only link annotations can be added as dictionary (this does not affect flattening)
 */
@@ -103,7 +103,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @end
 
 /// Operation that converts many file formats to PDF.
-/// Needs to be executed from a thread. PSPDFKit Annotate feature.
+/// Needs to be executed from a thread. PSPDFKit Basic/Complete feature.
 @interface PSPDFConversionOperation : NSOperation
 
 /// Designated initializer.

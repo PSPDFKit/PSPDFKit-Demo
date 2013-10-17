@@ -146,6 +146,22 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 
 @end
 
+@interface PSPDFAnnotationToolbar (Advanced)
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+/// By default, the toolbar position is top, so this defaults to UIBarPositionTopAttached.
+/// Set to UIBarPositionBottom if you're showing the toolbar ta the bottom.
+/// @note This forwards to `positionForBar:` and is only evaluated in iOS 7 when the view is added to a window.
+@property (nonatomic, assign) UIBarPosition barPosition;
+#endif
+
+// Parses the editableAnnotationTypes set from the document.
+// Per default this is the contents of the editableAnnotationTypes set in PSPDFDocument.
+// If set to nil, this will load from pdfController.document.editableAnnotationTypes.allObjects.
+@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
+
+@end
+
 @interface PSPDFAnnotationToolbar (SubclassingHooks)
 
 // Load the buttons into the drawing toolbar.
@@ -202,11 +218,6 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 
 // Allows to override and hook into to create custom annotations.
 - (NSArray *)annotationsWithActionList:(NSArray *)actionList bounds:(CGRect)bounds page:(NSUInteger)page;
-
-// Parses the editableAnnotationTypes set from the document.
-// Per default this is the contents of the editableAnnotationTypes set in PSPDFDocument.
-// If set to nil, this will load from pdfController.document.editableAnnotationTypes.allObjects.
-@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
 // If we're in drawing mode, this dictionary contains the PSPDFDrawView classes that are overlayed on the PSPDFPageView.
 // The key is the current page.
