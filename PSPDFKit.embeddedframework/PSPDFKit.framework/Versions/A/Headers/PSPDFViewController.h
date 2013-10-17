@@ -101,11 +101,12 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
     PSPDFPageRenderingModeRender                 // Don't use cached page nor thumb.
 };
 
-// Menu options when text is selected on this document.
+/// Menu options when text is selected on this document.
+/// The "Define" sheet on iOS 7 now contains an option for Wikipedia and also returns YES for any string when using [UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:] - thus Define will be always visible.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
-    PSPDFTextSelectionMenuActionSearch              = 1 << 0,
-    PSPDFTextSelectionMenuActionDefine              = 1 << 1, // Starting with iOS 7, this will also offer Wikipedia in the controller.
-    PSPDFTextSelectionMenuActionWikipediaAsFallback = 1 << 2, // Only displayed if Define fails/is missing. Ignored as of iOS 7.
+    PSPDFTextSelectionMenuActionSearch              = 1 << 0, /// Allow search from selected text.
+    PSPDFTextSelectionMenuActionDefine              = 1 << 1, /// Starting with iOS 7, this will also offer Wikipedia in the controller.
+    PSPDFTextSelectionMenuActionWikipediaAsFallback = 1 << 2, /// Only displayed if Define fails/is missing. Ignored as of iOS 7.
     PSPDFTextSelectionMenuActionAll                 = NSUIntegerMax
 };
 
@@ -397,7 +398,6 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Defines if the HUD is transparent or not.
 /// This is set depending on the `statusBarStyle` and always enabled by default on iOS7.
 /// @warning If this is set to NO, shouldHideNavigationBarWithHUD and shouldHideStatusBarWithHUD won't work as expected.
-/// Setting this to no is not possible on iOS 7.
 @property (nonatomic, assign, getter=isTransparentHUD) BOOL transparentHUD;
 
 /// If YES, the navigation bar will be hidden when the HUD is hidden.
@@ -635,7 +635,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 
 // Fine-tune what buttons are being set on left/right side of the navigation bar.
 - (void)setLeftBarButtonItems:(NSArray *)leftBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated;
-- (void)setRightBarButtonItems:(NSArray *)leftBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated;
+- (void)setRightBarButtonItems:(NSArray *)rightBarButtonItems inNavigationItem:(UINavigationItem *)navigationItem animated:(BOOL)animated;
 
 /// Request to update a specific barButton. Might be more efficient than using createToolbar.
 - (void)updateBarButtonItem:(UIBarButtonItem *)barButtonItem animated:(BOOL)animated;

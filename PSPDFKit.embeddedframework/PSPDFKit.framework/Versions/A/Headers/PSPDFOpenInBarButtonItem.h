@@ -18,6 +18,7 @@
 /// Checking if any apps support PDF can be done, but this is slow (~300 ms on an iPad 3). Thus it's disabled by default.
 /// In case there is no app and this check is disabled, a alert will be showed to the user.
 /// Defaults to NO.
+/// This is not recommended to be enabled on iOS 7.
 extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 
 /// Open in is only possible if the PSPDFDocument is backed by exactly one file-based PDF.

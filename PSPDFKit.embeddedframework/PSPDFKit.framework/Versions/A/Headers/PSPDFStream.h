@@ -36,8 +36,10 @@
 /// Stream size.
 - (size_t)dataLength;
 
+/// Text representation. Only attempt a conversion if you're sure this is text, will be garbage if content is an image.
+- (NSString *)stringValue;
+
 /// File URL from the converted stream.
-///
 /// @warning This might be slow for large streams.
 - (NSURL *)fileURLWithAssetName:(NSString *)assetName document:(PSPDFDocument *)document page:(NSUInteger)page;
 

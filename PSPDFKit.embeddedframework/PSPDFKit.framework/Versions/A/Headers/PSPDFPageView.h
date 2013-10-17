@@ -304,20 +304,20 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 @interface PSPDFPageView (SubclassingHooks)
 
-/// Internally used to add annotations.
+// Internally used to add annotations.
 - (void)insertAnnotations:(NSArray *)annotations forPage:(NSUInteger)page inDocument:(PSPDFDocument *)document;
 
-/// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
-/// The point will have a variance of a few pixels to improve touch recognition.
+// Returns annotations that we could tap on. (checks against editableAnnotationTypes)
+// The point will have a variance of a few pixels to improve touch recognition.
 - (NSArray *)tappableAnnotationsAtPoint:(CGPoint)viewPoint;
 
-/// Can be used for manual tap forwarding.
+// Can be used for manual tap forwarding.
 - (BOOL)singleTappedAtViewPoint:(CGPoint)viewPoint;
 
-/// Show menu if annotation/text is selected.
+// Show menu if annotation/text is selected.
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
 
-/// Show signature menu.
+// Show signature menu.
 - (void)showNewSignatureMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
 
 // Show image menu.
@@ -329,19 +329,25 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 // Get annotation rect (PDF coordinate space)
 - (CGRect)rectForAnnotations:(NSArray *)annotations;
 
-/// Returns the default color options for the specified annotation type.
+// Returns the default color options for the specified annotation type.
 - (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
 
-/// Render options that are used for the live-page rendering. (not for the cache)
-/// One way to use this would be to customize what annotations types will be rendered with the pdf.
-/// See PSPDFPageRenderer for a list of options.
+// Controls if the annotation inspector is used or manipulation via UIMenuController.
+- (BOOL)useAnnotationInspectorForAnnotations:(NSArray *)annotations;
+
+// Used to prepare the UIMenuController-based color menu.
+- (void)selectColorForAnnotation:(PSPDFAnnotation *)annotation isFillColor:(BOOL)isFillColor;
+
+// Render options that are used for the live-page rendering. (not for the cache)
+// One way to use this would be to customize what annotations types will be rendered with the pdf.
+// See PSPDFPageRenderer for a list of options.
 - (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale;
 
-/// View for the selected annotation.
+// View for the selected annotation.
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;
 
-/// Will create and show the action sheet on long-press above a PSPDFLinkAnnotation.
-/// Return nil if you don't show the actionSheet, or return the object you're showing. (UIView or UIViewController subclass)
+// Will create and show the action sheet on long-press above a PSPDFLinkAnnotation.
+// Return nil if you don't show the actionSheet, or return the object you're showing. (UIView or UIViewController subclass)
 - (id)showLinkPreviewActionSheetForAnnotation:(PSPDFLinkAnnotation *)annotation fromRect:(CGRect)viewRect animated:(BOOL)animated;
 
 // Helper to properly place an annotation.
@@ -352,12 +358,5 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 // Computes a scale value suitable for computation of the line width to use during drawing and selection.
 - (CGFloat)scaleForPageView;
-
-@end
-
-// Helpers for the UIMenuController-based approach to annotation changes (like in v2)
-@interface PSPDFPageView (OldStyleMenuHooks)
-
-- (void)selectColorForAnnotation:(PSPDFAnnotation *)annotation isFillColor:(BOOL)isFillColor;
 
 @end

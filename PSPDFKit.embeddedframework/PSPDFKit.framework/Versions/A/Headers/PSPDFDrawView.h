@@ -99,12 +99,6 @@
 
 @end
 
-@interface PSPDFDrawView (Advanced)
-
-@property (nonatomic, assign) BOOL recomputeLineWidthOnBoundsChange;
-
-@end
-
 
 // Single draw action.
 @interface PSPDFDrawAction : NSObject

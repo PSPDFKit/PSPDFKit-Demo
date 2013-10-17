@@ -186,6 +186,7 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 - (void)soundButtonPressed:(id)sender;
 - (void)eraserButtonPressed:(id)sender;
 - (void)selectiontoolButtonPressed:(id)sender;
+- (void)showStylePicker:(id)sender;
 - (void)doneButtonPressed:(id)sender NS_REQUIRES_SUPER;
 
 // Only allowed during toolbar drawing mode (ink, line, polyline, polygon, circle, ellipse)
@@ -207,7 +208,8 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 - (NSUInteger)allowedButtonCount;
 
 // Called anytime the drawing toolbar is taken down.
-- (void)hideAndRemoveToolbar;
+- (void)hideAndRemoveToolbar; // calls [self hideAndRemoveToolbarAnimated:NO completion:nil]
+- (void)hideAndRemoveToolbarAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;
 
 // Color management.
 - (void)setLastUsedColor:(UIColor *)lastUsedDrawColor forAnnotationType:(NSString *)annotationType;

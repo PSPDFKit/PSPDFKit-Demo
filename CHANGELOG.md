@@ -2,6 +2,31 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.1.0 - 18/Oct/2013__
+
+*  Brand-new image gallery (define a region in the pdf to be covered by a smooth gallery). Allows configuration via inline-pdf or external JSON.
+*  Use menu-based annotation manipulation for text markup annotations.
+*  The way how the document UID is generated has been changed. Previously, for files it used the full app path. However since the app UID could change after an upgrade, we had to change this behavior. This is only important if you used bookmarks or allowed annotations saving into the internal storage - not for embedded annotation data. Set the global variable `PSPDFUseLegacyUIDGenerationMethod` to YES to continue using the old path. Those files are in Library/PrivateDocuments. You might want to write a custom migration step to rename the custom data paths from the old UID to the new UID system. The `PSPDFUseLegacyUIDGenerationMethod` can be changed at any time to switch between old and new UID (generate a new PSPDFDocument instance to force UID regeneration).
+*  The file-based annotation backing store by default no longer saves link annotations but instead merges the saved annotations and the links from the file. This improves performance for PDFs that have lots of internal links (our current way of saving starts to get slow once there are more than 10.000 objects). In most cases, you don't need to care and your save file will be migrated automatically. If you rely on custom link annotations being saved/deleted, you need to set the new `saveableTypes` property of the fileAnnotationProvider back to the old default `PSPDFAnnotationTypeAll`.
+*  The undo/redo buttons are now updated immediately after adding annotations.
+*  The interactivePopGesture (new on iOS 7) is now disabled while we're drawing to prevent accidential usage.
+*  The PSPDFViewController will now properly clean up state from the annotation creation when dropped from user code while the toolbar is in drawing mode.
+*  The outline controller now properly shows page destinations above page 10.000.
+*  Hides a harmless log warning when PSPDFKit tried to render an annotation with an empty width/height.
+*  When undo is disabled, the undo/redo buttons are now properly hidden when leaving the drawing mode.
+*  No longer draws the arrow when flattening choice form elements.
+*  Restores sound annotations that were added via the pspdfkit:// protocol.
+*  Improves compatibility with UIViewControllerBasedStatusBarAppearance. (ongoing project, still not recommended.)
+*  Greatly improves scrolling performance with large outline tables.
+*  Fixes placement of the search bar in the outline controller.
+*  Fixes a crash when pressing undo while adding free text annotations.
+*  Fixes a call to a not implemented method in the file annotation provider when manually replacing annotations.
+*  Fixes a crash in arm64 when parsing certain malformed PDF documents.
+*  Fixes an issue where the password view wasn't correctly updated when the document was changed while it was displayed.
+*  Fixes an issue where one could get stuck in the eraser mode when choosing it from the toolbar when that one was diplayed via the long-press annotation menu.
+*  Fixes a timing issue where the text parsing could crash in rare cases.
+*  Fixes an off-by-one error that could cut off long lists of ink points when parsing XFDF files.
+
 __v3.0.11 - 10/Oct/2013__
 
 *  Fixes another issue related to UISearchDisplayController and iOS 6/7.
