@@ -282,6 +282,9 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
+    // Ensure we're not in editing mode.
+    [self setEditing:NO animated:animated];
+
     // Only deregister if not attached to anything else.
     if ([PSCStoreManager sharedStoreManager].delegate == self) [PSCStoreManager sharedStoreManager].delegate = nil;
 }
