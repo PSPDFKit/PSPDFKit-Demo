@@ -1,6 +1,6 @@
 //
 //  PSPDFDocumentDataProviders.m
-//  PSPDFCatalog-static
+//  PSPDFCatalog
 //
 //  Copyright (c) 2011-2013 PSPDFKit GmbH. All rights reserved.
 //
@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSPDFDocumentDataProvidersExample.h"
+#import "PSCPSPDFDocumentDataProvidersExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 
@@ -26,7 +26,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.emailButtonItem, controller.printButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
@@ -49,7 +49,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     
@@ -77,7 +77,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     
@@ -108,7 +108,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
@@ -135,7 +135,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     static PSPDFDocument *document = nil;
@@ -176,7 +176,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     PSPDFDocument *document = nil;
@@ -216,7 +216,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     NSArray *fileNames = @[@"A.pdf", @"B.pdf", @"C.pdf"];
@@ -257,7 +257,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -302,7 +302,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -328,3 +328,36 @@
 }
 
 @end
+
+//@implementation PSPDFDocumentDataProvidersMergeLandscapeWithPortraitPageExample
+//
+/////////////////////////////////////////////////////////////////////////////////////////////
+//#pragma mark - PSCExample
+//
+//- (id)init {
+//    if (self = [super init]) {
+//        self.title = @"Merge landscape with portrait page";
+//        self.category = PSCExampleCategoryDocumentDataProvider;
+//        self.priority = 100;
+//    }
+//    return self;
+//}
+//
+//- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+//    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+//    
+//    PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[@"Testcase_consolidate_A.pdf", @"Testcase_consolidate_B.pdf"]];
+//    NSMutableIndexSet *pageRange = [NSMutableIndexSet indexSetWithIndex:0];
+//    [pageRange addIndex:5];
+//    document.pageRange = pageRange;
+//    
+//    // Merge pages into new document.
+//    NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp-merged", @"pdf");
+//    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
+//    PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
+//    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
+//    return controller;
+//    
+//}
+//
+//@end
