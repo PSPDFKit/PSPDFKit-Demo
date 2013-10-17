@@ -15,10 +15,12 @@
 
 @class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
 
-/// Handles text selection. PSPDFKit Annotate feature.
+/// Handles text selection. PSPDFKit Basic/Complete feature.
 @interface PSPDFTextSelectionView : UIView
 
 /// Currently selected glyphs.
+/// @warning This method expects glyphs to be sorted from top->bottom and left->right for performance reasons.
+/// Use `sortedGlyphs:` to pre-sort your glyphs if you manually set this.
 @property (nonatomic, copy) NSArray *selectedGlyphs;
 
 /// Currently selected text.
@@ -63,8 +65,16 @@
 /// Currently has a text/image selection?
 - (BOOL)hasSelection;
 
-/// Text selection is only available in PSPDFKit Annotate
+/// Text selection is only available in PSPDFKit Basic/Complete.
 + (BOOL)isTextSelectionFeatureAvailable;
+
+@end
+
+@interface PSPDFTextSelectionView (Advanced)
+
+// Will return a new array with sorted glyphs.
+// Use when you manually call `selectedGlyphs`.
+- (NSArray *)sortedGlyphs:(NSArray *)glyphs;
 
 @end
 

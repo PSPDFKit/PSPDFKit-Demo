@@ -194,11 +194,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Encryption/Decryption Handlers
 
-/// Decrypt data from the path. PSPDFKit Annotate feature.
+/// Decrypt data from the path. PSPDFKit Basic/Complete feature.
 /// If set to nil, the default implementation will be used.
 @property (atomic, copy) NSData *(^decryptFromPathBlock)(PSPDFDocument *document, NSString *path);
 
-/// Encrypt mutable data. PSPDFKit Annotate feature.
+/// Encrypt mutable data. PSPDFKit Basic/Complete feature.
 /// If set to nil, the default implementation will be used.
 @property (atomic, copy) void (^encryptDataBlock)(PSPDFDocument *document, NSMutableData *data);
 
