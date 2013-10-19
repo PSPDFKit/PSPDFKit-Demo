@@ -24,7 +24,7 @@
     return self;
 }
 
-- (UIViewController *)invoke {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
