@@ -2,6 +2,16 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.1.1 - 19/Oct/2013__
+
+*  Restores compatibility when compiling with Xcode 4.6.
+*  Various smaller improvements to the new image gallery.
+*  Various smaller performance improvements, moved some more work off the main thread.
+*  API cleanup for PSPDFDocumentProvider.
+*  No longer blocks the UI when annotations are still loading during a touchDown event.
+*  Fixes an UX issue where dismissing the activity popover in the web view controller via a touch on the dimming view sometimes required a second touch on the action button to re-show.
+*  Fixes an issue when adding annotation views for invalid rects.
+
 __v3.1.0 - 18/Oct/2013__
 
 *  Brand-new image gallery (define a region in the pdf to be covered by a smooth gallery). Allows configuration via inline-pdf or external JSON.
