@@ -21,6 +21,7 @@
 #import <UIKit/UIViewController.h>
 
 @implementation PSCPSPDFViewControllerCustomizationPageCurlExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -46,6 +47,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationUsingaNIBExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -65,6 +67,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationChildViewControllerContainmentExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -88,6 +91,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationAddingaSimpleUIButtonExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -111,6 +115,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationAddingMultipleUIButtonsExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -134,6 +139,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationCustomToolbarIconExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -162,6 +168,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationCompletelyCustomToolbarExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -185,6 +192,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -209,6 +217,7 @@
 @end
 
 @implementation PSCPSPDFViewControllerCustomizationUIAppearanceExample
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
@@ -234,10 +243,4 @@
     return (PSPDFViewController *)nil;
 }
 
-
-
 @end
-
-
-
-
