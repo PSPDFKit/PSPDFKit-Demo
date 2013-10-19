@@ -107,7 +107,7 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 
 // Starting with iOS6, dispatch queue's can be objects and managed via ARC.
 #if OS_OBJECT_USE_OBJC
-#define PSPDFDispatchRelease(queue)
+#define PSPDFDispatchRelease(object)
 #else
-#define PSPDFDispatchRelease(queue) do { if (queue) dispatch_release(queue); }while(0)
+#define PSPDFDispatchRelease(object) do { if (object) dispatch_release(object); }while(0)
 #endif
