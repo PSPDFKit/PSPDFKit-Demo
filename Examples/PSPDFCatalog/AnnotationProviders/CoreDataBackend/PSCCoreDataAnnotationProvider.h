@@ -17,9 +17,13 @@
 @interface PSCCoreDataAnnotationProvider : NSObject <PSPDFAnnotationProvider>
 
 // Designated initializer.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
+// If `databasePath` is nil, a default path will be used.
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath;
 
 // Associated documentProvider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
+
+// Database path/filename.
+@property (nonatomic, copy, readonly) NSString *databasePath;
 
 @end

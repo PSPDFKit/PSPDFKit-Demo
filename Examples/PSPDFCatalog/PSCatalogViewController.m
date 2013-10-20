@@ -944,7 +944,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         document.undoEnabled = NO;
         // Set annotation provider block.
         [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider];
+            PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider databasePath:nil];
             documentProvider.annotationManager.annotationProviders = @[provider];
         }];
         // Create controller.
