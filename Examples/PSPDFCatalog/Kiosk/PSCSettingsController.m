@@ -90,7 +90,7 @@ static NSMutableDictionary *_settings;
             _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
             _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
             _settings[@"renderContentOpacity"] = @(1.f);
-            _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailThenFullPage);
+            _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
         }
     }
 }
@@ -124,7 +124,7 @@ static NSMutableDictionary *_settings;
                              @[_(@"PSPDFPageModeSingle"), _(@"PSPDFPageModeDouble"), _(@"PSPDFPageModeAutomatic")],
                              @[_(@"doublePageModeOnFirstPage = YES"), _(@"doublePageModeOnFirstPage = NO")],
                              @[_(@"PSPDFThumbnailBarModeNone"), _(@"PSPDFThumbnailBarModeScrobbleBar"), _(@"PSPDFThumbnailBarModeScrollable")],
-                             @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
+                             @[_(@"PSPDFPageRenderingModeThumbnailThenFullPage"), _(@"PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage2"), _(@"PSPDFPageRenderingModeFullPage"), _(@"PSPDFPageRenderingModeFullPageBlocking"), _(@"PSPDFPageRenderingModeThumbnailThenRender"), _(@"PSPDFPageRenderingModeRender")],
                              @[_(@"smartZoomEnabled"), _(@"textSelectionEnabled"), _(@"zoomingSmallDocumentsEnabled"), _(@"fitToWidthEnabled"), _(@"scrollOnTapPageEndEnabled"), _(@"pageLabelEnabled")],
                              @[_(@"searchButtonItem"), _(@"outlineButtonItem"), _(@"printButtonItem"), _(@"openInButtonItem"), _(@"emailButtonItem"), _(@"brightnessButtonItem"), _(@"annotationButtonItem"), _(@"bookmarkButtonItem"), _(@"activityButtonItem"), _(@"viewModeButtonItem"), _(@"useBorderedToolbarStyle")],
                              @[_(@"PSPDFLinkActionNone"), _(@"PSPDFLinkActionAlertView"), _(@"PSPDFLinkActionOpenSafari"), _(@"PSPDFLinkActionInlineBrowser")],
