@@ -16,6 +16,7 @@
 @interface PSCCoreDataAnnotationProvider() {
     dispatch_queue_t _annotationProviderQueue;
 }
+@property (nonatomic, copy) NSString *databasePath;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -27,11 +28,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider {
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath {
     if (self = [super init]) {
         _documentProvider = documentProvider;
         _annotationCache = [[NSMutableDictionary alloc] initWithCapacity:documentProvider.pageCount];
         _annotationProviderQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.PSPDFCatalog.%@", self] UTF8String], DISPATCH_QUEUE_SERIAL);
+
+        // Save database path or set up default.
+        _databasePath = databasePath ?: [documentProvider.document.dataDirectory stringByAppendingPathComponent:@"PSCCoreDataExample.sqlite"];
+
         [self setupCoreDataStack];
     }
     return self;
@@ -183,7 +188,7 @@
 
 // Return all cached annotations so we tell PSPDFKit that we always want to be saved.
 - (NSDictionary *)dirtyAnnotations {
-    NSMutableDictionary *dirtyAnnotations = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dirtyAnnotations = [NSMutableDictionary new];
     dispatch_sync(_annotationProviderQueue, ^{
         [self.annotationCache enumerateKeysAndObjectsUsingBlock:^(NSNumber *page, NSArray *annotations, BOOL *stop) {
             dirtyAnnotations[page] = [annotations copy];
@@ -199,20 +204,16 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Core Data Initialization
 
-- (NSString *)storePath {
-    return [self.documentProvider.document.dataDirectory stringByAppendingPathComponent:@"PSCCoreDataExample.sqlite"];
-}
-
 - (void)setupCoreDataStack {
 	// Load the model
     NSURL *modelURL = [NSBundle.mainBundle URLForResource:@"CoreDataAnnotationExample" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
 
     // Create folder
-    [[NSFileManager new] createDirectoryAtPath:[self.storePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:NULL];
+    [[NSFileManager new] createDirectoryAtPath:[self.databasePath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:nil error:NULL];
 
 	// Setup persistent store coordinator
-	NSURL *storeURL = [NSURL fileURLWithPath:self.storePath];
+	NSURL *storeURL = [NSURL fileURLWithPath:self.databasePath];
 	NSError *error = nil;
 	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
 	if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
