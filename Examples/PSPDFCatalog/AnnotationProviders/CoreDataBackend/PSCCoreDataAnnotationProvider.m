@@ -86,6 +86,10 @@
     return annotations;
 }
 
+NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
+    !NSThread.isMainThread ? dispatch_async(dispatch_get_main_queue(), block) : block();
+}
+
 - (NSArray *)addAnnotations:(NSArray *)annotations {
     if (annotations.count == 0) return annotations;
 
@@ -107,7 +111,8 @@
     });
 
     // Send notification.
-    dispatch_async(dispatch_get_main_queue(), ^{
+    // Timing is important here. If on main thread, must be sent instantly!
+    psc_dispatch_main_async(^{
         [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsAddedNotification object:annotations];
     });
 
@@ -135,7 +140,7 @@
     
     // Send notification.
     if (removedAnnotations.count > 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        psc_dispatch_main_async(^{
             [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsRemovedNotification object:removedAnnotations];
         });
     }
