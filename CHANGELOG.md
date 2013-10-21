@@ -2,6 +2,16 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.1.2 - 21/Oct/2013__
+
+*  Faster scrolling, new default page rendering strategy: `PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage`
+*  Improves text selection drawing and text selection menu placing. The few cases where the menu could overlap the selection have been fixed.
+*  Add more sophisticated warnings if the PSPDFKit.bundle is missing.
+*  PSPDFViewController will now auto-save annotations when the view is dismissed while contained in a child view controller.
+*  Add `verticalTextAlignment` to `PSPDFFreeTextAnnotation`. This is not defined in the PDF spec; so it will be a code-only option for now. PSPDFKit will save this into the PDF as a proprietary extension.
+*  Fixes an issue with single page documents, forced two-page-mode and pageCurl.
+*  Fixes an issue where under certain conditions the navigationBar was not displayed initially.
+
 __v3.1.1 - 19/Oct/2013__
 
 *  Restores compatibility when compiling with Xcode 4.6.

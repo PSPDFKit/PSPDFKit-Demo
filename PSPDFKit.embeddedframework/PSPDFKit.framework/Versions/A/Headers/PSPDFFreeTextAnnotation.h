@@ -12,6 +12,12 @@
 
 #import "PSPDFAnnotation.h"
 
+typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
+    PSPDFVerticalAlignmentTop    = 0,
+    PSPDFVerticalAlignmentCenter = 1,
+    PSPDFVerticalAlignmentBottom = 2,
+};
+
 /**
  PDF FreeText Annotation.
 
@@ -37,6 +43,10 @@
 /// @note Toll-free 'bridges' to both NSTextAlignment and UITextAlignment.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+
+/// Vertical text alignment. Defaults to `PSPDFVerticalAlignmentTop`.
+/// @note This is not defined in the PDF spec. (PSPDFKit extension)
+@property (nonatomic, assign) PSPDFVerticalAlignment verticalTextAlignment;
 
 /// Return a default font size if not defined in the annotation.
 - (CGFloat)defaultFontSize;
