@@ -155,8 +155,7 @@
 "Text" = "Texte";
 "Drawing Color" = "Couleur de dessin";
 "Delete Note" = "Supprimer la note";
-"Delete Highlight" = "Supprimer le surlignage";
-"Delete Free Text" = "Supprimer le texte";
+"Remove Note" = "Remove Note";
 "%@ could not be found." = "%@ n'a pu être trouvé.";
 "Photo Library" = "Photothèque";
 "Camera" = "Caméra";

@@ -17,7 +17,7 @@
 
 @class PSPDFDocument, PSPDFRenderReceipt;
 
-// Can be used to use a custom subclass of the PSPDFCache. Defaults to nil, which will use PSPDFCache.class.
+// Can be used to use a custom subclass of the `PSPDFCache`. Defaults to nil, which will use `PSPDFCache.class`.
 // Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
 extern Class PSPDFCacheClass;
 
@@ -32,6 +32,7 @@ extern BOOL PSPDFCacheDebug;
 
 /// Requested image has been rendered or loaded from disk.
 /// `size` is the requested image size, not the final image size. (due to document aspect ratio)
+/// @warning Do not register/deregister the delegate inside this method.
 - (void)didCacheImage:(UIImage *)image document:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size;
 
 @end
@@ -170,11 +171,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// @name Delegate
 
 /// Register a delegate to be notified of new cache load events.
-- (void)addDelegate:(id<PSPDFCacheDelegate>)aDelegate;
+- (void)addDelegate:(__unsafe_unretained id<PSPDFCacheDelegate>)aDelegate;
 
 /// Deregisters a delegate.
 /// @return Returns YES on success.
-- (BOOL)removeDelegate:(id<PSPDFCacheDelegate>)aDelegate;
+- (BOOL)removeDelegate:(__unsafe_unretained id<PSPDFCacheDelegate>)aDelegate;
 
 /// @name Disk Cache Settings
 

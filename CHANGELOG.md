@@ -2,6 +2,22 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.1.3 - 24/Oct/2013__
+
+*  PSPDFKit now requires the CoreTelephony.framework (this will be added automatically if you use the PSPDFKit.xcconfig file)
+*  The `autodetectTextLinkTypes` feature is now faster and will detect more types of phone numbers and URLs, including those that contain spaces/newlines between them.
+*  Pressing the delete icon in the note annotation controller will only clear the note, except for note annotations where it will delete the whole annotation.
+*  Adds a versioning system for PSPDFKit.bundle. Make sure you always use the bundle we ship with PSPDFKit.
+*  Adds a boxRect:forPage:error: method to PSPDFDocument to easily get a different box rect for the defined page.
+*  Gallery now supports animated GIFs and downloads images even when the app is in background.
+*  Improves default header color for the mail view controller.
+*  Fixes an issue where the bounding box for FreeText annotation could be too long when they are edited while zoomed in on iOS 7.
+*  Fixes an issue where "Inspector..." was displayed for non-editable annotation types.
+*  Fixes an issue where "Clear All" deleted all annotations, even those not displayed in the annotation table view.
+*  Fixes an issue where flattened note annotations would sometimes be drawn rotated on rotated documents.
+*  Fixes an issue where Free Text annotations added from the toolbar could end up being rotated on rotated documents.
+*  Fixes a very rare over-release of a PSPDFPageView object when lots of PSPDFViewControllers are rapidly created/destroyed. (you should always reuse this heavyweight object)
+
 __v3.1.2 - 21/Oct/2013__
 
 *  Faster scrolling, new default page rendering strategy: `PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage`

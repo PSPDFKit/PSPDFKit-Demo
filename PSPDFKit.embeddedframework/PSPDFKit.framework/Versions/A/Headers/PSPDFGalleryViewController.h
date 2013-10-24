@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 };
 
 /// Handles a gallery of images.
-@interface PSPDFGalleryViewController : PSPDFBaseViewController
+@interface PSPDFGalleryViewController : PSPDFBaseViewController <PSPDFOverridable>
 
 /// Create a new gallery view controller by passing in a link annotation with linkAnnotationType set to PSPDFLinkAnnotationGallery.
 - (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)annotation;

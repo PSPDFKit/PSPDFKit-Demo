@@ -153,9 +153,8 @@
 "Note" = "Notiz";
 "Text" = "Text";
 "Drawing Color" = "Farbe wählen";
-"Delete Note" = "Notiz entfernen";
-"Delete Highlight" = "Markierung entfernen";
-"Delete Free Text" = "Text entfernen";
+"Delete Note" = "Notiz löschen";
+"Remove Note" = "Notiz entfernen";
 "%@ could not be found." = "%@ konnte nicht gefunden werden.";
 "Photo Library" = "Fotobibliothek";
 "Camera" = "Kamera";
