@@ -2365,8 +2365,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                                self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
                                self.navigationController.toolbar.tintColor = UIColor.blackColor;
                                self.navigationController.view.tintColor = UIColor.whiteColor;
+                               // By default the system would show a white cursor.
                                [[UITextField appearance] setTintColor:UIColor.pspdfColor];
-                               [[UITextView  appearance] setTintColor:UIColor.pspdfColor];)
+                               [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
+                               [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];)
         self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
