@@ -76,6 +76,10 @@
 // Use when you manually call `selectedGlyphs`.
 - (NSArray *)sortedGlyphs:(NSArray *)glyphs;
 
+// Will present a Wikipedia browser anchored at the selected text.
+// Used in iOS 5/6 when there's no dictionary entry. Not used in iOS 7 as Define has it's own Wikipedia link there.
+- (UIViewController *)presentWikipediaBrowserForSelectedText;
+
 @end
 
 @interface PSPDFTextSelectionView (SubclassingHooks)

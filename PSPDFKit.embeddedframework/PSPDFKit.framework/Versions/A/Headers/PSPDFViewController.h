@@ -657,6 +657,9 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 // Animates a certain search highlight.
 - (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
 
+// Will be called whenever the thumbnail bar changes it's frame.
+- (void)updateThumbnailBarFrameAnimated:(BOOL)animated;
+
 /// Access internal `UIViewController` for displaying the PDF content
 @property (nonatomic, strong, readonly) UIViewController<PSPDFTransitionProtocol> *pageTransitionController;
 

@@ -611,9 +611,16 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 
 @interface PSPDFDocument (Advanced)
 
-/// PDFBox that is used for rendering. Defaults to kCGPDFCropBox.
-/// Older versions of PSPDFKit used kCGPDFCropBox by default.
+/// The rect type in the PDF that is used for rendering. Defaults to `kCGPDFCropBox`.
+/// Look at `CGPDFBox` to see the full list of possibilities.
 @property (nonatomic, assign) CGPDFBox PDFBox;
+
+/// Will get the box rect from the PDF for `page`.
+/// Valid values for `boxType` are all values for `CGPDFBox`, thus `kCGPDFMediaBox`, `kCGPDFCropBox`, `kCGPDFBleedBox`, `kCGPDFTrimBox`, `kCGPDFArtBox`.
+/// @note A PDF can have different box rect values for different types, or only one of the defined. This call will always return a valid rect info, thus will behave similar to `CGPDFPageGetBoxRect()`.
+/// @warning Values will be evaluated each time asked - cache or use `pageInfoForPage:` to get cached variants.
+/// PSPDFKit will use the box value set in the `PDFBox` property, which defaults to `kCGPDFCropBox`.
+- (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError **)error;
 
 /// Scan the whole document and analyzes if the aspect ratio is equal or not.
 /// If this returns 0 or a very small value, it's perfectly suitable for pageCurl.

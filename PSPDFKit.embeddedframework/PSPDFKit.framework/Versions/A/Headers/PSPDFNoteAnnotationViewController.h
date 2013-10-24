@@ -23,6 +23,9 @@
 /// Called when the noteController has deleted the annotation.
 - (void)noteAnnotationController:(PSPDFNoteAnnotationViewController *)noteAnnotationController didDeleteAnnotation:(PSPDFAnnotation *)annotation;
 
+/// Called when the noteController has cleared the contents of the annotation.
+- (void)noteAnnotationController:(PSPDFNoteAnnotationViewController *)noteAnnotationController didClearContentsForAnnotation:(PSPDFAnnotation *)annotation;
+
 /// Called when the noteController changes the annotation look (color/iconName)
 - (void)noteAnnotationController:(PSPDFNoteAnnotationViewController *)noteAnnotationController didChangeAnnotation:(PSPDFAnnotation *)annotation;
 

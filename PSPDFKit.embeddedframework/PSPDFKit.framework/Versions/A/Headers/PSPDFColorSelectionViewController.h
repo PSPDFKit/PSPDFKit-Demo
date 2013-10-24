@@ -58,10 +58,6 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 /// Helper that generates a color array from a saved plist. See PSPDFKit.bundle for examples.
 + (NSArray *)colorsFromPaletteURL:(NSURL *)paletteURL addDarkenedVariants:(BOOL)darkenedVariants;
 
-/// Lazily evaluated. Set arrays of colors to change the default picker style.
-/// Will reset to default if set to nil.
-+ (void)setDefaultColorArrays:(NSArray *)defaultColorArrays;
-
 /// Initialize with array of colors.
 - (id)initWithColors:(NSArray *)colors;
 
