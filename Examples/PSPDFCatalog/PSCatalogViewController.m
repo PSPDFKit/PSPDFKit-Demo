@@ -2361,10 +2361,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Restore state as it was before.
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
-        PSC_IF_IOS7_OR_GREATER(self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;)
-        PSC_IF_IOS7_OR_GREATER(self.navigationController.toolbar.tintColor = UIColor.blackColor;)
-        PSC_IF_IOS7_OR_GREATER(self.navigationController.view.tintColor = UIColor.whiteColor;)
+        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
+                               self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
+                               self.navigationController.toolbar.tintColor = UIColor.blackColor;
+                               self.navigationController.view.tintColor = UIColor.whiteColor;
+                               [[UITextField appearance] setTintColor:UIColor.pspdfColor];
+                               [[UITextView  appearance] setTintColor:UIColor.pspdfColor];)
         self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
