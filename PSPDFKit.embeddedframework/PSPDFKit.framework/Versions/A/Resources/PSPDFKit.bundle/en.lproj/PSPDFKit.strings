@@ -156,8 +156,7 @@
 "Text" = "Text";
 "Drawing Color" = "Drawing Color";
 "Delete Note" = "Delete Note";
-"Delete Highlight" = "Delete Highlight";
-"Delete Free Text" = "Delete Text";
+"Remove Note" = "Remove Note";
 "%@ could not be found." = "%@ could not be found.";
 "Photo Library" = "Photo Library";
 "Camera" = "Camera";
