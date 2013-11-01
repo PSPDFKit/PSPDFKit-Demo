@@ -18,4 +18,7 @@
 
 + (PSPDFDocument *)sampleDocumentWithName:(NSString *)name;
 
+// Generates a test PDF.
++ (PSPDFDocument *)temporaryDocumentWithString:(NSString *)string;
+
 @end
