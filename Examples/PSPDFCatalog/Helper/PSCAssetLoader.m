@@ -18,4 +18,13 @@
     return document;
 }
 
++ (PSPDFDocument *)temporaryDocumentWithString:(NSString *)string {
+    NSMutableData *pdfData = [NSMutableData new];
+    UIGraphicsBeginPDFContextToData(pdfData, CGRectMake(0.f, 0.f, 210.f*3, 297.f*3), nil);
+    UIGraphicsBeginPDFPage();
+    [string drawAtPoint:CGPointMake(20.f, 20.f) withAttributes:nil];
+    UIGraphicsEndPDFContext();
+    return [PSPDFDocument documentWithData:pdfData];
+}
+
 @end

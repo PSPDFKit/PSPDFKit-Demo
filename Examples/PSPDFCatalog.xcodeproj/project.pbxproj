@@ -186,7 +186,6 @@
 		9AA5BDFF180FEB10003A3865 /* PSCPSPDFViewControllerCustomizationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BDFE180FEB10003A3865 /* PSCPSPDFViewControllerCustomizationExample.m */; };
 		9AA5BE02180FEB27003A3865 /* PSCTextExtractionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */; };
 		9AA5BE05180FEB58003A3865 /* PSCStoryboardsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */; };
-		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -484,8 +483,6 @@
 		9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTextExtractionExample.m; sourceTree = "<group>"; };
 		9AA5BE03180FEB58003A3865 /* PSCStoryboardsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStoryboardsExample.h; sourceTree = "<group>"; };
 		9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardsExample.m; sourceTree = "<group>"; };
-		8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGalleryExample.h; sourceTree = "<group>"; };
-		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
