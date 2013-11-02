@@ -268,7 +268,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)addMagazinesToStore:(NSArray *)magazines {
-    // filter out magazines that are already in array
+    // Filter out magazines that are already in array.
     NSMutableArray *newMagazines = [NSMutableArray arrayWithArray:magazines];
     for (PSCMagazine *newMagazine in magazines) {
         for (PSCMagazineFolder *folder in self.magazineFolders) {
@@ -277,14 +277,13 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         }
     }
 
-    if ([newMagazines count] > 0) {
+    if (newMagazines.count > 0) {
         id<PSCStoreManagerDelegate> delegate = self.delegate;
 
         [delegate magazineStoreBeginUpdate];
 
         for (PSCMagazine *magazine in magazines) {
             PSCMagazineFolder *folder = [self addMagazineToFolder:magazine];
-
 
             // folder fresh or updated?
             if (folder.magazines.count == 1) {
@@ -295,7 +294,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
             [delegate magazineStoreMagazineAdded:magazine];
         }
-
         [delegate magazineStoreEndUpdate];
 
         // update newsstand icon
