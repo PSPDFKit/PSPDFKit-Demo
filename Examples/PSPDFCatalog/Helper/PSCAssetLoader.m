@@ -24,7 +24,9 @@
     UIGraphicsBeginPDFPage();
     [string drawAtPoint:CGPointMake(20.f, 20.f) withAttributes:nil];
     UIGraphicsEndPDFContext();
-    return [PSPDFDocument documentWithData:pdfData];
+    PSPDFDocument *document = [PSPDFDocument documentWithData:pdfData];
+    document.title = string;
+    return document;
 }
 
 @end
