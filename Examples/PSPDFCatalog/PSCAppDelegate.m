@@ -95,6 +95,8 @@
         [self.catalog popToRootViewControllerAnimated:NO];
         [self.catalog pushViewController:pdfController animated:NO];
         return YES;
+    }else if ([launchURL.scheme.lowercaseString isEqualToString:@"pspdfcatalog"]) {
+        [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     }
     return NO;
 }
