@@ -22,7 +22,7 @@
     NSMutableData *pdfData = [NSMutableData new];
     UIGraphicsBeginPDFContextToData(pdfData, CGRectMake(0.f, 0.f, 210.f*3, 297.f*3), nil);
     UIGraphicsBeginPDFPage();
-    [string drawAtPoint:CGPointMake(20.f, 20.f) withAttributes:nil];
+    [string drawAtPoint:CGPointMake(20.f, 20.f) withFont:nil];
     UIGraphicsEndPDFContext();
     PSPDFDocument *document = [PSPDFDocument documentWithData:pdfData];
     document.title = string;
