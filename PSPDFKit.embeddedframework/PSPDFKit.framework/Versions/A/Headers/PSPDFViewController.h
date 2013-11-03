@@ -103,11 +103,10 @@ typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
 };
 
 /// Menu options when text is selected on this document.
-/// The "Define" sheet on iOS 7 now contains an option for Wikipedia and also returns YES for any string when using `[UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:]` - thus Define will be always visible.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
     PSPDFTextSelectionMenuActionSearch              = 1 << 0, /// Allow search from selected text.
-    PSPDFTextSelectionMenuActionDefine              = 1 << 1, /// Starting with iOS 7, this will also offer Wikipedia in the controller.
-    PSPDFTextSelectionMenuActionWikipediaAsFallback = 1 << 2, /// Only displayed if Define fails/is missing. Ignored as of iOS 7.
+    PSPDFTextSelectionMenuActionDefine              = 1 << 1, /// Will show the embedded dictionary (UIReferenceLibraryViewController) if the selected word is available. (Note: This will always be displayed in iOS 7.0.0 and has been fixed in iOS 7.0.3)
+    PSPDFTextSelectionMenuActionWikipediaAsFallback = 1 << 2, /// Only displayed if Define fails/is missing.
     PSPDFTextSelectionMenuActionAll                 = NSUIntegerMax
 };
 
