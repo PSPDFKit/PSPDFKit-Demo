@@ -21,7 +21,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodePageInvalid = 100,
     PSPDFErrorCodeUnableToOpenPDF = 200,
     PSPDFErrorCodeUnableToGetPageReference = 210,
-    PSPDFErrorCodeUnableToGetStream = 220,
+    PSPDFErrorCodeUnableToGetStream = 211,
     PSPDFErrorCodePageRenderSizeIsEmpty = 220,
     PSPDFErrorCodePageRenderClipRectTooLarge = 230,
     PSPDFErrorCodePageRenderGraphicsContextNil = 240,

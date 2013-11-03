@@ -80,6 +80,10 @@
 // Used in iOS 5/6 when there's no dictionary entry. Not used in iOS 7 as Define has it's own Wikipedia link there.
 - (UIViewController *)presentWikipediaBrowserForSelectedText;
 
+// Forwards to [UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:term]
+// If you don't like the small delay this sometimes requires (due to XPC), return NO or YES here.
+- (BOOL)dictionaryHasDefinitionForTerm:(NSString *)term;
+
 @end
 
 @interface PSPDFTextSelectionView (SubclassingHooks)
