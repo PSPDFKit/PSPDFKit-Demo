@@ -20,10 +20,30 @@
 // If `databasePath` is nil, a default path will be used.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath;
 
-// Associated documentProvider.
+// Associated `documentProvider`.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
 // Database path/filename.
 @property (nonatomic, copy, readonly) NSString *databasePath;
+
+@end
+
+@interface PSCCoreDataAnnotationProvider (Advanced)
+
+// Allows to insert a number of new pages; moving the backing store up for length x.
+// @note: Those modification methods require a controller reload as they work directly on the backing store.
+- (void)insertPagesAtRange:(NSRange)pageRange;
+
+// Will delete a number of pages.
+// @note: Those modification methods require a controller reload as they work directly on the backing store.
+- (void)deletePagesInRange:(NSRange)pageRange;
+
+@end
+
+@interface PSCCoreDataAnnotationProvider (SubclassingHooks)
+
+// Allow to map an annotation to a custom page.
+// By default simply returns `annotation.page`.
+- (NSUInteger)pageForAnnotation:(PSPDFAnnotation *)annotation;
 
 @end
