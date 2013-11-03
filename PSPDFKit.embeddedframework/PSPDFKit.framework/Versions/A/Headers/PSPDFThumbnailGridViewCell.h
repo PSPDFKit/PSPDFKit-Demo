@@ -42,7 +42,7 @@
 @end
 
 
-@interface PSPDFThumbnailGridViewCell (Subclassing)
+@interface PSPDFThumbnailGridViewCell (SubclassingHooks)
 
 /// Internal image view.
 @property (nonatomic, strong) UIImageView *imageView;

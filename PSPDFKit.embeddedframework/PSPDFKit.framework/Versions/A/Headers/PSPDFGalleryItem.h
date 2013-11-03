@@ -21,7 +21,10 @@
 + (NSArray *)itemsFromJSONData:(NSData *)data error:(NSError **)error;
 
 /// Create an item from a given dictionary. The dictionary will usually be parsed JSON.
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+- (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+
+/// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` is optional.
+- (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption;
 
 /// The caption of the item.
 @property (nonatomic, copy, readonly) NSString *caption;

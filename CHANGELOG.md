@@ -2,6 +2,25 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.1.4 - 3/Nov/2013__
+
+*  Improves rendering of line endings in the selected state.
+*  Don't show an "external application" dialog if our own app responds to the URL scheme in question.
+*  The PSPDFGallery can now better deal with a single image and will auto-generate the appropriate manifest if a PSPDFLinkAnnotation points to the image.
+*  Allows overriding of PSPDFColorSelectionViewController from within the inspector.
+*  Allows fine-tuning of the dictionary lookup via PSPDFTextSelectionView's new dictionaryHasDefinitionForTerm: method.
+*  Enabling/Disabling the eraser feature no longer flickers the ink annotations.
+*  The eraser now respects alpha settings of the ink annotations.
+*  While erasing, Undo/Redo now work as expected.
+*  Special-cased clearColor for the `fillColor` annotation property when using PSPDFStyleManager. (fill can't have alpha; so previously this would give you a black fill - now it's transparent)
+*  Allow parsing for less common color definitions in appearance strings (k and g)
+*  Forms: Don't draw background when we have an AP stream for form buttons.
+*  Forms: Buttons that define an AP-Stream no longer also have a blue background.
+*  Forms: Buttons(Check boxes, radio buttons) now show a touch-down state when tapping them.
+*  Forms: No longer flickers when the element is delselected.
+*  Fixes a potential crash in the selection view when we select a free text annotation with zero width.
+*  Fixes an infinite loop when searching certain characters.
+
 __v3.1.3 - 24/Oct/2013__
 
 *  PSPDFKit now requires the CoreTelephony.framework (this will be added automatically if you use the PSPDFKit.xcconfig file)

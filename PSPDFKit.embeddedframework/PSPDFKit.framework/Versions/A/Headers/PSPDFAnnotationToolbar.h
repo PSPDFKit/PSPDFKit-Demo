@@ -160,6 +160,10 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 // If set to nil, this will load from pdfController.document.editableAnnotationTypes.allObjects.
 @property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
 
+// The Undo/Redo buttons.
+@property (nonatomic, strong, readonly) UIBarButtonItem *undoButtonItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem *redoButtonItem;
+
 @end
 
 @interface PSPDFAnnotationToolbar (SubclassingHooks)

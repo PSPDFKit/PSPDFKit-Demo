@@ -260,6 +260,10 @@
  */
 - (BOOL)unlockWithPassword:(NSString *)password;
 
+/// Will re-lock a document if it has a password set.
+/// @warning Make sure it is not currently displayed anywhere or call `reloadData` on the pdfController afterwards.
+- (void)lock;
+
 /// Set a base password to be used for all files in this document (if the document is PDF encrypted).
 /// Relays the password to all current and future documentProviders.
 /// The password will be ignored if the document is not password protected.
@@ -583,7 +587,7 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 
 /// Register a block that is called in didCreateDocumentProvider.
 /// @warning This needs to be set very early, before the document providers have been created (thus, before accessing any properties like pageCount or setting it to the view controller)
-- (void)setDidCreateDocumentProviderBlock:(void (^)(PSPDFDocumentProvider *documentProvider))block;
+@property (nonatomic, copy) void (^didCreateDocumentProviderBlock)(PSPDFDocumentProvider *documentProvider);
 
 /// Can be overridden to provide custom text. Defaults to nil.
 /// if this returns nil for a site, we'll try to extract text ourselves.
