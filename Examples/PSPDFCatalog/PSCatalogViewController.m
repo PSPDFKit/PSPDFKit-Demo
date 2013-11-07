@@ -1139,7 +1139,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
     
-    // Test immensely large PDF.
+    // Test rotated PDF (90, 180, 270, 0 deg).
     [testSection addContent:[PSContent contentWithTitle:@"Rotated PDF pages" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_RotatedPages.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
