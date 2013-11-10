@@ -125,7 +125,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rotated_Notes.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Wartungsformular.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
