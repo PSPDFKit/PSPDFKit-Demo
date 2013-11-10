@@ -13,6 +13,7 @@
 #import "PSPDFAbstractTextRenderingFormElement.h"
 
 /// The text field flags. Most flags aren't currently supported.
+/// Query `fieldFlags` from the `PSPDFFormElement` base class.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextFieldFlag) {
     PSPDFTextFieldFlagMultiline       = 1 << (13-1),
     PSPDFTextFieldFlagPassword        = 1 << (14-1),
@@ -21,6 +22,13 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextFieldFlag) {
     PSPDFTextFieldFlagDoNotScroll     = 1 << (24-1),
     PSPDFTextFieldFlagComb            = 1 << (25-1),
     PSPDFTextFieldFlagRichText        = 1 << (26-1)
+};
+
+typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
+    PSPDFTextInputFormatNormal,
+    PSPDFTextInputFormatNumber,
+    PSPDFTextInputFormatDate,
+    PSPDFTextInputFormatTime
 };
 
 /// Text field form element.
@@ -34,5 +42,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextFieldFlag) {
 
 /// If set, the field is intended for entering a secure password that should not be echoed visibly to the screen.
 - (BOOL)isPassword;
+
+/// The input format. Some forms are number/date/time specific.
+@property (nonatomic, assign) PSPDFTextInputFormat inputFormat;
+
+/// The validation format string. (WIP!)
+@property (nonatomic, strong) NSString *formatString;
 
 @end

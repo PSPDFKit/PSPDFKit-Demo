@@ -104,6 +104,6 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
 - (void)reload:(id)sender;
 - (void)stop:(id)sender;
 - (void)action:(id)sender;
-- (void)doneButtonClicked:(id)sender;
+- (void)done:(id)sender;
 
 @end

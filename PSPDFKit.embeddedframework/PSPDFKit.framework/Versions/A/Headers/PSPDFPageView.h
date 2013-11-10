@@ -26,9 +26,7 @@
 #import "PSPDFCache.h"
 
 // The page view delegate, connected with the parent scrollview.
-@protocol PSPDFPageViewDelegate <PSPDFOverridable>
-
-@end
+@protocol PSPDFPageViewDelegate <PSPDFOverridable> @end
 
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
@@ -54,9 +52,6 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 /// Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.
 - (void)prepareForReuse;
-
-@property (nonatomic, weak) id <PSPDFPageViewDelegate> delegate;
-
 
 /// @name Internal views and rendering
 
@@ -310,6 +305,9 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 // Returns annotations that we could tap on. (checks against editableAnnotationTypes)
 // The point will have a variance of a few pixels to improve touch recognition.
 - (NSArray *)tappableAnnotationsAtPoint:(CGPoint)viewPoint;
+
+// Same as above, but will be called when we're detecting a long press.
+- (NSArray *)tappableAnnotationsForLongPressAtPoint:(CGPoint)viewPoint;
 
 // Can be used for manual tap forwarding.
 - (BOOL)singleTappedAtViewPoint:(CGPoint)viewPoint;

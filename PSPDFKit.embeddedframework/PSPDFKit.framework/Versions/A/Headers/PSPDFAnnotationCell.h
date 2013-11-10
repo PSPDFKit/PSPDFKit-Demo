@@ -18,6 +18,9 @@
 /// Represents an annotation.
 @interface PSPDFAnnotationCell : PSPDFNonAnimatingTableViewCell
 
+/// Calculates the size.
++ (CGFloat)heightForAnnotation:(PSPDFAnnotation *)annotation constrainedToSize:(CGSize)constrainedToSize;
+
 /// The annotation that will be displayed.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 

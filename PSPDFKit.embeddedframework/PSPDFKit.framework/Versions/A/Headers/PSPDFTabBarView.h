@@ -32,8 +32,11 @@
 /// Minimum tab width. Defaults to 0.
 @property (nonatomic, assign) CGFloat minTabWidth;
 
-@property (nonatomic, assign) IBOutlet id<PSPDFTabBarViewDelegate> delegate;
-@property (nonatomic, assign) IBOutlet id<PSPDFTabBarViewDataSource> dataSource;
+/// The tab bar delegate.
+@property (nonatomic, weak) IBOutlet id<PSPDFTabBarViewDelegate> delegate;
+
+/// The tab bar data source.
+@property (nonatomic, weak) IBOutlet id<PSPDFTabBarViewDataSource> dataSource;
 
 @end
 
@@ -45,14 +48,13 @@
 
 @end
 
-/// The tab bar delegate.
 @protocol PSPDFTabBarViewDelegate <NSObject>
+
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectTabAtIndex:(NSUInteger)index;
 
 - (void)tabBarView:(PSPDFTabBarView *)tabBarView didSelectCloseButtonOfTabAtIndex:(NSUInteger)index;
 @end
 
-/// The tab bar dataSource.
 @protocol PSPDFTabBarViewDataSource <NSObject>
 
 /// Returns the number of tabs that should be displayed.

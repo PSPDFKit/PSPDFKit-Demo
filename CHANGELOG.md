@@ -2,6 +2,38 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.2.0 - 10/Nov/2013__
+
+*  Lots of improvements around sound annotations! Serialization, better selection, context menus, customization.
+*  PSPDFAnnotationTableViewController: Dynamically calculate cell height and show multiple lines of description per cell.
+*  YouTube and Web views now automatically reload themselves when a reachability change is detected.
+*  Long-Pressing on text markup will now allow text selection and not select the markup (highlight) annotation. This allows to sub-select text that is already selected in another way.
+*  Greatly improves handling of (rotated) FreeText annotations and rotated pages.
+*  The search bar is now attached to the top on iPhone, to better match iOS 7 style.
+*  Rendered images are now more more likely to be cached to disk, resulting in less work overall.
+*  Improves thumbnail scroll performance, especially on the iPad 1.
+*  Improvements to the text parser, now can parse another category of documents that use Font Programs to define their glyphs.
+*  Form Check Box Elements now render the AP stream by default and fall back to internal rendering if no stream was found.
+*  Form background colors are now dynamically parsed and displayed instead of the default light blue.
+*  Improves support for various Forms that define the form element across multiple objects.
+*  Improves the touch-down-highlight for form elements.
+*  Allows overriding of `PSPDFTextSelectionView`.
+*  Improves text extraction for highlight annotations when there are multiple overlapping rects.
+*  Fixes an issue where the text selection wasn't properly updated on rotation.
+*  Fixes a potential deadlock when async saving was called manually while the view controller was popped from the screen which also invokes a save.
+*  Fixes an issue where the tab controls of `PSPDFTabbedViewController` wouldn't respect the `minTabWidth` property.
+*  Fixes an issue with rendering annotations with overlapping fill-areas in UIKit legacy mode.
+*  Fixes an issue where certain UIActionSheets on iOS 6 could be mis-placed.
+*  Fixes an issue with getting images for iOS 6 when the PSPDFKit.bundle is in a non-standard location.
+*  Fixes a potential exception when a PDF contained an annotation with a malformed bounding box.
+*  Fixes a potential exception when a free text annotation of size zero was created and subsequently edited.
+*  Fixes an issue with saving annotation in certain documents that previously produced warnings.
+*  Fixes a potential crash when loading annotations from the disk store while a save filter is active.
+*  Fixes an issue where under rare conditions flattened notes could be rendered mirrored.
+*  Fixes a rare condition where the cache could get into a state where it no longer pre-renders document pages.
+*  Titanium: The plugin is now simply named com.pspdfkit (from com.pspdfkit.source)
+*  Titanium: editableAnnotationTypes can now be set in `documentOptions`.
+
 __v3.1.4 - 3/Nov/2013__
 
 *  Improves rendering of line endings in the selected state.
