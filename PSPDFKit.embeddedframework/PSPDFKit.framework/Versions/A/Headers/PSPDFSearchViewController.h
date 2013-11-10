@@ -64,7 +64,7 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @property (nonatomic, assign) BOOL showsCancelButton;
 
 /// Search bar for controller.
-/// You can change attributes (e.g. barStyle) but don't change the delegate!
+/// @warning You can change attributes (e.g. barStyle) but don't change the delegate!
 @property (nonatomic, strong, readonly) UISearchBar *searchBar;
 
 /// Current search status. KVO observable.

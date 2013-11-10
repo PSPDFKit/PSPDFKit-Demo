@@ -43,7 +43,8 @@
 /// Shows a list of choices for the choice form element.
 @interface PSPDFChoiceEditorViewController : PSPDFBaseTableViewController
 
-- (instancetype)initChoiceEditorViewControllerWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
+/// Designated initializer
+- (id)initChoiceEditorViewControllerWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
 
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDataSource> dataSource;
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDelegate> delegate;

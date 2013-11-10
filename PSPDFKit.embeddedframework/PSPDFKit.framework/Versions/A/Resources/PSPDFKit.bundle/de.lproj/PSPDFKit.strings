@@ -256,6 +256,11 @@
 "Merge files" = "Dateien zusammenführen";
 
 // sound annotations
+"Play" = "Abspielen";
+"Pause" = "Pause";
+"Pause Recording" = "Aufnahme pausieren";
+"Continue Recording" = "Aufnahme fortsetzen";
+"Finish Recording" = "Aufnahme abschließen";
 "Audio Problem" = "Audio Problem";
 "Mic Permission Not Granted" = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden, Zugang zum Mikrofon wurde verweigert.";

@@ -73,4 +73,8 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// Used to enter or exit the fullscreen mode with or without animation.
 - (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
 
+/// The current zoom scale. Only valid when displayed as an embedded gallery within a PDF document.
+/// Defaults to 1.0.
+@property (nonatomic, assign) CGFloat zoomScale;
+
 @end
