@@ -36,7 +36,4 @@
 /// Encoding of the sound stream.
 @property (nonatomic, copy, readonly) NSString *encoding;
 
-- (NSData *)soundStreamData;
-- (void)setStreamPropertiesWithDescription:(NSDictionary *)streamDescription;
-
 @end

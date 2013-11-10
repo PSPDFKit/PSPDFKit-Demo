@@ -78,7 +78,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 @property (nonatomic, strong) id defaultValue;
 
 /// (Required if the appearance dictionary AP contains one or more subdictionaries; PDF 1.2) The annotation’s appearance state, which selects the applicable appearance stream from an appearance subdictionary.
-@property (nonatomic, strong) NSString *appearanceState;
+@property (nonatomic, copy) NSString *appearanceState;
 
 /// The value which the field is to export when submitted. Can return either a string or an array of strings in the case of multiple selection.
 @property (nonatomic, readonly) id exportValue;
@@ -110,13 +110,24 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// The T entry in the field dictionary (see Table 220) holds a text string defining the field’s partial field name. The fully qualified field name is not explicitly defined but shall be constructed from the partial field names of the field and all of its ancestors. For a field with no parent, the partial and fully qualified names are the same. For a field that is the child of another field, the fully qualified name shall be formed by appending the child field’s partial name to the parent’s fully qualified name, separated by a PERIOD (2Eh) — PDF Spec
 - (NSString *)fullyQualifiedFieldName;
 
+@end
+
+@interface PSPDFFormElement (SubclassingHooks)
+
 /// You should implement this method in subclasses to handle tap on the form element: change state, show visual editor.
 - (BOOL)handleTapInView:(PSPDFPageView *)pdfPageView;
 
-- (void)appendCommonFormElementPDFData:(NSMutableData *)pdfData;
+// Draws the form highlight.
+- (void)drawHighlightInContext:(CGContextRef)context;
 
-/// Appends value of a field in PDF syntax. It must be implemented by children of the class.
+@end
+
+@interface PSPDFFormElement (Private)
+
+// Appends value of a field in PDF syntax. It must be implemented by children of the class.
 - (void)appendFieldValuePDFData:(NSMutableData *)pdfData;
+
+- (void)appendCommonFormElementPDFData:(NSMutableData *)pdfData;
 
 - (void)resetWithAction:(PSPDFResetFormAction *)action;
 

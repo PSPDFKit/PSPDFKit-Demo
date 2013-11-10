@@ -258,6 +258,11 @@
 "Merge files" = "Merge files";
 
 // sound annotations
+"Play" = "Play";
+"Pause" = "Pause";
+"Pause Recording" = "Pause Recording";
+"Continue Recording" = "Continue Recording";
+"Finish Recording" = "Finish Recording";
 "Audio Problem" = "Audio Problem";
 "Mic Permission Not Granted" = "Mic Permission Not Granted";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";

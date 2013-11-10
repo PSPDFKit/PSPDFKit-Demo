@@ -78,3 +78,10 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 @property (nonatomic, copy) NSString *fileFormat;
 
 @end
+
+@interface PSPDFDiskCache (Private)
+
+// Returns YES when the writer queue has the maximum amount of operations already queued up and waiting.
+- (BOOL)writeQueueIsFull;
+
+@end

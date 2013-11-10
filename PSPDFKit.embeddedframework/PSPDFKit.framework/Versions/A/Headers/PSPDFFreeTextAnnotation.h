@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 - (void)sizeToFit;
 
 /// Returns the size of the annotation with respect to the given constraints. If you don't want to
-/// constrain the height or width, use CGFLOAT_MAX for that value. The suggested size takes the
+/// constrain the height or width, use CGFLOAT_MAX for that value. The suggested size does not take the
 /// rotation of the annotation into account.
 - (CGSize)sizeWithConstraints:(CGSize)constraints;
 

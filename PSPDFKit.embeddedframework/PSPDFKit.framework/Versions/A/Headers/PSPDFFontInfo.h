@@ -12,7 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFCMap;
+@class PSPDFCMap, PSPDFFontFileDescriptor;
 
 typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
     PSPDFFontInfoTypeSimple    = 1 << (1-1),
@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
     PSPDFCMap *_toUnicodeMap;
     PSPDFCMap *_fontCMap;
     PSPDFCMap *_ucsCMap;
+    PSPDFFontFileDescriptor *_fontFileDescriptor;
     CGFloat *_widths;
     CGFloat _defaultWidth;
     size_t _widthSize;
@@ -55,6 +56,9 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 
 /// CMap that is optionally provided for converting text strings to unicode
 @property (nonatomic, strong, readonly) PSPDFCMap *toUnicodeMap;
+
+/// Characters encoded in the Font File Descriptor.
+@property (nonatomic, strong, readonly) PSPDFFontFileDescriptor *fontFileDescriptor;
 
 /// CMap for the given encoding name
 @property (nonatomic, strong, readonly) PSPDFCMap *fontCMap;

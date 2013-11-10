@@ -46,6 +46,9 @@
 /// Called initially and when the parent page size is changed. (e.g. rotation)
 - (void)didChangePageBounds:(CGRect)bounds;
 
+/// Called when the user taps on an annotation and the tap wasn't processed otherwise.
+- (void)didTapAtPoint:(CGPoint)point;
+
 /// A weak reference to the view controller responsible for this view.
 @property (nonatomic, weak) UIViewController *viewController;
 
