@@ -15,7 +15,6 @@
 #import "PSCKioskPDFViewController.h"
 #import "PSCSettingsController.h"
 #import "PSCShadowView.h"
-#import "SDURLCache.h"
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
@@ -52,17 +51,6 @@
 - (id)init {
     if ((self = [super init])) {
         self.title = _(@"PSPDFKit Kiosk Example");
-
-        // one-time init stuff
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            // setup disk saving url cache
-            SDURLCache *URLCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024   // 1MB mem cache
-                                                                 diskCapacity:1024*1024*5 // 5MB disk cache
-                                                                     diskPath:[SDURLCache defaultCachePath]];
-            URLCache.ignoreMemoryOnlyStoragePolicy = YES;
-            [NSURLCache setSharedURLCache:URLCache];
-        });
 
         // custom back button for smaller wording
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
