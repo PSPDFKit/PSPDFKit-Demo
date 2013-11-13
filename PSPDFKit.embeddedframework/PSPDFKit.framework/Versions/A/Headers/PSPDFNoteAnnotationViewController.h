@@ -57,7 +57,7 @@
 /// Will be ignored if allowEditing is NO or annotation type is not PSPDFAnnotationTypeNote.
 @property (nonatomic, assign) BOOL showColorAndIconOptions;
 
-/// Shows the copy button. By default only enabled for Note annotations. (where we skip the menu controller).
+/// Shows the copy button. Disabled by default for space reasons (and because copying text is easy)
 @property (nonatomic, assign) BOOL showCopyButton;
 
 /// Allow to customize the textView. (font etc)
