@@ -140,7 +140,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 #pragma mark - PSCCustomTouchScrollView
 
 @implementation PSCCustomTouchScrollView {
-    CGPoint _longPressStartPoint;
+    CGPoint _startPoint;
 }
 
 - (void)longPress:(UILongPressGestureRecognizer *)recognizer {
@@ -150,13 +150,12 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
     PSPDFViewController *pdfController = self.pdfController;
     if (PSCIsStampModeEnabledForPDFController(pdfController)) {
         if (recognizer.state == UIGestureRecognizerStateBegan) {
-            _longPressStartPoint = [recognizer locationInView:self];
+            _startPoint = [recognizer locationInView:self];
         }
         else if (recognizer.state == UIGestureRecognizerStateEnded) {
             // Calculate distance from starting point.
             CGPoint endPoint = [recognizer locationInView:self];
-            CGFloat distance = fmax(fabs(_longPressStartPoint.x - endPoint.x),
-                                    fabs(_longPressStartPoint.y - endPoint.y));
+            CGFloat distance = (CGFloat)fmax(fabs(_startPoint.x - endPoint.x), fabs(_startPoint.y - endPoint.y));
             if (distance < 5) {
                 for (PSPDFPageView *pageView in pdfController.visiblePageViews) {
                     if (PSCRemoveStampAnnotationsAtPage(pageView, [recognizer locationInView:pageView])) break;
