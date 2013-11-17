@@ -115,6 +115,7 @@
 		78BCC69A15D31BF2006735A9 /* big_buck_bunny.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */; };
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
+		78BEE6F9183973CF007345B7 /* PSCDefaultStampExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */; };
 		78C6841E16F7E5230080427B /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C6841C16F7E5230080427B /* search.png */; };
 		78C6841F16F7E5230080427B /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C6841D16F7E5230080427B /* search@2x.png */; };
 		78C6842A16F7E5330080427B /* PSCDropboxDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6842316F7E5330080427B /* PSCDropboxDocumentSelectorController.m */; };
@@ -351,6 +352,8 @@
 		78BCC69715D31BF2006735A9 /* big_buck_bunny.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_buck_bunny.mp4; sourceTree = "<group>"; };
 		78BCC69815D31BF2006735A9 /* exampleimage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = exampleimage.jpg; sourceTree = "<group>"; };
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
+		78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDefaultStampExample.m; sourceTree = "<group>"; };
+		78BEE6F8183973CF007345B7 /* PSCDefaultStampExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDefaultStampExample.h; sourceTree = "<group>"; };
 		78C6841C16F7E5230080427B /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		78C6841D16F7E5230080427B /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		78C6842216F7E5330080427B /* PSCDropboxDocumentSelectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDropboxDocumentSelectorController.h; sourceTree = "<group>"; };
@@ -896,6 +899,8 @@
 				9AA5BDFB180FEAF1003A3865 /* PSCPSPDFDocumentDataProvidersExample.m */,
 				9AA5BE00180FEB27003A3865 /* PSCTextExtractionExample.h */,
 				9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */,
+				78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */,
+				78BEE6F8183973CF007345B7 /* PSCDefaultStampExample.h */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1289,6 +1294,7 @@
 				7897BD651721368900236576 /* PSCAppearancePDFViewController.m in Sources */,
 				7876ED9617246BC9002422BE /* PSCTopScrobbleBar.m in Sources */,
 				78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */,
+				78BEE6F9183973CF007345B7 /* PSCDefaultStampExample.m in Sources */,
 				78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */,
 				78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */,
 				78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */,
