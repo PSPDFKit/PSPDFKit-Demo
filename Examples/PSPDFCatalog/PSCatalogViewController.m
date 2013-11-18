@@ -157,7 +157,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" block:^{
-        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"Inbox" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
+        // Add all documents in the Documents folder and subfolders (e.g. Inbox from Open In... feature)
+        PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
