@@ -1,5 +1,5 @@
 //
-//  PSCPDFAnnotationsExample.m
+//  PSCAnnotationsExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
@@ -8,14 +8,14 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPDFAnnotationsExample.h"
+#import "PSCAnnotationsExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCSaveAsPDFViewController.h"
 
-@interface PSCPDFAnnotationsWriteAnnotationsIntoThePDFExample () <PSPDFDocumentDelegate> {
+@interface PSCAnnotationsWriteAnnotationsIntoThePDFExample () <PSPDFDocumentDelegate> {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsWriteAnnotationsIntoThePDFExample
+@implementation PSCAnnotationsWriteAnnotationsIntoThePDFExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -79,7 +79,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsPDFAnnotationWritingWithNSDataExample
+@implementation PSCAnnotationsPDFAnnotationWritingWithNSDataExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -103,7 +103,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsVerticalAlwaysVisibleAnnotationBarExample
+@implementation PSCAnnotationsVerticalAlwaysVisibleAnnotationBarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -128,7 +128,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsCustomAnnotationsWithMultipleFilesExample
+@implementation PSCAnnotationsCustomAnnotationsWithMultipleFilesExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -165,7 +165,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsProgramaticallyCreateAnnotationsExample
+@implementation PSCAnnotationsProgramaticallyCreateAnnotationsExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -205,7 +205,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsAnnotationLinkstoExternalDocumentsExample
+@implementation PSCAnnotationsAnnotationLinkstoExternalDocumentsExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -228,7 +228,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsSaveAsForAnnotationEditingExample
+@implementation PSCAnnotationsSaveAsForAnnotationEditingExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -253,7 +253,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsXFDFAnnotationProviderExample
+@implementation PSCAnnotationsXFDFAnnotationProviderExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -308,7 +308,7 @@
 
 @end
 
-@implementation PSCPDFAnnotationsXFDFWritingExample
+@implementation PSCAnnotationsXFDFWritingExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
