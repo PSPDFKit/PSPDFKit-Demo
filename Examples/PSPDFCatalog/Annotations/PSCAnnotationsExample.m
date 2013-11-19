@@ -39,7 +39,6 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
     NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Forms_V-Kg1-Antrag.pdf"];
