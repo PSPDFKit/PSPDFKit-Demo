@@ -25,15 +25,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    
-    UIViewController *controller = nil;
-    @try {
-        // will throw an exception if the file MainStoryboard.storyboard is missing
-        controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
-    }
-    @catch (NSException *exception) {
-        [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"You need to manually add the file MainStoryboard.storyboard." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-    }
+    UIViewController *controller = [[UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil] instantiateInitialViewController];
     return controller;
 }
 
