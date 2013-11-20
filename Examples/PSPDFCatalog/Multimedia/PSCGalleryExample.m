@@ -29,14 +29,18 @@
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     // Dynamically add gallery annotation.
-    PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
-    CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
-    CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400, 300);
-    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
-    [document addAnnotations:@[galleryAnnotation]];
-    
+    for (NSUInteger pageIndex = 0; pageIndex < document.pageCount; pageIndex++) {
+        PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
+        galleryAnnotation.absolutePage = pageIndex;
+        CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
+        CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
+        CGSize size = CGSizeMake(400, 300);
+        galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+        [document addAnnotations:@[galleryAnnotation]];
+    }
+
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.pageTransition = PSPDFPageTransitionCurl;
     return pdfController;
 }
 
