@@ -79,8 +79,8 @@
                 }
 
                 // Save in the annotation cache
-                annotations = [NSArray arrayWithArray:newAnnotations];
-                self.annotationCache[@(page)] = annotations;
+                annotations = [NSArray arrayWithArray:newAnnotations]; // immutable copy
+                self.annotationCache[@(page)] = newAnnotations; // save as mutable
             }];
         }
     });
@@ -102,11 +102,9 @@ NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
 
                 // Update cache, add annotation
                 NSUInteger page = [self pageForAnnotation:annotation];
-                NSArray *cachedAnnotations = self.annotationCache[@(page)];
+                NSMutableArray *cachedAnnotations = self.annotationCache[@(page)];
                 if ([cachedAnnotations indexOfObjectIdenticalTo:annotation] == NSNotFound) {
-                    NSMutableArray *newCachedAnnotations = [NSMutableArray arrayWithArray:cachedAnnotations];
-                    [newCachedAnnotations addObject:annotation];
-                    self.annotationCache[@(page)] = newCachedAnnotations;
+                    [cachedAnnotations addObject:annotation];
                 }
             }
         }];
@@ -134,9 +132,11 @@ NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
                     [_managedObjectContext deleteObject:coreDataAnnotation];
                     [removedAnnotations addObject:annotation];
                 }
-                // Clear cache
+
+                // Update cache
                 NSUInteger page = [self pageForAnnotation:annotation];
-                [self.annotationCache removeObjectForKey:@(page)];
+                NSMutableArray *cachedAnnotations = self.annotationCache[@(page)];
+                [cachedAnnotations removeObject:annotation];
             }
         }];
     });
