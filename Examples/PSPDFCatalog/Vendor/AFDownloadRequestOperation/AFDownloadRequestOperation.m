@@ -65,12 +65,12 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
         NSParameterAssert(targetPath != nil && urlRequest != nil);
         _shouldResume = shouldResume;
 
-        // Ee assume that at least the directory has to exist on the targetPath
+        // We assume that at least the directory has to exist on the targetPath
         BOOL isDirectory;
-        if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
+        if(![NSFileManager.defaultManager fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
             isDirectory = NO;
         }
-        // \If targetPath is a directory, use the file name we got from the urlRequest.
+        // If targetPath is a directory, use the file name we got from the urlRequest.
         if (isDirectory) {
             NSString *fileName = [urlRequest.URL lastPathComponent];
             _targetPath = [NSString pathWithComponents:@[targetPath, fileName]];
@@ -104,7 +104,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 - (BOOL)updateByteStartRangeForRequest {
     BOOL isResuming = NO;
     if (self.shouldResume) {
-        unsigned long long downloadedBytes = [self fileSizeForPath:[self tempPath]];
+        unsigned long long downloadedBytes = [self fileSizeForPath:self.tempPath];
         if (downloadedBytes > 1) {
 
             // If the the current download-request's data has been fully downloaded, but other causes of the operation failed (such as the inability of the incomplete temporary file copied to the target location), next, retry this download-request, the starting-value (equal to the incomplete temporary file size) will lead to an HTTP 416 out of range error, unless we subtract one byte here. (We don't know the final size before sending the request)
@@ -275,6 +275,10 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
     self.totalBytesReadPerDownload = 0;
     self.offsetContentLength = MAX(fileOffset, 0);
+    // Sanity-check: If file is really large, something might went wrong.
+    if (self.offsetContentLength >= NSNotFound) {
+        self.offsetContentLength = 0;
+    }
     self.totalContentLength = totalContentLength;
 
     // Truncate cache file to offset provided by server.
