@@ -12,6 +12,8 @@
 #import "PSCAssetLoader.h"
 #import <QuartzCore/QuartzCore.h>
 
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end
 @interface PSCCustomNoteViewPageView : PSPDFPageView @end
@@ -22,8 +24,8 @@
 
 @interface PSCAlternativeNoteAnnotationInterfaceExample () <PSPDFViewControllerDelegate> @end
 
-#define PSCCustomNewTintColor [UIColor colorWithRed:0.863 green:0.325 blue:0.169 alpha:1.000]
-#define PSCCustomCreatedTintColor [UIColor colorWithWhite:0.400 alpha:1.000]
+#define PSCCustomNewTintColor [UIColor colorWithRed:0.863f green:0.325f blue:0.169f alpha:1.f]
+#define PSCCustomCreatedTintColor [UIColor colorWithWhite:0.4f alpha:1.f]
 
 @implementation PSCAlternativeNoteAnnotationInterfaceExample
 
@@ -146,6 +148,7 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     noteController.sourceRect = targetRect;
     noteController.view.frame = targetRect;
     noteController.view.clipsToBounds = YES;
+
     [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
         noteController.view.frame = noteRect;
     } completion:NULL];
@@ -375,3 +378,5 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 }
 
 @end
+
+#endif
