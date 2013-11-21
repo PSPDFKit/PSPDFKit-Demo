@@ -70,7 +70,7 @@
 
 - (id)initWithLinkAnnotation:(PSPDFLinkAnnotation *)annotation {
     if ((self = [super initWithLinkAnnotation:annotation])) {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
         self.fullscreenBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
     }
     return self;
@@ -97,6 +97,7 @@
 @implementation PSCCustomGalleryContentCaptionView
 
 + (Class)layerClass {
+    // Disable gradient background.
     return [CALayer class];
 }
 
