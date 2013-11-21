@@ -47,9 +47,9 @@
 
         // The biggest challenge here isn't the clear button, but correctly updating the clear button if we actually can clear something or not.
         NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
-        [dnc addObserver:self selector:@selector(annotationsChanged:) name:PSPDFAnnotationChangedNotification object:nil];
-        [dnc addObserver:self selector:@selector(annotationsChanged:) name:PSPDFAnnotationsAddedNotification object:nil];
-        [dnc addObserver:self selector:@selector(annotationsChanged:) name:PSPDFAnnotationsRemovedNotification object:nil];
+        [dnc addObserver:self selector:@selector(annotationChangedNotification:) name:PSPDFAnnotationChangedNotification object:nil];
+        [dnc addObserver:self selector:@selector(annotationChangedNotification:) name:PSPDFAnnotationsAddedNotification object:nil];
+        [dnc addObserver:self selector:@selector(annotationChangedNotification:) name:PSPDFAnnotationsRemovedNotification object:nil];
 
         // We could also use the delegate, but this is cleaner.
         [dnc addObserver:self selector:@selector(didShowPageViewNotification:) name:PSPDFViewControllerDidShowPageViewNotification object:nil];
@@ -93,7 +93,7 @@
 #pragma mark - Notifications
 
 // If we detect annotation changes, schedule a reload.
-- (void)annotationsChanged:(NSNotification *)notification {
+- (void)annotationChangedNotification:(NSNotification *)notification {
     // Re-evaluate toolbar button
     if (self.window) {
         [self updateClearAnnotationButton];
