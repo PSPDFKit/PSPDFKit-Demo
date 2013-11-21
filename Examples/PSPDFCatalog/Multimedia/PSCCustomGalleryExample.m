@@ -11,11 +11,6 @@
 #import "PSCCustomGalleryExample.h"
 #import "PSCAssetLoader.h"
 
-#import "PSPDFGalleryViewController.h"
-#import "PSPDFGalleryContentView.h"
-#import "PSPDFGalleryScrollableContentView.h"
-#import "PSPDFGalleryContentCaptionView.h"
-
 @interface PSCCustomGalleryViewController : PSPDFGalleryViewController
 @end
 
