@@ -1,5 +1,5 @@
 //
-//  PSCTransparentGalleryExample.h
+//  PSCCustomGalleryExample.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
@@ -11,6 +11,6 @@
 #import <Foundation/Foundation.h>
 #import "PSCExample.h"
 
-@interface PSCTransparentGalleryExample : PSCExample
+@interface PSCCustomGalleryExample : PSCExample
 
 @end
