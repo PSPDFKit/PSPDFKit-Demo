@@ -145,6 +145,7 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
 
     noteController.sourceRect = targetRect;
     noteController.view.frame = targetRect;
+    noteController.view.clipsToBounds = YES;
     [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
         noteController.view.frame = noteRect;
     } completion:NULL];
