@@ -229,6 +229,17 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     [self updateNoteAnnotationImages];
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFNoteAnnotationViewControllerDelegate
+
+- (void)noteAnnotationController:(PSPDFNoteAnnotationViewController *)noteAnnotationController didDeleteAnnotation:(PSPDFAnnotation *)annotation {
+    // NOP
+}
+
+- (void)noteAnnotationController:(PSPDFNoteAnnotationViewController *)noteAnnotationController didClearContentsForAnnotation:(PSPDFAnnotation *)annotation {
+    // NOP
+}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
