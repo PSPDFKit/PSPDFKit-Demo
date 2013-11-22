@@ -11,5 +11,4 @@
 #import "PSCExample.h"
 
 @interface PSCAlternativeNoteAnnotationInterfaceExample : PSCExample
-
 @end
