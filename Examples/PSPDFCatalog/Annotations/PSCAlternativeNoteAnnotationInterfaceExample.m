@@ -308,12 +308,16 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     [UIMenuController.sharedMenuController setMenuItems:nil];
 }
 
-- (void)updateTextView {
-    [super updateTextView];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
 
     // Position the text view slightly below so we have space for the toolbar.
     CGFloat bottomOffset = _bottomToolbar ? _bottomToolbar.frame.size.height : 0.f;
     self.textView.frame = CGRectMake(0, 44.f, self.view.bounds.size.width, self.view.bounds.size.height - (_noteToolbar.bounds.size.height + bottomOffset));
+}
+
+- (void)updateTextView {
+    [super updateTextView];
 
     self.textView.font = [UIFont systemFontOfSize:20.f];
 
