@@ -1,5 +1,25 @@
 [
   {
+    "contentURL":"pspdfkit://localhost/Bundle/big_buck_bunny.mp4",
+    "caption":"A local video",
+    "type":"video"
+  },
+  {
+    "contentURL":"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+    "caption":"A remote video",
+    "type":"video"
+  },
+  {
+    "contentURL":"http://google.com",
+    "caption":"An invalid video",
+    "type":"video"
+  },
+  {
+    "contentURL":"http://video.webmfiles.org/elephants-dream.webm",
+    "caption":"An unsupported video format",
+    "type":"video"
+  },
+  {
     "contentURL":"http://farm6.staticflickr.com/5109/5637667104_571ae77158_b.jpg",
     "caption":"Painted Ladies"
   },
