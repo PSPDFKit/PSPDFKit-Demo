@@ -108,7 +108,7 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
 }
 
 - (CGRect)psc_rectForAnnotationInPDFView:(PSPDFAnnotation *)annotation {
-    return [self convertRect:[self rectForAnnotations:@[annotation]] toView:self.pdfController.view];
+    return [self convertRect:[self rectForAnnotations:@[annotation]] toView:self];
 }
 
 - (PSPDFNoteAnnotationViewController *)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation showKeyboard:(BOOL)showKeyboard animated:(BOOL)animated {
@@ -133,11 +133,12 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     CGRect targetRect = [self psc_rectForAnnotationInPDFView:annotation];
 
     // Calculate the optimum note frame and set it.
+    const CGFloat minBorder = 5.f;
     CGRect noteRect = CGRectInset(CGRectMake(CGRectGetMidX(targetRect), CGRectGetMidY(targetRect), 0.f, 0.f), -150.f, -100.f);
-    if (CGRectGetMinX(noteRect) < 0) noteRect.origin.x = 0;
-    if (CGRectGetMaxX(noteRect) > self.bounds.size.width) noteRect.origin.x -= CGRectGetMaxX(noteRect) - self.bounds.size.width;
-    if (CGRectGetMinY(noteRect) < 0) noteRect.origin.y = 0;
-    if (CGRectGetMaxY(noteRect) > self.bounds.size.height) noteRect.origin.y -= CGRectGetMaxY(noteRect) - self.bounds.size.height;
+    if (CGRectGetMinX(noteRect) < minBorder) noteRect.origin.x = minBorder;
+    if (CGRectGetMaxX(noteRect) > self.bounds.size.width - minBorder) noteRect.origin.x -= CGRectGetMaxX(noteRect) - self.bounds.size.width + minBorder;
+    if (CGRectGetMinY(noteRect) < minBorder) noteRect.origin.y = minBorder;
+    if (CGRectGetMaxY(noteRect) > self.bounds.size.height - minBorder) noteRect.origin.y -= CGRectGetMaxY(noteRect) - self.bounds.size.height + minBorder;
     noteController.view.frame = noteRect;
 
     // Use child view containment to add the note view to the page.
