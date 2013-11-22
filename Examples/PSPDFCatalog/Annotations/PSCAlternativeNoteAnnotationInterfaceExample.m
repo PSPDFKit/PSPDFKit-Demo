@@ -12,9 +12,6 @@
 #import "PSCAssetLoader.h"
 #import <QuartzCore/QuartzCore.h>
 
-// This example was only written for iOS 7 (but could be changed to work on iOS 5+)
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
-
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end
 @interface PSCCustomNoteViewPageView : PSPDFPageView @end
@@ -151,9 +148,17 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     noteController.view.frame = targetRect;
     noteController.view.clipsToBounds = YES;
 
-    [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
+    dispatch_block_t animationBlock = ^{
         noteController.view.frame = noteRect;
-    } completion:NULL];
+    };
+
+    if (PSCIsUIKitFlatMode()) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:NULL];
+#endif
+    }else {
+        [UIView animateWithDuration:0.3f animations:animationBlock];
+    }
 
     // show keyboard if set.
     dispatch_block_t showKeyboardBlock = ^{
@@ -260,8 +265,13 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     // Create the top control toolbar.
     _noteToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44.f)];
     _noteToolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _noteToolbar.barTintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;
-    _noteToolbar.tintColor = UIColor.whiteColor;
+    if (PSCIsUIKitFlatMode()) {
+        PSC_IF_IOS7_OR_GREATER(_noteToolbar.barTintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;)
+        _noteToolbar.tintColor = UIColor.whiteColor;
+    }else {
+        _noteToolbar.tintColor = isNewlyCreatedAnnotation ? PSCCustomNewTintColor : PSCCustomCreatedTintColor;
+    }
+
     _noteToolbar.translucent = NO;
     _noteToolbar.clipsToBounds = YES;
     [self.view addSubview:_noteToolbar];
@@ -290,7 +300,9 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Delete") style:UIBarButtonItemStylePlain target:self action:@selector(deleteAnnotation:)];
         UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalize(@"Close") style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonPressed:)];
         _bottomToolbar.items = @[cancelButton, spacer, saveButton];
-        _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
+        if (PSCIsUIKitFlatMode()) {
+            _bottomToolbar.tintColor = PSCCustomCreatedTintColor;
+        }
     }
 
     // Style the view controller.
@@ -337,15 +349,26 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 
 - (void)saveButtonPressed:(id)sender {
     [self.textView resignFirstResponder]; // hide keyboard
-    [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:^{
+
+    dispatch_block_t animationBlock = ^{
         self.view.frame = self.sourceRect;
         self.view.alpha = 0.f;
         self.textView.textColor = UIColor.clearColor;
         _noteToolbar.items = nil;
         _bottomToolbar.items = nil;
-    } completion:^(BOOL finished) {
-        [self closeNoteController];
-    }];
+    };
+
+    if (PSCIsUIKitFlatMode()) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:^(BOOL finished) {
+            [self closeNoteController];
+        }];
+#endif
+    }else {
+        [UIView animateWithDuration:0.3f animations:animationBlock completion:^(BOOL finished) {
+            [self closeNoteController];
+        }];
+    }
 }
 
 - (void)closeNoteController {
@@ -383,14 +406,24 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     UIImage *noteImage = [UIImage imageNamed:@"alternative_note_image"];
 
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.f);
+
     [noteImage drawAtPoint:CGPointZero];
 
-    NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentCenter;
-    NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
-                                 NSForegroundColorAttributeName : PSCCustomNewTintColor,
-                                 NSParagraphStyleAttributeName : style};
-    [[NSString stringWithFormat:@"%tu", noteNumber] drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
+    NSString *number = [NSString stringWithFormat:@"%tu", noteNumber];
+
+    if (PSCIsUIKitFlatMode()) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        style.alignment = NSTextAlignmentCenter;
+        NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
+                                     NSForegroundColorAttributeName : PSCCustomNewTintColor,
+                                     NSParagraphStyleAttributeName : style};
+        [number drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
+#endif
+    }else {
+        [PSCCustomNewTintColor set];
+        [number drawInRect:CGRectMake(8.f, 2.f, self.bounds.size.width, self.bounds.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
+    }
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsGetCurrentContext();
@@ -398,5 +431,3 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 }
 
 @end
-
-#endif
