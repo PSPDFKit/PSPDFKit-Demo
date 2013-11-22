@@ -54,10 +54,14 @@
 
     // Sort all examples depending on category.
     [examples sortUsingComparator:^NSComparisonResult(PSCExample *example1, PSCExample *example2) {
-        NSUInteger value1 = example1.category, value2 = example2.category;
-        if (value1 < value2) return (NSComparisonResult)NSOrderedAscending;
-        else if (value1 > value2) return (NSComparisonResult)NSOrderedDescending;
-        else return (NSComparisonResult)NSOrderedSame;
+        // sort via category
+        if (example1.category < example2.category) return (NSComparisonResult)NSOrderedAscending;
+        else if (example1.category > example2.category) return (NSComparisonResult)NSOrderedDescending;
+        // then priority
+        else if (example1.priority > example2.priority) return (NSComparisonResult)NSOrderedAscending;
+        else if (example1.priority < example2.priority) return (NSComparisonResult)NSOrderedDescending;
+        // then title
+        else return [example1.title compare:example2.title];
     }];
 
     return examples;
