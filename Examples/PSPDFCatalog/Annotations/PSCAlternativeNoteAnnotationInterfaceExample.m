@@ -12,6 +12,7 @@
 #import "PSCAssetLoader.h"
 #import <QuartzCore/QuartzCore.h>
 
+// This example was only written for iOS 7 (but could be changed to work on iOS 5+)
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
 
 // Custom classes required
@@ -347,6 +348,9 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     [self willMoveToParentViewController:nil];
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
+
+    // Deselect note annotation.
+    ((PSPDFPageView *)self.delegate).selectedAnnotations = nil;
 }
 
 @end
