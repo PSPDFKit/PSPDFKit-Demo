@@ -53,3 +53,23 @@
 - (void)prepareForReuse;
 
 @end
+
+@interface PSPDFGalleryContentView (SubclassingHooks)
+
+/// Called when the view state of the content view has changed and subview visiblity is likely
+/// going to change.
+- (void)updateSubviewVisibility;
+
+/// Defaults to UIImageView.class.
++ (Class)imageViewClass;
+
+/// Defaults to PSPDFGalleryContentLoadingView.class.
++ (Class)loadingViewClass;
+
+/// Defaults to PSPDFGalleryContentCaptionView.class.
++ (Class)captionViewClass;
+
+/// Defaults to PSPDFGalleryErrorView.class.
++ (Class)errorViewClass;
+
+@end

@@ -50,8 +50,8 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 @end
 
-/// The PDF search controller.
-@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFCacheDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
+/// The PDF search view controller.
+@interface PSPDFSearchViewController : PSPDFBaseTableViewController <UISearchDisplayDelegate, UISearchBarDelegate, PSPDFTextSearchDelegate, PSPDFStatusBarStyleHint, PSPDFStyleable, PSPDFPopoverControllerDismissable>
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate;
@@ -59,12 +59,12 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Current searchText. If set before showing the controller, keyboard will not be added.
 @property (nonatomic, copy) NSString *searchText;
 
-/// Different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a UIPopoverController)
-/// @note This is set from PSPDFViewController in presentModalViewController:embeddedInNavigationController:withCloseButton:animated.
+/// Different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a `UIPopoverController`)
+/// @note This is set from PSPDFViewController in `presentModalViewController:embeddedInNavigationController:withCloseButton:animated`.
 @property (nonatomic, assign) BOOL showsCancelButton;
 
 /// Search bar for controller.
-/// @warning You can change attributes (e.g. barStyle) but don't change the delegate!
+/// @warning You can change attributes (e.g. `barStyle`) but don't change the delegate!
 @property (nonatomic, strong, readonly) UISearchBar *searchBar;
 
 /// Current search status. KVO observable.
@@ -80,15 +80,14 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// If not set, the natural page order is searched.
 @property (nonatomic, assign) BOOL searchVisiblePagesFirst;
 
-/// Internally used textSearch. (is a copy of the textSearch class in document)
+/// Number of lines to show preview text. Defaults to 2.
+@property (nonatomic, assign) NSUInteger numberOfPreviewTextLines;
+
+/// Internally used `PSPDFTextSearch` object. (is a copy of the PSPDFTextSearch class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 
-/// The delegate.
+/// The search view controller delegate.
 @property (nonatomic, weak) id<PSPDFSearchViewControllerDelegate> delegate;
-
-// Updates the search result cell. Can be subclassed.
-// To customize the label search the subviews for the PSPDFAttributedLabel class.
-- (void)updateResultCell:(PSPDFSearchResultCell *)cell searchResult:(PSPDFSearchResult *)searchResult;
 
 @end
 

@@ -79,8 +79,14 @@
 // Called when we're about to show the annotation delete menu.
 - (void)deleteAnnotation:(UIBarButtonItem *)barButtonItem;
 
+// Will delete annotation (note) or clear note text (any other type) without confirmation.
+- (void)deleteOrClearAnnotationWithoutConfirmation;
+
 // Returns "Delete Note", "Delete Free Text", "Delete Highlight" etc.
 - (NSString *)deleteAnnotationActionTitle;
+
+// Called as we update the text view.
+- (void)updateTextView;
 
 // Background gradient.
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;

@@ -18,7 +18,8 @@
 
 // Constants are used in the delegate and saved in userInfo.
 extern NSString *const PSPDFSignatureControllerShouldSaveKey;
-extern NSString *const PSPDFSignatureControllerTargetPointKey;
+// Can be treated as a point if width/height are 0, else will fit into the rect.
+extern NSString *const PSPDFSignatureControllerTargetRectKey;
 
 /// Delegate to be notified on signature actions.
 @protocol PSPDFSignatureViewControllerDelegate <PSPDFOverridable>
