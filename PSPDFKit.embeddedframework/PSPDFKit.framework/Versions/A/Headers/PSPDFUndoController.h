@@ -21,7 +21,7 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 @interface PSPDFUndoController : NSObject
 
 /// Designated initializer.
-/// If `undoEnabled` is set to NO, the performBlock* operations will directly call block.
+/// If `undoEnabled` is set to NO, the `performBlock*` operations will directly call block.
 - (id)initWithUndoEnabled:(BOOL)undoEnabled;
 
 /// Returns YES if the undo controller is currently either undoing or redoing.
@@ -40,7 +40,7 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 - (void)redo;
 
 /// Begin/end an undo group.
-/// @note -performBlockAsGroup: is preferred since it is less error prone.
+/// @note `-performBlockAsGroup:` is preferred since it is less error prone.
 /// If `groupName` is nil, a default name for the changes will be inferred.
 - (void)beginUndoGrouping;
 - (void)endUndoGroupingWithName:(NSString *)groupName;
@@ -65,12 +65,12 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 /// Undo can be disabled globally, set this before any objects are registered on the controller.
 @property (nonatomic, assign, getter=isUndoEnabled, readonly) BOOL undoEnabled;
 
-/// Provides access to the underlying NSUndoManager. You are strongly encouraged to not use this
-/// property since it is not thread safe and PSPDFUndoController manages the state of this undo manager.
-/// However, since UIResponders can provide an undo manager, this property is exposed.
+/// Provides access to the underlying `NSUndoManager`. You are strongly encouraged to not use this
+/// property since it is not thread safe and `PSPDFUndoController` manages the state of this undo manager.
+/// However, since `UIResponders` can provide an undo manager, this property is exposed.
 @property (nonatomic, strong, readonly) NSUndoManager *undoManager;
 
-/// Specifies the time interval that is used for PSPDFUndoCoalescingTimed. Defaults to 1 second.
+/// Specifies the time interval that is used for `PSPDFUndoCoalescingTimed`. Defaults to 0.3 second.
 @property (nonatomic, assign) NSTimeInterval timedCoalescingInterval;
 
 /// Specifies the levels of undo we allow. Defaults to 20. More means higher memory usage.

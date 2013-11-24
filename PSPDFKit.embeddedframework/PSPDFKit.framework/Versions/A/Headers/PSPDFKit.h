@@ -211,6 +211,13 @@ extern "C" {
 #import "PSPDFSignatureFormElement.h"
 #import "PSPDFTextFieldFormElement.h"
 
+// gallery
+#import "PSPDFGalleryViewController.h"
+#import "PSPDFGalleryContentView.h"
+#import "PSPDFGalleryScrollableContentView.h"
+#import "PSPDFGalleryContentCaptionView.h"
+#import "PSPDFRemoteContentObject.h"
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,5 +1,5 @@
 //
-//  PSPDFGalleryItem.h
+//  PSPDFRemoteContentObject.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
@@ -11,30 +11,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PSPDFRemoteContentObject.h"
 
-/// An item in a gallery.
-@interface PSPDFGalleryItem : NSObject <PSPDFRemoteContentObject>
+@protocol PSPDFRemoteContentObject <NSObject>
 
-/// Factory method to create an array of items from JSON data.
-+ (NSArray *)itemsFromJSONData:(NSData *)data error:(NSError **)error;
-
-/// Create an item from a given dictionary. The dictionary will usually be parsed JSON.
-- (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
-
-/// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` is optional.
-- (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption;
-
-/// The caption of the item.
-@property (nonatomic, copy, readonly) NSString *caption;
-
-/// The content URL of the item.
-@property (nonatomic, strong, readonly) NSURL *contentURL;
-
-/// @name PSPDFRemoteContentObject
+/// The URL request used for loading the remote content.
+- (NSURLRequest *)URLRequestForRemoteContent;
 
 /// The remote content of the object. This property is managed by PSPDFDownloadManager.
-@property (nonatomic, strong) UIImage *remoteContent;
+@property (nonatomic, strong) id remoteContent;
+
+@optional
 
 /// The loading state of the object. This property is managed by PSPDFDownloadManager.
 @property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
@@ -45,5 +31,20 @@
 
 /// The remote content error of the object. This property is managed by PSPDFDownloadManager.
 @property (nonatomic, strong) NSError *remoteContentError;
+
+/// Return YES if you want PSPDFDownloadManager to cache the remote content. Defaults to NO.
+- (BOOL)shouldCacheRemoteContent;
+
+/// Return YES if you want PSPDFDownloadManager to retry downloading remote content if a connection
+/// error occured. Defaults to NO.
+- (BOOL)shouldRetryLoadingRemoteContentOnConnectionFailure;
+
+/// Return a block if you need to handle a authentication challenge.
+- (void (^)(NSURLAuthenticationChallenge *challenge))remoteContentAuthenticationChallengeBlock;
+
+/// Return a custom NSValueTransform that is applied to the downloaded data before setting remoteContent.
+/// An example for this would be a transformer that transform NSData into an UIImage. The transformation
+/// happens on a background thread and is part of the loading state.
+- (NSValueTransformer *)valueTransformerForRemoteContent;
 
 @end

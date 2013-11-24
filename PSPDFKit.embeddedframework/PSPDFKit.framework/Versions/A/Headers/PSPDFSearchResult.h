@@ -18,28 +18,31 @@
 /// Search result object.
 @interface PSPDFSearchResult : PSPDFModel
 
-/// referenced page.
-@property (nonatomic, assign) NSUInteger pageIndex;
+/// Designated initializer.
+- (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection;
 
-/// preview text snippet.
-@property (nonatomic, copy) NSString *previewText;
+/// Referenced page.
+@property (nonatomic, assign, readonly) NSUInteger pageIndex;
+
+/// Preview text snippet.
+@property (nonatomic, copy, readonly) NSString *previewText;
 
 /// Text coordinates. Usually the text block contains only one word, unless the search is split across two lines.
-@property (nonatomic, strong) PSPDFTextBlock *selection;
+@property (nonatomic, strong, readonly) PSPDFTextBlock *selection;
 
 /// Range within full page text.
-@property (nonatomic, assign) NSRange range;
+@property (nonatomic, assign, readonly) NSRange range;
 
 /// Range of the search result in relation to the previewText.
-@property (nonatomic, assign) NSRange rangeInPreviewText;
+@property (nonatomic, assign, readonly) NSRange rangeInPreviewText;
+
+/// Referenced document.
+@property (nonatomic, weak, readonly) PSPDFDocument *document;
+
+/// Compare with other search result.
+- (BOOL)isEqualToSearchResult:(PSPDFSearchResult *)otherSearchResult;
 
 /// Cached title of the outline chapter. Will be added dynamically on first access.
 @property (nonatomic, copy) NSString *cachedOutlineTitle;
-
-/// Referenced document.
-@property (nonatomic, weak) PSPDFDocument *document;
-
-/// Compare.
-- (BOOL)isEqualToSearchResult:(PSPDFSearchResult *)otherSearchResult;
 
 @end
