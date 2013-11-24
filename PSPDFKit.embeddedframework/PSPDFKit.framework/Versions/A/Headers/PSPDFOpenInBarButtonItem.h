@@ -41,10 +41,6 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 
 @interface PSPDFOpenInBarButtonItem (SubclassingHooks)
 
-/// Will figure out a file-based URL that we can attach to the interaction controller.
-/// Default implementation will use PSPDFProcessor to merge multiple document files if needed in a temporary directory.
-- (NSURL *)fileURLForDocument:(PSPDFDocument *)document;
-
 // Used to create the document interaction controller during presentAnimated:
 - (UIDocumentInteractionController *)interactionControllerWithURL:(NSURL *)fileURL;
 
