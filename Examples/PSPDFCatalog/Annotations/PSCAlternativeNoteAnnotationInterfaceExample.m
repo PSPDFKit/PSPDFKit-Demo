@@ -17,6 +17,7 @@
 @interface PSCCustomNoteViewPageView : PSPDFPageView @end
 @interface PSCCustomNoteAnnotationView : PSPDFNoteAnnotationView @end
 @interface PSCCustomNoteAnnotationViewController : PSPDFNoteAnnotationViewController
+- (void)closeNoteController;
 @property (nonatomic, assign) CGRect sourceRect;
 @end
 
@@ -51,6 +52,17 @@
     [pdfController overrideClass:PSPDFResizableView.class withClass:PSCNoteInvisibleResizableView.class];
     [pdfController overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCCustomNoteAnnotationViewController.class];
     [pdfController overrideClass:PSPDFNoteAnnotationView.class withClass:PSCCustomNoteAnnotationView.class];
+
+    // Make sure we close any open note controllers as we rotate.
+    [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *thePdfController, UIInterfaceOrientation toInterfaceOrientation) {
+        for (PSPDFPageView *pageView in thePdfController.visiblePageViews) {
+            for (UIView *noteView in pageView.annotationContainerView.subviews) {
+                if ([noteView.nextResponder isKindOfClass:PSCCustomNoteAnnotationViewController.class]) {
+                    [(PSCCustomNoteAnnotationViewController *)noteView.nextResponder closeNoteController];
+                }
+            }
+        }
+    }];
 
     // Set some default colors.
     [[PSPDFStyleManager sharedStyleManager] setLastUsedValue:PSCCustomNewTintColor forProperty:@"color" forKey:PSPDFAnnotationStringHighlight];
