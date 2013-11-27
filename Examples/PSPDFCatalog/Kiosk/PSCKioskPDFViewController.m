@@ -253,10 +253,7 @@
 }
 
 static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
-    if (pdfFileName) {
-        pdfFileName = [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
-    }
-    return pdfFileName;
+    return [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
 }
 
 // Time to adjust PSPDFViewController before a PSPDFDocument is displayed.
@@ -265,9 +262,9 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
     // show pdf title and fileURL
     if (document) {
-        NSString *fileName = PSCStripPDFFileType([document.fileURL lastPathComponent]);
+        NSString *fileName = PSCStripPDFFileType(document.fileURL.lastPathComponent);
         if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
-            self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
+            self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, document.fileURL.lastPathComponent];
         }
     }
 }
