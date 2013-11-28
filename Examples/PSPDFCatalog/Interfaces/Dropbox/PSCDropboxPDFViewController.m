@@ -67,22 +67,21 @@
 
     UIButton *thumbnailButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [thumbnailButton setAccessibilityLabel:PSPDFLocalize(@"Thumbnails")];
-    [thumbnailButton setImage:[PSPDFIconGenerator.sharedGenerator iconForType:PSPDFIconTypeThumbnails] forState:UIControlStateNormal];
+    [thumbnailButton setImage:PSPDFBundleImage(@"thumbnails") forState:UIControlStateNormal];
     [thumbnailButton addTarget:self action:@selector(thumbnailButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [floatingToolbarButtons addObject:thumbnailButton];
 
     if (self.document.outlineParser.isOutlineAvailable) {
         UIButton *outlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [outlineButton setAccessibilityLabel:PSPDFLocalize(@"Outline")];
-        [outlineButton setImage:[PSPDFIconGenerator.sharedGenerator iconForType:PSPDFIconTypeOutline] forState:UIControlStateNormal];
+        [outlineButton setImage:PSPDFBundleImage(@"outline") forState:UIControlStateNormal];
         [outlineButton addTarget:self action:@selector(outlineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [floatingToolbarButtons addObject:outlineButton];
     }
 
-    // TODO search icon
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchButton setAccessibilityLabel:PSPDFLocalize(@"Search")];
-    [searchButton setImage:PSPDFApplyToolbarShadowToImage([UIImage imageNamed:@"search"]) forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [floatingToolbarButtons addObject:searchButton];
 
