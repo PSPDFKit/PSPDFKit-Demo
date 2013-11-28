@@ -12,26 +12,36 @@
 
 #import "PSPDFKit.h"
 
-/// Cell that is used to display a search result
-@interface PSPDFSearchResultCell : UITableViewCell
+/// Cell that is used to display a search result.
+@interface PSPDFSearchResultCell : UITableViewCell <PSPDFCacheDelegate>
 
-/// The preview label.
-@property (nonatomic, strong) PSPDFAttributedLabel *searchPreviewLabel;
+/// Will configure the cell with a search result model object.
+- (void)configureWithSearchResult:(PSPDFSearchResult *)searchResult;
 
-/// Set the page rect so that the image coords can be calculated even before the image is rendered/loaded from the cache.
-@property (nonatomic, assign) CGRect rotatedPageRect;
+/// Height calculation.
++ (CGFloat)heightForSearchResult:(PSPDFSearchResult *)searchResult numberOfPreviewLines:(NSUInteger)numberOfPreviewLines;
 
-/// Page preview image.
-@property (nonatomic, strong) UIImage *pagePreviewImage;
+/// The associated document.
+@property (atomic, weak, readonly) PSPDFDocument *document;
 
-// Save document/page so we can update the image.
-@property (nonatomic, weak) PSPDFDocument *document;
-@property (nonatomic, assign) NSUInteger page;
+/// The search results page.
+@property (atomic, assign, readonly) NSUInteger page;
 
 @end
 
 @interface PSPDFSearchResultCell (SubclassingHooks)
 
+/// The preview label.
+@property (nonatomic, strong, readonly) PSPDFAttributedLabel *searchPreviewLabel;
+
+/// Page preview image.
+@property (nonatomic, strong) UIImage *pagePreviewImage;
+
+/// The placeholder image displayed while we're loading the page image.
 - (UIImage *)placeholderImage;
+
+/// Fonts used for the labels.
++ (UIFont *)textLabelFont;
++ (UIFont *)detailLabelFont;
 
 @end
