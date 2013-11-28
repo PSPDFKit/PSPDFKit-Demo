@@ -85,7 +85,8 @@
 #pragma mark - PSPDFSelectionViewDelegate
 
 - (void)selectionView:(PSPDFSelectionView *)selectionView finishedWithSelectedRect:(CGRect)rect {
-    [self.pdfController zoomToRect:rect animated:YES];
+    PSPDFViewController *pdfController = self.pdfController;
+    [pdfController zoomToRect:rect page:pdfController.page animated:YES];
     [self cleanup];
     [self updateEyeButton];
 }
