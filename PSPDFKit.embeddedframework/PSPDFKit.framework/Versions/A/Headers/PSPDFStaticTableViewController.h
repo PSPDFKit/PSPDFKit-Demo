@@ -21,6 +21,9 @@
 // Table view sections (PSPDFSectionModel)
 @property (nonatomic, strong) NSArray *sections;
 
+// If enabled, will disable scrolling if the content fits.
+@property (nonatomic, assign) BOOL disableScrollingIfContentFits;
+
 // Calls the update block on all visible cells.
 - (void)updateVisibleCells;
 
