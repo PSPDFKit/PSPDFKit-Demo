@@ -5,8 +5,8 @@
     "type":"video"
   },
   {
-    "contentURL":"pspdfkit://localhost/Bundle/NightOwl.m4a",
-    "caption":"A sound file",
+    "contentURL":"ppdfkit://localhost/Bundle/NightOwl.m4a",
+    "caption":"A local sound",
     "type":"video"
   },
   {
