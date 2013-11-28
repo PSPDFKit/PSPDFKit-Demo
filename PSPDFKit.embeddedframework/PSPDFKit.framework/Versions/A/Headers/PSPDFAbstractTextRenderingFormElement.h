@@ -77,7 +77,6 @@
 @property (nonatomic, strong) UIColor *fillColorWithAlpha;
 @property (nonatomic, strong) UIColor *colorWithAlpha;
 @property (nonatomic, assign) NSUInteger rotation;
-@property (nonatomic, assign) NSUInteger pageRotation;
 @property (nonatomic, assign) CTFontRef fontRef;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 @property (nonatomic, assign) CGRect clippingBox;

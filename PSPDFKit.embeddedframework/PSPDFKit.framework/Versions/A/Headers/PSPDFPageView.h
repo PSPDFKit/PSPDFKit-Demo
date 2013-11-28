@@ -276,7 +276,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (void)showColorPickerForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Show the signature controller.
-- (void)showSignatureControllerAtPoint:(CGPoint)point withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
+- (void)showSignatureControllerAtRect:(CGRect)rect withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
 
 /// Font sizes for the free text annotation menu. Defaults to @[@10, @12, @14, @18, @22, @26, @30, @36, @48, @64]
 - (NSArray *)availableFontSizes;
@@ -316,7 +316,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
 
 // Show signature menu.
-- (void)showNewSignatureMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
+- (void)showNewSignatureMenuAtRect:(CGRect)rect animated:(BOOL)animated;
 
 // Show image menu.
 - (void)showNewImageMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
@@ -356,5 +356,13 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 // Computes a scale value suitable for computation of the line width to use during drawing and selection.
 - (CGFloat)scaleForPageView;
+
+// If you use child view controller containment, use this as the parent VC.
+- (UIViewController *)parentViewController;
+
+// Change notification processing.
+- (void)annotationsAddedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+- (void)annotationsRemovedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+- (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
 @end

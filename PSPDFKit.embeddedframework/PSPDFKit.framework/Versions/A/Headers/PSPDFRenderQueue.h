@@ -14,6 +14,15 @@
 
 @class PSPDFDocument, PSPDFRenderJob, PSPDFRenderQueue, PSPDFRenderReceipt;
 
+/// Notification that will be thrown when we enqueue a job.
+extern NSString *const PSPDFRenderQueueDidEnqueueJob;
+
+/// Notification that will be thrown after a job finished. (in addition to the delegate)
+extern NSString *const PSPDFRenderQueueDidFinishJob;
+
+/// Notification that will be thrown when we cancel a job.
+extern NSString *const PSPDFRenderQueueDidCancelJob;
+
 /// Implement this delegate to get rendered pages. (Most of the times, you want to use PSPDFCache instead)
 @protocol PSPDFRenderDelegate <NSObject>
 
