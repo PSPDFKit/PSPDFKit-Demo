@@ -168,8 +168,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
 /// PSPDFConvertPDFRectToViewRect() or -convertPDFPointToViewPoint of PSPDFPageView.
 - (void)scrollRectToVisible:(CGRect)rect animated:(BOOL)animated;
 
-/// Zooms to a specific rect, optionally animated.
-- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated;
+/// Zooms to a specific view rect, optionally animated.
+- (void)zoomToRect:(CGRect)rect page:(NSUInteger)page animated:(BOOL)animated;
 
 /// Zoom to specific scale, optionally animated.
 - (void)setZoomScale:(float)scale animated:(BOOL)animated;
@@ -305,7 +305,8 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Toggles the HUD. Respects HUDViewMode.
 - (BOOL)toggleControlsAnimated:(BOOL)animated;
 
-/// Enables default header toolbar. Only displayed if inside UINavigationController. Defaults to YES. Set before loading view.
+/// Enables default header toolbar. Only displayed if inside `UINavigationController`. Defaults to YES. Set before loading view.
+/// @warning Setting this to NO will also disable the HUD.
 @property (nonatomic, assign, getter=isToolbarEnabled) BOOL toolbarEnabled;
 
 /// Allow PSPDFKit to change the title of this viewController.
@@ -644,7 +645,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// The default implementation calls the block set in `setUpdateSettingsForRotationBlock:`.
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation;
 
-/// Convenience method for updateSettingsForRotation:
+/// Convenience method for `updateSettingsForRotation:`.
 - (void)setUpdateSettingsForRotationBlock:(void (^)(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation))block;
 
 // Clears the highlight views.
@@ -695,5 +696,11 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 // Return page numbers that are visible. Only returns the current set page in continuous scroll mode
 // Useful to get exact pages for double page mode.
 - (NSArray *)calculatedVisiblePageNumbers;
+
+@end
+
+@interface PSPDFViewController (Deprecated)
+
+- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated PSPDF_DEPRECATED(3.2.3, "Please use zoomToRect:page:animated: instead.");
 
 @end
