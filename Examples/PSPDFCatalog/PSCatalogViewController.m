@@ -2625,7 +2625,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)debugCreateLowMemoryWarning {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [[UIApplication sharedApplication] performSelector:NSSelectorFromString([NSString stringWithFormat:@"_%@Warning", @"performMemory"])];
+    [UIApplication.sharedApplication performSelector:NSSelectorFromString([NSString stringWithFormat:@"_%@Warning", @"performMemory"])];
 #pragma clang diagnostic pop
     
     // Clear any reference of items that would retain controllers/pages.
