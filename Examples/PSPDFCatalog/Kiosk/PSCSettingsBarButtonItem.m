@@ -11,6 +11,14 @@
 #import "PSCSettingsBarButtonItem.h"
 #import "PSCSettingsController.h"
 
+static UIImage *PSCImageNamed(NSString *imageName) {
+    if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
+        return [UIImage imageNamed:imageName];
+    }else {
+        return [UIImage imageNamed:[imageName stringByAppendingString:@"-legacy"]];
+    }
+}
+
 @implementation PSCSettingsBarButtonItem
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -18,17 +26,11 @@
 
 // on iPad, we use a string (as there's more space)
 - (UIImage *)image {
-    UIImage *image;
-    PSC_IF_IOS7_OR_GREATER(image = [UIImage imageNamed:@"settings"];)
-    PSC_IF_PRE_IOS7(image = [UIImage imageNamed:@"settings-legacy"];)
-    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image;
+    return PSCImageNamed(@"settings");
 }
 
 - (UIImage *)landscapeImagePhone {
-    // We don't yet have landscape image resource files
-    PSC_IF_IOS7_OR_GREATER(return [super landscapeImagePhone];)
-    UIImage *image = [UIImage imageNamed:@"settings-landscape-legacy"];
-                    return self.itemStyle == UIBarButtonItemStyleBordered ? PSPDFApplyToolbarShadowToImage(image) : image; // iOS6
+    return PSCImageNamed(@"settings-landscape");
 }
 
 - (NSString *)actionName {
