@@ -17,7 +17,7 @@
 @interface PSCCustomGalleryContentView : PSPDFGalleryContentView
 @end
 
-@interface PSCCustomGalleryScrollableContentView : PSPDFGalleryScrollableContentView
+@interface PSCCustomGalleryImageContentView : PSPDFGalleryImageContentView
 @end
 
 @interface PSCCustomGalleryContentCaptionView : PSPDFGalleryContentCaptionView
@@ -54,7 +54,7 @@
     // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView
     // because both will be used.
     [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
-    [pdfController overrideClass:PSPDFGalleryScrollableContentView.class withClass:PSCCustomGalleryScrollableContentView.class];
+    [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
     
     return pdfController;
 }
@@ -73,7 +73,7 @@
 
 @end
 
-@implementation PSCCustomGalleryScrollableContentView
+@implementation PSCCustomGalleryImageContentView
 
 + (Class)captionViewClass {
     return [PSCCustomGalleryContentCaptionView class];
