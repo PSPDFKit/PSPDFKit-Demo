@@ -1,15 +1,5 @@
 [
   {
-    "contentURL":"pspdfkit://localhost/Bundle/big_buck_bunny.mp4",
-    "caption":"A local video",
-    "type":"video"
-  },
-  {
-    "contentURL":"ppdfkit://localhost/Bundle/NightOwl.m4a",
-    "caption":"A local sound",
-    "type":"video"
-  },
-  {
     "contentURL":"http://farm6.staticflickr.com/5109/5637667104_571ae77158_b.jpg",
     "caption":"Painted Ladies"
   },
