@@ -174,17 +174,19 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
-        // don't use thumbnails if the PDF is not rendered.
+        // Don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
-        // setup toolbar
+        // Setup toolbar
         controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
-        // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
-        controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
-        controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+        // Show the thumbnail button on the HUD, but not on the toolbar. (we're not adding viewModeButtonItem here)
+        if (!PSCIsUIKitFlatMode()) {
+            controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
+            controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+        }
         controller.pageLabel.showThumbnailGridButton = YES;
 
         controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
