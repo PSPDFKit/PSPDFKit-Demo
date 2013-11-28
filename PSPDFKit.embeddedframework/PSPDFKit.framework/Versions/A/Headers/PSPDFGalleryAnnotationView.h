@@ -21,7 +21,7 @@
 /// The gallery's view controller.
 @property (nonatomic, strong, readonly) PSPDFGalleryViewController *galleryViewController;
 
-/// A weak reference to the view controller.
-@property (nonatomic, weak) UIViewController *viewController;
+/// Associated weak reference to then `PSPDFPageView`.
+@property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end

@@ -224,8 +224,9 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Note: use .alpha for transparency, not the alpha value in color.
 @property (nonatomic, strong) UIColor *color;
 
-/// Color with added alpha value.
-@property (nonatomic, strong, readonly) UIColor *colorWithAlpha;
+/// Border Color usually redirects to color, unless overridden to have a real backing ivar.
+/// (`PSPDFWidgetAnnotation` has such a backing store)
+@property (nonatomic, strong) UIColor *borderColor;
 
 /**
  Fill color. Only used for certain annotation types. ("IC" key, e.g. Shape Annotations)
@@ -237,8 +238,6 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
  */
 @property (nonatomic, strong) UIColor *fillColor;
 
-/// FillColor with added alpha value.
-@property (nonatomic, strong, readonly) UIColor *fillColorWithAlpha;
 
 /// Optional. Various annotation types may contain text.
 @property (nonatomic, copy) NSString *contents;

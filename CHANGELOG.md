@@ -2,6 +2,29 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.2.3 - 28/Nov/2013__
+
+Important: We're planning to finally phase out support for iOS 5 with the release of PSPDFKit 3.3. If you have any comments on that, please send us a note at support@pspdfkit.com.
+
+*  Improves custom text stamp creation layout and fixes an issue where the text wasn't always displayed within the table view.
+*  Form text fields are now no longer clipped when the zoom scale is very low.
+*  Border on a form is now only rendered when defined so in the dictionary for widget/form annotations.
+*  Signatures now use `PSPDFAnnotationStringSignature` as style key, instead of the `PSPDFAnnotationStringInk` that was used before.
+*  Improves support with Microsoft Outlook by making sure we always send the .pdf file ending when sharing via email.
+*  Any open menus will now be dismissed before PSPDFKit is presenting a popover. This fixes a behavior change in iOS 7 where `UIMenuController` sometimes stayed visible.
+*  Choice form elements now have a click-through-able popover and are highlighted when active.
+*  Next/Prev now works across multiple pages and also includes choice form elements.
+*  The form highlightColor is now a property on PSPDFFormElement and thus configurable.
+*  Works around a bug in iOS 7 where the UITextView wouldn't properly scroll to a new line when entering text in a PDF Form.
+*  The `PSPDFOutlineViewController` now shows the empty state if the document has no outline set but the controller is still displayed.
+*  Inproves compatibility with parsing invalid URLs in link actions - will correct more variants.
+*  Fixes an issue where certain form choice elements with partial dictionaries could be incorrectly parsed/rendered.
+*  Fixes an issue that could prevent form choice elements from being saved correctly back into the PDF.
+*  Fixes a rare collection mutation regression when erase mode was active while annotation changes for visible inks were processed.
+*  Fixes an issue where `allAnnotationsOfType:` sometimes could miss certain annotations when an internal save file was used.
+*  Fixes an regression where `hasDirtyAnnotations` could report YES when we really don't have any unsaved changes.
+*  Fixes some localizaton issues with line endings in the Inspector.
+
 __v3.2.2 - 24/Nov/2013__
 
 *  The gallery now allows image zooming when in full screen and requires less memory when loading remote images.
