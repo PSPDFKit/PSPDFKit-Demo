@@ -19,6 +19,8 @@
 // Version detection
 #define __PSPDFKIT_IOS__
 #define __PSPDFKIT_3_0_0 3000
+#define __PSPDFKIT_3_1_0 3100
+#define __PSPDFKIT_3_2_0 3200
 extern NSString *PSPDFVersionString(void); // Returns "PSPDFKit 3.x.x"
 extern NSDate   *PSPDFVersionDate(void);   // Returns date of compilation.
 

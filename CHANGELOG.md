@@ -2,6 +2,37 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.2.2 - 24/Nov/2013__
+
+*  The gallery now allows image zooming when in full screen and requires less memory when loading remote images.
+*  The gallery is now more customizable, allows custom background colors and recongnizes @2x images when they are local.
+*  The `PSPDFDocumentSharingViewController` will now use a temporary directory to save annotations into the PDF if it's in a non-writable location.
+*  The password view now automatically shows the keyboard.
+*  If annotations can't be embedded, the new annotation menu will not be displayed anymore (to be consistent with the `PSPDFAnnotationBarButtonItem`)
+*  The runtime now better deals with multiple annotation subclasses that both change the behavior of a parent class. Use `overrideClass:withClass:` on `PSPDFDocument` to register such subclasses.
+*  Set the default ink line width to 3, unless a default is already set.
+*  Using undo/redo while in eraser mode will now also allow adding/removing of ink annotations.
+*  The undo system will now commit expired actions that are coalesced. This fixes an issue where certain actions would appear undo-able quite late (e.g. first erase action)
+*  If the named destination of a link can't be resolved we will ignore the action and no longer scroll to page 0.
+*  Improve selection contrast in the `PSPDFAnnotationToolbar`.
+*  The `PSPDFSearchResult` class is now immutable and has a new initializer for creation.
+*  `PSPDFSearchViewController` now supports iOS 7 dynamic font size and allows a multi-line text preview. The new default are two lines instead of one.
+*  Various warning/error messages are now printed with the code location instead of a generic PSPDFError trace.
+*  Annotation management now uses equality checks instead of memory-based checks, this makes the code more robust when objects are recreated in the annotation providers.
+*  Text field form elements now resize as we are typing and better render multi-lined text.
+*  PDF Signature Form elements are now tappable and will offer to add a ink annotation as signature.
+*  API change: Renamed `showNewSignatureMenuAtPoint:animated:` with `showNewSignatureMenuAtRect:animated:`. Use a rect with size zero to get the previous behavior.
+*  API: Some subclassing hooks that have been declared but weren't called have been properly removed.
+*  Undo/Redo is disabled by default on old devices to improve performance. (Notably, the iPad 1 with iOS 5.)
+*  Improves error handling for corrupt or missing PDFs.
+*  Using the HSV color picker while brightness is set all the way to 0% (black) will do the smart thing to switch to the pure color with 100% brightness.
+*  Fixes an issue where ink annotations could change position for PDF documents with non-nil origin points.
+*  Fixes an issue where some text in form elements could render incorrectly when the page was rotated.
+*  Fixes a potential recursion when parsing malformed documents.
+*  Fixes an issue where `annotationsFromDetectingLinkTypes:` could throw an exception if a page returns nil as body text. (e.g. corrupt or password protected files)
+*  Fixes an issue where the gallery component could throw an `UIViewControllerHierarchyInconsistency` when used in combination with `PSPDFPageTransitionCurl`.
+*  Fixes an issue where we incorrectly detected a regular password protection as custom encryption filter.
+
 __v3.2.1 - 13/Nov/2013__
 
 *  Improved a few cases where the `PSPDFDocumentSharingViewController` was displayed with practially no options to choose.

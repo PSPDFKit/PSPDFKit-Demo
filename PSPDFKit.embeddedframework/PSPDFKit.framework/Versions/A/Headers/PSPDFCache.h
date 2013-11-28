@@ -152,10 +152,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 /// Defaults to (170, 220) on iPad and (85, 110) on iPhone.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
-/// The size of the images used in the scrobble bar.
-/// Defaults to CGSizeMake(50, 65).
-@property (nonatomic, assign) CGSize tinySize;
-
 /// @name Starting/Stopping
 
 /// Will pause queued cache requests on the render queue.

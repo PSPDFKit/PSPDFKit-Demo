@@ -15,6 +15,7 @@
 @class PSPDFGalleryViewController;
 
 /// Acts as the container view for an image gallery.
+/// @note To get a basic image view without the gallery tap handling, simply set userInteractionEnabled = NO on this view.
 @interface PSPDFGalleryAnnotationView : PSPDFLinkAnnotationBaseView
 
 /// The gallery's view controller.
