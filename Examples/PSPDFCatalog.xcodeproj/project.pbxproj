@@ -12,6 +12,8 @@
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
 		780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */; };
 		780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */; };
+		780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */; };
+		780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */; };
 		781908C41680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */; };
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */; };
@@ -202,6 +204,10 @@
 		780C820616B85C44009396AF /* PSCHeadlessSearchPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHeadlessSearchPDFViewController.m; sourceTree = "<group>"; };
 		780D5ADE1675642C00ECDDAC /* PSCTintablePDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTintablePDFViewController.m; sourceTree = "<group>"; };
 		780D5ADF1675642C00ECDDAC /* PSCTintablePDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTintablePDFViewController.h; sourceTree = "<group>"; };
+		780FBC9118477AB600AE9C7C /* PSCMergeDocumentsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsExample.h; sourceTree = "<group>"; };
+		780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsExample.m; sourceTree = "<group>"; };
+		780FBC9318477AB600AE9C7C /* PSCMergeDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMergeDocumentsViewController.h; sourceTree = "<group>"; };
+		780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMergeDocumentsViewController.m; sourceTree = "<group>"; };
 		781908C21680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTwoFingerSwipeGestureViewController.m; sourceTree = "<group>"; };
 		781908C31680BA230065A6B4 /* PSCTwoFingerSwipeGestureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTwoFingerSwipeGestureViewController.h; sourceTree = "<group>"; };
 		781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomSubviewPDFViewController.m; sourceTree = "<group>"; };
@@ -527,6 +533,17 @@
 			name = Book;
 			sourceTree = "<group>";
 		};
+		780FBC9018477AB600AE9C7C /* Merging */ = {
+			isa = PBXGroup;
+			children = (
+				780FBC9118477AB600AE9C7C /* PSCMergeDocumentsExample.h */,
+				780FBC9218477AB600AE9C7C /* PSCMergeDocumentsExample.m */,
+				780FBC9318477AB600AE9C7C /* PSCMergeDocumentsViewController.h */,
+				780FBC9418477AB600AE9C7C /* PSCMergeDocumentsViewController.m */,
+			);
+			path = Merging;
+			sourceTree = "<group>";
+		};
 		7814630B1688BD9D0002E7C8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +593,7 @@
 				78C6842016F7E5330080427B /* Interfaces */,
 				78A24A1915CFDAAF00328F4F /* Kiosk */,
 				8CDCCD5B17F96E9000AE525F /* Multimedia */,
+				780FBC9018477AB600AE9C7C /* Merging */,
 				784F012C15CF247900849F81 /* PSCAppDelegate.h */,
 				784F012D15CF247900849F81 /* PSCAppDelegate.m */,
 				78FD8D0615CF280B00779E91 /* PSCatalogViewController.h */,
@@ -1272,6 +1290,7 @@
 				78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */,
 				78D455C81662C06300213CA5 /* PSCLinkEditorViewController.m in Sources */,
 				78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */,
+				780FBC9518477AB600AE9C7C /* PSCMergeDocumentsExample.m in Sources */,
 				780D5AE01675642C00ECDDAC /* PSCTintablePDFViewController.m in Sources */,
 				78E8C8C1183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.m in Sources */,
 				78803913167F2B49008AEBAE /* PSCReaderPDFViewController.m in Sources */,
@@ -1288,6 +1307,7 @@
 				78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */,
 				78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */,
 				78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */,
+				780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */,
 				78604C9A16C50CB2003CB721 /* PSCPlayBarButtonItem.m in Sources */,
 				78604C9B16C50CB2003CB721 /* PSCSelectionZoomBarButtonItem.m in Sources */,
 				78604C9C16C50CB2003CB721 /* PSCTintColorSelectionBarButtonItem.m in Sources */,
