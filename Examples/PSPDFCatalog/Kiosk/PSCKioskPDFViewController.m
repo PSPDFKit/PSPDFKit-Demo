@@ -175,20 +175,20 @@
         [rightBarButtonItems addObject:self.annotationButtonItem];
     }
     if (PSIsIpad()) {
+        if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
+            [rightBarButtonItems addObject:self.bookmarkButtonItem];
+        }
         if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.outlineButtonItem];
         }
         if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.searchButtonItem];
         }
-        if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
-            [rightBarButtonItems addObject:self.bookmarkButtonItem];
-        }
     }
+    [rightBarButtonItems addObject:self.additionalActionsButtonItem];
     if ([settings[PROPERTY(brightnessButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.brightnessButtonItem];
     }
-
     if ([settings[PROPERTY(viewModeButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
     }
