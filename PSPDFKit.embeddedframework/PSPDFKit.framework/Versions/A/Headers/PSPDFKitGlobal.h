@@ -113,3 +113,6 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 #else
 #define PSPDFDispatchRelease(object) do { if (object) dispatch_release(object); }while(0)
 #endif
+
+// deprecation helper
+#define PSPDF_DEPRECATED(version, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #version ". " msg)))

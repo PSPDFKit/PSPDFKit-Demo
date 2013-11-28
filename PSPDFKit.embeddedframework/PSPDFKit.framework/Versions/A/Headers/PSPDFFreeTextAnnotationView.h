@@ -22,7 +22,7 @@
 /// Start editing, shows the keyboard.
 - (void)beginEditing;
 
-/// Ends editing, hides the keyboard
+/// Ends editing, hides the keyboard.
 - (void)endEditing;
 
 /// Internally used textView. Only valid during begin and before endEditing.

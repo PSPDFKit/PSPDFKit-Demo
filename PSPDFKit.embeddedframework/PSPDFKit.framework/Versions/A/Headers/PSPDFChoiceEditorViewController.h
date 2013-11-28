@@ -49,6 +49,9 @@
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDataSource> dataSource;
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDelegate> delegate;
 
+// The view where the form is currently rendered into.
+@property (nonatomic, weak) UIView *formElementView;
+
 - (void)reloadData;
 
 @end
