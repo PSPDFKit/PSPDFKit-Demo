@@ -199,6 +199,11 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 
 @implementation PSCFastStampAnnotation
 
+// We don't want to allow resizing here.
+- (BOOL)isResizable {
+    return NO;
+}
+
 // Enable overlay mode for stamps. This will disable rendering them into the page image,
 // and thus allow updates faster. Downside: Doesn't render into the thumbnails.
 - (BOOL)isOverlay {
