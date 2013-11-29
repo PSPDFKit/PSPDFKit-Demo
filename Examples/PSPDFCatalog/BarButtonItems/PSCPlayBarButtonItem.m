@@ -63,7 +63,7 @@
 
     if (!self.isAutoplaying) {
         _autoplaying = YES;
-        _autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:kPSPDFSlideshowDuration target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
+        _autoplayTimer = [NSTimer scheduledTimerWithTimeInterval:PSCSlideshowDuration target:self selector:@selector(advanceToNextPage) userInfo:nil repeats:YES];
         [self updatePlayButton];
     }else {
         _autoplaying = NO;

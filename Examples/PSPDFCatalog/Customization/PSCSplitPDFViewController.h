@@ -10,7 +10,7 @@
 
 // Enable this to simulate improper document usage and test high-load sitations.
 // Only useful for development.
-#define kPSPDFEnableDocumentStressTest 0
+#define PSCEnableDocumentStressTest 0
 
 @interface PSCSplitPDFViewController : PSPDFViewController <UISplitViewControllerDelegate, PSPDFViewControllerDelegate>
 

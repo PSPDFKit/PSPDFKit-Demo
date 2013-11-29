@@ -101,7 +101,7 @@
     return NO;
 }
 
-// If you need to block certain interface orientation, that's the place you want to add it. iOS6 only.
+// If you need to block certain interface orientation, that's the place you want to add it.
 /*
  - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
  return UIInterfaceOrientationMaskPortrait;

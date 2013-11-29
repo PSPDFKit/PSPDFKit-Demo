@@ -15,8 +15,8 @@
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
 
-#define kPSPDFKitDownloadingKey @"downloading"
-#define kPSPDFCellAnimationDuration 0.25f
+#define PSCKitDownloadingKey @"downloading"
+#define PSCCellAnimationDuration 0.25f
 
 @interface PSCImageGridViewCell() {
     NSOperation *_imageLoadOperation;
@@ -35,7 +35,7 @@
 
 @implementation PSCImageGridViewCell
 
-static char kPSPDFKVOToken;
+static char PSCKVOToken;
 static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     if (block) { NSThread.isMainThread ? block() : dispatch_async(dispatch_get_main_queue(), block); }
 }
@@ -64,7 +64,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)dealloc {
-    [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:&kPSPDFKVOToken];
+    [_magazine removeObserver:self forKeyPath:PSCKitDownloadingKey context:&PSCKVOToken];
     [self clearProgressObservers];
 }
 
@@ -151,12 +151,12 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == &kPSPDFKVOToken) {
+    if (context == &PSCKVOToken) {
         if ([keyPath isEqualToString:PROPERTY(downloadProgress)]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
-        }else if ([keyPath isEqualToString:kPSPDFKitDownloadingKey]) {
+        }else if ([keyPath isEqualToString:PSCKitDownloadingKey]) {
             // Check if magazine needs to be observed. (if download progress is active)
             if (self.magazine.isDownloading && ![_observedMagazineDownloads containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -182,14 +182,14 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     }
 
     if (_magazine != magazine) {
-        [_magazine removeObserver:self forKeyPath:kPSPDFKitDownloadingKey context:&kPSPDFKVOToken];
+        [_magazine removeObserver:self forKeyPath:PSCKitDownloadingKey context:&PSCKVOToken];
         _magazine = magazine;
 
         // setup for magazine
         if (magazine) {
 
             // add KVO for download property
-            [magazine addObserver:self forKeyPath:kPSPDFKitDownloadingKey options:0 context:&kPSPDFKVOToken];
+            [magazine addObserver:self forKeyPath:PSCKitDownloadingKey options:0 context:&PSCKVOToken];
 
             // add KVO
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
@@ -394,7 +394,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
     // remove progressView
     if (!shouldShowProgress && self.progressView.superview) {
-        [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^{
+        [UIView animateWithDuration:animated ? PSCCellAnimationDuration : 0.f animations:^{
             self.progressView.alpha = 0.f;
         } completion:^(BOOL finished) {
             [self.progressView removeFromSuperview];
@@ -407,7 +407,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         if (self.progressView.alpha == 0.f || !self.progressView.superview) {
             self.progressView.alpha = 0.f;
             [self.contentView addSubview:self.progressView];
-            [UIView animateWithDuration:animated ? kPSPDFCellAnimationDuration : 0.f animations:^{
+            [UIView animateWithDuration:animated ? PSCCellAnimationDuration : 0.f animations:^{
                 self.progressView.alpha = 1.f;
             }];
         }
@@ -462,7 +462,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             NSLog(@"failed to find associated download object for %@", magazine); return;
         }
         [_observedMagazineDownloads addObject:download];
-        [download addObserver:self forKeyPath:PROPERTY(downloadProgress) options:NSKeyValueObservingOptionInitial context:&kPSPDFKVOToken];
+        [download addObserver:self forKeyPath:PROPERTY(downloadProgress) options:NSKeyValueObservingOptionInitial context:&PSCKVOToken];
         [self updateProgressAnimated:NO];
     }
 }
@@ -470,7 +470,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (void)clearProgressObservers {
     // clear all observed magazines
     for (PSCDownload *download in _observedMagazineDownloads) {
-        [download removeObserver:self forKeyPath:PROPERTY(downloadProgress) context:&kPSPDFKVOToken];
+        [download removeObserver:self forKeyPath:PROPERTY(downloadProgress) context:&PSCKVOToken];
     }
     [_observedMagazineDownloads removeAllObjects];
 }
