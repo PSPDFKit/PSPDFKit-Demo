@@ -173,10 +173,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 #pragma mark - Public
 
 static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
-    if (pdfFileName) {
-        pdfFileName = [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
-    }
-    return pdfFileName;
+    return [pdfFileName stringByReplacingOccurrencesOfString:@".pdf" withString:@"" options:NSCaseInsensitiveSearch|NSBackwardsSearch range:NSMakeRange(0, pdfFileName.length)];
 }
 
 - (void)setMagazine:(PSCMagazine *)magazine {

@@ -53,7 +53,7 @@ static BOOL PSCRemoveStampAnnotationsAtPage(PSPDFPageView *pageView, CGPoint vie
     NSCParameterAssert(pageView);
     NSArray *stampAnnotations = PSCStampAnnotationsAtPoint(pageView, viewPoint);
     if (stampAnnotations.count > 0) {
-        return [pageView.document removeAnnotations:@[stampAnnotations.firstObject]];
+        return [pageView.document removeAnnotations:@[stampAnnotations[0]]];
     }
     return NO;
 }
@@ -184,7 +184,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
         for (PSPDFPageView *pageView in pdfController.visiblePageViews) {
             NSArray *stampAnnotations = PSCStampAnnotationsAtPoint(pageView, [recognizer locationInView:pageView]);
             if (stampAnnotations.count > 0) {
-                pageView.selectedAnnotations = @[stampAnnotations.firstObject];
+                pageView.selectedAnnotations = @[stampAnnotations[0]];
                 break;
             }
         }
@@ -198,6 +198,11 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 #pragma mark - PSCFastStampAnnotation
 
 @implementation PSCFastStampAnnotation
+
+// We don't want to allow resizing here.
+- (BOOL)isResizable {
+    return NO;
+}
 
 // Enable overlay mode for stamps. This will disable rendering them into the page image,
 // and thus allow updates faster. Downside: Doesn't render into the thumbnails.

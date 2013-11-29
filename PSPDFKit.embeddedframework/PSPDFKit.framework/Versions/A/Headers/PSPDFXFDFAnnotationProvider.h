@@ -13,12 +13,12 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFFileAnnotationProvider.h"
 
-/// Concrete implementation of the PSPDFAnnotationProvider protocol that uses a XFDF file as a source.
+/// Concrete implementation of the `PSPDFAnnotationProvider` protocol that uses a XFDF file as a source.
 /// The XFDF file needs to be local and in a writable location, not on a webserver.
 @interface PSPDFXFDFAnnotationProvider : NSObject <PSPDFAnnotationProvider>
 
 /// Designated initializer.
-- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider fileURL:(NSURL *)xfdfFileURL;
+- (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider fileURL:(NSURL *)XFDFFileURL;
 
 /// Associated documentProvider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;

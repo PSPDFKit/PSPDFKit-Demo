@@ -11,14 +11,13 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFHostingAnnotationView.h"
 #import "PSPDFResizableView.h"
-#import "PSPDFFormInputAccessoryView.h"
+#import "PSPDFGenericFormElementView.h"
 
 @class PSPDFTextFieldFormElement;
 
 /// Free Text View. Allows inline text editing.
-@interface PSPDFTextFieldFormElementView : PSPDFHostingAnnotationView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate, UITextFieldDelegate, PSPDFFormInputAccessoryViewDelegate>
+@interface PSPDFTextFieldFormElementView : PSPDFGenericFormElementView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate, UITextFieldDelegate>
 
 /// Start editing, shows the keyboard.
 - (void)beginEditing;
@@ -43,9 +42,6 @@
 
 /// The dragging view, if we are currently dragged.
 @property (nonatomic, weak) PSPDFResizableView *resizableView;
-
-/// Associated PSPDFPageView.
-@property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end
 

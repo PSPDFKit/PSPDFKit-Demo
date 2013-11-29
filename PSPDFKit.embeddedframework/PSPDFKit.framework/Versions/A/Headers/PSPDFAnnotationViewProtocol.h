@@ -12,7 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFAnnotation;
+@class PSPDFAnnotation, PSPDFPageView;
 
 /// Conforming to this protocol indicates instances can present an annotation and react events such as page show/hide (to pause video, for example)
 @protocol PSPDFAnnotationViewProtocol <NSObject>
@@ -49,7 +49,7 @@
 /// Called when the user taps on an annotation and the tap wasn't processed otherwise.
 - (void)didTapAtPoint:(CGPoint)point;
 
-/// A weak reference to the view controller responsible for this view.
-@property (nonatomic, weak) UIViewController *viewController;
+/// A weak reference to the page view responsible for this view.
+@property (nonatomic, weak) PSPDFPageView *pageView;
 
 @end

@@ -23,8 +23,8 @@
 /// The PDF action executed on touch.
 @property (nonatomic, strong) PSPDFAction *action;
 
-/// Handle tap event.
-- (BOOL)handleTapInView:(PSPDFPageView *)pdfPageView;
+/// Overrides the parent `borderColor` to have a real backing store.
+@property (nonatomic, strong) UIColor *borderColor;
 
 /// Property to enable/disable AP stream rendering. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldRenderAppearanceStream;

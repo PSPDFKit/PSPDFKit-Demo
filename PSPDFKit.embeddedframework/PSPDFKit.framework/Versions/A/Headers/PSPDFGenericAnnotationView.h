@@ -27,6 +27,6 @@
 @interface PSPDFGenericAnnotationView (SubclassingHooks)
 
 // Called when any annotation changes. Must call super on this.
-- (void)annotationsChanged:(NSNotification *)notification;
+- (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
 @end
