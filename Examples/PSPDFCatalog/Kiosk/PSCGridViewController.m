@@ -114,8 +114,8 @@
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
     // Init the collection view.
-    PSUICollectionViewFlowLayout *flowLayout = [PSUICollectionViewFlowLayout new];
-    PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
     NSUInteger spacing = 14;
@@ -239,7 +239,7 @@
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             [self.collectionView layoutSubviews]; // ensure cells are laid out
 
             // Convert the coordinates into view coordinate system.
@@ -819,8 +819,6 @@
 #import <objc/runtime.h>
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0) return; // stop if we're on iOS5.
-
     @autoreleasepool {
         if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
             IMP updateIMP = imp_implementationWithBlock(^(id _self) {});

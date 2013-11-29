@@ -42,10 +42,6 @@
     return self;
 }
 
-- (void)dealloc {
-    PSPDFDispatchRelease(_annotationProviderQueue);
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFAnnotationProvider
 

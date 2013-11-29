@@ -18,14 +18,9 @@
 #define PSCLog(...)
 #endif
 
-// iOS6 compatibility
-#ifndef kCFCoreFoundationVersionNumber_iOS_6_0
-#define kCFCoreFoundationVersionNumber_iOS_6_0 788.0
-#endif
-
-// iOS7 compatibility [BETA 1]
+// iOS7 compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
-#define kCFCoreFoundationVersionNumber_iOS_7_0 838.0
+#define kCFCoreFoundationVersionNumber_iOS_7_0 847.2
 #endif
 
 // Availability Macros

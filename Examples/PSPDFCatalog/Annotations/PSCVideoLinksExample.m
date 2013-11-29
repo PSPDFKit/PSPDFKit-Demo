@@ -31,36 +31,49 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.editableAnnotationTypes = nil; // Diable annotation editing.
 
-    // First example - use a stamp annotation. This will be rendered into the PDF.
-    // Add a link to a full-screen video.
-    PSPDFStampAnnotation *videoStamp = [[PSPDFStampAnnotation alloc] init];
-    videoStamp.image = [UIImage imageNamed:@"mas_audio_b41570.gif"];
-
-    // Center the image into the page in PDF coordinate space (flipped)
+    // Get rects to position.
+    UIImage *image = [UIImage imageNamed:@"mas_audio_b41570.gif"];
+    CGSize imageSize = CGSizeApplyAffineTransform(image.size, CGAffineTransformMakeScale(0.5f, 0.5f));
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
-    CGSize imageSize = CGSizeApplyAffineTransform(videoStamp.image.size, CGAffineTransformMakeScale(0.5f, 0.5f));
-    videoStamp.boundingBox = CGRectMake((pageRect.size.width-imageSize.width)/2,
-                                       (pageRect.size.height-imageSize.height)/2,
-                                       imageSize.width, imageSize.height);
 
-    // Add the video action and add the annotation.
+    // Create tap action (open new popover with video in fullscreen)
     PSPDFURLAction *videoAction = [[PSPDFURLAction alloc] initWithURLString:@"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480"];
-    videoStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
-    [document addAnnotations:@[videoStamp]];
+
+    // Create action that opens a sheet.
+    PSPDFURLAction *sheetVideoAction = [videoAction copy];
+    sheetVideoAction.options = @{PSPDFActionOptionControls : @NO, // Disable browser controls.
+                            PSPDFActionOptionSize : [NSValue valueWithCGSize:CGSizeMake(620.f, 400.f)]}; // Will present as sheet on iPad, is ignored on iPhone.
 
 
-    // Second exampe - use a special link annotation.
+
+    // First example - use a special link annotation.
     PSPDFLinkAnnotation *videoLink = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/mas_audio_b41570.gif"];
     videoLink.boundingBox = CGRectMake(0.f, pageRect.size.height-imageSize.height-64.f, imageSize.width, imageSize.height);
     videoLink.controlsEnabled = NO; // Disable gallery touch processing.
-    videoLink.action.nextAction = videoAction;
-//    videoLink.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
+    videoLink.action.nextAction = sheetVideoAction; // attach action after the image action.
     [document addAnnotations:@[videoLink]];
 
-    // Third example - just add the video inline.
+
+    // Second example - just add the video inline.
+    // Notice the pspdfkit:// prefix that enables automatic video detection.
     PSPDFLinkAnnotation *videoEmbedded = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480"];
-    videoEmbedded.boundingBox = CGRectMake(pageRect.size.width-imageSize.width, pageRect.size.height-imageSize.height-64.f, imageSize.width, imageSize.height);
+    videoEmbedded.boundingBox = CGRectMake(pageRect.size.width-imageSize.width, pageRect.size.height-imageSize.height-64.f,
+                                           imageSize.width, imageSize.height);
     [document addAnnotations:@[videoEmbedded]];
+
+
+    // Third example - use a stamp annotation. This will be rendered into the PDF.
+    // Add a link to a full-screen video.
+    PSPDFStampAnnotation *videoStamp = [[PSPDFStampAnnotation alloc] initWithImage:[UIImage imageNamed:@"mas_audio_b41570.gif"]];
+
+    // Center the image into the page in PDF coordinate space (flipped)
+    videoStamp.boundingBox = CGRectMake((pageRect.size.width-imageSize.width)/2,
+                                        (pageRect.size.height-imageSize.height)/2,
+                                        imageSize.width, imageSize.height);
+
+    // Add the video action and add the annotation.
+    videoStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
+    [document addAnnotations:@[videoStamp]];
 
     // And also the controller.
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
