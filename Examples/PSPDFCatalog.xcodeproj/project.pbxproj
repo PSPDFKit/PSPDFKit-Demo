@@ -139,6 +139,7 @@
 		78C7C5E216CB9C4D0006075D /* PSCSplitPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C7C5D916CB9C4D0006075D /* PSCSplitPDFViewController.m */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
+		78CE5C1A18481C4D00BE8B08 /* PSCVideoLinksExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */; };
 		78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1716A5F83800899C4A /* RNCryptor.m */; };
 		78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */; };
 		78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1B16A5F83800899C4A /* RNDecryptor.m */; };
@@ -403,6 +404,8 @@
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
+		78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCVideoLinksExample.m; sourceTree = "<group>"; };
+		78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCVideoLinksExample.h; sourceTree = "<group>"; };
 		78D2CB1516A5F83800899C4A /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		78D2CB1616A5F83800899C4A /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		78D2CB1716A5F83800899C4A /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -802,6 +805,8 @@
 				78B095E2183A24C800BBE328 /* PSCFreeFormImageResizeExample.h */,
 				78E8C8BF183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.m */,
 				78E8C8C0183EBA3100C9153C /* PSCAlternativeNoteAnnotationInterfaceExample.h */,
+				78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */,
+				78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */,
 			);
 			path = Annotations;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				78D909EF1789FFF700E7D4D5 /* PSCCoreDataAnnotation.m in Sources */,
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
+				78CE5C1A18481C4D00BE8B08 /* PSCVideoLinksExample.m in Sources */,
 				78E4E06917DD1532005ED42D /* PSCAssetLoader.m in Sources */,
 				78B1E1CE1641B65D00FB8FC4 /* PSCBottomToolbarViewController.m in Sources */,
 				78E4E06517DD151B005ED42D /* PSCExample.m in Sources */,
