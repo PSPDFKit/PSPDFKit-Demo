@@ -118,7 +118,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         UILabel *pageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         pageLabel.backgroundColor = [UIColor clearColor];
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
-        pageLabel.shadowColor = [UIColor blackColor];
+        pageLabel.shadowColor = UIColor.blackColor;
         pageLabel.shadowOffset = CGSizeMake(0.f, 1.f);
         pageLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         pageLabel.textAlignment = NSTextAlignmentCenter;
@@ -312,7 +312,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         _magazineCounter = [[UILabel alloc] init];
         _magazineCounter.font = [UIFont boldSystemFontOfSize:20.f];
         _magazineCounter.textColor = [UIColor whiteColor];
-        _magazineCounter.shadowColor = [UIColor blackColor];
+        _magazineCounter.shadowColor = UIColor.blackColor;
         _magazineCounter.shadowOffset = CGSizeMake(1.f, 1.f);
         _magazineCounter.backgroundColor = [UIColor clearColor];
         _magazineCounter.frame = CGRectMake(1.f, 1.f, 25.f, 25.f);
@@ -356,7 +356,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     if (darken && !_progressViewBackground) {
         _progressViewBackground = [[UIView alloc] initWithFrame:self.imageView.bounds];
         _progressViewBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _progressViewBackground.backgroundColor = [UIColor blackColor];
+        _progressViewBackground.backgroundColor = UIColor.blackColor;
         _progressViewBackground.alpha = 0.5f;
     }
 

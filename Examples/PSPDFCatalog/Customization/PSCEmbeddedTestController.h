@@ -15,6 +15,6 @@
 - (IBAction)replaceDocument;
 - (IBAction)clearCache;
 
-@property (nonatomic, strong) PSPDFViewController *pdfController;
+@property (nonatomic, strong, readonly) PSPDFViewController *pdfController;
 
 @end
