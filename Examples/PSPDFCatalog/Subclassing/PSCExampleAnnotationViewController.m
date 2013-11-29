@@ -31,14 +31,6 @@
     [self.HUDView addSubview:self.verticalToolbar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    if (!self.isViewLoaded) {
-        self.verticalToolbar.pdfController = nil;
-        self.verticalToolbar = nil;
-    }
-}
-
 // ensure custom toolbar is hidden when we show the thumbnails
 - (void)setViewMode:(PSPDFViewMode)viewMode animated:(BOOL)animated {
     [super setViewMode:viewMode animated:animated];
