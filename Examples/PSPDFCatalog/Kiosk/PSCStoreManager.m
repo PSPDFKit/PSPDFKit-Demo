@@ -83,7 +83,6 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    PSPDFDispatchRelease(_magazineFolderQueue);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
