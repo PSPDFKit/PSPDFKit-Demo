@@ -11,8 +11,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PSPDFKit/PSPDFURLConnection.h>
-#import <PSPDFKit/PSPDFRemoteContentObject.h>
+#import "PSPDFRemoteContentObject.h"
 
 /// An item in a gallery.
 @interface PSPDFGalleryItem : NSObject <PSPDFRemoteContentObject>

@@ -26,8 +26,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
 extern "C" {
 #endif
 
-/// Needs to be set in your App Delegate to enable PSPDFKit.
-/// @note Should be called from the main thread.
+/// Should be set directly in `application:didFinishLaunchingWithOptions:` to enable PSPDFKit, or at latest before any PSPDF* classes are used. Call from the main thread.
 /// @return the features available for the give license key.
 extern PSPDFFeatureMask PSPDFSetLicenseKey(const char *licenseKey);
 

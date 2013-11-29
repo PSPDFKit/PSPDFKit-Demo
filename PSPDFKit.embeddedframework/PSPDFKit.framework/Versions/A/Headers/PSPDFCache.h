@@ -107,7 +107,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Document pre-processing
 
-/// Starts caching the document. setting `diskCacheStrategy` to PSPDFDiskCacheStrategyEverything will pre-cache the whole document, and PSPDFDiskCacheStrategyNearPages will render a few pages around `page`.
+/// Starts caching the document. setting `diskCacheStrategy` to `PSPDFDiskCacheStrategyEverything` will pre-cache the whole document, and `PSPDFDiskCacheStrategyNearPages` will render a few pages around `page`.
+/// For `sizes` usually you want the full screen, so use `@[[NSValue valueWithCGSize:UIScreen.mainScreen.bounds.size]]` unless you have an always-visible toolbar that makes the effective size for the page smaller. You don't need to worry about aspect ration correctness, PSPDFKit will do that for you. If you use `fitToWidthEnabled`, you should set a fake size with a very large height (e.g. 5000) so that the page is effectively bound by width only.
 - (void)cacheDocument:(PSPDFDocument *)document startAtPage:(NSUInteger)page sizes:(NSArray *)sizes diskCacheStrategy:(PSPDFDiskCacheStrategy)diskCacheStrategy;
 
 /// Stops all cache requests (render requests, queued disk writes) for the document.
@@ -139,22 +140,18 @@ typedef NS_OPTIONS(NSUInteger, PSPDFCacheOptions) {
 
 /// @name Settings
 
-/// Cache files are saved in a subdirectory of NSCachesDirectory. Defaults to "PSPDFKit/Pages".
+/// Cache files are saved in a subdirectory of `NSCachesDirectory`. Defaults to "PSPDFKit/Pages".
 /// @note The cache directory is not backed up by iCloud and will be purged when memory is low.
 /// @warning Set this early during class initialization. Will clear the current cache before changing.
 @property (nonatomic, copy) NSString *cacheDirectory;
 
-/// Defines the global disk cache strategy. Defaults to PSPDFDiskCacheStrategyEverything.
-/// If PSPDFDocument also defines a strategy, that one is prioritized.
+/// Defines the global disk cache strategy. Defaults to `PSPDFDiskCacheStrategyEverything`.
+/// If `PSPDFDocument` also defines a strategy, that one is prioritized.
 @property (nonatomic, assign) PSPDFDiskCacheStrategy diskCacheStrategy;
 
 /// The size of the thumbnail images used in the grid view and those shown before the full-size versions are rendered.
 /// Defaults to (170, 220) on iPad and (85, 110) on iPhone.
 @property (nonatomic, assign) CGSize thumbnailSize;
-
-/// The size of the images used in the scrobble bar.
-/// Defaults to CGSizeMake(50, 65).
-@property (nonatomic, assign) CGSize tinySize;
 
 /// @name Starting/Stopping
 

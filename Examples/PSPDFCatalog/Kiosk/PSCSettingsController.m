@@ -214,10 +214,6 @@ static CGFloat pscSettingsLastYOffset = 0;
     pscSettingsLastYOffset = self.tableView.contentOffset.y;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return PSIsIpad() ? YES : interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 

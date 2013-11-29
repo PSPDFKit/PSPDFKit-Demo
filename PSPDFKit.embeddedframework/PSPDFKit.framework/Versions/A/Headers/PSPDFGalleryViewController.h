@@ -33,15 +33,17 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
     PSPDFGalleryViewControllerStateManifestError
 };
 
-/// Handles a gallery of images.
+@class PSPDFGalleryViewController;
+
+/// Handles a gallery of one or multiple images.
 @interface PSPDFGalleryViewController : PSPDFBaseViewController <PSPDFOverridable>
 
-/// Create a new gallery view controller by passing in a link annotation with linkAnnotationType set to PSPDFLinkAnnotationGallery.
+/// Create a new gallery view controller by passing in a link annotation with `linkAnnotationType` set to `PSPDFLinkAnnotationImage`.
 - (instancetype)initWithLinkAnnotation:(PSPDFLinkAnnotation *)annotation;
 
 /// @name Configuration
 
-/// The max. number of concurrent downlaods. Defaults to 2. Must at least be 1.
+/// The max. number of concurrent downloads. Defaults to 2. Must at least be 1.
 @property (nonatomic, assign) NSUInteger maxConcurrentDownloads;
 
 /// The max. number of images after the currently visible one that should be prefetched. Defaults to 5.
@@ -49,12 +51,31 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 @property (nonatomic, assign) NSUInteger maxPrefetchDownloads;
 
 /// Control if the user can enter the fullscreen mode by double-tapping. Defaults to YES.
-/// @note This only affects user interaction. If you call setFullscreen:YES manually, the fullscreen mode will
+/// @note This only affects user interaction. If you call `setFullscreen:YES` manually, the fullscreen mode will
 /// still be entered.
 @property (nonatomic, assign) BOOL allowFullscreen;
 
 /// The treshold in points after which the fullscreen mode is exited after a pan. Defaults to 80pt.
 @property (nonatomic, assign) CGFloat fullscreenDismissPanTreshold;
+
+/// Set this to YES if zooming should be enabled in fullscreen mode. Defaults to YES.
+@property (nonatomic, assign, getter = isFullscreenZoomEnabled) BOOL fullscreenZoomEnabled;
+
+/// The maximum zoom scale that you want to allow. Only meaningful if `fullscreenZoomEnabled` is YES
+/// Defaults to 5.0.
+@property (nonatomic, assign) CGFloat maximumFullscreenZoomScale;
+
+/// The minimum zoom scale that you want to allow. Only meaningful if `fullscreenZoomEnabled` is YES.
+/// Defaults to 1.0.
+@property (nonatomic, assign) CGFloat minimumFullscreenZoomScale;
+
+/// The color that is displayed behind images in the gallery. Set this to `[UIColor clearColor]`
+/// if you need a transparent mode. Defaults to black.
+@property (nonatomic, strong) UIColor *backgroundColor;
+
+/// The color that is displayed behind images in the gallery when in fullscreen mode.
+/// Set this to `[UIColor clearColor]` if you need a transparent mode. Defaults to black.
+@property (nonatomic, strong) UIColor *fullscreenBackgroundColor;
 
 /// @name State
 
@@ -76,5 +97,16 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// The current zoom scale. Only valid when displayed as an embedded gallery within a PDF document.
 /// Defaults to 1.0.
 @property (nonatomic, assign) CGFloat zoomScale;
+
+// @name Gesture Recognizers
+
+// Single-Tap: Show/Hide image description.
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *singleTapGestureRecognizer;
+
+// Double-Tap: Toggle Full-Screen.
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGestureRecognizer;
+
+// Pan: Dismiss Full-Screen mode.
+@property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGestureRecognizer;
 
 @end

@@ -31,4 +31,7 @@
 // Override to customize the image tinting.
 - (UIImage *)renderNoteImage;
 
+// Force image re-render.
+- (void)updateImage;
+
 @end

@@ -124,9 +124,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Wartungsformular.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase-Form-Wordconversion.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
@@ -174,17 +174,19 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
-        // don't use thumbnails if the PDF is not rendered.
+        // Don't use thumbnails if the PDF is not rendered.
         // FullPageBlocking feels good when combined with pageCurl, less great with other scroll modes, especially PSPDFPageTransitionScrollContinuous.
         controller.renderingMode = PSPDFPageRenderingModeFullPageBlocking;
 
-        // setup toolbar
+        // Setup toolbar
         controller.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionOutline)];
         controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.bookmarkButtonItem];
 
-        // show the thumbnail button on the HUD, but not on the toolbar (we're not adding viewModeButtonItem here)
-        controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
-        controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+        // Show the thumbnail button on the HUD, but not on the toolbar. (we're not adding viewModeButtonItem here)
+        if (!PSCIsUIKitFlatMode()) {
+            controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
+            controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+        }
         controller.pageLabel.showThumbnailGridButton = YES;
 
         controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
@@ -202,7 +204,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         BOOL includeBrightnessButton = YES;
         PSC_IF_IOS7_OR_GREATER(includeBrightnessButton = NO;)
-        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageTransitionScrollContinuous;
@@ -210,7 +212,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+        controller.statusBarStyleSetting = PSCIsUIKitFlatMode() ? PSPDFStatusBarStyleBlackOpaque : PSPDFStatusBarStyleDefault;
         return controller;
     }]];
 
@@ -831,7 +833,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             PSPDFPageView *pageView = pdfController.visiblePageViews.count > 0 ? pdfController.visiblePageViews[0] : nil;
-            [pageView showSignatureControllerAtPoint:CGPointZero withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
+            [pageView showSignatureControllerAtRect:CGRectNull withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
         });
 
         return pdfController;
@@ -1532,37 +1534,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
     }]];
 
-    //    1. Run in iOS 5.1 in Simulator in landscape.
-    //    2. Expand to fullscreen.
-    //    3. Rotate to Portrait.
-    //    4. Tap 'Done'
-    //
-    //    Expected behavior:
-    //    PDF returns to page 7 and movie is visible
-    //
-    //    Bug behavior: (fixed as of 2.6.4)
-    //    PDF returns to page 1 instead of page 7. If you scroll go back to page 7, the movie fails to load.
-    [testSection addContent:[PSContent contentWithTitle:@"Test Video Rotation" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"PDF with Video.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 6;
-        return pdfController;
-    }]];
-
     [testSection addContent:[PSContent contentWithTitle:@"Test that Fullscren Audio doesn't flicker" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Lifescribe.pdf"]];
         return [[PSPDFViewController alloc] initWithDocument:document];
     }]];
 
-    // Test on iOS5
-    [testSection addContent:[PSContent contentWithTitle:@"Test that Video is pause/playable via touch" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 4;
-        return pdfController;
-    }]];
-
-    // Check that this doesn't auto-play, especially not on iOS5.
+    // Check that this doesn't auto-play.
     [testSection addContent:[PSContent contentWithTitle:@"Test Video No-Autoplay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia-autostart-ios5.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2424,11 +2401,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }
 }
 
-// Support for iOS5. iOS6 does this differently and also correct by default.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
@@ -2625,7 +2597,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)debugCreateLowMemoryWarning {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [[UIApplication sharedApplication] performSelector:NSSelectorFromString([NSString stringWithFormat:@"_%@Warning", @"performMemory"])];
+    [UIApplication.sharedApplication performSelector:NSSelectorFromString([NSString stringWithFormat:@"_%@Warning", @"performMemory"])];
 #pragma clang diagnostic pop
     
     // Clear any reference of items that would retain controllers/pages.
