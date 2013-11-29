@@ -124,9 +124,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Wartungsformular.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase-Form-Wordconversion.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
@@ -1532,23 +1532,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, YES);
         PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
         return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
-    }]];
-
-    //    1. Run in iOS 5.1 in Simulator in landscape.
-    //    2. Expand to fullscreen.
-    //    3. Rotate to Portrait.
-    //    4. Tap 'Done'
-    //
-    //    Expected behavior:
-    //    PDF returns to page 7 and movie is visible
-    //
-    //    Bug behavior: (fixed as of 2.6.4)
-    //    PDF returns to page 1 instead of page 7. If you scroll go back to page 7, the movie fails to load.
-    [testSection addContent:[PSContent contentWithTitle:@"Test Video Rotation" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"PDF with Video.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 6;
-        return pdfController;
     }]];
 
     [testSection addContent:[PSContent contentWithTitle:@"Test that Fullscren Audio doesn't flicker" block:^UIViewController *{
