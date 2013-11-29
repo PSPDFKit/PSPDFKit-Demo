@@ -37,7 +37,7 @@
     self.documentLabelEnabled = NO;
     self.textSelectionEnabled = NO;
     self.shadowEnabled = NO;
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = UIColor.blackColor;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

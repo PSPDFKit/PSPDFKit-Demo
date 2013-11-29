@@ -12,9 +12,9 @@
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCEmbeddedTestController () {
-    UITableViewController *_testAnimationViewController;
-}
+@interface PSCEmbeddedTestController ()
+@property (nonatomic, strong) UITableViewController *testAnimationViewController;
+@property (nonatomic, strong) PSPDFViewController *pdfController;
 @end
 
 @implementation PSCEmbeddedTestController
@@ -35,7 +35,6 @@
 
         // Add button to push view.
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Stacked" style:UIBarButtonItemStylePlain target:self action:@selector(pushView)];
-
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Modal" style:UIBarButtonItemStylePlain target:self action:@selector(openModalView)];
     }
     return self;
@@ -44,10 +43,10 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+// Implement viewDidLoad to do additional setup after loading the view, typically from a NIB.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = UIColor.lightGrayColor;
 
     // Example to test CGDataProvider support.
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
@@ -55,30 +54,18 @@
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
     PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:dataProvider];
     CGDataProviderRelease(dataProvider);
-    //PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
 
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
-    //self.pdfController.pageMode = PSPDFPageModeSingle;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
     self.pdfController.scrollOnTapPageEndEnabled = NO;
-
-    /*
-     self.pdfController.scrollDirection = PSPDFScrollDirectionVertical;
-     self.pdfController.pagePadding = 0.0f;
-     self.pdfController.shadowEnabled = NO;
-     self.pdfController.pageMode = PSPDFPageModeDouble;
-     self.pdfController.doublePageModeOnFirstPage = YES;
-     self.pdfController.scrobbleBarEnabled = NO;
-     self.pdfController.viewMode = PSPDFViewModeThumbnails;
-     */
 
     if (self.pdfController) {
         [self addChildViewController:self.pdfController];
 
-        // initially, add tableview then later animate to the pdf controller
+        // Initially, add tableview then later animate to the PDF controller.
         _testAnimationViewController = [[UITableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         [self addChildViewController:_testAnimationViewController];
         _testAnimationViewController.view.frame = self.pdfController.view.frame;
@@ -87,8 +74,8 @@
         [_testAnimationViewController didMoveToParentViewController:self];
     }
 
-    // add a border
-    self.pdfController.view.layer.borderColor = [UIColor blackColor].CGColor;
+    // Border.
+    self.pdfController.view.layer.borderColor = UIColor.blackColor.CGColor;
     self.pdfController.view.layer.borderWidth = 2.f;
 }
 
@@ -104,7 +91,6 @@
 
     // Show how controller can be animated.
     dispatch_async(dispatch_get_main_queue(), ^{
-
         if (_testAnimationViewController.parentViewController) {
             self.pdfController.view.hidden = NO;
             self.pdfController.view.frame = _testAnimationViewController.view.frame;
@@ -117,8 +103,7 @@
         }else {
             [UIView transitionWithView:self.pdfController.view duration:0.5f options:UIViewAnimationOptionTransitionCurlDown animations:^{
                 self.pdfController.view.hidden = NO;
-            } completion:^(BOOL finished) {
-            }];
+            } completion:NULL];
         }
     });
 }
@@ -163,28 +148,22 @@
 - (IBAction)replaceDocument {
     [self replaceFile];
 
-    // although replacing a document *inline* is possible, it's not advised.
-    // it's better to re-create the PSPDFDocument and set a new uid
-    //[self.pdfController.document clearCacheForced:YES];
-    //[[PSPDFCache sharedPSPDFCache] clearCache];
-    //[self.pdfController reloadData];
-
     // create new document
     NSString *path = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
 
-    // if we mix documents, they sure have different aspect ratios. This is a bit slower, though.
+    // If we mix documents, they sure have different aspect ratios. This is a bit slower, though.
     document.aspectRatioEqual = NO;
 
-    // we have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
-    [[PSPDFCache sharedCache] clearCache];
+    // We have to clear the cache, because we *replaced* a file, and there may be old images cached for it.
+    [PSPDFCache.sharedCache clearCache];
 
-    // set document on active controller
+    // Set document on active controller.
     self.pdfController.document = document;
 }
 
 - (IBAction)clearCache {
-    [[PSPDFCache sharedCache] clearCache];
+    [PSPDFCache.sharedCache clearCache];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -208,7 +187,7 @@
     if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
         NSLog(@"error while deleting: %@", error.localizedDescription);
     }
-    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:nil];
+    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:NULL];
 }
 
 - (void)pushView {
@@ -216,7 +195,6 @@
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[NSURL fileURLWithPath:path]];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.additionalBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
-    //pdfController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pdfController animated:YES];
 }
 

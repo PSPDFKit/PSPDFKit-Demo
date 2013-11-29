@@ -176,7 +176,7 @@ static NSMutableDictionary *_settings;
     UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0f);
     CGContextRef context = UIGraphicsGetCurrentContext();
     [color setFill];
-    [[UIColor blackColor] setStroke];
+    [UIColor.blackColor setStroke];
     CGContextSetLineWidth(context, 1.f);
     CGContextFillRect(context, (CGRect){.size=imageSize});
     CGContextStrokeRect(context, (CGRect){.size=imageSize});
@@ -431,7 +431,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case PSPDFClearCacheButton: [[PSPDFCache sharedCache] clearCache]; break;
+        case PSPDFClearCacheButton: [PSPDFCache.sharedCache clearCache]; break;
         case PSPDFOpenAPIButton: {
 #if TARGET_IPHONE_SIMULATOR
             system("open 'http://pspdfkit.com/documentation/'"); break;
@@ -457,8 +457,8 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFThumbnailModeSettings: _settings[PROPERTY(thumbnailBarMode)] = @(indexPath.row); break;
         case PSPDFLinkActionSettings: _settings[PROPERTY(linkAction)] = @(indexPath.row); break;
         case PSPDFCacheSettings:
-            [[PSPDFCache sharedCache] clearCache];
-            [PSPDFCache sharedCache].diskCacheStrategy = indexPath.row;
+            [PSPDFCache.sharedCache clearCache];
+            PSPDFCache.sharedCache.diskCacheStrategy = indexPath.row;
             break;
         default: break;
     }

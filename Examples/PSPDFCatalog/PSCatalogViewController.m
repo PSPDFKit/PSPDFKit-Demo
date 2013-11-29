@@ -335,12 +335,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [customizationSection addContent:[PSContent contentWithTitle:@"Night Mode" block:^{
-        [[PSPDFCache sharedCache] clearCache];
+        [PSPDFCache.sharedCache clearCache];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.renderOptions = @{PSPDFRenderInverted : @YES};
-        document.backgroundColor = [UIColor blackColor];
+        document.backgroundColor = UIColor.blackColor;
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.backgroundColor = [UIColor blackColor];
+        pdfController.backgroundColor = UIColor.blackColor;
         _clearCacheNeeded = YES;
         return pdfController;
     }]];
@@ -473,7 +473,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Encrypting the images will be a 5-10% slowdown, nothing substantial at all.
     [passwordSection addContent:[PSContent contentWithTitle:@"Enable PSPDFCache encryption" block:^UIViewController *{
-        PSPDFCache *cache = [PSPDFCache sharedCache];
+        PSPDFCache *cache = PSPDFCache.sharedCache;
         // Clear existing cache
         [cache clearCache];
 
@@ -1269,7 +1269,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Check that page labels work correctly, even if we use the pageRange feature.
     [testSection addContent:[PSContent contentWithTitle:@"PageLabels test + pageRange" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pagelabels-test.pdf"]];
-        [[PSPDFCache sharedCache] removeCacheForDocument:document deleteDocument:NO error:NULL];
+        [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
         _clearCacheNeeded = YES;
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 15)];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1279,7 +1279,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Check that there's no transparent border around images.
     [testSection addContent:[PSContent contentWithTitle:@"Thumbnails Aspect Ratio Test" block:^UIViewController *{
-        [[PSPDFCache sharedCache] clearCache];
+        [PSPDFCache.sharedCache clearCache];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_aspectratio.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
@@ -1915,7 +1915,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Check that showing this won't crash the iPad1.
     [testSection addContent:[PSContent contentWithTitle:@"Test memory intensive document" block:^UIViewController *{
-        [[PSPDFCache sharedCache] clearCache];
+        [PSPDFCache.sharedCache clearCache];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Dictionary of American Idioms and Phrasal Verbs.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
@@ -2367,7 +2367,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // clear cache (for night mode)
     if (_clearCacheNeeded) {
         _clearCacheNeeded = NO;
-        [[PSPDFCache sharedCache] clearCache];
+        [PSPDFCache.sharedCache clearCache];
     }
 }
 
