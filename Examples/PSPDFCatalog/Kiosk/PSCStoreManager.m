@@ -12,7 +12,7 @@
 #import "PSCMagazine.h"
 #import "PSCMagazineFolder.h"
 #import "PSCDownload.h"
-#import "AFJSONRequestOperation.h"
+#import "AFHTTPRequestOperation.h"
 #include <objc/runtime.h>
 
 @interface PSCStoreManager() {
@@ -38,21 +38,8 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     static __strong PSCStoreManager *_sharedStoreManager = nil;
     dispatch_once(&onceToken, ^{
         _sharedStoreManager = [self new];
-
-        // Allow plain text in JSON downloader class, fixes servers that don't know about JSON.
-        [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/plain"]];
     });
     return _sharedStoreManager;
-}
-
-+ (NSOperationQueue *)sharedOperationQueue {
-    static __strong NSOperationQueue *_sharedOperationQueue = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedOperationQueue = [NSOperationQueue new];
-        [_sharedOperationQueue setMaxConcurrentOperationCount:2];
-    });
-    return _sharedOperationQueue;
 }
 
 + (NSString *)storagePath {
@@ -69,8 +56,8 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.PSPDFKit.%@", self] UTF8String], DISPATCH_QUEUE_CONCURRENT);
-        _downloadQueue = [[NSMutableArray alloc] init];
+        _magazineFolderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFKit.%@", self].UTF8String, DISPATCH_QUEUE_CONCURRENT);
+        _downloadQueue = [NSMutableArray new];
 
         // Load magazines from disk, async.
         _diskDataLoaded = YES;
@@ -421,11 +408,19 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (void)loadMagazinesAvailableFromWeb {
     NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:loadRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSArray *dlMagazines = (NSArray *)JSON;
+    AFHTTPRequestOperation *loadMagazineOperation = [[AFHTTPRequestOperation alloc] initWithRequest:loadRequest];
+    loadMagazineOperation.responseSerializer = AFJSONResponseSerializer.serializer;
+
+    [loadMagazineOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (![responseObject isKindOfClass:NSArray.class]) {
+            PSCLog(@"Unexpected response: %@", responseObject);
+            return;
+        }
+
+        NSArray *dlMagazines = (NSArray *)responseObject;
         NSMutableArray *newMagazines = [NSMutableArray array];
         for (NSDictionary *dlMagazine in dlMagazines) {
-            if (![dlMagazine isKindOfClass:[NSDictionary class]]) {
+            if (![dlMagazine isKindOfClass:NSDictionary.class]) {
                 PSCLog(@"Error while parsing magazine JSON - Dictionary expected. Got this instead: %@", dlMagazine);
             }else {
                 // create and fill PSPDFMagazine
@@ -454,11 +449,10 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             }
         }
         [self addMagazinesToStore:newMagazines];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        PSCLog(@"Failed to download JSON: %@", error);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        PSCLog(@"Failed to download JSON: %@", error.localizedDescription);
     }];
-
-    [[self.class sharedOperationQueue] addOperation:operation];
+    [loadMagazineOperation start];
 }
 
 - (void)clearCache {
