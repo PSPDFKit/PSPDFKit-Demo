@@ -10,6 +10,7 @@
 
 #import "PSCAlternativeNoteAnnotationInterfaceExample.h"
 #import "PSCAssetLoader.h"
+#import "PSPDFModernizer.h"
 #import <QuartzCore/QuartzCore.h>
 
 // Custom classes required
