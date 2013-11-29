@@ -123,10 +123,6 @@
     });
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
 

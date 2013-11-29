@@ -66,10 +66,6 @@
     self.thumbnailSize = _originalThumbnailSize;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
