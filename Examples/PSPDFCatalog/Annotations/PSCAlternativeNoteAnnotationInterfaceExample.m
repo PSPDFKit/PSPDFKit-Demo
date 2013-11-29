@@ -166,9 +166,7 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     };
 
     if (PSCIsUIKitFlatMode()) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
         [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:NULL];
-#endif
     }else {
         [UIView animateWithDuration:0.3f animations:animationBlock];
     }
@@ -372,11 +370,9 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     };
 
     if (PSCIsUIKitFlatMode()) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
         [UIView animateWithDuration:0.7f delay:0.f usingSpringWithDamping:0.8f initialSpringVelocity:0.f options:kNilOptions animations:animationBlock completion:^(BOOL finished) {
             [self closeNoteController];
         }];
-#endif
     }else {
         [UIView animateWithDuration:0.3f animations:animationBlock completion:^(BOOL finished) {
             [self closeNoteController];
@@ -425,14 +421,12 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     NSString *number = [NSString stringWithFormat:@"%tu", noteNumber];
 
     if (PSCIsUIKitFlatMode()) {
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
         NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         style.alignment = NSTextAlignmentCenter;
         NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
                                      NSForegroundColorAttributeName : PSCCustomNewTintColor,
                                      NSParagraphStyleAttributeName : style};
         [number drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
-#endif
     }else {
         [PSCCustomNewTintColor set];
         [number drawInRect:CGRectMake(8.f, 2.f, self.bounds.size.width, self.bounds.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
