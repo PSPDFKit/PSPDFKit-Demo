@@ -37,7 +37,7 @@
 @synthesize buffer = __buffer;
 
 
-- (RNCryptorEngine *)initWithOperation:(CCOperation)operation settings:(RNCryptorSettings)settings key:(NSData *)key IV:(NSData *)IV error:(__autoreleasing NSError **)error
+- (RNCryptorEngine *)initWithOperation:(CCOperation)operation settings:(RNCryptorSettings)settings key:(NSData *)key IV:(NSData *)IV error:(NSError *__autoreleasing*)error
 {
   self = [super init];
   if (self) {
@@ -69,7 +69,7 @@
   }
 }
 
-- (NSData *)addData:(NSData *)data error:(__autoreleasing NSError **)error
+- (NSData *)addData:(NSData *)data error:(NSError *__autoreleasing*)error
 {
   NSMutableData *buffer = self.buffer;
   [buffer setLength:CCCryptorGetOutputLength(self.cryptor, [data length], true)]; // We'll reuse the buffer in -finish
@@ -93,7 +93,7 @@
   return [buffer subdataWithRange:NSMakeRange(0, dataOutMoved)];
 }
 
-- (NSData *)finishWithError:(__autoreleasing NSError **)error
+- (NSData *)finishWithError:(NSError *__autoreleasing*)error
 {
   NSMutableData *buffer = self.buffer;
   size_t dataOutMoved;
