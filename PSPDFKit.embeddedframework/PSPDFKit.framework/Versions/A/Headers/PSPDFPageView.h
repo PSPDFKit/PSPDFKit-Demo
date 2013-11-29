@@ -79,7 +79,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
  @warning Most annotations will not be rendered as overlays or only when they are currently being selected.
  Rendering annotations within the pageView has several advantages including performance or view color multiplication (in case of highlight annotations)
- Do not manually add/remove views into the container view. Contents is managed. Views should respond to the <PSPDFAnnotationViewProtocol> protocol, especially the annotation method.
+ Do not manually add/remove views into the container view. Contents is managed. Views should respond to the `PSPDFAnnotationViewProtocol`, especially the annotation method.
  */
 @property (nonatomic, strong, readonly) PSPDFAnnotationContainerView *annotationContainerView;
 
@@ -90,7 +90,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 /// Calculated scale. Readonly.
 @property (nonatomic, assign, readonly) CGFloat PDFScale;
 
-/// Is view currently rendering (either contentView or renderView)
+/// Is view currently rendering (either `contentView` or `renderView`)
 @property (nonatomic, assign, getter=isRendering, readonly) BOOL rendering;
 
 /// Current CGRect of the part of the page that's visible. Screen coordinate space.
@@ -116,11 +116,11 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 /// @name Coordinate calculations and object fetching
 
 /// Convert a view point to the corresponding PDF point.
-/// pageBounds usually is PSPDFPageView bounds.
+/// @note `pageBounds` usually is `PSPDFPageView` bounds.
 - (CGPoint)convertViewPointToPDFPoint:(CGPoint)viewPoint;
 
 /// Convert a PDF point to the corresponding view point.
-/// pageBounds usually is PSPDFPageView bounds.
+/// @note `pageBounds` usually is `PSPDFPageView` bounds.
 - (CGPoint)convertPDFPointToViewPoint:(CGPoint)pdfPoint;
 
 /// Convert a view rect to the corresponding pdf rect.
@@ -134,7 +134,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (CGRect)convertGlyphRectToViewRect:(CGRect)glyphRect;
 
 /// Convert a view rect to PDF glyph rect.
-/// This is equivalent to [self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]
+/// This is equivalent to `[self convertPDFRectToViewRect:CGRectApplyAffineTransform(glyphRect, pageInfo.pageRotationTransform)]`
 - (CGRect)convertViewRectToGlyphRect:(CGRect)viewRect;
 
 /// Get the glyphs/words on a specific page.
@@ -146,12 +146,12 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 /// @name Accessors
 
-/// Access parent PSPDFScrollView if available. (zoom controller)
+/// Access parent `PSPDFScrollView` if available. (zoom controller)
 /// @note this only lets you access the scrollView if it's in the view hierarchy.
-/// If we use pageCurl mode, we have a global scrollView which can be accessed with pdfController.pagingScrollView
+/// If we use pageCurl mode, we have a global scrollView which can be accessed with `pdfController.pagingScrollView`
 - (PSPDFScrollView *)scrollView;
 
-/// Returns an array of UIView <PSPDFAnnotationViewProtocol> objects currently in the view hierarchy.
+/// Returns an array of `UIView` `PSPDFAnnotationViewProtocol` objects currently in the view hierarchy.
 - (NSArray *)visibleAnnotationViews;
 
 /// Access the attached pdfController.
@@ -200,12 +200,12 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 @property (nonatomic, strong) NSArray *selectedAnnotations;
 
 /**
- Hit-testing for a single PSPDFPage. This is usually a relayed event from the parent PSPDFScrollView.
+ Hit-testing for a single `PSPDFPageView`. This is usually a relayed event from the parent `PSPDFScrollView`.
  Returns YES if the tap has been handled, else NO.
 
- All annotations for the current page are loaded and hit-tested (except PSPDFAnnotationTypeLink; which has already been handled by now)
+ All annotations for the current page are loaded and hit-tested (except `PSPDFAnnotationTypeLink`; which has already been handled by now)
 
- If an annotation has been hit (via [annotation hitTest:tapPoint]; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
+ If an annotation has been hit (via `[annotation hitTest:tapPoint]`; convert the tapPoint in PDF coordinate space via convertViewPointToPDFPoint) then we call showMenuForAnnotation.
 
  If the tap didn't hit an annotation but we are showing a UIMenuController menu; we hide that and set the touch as processed.
  */
@@ -223,14 +223,14 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
  @note In PSPDFKit, annotations are managed in two ways:
 
  1) Annotations that are fixed and rendered with the page image.
- Those annotations are PSPDFHighlightAnnotation, PSPDFSquareAnnotation, PSPDFInkAnnotation and more.
+ Those annotations are `PSPDFHighlightAnnotation`, `PSPDFSquareAnnotation`, `PSPDFInkAnnotation` and more.
  Pretty much all more or less "static" annotations are handled this way.
 
- 2) Then, there are the more dynamic annotations like PSPDFLinkAnnotation and PSPDFNoteAnnotation.
- Those annotations are not part of the rendered image but are actual subviews in PSPDFPageView.
+ 2) Then, there are the more dynamic annotations like `PSPDFLinkAnnotation` and `PSPDFNoteAnnotation`.
+ Those annotations are not part of the rendered image but are actual subviews in `PSPDFPageView`.
  Those annotations return YES on the isOverlay property.
 
- Especially with PSPDFLinkAnnotation, the resulting views are - depending on the subtype - PSPDFVideoAnnotationView, PSPDFWebAnnotationView and much more. The classic PDF link is a PSPDFLinkAnnotationView.
+ Especially with `PSPDFLinkAnnotation`, the resulting views are - depending on the subtype - `PSPDFVideoAnnotationView`, `PSPDFWebAnnotationView` and much more. The classic PDF link is a `PSPDFLinkAnnotationView`.
 
  This method is called recursively with all annotation types except if they return isOverlay = NO. In case of isOverlay = NO, it will call updateView to re-render the page.
  */
@@ -244,29 +244,29 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 @interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
 
-/// Returns available PSPDFMenuItem's for the current annotation.
+/// Returns available `PSPDFMenuItem's` for the current annotation.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)menuItemsForAnnotations:(NSArray *)annotations;
 
-/// Menu for new annotations (can be disabled in PSPDFViewController)
+/// Menu for new annotations (can be disabled in `PSPDFViewController`)
 - (NSArray *)menuItemsForNewAnnotationAtPoint:(CGPoint)point;
 
-/// Returns available PSPDFMenuItem's to change the color.
+/// Returns available `PSPDFMenuItem's` to change the color.
 /// The better way to extend this is to use the shouldShowMenuItems:* delegates.
 - (NSArray *)colorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// Returns available PSPDFMenuItem's to change the fill color (only applies to certain annotations)
+/// Returns available `PSPDFMenuItem's` to change the fill color (only applies to certain annotations)
 - (NSArray *)fillColorMenuItemsForAnnotation:(PSPDFAnnotation *)annotation;
 
 /// Returns the opacity menu item
 - (PSPDFMenuItem *)opacityMenuItemForAnnotation:(PSPDFAnnotation *)annotation withColor:(UIColor *)color;
 
 /// Called when a annotation was found ad the tapped location.
-/// This will usually call menuItemsForAnnotation to show a UIMenuController, except for PSPDFAnnotationTypeNote which is handled differently on iPad. (showNoteControllerForAnnotation)
-/// @note The better way to extend this is to use the shouldShowMenuItems:* delegates.
+/// This will usually call `menuItemsForAnnotation:` to show an `UIMenuController`, except for `PSPDFAnnotationTypeNote` which is handled differently on iPad. (`showNoteControllerForAnnotation`)
+/// @note The better way to extend this is to use the `shouldShowMenuItems:*` delegates.
 - (void)showMenuForAnnotations:(NSArray *)annotations edgeInsets:(UIEdgeInsets)edgeInsets animated:(BOOL)animated;
 
-/// Shows a popover/modal controller to edit a PSPDFAnnotation.
+/// Shows a popover/modal controller to edit a `PSPDFAnnotation`.
 - (PSPDFNoteAnnotationViewController *)showNoteControllerForAnnotation:(PSPDFAnnotation *)annotation showKeyboard:(BOOL)showKeyboard animated:(BOOL)animated;
 
 /// Shows the font picker.
@@ -276,9 +276,9 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (void)showColorPickerForAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Show the signature controller.
-- (void)showSignatureControllerAtPoint:(CGPoint)point withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
+- (void)showSignatureControllerAtRect:(CGRect)rect withTitle:(NSString *)title shouldSaveSignature:(BOOL)shouldSaveSignature animated:(BOOL)animated;
 
-/// Font sizes for the free text annotation menu. Defaults to @[@10, @12, @14, @18, @22, @26, @30, @36, @48, @64]
+/// Font sizes for the free text annotation menu. Defaults to `@[@10, @12, @14, @18, @22, @26, @30, @36, @48, @64]`
 - (NSArray *)availableFontSizes;
 
 /// Line width options (ink, border). Defaults to @[@1, @3, @6, @9, @12, @16, @25, @40]
@@ -316,7 +316,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
 
 // Show signature menu.
-- (void)showNewSignatureMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
+- (void)showNewSignatureMenuAtRect:(CGRect)rect animated:(BOOL)animated;
 
 // Show image menu.
 - (void)showNewImageMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
@@ -356,5 +356,13 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 // Computes a scale value suitable for computation of the line width to use during drawing and selection.
 - (CGFloat)scaleForPageView;
+
+// If you use child view controller containment, use this as the parent VC.
+- (UIViewController *)parentViewController;
+
+// Change notification processing.
+- (void)annotationsAddedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+- (void)annotationsRemovedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+- (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
 @end

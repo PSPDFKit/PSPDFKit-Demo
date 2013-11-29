@@ -81,7 +81,11 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 @property (nonatomic, copy) NSString *appearanceState;
 
 /// The value which the field is to export when submitted. Can return either a string or an array of strings in the case of multiple selection.
-@property (nonatomic, readonly) id exportValue;
+@property (nonatomic, strong, readonly) id exportValue;
+
+/// Color when the annotation is being highlighted.
+/// @note PSPDFKit extension. Won't be saved into the PDF.
+@property (nonatomic, strong) UIColor *highlightColor;
 
 /// Links for previous control in tab order.
 @property (nonatomic, weak) PSPDFFormElement *next;
@@ -113,9 +117,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 @end
 
 @interface PSPDFFormElement (SubclassingHooks)
-
-/// You should implement this method in subclasses to handle tap on the form element: change state, show visual editor.
-- (BOOL)handleTapInView:(PSPDFPageView *)pdfPageView;
 
 // Draws the form highlight.
 - (void)drawHighlightInContext:(CGContextRef)context;

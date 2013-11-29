@@ -30,7 +30,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
 
-// Warning: Don't add a child view controller during viewDidAppear. There is a bug on iOS5 that prevents forwarding viewWillAppear: in this case.
 - (void)createPDFViewController {
     // configure the PSPDF controller
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:self.document];
@@ -81,14 +80,14 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    // center view with margins
+    // Center view with margins.
     self.pdfController.view.frame = CGRectInset(CGRectMake(0, self.toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.toolbar.bounds.size.height), 50, 50);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
-    // manually unload view.
+    // Manually unload view.
     if (self.isViewLoaded && !self.view.window) {
         [self.pdfController willMoveToParentViewController:nil];
         [self.pdfController.view removeFromSuperview];

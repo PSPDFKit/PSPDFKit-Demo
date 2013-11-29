@@ -46,7 +46,7 @@
 
 @end
 
-@interface PSCActionContainerView : PSUICollectionReusableView @end
+@interface PSCActionContainerView : UICollectionReusableView @end
 @implementation PSCExportThumbnailsViewController {
     UIButton *_actionBar;
 }
@@ -59,7 +59,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 - (id)initWithDocument:(PSPDFDocument *)document {
     if (self = [super initWithDocument:document]) {
         // Register class
-        [self.collectionView registerClass:PSCActionContainerView.class forSupplementaryViewOfKind:PSTCollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar];
+        [self.collectionView registerClass:PSCActionContainerView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar];
 
         // Create action button
         _actionBar = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -144,20 +144,20 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UICollectionViewDataSource
 
-- (PSUICollectionReusableView *)collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     // Return regular filter bar OR our custon action bar if we're editing.
     if (!self.isEditing) {
-        return (PSUICollectionReusableView *)[super collectionView:(PSUICollectionView *)collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+        return (UICollectionReusableView *)[super collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
     }else {
-        PSUICollectionReusableView *headerView = nil;
-        if ([kind isEqualToString:PSTCollectionElementKindSectionHeader] && indexPath.section == 0) {
-            headerView = [collectionView dequeueReusableSupplementaryViewOfKind:PSTCollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar forIndexPath:indexPath];
+        UICollectionReusableView *headerView = nil;
+        if ([kind isEqualToString:UICollectionElementKindSectionHeader] && indexPath.section == 0) {
+            headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:PSPDFActionBar forIndexPath:indexPath];
             [headerView addSubview:_actionBar];
             
             // Just being lazy here, this could be size differently.
             headerView.userInteractionEnabled = YES;
             CGFloat segmentBarWidth = self.filterSegment.frame.size.width;
-            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((PSUICollectionViewFlowLayout *)self.layout).sectionInset.top, segmentBarWidth, 32.f));
+            _actionBar.frame = CGRectIntegral(CGRectMake((self.view.bounds.size.width - segmentBarWidth) / 2, ((UICollectionViewFlowLayout *)self.layout).sectionInset.top, segmentBarWidth, 32.f));
         }
         return headerView;
     }
@@ -167,7 +167,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 #pragma mark - UICollectionViewDelegate
 
 // Ignore tap if we're in edit mode.
-- (void)collectionView:(PSUICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isEditing) {
         [super collectionView:collectionView didSelectItemAtIndexPath:indexPath];
     }else {

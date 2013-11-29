@@ -15,8 +15,8 @@
 @class PSPDFGalleryContentView;
 @protocol PSPDFGalleryViewDataSource, PSPDFGalleryViewDelegate;
 
-/// A gallery view works a lot like a UITableView. It has content views, which need to be provided by
-/// a data source and can be reused. It is built on top of a UIScrollView.
+/// A gallery view works a lot like a `UITableView`. It has content views, which need to be provided by
+/// a data source and can be reused. It is built on top of a `UIScrollView`.
 @interface PSPDFGalleryView : UIScrollView
 
 /// The data source of the gallery view.
@@ -28,7 +28,7 @@
 /// The padding between successive content views. Defaults to 5.0.
 @property (nonatomic, assign) CGFloat contentPadding;
 
-/// The delegate of the gallery view.
+/// The delegate of the gallery view (same as `UIScrollView`)
 - (void)setDelegate:(id <PSPDFGalleryViewDelegate>)delegate;
 - (id <PSPDFGalleryViewDelegate>)delegate;
 

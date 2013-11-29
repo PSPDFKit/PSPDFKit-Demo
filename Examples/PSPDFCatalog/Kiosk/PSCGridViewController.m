@@ -114,8 +114,8 @@
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
 
     // Init the collection view.
-    PSUICollectionViewFlowLayout *flowLayout = [PSUICollectionViewFlowLayout new];
-    PSUICollectionView *collectionView = [[PSUICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
 
     flowLayout.minimumLineSpacing = 30;
     NSUInteger spacing = 14;
@@ -197,7 +197,7 @@
     }];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     if (PSCIsUIKitFlatMode()) {
-        PSC_IF_IOS7_OR_GREATER([[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
+        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
@@ -239,7 +239,7 @@
             [self.magazineView removeFromSuperview];
             self.magazineView = nil;
         }else {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
             [self.collectionView layoutSubviews]; // ensure cells are laid out
 
             // Convert the coordinates into view coordinate system.
@@ -819,8 +819,6 @@
 #import <objc/runtime.h>
 
 __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKeyboardIsDisplayed(void) {
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_6_0) return; // stop if we're on iOS5.
-
     @autoreleasepool {
         if (![UICollectionViewUpdateItem instancesRespondToSelector:@selector(action)]) {
             IMP updateIMP = imp_implementationWithBlock(^(id _self) {});
@@ -836,7 +834,7 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
 // Fixes a missing selector crash for [UISearchBar _isInUpdateAnimation:]
 // TODO: Test during iOS7 betas if this has been fixed.
 __attribute__((constructor)) static void PSPDFFixCollectionViewSearchBarDisplayed(void) {
-    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS5/6.
+    if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS 6.
 
     @autoreleasepool {
         SEL isInUpdate = NSSelectorFromString([NSString stringWithFormat:@"%@is%@Update%@", @"_", @"In", @"Animation"]);
