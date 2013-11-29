@@ -68,24 +68,20 @@
     PSPDFStampAnnotation *videoStamp = [[PSPDFStampAnnotation alloc] initWithImage:[UIImage imageNamed:@"mas_audio_b41570.gif"]];
 
     // Center the image into the page in PDF coordinate space (flipped)
-    videoStamp.boundingBox = CGRectMake((pageRect.size.width-imageSize.width)/2,
-                                        10.0f,
-                                        imageSize.width, imageSize.height);
+    videoStamp.boundingBox = CGRectMake((pageRect.size.width-imageSize.width)/2, 10.0f, imageSize.width, imageSize.height);
 
     // Add the video action and add the annotation.
     videoStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
     [document addAnnotations:@[videoStamp]];
 
-    // Example using the new gallery.
+    // Example using the new gallery (supports images, video, audio annotations)
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
 
-    // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    return pdfController;
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
