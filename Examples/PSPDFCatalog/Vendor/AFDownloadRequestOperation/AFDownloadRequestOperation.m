@@ -39,6 +39,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
 @interface AFDownloadRequestOperation() {
     NSError *_fileError;
+    id _responseObject;
 }
 @property (nonatomic, strong) NSString *tempPath;
 @property (assign) long long totalContentLength;
@@ -65,12 +66,12 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
         NSParameterAssert(targetPath != nil && urlRequest != nil);
         _shouldResume = shouldResume;
 
-        // We assume that at least the directory has to exist on the targetPath
+        // Ee assume that at least the directory has to exist on the targetPath
         BOOL isDirectory;
-        if(![NSFileManager.defaultManager fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
+        if(![[NSFileManager defaultManager] fileExistsAtPath:targetPath isDirectory:&isDirectory]) {
             isDirectory = NO;
         }
-        // If targetPath is a directory, use the file name we got from the urlRequest.
+        // \If targetPath is a directory, use the file name we got from the urlRequest.
         if (isDirectory) {
             NSString *fileName = [urlRequest.URL lastPathComponent];
             _targetPath = [NSString pathWithComponents:@[targetPath, fileName]];
@@ -104,7 +105,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 - (BOOL)updateByteStartRangeForRequest {
     BOOL isResuming = NO;
     if (self.shouldResume) {
-        unsigned long long downloadedBytes = [self fileSizeForPath:self.tempPath];
+        unsigned long long downloadedBytes = [self fileSizeForPath:[self tempPath]];
         if (downloadedBytes > 1) {
 
             // If the the current download-request's data has been fully downloaded, but other causes of the operation failed (such as the inability of the incomplete temporary file copied to the target location), next, retry this download-request, the starting-value (equal to the incomplete temporary file size) will lead to an HTTP 416 out of range error, unless we subtract one byte here. (We don't know the final size before sending the request)
@@ -198,26 +199,22 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     [self updateByteStartRangeForRequest];
 }
 
-- (void)setCompletionBlockWithSuccess:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-    self.completionBlock = ^ {
-        NSError *localError = nil;
-        if([self isCancelled]) {
-            // should we clean up? most likely we don't.
-            if (self.isDeletingTempFileOnCancel) {
-                [self deleteTempFileWithError:&localError];
-                if (localError) {
-                    _fileError = localError;
+- (id)responseObject {
+    @synchronized(self) {
+        if (!_responseObject && [self isFinished] && !self.error) {
+            NSError *localError = nil;
+            if ([self isCancelled]) {
+                // should we clean up? most likely we don't.
+                if (self.isDeletingTempFileOnCancel) {
+                    [self deleteTempFileWithError:&localError];
+                    if (localError) {
+                        _fileError = localError;
+                    }
                 }
-            }
 
-        // loss of network connections = error set, but not cancel
-        }else if(!self.error) {
-            // move file to final position and capture error
-            @synchronized(self) {
+                // loss of network connections = error set, but not cancel
+            }else if(!self.error) {
+                // move file to final position and capture error
                 NSFileManager *fileManager = [NSFileManager new];
                 if (self.shouldOverwrite) {
                     [fileManager removeItemAtPath:_targetPath error:NULL]; // avoid "File exists" error
@@ -225,25 +222,14 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
                 [fileManager moveItemAtPath:[self tempPath] toPath:_targetPath error:&localError];
                 if (localError) {
                     _fileError = localError;
+                } else {
+                    _responseObject = _targetPath;
                 }
             }
         }
+    }
 
-        if (self.error) {
-            if (failure) {
-                dispatch_async(self.failureCallbackQueue ?: dispatch_get_main_queue(), ^{
-                    failure(self, self.error);
-                });
-            }
-        } else {
-            if (success) {
-                dispatch_async(self.successCallbackQueue ?: dispatch_get_main_queue(), ^{
-                    success(self, _targetPath);
-                });
-            }
-        }
-    };
-#pragma clang diagnostic pop
+    return _responseObject;
 }
 
 - (NSError *)error {
@@ -275,10 +261,6 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
     self.totalBytesReadPerDownload = 0;
     self.offsetContentLength = MAX(fileOffset, 0);
-    // Sanity-check: If file is really large, something might went wrong.
-    if (self.offsetContentLength >= NSNotFound) {
-        self.offsetContentLength = 0;
-    }
     self.totalContentLength = totalContentLength;
 
     // Truncate cache file to offset provided by server.
@@ -298,7 +280,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data  {
-    if (![self hasAcceptableStatusCode] || ![self hasAcceptableContentType])
+    if (![self.responseSerializer validateResponse:self.response data:nil error:NULL])
         return; // don't write to output stream if any error occurs
 
     [super connection:connection didReceiveData:data];
@@ -308,7 +290,7 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
 
     if (self.progressiveDownloadProgress) {
         dispatch_async(self.progressiveDownloadCallbackQueue ?: dispatch_get_main_queue(), ^{
-            self.progressiveDownloadProgress(self, (NSInteger)[data length], self.totalBytesRead, self.response.expectedContentLength,self.totalBytesReadPerDownload + self.offsetContentLength, self.totalContentLength);
+            self.progressiveDownloadProgress(self,(NSInteger)[data length], self.totalBytesRead, self.response.expectedContentLength,self.totalBytesReadPerDownload + self.offsetContentLength, self.totalContentLength);
         });
     }
 }
