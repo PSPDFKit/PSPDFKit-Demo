@@ -32,7 +32,7 @@
     if (self = [super init]) {
         _documentProvider = documentProvider;
         _annotationCache = [[NSMutableDictionary alloc] initWithCapacity:documentProvider.pageCount];
-        _annotationProviderQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.PSPDFCatalog.%@", self] UTF8String], DISPATCH_QUEUE_SERIAL);
+        _annotationProviderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFCatalog.%@", self].UTF8String, DISPATCH_QUEUE_SERIAL);
 
         // Save database path or set up default.
         _databasePath = databasePath ?: [documentProvider.document.dataDirectory stringByAppendingPathComponent:@"PSCCoreDataExample.sqlite"];
