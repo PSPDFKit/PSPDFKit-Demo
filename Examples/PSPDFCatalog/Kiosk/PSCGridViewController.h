@@ -22,7 +22,7 @@
 // Force-update grid.
 - (void)updateGrid;
 
-// Grid that's used internally. Either a PSCollectionView (iOS5) or UICollectionView (iOS6+)
+// Grid that's used internally.
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 // Magazine-folder, if one is selected.

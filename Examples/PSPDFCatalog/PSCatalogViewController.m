@@ -1539,15 +1539,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return [[PSPDFViewController alloc] initWithDocument:document];
     }]];
 
-    // Test on iOS5
-    [testSection addContent:[PSContent contentWithTitle:@"Test that Video is pause/playable via touch" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 4;
-        return pdfController;
-    }]];
-
-    // Check that this doesn't auto-play, especially not on iOS5.
+    // Check that this doesn't auto-play.
     [testSection addContent:[PSContent contentWithTitle:@"Test Video No-Autoplay" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia-autostart-ios5.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -2407,11 +2399,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Second display, remove user default.
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCLastIndexPath];
     }
-}
-
-// Support for iOS5. iOS6 does this differently and also correct by default.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    return PSIsIpad() ? YES : toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
