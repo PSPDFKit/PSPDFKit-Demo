@@ -55,7 +55,7 @@
         // custom back button for smaller wording
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:_(@"Kiosk") style:UIBarButtonItemStylePlain target:nil action:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:kPSPDFStoreDiskLoadFinishedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diskDataLoaded) name:PSCStoreDiskLoadFinishedNotification object:nil];
     }
     return self;
 }
@@ -138,7 +138,7 @@
     CGFloat searchBarWidth = 290.f;
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.collectionView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
-    _searchBar.tintColor = [UIColor blackColor];
+    _searchBar.tintColor = UIColor.blackColor;
     _searchBar.backgroundColor = [UIColor clearColor];
     _searchBar.alpha = 0.5;
     _searchBar.delegate = self;

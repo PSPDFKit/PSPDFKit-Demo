@@ -65,7 +65,7 @@
         self.currentUsername = username;
 
         // To switch annotations, we could also clear the cache, but PSPDFKit is smart enough to detect the changes itself.
-        // [[PSPDFCache sharedCache] removeCacheForDocument:self.document deleteDocument:NO error:NULL];
+        // [PSPDFCache.sharedCache removeCacheForDocument:self.document deleteDocument:NO error:NULL];
         
         // Then clear the document cache (forces document provider regeneration)
         [self.document clearCache];

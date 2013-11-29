@@ -157,7 +157,7 @@
     if ([viewController isKindOfClass:[PSPDFSearchViewController class]]) {
         PSPDFSearchViewController *searchController = (PSPDFSearchViewController *)viewController;
         searchController.searchBar.barStyle = UIBarStyleBlack;
-        searchController.searchBar.tintColor = [UIColor blackColor];
+        searchController.searchBar.tintColor = UIColor.blackColor;
     }
     return YES;
 }

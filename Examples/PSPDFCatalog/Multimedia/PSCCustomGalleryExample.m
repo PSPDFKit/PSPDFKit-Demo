@@ -100,7 +100,7 @@
     if ((self = [super initWithFrame:frame])) {
         self.contentInset = UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f);
         self.backgroundColor = [UIColor clearColor];
-        self.label.shadowColor = [UIColor blackColor];
+        self.label.shadowColor = UIColor.blackColor;
     }
     return self;
 }

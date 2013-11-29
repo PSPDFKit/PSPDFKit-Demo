@@ -27,8 +27,8 @@
 
 @implementation PSCStoreManager
 
-NSString *const kPSPDFStoreDiskLoadFinishedNotification =  @"kPSPDFStoreDiskLoadFinishedNotification";
-static char kPSCKVOToken; // we need a static address for the kvo token
+NSString *const PSCStoreDiskLoadFinishedNotification =  @"PSCStoreDiskLoadFinishedNotification";
+static char PSCKVOToken; // we need a static address for the kvo token
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Static
@@ -56,7 +56,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFKit.%@", self].UTF8String, DISPATCH_QUEUE_CONCURRENT);
+        _magazineFolderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFCatalog.%@", self].UTF8String, DISPATCH_QUEUE_CONCURRENT);
         _downloadQueue = [NSMutableArray new];
 
         // Load magazines from disk, async.
@@ -73,7 +73,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (context == &kPSCKVOToken) {
+    if (context == &PSCKVOToken) {
         if ([keyPath isEqualToString:PROPERTY(status)]) {
             [self processStatusChangeForMagazineDownload:object];
         }else {
@@ -99,7 +99,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
         }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES error:nil];
+            [PSPDFCache.sharedCache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
         });
     }
 
@@ -137,7 +137,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
 
     // Clear everything
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[PSPDFCache sharedCache] removeCacheForDocument:magazine deleteDocument:YES error:nil];
+        [PSPDFCache.sharedCache removeCacheForDocument:magazine deleteDocument:YES error:NULL];
     });
 
     // if magazine has no url - delete
@@ -168,7 +168,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
     storeDownload.magazine = magazine;
 
     // Use KVO to track status.
-    [storeDownload addObserver:self forKeyPath:PROPERTY(status) options:0 context:&kPSCKVOToken];
+    [storeDownload addObserver:self forKeyPath:PROPERTY(status) options:0 context:&PSCKVOToken];
 
     [_downloadQueue addObject:storeDownload];
     [storeDownload startDownload];
@@ -240,7 +240,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
          newsstandCoverImage = UIGraphicsGetImageFromCurrentImageContext();
          UIGraphicsEndImageContext();
          */
-        newsstandCoverImage = [magazine coverImageForSize:[PSPDFCache sharedCache].thumbnailSize];
+        newsstandCoverImage = [magazine coverImageForSize:PSPDFCache.sharedCache.thumbnailSize];
     }
 
     [UIApplication.sharedApplication setNewsstandIconImage:newsstandCoverImage];
@@ -474,7 +474,7 @@ static char kPSCKVOToken; // we need a static address for the kvo token
             [self loadMagazinesAvailableFromWeb];
         });
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPSPDFStoreDiskLoadFinishedNotification object:magazineFolders];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PSCStoreDiskLoadFinishedNotification object:magazineFolders];
     });
 }
 
