@@ -407,7 +407,7 @@ static char PSCKVOToken; // we need a static address for the kvo token
 }
 
 - (void)loadMagazinesAvailableFromWeb {
-    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:kPSPDFMagazineJSONURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
+    NSURLRequest *loadRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:PSCMagazineJSONURL] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30.f];
     AFHTTPRequestOperation *loadMagazineOperation = [[AFHTTPRequestOperation alloc] initWithRequest:loadRequest];
     loadMagazineOperation.responseSerializer = AFJSONResponseSerializer.serializer;
 

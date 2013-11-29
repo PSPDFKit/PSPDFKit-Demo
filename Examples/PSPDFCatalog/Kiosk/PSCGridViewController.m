@@ -22,11 +22,11 @@
 
 #define _(string) NSLocalizedString(string, @"")
 
-#define kPSPDFGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
+#define PSCGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 #define kPSCLargeThumbnailSize CGSizeMake(170, 240)
 
 // The delete button target is small enough that we don't need to ask for confirmation.
-#define kPSPDFShouldShowDeleteConfirmationDialog NO
+#define PSCShouldShowDeleteConfirmationDialog NO
 
 @interface PSCGridViewController() <UISearchBarDelegate> {
     NSArray *_filteredData;
@@ -583,7 +583,7 @@
         message = [NSString stringWithFormat:_(@"DeleteMagazineMultiple"), folder.title, folder.magazines.count];
     }else {
         message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
-        if (kPSPDFShouldShowDeleteConfirmationDialog) {
+        if (PSCShouldShowDeleteConfirmationDialog) {
             canDelete = magazine.isAvailable || magazine.isDownloading;
         }
     }
@@ -600,7 +600,7 @@
         }
     };
 
-    if (kPSPDFShouldShowDeleteConfirmationDialog) {
+    if (PSCShouldShowDeleteConfirmationDialog) {
         if (canDelete) {
             PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
             deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;

@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#define kPSPDFMagazineJSONURL @"http://pspdfkit.com/magazines.json"
+#define PSCMagazineJSONURL @"http://pspdfkit.com/magazines.json"
 
 @class PSCMagazine;
 

@@ -69,7 +69,7 @@
 #pragma mark - PSPDFDocumentSelectorControllerDelegate
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
-#if defined(kPSPDFEnableDocumentStressTest) && kPSPDFEnableDocumentStressTest
+#if defined(PSCEnableDocumentStressTest) && PSCEnableDocumentStressTest
     // Copy is purely there as a stress test.
     document = [document copy];
 #endif
