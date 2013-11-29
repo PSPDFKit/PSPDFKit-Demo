@@ -29,6 +29,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     // Set up the document.
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     document.editableAnnotationTypes = nil; // Diable annotation editing.
 
     // Get rects to position.
@@ -74,11 +75,12 @@
     // Add the video action and add the annotation.
     videoStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
     [document addAnnotations:@[videoStamp]];
-    
+
+    // Example using the new gallery.
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400, 300);
-    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    CGSize size = CGSizeMake(400.f, 300.f);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
 
     // And also the controller.
