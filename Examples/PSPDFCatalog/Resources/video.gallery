@@ -1,0 +1,21 @@
+[
+  {
+    "contentURL":"pspdfkit://localhost/Bundle/big_buck_bunny.mp4",
+    "type":"video",
+    "caption":"A local video"
+  },
+  {
+    "contentURL":"pspdfkit://localhost/Bundle/NightOwl.m4a",
+    "type":"video",
+    "caption":"A local audio file"
+  },
+  {
+    "contentURL":"http://movietrailers.apple.com/movies/wb/islandoflemurs/islandoflemurs-tlr1_480p.mov?width=848&height=480",
+    "type":"video",
+    "caption":"A remote video"
+  },
+  {
+    "contentURL":"pspdfkit://localhost/Bundle/mas_audio_b41570.gif",
+    "caption":"A gif"
+  }
+]
