@@ -49,8 +49,8 @@
         [tabbedViewController.pdfController searchForString:searchString options:@{PSPDFViewControllerSearchHeadlessKey : @YES} animated:YES];
     }
 
-    // hide controller
-    if (PSIsIpad())[self.class dismissPopoverAnimated:YES completion:NULL];
+    // Hide controller.
+    if (PSCIsIPad())[self.class dismissPopoverAnimated:YES completion:NULL];
     else [documentPickerController dismissViewControllerAnimated:YES completion:NULL];
 }
 

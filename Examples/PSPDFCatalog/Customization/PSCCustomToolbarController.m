@@ -58,7 +58,7 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     // use large thumbnails!
     _originalThumbnailSize = self.thumbnailSize;
-    self.thumbnailSize = PSIsIpad() ? CGSizeMake(235, 305) : CGSizeMake(200, 250);
+    self.thumbnailSize = PSCIsIPad() ? CGSizeMake(235.f, 305.f) : CGSizeMake(200.f, 250.f);
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

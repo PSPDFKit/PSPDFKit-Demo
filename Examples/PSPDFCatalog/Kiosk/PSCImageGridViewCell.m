@@ -96,7 +96,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
     // Progress bar.
     if (!_progressView.hidden) {
-        _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8, 21.f);
+        _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8f, 21.f);
         CGFloat pageLabelHeight = 0.f;//self.isShowingPageLabel ? self.pageLabel.frame.size.width : 0.f;
         _progressView.center = CGPointMake(round(CGRectGetMaxX(self.imageView.frame)/2.f), round(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - pageLabelHeight));
     }
@@ -122,7 +122,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.shadowOffset = CGSizeMake(0.f, 1.f);
         pageLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         pageLabel.textAlignment = NSTextAlignmentCenter;
-        pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16.f : 12.f];
+        pageLabel.font = [UIFont boldSystemFontOfSize:PSCIsIPad() ? 16.f : 12.f];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
     }else if (!self.isPageLabelEnabled && self.pageLabel.superview) {

@@ -346,7 +346,7 @@
         PSCSettingsController *settingsController = [PSCSettingsController new];
         settingsController.owningViewController = self;
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:settingsController];
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             self.popoverController = [[UIPopoverController alloc] initWithContentViewController:navController];
             [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
         }else {
@@ -364,7 +364,7 @@
     PSC_IF_PRE_IOS7(newFrame.origin.y -= navBarFrame.size.height;
                     newFrame.size.height += navBarFrame.size.height;
                     BOOL iPadFadesOutStatusBar = YES;
-                    if (!PSIsIpad() || iPadFadesOutStatusBar) {
+                    if (!PSCIsIPad() || iPadFadesOutStatusBar) {
                         CGRect statusBarFrame = UIApplication.sharedApplication.statusBarFrame;
                         BOOL isPortrait = UIInterfaceOrientationIsPortrait(UIApplication.sharedApplication.statusBarOrientation);
                         CGFloat statusBarHeight = isPortrait ? statusBarFrame.size.height : statusBarFrame.size.width;
@@ -416,7 +416,7 @@
         _animationCellIndex = cellIndex;
 
         // Add a smooth status bar transition on the iPhone
-        if (!PSIsIpad()) {
+        if (!PSCIsIPad()) {
             [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
         }
 
@@ -618,7 +618,7 @@
 #pragma mark - UICollectionViewDelegate
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return PSIsIpad() ? kPSCLargeThumbnailSize : CGSizeMake(82, 130);
+    return PSCIsIPad() ? kPSCLargeThumbnailSize : CGSizeMake(82.f, 130.f);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -654,7 +654,7 @@
         PSCGridViewController *gridController = [[PSCGridViewController alloc] initWithMagazineFolder:folder];
 
         // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
-        if (!PSIsIpad()) {
+        if (!PSCIsIPad()) {
             CATransition *transition = PSCFadeTransitionWithDuration(0.3f);
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
             [self.navigationController pushViewController:gridController animated:NO];
