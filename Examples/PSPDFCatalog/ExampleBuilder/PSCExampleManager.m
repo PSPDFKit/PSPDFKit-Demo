@@ -78,7 +78,7 @@ NS_INLINE BOOL PSCIsSubclassOfClass(Class subclass, Class superclass) {
     return NO;
 }
 
-static inline NSArray *PSCGetAllExampleSubclasses(void) {
+static NSArray *PSCGetAllExampleSubclasses(void) {
     NSMutableArray *annotations = [NSMutableArray array];
     unsigned int count = 0;
     Class *classList = objc_copyClassList(&count);
