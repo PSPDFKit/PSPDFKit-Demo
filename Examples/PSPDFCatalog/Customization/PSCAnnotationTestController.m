@@ -33,7 +33,7 @@
         PSPDFBarButtonItem *playButtonItem = [[PSCPlayBarButtonItem alloc] initWithPDFViewController:self];
         PSCSelectionZoomBarButtonItem *selectionZoomButtonItem = [[PSCSelectionZoomBarButtonItem alloc] initWithPDFViewController:self];
 
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             self.rightBarButtonItems = @[playButtonItem, selectionZoomButtonItem, self.bookmarkButtonItem, self.openInButtonItem, self.printButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
         }else {
             // not enough space on the iPhone; move some features to additonalRightBarButtonItems

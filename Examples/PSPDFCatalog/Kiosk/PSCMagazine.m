@@ -54,7 +54,7 @@
                 [[UIColor colorWithWhite:0.9f alpha:1.f] setFill];
                 CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
                 UIImage *lockImage = [UIImage imageNamed:@"lock"];
-                CGFloat scale = PSIsIpad() ? 0.6f : 0.3f;
+                CGFloat scale = PSCIsIPad() ? 0.6f : 0.3f;
                 CGSize lockImageTargetSize = CGSizeMake(__tg_round(lockImage.size.width * scale), __tg_round(lockImage.size.height * scale));
                 [lockImage drawInRect:(CGRect){.origin={__tg_floor((size.width-lockImageTargetSize.width)/2), __tg_floor((size.height-lockImageTargetSize.height)/2)}, .size=lockImageTargetSize}];
                 coverImage = UIGraphicsGetImageFromCurrentImageContext();

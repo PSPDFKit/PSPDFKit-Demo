@@ -56,7 +56,7 @@
     CGDataProviderRelease(dataProvider);
 
     self.pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    self.pdfController.view.frame = CGRectMake(120, 150, self.view.frame.size.width - 120*2, PSIsIpad() ? 500 : 200);
+    self.pdfController.view.frame = CGRectMake(120.f, 150.f, self.view.frame.size.width - 120*2.f, PSCIsIPad() ? 500.f : 200.f);
     self.pdfController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.pdfController.statusBarStyleSetting = PSPDFStatusBarStyleInherit;
     self.pdfController.linkAction = PSPDFLinkActionInlineBrowser;
@@ -170,13 +170,11 @@
 #pragma mark - Private
 
 - (NSString *)documentsFolder {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return paths[0];
+    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
 }
 
 - (NSString *)samplesFolder {
-    NSString *samplesFolder = [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Samples"];
-    return samplesFolder;
+    return [NSBundle.mainBundle.resourcePath stringByAppendingPathComponent:@"Samples"];
 }
 
 - (void)copySampleToDocumentsFolder:(NSString *)fileName {
@@ -207,7 +205,7 @@
     pdfController.additionalBarButtonItems = @[pdfController.printButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem];
     UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
-    if (!PSIsIpad()) {
+    if (!PSCIsIPad()) {
         navCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     }else {
         navCtrl.modalPresentationStyle = UIModalPresentationFormSheet;
