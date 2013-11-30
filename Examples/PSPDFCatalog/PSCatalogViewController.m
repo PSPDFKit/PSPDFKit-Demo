@@ -2280,7 +2280,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:testSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-
     PSCSectionDescriptor *delegateSection = [PSCSectionDescriptor sectionWithTitle:@"Delegate" footer:!PSCIsIPad() ? PSPDFVersionString() : @""];
     [delegateSection addContent:[PSContent contentWithTitle:@"Custom drawing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];

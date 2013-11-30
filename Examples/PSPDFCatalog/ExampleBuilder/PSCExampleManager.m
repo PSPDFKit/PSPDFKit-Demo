@@ -82,9 +82,9 @@ static inline NSArray *PSCGetAllExampleSubclasses(void) {
     NSMutableArray *annotations = [NSMutableArray array];
     unsigned int count = 0;
     Class *classList = objc_copyClassList(&count);
-    for (int index = 0; index < count; ++index) {
-        Class class = classList[index];
-        if (class != PSCExample.class && PSCIsSubclassOfClass(class, PSCExample.class)) {
+    for (NSUInteger idx = 0; idx < count; ++idx) {
+        Class class = classList[idx];
+        if (PSCIsSubclassOfClass(class, PSCExample.class)) {
             [annotations addObject:class];
         }
     }
