@@ -10,6 +10,10 @@
 
 #import "PSCDropboxPDFViewController.h"
 
+@interface UIImage (PSCatalogAdditions)
+- (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
+@end
+
 @interface PSCDropboxPDFViewController () <PSPDFViewControllerDelegate>
 @end
 
@@ -20,7 +24,7 @@
 
     self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+    self.statusBarStyleSetting = PSCIsUIKitFlatMode() ? PSPDFStatusBarStyleBlackOpaque : PSPDFStatusBarStyleDefault;
     self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
@@ -39,9 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Add the floating toolbar to the HUD
-    self.floatingToolbar = [PSCDropboxFloatingToolbar new];
-    self.floatingToolbar.frame = CGRectMake(20.f, 20.f, 0.f, 0.f);
+    // Add the floating toolbar to the HUD.
+    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(20.f, PSCIsUIKitFlatMode() ? 80.f : 20.f, 0.f, 0.f)];
     [self updateFloatingToolbarAnimated:NO]; // will update size.
     [self.HUDView addSubview:self.floatingToolbar];
 }
@@ -67,14 +70,14 @@
 
     UIButton *thumbnailButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [thumbnailButton setAccessibilityLabel:PSPDFLocalize(@"Thumbnails")];
-    [thumbnailButton setImage:PSPDFBundleImage(@"thumbnails") forState:UIControlStateNormal];
+    [thumbnailButton setImage:[PSPDFBundleImage(@"thumbnails") psc_imageTintedWithColor:UIColor.whiteColor fraction:0.f] forState:UIControlStateNormal];
     [thumbnailButton addTarget:self action:@selector(thumbnailButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [floatingToolbarButtons addObject:thumbnailButton];
 
     if (self.document.outlineParser.isOutlineAvailable) {
         UIButton *outlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [outlineButton setAccessibilityLabel:PSPDFLocalize(@"Outline")];
-        [outlineButton setImage:PSPDFBundleImage(@"outline") forState:UIControlStateNormal];
+        [outlineButton setImage:[PSPDFBundleImage(@"outline") psc_imageTintedWithColor:UIColor.whiteColor fraction:0.f] forState:UIControlStateNormal];
         [outlineButton addTarget:self action:@selector(outlineButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [floatingToolbarButtons addObject:outlineButton];
     }
@@ -111,6 +114,32 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
     [self updateFloatingToolbarAnimated:YES];
+}
+
+@end
+
+@implementation UIImage (PSCatalogAdditions)
+
+- (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction {
+    if (color) {
+        CGRect rect = (CGRect){CGPointZero, self.size};
+        UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.f);
+        [color set];
+        UIRectFill(rect);
+        [self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.f];
+
+        if (fraction > 0.0) {
+            [self drawInRect:rect blendMode:kCGBlendModeSourceAtop alpha:fraction];
+        }
+        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        // Preserve accessibility label if set.
+        if (self.accessibilityLabel) image.accessibilityLabel = self.accessibilityLabel;
+
+        return image;
+    }
+    return self;
 }
 
 @end
