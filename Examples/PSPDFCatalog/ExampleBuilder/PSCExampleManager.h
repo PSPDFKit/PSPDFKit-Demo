@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "PSCExample.h"
 
+// Manages all examples (all subclasses of `PSCExample`).
 @interface PSCExampleManager : NSObject
 
 // Singleton
