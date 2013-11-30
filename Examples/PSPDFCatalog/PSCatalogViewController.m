@@ -99,7 +99,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:style])) {
         self.title = PSPDFLocalize(@"PSPDFKit Catalog");
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -146,7 +146,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" block:^{
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
             // on iPhone, we do things a bit different, and push/pull the controller.
@@ -217,7 +217,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" block:^{
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
             [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
             self.view.window.rootViewController = splitViewController;
@@ -692,7 +692,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         [controller setUpdateSettingsForRotationBlock:^(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation) {
-            if (!PSIsIpad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+            if (!PSCIsIPad()) pdfController.fitToWidthEnabled = UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
         }];
         return controller;
     }]];
@@ -2281,7 +2281,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     ///////////////////////////////////////////////////////////////////////////////////////////
 
 
-    PSCSectionDescriptor *delegateSection = [PSCSectionDescriptor sectionWithTitle:@"Delegate" footer:!PSIsIpad() ? PSPDFVersionString() : @""];
+    PSCSectionDescriptor *delegateSection = [PSCSectionDescriptor sectionWithTitle:@"Delegate" footer:!PSCIsIPad() ? PSPDFVersionString() : @""];
     [delegateSection addContent:[PSContent contentWithTitle:@"Custom drawing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         document.title = @"Custom drawing";
@@ -2293,7 +2293,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 
     // iPad only examples
-    if (PSIsIpad()) {
+    if (PSCIsIPad()) {
         PSCSectionDescriptor *iPadTests = [PSCSectionDescriptor sectionWithTitle:@"iPad only" footer:PSPDFVersionString()];
         [iPadTests addContent:[PSContent contentWithTitle:@"SplitView" block:^{
             UISplitViewController *splitVC = [[UISplitViewController alloc] init];

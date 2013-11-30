@@ -34,7 +34,7 @@
     self.rightBarButtonItems = nil;
     self.delegate = self;
 
-    if (!PSIsIpad()) {
+    if (!PSCIsIPad()) {
         self.title = document.title;
         self.documentLabelEnabled = NO;
     }
@@ -101,7 +101,7 @@
 
 - (void)outlineButtonPressed:(UIButton *)sender {
     PSPDFOutlineViewController *outlineViewController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentModalOrInPopover:outlineViewController embeddedInNavigationController:!PSIsIpad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAllowedPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
+    [self presentModalOrInPopover:outlineViewController embeddedInNavigationController:!PSCIsIPad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAllowedPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {

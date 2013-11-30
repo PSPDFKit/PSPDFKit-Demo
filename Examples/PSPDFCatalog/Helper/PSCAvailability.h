@@ -24,7 +24,7 @@
 #endif
 
 // Availability Macros
-#define PSIsIpad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+#define PSCIsIPad() (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000
 #define PSC_IF_IOS7_OR_GREATER(...) \

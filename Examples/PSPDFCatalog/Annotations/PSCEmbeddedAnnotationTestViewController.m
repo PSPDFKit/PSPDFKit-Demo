@@ -25,7 +25,7 @@
 
         self.leftBarButtonItems = @[self.closeButtonItem, saveButton];
 
-        if (PSIsIpad()) {
+        if (PSCIsIPad()) {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.searchButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
         }else {
             self.rightBarButtonItems = @[self.annotationButtonItem, self.openInButtonItem, self.viewModeButtonItem];

@@ -119,7 +119,7 @@
 #ifdef PSPDFCatalog
 - (void)updateSettingsForRotation:(UIInterfaceOrientation)toInterfaceOrientation force:(BOOL)force {
     // Dynamically adapt toolbar (in landscape mode, we have a lot more space!)
-    NSArray *leftToolbarItems = PSIsIpad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtonItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtonItem];
+    NSArray *leftToolbarItems = PSCIsIPad() && UIInterfaceOrientationIsLandscape(self.interfaceOrientation) ? @[_closeButtonItem, _settingsButtonItem, _metadataButtonItem] : @[_closeButtonItem, _settingsButtonItem];
 
     // Simple performance optimization.
     if (leftToolbarItems.count != self.leftBarButtonItems.count || force) {
@@ -141,8 +141,8 @@
 - (void)globalVarChanged {
     // Preserve viewState, but only page, not contentOffset. (since we can change fitToWidth etc here)
     PSPDFViewState *viewState = [self viewState];
-    viewState.zoomScale = 1;
-    viewState.contentOffset = CGPointMake(0, 0);
+    viewState.zoomScale = 1.f;
+    viewState.contentOffset = CGPointMake(0.f, 0.f);
 
     NSMutableDictionary *renderOptions = [NSMutableDictionary dictionaryWithDictionary:self.document.renderOptions];
     NSDictionary *settings = [PSCSettingsController settings];
@@ -159,7 +159,7 @@
     self.document.renderOptions = renderOptions;
 
     // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-    NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
+    NSString *closeTitle = PSCIsIPad() ? NSLocalizedString(@"Documents", @"") : NSLocalizedString(@"Back", @"");
     _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
     _settingsButtonItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
 
@@ -174,7 +174,7 @@
     if ([settings[PROPERTY(annotationButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.annotationButtonItem];
     }
-    if (PSIsIpad()) {
+    if (PSCIsIPad()) {
         if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
             [rightBarButtonItems addObject:self.bookmarkButtonItem];
         }
@@ -209,7 +209,7 @@
         [additionalRightBarButtonItems addObject:self.activityButtonItem];
     }
 
-    if (!PSIsIpad()) {
+    if (!PSCIsIPad()) {
         if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.outlineButtonItem];
         }
@@ -263,7 +263,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     // show pdf title and fileURL
     if (document) {
         NSString *fileName = PSCStripPDFFileType(document.fileURL.lastPathComponent);
-        if (PSIsIpad() && ![document.title isEqualToString:fileName]) {
+        if (PSCIsIPad() && ![document.title isEqualToString:fileName]) {
             self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, document.fileURL.lastPathComponent];
         }
     }
@@ -362,7 +362,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     // This is an example how to customize the text selection menu.
     // It helps for debugging text extraction issues. Don't ship this feature.
     NSMutableArray *newMenuItems = [menuItems mutableCopy];
-    if (PSIsIpad()) { // looks bad on iPhone, no space
+    if (PSCIsIPad()) { // looks bad on iPhone, no space
         PSPDFMenuItem *menuItem = [[PSPDFMenuItem alloc] initWithTitle:@"Show Text" block:^{
             [[[UIAlertView alloc] initWithTitle:@"Custom Show Text Feature" message:selectedText delegate:nil cancelButtonTitle:PSPDFLocalize(@"Ok") otherButtonTitles:nil] show];
         } identifier:@"Show Text"];

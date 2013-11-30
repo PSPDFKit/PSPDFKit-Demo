@@ -44,7 +44,7 @@
     // Get all subclasses and instantiate them.
     NSArray *exampleSubclasses = PSCGetAllExampleSubclasses();
     NSMutableArray *examples = [NSMutableArray array];
-    PSCExampleTargetDeviceMask currentDevice = PSIsIpad() ? PSCExampleTargetDeviceMaskPad : PSCExampleTargetDeviceMaskPhone;
+    PSCExampleTargetDeviceMask currentDevice = PSCIsIPad() ? PSCExampleTargetDeviceMaskPad : PSCExampleTargetDeviceMaskPhone;
     for (Class exampleObj in exampleSubclasses) {
         PSCExample *example = [exampleObj new];
         if ((example.targetDevice & currentDevice) > 0) {

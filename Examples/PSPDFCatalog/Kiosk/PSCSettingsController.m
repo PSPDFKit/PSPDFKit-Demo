@@ -65,8 +65,8 @@ static NSMutableDictionary *_settings;
     @autoreleasepool {
         if (self.class == [PSCSettingsController class]) {
             _settings = [NSMutableDictionary new];
-            _settings[PROPERTY(pageMode)] = @(PSIsIpad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-            _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSIsIpad());
+            _settings[PROPERTY(pageMode)] = @(PSCIsIPad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+            _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSCIsIPad());
             _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
             _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
             _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);

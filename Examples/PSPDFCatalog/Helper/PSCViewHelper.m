@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Common Metrics
 
-CGFloat PSCToolbarHeight(BOOL isSmall) { return isSmall && !PSIsIpad() ? 33.f : 44.f; }
+CGFloat PSCToolbarHeight(BOOL isSmall) { return isSmall && !PSCIsIPad() ? 33.f : 44.f; }
 
 CGFloat PSCToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
     return PSCToolbarHeight(UIInterfaceOrientationIsLandscape(orientation));
