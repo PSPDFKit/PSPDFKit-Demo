@@ -71,7 +71,7 @@
 
     // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error)
     if (self.isValid) {
-        NSData *viewStateData = [[NSUserDefaults standardUserDefaults] objectForKey:self.UID];
+        NSData *viewStateData = [NSUserDefaults.standardUserDefaults objectForKey:self.UID];
         @try {
             if (viewStateData) {
                 viewState = [NSKeyedUnarchiver unarchiveObjectWithData:viewStateData];
