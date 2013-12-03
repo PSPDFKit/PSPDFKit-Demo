@@ -78,7 +78,6 @@
 		78D909B8178988A400E7D4D5 /* PSPDFKit-License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B1178988A400E7D4D5 /* PSPDFKit-License.pdf */; };
 		78D909B9178988A400E7D4D5 /* PSPDFKit-Version in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B2178988A400E7D4D5 /* PSPDFKit-Version */; };
 		78D909BA178988A400E7D4D5 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B3178988A400E7D4D5 /* PSPDFKit.bundle */; };
-		78D909BB178988A400E7D4D5 /* PSPDFKit.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B4178988A400E7D4D5 /* PSPDFKit.xcconfig */; };
 		78D90A1B178A126600E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A1A178A126600E7D4D5 /* PSCViewHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -491,7 +490,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PSC;
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = PSPDFKit;
 			};
 			buildConfigurationList = 785DD9A7167B9BAE00559562 /* Build configuration list for PBXProject "PSPDFKiosk" */;
@@ -547,7 +546,6 @@
 				7830439D16FBE2F600D3EAB4 /* Icon-Small-50.png in Resources */,
 				7830439E16FBE2F600D3EAB4 /* Icon-Small-50@2x.png in Resources */,
 				7830439F16FBE2F600D3EAB4 /* Icon-Small.png in Resources */,
-				78D909BB178988A400E7D4D5 /* PSPDFKit.xcconfig in Resources */,
 				783043A016FBE2F600D3EAB4 /* Icon-Small@2x.png in Resources */,
 				78AE9C72177AFC28000E308D /* settings-landscape-legacy@2x.png in Resources */,
 				783043A116FBE2F600D3EAB4 /* Icon.png in Resources */,
@@ -641,7 +639,6 @@
 			baseConfigurationReference = 78D909B4178988A400E7D4D5 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -694,7 +691,6 @@
 			baseConfigurationReference = 78D909B4178988A400E7D4D5 /* PSPDFKit.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_RAND = YES;
 				CLANG_ANALYZER_SECURITY_INSECUREAPI_STRCPY = YES;
@@ -714,7 +710,7 @@
 				DEPLOYMENT_POSTPROCESSING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_FAST_MATH = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_UNROLL_LOOPS = YES;
@@ -731,6 +727,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LLVM_VECTORIZE_LOOPS = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -749,7 +746,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKiosk/PSPDFKiosk-Prefix.pch";
 				INFOPLIST_FILE = "PSPDFKiosk/PSPDFKiosk-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -765,7 +761,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PSPDFKiosk/PSPDFKiosk-Prefix.pch";
 				INFOPLIST_FILE = "PSPDFKiosk/PSPDFKiosk-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
