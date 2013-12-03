@@ -50,7 +50,7 @@
 
     NSError *error = nil;
     if (![self.document saveAnnotationsWithError:&error]) {
-        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations.", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Failed to save annotations", @"") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
     }else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
