@@ -77,7 +77,8 @@
     // Example using the new gallery (supports images, video, audio annotations)
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400.f, 300.f);
+    
+    CGSize size = CGSizeMake(400.0f, 225.0f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
 
