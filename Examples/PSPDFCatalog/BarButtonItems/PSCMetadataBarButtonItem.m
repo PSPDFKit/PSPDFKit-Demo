@@ -106,7 +106,7 @@
 
 - (void)tableView:(UITableView*)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath*)indexPath withSender:(id)sender {
     if (action == @selector(copy:)) {
-        [UIPasteboard generalPasteboard].string = [self metadataForRow:indexPath.row];
+        [UIPasteboard generalPasteboard].string = [self metadataForRow:indexPath.row] ?: @"";
     }
 }
 
