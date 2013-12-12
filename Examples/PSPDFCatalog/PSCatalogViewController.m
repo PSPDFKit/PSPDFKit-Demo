@@ -2580,6 +2580,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFDigitalSignatureRevisionDelegate
+
+- (void)pdfRevisionRequested:(PSPDFDocument *)pdf {
+    PSCKioskPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:pdf];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Debug Helper
 
 - (void)addDebugButtons {
