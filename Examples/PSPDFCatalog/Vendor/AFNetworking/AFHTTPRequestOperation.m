@@ -44,9 +44,12 @@ static dispatch_group_t http_request_operation_completion_group() {
 
 #pragma mark -
 
-@interface AFHTTPRequestOperation ()
+@interface AFURLConnectionOperation (Access)
 @property (readwrite, nonatomic, strong) NSURLRequest *request;
 @property (readwrite, nonatomic, strong) NSHTTPURLResponse *response;
+@end
+
+@interface AFHTTPRequestOperation ()
 @property (readwrite, nonatomic, strong) id responseObject;
 @property (readwrite, nonatomic, strong) NSError *responseSerializationError;
 @property (readwrite, nonatomic, strong) NSRecursiveLock *lock;
@@ -155,8 +158,8 @@ static dispatch_group_t http_request_operation_completion_group() {
     }
 
     NSMutableURLRequest *mutableURLRequest = [self.request mutableCopy];
-    if ([self.response respondsToSelector:@selector(allHeaderFields)] && [[self.response allHeaderFields] valueForKey:@"ETag"]) {
-        [mutableURLRequest setValue:[[self.response allHeaderFields] valueForKey:@"ETag"] forHTTPHeaderField:@"If-Range"];
+    if ([self.response respondsToSelector:@selector(allHeaderFields)] && [[(NSHTTPURLResponse *)self.response allHeaderFields] valueForKey:@"ETag"]) {
+        [mutableURLRequest setValue:[[(NSHTTPURLResponse *)self.response allHeaderFields] valueForKey:@"ETag"] forHTTPHeaderField:@"If-Range"];
     }
     [mutableURLRequest setValue:[NSString stringWithFormat:@"bytes=%llu-", offset] forHTTPHeaderField:@"Range"];
     self.request = mutableURLRequest;
