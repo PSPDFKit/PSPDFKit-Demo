@@ -104,7 +104,7 @@ static char kAFBackgroundImageRequestOperationKey;
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         if ([[urlRequest URL] isEqual:[operation.request URL]]) {
             if (success) {
-                success(operation.response, responseObject);
+                success((NSHTTPURLResponse *)operation.response, responseObject);
             } else if (responseObject) {
                 [strongSelf setImage:responseObject forState:state];
             }
@@ -157,7 +157,7 @@ static char kAFBackgroundImageRequestOperationKey;
         __strong __typeof(weakSelf)strongSelf = weakSelf;
         if ([[urlRequest URL] isEqual:[operation.request URL]]) {
             if (success) {
-                success(operation.response, responseObject);
+                success((NSHTTPURLResponse *)operation.response, responseObject);
             } else if (responseObject) {
                 [strongSelf setBackgroundImage:responseObject forState:state];
             }

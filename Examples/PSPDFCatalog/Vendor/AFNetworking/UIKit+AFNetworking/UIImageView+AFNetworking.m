@@ -143,7 +143,7 @@ static char kAFResponseSerializerKey;
             __strong __typeof(weakSelf)strongSelf = weakSelf;
             if ([[urlRequest URL] isEqual:[operation.request URL]]) {
                 if (success) {
-                    success(urlRequest, operation.response, responseObject);
+                    success(urlRequest, (NSHTTPURLResponse *)operation.response, responseObject);
                 } else if (responseObject) {
                     strongSelf.image = responseObject;
                 }
@@ -153,7 +153,7 @@ static char kAFResponseSerializerKey;
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             if ([[urlRequest URL] isEqual:[operation.request URL]]) {
                 if (failure) {
-                    failure(urlRequest, operation.response, error);
+                    failure(urlRequest, (NSHTTPURLResponse *)operation.response, error);
                 }
             }
         }];
