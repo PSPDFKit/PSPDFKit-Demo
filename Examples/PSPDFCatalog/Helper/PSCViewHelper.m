@@ -87,14 +87,7 @@ BOOL PSCIsUIKitFlatMode(void) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-            NSCParameterAssert(NSThread.isMainThread);
-            // If your app is running in legacy mode, tintColor will be nil - else it must be set to some color.
-            if (UIApplication.sharedApplication.keyWindow) {
-                isUIKitFlatMode = [UIApplication.sharedApplication.keyWindow performSelector:@selector(tintColor)] != nil;
-            }else {
-                // Possible that we're called early on (e.g. when used in a Storyboard). Adapt and use a temporary window.
-                isUIKitFlatMode = [[UIWindow new] performSelector:@selector(tintColor)] != nil;
-            }
+            isUIKitFlatMode = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"DTSDKName"] rangeOfString:@"[a-zA-Z]6" options:NSRegularExpressionSearch].location == NSNotFound;
         }
     });
     return isUIKitFlatMode;
