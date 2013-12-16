@@ -10,6 +10,7 @@
 
 #import "PSCViewHelper.h"
 #import <tgmath.h>
+#import <mach-o/dyld.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Common Metrics
@@ -55,7 +56,8 @@ UIView *PSCGetViewInsideView(UIView *view, NSString *classNamePrefix) {
 
     UIView *theView = nil;
     for (__unsafe_unretained UIView *subview in view.subviews) {
-        if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] || [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
+        if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] ||
+            [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
             return subview;
         }else {
             if ((theView = PSCGetViewInsideView(subview, classNamePrefix))) break;
@@ -82,12 +84,15 @@ CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIKit Detection
 
+// https://gist.github.com/steipete/6526860
+#define UIKitVersionNumber_iOS_7_0 0xB57
 BOOL PSCIsUIKitFlatMode(void) {
     static BOOL isUIKitFlatMode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        // We get the modern UIKit if system is running >= iOS 7 and we were linked with >= SDK 7.
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-            isUIKitFlatMode = [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"DTSDKName"] rangeOfString:@"[a-zA-Z]6" options:NSRegularExpressionSearch].location == NSNotFound;
+            isUIKitFlatMode = (NSVersionOfLinkTimeLibrary("UIKit") >> 16) >= UIKitVersionNumber_iOS_7_0;
         }
     });
     return isUIKitFlatMode;
