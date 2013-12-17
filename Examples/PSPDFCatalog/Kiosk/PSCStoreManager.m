@@ -56,7 +56,7 @@ static char PSCKVOToken; // we need a static address for the kvo token
 
 - (id)init {
     if ((self = [super init])) {
-        _magazineFolderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFCatalog.%@", self].UTF8String, DISPATCH_QUEUE_CONCURRENT);
+        _magazineFolderQueue = dispatch_queue_create([[NSString stringWithFormat:@"com.PSPDFCatalog.%@", self] UTF8String], DISPATCH_QUEUE_CONCURRENT);
         _downloadQueue = [NSMutableArray new];
 
         // Load magazines from disk, async.

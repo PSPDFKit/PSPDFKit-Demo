@@ -184,7 +184,7 @@ static NSMutableDictionary *_settings;
     UIGraphicsEndImageContext();
     // Don't tint on iOS7
     if ([UIImage instancesRespondToSelector:@selector(imageWithRenderingMode:)]) {
-        renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        PSC_IF_IOS7_OR_GREATER(renderedImage = [renderedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];)
     }
     return renderedImage;
 }

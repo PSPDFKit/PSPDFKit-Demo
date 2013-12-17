@@ -131,7 +131,7 @@ static char kAFHTTPRequestOperationKey;
     __weak __typeof(self)weakSelf = self;
     [self.af_HTTPRequestOperation setDownloadProgressBlock:progress];
     [self.af_HTTPRequestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
-        NSData *data = success ? success(operation.response, operation.responseData) : operation.responseData;
+        NSData *data = success ? success((NSHTTPURLResponse *)operation.response, operation.responseData) : operation.responseData;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wgnu"

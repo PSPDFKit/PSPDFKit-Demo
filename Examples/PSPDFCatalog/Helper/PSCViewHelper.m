@@ -10,6 +10,7 @@
 
 #import "PSCViewHelper.h"
 #import <tgmath.h>
+#import <mach-o/dyld.h>
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Common Metrics
@@ -55,7 +56,8 @@ UIView *PSCGetViewInsideView(UIView *view, NSString *classNamePrefix) {
 
     UIView *theView = nil;
     for (__unsafe_unretained UIView *subview in view.subviews) {
-        if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] || [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
+        if ([NSStringFromClass(subview.class) hasPrefix:classNamePrefix] ||
+            [NSStringFromClass(subview.superclass) hasPrefix:classNamePrefix]) {
             return subview;
         }else {
             if ((theView = PSCGetViewInsideView(subview, classNamePrefix))) break;
@@ -82,19 +84,15 @@ CGFloat PSCScaleForSizeWithinSize(CGSize targetSize, CGSize boundsSize) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIKit Detection
 
+// https://gist.github.com/steipete/6526860
+#define UIKitVersionNumber_iOS_7_0 0xB57
 BOOL PSCIsUIKitFlatMode(void) {
     static BOOL isUIKitFlatMode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        // We get the modern UIKit if system is running >= iOS 7 and we were linked with >= SDK 7.
         if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_7_0) {
-            NSCParameterAssert(NSThread.isMainThread);
-            // If your app is running in legacy mode, tintColor will be nil - else it must be set to some color.
-            if (UIApplication.sharedApplication.keyWindow) {
-                isUIKitFlatMode = [UIApplication.sharedApplication.keyWindow performSelector:@selector(tintColor)] != nil;
-            }else {
-                // Possible that we're called early on (e.g. when used in a Storyboard). Adapt and use a temporary window.
-                isUIKitFlatMode = [[UIWindow new] performSelector:@selector(tintColor)] != nil;
-            }
+            isUIKitFlatMode = (NSVersionOfLinkTimeLibrary("UIKit") >> 16) >= UIKitVersionNumber_iOS_7_0;
         }
     });
     return isUIKitFlatMode;
