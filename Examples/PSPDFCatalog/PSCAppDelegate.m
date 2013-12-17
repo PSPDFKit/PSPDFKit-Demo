@@ -27,6 +27,21 @@
     PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
                                               @"%d-%d of %d" : @"Pages %d-%d of %d"}});
 
+    /*
+    // Example how to easily change certain images in PSPDFKit.
+    PSPDFSetBundleImageBlock(^UIImage *(NSString *imageName) {
+        if ([imageName isEqualToString:@"knob"]) {
+            UIGraphicsBeginImageContextWithOptions(CGSizeMake(20.f, 20.f), NO, 0.0);
+            UIBezierPath *round = [UIBezierPath bezierPathWithRect:CGRectMake(0.f, 0.f, 20.f, 20.f)];
+            [round fill];
+            UIImage *newKnob = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            return newKnob;
+        }
+        return nil;
+    });
+     */
+
     // You can also customize localization with a block.
     // If you return nil, the default PSPDFKit language system will be used.
     /*
