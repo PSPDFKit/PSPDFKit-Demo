@@ -100,7 +100,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
 
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        CGFloat degrees = PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
+        NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
         pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation+degrees);
         PSCLog(@"Snap rotation to: %lu", (unsigned long)pageInfo.pageRotation);
 
