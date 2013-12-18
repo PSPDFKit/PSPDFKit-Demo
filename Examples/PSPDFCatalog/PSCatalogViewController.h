@@ -10,6 +10,6 @@
 
 /// Main controller for PSPDF related samples.
 
-@interface PSCatalogViewController : UITableViewController<PSPDFDigitalSignatureRevisionDelegate>
+@interface PSCatalogViewController : UITableViewController
 
 @end
