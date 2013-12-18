@@ -33,10 +33,10 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     // adds a custom view above every page, to demonstrate that the annotations will render ABOVE that view.
-    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 300, 300)];
-    customView.backgroundColor = [UIColor colorWithRed:1.000 green:0.846 blue:0.088 alpha:0.900];
+    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(100.f, 100.f, 300.f, 300.f)];
+    customView.backgroundColor = [UIColor colorWithRed:1.f green:0.846f blue:0.088f alpha:0.9f];
     customView.layer.cornerRadius = 10.f;
-    customView.layer.borderColor = [UIColor colorWithRed:1.000 green:0.846 blue:0.088 alpha:1.000].CGColor;
+    customView.layer.borderColor = [UIColor colorWithRed:1.f green:0.846f blue:0.088f alpha:1.f].CGColor;
     customView.layer.borderWidth = 2.f;
     [pageView insertSubview:customView belowSubview:pageView.annotationContainerView];
 }

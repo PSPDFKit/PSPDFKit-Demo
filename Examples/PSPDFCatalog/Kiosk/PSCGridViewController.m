@@ -437,7 +437,7 @@
         [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
             self.navigationController.navigationBar.alpha = 0.f;
             _shadowView.shadowEnabled = NO;
-            self.collectionView.transform = CGAffineTransformMakeScale(0.97, 0.97);
+            self.collectionView.transform = CGAffineTransformMakeScale(0.97f, 0.97f);
 
             _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageTransitionCurl && [pdfController isDoublePageMode];
             CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];

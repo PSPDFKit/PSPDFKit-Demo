@@ -344,7 +344,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     self.textView.font = [UIFont systemFontOfSize:20.f];
 
     // Update colors (override, by default we would use the note annotation color)
-    self.backgroundView.colors = @[[UIColor colorWithWhite:0.922 alpha:1.000]];
+    self.backgroundView.colors = @[[UIColor colorWithWhite:0.922f alpha:1.f]];
 }
 
 // Simply delete the annotation without confirmation.
