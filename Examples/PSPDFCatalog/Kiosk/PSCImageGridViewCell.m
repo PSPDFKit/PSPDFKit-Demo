@@ -14,6 +14,7 @@
 #import "PSCDownload.h"
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
+#include <tgmath.h>
 
 #define PSCKitDownloadingKey @"downloading"
 #define PSCCellAnimationDuration 0.25f
@@ -98,7 +99,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
     if (!_progressView.hidden) {
         _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8f, 21.f);
         CGFloat pageLabelHeight = 0.f;//self.isShowingPageLabel ? self.pageLabel.frame.size.width : 0.f;
-        _progressView.center = CGPointMake(round(CGRectGetMaxX(self.imageView.frame)/2.f), round(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - pageLabelHeight));
+        _progressView.center = CGPointMake(__tg_round(CGRectGetMaxX(self.imageView.frame)/2.f), __tg_round(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - pageLabelHeight));
     }
 
     self.selectedBackgroundView.frame = CGRectInset(self.imageView.frame, -4.f, -4.f);
