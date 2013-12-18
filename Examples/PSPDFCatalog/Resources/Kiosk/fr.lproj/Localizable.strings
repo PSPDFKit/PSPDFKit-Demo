@@ -1,7 +1,7 @@
-/* 
+/*
  Localizable.strings
  PSPDFCatalog
- 
+
  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
 
  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
@@ -14,7 +14,7 @@
  */
 
 "Documents" = "Documents";
-"Done" = "OK";
+"Done" = "Done";
 
-"DeleteMagazineSingle" = "Effacer %@?";
-"DeleteMagazineMultiple" = "Effacer %@? (%d magazines)";
+"DeleteMagazineSingle" = "Delete %@?";
+"DeleteMagazineMultiple" = "Delete %@? (%d Magazines)";
