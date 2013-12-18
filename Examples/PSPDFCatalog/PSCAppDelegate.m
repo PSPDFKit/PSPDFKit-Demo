@@ -112,8 +112,12 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFDigitalSignatureRevisionDelegate
 
-- (void)pdfRevisionRequested:(PSPDFDocument *)pdf {
+- (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
     PSPDFViewController *controller = [self viewControllerForDocument:pdf];
+    
+    NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
+    
     [self.catalog pushViewController:controller animated:YES];
 }
 
