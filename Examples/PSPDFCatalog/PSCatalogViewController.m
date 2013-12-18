@@ -579,7 +579,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         if ([document annotationsForPage:targetPage type:PSPDFAnnotationTypeSquare].count == 0) {
             PSPDFSquareAnnotation *annotation = [[PSPDFSquareAnnotation alloc] init];
             annotation.boundingBox = CGRectInset([document pageInfoForPage:targetPage].rotatedPageRect, 100, 100);
-            annotation.color = [UIColor colorWithRed:0.0 green:100.0/255.f blue:0.f alpha:1.f];
+            annotation.color = [UIColor colorWithRed:0.f green:100.f/255.f blue:0.f alpha:1.f];
             annotation.fillColor = annotation.color;
             annotation.alpha = 0.5f;
             annotation.page = targetPage;
@@ -664,7 +664,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             annotation.lineWidth = 5;
             annotation.lines = PSPDFConvertViewLinesToPDFLines(lines, pageInfo.pageRect, pageInfo.pageRotation, viewRect);
 
-            annotation.color = [UIColor colorWithRed:0.667 green:0.279 blue:0.748 alpha:1.000];
+            annotation.color = [UIColor colorWithRed:0.667f green:0.279f blue:0.748f alpha:1.f];
             annotation.page = targetPage;
             [document addAnnotations:@[annotation]];
         }
