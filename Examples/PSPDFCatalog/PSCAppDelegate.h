@@ -12,7 +12,7 @@
 #error This project must be compiled with ARC and Xcode 5.
 #endif
 
-@interface PSCAppDelegate : UIResponder <UIApplicationDelegate>
+@interface PSCAppDelegate : UIResponder <UIApplicationDelegate, PSPDFDigitalSignatureRevisionDelegate>
 
 @property (nonatomic, strong) UINavigationController *catalog;
 @property (nonatomic, strong) UIWindow *window;
