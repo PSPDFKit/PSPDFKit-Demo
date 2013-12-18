@@ -19,7 +19,7 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
     self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-    self.tintColor = [UIColor colorWithRed:0.092 green:0.608 blue:0.000 alpha:1.000];
+    self.tintColor = [UIColor colorWithRed:0.092f green:0.608f blue:0.f alpha:1.f];
     PSCTintColorSelectionBarButtonItem *tintColorButtonItem = [[PSCTintColorSelectionBarButtonItem alloc] initWithPDFViewController:self];
 
     self.useBorderedToolbarStyle = YES;
