@@ -32,6 +32,8 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
     switch (category) {
         case PSCExampleCategoryAnnotations:
             return @"Annotations";
+        case PSCExampleCategoryForms:
+            return @"Forms and Digital Signatures";
         case PSCExampleCategoryBarButtons:
             return @"BarButtons";
         case PSCExampleCategoryViewCustomization:
@@ -66,6 +68,8 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryPDFAnnotations:
             return @"PSPDFKit supports all common PDF annotation types.";
         case PSCExampleCategoryAnnotations:
+        case PSCExampleCategoryForms:
+            return @"PSPDFKit can show the original signed document even if the document has been subsequently altered.";
         case PSCExampleCategoryBarButtons:
         case PSCExampleCategoryViewCustomization:
         case PSCExampleCategoryStoryboards:
