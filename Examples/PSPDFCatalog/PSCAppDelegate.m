@@ -95,6 +95,8 @@
     // Receive callbacks for viewing signature revisions.
     [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
     
+    [self addTrustedCertificates];
+    
     return YES;
 }
 
@@ -117,11 +119,10 @@
     return NO;
 }
 
-- (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
-    return pdfController;
+- (void)addTrustedCertificates {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    NSData *cert = [NSData dataWithContentsOfFile:[[samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"] path]];
+    [PSPDFDigitalSignatureManager.sharedManager addCertificate:cert error:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -134,6 +135,13 @@
     pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
     
     [self.catalog pushViewController:controller animated:YES];
+}
+
+- (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+    return pdfController;
 }
 
 // If you need to block certain interface orientation, that's the place you want to add it.
