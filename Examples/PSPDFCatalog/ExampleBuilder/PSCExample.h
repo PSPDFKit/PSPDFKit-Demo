@@ -19,6 +19,7 @@
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryDocumentDataProvider,
     PSCExampleCategoryAnnotations,
+    PSCExampleCategoryForms,
     PSCExampleCategoryBarButtons,
     PSCExampleCategoryViewCustomization,
     PSCExampleCategoryPageRange,
