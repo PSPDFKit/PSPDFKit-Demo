@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CC163471863446E00D41974 /* PSCFormExamples.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC163461863446E00D41974 /* PSCFormExamples.m */; };
 		6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */; };
 		7802EA9015F4C5FA00B6EF3C /* book-left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */; };
 		7802EA9115F4C5FA00B6EF3C /* book-right.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7802EA8F15F4C5FA00B6EF3C /* book-right.jpg */; };
@@ -203,6 +204,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CC163451863446E00D41974 /* PSCFormExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PSCFormExamples.h; path = Forms/PSCFormExamples.h; sourceTree = "<group>"; };
+		1CC163461863446E00D41974 /* PSCFormExamples.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSCFormExamples.m; path = Forms/PSCFormExamples.m; sourceTree = "<group>"; };
 		6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCHideHUDDelayedDocumentViewController.h; sourceTree = "<group>"; };
 		6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCHideHUDDelayedDocumentViewController.m; sourceTree = "<group>"; };
 		7802EA8E15F4C5FA00B6EF3C /* book-left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "book-left.jpg"; path = "Book/book-left.jpg"; sourceTree = "<group>"; };
@@ -557,6 +560,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CC163441863445900D41974 /* Forms */ = {
+			isa = PBXGroup;
+			children = (
+				1CC163451863446E00D41974 /* PSCFormExamples.h */,
+				1CC163461863446E00D41974 /* PSCFormExamples.m */,
+			);
+			name = Forms;
+			sourceTree = "<group>";
+		};
 		7802EA9715F4C5FE00B6EF3C /* Book */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +633,7 @@
 				78A8EE5915D6ADA900400DE7 /* Annotations */,
 				78604C8416C50CB2003CB721 /* BarButtonItems */,
 				78C7C5C716CB9C4D0006075D /* Customization */,
+				1CC163441863445900D41974 /* Forms */,
 				78E4E06017DD151B005ED42D /* ExampleBuilder */,
 				78FFE52F1781874E00FBA7DF /* Helper */,
 				78C6842016F7E5330080427B /* Interfaces */,
@@ -1365,6 +1378,7 @@
 				9AA5BDFC180FEAF1003A3865 /* PSCPSPDFDocumentDataProvidersExample.m in Sources */,
 				78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */,
 				78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */,
+				1CC163471863446E00D41974 /* PSCFormExamples.m in Sources */,
 				78D2CB2116A5F83800899C4A /* RNEncryptor.m in Sources */,
 				78D4D4091848CD4900080A96 /* AFURLRequestSerialization.m in Sources */,
 				780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */,
