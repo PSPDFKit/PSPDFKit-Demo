@@ -92,6 +92,9 @@
     });
 #endif
 
+    // Receive callbacks for viewing signature revisions.
+    [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
+    
     return YES;
 }
 
@@ -104,9 +107,7 @@
     // Directly open the PDF.
     if (launchURL.isFileURL && [[NSFileManager defaultManager] fileExistsAtPath:[launchURL path]]) {
         PSPDFDocument *document = [PSPDFDocument documentWithURL:launchURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+        PSPDFViewController *pdfController = [self viewControllerForDocument:document];
         [self.catalog popToRootViewControllerAnimated:NO];
         [self.catalog pushViewController:pdfController animated:NO];
         return YES;
@@ -114,6 +115,25 @@
         [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     }
     return NO;
+}
+
+- (PSPDFViewController *)viewControllerForDocument:(PSPDFDocument *)document {
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+    return pdfController;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSPDFDigitalSignatureRevisionDelegate
+
+- (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
+    PSPDFViewController *controller = [self viewControllerForDocument:pdf];
+    
+    NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
+    
+    [self.catalog pushViewController:controller animated:YES];
 }
 
 // If you need to block certain interface orientation, that's the place you want to add it.

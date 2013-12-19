@@ -1,5 +1,5 @@
 //
-//  PSCatalogViewController.h
+//  PSCFormExamples.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
@@ -8,8 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-/// Main controller for PSPDF related samples.
+#import "PSCExample.h"
 
-@interface PSCatalogViewController : UITableViewController
+@interface PSCFormExample : PSCExample
+@end
 
+@interface PSCFormDigitallySignedModifiedExample : PSCExample
 @end
