@@ -10,6 +10,21 @@
 
 #import "PSCFormExamples.h"
 
+static void PSPDFFormExampleAddTrustedCertificates() {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    NSData *cert = [NSData dataWithContentsOfFile:[[samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"] path]];
+    [PSPDFDigitalSignatureManager.sharedManager addCertificate:cert error:nil];
+}
+
+static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    
+    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:filename]];
+    PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
+    return [[PSPDFViewController alloc] initWithDocument:document];
+    
+}
+
 @implementation PSCFormExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -20,16 +35,13 @@
         self.title = @"Example of a PDF Interactive Form";
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
+        PSPDFFormExampleAddTrustedCertificates();
     }
     return self;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:@"Form_example.pdf"]];
-    PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
-    return [[PSPDFViewController alloc] initWithDocument:document];
+    return PSPDFFormExampleInvokeWithFilename(@"Form_example.pdf");
 }
 
 @end
@@ -44,17 +56,14 @@
     if (self = [super init]) {
         self.title = @"Example of a PDF Interactive Form with a Digital Signature";
         self.category = PSCExampleCategoryForms;
-        self.priority = 20;
+        self.priority = 10;
+        PSPDFFormExampleAddTrustedCertificates();
     }
     return self;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:@"Form_example_signed.pdf"]];
-    PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
-    return [[PSPDFViewController alloc] initWithDocument:document];
+    return PSPDFFormExampleInvokeWithFilename(@"Form_example_signed.pdf");
 }
 
 @end
