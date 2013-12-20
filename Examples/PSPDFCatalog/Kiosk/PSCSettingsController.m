@@ -536,6 +536,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         [text appendString:[pdfController.document textParserForPage:page].text];
         if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }
+    NSLog(@"text: %@", text);
     configView.text = text;
     configView.editable = NO;
     configView.font = [UIFont systemFontOfSize:15];
