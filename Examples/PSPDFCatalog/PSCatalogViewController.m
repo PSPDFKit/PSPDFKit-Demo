@@ -2,7 +2,7 @@
 //  PSCatalogViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -124,12 +124,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_TouchDownButton.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"OoPdfFormExample.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Form_Signature.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Line_Crash.pdf"]];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"2457.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
