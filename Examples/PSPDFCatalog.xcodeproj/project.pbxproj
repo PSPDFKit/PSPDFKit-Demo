@@ -19,6 +19,7 @@
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
+		782D752418642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */; };
 		7830438B16FBE2E500D3EAB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438316FBE2E500D3EAB4 /* Icon-72.png */; };
 		7830438C16FBE2E500D3EAB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438416FBE2E500D3EAB4 /* Icon-72@2x.png */; };
 		7830438D16FBE2E500D3EAB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438516FBE2E500D3EAB4 /* Icon-Small-50.png */; };
@@ -225,6 +226,8 @@
 		781EF82E169E37510022556D /* PSCSaveAsPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSaveAsPDFViewController.h; sourceTree = "<group>"; };
 		781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSaveAsPDFViewController.m; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
+		782D752218642FC600EC76CF /* PSCSignatureControllerCustomizationExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSignatureControllerCustomizationExample.h; sourceTree = "<group>"; };
+		782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSignatureControllerCustomizationExample.m; sourceTree = "<group>"; };
 		7830438316FBE2E500D3EAB4 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		7830438416FBE2E500D3EAB4 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		7830438516FBE2E500D3EAB4 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -987,6 +990,8 @@
 				78BEE6F8183973CF007345B7 /* PSCDefaultStampExample.h */,
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
 				78F9FE831847493B005A05F4 /* PSCZoomingSearchExample.h */,
+				782D752218642FC600EC76CF /* PSCSignatureControllerCustomizationExample.h */,
+				782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1427,6 +1432,7 @@
 				78BEE6F9183973CF007345B7 /* PSCDefaultStampExample.m in Sources */,
 				78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */,
 				78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */,
+				782D752418642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m in Sources */,
 				78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */,
 				78D4D40A1848CD4900080A96 /* AFURLResponseSerialization.m in Sources */,
 			);
