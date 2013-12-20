@@ -95,8 +95,6 @@
     // Receive callbacks for viewing signature revisions.
     [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
     
-    [self addTrustedCertificates];
-    
     return YES;
 }
 
@@ -117,12 +115,6 @@
         [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
     }
     return NO;
-}
-
-- (void)addTrustedCertificates {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSData *cert = [NSData dataWithContentsOfFile:[[samplesURL URLByAppendingPathComponent:@"JohnAppleseed.p7c"] path]];
-    [PSPDFDigitalSignatureManager.sharedManager addCertificate:cert error:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
