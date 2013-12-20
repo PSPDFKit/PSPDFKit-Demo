@@ -24,8 +24,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Example how to localize strings in PSPDFKit.
     // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
+
+    /*
     PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
                                               @"%d-%d of %d" : @"Pages %d-%d of %d"}});
+     */
 
     /*
     // Example how to easily change certain images in PSPDFKit.
@@ -129,7 +132,8 @@
 
 - (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
     PSPDFViewController *controller = [self viewControllerForDocument:pdf];
-    
+    controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+
     NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
     pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
     
@@ -148,8 +152,8 @@
 - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
 #ifndef CONFIGURATION_AppStore
     // This is only for Hockey app deployment for beta testing. Using uniqueIdentifier in AppStore apps is not allowed and will get your app rejected.
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
+    if ([UIDevice.currentDevice respondsToSelector:@selector(uniqueIdentifier)])
+        return [UIDevice.currentDevice performSelector:@selector(uniqueIdentifier)];
 #endif
     return nil;
 }
