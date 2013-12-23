@@ -86,7 +86,7 @@
             }
         }
     }
-    [self updateDrawingUndoRedoButtons];
+    [self updateUndoRedoButtons];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -107,8 +107,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFAnnotationToolbar
 
-- (void)updateDrawingUndoRedoButtons {
-    [super updateDrawingUndoRedoButtons];
+- (void)updateUndoRedoButtons {
+    [super updateUndoRedoButtons];
     [self updateClearAnnotationButton];
 }
 
