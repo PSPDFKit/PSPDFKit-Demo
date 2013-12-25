@@ -124,8 +124,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_TouchDownButton.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"OoPdfFormExample.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Form_Signature.pdf"]];
@@ -2363,7 +2363,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+
+    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack : UIBarStyleDefault;
+    
     [self.navigationController setToolbarHidden:YES animated:animated];
 
     // clear cache (for night mode)
@@ -2401,6 +2403,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Second display, remove user default.
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCLastIndexPath];
     }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

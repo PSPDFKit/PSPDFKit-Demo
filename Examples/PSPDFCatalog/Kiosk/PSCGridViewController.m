@@ -132,7 +132,6 @@
     [self.view insertSubview:self.collectionView belowSubview:_shadowView];
     self.collectionView.frame = CGRectIntegral(self.view.bounds);
     self.collectionView.dataSource = self; // auto-reloads
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
     // Add the search bar.
     CGFloat searchBarWidth = 290.f;
@@ -167,26 +166,10 @@
     [self.collectionView addSubview:self.searchBar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    // Manually unload view to save memory.
-    if (self.isViewLoaded && self.view.window == nil) {
-        self.view = nil;
-    }
-
-    if (!self.isViewLoaded) {
-        self.collectionView.delegate = nil;
-        self.collectionView.dataSource = nil;
-        self.collectionView = nil;
-        self.shadowView = nil;
-        self.searchBar.delegate = nil;
-        self.searchBar = nil;
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack :  UIBarStyleDefault;
 
     // Ensure our navigation bar is visible. PSPDFKit restores the properties,
     // But since we're doing a custom fade-out on the navigationBar alpha,
