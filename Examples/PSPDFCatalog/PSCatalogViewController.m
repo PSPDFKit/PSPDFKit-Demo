@@ -201,7 +201,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]]];
+        // Initialize document and enable link autodetection.
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]];
+        document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
@@ -215,7 +218,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
