@@ -2587,6 +2587,15 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     self.filteredContent = filteredContent;
 }
 
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    // HACK: Using UISearchBarStyleMinimal produces a black bar on iPhone.
+    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleDefault;
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFSignatureViewControllerDelegate
 
