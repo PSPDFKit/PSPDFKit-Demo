@@ -2478,7 +2478,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Invoking [NSIndexPath indexPathForRow:%ld inSection:%ld]", (long)indexPath.row, (long)indexPath.section);
+    NSLog(@"Invoking [NSIndexPath indexPathForRow:%tu inSection:%tu]", indexPath.row, indexPath.section);
 
     __block NSIndexPath *unfilteredIndexPath;
     PSContent *contentDescriptor;
