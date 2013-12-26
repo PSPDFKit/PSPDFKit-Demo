@@ -134,7 +134,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         if (PSCIsUIKitFlatMode()) {
-            controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlack;
+            controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContent;
             controller.tintColor = UIColor.pspdfColor;      // navBarTintColor
         }
         //controller.shouldHideNavigationBarWithHUD = YES;
@@ -174,7 +174,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // Don't use thumbnails if the PDF is not rendered.
@@ -207,7 +207,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         BOOL includeBrightnessButton = YES;
         PSC_IF_IOS7_OR_GREATER(includeBrightnessButton = NO;)
-        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.additionalActionsButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.additionalActionsButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageTransitionScrollContinuous;
@@ -215,8 +215,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSCIsUIKitFlatMode() ? PSPDFStatusBarStyleBlackOpaque : PSPDFStatusBarStyleDefault;
-        return controller;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
+
+        // Present modally, so we can more easily configure it to have a different style.
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self.navigationController presentViewController:navController animated:YES completion:NULL];
+        return (UIViewController *)nil;
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" block:^{
@@ -1132,7 +1136,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Drawing invoked with menu while toolbar is visible" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         double delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
