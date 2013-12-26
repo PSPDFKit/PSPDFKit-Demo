@@ -343,7 +343,7 @@
     CGRect newFrame = self.view.frame;
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
 
-    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleSmartBlackHideOnIpad.
+    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleLightContentHideOnIpad.
     PSC_IF_PRE_IOS7(newFrame.origin.y -= navBarFrame.size.height;
                     newFrame.size.height += navBarFrame.size.height;
                     BOOL iPadFadesOutStatusBar = YES;
@@ -400,7 +400,7 @@
 
         // Add a smooth status bar transition on the iPhone
         if (!PSCIsIPad()) {
-            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
         }
 
         // If we have a different page, fade to that page.
