@@ -103,8 +103,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self createTableContent];
-        [self addDebugButtons];
     }
     return self;
 }
@@ -2334,6 +2332,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self createTableContent];
+    [self addDebugButtons];
 
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
     PSC_IF_IOS7_OR_GREATER(_searchBar.searchBarStyle = UISearchBarStyleMinimal;)
