@@ -18,20 +18,7 @@
 
 @implementation PSCAppDelegate
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIApplicationDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Example how to localize strings in PSPDFKit.
-    // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
-
-    /*
-    PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
-                                              @"%d-%d of %d" : @"Pages %d-%d of %d"}});
-     */
-
-    /*
-    // Example how to easily change certain images in PSPDFKit.
+- (void)customizeImages {
     PSPDFSetBundleImageBlock(^UIImage *(NSString *imageName) {
         if ([imageName isEqualToString:@"knob"]) {
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(20.f, 20.f), NO, 0.0);
@@ -43,24 +30,36 @@
         }
         return nil;
     });
-     */
+}
 
-    // You can also customize localization with a block.
-    // If you return nil, the default PSPDFKit language system will be used.
-    /*
-     PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
-     // This will look up strings in language/PSPDFKit.strings inside resources.
-     // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
-     return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
-     //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
-     });
-     */
+- (void)customizeLocalization {
+    // Either use the block-based system.
+    PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
+        // This will look up strings in language/PSPDFKit.strings inside resources.
+        // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
+        return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
+        //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
+    });
+
+    // Or override via dictionary.
+    // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
+    PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
+                                               @"%d-%d of %d" : @"Pages %d-%d of %d"}});
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIApplicationDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Example how to easily change certain images in PSPDFKit.
+    //[self customizeImages];
+
+    // Example how to localize strings in PSPDFKit.
+    //[self customizeLocalization];
 
     // Change log level to be more verbose.
 #ifdef DEBUG
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
-    //[PSPDFCache.sharedCache clearCache];
-    //NSLog(@"Cache: %@", NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]);
 #endif
 
     // Enable if you're having memory issues.
@@ -99,7 +98,7 @@
 
     // Receive callbacks for viewing signature revisions.
     [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
-    
+
     return YES;
 }
 
@@ -138,7 +137,7 @@
 
     NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
     pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
-    
+
     [self.catalog pushViewController:controller animated:YES];
 }
 
