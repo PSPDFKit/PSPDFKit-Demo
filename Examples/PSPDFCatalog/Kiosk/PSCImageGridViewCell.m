@@ -16,7 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #include <tgmath.h>
 
-#define PSCKitDownloadingKey @"downloading"
+#define PSCDownloadingKey @"downloading"
 #define PSCCellAnimationDuration 0.25f
 
 @interface PSCImageGridViewCell() {
@@ -65,7 +65,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 }
 
 - (void)dealloc {
-    [_magazine removeObserver:self forKeyPath:PSCKitDownloadingKey context:&PSCKVOToken];
+    [_magazine removeObserver:self forKeyPath:PSCDownloadingKey context:&PSCKVOToken];
     [self clearProgressObservers];
 }
 
@@ -143,11 +143,9 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)updateProgressAnimated:(BOOL)animated {
     float progressTotal = 1.f;
-
     if (_observedMagazineDownloads.count > 0) {
         progressTotal = [[_observedMagazineDownloads valueForKeyPath:@"@avg.downloadProgress"] floatValue];
     }
-
     [self setProgress:progressTotal animated:animated];
 }
 
@@ -157,7 +155,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateProgressAnimated:YES];
             });
-        }else if ([keyPath isEqualToString:PSCKitDownloadingKey]) {
+        }else if ([keyPath isEqualToString:PSCDownloadingKey]) {
             // Check if magazine needs to be observed. (if download progress is active)
             if (self.magazine.isDownloading && ![_observedMagazineDownloads containsObject:self.magazine]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -183,14 +181,14 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     }
 
     if (_magazine != magazine) {
-        [_magazine removeObserver:self forKeyPath:PSCKitDownloadingKey context:&PSCKVOToken];
+        [_magazine removeObserver:self forKeyPath:PSCDownloadingKey context:&PSCKVOToken];
         _magazine = magazine;
 
         // setup for magazine
         if (magazine) {
 
             // add KVO for download property
-            [magazine addObserver:self forKeyPath:PSCKitDownloadingKey options:0 context:&PSCKVOToken];
+            [magazine addObserver:self forKeyPath:PSCDownloadingKey options:0 context:&PSCKVOToken];
 
             // add KVO
             [self checkMagazineAndObserveProgressIfDownloading:magazine];
@@ -198,7 +196,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
             self.magazineCount = 0;
 
             // First, check memory.
-            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:self.frame.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
+            UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:self.frame.size options:PSPDFCacheOptionDiskLoadSync];
             [self setImage:memoryImage animated:NO];
             if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
 
@@ -261,7 +259,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
         NSString *pageLabelText = PSCStripPDFFileType(magazine.files.lastObject);
         [self updatePageLabel]; // create lazily
-        self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        self.pageLabel.text = pageLabelText.length ? pageLabelText : magazine.title;
         [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }
@@ -302,7 +300,6 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     _magazineCounterBadgeImage.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 50.f, 50.f);
 }
 
-#define kMagazineCountLabelTag 32443
 - (void)setMagazineCount:(NSUInteger)newMagazineCount {
     if (!_magazineCounter && newMagazineCount > 1) { // lazy creation
         self.magazineCounterBadgeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
@@ -321,7 +318,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         [_magazineCounterBadgeImage addSubview:_magazineCounter];
     }
 
-    _magazineCounter.text = [NSString stringWithFormat:@"%lu", (unsigned long)newMagazineCount];
+    _magazineCounter.text = [NSString stringWithFormat:@"%tu", newMagazineCount];
     _magazineCounter.hidden = newMagazineCount < 2;
     _magazineCounterBadgeImage.hidden = newMagazineCount < 2;
     [self updateMagazineBadgeFrame];
@@ -393,7 +390,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     BOOL shouldShowProgress = shouldDarkenView && theProgress > 0.f;
     [self darkenView:shouldDarkenView animated:animated];
 
-    // remove progressView
+    // Remove progressView
     if (!shouldShowProgress && self.progressView.superview) {
         [UIView animateWithDuration:animated ? PSCCellAnimationDuration : 0.f animations:^{
             self.progressView.alpha = 0.f;
@@ -404,7 +401,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     }else if (shouldShowProgress) {
         [self.contentView bringSubviewToFront:self.progressView];
 
-        // ensure visibility.
+        // Ensure visibility.
         if (self.progressView.alpha == 0.f || !self.progressView.superview) {
             self.progressView.alpha = 0.f;
             [self.contentView addSubview:self.progressView];
@@ -418,10 +415,10 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (void)setImage:(UIImage *)image animated:(BOOL)animated {
     [super setImage:image animated:animated];
 
-    // ensure magazineCounter is at top.
+    // Ensure magazineCounter is at top.
     [self bringSubviewToFront:_magazineCounterBadgeImage];
 
-    // recalculate edit button position.
+    // Recalculate edit button position.
     [self setNeedsLayout];
 }
 
@@ -458,7 +455,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
 - (void)checkMagazineAndObserveProgressIfDownloading:(PSCMagazine *)magazine {
     if (magazine.isDownloading) {
-        PSCDownload *download = [[PSCStoreManager sharedStoreManager] downloadObjectForMagazine:magazine];
+        PSCDownload *download = [PSCStoreManager.sharedStoreManager downloadObjectForMagazine:magazine];
         if (!download) {
             NSLog(@"failed to find associated download object for %@", magazine); return;
         }
