@@ -31,6 +31,7 @@
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */; };
 		783BB8FC17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */; };
+		78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */; };
 		78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D1E17393F140006D87D /* PSCGridViewController.m */; };
 		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		784F012015CF247900849F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011F15CF247900849F81 /* Foundation.framework */; };
@@ -242,6 +243,8 @@
 		783535F517209800009F8088 /* PSCMultipleUsersPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMultipleUsersPDFViewController.h; sourceTree = "<group>"; };
 		783BB8FA17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PSCDeallocationBlock.h"; sourceTree = "<group>"; };
 		783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PSCDeallocationBlock.m"; sourceTree = "<group>"; };
+		78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCreateNoteFromTextSelectionExample.m; sourceTree = "<group>"; };
+		78471B40186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCreateNoteFromTextSelectionExample.h; sourceTree = "<group>"; };
 		78479D1D17393F140006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
 		78479D1E17393F140006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
 		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -836,6 +839,8 @@
 		78A8EE5915D6ADA900400DE7 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
+				78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */,
+				78471B40186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.h */,
 				78FE606217DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.h */,
 				78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */,
 				78A8EE5A15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.h */,
@@ -1345,6 +1350,7 @@
 				783BB8FC17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m in Sources */,
 				78A24AAF15CFDAE200328F4F /* PSCSectionDescriptor.m in Sources */,
 				78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */,
+				78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */,
 				78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */,
 				78D4D40D1848CD4900080A96 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */,
