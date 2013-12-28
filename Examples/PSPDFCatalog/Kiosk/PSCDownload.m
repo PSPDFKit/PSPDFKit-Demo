@@ -134,7 +134,7 @@
     [pdfRequest start];
 
     self.request = pdfRequest; // save request
-    [[PSCStoreManager sharedStoreManager] addMagazinesToStore:@[self.magazine]];
+    [PSCStoreManager.sharedStoreManager addMagazinesToStore:@[self.magazine]];
 }
 
 - (void)cancelDownload {

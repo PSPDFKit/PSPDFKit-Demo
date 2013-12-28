@@ -69,7 +69,7 @@
 - (PSPDFViewState *)lastViewState {
     PSPDFViewState *viewState = nil;
 
-    // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error)
+    // Restore viewState (sadly, NSKeyedUnarchiver might throw an exception on error.)
     if (self.isValid) {
         NSData *viewStateData = [NSUserDefaults.standardUserDefaults objectForKey:self.UID];
         @try {
@@ -114,7 +114,7 @@
         bundlePath = NSBundle.mainBundle.bundlePath;
     });
 
-    // if magazine is within the app bundle, we can't delete it.
+    // If magazine is within the app bundle, we can't delete it.
     BOOL deletable = ![[self pathForPage:0].path hasPrefix:bundlePath];
     return deletable;
 }
@@ -127,10 +127,10 @@
         _downloading = downloading;
 
         if (!downloading) {
-            // clear cache, needed to recalculate pageCount
+            // Clear cache, needed to recalculate pageCount.
             [self clearCache];
 
-            // request coverImage - grid listens for those events
+            // Request coverImage - grid listens for those events.
             [self coverImageForSize:CGSizeZero];
         }
     }
