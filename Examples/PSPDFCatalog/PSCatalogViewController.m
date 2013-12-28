@@ -121,7 +121,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:@"Example Applications" footer:nil];
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController Playground" block:^{
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
@@ -135,14 +135,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
             controller.tintColor = UIColor.pspdfColor; // navBarTintColor
         }
-        //controller.shouldHideNavigationBarWithHUD = YES;
-        //controller.shouldHideStatusBarWithHUD = YES;
         controller.imageSelectionEnabled = NO;
-        //controller.page = 3;
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFKit Kiosk" block:^UIViewController *{
+    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" block:^UIViewController *{
         return [PSCGridViewController new];
     }]];
 
