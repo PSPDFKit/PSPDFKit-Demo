@@ -2,9 +2,9 @@
 //  PSPDFSinglePageViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -23,7 +23,7 @@
 
 @end
 
-/// Displays a single pdf page. Only useful in conjunction with PSPDFPageViewController.
+/// Displays a single pdf page. Only useful in conjunction with `PSPDFPageViewController`.
 @interface PSPDFSinglePageViewController : PSPDFBaseViewController
 
 /// create single page controller using the master pdf controller and a page. Does not has a scrollView in place.
@@ -41,10 +41,10 @@
 /// current visible page.
 @property (nonatomic, assign) NSUInteger page;
 
-/// If set to YES, the background of the UIViewController is used. Else you may get some animation artifacts. Defaults to NO.
+/// If set to YES, the background of the `UIViewController` is used. Else you may get some animation artifacts. Defaults to NO.
 @property (nonatomic, assign) BOOL useSolidBackground;
 
-/// Delegate (usually connected to a PSPDFPageViewController)
+/// Delegate (usually connected to a `PSPDFPageViewController`)
 @property (nonatomic, assign) IBOutlet id<PSPDFSinglePageViewControllerDelegate> delegate;
 
 @end

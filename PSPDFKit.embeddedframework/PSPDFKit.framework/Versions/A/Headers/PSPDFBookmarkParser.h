@@ -2,9 +2,9 @@
 //  PSPDFBookmarkParser.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -14,7 +14,7 @@
 
 @class PSPDFBookmark, PSPDFDocument;
 
-/// Register to get notified by bookmark changes. Object is the PSPDFBookmarkParser object.
+/// Register to get notified by bookmark changes. Object is the `PSPDFBookmarkParser` object.
 /// @warning Post only from the main thread!
 extern NSString *const PSPDFBookmarksChangedNotification;
 
@@ -22,7 +22,7 @@ extern NSString *const PSPDFBookmarksChangedNotification;
  Manages bookmarks for a PSPDFDocument.
 
  There is no notion of "bookmarks" in a PDF.
- (PDF "bookmarks" are entries in the outline (Table Of Contents); which are parsed in PSPDFKit by the PSPDFOutlineParser class)
+ (PDF "bookmarks" are entries in the outline (Table Of Contents); which are parsed in PSPDFKit by the `PSPDFOutlineParser.class`)
 
  Bookmarks are saved in <APP>/Library/PrivateDocuments/<DocumentUID>/bookmark.plist
 
@@ -36,7 +36,7 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document;
 
-/// Contains bookmarks (PSPDFBookmark) for the document. Access is thread safe.
+/// Contains bookmarks (`PSPDFBookmark`) for the document. Access is thread safe.
 @property (nonatomic, copy) NSArray *bookmarks;
 
 /// Associated document.
@@ -60,10 +60,6 @@ extern NSString *const PSPDFBookmarksChangedNotification;
 
 
 @interface PSPDFBookmarkParser (SubclassingHooks)
-
-/// Defaults to document.cacheDirectory/document.uid
-/// document.cacheDirectory can be changed w/o subclassing PSPDFBookmarkParser.
-- (NSString *)cachePath;
 
 /// Defaults to cachePath/bookmarks.plist
 - (NSString *)bookmarkPath;

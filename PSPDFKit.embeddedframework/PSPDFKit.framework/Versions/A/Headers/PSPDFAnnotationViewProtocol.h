@@ -2,9 +2,9 @@
 //  PSPDFAnnotationViewProtocol.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -34,13 +34,13 @@
 /// Called when page will be displayed. Only available in pageCurl mode.
 - (void)willShowPage:(NSUInteger)page;
 
-/// Called when pageView is displayed.
+/// Called when `pageView` is displayed.
 - (void)didShowPage:(NSUInteger)page;
 
-/// Called when pageView will be hidden. Only available in pageCurl mode.
+/// Called when `pageView` will be hidden. Only available in pageCurl mode.
 - (void)willHidePage:(NSUInteger)page;
 
-/// Called when pageView is hidden.
+/// Called when `pageView` is hidden.
 - (void)didHidePage:(NSUInteger)page;
 
 /// Called initially and when the parent page size is changed. (e.g. rotation)
@@ -51,5 +51,8 @@
 
 /// A weak reference to the page view responsible for this view.
 @property (nonatomic, weak) PSPDFPageView *pageView;
+
+/// Indicates if the view is selected.
+@property (nonatomic, assign, getter=isSelected) BOOL selected;
 
 @end

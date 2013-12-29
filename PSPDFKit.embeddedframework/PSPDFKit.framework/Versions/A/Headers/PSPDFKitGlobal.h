@@ -2,9 +2,9 @@
 //  PSPDFKitGlobal.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -16,13 +16,15 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import <UIKit/UIKit.h>
 
-// Version detection
+// PSPDFKit version detection.
 #define __PSPDFKIT_IOS__
 #define __PSPDFKIT_3_0_0 3000
 #define __PSPDFKIT_3_1_0 3100
 #define __PSPDFKIT_3_2_0 3200
+#define __PSPDFKIT_3_3_0 3300
+
 extern NSString *PSPDFVersionString(void); // Returns "PSPDFKit 3.x.x"
-extern NSDate   *PSPDFVersionDate(void);   // Returns date of compilation.
+extern NSDate   *PSPDFVersionDate(void);   // Returns compilation date.
 
 typedef NS_ENUM(NSInteger, PSPDFLogLevelMask) {
     PSPDFLogLevelMaskNothing  = 0,
@@ -33,7 +35,7 @@ typedef NS_ENUM(NSInteger, PSPDFLogLevelMask) {
     PSPDFLogLevelMaskAll      = INT_MAX
 };
 
-/// Set the global PSPDFKit log level. Defaults to PSPDFLogLevelMaskError|PSPDFLogLevelMaskWarning.
+/// Set the global PSPDFKit log level. Defaults to `PSPDFLogLevelMaskError|PSPDFLogLevelMaskWarning`.
 /// @warning Setting this to Verbose will severely slow down your application.
 extern PSPDFLogLevelMask PSPDFLogLevel;
 
@@ -43,13 +45,13 @@ typedef NS_ENUM(NSInteger, PSPDFAnimate) {
     PSPDFAnimateModernDevices,
     PSPDFAnimateEverywhere
 };
-extern PSPDFAnimate PSPDFAnimateOption; /// defaults to PSPDFAnimateModernDevices.
+extern PSPDFAnimate PSPDFAnimateOption; /// defaults to `PSPDFAnimateModernDevices`.
 
 /// Enable to use less memory. Some operations might need more time to complete, and caching will be less efficient. Defaults to NO.
 /// @note This might be useful if your own app needs a lot of memory or you're seeing memory related crashes with complex PDFs.
 extern BOOL PSPDFLowMemoryMode;
 
-/// Improves scroll performance.
+/// Improves scroll performance by delaying overlay annotations.
 extern CGFloat PSPDFInitialAnnotationLoadDelay;
 
 // Compares sizes and allows aspect ratio changes.
@@ -58,22 +60,19 @@ extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
 // Trims down a string, removing characters like \n 's etc.
 extern NSString *PSPDFTrimString(NSString *string);
 
-// Convert an NSArray of NSNumber's to an NSIndexSet
+// Convert an `NSArray` of `NSNumber's` to an `NSIndexSet`.
 extern NSIndexSet *PSPDFIndexSetFromArray(NSArray *array);
 
-// Checks if controller is `controllerClass` or inside a UINavigationController/UIPopoverController
+// Checks if controller is `controllerClass` or inside a `UINavigationController`/`UIPopoverController`.
 extern BOOL PSPDFIsControllerClassAndVisible(id controller, Class controllerClass);
 
 // Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
-// This is iOS6+ only, and only if compiled with the iOS 6 SDK (Since Apple drastically changed the way rotation works)
-// Older variants still need shouldAutorotate* handling in the view controllers.
-extern void PSPDFLockRotation(void);
-extern void PSPDFUnlockRotation(void);
+extern void PSPDFLockRotation(BOOL enableLock);
 
-// Returns whether both objects are identical or equal via -isEqual.
+// Returns whether both objects are identical or equal via `isEqual:`.
 extern BOOL PSPDFEqualObjects(id obj1, id obj2);
 
-/// Convert a view point to a pdf point. bounds is from the view (usually PSPDFPageView.bounds)
+/// Convert a view point to a pdf point. bounds is from the view (usually `PSPDFPageView.bounds`)
 extern CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 /// Convert a pdf point to a view point.
 extern CGPoint PSPDFConvertPDFPointToViewPoint(CGPoint pdfPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
@@ -107,12 +106,11 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 #endif
 #endif
 
-// Starting with iOS6, dispatch queue's can be objects and managed via ARC.
-#if OS_OBJECT_USE_OBJC
-#define PSPDFDispatchRelease(object)
-#else
-#define PSPDFDispatchRelease(object) do { if (object) dispatch_release(object); }while(0)
-#endif
-
-// deprecation helper
+// PSPDFKit deprecation helper
 #define PSPDF_DEPRECATED(version, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #version ". " msg)))
+
+/// List of available encodings. Used in PSPDFSoundAnnotaion.encoding and in the `defaultEncoding` property of `PSPDFAudioHelper`.
+extern NSString *const PSPDFSoundAnnotationEncodingRaw;
+extern NSString *const PSPDFSoundAnnotationEncodingSigned;
+extern NSString *const PSPDFSoundAnnotationEncodingMuLaw;
+extern NSString *const PSPDFSoundAnnotationEncodingALaw;

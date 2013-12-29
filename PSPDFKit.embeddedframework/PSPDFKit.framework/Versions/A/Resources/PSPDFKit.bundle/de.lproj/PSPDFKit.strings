@@ -2,9 +2,9 @@
   Localization.strings
   PSPDFKit
 
- Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+ Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 
- THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
  This notice may not be removed from this file.
@@ -13,6 +13,7 @@
 // general
 "Close" = "Schließen";
 "Cancel" = "Abbrechen";
+"OK" = "OK";
 "Open" = "Öffnen";
 "Untitled" = "Unbenannt";
 "File Not Found" = "Datei nicht gefunden";
@@ -21,6 +22,7 @@
 "All (%d Pages)" = "Dokument (%d Seiten)";
 "Next" = "Nächstes";
 "Previous" = "Vorheriges";
+"Error" = "Fehler";
 
 // toolbar
 "Outline" = "Inhalt";
@@ -34,11 +36,13 @@
 "Open" = "Öffnen";
 "Commit" = "Senden";
 "Sending to %@..." = "Öffne %@…";
+"Sending to %@" = "Öffne %@";
 "Pages" = "Seiten";
 "Print with annotations" = "Mit Annotationen drucken";
 "Print document only" = "Ohne Annotationen drucken";
 "No Applications found" = "Es konnten keine kompatiblen Apps gefunden werden.";
 "Print" = "Drucken";
+"Annotation" = "Annotation";
 "Annotations" = "Annotationen";
 "No Annotations" = "Keine Annotationen";
 "%d Annotation" = "%d Annotation";
@@ -47,11 +51,12 @@
 "No Bookmarks" = "Keine Lesezeichen gesetzt";
 "Add Bookmark" = "Lesezeichen hinzufügen";
 "Remove Bookmark" = "Lesezeichen entfernen";
-"Bookmark added" = "Lesezeichen gesetzt";
 "Brightness" = "Helligkeit";
 "Share..." = "Teilen…";
 "Preparing..." = "Vorbereiten…";
 "Loading..." = "Lädt…";
+"Expand" = "Ausklappen";
+"Collapse" = "Einklappen";
 
 // thumbnails
 "Bookmarked" = "Lesezeichen";
@@ -60,13 +65,15 @@
 
 // password
 "Unlock" = "Entsperren";
-"Please enter the password." = "Bitte geben sie das Passwort ein.";
+"Please enter the password." = "Bitte geben Sie das Passwort ein.";
 "This document cannot be unlocked. %@ is unsupported." = "Dieses Dokument kann nicht geöffnet werden. %@ nicht unterstützt.";
 
 // page
 "%d of %d" = "%d von %d";
 "%d-%d of %d" = "%d-%d von %d";
 "%@ (%d of %d)" = "%@ (%d von %d)";
+"%@, Page %d" = "%@, Seite %d";
+"Leave %@?" = "%@ verlassen?";
 
 // search
 "Search Document" = "Dokument durchsuchen";
@@ -76,11 +83,14 @@
 "Searching Page %d of %d..." = "Suche Seite %d von %d…";
 "Search Completed" = "Suche abgeschlossen";
 "Search Cancelled" = "Suche abgebrochen";
+"%d left" = "%d weitere";
+"Searching..." = "Suchen...";
+"%d documents indexed." = "%d Dokumente indiziert.";
+"Done" = "Fertig";
+
 
 // inline browser
-"Copy Link" = "Link kopieren";
 "Open in Safari" = "In Safari öffnen";
-"Mail Link to this Page" = "Link zu dieser Seite mailen";
 "Your %@ is not configured to send emails." = "Ihr %@ ist nicht für das Email-senden konfiguriert.";
 "The link is requesting to open %@Would you like to continue?" = "Dieser Link öffnet %@Fortfahren?";
 "an external application" = "eine externe Applikation";
@@ -90,7 +100,8 @@
 
 // text selection
 "Save To Camera Roll" = "Bild speichern";
-"Failed to extract image." = "Bild-extraktion fehlgeschlagen.";
+"Failed to extract image." = "Bild konnte nicht extrahiert werden.";
+"Type value or pick from list" = "Geben Sie einen Wert ein oder wählen Sie einen aus der Liste aus.";
 
 // annotations
 "Add %@" = "%@ hinzufügen";
@@ -106,9 +117,12 @@
 "Font" = "Schriftart";
 "Fonts" = "Schriftarten";
 "Downloadable Fonts" = "Herunterladbare Schriftarten";
+"Search Fonts" = "Schriftarten suchen";
 "Choose Color" = "Farbe wählen";
+"Choose Fill Color" = "Füllfarbe auswählen";
 "Rainbow" = "Regenbogen";
 "Monochrome" = "Monochrom";
+"Vintage" = "Traditionell";
 "Color..." = "Farbe…";
 "Color" = "Farbe";
 "Border..." = "Rand…";
@@ -116,6 +130,7 @@
 "Fill Color" = "Füllfarbe";
 "Opacity..." = "Transparenz…";
 "Opacity" = "Transparenz";
+"%@ %%" = "%@ %%";
 "Custom..." = "Mehr…";
 "Thickness..." = "Stärke…";
 "Thickness" = "Stärke";
@@ -127,13 +142,17 @@
 "Blue" = "Blau";
 "Pink" = "Pink";
 "Black" = "Schwarz";
-"Transparent" = "Transparent";
+"orange" = "Orange";
+"purple" = "Violett";
+"cyan" = "Cyan";
+"gray" = "Grau";
+"white" = "Weiß";
 "Define" = "Definieren";
 "Wikipedia" = "Wikipedia";
 "Highlight" = "Markieren";
 "Underline" = "Unterstreichen";
+"Squiggle" = "Verschnörkeln";
 "Strikeout" = "Durchstreichen";
-"Sketch" = "Zeichnen";
 "Rectangle" = "Rechteck";
 "Ellipse" = "Ellipse";
 "Line" = "Linie";
@@ -141,6 +160,8 @@
 "Polygon" = "Polygon";
 "Signature" = "Unterschrift";
 "Signatures" = "Unterschriften";
+"Signed" = "Unterschrieben";
+"Sign" = "Unterschrift hier";
 "Stamp" = "Stempel";
 "Stamps" = "Stempel";
 "Custom" = "Benutzerdefiniert";
@@ -152,7 +173,6 @@
 "Customer Signature" = "Kunden Unterschrift";
 "Note" = "Notiz";
 "Text" = "Text";
-"Drawing Color" = "Farbe wählen";
 "Delete Note" = "Notiz löschen";
 "Remove Note" = "Notiz entfernen";
 "%@ could not be found." = "%@ konnte nicht gefunden werden.";
@@ -182,6 +202,36 @@
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
 "Sample" = "Beispiel";
+"Annotation Summary for %@:\n" = "Zusammenfassung der Annotationen von %@:\n";
+"Fit to Text" = "Passend für Text";
+"Draw" = "Zeichnen";
+"Sound" = "Ton";
+"Eraser" = "Radierer";
+"SelectionTool" = "Auswahlwerkzeug";
+"Saved Annotations" = "Gespeichert";
+"Add" = "Add";
+"Date" = "Datum";
+"Time" = "Zeit";
+"No Pages" = "Keine Seiten";
+
+// Stamps
+"Approved" = "Akzeptiert";
+"Not Approved" = "Nicht Akzeptiert";
+"Draft" = "Entwurf";
+"Final" = "Final";
+"Completed" = "Abgeschlossen";
+"Confidential" = "Geheim";
+"For Public Release" = "Zur öffentlichen Freigabe";
+"Not For Public Release" = "Nicht zur öffentlichen Freigabe";
+"For Comment" = "Zum Kommentieren";
+"Void" = "Ungültig";
+"Preliminary Results" = "Vorläufige Ergebnisse";
+"Information only" = "Zur Information";
+"Accepted" = "Akzeptiert";
+"Rejected" = "Abgelehnt";
+"Initial Here" = "Initialen hier setzen";
+"Sign Here" = "Hier Unterschreiben";
+"Witness" = "Beglaubigt";
 
 // PDF annotation name overrides
 "Square" = "Rechteck";
@@ -220,8 +270,6 @@
 "Line.RClosedArrow" = "Rotierter offener Pfeil";
 "Line.Slash" = "Schlitz";
 "Line.Butt" = "Knauf";
-"Start Point" = "Startpunkt";
-"End Point" = "Endpunkt";
 "Line Start" = "Linienstart";
 "Line End" = "Linienende";
 "%d Points" = "%d Punkte";
@@ -234,7 +282,7 @@
 "Remove Link" = "Link entfernen";
 "Open Link" = "Link öffnen";
 "Go to Page %d" = "Zu Seite %d wechseln";
-"Save" = "Speicherm";
+"Save" = "Speichern";
 "Link Destination" = "Link Destination";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
 
@@ -263,9 +311,9 @@
 "Finish Recording" = "Aufnahme abschließen";
 "Audio Problem" = "Audio Problem";
 "Mic Permission Not Granted" = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
-"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden, Zugang zum Mikrofon wurde verweigert.";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugang zum Mikrofon wurde verweigert.";
 "Sorry, but there was a problem trying to record audio." = "Ein Problem beim Aufnehmen ist aufgetreten.";
-"Sorry, but there was a problem trying to play this audio." = "Ein Problem beim Abspielen is aufgetreten.";
+"Sorry, but there was a problem trying to play this audio." = "Ein Problem beim Abspielen ist aufgetreten.";
 "Already Recording" = "Aufnahme bereits aktiv";
 "You are already recording on page %@." = "Eine Aufnahme auf Seite %@ ist bereits aktiv.";
 "Go to Page %@" = "Gehe zu Seite %@";
@@ -277,3 +325,53 @@
 "Choice Field" = "Wahlelement";
 "Signature Field" = "Signaturfeld";
 "Clear Field" = "Löschen";
+"Type value or pick from list" = "Text eingeben oder von der Liste wählen";
+"Default Values" = "Standardwerte";
+"Custom Value" = "Benutzerdefinierter Eintrag";
+
+// Gallery
+"Connection Error" = "Verbindungfehler";
+"Unsupported Content" = "Nicht unterstützter Inhalt";
+"The specified content cannot be displayed." = "Der angegebene Inhalt kann nicht angezeigt werden.";
+"Something went wrong" = "Es ist etwas schief gelaufen";
+"This item is currently unavailable." = "Dieses Element ist im Moment nicht verfügbar.";
+"The information for this gallery could not be loaded." = "Die Information für diese Gallerie konnte nicht geladen werden.";
+"Server Error" = "Server Fehler";
+"The information for this gallery is invalid." = "Die Information für diese Gallerie ist ungültig.";
+
+// Signatures
+"Digital Signature" = "Digitale Unterschrift";
+"Signature is valid." = "Die Unterschrift ist GÜLTIG.";
+"Signature is valid, but there are some warnings." = "Die Unterschrift ist gültig, aber es gab einige Warnungen.";
+"It was signed by %@ on %@ at %@." = "Es wurde signiert von %@ am %@ um %@.";
+"It claims to have been signed by %@ on %@ at %@." = "Laut Zertifikat signiert von %@ am %@ um %@."; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Die signierte Version des Dokuments wurde nicht verändert, allerdings wurden Änderungen zum Dokument hinzugefügt seit der Signierung.";
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- Die Signatur ist gültig und das Dokument wurde nicht verändert, seit es signiert wurde.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Die Signatur ist ungültig — seit das Dokument signiert wurde, hat sich der Inhalt des Dokuments verändert.";
+"Unsigned Signature Field" = "Nicht unterschriebenes Signaturfeld";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Das Zertifikat konnte nicht als PKCS#7 Zertifikat erkannt werden. Das richtige Datenformat kann mit Hilfe von Adobe Acrobat exportiert werden.";
+"Unable to decrypt the signature of the certificate." = "Die Signatur des Zertifikates konnte nicht entschlüsselt werden.";
+"The public key in the certificate could not be read." = "Der öffentliche Schlüssel des Zertifikates konnte nicht gelesen werden.";
+"The signature of the certificate is not valid." = "Die Signatur des Zertifikates ist nicht gültig.";
+"There is a format error in the notBefore field of the certificate." = "Formatfehler im notBefore Feld des Zertifikats.";
+"There is a format error in the notAfter field of the certificate." = "Formatfehler im notAfter Feld des Zertifikats.";
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Die Signatur konnte nicht überprüft werden, weil die Zertifizierungskette nur ein Zertifikat enthält, es nicht selbst-signiert ist und dem Herausgeber nicht vertraut wird.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Ein als CA Zertifikat angegebenes Zertifikat ist nicht gültig, weil es kein CA ist oder weil es nicht als CA verwendet werden kann, weil die extensions nicht mit dem  is not valid because it is not a CA or its extensions are not consistent with the intended purpose.";
+"The basicConstraints pathlength parameter was exceeded." = "Der basicConstraints pathlength Parameter wurde überschritten.";
+"The root CA is not marked as trusted for its intended purpose." = "Die root CA ist nicht als vertrauenswürdig eingestuft für diesen Zweck.";
+"The root CA is marked to reject the purpose specified." = "Die root CA lehnt den angegebenen Zweck ab.";
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Das Herausgeber Zertifikat wurde abgewiesen, weil der Subject-Name nicht mit dem Issuer-Namen des aktuellen Zertifikates übereinstimmt.";
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Das Herausgeber Zertifikat wurde abgewiesen, weil der Subject Key Identifier nicht mit dem Authority Key Identiefier des aktuellen Zertifikates übereinstimmt.";
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "Das Herausgeber Zertifikat wurde abgewiesen, bei der Issuer-Name und die serial number nicht mit dem Authority Key Identifier des aktuellen Zertifikates übereinstimmt.";
+"The certificate was revoked by the issuer." = "Das Zertifikat wurde vom Herausgeber abgewiesen.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Das übergebene Zertifikat ist selbst signiert und dasselbe Zertifikat kann nicht in der Liste der vertrauenswürdigen Zertifikate gefunden werden.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Ein selbst signiertes Zertifikat existiert in der Zertifikatskette. Die Zertifikatskette konnte unter Verwendung der nicht vertrauenswürdigen Zertifikate aufgebaut werden, allerdings konnte die root CA lokal nicht gefunden werden.";
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Es konnte kein Zertifikat für eine der Zertifizierungsstellen (CAs) in der Signierungshierarchie gefunden werden und daher wird der CA nicht vertraut.";
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Das Herausgeberzertifikat eines lokal gesuchten Zertifikates konnte nicht gefunden werden. Dies deutet normalerweise darauf hin, dass die Liste der vertrauenswürdigen Zertifikate unvollständig ist.";
+"The certificate that was provided cannot be used for its intended purpose." = "Das zur Verfügung gestellte Zertifikat kann nicht für den beabsichtigten Zweck verwendet werden.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "Die keyUsage Erweiterung erlaubt keine Signierung von Zertifikaten.";
+"The certificate has expired." = "Das Zertifikat ist abgelaufen.";
+"The certificate is not valid until a date in the future." = "Das Zertifikat ist erst ab einem in der Zukunft liegenden Zeitpunkt gültig.";

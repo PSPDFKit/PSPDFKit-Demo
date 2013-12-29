@@ -3,7 +3,7 @@
 //  PSPDFKit
 //
 //  Based on code by Sam Vermette, MIT licensed.
-//  Copyright 2011 Sam Vermette. All rights reserved.
+//  Copyright (c) 2011 Sam Vermette. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

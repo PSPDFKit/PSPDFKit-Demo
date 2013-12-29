@@ -2,9 +2,9 @@
 //  PSPDFAbstractTextRenderingFormElement.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -52,8 +52,7 @@
 /// Font size as defined in the DA appearance string.
 @property (nonatomic, assign) CGFloat fontSize;
 
-/// Text justification. Allows PSPDFTextAlignmentLeft, PSPDFTextAlignmentCenter and PSPDFTextAlignmentRight.
-/// @note Toll-free 'bridges' to both NSTextAlignment and UITextAlignment.
+/// Text justification. Allows NSTextAlignmentLeft, NSTextAlignmentCenter and NSTextAlignmentRight.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 
@@ -72,11 +71,6 @@
 - (CGFloat)autoFontSizingHeightCorrection;
 
 // Properties for rendering
-@property (nonatomic, assign) CGRect boundingBox;
-@property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, strong) UIColor *fillColorWithAlpha;
-@property (nonatomic, strong) UIColor *colorWithAlpha;
-@property (nonatomic, assign) NSUInteger rotation;
 @property (nonatomic, assign) CTFontRef fontRef;
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 @property (nonatomic, assign) CGRect clippingBox;
