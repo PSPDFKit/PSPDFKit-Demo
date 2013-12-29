@@ -2,9 +2,9 @@
 //  PSPDFLibrary.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -17,7 +17,7 @@
 // The library version.
 extern NSUInteger const PSPDFLibraryVersion;
 
-// PSPDFLibrary uses NSNotifications to post status updates.
+// `PSPDFLibrary` uses `NSNotifications` to post status updates.
 extern NSString *const PSPDFLibraryWillStartIndexingDocumentNotification;
 extern NSString *const PSPDFLibraryDidFinishIndexingDocumentNotification;
 extern NSString *const PSPDFLibraryDidFailIndexingDocumentNotification;
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, PSPDFLibraryIndexStatus) {
     PSPDFLibraryIndexStatusFinished,
 };
 
-/// PSPDFLibrary implements a sqlite-based full-text-search engine.
+/// `PSPDFLibrary` implements a sqlite-based full-text-search engine.
 /// You can register documents to be indexed in the background and then search for keywords within that collection.
 /// There can be multiple libraries, although usually one is enough for the common use case.
 /// @note PSPDFLibrary is only available in some license packages.
@@ -74,20 +74,20 @@ extern NSString *const PSPDFLibraryMaximumSearchResultsTotalKey;
 extern NSString *const PSPDFLibraryMaximumSearchResultsPerDocumentKey;
 
 /// Query the database for a match of `searchString`. Only direct matches, begins-with and ends-with matches are supported.
-/// Returns a dictionary of UID->NSIndexSet of page numbers.
-/// @note Ends-with matches are only possible if saveReversedPageText has been YES while the document was indexed.
+/// Returns a dictionary of UID->`NSIndexSet` of page numbers.
+/// @note Ends-with matches are only possible if `saveReversedPageText` has been YES while the document was indexed.
 - (void)documentUIDsMatchingString:(NSString *)searchString options:(NSDictionary *)options completionHandler:(void (^)(NSString *searchString, NSDictionary *resultSet))completionHandler;
 
 /// @name Index Status
 
-/// Returns indexing status. If status is 'PSPDFLibraryIndexStatusPartialAndIndexing' progress will be set as well.
+/// Returns indexing status. If status is `PSPDFLibraryIndexStatusPartialAndIndexing` progress will be set as well.
 - (PSPDFLibraryIndexStatus)indexStatusForUID:(NSString *)UID withProgress:(CGFloat *)outProgress;
 
 /// Returns YES if library is currently indexing.
 - (BOOL)isIndexing;
 
 /// Returns all queued and indexing UIDs.
-- (NSArray *)queuedUIDs;
+- (NSOrderedSet *)queuedUIDs;
 
 /// @name Queue Operations
 

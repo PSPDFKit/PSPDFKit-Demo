@@ -2,9 +2,9 @@
 //  PSPDFThumbnailGridViewCell.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -12,10 +12,9 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRoundedLabel.h"
-#import "PSTCollectionViewCell.h"
 
 /// The thumbnail cell classed used for the thumbnail grid and thumbnail scroll bar.
-@interface PSPDFThumbnailGridViewCell : PSUICollectionViewCell <PSPDFCacheDelegate>
+@interface PSPDFThumbnailGridViewCell : UICollectionViewCell <PSPDFCacheDelegate>
 
 /// Referenced document.
 @property (nonatomic, strong) PSPDFDocument *document;
@@ -23,7 +22,7 @@
 /// Referenced page.
 @property (nonatomic, assign) NSUInteger page;
 
-/// Allow a margin. Defaults to UIEdgeInsetsZero.
+/// Allow a margin. Defaults to `UIEdgeInsetsZero`.
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
 /// Enables thumbnail shadow. defaults to YES, except on old devices.
@@ -32,7 +31,7 @@
 /// Enable page label.
 @property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
 
-/// This is simply a redeclaration of the property in UICollectionViewCell.
+/// This is simply a redeclaration of the property in `UICollectionViewCell`.
 /// Modify this to change the look of the selection/highlight state.
 @property (nonatomic, strong) UIView *selectedBackgroundView;
 
@@ -47,13 +46,13 @@
 /// Internal image view.
 @property (nonatomic, strong) UIImageView *imageView;
 
-/// Page label. (By default a PSPDFRoundedLabel, but can be set to any UILabel subclass, simply do a cast.)
+/// Page label. (By default a `PSPDFRoundedLabel`, but can be set to any UILabel subclass, simply do a cast.)
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
 
 /// Allows to update the bookmark image.
 @property (nonatomic, strong, readonly) UIImageView *bookmarkImageView;
 
-/// Creates the shadow. Subclass to change. Returns a CGPathRef.
+/// Creates the shadow. Subclass to change. Returns a `CGPathRef`.
 - (id)pathShadowForView:(UIView *)imgView;
 
 /// Manually set image. use if you override class.

@@ -2,9 +2,9 @@
 //  PSPDFStaticTableViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -18,7 +18,7 @@
 // Helps to create controllers that show static table view content.
 @interface PSPDFStaticTableViewController : PSPDFBaseTableViewController
 
-// Table view sections (PSPDFSectionModel)
+// Table view sections (`PSPDFSectionModel`)
 @property (nonatomic, strong) NSArray *sections;
 
 // If enabled, will disable scrolling if the content fits.
@@ -31,7 +31,7 @@
 
 @class PSPDFSectionModel;
 
-// Defines the content for a UITableViewCells.
+// Defines the content for a `UITableViewCells`.
 @interface PSPDFCellModel : NSObject
 
 + (instancetype)cellWithTitle:(NSString *)title;
@@ -56,7 +56,7 @@
 
 @end
 
-// Defines the content for a section in UITableView.
+// Defines the content for a section in `UITableView`.
 @interface PSPDFSectionModel : NSObject
 
 + (instancetype)sectionWithTitle:(NSString *)title;

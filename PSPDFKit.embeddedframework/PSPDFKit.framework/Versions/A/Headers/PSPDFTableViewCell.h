@@ -2,9 +2,9 @@
 //  PSPDFTableViewCell.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -20,13 +20,20 @@
 
 @end
 
-// Simple subclass that disables animations during layoutSubviews if the popover is being resized.
+@interface PSPDFTableViewCell (SubclassingHooks)
+
+// Called when the iOS 7+ font system base size is changed.
+- (void)contentSizeDidChangeNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+
+@end
+
+// Simple subclass that disables animations during `layoutSubviews` if the popover is being resized.
 // This fixes an unexpected animation when the tableView is updated while a popover resizes.
 @interface PSPDFNonAnimatingTableViewCell : PSPDFTableViewCell
 
 @end
 
-// Never allows animations during layoutSubviews.
+// Never allows animations during `layoutSubviews`.
 @interface PSPDFNeverAnimatingTableViewCell : PSPDFTableViewCell
 
 @end

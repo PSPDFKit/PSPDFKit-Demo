@@ -2,9 +2,9 @@
 //  PSPDFDocumentPickerController.h
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -19,7 +19,7 @@
 @protocol PSPDFDocumentPickerControllerDelegate <PSPDFOverridable>
 
 /// A cell has been selected.
-/// `pageIndex` is usually NSNotFound, unless a search result from the FTS engine was tapped.
+/// `pageIndex` is usually `NSNotFound`, unless a search result from the FTS engine was tapped.
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString;
 
 @optional
@@ -33,10 +33,10 @@
 @end
 
 /// Shows all documents available in the Sample directory.
-/// By default this will enqueue all documents into the default PSPDFLibrary for FTS.
+/// By default this will enqueue all documents into the default `PSPDFLibrary` for FTS.
 @interface PSPDFDocumentPickerController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
-/// Returns an array of PSPDFDocument's found in the "directoryName" directory.
+/// Returns an array of `PSPDFDocument's` found in the "directoryName" directory.
 + (NSArray *)documentsFromDirectory:(NSString *)directoryName includeSubdirectories:(BOOL)includeSubdirectories;
 
 /// Designated initializer.
@@ -46,10 +46,10 @@
 /// Initialize with a number of documents.
 - (id)initWithDocuments:(NSArray *)documents library:(PSPDFLibrary *)library delegate:(id<PSPDFDocumentPickerControllerDelegate>)delegate;
 
-/// Delegate to get the didSelect event.
+/// Delegate to get the `didSelectDocument:` event.
 @property (nonatomic, weak) id<PSPDFDocumentPickerControllerDelegate> delegate;
 
-// All PSPDFDocument objects.
+// All `PSPDFDocument` objects.
 @property (atomic, copy, readonly) NSArray *documents;
 
 /// Displayed path. Might be nil, if initialized with a number of documents.

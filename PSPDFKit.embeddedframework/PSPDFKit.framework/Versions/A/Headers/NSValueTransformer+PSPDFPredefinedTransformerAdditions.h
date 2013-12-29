@@ -2,9 +2,9 @@
 //  NSValueTransformer+PSPDFPredefinedTransformerAdditions.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -17,16 +17,16 @@
 // The name for a value transformer that converts strings into URLs and back.
 extern NSString * const PSPDFURLValueTransformerName;
 
-// The name for a value transformer that converts NSDate to an ISO8601 date string and back.
+// The name for a value transformer that converts `NSDate` to an ISO8601 date string and back.
 extern NSString * const PSPDFISO8601DateValueTransformerName;
 
-// Converts UIColor into a string representation (string with 2 or 4 components, depending if color is monochrome or not)
+// Converts `UIColor` into a string representation (string with 2 or 4 components, depending if color is monochrome or not)
 extern NSString * const PSPDFColorValueTransformerName;
 
-// Converts a CGRect into NSString and back.
+// Converts a `CGRect` into `NSString` and back.
 extern NSString * const PSPDFRectValueTransformerName;
 
-// Converts a CGAffineTransform into NSString and back.
+// Converts a `CGAffineTransform` into `NSString` and back.
 extern NSString * const PSPDFAffineTransformValueTransformerName;
 
 // Ensure an NSNumber is backed by __NSCFBoolean/CFBooleanRef
@@ -43,22 +43,22 @@ extern NSString * const PSPDFBooleanValueTransformerName;
 // Creates a reversible transformer to convert a JSON dictionary into a PSPDFModel
 // object, and vice-versa.
 //
-// modelClass - The PSPDFModel subclass to attempt to parse from the JSON. This
-//              class must conform to <PSPDFJSONSerializing>. This argument must
+// modelClass - The `PSPDFModel` subclass to attempt to parse from the JSON. This
+//              class must conform to `<PSPDFJSONSerializing>`. This argument must
 //              not be nil.
 //
-// Returns a reversible transformer which uses PSPDFJSONAdapter for transforming
+// Returns a reversible transformer which uses `PSPDFJSONAdapter` for transforming
 // values back and forth.
 + (NSValueTransformer *)pspdf_JSONDictionaryTransformerWithModelClass:(Class)modelClass;
 
 // Creates a reversible transformer to convert an array of JSON dictionaries
-// into an array of PSPDFModel objects, and vice-versa.
+// into an array of `PSPDFModel` objects, and vice-versa.
 //
-// modelClass - The PSPDFModel subclass to attempt to parse from each JSON
-//              dictionary. This class must conform to <PSPDFJSONSerializing>.
+// modelClass - The `PSPDFModel` subclass to attempt to parse from each JSON
+//              dictionary. This class must conform to `<PSPDFJSONSerializing>`.
 //              This argument must not be nil.
 //
-// Returns a reversible transformer which uses PSPDFJSONAdapter for transforming
+// Returns a reversible transformer which uses `PSPDFJSONAdapter` for transforming
 // array elements back and forth.
 + (NSValueTransformer *)pspdf_JSONArrayTransformerWithModelClass:(Class)modelClass;
 

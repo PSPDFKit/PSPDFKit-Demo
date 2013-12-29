@@ -2,9 +2,9 @@
 //  PSPDFRenderQueue.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -23,7 +23,7 @@ extern NSString *const PSPDFRenderQueueDidFinishJob;
 /// Notification that will be thrown when we cancel a job.
 extern NSString *const PSPDFRenderQueueDidCancelJob;
 
-/// Implement this delegate to get rendered pages. (Most of the times, you want to use PSPDFCache instead)
+/// Implement this delegate to get rendered pages. (Most of the times, you want to use `PSPDFCache` instead)
 @protocol PSPDFRenderDelegate <NSObject>
 
 /// Called when a render job finished. Guaranteed to be called from the main thread.
@@ -32,14 +32,14 @@ extern NSString *const PSPDFRenderQueueDidCancelJob;
 @end
 
 typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
-    PSPDFRenderQueuePriorityVeryLow,  // Used to re-render annotation changes.
-    PSPDFRenderQueuePriorityLow,      // Low and ReallyLow are used from within PSPDFCache.
-    PSPDFRenderQueuePriorityNormal,   // Life page renderings.
-    PSPDFRenderQueuePriorityHigh,     // Zoomed renderings.
-    PSPDFRenderQueuePriorityVeryHigh, // Highest priority. Unused.
+    PSPDFRenderQueuePriorityVeryLow,  /// Used to re-render annotation changes.
+    PSPDFRenderQueuePriorityLow,      /// Low and ReallyLow are used from within `PSPDFCache`.
+    PSPDFRenderQueuePriorityNormal,   /// Life page renderings.
+    PSPDFRenderQueuePriorityHigh,     /// Zoomed renderings.
+    PSPDFRenderQueuePriorityVeryHigh, /// Highest priority. Unused.
 };
 
-/// Render Queue. Does not cache. Used for rendering pages/page parts in PSPDFPageView.
+/// Render Queue. Does not cache. Used for rendering pages/page parts in `PSPDFPageView`.
 @interface PSPDFRenderQueue : NSObject
 
 /// Render Queue is a singleton.
@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 /// @name Requests
 
 /// Requests a (freshly) rendered image from a specified document. Does not use the file cache.
-/// For options, see PSPDFPageRender.
+/// For options, see `PSPDFPageRender`.
 /// IF `queueAsNext` is set, the request will be processed ASAP, skipping the current queue.
 - (PSPDFRenderJob *)requestRenderedImageForDocument:(PSPDFDocument *)document page:(NSUInteger)page size:(CGSize)size clippedToRect:(CGRect)clipRect annotations:(NSArray *)annotations options:(NSDictionary *)options priority:(PSPDFRenderQueuePriority)priority queueAsNext:(BOOL)queueAsNext delegate:(id<PSPDFRenderDelegate>)delegate;
 
@@ -79,8 +79,8 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 
 /// @name Settings
 
-/// The minimum priority for requests. Defaults to PSPDFRenderQueuePriorityVeryLow.
-/// Set to PSPDFRenderQueuePriorityNormal to temporarily pause cache requests.
+/// The minimum priority for requests. Defaults to `PSPDFRenderQueuePriorityVeryLow`.
+/// Set to `PSPDFRenderQueuePriorityNormal` to temporarily pause cache requests.
 @property (nonatomic, assign) PSPDFRenderQueuePriority minimumProcessPriority;
 
 /// Amount of render requests that run at the same time. Defaults to 2 for modern devices.
@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 @property (nonatomic, copy)   NSArray *annotations;
 @property (nonatomic, assign) PSPDFRenderQueuePriority priority;
 @property (nonatomic, copy)   NSDictionary *options;
-@property (atomic,    weak)   id<PSPDFRenderDelegate> delegate;
+@property (nonatomic, weak)   id<PSPDFRenderDelegate> delegate;
 @property (nonatomic, strong) UIImage *renderedImage;
 @property (nonatomic, strong) PSPDFRenderReceipt *renderReceipt;
 @property (nonatomic, assign) uint64_t renderTime;

@@ -2,9 +2,9 @@
 //  PSPDFButtonFormElement.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -25,7 +25,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFButtonFlag) {
 /// Designated initializer.
 - (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
 
-/// A pushbutton is a purely interactive control that responds immediately to user input without retaining a permanent value (see 12.7.4.2.2, “Pushbuttons”).
+/// A push button is a purely interactive control that responds immediately to user input without retaining a permanent value (see 12.7.4.2.2, “Pushbuttons”).
 - (BOOL)isPushButton;
 
 /// A check box toggles between two states, on and off (see 12.7.4.2.3, “Check Boxes”).

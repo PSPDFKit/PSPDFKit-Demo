@@ -2,9 +2,9 @@
 //  PSPDFFormElement.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -114,6 +114,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// The T entry in the field dictionary (see Table 220) holds a text string defining the field’s partial field name. The fully qualified field name is not explicitly defined but shall be constructed from the partial field names of the field and all of its ancestors. For a field with no parent, the partial and fully qualified names are the same. For a field that is the child of another field, the fully qualified name shall be formed by appending the child field’s partial name to the parent’s fully qualified name, separated by a PERIOD (2Eh) — PDF Spec
 - (NSString *)fullyQualifiedFieldName;
 
+/// Returns the Form Type Name. "Form Element", "Text Field" etc
+- (NSString *)formTypeName;
+
 @end
 
 @interface PSPDFFormElement (SubclassingHooks)
@@ -128,7 +131,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 // Appends value of a field in PDF syntax. It must be implemented by children of the class.
 - (void)appendFieldValuePDFData:(NSMutableData *)pdfData;
 
-- (void)appendCommonFormElementPDFData:(NSMutableData *)pdfData;
+- (void)appendCommonFormElementPDFData:(NSMutableData *)pdfData withStreamOptions:(NSDictionary *)options;
 
 - (void)resetWithAction:(PSPDFResetFormAction *)action;
 
