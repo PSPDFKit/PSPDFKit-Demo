@@ -2,9 +2,9 @@
 //  PSPDFLoupeView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -37,13 +37,13 @@ extern CGFloat PSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.
 /// Reference view. Can be set to any subview or the window.
 @property (nonatomic, strong) UIView *referenceView;
 
-/// Loupe detail mode. Defaults to PSPDFLoupeViewModeCircular.
+/// Loupe detail mode. Defaults to `PSPDFLoupeViewModeCircular`.
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
 
-/// Position of the loupe in reference to the referenceView.
+/// Position of the loupe in reference to the `referenceView`.
 @property (nonatomic, assign) CGPoint touchPoint;
 
-/// The default magnification is set to PSPDFLoupeDefaultMagnification.
+/// The default magnification is set to `PSPDFLoupeDefaultMagnification`.
 @property (nonatomic, assign) CGFloat magnification;
 
 // Show loupe, optionally animated.

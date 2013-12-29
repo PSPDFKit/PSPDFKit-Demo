@@ -2,9 +2,9 @@
 //  PSPDFTextSearch.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -47,20 +47,20 @@
 
 /// Searches for text on the specified page ranges. If ranges is nil, will search entire document.
 /// If rangesOnly is set to NO, ranges will be searched first, then the rest of the document.
-/// Tip: Use PSPDFIndexSetFromArray() to convert NSNumber-NSArrays to an NSIndexSet.
+/// @note Use `PSPDFIndexSetFromArray()` to convert `NSNumber-NSArrays` to an `NSIndexSet`.
 - (void)searchForString:(NSString *)searchTerm inRanges:(NSIndexSet *)ranges rangesOnly:(BOOL)rangesOnly;
 
 /// Stops all operations. Blocks until all operations are finished.
 - (void)cancelAllOperationsAndWait;
 
-/// Changes the search mode. Default is PSPDFSearchModeHighlighting.
-/// There's practically no speed difference so PSPDFSearchWithHighlighting should be preferred.
+/// Changes the search mode. Default is `PSPDFSearchModeHighlighting`.
+/// There's practically no speed difference so `PSPDFSearchWithHighlighting` should be preferred.
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
 
-/// Defaults to NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch | NSRegularExpressionSearch
+/// Defaults to `NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch|NSWidthInsensitiveSearch|NSRegularExpressionSearch`.
 /// With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
 /// See NSString comparison documentation for details.
-/// @note PSPDF has extensions that will allow a combination of NSRegularExpressionSearch and NSDiacriticInsensitiveSearch.
+/// @note PSPDF has extensions that will allow a combination of `NSRegularExpressionSearch` and `NSDiacriticInsensitiveSearch`.
 /// If NSRegularExpressionSearch is enabled, hyphenations and newlines between the body text will be ignored (which is good, better results)
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 

@@ -2,9 +2,9 @@
 //  PSPDFGalleryViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// The current state.
 @property (nonatomic, assign, readonly) PSPDFGalleryViewControllerState state;
 
-/// All PSPDFGalleryItems of this gallery. Only set if state is PSPDFGalleryViewControllerStateReady.
+/// All PSPDFGalleryItems of this gallery. Only set if state is `PSPDFGalleryViewControllerStateReady`.
 @property (nonatomic, copy, readonly) NSArray *items;
 
 /// The link annotation that was used to instanciate the view controller.

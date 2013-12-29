@@ -2,9 +2,9 @@
 //  PSPDFFontSelectorViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -14,7 +14,7 @@
 
 @class PSPDFFontSelectorViewController;
 
-/// Delegate for PSPDFFontSelectorViewController.
+/// Delegate for `PSPDFFontSelectorViewController`.
 @protocol PSPDFFontSelectorViewControllerDelegate <PSPDFOverridable>
 
 /// A font has been selected.
@@ -30,7 +30,7 @@
 + (void)setDefaultBlocklist:(NSArray *)defaultBlocklist;
 + (NSArray *)defaultBlocklist;
 
-/// All available font family names as PSPDFFontDescriptors. This is set on init by querying UIFont.familyNames.
+/// All available font family names as `PSPDFFontDescriptors`. This is set on init by querying `UIFont.familyNames`.
 @property (nonatomic, copy) NSArray *fontFamilyDescriptors;
 
 /// The currently selected font.

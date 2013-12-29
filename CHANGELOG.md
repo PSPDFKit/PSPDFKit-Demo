@@ -2,9 +2,76 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-__v3.2.3 - 28/Nov/2013__
+__v3.3.0 - 29/Dec/2013__
 
-Important: We're planning to finally phase out support for iOS 5 with the release of PSPDFKit 3.3. If you have any comments on that, please send us a note at support@pspdfkit.com.
+Happy holidays!
+
+PSPDFKit now requires iOS 6+ and Xcode 5. Keep using PSPDFKit 3.2.x if you're still building with Xcode 4.6 or need to support iOS 5.
+Apple will enforce usage of Xcode 5 starting February 1st. (https://developer.apple.com/news/index.php?id=12172013a)
+Removing iOS 5 resulted in deleting almost 10.000 lines of code - which will give you a smaller, faster and more efficient binary.
+
+The binary is now again fully universal including armv7, armv7s, arm64, i386 and x86_64.
+The separate iOS 7 only (64 bit) library variant has been removed.
+
+PSPDFKit Complete now supports PDF form signature validation and thus links with OpenSSL.
+There is an optional build without OpenSSL that disables these cryptographic signature checks.
+
+*  Localization! PSPDFKit now ships with English, Chinese, Korean, Japanese, French, Spanish, Russian, Italian, Danish, German, Portuguese and Brazilian Portuguese.
+*  Adds preliminary compatibility with Xcode 5.1 and iOS 7.1b2.
+*  Refreshed visuals for both iOS 6 and iOS 7. The icons are now much more polished and can be better customized.
+   The remaining icons that were drawn in code are now all inside the PSPDFKit.bundle.
+*  PSPDFKit Complete/Enterprise can now validate cryptographic signatures (unless you use the build without OpenSSL)
+*  `PSPDFAESCryptoDataProvider` now supports the popular RNCryptor data format: https://github.com/rnapier/RNCryptor/wiki/Data-Format (It autodetects the legacy format and supports that as well)
+*  Finally fully suppports the new `UIViewControllerBasedStatusBarAppearance`. (we now support both modes in iOS 7)
+*  The `PSPDFAnnotationToolbar` now displays the style picker for text markup annotations (highlights).
+*  The `PSPDFGalleryViewController` now supports local/remote video and audio files next to images.
+*  The internal `PSPDFWebViewController` now shows a progress bar, much like Safari on iOS 7.
+*  Improves automatic font resizing for single line text field form entries.
+*  Improved support for `additionalActions` and `nextAction` to add actions to all annotation types.
+*  API Change: `PSPDFTextSelectionMenuActionWikipediaAsFallback` has been renamed to `PSPDFTextSelectionMenuActionWikipedia`. Since checking for a word in `UIReferenceLibraryViewController` can be unpredictably slow as of iOS 7.0.3, we had to remove this feature. `Define` will now always be displayed and you can optionally enable Wikipedia as well. The new default will omit Wikipedia by default.
+*  Don't show the `PSPDFWebViewController` bottom toolbar on iPhone if there are no `availableActions` defined.
+*  Allow detection for a PSPDFKit signature and blocks the "Copy" feature if detected. Will also be saved into the PDF as proprietary extension.
+*  If there's no signature saved and customer signature is disabled, we'll show the new signature controller instantly.
+*  Adds a new property: `shouldCacheThumbnails` to supress thumbnail cache generation.
+*  Adds a new property: `shouldHideHUDOnPageChange` to fine-tine when the HUD is hidden.
+*  Highlight etc is no longer offered on text selection if the document can't be saved.
+*  Improves Form Element description in the annotation table view.
+*  Allow "Clear Field" for Choice Form Elements with editable text.
+*  Improve support for hidden form elements or choices that are neither editable nor have options.
+*  Add hitTestRectForPoint: on `PSPDFPageView` that allows to customize the rect that is used for tap hit testing to select annotations.
+*  Make document parsing more robust to allow dealing with files that have incorrect XRef tables.
+*  The text selection handles now have the proper hit test size when zoomed in - improves your ability to interact with other content.
+*  YouTube: Add support for http://youtu.be short-form URLs for embedding.
+*  The note icon name is now properly serialized when using the XFDF annotation provider.
+*  The XFDF provider now only saves if an annotation is changed. Deserialized annotations are set to be not dirty by default now.
+*  Annotation and outline classes have been optimized to require less memory and reuse more objects internally.
+*  Lots of code cleaning, improved documentation and some reorganization. The binary is now smaller and compiles faster.
+*  Moves document parsing to a background thread, improves initial startup time for complex, large documents.
+*  GoToR actions with target named destinations are now supported.
+*  FreeText annotations are now correctly rendered and displayed even when their bounding box is too small for the text.
+*  Audio recordings can now be time limited and the default encoding/bitrate can be customized in `PSPDFAudioHelper`.
+*  The default set of stamps is now localizable and localized by default.
+*  The Edit button in the annotation table view controller and the bookmark controller is now only enabled if there is content, and edit mode is automatically disabled when there's no more content.
+*  Improved touch handling when resizing/moving annotations.
+*  Fixes an UX issue that wouldn't deselect the current toolbar state if a saved signature is added via the annotation toolbar while `customerSignatureFeatureEnabled` is disabled in the signature store.
+*  Page scroll animations are reduced to allow faster navigation.
+*  Annotation overlay views are now loaded and added to the view hierarchy as soon as the page is set up, removing the previous delay that was especially noticeable with note annotations.
+*  No longer shows the bounding box when selecting/resizing line annotations.
+*  The undo/redo stack is now consolidated - no more difference or disabled undo while in drawing mode.
+*  Properly coordinate print controller popover to close when other popovers are activated.
+*  Use blurry background for UIPopoverController in the stamp section.
+*  The annotation creation menu now only shows the most important annotation types; customize via `createAnnotationMenuTypes` in the `PSPDFViewController`.
+*  Removes the IDNSDK to get a smaller binary.
+*  When saving text form elements, the AP stream is now included in the PDF. This fixes issues with Acrobat where the content would only be visible when the text field is active.
+*  Fixes a rare crash in (poly)line point calculation if the points are on top of each other.
+*  Fixes an edge case where the text field would loose focus after the note annotation controller has been dismissed because of tapping into another text field.
+*  Fixes a regression where the selected annotation for multiple potentials was reversed.
+*  Fixes an issue where annotations with appearance stream could be rendered at the wrong position and/or size.
+*  Fixes an issue where annotations could be returned from the last page when forms are in the document, even if a different page was requested.
+*  Fixes an issue with the label parser when encountering offset pages.
+*  Fixes an issue where when trying to copy a webpage link in the internal web browser, the system could throw a `NSInvalidArgumentException` if the link was nil.
+
+__v3.2.3 - 28/Nov/2013__
 
 *  Improves custom text stamp creation layout and fixes an issue where the text wasn't always displayed within the table view.
 *  Form text fields are now no longer clipped when the zoom scale is very low.

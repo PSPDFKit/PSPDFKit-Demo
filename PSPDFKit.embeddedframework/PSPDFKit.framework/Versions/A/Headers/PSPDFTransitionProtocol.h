@@ -2,9 +2,9 @@
 //  PSPDFTransitionProtocol.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -14,7 +14,7 @@
 
 @class PSPDFPageView, PSPDFViewController, PSPDFContentScrollView;
 
-// Implement by custom UIViewController's to support custom transitions.
+// Implement by custom `UIViewController's` to support custom transitions.
 @protocol PSPDFTransitionProtocol <NSObject>
 
 // Set page to new value. Optionally animates.
@@ -37,7 +37,7 @@
 /// Return array of pageViews. (performance optimization)
 - (NSArray *)visiblePageViews;
 
-/// Customized content offset for PSPDFViewState.
+/// Customized content offset for `PSPDFViewState`.
 - (CGPoint)compensatedContentOffset;
 
 @end

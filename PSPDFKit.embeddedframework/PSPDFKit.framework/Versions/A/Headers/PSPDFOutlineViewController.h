@@ -2,9 +2,9 @@
 //  PSPDFOutlineViewController.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -15,10 +15,10 @@
 
 @class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement, PSPDFOutlineCell;
 
-/// Delegate for the PSPDFOutlineViewController.
+/// Delegate for the `PSPDFOutlineViewController`.
 @protocol PSPDFOutlineViewControllerDelegate <NSObject>
 
-/// Called when we tapped on a cell in the outlineController.
+/// Called when we tapped on a cell in the `outlineController`.
 /// Return NO if event is not processed.
 - (BOOL)outlineController:(PSPDFOutlineViewController *)outlineController didTapAtElement:(PSPDFOutlineElement *)outlineElement;
 
@@ -40,12 +40,7 @@
 /// Enables displaying page labels.
 @property (nonatomic, assign) BOOL showPageLabels;
 
-/**
- How many lines should be displayed for a cell. Defaults to 4.
-
- Set this to 1 for PSPDFKit v1 behavior (tail truncation, one line)
- Set to 0 to show the full text, no matter how long the entry is.
- */
+/// How many lines should be displayed for a cell. Defaults to 4. 0 means unlimited.
 @property (nonatomic, assign) NSUInteger maximumNumberOfLines;
 
 /// Left intent width. Defaults to 32.f.
@@ -54,7 +49,7 @@
 /// Intent multiplier (will be added x times the intent level). Defaults to 15.f.
 @property (nonatomic, assign) CGFloat outlineIndentMultiplier;
 
-/// Delegate to communicate with PSPDFViewController.
+/// Delegate to communicate with `PSPDFViewController`.
 @property (nonatomic, weak) IBOutlet id<PSPDFOutlineViewControllerDelegate> delegate;
 
 /// Attached document.
@@ -68,7 +63,7 @@
 // Cell delegate - expand/shrink content.
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;
 
-// Allows to change the outlineCell class. Defaults to PSPDFOutlineCell.class
+// Allows to change the `outlineCell` class. Defaults to `PSPDFOutlineCell.class`.
 @property (nonatomic, strong) Class outlineCellClass;
 
 @end

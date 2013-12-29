@@ -2,9 +2,9 @@
 //  PSPDFDocumentProvider.h
 //  PSPDFKit
 //
-//  Copyright (c) 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -23,10 +23,10 @@
 /// Initialize with a local file URL.
 - (id)initWithFileURL:(NSURL *)fileURL document:(PSPDFDocument *)document;
 
-/// Initialize with NSData. (can be memory or mapped data)
+/// Initialize with `NSData`. (can be memory or mapped data)
 - (id)initWithData:(NSData *)data document:(PSPDFDocument *)document;
 
-/// Initialize with CGDataProviderRef. (can be used for dynamic decryption)
+/// Initialize with `CGDataProviderRef`. (can be used for dynamic decryption)
 - (id)initWithDataProvider:(CGDataProviderRef)dataProvider document:(PSPDFDocument *)document;
 
 /// Referenced NSURL. If this is set, data is nil.
@@ -39,7 +39,7 @@
 /// Referenced dataProvider. (if data is set, or directly). Will be retained.
 @property (nonatomic, readonly) CGDataProviderRef dataProvider;
 
-/// Returns a NSData representation, memory-maps files, tries to copy a CGDataProviderRef
+/// Returns a NSData representation, memory-maps files, tries to copy a `CGDataProviderRef`.
 - (NSData *)dataRepresentationWithError:(NSError **)error;
 
 /// Returns the `fileSize` of this documentProvider.
@@ -55,7 +55,7 @@
 - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page;
 
 /// Number of pages in the PDF. 0 if source is invalid. Will be filtered by pageRange.
-/// @warning Manually setting the pageCount usually is not recommended.
+/// @warning Manually setting the `pageCount` usually is not recommended.
 @property (nonatomic, assign) NSUInteger pageCount;
 
 /// Unlock the PDF with a password. Returns YES on success. (File operation, might block for a bit
@@ -91,7 +91,7 @@
 
 /// Outline extraction class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
+/// If you set this externally, do this ONLY in your subclass of `PSPDFDocument` in `didCreateDocumentProvider:`.
 @property (nonatomic, strong) PSPDFOutlineParser *outlineParser;
 
 /// AcroForm parser for current PDF.
@@ -99,12 +99,12 @@
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
+/// If you set this externally, do this ONLY in your subclass of `PSPDFDocument` in `didCreateDocumentProvider:`.
 @property (nonatomic, strong) PSPDFAnnotationManager *annotationManager;
 
 /// Page labels found in the current PDF.
 /// Lazy initialized. Can be subclassed or set externally.
-/// If you set this externally, do this ONLY in your subclass of PSPDFDocument in didCreateDocumentProvider:.
+/// If you set this externally, do this ONLY in your subclass of `PSPDFDocument` in `didCreateDocumentProvider:`.
 @property (nonatomic, strong) PSPDFLabelParser *labelParser;
 
 @end
@@ -118,16 +118,16 @@
 @property (nonatomic, assign, readonly) NSUInteger firstPageIndex;
 
 /// Limit pages to a certain page range. Defaults to nil.
-/// If document has a pageRange set, the visible pages can be limited to a certain subset.
-/// @warning Changing this will require a reloadData on the PSPDFViewController.
+/// If document has a `pageRange` set, the visible pages can be limited to a certain subset.
+/// @warning Changing this will require a reloadData on the `PSPDFViewController`.
 @property (nonatomic, copy) NSIndexSet *pageRange;
 
 /// Translates the capped page to the real page.
-/// Will only return something different if pageRange is set.
+/// Will only return something different if `pageRange` is set.
 - (NSUInteger)translateCappedPageToRealPage:(NSUInteger)page;
 
 /// Translates the real page to the capped page.
-/// Will only return something different if pageRange is set.
+/// Will only return something different if `pageRange` is set.
 - (NSUInteger)translateRealPageToCappedPage:(NSUInteger)page;
 
 @end
@@ -138,7 +138,7 @@
 @property (nonatomic, assign) BOOL ignoreLocking;
 
 /// Access the PDF metadata. (might be a slow operation)
-/// @warning Metadata is not guaranteed to be NSString. Check the type when accessing.
+/// @warning Metadata is not guaranteed to be `NSString`. Check the type when accessing.
 @property (nonatomic, copy, readonly) NSDictionary *metadata;
 
 /// Return YES if metadata is already parsed.
@@ -157,10 +157,10 @@
 - (void)setPageInfo:(PSPDFPageInfo *)pageInfo forPage:(NSUInteger)page;
 
 /// Saves changed annotations.
-/// @warning You shouldn't call this method directly, use the high-level save method in PSPDFDocument instead.
+/// @warning You shouldn't call this method directly, use the high-level save method in `PSPDFDocument` instead.
 - (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError **)error;
 
-// Resolves a path like /localhost/Library/test.pdf into a full path.
+// Resolves a path like `/localhost/Library/test.pdf` into a full path.
 // If either `alwaysLocal` is set or `localhost` is part of the path, we'll handle this as a local URL.
 - (NSString *)resolveTokenizedPath:(NSString *)path alwaysLocal:(BOOL)alwaysLocal;
 

@@ -2,9 +2,9 @@
 //  PSPDFUndoProtocol.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -13,8 +13,7 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
-    /// Does not coalesce events with the same key at all but rather creates one new undo event for
-    /// every single change.
+    /// Does not coalesce events with the same key at all but rather creates one new undo event for every single change.
     PSPDFUndoCoalescingNone,
 
     /// Coalesces events with the same key by time. Assuming that a key changes a number of times over a
@@ -32,7 +31,7 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 @required
 
 /// Keys that should be KVO observed. Observed collections will be deeply introspected.
-/// @warning Only observe collections of type NSSet, NSOrderedSet and NSArray.
+/// @warning Only observe collections of type `NSSet`, `NSOrderedSet` and `NSArray`.
 /// @warning Do not change the result of this method dynamically.
 + (NSSet *)keysForValuesToObserveForUndo;
 
@@ -43,7 +42,7 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 + (NSString *)localizedUndoActionNameForKey:(NSString *)key;
 
 /// Returns the coalescing for a given key.
-/// @note If this method is not implemented, PSPDFUndoCoalescingNone will be used for all keys.
+/// @note If this method is not implemented, `PSPDFUndoCoalescingNone` will be used for all keys.
 /// @warning Do not change the result of this method dynamically.
 + (PSPDFUndoCoalescing)undoCoalescingForKey:(NSString *)key;
 
@@ -51,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
 /// @note The index of an element is not preserved, so the order of elements in a collection might change
 /// during an undo operation.
 /// @warning It is your responsibility to trigger appropriate KVO events when you insert or remove an
-/// object! The easiest way to do this is to call mutable<CollectionType>ValueForKey: on self and to modify that
+/// object! The easiest way to do this is to call `mutable<CollectionType>ValueForKey:` on self and to modify that
 /// collection object.
 - (void)insertUndoObjects:(NSSet *)objects forKey:(NSString *)key;
 - (void)removeUndoObjects:(NSSet *)objects forKey:(NSString *)key;

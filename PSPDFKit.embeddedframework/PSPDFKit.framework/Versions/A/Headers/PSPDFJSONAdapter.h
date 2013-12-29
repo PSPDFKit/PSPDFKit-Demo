@@ -2,9 +2,9 @@
 //  PSPDFJSONAdapter.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -16,7 +16,7 @@
 
 @class PSPDFModel;
 
-/// A PSPDFModel object that supports being parsed from and serialized to JSON.
+/// A `PSPDFModel` object that supports being parsed from and serialized to JSON.
 @protocol PSPDFJSONSerializing
 @required
 
@@ -26,10 +26,10 @@
 /// `super`.
 ///
 /// Any property keys not present in the dictionary are assumed to match the JSON
-/// key that should be used. Any keys associated with NSNull will not participate
+/// key that should be used. Any keys associated with `NSNull` will not participate
 /// in JSON serialization.
 //
-/// Returns a dictionary mapping property keys to JSON key paths (as strings) or NSNull values.
+/// Returns a dictionary mapping property keys to JSON key paths (as strings) or `NSNull` values.
 + (NSDictionary *)JSONKeyPathsByPropertyKey;
 
 @optional
@@ -37,7 +37,7 @@
 /// Specifies how to convert a JSON value to the given property key. If
 /// reversible, the transformer will also be used to convert the property value back to JSON.
 ///
-/// If the receiver implements a `+<key>JSONTransformer` method, PSPDFJSONAdapter
+/// If the receiver implements a `+<key>JSONTransformer` method, `PSPDFJSONAdapter`
 /// will use the result of that method instead.
 ///
 /// Returns a value transformer, or nil if no transformation should be performed.
@@ -47,7 +47,7 @@
 /// in the provided dictionary.
 ///
 /// This is mostly useful for class clusters, where the abstract base class would
-/// be passed into -[PSPDFJSONAdapter initWithJSONDictionary:modelClass:], but
+/// be passed into `-[PSPDFJSONAdapter initWithJSONDictionary:modelClass:]`, but
 /// a subclass should be instantiated instead.
 ///
 /// JSONDictionary - The JSON dictionary that will be parsed.
@@ -58,13 +58,13 @@
 
 @end
 
-/// The domain for errors originating from PSPDFJSONAdapter.
+/// The domain for errors originating from `PSPDFJSONAdapter`.
 extern NSString * const PSPDFJSONAdapterErrorDomain;
 
-/// +classForParsingJSONDictionary: returned nil for the given dictionary.
+/// `+classForParsingJSONDictionary:` returned nil for the given dictionary.
 extern const NSInteger PSPDFJSONAdapterErrorNoClassFound;
 
-/// Converts a PSPDFModel object to and from a JSON dictionary.
+/// Converts a `PSPDFModel` object to and from a JSON dictionary.
 @interface PSPDFJSONAdapter : NSObject
 
 /// The model object that the receiver was initialized with, or that the receiver
