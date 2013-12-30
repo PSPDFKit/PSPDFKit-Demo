@@ -180,7 +180,7 @@
     }];
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     if (PSCIsUIKitFlatMode()) {
-        [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
+        PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];)
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
     }
@@ -401,7 +401,7 @@
 
         // Add a smooth status bar transition on the iPhone
         if (!PSCIsIPad()) {
-            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+            PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];)
         }
 
         // If we have a different page, fade to that page.
