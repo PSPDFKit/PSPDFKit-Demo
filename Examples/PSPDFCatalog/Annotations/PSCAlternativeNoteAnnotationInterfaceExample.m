@@ -173,7 +173,7 @@ static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     // show keyboard if set.
     dispatch_block_t showKeyboardBlock = ^{
         if (noteController.view.window && showKeyboard) {
-            [noteController.textView becomeFirstResponder];
+            [noteController beginEditing];
         }
     };
 
