@@ -2,9 +2,9 @@
 //  PSPDFImageInfo.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -18,13 +18,13 @@
 @interface PSPDFImageInfo : NSObject
 
 @property (nonatomic, copy)   NSString *imageID;
-@property (nonatomic, assign) int pixelWidth;
-@property (nonatomic, assign) int pixelHeight;
-@property (nonatomic, assign) int bitsPerComponent;
-@property (nonatomic, assign) double displayWidth;
-@property (nonatomic, assign) double displayHeight;
-@property (nonatomic, assign) double horizontalResolution;
-@property (nonatomic, assign) double verticalResolution;
+@property (nonatomic, assign) NSUInteger pixelWidth;
+@property (nonatomic, assign) NSUInteger pixelHeight;
+@property (nonatomic, assign) NSUInteger bitsPerComponent;
+@property (nonatomic, assign) CGFloat displayWidth;
+@property (nonatomic, assign) CGFloat displayHeight;
+@property (nonatomic, assign) CGFloat horizontalResolution;
+@property (nonatomic, assign) CGFloat verticalResolution;
 @property (nonatomic, assign) CGAffineTransform ctm; // global transform state.
 @property (nonatomic, assign, readonly) CGPoint *vertices;
 
@@ -41,7 +41,7 @@
 - (UIImage *)imageWithError:(NSError **)error;
 
 /// Some PDF images are in CMYK color space, which is not a supported encoding.
-/// (UIImageJPEGRepresentation will return nil in that case)
+/// (`UIImageJPEGRepresentation` will return nil in that case)
 /// This method checks against this case and converts the image into RGB color space.
 - (UIImage *)imageInRGBColorSpaceWithError:(NSError **)error;
 

@@ -2,9 +2,9 @@
 //  PSPDFBookmark.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -19,21 +19,21 @@
 /// @warning: Bookmarks don't have any representation in the PDF standard, thus they are saved in an external file.
 @interface PSPDFBookmark : PSPDFModel
 
-/// Initialize with page. Convenience initialization that will create a PSPDFGoToAction.
+/// Initialize with page. Convenience initialization that will create a `PSPDFGoToAction`.
 - (id)initWithPage:(NSUInteger)page;
 
 /// Initialize with action.
 - (id)initWithAction:(PSPDFAction *)action;
 
-/// The PDF action. Usually this will be of type PSPDFGoToAction, but all action types are possible.
+/// The PDF action. Usually this will be of type `PSPDFGoToAction`, but all action types are possible.
 /// @note A PSPDFGoToAction might has a `namedDestination` set. If so, the target page hasn't yet been resolved, use PSPDFAction to resolve.
 @property (nonatomic, strong) PSPDFAction *action;
 
-/// Convenience shortcut for self.action.pageIndex (if action is of type PSPDFGoToAction)
+/// Convenience shortcut for self.action.pageIndex (if action is of type `PSPDFGoToAction`)
 /// Page is set to NSNotFound if action is nil or a different type.
 @property (nonatomic, assign) NSUInteger page;
 
-/// Bookmark can have a name. This is optional and can be displayed on the PSPDFBookmarkViewController.
+/// Bookmark can have a name. This is optional and can be displayed on the `PSPDFBookmarkViewController`.
 @property (nonatomic, copy) NSString *name;
 
 /// Returns "Page X" or name.

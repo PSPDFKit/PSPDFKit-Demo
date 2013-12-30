@@ -2,9 +2,9 @@
 //  PSPDFFormSubmissionDelegate.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -16,11 +16,11 @@
 @class PSPDFFormRequest;
 
 /** Delegate for form submission actions. When a form submission action is run, the delegate will be queried in this order:
- * 1.  pdfViewController:shouldPresentWebViewForResponseData: -- should the view controller push a web view with the response data. If yes then the web view takes responsibility for the connection and call 4 is not made.
- * 2.  pdfViewController:shouldSubmitFormValues: -- if no then the operation is cancelled.
- * 3.  pdfViewController:willSubmitFormValues:   -- the submission is going ahead.
- * 4.a pdfViewController:didReceiveResponseData: -- the submission has completed successfully  OR
- * 4.b pdfViewController:didFailWithError:       -- the submission has failed
+ * 1.  `pdfViewController:shouldPresentWebViewForResponseData:` -- should the view controller push a web view with the response data. If yes then the web view takes responsibility for the connection and call 4 is not made.
+ * 2.  `pdfViewController:shouldSubmitFormValues:` -- if no then the operation is cancelled.
+ * 3.  `pdfViewController:willSubmitFormValues:`   -- the submission is going ahead.
+ * 4.a `pdfViewController:didReceiveResponseData:` -- the submission has completed successfully  OR
+ * 4.b `pdfViewController:didFailWithError:`       -- the submission has failed
  */
 @protocol PSPDFFormSubmissionDelegate <NSObject>
 

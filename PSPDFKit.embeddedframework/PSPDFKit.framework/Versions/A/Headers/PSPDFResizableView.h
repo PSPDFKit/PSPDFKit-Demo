@@ -2,9 +2,9 @@
 //  PSPDFResizableView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -53,7 +53,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 @interface PSPDFResizableView : UIView <PSPDFLongPressGestureRecognizerDelegate>
 
 /// Designated initializer.
-/// This will call self.trackedView, so trackedView is the place where you'd want to override to dynamically set allowResizing.
+/// This will call `self.trackedView`, so `trackedView` is the place where you'd want to override to dynamically set `allowResizing`.
 - (id)initWithTrackedView:(UIView *)trackedView;
 
 /// View that will be changed on selection change.
@@ -64,12 +64,12 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 
 /// The inner edge insets are used to create space between the bounding box (blue) and inner knobs (green).
 /// Will be applied to the contentFrame to calculate frame if an annotation has more than 2 points. Use negative
-/// values to add space around the tracked annotation view. Defaults to -20.0f for top, bottom, right, and left.
+/// values to add space around the tracked annotation view. Defaults to -20.f for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets innerEdgeInsets;
 
 /// The outer edge insets are used to create space between the bounding box (blue) and the view bounds.
 /// Will be applied to the contentFrame to calculate frame. Use negative values to add space around the
-/// tracked annotation view. Defaults to -40.0f for top, bottom, right, and left.
+/// tracked annotation view. Defaults to `-40.0f` for top, bottom, right, and left.
 @property (nonatomic, assign) UIEdgeInsets outerEdgeInsets;
 
 /// Returns the edge insets that are currently in effect. This is either UIEdgeInsetsZero or innerEdgeInsets.
@@ -93,28 +93,27 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL enableResizingGuides;
 
-/// Shows the bounding box.
-/// Defaults to YES.
+/// Shows the bounding box. Defaults to YES.
 @property (nonatomic, assign) BOOL showBoundingBox;
 
 /// Defines how aggressively the guide works. Defaults to 20.f
 @property (nonatomic, assign) CGFloat guideSnapAllowance;
 
 /// Override the minimum allowed width. This value is ignored if the view is smaller to begin with
-/// or the annotation specifies a bigger minimum width. Default is 0.0.
+/// or the annotation specifies a bigger minimum width. Default is 0.f.
 @property (nonatomic, assign) CGFloat minWidth;
 
 /// Override the minimum allowed height. This value is ignored if the view is smaller to begin with
-/// or the annotation specifies a bigger minimum height. Default is 0.0.
+/// or the annotation specifies a bigger minimum height. Default is 0.f.
 @property (nonatomic, assign) CGFloat minHeight;
 
 /// Disables dragging the view outside of the parent. Defaults to YES.
 @property (nonatomic, assign) BOOL preventsPositionOutsideSuperview;
 
-/// Border color. Defaults to [[UIColor pspdf_selectionColor] colorWithAlphaComponent:0.6f].
+/// Border color. Defaults to `[UIColor.pspdf_selectionColor colorWithAlphaComponent:0.6f]`.
 @property (nonatomic, strong) UIColor *selectionBorderColor;
 
-/// Guide color. Defaults to [UIColor pspdf_guideColor].
+/// Guide color. Defaults to `UIColor.pspdf_guideColor`.
 @property (nonatomic, strong) UIColor *guideBorderColor;
 
 // forward parent gesture recognizer longPress action.
@@ -140,7 +139,7 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 @interface PSPDFResizableView (SubclassingHooks)
 
 // All knobs. Can be hidden individually.
-// Note that properties like allowEditing/allowReszing will update the hidden property.
+// Note that properties like `allowEditing`/`allowResizing` will update the hidden property.
 // To properly hide a knob, remove it from the superview.
 @property (nonatomic, strong, readonly) UIImageView *knobTopLeft;
 @property (nonatomic, strong, readonly) UIImageView *knobTopMiddle;

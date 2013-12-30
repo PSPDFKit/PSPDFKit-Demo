@@ -2,9 +2,9 @@
 //  PSPDFFontInfo.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -64,10 +64,10 @@ typedef NS_ENUM(NSUInteger, PSPDFFontInfoType) {
 @property (nonatomic, strong, readonly) PSPDFCMap *fontCMap;
 
 /// CMap formed from the registery and ordering information of the font,
-/// used for unicode conversion when toUnicodeMap is not present
+/// used for unicode conversion when `toUnicodeMap` is not present
 @property (nonatomic, strong, readonly) PSPDFCMap *ucsCMap;
 
-/// Designated initializer. fontKey is optional.
+/// Designated initializer. `fontKey` is optional.
 - (id)initWithFontDictionary:(CGPDFDictionaryRef)font fontKey:(NSString *)fontKey;
 
 /// Returns the width for the specific character.

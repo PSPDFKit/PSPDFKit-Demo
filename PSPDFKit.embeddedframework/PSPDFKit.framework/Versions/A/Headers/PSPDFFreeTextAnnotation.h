@@ -2,9 +2,9 @@
 //  PSPDFFreeTextAnnotation.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -22,8 +22,6 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
  PDF FreeText Annotation.
 
  A free text annotation (PDF 1.3) displays text directly on the page. Unlike an ordinary text annotation (see 12.5.6.4, “Text Annotations”), a free text annotation has no open or closed state; instead of being displayed in a pop-up window, the text shall be always visible.
-
- @note fillColor is not supported for free text annotations. (at least not for PDF writing)
  */
 @interface PSPDFFreeTextAnnotation : PSPDFAnnotation
 
@@ -39,8 +37,7 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 /// The line height for fontName and fontSize. Changes if you change either of these values.
 @property (nonatomic, assign, readonly) CGFloat lineHeight;
 
-/// Text justification. Allows NSTextAlignmentLeft, NSTextAlignmentCenter and NSTextAlignmentRight.
-/// @note Toll-free 'bridges' to both NSTextAlignment and UITextAlignment.
+/// Text justification. Allows `NSTextAlignmentLeft`, `NSTextAlignmentCenter` and `NSTextAlignmentRight`.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 
@@ -62,7 +59,7 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 - (void)sizeToFit;
 
 /// Returns the size of the annotation with respect to the given constraints. If you don't want to
-/// constrain the height or width, use CGFLOAT_MAX for that value. The suggested size does not take the
+/// constrain the height or width, use `CGFLOAT_MAX` for that value. The suggested size does not take the
 /// rotation of the annotation into account.
 - (CGSize)sizeWithConstraints:(CGSize)constraints;
 

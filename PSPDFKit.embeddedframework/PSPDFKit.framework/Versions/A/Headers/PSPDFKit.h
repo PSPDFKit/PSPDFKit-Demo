@@ -2,20 +2,16 @@
 //  PSPDFKit.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
 //
 
-#if !defined(__clang__) || __clang_major__ < 4
-#error PSPDFKit must be compiled with ARC (Xcode 4.6.3+ with LLVM 4+)
-#endif
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-#error PSPDFKit supports iOS 5.0 upwards.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+#error PSPDFKit supports iOS 6.0 upwards.
 #endif
 
 // common
@@ -94,9 +90,6 @@ extern "C" {
 #import "PSPDFThumbnailGridViewCell.h"
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFThumbnailBar.h"
-#import "PSTCollectionView.h"
-#import "PSTCollectionViewCell.h"
-#import "PSTCollectionViewFlowLayout.h"
 
 // outline
 #import "PSPDFOutlineParser.h"
@@ -135,7 +128,6 @@ extern "C" {
 #import "PSPDFPolyLineAnnotation.h"
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
-#import "PSPDFHighlightAnnotationView.h"
 #import "PSPDFFreeTextAnnotationView.h"
 #import "PSPDFVideoAnnotationView.h"
 #import "PSPDFNoteAnnotationView.h"
@@ -154,6 +146,7 @@ extern "C" {
 #import "PSPDFAnnotationCell.h"
 #import "PSPDFSavedAnnotationsViewController.h"
 #import "PSPDFContainerViewController.h"
+#import "PSPDFSignatureStore.h"
 
 // tab bar
 #import "PSPDFTabbedViewController.h"
@@ -161,7 +154,6 @@ extern "C" {
 #import "PSPDFTabBarButton.h"
 
 // toolbar (subclass buttons to change image)
-#import "PSPDFIconGenerator.h"
 #import "PSPDFBarButtonItem.h"
 #import "PSPDFCloseBarButtonItem.h"
 #import "PSPDFEmailBarButtonItem.h"
@@ -210,11 +202,14 @@ extern "C" {
 #import "PSPDFChoiceFormElement.h"
 #import "PSPDFSignatureFormElement.h"
 #import "PSPDFTextFieldFormElement.h"
+    
+#import "PSPDFDigitalSignatureManager.h"
 
 // gallery
 #import "PSPDFGalleryViewController.h"
 #import "PSPDFGalleryContentView.h"
-#import "PSPDFGalleryScrollableContentView.h"
+#import "PSPDFGalleryImageContentView.h"
+#import "PSPDFGalleryVideoContentView.h"
 #import "PSPDFGalleryContentCaptionView.h"
 #import "PSPDFRemoteContentObject.h"
 

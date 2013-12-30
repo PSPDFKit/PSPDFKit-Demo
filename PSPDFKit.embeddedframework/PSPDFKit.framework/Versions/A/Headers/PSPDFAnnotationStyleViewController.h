@@ -2,9 +2,9 @@
 //  PSPDFAnnotationStyleViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -20,16 +20,16 @@
 
 @class PSPDFAnnotationStyleViewController, PSPDFAnnotation;
 
-/// Delegate for PSPDFAnnotationStyleViewController.
+/// Delegate for `PSPDFAnnotationStyleViewController`.
 @protocol PSPDFAnnotationStyleViewControllerDelegate <PSPDFOverridable>
 
-/// Called whenever a style property of PSPDFAnnotationStyleViewController changes.
+/// Called whenever a style property of `PSPDFAnnotationStyleViewController` changes.
 - (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController didChangeProperty:(NSString *)propertyName;
 
 @optional
 
 /// Called when a user starts changing a property (e.g. touch down on the slider)
-/// @warning There might not be a call to didChangeProperty if the user doesn't actually change the value (just touches it)
+/// @warning There might not be a call to `didChangeProperty:` if the user doesn't actually change the value (just touches it)
 /// @note Will not be fired for all properties.
 - (void)annotationStyleController:(PSPDFAnnotationStyleViewController *)styleController willStartChangingProperty:(NSString *)propertyName;
 
@@ -40,7 +40,7 @@
 @end
 
 
-/// Allows to set/change the style of an annotation. The annotation "Inspector".
+/// Allows to set/change the style of an annotation.
 /// @note: The inspector currently only supports setting *one* annotation, but since long-term we want multi-select-change, the API has already been prepared for.
 @interface PSPDFAnnotationStyleViewController : PSPDFStaticTableViewController <PSPDFColorSelectionViewControllerDelegate, PSPDFLineEndSelectionViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate, PSPDFStyleable>
 
@@ -74,10 +74,10 @@
 
 @interface PSPDFAnnotationStyleViewController (SubclassingHooks)
 
-// Returns the list of properties (NSString) where we want to build cells for.
+// Returns the list of properties (`NSString`) where we want to build cells for.
 - (NSArray *)propertiesForAnnotations:(NSArray *)annotations;
 
-// Allows to customize what cell models (PSPDFCellModel) we return for `property`.
+// Allows to customize what cell models (`PSPDFCellModel`) we return for `property`.
 // You might also return nil here to block a property from being edited.
 - (NSArray *)cellModelsForProperty:(NSString *)property;
 

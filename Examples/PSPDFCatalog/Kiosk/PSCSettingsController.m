@@ -2,7 +2,7 @@
 //  PSCSettingsController.m
 //  PSPDFCatalog
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -536,6 +536,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         [text appendString:[pdfController.document textParserForPage:page].text];
         if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }
+    NSLog(@"text: %@", text);
     configView.text = text;
     configView.editable = NO;
     configView.font = [UIFont systemFontOfSize:15];

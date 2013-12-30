@@ -2,7 +2,7 @@
 //  PSCCustomThumbnailsViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -22,15 +22,14 @@
 
     // Only use the PSCThumbnailGridViewCell subclass so that we don't override all examples here.
     // In your code you can simply use PSPDFThumbnailGridViewCell.
-    [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setRectColor:[UIColor colorWithRed:0.165f green:0.226f blue:0.650f alpha:0.800f]];
-    [[PSPDFRoundedLabel appearanceWhenContainedIn:[PSCThumbnailGridViewCell class], nil] setCornerRadius:20];
+    [[PSPDFRoundedLabel appearanceWhenContainedIn:PSCThumbnailGridViewCell.class, nil] setRectColor:[UIColor colorWithRed:0.165f green:0.226f blue:0.650f alpha:0.800f]];
+    [[PSPDFRoundedLabel appearanceWhenContainedIn:PSCThumbnailGridViewCell.class, nil] setCornerRadius:20];
 
     // Register our custom cell as subclass.
     [self overrideClass:PSPDFThumbnailGridViewCell.class withClass:PSCThumbnailGridViewCell.class];
 }
 
 @end
-
 
 @implementation PSCThumbnailGridViewCell
 

@@ -2,7 +2,7 @@
 //  PSCGridController.m
 //  PSPDFCatalog
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -122,7 +122,7 @@
     flowLayout.minimumInteritemSpacing = spacing;
     flowLayout.sectionInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
 
-    [collectionView registerClass:[PSCImageGridViewCell class] forCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class])];
+    [collectionView registerClass:PSCImageGridViewCell.class forCellWithReuseIdentifier:NSStringFromClass(PSCImageGridViewCell.class)];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     collectionView.backgroundColor = [UIColor clearColor];
@@ -132,7 +132,6 @@
     [self.view insertSubview:self.collectionView belowSubview:_shadowView];
     self.collectionView.frame = CGRectIntegral(self.view.bounds);
     self.collectionView.dataSource = self; // auto-reloads
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 
     // Add the search bar.
     CGFloat searchBarWidth = 290.f;
@@ -167,26 +166,10 @@
     [self.collectionView addSubview:self.searchBar];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    // Manually unload view to save memory.
-    if (self.isViewLoaded && self.view.window == nil) {
-        self.view = nil;
-    }
-
-    if (!self.isViewLoaded) {
-        self.collectionView.delegate = nil;
-        self.collectionView.dataSource = nil;
-        self.collectionView = nil;
-        self.shadowView = nil;
-        self.searchBar.delegate = nil;
-        self.searchBar = nil;
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack :  UIBarStyleDefault;
 
     // Ensure our navigation bar is visible. PSPDFKit restores the properties,
     // But since we're doing a custom fade-out on the navigationBar alpha,
@@ -208,7 +191,7 @@
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
 
     // Only one delegate at a time (only one grid is displayed at a time)
-    [PSCStoreManager sharedStoreManager].delegate = self;
+    PSCStoreManager.sharedStoreManager.delegate = self;
 
     // Ensure everything is up to date (we could change magazines in other controllers)
     self.immediatelyLoadCellImages = YES;
@@ -221,6 +204,9 @@
     }
 
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
+
+    // Reload view, request new images.
+    [self updateGrid];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -258,7 +244,7 @@
                 self.collectionView.transform = CGAffineTransformIdentity;
                 self.magazineView.frame = relativeCellRect;
                 [self.magazineView.subviews.lastObject setAlpha:0.f];
-                self.collectionView.alpha = 1.0f;
+                self.collectionView.alpha = 1.f;
             } completion:^(BOOL finished) {
                 [self.magazineView removeFromSuperview];
                 self.magazineView = nil;
@@ -274,7 +260,7 @@
     [self setEditing:NO animated:animated];
 
     // Only deregister if not attached to anything else.
-    if ([PSCStoreManager sharedStoreManager].delegate == self) [PSCStoreManager sharedStoreManager].delegate = nil;
+    if (PSCStoreManager.sharedStoreManager.delegate == self) PSCStoreManager.sharedStoreManager.delegate = nil;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -282,14 +268,12 @@
 
 - (void)updateGrid {
     BOOL restoreKeyboard = NO;
-    if ([self.searchBar isFirstResponder]) {
+    if (self.searchBar.isFirstResponder) {
         restoreKeyboard = YES;
     }
 
-    // This, sadly steals our first responder. Why, Apple, why?
+    // This, sadly steals our first responder.
     [self.collectionView reloadData];
-
-    // UICollectionView is stealing the first responder.
     if (restoreKeyboard) {
         // Block the fade-in-animation.
         [CATransaction begin];
@@ -336,7 +320,7 @@
     [self presentViewController:navController animated:animated completion:NULL];
 }
 
-// toggle the options/settings button.
+// Toggle the options/settings button.
 - (void)optionsButtonPressed {
     BOOL alreadyDisplayed = PSPDFIsControllerClassAndVisible(self.popoverController, [PSCSettingsController class]);
     if (alreadyDisplayed) {
@@ -360,7 +344,7 @@
     CGRect newFrame = self.view.frame;
     CGRect navBarFrame = self.navigationController.navigationBar.frame;
 
-    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleSmartBlackHideOnIpad.
+    // Compensate for transparent statusbar. Change this var if you're not using PSPDFStatusBarStyleLightContentHideOnIpad.
     PSC_IF_PRE_IOS7(newFrame.origin.y -= navBarFrame.size.height;
                     newFrame.size.height += navBarFrame.size.height;
                     BOOL iPadFadesOutStatusBar = YES;
@@ -417,7 +401,7 @@
 
         // Add a smooth status bar transition on the iPhone
         if (!PSCIsIPad()) {
-            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
+            PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];)
         }
 
         // If we have a different page, fade to that page.
@@ -478,7 +462,7 @@
     NSArray *magazines = [self.magazineFolder.magazines copy];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         for (PSCMagazine *magazine in magazines) {
-            [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever|PSPDFCacheOptionActualityIgnore];
+            [PSPDFCache.sharedCache imageFromDocument:magazine page:0 size:kPSCLargeThumbnailSize options:PSPDFCacheOptionDiskLoadSkip|PSPDFCacheOptionRenderQueueBackground|PSPDFCacheOptionMemoryStoreNever];
         }
     });
 
@@ -499,17 +483,15 @@
 }
 
 - (void)updateEditingAnimated:(BOOL)animated {
-    NSArray *visibleCells = [self.collectionView visibleCells];
-
-    for (PSCImageGridViewCell *cell in visibleCells) {
-        if ([cell isKindOfClass:[PSCImageGridViewCell class]]) {
+    for (PSCImageGridViewCell *cell in self.collectionView.visibleCells) {
+        if ([cell isKindOfClass:PSCImageGridViewCell.class]) {
 
             BOOL editing = [self canEditCell:cell];
             if (editing) cell.showDeleteImage = editing;
-            cell.deleteButton.alpha = editing?0.f:1.f;
+            cell.deleteButton.alpha = editing ? 0.f : 1.f;
 
             [UIView animateWithDuration:0.3f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                cell.deleteButton.alpha = editing?1.f:0.f;
+                cell.deleteButton.alpha = editing ? 1.f : 0.f;
             } completion:^(BOOL finished) {
                 if (finished) {
                     cell.showDeleteImage = editing;
@@ -536,7 +518,7 @@
     if (self.magazineFolder) {
         _filteredData = self.magazineFolder.magazines;
     }else {
-        _filteredData = [PSCStoreManager sharedStoreManager].magazineFolders;
+        _filteredData = PSCStoreManager.sharedStoreManager.magazineFolders;
     }
 
     NSString *searchString = _searchBar.text;
@@ -551,7 +533,7 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PSCImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([PSCImageGridViewCell class]) forIndexPath:indexPath];
+    PSCImageGridViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(PSCImageGridViewCell.class) forIndexPath:indexPath];
 
     // connect the delete button
     if (cell.deleteButton.allTargets.count == 0) {
@@ -591,12 +573,12 @@
     dispatch_block_t deleteBlock = ^{
         if (self.magazineFolder) {
             if (magazine.isDownloading) {
-                [[PSCStoreManager sharedStoreManager] cancelDownloadForMagazine:magazine];
+                [PSCStoreManager.sharedStoreManager cancelDownloadForMagazine:magazine];
             }else {
-                [[PSCStoreManager sharedStoreManager] deleteMagazine:magazine];
+                [PSCStoreManager.sharedStoreManager deleteMagazine:magazine];
             }
         }else {
-            [[PSCStoreManager sharedStoreManager] deleteMagazineFolder:folder];
+            [PSCStoreManager.sharedStoreManager deleteMagazineFolder:folder];
         }
     };
 
@@ -644,7 +626,7 @@
                               otherButtonTitles:nil] show];
         } else if (!magazine.isAvailable && !magazine.isDownloading) {
             if (!self.isEditing) {
-                [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
+                [PSCStoreManager.sharedStoreManager downloadMagazine:magazine];
                 [collectionView deselectItemAtIndexPath:indexPath animated:YES];
             }
         } else {
@@ -689,7 +671,7 @@
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
@@ -702,7 +684,7 @@
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
@@ -715,7 +697,7 @@
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
     if (!self.magazineFolder) {
-        NSUInteger cellIndex = [[PSCStoreManager sharedStoreManager].magazineFolders indexOfObject:magazineFolder];
+        NSUInteger cellIndex = [PSCStoreManager.sharedStoreManager.magazineFolders indexOfObject:magazineFolder];
         if (cellIndex != NSNotFound) {
             [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
@@ -796,7 +778,7 @@
     _filteredData = nil;
 
     [self updateGrid];
-    self.collectionView.contentOffset = CGPointMake(0, -self.collectionView.contentInset.top);
+    self.collectionView.contentOffset = CGPointMake(0.f, -self.collectionView.contentInset.top);
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -804,8 +786,8 @@
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    // Sadly there is no way to un-smart the UISearchBar. It tries to scroll to visiblity even though it is already visible.
-    // We wrap it into a dummy scroll view to prevent this "smart" logic.
+    // UISearchBar tries to scroll to visiblity even though it is already visible.
+    // We wrap it into a dummy scroll view to prevent this logic.
     UIScrollView *wrap = [[UIScrollView alloc] initWithFrame:searchBar.frame];
     [searchBar.superview addSubview:wrap];
     searchBar.frame = CGRectMake(0, 0, searchBar.frame.size.width, searchBar.frame.size.height);
@@ -832,7 +814,6 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
 }
 
 // Fixes a missing selector crash for [UISearchBar _isInUpdateAnimation:]
-// TODO: Test during iOS7 betas if this has been fixed.
 __attribute__((constructor)) static void PSPDFFixCollectionViewSearchBarDisplayed(void) {
     if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0) return; // stop if we're on iOS 6.
 

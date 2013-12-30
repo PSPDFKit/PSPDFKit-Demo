@@ -2,9 +2,9 @@
 //  PSPDFDocument.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -31,8 +31,8 @@
 * Changing properties once the document is visible will require calling reloadData on the controller most of the time.
 *
 * `PSPDFDocument` builds up some cache when properties like `pageCount` are first accessed.
-* You want to create those objects once and keep them around, creating and destroying them on the fly is very wasteful.
-* If you change the underlying files the PSPDFDocument points to, you need to clear it's internal cache.
+* You want to create those objects once and keep them around, creating and destroying them on the fly is very wasteful. Using an `NSCache` with `UID` as key is recommended.
+* If you change the underlying files the `PSPDFDocument` points to, you need to clear it's internal cache.
 *
 * To speed up the first time the document is displayed in the `PSPDFViewController`, you can call `fillCache` on any thread.
 */
@@ -48,7 +48,7 @@
 
 /// Initialize `PSPDFDocument` with PDF data.
 /// @warning You might want to set a custom UID when initialized with `NSData`, else the `UID` will be calculated from the PDF contents, which might be the same for two equal files.
-/// In most cases, you really want to use a fileURL instead. When using `NSData`, PSPDFKit is unable to automatically save annotation changes back into the PDF. Also, keep in mind that iOS is an environment without virtual memory. Loading a 100MB PDF will simply get your app killed by the iOS watchdog while you try to allocate more memory than is available. If you use NSData because of encryption, look into `CGDataProvider` instead for a way to dynamically decrypt the needed portions of the PDF.
+/// In most cases, you really want to use a `fileURL` instead. When using `NSData`, PSPDFKit is unable to automatically save annotation changes back into the PDF. Also, keep in mind that iOS is an environment without virtual memory. Loading a 100MB PDF will simply get your app killed by the iOS watchdog while you try to allocate more memory than is available. If you use `NSData` because of encryption, look into `CGDataProvider` instead for a way to dynamically decrypt the needed portions of the PDF.
 + (instancetype)documentWithData:(NSData *)data;
 
 /// Initialize `PSPDFDocument` with multiple data objects
@@ -415,7 +415,7 @@ extern NSString *const PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTyp
 
 /// Allows control over what annotation should get an AP stream.
 /// AP (Appearance Stream) generation takes more time but will maximize compatibility with PDF Viewers that don't implement the complete spec for annotations.
-/// The default value for this dict is `@{PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTypeKey : @(PSPDFAnnotationTypeFreeText|PSPDFAnnotationTypeInk|PSPDFAnnotationTypePolygon|PSPDFAnnotationTypePolyLine|PSPDFAnnotationTypeLine|PSPDFAnnotationTypeSquare|PSPDFAnnotationTypeCircle)}`
+/// The default value for this dict is `@{PSPDFAnnotationWriteOptionsGenerateAppearanceStreamForTypeKey : @(PSPDFAnnotationTypeFreeText|PSPDFAnnotationTypeInk|PSPDFAnnotationTypePolygon|PSPDFAnnotationTypePolyLine|PSPDFAnnotationTypeLine|PSPDFAnnotationTypeSquare|PSPDFAnnotationTypeCircle|PSPDFAnnotationTypeStamp|PSPDFAnnotationTypeWidget)}`
 @property (nonatomic, copy) NSDictionary *annotationWritingOptions;
 
 /// Saves changed annotations in an external file or PDF, depending on `annotationSaveMode`.
@@ -634,14 +634,14 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 /// If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
 @property (nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
 
-// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES for modern devices (not the iPad 1).
+/// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES for modern devices (not the iPad 1).
 @property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;
 
-// The undo manager attached to the document. Set to nil to disable undo/redo management.
-// @Note Undo/Redo has a small performance impact since all annotation operations are tracked.
+/// The undo manager attached to the document. Set to nil to disable undo/redo management.
+/// @note Undo/Redo has a small performance impact since all annotation operations are tracked.
 @property (nonatomic, strong) PSPDFUndoController *undoController;
 
-// To calculate pages between multiple document providers and if you use the `pageRange` feature.
+/// To calculate pages between multiple document providers and if you use the `pageRange` feature.
 - (NSUInteger)documentProviderRelativePageForPage:(NSUInteger)page;
 - (NSUInteger)documentProviderRelativePageWithPageRangeCompensated:(NSUInteger)page;
 

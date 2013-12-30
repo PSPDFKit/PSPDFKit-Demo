@@ -2,9 +2,9 @@
 //  PSPDFStream.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -14,20 +14,20 @@
 
 @class PSPDFDocument;
 
-/// Allows conversion of a CGPDFStreamRef to a file object.
+/// Allows conversion of a `CGPDFStreamRef` to a file object.
 /// A Stream has dictionary data and stream data. Might be anything (like page commands, a video, an image)
 @interface PSPDFStream : NSObject
 
 /// Designated initializer
 - (id)initWithStream:(CGPDFStreamRef)stream;
 
-/// Referenced stream. Warning! Only valid as long as the parent CGPDFDocument is not closed.
+/// Referenced stream. Warning! Only valid as long as the parent `CGPDFDocument` is not closed.
 @property (nonatomic, assign, readonly) CGPDFStreamRef stream;
 
 /// Stream dictionary.
 - (NSDictionary *)dictionary;
 
-/// If CGPDFDataFormat is CGPDFDataFormatJPEGEncoded, we can extract the image.
+/// If CGPDFDataFormat is `CGPDFDataFormatJPEGEncoded`, we can extract the image.
 - (UIImage *)image;
 
 /// Stream data. Format will be returned.
@@ -51,7 +51,7 @@
 @end
 
 // Helper, useful when dealing with appearance streams.
-// Returns CGRectZero if stream BBox not found.
+// Returns `CGRectZero` if stream BBox not found.
 extern CGRect PSPDFBoundingBoxFromStream(CGPDFStreamRef streamRef);
 
 extern CGAffineTransform PSPDFMatrixFromStream(CGPDFStreamRef streamRef);

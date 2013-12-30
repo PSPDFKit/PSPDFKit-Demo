@@ -2,9 +2,9 @@
 //  PSPDFThumbnailBar.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -12,7 +12,6 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
-#import "PSTCollectionView.h"
 
 @class PSPDFThumbnailBar;
 
@@ -27,7 +26,7 @@
 @end
 
 /// Bottom bar that shows a scrollable list of thumbnails.
-@interface PSPDFThumbnailBar : PSUICollectionView <PSUICollectionViewDataSource, PSUICollectionViewDelegate>
+@interface PSPDFThumbnailBar : UICollectionView <UICollectionViewDataSource, UICollectionViewDelegate>
 
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document;
@@ -51,7 +50,7 @@
 /// @note Set this before the toolbar is displayed.
 @property (nonatomic, assign) CGFloat thumbnailBarHeight;
 
-/// Class used for thumbnails (defaults to PSPDFThumbnailGridViewCell)
+/// Class used for thumbnails (defaults to `PSPDFThumbnailGridViewCell`)
 @property (nonatomic, strong) Class thumbnailCellClass;
 
 @end
