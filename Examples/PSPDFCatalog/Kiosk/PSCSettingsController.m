@@ -11,10 +11,6 @@
 #import "PSCSettingsController.h"
 #import "PSCBasicViewController.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 #define _(string) NSLocalizedString(string, @"")
 
 @interface PSCSettingsController() {
@@ -60,7 +56,7 @@ static NSMutableDictionary *_settings;
 
 + (NSDictionary *)settings { return _settings; }
 
-// perform a appropriate choice of defaults.
+// Perform a appropriate choice of defaults.
 + (void)initialize {
     @autoreleasepool {
         if (self.class == [PSCSettingsController class]) {
