@@ -2,9 +2,9 @@
 //  PSPDFGlyph.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -33,16 +33,16 @@ extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
 /// Designated initializer.
 - (id)initWithFrame:(CGRect)frame content:(NSString *)content font:(PSPDFFontInfo *)font;
 
-/// Frame of the glyph. Doesn't has pageRotation applied.
-/// To apply the pageRotation, use CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.pageRotationTransform)
-/// (PSPDFWord etc do have convenience methods for this)
+/// Frame of the glyph. Doesn't has `pageRotation` applied.
+/// To apply the pageRotation, use `CGRectApplyAffineTransform(glyph.frame, pageView.pageInfo.pageRotationTransform)`
+/// (`PSPDFWord` etc do have convenience methods for this)
 @property (nonatomic, assign) CGRect frame;
 
 /// Character content (usually a single character)
 @property (nonatomic, strong) NSString *content;
 
 /// Used font info.
-/// @warning font is not retained for performance reasons. Don't access after the corresponding textParser has been deallocated.
+/// @warning font is not retained for performance reasons. Don't access after the corresponding `textParser` has been deallocated.
 @property (nonatomic, unsafe_unretained) PSPDFFontInfo *font;
 
 /// Set if after this glyph a \n is there.

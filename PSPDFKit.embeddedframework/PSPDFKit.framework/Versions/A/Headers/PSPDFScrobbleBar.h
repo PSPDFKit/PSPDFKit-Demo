@@ -2,9 +2,9 @@
 //  PSPDFScrobbleBar.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -19,7 +19,7 @@
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
 /// PDF controller delegate. We use KVO, thus no weak here.
-/// Re-set pdfController to update tintColor.
+/// Re-set pdfController to update `tintColor`.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
@@ -38,13 +38,13 @@
 @property (nonatomic, assign) NSUInteger page;
 
 /// Access toolbar. It's in an own view, to have a transparent toolbar but non-transparent images.
-/// Alpha is set to 0.7, can be changed.
+/// Alpha is set to 0.7f, can be changed.
 @property (nonatomic, strong) UIToolbar *toolbar;
 
-/// Left border margin. Defaults to thumbnailMargin. Set higher to allow custom buttons.
+/// Left border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat leftBorderMargin;
 
-/// Right border margin. Defaults to thumbnailMargin. Set higher to allow custom buttons.
+/// Right border margin. Defaults to `thumbnailMargin`. Set higher to allow custom buttons.
 @property (nonatomic, assign) CGFloat rightBorderMargin;
 
 /// Taps left/right of the pages area (if there aren't enough pages to fill up space) by default count as first/last page. Defaults to YES.
@@ -58,16 +58,16 @@
 // Updates the frame and the visibility depending if toolbar is displayed or not.
 - (void)setToolbarFrameAndVisibility:(BOOL)shouldShow animated:(BOOL)animated;
 
-// Implementation detail: if you override setToolbarFrameAndVisibility, you need to set this to NO after you're done setting/animating the frame.
+// Implementation detail: if you override `setToolbarFrameAndVisibility`, you need to set this to NO after you're done setting/animating the frame.
 @property (nonatomic, assign, getter=isViewLocked) BOOL viewLocked;
 
 // Returns YES if toolbar is in landscape+iPhone mode.
 - (BOOL)isSmallToolbar;
 
-// Returns toolbar height. (depending on isSmallToolbar)
+// Returns toolbar height. (depending on `isSmallToolbar`)
 - (CGFloat)scrobbleBarHeight;
 
-// Returns size of the bottom thumbnails. (depending on isSmallToolbar)
+// Returns size of the bottom thumbnails. (depending on `isSmallToolbar`)
 - (CGSize)scrobbleBarThumbSize;
 
 // Called once for every thumbnail image.

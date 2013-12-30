@@ -2,7 +2,7 @@
 //  PSCatalogViewController.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -103,8 +103,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             self.title = [PSPDFVersionString() stringByReplacingOccurrencesOfString:@"PSPDFKit" withString:PSPDFLocalize(@"PSPDFKit Catalog")];
         }
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Catalog" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self createTableContent];
-        [self addDebugButtons];
     }
     return self;
 }
@@ -123,28 +121,25 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:@"Example Applications" footer:nil];
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController Playground" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_TouchDownButton.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"OoPdfFormExample.pdf"]];
         //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Form_Signature.pdf"]];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Line_Crash.pdf"]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"2457.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
         if (PSCIsUIKitFlatMode()) {
-            controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlack;
-            controller.tintColor = UIColor.pspdfColor;      // navBarTintColor
+            controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
+            controller.tintColor = UIColor.pspdfColor; // navBarTintColor
         }
-        //controller.shouldHideNavigationBarWithHUD = YES;
-        //controller.shouldHideStatusBarWithHUD = YES;
         controller.imageSelectionEnabled = NO;
-        //controller.page = 3;
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFKit Kiosk" block:^UIViewController *{
+    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" block:^UIViewController *{
         return [PSCGridViewController new];
     }]];
 
@@ -174,7 +169,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
         controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         controller.thumbnailBarMode = PSPDFThumbnailBarModeScrollable;
 
         // Don't use thumbnails if the PDF is not rendered.
@@ -201,13 +196,16 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
-        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]]];
+        // Initialize document and enable link autodetection.
+        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]];
+        document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
+        PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
         BOOL includeBrightnessButton = YES;
         PSC_IF_IOS7_OR_GREATER(includeBrightnessButton = NO;)
-        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.additionalActionsButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
+        controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.additionalActionsButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.additionalActionsButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         PSCGoToPageButtonItem *goToPageButton = [[PSCGoToPageButtonItem alloc] initWithPDFViewController:controller];
         controller.additionalBarButtonItems = @[controller.printButtonItem, controller.emailButtonItem, goToPageButton];
         controller.pageTransition = PSPDFPageTransitionScrollContinuous;
@@ -215,8 +213,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.fitToWidthEnabled = YES;
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
-        controller.statusBarStyleSetting = PSCIsUIKitFlatMode() ? PSPDFStatusBarStyleBlackOpaque : PSPDFStatusBarStyleDefault;
-        return controller;
+        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+
+        // Present modally, so we can more easily configure it to have a different style.
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        [self.navigationController presentViewController:navController animated:YES completion:NULL];
+        return (UIViewController *)nil;
     }]];
 
     [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" block:^{
@@ -1132,7 +1134,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Drawing invoked with menu while toolbar is visible" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleSmartBlackHideOnIpad;
+        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
         double delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -2328,7 +2330,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self createTableContent];
+    [self addDebugButtons];
+
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.bounds.size.width, 44.f)];
+    PSC_IF_IOS7_OR_GREATER(_searchBar.searchBarStyle = UISearchBarStyleMinimal;)
     _searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tableView.tableHeaderView = _searchBar;
 
@@ -2363,7 +2369,9 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }
     [UIApplication.sharedApplication setStatusBarHidden:NO withAnimation:animated ? UIStatusBarAnimationFade : UIStatusBarAnimationNone];
     PSCFixNavigationBarForNavigationControllerAnimated(self.navigationController, NO);
-    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+
+    self.navigationController.navigationBar.barStyle = PSCIsUIKitFlatMode() ? UIBarStyleBlack : UIBarStyleDefault;
+    
     [self.navigationController setToolbarHidden:YES animated:animated];
 
     // clear cache (for night mode)
@@ -2401,6 +2409,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Second display, remove user default.
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:PSCLastIndexPath];
     }
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -2464,7 +2476,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Invoking [NSIndexPath indexPathForRow:%ld inSection:%ld]", (long)indexPath.row, (long)indexPath.section);
+    NSLog(@"Invoking [NSIndexPath indexPathForRow:%tu inSection:%tu]", indexPath.row, indexPath.section);
 
     __block NSIndexPath *unfilteredIndexPath;
     PSContent *contentDescriptor;
@@ -2571,6 +2583,15 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
     }
     self.filteredContent = filteredContent;
+}
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    // HACK: Using UISearchBarStyleMinimal produces a black bar on iPhone.
+    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleDefault;
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

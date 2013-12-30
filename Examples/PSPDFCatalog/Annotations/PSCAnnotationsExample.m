@@ -2,7 +2,7 @@
 //  PSCAnnotationsExample.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -41,7 +41,7 @@
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
-    //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"WorldHistory9.pdf"];
+    //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:@"Form_AP_Stream.pdf"];
     
     // Copy file from the bundle to a location where we can write on it.
     NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(annotationSavingURL, NO);

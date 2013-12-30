@@ -2,9 +2,9 @@
 //  PSPDFAnnotationManager.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -77,12 +77,9 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 /// This is used to determine if annotationsForPage:type: should be called directly or in a background thread.
 - (BOOL)hasLoadedAnnotationsForPage:(NSUInteger)page;
 
-/**
- Any annotation that returns YES on isOverlay needs a view class to be displayed.
- Will be called on all annotationProviders until someone doesn't return nil.
-
- If no class is found, the view will be ignored.
- */
+/// Any annotation that returns YES on `isOverlay` needs a view class to be displayed.
+/// Will be called on all `annotationProviders` until someone doesn't return nil.
+/// If no class is found, the view will be ignored.
 - (Class)annotationViewClassForAnnotation:(PSPDFAnnotation *)annotation;
 
 /**
@@ -90,9 +87,9 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
  `page` is defined through the set page in each annotation object.
 
  @note PSPDFAnnotationManager will query all registered annotationProviders until one returns YES on addAnnotations.
- Will return NO if no annotationProvider can handle the annotations. (By default, the PSPDFFileAnnotationProvider will handle all annotations.)
+ Will return NO if no annotationProvider can handle the annotations. (By default, the `PSPDFFileAnnotationProvider` will handle all annotations.)
 
- If you're just interested in being notified, you can register a custom annotationProvider and set in the array before the file annotationProvider. Implement addAnnotations: and return NO. You'll be notified of all add operations.
+ If you're just interested in being notified, you can register a custom `annotationProvider` and set in the array before the file `annotationProvider`. Implement `addAnnotations:` and return NO. You'll be notified of all add operations.
  */
 - (BOOL)addAnnotations:(NSArray *)annotations;
 
@@ -102,10 +99,10 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 
 /**
  Will be called by PSPDF internally every time an annotation is changed.
- Call will be relayed to all annotationProviders.
+ Call will be relayed to all `annotationProviders`.
 
  This method will be called on ALL annotations, not just the ones that you provided.
- @note If you have custom code that changes annotations and you rely on the didChangeAnnotation: event, you need to call it manually.
+ @note If you have custom code that changes annotations and you rely on the `didChangeAnnotation:` event, you need to call it manually.
 
  Options is used internally to determine of the file annotation provider should request an annotation update. (the userInfo notification dict will be forwarded.)
  */
@@ -119,18 +116,18 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 /// Return YES if the manager requires saving.
 - (BOOL)shouldSaveAnnotations;
 
-/// Provided to the PSPDFAnnotationProviders via PSPDFAnnotationProviderChangeNotifier.
+/// Provided to the `PSPDFAnnotationProviders` via `PSPDFAnnotationProviderChangeNotifier`.
 /// Will update any visible annotation.
 - (void)updateAnnotations:(NSArray *)annotations animated:(BOOL)animated;
 
-/// Change the protocol that's used to parse pspdfkit-additions (links, audio, video). Defaults to 'pspdfkit://'.
+/// Change the protocol that's used to parse PSPDFKit-additions (links, audio, video). Defaults to `pspdfkit://`.
 /// @note This will affect all parsers that generate PSPDFAction objects.
 /// @warning Set this early on or manually clear the cache to update the parsers.
 @property (nonatomic, copy) NSString *protocolString;
 
-/// The fileType translation table is used when we encounter pspdfkit:// links (or whatever is set to document.protocolString)
-/// Maps e.g. "mpg" to PSPDFLinkAnnotationVideo. (NSString -> NSNumber)
-@property (nonatomic, copy) NSDictionary *fileTypeTranslationTable;
+/// The fileType translation table is used when we encounter pspdfkit:// links (or whatever is set to `document.protocolString`)
+/// Maps e.g. "mpg" to `PSPDFLinkAnnotationVideo`. (NSString -> NSNumber)
++ (NSDictionary *)fileTypeTranslationTable;
 
 /// Document provider for annotation parser.
 @property (nonatomic, unsafe_unretained, readonly) PSPDFDocumentProvider *documentProvider;
@@ -140,8 +137,8 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 
 @interface PSPDFAnnotationManager (SubclassingHooks)
 
-/// Fast path, same as annotationsForPage:type: but with already opened pageRef.
-/// If you want to override annotationsForPage:type, override this instead.
+/// Fast path, same as `annotationsForPage:type:` but with already opened pageRef.
+/// If you want to override `annotationsForPage:type:`, override this instead.
 - (NSArray *)annotationsForPage:(NSUInteger)page type:(PSPDFAnnotationType)type pageRef:(CGPDFPageRef)pageRef;
 
 /// Searches the annotation cache for annotations that have the dirty flag set.
@@ -149,6 +146,10 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 - (NSDictionary *)dirtyAnnotations;
 
 /// Filtered fileTypeTranslationTable that only returns video or audio elements.
-- (NSArray *)mediaFileTypes;
++ (NSArray *)mediaFileTypes;
+
+/// Returns the view class that can host the specific annotation subtype.
+/// @note Usually you want to write an annotation provider and implement `annotationViewClassForAnnotation:` instead of subclassing.
+- (Class)defaultAnnotationViewClassForAnnotation:(PSPDFAnnotation *)annotation;
 
 @end

@@ -2,9 +2,9 @@
 //  PSPDFActionSheet.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -12,7 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 
-/// Helper to add block features to UIActionSheet.
+/// Helper to add block features to `UIActionSheet`.
 /// After block has been executed, it is set to nil, breaking potential retain cycles.
 @interface PSPDFActionSheet : UIActionSheet
 
@@ -40,7 +40,7 @@
 /// Count the buttons.
 - (NSUInteger)buttonCount;
 
-/// Is clever about the sender, uses fallbackView if sender is not usable (nil, or not UIBarButtonItem/UIView)
+/// Is clever about the sender, uses fallbackView if sender is not usable (nil, or not `UIBarButtonItem`/`UIView`)
 - (void)showWithSender:(id)sender fallbackView:(UIView *)view animated:(BOOL)animated;
 
 /// Clears all blocks, breaks retain cycles. Automatically called once a button has been pressed.

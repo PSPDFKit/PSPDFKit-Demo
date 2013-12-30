@@ -2,9 +2,9 @@
 //  PSPDFGalleryView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -35,10 +35,10 @@
 /// Reloads the gallery view.
 - (void)reload;
 
-/// Returns the PSPDFGalleryContentView for the given item index or nil if does not exist or is not part of activeContentViews.
+/// Returns the `PSPDFGalleryContentView` for the given item index or nil if does not exist or is not part of `activeContentViews`.
 - (PSPDFGalleryContentView *)contentViewForItemAtIndex:(NSUInteger)index;
 
-/// Returns the index for a given content view or NSNotFound if the content view cannot be matched to an index.
+/// Returns the index for a given content view or `NSNotFound` if the content view cannot be matched to an index.
 - (NSUInteger)itemIndexForContentView:(PSPDFGalleryContentView *)contentView;
 
 /// Returns a reusable content view for a given identifier.
@@ -66,7 +66,11 @@
 
 @optional
 
-/// Called when currentItemIndex changes.
+/// Called when `currentItemIndex` changes.
+- (void)galleryView:(PSPDFGalleryView *)galleryView willScrollToItemAtIndex:(NSUInteger)index;
 - (void)galleryView:(PSPDFGalleryView *)galleryView didScrollToItemAtIndex:(NSUInteger)index;
+
+/// Called before reusing a content view.
+- (void)galleryView:(PSPDFGalleryView *)galleryView willReuseContentView:(PSPDFGalleryContentView *)contentView;
 
 @end

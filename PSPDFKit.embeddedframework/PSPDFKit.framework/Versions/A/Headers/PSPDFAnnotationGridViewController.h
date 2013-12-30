@@ -2,9 +2,9 @@
 //  PSPDFAnnotationGridViewController.h
 //  PSPDFKit
 //
-//  Copyright 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -12,7 +12,6 @@
 
 #import "PSPDFBaseViewController.h"
 #import "PSPDFStyleable.h"
-#import "PSTCollectionView.h"
 #import "PSPDFAnnotationSet.h"
 
 @class PSPDFAnnotationGridViewController, PSPDFAnnotationSetCell;
@@ -67,7 +66,7 @@
 @end
 
 
-@interface PSPDFAnnotationGridViewController (SubclassingHooks) <PSUICollectionViewDelegate, PSUICollectionViewDataSource>
+@interface PSPDFAnnotationGridViewController (SubclassingHooks) <UICollectionViewDelegate, UICollectionViewDataSource>
 
 // To make custom buttons.
 - (void)close:(id)sender;
@@ -76,13 +75,13 @@
 - (void)configureCell:(PSPDFAnnotationSetCell *)annotationSetCell forIndexPath:(NSIndexPath *)indexPath;
 
 // Internally used grid view
-@property (nonatomic, strong) PSUICollectionView *gridView;
+@property (nonatomic, strong) UICollectionView *gridView;
 
 @end
 
 
 /// Annotation Set cell
-@interface PSPDFAnnotationSetCell : PSUICollectionViewCell
+@interface PSPDFAnnotationSetCell : UICollectionViewCell
 
 /// The annotation set visible.
 @property (nonatomic, strong) PSPDFAnnotationSet *annotationSet;

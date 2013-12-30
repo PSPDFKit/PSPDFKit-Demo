@@ -2,9 +2,9 @@
 //  PSPDFViewController+Delegates.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -15,10 +15,10 @@
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFPageView, PSPDFAnnotation, PSPDFPageInfo, PSPDFImageInfo;
 
-// NSNotification equivalent to didLoadPageView: delegate.
+// NSNotification equivalent to `didLoadPageView:` delegate.
 extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
 
-// NSNotification equivalent to didShowPageView: delegate.
+// NSNotification equivalent to `didShowPageView:` delegate.
 extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
 
 typedef struct {
@@ -112,6 +112,6 @@ typedef struct {
 - (BOOL)delegateShouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
 - (void)delegateDidShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated;
 
-- (void)updateDelegateFlags; // implemented in PSPDFViewController (Delegates)
+- (void)updateDelegateFlags; // implemented in `PSPDFViewController` (Delegates)
 
 @end

@@ -2,9 +2,9 @@
 //  PSPDFURLAction.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -15,7 +15,7 @@
 @class PSPDFAnnotationManager;
 
 /// Opens a URL target.
-/// This can be similar to a PSPDFRemoteGoToAction if a pspdfkit:// URL with a page target is used.
+/// This can be similar to a `PSPDFRemoteGoToAction` if a pspdfkit:// URL with a page target is used.
 @interface PSPDFURLAction : PSPDFAction
 
 /// Initializes with string, will convert to URL automatically.
@@ -36,7 +36,7 @@
 
 /// @name Options Helper
 
-/// Returns YES if the urlString has been prefixed with pspdfkit:// or another defined prefix set in PSPDFDocument.
+/// Returns YES if the `URLString` has been prefixed with pspdfkit:// or another defined prefix set in `PSPDFDocument`.
 @property (nonatomic, assign, readonly) BOOL isPSPDFPrefixed;
 
 /// PageIndex, if defined in the options dictionary.
@@ -48,7 +48,7 @@
 /// Indicator if "popover" is set in options. Will add "popover" to options if setPopover is used.
 @property (nonatomic, assign, getter=isPopover) BOOL popover;
 
-/// Tries to extract a size out of options "size". Returns CGSizeZero if conversion fails.
+/// Tries to extract a size out of options "size". Returns `CGSizeZero` if conversion fails.
 @property (nonatomic, assign) CGSize size;
 
 /// Video offset.
