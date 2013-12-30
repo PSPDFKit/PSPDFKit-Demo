@@ -84,9 +84,11 @@ static NSMutableDictionary *_settings;
             _settings[PROPERTY(emailButtonItem)] = @YES;
             _settings[PROPERTY(viewModeButtonItem)] = @YES;
             _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
-            _settings[@"renderBackgroundColor"] = [UIColor whiteColor];
+            _settings[@"renderBackgroundColor"] = UIColor.whiteColor;
             _settings[@"renderContentOpacity"] = @(1.f);
             _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
+            //_settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollContinuous);
+            //_settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionVertical);
         }
     }
 }
