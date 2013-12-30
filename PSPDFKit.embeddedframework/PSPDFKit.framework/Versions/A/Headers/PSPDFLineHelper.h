@@ -2,9 +2,9 @@
 //  PSPDFLineHelper.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, PSPDFLineEndType) {
     PSPDFLineEndTypeSlash
 };
 
-// Constructs a polyline between all given points. The two ends of this line can have a PSPDFLineEndType.
+// Constructs a polyline between all given points. The two ends of this line can have a `PSPDFLineEndType`.
 extern void PSPDFConstructPolyLine(CGPoint *points, NSUInteger pointsCount, PSPDFLineEndType lineEnd1, PSPDFLineEndType lineEnd2, CGFloat lineWidth,
                                    CGPathRef *storedLinePath, CGPathRef *storedLineEnd1FillPath, CGPathRef *storedLineEnd1StrokePath, CGPathRef *storedLineEnd2FillPath, CGPathRef *storedLineEnd2StrokePath,
                                    BOOL originUpperLeft);
@@ -64,5 +64,5 @@ extern NSString * const PSPDFLineEndTypeTransformerName;
 // Will update `lineCap` and `lineJoin` depending on the `annotationType` set.
 extern void PSPDFUpdateShapeLayerLineStyleForAnnotationType(CAShapeLayer *shapeLayer, PSPDFAnnotationType annotationType);
 
-// Converts the 'dashArray' of an annotation into the array usabe in CoreGraphics.
+// Converts the `dashArray` of an annotation into the array usabe in CoreGraphics.
 extern CGFloat *PSPDFCreateLineDashArrayForAnnotation(PSPDFAnnotation *annotation, NSUInteger *outDashCount);

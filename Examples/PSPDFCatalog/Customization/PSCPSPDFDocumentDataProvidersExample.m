@@ -2,7 +2,7 @@
 //  PSPDFDocumentDataProviders.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2011-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -306,8 +306,9 @@
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-    
-    // Here we use the pageRange feature to skip the intermediate NSDate objects we had to create in the last example.
+    document.undoEnabled = NO; // faster!
+
+    // Here we use the `pageRange` feature to skip the intermediate `NSDate` objects we had to create in the last example.
     NSMutableIndexSet *pageIndexes = [[NSMutableIndexSet alloc] initWithIndex:1];
     [pageIndexes addIndex:3];
     [pageIndexes addIndex:5];
@@ -315,16 +316,15 @@
     
     [document appendFile:kPaperExampleFileName]; // Append second file
     document.pageRange = pageIndexes;    // Define new page range.
-    
+
     // Merge pages into new document.
     NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp", @"pdf");
     [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
     PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
-    
-    // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
+
+    // Note: `PSPDFDocument` supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from `PSPDFDocument` sources.
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
     return controller;
-    
 }
 
 @end

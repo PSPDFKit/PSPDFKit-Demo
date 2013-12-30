@@ -2,7 +2,7 @@
 //  PSCAppDelegate.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -18,17 +18,7 @@
 
 @implementation PSCAppDelegate
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - UIApplicationDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Example how to localize strings in PSPDFKit.
-    // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
-    PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
-                                              @"%d-%d of %d" : @"Pages %d-%d of %d"}});
-
-    /*
-    // Example how to easily change certain images in PSPDFKit.
+- (void)customizeImages {
     PSPDFSetBundleImageBlock(^UIImage *(NSString *imageName) {
         if ([imageName isEqualToString:@"knob"]) {
             UIGraphicsBeginImageContextWithOptions(CGSizeMake(20.f, 20.f), NO, 0.0);
@@ -40,24 +30,36 @@
         }
         return nil;
     });
-     */
+}
 
-    // You can also customize localization with a block.
-    // If you return nil, the default PSPDFKit language system will be used.
-    /*
-     PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
-     // This will look up strings in language/PSPDFKit.strings inside resources.
-     // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
-     return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
-     //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
-     });
-     */
+- (void)customizeLocalization {
+    // Either use the block-based system.
+    PSPDFSetLocalizationBlock(^NSString *(NSString *stringToLocalize) {
+        // This will look up strings in language/PSPDFKit.strings inside resources.
+        // (In PSPDFCatalog, there are no such files, this is just to demonstrate best practice)
+        return NSLocalizedStringFromTable(stringToLocalize, @"PSPDFKit", nil);
+        //return [NSString stringWithFormat:@"_____%@_____", stringToLocalize];
+    });
+
+    // Or override via dictionary.
+    // See PSPDFKit.bundle/en.lproj/PSPDFKit.strings for all available strings.
+    PSPDFSetLocalizationDictionary(@{@"en" : @{@"%d of %d" : @"Page %d of %d",
+                                               @"%d-%d of %d" : @"Pages %d-%d of %d"}});
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIApplicationDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Example how to easily change certain images in PSPDFKit.
+    //[self customizeImages];
+
+    // Example how to localize strings in PSPDFKit.
+    //[self customizeLocalization];
 
     // Change log level to be more verbose.
 #ifdef DEBUG
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
-    //[PSPDFCache.sharedCache clearCache];
-    //NSLog(@"Cache: %@", NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]);
 #endif
 
     // Enable if you're having memory issues.
@@ -68,13 +70,15 @@
     // Visit http://customers.pspdfkit.com to get your license key.
     PSPDFSetLicenseKey("DEMO");
 
-    // Create catalog controller
-    PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
-    self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
-    self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    self.window.rootViewController = self.catalog;
-    [self.window makeKeyAndVisible];
+    // Create catalog controller delayed because we also dynamically load the license key.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
+        self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
+        self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        self.window.rootViewController = self.catalog;
+        [self.window makeKeyAndVisible];
+    });
 
     // Enable global Undo/Redo
     application.applicationSupportsShakeToEdit = YES;
@@ -94,7 +98,7 @@
 
     // Receive callbacks for viewing signature revisions.
     [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
-    
+
     return YES;
 }
 
@@ -122,10 +126,11 @@
 
 - (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
     PSPDFViewController *controller = [self viewControllerForDocument:pdf];
-    
+    controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+
     NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
     pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
-    
+
     [self.catalog pushViewController:controller animated:YES];
 }
 
@@ -148,8 +153,8 @@
 - (NSString *)customDeviceIdentifierForUpdateManager:(BITUpdateManager *)updateManager {
 #ifndef CONFIGURATION_AppStore
     // This is only for Hockey app deployment for beta testing. Using uniqueIdentifier in AppStore apps is not allowed and will get your app rejected.
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(uniqueIdentifier)])
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
+    if ([UIDevice.currentDevice respondsToSelector:@selector(uniqueIdentifier)])
+        return [UIDevice.currentDevice performSelector:@selector(uniqueIdentifier)];
 #endif
     return nil;
 }

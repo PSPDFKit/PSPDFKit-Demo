@@ -2,9 +2,9 @@
 //  PSPDFColorSelectionViewController.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -40,12 +40,12 @@ typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {
 /// Beautiful color selection controller.
 @interface PSPDFColorSelectionViewController : UIViewController
 
-/// Used to show the color pickers in PSPDF. Uses defaultColorArrays.
+/// Used to show the color pickers in PSPDF. Uses `defaultColorArrays`.
 /// `context` can be used to store additional context that gets sent to the delegates.
 + (PSPDFSimplePageViewController *)defaultColorPickerWithTitle:(NSString *)title wantTransparency:(BOOL)wantTransparency delegate:(id<PSPDFColorSelectionViewControllerDelegate>)delegate context:(void *)context;
 
-/// Set array of NSNumber-enums of PSPDFColorPickerStyle.
-/// Defaults to @[@(PSPDFColorPickerStyleRainbow), @(PSPDFColorPickerStyleModern), @(PSPDFColorPickerStyleVintage), @(PSPDFColorPickerStyleMonochrome), @(PSPDFColorPickerStyleHSVPicker)].
+/// Set array of `NSNumber`-enums of `PSPDFColorPickerStyle`.
+/// Defaults to `@[@(PSPDFColorPickerStyleRainbow), @(PSPDFColorPickerStyleModern), @(PSPDFColorPickerStyleVintage), @(PSPDFColorPickerStyleMonochrome), @(PSPDFColorPickerStyleHSVPicker)]`.
 + (void)setDefaultColorPickerStyles:(NSArray *)colorPickerStyles;
 
 /// Convenience initializers

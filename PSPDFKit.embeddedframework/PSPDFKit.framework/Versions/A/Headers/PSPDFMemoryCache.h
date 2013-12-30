@@ -2,9 +2,9 @@
 //  PSPDFMemoryCache.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -16,7 +16,7 @@
 @class PSPDFRenderReceipt;
 
 /// The memory cache is designed to take up as much memory as it can possibly get (the more, the faster!)
-/// On a memory warning, it will call clearCache all release all stored images.
+/// On a memory warning, it will call `clearCache` all release all stored images.
 @interface PSPDFMemoryCache : NSObject
 
 /// @name Accessing Data

@@ -2,9 +2,9 @@
 //  PSPDFDiskCache.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -37,7 +37,7 @@ typedef NSData *(^PSPDFCacheEncryptionHelper)(UIImage *image);
 /// Will load the image synchronously. The `decryptionHelper` is mandatory.
 - (UIImage *)imageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper cacheInfo:(PSPDFCacheInfo **)outCacheInfo;
 
-/// Accessing data will take some time, calls completionBlock when done. The `decryptionHelper` is mandatory.
+/// Accessing data will take some time, calls `completionBlock` when done. The `decryptionHelper` is mandatory.
 /// Returns `YES` if an image was found and a loading operation is scheduled.
 - (PSPDFCacheInfo *)scheduleLoadImageWithUID:(NSString *)UID page:(NSUInteger)page size:(CGSize)size infoSelector:(PSPDFCacheInfoSelector)infoSelector decryptionHelper:(PSPDFCacheDecryptionHelper)decryptionHelper completionBlock:(void (^)(UIImage *cachedImage, PSPDFCacheInfo *cacheInfo))completionBlock;
 

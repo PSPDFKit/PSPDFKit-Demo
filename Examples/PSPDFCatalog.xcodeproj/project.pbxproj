@@ -19,6 +19,7 @@
 		781908C71680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781908C51680BA340065A6B4 /* PSCCustomSubviewPDFViewController.m */; };
 		781EF830169E37510022556D /* PSCSaveAsPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */; };
 		7822D71615D3D1BE00E82EF9 /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = 7822D71515D3D1BE00E82EF9 /* Samples */; };
+		782D752418642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */; };
 		7830438B16FBE2E500D3EAB4 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438316FBE2E500D3EAB4 /* Icon-72.png */; };
 		7830438C16FBE2E500D3EAB4 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438416FBE2E500D3EAB4 /* Icon-72@2x.png */; };
 		7830438D16FBE2E500D3EAB4 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830438516FBE2E500D3EAB4 /* Icon-Small-50.png */; };
@@ -30,6 +31,7 @@
 		78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78344B5115DBB6B1002491BF /* PSCExampleAnnotationViewController.m */; };
 		783535F617209800009F8088 /* PSCMultipleUsersPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 783535F417209800009F8088 /* PSCMultipleUsersPDFViewController.m */; };
 		783BB8FC17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */; };
+		78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */; };
 		78479D1F17393F140006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D1E17393F140006D87D /* PSCGridViewController.m */; };
 		784F011E15CF247900849F81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011D15CF247900849F81 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		784F012015CF247900849F81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 784F011F15CF247900849F81 /* Foundation.framework */; };
@@ -225,6 +227,8 @@
 		781EF82E169E37510022556D /* PSCSaveAsPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSaveAsPDFViewController.h; sourceTree = "<group>"; };
 		781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSaveAsPDFViewController.m; sourceTree = "<group>"; };
 		7822D71515D3D1BE00E82EF9 /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
+		782D752218642FC600EC76CF /* PSCSignatureControllerCustomizationExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSignatureControllerCustomizationExample.h; sourceTree = "<group>"; };
+		782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSignatureControllerCustomizationExample.m; sourceTree = "<group>"; };
 		7830438316FBE2E500D3EAB4 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		7830438416FBE2E500D3EAB4 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		7830438516FBE2E500D3EAB4 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 		783535F517209800009F8088 /* PSCMultipleUsersPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMultipleUsersPDFViewController.h; sourceTree = "<group>"; };
 		783BB8FA17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PSCDeallocationBlock.h"; sourceTree = "<group>"; };
 		783BB8FB17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PSCDeallocationBlock.m"; sourceTree = "<group>"; };
+		78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCreateNoteFromTextSelectionExample.m; sourceTree = "<group>"; };
+		78471B40186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCreateNoteFromTextSelectionExample.h; sourceTree = "<group>"; };
 		78479D1D17393F140006D87D /* PSCGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGridViewController.h; sourceTree = "<group>"; };
 		78479D1E17393F140006D87D /* PSCGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGridViewController.m; sourceTree = "<group>"; };
 		784F011915CF247900849F81 /* PSPDFCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSPDFCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -833,6 +839,8 @@
 		78A8EE5915D6ADA900400DE7 /* Annotations */ = {
 			isa = PBXGroup;
 			children = (
+				78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */,
+				78471B40186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.h */,
 				78FE606217DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.h */,
 				78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */,
 				78A8EE5A15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.h */,
@@ -987,6 +995,8 @@
 				78BEE6F8183973CF007345B7 /* PSCDefaultStampExample.h */,
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
 				78F9FE831847493B005A05F4 /* PSCZoomingSearchExample.h */,
+				782D752218642FC600EC76CF /* PSCSignatureControllerCustomizationExample.h */,
+				782D752318642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1340,6 +1350,7 @@
 				783BB8FC17AAE81500AEF0DF /* NSObject+PSCDeallocationBlock.m in Sources */,
 				78A24AAF15CFDAE200328F4F /* PSCSectionDescriptor.m in Sources */,
 				78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */,
+				78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */,
 				78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */,
 				78D4D40D1848CD4900080A96 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */,
@@ -1427,6 +1438,7 @@
 				78BEE6F9183973CF007345B7 /* PSCDefaultStampExample.m in Sources */,
 				78E76578176BC10A00BD0A82 /* PSCShowHighlightNotesPDFController.m in Sources */,
 				78FB05E417737F670006CE08 /* PSCExportPDFPagesViewController.m in Sources */,
+				782D752418642FC600EC76CF /* PSCSignatureControllerCustomizationExample.m in Sources */,
 				78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */,
 				78D4D40A1848CD4900080A96 /* AFURLResponseSerialization.m in Sources */,
 			);

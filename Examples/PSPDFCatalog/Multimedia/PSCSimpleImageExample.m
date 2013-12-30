@@ -2,7 +2,7 @@
 //  PSCSimpleImageExample.m
 //  PSPDFCatalog
 //
-//  Copyright (c) 2012-2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  The PSPDFKit Sample applications are licensed with a modified BSD license.
 //  Please see License for details. This notice may not be removed from this file.
@@ -33,8 +33,17 @@
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400, 300);
-    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
+
+    // Add simple image annotation
+    PSPDFLinkAnnotation *imageAnnotation = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
+    imageAnnotation.fillColor = [UIColor clearColor];
+    imageAnnotation.URL = [NSURL fileURLWithPath:[NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"alternative_note_image@2x.png"]];
+
+    imageAnnotation.boundingBox = (CGRect) {CGPointMake(3.f, 200.f), CGSizeMake(25.f, 25.f)};
+    imageAnnotation.page = 0;
+    [document addAnnotations:@[imageAnnotation]];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;

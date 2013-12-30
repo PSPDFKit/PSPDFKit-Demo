@@ -2,9 +2,9 @@
 //  PSPDFStyleManager.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
 //
-//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY AUSTRIAN COPYRIGHT LAW
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
@@ -19,7 +19,7 @@ extern NSString *const PSPDFStyleManagerLastUsedStylesKey;
 // This key will mark styles as generic, thus they'll be returned with all other style types except the last used trait.
 extern NSString *const PSPDFStyleManagerGenericStylesKey;
 
-// Can be used to use a custom subclass of the PSPDFStyleManager. Defaults to nil, which will use PSPDFStyleManager.class.
+// Can be used to use a custom subclass of the `PSPDFStyleManager`. Defaults to nil, which will use PSPDFStyleManager.class.
 // Set very early (in your AppDelegate) before you access PSPDFKit. Will be used to create the singleton.
 extern Class PSPDFStyleManagerClass;
 
@@ -31,7 +31,7 @@ extern Class PSPDFStyleManagerClass;
 /// Access the style manager singleton.
 + (instancetype)sharedStyleManager;
 
-/// Keeps a list of style keys we want to listen to (like "color" or "lineWidth").
+/// Keeps a list of style keys we want to listen to (like `color` or `lineWidth`).
 /// @note If you want to disable automatic style saving, set this to nil.
 @property (atomic, copy) NSSet *styleKeys;
 
@@ -53,9 +53,9 @@ extern Class PSPDFStyleManagerClass;
 /// Convenience method. Will fetch the last used style for `key` and fetches the styleProperty for it. Might return nil.
 - (id)lastUsedProperty:(NSString *)styleProperty forKey:(NSString *)key;
 
-/// Convenience method. Will set the last used style for `key` and styleProperty.
+/// Convenience method. Will set the last used style for `key` and `styleProperty`.
 /// `value` might be a boxed CGFloat, color or whatever matches the property.
-/// `styleProperty` is the NSString-name for the property (e.g. NSStringFromSelector(@selector(fontSize))
+/// `styleProperty` is the NSString-name for the property (e.g. `NSStringFromSelector(@selector(fontSize))`
 /// `key` is the annotation key, e.g. PSPDFAnnotationStringFreeText.
 - (void)setLastUsedValue:(id)value forProperty:(NSString *)styleProperty forKey:(NSString *)key;
 
