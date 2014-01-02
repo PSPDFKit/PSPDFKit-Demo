@@ -67,7 +67,7 @@ const char PSCAlertViewKey;
     }];
 
     [[websitePrompt textFieldAtIndex:0] setDelegate:self]; // enable return key
-    objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_ASSIGN);
     [websitePrompt show];
 }
 
