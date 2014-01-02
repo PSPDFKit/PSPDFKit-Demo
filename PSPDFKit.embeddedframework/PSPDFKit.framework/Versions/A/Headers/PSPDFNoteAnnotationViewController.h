@@ -84,6 +84,9 @@
 // Returns "Delete Note", "Delete Free Text", "Delete Highlight" etc.
 - (NSString *)deleteAnnotationActionTitle;
 
+// Sets the text view as first responder and enables editing if allowed.
+- (BOOL)beginEditing;
+
 // Called as we update the text view.
 - (void)updateTextView;
 

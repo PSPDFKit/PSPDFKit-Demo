@@ -47,6 +47,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Asks for the visible pages to optimize search ordering.
 - (NSArray *)searchViewControllerGetVisiblePages:(PSPDFSearchViewController *)searchController;
 
+/// Allows to narrow down the search rage if a scope is set.
+- (NSIndexSet *)searchViewController:(PSPDFSearchViewController *)searchController searchRangeForScope:(NSString *)scope;
+
 @end
 
 /// The PDF search view controller.
@@ -92,7 +95,7 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 @interface PSPDFSearchViewController (SubclassingHooks)
 
-// Called every time the text in the search bar changes. Scope is currently ignored.
+// Called every time the text in the search bar changes.
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 
 // Will update the status and insert/reload/remove search rows

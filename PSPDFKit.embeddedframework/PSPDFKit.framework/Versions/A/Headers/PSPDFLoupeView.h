@@ -35,7 +35,7 @@ extern CGFloat PSPDFLoupeDefaultMagnification; // Defaults to 1.2 on iPad and 1.
 - (id)initWithReferenceView:(UIView *)referenceView;
 
 /// Reference view. Can be set to any subview or the window.
-@property (nonatomic, strong) UIView *referenceView;
+@property (nonatomic, weak) UIView *referenceView;
 
 /// Loupe detail mode. Defaults to `PSPDFLoupeViewModeCircular`.
 @property (nonatomic, assign) PSPDFLoupeViewMode mode;
