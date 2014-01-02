@@ -66,7 +66,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @property (nonatomic, assign) BOOL stickyHeaderEnabled;
 
 /// Defines the filter options. Set to nil or empty to hide the filter bar.
-/// Defaults to `PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterBookmarks, PSPDFThumbnailViewFilterAnnotations`.
+/// Defaults to `PSPDFThumbnailViewFilterShowAll, PSPDFThumbnailViewFilterAnnotations, PSPDFThumbnailViewFilterBookmarks`.
 @property (nonatomic, copy) NSOrderedSet *filterOptions;
 
 /// Currently active filter. Make sure that one is also set in filterOptions.

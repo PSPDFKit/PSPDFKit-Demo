@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, PSPDFOutlineBarButtonItemOption) {
 - (BOOL)isAvailableBlocking;
 
 /// Choose the controller type.
-/// Defaults to `PSPDFOutlineBarButtonItemOptionOutline, PSPDFOutlineBarButtonItemOptionBookmarks, PSPDFOutlineBarButtonItemOptionAnnotations`.
+/// Defaults to `PSPDFOutlineBarButtonItemOptionOutline, PSPDFOutlineBarButtonItemOptionAnnotations, PSPDFOutlineBarButtonItemOptionBookmarks`.
 /// @note Change this before the controller is being displayed.
 @property (nonatomic, copy) NSOrderedSet *availableControllerOptions;
 

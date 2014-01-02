@@ -34,7 +34,7 @@ extern NSString *const PSPDFAnnotationStringPolyLine;
 extern NSString *const PSPDFAnnotationStringSignature;  /// Signature is an `PSPDFAnnotationStringInk` annotation.
 extern NSString *const PSPDFAnnotationStringStamp;
 
-/// Sound annotations can be played back and recorded by default, but playback and recording will not work when the host app is in the background. If you want to enable background playback and recording, you'll need to add the "audio" entry to the "UIBackgroundModes" array in the app's Info.plist. If you do not add this, then recording will be stopped and playback will be silenced when your app is sent into the background.
+/// Sound annotations can be played back and recorded by default, but playback and recording will not work when the host app is in the background. If you want to enable background playback and recording, you'll need to add the "audio" entry to the `UIBackgroundModes` array in the app's Info.plist. If you do not add this, then recording will be stopped and playback will be silenced when your app is sent into the background.
 extern NSString *const PSPDFAnnotationStringSound;
 
 /// `UIImagePickerController` used in the image add feature will throw a `UIApplicationInvalidInterfaceOrientation` exception if your app does not include portrait in `UISupportedInterfaceOrientations` (Info.plist). For landscape only apps, we suggest enabling portrait orientation(s) in your Info.plist and rejecting these in `UIViewController's` auto-rotation methods. This way, you can be landscape only for your view controllers and still be able to use `UIImagePickerController`.
@@ -52,50 +52,49 @@ extern NSString *const PSPDFAnnotationStringButtonFormElement;
 extern NSString *const PSPDFAnnotationStringChoiceFormElement;
 extern NSString *const PSPDFAnnotationStringSignatureFormElement;
 
-// Annotations types
+/// Annotations types
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypeNone        = 0,
-    PSPDFAnnotationTypeUndefined   = 1 << 0,  // Any annotation whose type couldn't be recognized.
-    PSPDFAnnotationTypeLink        = 1 << 1,  // Links and PSPDFKit multimedia extensions.
+    PSPDFAnnotationTypeUndefined   = 1 << 0,  /// Any annotation whose type couldn't be recognized.
+    PSPDFAnnotationTypeLink        = 1 << 1,  /// Links and PSPDFKit multimedia extensions.
     PSPDFAnnotationTypeHighlight   = 1 << 2,
     PSPDFAnnotationTypeStrikeOut   = 1 << 17,
     PSPDFAnnotationTypeUnderline   = 1 << 18,
     PSPDFAnnotationTypeSquiggly    = 1 << 19,
     PSPDFAnnotationTypeFreeText    = 1 << 3,
-    PSPDFAnnotationTypeInk         = 1 << 4,  // Ink (includes Signatures)
+    PSPDFAnnotationTypeInk         = 1 << 4,  /// Ink (includes Signatures)
     PSPDFAnnotationTypeSquare      = 1 << 5,
     PSPDFAnnotationTypeCircle      = 1 << 20,
     PSPDFAnnotationTypeLine        = 1 << 6,
     PSPDFAnnotationTypeNote        = 1 << 7,
-    PSPDFAnnotationTypeStamp       = 1 << 8,  // A stamp can be an image as well.
+    PSPDFAnnotationTypeStamp       = 1 << 8,  /// A stamp can be an image as well.
     PSPDFAnnotationTypeCaret       = 1 << 9,
-    PSPDFAnnotationTypeRichMedia   = 1 << 10, // Embedded PDF video
-    PSPDFAnnotationTypeScreen      = 1 << 11, // Embedded PDF video
-    PSPDFAnnotationTypeWidget      = 1 << 12, // Widget (includes special links all form types)
-    PSPDFAnnotationTypeFile        = 1 << 13, // FileAttachment
+    PSPDFAnnotationTypeRichMedia   = 1 << 10, /// Embedded PDF video
+    PSPDFAnnotationTypeScreen      = 1 << 11, /// Embedded PDF video
+    PSPDFAnnotationTypeWidget      = 1 << 12, /// Widget (includes special links all form types)
+    PSPDFAnnotationTypeFile        = 1 << 13, /// FileAttachment
     PSPDFAnnotationTypeSound       = 1 << 14,
     PSPDFAnnotationTypePolygon     = 1 << 15,
     PSPDFAnnotationTypePolyLine    = 1 << 16,
-    PSPDFAnnotationTypePopup       = 1 << 21, // Not yet supported.
+    PSPDFAnnotationTypePopup       = 1 << 21, /// Popup annotations are not yet supported.
     PSPDFAnnotationTypeAll         = NSUIntegerMax
 };
 
-// Mask for all text markup types.
-// `PSPDFAnnotationTypeHighlight|PSPDFAnnotationTypeStrikeOut|PSPDFAnnotationTypeUnderline|PSPDFAnnotationTypeSquiggly`
+/// Mask for all text markups. `PSPDFAnnotationTypeHighlight|PSPDFAnnotationTypeStrikeOut|PSPDFAnnotationTypeUnderline|PSPDFAnnotationTypeSquiggly`
 extern const PSPDFAnnotationType PSPDFAnnotationTypeTextMarkup;
 
-// Converts an annotation type into the string representation and back.
+/// Converts an annotation type into the string representation and back.
 extern NSString *PSPDFStringFromAnnotationType(PSPDFAnnotationType annotationType);
 extern PSPDFAnnotationType PSPDFAnnotationTypeFromString(NSString *string);
 
-// Annotation border style. PSPDFKit currently only supports Solid and Dashed.
+/// Annotation border style.
 typedef NS_ENUM(NSUInteger, PSPDFAnnotationBorderStyle) {
     PSPDFAnnotationBorderStyleNone,
     PSPDFAnnotationBorderStyleSolid,
-    PSPDFAnnotationBorderStyleDashed,    // Not yet supported.
-    PSPDFAnnotationBorderStyleBelved,    // Not yet supported.
-    PSPDFAnnotationBorderStyleInset,     // Not yet supported.
-    PSPDFAnnotationBorderStyleUnderline, // Not yet supported.
+    PSPDFAnnotationBorderStyleDashed,
+    PSPDFAnnotationBorderStyleBelved,
+    PSPDFAnnotationBorderStyleInset,
+    PSPDFAnnotationBorderStyleUnderline,
     PSPDFAnnotationBorderStyleUnknown
 };
 
@@ -114,7 +113,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationFlags) {
     PSPDFAnnotationFlagLockedContents = 1 << 9, // [IGNORED] If set, don't allow the contents of the annotation to be modified by the user.
 };
 
-// See PDF Reference 1.7, 423ff. PSPDFKit currently only supports the MouseDown event.
+// See PDF Reference 1.7, 423ff. PSPDFKit currently only supports the `PSPDFAnnotationTriggerEventMouseDown` event.
 typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
     PSPDFAnnotationTriggerEventCursorEnters,  // E
     PSPDFAnnotationTriggerEventCursorExits,   // X
@@ -172,24 +171,6 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Calculates the exact annotation position in the current page.
 - (CGRect)boundingBoxForPageRect:(CGRect)pageRect;
-
-/// Draw current annotation in context. Coordinates here are in PDF coordinate space.
-/// Use `PSPDFConvertViewRectToPDFRect:` to convert your coordinates accordingly.
-/// (For performance considerations, you want to do this once, not every time `drawInContext:` is called)
-- (void)drawInContext:(CGContextRef)context;
-
-// Options to use for `drawInContext:withOptions:`
-extern NSString *const PSPDFAnnotationDrawFlattened;
-
-/// Allows to customize the drawing process.
-/// Currently used to allow different annotation drawings during the annotation flattening process.
-- (void)drawInContext:(CGContextRef)context withOptions:(NSDictionary *)options;
-
-extern NSString *const PSPDFAnnotationDrawCentered; // CGFloat, draw in the middle of the image, if size has a different aspect ratio.
-extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
-
-/// Renders annotation into an image.
-- (UIImage *)imageWithSize:(CGSize)size withOptions:(NSDictionary *)options;
 
 /// Current annotation type.
 @property (nonatomic, assign, readonly) PSPDFAnnotationType type;
@@ -303,10 +284,10 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
 @property (nonatomic, assign, readonly) PSPDFDocument *document;
 
 /// Returns YES if a custom appearance stream is attached to this annotation.
-/// @note An appearance stream is a custom representation for annotations, much like a PDF within a PDF. PSPDFKit has only very limited support for appearance streams, currently only for stamp/ink annotations and that only under certain conditions.
+/// @note An appearance stream is a custom representation for annotations, much like a PDF within a PDF.
 @property (nonatomic, assign, readonly) BOOL hasAppearanceStream;
 
-/// If indexOnPage is set, it's a native PDF annotation.
+/// If `indexOnPage` is set, it's a native PDF annotation.
 /// If this is -1, it's not yet saved in the PDF or saved externally.
 @property (atomic, readonly) NSInteger indexOnPage;
 
@@ -320,7 +301,7 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
 /// Dictionary for additional action types.
 @property (nonatomic, copy) NSDictionary *additionalActions;
 
-/// Returns self.contents or something appropriate per annotation type to describe the object.
+/// Returns `self.contents` or something appropriate per annotation type to describe the object.
 - (NSString *)localizedDescription;
 
 /// Return icon for the annotation, if there's one defined.
@@ -335,6 +316,28 @@ extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
 - (CGRect)boundingBoxForPageViewBounds:(CGRect)pageBounds;
 
 extern NSString *const PSPDFBorderStyleTransformerName;
+
+@end
+
+@interface PSPDFAnnotation (Drawing)
+
+// Options to use for `drawInContext:withOptions:`
+extern NSString *const PSPDFAnnotationDrawFlattened;
+
+/// Draw current annotation in context. Coordinates here are in PDF coordinate space.
+/// Use `PSPDFConvertViewRectToPDFRect:` to convert your coordinates accordingly.
+/// (For performance considerations, you want to do this once, not every time `drawInContext:` is called)
+/// `options is currently used to allow different annotation drawings during the annotation flattening process.
+- (void)drawInContext:(CGContextRef)context withOptions:(NSDictionary *)options;
+
+extern NSString *const PSPDFAnnotationDrawCentered; // CGFloat, draw in the middle of the image, if size has a different aspect ratio.
+extern NSString *const PSPDFAnnotationMargin;       // UIEdgeInsets.
+
+/// Renders annotation into an image.
+- (UIImage *)imageWithSize:(CGSize)size withOptions:(NSDictionary *)options;
+
+// Point for the note icon. Override to customize.
+- (CGPoint)noteIconPoint;
 
 @end
 
