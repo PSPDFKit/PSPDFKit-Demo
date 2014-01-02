@@ -2,6 +2,21 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.3.1 - 2/Jan/2013__
+
+*  PSPDFKit now displays note indicators for annotations with note content.
+*  Annotations that can't be erased are no longer hidden while in erase mode.
+*  The view controller order in `PSPDFOutlineBarButtonItem` and in `PSPDFThumbnailViewController` has been changed - bookmark is now the last entry.
+*  PSPDFSearchViewController now has support for custom scopes with a new optional delegate method.
+*  On iOS 7 we now support `shouldAutomaticallyAdjustScrollViewInsets` with `PSPDFPageTransitionScrollContinuous` & `PSPDFScrollDirectionVertical`.
+*  The scroll-to-top feature when the status bar is tapped no longer breaks when showing/hiding the thumbnail controller.
+*  Fixes an issue with glyph position calculation for certain rotated documents that had a non-nil origin.
+*  Fixes an issue that prevented linking the precompiled PSPDFKit.framework with Xcode 4.6.
+*  Fixes a timing issue where the annotation menu wasn't always displayed wen selecting an annotation via the `PSPDFAnnotationTableViewController` on iPhone.
+*  Fixes a small issue where the `PSPDFNoteAnnotationViewController` could fail to show the keyboard when presented manually with a certain timing.
+*  Fixes an issue that could have kept a total 1-2 instance of `PSPDFPageView` around, even when the `PSPDFViewController` was deallocated.
+*  Fixes a potential retain cycle in the `PSPDFDocumentSharingViewController` on iOS 7.
+
 __v3.3.0 - 29/Dec/2013__
 
 Happy holidays!

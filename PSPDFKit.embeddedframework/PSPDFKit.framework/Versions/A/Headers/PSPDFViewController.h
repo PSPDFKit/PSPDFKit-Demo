@@ -343,10 +343,17 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 
 /// Defines the page transition.
 /// @warning If you change the property dynamically depending on the screen orientation, don't use `willRotateToInterfaceOrientation:` but `didRotateFromInterfaceOrientation:`, else the controller will get in an invalid state. Child view controllers get rotation events AFTER the parent view controller, so if you're changing this from a parent viewController, for PSPDFKit the rotation hasn't been completed yet, and your app will eventually crash. In that case, use a `dispatch_async(dispatch_get_main_queue(), ^{ ... });` to set. You might just want to override `updateSettingsForRotation:` and set your properties there.
+/// @note , we enable the new `automaticallyAdjustsScrollViewInsets` on iOS 7+. If you don't want this behavior, subclass `reloadData` and set this property to NO.
 @property (nonatomic, assign) PSPDFPageTransition pageTransition;
 
 /// Page scrolling direction. Defaults to `PSPDFScrollDirectionHorizontal`. Only relevant for scrolling page transitions.
 @property (nonatomic, assign) PSPDFScrollDirection scrollDirection;
+
+/// Automatically adjust the scroll view insets.
+/// This is enabled by default and only evaluated for `PSPDFPageTransitionScrollContinuous` & `PSPDFScrollDirectionVertical`.
+/// @note This is similar to `automaticallyAdjustsScrollViewInsets` but more tailored to PSPDFKit's use case.
+/// `UIViewController's` `automaticallyAdjustsScrollViewInsets` will always be disabled. Don't enable this property.
+@property (nonatomic, assign) BOOL shouldAutomaticallyAdjustScrollViewInsets;
 
 /// Shows first document page alone. Not relevant in `PSPDFPageModeSingle`. Defaults to NO.
 @property (nonatomic, assign, getter=isDoublePageModeOnFirstPage) BOOL doublePageModeOnFirstPage;

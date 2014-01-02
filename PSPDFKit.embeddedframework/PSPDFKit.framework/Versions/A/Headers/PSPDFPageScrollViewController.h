@@ -19,13 +19,13 @@
 
 @class PSPDFPageView;
 
-/// Basic magazine-like side scrolling.
+/// Handles the default per-page side-scrolling.
 @interface PSPDFPageScrollViewController : PSPDFBaseViewController <PSPDFTransitionProtocol, UIScrollViewDelegate>
 
 /// Designated initializer.
 - (id)initWithPDFController:(PSPDFViewController *)pdfController;
 
-/// Associated pdfController class (hosts the `UIPageViewController`).
+/// Associated `PSPDFViewController` class.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
 /// Main view.

@@ -458,7 +458,7 @@ extern NSString *const PSPDFIgnoreDisplaySettings;   // Always draw pixels with 
 /// This fixes tiny white/gray lines at the borders of a document that else might show up.
 @property (nonatomic, copy) NSDictionary *renderOptions;
 
-/// Set what annotations should be rendered. Defaults to PSPDFAnnotationTypeAll.
+/// Set what annotations should be rendered. Defaults to `PSPDFAnnotationTypeAll`.
 @property (nonatomic, assign) PSPDFAnnotationType renderAnnotationTypes;
 
 @end
@@ -466,9 +466,9 @@ extern NSString *const PSPDFIgnoreDisplaySettings;   // Always draw pixels with 
 // Creates annotations based on the text content. See `detectLinkTypes:forPagesInRange:`.
 typedef NS_OPTIONS(NSUInteger, PSPDFTextCheckingType) {
     PSPDFTextCheckingTypeNone        = 0,
-    PSPDFTextCheckingTypeLink        = 1 << 0,  // URLs
-    PSPDFTextCheckingTypePhoneNumber = 1 << 1,  // Phone numbers
-    PSPDFTextCheckingTypeAll         = NSUIntegerMax
+    PSPDFTextCheckingTypeLink        = 1 << 0,       /// URLs.
+    PSPDFTextCheckingTypePhoneNumber = 1 << 1,       /// Phone numbers.
+    PSPDFTextCheckingTypeAll         = NSUIntegerMax /// All types. Currently URLs and phone numbers.
 };
 
 @interface PSPDFDocument (DataDetection)
