@@ -96,9 +96,6 @@
     });
 #endif
 
-    // Receive callbacks for viewing signature revisions.
-    [PSPDFDigitalSignatureManager.sharedManager registerForReceivingRequestsToViewRevisions:self];
-
     return YES;
 }
 
@@ -126,19 +123,6 @@
     pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
     pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
     return pdfController;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFDigitalSignatureRevisionDelegate
-
-- (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
-    PSPDFViewController *controller = [self viewControllerForDocument:pdf];
-    controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
-
-    NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-    pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
-
-    [self.catalog pushViewController:controller animated:YES];
 }
 
 // If you need to block certain interface orientation, that's the place you want to add it.
