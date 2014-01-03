@@ -124,10 +124,10 @@
         NSError *error = nil;
         NSString *path = [[self samplesFolder] stringByAppendingPathComponent:kPaperExampleFileName];
         NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:@"PSPDFKit.pdf"];
-        if (![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
+        if (![NSFileManager.defaultManager removeItemAtPath:newPath error:&error]) {
             NSLog(@"error while deleting: %@", error.localizedDescription);
         }
-        if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:&error]) {
+        if (![NSFileManager.defaultManager copyItemAtPath:path toPath:newPath error:&error]) {
             NSLog(@"error while copying: %@", error.localizedDescription);
         }
         replace = NO;
@@ -181,11 +181,11 @@
     NSError *error = nil;
     NSString *path = [[self samplesFolder] stringByAppendingPathComponent:fileName];
     NSString *newPath = [[self documentsFolder] stringByAppendingPathComponent:fileName];
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:path];
-    if (fileExists && ![[NSFileManager defaultManager] removeItemAtPath:newPath error:&error]) {
+    BOOL fileExists = [NSFileManager.defaultManager fileExistsAtPath:path];
+    if (fileExists && ![NSFileManager.defaultManager removeItemAtPath:newPath error:&error]) {
         NSLog(@"error while deleting: %@", error.localizedDescription);
     }
-    [[NSFileManager defaultManager] copyItemAtPath:path toPath:newPath error:NULL];
+    [NSFileManager.defaultManager copyItemAtPath:path toPath:newPath error:NULL];
 }
 
 - (void)pushView {

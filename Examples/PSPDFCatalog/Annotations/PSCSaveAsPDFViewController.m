@@ -81,11 +81,11 @@
                 newPath = [newPath stringByAppendingString:appendSuffix];
             }
             appendFileCount++;
-        }while ([[NSFileManager defaultManager] fileExistsAtPath:newPath]);
+        }while ([NSFileManager.defaultManager fileExistsAtPath:newPath]);
         NSURL *newURL = [NSURL fileURLWithPath:newPath];
 
         NSError *error;
-        if (![[NSFileManager defaultManager] copyItemAtURL:self.document.fileURL toURL:newURL error:&error]) {
+        if (![NSFileManager.defaultManager copyItemAtURL:self.document.fileURL toURL:newURL error:&error]) {
             NSLog(@"Failed to copy file to %@: %@", newURL.path, error.localizedDescription);
         }else {
             // Since the annotation has already been edited, we copy the file *before* it will be saved
@@ -94,13 +94,13 @@
                 NSLog(@"Failed to save annotations: %@", error.localizedDescription);
             }
             NSURL *tmpURL = [newURL URLByAppendingPathExtension:@"temp"];
-            if (![[NSFileManager defaultManager] moveItemAtURL:self.document.fileURL toURL:tmpURL error:&error]) {
+            if (![NSFileManager.defaultManager moveItemAtURL:self.document.fileURL toURL:tmpURL error:&error]) {
                 NSLog(@"Failed to move file: %@", error.localizedDescription); return;
             }
-            if (![[NSFileManager defaultManager] moveItemAtURL:newURL toURL:self.document.fileURL error:&error]) {
+            if (![NSFileManager.defaultManager moveItemAtURL:newURL toURL:self.document.fileURL error:&error]) {
                 NSLog(@"Failed to move file: %@", error.localizedDescription); return;
             }
-            if (![[NSFileManager defaultManager] moveItemAtURL:tmpURL toURL:newURL error:&error]) {
+            if (![NSFileManager.defaultManager moveItemAtURL:tmpURL toURL:newURL error:&error]) {
                 NSLog(@"Failed to move file: %@", error.localizedDescription); return;
             }
             // Finally update the fileURL, this will clear the current document cache.
