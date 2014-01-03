@@ -184,6 +184,7 @@
     
     // we use a NSData document here but it'll work even better with a file-based variant.
     PSPDFDocument *document = [PSPDFDocument documentWithData:[NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL]];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     document.title = @"Programmatically create annotations";
     
     NSMutableArray *annotations = [NSMutableArray array];
@@ -297,6 +298,7 @@
     
     // Create document and set up the XFDF provider
     PSPDFDocument *document = [PSPDFDocument documentWithURL:documentURL];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeExternalFile;
     [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
         PSPDFXFDFAnnotationProvider *XFDFProvider = [[PSPDFXFDFAnnotationProvider alloc] initWithDocumentProvider:documentProvider fileURL:fileXML];
         documentProvider.annotationManager.annotationProviders = @[XFDFProvider];
