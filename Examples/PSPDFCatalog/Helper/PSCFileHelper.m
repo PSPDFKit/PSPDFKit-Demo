@@ -29,15 +29,15 @@ NSURL *PSCCopyFileURLToDocumentFolderAndOverride(NSURL *documentURL, BOOL overri
     NSString *newPath = [docsFolder stringByAppendingPathComponent:[documentURL lastPathComponent]];
     NSURL *newURL = [NSURL fileURLWithPath:newPath];
 
-    BOOL needsCopy = ![[NSFileManager defaultManager] fileExistsAtPath:newPath];
+    BOOL needsCopy = ![NSFileManager.defaultManager fileExistsAtPath:newPath];
     if (override) {
         needsCopy = YES;
-        [[NSFileManager defaultManager] removeItemAtURL:newURL error:NULL];
+        [NSFileManager.defaultManager removeItemAtURL:newURL error:NULL];
     }
 
     NSError *error;
     if (needsCopy &&
-        ![[NSFileManager defaultManager] copyItemAtURL:documentURL toURL:newURL error:&error]) {
+        ![NSFileManager.defaultManager copyItemAtURL:documentURL toURL:newURL error:&error]) {
         NSLog(@"Error while copying %@: %@", documentURL.path, error.localizedDescription);
     }
 

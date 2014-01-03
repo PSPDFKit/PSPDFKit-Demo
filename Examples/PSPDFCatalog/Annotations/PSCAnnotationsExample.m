@@ -192,7 +192,7 @@
     for (int i=0; i<5; i++) {
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         // width/height will be ignored for note annotations.
-        noteAnnotation.boundingBox = (CGRect){CGPointMake(100, 50 + i*maxHeight/5), PSPDFNoteAnnotationViewFixedSize};
+        noteAnnotation.boundingBox = (CGRect){CGPointMake(100.f, 50.f + i*maxHeight/5), PSPDFNoteAnnotationViewFixedSize};
         noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
         [annotations addObject:noteAnnotation];
     }
@@ -275,12 +275,12 @@
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     
     // Load from an example XFDF file.
-    NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
     NSLog(@"Using XFDF file at %@", fileXML.path);
     
     // Create an example XFDF from the current document if one doesn't already exist.
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fileXML.path]) {
+    if (![NSFileManager.defaultManager fileExistsAtPath:fileXML.path]) {
         // Collect all existing annotations from the document
         PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
         NSMutableArray *annotations = [NSMutableArray array];

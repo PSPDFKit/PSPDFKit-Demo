@@ -1561,7 +1561,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Ensure that videos do display.
     [testSection addContent:[PSContent contentWithTitle:@"Test large video extraction code" block:^UIViewController *{
         // clear temp directory to force video extraction.
-        [[NSFileManager defaultManager] removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"PSPDFKit"] error:NULL];
+        [NSFileManager.defaultManager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"PSPDFKit"] error:NULL];
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Embedded-video-large.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 11;
