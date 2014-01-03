@@ -60,18 +60,6 @@
                                            imageSize.width, imageSize.height);
     [document addAnnotations:@[videoEmbedded]];
 
-
-    // Third example - use a stamp annotation. This will be rendered into the PDF.
-    // Add a link to a full-screen video.
-    PSPDFStampAnnotation *videoStamp = [[PSPDFStampAnnotation alloc] initWithImage:[UIImage imageNamed:@"mas_audio_b41570.gif"]];
-
-    // Center the image into the page in PDF coordinate space (flipped)
-    videoStamp.boundingBox = CGRectMake((pageRect.size.width-imageSize.width)/2, 10.0f, imageSize.width, imageSize.height);
-
-    // Add the video action and add the annotation.
-    videoStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : videoAction};
-    [document addAnnotations:@[videoStamp]];
-
     // Example using the new gallery (supports images, video, audio annotations)
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
