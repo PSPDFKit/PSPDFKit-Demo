@@ -290,7 +290,7 @@ NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
 	_persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
 	if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
 		// Remove store and retry once.
-		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+		[NSFileManager.defaultManager removeItemAtURL:storeURL error:NULL];
 		if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
 			NSLog(@"Failed to create sqlite store: %@", error.localizedDescription);
 			abort();

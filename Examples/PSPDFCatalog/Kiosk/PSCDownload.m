@@ -149,7 +149,7 @@
 // https://developer.apple.com/library/ios/#qa/qa1719/_index.html
 #include <sys/xattr.h>
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL {
-    assert([[NSFileManager defaultManager] fileExistsAtPath:URL.path]);
+    assert([NSFileManager.defaultManager fileExistsAtPath:URL.path]);
     BOOL success = NO;
 
     // Weak-linking of NSURLIsExcludedFromBackupKey works in Xcode 4.5 and above.
