@@ -135,7 +135,7 @@
 "Thickness..." = "Stärke…";
 "Thickness" = "Stärke";
 "%@ pt" = "%@ pt";
-"Note..." = "Notiz…";
+"Note..." = "Notiz";
 "Yellow" = "Gelb";
 "Green" = "Grün";
 "Red" = "Rot";
@@ -198,7 +198,7 @@
 "Preview File" = "Dateivorschau";
 "Copy" = "Kopieren";
 "Paste" = "Einfügen";
-"Inspector..." = "Inspektor...";
+"Inspector..." = "Inspektor";
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
 "Sample" = "Beispiel";

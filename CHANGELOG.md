@@ -2,6 +2,22 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.3.2 - 4/Jan/2013__
+
+*  Adds new accessory view for free text annotations to quickly access the inspector.
+*  The font size in `PSPDFNoteAnnotationViewController` now adapts to iOS 7 content size.
+*  The gradient calculation used in `PSPDFNoteAnnotationViewController` now simply returns a default yellow if the base is white.
+*  The delete note icon in `PSPDFNoteAnnotationViewController` is now dynamically enabled/disabled depending if there's text in the `UITextView`.
+*  Improves the animation and various design details in `PSPDFSearchViewController`, especially on iOS 7.
+*  Improves the annotation summary to now repeat type and description if that's the same. (Ink, Ink)
+*  Various smaller design updates for the annotation inspector.
+*  API Update: `generatePDFFromDocument:` now accepts `pageRanges` as NSArray, which allows to easily re-order document pages (compared to a single NSIndexSet)
+*  Fixes an UI issue where the text view wouldn't properly adapt in `PSPDFNoteAnnotationViewController` on iPhone.
+*  Fixes an UI issue where the "No Bookmarks" label could be not exactly centered on first load.
+*  Fixes an issue where the annotation bar button item would be disabled with `PSPDFAnnotationSaveModeExternalFile`.
+*  Fixes an issue where the document sharing controller would sometimes not extract pages out of the PDF if only a subset of the pages are selected.
+*  Fixes an issue where wrong options could end up being used if `PSPDFDocumentSharingViewController` was preconfigured so it is invoked without showing the UI.
+
 __v3.3.1 - 2/Jan/2013__
 
 *  PSPDFKit now displays note indicators for annotations with note content.
@@ -14,7 +30,7 @@ __v3.3.1 - 2/Jan/2013__
 *  Fixes an issue that prevented linking the precompiled PSPDFKit.framework with Xcode 4.6.
 *  Fixes a timing issue where the annotation menu wasn't always displayed wen selecting an annotation via the `PSPDFAnnotationTableViewController` on iPhone.
 *  Fixes a small issue where the `PSPDFNoteAnnotationViewController` could fail to show the keyboard when presented manually with a certain timing.
-*  Fixes an issue that could have kept a total 1-2 instance of `PSPDFPageView` around, even when the `PSPDFViewController` was deallocated.
+*  Fixes an issue that could have kept a total 1-2 instances of `PSPDFPageView` around, even when the `PSPDFViewController` was deallocated.
 *  Fixes a potential retain cycle in the `PSPDFDocumentSharingViewController` on iOS 7.
 
 __v3.3.0 - 29/Dec/2013__

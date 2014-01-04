@@ -37,7 +37,7 @@
 - (void)removeViewController:(UIViewController *)controller;
 
 /// All added view controllers.
-@property (nonatomic, readonly) NSArray *viewControllers;
+@property (nonatomic, copy, readonly) NSArray *viewControllers;
 
 /// @name State
 

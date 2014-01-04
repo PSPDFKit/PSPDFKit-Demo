@@ -61,6 +61,7 @@
 
 /// Allow to customize the textView. (font etc)
 /// Created in `viewDidLoad`.
+/// @note If you want to customize the font, override `textViewFont`.
 @property (nonatomic, strong, readonly) UITextView *textView;
 
 /// Set a global block that allows to customize the `UITextView` and other properties of `PSPDFNoteAnnotationViewController`.
@@ -89,6 +90,9 @@
 
 // Called as we update the text view.
 - (void)updateTextView;
+
+// Creates the font for the text view (adaptive to iOS 7 content size)
+- (UIFont *)textViewFont;
 
 // Background gradient.
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;
