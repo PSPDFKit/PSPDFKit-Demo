@@ -17,17 +17,17 @@
 @class PSPDFDocument;
 
 typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
-    PSPDFDocumentSharingOptionCurrentPageOnly              = 1<<0, // Only page set in .page of PSPDFViewController.
-    PSPDFDocumentSharingOptionVisiblePages                 = 1<<1, // All visible pages. (ignored if only one visible)
+    PSPDFDocumentSharingOptionCurrentPageOnly              = 1<<0, /// Only page set in `page` of `PSPDFViewController`.
+    PSPDFDocumentSharingOptionVisiblePages                 = 1<<1, /// All visible pages. (ignored if only one visible)
     PSPDFDocumentSharingOptionAllPages                     = 1<<2, // Send whole document.
 
-    PSPDFDocumentSharingOptionEmbedAnnotations             = 1<<3, // Save annotations in the PDF.
-    PSPDFDocumentSharingOptionFlattenAnnotations           = 1<<4, // Render annotations into the PDF.
-    PSPDFDocumentSharingOptionAnnotationsSummary           = 1<<5, // Save annotations + add summary.
-    PSPDFDocumentSharingOptionRemoveAnnotations            = 1<<6, // Remove all annotations.
+    PSPDFDocumentSharingOptionEmbedAnnotations             = 1<<3, /// Save annotations in the PDF.
+    PSPDFDocumentSharingOptionFlattenAnnotations           = 1<<4, /// Render annotations into the PDF.
+    PSPDFDocumentSharingOptionAnnotationsSummary           = 1<<5, /// Save annotations + add summary.
+    PSPDFDocumentSharingOptionRemoveAnnotations            = 1<<6, /// Remove all annotations.
 
-    PSPDFDocumentSharingOptionOfferMergeFiles              = 1<<8, // Allow to choose between multiple files or merging.
-    PSPDFDocumentSharingOptionForceMergeFiles              = 2<<8, // Forces file merging.
+    PSPDFDocumentSharingOptionOfferMergeFiles              = 1<<8, /// Allow to choose between multiple files or merging.
+    PSPDFDocumentSharingOptionForceMergeFiles              = 2<<8, /// Forces file merging.
 };
 
 @class PSPDFDocumentSharingViewController;
@@ -36,7 +36,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 @protocol PSPDFDocumentSharingViewControllerDelegate <PSPDFOverridable>
 
 /// Content has been prepared.
-/// `resultingObjects` can either be NSURL or NSData.
+/// `resultingObjects` can either be `NSURL` or `NSData`.
 - (void)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController didFinishWithSelectedOptions:(PSPDFDocumentSharingOptions)selectedSharingOption resultingObjects:(NSArray *)resultingObjects fileNames:(NSArray *)fileNames annotationSummary:(NSString *)annotationSummary error:(NSError *)error;
 
 @optional
@@ -78,7 +78,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 /// The document sharing controller delegate.
 @property (nonatomic, weak) id <PSPDFDocumentSharingViewControllerDelegate> delegate;
 
-// PSPDFStyleable attribute.
+// Controller is in a popover. `PSPDFStyleable` attribute.
 @property (nonatomic, assign) BOOL isInPopover;
 
 @end

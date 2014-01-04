@@ -16,6 +16,13 @@
 
 @end
 
+@interface PSPDFBaseViewController (SubclassingHooks)
+
+// Called when the iOS 7+ font system base size is changed.
+- (void)contentSizeDidChangeNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+
+@end
+
 @interface PSPDFBaseViewController (SubclassingWarnings)
 
 // PSPDFKit overrides all kind of event hooks for UIViewController.

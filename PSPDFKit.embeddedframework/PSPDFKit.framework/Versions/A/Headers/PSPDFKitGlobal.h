@@ -109,7 +109,7 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 // PSPDFKit deprecation helper
 #define PSPDF_DEPRECATED(version, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #version ". " msg)))
 
-/// List of available encodings. Used in PSPDFSoundAnnotaion.encoding and in the `defaultEncoding` property of `PSPDFAudioHelper`.
+/// List of available encodings. Used in PSPDFSoundAnnotation.encoding and in the `defaultEncoding` property of `PSPDFAudioHelper`.
 extern NSString *const PSPDFSoundAnnotationEncodingRaw;
 extern NSString *const PSPDFSoundAnnotationEncodingSigned;
 extern NSString *const PSPDFSoundAnnotationEncodingMuLaw;
