@@ -135,7 +135,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
             controller.tintColor = UIColor.pspdfColor; // navBarTintColor
         }
-        controller.imageSelectionEnabled = NO;
         return controller;
     }]];
 
@@ -1950,7 +1949,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation updating after a save" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.imageSelectionEnabled = NO;
         pdfController.annotationButtonItem.annotationToolbar.saveAfterToolbarHiding = YES;
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         return pdfController;
