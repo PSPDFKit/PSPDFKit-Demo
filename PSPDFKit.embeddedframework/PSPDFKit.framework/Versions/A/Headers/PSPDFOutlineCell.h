@@ -59,10 +59,10 @@
 // Button action. Animates and calls the delegate.
 - (void)expandOrCollapse;
 
-/// Defaults to 32.f. Should be changed on `PSPDFOutlineViewController`.
+/// Defaults to 32.f. Should be changed in `PSPDFOutlineViewController`.
 @property (nonatomic, assign) CGFloat outlineIntentLeftOffset;
 
-/// Defaults to 15.f. Should be changed on `PSPDFOutlineViewController`.
+/// Defaults to 15.f. Should be changed in `PSPDFOutlineViewController`.
 @property (nonatomic, assign) CGFloat outlineIndentMultiplier;
 
 @end

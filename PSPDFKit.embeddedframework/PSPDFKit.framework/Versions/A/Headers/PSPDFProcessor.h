@@ -44,12 +44,13 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 + (instancetype)defaultProcessor;
 
 /// Generate a PDF from a `PSPDFDocument` into a file. `options` can also contain `CGPDFContext` options.
-/// For `pageRange` you can use `[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]` to convert the whole document.
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
+/// @note For `pageRanges` you can use `@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]]` to convert the whole document.
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
 
 /// Generate a PDF from a `PSPDFDocument` into data. 'options' can also contain `CGPDFContext` options.
+/// @note For `pageRanges` you can use `@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]]` to convert the whole document.
 /// @warning Don't use with large files, since iOS has no virtual memory the process will be force-closed on exhaustive memory usage. 10-20MB should be the maximum for safe in-memory usage.
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRanges:(NSArray *)pageRanges options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error;
 
 /// Generates a PDF from a string. Does allow simple html tags. Will not work with complex HTML pages.
 /// e.g. `@"This is a <b>test</b>` in `<span style='color:red'>color.</span>`
@@ -124,5 +125,12 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
 /// Error if something went wrong.
 @property (nonatomic, strong, readonly) NSError *error;
+
+@end
+
+@interface PSPDFProcessor (Deprecated)
+
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead");
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead");
 
 @end

@@ -37,7 +37,10 @@
 
 @interface PSPDFSimplePageViewController (SubclassingHooks)
 
+// Internally used scroll view.
 @property (nonatomic, strong, readonly) UIScrollView *scrollView;
+
+// Internally used page control.
 @property (nonatomic, strong, readonly) UIPageControl *pageControl;
 
 @end

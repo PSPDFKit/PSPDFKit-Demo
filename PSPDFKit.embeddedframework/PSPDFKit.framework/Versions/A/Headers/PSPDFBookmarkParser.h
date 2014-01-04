@@ -19,7 +19,7 @@
 extern NSString *const PSPDFBookmarksChangedNotification;
 
 /**
- Manages bookmarks for a PSPDFDocument.
+ Manages bookmarks for a `PSPDFDocument`.
 
  There is no notion of "bookmarks" in a PDF.
  (PDF "bookmarks" are entries in the outline (Table Of Contents); which are parsed in PSPDFKit by the `PSPDFOutlineParser.class`)
