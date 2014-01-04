@@ -231,7 +231,7 @@
     
     // Here we combine the NSData pieces in the PSPDFDocument into one piece of NSData (for sharing)
     NSDictionary *options = @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeNone & ~PSPDFAnnotationTypeLink)};
-    NSData *consolidatedData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] options:options progressBlock:NULL error:NULL];
+    NSData *consolidatedData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] options:options progressBlock:NULL error:NULL];
     PSPDFDocument *documentWithConsolidatedData = [PSPDFDocument documentWithData:consolidatedData];
     
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:documentWithConsolidatedData];
@@ -268,15 +268,15 @@
     [pageIndexes addIndex:5];
     
     // Extract pages into new document
-    NSData *newDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:pageIndexes options:nil progressBlock:NULL error:NULL];
+    NSData *newDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[pageIndexes] options:nil progressBlock:NULL error:NULL];
     
     // add a page from a second document
     PSPDFDocument *landscapeDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-    NSData *newLandscapeDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:landscapeDocument pageRange:[NSIndexSet indexSetWithIndex:0] options:nil progressBlock:NULL error:NULL];
+    NSData *newLandscapeDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:landscapeDocument pageRanges:@[[NSIndexSet indexSetWithIndex:0]] options:nil progressBlock:NULL error:NULL];
     
     // merge into new PDF
     PSPDFDocument *twoPartDocument = [PSPDFDocument documentWithDataArray:@[newDocumentData, newLandscapeDocumentData]];
-    NSData *mergedDocumentData = [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:twoPartDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, twoPartDocument.pageCount)] options:nil progressBlock:NULL error:NULL];
+    NSData *mergedDocumentData = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:twoPartDocument pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, twoPartDocument.pageCount)]] options:nil progressBlock:NULL error:NULL];
     PSPDFDocument *mergedDocument = [PSPDFDocument documentWithData:mergedDocumentData];
     
     // Note: PSPDFDocument supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from PSPDFDocument sources.
@@ -319,7 +319,7 @@
 
     // Merge pages into new document.
     NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp", @"pdf");
-    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
+    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
     PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
 
     // Note: `PSPDFDocument` supports having multiple data sources right from the start, this is just to demonstrate how to generate a new, single PDF from `PSPDFDocument` sources.
@@ -353,7 +353,7 @@
 //    
 //    // Merge pages into new document.
 //    NSURL *tempURL = PSCTempFileURLWithPathExtension(@"temp-merged", @"pdf");
-//    [[PSPDFProcessor defaultProcessor] generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
+//    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] outputFileURL:tempURL options:nil progressBlock:NULL error:NULL];
 //    PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
 //    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
 //    return controller;

@@ -246,7 +246,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     [self.rightController reloadData];
 
     NSURL *savedDocumentURL = PSCTempFileURLWithPathExtension(@"final", @"pdf");
-    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:self.rightDocument pageRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.rightDocument.pageCount)] outputFileURL:savedDocumentURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
+    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:self.rightDocument pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, self.rightDocument.pageCount)]] outputFileURL:savedDocumentURL options:@{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:NULL error:NULL];
 
     // Present the new document.
     PSPDFDocument *savedDocument = [PSPDFDocument documentWithURL:savedDocumentURL];
@@ -309,7 +309,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 
             // Generate split files
             NSDictionary *options = saveAnnotationsInsidePDF ? @{PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} : NULL;
-            [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRange:[NSIndexSet indexSetWithIndex:pageIndex] outputFileURL:splitURL options:options progressBlock:NULL error:NULL];
+            [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndex:pageIndex]]outputFileURL:splitURL options:options progressBlock:NULL error:NULL];
             [files addObject:splitURL.lastPathComponent];
         }
         return [PSPDFDocument documentWithBaseURL:baseURL files:files];

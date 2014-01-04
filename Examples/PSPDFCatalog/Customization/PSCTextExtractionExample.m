@@ -106,7 +106,7 @@ const char PSCAlertViewKey;
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
         
         // create pdf (blocking)
-        [[PSPDFProcessor defaultProcessor] generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"}];
+        [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"}];
         
         // generate document and show it
         PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
