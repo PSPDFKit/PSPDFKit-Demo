@@ -309,7 +309,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 
         _magazineCounter = [[UILabel alloc] init];
         _magazineCounter.font = [UIFont boldSystemFontOfSize:20.f];
-        _magazineCounter.textColor = [UIColor whiteColor];
+        _magazineCounter.textColor = UIColor.whiteColor;
         _magazineCounter.shadowColor = UIColor.blackColor;
         _magazineCounter.shadowOffset = CGSizeMake(1.f, 1.f);
         _magazineCounter.backgroundColor = [UIColor clearColor];

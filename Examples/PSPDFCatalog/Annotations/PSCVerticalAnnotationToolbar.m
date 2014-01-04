@@ -120,8 +120,8 @@
     }
 
     // update button selection status
-    self.drawButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringInk] ? [UIColor whiteColor] : [UIColor clearColor];
-    self.freeTextButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringFreeText] ? [UIColor whiteColor] : [UIColor clearColor];
+    self.drawButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringInk] ? UIColor.whiteColor : [UIColor clearColor];
+    self.freeTextButton.backgroundColor = [newMode isEqualToString:PSPDFAnnotationStringFreeText] ? UIColor.whiteColor : [UIColor clearColor];
 }
 
 @end
