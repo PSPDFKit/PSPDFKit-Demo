@@ -15,7 +15,7 @@
 @class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation, PSPDFDocument;
 
 /// Parses the text of a PDF page.
-@interface PSPDFTextParser : NSObject
+@interface PSPDFTextParser : NSObject <NSCoding>
 
 /// Designated initializer.
 /// `fontCache` is optional, share only between one `PSPDFDocumentProvider`.
@@ -28,19 +28,19 @@
 /// The complete page text, including extrapolated spaces and newline characters.
 @property (nonatomic, strong) NSString *text;
 
-/// Complete list of PSPDFGlyph objects. Corresponds to the text.
+/// Complete list of `PSPDFGlyph` objects. Corresponds to the text.
 @property (nonatomic, strong, readonly) NSArray *glyphs;
 
-/// List of detected words (PSPDFWord)
+/// List of detected words (`PSPDFWord`)
 @property (nonatomic, strong, readonly) NSArray *words;
 
-/// List of detected lines (PSPDFTextLine)
+/// List of detected lines (`PSPDFTextLine`)
 @property (nonatomic, strong, readonly) NSArray *lines;
 
-/// List of detected images (PSPDFImageInfo)
+/// List of detected images (`PSPDFImageInfo`)
 @property (nonatomic, strong, readonly) NSArray *images;
 
-/// List of detected text blocks (PSPDFTextBlock)
+/// List of detected text blocks (`PSPDFTextBlock`)
 @property (nonatomic, strong, readonly) NSArray *textBlocks;
 
 /// Associated document.

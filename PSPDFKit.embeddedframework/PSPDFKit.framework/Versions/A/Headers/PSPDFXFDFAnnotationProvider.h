@@ -14,7 +14,7 @@
 #import "PSPDFFileAnnotationProvider.h"
 
 /// Concrete implementation of the `PSPDFAnnotationProvider` protocol that uses a XFDF file as a source.
-/// The XFDF file needs to be local and in a writable location, not on a webserver.
+/// The XFDF file needs to be local and in a writable location, not on a web server.
 @interface PSPDFXFDFAnnotationProvider : NSObject <PSPDFAnnotationProvider>
 
 /// Designated initializer.

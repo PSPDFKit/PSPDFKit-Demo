@@ -51,8 +51,9 @@ extern PSPDFAnimate PSPDFAnimateOption; /// defaults to `PSPDFAnimateModernDevic
 /// @note This might be useful if your own app needs a lot of memory or you're seeing memory related crashes with complex PDFs.
 extern BOOL PSPDFLowMemoryMode;
 
-/// Improves scroll performance by delaying overlay annotations.
-extern CGFloat PSPDFInitialAnnotationLoadDelay;
+/// Callback URL to allow a back-button. Currently only used for the Open In Chrome feature.
+/// See https://developers.google.com/chrome/mobile/docs/ios-links
+extern void PSPDFSetXCallbackString(NSString *callbackString);
 
 // Compares sizes and allows aspect ratio changes.
 extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
@@ -72,13 +73,13 @@ extern void PSPDFLockRotation(BOOL enableLock);
 // Returns whether both objects are identical or equal via `isEqual:`.
 extern BOOL PSPDFEqualObjects(id obj1, id obj2);
 
-/// Convert a view point to a pdf point. bounds is from the view (usually `PSPDFPageView.bounds`)
+/// Convert a view point to a pdf point. `bounds` is from the view. (usually `PSPDFPageView.bounds`)
 extern CGPoint PSPDFConvertViewPointToPDFPoint(CGPoint viewPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 /// Convert a pdf point to a view point.
 extern CGPoint PSPDFConvertPDFPointToViewPoint(CGPoint pdfPoint, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 /// Convert a pdf rect to a normalized view rect.
 extern CGRect PSPDFConvertPDFRectToViewRect(CGRect pdfRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-/// Convert a view rect to a normalized pdf rect
+/// Convert a view rect to a normalized pdf rect.
 extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSUInteger rotation, CGRect bounds);
 
 #define BOXED(val) ({ typeof(val) _tmp_val = (val); [NSValue valueWithBytes:&(_tmp_val) objCType:@encode(typeof(val))]; })
@@ -106,11 +107,5 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 #endif
 #endif
 
-// PSPDFKit deprecation helper
+// PSPDFKit deprecation helper.
 #define PSPDF_DEPRECATED(version, msg) __attribute__((deprecated("Deprecated in PSPDFKit " #version ". " msg)))
-
-/// List of available encodings. Used in PSPDFSoundAnnotation.encoding and in the `defaultEncoding` property of `PSPDFAudioHelper`.
-extern NSString *const PSPDFSoundAnnotationEncodingRaw;
-extern NSString *const PSPDFSoundAnnotationEncodingSigned;
-extern NSString *const PSPDFSoundAnnotationEncodingMuLaw;
-extern NSString *const PSPDFSoundAnnotationEncodingALaw;

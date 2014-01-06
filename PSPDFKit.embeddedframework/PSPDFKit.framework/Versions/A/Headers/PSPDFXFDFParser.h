@@ -26,7 +26,7 @@
 - (NSArray *)parseWithError:(NSError **)error;
 
 /// Return all annotations as array. Annotations are sorted by page.
-- (NSArray *)annotations;
+@property(nonatomic, readonly) NSArray * annotations;
 
 /// Returns YES if parsing has ended for `inputStream`.
 @property (nonatomic, assign, readonly) BOOL parsingEnded;

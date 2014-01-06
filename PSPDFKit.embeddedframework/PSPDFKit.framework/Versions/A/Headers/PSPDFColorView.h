@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, PSPDFColorViewBorderStyle) {
 @interface PSPDFColorView : UIControl
 
 // Creates the view
-+ (id)colorViewWithColor:(UIColor *)color borderStyle:(PSPDFColorViewBorderStyle)borderStyle;
++ (instancetype)colorViewWithColor:(UIColor *)color borderStyle:(PSPDFColorViewBorderStyle)borderStyle;
 
 // Current set color.
 @property (nonatomic, strong) UIColor *color;

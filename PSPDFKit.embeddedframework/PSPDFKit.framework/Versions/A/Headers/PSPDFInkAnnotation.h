@@ -12,29 +12,6 @@
 
 #import "PSPDFAnnotation.h"
 
-// Helper to convert `UIBezierPath` into an array of lines (of `CGPoints` inside `NSValues`).
-NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
-
-// Calculates the bounding box from lines.
-CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
-
-/// Convert point array to a bezier path.
-UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray);
-
-// Will convert view lines to PDF lines (operates on every point)
-// Get the `cropBox` and rotation from `PSPDFPageInfo`.
-// bounds should be the size of the view.
-NSArray *PSPDFConvertViewLinesToPDFLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-// Converts a single line of boxed `CGPoints`.
-NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-// Will convert PDF lines to view lines (operates on every point)
-NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
-
-// Constant to convert the `NSArray` of `NSStrings` <-> `NSArray` of `CGRects` `NSValueTransformer`.
-extern NSString *const PSPDFLinesTransformerName;
-
 /// PDF Ink Annotation. (Free Drawing)
 /// Lines are automatically transformed when the `boundingBox` is changed.
 @interface PSPDFInkAnnotation : PSPDFAnnotation
@@ -63,3 +40,26 @@ extern NSString *const PSPDFLinesTransformerName;
 - (NSArray *)copyLinesByApplyingTransform:(CGAffineTransform)transform;
 
 @end
+
+// Helper to convert `UIBezierPath` into an array of lines (of `CGPoints` inside `NSValues`).
+NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
+
+// Calculates the bounding box from lines.
+CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
+
+/// Convert point array to a bezier path.
+UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray);
+
+// Will convert view lines to PDF lines (operates on every point)
+// Get the `cropBox` and rotation from `PSPDFPageInfo`.
+// bounds should be the size of the view.
+NSArray *PSPDFConvertViewLinesToPDFLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+// Converts a single line of boxed `CGPoints`.
+NSArray *PSPDFConvertViewLineToPDFLines(NSArray *line, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+// Will convert PDF lines to view lines (operates on every point)
+NSArray *PSPDFConvertPDFLinesToViewLines(NSArray *lines, CGRect cropBox, NSUInteger rotation, CGRect bounds);
+
+// Constant to convert the `NSArray` of `NSStrings` <-> `NSArray` of `CGRects` `NSValueTransformer`.
+extern NSString *const PSPDFLinesTransformerName;

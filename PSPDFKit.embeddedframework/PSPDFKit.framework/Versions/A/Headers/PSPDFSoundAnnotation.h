@@ -12,7 +12,13 @@
 
 #import "PSPDFLinkAnnotation.h"
 
-/// A sound annotation (PDF 1.2) shall analogous to a text annotation except that instead of a text note, it contains sound recorded from the computer’s microphone or imported from a file.
+/// List of available encodings. Used in `PSPDFSoundAnnotation.encoding` and in the `defaultEncoding` property of `PSPDFAudioHelper`.
+extern NSString *const PSPDFSoundAnnotationEncodingRaw;
+extern NSString *const PSPDFSoundAnnotationEncodingSigned;
+extern NSString *const PSPDFSoundAnnotationEncodingMuLaw;
+extern NSString *const PSPDFSoundAnnotationEncodingALaw;
+
+/// A sound annotation (PDF 1.2) shall analogous to a text annotation except that instead of a text note, it contains sound recorded from the iPad/iPhone's microphone or imported from a file.
 @interface PSPDFSoundAnnotation : PSPDFAnnotation
 
 /// Designated initializer.

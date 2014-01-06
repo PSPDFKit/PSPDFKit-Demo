@@ -2,6 +2,21 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.3.3 - 6/Jan/2013__
+
+*  Re-enables the Clear button in the new `PSPDFFreeTextAccessoryView` after text has been changed.
+*  Don't show the ".pdf" file ending in the `PSPDFDocumentPickerController`.
+*  The inspector now repositions itself if the annotation changes the `boundingBox`.
+*  Saving annotations into the PDF has been optimized and creates a smaller PDF.
+*  Form objects no longer are deletable when using the `PSPDFAnnotationTableViewController` but will be cleared instead.
+*  API: Removed PSPDFInitialAnnotationLoadDelay. This is no longer a performance problem and has thus been removed and optimized.
+*  Improves styling in `PSPDFWebViewController` for iOS 6 when the navigation bar style is dark.
+*  The activity button in `PSPDFWebViewController` is now always enabled, not only after the page finished loading.
+*  `PSPDFWebViewController` now offers to load the page in Google Chrome, if installed.
+*  Fixes an UI issue where the document title label could be offset under iOS 7/iPhone if the HUD was hidden when a modal VC is invoked.
+*  Fixes an issue that prevented forms from saving correctly when saved via the Send via Email/Open In feature from a readonly source. 
+*  Fixes multiple issues with building/preserving the appearance string for certain PDF form elements.
+
 __v3.3.2 - 4/Jan/2013__
 
 *  Adds new accessory view for free text annotations to quickly access the inspector.
