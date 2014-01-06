@@ -13,8 +13,6 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFAction.h"
 
-@class PSPDFPageView;
-
 /// The PDF 'Widget' annotation.
 /// A Widget usually is a button, much like a link annotation.
 @interface PSPDFWidgetAnnotation : PSPDFAnnotation

@@ -22,7 +22,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
     PSPDFLinkAnnotationAudio,   // 5
     PSPDFLinkAnnotationImage,   // 6
     PSPDFLinkAnnotationBrowser, // 7
-    PSPDFLinkAnnotationCustom   // any annotation format that is not recognized is custom (e.g. tel://)
+    PSPDFLinkAnnotationCustom   // Any annotation format that is not recognized is custom. (e.g. tel://)
 };
 
 @class PSPDFAction, PSPDFURLAction, PSPDFGoToAction;

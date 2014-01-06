@@ -14,38 +14,13 @@
 #import "PSPDFResetFormAction.h"
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
-    PSPDFFormElementFlagReadOnly = 1 << (1-1),
-    PSPDFFormElementFlagRequired = 1 << (2-1),
+    PSPDFFormElementFlagReadOnly = 1 << (1-1), /// Form Element is Readonly.
+    PSPDFFormElementFlagRequired = 1 << (2-1), /// Form Element is Required (red border)
     PSPDFFormElementFlagNoExport = 1 << (3-1)
 };
 
-@class PSPDFPageView;
-
 /// Represents a PDF form element.
 @interface PSPDFFormElement : PSPDFWidgetAnnotation
-
-/** Initializes allocated instance of a form element.
- * @param   annotDict           Field dictionary.
- * @param   documentRef         Document.
- * @param   fieldsAddressMap    annotDict to FormElement map.
- */
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef  fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
-
-/** Initializes allocated instance of a form element.
- * @param   annotDict           Field dictionary.
- * @param   documentRef         Document.
- * @param   parentFormElement   Parent form element.
- * @param   fieldsAddressMap    annotDict to FormElement map.
- */
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
-
-/** Allocates and initializes an instance of a form element.
- * @param   annotDict           Field dictionary.
- * @param   documentRef         Document.
- * @param   parentFormElement   Parent form element.
- * @param   fieldsAddressMap    annotDict to FormElement map.
- */
-+ (PSPDFFormElement *)formElementWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
 
 /// The field that is the immediate parent of this one (the field, if any, whose
 /// Kids array includes this field). A field can have at most one parent; that
@@ -119,20 +94,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 
 @end
 
-@interface PSPDFFormElement (SubclassingHooks)
+@interface PSPDFFormElement (Drawing)
 
 // Draws the form highlight.
 - (void)drawHighlightInContext:(CGContextRef)context;
-
-@end
-
-@interface PSPDFFormElement (Private)
-
-// Appends value of a field in PDF syntax. It must be implemented by children of the class.
-- (void)appendFieldValuePDFData:(NSMutableData *)pdfData;
-
-- (void)appendCommonFormElementPDFData:(NSMutableData *)pdfData withStreamOptions:(NSDictionary *)options;
-
-- (void)resetWithAction:(PSPDFResetFormAction *)action;
 
 @end

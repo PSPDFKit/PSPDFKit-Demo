@@ -26,7 +26,7 @@
 /// Scrolls to a certain tab, animatable.
 - (void)scrollToTabAtIndex:(NSUInteger)index animated:(BOOL)animated;
 
-/// Currently selected tab index. May return NSNotFound if no tabs are loaded.
+/// Currently selected tab index. May return `NSNotFound` if no tabs are loaded.
 @property (nonatomic, readonly) NSUInteger selectedTabIndex;
 
 /// Minimum tab width. Defaults to 0.

@@ -18,7 +18,7 @@
 /// http://partners.adobe.com/public/developer/en/xml/XFDF_Spec_3.0.pdf
 @interface PSPDFXFDFWriter : NSObject
 
-/// Writes the given annotations to the given outputstream, blockingly.
+/// Writes the given annotations to the given `outputStream` and blocks until done.
 - (BOOL)writeAnnotations:(NSArray *)annotations toOutputStream:(NSOutputStream *)outputStream documentProvider:(PSPDFDocumentProvider *)documentProvider error:(NSError **)error;
 
 @end

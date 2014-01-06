@@ -33,6 +33,6 @@
 @property (nonatomic, assign) CGFloat pagePadding;
 
 /// Customized content offset for `PSPDFViewState`.
-- (CGPoint)compensatedContentOffset;
+@property(nonatomic, readonly) CGPoint compensatedContentOffset;
 
 @end

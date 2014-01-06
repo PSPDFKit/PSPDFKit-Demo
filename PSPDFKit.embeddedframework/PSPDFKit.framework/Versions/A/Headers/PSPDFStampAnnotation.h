@@ -13,8 +13,6 @@
 #import "PSPDFAnnotation.h"
 
 /// PDF Stamp annotation.
-///
-/// PSPDFKit supports all common stamp types (subject, image) and has even has limited support for stamps built using appearance streams.
 @interface PSPDFStampAnnotation : PSPDFAnnotation
 
 /// Returns predefined colors for special subjects, like red for "void" or green for "completed".

@@ -25,7 +25,7 @@
 
 /// @name Cache
 
-/// Enqueues a annotationView for later reuse
+/// Enqueues a annotationView for later reuse.
 - (void)recycleAnnotationView:(id<PSPDFAnnotationViewProtocol>)annotationView;
 
 /// Dequeues an annotation view, if available from the cache.
@@ -35,12 +35,10 @@
 /// Clears all cached objects.
 - (void)clearCache;
 
-
-// Attached PDFController.
+// Attached `PSPDFViewController`.
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 
 @end
-
 
 @interface PSPDFAnnotationViewCache (SubclassingHooks)
 

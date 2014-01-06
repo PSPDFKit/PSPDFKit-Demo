@@ -28,7 +28,6 @@
 /// Due to the nature of the callback we currently don't actually know the animated state.
 - (void)notifyContentControllerAboutDismissalAnimated:(BOOL)animated;
 
-
 // This class overrides the delegate setter to proxy it internally for extended state management.
 // Thus calling self.delegate will return the current `PSPDFExtendedPopoverController` instance.
 

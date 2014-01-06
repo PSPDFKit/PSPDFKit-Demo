@@ -10,17 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
+// PSPDFKit 3.2.3 is the last version supporting iOS 5.0.
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
 #error PSPDFKit supports iOS 6.0 upwards.
 #endif
-
-// common
-#import <UIKit/UIKit.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+// common
+#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"
@@ -202,7 +202,6 @@ extern "C" {
 #import "PSPDFChoiceFormElement.h"
 #import "PSPDFSignatureFormElement.h"
 #import "PSPDFTextFieldFormElement.h"
-    
 #import "PSPDFDigitalSignatureManager.h"
 
 // gallery
