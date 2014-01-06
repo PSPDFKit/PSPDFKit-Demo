@@ -71,14 +71,12 @@
     PSPDFSetLicenseKey("DEMO");
 
     // Create catalog controller delayed because we also dynamically load the license key.
-    dispatch_async(dispatch_get_main_queue(), ^{
-        PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
-        self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
-        self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        self.window.rootViewController = self.catalog;
-        [self.window makeKeyAndVisible];
-    });
+    PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
+    self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
+    self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    self.window.rootViewController = self.catalog;
+    [self.window makeKeyAndVisible];
 
     // Enable global Undo/Redo
     application.applicationSupportsShakeToEdit = YES;
