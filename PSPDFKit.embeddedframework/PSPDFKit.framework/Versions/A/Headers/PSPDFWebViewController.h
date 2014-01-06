@@ -19,7 +19,7 @@
 /// Delegate for the `PSPDFWebViewController` to customize URL handling.
 @protocol PSPDFWebViewControllerDelegate <NSObject>
 
-/// Controller where the `PSPDFWebViewController` has been pushed to (to dismiss modally)
+/// Controller where the `PSPDFWebViewController` has been pushed to. (to dismiss modally)
 - (UIViewController *)masterViewController;
 
 @optional
@@ -41,13 +41,14 @@ typedef NS_ENUM(NSUInteger, PSPDFWebViewControllerAvailableActions) {
     PSPDFWebViewControllerAvailableActionsFacebook         = 1 << 7,
     PSPDFWebViewControllerAvailableActionsTwitter          = 1 << 8,
     PSPDFWebViewControllerAvailableActionsMessage          = 1 << 9,
+    PSPDFWebViewControllerAvailableActionsOpenInChrome     = 1 << 10, /// Only offered if Google Chrome is actually installed.
     PSPDFWebViewControllerAvailableActionsAll              = 0xFFFFFF
 };
 
 /// Inline Web Browser.
 @interface PSPDFWebViewController : PSPDFBaseViewController <PSPDFStyleable, UIWebViewDelegate>
 
-/// Use this to get a `UINavigationController` with a Done-Button.
+/// Use this to get a `UINavigationController` with a done-button.
 + (UINavigationController *)modalWebViewWithURL:(NSURL *)URL;
 
 /// Creates a new `PSPDFWebViewController` with the specified URL.

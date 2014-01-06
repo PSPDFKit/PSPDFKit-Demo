@@ -18,10 +18,8 @@
 /// Signature Form Element.
 @interface PSPDFSignatureFormElement : PSPDFFormElement
 
-/// Designated initializer.
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
+@property (nonatomic, weak, readonly) id<PSPDFDigitalSignatureVerificationHandler> verificationHandler;
 
-@property (nonatomic, assign, readonly) id<PSPDFDigitalSignatureVerificationHandler> verificationHandler;
 @property (nonatomic, assign, readonly) BOOL verified;
 
 /// Searches the document for an ink signature that overlaps the form element.

@@ -34,19 +34,18 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 /// Text field form element.
 @interface PSPDFTextFieldFormElement : PSPDFAbstractTextRenderingFormElement
 
-/// Designated initializer.
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
-
 /// If set, the field may contain multiple lines of text; if clear, the field’s text shall be restricted to a single line.
+/// @note Evaluates `PSPDFTextFieldFlagMultiline` in the `fieldFlags`.
 - (BOOL)isMultiline;
 
 /// If set, the field is intended for entering a secure password that should not be echoed visibly to the screen.
+/// @note Evaluates `PSPDFTextFieldFlagPassword` in the `fieldFlags`.
 - (BOOL)isPassword;
 
 /// The input format. Some forms are number/date/time specific.
 @property (nonatomic, assign) PSPDFTextInputFormat inputFormat;
 
-/// The validation format string. (WIP!)
-@property (nonatomic, strong) NSString *formatString;
+/// The validation format string. (WIP)
+@property (nonatomic, copy) NSString *formatString;
 
 @end

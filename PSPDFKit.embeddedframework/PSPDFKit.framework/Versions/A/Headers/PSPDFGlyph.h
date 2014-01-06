@@ -14,18 +14,6 @@
 
 @class PSPDFFontInfo;
 
-/// Global helper to convert glyphs to rects.
-/// 't' is the pageRotationTransform of PSPDFPageInfo.
-/// boundingBox will already be transformed with 't'.
-extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRect *boundingBox);
-
-/// Returns the boundingBox that includes all glyphs.
-/// 't' is the pageRotationTransform of PSPDFPageInfo.
-extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
-
-/// Scans glyphs and reduces the selection to columns.
-extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);
-
 /// Represents a single character (glyph, quad) on the PDF page.
 /// @warning: Don't manually change glyphs, treat them as readonly.
 @interface PSPDFGlyph : NSObject <NSCopying, NSCoding>
@@ -70,3 +58,15 @@ extern BOOL PSPDFGlyphIsOnSameLineSegmentAsGlyph(PSPDFGlyph *glyph1, PSPDFGlyph 
 - (BOOL)isEqualToGlyph:(PSPDFGlyph *)otherGlyph;
 
 @end
+
+/// Global helper to convert glyphs to rects.
+/// `t` is `the pageRotationTransform` of `PSPDFPageInfo`.
+/// `boundingBox` will already be transformed with `t`.
+extern NSArray *PSPDFRectsFromGlyphs(NSArray *glyphs, CGAffineTransform t, CGRect *boundingBox);
+
+/// Returns the bounding box that includes all glyphs.
+/// `t` is the `pageRotationTransform` of `PSPDFPageInfo`.
+extern CGRect PSPDFBoundingBoxFromGlyphs(NSArray *glyphs, CGAffineTransform t);
+
+/// Scans glyphs and reduces the selection to columns.
+extern NSArray *PSPDFReduceGlyphsToColumn(NSArray *glyphs);

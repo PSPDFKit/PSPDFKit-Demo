@@ -13,7 +13,6 @@
 #import "PSPDFAbstractTextOverlayAnnotation.h"
 
 /// Text Highlight Annotation
-///
 /// @warning If you programmatically create a highlight annotation, you need to both set the `boundingBox` AND the rects array. The rects array contains boxed variants of `CGRect` (`NSValue`).
 @interface PSPDFHighlightAnnotation : PSPDFAbstractTextOverlayAnnotation
 

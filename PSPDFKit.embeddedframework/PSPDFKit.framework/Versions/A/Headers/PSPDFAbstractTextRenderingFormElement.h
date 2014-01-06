@@ -52,7 +52,7 @@
 /// Font size as defined in the DA appearance string.
 @property (nonatomic, assign) CGFloat fontSize;
 
-/// Text justification. Allows NSTextAlignmentLeft, NSTextAlignmentCenter and NSTextAlignmentRight.
+/// Text justification. Allows `NSTextAlignmentLeft`, `NSTextAlignmentCenter` and `NSTextAlignmentRight`.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 

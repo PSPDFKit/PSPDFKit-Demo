@@ -23,3 +23,6 @@
 - (NSString *)highlightedString;
 
 @end
+
+/// Mask for all text markups. `PSPDFAnnotationTypeHighlight|PSPDFAnnotationTypeStrikeOut|PSPDFAnnotationTypeUnderline|PSPDFAnnotationTypeSquiggly`
+extern const PSPDFAnnotationType PSPDFAnnotationTypeTextMarkup;

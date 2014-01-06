@@ -13,11 +13,11 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef NS_ENUM(NSInteger, PSPDFSliderBackgroundStyle) {
     PSPDFSliderBackgroundStyleDefault = 0,
     PSPDFSliderBackgroundStyleGrayscale,
     PSPDFSliderBackgroundStyleColorful,
-}PSPDFSliderBackgroundStyle;
+};
 
 @class PSPDFColorPickerView;
 

@@ -13,7 +13,6 @@
 #import "PSPDFAbstractTextOverlayAnnotation.h"
 
 /// Text Underline Annotation
-///
 /// @warning If you programmatically create an underline annotation, you need to both set the `boundingBox` AND the `rects` array. The rects array contains boxed variants of `CGRect` (`NSValue`).
 @interface PSPDFUnderlineAnnotation : PSPDFAbstractTextOverlayAnnotation
 
