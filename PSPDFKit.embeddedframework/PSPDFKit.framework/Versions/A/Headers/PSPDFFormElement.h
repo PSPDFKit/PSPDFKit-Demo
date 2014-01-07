@@ -22,6 +22,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 /// Represents a PDF form element.
 @interface PSPDFFormElement : PSPDFWidgetAnnotation
 
+/// Returns true if we can reset this form element to default values.
+- (BOOL)isResetable;
+
 /// The field that is the immediate parent of this one (the field, if any, whose
 /// Kids array includes this field). A field can have at most one parent; that
 /// is, it can be included in the Kids array of at most one other field.

@@ -29,6 +29,9 @@
 /// Marks if this controller is displayed in a `UIPopoverController`.
 @property (nonatomic, assign) BOOL isInPopover;
 
+/// Accesses the popover controller.
+@property (nonatomic, weak) UIPopoverController *parentPopoverController;
+
 /// Controls if the `UIBarButtonItems` should be tinted specially. Only needed for custom popover styles.
 @property (nonatomic, assign) BOOL shouldTintToolbarButtons;
 

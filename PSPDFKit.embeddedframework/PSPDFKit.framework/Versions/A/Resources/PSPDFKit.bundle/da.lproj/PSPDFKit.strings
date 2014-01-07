@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Åbn i Safari";
+"Open in Chrome" = "Åbn i Chrome";
 "Your %@ is not configured to send emails." = "Din %@ er ikke konfigureret til at sende e-mails.";
 "The link is requesting to open %@Would you like to continue?" = "Henvisningen ønsker at åbne %@ Vil du fortsætte?";
 "an external application" = "et eksternt program";
@@ -212,6 +213,25 @@
 "Date" = "Dato";
 "Time" = "Tid";
 "No Pages" = "Ingen sider";
+
+// Stamps
+"Approved" = "Godkendt";
+"Not Approved" = "Ikke godkendt";
+"Draft" = "Udkast";
+"Final" = "Endelig";
+"Completed" = "Færdige";
+"Confidential" = "Fortroligt";
+"For Public Release" = "Til offentliggørelse";
+"Not For Public Release" = "Ikke til offentliggørelse";
+"For Comment" = "Til kommentering";
+"Void" = "Ugyldig";
+"Preliminary Results" = "Foreløbige resultater";
+"Information only" = "Kun til information";
+"Accepted" = "Accepteret";
+"Rejected" = "Afvist";
+"Initial Here" = "Initial her";
+"Sign Here" = "Underskriv her";
+"Witness" = "Vidne";
 
 // PDF annotation name overrides
 "Square" = "Rektangel";

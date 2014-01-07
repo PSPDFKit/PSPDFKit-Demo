@@ -49,7 +49,7 @@
 // Customize to make more fine-grained changes to the displayed annotation than what would be possible via setting `visibleAnnotationTypes`.
 - (NSArray *)annotationsForPage:(NSUInteger)page;
 
-// Subclass to change the table view style. Defaults to `UITableViewStyleGrouped`.
+// Subclass to change the table view style. Defaults to `UITableViewStylePlain`.
 - (UITableViewStyle)targetTableViewStyle;
 
 @end

@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Apri in Safari";
+"Open in Chrome" = "Apri in Chrome";
 "Your %@ is not configured to send emails." = "Il tuo %@ non è configurato per ricevere e-mail.";
 "The link is requesting to open %@Would you like to continue?" = "Il link richiede l'apertura di %@ Vuoi continuare?";
 "an external application" = "un'applicazione esterna";
@@ -212,6 +213,25 @@
 "Date" = "Data";
 "Time" = "Ora";
 "No Pages" = "Nessuna pagina";
+
+// Stamps
+"Approved" = "Approvato";
+"Not Approved" = "Non approvato";
+"Draft" = "Bozza";
+"Final" = "Finale";
+"Completed" = "Completato";
+"Confidential" = "Confidenziale";
+"For Public Release" = "Per la pubblicazione";
+"Not For Public Release" = "Non per la pubblicazione";
+"For Comment" = "Per commenti";
+"Void" = "Annullato";
+"Preliminary Results" = "Risultati preliminari";
+"Information only" = "Solo informazione";
+"Accepted" = "Accettato";
+"Rejected" = "Rifiutato";
+"Initial Here" = "Iniziali qui";
+"Sign Here" = "Firma qui";
+"Witness" = "Controllo";
 
 // PDF annotation name overrides
 "Square" = "Rettangolo";

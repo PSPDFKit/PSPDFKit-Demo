@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Open in Safari";
+"Open in Chrome" = "Open in Chrome";
 "Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
 "The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
 "an external application" = "an external application"; // Context: "The link is requesting to open an external application. Would you like to continue?"

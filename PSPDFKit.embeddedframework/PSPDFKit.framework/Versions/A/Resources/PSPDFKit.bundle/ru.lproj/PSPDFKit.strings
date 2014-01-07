@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
+"Open in Chrome" = "Открыть в Chrome";
 "Your %@ is not configured to send emails." = "Ваш %@ не настроен на отправку электронной почты.";
 "The link is requesting to open %@Would you like to continue?" = "Требуется открытие ссылки %@. Продолжить?";
 "an external application" = "внешнее приложение";
@@ -212,6 +213,25 @@
 "Date" = "Дата";
 "Time" = "Время";
 "No Pages" = "Нет страниц";
+
+// Stamps
+"Approved" = "Одобрено";
+"Not Approved" = "Неодобрено";
+"Draft" = "Черновик";
+"Final" = "Окончательный";
+"Completed" = "Завершено";
+"Confidential" = "Конфиденциально";
+"For Public Release" = "Публичный доступ";
+"Not For Public Release" = "Нет для публики";
+"For Comment" = "Для комментариев";
+"Void" = "Аннулировать";
+"Preliminary Results" = "Предварительно";
+"Information only" = "Только информация";
+"Accepted" = "Принято";
+"Rejected" = "Отклонено";
+"Initial Here" = "ФИО";
+"Sign Here" = "Место подписи";
+"Witness" = "Удостоверить";
 
 // PDF annotation name overrides
 "Square" = "Прямоугольник";

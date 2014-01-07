@@ -31,7 +31,15 @@
 /// Available stamp types. Set before showing controller.
 @property (nonatomic, copy) NSArray *stamps;
 
-/// Adds a special stamp that forwards to an interface (`PSPDFTextStampViewController`) where custom stamps can be created. Defaults to YES.
+/// Adds a special stamp that forwards to an interface (`PSPDFTextStampViewController`) where custom stamps can be created.
+/// Defaults to YES.
 @property (nonatomic, assign) BOOL customStampEnabled;
+
+@end
+
+@interface PSPDFStampViewController (SubclassingHooks)
+
+/// Creates the default date fonts - Revised and Rejected.
+- (NSArray *)defaultDateStamps;
 
 @end

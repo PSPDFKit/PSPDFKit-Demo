@@ -55,6 +55,8 @@ extern NSString *const PSPDFActionOptionOffset;
 extern NSString *const PSPDFActionOptionSize;
 // Show as popover.
 extern NSString *const PSPDFActionOptionPopover;
+// Show cover, accepts string path.
+extern NSString *const PSPDFActionOptionCover;
 
 // Constant to convert PSPDFActionType into NSString and back.
 extern NSString *const PSPDFActionTypeTransformerName;

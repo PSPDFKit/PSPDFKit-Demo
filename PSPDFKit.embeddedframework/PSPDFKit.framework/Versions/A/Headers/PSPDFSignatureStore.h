@@ -33,7 +33,7 @@
 /// Defaults to YES.
 @property (atomic, assign) BOOL signatureSavingEnabled;
 
-/// If enabled, the signature feature will show a menu with a customer signature (will not be saved)
+/// If enabled, the signature feature will show a menu with a customer signature. (will not be saved)
 /// Defaults to YES.
 @property (atomic, assign) BOOL customerSignatureFeatureEnabled;
 

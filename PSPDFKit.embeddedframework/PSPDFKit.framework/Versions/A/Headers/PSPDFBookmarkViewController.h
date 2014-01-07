@@ -48,7 +48,7 @@
 @interface PSPDFBookmarkViewController (SubclassingHooks)
 
 - (void)createBarButtonItems;
-- (void)updateBookmarkView;
+- (void)updateBookmarkViewAnimated:(BOOL)animated;
 - (void)addBookmarkAction:(id)sender;
 - (void)doneAction:(id)sender;
 
