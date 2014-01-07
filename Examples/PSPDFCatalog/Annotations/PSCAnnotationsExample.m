@@ -273,13 +273,15 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
+    //NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"eKneeBoardCourses.pdf"];
+
     // Load from an example XFDF file.
     NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
     NSURL *fileXML = [NSURL fileURLWithPath:[docsFolder stringByAppendingPathComponent:@"XFDFTest.xfdf"]];
     NSLog(@"Using XFDF file at %@", fileXML.path);
     
     // Create an example XFDF from the current document if one doesn't already exist.
+    //[NSFileManager.defaultManager removeItemAtURL:fileXML error:NULL]; // DEBUG HELPER: delete existing file.
     if (![NSFileManager.defaultManager fileExistsAtPath:fileXML.path]) {
         // Collect all existing annotations from the document
         PSPDFDocument *tempDocument = [PSPDFDocument documentWithURL:documentURL];
