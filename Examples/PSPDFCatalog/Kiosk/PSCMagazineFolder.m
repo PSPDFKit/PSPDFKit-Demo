@@ -85,8 +85,7 @@
 }
 
 - (PSCMagazine *)firstMagazine {
-    PSCMagazine *firstMagazine = self.magazines.count ? (self.magazines)[0] : nil;
-    return firstMagazine;
+    return self.magazines.firstObject;
 }
 
 - (void)addMagazine:(PSCMagazine *)magazine {

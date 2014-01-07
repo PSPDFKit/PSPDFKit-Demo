@@ -71,7 +71,7 @@
             _originShadow = [self shadowAsInverse:NO];
             [self.layer insertSublayer:_originShadow atIndex:9999];
         }
-        else if (![(self.layer.sublayers)[0] isEqual:_originShadow]) {
+        else if (![self.layer.sublayers.firstObject isEqual:_originShadow]) {
             [self.layer insertSublayer:_originShadow atIndex:9999];
         }
 
