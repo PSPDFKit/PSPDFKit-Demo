@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "在 Safari 中打开";
+"Open in Chrome" = "在 Chrome 中打开";
 "Your %@ is not configured to send emails." = "您的 %@ 未经配置，无法发送电子邮件。";
 "The link is requesting to open %@Would you like to continue?" = "链接正在请求打开 %@ 您要继续吗？";
 "an external application" = "一个外部应用程序";
@@ -212,6 +213,25 @@
 "Date" = "日期";
 "Time" = "时间";
 "No Pages" = "没有页面";
+
+// Stamps
+"Approved" = "已批准";
+"Not Approved" = "未批准";
+"Draft" = "草案";
+"Final" = "最终";
+"Completed" = "已完成";
+"Confidential" = "机密";
+"For Public Release" = "公开发布";
+"Not For Public Release" = "非公开发布";
+"For Comment" = "添加注释";
+"Void" = "无效";
+"Preliminary Results" = "初步结果";
+"Information only" = "仅供参考";
+"Accepted" = "已接受";
+"Rejected" = "已拒绝";
+"Initial Here" = "在这里首字母签名";
+"Sign Here" = "在这里签名";
+"Witness" = "见证";
 
 // PDF annotation name overrides
 "Square" = "矩形";

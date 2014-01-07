@@ -532,6 +532,10 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.
 @property (nonatomic, assign) BOOL showAnnotationMenuAfterCreation;
 
+/// If YES, this will directly show the note inspector. Only evaluated on iPad. Defaults to YES.
+/// Set this to NO to get the same behavior on iPad and iPhone.
+@property (nonatomic, assign) BOOL skipMenuForNoteAnnotationsOnIPad;
+
 /// Controls if a second tap to an annotation that allows inline editing enters edit mode. Defaults to YES.
 /// (The most probable candidate for this is `PSPDFFreeTextAnnotation`)
 @property (nonatomic, assign) BOOL annotationEntersEditModeAfterSecondTapEnabled;

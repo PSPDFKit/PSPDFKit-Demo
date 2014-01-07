@@ -2,6 +2,19 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.3.4 - 7/Jan/2013__
+
+*  The annotation table view has been redesigned and also shows the creation user and the last modification date, if available.
+*  New property: `skipMenuForNoteAnnotationsOnIPad` to control how the note controller is displayed.
+*  Update selection style for the saved annotation cells to better match the iOS 7 design.
+*  Improves logic for popover resizing of the container controller.
+*  Various tweaks to the stamp controller and the text stamp controller. Now adds default date stamps, automatically shows keyboard once the `PSPDFTextStampViewController` appears and more.
+*  Various localization updates, including localization for stamps.
+*  The `localizedDescription` for PDF Form Fields is now smarter and won't create strings like Button: Button.
+*  The `PSPDFAnnotationToolbar` has a new `backButtonItem` hook to replace the default "Done" back button.
+*  Some more icon tweaks: delete now better fits into the iOS 7 `UIMenuController` and sound now is a microphone instead of a note.
+*  Fixes an issue with saving custom pspdfkit:// prefixed links via the XFDF provider.
+
 __v3.3.3 - 6/Jan/2013__
 
 *  Re-enables the Clear button in the new `PSPDFFreeTextAccessoryView` after text has been changed.

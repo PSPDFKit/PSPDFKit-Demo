@@ -210,6 +210,9 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 /// Return the number of buttons allowed in the toolbar.
 - (NSUInteger)allowedButtonCount;
 
+/// Creates and returns a back button. Return your custom one that executes `@selector(doneButtonPressed:)` if you want to change the design.
+- (UIBarButtonItem *)backButtonItem;
+
 // Called anytime the drawing toolbar is taken down.
 - (void)hideAndRemoveToolbar; // calls [self hideAndRemoveToolbarAnimated:NO completion:nil]
 - (void)hideAndRemoveToolbarAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;

@@ -29,5 +29,6 @@ typedef NS_ENUM(NSUInteger, PSPDFStatefulTableViewState) {
 
 /// Changes the controller state and shows/hides the emptyView/loadingView depending on the state.
 @property (nonatomic, assign) PSPDFStatefulTableViewState controllerState;
+- (void)setControllerState:(PSPDFStatefulTableViewState)controllerState animated:(BOOL)animated;
 
 @end
