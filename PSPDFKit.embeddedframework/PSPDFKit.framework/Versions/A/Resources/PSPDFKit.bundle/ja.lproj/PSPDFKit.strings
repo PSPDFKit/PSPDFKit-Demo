@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Safariで開く";
+"Open in Safari" = "Chromeで開く";
 "Your %@ is not configured to send emails." = "お手持ちの%@はメールを送信するよう設定されていません。";
 "The link is requesting to open %@Would you like to continue?" = "リンクが%@を開くよう要求しています。続けてよろしいですか。";
 "an external application" = "外部アプリケーション";
@@ -212,6 +213,25 @@
 "Date" = "日付";
 "Time" = "時刻";
 "No Pages" = "ページがありません";
+
+// Stamps
+"Approved" = "承認済み";
+"Not Approved" = "未承認";
+"Draft" = "下書き";
+"Final" = "最終版";
+"Completed" = "完了済み";
+"Confidential" = "部外秘";
+"For Public Release" = "公開リリース用";
+"Not For Public Release" = "非公開";
+"For Comment" = "コメント用";
+"Void" = "無効";
+"Preliminary Results" = "中間結果";
+"Information only" = "情報のみ";
+"Accepted" = "受け入れ済み";
+"Rejected" = "不採用";
+"Initial Here" = "こちらにイニシャルを";
+"Sign Here" = "こちらに署名を";
+"Witness" = "証人";
 
 // PDF annotation name overrides
 "Square" = "長方形";

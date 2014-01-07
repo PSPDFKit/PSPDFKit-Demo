@@ -54,4 +54,7 @@
 /// Video offset.
 @property (nonatomic, assign) CGFloat offset;
 
+/// Regenerates a pspdfkit:// style sring IF `isPSPDFPrefixed` is set.
+- (NSString *)prefixedURLStringWithAnnotationManager:(PSPDFAnnotationManager *)annotationManager;
+
 @end

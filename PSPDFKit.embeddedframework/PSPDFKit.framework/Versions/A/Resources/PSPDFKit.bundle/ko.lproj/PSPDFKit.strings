@@ -90,6 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
+"Open in Safari" = "Chrome에서 열기";
 "Your %@ is not configured to send emails." = "사용자의 %@은 이메일을 전송할 수 있도록 구성되지 않았습니다.";
 "The link is requesting to open %@Would you like to continue?" = "링크가 다음 경로를 열려고 합니다다: %@계속 진행하시겠습니까?";
 "an external application" = "외부 응용 프로그램";
@@ -212,6 +213,25 @@
 "Date" = "날짜";
 "Time" = "시간";
 "No Pages" = "페이지 없음";
+
+// Stamps
+"Approved" = "승인됨";
+"Not Approved" = "미승인";
+"Draft" = "초안";
+"Final" = "최종";
+"Completed" = "완료됨";
+"Confidential" = "비밀 정보";
+"For Public Release" = "정보 공개 가능";
+"Not For Public Release" = "정보 공개 불가";
+"For Comment" = "코멘트용";
+"Void" = "효력 없음";
+"Preliminary Results" = "예비 결과";
+"Information only" = "참조용";
+"Accepted" = "수락됨";
+"Rejected" = "거부됨";
+"Initial Here" = "여기 이니셜";
+"Sign Here" = "여기 서명";
+"Witness" = "증명";
 
 // PDF annotation name overrides
 "Square" = "직사각형";

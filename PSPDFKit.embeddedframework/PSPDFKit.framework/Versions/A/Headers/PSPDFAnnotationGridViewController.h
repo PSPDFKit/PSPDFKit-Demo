@@ -74,16 +74,10 @@
 // Customize cell configuration.
 - (void)configureCell:(PSPDFAnnotationSetCell *)annotationSetCell forIndexPath:(NSIndexPath *)indexPath;
 
-// Internally used grid view
+// Internally used grid view.
 @property (nonatomic, strong) UICollectionView *gridView;
 
-@end
-
-
-/// Annotation Set cell
-@interface PSPDFAnnotationSetCell : UICollectionViewCell
-
-/// The annotation set visible.
-@property (nonatomic, strong) PSPDFAnnotationSet *annotationSet;
+// Trigger popover size recalculation.
+- (void)updatePopoverSize;
 
 @end

@@ -15,7 +15,7 @@
 
 @class PSPDFAnnotation;
 
-/// Represents an annotation.
+/// Displays information about an annotation.
 @interface PSPDFAnnotationCell : PSPDFNonAnimatingTableViewCell
 
 /// Calculates the size.
@@ -23,5 +23,12 @@
 
 /// The annotation that will be displayed.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
+
+@end
+
+@interface PSPDFAnnotationCell (SubclassingHooks)
+
+/// Builds the string for the `detailTextLabel`.
++ (NSString *)dateAndUserStringForAnnotation:(PSPDFAnnotation *)annotation;
 
 @end
