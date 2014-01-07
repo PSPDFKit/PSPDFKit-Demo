@@ -10,10 +10,6 @@
 
 #import "PSCShadowView.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 @interface PSCShadowView() {
     CAGradientLayer *_originShadow;
 }
@@ -42,8 +38,8 @@
 #pragma mark - UIView
 
 // for uinavigationbar shadow
-#define SHADOW_HEIGHT 20.0
-#define SHADOW_INVERSE_HEIGHT 10.0
+#define SHADOW_HEIGHT 20.f
+#define SHADOW_INVERSE_HEIGHT 10.f
 #define SHADOW_RATIO (SHADOW_INVERSE_HEIGHT / SHADOW_HEIGHT)
 
 - (CAGradientLayer *)shadowAsInverse:(BOOL)inverse {
