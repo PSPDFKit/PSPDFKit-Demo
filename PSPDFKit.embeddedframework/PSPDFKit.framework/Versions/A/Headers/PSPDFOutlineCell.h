@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFTableViewCell.h"
 
 @class PSPDFOutlineCell, PSPDFOutlineElement;
 
@@ -23,7 +24,7 @@
 @end
 
 /// Single cell for the outline controller.
-@interface PSPDFOutlineCell : UITableViewCell
+@interface PSPDFOutlineCell : PSPDFTableViewCell
 
 /// Dynamically calculates the height for a cell.
 + (CGFloat)heightForCellWithOutlineElement:(PSPDFOutlineElement *)outlineElement constrainedToSize:(CGSize)constraintSize outlineIntentLeftOffset:(CGFloat)leftOffset outlineIntentMultiplier:(CGFloat)multiplier showPageLabel:(BOOL)showPageLabel;

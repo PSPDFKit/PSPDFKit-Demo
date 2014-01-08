@@ -32,10 +32,9 @@
 "Email" = "Email";
 "Send via Email" = "Отправить по Email";
 "Send" = "Отправить";
-"Open in..." = "Открыть в...";
+"Open in" = "Открыть в";
 "Open" = "Открыть";
 "Commit" = "Подтвердить";
-"Sending to %@..." = "Отправка %@...";
 "Sending to %@" = "Отправка %@"; // Context: Open document with an application
 "Pages" = "Страницы";
 "Print with annotations" = "Печать с комментариями";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "Добавить закладку";
 "Remove Bookmark" = "Удалить закладку";
 "Brightness" = "Яркость";
-"Share..." = "Поделиться...";
-"Preparing..." = "Подготовка...";
-"Loading..." = "Загрузка…";
+"Share" = "Поделиться";
+"Preparing" = "Подготовка";
+"Loading" = "Загрузка";
 "Expand" = "Раскрыть";
 "Collapse" = "Свернуть";
 
@@ -80,13 +79,14 @@
 "No matches found" = "Совпадений не найдено";
 "One match found" = "Найдено одно совпадение";
 "%d matches found" = "%d совпадений найдено";
-"Searching Page %d of %d..." = "Поиск страницы %d из %d...";
+"Searching Page %d of %d" = "Поиск страницы %d из %d";
 "Search Completed" = "Поиск завершен";
 "Search Cancelled" = "Поиск отменен";
 "%d left" = "%d осталось"; // Context: there are 5 documents left
-"Searching..." = "Поиск…";
+"Searching" = "Поиск";
 "%d documents indexed." = "%d документов проиндексировано.\n";
 "Done" = "Готово";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
@@ -110,9 +110,7 @@
 "Edit" = "Правка";
 "Undo" = "Отменить";
 "Redo" = "Повторить";
-"Type..." = "Введите..."; // Context: kind of Annotation can be selected
-"Font..." = "Шрифт...";
-"Size..." = "Размер...";
+"Type" = "Введите"; // Context: kind of Annotation can be selected
 "Size" = "Размер";
 "Font" = "Шрифт";
 "Fonts" = "Шрифты";
@@ -124,18 +122,13 @@
 "Monochrome" = "Монохромный";
 "Vintage" = "Винтаж";
 "Color" = "Цвет";
-"Color..." = "Цвет...";
-"Border..." = "Рамка...";
+"Border" = "Рамка";
 "Fill Color" = "Цвет заливки";
-"Fill Color..." = "Цвет заливки…";
 "Opacity" = "Прозрачность";
-"Opacity..." = "Прозрачность";
 "%@ %%" = "%@ %%";
-"Custom..." = "Собственный…";
-"Thickness..." = "Толщина...";
+"Custom" = "Собственный";
 "Thickness" = "Толщина";
 "%@ pt" = "Очков: %@";
-"Note..." = "Заметка...";
 "Yellow" = "Желтый";
 "Green" = "Зеленый";
 "Red" = "Красный";
@@ -183,8 +176,8 @@
 "Medium Quality" = "Среднее качество";
 "High Quality" = "Высокое качество";
 "Clear All" = "Удалить все";
+"Clear" = "Clear";
 "Style" = "Стиль";
-"Style..." = "Стиль...";
 "Link" = "Ссылка";
 "Ink" = "Чернила";
 "FreeText" = "Текст";
@@ -193,12 +186,11 @@
 "Left" = "Слева";
 "Center" = "Выровнять по центру";
 "Right" = "Справа";
-"Alignment..." = "Выравнивание...";
 "Alignment" = "Выравнивание";
 "Preview File" = "Просмотреть файл";
 "Copy" = "Скопировать";
 "Paste" = "Вставить";
-"Inspector..." = "Инспектор...";
+"Inspector" = "Инспектор";
 "Group" = "Группа";
 "Ungroup" = "Разгруппировать";
 "Sample" = "Образец";
@@ -258,8 +250,8 @@
 "Reset" = "Сброс";
 
 // line annotations
-"Start..." = "Старт...";
-"End..." = "Конец...";
+"Start" = "Старт";
+"End" = "Конец";
 "Line.None" = "Нет";
 "Line.ClosedArrow" = "Закрытая стрелка";
 "Line.OpenArrow" = "Открыть стрелку";
@@ -275,7 +267,7 @@
 "%d Points" = "%d очки";
 
 // link annotation editing
-"Create Link..." = "Создать ссылку...";
+"Create Link" = "Создать ссылку";
 "Add Link" = "Добавить ссылку";
 "Edit Link" = "Редактировать ссылку";
 "Move Link" = "Переместить ссылку";

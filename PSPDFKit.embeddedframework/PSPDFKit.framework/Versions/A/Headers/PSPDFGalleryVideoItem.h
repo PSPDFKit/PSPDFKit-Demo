@@ -12,6 +12,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "PSPDFGalleryItem.h"
+#import "PSPDFRemoteContentObject.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemStatus) {
     PSPDFGalleryVideoItemStatusUnknown,
@@ -24,7 +25,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemStatus) {
 extern NSString *const PSPDFGalleryVideoItemStatusDidChangeNotification;
 
 /// A video item in a gallery.
-@interface PSPDFGalleryVideoItem : PSPDFGalleryItem
+@interface PSPDFGalleryVideoItem : PSPDFGalleryItem <PSPDFRemoteContentObject>
 
 /// You can use this property safely as soon as the status of the video item
 /// is `PSPDFGalleryVideoItemStatusPlayable`.
@@ -36,5 +37,25 @@ extern NSString *const PSPDFGalleryVideoItemStatusDidChangeNotification;
 
 /// If status is `PSPDFGalleryVideoItemStatusError`, this describes that error.
 @property (nonatomic, strong, readonly) NSError *error;
+
+/// Indicates if the item should start playing automatically. Defaults to `NO`.
+@property (nonatomic, assign) BOOL autoplayEnabled;
+
+/// Indicates if the playback controls should be visible. Defaults to `YES`.
+@property (nonatomic, assign) BOOL controlsEnabled;
+
+/// Indicates if the playback should loop. Defaults to `NO`.
+@property (nonatomic, assign) BOOL loopEnabled;
+
+/// The URL of an image that should be displayed as the cover view as specified in the options.
+/// If this is nil, no cover image will be displayed. Defaults to `nil`.
+@property (nonatomic, strong) NSURL *coverImageURL;
+
+/// The cover images if it has been downloaded.
+@property (nonatomic, strong, readonly) UIImage *coverImage;
+
+// PSPDFRemoteContentObject
+@property (nonatomic, strong) UIImage *remoteContent;
+@property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
 
 @end

@@ -13,19 +13,19 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFTableViewCell.h"
 
-@class PSPDFBookmarkTableViewCell;
+@class PSPDFBookmarkCell;
 
 /// Delegate when we use inline cell editing.
 @protocol PSPDFBookmarkTableViewCellDelegate <NSObject>
 
 /// Called when the bookmark cell did update the text.
-- (void)bookmarkCell:(PSPDFBookmarkTableViewCell *)cell didUpdateBookmarkString:(NSString *)bookmarkString;
+- (void)bookmarkCell:(PSPDFBookmarkCell *)cell didUpdateBookmarkString:(NSString *)bookmarkString;
 
 @end
 
 
 /// Custom cell used for bookmarks.
-@interface PSPDFBookmarkTableViewCell : PSPDFTableViewCell <UITextFieldDelegate>
+@interface PSPDFBookmarkCell : PSPDFTableViewCell <UITextFieldDelegate>
 
 /// Visible string.
 @property (nonatomic, copy) NSString *bookmarkString;
@@ -35,8 +35,7 @@
 
 @end
 
-
-@interface PSPDFBookmarkTableViewCell (SubclassingHooks)
+@interface PSPDFBookmarkCell (SubclassingHooks)
 
 /// Internally used text field.
 @property (nonatomic, strong) UITextField *textField;

@@ -12,6 +12,18 @@
 
 #import <Foundation/Foundation.h>
 
+/// Boolean. Indicates if the content should automatically start playing.
+extern NSString *const PSPDFGalleryOptionAutoplay;
+
+/// Boolean. Indicates if controls should be displayed.
+extern NSString *const PSPDFGalleryOptionControls;
+
+/// Boolean. Indicates if the content should loop forever.
+extern NSString *const PSPDFGalleryOptionLoop;
+
+/// NSURL. Indicates which image should be presented as a cover view.
+extern NSString *const PSPDFGalleryOptionCover;
+
 /// An item in a gallery.
 @interface PSPDFGalleryItem : NSObject
 
@@ -20,6 +32,10 @@
 
 /// The content URL of the item.
 @property (nonatomic, strong, readonly) NSURL *contentURL;
+
+/// The options dictionary of the item. Subclasses should implement
+/// dedicated setters to access the supported options.
+@property (nonatomic, copy, readonly) NSDictionary *options;
 
 /// Indicates if the content of contentURL is considered valid.
 @property (nonatomic, assign, readonly, getter = hasValidContent) BOOL validContent;
@@ -32,8 +48,5 @@
 
 /// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` is optional.
 - (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption;
-
-/// Indicates whether contentURL is referencing a local resource.
-@property (nonatomic, assign, readonly, getter = isLocalContentURL) BOOL localContentURL;
 
 @end

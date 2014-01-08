@@ -32,10 +32,9 @@
 "Email" = "E-mail";
 "Send via Email" = "Send pr. e-mail";
 "Send" = "Send";
-"Open in..." = "Åbn i…";
+"Open in" = "Åbn i";
 "Open" = "Åbn";
 "Commit" = "Udfør";
-"Sending to %@..." = "Sender til %@…";
 "Sending to %@" = "Sender til %@"; // Context: Open document with an application
 "Pages" = "Sider";
 "Print with annotations" = "Udskriv med kommentarer";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "Tilføj bogmærke";
 "Remove Bookmark" = "Fjern bogmærke";
 "Brightness" = "Lysstyrke";
-"Share..." = "Del…";
-"Preparing..." = "Forbereder…";
-"Loading..." = "Indlæser…";
+"Share" = "Del";
+"Preparing" = "Forbereder";
+"Loading" = "Indlæser";
 "Expand" = "Udvid";
 "Collapse" = "Sammenfold";
 
@@ -80,13 +79,14 @@
 "No matches found" = "Ingen resultater";
 "One match found" = "En match fundet";
 "%d matches found" = "%d matches fundet";
-"Searching Page %d of %d..." = "Søger i side %d af %d…";
+"Searching Page %d of %d" = "Søger i side %d af %d";
 "Search Completed" = "Søgning afsluttet";
 "Search Cancelled" = "Søgning annuleret";
 "%d left" = "%d tilbage"; // Context: there are 5 documents left
-"Searching..." = "Søger...";
+"Searching" = "Søger";
 "%d documents indexed." = "%d dokumenter indekserede.";
 "Done" = "Færdig";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Åbn i Safari";
@@ -110,9 +110,7 @@
 "Edit" = "Rediger";
 "Undo" = "Fortryd";
 "Redo" = "Gentag";
-"Type..." = "Type…"; // Context: kind of Annotation can be selected
-"Font..." = "Skrift…";
-"Size..." = "Str.…";
+"Type" = "Type"; // Context: kind of Annotation can be selected
 "Size" = "Str.";
 "Font" = "Skrift";
 "Fonts" = "Skrifter";
@@ -124,18 +122,13 @@
 "Monochrome" = "Monochrome";
 "Vintage" = "Vintage";
 "Color" = "Farve";
-"Color..." = "Farve…";
-"Border..." = "Ramme…";
+"Border" = "Ramme";
 "Fill Color" = "Fyldfarve";
-"Fill Color..." = "Fyldfarve…";
 "Opacity" = "Transparens";
-"Opacity..." = "Transparens…";
 "%@ %%" = "%@ %%";
-"Custom..." = "Speciel…";
-"Thickness..." = "Tykkelse…";
+"Custom" = "Speciel";
 "Thickness" = "Tykkelse";
 "%@ pt" = "%@ pt";
-"Note..." = "Note…";
 "Yellow" = "Gul";
 "Green" = "Grøn";
 "Red" = "Rød";
@@ -183,8 +176,8 @@
 "Medium Quality" = "Middel kvalitet";
 "High Quality" = "Høj kvalitet";
 "Clear All" = "Ryd alt";
+"Clear" = "Ryd";
 "Style" = "Udseende";
-"Style..." = "Udseende…";
 "Link" = "Henvisning";
 "Ink" = "Tegning";
 "FreeText" = "Tekst";
@@ -193,12 +186,11 @@
 "Left" = "Venstrejusteret";
 "Center" = "Centreret";
 "Right" = "Højrejusteret";
-"Alignment..." = "Justering…";
 "Alignment" = "Justering";
 "Preview File" = "Vis arkiv";
 "Copy" = "Kopier";
 "Paste" = "Sæt ind";
-"Inspector..." = "Inspektør...";
+"Inspector" = "Inspektør";
 "Group" = "Grupper";
 "Ungroup" = "Ophæv gruppe";
 "Sample" = "Eksempel";
@@ -258,8 +250,8 @@
 "Reset" = "Nulstil";
 
 // line annotations
-"Start..." = "Start…";
-"End..." = "Slut…";
+"Start" = "Start";
+"End" = "Slut";
 "Line.None" = "Ingen";
 "Line.ClosedArrow" = "Lukket pil";
 "Line.OpenArrow" = "Åbn pil";
@@ -275,7 +267,7 @@
 "%d Points" = "%d punkter";
 
 // link annotation editing
-"Create Link..." = "Opret henvisning…";
+"Create Link" = "Opret henvisning";
 "Add Link" = "Tilføj henvisning";
 "Edit Link" = "Rediger henvisning";
 "Move Link" = "Fly henvisning";
