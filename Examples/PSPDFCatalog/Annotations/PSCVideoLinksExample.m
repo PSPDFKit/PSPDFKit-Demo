@@ -18,7 +18,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Video Link To Fullscreen";
+        self.title = @"Multimedia Gallery Example";
         self.category = PSCExampleCategoryAnnotations;
     }
     return self;
