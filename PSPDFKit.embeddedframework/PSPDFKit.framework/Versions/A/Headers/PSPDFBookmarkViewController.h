@@ -12,7 +12,7 @@
 
 #import "PSPDFStatefulTableViewController.h"
 #import "PSPDFStyleable.h"
-#import "PSPDFBookmarkTableViewCell.h"
+#import "PSPDFBookmarkCell.h"
 
 @class PSPDFDocument, PSPDFBookmark, PSPDFBookmarkViewController;
 

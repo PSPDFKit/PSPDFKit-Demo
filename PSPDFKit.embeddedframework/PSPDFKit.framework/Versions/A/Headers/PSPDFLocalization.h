@@ -19,6 +19,9 @@ extern NSString *PSPDFAppName(void);
 /// Will first look up the string in the PSPDFKit.bundle
 extern NSString *PSPDFLocalize(NSString *stringToken);
 
+/// Same as `PSPDFLocalize()` but will add an ellipsis (...) at the end.
+extern NSString *PSPDFLocalizeWithEllipsis(NSString *stringToken);
+
 /// Allows to set a custom dictionary that contains dictionaries with language locales.
 /// Will override localization found in the bundle, if a value is found.
 /// Falls back to "en" if localization key is not found in dictionary.

@@ -32,10 +32,9 @@
 "Email" = "电子邮件";
 "Send via Email" = "通过电子邮件发送";
 "Send" = "发送";
-"Open in..." = "打开程序…";
+"Open in" = "打开程序";
 "Open" = "打开";
 "Commit" = "提交";
-"Sending to %@..." = "正在发送至 %@…";
 "Sending to %@" = "正在发送至 %@"; // Context: Open document with an application
 "Pages" = "页";
 "Print with annotations" = "连同批注打印";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "添加书签";
 "Remove Bookmark" = "移除书签";
 "Brightness" = "亮度";
-"Share..." = "共享…";
-"Preparing..." = "准备中…";
-"Loading..." = "正在加载…";
+"Share" = "共享";
+"Preparing" = "准备中";
+"Loading" = "正在加载";
 "Expand" = "展开";
 "Collapse" = "折叠";
 
@@ -80,13 +79,14 @@
 "No matches found" = "未找到匹配";
 "One match found" = "找到一个匹配";
 "%d matches found" = "找到 %d 个匹配";
-"Searching Page %d of %d..." = "正在搜索第 %d 页（共 %d 页）…";
+"Searching Page %d of %d" = "正在搜索第 %d 页（共 %d 页）";
 "Search Completed" = "搜索完成";
 "Search Cancelled" = "搜索取消";
 "%d left" = "剩下 %d"; // Context: there are 5 documents left
-"Searching..." = "正在搜索...";
+"Searching" = "正在搜索";
 "%d documents indexed." = "%d 个文稿已加索引。";
 "Done" = "完成";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "在 Safari 中打开";
@@ -110,9 +110,7 @@
 "Edit" = "编辑";
 "Undo" = "撤销";
 "Redo" = "重做";
-"Type..." = "类型…"; // Context: kind of Annotation can be selected
-"Font..." = "字体…";
-"Size..." = "大小…";
+"Type" = "类型"; // Context: kind of Annotation can be selected
 "Size" = "大小";
 "Font" = "字体";
 "Fonts" = "字体";
@@ -124,18 +122,13 @@
 "Monochrome" = "单色";
 "Vintage" = "复古";
 "Color" = "颜色";
-"Color..." = "颜色…";
-"Border..." = "边框…";
+"Border" = "边框";
 "Fill Color" = "填充颜色";
-"Fill Color..." = "填充颜色…";
 "Opacity" = "不透明度";
-"Opacity..." = "不透明度…";
 "%@ %%" = "%@ %%";
-"Custom..." = "自定…";
-"Thickness..." = "粗细…";
+"Custom" = "自定";
 "Thickness" = "粗细";
 "%@ pt" = "%@ 点";
-"Note..." = "注释…";
 "Yellow" = "黄色";
 "Green" = "绿色";
 "Red" = "红色";
@@ -183,8 +176,8 @@
 "Medium Quality" = "中等质量";
 "High Quality" = "高质量";
 "Clear All" = "清除全部";
+"Clear" = "Clear";
 "Style" = "样式";
-"Style..." = "样式…";
 "Link" = "链接";
 "Ink" = "墨水";
 "FreeText" = "文本";
@@ -193,12 +186,11 @@
 "Left" = "剩下";
 "Center" = "中心";
 "Right" = "右转";
-"Alignment..." = "对齐";
 "Alignment" = "对齐";
 "Preview File" = "预览文件";
 "Copy" = "拷贝";
 "Paste" = "粘贴";
-"Inspector..." = "检查器...";
+"Inspector" = "检查器";
 "Group" = "群组";
 "Ungroup" = "取消群组";
 "Sample" = "样本";
@@ -258,8 +250,8 @@
 "Reset" = "重置";
 
 // line annotations
-"Start..." = "开始…";
-"End..." = "结束…";
+"Start" = "开始";
+"End" = "结束";
 "Line.None" = "无";
 "Line.ClosedArrow" = "闭合箭头";
 "Line.OpenArrow" = "开放箭头";
@@ -275,7 +267,7 @@
 "%d Points" = "%d 点";
 
 // link annotation editing
-"Create Link..." = "创建链接...";
+"Create Link" = "创建链接";
 "Add Link" = "添加链接";
 "Edit Link" = "编辑链接";
 "Move Link" = "移动链接";

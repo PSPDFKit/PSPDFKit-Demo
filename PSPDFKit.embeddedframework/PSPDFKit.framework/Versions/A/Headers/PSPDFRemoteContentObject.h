@@ -47,4 +47,9 @@
 /// happens on a background thread and is part of the loading state.
 - (NSValueTransformer *)valueTransformerForRemoteContent;
 
+/// Return `YES` if the object actually has remote content. Since most `PSPDFRemoteContentObject`s
+/// will have remote content, this method is optional. If it is not implemented, `YES` will be
+/// assumed.
+- (BOOL)hasRemoteContent;
+
 @end

@@ -2,6 +2,20 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+__v3.3.5 - 9/Jan/2013__
+
+*  The gallery now supports more options like autostart, cover views or control customizations.
+*  Improved the `highlightedString` feature by narrowing down the target rect. Reduces the chance to extract text above/below the marked text.
+*  The render activity view now has a slight delay and animates in and out, making it less disruptive.
+*  Extends support for OS 7 dynamic type to more controls and cells.
+*  Localization has been streamlined and requires less entries. If you rely in a specific `identifier` for `PSPDFMenuItem` checks, remove the "..." from the strings.
+*  The option view in `PSPDFNoteAnnotationViewController` now uses blur on iOS 7 instead of plain transparency.
+*  Adds further workarounds for issues in `UITextView` on iOS 7 which improves caret scrolling and visibility when using external keyboards.
+*  The "Clear All" action on `PSPDFAnnotationTableViewController` is now a single undo step instead of one per annotation.
+*  Fixes an issue where the redo action of the `PSPDFAnnotationToolbar` would always prefer drawing redos, potentially preferring the wrong actions first.
+*  Fixes an issue that blocked moving annotations if they are above a form field.
+*  Fixes an issue that could select the wrong annotations when sending a single extracted page from a document via email.
+
 __v3.3.4 - 7/Jan/2013__
 
 *  The annotation table view has been redesigned and also shows the creation user and the last modification date, if available.
