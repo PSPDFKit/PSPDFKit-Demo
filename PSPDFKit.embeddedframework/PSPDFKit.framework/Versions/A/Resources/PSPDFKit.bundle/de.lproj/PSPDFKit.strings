@@ -32,10 +32,9 @@
 "Email" = "Email";
 "Send via Email" = "Via Email senden";
 "Send" = "Senden";
-"Open in..." = "Öffnen in…";
+"Open in" = "Öffnen in";
 "Open" = "Öffnen";
 "Commit" = "Senden";
-"Sending to %@..." = "Öffne %@…";
 "Sending to %@" = "Öffne %@";
 "Pages" = "Seiten";
 "Print with annotations" = "Mit Annotationen drucken";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "Lesezeichen hinzufügen";
 "Remove Bookmark" = "Lesezeichen entfernen";
 "Brightness" = "Helligkeit";
-"Share..." = "Teilen…";
-"Preparing..." = "Vorbereiten…";
-"Loading..." = "Lädt…";
+"Share" = "Teilen";
+"Preparing" = "Vorbereiten";
+"Loading" = "Lädt";
 "Expand" = "Ausklappen";
 "Collapse" = "Einklappen";
 
@@ -80,14 +79,14 @@
 "No matches found" = "Keine Treffer gefunden";
 "One match found" = "Einen Treffer gefunden";
 "%d matches found" = "%d Treffer gefunden";
-"Searching Page %d of %d..." = "Suche Seite %d von %d…";
+"Searching Page %d of %d" = "Suche Seite %d von %d";
 "Search Completed" = "Suche abgeschlossen";
 "Search Cancelled" = "Suche abgebrochen";
 "%d left" = "%d weitere";
-"Searching..." = "Suchen...";
+"Searching" = "Suchen";
 "%d documents indexed." = "%d Dokumente indiziert.";
 "Done" = "Fertig";
-
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "In Safari öffnen";
@@ -111,9 +110,7 @@
 "Edit" = "Editieren";
 "Undo" = "Wiederrufen";
 "Redo" = "Wiederherstellen";
-"Type..." = "Typ…";
-"Font..." = "Schrift…";
-"Size..." = "Größe…";
+"Type" = "Typ";
 "Size" = "Größe";
 "Font" = "Schriftart";
 "Fonts" = "Schriftarten";
@@ -124,19 +121,14 @@
 "Rainbow" = "Regenbogen";
 "Monochrome" = "Monochrom";
 "Vintage" = "Traditionell";
-"Color..." = "Farbe…";
 "Color" = "Farbe";
-"Border..." = "Rand…";
-"Fill Color..." = "Füllfarbe…";
+"Border" = "Rand";
 "Fill Color" = "Füllfarbe";
-"Opacity..." = "Transparenz…";
 "Opacity" = "Transparenz";
 "%@ %%" = "%@ %%";
-"Custom..." = "Mehr…";
-"Thickness..." = "Stärke…";
+"Custom" = "Mehr";
 "Thickness" = "Stärke";
 "%@ pt" = "%@ pt";
-"Note..." = "Notiz";
 "Yellow" = "Gelb";
 "Green" = "Grün";
 "Red" = "Rot";
@@ -184,8 +176,8 @@
 "Medium Quality" = "Mittlere Qualität";
 "High Quality" = "Hohe Qualität";
 "Clear All" = "Alles löschen";
+"Clear" = "Reset";
 "Style" = "Styling";
-"Style..." = "Styling…";
 "Link" = "Link";
 "Ink" = "Zeichnung";
 "FreeText" = "Text";
@@ -194,12 +186,11 @@
 "Left" = "Linsbündig";
 "Center" = "Zentriert";
 "Right" = "Rechtsbündig";
-"Alignment..." = "Ausrichtung…";
 "Alignment" = "Ausrichtung";
 "Preview File" = "Dateivorschau";
 "Copy" = "Kopieren";
 "Paste" = "Einfügen";
-"Inspector..." = "Inspektor";
+"Inspector" = "Inspektor";
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
 "Sample" = "Beispiel";
@@ -258,8 +249,8 @@
 "Reset" = "Reset";
 
 // line annotations
-"Start..." = "Start…";
-"End..." = "Ende…";
+"Start" = "Start";
+"End" = "Ende";
 "Line.None" = "Keine";
 "Line.ClosedArrow" = "Geschlossener Pfeil";
 "Line.OpenArrow" = "Offener Pfeil";
@@ -275,7 +266,7 @@
 "%d Points" = "%d Punkte";
 
 // link annotation editing
-"Create Link..." = "Link erstellen...";
+"Create Link" = "Link erstellen";
 "Add Link" = "Link erstellen";
 "Edit Link" = "Link editieren";
 "Move Link" = "Link verschieben";

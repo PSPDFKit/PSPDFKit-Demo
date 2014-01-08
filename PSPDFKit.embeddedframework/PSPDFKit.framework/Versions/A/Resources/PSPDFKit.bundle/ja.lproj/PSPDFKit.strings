@@ -32,10 +32,9 @@
 "Email" = "メール";
 "Send via Email" = "メールで送信";
 "Send" = "送信";
-"Open in..." = "開く…";
+"Open in" = "開く";
 "Open" = "開く";
 "Commit" = "コミット";
-"Sending to %@..." = "%@に送信中…";
 "Sending to %@" = "%@に送信中"; // Context: Open document with an application
 "Pages" = "ページ";
 "Print with annotations" = "注釈付きでプリント";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "ブックマークを追加";
 "Remove Bookmark" = "ブックマークを削除";
 "Brightness" = "明るさ";
-"Share..." = "共有…";
-"Preparing..." = "準備中…";
-"Loading..." = "読み込み中…";
+"Share" = "共有";
+"Preparing" = "準備中";
+"Loading" = "読み込み中";
 "Expand" = "開く";
 "Collapse" = "折りたたむ";
 
@@ -80,13 +79,14 @@
 "No matches found" = "一致するものが見つかりませんでした";
 "One match found" = "一致するものが1件見つかりました";
 "%d matches found" = "一致するものが%d件見つかりました";
-"Searching Page %d of %d..." = "ページ%d/%dを検索中…";
+"Searching Page %d of %d" = "ページ%d/%dを検索中";
 "Search Completed" = "検索を完了";
 "Search Cancelled" = "検索がキャンセルされました";
 "%d left" = "残り%d件"; // Context: there are 5 documents left
-"Searching..." = "検索中…";
+"Searching" = "検索中";
 "%d documents indexed." = "%d個の書類がインデックス済み";
 "Done" = "完了";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Safariで開く";
@@ -110,9 +110,7 @@
 "Edit" = "編集";
 "Undo" = "取消";
 "Redo" = "やり直し";
-"Type..." = "入力…"; // Context: kind of Annotation can be selected
-"Font..." = "フォント…";
-"Size..." = "サイズ…";
+"Type" = "入力"; // Context: kind of Annotation can be selected
 "Size" = "サイズ";
 "Font" = "フォント";
 "Fonts" = "フォント";
@@ -124,18 +122,13 @@
 "Monochrome" = "モノクロ";
 "Vintage" = "ビンテージ";
 "Color" = "カラー";
-"Color..." = "カラー…";
-"Border..." = "境界線…";
+"Border" = "境界線";
 "Fill Color" = "塗りつぶしの色";
-"Fill Color..." = "塗りつぶしの色…";
 "Opacity" = "不透明度";
-"Opacity..." = "不透明度…";
 "%@ %%" = "%@ %%";
-"Custom..." = "カスタム…";
-"Thickness..." = "太さ…";
+"Custom" = "カスタム";
 "Thickness" = "太さ";
 "%@ pt" = "%@pt";
-"Note..." = "メモ…";
 "Yellow" = "イエロー";
 "Green" = "グリーン";
 "Red" = "レッド";
@@ -183,8 +176,8 @@
 "Medium Quality" = "中音質";
 "High Quality" = "高音質";
 "Clear All" = "すべてを消去";
+"Clear" = "Clear";
 "Style" = "スタイル";
-"Style..." = "スタイル…";
 "Link" = "リンク";
 "Ink" = "インク";
 "FreeText" = "テキスト";
@@ -193,12 +186,11 @@
 "Left" = "左揃え";
 "Center" = "中央揃え";
 "Right" = "右揃え";
-"Alignment..." = "揃え方…";
 "Alignment" = "行揃え";
 "Preview File" = "ファイルをプレビュー";
 "Copy" = "コピー";
 "Paste" = "ペースト";
-"Inspector..." = "インスペクタ…";
+"Inspector" = "インスペクタ";
 "Group" = "グループ";
 "Ungroup" = "グループ解除";
 "Sample" = "サンプル";
@@ -258,8 +250,8 @@
 "Reset" = "リセット";
 
 // line annotations
-"Start..." = "開始…";
-"End..." = "終了位置…";
+"Start" = "開始";
+"End" = "終了位置";
 "Line.None" = "なし";
 "Line.ClosedArrow" = "三角矢印";
 "Line.OpenArrow" = "線矢印";
@@ -275,7 +267,7 @@
 "%d Points" = "%dポイント";
 
 // link annotation editing
-"Create Link..." = "リンクを作成…";
+"Create Link" = "リンクを作成";
 "Add Link" = "リンクを追加";
 "Edit Link" = "リンクを編集";
 "Move Link" = "リンクを移動";

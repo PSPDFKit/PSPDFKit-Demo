@@ -13,6 +13,14 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
+typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
+    /// Shows no controls whatsoever.
+    PSPDFMediaPlayerControlStyleNone,
+    
+    /// Shows the default control set.
+    PSPDFMediaPlayerControlStyleDefault
+};
+
 @protocol PSPDFMediaPlayerControllerDelegate;
 
 @class PSPDFMediaPlayerView;
@@ -55,6 +63,12 @@
 
 /// The tap gesture recognizer used for toggling the toolbar.
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *tapGestureRecognizer;
+
+/// Enables playback looping. Defaults to `NO`.
+@property (nonatomic, assign) BOOL loopEnabled;
+
+/// The control style of the media player. Defaults to `PSPDFMediaPlayerControlStyleDefault`.
+@property (nonatomic, assign) PSPDFMediaPlayerControlStyle controlStyle;
 
 @end
 

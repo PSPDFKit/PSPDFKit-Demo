@@ -32,10 +32,9 @@
 "Email" = "E-mail";
 "Send via Email" = "Enviar por e-mail";
 "Send" = "Enviar";
-"Open in..." = "Abrir com…";
+"Open in" = "Abrir com";
 "Open" = "Abrir";
 "Commit" = "Consolidar";
-"Sending to %@..." = "A enviar para %@…";
 "Sending to %@" = "Enviar para %@ "; // Context: Open document with an application
 "Pages" = "Páginas";
 "Print with annotations" = "Imprimir com anotações";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "Adicionar marcador";
 "Remove Bookmark" = "Remover marcador";
 "Brightness" = "Brilho";
-"Share..." = "Partilhar…";
-"Preparing..." = "A preparar…";
-"Loading..." = "A carregar…";
+"Share" = "Partilhar";
+"Preparing" = "A preparar";
+"Loading" = "A carregar";
 "Expand" = "Expandir";
 "Collapse" = "Encolher";
 
@@ -80,13 +79,14 @@
 "No matches found" = "Nenhuma correspondência encontrada";
 "One match found" = "Uma correspondência encontrada";
 "%d matches found" = "%d correspondências encontradas";
-"Searching Page %d of %d..." = "A pesquisar página %d de %d…";
+"Searching Page %d of %d" = "A pesquisar página %d de %d";
 "Search Completed" = "Pesquisa concluída";
 "Search Cancelled" = "Pesquisa cancelada";
 "%d left" = "%d restantes"; // Context: there are 5 documents left
-"Searching..." = "A pesquisar…";
+"Searching" = "A pesquisar";
 "%d documents indexed." = "%d documentos indexados.";
 "Done" = "Feito";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Abrir no Safari";
@@ -110,9 +110,7 @@
 "Edit" = "Editar";
 "Undo" = "Desfazer";
 "Redo" = "Refazer";
-"Type..." = "Tipo…"; // Context: kind of Annotation can be selected
-"Font..." = "Tipo de letra…";
-"Size..." = "Tamanho…";
+"Type" = "Tipo"; // Context: kind of Annotation can be selected
 "Size" = "Tamanho";
 "Font" = "Tipo de letra";
 "Fonts" = "Tipos de letra";
@@ -124,18 +122,13 @@
 "Monochrome" = "Monocromático";
 "Vintage" = "Vintage";
 "Color" = "Cor";
-"Color..." = "Cor…";
-"Border..." = "Limite…";
+"Border" = "Limite";
 "Fill Color" = "Cor de preenchimento";
-"Fill Color..." = "Cor de preenchimento…";
 "Opacity" = "Opacidade";
-"Opacity..." = "Opacidade…";
 "%@ %%" = "%@ %%";
-"Custom..." = "Personalizado…";
-"Thickness..." = "Espessura…";
+"Custom" = "Personalizado";
 "Thickness" = "Espessura";
 "%@ pt" = "%@ pt";
-"Note..." = "Nota…";
 "Yellow" = "Amarelo";
 "Green" = "Verde";
 "Red" = "Vermelho";
@@ -183,8 +176,8 @@
 "Medium Quality" = "Qualidade média";
 "High Quality" = "Alta qualidade";
 "Clear All" = "Limpar tudo";
+"Clear" = "Limpar";
 "Style" = "Estilo";
-"Style..." = "Estilo…";
 "Link" = "Link";
 "Ink" = "Tinta";
 "FreeText" = "Texto";
@@ -193,12 +186,11 @@
 "Left" = "Esquerda";
 "Center" = "Centro";
 "Right" = "Direita";
-"Alignment..." = "Alinhamento…";
 "Alignment" = "Alinhamento";
 "Preview File" = "Pré-visualizar ficheiro";
 "Copy" = "Copiar";
 "Paste" = "Colar";
-"Inspector..." = "Inspector…";
+"Inspector" = "Inspector";
 "Group" = "Agrupar";
 "Ungroup" = "Desagrupar";
 "Sample" = "Amostra";
@@ -258,8 +250,8 @@
 "Reset" = "Repor";
 
 // line annotations
-"Start..." = "Início…";
-"End..." = "Fim…";
+"Start" = "Início";
+"End" = "Fim";
 "Line.None" = "Nenhum";
 "Line.ClosedArrow" = "Seta fechada";
 "Line.OpenArrow" = "Seta aberta";
@@ -275,7 +267,7 @@
 "%d Points" = "%d pontos";
 
 // link annotation editing
-"Create Link..." = "Criar link…";
+"Create Link" = "Criar link";
 "Add Link" = "Adicionar link";
 "Edit Link" = "Editar link";
 "Move Link" = "Mover link";

@@ -32,10 +32,9 @@
 "Email" = "이메일";
 "Send via Email" = "이메일로 전송";
 "Send" = "전송";
-"Open in..." = "다음으로 열기…";
+"Open in" = "다음으로 열기";
 "Open" = "열기";
 "Commit" = "완료";
-"Sending to %@..." = "%@에게 전송…";
 "Sending to %@" = "%@에게 전송"; // Context: Open document with an application
 "Pages" = "페이지";
 "Print with annotations" = "주석을 함께 출력";
@@ -52,9 +51,9 @@
 "Add Bookmark" = "즐겨찾기 추가";
 "Remove Bookmark" = "즐겨찾기 제거";
 "Brightness" = "밝기";
-"Share..." = "공유…";
-"Preparing..." = "준비 중…";
-"Loading..." = "로딩 중…";
+"Share" = "공유";
+"Preparing" = "준비 중";
+"Loading" = "로딩 중";
 "Expand" = "확장";
 "Collapse" = "접어두기";
 
@@ -80,13 +79,14 @@
 "No matches found" = "검색 결과 없음";
 "One match found" = "검색 결과 1개 발견";
 "%d matches found" = "검색 결과 %d개 발견";
-"Searching Page %d of %d..." = "2%d 페이지 중의 1%d 페이지 검색 중…";
+"Searching Page %d of %d" = "2%d 페이지 중의 1%d 페이지 검색 중";
 "Search Completed" = "검색 완료";
 "Search Cancelled" = "검색 취소";
 "%d left" = "%d개 남음"; // Context: there are 5 documents left
-"Searching..." = "검색 중...";
+"Searching" = "검색 중";
 "%d documents indexed." = "%d개의 문서가 색인되었습니다.";
 "Done" = "완료";
+"Indexing Documents" = "Indexing Documents";
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
@@ -110,9 +110,7 @@
 "Edit" = "편집";
 "Undo" = "실행취소";
 "Redo" = "실행복귀";
-"Type..." = "유형…"; // Context: kind of Annotation can be selected
-"Font..." = "서체…";
-"Size..." = "크기…";
+"Type" = "유형"; // Context: kind of Annotation can be selected
 "Size" = "크기";
 "Font" = "서체";
 "Fonts" = "서체";
@@ -124,18 +122,13 @@
 "Monochrome" = "흑백";
 "Vintage" = "빈티지";
 "Color" = "색상";
-"Color..." = "색상…";
-"Border..." = "테두리…";
+"Border" = "테두리";
 "Fill Color" = "채우기 색상";
-"Fill Color..." = "채우기 색상…";
 "Opacity" = "불투명도";
-"Opacity..." = "불투명도…";
 "%@ %%" = "%@ %%";
-"Custom..." = "사용자 지정…";
-"Thickness..." = "두께…";
+"Custom" = "사용자 지정";
 "Thickness" = "두께";
 "%@ pt" = "%@ pt";
-"Note..." = "메모…";
 "Yellow" = "노란색";
 "Green" = "초록색";
 "Red" = "빨간색";
@@ -183,8 +176,8 @@
 "Medium Quality" = "중간 품질";
 "High Quality" = "높은 품질";
 "Clear All" = "모두 지우기";
+"Clear" = "Clear";
 "Style" = "스타일";
-"Style..." = "스타일…";
 "Link" = "링크";
 "Ink" = "잉크";
 "FreeText" = "텍스트";
@@ -193,12 +186,11 @@
 "Left" = "왼쪽";
 "Center" = "가운데";
 "Right" = "오른쪽";
-"Alignment..." = "정렬…";
 "Alignment" = "정렬";
 "Preview File" = "파일 미리보기";
 "Copy" = "복사";
 "Paste" = "붙여넣기";
-"Inspector..." = "속성...";
+"Inspector" = "속성";
 "Group" = "그룹";
 "Ungroup" = "그룹해제";
 "Sample" = "샘플";
@@ -258,8 +250,8 @@
 "Reset" = "초기화";
 
 // line annotations
-"Start..." = "시작…";
-"End..." = "끝…";
+"Start" = "시작";
+"End" = "끝";
 "Line.None" = "없음";
 "Line.ClosedArrow" = "닫힌 화살표";
 "Line.OpenArrow" = "열린 화살표";
@@ -275,7 +267,7 @@
 "%d Points" = "%d 포인트";
 
 // link annotation editing
-"Create Link..." = "링크 생성...";
+"Create Link" = "링크 생성";
 "Add Link" = "링크 추가";
 "Edit Link" = "링크 편집";
 "Move Link" = "링크 이동";

@@ -12,10 +12,11 @@
 
 #import "PSPDFAnnotation.h"
 
+/// Vertical alignment setting.
 typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
-    PSPDFVerticalAlignmentTop    = 0,
-    PSPDFVerticalAlignmentCenter = 1,
-    PSPDFVerticalAlignmentBottom = 2,
+    PSPDFVerticalAlignmentTop    = 0, /// Align at the top.
+    PSPDFVerticalAlignmentCenter = 1, /// Align at the vertical center.
+    PSPDFVerticalAlignmentBottom = 2, /// Align at the bottom.
 };
 
 /**
