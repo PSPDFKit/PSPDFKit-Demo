@@ -443,7 +443,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
         [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-            [PSPDFProgressHUD showProgress:numberOfProcessedPages/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
+            [PSPDFProgressHUD showProgress:numberOfProcessedPages/(float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
         } error:NULL];
 
         [PSPDFProgressHUD dismiss];
@@ -913,7 +913,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
                         // Access UI only from main thread.
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [PSPDFProgressHUD showProgress:(numberOfProcessedPages+1)/(float)totalPages status:PSPDFLocalize(@"Preparing...")];
+                            [PSPDFProgressHUD showProgress:(numberOfProcessedPages+1)/(float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
                         });
                     } error:NULL];
 
