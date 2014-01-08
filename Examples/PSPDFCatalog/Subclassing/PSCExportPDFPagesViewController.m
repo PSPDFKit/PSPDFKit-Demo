@@ -123,7 +123,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
             // TODO: use file-based version to support larger PDFs.
             NSError *error = nil;
             NSData *data = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:self.document pageRanges:@[selectedPages] options:options progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-                [PSPDFProgressHUD showProgress:(numberOfProcessedPages + 1) / (float)totalPages status:PSPDFLocalize(@"Preparing...")];
+                [PSPDFProgressHUD showProgress:(numberOfProcessedPages + 1) / (float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
             } error:&error];
 
             //
