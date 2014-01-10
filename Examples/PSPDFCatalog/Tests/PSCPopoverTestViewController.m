@@ -88,10 +88,13 @@ static const NSUInteger noVerticalButtons = 6;
 	[super viewDidLayoutSubviews];
 	
 	CGRect buttonBounds = self.view.bounds;
+	CGFloat verticalTranslation = 0.f;
+	PSPDF_IF_IOS7_OR_GREATER(verticalTranslation = self.topLayoutGuide.length;)
+	buttonBounds = CGRectApplyAffineTransform(buttonBounds, CGAffineTransformMakeTranslation(0.f, verticalTranslation));
 	CGFloat buttonWidth = buttonBounds.size.width / noHorizontalButtons;
 	CGFloat buttonHeight = buttonBounds.size.height / noVerticalButtons;
 	[self.buttons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
-		CGRect buttonFrame = CGRectMake((idx%3)*buttonWidth, (idx/3)*buttonHeight, buttonWidth, buttonHeight);
+		CGRect buttonFrame = CGRectMake((idx%3)*buttonWidth + buttonBounds.origin.x, (idx/3)*buttonHeight + buttonBounds.origin.y, buttonWidth, buttonHeight);
 		button.frame = buttonFrame;
 	}];
 }
@@ -106,7 +109,7 @@ static const NSUInteger noVerticalButtons = 6;
 	}
 	
 	UIViewController *sample = [UIViewController new];
-	sample.view.backgroundColor = [UIColor whiteColor];
+	PSPDF_IF_PRE_IOS7(sample.view.backgroundColor = [UIColor whiteColor];)
 	sample.contentSizeForViewInPopover = CGSizeMake(300, 400);
 	
 	UIPopoverController *popover;
