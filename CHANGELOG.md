@@ -2,7 +2,7 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-__v3.3.5 - 9/Jan/2013__
+__v3.3.5 - 9/Jan/2014__
 
 *  The gallery now supports more options like autostart, cover views or control customizations.
 *  Improved the `highlightedString` feature by narrowing down the target rect. Reduces the chance to extract text above/below the marked text.
@@ -16,7 +16,7 @@ __v3.3.5 - 9/Jan/2013__
 *  Fixes an issue that blocked moving annotations if they are above a form field.
 *  Fixes an issue that could select the wrong annotations when sending a single extracted page from a document via email.
 
-__v3.3.4 - 7/Jan/2013__
+__v3.3.4 - 7/Jan/2014__
 
 *  The annotation table view has been redesigned and also shows the creation user and the last modification date, if available.
 *  New property: `skipMenuForNoteAnnotationsOnIPad` to control how the note controller is displayed.
@@ -29,7 +29,7 @@ __v3.3.4 - 7/Jan/2013__
 *  Some more icon tweaks: delete now better fits into the iOS 7 `UIMenuController` and sound now is a microphone instead of a note.
 *  Fixes an issue with saving custom pspdfkit:// prefixed links via the XFDF provider.
 
-__v3.3.3 - 6/Jan/2013__
+__v3.3.3 - 6/Jan/2014__
 
 *  Re-enables the Clear button in the new `PSPDFFreeTextAccessoryView` after text has been changed.
 *  Don't show the ".pdf" file ending in the `PSPDFDocumentPickerController`.
@@ -44,7 +44,7 @@ __v3.3.3 - 6/Jan/2013__
 *  Fixes an issue that prevented forms from saving correctly when saved via the Send via Email/Open In feature from a readonly source. 
 *  Fixes multiple issues with building/preserving the appearance string for certain PDF form elements.
 
-__v3.3.2 - 4/Jan/2013__
+__v3.3.2 - 4/Jan/2014__
 
 *  Adds new accessory view for free text annotations to quickly access the inspector.
 *  The font size in `PSPDFNoteAnnotationViewController` now adapts to iOS 7 content size.
@@ -60,7 +60,7 @@ __v3.3.2 - 4/Jan/2013__
 *  Fixes an issue where the document sharing controller would sometimes not extract pages out of the PDF if only a subset of the pages are selected.
 *  Fixes an issue where wrong options could end up being used if `PSPDFDocumentSharingViewController` was preconfigured so it is invoked without showing the UI.
 
-__v3.3.1 - 2/Jan/2013__
+__v3.3.1 - 2/Jan/2014__
 
 *  PSPDFKit now displays note indicators for annotations with note content.
 *  Annotations that can't be erased are no longer hidden while in erase mode.
