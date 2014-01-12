@@ -96,7 +96,6 @@
         [[BITHockeyManager sharedHockeyManager] startManager];
     });
 #endif
-
     return YES;
 }
 
