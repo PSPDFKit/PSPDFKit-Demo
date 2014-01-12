@@ -198,6 +198,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
         // Initialize document and enable link autodetection.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]];
+        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Structured-checked.pdf"]];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
