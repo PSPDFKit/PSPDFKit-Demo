@@ -47,32 +47,12 @@
         // Register for global var change notifications from PSPDFCacheSettingsController.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
 
-        // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
-        // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
-        // Disabled by default, since this can be slow.
-        /*
-        __weak typeof(self) weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            CGFloat variance = [document aspectRatioVariance];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.clipToPageBoundaries = variance < 0.2f;
-            });
-        });
-         */
-
         // Restore viewState.
         if ([self.document isKindOfClass:PSCMagazine.class]) {
             [self setViewState:((PSCMagazine *)self.document).lastViewState];
         }
 
         self.leftBarButtonItems = @[_closeButtonItem];
-
-        // Change color.
-        //self.statusBarStyleSetting = PSPDFStatusBarDefault;
-
-        // Change statusbar setting to your preferred style.
-        //self.statusBarStyleSetting = PSPDFStatusBarDisable;
-        //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;        
     }
     return self;
 }
@@ -185,9 +165,15 @@
             [rightBarButtonItems addObject:self.searchButtonItem];
         }
     }
-    [rightBarButtonItems addObject:self.additionalActionsButtonItem];
+
+    if ([settings[PROPERTY(additionalActionsButtonItem)] boolValue]) {
+        [rightBarButtonItems addObject:self.additionalActionsButtonItem];
+    }
     if ([settings[PROPERTY(brightnessButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.brightnessButtonItem];
+    }
+    if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
+        [rightBarButtonItems addObject:self.activityButtonItem];
     }
     if ([settings[PROPERTY(viewModeButtonItem)] boolValue]) {
         [rightBarButtonItems addObject:self.viewModeButtonItem];
@@ -196,17 +182,16 @@
 
     // Define additional buttons with an action icon.
     NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
-    if ([settings[PROPERTY(printButtonItem)] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.printButtonItem];
-    }
-    if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.openInButtonItem];
-    }
-    if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.emailButtonItem];
-    }
-    if ([settings[PROPERTY(activityButtonItem)] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.activityButtonItem];
+    if ([settings[PROPERTY(additionalActionsButtonItem)] boolValue]) {
+        if ([settings[PROPERTY(printButtonItem)] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.printButtonItem];
+        }
+        if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.openInButtonItem];
+        }
+        if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
+            [additionalRightBarButtonItems addObject:self.emailButtonItem];
+        }
     }
 
     if (!PSCIsIPad()) {

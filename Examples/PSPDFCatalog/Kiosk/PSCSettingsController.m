@@ -58,38 +58,37 @@ static NSMutableDictionary *_settings;
 
 // Perform a appropriate choice of defaults.
 + (void)initialize {
-    @autoreleasepool {
-        if (self.class == [PSCSettingsController class]) {
-            _settings = [NSMutableDictionary new];
-            _settings[PROPERTY(pageMode)] = @(PSCIsIPad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
-            _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSCIsIPad());
-            _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
-            _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
-            _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
-            _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
-            _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
-            _settings[PROPERTY(isPageLabelEnabled)] = @YES;
-            _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
-            _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
-            _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
-            _settings[PROPERTY(viewModeButtonItem)] = @YES;
-            _settings[PROPERTY(searchButtonItem)] = @YES;
-            _settings[PROPERTY(annotationButtonItem)] = @YES;
-            _settings[PROPERTY(bookmarkButtonItem)] = @YES;
-            _settings[PROPERTY(brightnessButtonItem)] = @NO;
-            PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
-            _settings[PROPERTY(outlineButtonItem)] = @YES;
-            _settings[PROPERTY(printButtonItem)] = @YES;
-            _settings[PROPERTY(openInButtonItem)] = @YES;
-            _settings[PROPERTY(emailButtonItem)] = @YES;
-            _settings[PROPERTY(viewModeButtonItem)] = @YES;
-            _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
-            _settings[@"renderBackgroundColor"] = UIColor.whiteColor;
-            _settings[@"renderContentOpacity"] = @(1.f);
-            _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
-            //_settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollContinuous);
-            //_settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionVertical);
-        }
+    if (self.class == PSCSettingsController.class) {
+        _settings = [NSMutableDictionary dictionary];
+        _settings[PROPERTY(pageMode)] = @(PSCIsIPad() ? PSPDFPageModeAutomatic : PSPDFPageModeSingle);
+        _settings[PROPERTY(isFitToWidthEnabled)] = @(!PSCIsIPad());
+        _settings[PROPERTY(linkAction)] = @(PSPDFLinkActionInlineBrowser);
+        _settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollPerPage);
+        _settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionHorizontal);
+        _settings[PROPERTY(thumbnailBarMode)] = @(PSPDFThumbnailBarModeScrobbleBar);
+        _settings[PROPERTY(isZoomingSmallDocumentsEnabled)] = @YES;
+        _settings[PROPERTY(isPageLabelEnabled)] = @YES;
+        _settings[PROPERTY(isTextSelectionEnabled)] = @YES;
+        _settings[PROPERTY(isSmartZoomEnabled)] = @YES;
+        _settings[PROPERTY(isScrollOnTapPageEndEnabled)] = @YES;
+        _settings[PROPERTY(viewModeButtonItem)] = @YES;
+        _settings[PROPERTY(searchButtonItem)] = @YES;
+        _settings[PROPERTY(annotationButtonItem)] = @YES;
+        _settings[PROPERTY(bookmarkButtonItem)] = @YES;
+        _settings[PROPERTY(brightnessButtonItem)] = @NO;
+        PSC_IF_PRE_IOS7(_settings[PROPERTY(brightnessButtonItem)] = @YES;)
+        _settings[PROPERTY(outlineButtonItem)] = @YES;
+        _settings[PROPERTY(printButtonItem)] = @YES;
+        _settings[PROPERTY(openInButtonItem)] = @YES;
+        _settings[PROPERTY(emailButtonItem)] = @YES;
+        _settings[PROPERTY(activityButtonItem)] = @YES;
+        _settings[PROPERTY(viewModeButtonItem)] = @YES;
+        _settings[PROPERTY(useBorderedToolbarStyle)] = @NO;
+        _settings[@"renderBackgroundColor"] = UIColor.whiteColor;
+        _settings[@"renderContentOpacity"] = @(1.f);
+        _settings[PROPERTY(renderingMode)] = @(PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage);
+        //_settings[PROPERTY(pageTransition)] = @(PSPDFPageTransitionScrollContinuous);
+        //_settings[PROPERTY(scrollDirection)] = @(PSPDFScrollDirectionVertical);
     }
 }
 
