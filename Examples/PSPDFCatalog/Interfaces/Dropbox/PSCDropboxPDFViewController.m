@@ -128,7 +128,7 @@
         UIRectFill(rect);
         [self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.f];
 
-        if (fraction > 0.0) {
+        if (fraction > 0.f) {
             [self drawInRect:rect blendMode:kCGBlendModeSourceAtop alpha:fraction];
         }
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
