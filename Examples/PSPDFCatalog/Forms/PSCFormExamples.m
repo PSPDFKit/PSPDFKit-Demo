@@ -19,11 +19,8 @@ static void PSPDFFormExampleAddTrustedCertificates() {
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:filename]];
-    PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:filename]];
     return [[PSPDFViewController alloc] initWithDocument:document];
-    
 }
 
 static PSPDFViewController *PSPDFFormExampleViewControllerForDocument(PSPDFDocument *document) {
@@ -45,12 +42,13 @@ static PSPDFViewController *PSPDFFormExampleViewControllerForDocument(PSPDFDocum
     dispatch_once(&pred, ^{delegate = [PSCFormExampleSignatureDelegate new];});
     return delegate;
 }
-- (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
-    PSPDFViewController *controller = PSPDFFormExampleViewControllerForDocument(pdf);
+- (void)pdfRevisionRequested:(PSPDFDocument *)document verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler {
+    PSPDFViewController *controller = PSPDFFormExampleViewControllerForDocument(document);
     controller.rightBarButtonItems = @[controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
     
     NSString *date = [NSDateFormatter localizedStringFromDate:handler.signature.timeSigned dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
-    pdf.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
+    document.title = [NSString stringWithFormat:@"%@ (%@ - %@)", handler.documentProvider.document.title, date, handler.signature.name];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     PSCAppDelegate *appDelegate = UIApplication.sharedApplication.delegate;
     [appDelegate.catalog pushViewController:controller animated:YES];
@@ -86,7 +84,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    return PSPDFFormExampleInvokeWithFilename(@"Form_example.pdf");
+    return PSPDFFormExampleInvokeWithFilename(@"W8_Formular.pdf");
 }
 @end
 
