@@ -76,7 +76,7 @@
     }
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
+/*- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
     if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
         PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;
         videoView.autoplayEnabled = YES;
@@ -85,14 +85,14 @@
         player.controlStyle = MPMovieControlStyleNone;
         player.scalingMode = MPMovieScalingModeAspectFill;
     }
-}
+}*/
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     pageView.scrollView.scrollEnabled = NO;
     pageView.scrollView.zoomingEnabled = NO;
 }
 
-- (void)pdfViewController:(PSPDFViewController *)pdfController
+/*- (void)pdfViewController:(PSPDFViewController *)pdfController
     didShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView
                onPageView:(PSPDFPageView *)pageView {
     if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
@@ -101,7 +101,7 @@
         player.scalingMode = MPMovieScalingModeAspectFill;
         player.view.userInteractionEnabled = NO;
     }
-}
+}*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
