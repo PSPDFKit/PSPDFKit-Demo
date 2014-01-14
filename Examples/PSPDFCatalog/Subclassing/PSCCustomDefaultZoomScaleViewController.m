@@ -10,6 +10,9 @@
 
 #import "PSCCustomDefaultZoomScaleViewController.h"
 
+#import "PSPDFGalleryAnnotationView.h"
+#import "PSPDFMediaPlayerController.h"
+
 @interface PSCCustomDocumentProvider : PSPDFDocumentProvider @end
 
 @interface PSCCustomDefaultZoomScaleViewController ()
@@ -76,32 +79,33 @@
     }
 }
 
-/*- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
-        PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;
-        videoView.autoplayEnabled = YES;
-
-        MPMoviePlayerController *player = videoView.player;
-        player.controlStyle = MPMovieControlStyleNone;
-        player.scalingMode = MPMovieScalingModeAspectFill;
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
+        PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
+        PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
+        PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
+        
+        [player play];
+        player.controlStyle = PSPDFMediaPlayerControlStyleNone;
     }
-}*/
+}
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
     pageView.scrollView.scrollEnabled = NO;
     pageView.scrollView.zoomingEnabled = NO;
 }
 
-/*- (void)pdfViewController:(PSPDFViewController *)pdfController
+- (void)pdfViewController:(PSPDFViewController *)pdfController
     didShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView
                onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFVideoAnnotationView class]]) {
-        PSPDFVideoAnnotationView *videoView = (PSPDFVideoAnnotationView *)annotationView;
-        MPMoviePlayerController *player = videoView.player;
-        player.scalingMode = MPMovieScalingModeAspectFill;
-        player.view.userInteractionEnabled = NO;
+    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
+        PSPDFGalleryAnnotationView *galleryView = (PSPDFGalleryAnnotationView *)annotationView;
+        PSPDFGalleryViewController *galleryController = galleryView.galleryViewController;
+        PSPDFMediaPlayerController *player = [galleryController currentMediaPlayerController];
+        
+        player.view.userInteractionEnabled = NO;;
     }
-}*/
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
