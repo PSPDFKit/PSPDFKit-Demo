@@ -182,27 +182,34 @@
 
     // Define additional buttons with an action icon.
     NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
+    NSMutableArray *activities = [NSMutableArray array];
     if ([settings[PROPERTY(additionalActionsButtonItem)] boolValue]) {
         if ([settings[PROPERTY(printButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.printButtonItem];
+            // default activity
         }
         if ([settings[PROPERTY(openInButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.openInButtonItem];
+            [activities addObject:PSPDFActivityTypeOpenIn];
         }
         if ([settings[PROPERTY(emailButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.emailButtonItem];
+            // default activity
         }
     }
 
     if (!PSCIsIPad()) {
         if ([settings[PROPERTY(outlineButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.outlineButtonItem];
+            [activities addObject:PSPDFActivityTypeOutline];
         }
         if ([settings[PROPERTY(searchButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.searchButtonItem];
+            [activities addObject:PSPDFActivityTypeSearch];
         }
         if ([settings[PROPERTY(bookmarkButtonItem)] boolValue]) {
             [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
+            [activities addObject:PSPDFActivityTypeBookmarks];
         }
     }
 
@@ -213,7 +220,12 @@
 
 #ifdef PSPDFCatalog
     [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
-    self.additionalBarButtonItems = additionalRightBarButtonItems;
+
+    if (![settings[PROPERTY(activityButtonItem)] boolValue]) {
+        self.additionalBarButtonItems = additionalRightBarButtonItems;
+    }else {
+        self.activityButtonItem.applicationActivities = activities;
+    }
 #endif
 
     // reload scroll view and restore viewState
