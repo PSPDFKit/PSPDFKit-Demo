@@ -222,28 +222,28 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Notification Processing
 
-- (void)updateNoteAnnotationImages {
+- (void)updateNoteAnnotationImagesAnimated:(BOOL)animated {
     for (UIView *annotationView in self.annotationContainerView.subviews) {
         if ([annotationView isKindOfClass:PSPDFNoteAnnotationView.class]) {
-            [(PSPDFNoteAnnotationView *)annotationView updateImageAnimated:YES];
+            [(PSPDFNoteAnnotationView *)annotationView updateImageAnimated:animated];
         }
     }
 }
 
 - (void)annotationsAddedNotification:(NSNotification *)notification {
     [super annotationsAddedNotification:notification];
-    [self updateNoteAnnotationImages];
+    [self updateNoteAnnotationImagesAnimated:YES];
 }
 
 // Especially when we delete notes, we need to re-number them!
 - (void)annotationsRemovedNotification:(NSNotification *)notification {
     [super annotationsRemovedNotification:notification];
-    [self updateNoteAnnotationImages];
+    [self updateNoteAnnotationImagesAnimated:YES];
 }
 
 - (void)annotationChangedNotification:(NSNotification *)notification {
     [super annotationChangedNotification:notification];
-    [self updateNoteAnnotationImages];
+    [self updateNoteAnnotationImagesAnimated:YES];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
