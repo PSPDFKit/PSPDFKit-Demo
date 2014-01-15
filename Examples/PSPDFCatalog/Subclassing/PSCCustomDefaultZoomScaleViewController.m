@@ -10,9 +10,6 @@
 
 #import "PSCCustomDefaultZoomScaleViewController.h"
 
-#import "PSPDFGalleryAnnotationView.h"
-#import "PSPDFMediaPlayerController.h"
-
 @interface PSCCustomDocumentProvider : PSPDFDocumentProvider @end
 
 @interface PSCCustomDefaultZoomScaleViewController ()
