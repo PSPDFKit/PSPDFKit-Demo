@@ -225,7 +225,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 - (void)updateNoteAnnotationImages {
     for (UIView *annotationView in self.annotationContainerView.subviews) {
         if ([annotationView isKindOfClass:PSPDFNoteAnnotationView.class]) {
-            [(PSPDFNoteAnnotationView *)annotationView updateImage];
+            [(PSPDFNoteAnnotationView *)annotationView updateImageAnimated:YES];
         }
     }
 }
