@@ -70,7 +70,7 @@ static const NSUInteger noVerticalButtons = 6;
 
 - (UIButton *)popoverButtonWithIndex:(NSUInteger)index {
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-	[button setTitle:[NSString stringWithFormat:@"%d", index+1] forState:UIControlStateNormal];
+	[button setTitle:[NSString stringWithFormat:@"%tu", index+1] forState:UIControlStateNormal];
 	[button setBackgroundColor:[self randomColor]];
 	[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[button addTarget:self action:@selector(showPopoverPressed:) forControlEvents:UIControlEventTouchUpInside];
