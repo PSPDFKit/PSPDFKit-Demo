@@ -24,7 +24,7 @@
 
     self.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.scrollDirection = PSPDFScrollDirectionVertical;
-    self.statusBarStyleSetting = PSCIsUIKitFlatMode() ? PSPDFStatusBarStyleBlackOpaque : PSPDFStatusBarStyleDefault;
+    self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
     self.shouldHideStatusBarWithHUD = NO;
     self.renderAnimationEnabled = NO;
     self.thumbnailBarMode = PSPDFThumbnailBarModeNone;
@@ -84,7 +84,7 @@
 
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [searchButton setAccessibilityLabel:PSPDFLocalize(@"Search")];
-    [searchButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+    [searchButton setImage:[PSPDFBundleImage(@"search") psc_imageTintedWithColor:UIColor.whiteColor fraction:0.f] forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [floatingToolbarButtons addObject:searchButton];
 

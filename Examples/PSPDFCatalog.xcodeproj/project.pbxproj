@@ -122,8 +122,6 @@
 		78BCC69B15D31BF2006735A9 /* exampleimage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69815D31BF2006735A9 /* exampleimage.jpg */; };
 		78BCC69C15D31BF2006735A9 /* NightOwl.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 78BCC69915D31BF2006735A9 /* NightOwl.m4a */; };
 		78BEE6F9183973CF007345B7 /* PSCDefaultStampExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */; };
-		78C6841E16F7E5230080427B /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C6841C16F7E5230080427B /* search.png */; };
-		78C6841F16F7E5230080427B /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78C6841D16F7E5230080427B /* search@2x.png */; };
 		78C6842A16F7E5330080427B /* PSCDropboxDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6842316F7E5330080427B /* PSCDropboxDocumentSelectorController.m */; };
 		78C6842B16F7E5330080427B /* PSCDropboxFloatingToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6842516F7E5330080427B /* PSCDropboxFloatingToolbar.m */; };
 		78C6842C16F7E5330080427B /* PSCDropboxPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C6842716F7E5330080427B /* PSCDropboxPDFViewController.m */; };
@@ -382,8 +380,6 @@
 		78BCC69915D31BF2006735A9 /* NightOwl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = NightOwl.m4a; sourceTree = "<group>"; };
 		78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDefaultStampExample.m; sourceTree = "<group>"; };
 		78BEE6F8183973CF007345B7 /* PSCDefaultStampExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDefaultStampExample.h; sourceTree = "<group>"; };
-		78C6841C16F7E5230080427B /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
-		78C6841D16F7E5230080427B /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		78C6842216F7E5330080427B /* PSCDropboxDocumentSelectorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDropboxDocumentSelectorController.h; sourceTree = "<group>"; };
 		78C6842316F7E5330080427B /* PSCDropboxDocumentSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCDropboxDocumentSelectorController.m; sourceTree = "<group>"; };
 		78C6842416F7E5330080427B /* PSCDropboxFloatingToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDropboxFloatingToolbar.h; sourceTree = "<group>"; };
@@ -919,8 +915,6 @@
 		78C6841B16F7E5230080427B /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				78C6841C16F7E5230080427B /* search.png */,
-				78C6841D16F7E5230080427B /* search@2x.png */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1293,8 +1287,6 @@
 				78604CB416C51114003CB721 /* RotationUnlocked@2x.png in Resources */,
 				78A50BCB16D67555003EFFC0 /* closebox.png in Resources */,
 				78A50BCC16D67555003EFFC0 /* closebox@2x.png in Resources */,
-				78C6841E16F7E5230080427B /* search.png in Resources */,
-				78C6841F16F7E5230080427B /* search@2x.png in Resources */,
 				7830438B16FBE2E500D3EAB4 /* Icon-72.png in Resources */,
 				7830438C16FBE2E500D3EAB4 /* Icon-72@2x.png in Resources */,
 				7830438D16FBE2E500D3EAB4 /* Icon-Small-50.png in Resources */,
