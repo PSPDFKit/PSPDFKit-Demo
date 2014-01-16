@@ -64,6 +64,7 @@
 #import "PSCAssetLoader.h"
 #import "PSCExampleManager.h"
 #import "PSCViewHelper.h"
+#import "PSCPopoverTestViewController.h"
 #import <objc/runtime.h>
 
 // Crypto support
@@ -1302,6 +1303,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Internal WebBrowser test" block:^UIViewController *{
         PSPDFWebViewController *browser = [[PSPDFWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://pspdfkit.com"]];
         return browser;
+    }]];
+
+	[testSection addContent:[PSContent contentWithTitle:@"Popover test" block:^UIViewController *{
+        PSCPopoverTestViewController *popover = [PSCPopoverTestViewController new];
+        return popover;
     }]];
 
     [testSection addContent:[PSContent contentWithTitle:@"Test that § can be found" block:^UIViewController *{
