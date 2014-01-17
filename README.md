@@ -1,6 +1,8 @@
-## PSPDFKit - The definitive framework for displaying and annotating PDFs in your iOS apps.
+## PSPDFKit - The leading framework for displaying and annotating PDFs in your iOS apps.
 
-** This repository might contain cutting edge commits - get a stable demo from http://customers.pspdfkit.com/demo **
+[![Build Status](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo.png?branch=master)](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo)
+
+** This repository might contain cutting edge commits - get a stable demo from [http://customers.pspdfkit.com/demo](http://customers.pspdfkit.com/demo) **
 
 Whether you're building an enterprise app that needs annotations and text highlighting or a Newsstand magazine with page curl transitions, PSPDFKit can help. Highly customizable, PSPDFKit solves all the common problems and implementation details with PDF files, letting you focus on the important parts of your app.
 
