@@ -1,4 +1,7 @@
 language: objective-c
+notifications:
+  email:
+    - travis@pspdfkit.com
 script:
 - xctool -project Examples/PSPDFCatalog.xcodeproj -scheme PSPDFCatalog -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 - xctool -project Examples/PSPDFKiosk.xcodeproj -scheme PSPDFKiosk -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
