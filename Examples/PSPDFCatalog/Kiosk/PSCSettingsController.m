@@ -163,6 +163,9 @@ static NSMutableDictionary *_settings;
         }];
         _paperColorControl = [[UISegmentedControl alloc] initWithItems:imageArray];
         [_paperColorControl addTarget:self action:@selector(paperColorChanged:) forControlEvents:UIControlEventValueChanged];
+
+        // Use full size.
+        self.contentSizeForViewInPopover = CGSizeMake(320.f, 1500.f);
     }
     return self;
 }
