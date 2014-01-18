@@ -12,13 +12,22 @@
 
 #import "PSPDFBarButtonItem.h"
 
-/// Implements the new UIActivityViewController of iOS6 (Twitter/Facebook/etc). (Thus, this button is only available on iOS6)
+/// Pre-Provided UIActivity subclasses.
+extern NSString *const PSPDFActivityTypeGoToPage;
+extern NSString *const PSPDFActivityTypeSearch;
+extern NSString *const PSPDFActivityTypeOutline;
+extern NSString *const PSPDFActivityTypeBookmarks;
+extern NSString *const PSPDFActivityTypeOpenIn;
+
+/// Shows the `UIActivityViewController` for actions and sharing.
 @interface PSPDFActivityBarButtonItem : PSPDFBarButtonItem
 
-/// Add custom activities.
+/// Add custom activities. (subclasses of `UIActivity` or PSPDFActivityType* strings.)
+/// Defaults to `PSPDFActivityTypeOpenIn`.
 @property (nonatomic, copy) NSArray *applicationActivities;
 
-/// Excluded activities. Defaults to `UIActivityTypeAssignToContact`.
+/// Excluded activities (strings).
+/// Defaults to `UIActivityTypeCopyToPasteboard`, `UIActivityTypeAssignToContact`, `UIActivityTypePostToFacebook`, `UIActivityTypePostToTwitter`, `UIActivityTypePostToWeibo`.
 @property (nonatomic, copy) NSArray *excludedActivityTypes;
 
 /// The `UIActivityViewController` will be created during `presentAnimated:`.

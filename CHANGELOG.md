@@ -2,6 +2,40 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
+We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
+
+__v3.4.0 - 18/Jan/2014__
+
+*  The `PSPDFVideoAnnotationView` has been completely removed as the new `PSPDFGallery` takes over all of this functionality.
+   PSPDFKit finally allows to play multiple videos and/or audio at the same time. (The total number of concurrent video streams is hardware dependent and is usually 4)
+*  Ink annotations can now be merged via the multiselect tool. This will discard all different styles and use the style of the first object if used.
+*  Various annotation changes and page updates are now animated (most visible when using undo/redo).
+*  Various improvements and fixes for PDF Forms.
+*  Improves the activity bar button item, actions will forward to the bar button items if possible.
+*  The annotation toolbar will now attempt to merge highlights if they overlay each other and have the same color.
+*  Improves hit testing for smaller annotation types like note annotations.
+*  The `PSPDFPrintBarButtonItem` now uses the `PSPDFDocumentSharingViewController` to make it consistent with the Email and Open In action and thus has also new option parameters. (API-Change). This now allows printing the annotation summary.
+*  The annotation summary now generates an attributed string when printing or sending via email.
+*  Add `PSPDFAnnotationIgnoreNoteIndicatorIconKey` to optionally disable the note indicator rendering.
+*  Improves support for links to different documents via URI action type.
+*  Adding a signature will now make it smaller and more appropriate for large documents.
+*  The `PSPDFSignatureSelectorViewController` is now stateful, has a minimum size and will show "No Signatures" if the last signature was deleted while being open.
+*  The use of the outline in the search preview is now configurable via `useOutlineForPageNames` in the `PSPDFSearchViewController`. It defaults to YES.
+*  New iPhone popover controller that better fits into iOS 7.
+*  The annotation type image in the annotation table view is now colored in the same color as the annotation itself.
+*  Adds a workaround for an issue where iOS would change the status bar when showing an UIAlertView without setting it back to the previous setting.
+*  Exposes `filteredPagesForType:` to customize what the thumbnail controller displays, and increases the touch target of the thumbnail filter.
+*  Fixes an issue when certain annotation types were manually overridden to be displayed as overlay, they could be initially visible until moved on page load.
+*  Fixes an UI regression where the `PSPDFProgressHUD` would be rotated wrongly on device rotation.
+*  Fixes an issue where YouTube videos were no longer being paused automatically in iOS 7 when in thumbnail mode.
+*  Fixes a timing issue when multiple galleries were loaded at a page on the same time.
+*  Fixes an issue in `PSPDFTabbedViewController` that could move pages off center when using iOS 7 when the HUD fades out.
+*  Fixes an issue with embedding forms into documents with a invalid trailer ID.
+*  Fixes an issue where dismissing the half-modal form choice picker could dismiss the current view controller on the iPhone.
+*  Fixes an issue with extracting font glyph rect data, especially for CJK documents that use 'usecmap' to link to other CMaps.
+*  Fixes a potential assertion in the text parser with certain malformed PDF documents that have invalid font descriptors.
+   PSPDFKit will now try to extract as much as possible and not assert, even if the document is partly broken or contains invalid descriptors or font references.
+
 __v3.3.5 - 9/Jan/2014__
 
 *  The gallery now supports more options like autostart, cover views or control customizations.

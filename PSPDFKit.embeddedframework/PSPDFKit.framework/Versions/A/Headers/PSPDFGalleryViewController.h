@@ -14,7 +14,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGalleryItem.h"
 
-@class PSPDFLinkAnnotation;
+@class PSPDFLinkAnnotation, PSPDFMediaPlayerController;
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
     /// The view controller is currently not doing anything.
@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 @property (nonatomic, assign) CGFloat fullscreenDismissPanTreshold;
 
 /// Set this to YES if zooming should be enabled in fullscreen mode. Defaults to YES.
-@property (nonatomic, assign, getter = isFullscreenZoomEnabled) BOOL fullscreenZoomEnabled;
+@property (nonatomic, assign, getter=isFullscreenZoomEnabled) BOOL fullscreenZoomEnabled;
 
 /// The maximum zoom scale that you want to allow. Only meaningful if `fullscreenZoomEnabled` is YES
 /// Defaults to 5.0.
@@ -82,14 +82,14 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// The current state.
 @property (nonatomic, assign, readonly) PSPDFGalleryViewControllerState state;
 
-/// All PSPDFGalleryItems of this gallery. Only set if state is `PSPDFGalleryViewControllerStateReady`.
+/// All `PSPDFGalleryItems` of this gallery. Only set if state is `PSPDFGalleryViewControllerStateReady`.
 @property (nonatomic, copy, readonly) NSArray *items;
 
 /// The link annotation that was used to instanciate the view controller.
 @property (nonatomic, strong, readonly) PSPDFLinkAnnotation *linkAnnotation;
 
 /// Used to enter or exit the fullscreen mode.
-@property (nonatomic, assign, getter = isFullscreen) BOOL fullscreen;
+@property (nonatomic, assign, getter=isFullscreen) BOOL fullscreen;
 
 /// Used to enter or exit the fullscreen mode with or without animation.
 - (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
@@ -100,13 +100,18 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 
 // @name Gesture Recognizers
 
-// Single-Tap: Show/Hide image description.
+/// Single-Tap: Show/Hide image description.
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *singleTapGestureRecognizer;
 
-// Double-Tap: Toggle Full-Screen.
+/// Double-Tap: Toggle Full-Screen.
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
-// Pan: Dismiss Full-Screen mode.
+/// Pan: Dismiss Full-Screen mode.
 @property (nonatomic, strong, readonly) UIPanGestureRecognizer *panGestureRecognizer;
+
+/// @name Utility
+
+/// Returns the current `PSPDFMediaPlayerController` if a video is currently visible. Returns nil otherwise.
+- (PSPDFMediaPlayerController *)currentMediaPlayerController;
 
 @end

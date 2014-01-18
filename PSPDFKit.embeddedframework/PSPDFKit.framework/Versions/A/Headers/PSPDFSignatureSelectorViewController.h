@@ -12,6 +12,7 @@
 
 #import "PSPDFBaseTableViewController.h"
 #import "PSPDFStyleable.h"
+#import "PSPDFStatefulTableViewController.h"
 
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
 
@@ -28,7 +29,7 @@
 
 /// Shows a list of signatures to select one.
 /// Will show up in landscape on iOS6 via `preferredInterfaceOrientationForPresentation`.
-@interface PSPDFSignatureSelectorViewController : PSPDFBaseTableViewController <PSPDFStyleable>
+@interface PSPDFSignatureSelectorViewController : PSPDFStatefulTableViewController <PSPDFStyleable>
 
 /// Designated initializer.
 - (id)initWithSignatures:(NSArray *)signatures;
@@ -36,7 +37,7 @@
 /// Signatures that are being displayed.
 @property (nonatomic, copy, readonly) NSArray *signatures;
 
-/// Delegate.
+/// Signature Selector Delegate.
 @property (nonatomic, weak) IBOutlet id<PSPDFSignatureSelectorViewControllerDelegate> delegate;
 
 @end
@@ -47,7 +48,7 @@
 // @note The toolbar will be set up in `viewWillAppear:`.
 @property (nonatomic, strong, readonly) UIBarButtonItem *addSignatureButtonItem;
 
-// Button that will close the view controller (displayed on iPhone only, will not hide a popover)
+// Button that will close the view controller. (displayed on iPhone only, will not hide a popover)
 @property (nonatomic, strong, readonly) UIBarButtonItem *doneButtonItem;
 
 // Actions

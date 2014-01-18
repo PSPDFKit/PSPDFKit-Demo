@@ -313,6 +313,9 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 /// Options to use for `drawInContext:withOptions:`
 extern NSString *const PSPDFAnnotationDrawFlattenedKey;
 
+/// Set to YES to not render the small note indicator for objects that contain text.
+extern NSString *const PSPDFAnnotationIgnoreNoteIndicatorIconKey;
+
 /// Draw current annotation in context. Coordinates here are in PDF coordinate space.
 /// Use `PSPDFConvertViewRectToPDFRect:` to convert your coordinates accordingly.
 /// (For performance considerations, you want to do this once, not every time `drawInContext:` is called)

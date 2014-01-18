@@ -37,7 +37,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 
 /// Content has been prepared.
 /// `resultingObjects` can either be `NSURL` or `NSData`.
-- (void)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController didFinishWithSelectedOptions:(PSPDFDocumentSharingOptions)selectedSharingOption resultingObjects:(NSArray *)resultingObjects fileNames:(NSArray *)fileNames annotationSummary:(NSString *)annotationSummary error:(NSError *)error;
+- (void)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController didFinishWithSelectedOptions:(PSPDFDocumentSharingOptions)selectedSharingOption resultingObjects:(NSArray *)resultingObjects fileNames:(NSArray *)fileNames annotationSummary:(NSAttributedString *)annotationSummary error:(NSError *)error;
 
 @optional
 
@@ -46,6 +46,12 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 
 /// Commit button has been pressed. Content will be prepared now, unless you implement this delegate and return NO here.
 - (BOOL)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController shouldPrepareWithSelectedOptions:(PSPDFDocumentSharingOptions)selectedSharingOption selectedPages:(NSIndexSet *)selectedPages;
+
+/// Allows to override the default title string for a specific option.
+- (NSString *)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController titleForOption:(PSPDFDocumentSharingOptions)option;
+
+/// Allows to override the default subtitle string for a specific option.
+- (NSString *)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController subtitleForOption:(PSPDFDocumentSharingOptions)option;
 
 @end
 
@@ -86,6 +92,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 @interface PSPDFDocumentSharingViewController (SubclassingHooks)
 
 // Generates an annotation summary for all `pages` in `document`.
-+ (NSString *)annotationSummaryForDocument:(PSPDFDocument *)document pages:(NSIndexSet *)pages;
++ (NSAttributedString *)annotationSummaryForDocument:(PSPDFDocument *)document pages:(NSIndexSet *)pages;
 
 @end

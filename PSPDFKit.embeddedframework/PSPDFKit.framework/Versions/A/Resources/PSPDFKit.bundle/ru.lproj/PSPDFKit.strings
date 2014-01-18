@@ -224,6 +224,7 @@
 "Initial Here" = "ФИО";
 "Sign Here" = "Место подписи";
 "Witness" = "Удостоверить";
+"Revised" = "Изменено";
 
 // PDF annotation name overrides
 "Square" = "Прямоугольник";

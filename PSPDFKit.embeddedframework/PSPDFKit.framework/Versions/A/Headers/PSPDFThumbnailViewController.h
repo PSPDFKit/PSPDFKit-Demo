@@ -73,7 +73,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @property (nonatomic, assign, readonly) PSPDFThumbnailViewFilter activeFilter;
 
 /// Thumbnail size. Defaults to 170x220.
-/// @warning call reloadData on the collectionView after changing this.
+/// @warning call `reloadData` on the `collectionView` after changing this.
 @property (nonatomic, assign) CGSize thumbnailSize;
 
 /// Set margin for thumbnail view mode. Defaults to `UIEdgeInsetsMake(15.f, 15.f, 15.f, 15.f)`.
@@ -105,6 +105,9 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 
 // The filter segment is recreated on changes; to customize subclass this class and override `updateFilterSegment`.
 - (void)updateFilterSegment;
+
+// Used to filter the document pages. Customize to tweak page display (e.g. add sorting when in bookmark mode)
+- (NSArray *)filteredPagesForType:(PSPDFThumbnailViewFilter)filter;
 
 // Updates the empty view.
 - (void)updateEmptyView;

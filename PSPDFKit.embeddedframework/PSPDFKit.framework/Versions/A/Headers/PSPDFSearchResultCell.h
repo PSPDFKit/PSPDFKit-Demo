@@ -28,6 +28,9 @@
 /// The search results page.
 @property (atomic, assign, readonly) NSUInteger page;
 
+/// Searches the outline for the most matching entry, displays e.g. "Section 100, Page 2" instead of just "Page 2".
+@property (nonatomic, assign) BOOL useOutlineForPageNames;
+
 @end
 
 @interface PSPDFSearchResultCell (SubclassingHooks)

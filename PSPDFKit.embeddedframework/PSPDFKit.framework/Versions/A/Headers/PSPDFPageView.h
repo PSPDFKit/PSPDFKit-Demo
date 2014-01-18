@@ -50,15 +50,15 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 /// configure page container with data.
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations pdfController:(PSPDFViewController *)pdfController;
 
-/// Prepares the PSPDFPageView for reuse. Removes all unknown internal UIViews.
+/// Prepares the `PSPDFPageView` for reuse. Removes all unknown internal `UIViews`.
 - (void)prepareForReuse;
 
 /// @name Internal views and rendering
 
-/// Redraw the renderView (dynamically rendered PDF for maximum sharpness, updated on every zoom level)
+/// Redraw the `renderView` (dynamically rendered PDF for maximum sharpness, updated on every zoom level.)
 - (void)updateRenderView;
 
-/// Redraw renderView and contentView.
+/// Redraw `renderView` and `contentView`.
 - (void)updateView;
 
 /// If annotations are already loaded, and the annotation is a view, access it here.
@@ -74,7 +74,7 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 /**
  Container view for all overlay annotations.
 
- This is just a named subclass of UIView that will always track the frame of the PSPDFPageView.
+ This is just a named subclass of `UIView` that will always track the frame of the `PSPDFPageView`.
  It's useful to coordinate this with your own subviews to get the zIndex right.
 
  @warning Most annotations will not be rendered as overlays or only when they are currently being selected.
@@ -345,8 +345,8 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 
 // Render options that are used for the live-page rendering. (not for the cache)
 // One way to use this would be to customize what annotations types will be rendered with the pdf.
-// See PSPDFPageRenderer for a list of options.
-- (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale;
+// See `PSPDFPageRenderer` for a list of options.
+- (NSDictionary *)renderOptionsDictWithZoomScale:(CGFloat)zoomScale animated:(BOOL)animated;
 
 // View for the selected annotation.
 @property (nonatomic, strong, readonly) PSPDFResizableView *annotationSelectionView;

@@ -31,17 +31,11 @@
 /// Allows adapting to the initial pdfScale
 @property (nonatomic, assign) CGFloat PDFScale;
 
-/// Called when page will be displayed. Only available in pageCurl mode.
-- (void)willShowPage:(NSUInteger)page;
-
 /// Called when `pageView` is displayed.
-- (void)didShowPage:(NSUInteger)page;
-
-/// Called when `pageView` will be hidden. Only available in pageCurl mode.
-- (void)willHidePage:(NSUInteger)page;
+- (void)didShowPageView:(PSPDFPageView *)pageView;
 
 /// Called when `pageView` is hidden.
-- (void)didHidePage:(NSUInteger)page;
+- (void)didHidePageView:(PSPDFPageView *)pageView;
 
 /// Called initially and when the parent page size is changed. (e.g. rotation)
 - (void)didChangePageBounds:(CGRect)bounds;

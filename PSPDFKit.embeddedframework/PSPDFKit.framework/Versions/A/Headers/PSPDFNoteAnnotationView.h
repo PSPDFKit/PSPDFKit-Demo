@@ -32,6 +32,6 @@
 - (UIImage *)renderNoteImage;
 
 // Force image re-render.
-- (void)updateImage;
+- (void)updateImageAnimated:(BOOL)animated;
 
 @end

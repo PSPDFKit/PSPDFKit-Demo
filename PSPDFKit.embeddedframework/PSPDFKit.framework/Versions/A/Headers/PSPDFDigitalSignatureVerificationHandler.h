@@ -62,7 +62,7 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
  the document has been tampered with, `PSPDFDigitalSignatureVerificationStatusSeverityWarning` in situations where the signature does verify but wth caveats such as an expired certificate, and
  `PSPDFDigitalSignatureVerificationStatusSeverityOK` if the status is considered to not be worth warning the user about.
  */
-- (PSPDFDigitalSignatureVerificationStatusSeverity) severity;
+- (PSPDFDigitalSignatureVerificationStatusSeverity)severity;
 
 /// The description of the status that will be shown in the UI.
 - (NSString *)statusDescription;

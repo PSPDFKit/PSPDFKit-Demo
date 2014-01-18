@@ -27,10 +27,9 @@
 /// The playback UI toolbar.
 @property (nonatomic, strong) PSPDFMediaPlayerToolbar *toolbar;
 
-/// This overlay view is positioned exactly obove the visible area of the video. If AVPlayer does
-/// not play a video but rather audio, this view will be set to the bounds of `PSPDFMediaPlayerView`.
+/// This overlay view is positioned exactly obove the visible area of the video. If AVPlayer does not play a video but rather audio, this view will be set to the bounds of `PSPDFMediaPlayerView`.
 /// This view is hidden by default.
-/// @note On iOS 6 and earlier, the view's frame will always be set to the bounds of `PSPDFMediaPlayerView`.
+/// @note On iOS 6, the view's frame will always be set to the bounds of `PSPDFMediaPlayerView`.
 @property (nonatomic, strong) UIView *overlayView;
 
 /// Defaults to hidden.

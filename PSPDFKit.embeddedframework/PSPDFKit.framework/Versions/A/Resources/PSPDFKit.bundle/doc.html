@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script id="pdf">
+/*
+//  javscript-runtime.html
+//  PSPDFKit
+//
+//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
+//
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+//  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+//  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+//  This notice may not be removed from this file.
+*/
+    /*
+     pdf object constructor
+     
+     The pdf object is used to store the data model representing the PDF object
+     in context as well as the actions dictionary.
+     */
+
+function PDF()
+{
+    this.actions = {};
+    this.model = {};
+    
+    this.setModel = function(str)
+    {
+        this.model = JSON.parse(str);
+    }
+    
+    this.getModel = function()
+    {
+        return JSON.stringify(this.model);
+    }
+    
+    this.jsonStringOfPostActions = function()
+    {
+        return JSON.stringify(this.actions);
+    }
+}
+
+
+// Here we set a PDF object as a global object.
+// Other such objects are loaded in loadGlobals() where the standard objects are loaded
+
+window.pdf = new PDF();
+</script>
+
+<script id="util">
+    
+    /*
+     Functions used throughout the rest of the execution environmet that do not alter global variables or carry state.
+     */
+
+function logArray(arr)
+{
+    var ret = '';
+    for(var i = 0 ; i < arr.length-1; i++)
+    {
+        if(typeof arr[i] != 'undefined')ret=ret+arr[i]+',';
+    }
+    
+    if(typeof arr[arr.length-1] != 'undefined')ret=ret+arr[arr.length-1];
+    
+    return ret;
+    
+}
+
+function sizeArray(arr)
+{
+    var ret = 0;
+    for(var i = 0 ; i < arr.length; i++)
+    {
+        if(typeof arr[i] != 'undefined')ret++;
+    }
+    return ret;
+}
+    
+</script>
+
+<script id="field">
+
+    // The field object constructor
+    
+    function Field(name) {
+        
+        this.name = name;
+        this.items = [];
+    
+        var itemsb = pdf.model['fields'][this.name]['options'];
+        
+        if(itemsb != null)
+        {
+            if(itemsb.length == 0)this.items = [];
+            else
+            this.items = itemsb;
+        }
+        
+        this.__defineGetter__("value", function(){
+        pdf.model['fields'][this.name]['value'];
+        });
+
+        this.__defineSetter__("value", function(_value){
+        pdf.model['fields'][this.name]['value'] = _value;
+        });
+
+        this.__defineGetter__("numItems", function(){
+        return sizeArray(this.items);
+        });
+
+        this.setAction = function(cTrigger,cScript){}
+
+        this.clearItems = function(){
+          
+          this.items = [];
+          pdf.model['fields'][this.name]['items'] = [];
+          
+        }
+
+        this.insertItemAt = function(cName,nIdx){
+          this.items[nIdx] = cName;
+          pdf.model['fields'][this.name]['items'] = this.items;
+        }
+    }
+    
+</script>
+
+<script id="event">
+    
+    // The event object contrsuctor
+    
+    function Event()
+    {
+       this.__defineGetter__("value", function(){
+                              return pdf.model['EventValue'];
+                              });
+                              
+       this.__defineGetter__("willCommit", function(){
+                            return true;
+                            });
+    }
+
+    
+</script>
+
+
+<script id="media">
+    
+    // The event object contrsuctor
+    
+    function Media()
+    {
+        
+    }
+
+
+</script>
+
+<script id="app">
+    
+    /*
+     A static JavaScript object that represents the Acrobat application. It defines a number of Acrobat-specific functions plus a variety of utility routines and convenience functions.
+     */
+    
+    function App()
+    {
+        
+        this.__defineGetter__("activeDocs", function(){
+                              return new Array(0);
+                              /*
+                               Acrobat contextual. Returns array of active docs.*/
+                              });
+
+        
+        this.__defineGetter__("language", function(){
+                              return "ENU";
+                              /*
+                              CHS Chinese Simplified
+                              CHT Chinese Traditional
+                              DAN Danish
+                              DEU German
+                              ENU English
+                              ESP Spanish
+                              FRA French
+                              ITA Italian*/
+                              });
+                              
+                    
+         // See Media class.
+        this.media new Media();
+        
+        
+        this.__defineGetter__("platorm", function(){
+                              return "UNIX";
+                              /*
+                               The platform that the script is currently executing on. 
+                               There are three valid values:
+                               WIN
+                               MAC
+                               UNIX*/
+                              });
+                              
+      this.__defineGetter__("printerNames", function(){
+                            return new Array(0);
+                            /*
+                             A list of available printers
+                             */
+                            });
+      this.__defineGetter__("viewerType", function(){
+                              return "PSPDFKit";
+                              /*
+                               A string that indicates which viewer application is running.
+                               */
+                              });
+                          
+        this.alert = function(message)
+        {
+            window.alert(message);
+        }
+        
+        
+        this.execMenuItem = function(cMenuItem,oDoc)
+        {
+            
+            //Executes a menu item.
+        }
+        
+        this.goForeward = function()
+        {
+            // Refs the view stack
+             window.pdf.actions['app.goForeward'] = new Array(0);
+        }
+        
+        this.goBack = function()
+        {
+            // Refs the view stack
+              window.pdf.actions['app.goBack'] = new Array(0);
+        }
+        
+        this.beep = function()
+        {
+            // Should play a beep
+            window.pdf.actions['app.beep'] = new Array(0);
+        }
+        
+        this.launchURL = function(cURL,bNewFrame)
+        {
+            // Lauch a url resource eg webpage. bNewFrame indicates whether we have a new window.
+            window.pdf.actions['app.launchURL'] = new Array(cURL,bNewFrame);
+        }
+    }
+    
+</script>
+
+<script id="doc">
+    
+    // doc object points to root 'this' (window)
+    
+    function loadGlobals()
+    {
+        // global static objects
+        
+        window.app = new App();
+        window.event = new Event();
+        
+        /*
+         
+         Here we define the doc class. The doc class is essentially extended from
+         the root window object of the UIWebView dom.
+         
+         */
+        
+        // document methods
+        
+        window.getField = function(cName){return new Field(cName);}
+        
+        // document properties
+        
+        window.__defineGetter__("pageNum", function(){
+                                return pdf.model.pageNum;
+        });
+        window.__defineSetter__("pageNum", function(_value){
+                                pdf.model.pageNum = _value;
+        });
+        
+    }
+    
+</script>
+</head>
+<body>
+</body>
+</html>

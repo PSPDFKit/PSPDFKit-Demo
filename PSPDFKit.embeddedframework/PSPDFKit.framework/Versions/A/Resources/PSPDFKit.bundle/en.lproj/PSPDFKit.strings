@@ -149,6 +149,7 @@
 "Rectangle" = "Rectangle";
 "Ellipse" = "Ellipse";
 "Line" = "Line";
+"Lines" = "Lines";
 "Polyline" = "Polyline";
 "Polygon" = "Polygon";
 "Signature" = "Signature";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Stamp Text";
 "Add Signature" = "Add Signature";
 "My Signature" = "My Signature";
+"No Signatures" = "No Signatures";
 "Customer Signature" = "Customer Signature";
 "Note" = "Note";
 "Text" = "Text";
@@ -193,6 +195,7 @@
 "Inspector" = "Inspector";
 "Group" = "Group";
 "Ungroup" = "Ungroup";
+"Merge" = "Merge";
 "Sample" = "Sample";
 "Annotation Summary for %@:\n" = "Annotation Summary for %@:\n";
 "Fit to Text" = "Fit to Text";
@@ -224,6 +227,7 @@
 "Initial Here" = "Initial Here";
 "Sign Here" = "Sign Here";
 "Witness" = "Witness";
+"Revised" = "Revised";
 
 // PDF annotation name overrides
 "Square" = "Rectangle";

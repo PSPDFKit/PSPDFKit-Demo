@@ -726,7 +726,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 
 - (void)zoomToRect:(CGRect)rect animated:(BOOL)animated PSPDF_DEPRECATED(3.2.3, "Please use zoomToRect:page:animated: instead.");
 
-#define PSPDFStatusBarStyleSmartBlack PSPDFStatusBarStyleLightContent PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContent")
-#define PSPDFStatusBarStyleSmartBlackHideOnIpad PSPDFStatusBarStyleLightContentHideOnIpad PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContentHideOnIpad")
+extern const NSUInteger PSPDFStatusBarStyleSmartBlack PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContent");
+extern const NSUInteger PSPDFStatusBarStyleSmartBlackHideOnIpad PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContentHideOnIpad");
 
 @end
