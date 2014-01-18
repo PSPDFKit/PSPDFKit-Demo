@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
 /// Initialize the player controller with the URL of the media file.
 - (id)initWithContentURL:(NSURL *)URL;
 
-/// Initalizes the player controller with an AVPlayerItem.
+/// Initalizes the player controller with an `AVPlayerItem`.
 - (id)initWithPlayerItem:(AVPlayerItem *)playerItem;
 
 /// The player view managed by the media controller. Defaults to nil.
@@ -43,8 +43,14 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
 /// Pauses the media.
 - (void)pause;
 
+/// Seet to `time`.
+- (void)seekToTime:(CMTime)time;
+
 /// If the media is currently playing, this returns YES.
-@property (nonatomic, assign, readonly, getter = isPlaying) BOOL playing;
+@property (nonatomic, assign, readonly, getter=isPlaying) BOOL playing;
+
+/// Indicates that the cover view should be hidden.
+@property (nonatomic, assign) BOOL hideCoverView;
 
 /// The player's delegate.
 @property (nonatomic, weak) id <PSPDFMediaPlayerControllerDelegate> delegate;
@@ -69,6 +75,13 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
 
 /// The control style of the media player. Defaults to `PSPDFMediaPlayerControlStyleDefault`.
 @property (nonatomic, assign) PSPDFMediaPlayerControlStyle controlStyle;
+
+@end
+
+@interface PSPDFMediaPlayerController (Advanced)
+
+// The internally used player.
+@property (nonatomic, strong, readonly) AVPlayer *player;
 
 @end
 

@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, PSPDFProgressHUDMaskType) {
 
 + (void)setStatus:(NSString *)string; // change the HUD loading status while it's showing
 
-// stops the activity indicator, shows a glyph + status, and dismisses HUD 1s later
+// Stops the activity indicator, shows a glyph + status, and dismisses HUD 1s later.
 + (void)showSuccessWithStatus:(NSString *)string;
 + (void)showErrorWithStatus:(NSString *)string;
 

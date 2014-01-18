@@ -11,16 +11,12 @@
 //
 
 #import "PSPDFBarButtonItem.h"
+#import "PSPDFDocumentSharingViewController.h"
 
-typedef NS_OPTIONS(NSUInteger, PSPDFPrintOptions) {
-    PSPDFPrintOptionsDocumentOnly       = 1<<0,
-    PSPDFPrintOptionsIncludeAnnotations = 1<<1
-};
+@interface PSPDFPrintBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, UIPrintInteractionControllerDelegate>
 
-@interface PSPDFPrintBarButtonItem : PSPDFBarButtonItem <UIPrintInteractionControllerDelegate>
-
-/// Defines what we are sending. If more than one option is set, user will get a dialog to choose.
-/// Defaults to `PSPDFPrintOptionsDocumentOnly | PSPDFPrintOptionsIncludeAnnotations`.
-@property (nonatomic, assign) PSPDFPrintOptions printOptions;
+/// Control what data is printed. If more than one option is set, user will get a dialog to choose.
+/// Defaults to `PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionAnnotationsSummary`.
+@property (nonatomic, assign) PSPDFDocumentSharingOptions printOptions;
 
 @end

@@ -12,6 +12,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PSPDFLinkAnnotation;
+
 /// Boolean. Indicates if the content should automatically start playing.
 extern NSString *const PSPDFGalleryOptionAutoplay;
 
@@ -43,10 +45,16 @@ extern NSString *const PSPDFGalleryOptionCover;
 /// Factory method to create an array of items from JSON data.
 + (NSArray *)itemsFromJSONData:(NSData *)data error:(NSError **)error;
 
+/// Factory method that creates a single gallery item directly from a link annotation.
+/// Returns nil if the annotation doesn't point to a single image or a single video. Use
+/// `itemsFromJSONData:error:` to parse gallery manifest files.
++ (PSPDFGalleryItem *)itemFromLinkAnnotation:(PSPDFLinkAnnotation *)annotation;
+
 /// Create an item from a given dictionary. The dictionary will usually be parsed JSON.
 - (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
 
-/// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` is optional.
-- (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption;
+/// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` and
+/// `options` is optional.
+- (id)initWithContentURL:(NSURL *)contentURL caption:(NSString *)caption options:(NSDictionary *)options;
 
 @end

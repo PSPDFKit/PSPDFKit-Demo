@@ -129,7 +129,6 @@ extern "C" {
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFFreeTextAnnotationView.h"
-#import "PSPDFVideoAnnotationView.h"
 #import "PSPDFNoteAnnotationView.h"
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
@@ -211,6 +210,11 @@ extern "C" {
 #import "PSPDFGalleryVideoContentView.h"
 #import "PSPDFGalleryContentCaptionView.h"
 #import "PSPDFRemoteContentObject.h"
+#import "PSPDFGalleryAnnotationView.h"
+#import "PSPDFMediaPlayerController.h"
+
+// audio
+#import "PSPDFAudioHelper.h"
 
 #ifdef __cplusplus
 }

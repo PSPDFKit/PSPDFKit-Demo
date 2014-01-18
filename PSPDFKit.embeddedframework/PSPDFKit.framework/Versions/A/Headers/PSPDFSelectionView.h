@@ -30,6 +30,9 @@
 /// Called when rect selection was cancelled. (`touchesCancelled:`)
 - (void)selectionView:(PSPDFSelectionView *)selectionView cancelledWithSelectedRect:(CGRect)rect;
 
+/// Return NO to completely disallow the tap gesture to fire.
+- (BOOL)selectionViewShouldAllowTapGestureRecognizerToBegin:(PSPDFSelectionView *)selectionView;
+
 /// Called when we did a single tap in the selection view (via tap gesture recognizer)
 - (void)selectionView:(PSPDFSelectionView *)selectionView singleTappedWithGestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer;
 

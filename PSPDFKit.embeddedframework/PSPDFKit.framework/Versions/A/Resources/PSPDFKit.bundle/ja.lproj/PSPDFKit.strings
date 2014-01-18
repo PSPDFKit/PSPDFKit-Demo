@@ -224,6 +224,7 @@
 "Initial Here" = "こちらにイニシャルを";
 "Sign Here" = "こちらに署名を";
 "Witness" = "証人";
+"Revised" = "改訂済み";
 
 // PDF annotation name overrides
 "Square" = "長方形";

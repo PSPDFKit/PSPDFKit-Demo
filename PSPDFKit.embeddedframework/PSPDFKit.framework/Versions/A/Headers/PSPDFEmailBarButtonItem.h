@@ -41,6 +41,6 @@
 @interface PSPDFEmailBarButtonItem (SubclassingHooks)
 
 // Shows the email controller.
-- (void)showEmailControllerWithSendOptions:(PSPDFDocumentSharingOptions)sendOptions dataArray:(NSArray *)dataArray fileNames:(NSArray *)fileNames sender:(id)sender annotationSummary:(NSString *)annotationSummary animated:(BOOL)animated;
+- (void)showEmailControllerWithSendOptions:(PSPDFDocumentSharingOptions)sendOptions dataArray:(NSArray *)dataArray fileNames:(NSArray *)fileNames sender:(id)sender annotationSummary:(NSAttributedString *)annotationSummary animated:(BOOL)animated;
 
 @end

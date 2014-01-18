@@ -223,6 +223,7 @@
 "Initial Here" = "Initialen hier setzen";
 "Sign Here" = "Hier Unterschreiben";
 "Witness" = "Beglaubigt";
+"Revised" = "Überarbeitet";
 
 // PDF annotation name overrides
 "Square" = "Rechteck";

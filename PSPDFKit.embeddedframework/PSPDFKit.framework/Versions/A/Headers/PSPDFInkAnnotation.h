@@ -47,6 +47,9 @@ NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
 // Calculates the bounding box from lines.
 CGRect PSPDFBoundingBoxFromLines(NSArray *lines, CGFloat lineWidth);
 
+// Returns a new set of lines, with transform applied.
+NSArray *PSPDFCopyLinesByApplyingTransform(NSArray *lines, CGAffineTransform transform);
+
 /// Convert point array to a bezier path.
 UIBezierPath *PSPDFSplineWithPointArray(NSArray *pointArray);
 

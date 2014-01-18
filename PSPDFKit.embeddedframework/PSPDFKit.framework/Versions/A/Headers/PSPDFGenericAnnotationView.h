@@ -29,4 +29,7 @@
 // Called when any annotation changes.
 - (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
+// Animated change notifications. Defaults to YES.
+@property (nonatomic, assign) BOOL shouldAnimatedAnnotationChanges;
+
 @end

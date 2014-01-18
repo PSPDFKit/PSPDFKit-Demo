@@ -45,10 +45,10 @@
 @property (nonatomic, strong) UIColor *tintColor;
 
 ///  `-presentPopoverFromRect:inView:permittedArrowDirections:animated:` allows you to present a popover from a rect in a particular view. `arrowDirections` is a bitfield which specifies what arrow directions are allowed when laying out the popover; for most uses, `UIPopoverArrowDirectionAny` is sufficient.
-- (void)presentPopoverFromBarButtonItem:(UIBarButtonItem *)item permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
+- (void)presentPopoverFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
 
 /// Like the above, but is a convenience for presentation from a `UIBarButtonItem` instance. `arrowDirection` limited to `UIPopoverArrowDirectionUp/Down`.
-- (void)presentPopoverFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
+- (void)presentPopoverFromBarButtonItem:(UIBarButtonItem *)item permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
 
 /// Called to dismiss the popover programmatically. The delegate methods for "should" and "did" dismiss are not called when the popover is dismissed in this way.
 - (void)dismissPopoverAnimated:(BOOL)animated;
@@ -59,7 +59,7 @@
 /// NOP.
 @property (nonatomic, readwrite) UIEdgeInsets popoverLayoutMargins;
 
-// NOP.
+/// Customization point for the popover background. Needs to be a subclass of `UIPopoverBackgroundView`. Defaults to `PSPDFFlatPopoverBackgroundView` on iOS 7+ and `PSPDFPopoverBackgroundView` on earlier system versions.
 @property (nonatomic, readwrite, strong) Class popoverBackgroundViewClass;
 
 /// Action that is invoked before the popover hides. (programmatically or via user action)

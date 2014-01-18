@@ -15,8 +15,11 @@
 // Add support to replace images as the selection changes.
 @interface PSPDFSegmentedControl : UISegmentedControl
 
+// Allows to set images that are replaced when selected.
 - (void)setSelectedImage:(UIImage *)image forSegmentAtIndex:(NSUInteger)segment;
-
 - (UIImage *)selectedImageForSegmentAtIndex:(NSUInteger)segment;
+
+// Allows to extend the hit testing area, if a negative inset is set.
+@property (nonatomic, assign) UIEdgeInsets hitTestEdgeInsets;
 
 @end

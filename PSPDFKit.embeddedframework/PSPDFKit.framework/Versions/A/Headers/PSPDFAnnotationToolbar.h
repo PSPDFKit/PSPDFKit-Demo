@@ -135,6 +135,15 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// Set to NO to cause separate ink drawings in the same drawing session to result in separate ink annotations. Defaults to YES.
 @property (nonatomic, assign) BOOL combineInk;
 
+/// Selected UIBarButtonItem tint color on iOS 7 and later.
+/// Has no effect on previous system versions.
+/// Defaults to barTintColor.
+@property (nonatomic, strong) UIColor *selectedTintColor;
+
+/// Selected UIBarButtonItem background bezel color.
+/// Defaults to tintColor on iOS 7 and later and 50% white on previous versions.
+@property (nonatomic, strong) UIColor *selectedBackgroundColor;
+
 // Dictionary keys for annotation groups
 extern NSString *const PSPDFAnnotationGroupKeyChoice;
 extern NSString *const PSPDFAnnotationGroupKeyGroup;
@@ -153,8 +162,8 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 
 @interface PSPDFAnnotationToolbar (Advanced)
 
-/// By default, the toolbar position is top, so this defaults to UIBarPositionTopAttached.
-/// Set to `UIBarPositionBottom` if you're showing the toolbar ta the bottom.
+/// By default, the toolbar position is top, so this defaults to `UIBarPositionTopAttached`.
+/// Set to `UIBarPositionBottom` if you're showing the toolbar at the bottom.
 /// @note This forwards to `positionForBar:` and is only evaluated in iOS 7 when the view is added to a window.
 @property (nonatomic, assign) UIBarPosition barPosition;
 

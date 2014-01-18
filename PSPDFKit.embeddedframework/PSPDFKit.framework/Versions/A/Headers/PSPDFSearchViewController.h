@@ -85,6 +85,10 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Number of lines to show preview text. Defaults to 2.
 @property (nonatomic, assign) NSUInteger numberOfPreviewTextLines;
 
+/// Searches the outline for the most matching entry, displays e.g. "Section 100, Page 2" instead of just "Page 2".
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL useOutlineForPageNames;
+
 /// Internally used `PSPDFTextSearch` object. (is a copy of the PSPDFTextSearch class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 

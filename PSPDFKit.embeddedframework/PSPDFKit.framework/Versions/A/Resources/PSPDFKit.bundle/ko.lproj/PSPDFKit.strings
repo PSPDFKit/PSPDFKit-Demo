@@ -224,6 +224,8 @@
 "Initial Here" = "여기 이니셜";
 "Sign Here" = "여기 서명";
 "Witness" = "증명";
+"Revised" = "수정본";
+
 
 // PDF annotation name overrides
 "Square" = "직사각형";

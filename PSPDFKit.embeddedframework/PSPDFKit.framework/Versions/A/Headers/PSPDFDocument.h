@@ -247,8 +247,8 @@
  * If the password is correct, this method returns YES. Once unlocked, you cannot use this function to re-lock the document.
  *
  * If you attempt to unlock an already unlocked document, one of the following occurs:
- * If the document is unlocked with full owner permissions, unlockWithPassword: does nothing and returns YES. The password string is ignored.
- * If the document is unlocked with only user permissions, unlockWithPassword attempts to obtain full owner permissions with the password string.
+ * If the document is unlocked with full owner permissions, `unlockWithPassword:` does nothing and returns YES. The password string is ignored.
+ * If the document is unlocked with only user permissions, `unlockWithPassword:` attempts to obtain full owner permissions with the password string.
  * If the string fails, the document maintains its user permissions. In either case, this method returns YES.
  *
  * After unlocking a document, you need to call reloadData on the `PSPDFViewController`.

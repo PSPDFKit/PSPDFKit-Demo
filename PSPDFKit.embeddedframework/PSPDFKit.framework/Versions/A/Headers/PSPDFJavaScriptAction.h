@@ -13,9 +13,9 @@
 #import "PSPDFAction.h"
 
 @class PSPDFDocument;
+@class PSPDFViewController;
 
-/// Only very rudimentary support for JavaScript exists.
-/// Currently only a script like 'this.pageNum = 190' is supported.
+
 @interface PSPDFJavaScriptAction : PSPDFAction
 
 /// Designated initializer.
@@ -25,11 +25,8 @@
 /// The script.
 @property (nonatomic, copy) NSString *script;
 
-/// Tries to execute the JavaScript. Experimental.
-- (void)executeScript;
+/// Tries to execute the JavaScript in the context of a view controller.
+- (void)executeScriptAppliedToViewController:(PSPDFViewController*)viewController;
 
-/// Calculate new page from JavaScript.
-/// @return page number (might not be valid) or NSNotFound.
-- (NSUInteger)pageIndexWithCurrentPage:(NSUInteger)currentPage fromDocument:(PSPDFDocument *)document;
 
 @end

@@ -46,7 +46,8 @@
 /// Used to remember the position in `PSPDFOutlineViewController`.
 @property (nonatomic, assign) NSUInteger firstVisibleElement;
 
-/// Named destinations can be slow to resolve. By default, the outline parser will resolve up to 500 destinations. If more than 500 destinations are set, resolving is delayed to when the `PSPDFOutlineElement` is first used.
+/// Named destinations can be slow to resolve. By default, the outline parser will resolve up to X destinations. If more than X destinations are set, resolving is delayed to when the `PSPDFOutlineElement` is first used.
+/// Defaults to 500 elements.
 /// @warning Change this before you first call outline. Future changes won't have any effect.
 @property (nonatomic, assign) NSUInteger namedDestinationResolveThreshold;
 

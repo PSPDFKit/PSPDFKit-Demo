@@ -224,6 +224,7 @@
 "Initial Here" = "Initiales ici";
 "Sign Here" = "Signer ici";
 "Witness" = "Certifier";
+"Revised" = "Revu";
 
 // PDF annotation name overrides
 "Square" = "Rectangle";
