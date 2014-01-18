@@ -4,6 +4,10 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.1 - 18/Jan/2014__
+
+*  Fixes an issue with UIActivityViewController on iOS 7.1b3.
+
 __v3.4.0 - 18/Jan/2014__
 
 *  The `PSPDFVideoAnnotationView` has been completely removed as the new `PSPDFGallery` takes over all of this functionality.
