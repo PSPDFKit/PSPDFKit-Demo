@@ -219,7 +219,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     if (_isSettingUpCells) return;
     NSInteger paperColorIndex = [sender selectedSegmentIndex];
     _settings[@"renderBackgroundColor"] = _paperColors[paperColorIndex];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PSCSettingsChangedNotification object:nil];
 }
 
 - (void)contentOpacityChanged:(id)sender {
@@ -227,7 +227,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     NSInteger opacityIndex = [sender selectedSegmentIndex];
     CGFloat opacity = 1.f - ((CGFloat)opacityIndex * 0.1f);
     _settings[@"renderContentOpacity"] = @(opacity);
-    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PSCSettingsChangedNotification object:nil];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -297,7 +297,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         }break;
         default: break;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PSCSettingsChangedNotification object:indexPath];
 }
 
 // This is a bit of a hack, matching the segmented control to the group style is tricky.
@@ -461,7 +461,7 @@ static CGFloat pscSettingsLastYOffset = 0;
         default: break;
     }
     [self.tableView reloadData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kGlobalVarChangeNotification object:indexPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PSCSettingsChangedNotification object:indexPath];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

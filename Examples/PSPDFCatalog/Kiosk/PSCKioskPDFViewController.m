@@ -43,9 +43,10 @@
 
         // Initially update vars.
         [self globalVarChanged];
+        self.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
 
         // Register for global var change notifications from PSPDFCacheSettingsController.
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:PSCSettingsChangedNotification object:nil];
 
         // Restore viewState.
         if ([self.document isKindOfClass:PSCMagazine.class]) {

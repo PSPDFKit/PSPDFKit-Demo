@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#define kGlobalVarChangeNotification @"kGlobalVarChangeNotification"
+#define PSCSettingsChangedNotification @"PSCSettingsChangedNotification"
 
 /**
  The settings controller is meant to show off the flexibility of PSPDFKit.
