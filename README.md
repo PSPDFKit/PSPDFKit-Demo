@@ -17,7 +17,7 @@ Almost every aspect of PSPDFKit is customizable and designed from the ground up 
 
 Almost every aspect of PSPDFKit is customizable and designed from the ground up to offer maximum flexibility. The developer-friendly API exposes a lot of features that'll cover just about every use case you can think of. Focus on the unique parts of your product and build on a well-documented codebase that is heavily field tested and “just works.” 
 
-### You can purchase a license and the source code at [http://pspdfkit.com](http://pspdfkit.com).
+### Visit [http://pspdfkit.com](http://pspdfkit.com) for more information.
 
 Licensing
 ---------
