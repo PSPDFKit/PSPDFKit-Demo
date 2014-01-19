@@ -40,6 +40,8 @@ const char *clearAllActionSheetToken;
             self.pdfController.leftBarButtonItems = @[addDocumentsButton, clearTabsButton];
         }else {
             self.pdfController.leftBarButtonItems = @[clearTabsButton];
+            self.pdfController.rightBarButtonItems = @[self.pdfController.annotationButtonItem, self.pdfController.outlineButtonItem, self.pdfController.activityButtonItem, self.pdfController.viewModeButtonItem];
+            self.pdfController.activityButtonItem.applicationActivities = @[PSPDFActivityTypeSearch, PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks];
             self.navigationItem.leftItemsSupplementBackButton = YES;
         }
 
