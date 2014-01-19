@@ -431,7 +431,7 @@
             self.collectionView.alpha = 0.0f;
 
         } completion:^(BOOL finished) {
-            [self.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
+            if (!PSCIsUIKitFlatMode()) [self.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
             [self.navigationController pushViewController:pdfController animated:NO];
 
             cell.hidden = NO;
@@ -440,7 +440,7 @@
         if (animated) {
             // Add fake data so that we animate back.
             _animateViewWillAppearWithFade = YES;
-            [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
+            if (!PSCIsUIKitFlatMode()) [self.navigationController.view.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
         }
         [self.navigationController pushViewController:pdfController animated:NO];
     }
