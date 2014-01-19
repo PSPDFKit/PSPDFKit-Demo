@@ -41,12 +41,12 @@
 
 /// File URL from the converted stream.
 /// @warning This might be slow for large streams.
-- (NSURL *)fileURLWithAssetName:(NSString *)assetName document:(PSPDFDocument *)document page:(NSUInteger)page;
+- (NSURL *)fileURLWithAssetName:(NSString *)assetName document:(PSPDFDocument *)document page:(NSUInteger)page error:(NSError **)error;
 
 /// File URL with generic path. Path needs to be writable and any directory needs to be created.
 ///
 /// @warning This might be slow for large streams.
-- (NSURL *)fileURLWithPath:(NSString *)path;
+- (NSURL *)fileURLWithPath:(NSString *)path error:(NSError **)error;
 
 @end
 

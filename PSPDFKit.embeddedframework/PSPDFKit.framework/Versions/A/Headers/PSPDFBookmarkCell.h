@@ -25,7 +25,7 @@
 
 
 /// Custom cell used for bookmarks.
-@interface PSPDFBookmarkCell : PSPDFTableViewCell <UITextFieldDelegate>
+@interface PSPDFBookmarkCell : PSPDFNonAnimatingTableViewCell <UITextFieldDelegate>
 
 /// Visible string.
 @property (nonatomic, copy) NSString *bookmarkString;

@@ -11,17 +11,17 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFGradientView.h"
 
 @class PSPDFViewController;
 
 typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
-    PSPDFLabelStyleFlat,     // iOS6 default.
-    PSPDFLabelStyleBordered,
-    PSPDFLabelStyleModern,   // iOS7 and newer.
+    PSPDFLabelStyleFlat,     // iOS 6 default.
+    PSPDFLabelStyleBordered, // Bordered variant.
+    PSPDFLabelStyleModern,   // Only works with iOS 7 and newer. Uses blur.
 };
 
-@interface PSPDFLabelView : PSPDFGradientView
+/// Base class to show a semi-transparent, rounded label.
+@interface PSPDFLabelView : UIView
 
 /// `UILabel` used internally to show the text.
 @property (nonatomic, strong, readonly) UILabel *label;

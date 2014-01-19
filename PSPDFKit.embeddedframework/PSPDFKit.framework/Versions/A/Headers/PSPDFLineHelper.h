@@ -53,7 +53,7 @@ extern void PSPDFDrawLine(CGContextRef context, CGPoint point1, CGPoint point2, 
 extern BOOL PSPDFLineEndNeedsFullLine(PSPDFLineEndType lineEnd);
 
 // Returns the fill and stroke paths corresponding to a given line end type.
-extern void PSPDFGetPathsForLineEndType(PSPDFLineEndType endType, CGPoint *points, NSUInteger pointsCount, CGFloat lineWidth, CGPathRef *storedFillPath, CGPathRef *storedStrokePath);
+extern void PSPDFCreatePathsForLineEndType(PSPDFLineEndType endType, CGPoint *points, NSUInteger pointsCount, CGFloat lineWidth, CGPathRef *storedFillPath, CGPathRef *storedStrokePath);
 
 // Returns the rectangle encompassing the line end at the first of two points.
 extern CGRect PSPDFGetLineEndRectangle(CGPoint point1, CGPoint point2, PSPDFLineEndType lineEnd, CGFloat lineWidth);
