@@ -19,12 +19,13 @@ const char *clearAllActionSheetToken;
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController {
-    if ((self = [super initWithPDFViewController:pdfViewController])) {
+- (id)initWithPDFViewController:(PSPDFViewController *)pdfController {
+    if ((self = [super initWithPDFViewController:pdfController])) {
         self.delegate = self;
 
         // change status bar setting
-        //self.pdfViewController.statusBarStyleSetting = PSPDFStatusBarStyleLightContent;
+        self.pdfController.statusBarStyleSetting = PSPDFStatusBarStyleBlackOpaque;
+        self.pdfController.shouldHideStatusBarWithHUD = YES;
 
         self.navigationItem.leftItemsSupplementBackButton = YES;
 
