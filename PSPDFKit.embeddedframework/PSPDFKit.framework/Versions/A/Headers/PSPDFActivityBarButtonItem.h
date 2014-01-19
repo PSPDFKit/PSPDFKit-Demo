@@ -23,7 +23,7 @@ extern NSString *const PSPDFActivityTypeOpenIn;
 @interface PSPDFActivityBarButtonItem : PSPDFBarButtonItem
 
 /// Add custom activities. (subclasses of `UIActivity` or PSPDFActivityType* strings.)
-/// Defaults to `PSPDFActivityTypeOpenIn`.
+/// Defaults to `PSPDFActivityTypeOpenIn, PSPDFActivityTypeBookmarks, PSPDFActivityTypeGoToPage`.
 @property (nonatomic, copy) NSArray *applicationActivities;
 
 /// Excluded activities (strings).

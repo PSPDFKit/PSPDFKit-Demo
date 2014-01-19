@@ -289,6 +289,9 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Automatically hides the HUD when the user starts scrolling to different pages in the document. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldHideHUDOnPageChange;
 
+/// Should show the HUD on `viewWillAppear:`, unless the HUD is disabled. Defaults to YES.
+@property (nonatomic, assign) BOOL shouldShowHUDOnViewWillAppear;
+
 /// Show or hide HUD controls, titlebar, status bar (depending on the `statusBarStyleSetting`).
 @property (nonatomic, assign, getter=isHUDVisible) BOOL HUDVisible;
 

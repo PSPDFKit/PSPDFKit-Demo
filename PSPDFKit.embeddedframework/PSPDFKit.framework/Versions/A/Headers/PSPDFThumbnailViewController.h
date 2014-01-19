@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 - (void)stopScrolling;
 
 /// Call to update any filter (if set) all visible cells (e.g. to show bookmark changes)
-- (void)updateFilterAndVisibleCells;
+- (void)updateFilterAndVisibleCellsAnimated:(BOOL)aniamted;
 
 /// Should the thumbnails be displayed in a fixed grid, or dynamically adapt to different page sizes?
 /// Defaults to YES. Most documents will look better when this is set to NO.

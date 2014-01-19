@@ -16,7 +16,15 @@
 /// @note As of iOS 7 the system has adopted this as well.
 @protocol PSPDFStatusBarStyleHint <NSObject>
 
-/// Returns the preferred status bar style.
-- (UIStatusBarStyle)preferredStatusBarStyle;
+@optional
+
+/// This property will be read if there is only an accessor (to force a different style)
+/// or written, if there is a setter implemented as well.
+/// @note This is manually queried by PSPDFKit if UIViewControllerBasedStatusBarAppearance is set to NO.
+@property (nonatomic, assign) UIStatusBarStyle preferredStatusBarStyle;
+
+/// Controls if the status bar should be visible or not.
+/// Matches the method of iOS 7.
+@property (nonatomic, assign) BOOL prefersStatusBarHidden;
 
 @end

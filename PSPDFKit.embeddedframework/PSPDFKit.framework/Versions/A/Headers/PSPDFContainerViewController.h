@@ -47,9 +47,9 @@
 /// Set the currently visible view controller index.
 - (void)setVisibleViewControllerIndex:(NSUInteger)visibleViewControllerIndex animated:(BOOL)animated;
 
-/// Set to YES if you want to animate content size changes. Defaults to NO.
-/// @note Animation can't be blocked on iOS 6.
-@property (nonatomic, assign) BOOL animateContentSizeChanges;
+/// Set to YES if you want to animate controller changes. Defaults to NO.
+/// @note Popover size change animation can't be blocked on iOS 6.
+@property (nonatomic, assign) BOOL shouldAnimateChanges;
 
 @end
 

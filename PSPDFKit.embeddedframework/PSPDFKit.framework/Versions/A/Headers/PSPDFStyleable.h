@@ -11,16 +11,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PSPDFStatusBarStyleHint.h"
 
 /// Implement in your `UIViewController` subclass to be able to match the style of PSPDFViewController.
-@protocol PSPDFStyleable <NSObject>
+@protocol PSPDFStyleable <PSPDFStatusBarStyleHint>
 
 @optional
 
 /// Tint color of the `PSPDFViewController`.
 @property (nonatomic, strong) UIColor *tintColor;
 
-/// Proposed barStyle.
+/// Proposed bar style.
 @property (nonatomic, assign) UIBarStyle barStyle;
 
 /// Transparency flag.

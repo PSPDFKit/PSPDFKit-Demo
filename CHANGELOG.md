@@ -4,6 +4,20 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.2 - 19/Jan/2014__
+
+*  Improved defaults for the status bar and the activity controller.
+*  The document and page label now use blur on iOS 7.
+*  Full-page-ads with links now no longer highlight the whole page.
+*  The bookmark activity now shows the current bookmarked state.
+*  The thumbnail cells use the active tintColor on iOS 7 as their selection border color.
+*  New property to control if the HUD should be visible on viewWillAppear. (`shouldShowHUDOnViewWillAppear:`)
+*  Slightly darker default background for the `PSPDFViewController` on iOS 7.
+*  Fixes an regression with the loupe view and UIInterfaceOrientationLandscapeLeft.
+*  Fixes an issue where annotations could be missing when exporting single pages that are backed by XFDF via email.
+*  Fixes an issue where the internal web browser wasn't correctly dismissed when an App Store link was detected.
+*  Fixes an issue where the contentInset could become too large when using the `PSPDFStampViewController`.
+
 __v3.4.1 - 18/Jan/2014__
 
 *  Fixes an issue with UIActivityViewController on iOS 7.1b3.

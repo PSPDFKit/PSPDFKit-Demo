@@ -18,7 +18,7 @@
 /// Checking if any apps support PDF can be done, but this is slow (~300 ms on an iPad 3). Thus it's disabled by default.
 /// In case there is no app and this check is disabled, a alert will be showed to the user.
 /// Defaults to NO.
-/// This is not recommended to be enabled on iOS 7.
+/// This is not recommended to be enabled on iOS 7. Defaults to NO.
 extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 
 /// Open in is only possible if the `PSPDFDocument` is backed by exactly one file-based PDF.
@@ -28,7 +28,8 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 /// Shows the print action along with the application list. Defaults to NO.
 /// @warning If this is enabled, `UIDocumentInteractionController` will also show a "Mail" option.
 /// This will call `presentOptionsMenuFromRect:` (or variations) if enabled, else `presentOpenInMenuFromRect:`.
-@property (nonatomic, assign) BOOL showPrintAction;
+/// This is deprecatedb by Apple.
+@property (nonatomic, assign) BOOL showPrintAction PSPDF_DEPRECATED(3.4.2, "Use UIActivityViewController instead. This is deprecated by Apple.");
 
 /// Defines what we are sending. If more than one option is set, user will get a dialog to choose.
 /// Defaults to `PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionForceMergeFiles`.
