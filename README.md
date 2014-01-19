@@ -2,15 +2,17 @@
 
 [![Build Status](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo.png?branch=master)](https://travis-ci.org/PSPDFKit/PSPDFKit-Demo)
 
-** This repository might contain cutting edge commits - get a stable demo from [http://customers.pspdfkit.com/demo](http://customers.pspdfkit.com/demo) **
+Please download the stable demo from [http://customers.pspdfkit.com/demo](http://customers.pspdfkit.com/demo).
+This repository might contain cutting edge commits.
 
-Whether you're building an enterprise app that needs annotations and text highlighting or a Newsstand magazine with page curl transitions, PSPDFKit can help. Highly customizable, PSPDFKit solves all the common problems and implementation details with PDF files, letting you focus on the important parts of your app.
+PSPDFKit supports blazingly fast PDF viewing, adding/editing annotations, and filling out forms. Our battle-tested code is trusted by Dropbox, Evernote, and hundreds of other apps. Benefit from a solid codebase and incorporate all those advanced features into your own application. It'll save you at least one year in comparison with in-house development.
+Easy Integration
 
-PSPDFKit supports fast PDF viewing, annotating and signing of documents. Its battle-tested code is being used in hundreds of apps. You can benefit from a solid codebase and incorporate all those advanced features into your own applications. It will save you at least one year of production time in comparison with in-house development.
+Almost every aspect of PSPDFKit is customizable and designed from the ground up to offer maximum flexibility. The developer-friendly API exposes a lot of features that'll cover just about every use case you can think of. Focus on the unique parts of your product and build on a well-documented codebase that is heavily field tested and “just works.”
 
-*We were impressed on how fast we got a working prototype to show off to the client. Integrating PSPDFKit into our existing project was a breeze and we loved that most of the features we needed for our app were there out of the box. Highly customizable, well documented, great support… this is THE PDF library everyone should use. Money well spent!* -- [Alex Taras, Ruby Tribe.](http://rubytribe.ro/)
+Almost every aspect of PSPDFKit is customizable and designed from the ground up to offer maximum flexibility. The developer-friendly API exposes a lot of features that'll cover just about every use case you can think of. Focus on the unique parts of your product and build on a well-documented codebase that is heavily field tested and “just works.” 
 
-### You can purchase a license and the full source code at http://pspdfkit.com.
+### You can purchase a license and the full source code at [http://pspdfkit.com](http://pspdfkit.com).
 
 Licensing
 ---------
