@@ -98,22 +98,21 @@ const char PSCAlertViewKey;
     
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
     [websitePrompt addButtonWithTitle:@"Convert" block:^{
-        // get data
+        // Get data
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
         NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
 #pragma clang diagnostic pop
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
         
-        // create pdf (blocking)
-        [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"}];
+        // Create pdf (blocks).
+        [PSPDFProcessor.defaultProcessor generatePDFFromHTMLString:html outputFileURL:outputURL options:@{PSPDFProcessorNumberOfPages : @(1), PSPDFProcessorDocumentTitle : @"Generated PDF"} error:NULL];
         
-        // generate document and show it
+        // Generate document and show it.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:outputURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         
         [delegate.currentViewController.navigationController pushViewController:pdfController animated:YES];
-        
     }];
     [websitePrompt show];
     return nil;
