@@ -41,7 +41,6 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     NSError *_fileError;
     id _responseObject;
 }
-@property (nonatomic, strong) NSString *tempPath;
 @property (assign) long long totalContentLength;
 @property (nonatomic, assign) long long totalBytesReadPerDownload;
 @property (assign) long long offsetContentLength;
@@ -143,7 +142,6 @@ typedef void (^AFURLConnectionProgressiveOperationProgressBlock)(AFDownloadReque
     }
     return tempPath;
 }
-
 
 - (void)setProgressiveDownloadProgressBlock:(void (^)(AFDownloadRequestOperation *operation, NSInteger bytesRead, long long totalBytesRead, long long totalBytesExpected, long long totalBytesReadForFile, long long totalBytesExpectedToReadForFile))block {
     self.progressiveDownloadProgress = block;
