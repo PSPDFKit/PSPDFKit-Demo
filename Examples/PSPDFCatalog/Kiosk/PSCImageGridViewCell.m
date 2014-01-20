@@ -300,8 +300,9 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
     _magazineCounterBadgeImage.frame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, 50.f, 50.f);
 }
 
-- (void)setMagazineCount:(NSUInteger)newMagazineCount {
-    if (!_magazineCounter && newMagazineCount > 1) { // lazy creation
+- (void)setMagazineCount:(NSUInteger)magazineCount {
+    _magazineCount = magazineCount;
+    if (!_magazineCounter && magazineCount > 1) { // lazy creation
         self.magazineCounterBadgeImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge"]];
         _magazineCounterBadgeImage.opaque = NO;
         _magazineCounterBadgeImage.alpha = 0.9f;
@@ -318,9 +319,9 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         [_magazineCounterBadgeImage addSubview:_magazineCounter];
     }
 
-    _magazineCounter.text = [NSString stringWithFormat:@"%tu", newMagazineCount];
-    _magazineCounter.hidden = newMagazineCount < 2;
-    _magazineCounterBadgeImage.hidden = newMagazineCount < 2;
+    _magazineCounter.text = [NSString stringWithFormat:@"%tu", magazineCount];
+    _magazineCounter.hidden = magazineCount < 2;
+    _magazineCounterBadgeImage.hidden = magazineCount < 2;
     [self updateMagazineBadgeFrame];
 }
 
