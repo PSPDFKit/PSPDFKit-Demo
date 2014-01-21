@@ -57,7 +57,7 @@
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 
 /// Font calculated from the various font settings and corrected for autoresizing.
-@property (nonatomic, assign) UIFont *font;
+@property (nonatomic, assign, readonly) UIFont *font;
 
 /// (Optional; inheritable) The maximum length of the field’s text, in characters.
 @property (nonatomic, assign) NSUInteger maxLength;

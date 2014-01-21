@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger, PSPDFErrorCode) {
     PSPDFErrorCodeFailedToConvertToPDF = 800,
     PSPDFErrorCodeFailedToGeneratePDFInvalidArguments = 810,
     PSPDFErrorCodeFailedToGeneratePDFDocumentInvalid = 820,
+    PSPDFErrorCodeFailedToGeneratePDFCouldNotCreateContext = 830,
     PSPDFErrorCodeFailedToUpdatePageObject = 850,
     PSPDFErrorCodeMicPermissionNotGranted = 900,
     PSPDFErrorCodeXFDFParserLackingInputStream = 1000,

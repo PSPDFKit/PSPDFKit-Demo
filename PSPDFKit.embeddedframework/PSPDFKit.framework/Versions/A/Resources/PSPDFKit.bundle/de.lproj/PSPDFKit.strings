@@ -86,7 +86,7 @@
 "Searching" = "Suchen";
 "%d documents indexed." = "%d Dokumente indiziert.";
 "Done" = "Fertig";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "Dokumente indizieren";
 
 // inline browser
 "Open in Safari" = "In Safari öffnen";

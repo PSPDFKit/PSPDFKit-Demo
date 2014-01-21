@@ -373,3 +373,76 @@ extern NSString *const PSPDFHidePageHUDElementsNotification;
 - (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
 @end
+
+// General
+// Annotation types are used from PSPDFAnnotationString* defines
+extern NSString *const PSPDFAnnotationMenuGroup;
+extern NSString *const PSPDFAnnotationMenuUngroup;
+extern NSString *const PSPDFAnnotationMenuSave;
+extern NSString *const PSPDFAnnotationMenuRemove;
+extern NSString *const PSPDFAnnotationMenuCopy;
+extern NSString *const PSPDFAnnotationMenuPaste;
+extern NSString *const PSPDFAnnotationMenuMerge;
+extern NSString *const PSPDFAnnotationMenuPreviewFile; // File annotations
+
+// Annotation Style
+extern NSString *const PSPDFAnnotationMenuInspector;
+extern NSString *const PSPDFAnnotationMenuStyle;       // Highlight annotations on iPhone
+
+// Colors
+extern NSString *const PSPDFAnnotationMenuColor;
+extern NSString *const PSPDFAnnotationMenuFillColor;
+extern NSString *const PSPDFAnnotationMenuOpacity;
+extern NSString *const PSPDFAnnotationMenuCustomColor; // Color Picker
+extern NSString *const PSPDFAnnotationMenuColorWhite;
+extern NSString *const PSPDFAnnotationMenuColorYellow;
+extern NSString *const PSPDFAnnotationMenuColorRed;
+extern NSString *const PSPDFAnnotationMenuColorPink;
+extern NSString *const PSPDFAnnotationMenuColorGreen;
+extern NSString *const PSPDFAnnotationMenuColorBlue;
+extern NSString *const PSPDFAnnotationMenuColorBlack;
+
+// Highlights
+extern NSString *const PSPDFAnnotationMenuHighlightType; // Type
+extern NSString *const PSPDFAnnotationMenuHighlight;
+extern NSString *const PSPDFAnnotationMenuUnderline;
+extern NSString *const PSPDFAnnotationMenuStrikeout;
+extern NSString *const PSPDFAnnotationMenuSquiggle;
+
+// Ink
+extern NSString *const PSPDFAnnotationMenuThickness;
+
+// Sound annotations
+extern NSString *const PSPDFAnnotationMenuPlay;
+extern NSString *const PSPDFAnnotationMenuPause;
+extern NSString *const PSPDFAnnotationMenuPauseRecording;
+extern NSString *const PSPDFAnnotationMenuContinueRecording;
+extern NSString *const PSPDFAnnotationMenuFinishRecording;
+
+// Free Text
+extern NSString *const PSPDFAnnotationMenuEdit;
+extern NSString *const PSPDFAnnotationMenuSize;
+extern NSString *const PSPDFAnnotationMenuFont;
+extern NSString *const PSPDFAnnotationMenuAlignment;
+extern NSString *const PSPDFAnnotationMenuAlignmentLeft;
+extern NSString *const PSPDFAnnotationMenuAlignmentCenter;
+extern NSString *const PSPDFAnnotationMenuAlignmentRight;
+extern NSString *const PSPDFAnnotationMenuFitToText;
+
+// Line/Polyline
+extern NSString *const PSPDFAnnotationMenuLineStart; // Start
+extern NSString *const PSPDFAnnotationMenuLineEnd;   // End
+extern NSString *const PSPDFAnnotationMenuLineTypeNone;
+extern NSString *const PSPDFAnnotationMenuLineTypeSquare;
+extern NSString *const PSPDFAnnotationMenuLineTypeCircle;
+extern NSString *const PSPDFAnnotationMenuLineTypeDiamond;
+extern NSString *const PSPDFAnnotationMenuLineTypeOpenArrow;
+extern NSString *const PSPDFAnnotationMenuLineTypeClosedArrow;
+extern NSString *const PSPDFAnnotationMenuLineTypeButt;
+extern NSString *const PSPDFAnnotationMenuLineTypeReverseOpenArrow;
+extern NSString *const PSPDFAnnotationMenuLineTypeReverseClosedArrow;
+extern NSString *const PSPDFAnnotationMenuLineTypeSlash;
+
+// Signature
+extern NSString *const PSPDFAnnotationMenuMySignature;
+extern NSString *const PSPDFAnnotationMenuCustomerSignature;

@@ -30,9 +30,6 @@
 /// Called when rect selection was cancelled. (`touchesCancelled:`)
 - (void)selectionView:(PSPDFSelectionView *)selectionView cancelledWithSelectedRect:(CGRect)rect;
 
-/// Return NO to completely disallow the tap gesture to fire.
-- (BOOL)selectionViewShouldAllowTapGestureRecognizerToBegin:(PSPDFSelectionView *)selectionView;
-
 /// Called when we did a single tap in the selection view (via tap gesture recognizer)
 - (void)selectionView:(PSPDFSelectionView *)selectionView singleTappedWithGestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer;
 
@@ -60,5 +57,8 @@
 /// Faster variant that takes a C rect array. Will take ownership and free up memory after usage.
 /// rects and rawRects are mutually exclusive and will nil out each other.
 - (void)setRawRects:(CGRect *)rawRects count:(NSUInteger)count;
+
+// Internal tap gesture.
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *tapGestureRecognizer;
 
 @end

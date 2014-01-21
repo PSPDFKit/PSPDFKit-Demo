@@ -86,7 +86,7 @@
 "Searching" = "검색 중";
 "%d documents indexed." = "%d개의 문서가 색인되었습니다.";
 "Done" = "완료";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "문서 색인 중";
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
@@ -176,7 +176,7 @@
 "Medium Quality" = "중간 품질";
 "High Quality" = "높은 품질";
 "Clear All" = "모두 지우기";
-"Clear" = "Clear";
+"Clear" = "지우기";
 "Style" = "스타일";
 "Link" = "링크";
 "Ink" = "잉크";

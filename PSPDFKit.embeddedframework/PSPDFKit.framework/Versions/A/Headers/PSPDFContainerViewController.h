@@ -25,6 +25,9 @@
 /// Can embed other view controllers and transition between them.
 @interface PSPDFContainerViewController : PSPDFBaseViewController <PSPDFStyleable>
 
+/// Designated initializer.
+- (id)initWithControllers:(NSArray *)controllers titles:(NSArray *)titles delegate:(id<PSPDFContainerViewControllerDelegate>)delegate;
+
 @property (nonatomic, weak) id<PSPDFContainerViewControllerDelegate> delegate;
 
 /// @name View Controller adding/removing

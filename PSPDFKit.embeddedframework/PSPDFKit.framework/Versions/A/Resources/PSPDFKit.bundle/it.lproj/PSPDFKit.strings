@@ -86,7 +86,7 @@
 "Searching" = "Cerco";
 "%d documents indexed." = "%d documenti indicizzati.";
 "Done" = "Fatto";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "Indicizzazione documenti";
 
 // inline browser
 "Open in Safari" = "Apri in Safari";
@@ -176,7 +176,7 @@
 "Medium Quality" = "Qualità media";
 "High Quality" = "Qualità alta";
 "Clear All" = "Cancella tutto";
-"Clear" = "Cancella";
+"Clear" = "Effacer";
 "Style" = "Stile";
 "Link" = "Link";
 "Ink" = "Inchiostro";

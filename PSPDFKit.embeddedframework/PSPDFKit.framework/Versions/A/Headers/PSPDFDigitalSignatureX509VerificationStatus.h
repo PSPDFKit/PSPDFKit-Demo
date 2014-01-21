@@ -15,7 +15,8 @@
 @interface PSPDFDigitalSignatureX509VerificationStatus : NSObject <PSPDFSignatureVerificationStatus>
 
 - (id)initWithError:(int)error;
-@property (nonatomic, assign) int error;
-@property (nonatomic, assign) PSPDFDigitalSignatureVerificationStatusSeverity severity;
+
+@property (nonatomic, assign, readonly) int error;
+@property (nonatomic, assign, readonly) PSPDFDigitalSignatureVerificationStatusSeverity severity;
 
 @end

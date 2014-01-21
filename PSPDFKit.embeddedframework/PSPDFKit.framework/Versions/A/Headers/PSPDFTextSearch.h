@@ -58,10 +58,10 @@
 @property (nonatomic, assign) PSPDFSearchMode searchMode;
 
 /// Defaults to `NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch|NSWidthInsensitiveSearch|NSRegularExpressionSearch`.
-/// With NSDiacriticInsensitiveSearch, e.g. an ö character will be treated like an o.
+/// With `NSDiacriticInsensitiveSearch`, e.g. an ö character will be treated like an o.
 /// See NSString comparison documentation for details.
 /// @note PSPDF has extensions that will allow a combination of `NSRegularExpressionSearch` and `NSDiacriticInsensitiveSearch`.
-/// If NSRegularExpressionSearch is enabled, hyphenations and newlines between the body text will be ignored (which is good, better results)
+/// If `NSRegularExpressionSearch` is enabled, hyphenations and newlines between the body text will be ignored (which is good, better results)
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
 /// We have to limit the number of search results to something reasonable. Defaults to 600.

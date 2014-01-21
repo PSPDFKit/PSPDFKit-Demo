@@ -4,6 +4,20 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.3 - 21/Jan/2014__
+
+*  Code updated to be warning-free with iOS 7.1b4 and Xcode 5.1b4.
+*  Extracted all possible `PSPDFMenuItem` identifiers to `PSPDFPageView`.
+*  `PSPDFProcessor`'s `generatePDFFromURL:` and `generatePDFFromHTMLString:` methods now support embedding annotations if set via the options dictionary.
+*  `PSPDFMultiDocumentViewController` no longer tries to persist NSData- or CGDataProviderRef-based documents. Only file-based documents are persisted between sessions.
+*  Improves search animation for the `PSPDFOutlineViewController`.
+*  Various small localization updates.
+*  API: `PSPDFProcessor`'s generatePDFFromHTMLString: methods have gained a new error parameter.
+*  API: `PSPDFAESDecryptor`'s init methods have gained a new error parameter.
+*  Fixes a regression where two-finger-scrolling in hightlight mode no longer worked.
+*  Fixes a rare timing issue where a mutation error could be thrown if reloadData is called within page loading delegate methods.
+*  Fixes an issue where exported annotation via the share sheet could end up on different pages if a document with multiple provider sources is used.
+
 __v3.4.2 - 19/Jan/2014__
 
 *  Improved defaults for the status bar and the activity controller.
