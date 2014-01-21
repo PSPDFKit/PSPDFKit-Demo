@@ -457,7 +457,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     /// Example how to decrypt a AES256 encrypted PDF on the fly.
     /// The crypto feature is only available in PSPDFKit Basic/Complete.
-    if ([PSPDFAESCryptoDataProvider isAESCryptoFeatureAvailable]) {
+    if (PSPDFAESCryptoDataProvider.isAESCryptoFeatureAvailable) {
         [passwordSection addContent:[PSContent contentWithTitle:@"Encrypted CGDocumentProvider" block:^{
             NSURL *encryptedPDF = [samplesURL URLByAppendingPathComponent:@"aes-encrypted.pdf.aes"];
 
