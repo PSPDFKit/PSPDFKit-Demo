@@ -86,7 +86,7 @@
 "Searching" = "検索中";
 "%d documents indexed." = "%d個の書類がインデックス済み";
 "Done" = "完了";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "書類に索引を付けています";
 
 // inline browser
 "Open in Safari" = "Safariで開く";
@@ -176,7 +176,7 @@
 "Medium Quality" = "中音質";
 "High Quality" = "高音質";
 "Clear All" = "すべてを消去";
-"Clear" = "Clear";
+"Clear" = "消去";
 "Style" = "スタイル";
 "Link" = "リンク";
 "Ink" = "インク";

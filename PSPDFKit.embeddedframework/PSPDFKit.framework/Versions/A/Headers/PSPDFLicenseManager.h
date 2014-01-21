@@ -18,7 +18,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFeatureMask) {
     PSPDFFeatureMaskPDFCreation       = 1 << 3,
     PSPDFFeatureMaskAnnotationEditing = 1 << 4,
     PSPDFFeatureMaskAcroForms         = 1 << 5,
-    PSPDFFeatureMaskIndexedFTS        = 1 << 6,
+    PSPDFFeatureMaskIndexedFTS        = 1 << 6, // Limited in the demo.
     PSPDFFeatureMaskAll               = UINT_MAX,
 };
 

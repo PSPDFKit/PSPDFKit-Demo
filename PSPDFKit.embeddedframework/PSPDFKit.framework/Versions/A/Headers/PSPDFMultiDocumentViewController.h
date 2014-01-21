@@ -63,6 +63,7 @@
 @property (nonatomic, assign) BOOL enableAutomaticStatePersistence;
 
 /// Persists the state to `NSUserDefaults`.
+/// @warning Will only persist file-based documents, not documents based on NSData or CGDataProviders.
 - (void)persistState;
 
 /// Restores state from `NSUserDefaults`. Returns YES on success.

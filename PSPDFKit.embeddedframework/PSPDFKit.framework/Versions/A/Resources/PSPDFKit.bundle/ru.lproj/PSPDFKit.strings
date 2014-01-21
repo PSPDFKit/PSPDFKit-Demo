@@ -86,7 +86,7 @@
 "Searching" = "Поиск";
 "%d documents indexed." = "%d документов проиндексировано.\n";
 "Done" = "Готово";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "Индексация документов";
 
 // inline browser
 "Open in Safari" = "Открыть в Safari";
@@ -176,7 +176,7 @@
 "Medium Quality" = "Среднее качество";
 "High Quality" = "Высокое качество";
 "Clear All" = "Удалить все";
-"Clear" = "Clear";
+"Clear" = "Очистить";
 "Style" = "Стиль";
 "Link" = "Ссылка";
 "Ink" = "Чернила";

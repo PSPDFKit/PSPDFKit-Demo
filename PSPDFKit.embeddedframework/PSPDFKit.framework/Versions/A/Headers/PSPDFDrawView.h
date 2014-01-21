@@ -31,7 +31,7 @@
 
 @end
 
-/// Class that allows drawing on top of a PSPDFPageView.
+/// Class that allows drawing on top of a `PSPDFPageView`.
 @interface PSPDFDrawView : UIView
 
 /// Current stroke color.

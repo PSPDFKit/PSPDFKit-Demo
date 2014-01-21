@@ -86,7 +86,7 @@
 "Searching" = "正在搜索";
 "%d documents indexed." = "%d 个文稿已加索引。";
 "Done" = "完成";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "正在索引文稿";
 
 // inline browser
 "Open in Safari" = "在 Safari 中打开";
@@ -176,7 +176,7 @@
 "Medium Quality" = "中等质量";
 "High Quality" = "高质量";
 "Clear All" = "清除全部";
-"Clear" = "Clear";
+"Clear" = "清除";
 "Style" = "样式";
 "Link" = "链接";
 "Ink" = "墨水";

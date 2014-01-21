@@ -55,11 +55,11 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 /// Generates a PDF from a string. Does allow simple html tags. Will not work with complex HTML pages.
 /// e.g. `@"This is a <b>test</b>` in `<span style='color:red'>color.</span>`
 /// @note Must be called from the main thread.
-- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options;
+- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options error:(NSError **)error;
 
 /// Like the above, but create a temporary PDF in memory.
 /// @note Must be called from the main thread.
-- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options;
+- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options error:(NSError **)error;
 
 /**
  Renders a PDF from an `URL` (web or `fileURL`). This will take a while and is non-blocking.
@@ -67,13 +67,14 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
  Supported are web pages and certain file types like pages, keynote, word, powerpoint, excel, rtf, jpg, png, ...
  See https://developer.apple.com/library/ios/#qa/qa2008/qa1630.html for the full list.
- FILE/OFFICE CONVERSION IS AN EXPERIMENTAL FEATURE AND WE CAN'T OFFER SUPPORT FOR CONVERSION ISSUES.
+
+ @note FILE/OFFICE CONVERSION IS AN EXPERIMENTAL FEATURE AND WE CAN'T OFFER SUPPORT FOR CONVERSION ISSUES.
  If you require a 1:1 conversion, you need to convert those files on a server with a product that is specialized for this task.
 
  Certain documents might not have the correct pagination.
  (Try to manually define `PSPDFProcessorPageRect` to fine-tune this.)
 
- 'options' can contain both the PSPDF constants listed above and any `kCGPDFContext` constants.
+ `options` can contain both the PSPDF constants listed above and any `kCGPDFContext` constants.
  For example, to password protect the pdf, you can use:
  `@{(id)kCGPDFContextUserPassword  : password,
    (id)kCGPDFContextOwnerPassword : password,
@@ -85,8 +86,7 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
  - `kCGPDFContextKeywords`
  - `kCGPDFContextAuthor`
 
- @note
- PSPDFKit Basic/Complete feature.
+ PSPDFKit Basic/Complete feature. Not available for PSPDFKit Viewer.
 
  @warning
  Don't manually override NSOperation's `completionBlock`.
@@ -130,7 +130,10 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 
 @interface PSPDFProcessor (Deprecated)
 
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead");
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead");
+- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead.");
+- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead.");
+
+- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options PSPDF_DEPRECATED(3.4.3, "Use the variant with error: instead.");
+- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options PSPDF_DEPRECATED(3.4.3, "Use the variant with error: instead.");
 
 @end

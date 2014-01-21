@@ -86,7 +86,7 @@
 "Searching" = "Søger";
 "%d documents indexed." = "%d dokumenter indekserede.";
 "Done" = "Færdig";
-"Indexing Documents" = "Indexing Documents";
+"Indexing Documents" = "Indekserer dokumenter";
 
 // inline browser
 "Open in Safari" = "Åbn i Safari";
