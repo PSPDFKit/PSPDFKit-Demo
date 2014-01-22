@@ -337,6 +337,13 @@
 
 @end
 
+@interface PSPDFDocument (EmbeddedFiles)
+
+// Returns all embedded files (if there are any)
+- (NSArray *)allEmbeddedFiles;
+
+@end
+
 
 // Annotations can be saved in the PDF or alongside in an external file.
 typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {

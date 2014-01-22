@@ -11,6 +11,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @class PSPDFMediaPlayerScrubberView;
 
@@ -29,6 +30,15 @@
 
 /// The scrubber item.
 @property (nonatomic, strong) UIBarButtonItem *scrubberItem;
+
+/// The AirPlay item.
+@property (nonatomic, strong) UIBarButtonItem *airPlayItem;
+
+@property (nonatomic, strong) MPVolumeView *airPlayButton;
+
+/// Hides or shows the airplay button. Defaults to `YES`.
+@property (nonatomic, assign, getter = isAirPlayButtonHidden) BOOL airPlayButtonHidden;
+- (void)setAirPlayButtonHidden:(BOOL)airPlayButtonHidden animated:(BOOL)animated;
 
 /// The scrubber view, which is contained within `scrubberItem`.
 @property (nonatomic, strong, readonly) PSPDFMediaPlayerScrubberView *scrubberView;
