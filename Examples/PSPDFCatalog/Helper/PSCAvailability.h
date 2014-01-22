@@ -26,7 +26,7 @@
 
 // iOS7 compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
-#define kCFCoreFoundationVersionNumber_iOS_7_0 847.2
+#define kCFCoreFoundationVersionNumber_iOS_7_0 847.18
 #endif
 
 // Availability Macros
