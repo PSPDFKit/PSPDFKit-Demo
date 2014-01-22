@@ -12,7 +12,7 @@
 
 @interface UIBarButtonItem (PSCBlockSupport)
 
-// Simple block-based API for UIBarButtonItem.
-- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style block:(void (^)(id))block;
+// Simple block-based API for `UIBarButtonItem`.
+- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style block:(void (^)(id sender))block;
 
 @end
