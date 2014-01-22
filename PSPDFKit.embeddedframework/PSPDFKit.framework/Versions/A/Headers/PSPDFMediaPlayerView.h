@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@class PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerAudioPlaceholderView;
+@class PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerPlaceholderView;
 
 /// A view capable of displaying media. Use in combination with `AVPlayer`.
 @interface PSPDFMediaPlayerView : UIView
@@ -33,6 +33,6 @@
 @property (nonatomic, strong) UIView *overlayView;
 
 /// Defaults to hidden.
-@property (nonatomic, strong) PSPDFMediaPlayerAudioPlaceholderView *audioPlaceholderView;
+@property (nonatomic, strong) PSPDFMediaPlayerPlaceholderView *placeholderView;
 
 @end

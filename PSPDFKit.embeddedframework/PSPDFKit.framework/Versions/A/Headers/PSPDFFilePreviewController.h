@@ -18,4 +18,7 @@
 /// URL to then item that should be previewed.
 @property (nonatomic, strong) NSURL *previewURL;
 
+/// Can be set to provide a better animation. Optional.
+@property (nonatomic, weak) UIView *sourceView;
+
 @end

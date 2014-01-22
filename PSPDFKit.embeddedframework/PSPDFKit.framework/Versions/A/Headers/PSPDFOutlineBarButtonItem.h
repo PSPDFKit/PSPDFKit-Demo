@@ -13,9 +13,10 @@
 #import "PSPDFBarButtonItem.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFOutlineBarButtonItemOption) {
-    PSPDFOutlineBarButtonItemOptionOutline,     // The outline (Table of Contents) controller.
-    PSPDFOutlineBarButtonItemOptionBookmarks,   // Bookmark list controller.
-    PSPDFOutlineBarButtonItemOptionAnnotations, // Annotation list controller. PSPDFKit Basic/Complete only.
+    PSPDFOutlineBarButtonItemOptionOutline,       /// The outline (Table of Contents) controller.
+    PSPDFOutlineBarButtonItemOptionBookmarks,     /// Bookmark list controller.
+    PSPDFOutlineBarButtonItemOptionAnnotations,   /// Annotation list controller. PSPDFKit Basic/Complete only.
+    PSPDFOutlineBarButtonItemOptionEmbeddedFiles, /// Embedded Files. PSPDFKit Basic/Complete only.
 };
 
 /// The outline button shows a controller that can be a container for several different controllers, like outline, bookmark or annotation list.
@@ -28,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PSPDFOutlineBarButtonItemOption) {
 - (BOOL)isAvailableBlocking;
 
 /// Choose the controller type.
-/// Defaults to `PSPDFOutlineBarButtonItemOptionOutline, PSPDFOutlineBarButtonItemOptionAnnotations, PSPDFOutlineBarButtonItemOptionBookmarks`.
+/// Defaults to `PSPDFOutlineBarButtonItemOptionOutline, PSPDFOutlineBarButtonItemOptionAnnotations, PSPDFOutlineBarButtonItemOptionBookmarks, PSPDFOutlineBarButtonItemOptionEmbeddedFiles`.
 /// @note Change this before the controller is being displayed.
 @property (nonatomic, copy) NSOrderedSet *availableControllerOptions;
 

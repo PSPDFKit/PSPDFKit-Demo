@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFOverridable.h"
+#import "PSPDFStatefulTableViewController.h"
 
 @class PSPDFDocumentPickerController;
 @class PSPDFDocument, PSPDFLibrary, PSPDFDocumentPickerIndexStatusCell;
@@ -34,7 +35,7 @@
 
 /// Shows all documents available in the Sample directory.
 /// By default this will enqueue all documents into the default `PSPDFLibrary` for FTS.
-@interface PSPDFDocumentPickerController : UITableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
+@interface PSPDFDocumentPickerController : PSPDFStatefulTableViewController <UISearchDisplayDelegate, UISearchBarDelegate>
 
 /// Returns an array of `PSPDFDocument's` found in the "directoryName" directory.
 + (NSArray *)documentsFromDirectory:(NSString *)directoryName includeSubdirectories:(BOOL)includeSubdirectories;

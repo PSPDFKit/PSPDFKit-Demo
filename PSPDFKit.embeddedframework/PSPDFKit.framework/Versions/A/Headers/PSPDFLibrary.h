@@ -76,6 +76,7 @@ extern NSString *const PSPDFLibraryMaximumSearchResultsPerDocumentKey;
 /// Query the database for a match of `searchString`. Only direct matches, begins-with and ends-with matches are supported.
 /// Returns a dictionary of UID->`NSIndexSet` of page numbers.
 /// @note Ends-with matches are only possible if `saveReversedPageText` has been YES while the document was indexed.
+/// @warning The completion handler might be called on a different thread.
 - (void)documentUIDsMatchingString:(NSString *)searchString options:(NSDictionary *)options completionHandler:(void (^)(NSString *searchString, NSDictionary *resultSet))completionHandler;
 
 /// @name Index Status

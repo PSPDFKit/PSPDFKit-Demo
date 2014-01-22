@@ -4,6 +4,17 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.4 - 22/Jan/2014__
+
+*  Add support for Embedded PDF Files (see http://blogs.adobe.com/insidepdf/2010/11/pdf-file-attachments.html)
+*  The `PSPDFGallery` now shows an AirPlay button if AirPlay sources are available.
+*  Stamp annotations no longer have disorted text.
+*  Update OpenSSL to OpenSSL 1.0.1f.
+*  Forms: Checkboxes with the same name and parent form a mutually exclusive group.
+*  `zoomToRect:page:animated:` now honors the `animated` option and compensates for the x/y origin depending on the scroll direction for `PSPDFPageTransitionScrollContinuous`.
+*  Fixes an regression in the annotation toolbar related to tap handling.
+*  Fixes an issue where the `PSPDFOutlineViewController` could display stale data if the outline is complex and documents are switched before the outline parsing operation was done. This basically only happened if the controller was displayed as a side-bar, not when in a popover or modal.
+
 __v3.4.3 - 21/Jan/2014__
 
 *  Code updated to be warning-free with iOS 7.1b4 and Xcode 5.1b4.

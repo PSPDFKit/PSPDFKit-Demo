@@ -513,6 +513,9 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// Use sender (`UIBarButtonItem` or `UIView`) OR rect in options (both only needed for the popover)
 - (id)presentModalOrInPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
 
+/// Dismiss popover IF it matches `class`. Set class to nil to dismiss all popover types.
+- (BOOL)dismissPopoverAnimated:(BOOL)animated class:(Class)popoverClass completion:(dispatch_block_t)completion;
+
 @end
 
 @interface PSPDFViewController (Annotations)

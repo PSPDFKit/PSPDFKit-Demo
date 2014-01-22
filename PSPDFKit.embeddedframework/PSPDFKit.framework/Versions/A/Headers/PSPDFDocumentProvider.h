@@ -13,7 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFDocumentProviderDelegate.h"
 
-@class PSPDFFormParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
+@class PSPDFFormParser, PSPDFEmbeddedFilesParser, PSPDFTextSearch, PSPDFTextParser, PSPDFOutlineParser, PSPDFAnnotationManager, PSPDFDocumentProvider, PSPDFLabelParser, PSPDFDocument, PSPDFPageInfo;
 
 /// A `PSPDFDocument` consists of one or multiple `PSPDFDocumentProvider`'s.
 /// Each document provider has exactly one data source (file/data/dataProvider)
@@ -96,6 +96,9 @@
 
 /// AcroForm parser for current PDF.
 @property (nonatomic, strong) PSPDFFormParser *formParser;
+
+/// Embedded files.
+@property (nonatomic, strong) PSPDFEmbeddedFilesParser *embeddedFilesParser;
 
 /// Link annotation parser class for current PDF.
 /// Lazy initialized. Can be subclassed or set externally.

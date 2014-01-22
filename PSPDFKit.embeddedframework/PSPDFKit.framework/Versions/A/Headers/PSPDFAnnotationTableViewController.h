@@ -39,7 +39,7 @@
 /// Allow to long-press to copy the annotation. Defaults to YES.
 @property (nonatomic, assign) BOOL allowCopy;
 
-/// The delegate.
+/// The annotation table view delegate.
 @property (nonatomic, weak) id<PSPDFAnnotationTableViewControllerDelegate> delegate;
 
 @end

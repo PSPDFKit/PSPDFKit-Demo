@@ -203,6 +203,11 @@ extern "C" {
 #import "PSPDFTextFieldFormElement.h"
 #import "PSPDFDigitalSignatureManager.h"
 
+// embedded files
+#import "PSPDFEmbeddedFile.h"
+#import "PSPDFEmbeddedFilesParser.h"
+#import "PSPDFEmbeddedFilesViewController.h"
+
 // gallery
 #import "PSPDFGalleryViewController.h"
 #import "PSPDFGalleryContentView.h"
