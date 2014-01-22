@@ -66,6 +66,7 @@
 #import "PSCViewHelper.h"
 #import "PSCPopoverTestViewController.h"
 #import <objc/runtime.h>
+#import <QuickLook/QuickLook.h>
 
 // Crypto support
 #import "RNEncryptor.h"
@@ -2367,7 +2368,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                                // By default the system would show a white cursor.
                                [[UITextField appearance] setTintColor:UIColor.pspdfColor];
                                [[UITextView  appearance] setTintColor:UIColor.pspdfColor];
-                               [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];)
+                               [[UISearchBar appearance] setTintColor:UIColor.pspdfColor];
+                               [[UINavigationBar appearanceWhenContainedIn:QLPreviewController.class, nil] setTintColor:UIColor.pspdfColor];)
         self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : UIColor.whiteColor};
     }else {
         [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
