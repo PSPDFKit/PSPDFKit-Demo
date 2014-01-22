@@ -216,6 +216,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.renderAnimationEnabled = NO;
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
 
+//        __weak PSPDFViewController *weakController = controller;
+//        UIBarButtonItem *zoomButton = [[UIBarButtonItem alloc] initWithTitle:@"Zoom Test" style:UIBarButtonItemStylePlain block:^(id sender) {
+//            [weakController zoomToRect:CGRectMake(50.f, 50.f, 100.f, 100.f) page:2 animated:YES];
+//        }];
+//        controller.leftBarButtonItems = @[controller.closeButtonItem, zoomButton];
+
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         [self.navigationController presentViewController:navController animated:YES completion:NULL];
