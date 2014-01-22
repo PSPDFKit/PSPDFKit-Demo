@@ -206,8 +206,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         // Starting with iOS7, we usually don't want to include an internal brightness control.
         // Since PSPDFKit optionally uses an additional software darkener, it can still be useful for certain places like a Pilot's Cockpit.
-        BOOL includeBrightnessButton = YES;
-        PSC_IF_IOS7_OR_GREATER(includeBrightnessButton = NO;)
+        BOOL includeBrightnessButton = kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_7_0;
         controller.rightBarButtonItems = includeBrightnessButton ? @[controller.annotationButtonItem, controller.brightnessButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem] : @[controller.annotationButtonItem, controller.activityButtonItem, controller.outlineButtonItem, controller.searchButtonItem, controller.viewModeButtonItem];
         controller.activityButtonItem.applicationActivities = @[PSPDFActivityTypeOpenIn, PSPDFActivityTypeGoToPage];
         controller.pageTransition = PSPDFPageTransitionScrollContinuous;
