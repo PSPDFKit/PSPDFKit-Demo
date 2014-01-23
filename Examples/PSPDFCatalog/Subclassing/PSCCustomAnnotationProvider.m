@@ -61,7 +61,7 @@
             PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
             noteAnnotation.page = page;
             noteAnnotation.documentProvider = documentProvider;
-            noteAnnotation.contents = [NSString stringWithFormat:@"Annotation from the custom annotationProvider for page %lu.", (unsigned long)page+1];
+            noteAnnotation.contents = [NSString stringWithFormat:@"Annotation from the custom annotationProvider for page %tu.", page+1];
 
             // place it top left (PDF coordinate space starts from bottom left)
             PSPDFPageInfo *pageInfo = [documentProvider.document pageInfoForPage:page];

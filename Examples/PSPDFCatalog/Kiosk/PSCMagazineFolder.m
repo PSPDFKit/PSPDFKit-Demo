@@ -43,7 +43,7 @@
 }
 
 - (NSString *)description {
-    NSString *description = [NSString stringWithFormat:@"<%@ %p: %@, %lu magazines>", self.class, self, self.title, (unsigned long)self.magazines.count];
+    NSString *description = [NSString stringWithFormat:@"<%@ %p: %@, %tu magazines>", self.class, self, self.title, self.magazines.count];
     return description;
 }
 

@@ -46,7 +46,7 @@
     NSDictionary *dirtyAnnotations = [[self.document annotationManagerForPage:0] dirtyAnnotations];
     NSLog(@"Dirty Annotations: %@", dirtyAnnotations);
 
-    if (self.document.data) NSLog(@"Length of NSData before saving: %lu", (unsigned long)self.document.data.length);
+    if (self.document.data) NSLog(@"Length of NSData before saving: %tu", self.document.data.length);
 
     NSError *error = nil;
     if (![self.document saveAnnotationsWithError:&error]) {
@@ -57,7 +57,7 @@
         NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
         //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
 
-        if (self.document.data) NSLog(@"Length of NSData after saving: %lu", (unsigned long)self.document.data.length);
+        if (self.document.data) NSLog(@"Length of NSData after saving: %tu", self.document.data.length);
     }
 }
 
