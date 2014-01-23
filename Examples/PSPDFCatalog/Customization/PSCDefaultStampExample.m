@@ -114,7 +114,7 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 - (void)stampButtonPressed:(id)sender {
     if (![self.toolbarMode isEqualToString:PSPDFAnnotationStringStamp]) {
         // Make sure we deselect any selected annotation.
-        [self.pdfController.visiblePageViews makeObjectsPerformSelector:@selector(setSelectedAnnotations:) withObject:nil];
+        [self.annotationStateManager.pdfController.visiblePageViews makeObjectsPerformSelector:@selector(setSelectedAnnotations:) withObject:nil];
         self.toolbarMode = PSPDFAnnotationStringStamp;
     }else {
         self.toolbarMode = nil;

@@ -42,8 +42,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithPDFController:(PSPDFViewController *)pdfController {
-    if (self = [super initWithPDFController:pdfController]) {
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
+    if (self = [super initWithAnnotationStateManager:annotationStateManager]) {
 
         // The biggest challenge here isn't the clear button, but correctly updating the clear button if we actually can clear something or not.
         NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
@@ -73,7 +73,7 @@
         }
     }else {
         // Iterate over all visible pages and remove all but links.
-        PSPDFViewController *pdfController = self.pdfController;
+        PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         PSPDFDocument *document = pdfController.document;
         for (PSPDFPageView *pageView in pdfController.visiblePageViews) {
             NSArray *annotations = [document annotationsForPage:pageView.page type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
@@ -118,7 +118,7 @@
 - (void)updateClearAnnotationButton {
     BOOL annotationsFound = [self canUndoDrawing]; // Also factor in drawing mode
     if (self.drawViews.count == 0) {
-        PSPDFViewController *pdfController = self.pdfController;
+        PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         for (NSNumber *pageNumber in pdfController.calculatedVisiblePageNumbers) {
             NSArray *annotations = [pdfController.document annotationsForPage:pageNumber.unsignedIntegerValue type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
             if (annotations.count > 0) {
