@@ -102,7 +102,7 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
         NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
         pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation+degrees);
-        PSCLog(@"Snap rotation to: %lu", (unsigned long)pageInfo.pageRotation);
+        PSCLog(@"Snap rotation to: %tu", pageInfo.pageRotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
         PSPDFViewController *pdfController = self.pdfController;

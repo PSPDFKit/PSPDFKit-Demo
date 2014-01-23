@@ -532,7 +532,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     NSOrderedSet *visiblePageNumbers = pdfController.visiblePageNumbers;
     for (NSNumber *pageNumber in visiblePageNumbers) {
         NSUInteger page = [pageNumber unsignedIntegerValue];
-        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %lu:\n\n", (unsigned long)page+1];
+        if (visiblePageNumbers.count > 1) [text appendFormat:@"Page %tu:\n\n", page+1];
         [text appendString:[pdfController.document textParserForPage:page].text];
         if (visiblePageNumbers.count > 1) [text appendString:@"\n-------------------------------------------------------\n\n"];
     }

@@ -619,7 +619,7 @@
         magazine = [folder firstMagazine];
     }
 
-    PSCLog(@"Magazine selected: %lu %@", (unsigned long)indexPath.item, magazine);
+    PSCLog(@"Magazine selected: %tu %@", indexPath.item, magazine);
 
     if (folder.magazines.count == 1 || self.magazineFolder) {
         if (magazine.isDownloading) {

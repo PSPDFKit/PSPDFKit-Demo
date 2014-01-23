@@ -91,23 +91,23 @@
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowPageView: page:%lu", (unsigned long)pageView.page);
+    NSLog(@"didShowPageView: page:%tu", pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didRenderPageView: page:%lu", (unsigned long)pageView.page);
+    NSLog(@"didRenderPageView: page:%tu", pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
-    NSLog(@"didChangeViewMode: %d", (int)viewMode);
+    NSLog(@"didChangeViewMode: %tu", viewMode);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didLoadPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didLoadPageView: page:%lu", (unsigned long)pageView.page);
+    NSLog(@"didLoadPageView: page:%tu", pageView.page);
 }
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController willUnloadPageView:(PSPDFPageView *)pageView {
-    NSLog(@"willUnloadPageView: page:%lu", (unsigned long)pageView.page);
+    NSLog(@"willUnloadPageView: page:%tu", pageView.page);
 }
 
 - (UIView <PSPDFAnnotationViewProtocol> *)pdfViewController:(PSPDFViewController *)pdfController annotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView forAnnotation:(PSPDFAnnotation *)annotation onPageView:(PSPDFPageView *)pageView {
@@ -142,12 +142,12 @@
 
 /// Invoked prior to the presentation of the annotation view: use this to configure actions etc
 - (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"willShowAnnotationView: %@ page:%lu", annotationView, (unsigned long)pageView.page);
+    NSLog(@"willShowAnnotationView: %@ page:%tu", annotationView, pageView.page);
 }
 
 /// Invoked after animation used to present the annotation view
 - (void)pdfViewController:(PSPDFViewController *)pdfController didShowAnnotationView:(UIView <PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    NSLog(@"didShowAnnotationView: %@ page:%lu", annotationView, (unsigned long)pageView.page);
+    NSLog(@"didShowAnnotationView: %@ page:%tu", annotationView, pageView.page);
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController shouldShowController:(id)viewController embeddedInController:(id)controller options:(NSDictionary *)options animated:(BOOL)animated {

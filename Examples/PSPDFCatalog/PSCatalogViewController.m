@@ -639,7 +639,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                     annotation.color = [UIColor orangeColor];
                     annotation.boundingBox = boundingBox;
                     annotation.rects = highlighedRects;
-                    annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%lu", (unsigned long)annotationCounter];
+                    annotation.contents = [NSString stringWithFormat:@"This is automatically created highlight #%tu", annotationCounter];
                     annotation.page = pageIndex;
                     [document addAnnotations:@[annotation]];
                     annotationCounter++;
@@ -1813,7 +1813,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         // Detect URLs in the document and create annotations
         NSIndexSet *allPagesIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)];
         NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
-            NSLog(@"Detected %@ on %lu", annotations, (unsigned long)page);
+            NSLog(@"Detected %@ on %tu", annotations, page);
         } error:NULL];
 
         // Add those annotations to the page.
