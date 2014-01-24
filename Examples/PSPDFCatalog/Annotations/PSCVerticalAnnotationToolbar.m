@@ -71,7 +71,7 @@
 - (void)inkButtonPressed:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
 
-    if (![self.toolbar.toolbarMode isEqualToString:PSPDFAnnotationStringInk]) {
+    if (![pdfController.annotationStateManager.toolbarMode isEqualToString:PSPDFAnnotationStringInk]) {
         pdfController.HUDViewMode = PSPDFHUDViewModeAlways;
         if (!self.toolbar.window) {
             // match style
