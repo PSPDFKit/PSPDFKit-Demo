@@ -308,7 +308,7 @@ static CGFloat pscSettingsLastYOffset = 0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     _isSettingUpCells = YES;
-    NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%ld", (long)indexPath.section];
+    NSString *cellIdentifier = [NSString stringWithFormat:@"PSPDFCacheSettingsCell_%zd", indexPath.section];
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
