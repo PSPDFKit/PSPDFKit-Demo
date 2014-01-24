@@ -25,12 +25,6 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 /// Before sending the file to another application, annotations will be saved.
 @interface PSPDFOpenInBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
-/// Shows the print action along with the application list. Defaults to NO.
-/// @warning If this is enabled, `UIDocumentInteractionController` will also show a "Mail" option.
-/// This will call `presentOptionsMenuFromRect:` (or variations) if enabled, else `presentOpenInMenuFromRect:`.
-/// This is deprecatedb by Apple.
-@property (nonatomic, assign) BOOL showPrintAction PSPDF_DEPRECATED(3.4.2, "Use UIActivityViewController instead. This is deprecated by Apple.");
-
 /// Defines what we are sending. If more than one option is set, user will get a dialog to choose.
 /// Defaults to `PSPDFDocumentSharingOptionCurrentPageOnly|PSPDFDocumentSharingOptionAllPages|PSPDFDocumentSharingOptionEmbedAnnotations|PSPDFDocumentSharingOptionFlattenAnnotations|PSPDFDocumentSharingOptionForceMergeFiles`.
 @property (nonatomic, assign) PSPDFDocumentSharingOptions openOptions;
@@ -51,5 +45,15 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 // Presenting OpenIn/Options Menu
 - (BOOL)presentOpenInMenuFromBarButtonItem:(id)sender animated:(BOOL)animated;
 - (BOOL)presentOpenInMenuFromRect:(CGRect)senderRect inView:(id)sender animated:(BOOL)animated;
+
+@end
+
+@interface PSPDFOpenInBarButtonItem (Deprecated)
+
+// Shows the print action along with the application list. Defaults to NO.
+// @warning If this is enabled, `UIDocumentInteractionController` will also show a "Mail" option.
+// This will call `presentOptionsMenuFromRect:` (or variations) if enabled, else `presentOpenInMenuFromRect:`.
+// This is deprecatedb by Apple.
+@property (nonatomic, assign) BOOL showPrintAction PSPDF_DEPRECATED(3.4.2, "Use UIActivityViewController instead. This is deprecated by Apple.");
 
 @end

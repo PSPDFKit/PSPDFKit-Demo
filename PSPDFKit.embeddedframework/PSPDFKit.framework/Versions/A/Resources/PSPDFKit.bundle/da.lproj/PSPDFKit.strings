@@ -275,6 +275,7 @@
 "Remove Link" = "Fjern henvisning";
 "Open Link" = "Åbn henvisning";
 "Go to Page %d" = "Gå til side %d";
+"Go to Page" = "Gå til side";
 "Save" = "Arkiver";
 "Link Destination" = "Link-destination";
 "Enter page index or a http:// address to link to an URL." = "Angiv side-index eller en http:// adresse for at linke til en URL.";

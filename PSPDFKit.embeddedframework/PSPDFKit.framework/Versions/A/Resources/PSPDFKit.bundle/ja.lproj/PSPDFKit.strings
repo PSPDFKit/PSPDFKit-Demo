@@ -275,6 +275,7 @@
 "Remove Link" = "リンクを削除";
 "Open Link" = "リンクを開く";
 "Go to Page %d" = "%dページに移動";
+"Go to Page" = "ページに移動";
 "Save" = "保存";
 "Link Destination" = "リンク先";
 "Enter page index or a http:// address to link to an URL." = "URLにリンクするには、ページインデックスまたはhttp://アドレスを入力してください。";

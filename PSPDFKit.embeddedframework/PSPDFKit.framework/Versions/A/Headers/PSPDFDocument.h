@@ -339,24 +339,26 @@
 
 @interface PSPDFDocument (EmbeddedFiles)
 
-// Returns all embedded files (if there are any)
+/// Returns all embedded files (if there are any)
 - (NSArray *)allEmbeddedFiles;
 
 @end
 
 
-// Annotations can be saved in the PDF or alongside in an external file.
+/// Annotations can be saved in the PDF or alongside in an external file.
 typedef NS_ENUM(NSInteger, PSPDFAnnotationSaveMode) {
-    PSPDFAnnotationSaveModeDisabled,
-    PSPDFAnnotationSaveModeExternalFile, // Uses `save/loadAnnotationsWithError:` in `PSPDFAnnotationManager`.
-    PSPDFAnnotationSaveModeEmbedded,
-    PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback
+    PSPDFAnnotationSaveModeDisabled,     /// Saving is disabled.
+    PSPDFAnnotationSaveModeExternalFile, /// Will save to an external file. Uses `save/loadAnnotationsWithError:` in `PSPDFAnnotationManager`.
+    PSPDFAnnotationSaveModeEmbedded,     /// Will only save directly into the PDF.
+    PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback /// Tries to save into the PDF if the file is writable, else falls back to external file.
 };
 
 @interface PSPDFDocument (Annotations)
 
 /// Master switch to completely disable annotation display/parsing on a document. Defaults to YES.
-/// @note This will disable the creation of the PSPDFAnnotationManager and will automatically return nil on `editableAnnotationTypes`.
+/// @note This will disable the creation of the `PSPDFAnnotationManager` and will automatically return nil on `editableAnnotationTypes`.
+/// @warning This will also disable links and forms. In most cases, this is not what you want.
+/// To disable editing features, instead customize `editableAnnotationTypes`.
 @property (nonatomic, assign, getter=isAnnotationsEnabled) BOOL annotationsEnabled;
 
 /// Returns annotations for a specific `page`.

@@ -13,7 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFWord.h"
 
-typedef NS_ENUM(NSInteger, PSPDFTextLineBorder) {
+typedef NS_ENUM(NSUInteger, PSPDFTextLineBorder) {
     PSPDFTextLineBorderUndefined = 0,
     PSPDFTextLineBorderTopDown,  // 1
     PSPDFTextLineBorderBottomUp, // 2
