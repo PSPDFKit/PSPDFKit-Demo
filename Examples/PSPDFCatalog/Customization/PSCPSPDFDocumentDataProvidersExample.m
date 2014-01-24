@@ -82,8 +82,7 @@
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     
     NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((__bridge CFDataRef)(data));
-    //        CGDataProviderRef dataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)([samplesURL URLByAppendingPathComponent:@"corrupted.pdf"]));
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)(data));
     PSPDFDocument *document = [PSPDFDocument documentWithDataProvider:dataProvider];
     document.title = @"CGDataProviderRef PDF";
     CGDataProviderRelease(dataProvider);
