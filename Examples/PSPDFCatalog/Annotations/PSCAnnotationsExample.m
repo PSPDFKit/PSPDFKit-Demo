@@ -273,7 +273,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    //NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"eKneeBoardCourses.pdf"];
+    //NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Form_YesNo.pdf"];
 
     // Load from an example XFDF file.
     NSString *docsFolder = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
