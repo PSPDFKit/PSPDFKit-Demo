@@ -41,12 +41,12 @@
 
         // draw button
         if ([pdfController.document.editableAnnotationTypes containsObject:PSPDFAnnotationStringFreeText]) {
-        UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *freeTextImage = PSPDFBundleImage(@"freetext");
-        [freetextButton setImage:freeTextImage forState:UIControlStateNormal];
-        [freetextButton addTarget:self action:@selector(freetextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:freetextButton];
-        self.freeTextButton = freetextButton;
+			UIButton *freetextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+			UIImage *freeTextImage = PSPDFBundleImage(@"freetext");
+			[freetextButton setImage:freeTextImage forState:UIControlStateNormal];
+			[freetextButton addTarget:self action:@selector(freetextButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+			[self addSubview:freetextButton];
+			self.freeTextButton = freetextButton;
         }
 
     }
@@ -97,7 +97,7 @@
     }else {
         pdfController.HUDViewMode = PSPDFHUDViewModeAutomatic;
         // remove toolbar
-        [self.toolbar finishDrawingAnimated:YES saveAnnotation:NO];
+		[self.toolbar hideAndRemoveToolbarAnimated:YES completion:nil];
     }
 }
 
