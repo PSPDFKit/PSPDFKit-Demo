@@ -49,6 +49,7 @@
 // structurally. This is designed to be overwritten in subclasses, the default
 // implementation here returns an empty set.
 + (NSOrderedSet *)propertyKeysWithReferentialEquality;
++ (NSOrderedSet *)cachedPropertyKeysWithReferentialEquality; // Cached variant. Do not subclass.
 
 // A dictionary representing the properties of the receiver.
 //

@@ -275,6 +275,7 @@
 "Remove Link" = "移除链接";
 "Open Link" = "打开链接";
 "Go to Page %d" = "前往第 %d 页";
+"Go to Page" = "前往第页";
 "Save" = "保存";
 "Link Destination" = "链接目标";
 "Enter page index or a http:// address to link to an URL." = "输入页面索引或 http:// 地址链接到 URL。";

@@ -53,6 +53,8 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 /// Allows to override the default subtitle string for a specific option.
 - (NSString *)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController subtitleForOption:(PSPDFDocumentSharingOptions)option;
 
+- (NSString *)temporaryDirectoryForDocumentSharingViewController:(PSPDFDocumentSharingViewController *)shareController;
+
 @end
 
 /// Shows an interface to select the way the PDF should be exported.

@@ -276,6 +276,7 @@
 "Remove Link" = "링크 제거";
 "Open Link" = "링크 열기";
 "Go to Page %d" = "%d 페이지로 이동";
+"Go to Page" = "페이지로 이동";
 "Save" = "저장";
 "Link Destination" = "링크 대상";
 "Enter page index or a http:// address to link to an URL." = "페이지 색인 또는 http:// 주소로 링크에 URL을 추가하세요.";

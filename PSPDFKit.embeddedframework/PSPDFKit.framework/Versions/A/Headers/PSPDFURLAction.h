@@ -39,7 +39,7 @@
 /// Returns YES if the `URLString` has been prefixed with pspdfkit:// or another defined prefix set in `PSPDFDocument`.
 @property (nonatomic, assign, readonly) BOOL isPSPDFPrefixed;
 
-/// PageIndex, if defined in the options dictionary.
+/// The page index, if defined in the options dictionary.
 @property (nonatomic, assign) NSUInteger pageIndex;
 
 /// Indicator if "modal" is set in options. Will add "modal" to options if setModal is used.

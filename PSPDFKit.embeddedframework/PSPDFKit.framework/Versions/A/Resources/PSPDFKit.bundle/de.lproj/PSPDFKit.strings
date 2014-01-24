@@ -274,6 +274,7 @@
 "Remove Link" = "Link entfernen";
 "Open Link" = "Link öffnen";
 "Go to Page %d" = "Zu Seite %d wechseln";
+"Go to Page" = "Zu Seite wechseln";
 "Save" = "Speichern";
 "Link Destination" = "Link Destination";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";

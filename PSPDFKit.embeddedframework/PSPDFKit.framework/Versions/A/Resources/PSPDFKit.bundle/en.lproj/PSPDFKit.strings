@@ -278,6 +278,7 @@
 "Remove Link" = "Remove Link";
 "Open Link" = "Open Link";
 "Go to Page %d" = "Go to Page %d";
+"Go to Page" = "Go to Page";
 "Save" = "Save";
 "Link Destination" = "Link Destination";
 "Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";

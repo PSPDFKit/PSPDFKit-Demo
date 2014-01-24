@@ -30,33 +30,33 @@
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache;
 
 /// Page Transition. Can be scrolling or something more fancy.
-typedef NS_ENUM(NSInteger, PSPDFPageTransition) {
+typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
     PSPDFPageTransitionScrollPerPage,      /// One ScrollView per page.
     PSPDFPageTransitionScrollContinuous,   /// Similar to UIWebView. Ignores PSPDFPageModeDouble.
     PSPDFPageTransitionCurl                /// PageCurl mode, similar to iBooks.
 };
 
 /// Current active view mode.
-typedef NS_ENUM(NSInteger, PSPDFViewMode) {
+typedef NS_ENUM(NSUInteger, PSPDFViewMode) {
     PSPDFViewModeDocument,  /// Document is visible.
     PSPDFViewModeThumbnails /// Thumbnails are visible.
 };
 
 /// Active page mode.
-typedef NS_ENUM(NSInteger, PSPDFPageMode) {
+typedef NS_ENUM(NSUInteger, PSPDFPageMode) {
     PSPDFPageModeSingle,   /// Default on iPhone.
     PSPDFPageModeDouble,   /// Always show double pages.
     PSPDFPageModeAutomatic /// Single in portrait, double in landscape if the document's height > width. Default on iPad.
 };
 
 /// Active scrolling direction. Only relevant for scrolling page transitions.
-typedef NS_ENUM(NSInteger, PSPDFScrollDirection) {
+typedef NS_ENUM(NSUInteger, PSPDFScrollDirection) {
     PSPDFScrollDirectionHorizontal, /// default
     PSPDFScrollDirectionVertical
 };
 
 /// Status bar style. (old status will be restored regardless of the style chosen)
-typedef NS_ENUM(NSInteger, PSPDFStatusBarStyle) {
+typedef NS_ENUM(NSUInteger, PSPDFStatusBarStyle) {
     PSPDFStatusBarStyleInherit,                /// Don't change status bar style, but show/hide status bar on HUD events.
     PSPDFStatusBarStyleLightContent,           /// `UIStatusBarStyleBlackOpaque` on iPad, `UIStatusBarStyleLightContent` on iPhone.
     PSPDFStatusBarStyleLightContentHideOnIpad, /// Similar to `PSPDFStatusBarStyleLightContent` (iOS 7: white), but also hides statusBar on iPad.
@@ -65,27 +65,27 @@ typedef NS_ENUM(NSInteger, PSPDFStatusBarStyle) {
     PSPDFStatusBarStyleDisable                 /// Never show status bar.
 };
 
-typedef NS_ENUM(NSInteger, PSPDFHUDViewMode) {
+typedef NS_ENUM(NSUInteger, PSPDFHUDViewMode) {
     PSPDFHUDViewModeAlways,                   /// Always show the HUD.
     PSPDFHUDViewModeAutomatic,                /// Show HUD on touch and first/last page.
     PSPDFHUDViewModeAutomaticNoFirstLastPage, /// Show HUD on touch.
     PSPDFHUDViewModeNever                     /// Never show the HUD.
 };
 
-typedef NS_ENUM(NSInteger, PSPDFHUDViewAnimation) {
+typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
     PSPDFHUDViewAnimationNone,            /// Don't animate HUD appearance
     PSPDFHUDViewAnimationFade,            /// Fade HUD in/out
     PSPDFHUDViewAnimationSlide            /// Slide HUD.
 };
 
-typedef NS_ENUM(NSInteger, PSPDFThumbnailBarMode) {
+typedef NS_ENUM(NSUInteger, PSPDFThumbnailBarMode) {
     PSPDFThumbnailBarModeNone,            /// Don't show thumbnail bottom bar.
     PSPDFThumbnailBarModeScrobbleBar,     /// Show scrobble bar (like iBooks, PSPDFScrobbleBar)
     PSPDFThumbnailBarModeScrollable       /// Show scrollable thumbnail bar (PSPDFThumbnailBar)
 };
 
 /// Default action for PDF link annotations.
-typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
+typedef NS_ENUM(NSUInteger, PSPDFLinkAction) {
     PSPDFLinkActionNone,         /// Link actions are ignored.
     PSPDFLinkActionAlertView,    /// Link actions open an UIAlertView.
     PSPDFLinkActionOpenSafari,   /// Link actions directly open Safari.
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, PSPDFLinkAction) {
 };
 
 // Customize how a single page should be displayed.
-typedef NS_ENUM(NSInteger, PSPDFPageRenderingMode) {
+typedef NS_ENUM(NSUInteger, PSPDFPageRenderingMode) {
     PSPDFPageRenderingModeThumbnailThenFullPage, /// Load cached page async.
     PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage, /// Load cached page async. Thumbnail only if in mem.
     PSPDFPageRenderingModeFullPage,              /// Load cached page async, no upscaled thumb.
@@ -391,7 +391,7 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.
 @property (nonatomic, assign) float maximumZoomScale;
 
-/// Page padding width between single/double pages. Defaults to 20.
+/// Page padding width between single/double pages or between pages for continuous scrolling. Defaults to 20.f.
 @property (nonatomic, assign) CGFloat pagePadding;
 
 /// Enable/disable page shadow. Defaults to YES on iOS6 and NO on iOS7.
@@ -410,7 +410,7 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 @property (nonatomic, assign) UIBarStyle navigationBarStyle;
 
 /// Defines if the HUD is transparent or not.
-/// This is set depending on the `statusBarStyle` and always enabled by default on iOS7.
+/// This is set depending on the `statusBarStyle` and always enabled by default on iOS 7.
 /// @warning If this is set to NO, `shouldHideNavigationBarWithHUD` and `shouldHideStatusBarWithHUD` won't work as expected.
 @property (nonatomic, assign, getter=isTransparentHUD) BOOL transparentHUD;
 

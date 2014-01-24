@@ -214,7 +214,7 @@
 "Completed" = "Завершено";
 "Confidential" = "Конфиденциально";
 "For Public Release" = "Публичный доступ";
-"Not For Public Release" = "Нет для публики";
+"Not For Public Release" = "Не для публики";
 "For Comment" = "Для комментариев";
 "Void" = "Аннулировать";
 "Preliminary Results" = "Предварительно";
@@ -275,6 +275,7 @@
 "Remove Link" = "Удалить ссылку";
 "Open Link" = "Открыть ссылку";
 "Go to Page %d" = "Перейти к странице %d";
+"Go to Page" = "Перейти к странице";
 "Save" = "Сохранить";
 "Link Destination" = "Назначение ссылки";
 "Enter page index or a http:// address to link to an URL." = "Введите индекс страницы или адрес (http://) ссылки.";

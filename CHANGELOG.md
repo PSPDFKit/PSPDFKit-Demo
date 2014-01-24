@@ -4,6 +4,22 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.5 - 24/Jan/2014__
+
+*  Better handles resizing for rotated stamps.
+*  The Open In... activity is now displayed for NSData-based documents.
+*  Improve availability filtering for the `PSPDFOutlineBarButtonItem`, no longer presents an empty controller if no content is available.
+*  Small localization updates.
+*  Improve XFDF action writing for non-standard types like GoToR.
+*  Improvements to word/new line detection in the text parser for certain documents.
+*  Improves rendering performance, expecially for more complex PDF forms.
+*  Form updates are now more snappy and no longer animate.
+*  Various smaller improvements for the inline web view. (`PSPDFWebAnnotationView`)
+*  Fixes an issue where annotations could end up at a different location when rotated documents were re-saved using `PSPDFProcessor`.
+*  Fixes an issue where `viewControllers` of the `PSPDFContainerViewController` could return nil.
+*  Fixes an issue where annotations saved via `PSPDFProcessor` could end up on a different page.
+*  Fixes an issue where the target page of a document/page action sometimes wasn't correctly saved when using the XFDF format.
+
 __v3.4.4 - 22/Jan/2014__
 
 *  Add support for Embedded PDF Files (see http://blogs.adobe.com/insidepdf/2010/11/pdf-file-attachments.html)
