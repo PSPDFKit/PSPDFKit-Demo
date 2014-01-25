@@ -100,7 +100,7 @@ __v3.3.5 - 9/Jan/2014__
 *  The gallery now supports more options like autostart, cover views or control customizations.
 *  Improved the `highlightedString` feature by narrowing down the target rect. Reduces the chance to extract text above/below the marked text.
 *  The render activity view now has a slight delay and animates in and out, making it less disruptive.
-*  Extends support for OS 7 dynamic type to more controls and cells.
+*  Extends support for iOS 7 dynamic type to more controls and cells.
 *  Localization has been streamlined and requires less entries. If you rely in a specific `identifier` for `PSPDFMenuItem` checks, remove the "..." from the strings.
 *  The option view in `PSPDFNoteAnnotationViewController` now uses blur on iOS 7 instead of plain transparency.
 *  Adds further workarounds for issues in `UITextView` on iOS 7 which improves caret scrolling and visibility when using external keyboards.
