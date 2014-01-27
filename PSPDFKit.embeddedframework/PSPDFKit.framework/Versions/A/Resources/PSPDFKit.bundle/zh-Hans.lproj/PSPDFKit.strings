@@ -1,0 +1,371 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "关闭";
+"Cancel" = "取消";
+"OK" = "好";
+"Open" = "打开";
+"Untitled" = "未命名";
+"File Not Found" = "未找到文件";
+"Unnamed PDF" = "未命名 PDF";
+"Page %d" = "第 %d 页";
+"All (%d Pages)" = "全部（%d 页）";
+"Next" = "下一步";
+"Previous" = "上一页";
+"Error" = "错误";
+
+// toolbar
+"Outline" = "大纲";
+"No Outline" = "无大纲";
+"Search Outline" = "搜索大纲";
+"Search" = "搜索";
+"Email" = "电子邮件";
+"Send via Email" = "通过电子邮件发送";
+"Send" = "发送";
+"Open in" = "打开程序";
+"Open" = "打开";
+"Commit" = "提交";
+"Sending to %@" = "正在发送至 %@"; // Context: Open document with an application
+"Pages" = "页";
+"Print with annotations" = "连同批注打印";
+"Print document only" = "仅打印文稿";
+"No Applications found" = "没有安装可以打开 PDF 文稿的应用程序。";
+"Print" = "打印";
+"Annotation" = "批注";
+"Annotations" = "批注";
+"No Annotations" = "没有批注";
+"%d Annotation" = "%d 批注";
+"%d Annotations" = "%d 条批注";
+"Bookmarks" = "书签";
+"No Bookmarks" = "没有书签";
+"Add Bookmark" = "添加书签";
+"Remove Bookmark" = "移除书签";
+"Brightness" = "亮度";
+"Share" = "共享";
+"Preparing" = "准备中";
+"Loading" = "正在加载";
+"Expand" = "展开";
+"Collapse" = "折叠";
+
+// thumbnails
+"Bookmarked" = "已加书签";
+"Annotated" = "已加批注";
+"All" = "全部";
+
+// password
+"Unlock" = "解锁";
+"Please enter the password." = "请输入密码。";
+"This document cannot be unlocked. %@ is unsupported." = "此文稿无法解锁。不支持 %@。";
+
+// page
+"%d of %d" = "%d/%d";
+"%d-%d of %d" = "%d-%d/%d";
+"%@ (%d of %d)" = "%@ (%d/%d)";
+"%@, Page %d" = "%@，第 %d 页";
+"Leave %@?" = "离开 %@？";
+
+// search
+"Search Document" = "搜索文稿"; // Context: to search for a string in the given document
+"No matches found" = "未找到匹配";
+"One match found" = "找到一个匹配";
+"%d matches found" = "找到 %d 个匹配";
+"Searching Page %d of %d" = "正在搜索第 %d 页（共 %d 页）";
+"Search Completed" = "搜索完成";
+"Search Cancelled" = "搜索取消";
+"%d left" = "剩下 %d"; // Context: there are 5 documents left
+"Searching" = "正在搜索";
+"%d documents indexed." = "%d 个文稿已加索引。";
+"Done" = "完成";
+"Indexing Documents" = "正在索引文稿";
+
+// inline browser
+"Open in Safari" = "在 Safari 中打开";
+"Open in Chrome" = "在 Chrome 中打开";
+"Your %@ is not configured to send emails." = "您的 %@ 未经配置，无法发送电子邮件。";
+"The link is requesting to open %@Would you like to continue?" = "链接正在请求打开 %@ 您要继续吗？";
+"an external application" = "一个外部应用程序";
+"the App Store" = "应用商店";
+"Mail" = "邮件";
+"No handler found for %@" = "没有找到 %@ 的处理程序";
+
+// text selection
+"Save To Camera Roll" = "保存至相机胶卷";
+"Failed to extract image." = "提取图像失败。";
+"Type value or pick from list" = "键入值或从列表中选取";
+
+// annotations
+"Add %@" = "添加 %@";
+"Remove %@" = "移除 %@";
+"Remove" = "移除";
+"Edit" = "编辑";
+"Undo" = "撤销";
+"Redo" = "重做";
+"Type" = "类型"; // Context: kind of Annotation can be selected
+"Size" = "大小";
+"Font" = "字体";
+"Fonts" = "字体";
+"Downloadable Fonts" = "可下载字体";
+"Search Fonts" = "搜索字体";
+"Choose Color" = "选择颜色";
+"Choose Fill Color" = "选择填充颜色";
+"Rainbow" = "彩虹";
+"Monochrome" = "单色";
+"Vintage" = "复古";
+"Color" = "颜色";
+"Border" = "边框";
+"Fill Color" = "填充颜色";
+"Opacity" = "不透明度";
+"%@ %%" = "%@ %%";
+"Custom" = "自定";
+"Thickness" = "粗细";
+"%@ pt" = "%@ 点";
+"Yellow" = "黄色";
+"Green" = "绿色";
+"Red" = "红色";
+"Blue" = "蓝色";
+"Pink" = "粉色";
+"Black" = "黑色";
+"orange" = "橙色";
+"purple" = "紫色";
+"cyan" = "青色";
+"gray" = "灰色";
+"white" = "白色";
+"Define" = "定义";
+"Wikipedia" = "维基百科\n";
+"Highlight" = "高亮显示";
+"Underline" = "下划线";
+"Squiggle" = "波形曲线";
+"Strikeout" = "删去";
+"Rectangle" = "矩形";
+"Ellipse" = "椭圆";
+"Line" = "直线";
+"Polyline" = "折线";
+"Polygon" = "多边形";
+"Signature" = "签名";
+"Signatures" = "签名";
+"Signed" = "已签名";
+"Sign" = "签名";
+"Stamp" = "印章";
+"Stamps" = "印章";
+"Custom" = "自定";
+"Create Stamp" = "创建印章";
+"Preview" = "预览";
+"Stamp Text" = "印章文本";
+"Add Signature" = "添加签名";
+"My Signature" = "我的签名";
+"Customer Signature" = "客户签名";
+"Note" = "注释";
+"Text" = "文本";
+"Delete Note" = "删除注释";
+"Remove Note" = "移除注释";
+"%@ could not be found." = "无法找到 %@。";
+"Photo Library" = "图库";
+"Camera" = "相机";
+"Image" = "图像";
+"Low Quality" = "低质量";
+"Medium Quality" = "中等质量";
+"High Quality" = "高质量";
+"Clear All" = "清除全部";
+"Clear" = "清除";
+"Style" = "样式";
+"Link" = "链接";
+"Ink" = "墨水";
+"FreeText" = "文本";
+"Screen" = "屏幕";
+"RichMedia" = "富媒体";
+"Left" = "剩下";
+"Center" = "中心";
+"Right" = "右转";
+"Alignment" = "对齐";
+"Preview File" = "预览文件";
+"Copy" = "拷贝";
+"Paste" = "粘贴";
+"Inspector" = "检查器";
+"Group" = "群组";
+"Ungroup" = "取消群组";
+"Sample" = "样本";
+"Annotation Summary for %@:\n" = "%@ 批注摘要：";
+"Fit to Text" = "适配文本";
+"Draw" = "绘图";
+"Sound" = "声音";
+"Eraser" = "橡皮";
+"SelectionTool" = "选择工具";
+"Saved Annotations" = "保存批注";
+"Add" = "添加"; // to add - infinitive
+"Date" = "日期";
+"Time" = "时间";
+"No Pages" = "没有页面";
+
+// Stamps
+"Approved" = "已批准";
+"Not Approved" = "未批准";
+"Draft" = "草案";
+"Final" = "最终";
+"Completed" = "已完成";
+"Confidential" = "机密";
+"For Public Release" = "公开发布";
+"Not For Public Release" = "非公开发布";
+"For Comment" = "添加注释";
+"Void" = "无效";
+"Preliminary Results" = "初步结果";
+"Information only" = "仅供参考";
+"Accepted" = "已接受";
+"Rejected" = "已拒绝";
+"Initial Here" = "在这里首字母签名";
+"Sign Here" = "在这里签名";
+"Witness" = "见证";
+"Revised" = "已修订";
+
+// PDF annotation name overrides
+"Square" = "矩形";
+"Circle" = "椭圆";
+"PolyLine" = "折线";
+
+// named actions
+"NextPage" = "下一页";
+"PrevPage" = "上一页";
+"FirstPage" = "第一页";
+"LastPage" = "最后一页";
+"GoBack" = "返回";
+"GoForward" = "前进";
+"GoToPage" = "前往页面";
+"Find" = "查找";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "放大";
+"ZoomOut" = "缩小";
+"Execute JavaScript" = "执行 JavaScript";
+"Rich Media Action" = "富媒体操作";
+"Rendition Action" = "转绘操作";
+"Hide Action" = "隐藏操作";
+"Submit Form" = "提交表格";
+"Reset" = "重置";
+
+// line annotations
+"Start" = "开始";
+"End" = "结束";
+"Line.None" = "无";
+"Line.ClosedArrow" = "闭合箭头";
+"Line.OpenArrow" = "开放箭头";
+"Line.Square" = "方框";
+"Line.Circle" = "圆圈";
+"Line.Diamond" = "菱形";
+"Line.ROpenArrow" = "倒转开放箭头";
+"Line.RClosedArrow" = "倒转闭合箭头";
+"Line.Slash" = "斜线";
+"Line.Butt" = "对接";
+"Line Start" = "直线起点";
+"Line End" = "直线终点";
+"%d Points" = "%d 点";
+
+// link annotation editing
+"Create Link" = "创建链接";
+"Add Link" = "添加链接";
+"Edit Link" = "编辑链接";
+"Move Link" = "移动链接";
+"Remove Link" = "移除链接";
+"Open Link" = "打开链接";
+"Go to Page %d" = "前往第 %d 页";
+"Go to Page" = "前往第页";
+"Save" = "保存";
+"Link Destination" = "链接目标";
+"Enter page index or a http:// address to link to an URL." = "输入页面索引或 http:// 地址链接到 URL。";
+
+// voiceover accessibility
+"Page" = "页";
+"Grid" = "网格"; // grid with thumbnails
+
+// PSPDFDocumentSharingViewController
+"Ignore Annotations" = "忽略批注";
+"The PDF will not contain any annotations." = "PDF 不再含有任何批注。";
+"Embed Annotations" = "嵌入批注";
+"Annotations will remain editable and are embedded into the PDF." = "批注将仍可以编辑且嵌入在 PDF 内。";
+"Flatten Annotations" = "平展批注";
+"Annotations are drawn into the PDF and are readonly." = "批注在 PDF 中渲染而且只读。";
+"Annotation Summary" = "批注摘要";
+"Embed Annotations into the PDF and also list them in the email." = "将批注嵌入 PDF 中且将它们列在电子邮件中";
+"Files" = "文件";
+"Send as single files" = "作为单个文件发送";
+"Merge files" = "合并文件";
+
+// sound annotations
+"Play" = "播放";
+"Pause" = "暂停";
+"Pause Recording" = "暂停录制";
+"Continue Recording" = "继续录制";
+"Finish Recording" = "完成录制";
+"Audio Problem" = "音频问题";
+"Mic Permission Not Granted" = "未授权访问麦克风";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "抱歉，暂时无法录制音频。请授权本应用程序访问您的麦克风。";
+"Sorry, but there was a problem trying to record audio." = "抱歉，尝试录制音频时出现问题。";
+"Sorry, but there was a problem trying to play this audio." = "抱歉，尝试播放此音频时出现问题。";
+"Already Recording" = "已经录制";
+"You are already recording on page %@." = "您已经在第 %@ 页录制。";
+"Go to Page %@" = "前往第 %@ 页";
+
+// Forms
+"Form Element" = "表单元素";
+"Text Field" = "文本字段";
+"Button" = "按钮";
+"Choice Field" = "选择字段";
+"Signature Field" = "签名字段";
+"Clear Field" = "清除字段"; // same as delete
+"Type value or pick from list" = "键入值或从列表中选取";
+"Default Values" = "默认值";
+"Custom Value" = "自定值";
+
+// Gallery
+"Connection Error" = "链接错误";
+"Unsupported Content" = "不支持的内容";
+"The specified content cannot be displayed." = "无法显示指定内容。";
+"Something went wrong" = "出现问题";
+"This item is currently unavailable." = "此项目前不可用。";
+"The information for this gallery could not be loaded." = "无法加载此画廊的信息。";
+"Server Error" = "服务器错误";
+"The information for this gallery is invalid." = "此画廊的信息无效。";
+
+// Signatures
+"Digital Signature" = "数字签名";
+"Signature is valid." = "签名有效。";
+"Signature is valid, but there are some warnings." = "签名有效，但是出现一些警告。";
+"It was signed by %@ on %@ at %@." = "由 %@ 于 %@ %@ 签名。"; // the document was signed by name on date at time
+"It claims to have been signed by %@ on %@ at %@." = "它声称已由 %@ 于 %@ %@ 签名。"; //by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- 此签名中的修订尚未修改，然而在签名之后已对文稿作出更改。"; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- 签名有效，且此文稿的内容自签名后没有修改。";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 无效签名 — 自本文稿内容签名后，它已被修改、 篡改或损坏。";
+"Unsigned Signature Field" = "未签名签名字段";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "无法读取证书数据为 PKCS#7 证书。正确格式的数据可以从 Adobe Acrobat 导出。"; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "无法解密证书签名。";
+"The public key in the certificate could not be read." = "无法读取证书中的公共密钥。";
+"The signature of the certificate is not valid." = "证书签名无效。";
+"There is a format error in the notBefore field of the certificate." = "证书的 notBefore 字段存在格式错误。"; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "证书的 notAfter 字段出现格式错误。"; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "没有签名可以验证，因为证书链仅含有一个证书，它不是自签名，颁发者未被信任。";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA 证书无效，因为它不是 CA 或者其扩展名与预期用途不一致。"; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"The basicConstraints pathlength parameter was exceeded." = "超出 basicConstraints 路径长度参数。"; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "根 CA 未标记为信任为其预期目的。"; //root CA sould not be translated
+"The root CA is marked to reject the purpose specified." = "根 CA 被标记为拒绝指定的用途。"; // root CA sould not be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "颁发者证书被拒绝，因为其主题名称与当前证书的颁发者名称不匹配颁发者"; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "颁发者证书被拒绝，因为其主题密钥标识符出现且与当前证书的办法机构密钥标识符不匹配。"; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "颁发者证书被拒绝，因为颁发者名称和序列号出现且与当前证书的颁发机构密钥标识符不匹配。"; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "证书被颁发者撤销。";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "通过的证书为自签名，在信任证书列表中找不到相同证书。";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "证书链中有自签名证书。证书链可以通过不受信任的证书建立，但是本地找不到根 CA。"; // root CA sould not be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "在签名层次结构中无法找到证书颁发机构 (CA) 之一的证书且此 CA 不受本地应用程序信任。"; // CAs should not be translated; 
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "无法找到本地查找的证书的颁发者证书。这通常意味着可信证书列表不完整。";
+"The certificate that was provided cannot be used for its intended purpose." = "提供的证书无法用于预期用途。";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "颁发者证书的 keyUsage 扩展名不允许证书签名。";
+"The certificate has expired." = "证书已过期。";
+"The certificate is not valid until a date in the future." = "证书在未来某日期之前无效。";
