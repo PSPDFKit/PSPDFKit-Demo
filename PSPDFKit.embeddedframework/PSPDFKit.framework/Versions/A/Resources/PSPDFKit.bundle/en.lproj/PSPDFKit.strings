@@ -1,0 +1,374 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "Close";
+"Cancel" = "Cancel";
+"OK" = "OK";
+"Open" = "Open";
+"Untitled" = "Untitled";
+"File Not Found" = "File Not Found";
+"Unnamed PDF" = "Unnamed PDF";
+"Page %d" = "Page %d";
+"All (%d Pages)" = "All (%d Pages)";
+"Next" = "Next";
+"Previous" = "Previous";
+"Error" = "Error";
+
+// toolbar
+"Outline" = "Outline";
+"No Outline" = "No Outline";
+"Search Outline" = "Search Outline";
+"Search" = "Search";
+"Email" = "Email";
+"Send via Email" = "Send via Email";
+"Send" = "Send";
+"Open in" = "Open in";
+"Open" = "Open";
+"Commit" = "Commit";
+"Sending to %@" = "Sending to %@"; // Context: Open document with an application
+"Pages" = "Pages";
+"Print with annotations" = "Print with annotations";
+"Print document only" = "Print document only";
+"No Applications found" = "There are no applications installed that can open PDF documents.";
+"Print" = "Print";
+"Annotation" = "Annotation";
+"Annotations" = "Annotations";
+"No Annotations" = "No Annotations";
+"%d Annotation" = "%d Annotation";
+"%d Annotations" = "%d Annotations";
+"Bookmarks" = "Bookmarks";
+"No Bookmarks" = "No Bookmarks";
+"Add Bookmark" = "Add Bookmark";
+"Remove Bookmark" = "Remove Bookmark";
+"Brightness" = "Brightness";
+"Share" = "Share";
+"Preparing" = "Preparing";
+"Loading" = "Loading";
+"Expand" = "Expand";
+"Collapse" = "Collapse";
+
+// thumbnails
+"Bookmarked" = "Bookmarked";
+"Annotated" = "Annotated";
+"All" = "All";
+
+// password
+"Unlock" = "Unlock";
+"Please enter the password." = "Please enter the password.";
+"This document cannot be unlocked. %@ is unsupported." = "This document cannot be unlocked. %@ is unsupported.";
+
+// page
+"%d of %d" = "%d of %d";
+"%d-%d of %d" = "%d-%d of %d";
+"%@ (%d of %d)" = "%@ (%d of %d)";
+"%@, Page %d" = "%@, Page %d";
+"Leave %@?" = "Leave %@?";
+
+// search
+"Search Document" = "Search Document"; // Context: to search for a string in the given document
+"No matches found" = "No matches found";
+"One match found" = "One match found";
+"%d matches found" = "%d matches found";
+"Searching Page %d of %d" = "Searching Page %d of %d";
+"Search Completed" = "Search Completed";
+"Search Cancelled" = "Search Cancelled";
+"%d left" = "%d left"; // Context: Indexing Documents... 5 left
+"Searching" = "Searching";
+"%d documents indexed." = "%d documents indexed.";
+"Done" = "Done";
+"Indexing Documents" = "Indexing Documents";
+
+// inline browser
+"Open in Safari" = "Open in Safari";
+"Open in Chrome" = "Open in Chrome";
+"Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
+"The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
+"an external application" = "an external application"; // Context: "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "the App Store"; // Context: "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail";
+"No handler found for %@" = "No handler found for %@";
+
+// text selection
+"Save To Camera Roll" = "Save To Camera Roll";
+"Failed to extract image." = "Failed to extract image.";
+"Type value or pick from list" = "Type value or pick from list";
+
+// annotations
+"Add %@" = "Add %@";
+"Remove %@" = "Remove %@";
+"Remove" = "Remove";
+"Edit" = "Edit";
+"Undo" = "Undo";
+"Redo" = "Redo";
+"Type" = "Type"; // Context: kind of Annotation can be selected
+"Size" = "Size";
+"Font" = "Font";
+"Fonts" = "Fonts";
+"Downloadable Fonts" = "Downloadable Fonts";
+"Search Fonts" = "Search Fonts";
+"Choose Color" = "Choose Color";
+"Choose Fill Color" = "Choose Fill Color";
+"Rainbow" = "Rainbow";
+"Monochrome" = "Monochrome";
+"Vintage" = "Vintage";
+"Color" = "Color";
+"Border" = "Border";
+"Fill Color" = "Fill Color";
+"Opacity" = "Opacity";
+"%@ %%" = "%@ %%";
+"Custom" = "Custom";
+"Thickness" = "Thickness";
+"%@ pt" = "%@ pt";
+"Yellow" = "Yellow";
+"Green" = "Green";
+"Red" = "Red";
+"Blue" = "Blue";
+"Pink" = "Pink";
+"Black" = "Black";
+"orange" = "Orange";
+"purple" = "Purple";
+"cyan" = "Cyan";
+"gray" = "Gray";
+"white" = "White";
+"Define" = "Define";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "Highlight";
+"Underline" = "Underline";
+"Squiggle" = "Squiggle";
+"Strikeout" = "Strike Out";
+"Rectangle" = "Rectangle";
+"Ellipse" = "Ellipse";
+"Line" = "Line";
+"Lines" = "Lines";
+"Polyline" = "Polyline";
+"Polygon" = "Polygon";
+"Signature" = "Signature";
+"Signatures" = "Signatures";
+"Signed" = "Signed";
+"Sign" = "Sign";
+"Stamp" = "Stamp";
+"Stamps" = "Stamps";
+"Custom" = "Custom";
+"Create Stamp" = "Create Stamp";
+"Preview" = "Preview";
+"Stamp Text" = "Stamp Text";
+"Add Signature" = "Add Signature";
+"My Signature" = "My Signature";
+"No Signatures" = "No Signatures";
+"Customer Signature" = "Customer Signature";
+"Note" = "Note";
+"Text" = "Text";
+"Delete Note" = "Delete Note";
+"Remove Note" = "Remove Note";
+"%@ could not be found." = "%@ could not be found.";
+"Photo Library" = "Photo Library";
+"Camera" = "Camera";
+"Image" = "Image";
+"Low Quality" = "Low Quality";
+"Medium Quality" = "Medium Quality";
+"High Quality" = "High Quality";
+"Clear All" = "Clear All";
+"Clear" = "Clear";
+"Style" = "Style";
+"Link" = "Link";
+"Ink" = "Ink";
+"FreeText" = "Text";
+"Screen" = "Screen";
+"RichMedia" = "Rich Media";
+"Left" = "Left";
+"Center" = "Center";
+"Right" = "Right";
+"Alignment" = "Alignment";
+"Preview File" = "Preview File";
+"Copy" = "Copy";
+"Paste" = "Paste";
+"Inspector" = "Inspector";
+"Group" = "Group";
+"Ungroup" = "Ungroup";
+"Merge" = "Merge";
+"Sample" = "Sample";
+"Annotation Summary for %@:\n" = "Annotation Summary for %@:\n";
+"Fit to Text" = "Fit to Text";
+"Draw" = "Draw";
+"Sound" = "Sound";
+"Eraser" = "Eraser";
+"SelectionTool" = "Selection Tool";
+"Saved Annotations" = "Saved Annotations";
+"Add" = "Add"; // to add - infinitive
+"Date" = "Date";
+"Time" = "Time";
+"No Pages" = "No Pages";
+
+// Stamps
+"Approved" = "Approved";
+"Not Approved" = "Not Approved";
+"Draft" = "Draft";
+"Final" = "Final";
+"Completed" = "Completed";
+"Confidential" = "Confidential";
+"For Public Release" = "For Public Release";
+"Not For Public Release" = "Not For Public Release";
+"For Comment" = "For Comment";
+"Void" = "Void";
+"Preliminary Results" = "Preliminary Results";
+"Information only" = "Information only";
+"Accepted" = "Accepted";
+"Rejected" = "Rejected";
+"Initial Here" = "Initial Here";
+"Sign Here" = "Sign Here";
+"Witness" = "Witness";
+"Revised" = "Revised";
+
+// PDF annotation name overrides
+"Square" = "Rectangle";
+"Circle" = "Ellipse";
+"PolyLine" = "Polyline";
+
+// named actions
+"NextPage" = "Next Page";
+"PrevPage" = "Previous Page";
+"FirstPage" = "First Page";
+"LastPage" = "Last Page";
+"GoBack" = "Go Back";
+"GoForward" = "Go Forward";
+"GoToPage" = "Go To Page";
+"Find" = "Find";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "Zoom In";
+"ZoomOut" = "Zoom Out";
+"Execute JavaScript" = "Execute JavaScript";
+"Rich Media Action" = "Rich Media Action";
+"Rendition Action" = "Rendition Action";
+"Hide Action" = "Hide Action";
+"Submit Form" = "Submit Form";
+"Reset" = "Reset";
+
+// line annotations
+"Start" = "Start";
+"End" = "End";
+"Line.None" = "None";
+"Line.ClosedArrow" = "Closed Arrow";
+"Line.OpenArrow" = "Open Arrow";
+"Line.Square" = "Square";
+"Line.Circle" = "Circle";
+"Line.Diamond" = "Diamond";
+"Line.ROpenArrow" = "Reverse Open Arrow";
+"Line.RClosedArrow" = "Reverse Closed Arrow";
+"Line.Slash" = "Slash";
+"Line.Butt" = "Butt";
+"Line Start" = "Line Start";
+"Line End" = "Line End";
+"%d Points" = "%d Points";
+
+// link annotation editing
+"Create Link" = "Create Link";
+"Add Link" = "Add Link";
+"Edit Link" = "Edit Link";
+"Move Link" = "Move Link";
+"Remove Link" = "Remove Link";
+"Open Link" = "Open Link";
+"Go to Page %d" = "Go to Page %d";
+"Go to Page" = "Go to Page";
+"Save" = "Save";
+"Link Destination" = "Link Destination";
+"Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
+
+// voiceover accessibility
+"Page" = "Page";
+"Grid" = "Grid"; // grid with thumbnails
+
+// PSPDFDocumentSharingViewController
+"Ignore Annotations" = "Ignore Annotations";
+"The PDF will not contain any annotations." = "The PDF will not contain any annotations.";
+"Embed Annotations" = "Embed Annotations";
+"Annotations will remain editable and are embedded into the PDF." = "Annotations will remain editable and are embedded into the PDF.";
+"Flatten Annotations" = "Flatten Annotations";
+"Annotations are drawn into the PDF and are readonly." = "Annotations are rendered in the PDF and are readonly.";
+"Annotation Summary" = "Annotation Summary";
+"Embed Annotations into the PDF and also list them in the email." = "Embed Annotations into the PDF and also list them in the email.";
+"Files" = "Files";
+"Send as single files" = "Send as single files";
+"Merge files" = "Merge files";
+
+// sound annotations
+"Play" = "Play";
+"Pause" = "Pause";
+"Pause Recording" = "Pause Recording";
+"Continue Recording" = "Continue Recording";
+"Finish Recording" = "Finish Recording";
+"Audio Problem" = "Audio Problem";
+"Mic Permission Not Granted" = "Mic Permission Not Granted";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone.";
+"Sorry, but there was a problem trying to record audio." = "Sorry, but there was a problem while trying to record audio.";
+"Sorry, but there was a problem trying to play this audio." = "Sorry, but there was a problem while trying to play this audio.";
+"Already Recording" = "Already Recording";
+"You are already recording on page %@." = "You are already recording on page %@.";
+"Go to Page %@" = "Go to Page %@";
+
+// Forms
+"Form Element" = "Form Element";
+"Text Field" = "Text Field";
+"Button" = "Button";
+"Choice Field" = "Choice Field";
+"Signature Field" = "Signature Field";
+"Clear Field" = "Clear Field"; // same as delete
+"Type value or pick from list" = "Type value or pick from list";
+"Default Values" = "Default Values";
+"Custom Value" = "Custom Value";
+
+// Gallery
+"Connection Error" = "Connection Error";
+"Unsupported Content" = "Unsupported Content";
+"The specified content cannot be displayed." = "The specified content cannot be displayed.";
+"Something went wrong" = "Something went wrong";
+"This item is currently unavailable." = "This item is currently unavailable.";
+"The information for this gallery could not be loaded." = "The information for this gallery could not be loaded.";
+"Server Error" = "Server Error";
+"The information for this gallery is invalid." = "The information for this gallery is invalid.";
+
+// Signatures
+"Digital Signature" = "Digital Signature";
+"Signature is valid." = "Signature is valid.";
+"Signature is valid, but there are some warnings." = "Signature is valid, but there are some warnings.";
+"It was signed by %@ on %@ at %@." = "It was signed by %@ on %@ at %@."; // the document was signed by name on date at time
+"It claims to have been signed by %@ on %@ at %@." = "It claims to have been signed by %@ on %@ at %@."; //by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- The signature is valid and the content of this document has not been modified since it was signed.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Invalid signature — since signing the content of this document, it has been modified, tampered with, or corrupted.";
+"Unsigned Signature Field" = "Unsigned Signature Field";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "Unable to decrypt the signature of the certificate.";
+"The public key in the certificate could not be read." = "The public key in the certificate could not be read.";
+"The signature of the certificate is not valid." = "The signature of the certificate is not valid.";
+"There is a format error in the notBefore field of the certificate." = "There is a format error in the notBefore field of the certificate."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "There is a format error in the notAfter field of the certificate."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"The basicConstraints pathlength parameter was exceeded." = "The basicConstraints pathlength parameter was exceeded."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "The root CA is not marked as trusted for its intended purpose."; //root CA sould not be translated
+"The root CA is marked to reject the purpose specified." = "The root CA is marked to reject the purpose specified."; // root CA sould not be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "The certificate was revoked by the issuer.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally."; // root CA sould not be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application."; // CAs should not be translated; 
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete.";
+"The certificate that was provided cannot be used for its intended purpose." = "The certificate that was provided cannot be used for its intended purpose.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "The issuer certificate's keyUsage extension does not permit certificate signing.";
+"The certificate has expired." = "The certificate has expired.";
+"The certificate is not valid until a date in the future." = "The certificate is not valid until a date in the future.";

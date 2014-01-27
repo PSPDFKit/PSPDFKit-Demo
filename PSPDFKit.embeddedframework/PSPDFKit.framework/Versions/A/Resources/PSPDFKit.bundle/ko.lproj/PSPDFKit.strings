@@ -1,0 +1,372 @@
+/*
+  Localization.strings
+  PSPDFKit
+
+ Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
+
+ THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+ AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+ UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+ This notice may not be removed from this file.
+*/
+
+// general
+"Close" = "닫기";
+"Cancel" = "취소";
+"OK" = "승인";
+"Open" = "열기";
+"Untitled" = "제목 없음";
+"File Not Found" = "파일을 찾을 수 없음";
+"Unnamed PDF" = "이름 없는 PDF";
+"Page %d" = "페이지 %d";
+"All (%d Pages)" = "전체 (%d 페이지)";
+"Next" = "다음";
+"Previous" = "이전";
+"Error" = "오류";
+
+// toolbar
+"Outline" = "개요";
+"No Outline" = "개요 없음";
+"Search Outline" = "개요 검색";
+"Search" = "검색";
+"Email" = "이메일";
+"Send via Email" = "이메일로 전송";
+"Send" = "전송";
+"Open in" = "다음으로 열기";
+"Open" = "열기";
+"Commit" = "완료";
+"Sending to %@" = "%@에게 전송"; // Context: Open document with an application
+"Pages" = "페이지";
+"Print with annotations" = "주석을 함께 출력";
+"Print document only" = "문서만 출력";
+"No Applications found" = "PDF 문서를 열 수 있는 응용 프로그램이 설치되어 있지 않습니다.";
+"Print" = "출력";
+"Annotation" = "주석";
+"Annotations" = "주석";
+"No Annotations" = "주석 없음";
+"%d Annotation" = "%d개의 주석";
+"%d Annotations" = "%d개의 주석";
+"Bookmarks" = "즐겨찾기";
+"No Bookmarks" = "즐겨찾기 없음";
+"Add Bookmark" = "즐겨찾기 추가";
+"Remove Bookmark" = "즐겨찾기 제거";
+"Brightness" = "밝기";
+"Share" = "공유";
+"Preparing" = "준비 중";
+"Loading" = "로딩 중";
+"Expand" = "확장";
+"Collapse" = "접어두기";
+
+// thumbnails
+"Bookmarked" = "즐겨찾기";
+"Annotated" = "주석포함";
+"All" = "전체";
+
+// password
+"Unlock" = "잠금해제";
+"Please enter the password." = "암호를 입력하세요.";
+"This document cannot be unlocked. %@ is unsupported." = "이 문서를 잠금해제할 수 없습니다. %@을(를) 지원하지 않습니다.";
+
+// page
+"%d of %d" = "%d/%d";
+"%d-%d of %d" = "1%d-3%d 중의 2%d";
+"%@ (%d of %d)" = "1%@ (3%d 중의 2%d)";
+"%@, Page %d" = "%@, %d 페이지";
+"Leave %@?" = "%@에서 나갈까요?";
+
+// search
+"Search Document" = "문서 검색"; // Context: to search for a string in the given document
+"No matches found" = "검색 결과 없음";
+"One match found" = "검색 결과 1개 발견";
+"%d matches found" = "검색 결과 %d개 발견";
+"Searching Page %d of %d" = "2%d 페이지 중의 1%d 페이지 검색 중";
+"Search Completed" = "검색 완료";
+"Search Cancelled" = "검색 취소";
+"%d left" = "%d개 남음"; // Context: there are 5 documents left
+"Searching" = "검색 중";
+"%d documents indexed." = "%d개의 문서가 색인되었습니다.";
+"Done" = "완료";
+"Indexing Documents" = "문서 색인 중";
+
+// inline browser
+"Open in Safari" = "Safari에서 열기";
+"Open in Safari" = "Chrome에서 열기";
+"Your %@ is not configured to send emails." = "사용자의 %@은 이메일을 전송할 수 있도록 구성되지 않았습니다.";
+"The link is requesting to open %@Would you like to continue?" = "링크가 다음 경로를 열려고 합니다다: %@계속 진행하시겠습니까?";
+"an external application" = "외부 응용 프로그램";
+"the App Store" = "앱 스토어";
+"Mail" = "Mail";
+"No handler found for %@" = "%@을(를) 위한 핸들러가 없습니다";
+
+// text selection
+"Save To Camera Roll" = "카메라 롤에 저장";
+"Failed to extract image." = "이미지를 추출하는데 실패했습니다.";
+"Type value or pick from list" = "값을 입력하거나 목록에서 선택하십시오";
+
+// annotations
+"Add %@" = "%@ 추가";
+"Remove %@" = "%@ 제거";
+"Remove" = "제거";
+"Edit" = "편집";
+"Undo" = "실행취소";
+"Redo" = "실행복귀";
+"Type" = "유형"; // Context: kind of Annotation can be selected
+"Size" = "크기";
+"Font" = "서체";
+"Fonts" = "서체";
+"Downloadable Fonts" = "내려받을 수 있는 서체";
+"Search Fonts" = "서체 검색";
+"Choose Color" = "색상 선택";
+"Choose Fill Color" = "채우기 색상 선택";
+"Rainbow" = "무지개";
+"Monochrome" = "흑백";
+"Vintage" = "빈티지";
+"Color" = "색상";
+"Border" = "테두리";
+"Fill Color" = "채우기 색상";
+"Opacity" = "불투명도";
+"%@ %%" = "%@ %%";
+"Custom" = "사용자 지정";
+"Thickness" = "두께";
+"%@ pt" = "%@ pt";
+"Yellow" = "노란색";
+"Green" = "초록색";
+"Red" = "빨간색";
+"Blue" = "파란색";
+"Pink" = "분홍색";
+"Black" = "검은색";
+"orange" = "귤색";
+"purple" = "자주색";
+"cyan" = "청록색";
+"gray" = "회색";
+"white" = "흰색";
+"Define" = "정의";
+"Wikipedia" = "Wikipedia";
+"Highlight" = "하이라이트";
+"Underline" = "밑줄";
+"Squiggle" = "구불한 선";
+"Strikeout" = "취소선";
+"Rectangle" = "직사각형";
+"Ellipse" = "타원";
+"Line" = "선";
+"Polyline" = "폴리라인";
+"Polygon" = "다각형";
+"Signature" = "서명";
+"Signatures" = "서명";
+"Signed" = "서명됨";
+"Sign" = "서명";
+"Stamp" = "스탬프";
+"Stamps" = "스탬프";
+"Custom" = "사용자 지정";
+"Create Stamp" = "스탬프 생성";
+"Preview" = "미리보기";
+"Stamp Text" = "텍스트 스탬프";
+"Add Signature" = "서명 추가";
+"My Signature" = "내 서명";
+"Customer Signature" = "사용자 지정 서명";
+"Note" = "메모";
+"Text" = "텍스트";
+"Delete Note" = "메모 삭제";
+"Remove Note" = "메모 제거";
+"%@ could not be found." = "%@을(를) 찾을 수 없습니다.";
+"Photo Library" = "사진 보관함";
+"Camera" = "카메라";
+"Image" = "이미지";
+"Low Quality" = "낮은 품질";
+"Medium Quality" = "중간 품질";
+"High Quality" = "높은 품질";
+"Clear All" = "모두 지우기";
+"Clear" = "지우기";
+"Style" = "스타일";
+"Link" = "링크";
+"Ink" = "잉크";
+"FreeText" = "텍스트";
+"Screen" = "스크린";
+"RichMedia" = "리치 미디어";
+"Left" = "왼쪽";
+"Center" = "가운데";
+"Right" = "오른쪽";
+"Alignment" = "정렬";
+"Preview File" = "파일 미리보기";
+"Copy" = "복사";
+"Paste" = "붙여넣기";
+"Inspector" = "속성";
+"Group" = "그룹";
+"Ungroup" = "그룹해제";
+"Sample" = "샘플";
+"Annotation Summary for %@:\n" = "%@ 주석 요약:\n";
+"Fit to Text" = "텍스트에 맞추기";
+"Draw" = "그리기";
+"Sound" = "사운드";
+"Eraser" = "지우개";
+"SelectionTool" = "선택 도구";
+"Saved Annotations" = "저장된 주석";
+"Add" = "추가"; // to add - infinitive
+"Date" = "날짜";
+"Time" = "시간";
+"No Pages" = "페이지 없음";
+
+// Stamps
+"Approved" = "승인됨";
+"Not Approved" = "미승인";
+"Draft" = "초안";
+"Final" = "최종";
+"Completed" = "완료됨";
+"Confidential" = "비밀 정보";
+"For Public Release" = "정보 공개 가능";
+"Not For Public Release" = "정보 공개 불가";
+"For Comment" = "코멘트용";
+"Void" = "효력 없음";
+"Preliminary Results" = "예비 결과";
+"Information only" = "참조용";
+"Accepted" = "수락됨";
+"Rejected" = "거부됨";
+"Initial Here" = "여기 이니셜";
+"Sign Here" = "여기 서명";
+"Witness" = "증명";
+"Revised" = "수정본";
+
+
+// PDF annotation name overrides
+"Square" = "직사각형";
+"Circle" = "타원";
+"PolyLine" = "폴리라인";
+
+// named actions
+"NextPage" = "다음 페이지";
+"PrevPage" = "이전 페이지";
+"FirstPage" = "첫 페이지";
+"LastPage" = "마지막 페이지";
+"GoBack" = "뒤로";
+"GoForward" = "앞으로";
+"GoToPage" = "페이지로 이동";
+"Find" = "찾기";
+// Print, Outline, Search, Brightness are translated via toolbar
+"ZoomIn" = "확대";
+"ZoomOut" = "축소";
+"Execute JavaScript" = "JavaScript 실행";
+"Rich Media Action" = "리치 미디어 액션";
+"Rendition Action" = "해석 액션";
+"Hide Action" = "액션 감추기";
+"Submit Form" = "전송 양식";
+"Reset" = "초기화";
+
+// line annotations
+"Start" = "시작";
+"End" = "끝";
+"Line.None" = "없음";
+"Line.ClosedArrow" = "닫힌 화살표";
+"Line.OpenArrow" = "열린 화살표";
+"Line.Square" = "정사각형";
+"Line.Circle" = "원";
+"Line.Diamond" = "다이아몬드";
+"Line.ROpenArrow" = "역방향 열린 화살표";
+"Line.RClosedArrow" = "역방향 닫힌 화살표";
+"Line.Slash" = "슬래시";
+"Line.Butt" = "밑동";
+"Line Start" = "선 시작";
+"Line End" = "선 끝";
+"%d Points" = "%d 포인트";
+
+// link annotation editing
+"Create Link" = "링크 생성";
+"Add Link" = "링크 추가";
+"Edit Link" = "링크 편집";
+"Move Link" = "링크 이동";
+"Remove Link" = "링크 제거";
+"Open Link" = "링크 열기";
+"Go to Page %d" = "%d 페이지로 이동";
+"Go to Page" = "페이지로 이동";
+"Save" = "저장";
+"Link Destination" = "링크 대상";
+"Enter page index or a http:// address to link to an URL." = "페이지 색인 또는 http:// 주소로 링크에 URL을 추가하세요.";
+
+// voiceover accessibility
+"Page" = "페이지";
+"Grid" = "격자"; // grid with thumbnails
+
+// PSPDFDocumentSharingViewController
+"Ignore Annotations" = "주석 무시";
+"The PDF will not contain any annotations." = "PDF 문서에 주석이 첨부되지 않습니다.";
+"Embed Annotations" = "주석 첨부";
+"Annotations will remain editable and are embedded into the PDF." = "PDF 문서에 주석을 첨부하며, 차후 다시 편집할 수 있습니다.";
+"Flatten Annotations" = "주석 레이어 합침";
+"Annotations are drawn into the PDF and are readonly." = "PDF 문서에 주석을 각인하며, 읽기전용으로 전환합니다.";
+"Annotation Summary" = "주석 요약";
+"Embed Annotations into the PDF and also list them in the email." = "주석을 PDF 문서에 첨부하고 이메일에 목록으로 나열합니다.";
+"Files" = "파일";
+"Send as single files" = "하나의 파일로 전송";
+"Merge files" = "파일 병합";
+
+// sound annotations
+"Play" = "재생";
+"Pause" = "일시정지";
+"Pause Recording" = "녹음 일시정지";
+"Continue Recording" = "계속 녹음";
+"Finish Recording" = "녹음 완료";
+"Audio Problem" = "오디오 에러";
+"Mic Permission Not Granted" = "마이크 사용권한 없음";
+"Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "죄송합니다. 소리를 녹음할 수 없습니다. 앱이 마이크에 접근할 수 있도록 설정을 변경해 주시기 바랍니다.";
+"Sorry, but there was a problem trying to record audio." = "죄송합니다. 녹음 중 오류가 발생했습니다.";
+"Sorry, but there was a problem trying to play this audio." = "죄송합니다. 해당 오디오를 재생하는데 오류가 발생했습니다.";
+"Already Recording" = "이미 녹음 중";
+"You are already recording on page %@." = "이미 %@ 페이지에서 녹음 중입니다.";
+"Go to Page %@" = "%@ 페이지로 이동";
+
+// Forms
+"Form Element" = "폼 요소";
+"Text Field" = "텍스트 필드";
+"Button" = "버튼";
+"Choice Field" = "선택 필드";
+"Signature Field" = "서명난";
+"Clear Field" = "입력 필드 지우기"; // same as delete
+"Type value or pick from list" = "값을 입력하거나 목록에서 선택하십시오";
+"Default Values" = "기본값";
+"Custom Value" = "사용자 지정값";
+
+// Gallery
+"Connection Error" = "연결 오류";
+"Unsupported Content" = "지원하지 않는 콘텐츠";
+"The specified content cannot be displayed." = "특정 콘텐츠를 화면에 표시할 수 없습니다.";
+"Something went wrong" = "예기치 않은 문제가 발생했습니다";
+"This item is currently unavailable." = "사용할 수 없는 항목입니다.";
+"The information for this gallery could not be loaded." = "갤러리 정보를 불러올 수 없습니다.";
+"Server Error" = "서버 오류";
+"The information for this gallery is invalid." = "해당 갤러리의 정보가 유효하지 않습니다.";
+
+// Signatures
+"Digital Signature" = "디지털 서명";
+"Signature is valid." = "유효한 서명입니다.";
+"Signature is valid, but there are some warnings." = "유효한 서명이지만, 주의사항이 있습니다.";
+"It was signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명함"; // the document was signed by name on date at time
+"It claims to have been signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명한 것으로 추정"; //by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "서명이 수용할 수 았는 개정판이 수정되지 않았습니다. 하지만 서명 이후에 문서의 내용이 수정되었습니다."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"- The signature is valid and the content of this document has not been modified since it was signed." = "- 서명이 유효하며, 문서에 서명이 추가된 이후 내용이 수정되지 않았습니다.";
+"- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "올바르지 않은 서명 - 서명 후 문서의 내용이 수정되었거나 손상되었습니다.";
+"Unsigned Signature Field" = "서명하지 않은 서명 필드";
+
+
+// Signatures - PSPDFSignatureVerificationX509Error
+"Cannot read certificate data as PKCS#7 certificate. Data of the right format can be exported from Adobe Acrobat." = "PKCS#7 인증서 유형으로 인증서를 판독할 수 없습니다. Adobe Acrobat에서 올바른 데이터 형식으로 다시 내보낼 수 있습니다."; // PKCS#7 should not be translated
+"Unable to decrypt the signature of the certificate." = "인증서의 서명 정보를 복호할 수 없습니다.";
+"The public key in the certificate could not be read." = "인증서의 공개키를 읽을 수 없습니다.";
+"The signature of the certificate is not valid." = "인증서 서명이 유효하지 않습니다.";
+"There is a format error in the notBefore field of the certificate." = "인증서의 notBefore 필드에 포맷 오류가 있습니다."; // notBefore should not be translated
+"There is a format error in the notAfter field of the certificate." = "인증서의 notAfter 필드에 포맷 오류가 있습니다."; // notAfter should not be translated
+"No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "인증서 체인에 발행인을 신뢰할 수 없고 자체 서명하지 않은 단 하나의 인증서만 포함하고 있어 서명을 확인할 수 없습니다.";
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA 인증서가 유효하지 않습니다. CA가 아니거나 인증서의 확장 코드가 해당 목적에 부합하지 않습니다."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"The basicConstraints pathlength parameter was exceeded." = "basicConstraints pathlength 파라미터가 초과되었습니다."; // basicContraints pathlength should not be translated
+"The root CA is not marked as trusted for its intended purpose." = "특정 목적으로 사용 시 신뢰되지 않도록 루트 CA에 마킹되어 있습니다."; //root CA sould not be translated
+"The root CA is marked to reject the purpose specified." = "특정 목적에 사용할 수 없도록 루트 CA에 마킹되어 있습니다."; // root CA sould not be translated
+"The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "인증서 발행인의 이름과 주체의 이름이 일치하지 않아 인증서가 거부되었습니다."; // subject and the second issuer should not be translated
+"The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "주체 키 식별자가 존재하지만 기관 키 식별자와 일치하지 않아 발행인 인증서가 거부되었습니다."; // subject key identifier and authority key identifier should not be translated
+"The issuer certificate was rejected because its issuer name and serial number was present and did not match the authority key identifier of the current certificate." = "발행인 이름과 일련번호가 존재하지만 기관 키 식별자와 일치하지 않아 인증서가 거부되었습니다."; // the 2. issuer, serial number and Authority key Identifier schould not be translated
+"The certificate was revoked by the issuer." = "발행인이 인증서를 취소했습니다.";
+"The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "통과한 인증서는 자체-서명되었으며, 신뢰할 수 있는 인증서 목록에 포함되어 있지 않습니다.";
+"A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "자체-서명한 인증서가 인증서 체인에 존재합니다. 루트 CA가 없는 상황에서 신뢰할 수 없는 인증서에 기반한 인증서 체인은 존재할 수 없습니다."; // root CA sould not be translated
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "서명 계층에 포함된 인증서 기관(CA) 한 곳에 대한 인증서를 발견할 수 없으며, 로컬 애플리케이션으로부터 신뢰할 수 없는 CA 입니다."; // CAs should not be translated; 
+"The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "로컬 룩업 인증서가 발행인 인증서를 포함하고 있지 않습니다. 대부분 신뢰할 수 있는 인증서 목록이 불완전할 경우 발생합니다.";
+"The certificate that was provided cannot be used for its intended purpose." = "공급 받은 인증서를 특정 목적으로 사용할 수 없습니다.";
+"The issuer certificate's keyUsage extension does not permit certificate signing." = "발행인 인증서의 keyUsage 확장이 인증서 서명을 허용하지 않습니다.";
+"The certificate has expired." = "인증서 기한이 만료되었습니다.";
+"The certificate is not valid until a date in the future." = "특정 날짜 전에눈 사용할 수 없는 인증서입니다.";

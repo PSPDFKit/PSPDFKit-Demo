@@ -1,0 +1,40 @@
+%!PS-Adobe-3.0 Resource-CMap
+%%DocumentNeededResources: ProcSet (CIDInit)
+%%IncludeResource: ProcSet (CIDInit)
+%%BeginResource: CMap (WinCharSetFFFF-H)
+%%Title: (WinCharSetFFFF-H Adobe WinCharSetFFFF 0)
+%%Version: 1
+
+/CIDInit /ProcSet findresource begin
+
+12 dict begin
+
+begincmap
+
+/CIDSystemInfo 3 dict dup begin
+    /Registry (Adobe) def
+    /Ordering (WinCharSetFFFF) def
+    /Supplement 0 def
+end def
+
+/CMapName /WinCharSetFFFF-H def
+
+/CMapVersion 1 def
+/CMapType 0 def
+
+/WMode 0 def
+
+1 begincodespacerange
+    <0000> <FFFF>
+endcodespacerange
+
+1 begincidrange
+<0000> <FFFF> 0
+endcidrange
+endcmap
+CMapName currentdict /CMap defineresource pop
+end
+end
+
+%%EndResource
+%%EOF
