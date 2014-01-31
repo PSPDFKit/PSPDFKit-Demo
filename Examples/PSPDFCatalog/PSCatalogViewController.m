@@ -293,7 +293,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = nil; // Important! BarButtonItems can only be displayed at one location.
         pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
 
-        // Since we show thetoolbar from the bottom, match the tint.
+        // Since we show the toolbar from the bottom, match the tint.
         PSC_IF_IOS7_OR_GREATER(pdfController.annotationButtonItem.annotationToolbar.barTintColor = self.navigationController.toolbar.barTintColor;)
         return pdfController;
     }]];
