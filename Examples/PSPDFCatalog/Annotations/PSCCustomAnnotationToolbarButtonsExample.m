@@ -42,8 +42,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - NSObject
 
-- (id)initWithPDFController:(PSPDFViewController *)pdfController {
-    if (self = [super initWithPDFController:pdfController]) {
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
+    if (self = [super initWithAnnotationStateManager:annotationStateManager]) {
 
         // The biggest challenge here isn't the clear button, but correctly updating the clear button if we actually can clear something or not.
         NSNotificationCenter *dnc = NSNotificationCenter.defaultCenter;
@@ -67,13 +67,13 @@
 
 - (void)clearButtonPressed:(id)sender {
     // If we're in draw mode, clear should only clear the current drawing.
-    if (self.drawViews.count > 0) {
-        for (PSPDFDrawView *drawView in self.drawViews.allValues) {
+    if (self.annotationStateManager.drawViews.count > 0) {
+        for (PSPDFDrawView *drawView in self.annotationStateManager.drawViews.allValues) {
             [drawView clearAllActions];
         }
     }else {
         // Iterate over all visible pages and remove all but links.
-        PSPDFViewController *pdfController = self.pdfController;
+        PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         PSPDFDocument *document = pdfController.document;
         for (PSPDFPageView *pageView in pdfController.visiblePageViews) {
             NSArray *annotations = [document annotationsForPage:pageView.page type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
@@ -86,7 +86,9 @@
             }
         }
     }
-    [self updateUndoRedoButtons];
+	self.undoButtonItem.enabled = self.annotationStateManager.canUndo;
+	self.redoButtonItem.enabled = self.annotationStateManager.canRedo;
+	[self updateClearAnnotationButton];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -105,10 +107,10 @@
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFAnnotationToolbar
+#pragma mark - PSPDFAnnotationStateManagerDelegate
 
-- (void)updateUndoRedoButtons {
-    [super updateUndoRedoButtons];
+- (void)annotationStateManager:(PSPDFAnnotationStateManager *)manager didChangeUndoState:(BOOL)undoEnabled redoState:(BOOL)redoEnabled {
+    [super annotationStateManager:manager didChangeUndoState:undoEnabled redoState:redoEnabled];
     [self updateClearAnnotationButton];
 }
 
@@ -116,9 +118,9 @@
 #pragma mark - Private
 
 - (void)updateClearAnnotationButton {
-    BOOL annotationsFound = [self canUndoDrawing]; // Also factor in drawing mode
-    if (self.drawViews.count == 0) {
-        PSPDFViewController *pdfController = self.pdfController;
+    BOOL annotationsFound = [self.annotationStateManager canUndoDrawing]; // Also factor in drawing mode
+    if (self.annotationStateManager.drawViews.count == 0) {
+        PSPDFViewController *pdfController = self.annotationStateManager.pdfController;
         for (NSNumber *pageNumber in pdfController.calculatedVisiblePageNumbers) {
             NSArray *annotations = [pdfController.document annotationsForPage:pageNumber.unsignedIntegerValue type:PSPDFAnnotationTypeAll&~(PSPDFAnnotationTypeLink|PSPDFAnnotationTypeWidget)];
             if (annotations.count > 0) {
