@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFBaseTableViewController.h"
+#import "PSPDFChoiceFormElementView.h"
 
 @class PSPDFChoiceEditorViewController;
 
@@ -24,6 +25,7 @@
 - (BOOL)isMultiSelect;
 - (NSString *)optionTextAtIndex:(NSUInteger)index;
 - (BOOL)isSelectedAtIndex:(NSUInteger)index;
+- (NSIndexSet *)selectedIndices;
 
 /// YES if user can enter his own choice.
 - (BOOL)isEdit;
@@ -33,10 +35,10 @@
 
 @protocol PSPDFChoiceEditorViewControllerDelegate <NSObject>
 
-- (void)choiceEditorViewController:(PSPDFChoiceEditorViewController *)choiceEditorViewController didSelectIndex:(NSUInteger)index;
-- (void)choiceEditorViewController:(PSPDFChoiceEditorViewController *)choiceEditorViewController didUpdateCustomText:(NSString *)text;
-- (void)choiceEditorViewControllerDidSelectCustomText:(PSPDFChoiceEditorViewController *)choiceEditorViewController;
-- (void)choiceEditorViewControllerDidEndEditingCustomText:(PSPDFChoiceEditorViewController *)choiceEditorViewController;
+- (void)choiceEditorController:(PSPDFChoiceEditorViewController *)choiceEditorController didSelectIndex:(NSUInteger)index shouldDismissController:(BOOL)shouldDismissController;
+- (void)choiceEditorController:(PSPDFChoiceEditorViewController *)choiceEditorController didUpdateCustomText:(NSString *)text;
+- (void)choiceEditorControllerDidSelectCustomText:(PSPDFChoiceEditorViewController *)choiceEditorController;
+- (void)choiceEditorControllerDidEndEditingCustomText:(PSPDFChoiceEditorViewController *)choiceEditorController;
 
 @end
 
@@ -44,14 +46,27 @@
 @interface PSPDFChoiceEditorViewController : PSPDFBaseTableViewController
 
 /// Designated initializer
-- (id)initChoiceEditorViewControllerWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
+- (id)initWithDataSource:(id <PSPDFChoiceEditorViewControllerDataSource>)datasource delegate:(id<PSPDFChoiceEditorViewControllerDelegate>)delegate;
 
+/// The choice editor data source.
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDataSource> dataSource;
+
+/// The choice editor delegate.
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDelegate> delegate;
 
 // The view where the form is currently rendered into.
-@property (nonatomic, weak) UIView *formElementView;
+@property (nonatomic, weak) PSPDFChoiceFormElementView *formElementView;
 
+/// Reload the table.
 - (void)reloadData;
+
+/// Select the next cell.
+- (void)selectNextValueAnimated:(BOOL)animated;
+
+/// Select the previous cell.
+- (void)selectPreviousValueAnimated:(BOOL)animated;
+
+/// If the choice controller allows custom editing, make this cell active and scroll to it.
+- (BOOL)enableEditModeAnimated:(BOOL)animated;
 
 @end

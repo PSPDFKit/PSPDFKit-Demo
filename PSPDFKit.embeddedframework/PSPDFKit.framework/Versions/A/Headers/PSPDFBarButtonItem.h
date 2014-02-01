@@ -64,16 +64,10 @@
 /// e.g. return `self.pdfController.document.isValid && self.pdfController.viewMode == PSPDFViewModeDocument`;
 - (BOOL)isAvailable;
 
-/// `PSPDFBarButtonItem` also supports long-press actions. Defaults to NO.
-- (BOOL)isLongPressActionAvailable;
-
 /// Will be called when the `pdfController` updates the toolbar.
 /// Default implementation determines if the button action can currently be invoked.
 /// Defaults to enabled, as long as a document is set and valid on pdfViewController.
 - (void)updateBarButtonItem;
-
-// LongPresses are handled in the same way as default presses (call `presentAnimated:sender:` and `dismissAnimated:`), just while the long press action is going the flag `isLongPressActionActive` is set to YES.
-- (BOOL)isLongPressActionActive;
 
 /// Return an `UIPopoverController` if you presented a popover or a "parent" object if you indirectly presented a popover controller.
 /// Sender can be either an `UIBarButtonItem` or a generic view.
@@ -99,9 +93,6 @@
 /// Subclass to build a completely custom action, overriding the default present/dismiss calls.
 /// @warning sender needs to be a *visible* bar button item or view.
 - (void)action:(id)sender;
-
-/// Subclass to react on long press events. Only invoked if `isLongPressActionAvailable` is set to YES.
-- (void)longPressAction:(PSPDFBarButtonItem *)sender;
 
 // `UIActionSheet` support.
 @property (nonatomic, strong) UIActionSheet *actionSheet;

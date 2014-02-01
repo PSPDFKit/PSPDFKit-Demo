@@ -30,6 +30,7 @@ extern "C" {
 #import "PSPDFDocument.h"
 #import "PSPDFDocumentDelegate.h"
 #import "PSPDFPageView.h"
+#import "PSPDFPageView+AnnotationMenu.h"
 #import "PSPDFTextSelectionView.h"
 #import "PSPDFScrollView.h"
 #import "PSPDFDocumentProvider.h"

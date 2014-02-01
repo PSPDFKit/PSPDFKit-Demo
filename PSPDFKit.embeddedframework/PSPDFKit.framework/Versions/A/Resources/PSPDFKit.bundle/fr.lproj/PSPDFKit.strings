@@ -41,8 +41,8 @@
 "Print document only" = "Imprimer le document seul";
 "No Applications found" = "Aucune application permettant l'ouverture de documents PDF n'est installée.";
 "Print" = "Imprimer";
-"Annotation" = "Annotation";
-"Annotations" = "Annotations";
+"Annotation" = "Annotées";
+"Annotations" = "Annotées";
 "No Annotations" = "Aucune annotation";
 "%d Annotation" = "%d annotation";
 "%d Annotations" = "%d annotations";
@@ -149,10 +149,11 @@
 "Rectangle" = "Rectangle";
 "Ellipse" = "Ellipse";
 "Line" = "Ligne";
+"Lines" = "Lignes"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "Polyligne";
 "Polygon" = "Polygone";
-"Signature" = "Signature";
-"Signatures" = "Signatures";
+"Signature" = "Signer";
+"Signatures" = "Signer";
 "Signed" = "Signé";
 "Sign" = "Signer";
 "Stamp" = "Tampon";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Texte du tampon";
 "Add Signature" = "Ajouter une signature";
 "My Signature" = "Ma signature";
+"No Signatures" = "Aucune signature"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Signature du client";
 "Note" = "Note";
 "Text" = "Texte";
@@ -182,7 +184,7 @@
 "Ink" = "Tracé";
 "FreeText" = "Texte";
 "Screen" = "Écran";
-"RichMedia" = "Rich Media";
+"RichMedia" = "Écran";
 "Left" = "À gauche";
 "Center" = "Centre";
 "Right" = "À droite";
@@ -193,6 +195,7 @@
 "Inspector" = "Inspecteur";
 "Group" = "Groupe";
 "Ungroup" = "Dégroupé";
+"Merge" = "Fusionner"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "Échantillon";
 "Annotation Summary for %@:\n" = "Résumé des annotations pour %@ :";
 "Fit to Text" = "Adapter au texte";

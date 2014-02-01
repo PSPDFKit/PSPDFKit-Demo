@@ -1,8 +1,8 @@
 //
-//  PSPDFChoiceFormElementView.h
+//  PSPDFButtonFormElementView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -12,11 +12,7 @@
 
 #import "PSPDFFormElementView.h"
 
-@class PSPDFChoiceEditorViewController;
-
-@interface PSPDFChoiceFormElementView : PSPDFFormElementView
-
-// Prepares the choice controller and adds an internal reference so keyboard events can be properly forwarded.
-- (PSPDFChoiceEditorViewController *)prepareChoiceEditorController;
+// Buttons / choice form views.
+@interface PSPDFButtonFormElementView : PSPDFFormElementView
 
 @end

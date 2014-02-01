@@ -13,13 +13,13 @@
 #import "PSPDFFormElement.h"
 
 typedef NS_OPTIONS(NSUInteger, PSPDFButtonFlag) {
-    PSPDFButtonFlagNoToggleToOff  = 1 << (15-1),
+    PSPDFButtonFlagNoToggleToOff  = 1 << (15-1), // Acrobat does not seem to support this.
     PSPDFButtonFlagRadio          = 1 << (16-1),
     PSPDFButtonFlagPushButton     = 1 << (17-1),
     PSPDFButtonFlagRadiosInUnison = 1 << (26-1),
 };
 
-/// Button Form Element.
+/// Button Form Element (check boxes, radio buttons, regular form push buttons)
 @interface PSPDFButtonFormElement : PSPDFFormElement
 
 /// Designated initializer.
@@ -43,7 +43,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFButtonFlag) {
 /// Deselect the button.
 - (void)deselect;
 
-/// Toggle button selection state.
+/// Toggle button selection state. Will send a change notification for `value`.
 - (BOOL)toggleButtonSelectionState;
 
 /// (Optional; inheritable; PDF 1.4) An array containing one entry for each widget annotation in the Kids array of the radio button or check box field. Each entry shall be a text string representing the on state of the corresponding widget annotation. When this entry is present, the names used to represent the on state in the AP dictionary of each annotation (for example, /1, /2) numerical position (starting with 0) of the annotation in the Kids array, encoded as a name object. This allows distinguishing between the annotations even if two or more of them have the same value in the Opt array.

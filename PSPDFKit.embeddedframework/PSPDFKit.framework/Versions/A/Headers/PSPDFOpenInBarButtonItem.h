@@ -15,12 +15,6 @@
 
 @class PSPDFDocument;
 
-/// Checking if any apps support PDF can be done, but this is slow (~300 ms on an iPad 3). Thus it's disabled by default.
-/// In case there is no app and this check is disabled, a alert will be showed to the user.
-/// Defaults to NO.
-/// This is not recommended to be enabled on iOS 7. Defaults to NO.
-extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
-
 /// Open in is only possible if the `PSPDFDocument` is backed by exactly one file-based PDF.
 /// Before sending the file to another application, annotations will be saved.
 @interface PSPDFOpenInBarButtonItem : PSPDFBarButtonItem <PSPDFDocumentSharingViewControllerDelegate, UIDocumentInteractionControllerDelegate>
@@ -31,6 +25,8 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 
 /// Document interaction controller that is used internally.
 @property (nonatomic, strong, readonly) UIDocumentInteractionController *documentInteractionController;
+
+
 
 @end
 
@@ -55,5 +51,11 @@ extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled;
 // This will call `presentOptionsMenuFromRect:` (or variations) if enabled, else `presentOpenInMenuFromRect:`.
 // This is deprecatedb by Apple.
 @property (nonatomic, assign) BOOL showPrintAction PSPDF_DEPRECATED(3.4.2, "Use UIActivityViewController instead. This is deprecated by Apple.");
+
+/// Checking if any apps support PDF can be done, but this is slow (~300 ms on an iPad 3). Thus it's disabled by default.
+/// In case there is no app and this check is disabled, a alert will be showed to the user.
+/// Defaults to NO.
+/// This is not recommended to be enabled on iOS 7. Defaults to NO.
+extern BOOL PSPDFCheckIfCompatibleAppsAreInstalled PSPDF_DEPRECATED(3.4.6, "This will be removed soon.");
 
 @end

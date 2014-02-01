@@ -11,26 +11,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
 
-@class PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerPlaceholderView;
+@class PSPDFMediaPlayerVideoView, PSPDFMediaPlayerCoverView, PSPDFMediaPlayerToolbar, PSPDFMediaPlayerPlaceholderView;
 
 /// A view capable of displaying media. Use in combination with `AVPlayer`.
 @interface PSPDFMediaPlayerView : UIView
 
-/// The player layer of this view.
-@property (nonatomic, strong, readonly) AVPlayerLayer *playerLayer;
+/// The view used for displaying the video content.
+@property (nonatomic, strong) PSPDFMediaPlayerVideoView *videoView;
 
 /// The cover view.
 @property (nonatomic, strong) PSPDFMediaPlayerCoverView *coverView;
 
 /// The playback UI toolbar.
 @property (nonatomic, strong) PSPDFMediaPlayerToolbar *toolbar;
-
-/// This overlay view is positioned exactly obove the visible area of the video. If AVPlayer does not play a video but rather audio, this view will be set to the bounds of `PSPDFMediaPlayerView`.
-/// This view is hidden by default.
-/// @note On iOS 6, the view's frame will always be set to the bounds of `PSPDFMediaPlayerView`.
-@property (nonatomic, strong) UIView *overlayView;
 
 /// Defaults to hidden.
 @property (nonatomic, strong) PSPDFMediaPlayerPlaceholderView *placeholderView;

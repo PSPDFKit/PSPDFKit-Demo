@@ -12,7 +12,7 @@
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000
 @interface NSArray (PSCModernizer)
-- (id)firstObject; // first deckared in SDK 7.
+- (id)firstObject; // first declared in SDK 7.
 @end
 #endif
 

@@ -10,13 +10,17 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFGenericAnnotationView.h"
+#import "PSPDFAnnotationView.h"
 #import "PSPDFRenderQueue.h"
 
 /// View that will render an annotation.
-@interface PSPDFHostingAnnotationView : PSPDFGenericAnnotationView <PSPDFRenderDelegate>
+@interface PSPDFHostingAnnotationView : PSPDFAnnotationView <PSPDFRenderDelegate>
 
 /// Image View that shows the rendered annotation.
 @property (nonatomic, strong, readonly) UIImageView *annotationImageView;
+
+/// If set to YES, the view will wait for calls to `enableAnnotationRendering` and `attachImage` from the `PSPDFPageView` until it shows content.
+/// This prevents flickering, especially for transparent content. Defaults to YES.
+@property (nonatomic, assign) BOOL shouldSyncRemovalFromSuperview;
 
 @end

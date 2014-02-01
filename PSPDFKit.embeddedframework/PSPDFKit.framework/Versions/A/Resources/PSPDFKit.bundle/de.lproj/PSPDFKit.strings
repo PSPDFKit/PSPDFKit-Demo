@@ -101,7 +101,7 @@
 // text selection
 "Save To Camera Roll" = "Bild speichern";
 "Failed to extract image." = "Bild konnte nicht extrahiert werden.";
-"Type value or pick from list" = "Geben Sie einen Wert ein oder wählen Sie einen aus der Liste aus.";
+"Type value or pick from list" = "Text eingeben oder von der Liste wählen";
 
 // annotations
 "Add %@" = "%@ hinzufügen";
@@ -133,7 +133,7 @@
 "Green" = "Grün";
 "Red" = "Rot";
 "Blue" = "Blau";
-"Pink" = "Pink";
+"Pink" = "Rosa";
 "Black" = "Schwarz";
 "orange" = "Orange";
 "purple" = "Violett";
@@ -149,6 +149,7 @@
 "Rectangle" = "Rechteck";
 "Ellipse" = "Ellipse";
 "Line" = "Linie";
+"Lines" = "Zeilen";
 "Polyline" = "Polylinie";
 "Polygon" = "Polygon";
 "Signature" = "Unterschrift";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Stempel Text";
 "Add Signature" = "Unterschrift hinzufügen";
 "My Signature" = "Meine Unterschrift";
+"No Signatures" = "Keine Unterschriften"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Kunden Unterschrift";
 "Note" = "Notiz";
 "Text" = "Text";
@@ -178,7 +180,7 @@
 "Clear All" = "Alles löschen";
 "Clear" = "Reset";
 "Style" = "Styling";
-"Link" = "Link";
+"Link" = "Hyperlink";
 "Ink" = "Zeichnung";
 "FreeText" = "Text";
 "Screen" = "Multimedia";
@@ -193,6 +195,7 @@
 "Inspector" = "Inspektor";
 "Group" = "Gruppieren";
 "Ungroup" = "Gruppierung auflösen";
+"Merge" = "Zusammenführen";
 "Sample" = "Beispiel";
 "Annotation Summary for %@:\n" = "Zusammenfassung der Annotationen von %@:\n";
 "Fit to Text" = "Passend für Text";
@@ -201,10 +204,11 @@
 "Eraser" = "Radierer";
 "SelectionTool" = "Auswahlwerkzeug";
 "Saved Annotations" = "Gespeichert";
-"Add" = "Add";
+"Add" = "Hinzufügen";
 "Date" = "Datum";
 "Time" = "Zeit";
 "No Pages" = "Keine Seiten";
+
 // Stamps
 "Approved" = "Freigegeben";
 "Not Approved" = "Nicht freigegeben";
@@ -247,7 +251,7 @@
 "Rendition Action" = "Rendition Aktion";
 "Hide Action" = "Ausblenden";
 "Submit Form" = "Formular absenden";
-"Reset" = "Reset";
+"Reset" = "Zurücksetzen";
 
 // line annotations
 "Start" = "Start";
@@ -276,7 +280,7 @@
 "Go to Page %d" = "Zu Seite %d wechseln";
 "Go to Page" = "Zu Seite wechseln";
 "Save" = "Speichern";
-"Link Destination" = "Link Destination";
+"Link Destination" = "Ziel des Links";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
 
 // voiceover accessibility
@@ -302,7 +306,7 @@
 "Pause Recording" = "Aufnahme pausieren";
 "Continue Recording" = "Aufnahme fortsetzen";
 "Finish Recording" = "Aufnahme abschließen";
-"Audio Problem" = "Audio Problem";
+"Audio Problem" = "Audio-Problem";
 "Mic Permission Not Granted" = "Die Rechte für das Mikrofon wurden nicht gesetzt.";
 "Sorry, but audio cannot be recorded at the moment. Please grant this app permission to access your microphone." = "Audio kann derzeit nicht aufgezeichnet werden - Zugang zum Mikrofon wurde verweigert.";
 "Sorry, but there was a problem trying to record audio." = "Ein Problem beim Aufnehmen ist aufgetreten.";

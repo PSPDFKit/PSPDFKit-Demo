@@ -11,12 +11,12 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFGenericAnnotationView.h"
+#import "PSPDFAnnotationView.h"
 
 @class PSPDFNoteAnnotation;
 
 /// Note annotations are handled as subviews to be draggable.
-@interface PSPDFNoteAnnotationView : PSPDFGenericAnnotationView
+@interface PSPDFNoteAnnotationView : PSPDFAnnotationView
 
 /// Designated initializer.
 - (id)initWithAnnotation:(PSPDFAnnotation *)noteAnnotation;

@@ -29,7 +29,7 @@
 "No Outline" = "Нет контура";
 "Search Outline" = "Поиск контура";
 "Search" = "Поиск";
-"Email" = "Email";
+"Email" = "E-mail";
 "Send via Email" = "Отправить по Email";
 "Send" = "Отправить";
 "Open in" = "Открыть в";
@@ -149,6 +149,7 @@
 "Rectangle" = "Прямоугольник";
 "Ellipse" = "Эллипс";
 "Line" = "Линия";
+"Lines" = "Строки"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "Ломаная линия";
 "Polygon" = "Многоугольник";
 "Signature" = "Подпись";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Текст печати";
 "Add Signature" = "Добавить подпись";
 "My Signature" = "Моя подпись";
+"No Signatures" = "Нет подписей"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Подпись пользователя";
 "Note" = "Заметка";
 "Text" = "Текст";
@@ -193,6 +195,7 @@
 "Inspector" = "Инспектор";
 "Group" = "Группа";
 "Ungroup" = "Разгруппировать";
+"Merge" = "Объединить"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "Образец";
 "Annotation Summary for %@:\n" = "Обзор комментариев для %@:";
 "Fit to Text" = "Поместить в текст";

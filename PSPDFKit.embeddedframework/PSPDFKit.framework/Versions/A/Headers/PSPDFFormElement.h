@@ -80,6 +80,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 // Tab ordering property of the page this form element is on. Possible values are @"R" (Row order), @"C" (column order), @"S" (structural order), and nil if none is set.
 @property (nonatomic, copy) NSString *tabOrder;
 
+// Index of this object in the AcroForm dictionary. If it's a child, it might be -1.
+@property (nonatomic, assign) NSInteger formIndex;
+
 /// If set, the user may not change the value of the field. Any associated widget annotations will not interact with the user; that is, they will not respond to mouse clicks or change their appearance in response to mouse motions. This flag is useful for fields whose values are computed or imported from a database.
 - (BOOL)isReadOnly;
 
@@ -100,6 +103,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFFormElementFlag) {
 @interface PSPDFFormElement (Drawing)
 
 // Draws the form highlight.
-- (void)drawHighlightInContext:(CGContextRef)context;
+- (void)drawHighlightInContext:(CGContextRef)context multiply:(BOOL)shouldMultiply;
 
 @end

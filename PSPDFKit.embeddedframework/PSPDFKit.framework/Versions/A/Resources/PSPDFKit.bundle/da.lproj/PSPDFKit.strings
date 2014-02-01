@@ -31,7 +31,7 @@
 "Search" = "Søg";
 "Email" = "E-mail";
 "Send via Email" = "Send pr. e-mail";
-"Send" = "Send";
+"Send" = "Udfør";
 "Open in" = "Åbn i";
 "Open" = "Åbn";
 "Commit" = "Udfør";
@@ -82,7 +82,7 @@
 "Searching Page %d of %d" = "Søger i side %d af %d";
 "Search Completed" = "Søgning afsluttet";
 "Search Cancelled" = "Søgning annuleret";
-"%d left" = "%d tilbage"; // Context: there are 5 documents left
+"%d left" = "%d tilbage"; // Context: Indexing Documents... 5 left
 "Searching" = "Søger";
 "%d documents indexed." = "%d dokumenter indekserede.";
 "Done" = "Færdig";
@@ -93,8 +93,8 @@
 "Open in Chrome" = "Åbn i Chrome";
 "Your %@ is not configured to send emails." = "Din %@ er ikke konfigureret til at sende e-mails.";
 "The link is requesting to open %@Would you like to continue?" = "Henvisningen ønsker at åbne %@ Vil du fortsætte?";
-"an external application" = "et eksternt program";
-"the App Store" = "App Store";
+"an external application" = "et eksternt program"; // Context: "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // Context: "The link is requesting to open the App Store. Would you like to continue?"
 "Mail" = "Mail";
 "No handler found for %@" = "„Handler“ for blev ikke fundet %@";
 
@@ -119,8 +119,8 @@
 "Choose Color" = "Vælg farve";
 "Choose Fill Color" = "Vælg fyldfarve";
 "Rainbow" = "Regnbue";
-"Monochrome" = "Monochrome";
-"Vintage" = "Vintage";
+"Monochrome" = "Sort/hvid";
+"Vintage" = "Gammeldags";
 "Color" = "Farve";
 "Border" = "Ramme";
 "Fill Color" = "Fyldfarve";
@@ -128,7 +128,7 @@
 "%@ %%" = "%@ %%";
 "Custom" = "Speciel";
 "Thickness" = "Tykkelse";
-"%@ pt" = "%@ pt";
+"%@ pt" = "%@ point";
 "Yellow" = "Gul";
 "Green" = "Grøn";
 "Red" = "Rød";
@@ -149,6 +149,7 @@
 "Rectangle" = "Rektangel";
 "Ellipse" = "Ellipse";
 "Line" = "Linje";
+"Lines" = "Linjer"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "Polygonal";
 "Polygon" = "Polygon";
 "Signature" = "Signatur";
@@ -163,8 +164,9 @@
 "Stamp Text" = "Stempeltekst";
 "Add Signature" = "Tilføj signatur";
 "My Signature" = "Min signatur";
+"No Signatures" = "Ingen signaturer"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Kundesignatur";
-"Note" = "Note";
+"Note" = "Bemærk";
 "Text" = "Tekst";
 "Delete Note" = "Slet note";
 "Remove Note" = "Fjern note";
@@ -183,7 +185,7 @@
 "FreeText" = "Tekst";
 "Screen" = "Skærmbrædt";
 "RichMedia" = "Multimedie";
-"Left" = "Venstrejusteret";
+"Left" = "Venstre";
 "Center" = "Centreret";
 "Right" = "Højrejusteret";
 "Alignment" = "Justering";
@@ -193,6 +195,7 @@
 "Inspector" = "Inspektør";
 "Group" = "Grupper";
 "Ungroup" = "Ophæv gruppe";
+"Merge" = "Kombiner"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "Eksempel";
 "Annotation Summary for %@:\n" = "Kommentarresumé af %@:\n";
 "Fit to Text" = "Tilpas til tekst";
@@ -239,7 +242,7 @@
 "GoBack" = "Tilbage";
 "GoForward" = "Fremad";
 "GoToPage" = "Gå til side";
-"Find" = "Find";
+"Find" = "Søg";
 // Print, Outline, Search, Brightness are translated via toolbar
 "ZoomIn" = "Zoom ind";
 "ZoomOut" = "Zoom ud";
@@ -251,7 +254,7 @@
 "Reset" = "Nulstil";
 
 // line annotations
-"Start" = "Start";
+"Start" = "Linjeslut";
 "End" = "Slut";
 "Line.None" = "Ingen";
 "Line.ClosedArrow" = "Lukket pil";

@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFFormElement.h"
+#import "PSPDFFreeTextAnnotation.h" // for PSPDFVerticalAlignment
 #import <CoreText/CoreText.h>
 
 @protocol PSPDFTextOptionsProtocol <NSObject>
@@ -19,6 +20,7 @@
 - (CGFloat)lineWidth;
 - (UIColor *)fillColorWithAlpha;
 - (NSTextAlignment)textAlignment;
+- (PSPDFVerticalAlignment)verticalTextAlignment;
 - (UIColor *)colorWithAlpha;
 - (NSUInteger)rotation;
 - (NSUInteger)pageRotation;
@@ -34,6 +36,7 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) UIColor *fillColorWithAlpha;
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+@property (nonatomic, assign) PSPDFVerticalAlignment verticalTextAlignment;
 @property (nonatomic, strong) UIColor *colorWithAlpha;
 @property (nonatomic, assign) NSUInteger rotation;
 @property (nonatomic, assign) NSUInteger pageRotation;
@@ -55,6 +58,9 @@
 /// Text justification. Allows `NSTextAlignmentLeft`, `NSTextAlignmentCenter` and `NSTextAlignmentRight`.
 /// @warning It seems that Adobe Acrobat X simply ignores this 'Q' setting (Optional; PDF 1.4)
 @property (nonatomic, assign) NSTextAlignment textAlignment;
+
+/// The vertical alignment. Defaults to `PSPDFVerticalAlignmentTop`.
+@property (nonatomic, assign) PSPDFVerticalAlignment verticalTextAlignment;
 
 /// Font calculated from the various font settings and corrected for autoresizing.
 @property (nonatomic, assign, readonly) UIFont *font;

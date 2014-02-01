@@ -1,5 +1,5 @@
 //
-//  PSPDFChoiceEditorTableViewCell.h
+//  PSPDFChoiceEditorCell.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFChoiceEditorViewController.h"
 
-@interface PSPDFChoiceEditorTableViewCell : UITableViewCell
+@interface PSPDFChoiceEditorCell : UITableViewCell
 
 @property (nonatomic, weak) id<PSPDFChoiceEditorViewControllerDelegate> delegate;
 
@@ -25,5 +25,8 @@
 /// Choose whether to be editable immediately or be selectable with an edit button.
 /// To be called in `tableView:cellForRowAtIndexPath:`.
 - (void)chooseEditable;
+
+// Enters the cell edit mode.
+- (void)enterEditMode;
 
 @end
