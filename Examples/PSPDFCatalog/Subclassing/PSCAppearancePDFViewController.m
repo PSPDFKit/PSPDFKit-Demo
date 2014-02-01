@@ -20,8 +20,6 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
     self.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-    UIBarButtonItem *alertButtonTest = [[UIBarButtonItem alloc] initWithTitle:@"Alert" style:UIBarButtonItemStyleBordered target:self action:@selector(testAlert)];
-    self.leftBarButtonItems = @[self.closeButtonItem, alertButtonTest];
 
     // All toolbars within this controller should be orange
     [[UIToolbar appearanceWhenContainedIn:PSCAppearancePDFViewController.class, nil] setTintColor:UIColor.orangeColor];
@@ -35,14 +33,6 @@
     [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setTintColor:UIColor.redColor];
 //    UIImage *gradientPortrait = [UIImage imageNamed:@"exampleimage.jpg"];
 //    [[UINavigationBar appearanceWhenContainedIn:PSCAppearanceNavigationController.class, nil] setBackgroundImage:gradientPortrait forBarMetrics:UIBarMetricsDefault];
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - Private
-
-- (void)testAlert {
-    [self.popoverController dismissPopoverAnimated:NO];
-    [[[PSPDFAlertView alloc] initWithTitle:@"AlertView Test" message:@"This alert is a test. Notice the custom alertViewTintColor with PSPDFAlertView." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
 }
 
 @end
