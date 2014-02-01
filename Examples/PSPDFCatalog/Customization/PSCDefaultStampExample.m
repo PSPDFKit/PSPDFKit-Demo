@@ -70,7 +70,7 @@ static NSArray *PSCStampAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint view
 }
 
 static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfController) {
-    return [pdfController.annotationStateManager.toolbarMode isEqualToString:PSPDFAnnotationStringStamp];
+    return [pdfController.annotationStateManager.state isEqualToString:PSPDFAnnotationStringStamp];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -112,12 +112,12 @@ static BOOL PSCIsStampModeEnabledForPDFController(PSPDFViewController *pdfContro
 // By default, this mode would show the stamp view controller.
 // We want to preselect a stamp and enter a special stamp creation/deletion mode.
 - (void)stampButtonPressed:(id)sender {
-    if (![self.annotationStateManager.toolbarMode isEqualToString:PSPDFAnnotationStringStamp]) {
+    if (![self.annotationStateManager.state isEqualToString:PSPDFAnnotationStringStamp]) {
         // Make sure we deselect any selected annotation.
         [self.annotationStateManager.pdfController.visiblePageViews makeObjectsPerformSelector:@selector(setSelectedAnnotations:) withObject:nil];
-        self.annotationStateManager.toolbarMode = PSPDFAnnotationStringStamp;
+        self.annotationStateManager.state = PSPDFAnnotationStringStamp;
     }else {
-        self.annotationStateManager.toolbarMode = nil;
+        self.annotationStateManager.state = nil;
     }
 }
 
