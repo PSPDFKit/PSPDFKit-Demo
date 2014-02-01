@@ -97,3 +97,23 @@ BOOL PSCIsUIKitFlatMode(void) {
     });
     return isUIKitFlatMode;
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Popover
+
+static BOOL PSCIsControllerClassInPopoverAndVisible(UIPopoverController *popoverController, Class controllerClass) {
+    UIViewController *contentController = popoverController.contentViewController;
+    if ([contentController isKindOfClass:UINavigationController.class]) {
+        contentController = [(UINavigationController *)contentController topViewController];
+    }
+
+    BOOL classInPopover = [contentController isKindOfClass:controllerClass];
+    return classInPopover && popoverController.isPopoverVisible;
+}
+
+BOOL PSCIsControllerClassAndVisible(id c, Class controllerClass) {
+    return [c isKindOfClass:controllerClass] ||
+    ([c isKindOfClass:UINavigationController.class] && [((UINavigationController *)c).visibleViewController isKindOfClass:controllerClass]) ||
+    ([c isKindOfClass:UIPopoverController.class] && PSCIsControllerClassInPopoverAndVisible(c, controllerClass));
+}
+

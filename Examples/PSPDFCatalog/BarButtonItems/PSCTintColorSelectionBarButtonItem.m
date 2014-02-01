@@ -58,12 +58,8 @@
 
 - (void)selectStrokeColor:(id)sender {
     PSPDFViewController *pdfController = self.pdfController;
-    
-    BOOL alreadyDisplayed = PSPDFIsControllerClassAndVisible(pdfController.popoverController, [PSPDFSimplePageViewController class]);
-    if (alreadyDisplayed) {
-        [pdfController.popoverController dismissPopoverAnimated:YES];
-        pdfController.popoverController = nil;
-    }else {
+
+    if (![pdfController dismissPopoverAnimated:YES class:PSPDFSimplePageViewController.class completion:NULL]) {
         NSString *viewControllerTitle = NSLocalizedString(@"Tint Color", @"");
         PSPDFSimplePageViewController *colorPicker = [PSPDFColorSelectionViewController defaultColorPickerWithTitle:viewControllerTitle wantTransparency:NO delegate:self context:NULL];
         if (colorPicker) {
