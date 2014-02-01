@@ -90,7 +90,7 @@
 
 // inline browser
 "Open in Safari" = "Safariで開く";
-"Open in Safari" = "Chromeで開く";
+"Open in Chrome" = "Chromeで開く";
 "Your %@ is not configured to send emails." = "お手持ちの%@はメールを送信するよう設定されていません。";
 "The link is requesting to open %@Would you like to continue?" = "リンクが%@を開くよう要求しています。続けてよろしいですか。";
 "an external application" = "外部アプリケーション";
@@ -141,7 +141,7 @@
 "gray" = "グレイ";
 "white" = "ホワイト";
 "Define" = "辞書";
-"Wikipedia" = "Wikipedia";
+"Wikipedia" = "ウィキペディア";
 "Highlight" = "ハイライト";
 "Underline" = "アンダーライン";
 "Squiggle" = "曲線";
@@ -149,7 +149,8 @@
 "Rectangle" = "長方形";
 "Ellipse" = "楕円形";
 "Line" = "線";
-"Polyline" = "Polyline";
+"Lines" = "線"; //part of a created text. e.g.: "5 Lines"
+"Polyline" = "ポリライン";
 "Polygon" = "ポリゴン";
 "Signature" = "署名";
 "Signatures" = "署名";
@@ -163,6 +164,7 @@
 "Stamp Text" = "スタンプのテキスト";
 "Add Signature" = "署名を追加";
 "My Signature" = "自分の署名";
+"No Signatures" = "署名がありません"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "カスタマーの署名";
 "Note" = "メモ";
 "Text" = "メッセージ";
@@ -193,10 +195,11 @@
 "Inspector" = "インスペクタ";
 "Group" = "グループ";
 "Ungroup" = "グループ解除";
+"Merge" = "結合"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "サンプル";
 "Annotation Summary for %@:\n" = "%@の注釈の概要";
 "Fit to Text" = "テキストの大きさに合わせる";
-"Draw" = "Draw";
+"Draw" = "描画";
 "Sound" = "サウンド";
 "Eraser" = "消しゴム";
 "SelectionTool" = "選択ツール";
@@ -229,7 +232,7 @@
 // PDF annotation name overrides
 "Square" = "長方形";
 "Circle" = "楕円形";
-"PolyLine" = "Polyline";
+"PolyLine" = "ポリライン";
 
 // named actions
 "NextPage" = "次のページ";

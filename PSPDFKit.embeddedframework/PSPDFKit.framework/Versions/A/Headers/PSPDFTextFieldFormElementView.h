@@ -12,12 +12,12 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFResizableView.h"
-#import "PSPDFGenericFormElementView.h"
+#import "PSPDFFormElementView.h"
 
 @class PSPDFTextFieldFormElement;
 
 /// Free Text View. Allows inline text editing.
-@interface PSPDFTextFieldFormElementView : PSPDFGenericFormElementView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate, UITextFieldDelegate>
+@interface PSPDFTextFieldFormElementView : PSPDFFormElementView <PSPDFResizableTrackedViewDelegate, UITextViewDelegate, UITextFieldDelegate>
 
 /// Start editing, shows the keyboard.
 - (void)beginEditing;

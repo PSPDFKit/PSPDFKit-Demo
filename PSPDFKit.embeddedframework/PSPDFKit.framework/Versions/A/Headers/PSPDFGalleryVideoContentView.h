@@ -16,7 +16,7 @@
 
 @interface PSPDFGalleryVideoContentView : PSPDFGalleryContentView
 
-/// `PSPDFGalleryVideoContentView` expects an `UIImageView` as its `contentView`.
+/// `PSPDFGalleryVideoContentView` expects an `PSPDFMediaPlayerView` as its `contentView`.
 @property (nonatomic, strong, readonly) PSPDFMediaPlayerView *contentView;
 
 @end

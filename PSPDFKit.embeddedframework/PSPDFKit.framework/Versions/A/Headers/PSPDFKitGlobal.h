@@ -43,7 +43,7 @@ extern PSPDFLogLevelMask PSPDFLogLevel;
 typedef NS_ENUM(NSInteger, PSPDFAnimate) {
     PSPDFAnimateNever,
     PSPDFAnimateModernDevices,
-    PSPDFAnimateEverywhere
+    PSPDFAnimateEverywhere     // Will also animate page changes.
 };
 extern PSPDFAnimate PSPDFAnimateOption; /// defaults to `PSPDFAnimateModernDevices`.
 
@@ -63,9 +63,6 @@ extern NSString *PSPDFTrimString(NSString *string);
 
 // Convert an `NSArray` of `NSNumber's` to an `NSIndexSet`.
 extern NSIndexSet *PSPDFIndexSetFromArray(NSArray *array);
-
-// Checks if controller is `controllerClass` or inside a `UINavigationController`/`UIPopoverController`.
-extern BOOL PSPDFIsControllerClassAndVisible(id controller, Class controllerClass);
 
 // Global rotation lock/unlock for the whole app. Acts as a counter, can be called multiple times.
 extern void PSPDFLockRotation(BOOL enableLock);

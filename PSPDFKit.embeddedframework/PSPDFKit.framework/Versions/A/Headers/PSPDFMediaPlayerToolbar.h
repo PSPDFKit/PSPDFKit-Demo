@@ -31,14 +31,13 @@
 /// The scrubber item.
 @property (nonatomic, strong) UIBarButtonItem *scrubberItem;
 
-/// The AirPlay item.
-@property (nonatomic, strong) UIBarButtonItem *airPlayItem;
+/// The external playback item. Contains `volumeView`.
+@property (nonatomic, strong) UIBarButtonItem *externalPlaybackItem;
+@property (nonatomic, strong) MPVolumeView *volumeView;
 
-@property (nonatomic, strong) MPVolumeView *airPlayButton;
-
-/// Hides or shows the airplay button. Defaults to `YES`.
-@property (nonatomic, assign, getter = isAirPlayButtonHidden) BOOL airPlayButtonHidden;
-- (void)setAirPlayButtonHidden:(BOOL)airPlayButtonHidden animated:(BOOL)animated;
+/// Hides or shows the volume view. Defaults to `YES`.
+@property (nonatomic, assign, getter = isExternalPlaybackItemHidden) BOOL externalPlaybackItemHidden;
+- (void)setExternalPlaybackItemHidden:(BOOL)externalPlaybackItemHidden animated:(BOOL)animated;
 
 /// The scrubber view, which is contained within `scrubberItem`.
 @property (nonatomic, strong, readonly) PSPDFMediaPlayerScrubberView *scrubberView;

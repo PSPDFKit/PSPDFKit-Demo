@@ -10,8 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFGenericFormElementView.h"
+#import "PSPDFFormElementView.h"
 
-@interface PSPDFChoiceFormElementView : PSPDFGenericFormElementView
+@class PSPDFChoiceEditorViewController;
+
+@interface PSPDFChoiceFormElementView : PSPDFFormElementView
+
+// Prepares the choice controller and adds an internal reference so keyboard events can be properly forwarded.
+- (PSPDFChoiceEditorViewController *)prepareChoiceEditorController;
 
 @end

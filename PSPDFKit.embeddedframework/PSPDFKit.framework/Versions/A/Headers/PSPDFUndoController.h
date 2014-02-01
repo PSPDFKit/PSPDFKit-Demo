@@ -70,10 +70,10 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 /// However, since `UIResponders` can provide an undo manager, this property is exposed.
 @property (nonatomic, strong, readonly) NSUndoManager *undoManager;
 
-/// Specifies the time interval that is used for `PSPDFUndoCoalescingTimed`. Defaults to 0.3 second.
+/// Specifies the time interval that is used for `PSPDFUndoCoalescingTimed`. Defaults to 0.3 seconds.
 @property (nonatomic, assign) NSTimeInterval timedCoalescingInterval;
 
-/// Specifies the levels of undo we allow. Defaults to 20. More means higher memory usage.
+/// Specifies the levels of undo we allow. Defaults to 40. More means higher memory usage.
 @property (nonatomic, assign) NSUInteger levelsOfUndo;
 
 @end
@@ -91,3 +91,6 @@ extern NSString * const PSPDFUndoControllerAddedUndoActionNotification;
 - (NSString *)incompleteUndoActionName;
 
 @end
+
+// Executes undo block if the undo controller is available.
+extern void PSPDFPerformBlockAsGroup(PSPDFUndoController *undoController, dispatch_block_t block, NSString *name);

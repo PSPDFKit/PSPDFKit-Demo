@@ -149,6 +149,7 @@
 "Rectangle" = "Rectángulo";
 "Ellipse" = "Elipse";
 "Line" = "Línea";
+"Lines" = "Líneas"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "Polilínea";
 "Polygon" = "Polígono";
 "Signature" = "Firma";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Texto del sello";
 "Add Signature" = "Añadir firma";
 "My Signature" = "Mi firma";
+"No Signatures" = "No hay firmas"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Firma de cliente";
 "Note" = "Nota";
 "Text" = "Texto";
@@ -193,6 +195,7 @@
 "Inspector" = "Inspector";
 "Group" = "Agrupar";
 "Ungroup" = "Desagrupar";
+"Merge" = "Juntar"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "Muestra";
 "Annotation Summary for %@:\n" = "Resumen de anotaciones de %@:\n";
 "Fit to Text" = "Adaptar al texto";

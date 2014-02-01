@@ -149,6 +149,7 @@
 "Rectangle" = "矩形";
 "Ellipse" = "椭圆";
 "Line" = "直线";
+"Lines" = "直线"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "折线";
 "Polygon" = "多边形";
 "Signature" = "签名";
@@ -163,6 +164,7 @@
 "Stamp Text" = "印章文本";
 "Add Signature" = "添加签名";
 "My Signature" = "我的签名";
+"No Signatures" = "没有签名"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "客户签名";
 "Note" = "注释";
 "Text" = "文本";
@@ -193,6 +195,7 @@
 "Inspector" = "检查器";
 "Group" = "群组";
 "Ungroup" = "取消群组";
+"Merge" = "合并"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "样本";
 "Annotation Summary for %@:\n" = "%@ 批注摘要：";
 "Fit to Text" = "适配文本";

@@ -4,6 +4,36 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.4.6 - 1/Feb/2014__
+
+This patch release includes various form related improvements, especially hardware keyboard support and performance tweaks for very complex forms.
+
+*  Tap-to-zoom now starts rendering the page instantly; this improves render performance quite a bit.
+*  Visual improvements for the form choice view controller.
+*  Multiline Form Text Fields are now vertically aligned to the top.
+*  Editable choice form elements now show touch down feedback and keep the keyboard for easier switching on iPad.
+*  Long-Pressing on form elements will no longer cancel the tap action.
+*  Form elements can now be navigated with a hardware keyboard via the arrow keys and escape/space/enter. (iOS 7 only)
+*  Form navigation with prev/next now includes choice form elements, and the value can be toggle with the space bar.
+*  Ensures that stamps never draw text outside their boundaries.
+*  Render/Update performance for pages with many annotations has been greatly improved.
+*  When using the `PSPDFAnnotationTableViewController`, form elements are not only selected but also brought into edit mode.
+*  Improves support for file:// links if linkAction is not set to PSPDFLinkActionInlineBrowser.
+*  Tweaks link type autodetection to work better on certain types of documents.
+*  Expose the completion handler for `UIActivityViewController` inside `PSPDFActivityBarButtonItem`.
+*  API: Remove long press support for bar button items. This was only used for the bookmark button and already defaulted to NO.
+*  `PSPDFPageView` now sends a `PSPDFPageViewSelectedAnnotationsDidChangeNotification` notification each time the `selectedAnnotations` property changes.
+*  Erasing is now faster with custom annotation providers, as cange notifications are now queued and sent on touch end events only.
+*  Fixes an issue that could hide the outline bar button in cases where annotations were in the document but no outline.
+*  Fixes a potential use-after-free when a form with a editable choice field was edited on iPhone and then dismissed via the input accessory view on iOS 7.
+*  Fixes an issue where certain form checkboxes were not checked if appearance streams were missing from the PDF.
+*  Fixes an issue where form buttons with named actions sometimes failed to change the page.
+*  Fixes an issue where saving certain form objects could hide these form objects in Acrobat.
+*  Fixes an issue where manual bookmark reordering wasn't saved in some situations.
+*  Fixes a rare recursion issue on iOS 6 when using the old toggle-style for the viewMode bar button item.
+*  Fixes an issue where the bookmark bar button not always reflected the actual bookmark state.
+*  Fixes a potential over-release with certain rarely used CMaps definitions that include other CMaps.
+
 __v3.4.5 - 24/Jan/2014__
 
 *  Better handles resizing for rotated stamps.
@@ -100,7 +130,7 @@ __v3.3.5 - 9/Jan/2014__
 *  The gallery now supports more options like autostart, cover views or control customizations.
 *  Improved the `highlightedString` feature by narrowing down the target rect. Reduces the chance to extract text above/below the marked text.
 *  The render activity view now has a slight delay and animates in and out, making it less disruptive.
-*  Extends support for OS 7 dynamic type to more controls and cells.
+*  Extends support for iOS 7 dynamic type to more controls and cells.
 *  Localization has been streamlined and requires less entries. If you rely in a specific `identifier` for `PSPDFMenuItem` checks, remove the "..." from the strings.
 *  The option view in `PSPDFNoteAnnotationViewController` now uses blur on iOS 7 instead of plain transparency.
 *  Adds further workarounds for issues in `UITextView` on iOS 7 which improves caret scrolling and visibility when using external keyboards.

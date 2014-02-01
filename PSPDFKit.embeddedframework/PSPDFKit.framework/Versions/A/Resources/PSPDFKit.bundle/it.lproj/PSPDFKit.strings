@@ -126,7 +126,7 @@
 "Fill Color" = "Colore di riempimento";
 "Opacity" = "Opacità";
 "%@ %%" = "%@ %%";
-"Custom" = "Personalizza";
+"Custom" = "Personalizzato";
 "Thickness" = "Spessore";
 "%@ pt" = "%@ punto";
 "Yellow" = "Giallo";
@@ -149,6 +149,7 @@
 "Rectangle" = "Rettangolo";
 "Ellipse" = "Elissi";
 "Line" = "Linea";
+"Lines" = "Linee"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "Polilinea";
 "Polygon" = "Poligono";
 "Signature" = "Firma";
@@ -163,6 +164,7 @@
 "Stamp Text" = "Testo del timbro";
 "Add Signature" = "Aggiungi firma";
 "My Signature" = "La mia firma";
+"No Signatures" = "Nessuna firma"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "Firma cliente";
 "Note" = "Nota";
 "Text" = "Testo";
@@ -178,7 +180,7 @@
 "Clear All" = "Cancella tutto";
 "Clear" = "Effacer";
 "Style" = "Stile";
-"Link" = "Link";
+"Link" = "Collega";
 "Ink" = "Inchiostro";
 "FreeText" = "Testo";
 "Screen" = "Schermo";
@@ -190,9 +192,10 @@
 "Preview File" = "Anteprima file";
 "Copy" = "Copia";
 "Paste" = "Incolla";
-"Inspector" = "Inspector";
+"Inspector" = "Impostazioni";
 "Group" = "Gruppo";
 "Ungroup" = "Separa";
+"Merge" = "Unisci"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "Esempio";
 "Annotation Summary for %@:\n" = "Riepilogo annotazioni per %@:\n";
 "Fit to Text" = "Adatta al testo";

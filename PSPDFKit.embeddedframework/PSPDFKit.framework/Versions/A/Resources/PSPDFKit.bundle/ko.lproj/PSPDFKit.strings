@@ -90,12 +90,12 @@
 
 // inline browser
 "Open in Safari" = "Safari에서 열기";
-"Open in Safari" = "Chrome에서 열기";
+"Open in Chrome" = "Chrome에서 열기";
 "Your %@ is not configured to send emails." = "사용자의 %@은 이메일을 전송할 수 있도록 구성되지 않았습니다.";
 "The link is requesting to open %@Would you like to continue?" = "링크가 다음 경로를 열려고 합니다다: %@계속 진행하시겠습니까?";
 "an external application" = "외부 응용 프로그램";
 "the App Store" = "앱 스토어";
-"Mail" = "Mail";
+"Mail" = "이메일";
 "No handler found for %@" = "%@을(를) 위한 핸들러가 없습니다";
 
 // text selection
@@ -149,6 +149,7 @@
 "Rectangle" = "직사각형";
 "Ellipse" = "타원";
 "Line" = "선";
+"Lines" = "행"; //part of a created text. e.g.: "5 Lines"
 "Polyline" = "폴리라인";
 "Polygon" = "다각형";
 "Signature" = "서명";
@@ -163,6 +164,7 @@
 "Stamp Text" = "텍스트 스탬프";
 "Add Signature" = "서명 추가";
 "My Signature" = "내 서명";
+"No Signatures" = "서명 없음"; //text on label: is shown, when there is no signature to display
 "Customer Signature" = "사용자 지정 서명";
 "Note" = "메모";
 "Text" = "텍스트";
@@ -193,6 +195,7 @@
 "Inspector" = "속성";
 "Group" = "그룹";
 "Ungroup" = "그룹해제";
+"Merge" = "병합"; //text on a Button: when clicked, two drawings are merged into one drawing
 "Sample" = "샘플";
 "Annotation Summary for %@:\n" = "%@ 주석 요약:\n";
 "Fit to Text" = "텍스트에 맞추기";
@@ -225,7 +228,6 @@
 "Sign Here" = "여기 서명";
 "Witness" = "증명";
 "Revised" = "수정본";
-
 
 // PDF annotation name overrides
 "Square" = "직사각형";

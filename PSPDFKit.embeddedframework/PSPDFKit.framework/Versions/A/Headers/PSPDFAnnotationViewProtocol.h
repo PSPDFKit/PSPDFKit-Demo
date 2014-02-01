@@ -43,6 +43,14 @@
 /// Called when the user taps on an annotation and the tap wasn't processed otherwise.
 - (void)didTapAtPoint:(CGPoint)point;
 
+/// Queries the view if removing should be in sync or happen instantly.
+/// If not implemented, return YES is assumed.
+- (BOOL)shouldSyncRemovalFromSuperview;
+
+/// View is queued for being removed, but still waits for a page sync.
+/// This is called regardles of what is returned in `shouldSyncRemovalFromSuperview`.
+- (void)willRemoveFromSuperview;
+
 /// A weak reference to the page view responsible for this view.
 @property (nonatomic, weak) PSPDFPageView *pageView;
 
