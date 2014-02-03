@@ -11,13 +11,13 @@
 #import "PSCExample.h"
 
 @interface PSCMultimediaPDFExample : PSCExample
-
 @end
 
 @interface PSCMultimediaDynamicallyAddedVideoExample : PSCExample
-
 @end
 
 @interface PSCMultimediaDynamicallyAddedVideoWithCoverExample : PSCExample
+@end
 
+@interface PSCYoutubeExample : PSCExample
 @end
