@@ -15,3 +15,6 @@
 
 @interface PSCFormDigitallySignedModifiedExample : PSCExample
 @end
+
+@interface PSCFormWithFormatting : PSCExample
+@end

@@ -10,6 +10,7 @@
 
 #import "PSCFormExamples.h"
 #import "PSCAppDelegate.h"
+#import "PSCAssetLoader.h"
 
 static void PSPDFFormExampleAddTrustedCertificates() {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -63,10 +64,10 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
     [PSPDFDigitalSignatureManager.sharedManager deregisterFromReceivingRequestsToViewRevisions:PSCFormExampleSignatureDelegate.sharedDelegate];
 }
 
-@implementation PSCFormExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+#pragma mark - PSCFormExample
+
+@implementation PSCFormExample
 
 - (id)init {
     if (self = [super init]) {
@@ -88,11 +89,10 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 }
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCFormDigitallySignedModifiedExample
 
 @implementation PSCFormDigitallySignedModifiedExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
@@ -111,6 +111,28 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     return PSPDFFormExampleInvokeWithFilename(@"Form_example_signed.pdf");
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -  PSCFormWithFormatting
+
+@implementation PSCFormWithFormatting
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"PDF Form with formatted text fields.";
+        self.category = PSCExampleCategoryViewCustomization;
+        self.priority = 50;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"Testcase_Formatted_Forms.pdf"];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    return pdfController;
 }
 
 @end
