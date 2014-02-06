@@ -353,7 +353,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.createAnnotationMenuEnabled = NO;
 
     // fit 3 thumbs nicely next to each other on iPad/landscape.
-    self.thumbnailSize = CGSizeMake(150, 200);
+    self.thumbnailSize = CGSizeMake(150.f, 200.f);
 
     // Hide bookmark filter
     self.thumbnailController.filterOptions = [NSOrderedSet orderedSetWithObjects:@(PSPDFThumbnailViewFilterShowAll), @(PSPDFThumbnailViewFilterAnnotations), nil];
