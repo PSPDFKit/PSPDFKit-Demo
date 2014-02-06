@@ -90,7 +90,7 @@
     PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
     aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100, 100);
     [multimediaDoc addAnnotations:@[aVideo]];
-    
+
     return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
 }
 

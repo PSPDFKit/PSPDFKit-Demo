@@ -795,7 +795,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeObject:PSPDFAnnotationStringInk];
-        pdfController.annotationStateManager.editableAnnotationTypes = editableTypes;
+        pdfController.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
         return pdfController;
     }]];
 

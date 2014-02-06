@@ -347,7 +347,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
     self.rightBarButtonItems = @[self.annotationButtonItem, self.outlineButtonItem, self.viewModeButtonItem];
 
     // If the annotation toolbar is invoked, there's not enough space for the default configuration.
-    self.annotationStateManager.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
+    self.annotationButtonItem.annotationToolbar.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringFreeText, PSPDFAnnotationStringNote, PSPDFAnnotationStringInk, PSPDFAnnotationStringStamp, nil];
 
     // Disable the long press menu.
     self.createAnnotationMenuEnabled = NO;
