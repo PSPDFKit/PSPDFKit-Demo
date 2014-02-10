@@ -12,9 +12,7 @@
 
 #import "PSPDFAction.h"
 
-@class PSPDFDocument;
 @class PSPDFViewController;
-
 
 @interface PSPDFJavaScriptAction : PSPDFAction
 
@@ -22,11 +20,10 @@
 - (id)initWithScript:(NSString *)script;
 - (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
 
-/// The script.
+/// The javascript content.
 @property (nonatomic, copy) NSString *script;
 
 /// Tries to execute the JavaScript in the context of a view controller.
-- (void)executeScriptAppliedToViewController:(PSPDFViewController*)viewController;
-
+- (void)executeScriptAppliedToViewController:(PSPDFViewController *)viewController;
 
 @end

@@ -11,29 +11,15 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFDrawView.h"
 #import "PSPDFLineHelper.h"
-#import "PSPDFSelectionView.h"
+#import "PSPDFAnnotationStateManager.h"
 
 // Compatiblity with Xcode 4.6 / SDK 6 (as binary)
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000 && !defined(UIBarPosition)
 #define UIBarPosition NSInteger
 #endif
 
-@class PSPDFViewController, PSPDFAnnotationToolbar;
-
-// Animation notifications.
-extern NSString *const PSPDFAnnotationToolbarWillHideNotification;
-
-// Special type of "annotation" that will add an eraser feature to the toolbar.
-extern NSString *const PSPDFAnnotationStringEraser;
-
-// Special type that will add a selection tool to the toolbar.
-extern NSString *const PSPDFAnnotationStringSelectionTool;
-
-// Special type that will show a view controller with saved/pre-created annotations.
-// Currently this will also require `PSPDFAnnotationStringStamp` to be displayed.
-extern NSString *const PSPDFAnnotationStringSavedAnnotations;
+@class PSPDFAnnotationToolbar;
 
 /// Delegate to be notified on toolbar actions/hiding.
 @protocol PSPDFAnnotationToolbarDelegate <NSObject>
@@ -60,10 +46,29 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// The annotation toolbar allows creation of most annotation types supported by PSPDFKit.
 /// @note This class does a lot of state management, so you might also just use it in a headless state calling down to the various action methods expoxed in the SubclassingHooks category.
 /// To customize which annotation icons should be displayed, edit `editableAnnotationTypes` in PSPDFDocument.
-@interface PSPDFAnnotationToolbar : UIToolbar <PSPDFDrawViewDelegate, PSPDFSelectionViewDelegate>
+@interface PSPDFAnnotationToolbar : UIToolbar <PSPDFAnnotationStateManagerDelegate>
 
 /// Designated initializer.
-- (id)initWithPDFController:(PSPDFViewController *)pdfController;
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager;
+
+/// Attached annotation state manager.
+@property (nonatomic, strong) PSPDFAnnotationStateManager *annotationStateManager;
+
+/// Base PDF view controller. A shortcut for annotationStateManager.pdfController.
+/// @note If you update `tintColor`, `barStyle`, etc., on your `PSPDFViewController` -
+/// call `matchAppearanceToPDFViewControllerAppearance:` to re-capture changed states.
+@property (nonatomic, weak, readonly) PSPDFViewController *pdfController;
+
+/// Annotation toolbar delegate. (Can be freely set to any receiver)
+@property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> annotationToolbarDelegate;
+
+/// Parses the `editableAnnotationTypes` set from the document.
+/// Per default this is the contents of the editableAnnotationTypes set in PSPDFDocument.
+/// If set to nil, this will load from `pdfController.document.editableAnnotationTypes.allObjects`.
+/// KVO observable.
+@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
+
+/// @name Presentation
 
 /// Show the toolbar in target rect. Rect should be the same height as the toolbar. (44px)
 /// You need to manually add the toolbar to the view. This is just to get the animation right.
@@ -78,44 +83,14 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// Flashes the toolbar red (e.g. if user tries to hide the HUD.)
 - (void)flashToolbar;
 
-/// Annotation toolbar delegate. (Can be freely set to any receiver)
-@property (nonatomic, weak) IBOutlet id<PSPDFAnnotationToolbarDelegate> annotationToolbarDelegate;
+/// Enable to cause the toolbar to fade in and out. Defaults to YES.
+@property (nonatomic, assign) BOOL fadeToolbar;
 
-/// Attached pdfController.
-/// @note If you update tintColor, barStyle, etc - this needs to be set again to re-capture changed states.
-@property (nonatomic, weak) PSPDFViewController *pdfController;
+/// Enable to cause the toolbar to slide into place. Defaults to YES.
+/// @warning Only effective if `fadeToolbar` is set to YES.
+@property (nonatomic, assign) BOOL slideToolbar;
 
-/// Active annotation toolbar mode. Mode is an annotation type, e.g. `PSPDFAnnotationStringHighlight`.
-/// @note Setting a toolbar mode will temporarily disable the long press gesture recognizer on the `PSPDFScrollView` to disable the new annotation menu.
-@property (nonatomic, copy) NSString *toolbarMode;
-
-/// Default/current drawing color (`PSPDFAnnotationToolbarModeDraw, PSPDFAnnotationToolbarModeRectangle, PSPDFAnnotationToolbarModeEllipse, PSPDFAnnotationToolbarModeLine, PSPDFAnnotationToolbarModePolygon, PSPDFAnnotationToolbarModePolyLine`).
-/// Defaults to `[UIColor colorWithRed:0.121f green:0.35f blue:1.f alpha:1.f]`
-/// @note PSPDFKit will save the last used drawing color in the NSUserDefaults.
-@property (nonatomic, strong) UIColor *drawColor;
-
-/// Default/current fill color (`PSPDFAnnotationToolbarModeDraw, PSPDFAnnotationToolbarModeRectangle, PSPDFAnnotationToolbarModeEllipse, PSPDFAnnotationToolbarModeLine, PSPDFAnnotationToolbarModePolygon, PSPDFAnnotationToolbarModePolyLine`).
-/// Defaults to nil.
-/// @note PSPDFKit will save the last used fill color in the NSUserDefaults.
-@property (nonatomic, strong) UIColor *fillColor;
-
-/// Current drawing line width. Defaults to 3.f
-@property (nonatomic, assign) CGFloat lineWidth;
-
-/// Starting line end type for lines and polylines.
-@property (nonatomic, assign) PSPDFLineEndType lineEnd1;
-
-/// Ending line end type for lines and polylines.
-@property (nonatomic, assign) PSPDFLineEndType lineEnd2;
-
-/// Font name for free text annotations.
-@property (nonatomic, copy) NSString *fontName;
-
-/// Font size for free text annotations.
-@property (nonatomic, assign) CGFloat fontSize;
-
-/// Text alignment for free text annotations.
-@property (nonatomic, assign) NSTextAlignment textAlignment;
+/// @name Behavior
 
 /// Enable to auto-hide toolbar after drawing finishes. Defaults to NO.
 @property (nonatomic, assign) BOOL hideAfterDrawingDidFinish;
@@ -124,63 +99,41 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 /// @note Since saving can take some time, this defaults to NO.
 @property (nonatomic, assign) BOOL saveAfterToolbarHiding;
 
-/// Enable to cause the toolbar to fade in and out. Defaults to YES.
-@property (nonatomic, assign) BOOL fadeToolbar;
-
-/// Enable to cause the toolbar to slide into place. Defaults to YES.
-/// @warning Only effective if fadeToolbar is set to YES.
-@property (nonatomic, assign) BOOL slideToolbar;
-
-/// Advanced property that allows you to customize how ink annotations are created.
-/// Set to NO to cause separate ink drawings in the same drawing session to result in separate ink annotations. Defaults to YES.
-@property (nonatomic, assign) BOOL combineInk;
+/// @name Styling
 
 /// Selected UIBarButtonItem tint color on iOS 7 and later.
 /// Has no effect on previous system versions.
-/// Defaults to barTintColor.
+/// Defaults to `barTintColor`.
 @property (nonatomic, strong) UIColor *selectedTintColor;
 
-/// Selected UIBarButtonItem background bezel color.
-/// Defaults to tintColor on iOS 7 and later and 50% white on previous versions.
+/// Selected `UIBarButtonItem` background bezel color.
+/// Defaults to `tintColor` on iOS 7 and later and 50% white on previous versions.
 @property (nonatomic, strong) UIColor *selectedBackgroundColor;
 
-// Dictionary keys for annotation groups
+// Dictionary keys for annotation groups.
 extern NSString *const PSPDFAnnotationGroupKeyChoice;
 extern NSString *const PSPDFAnnotationGroupKeyGroup;
 
 /// Annotations are grouped by default. Set to nil to disable grouping.
-/// Groups are defined as dictionaries containing arrays of editableAnnotationType-objects, paired with an index indicating the current choice within each array.
-/// Annotation types that are defined in the group but are missing in the `editableAnnotationTypes` will be ignored silently.
+/// Groups are defined as dictionaries containing arrays of `editableAnnotationType`-objects, paired with an index indicating the current choice within each array.
+/// Annotation types that are defined in the group but are missing in `annotationStateManager.editableAnnotationTypes` will be ignored silently.
 /// Use `PSPDFAnnotationGroupKeyChoice` and `PSPDFAnnotationGroupKeyGroup` as constants to configure the array.
 @property (nonatomic, copy) NSArray *annotationGroups;
 
-/// Allows custom `UIBarButtonItem` objects to be added after the buttons in `annotationGroups`. Defaults to nil.
+/// Allows custom `UIBarButtonItem` objects to be added after the buttons in `annotationGroups`.
+/// Defaults to nil.
 /// @note Do not insert space objects - this is managed by PSPDFKit.
 @property (nonatomic, copy) NSArray *additionalBarButtonItems;
 
-@end
-
-@interface PSPDFAnnotationToolbar (Advanced)
-
-/// By default, the toolbar position is top, so this defaults to `UIBarPositionTopAttached`.
-/// Set to `UIBarPositionBottom` if you're showing the toolbar at the bottom.
-/// @note This forwards to `positionForBar:` and is only evaluated in iOS 7 when the view is added to a window.
-@property (nonatomic, assign) UIBarPosition barPosition;
-
-// Parses the `editableAnnotationTypes` set from the document.
-// Per default this is the contents of the editableAnnotationTypes set in PSPDFDocument.
-// If set to nil, this will load from `pdfController.document.editableAnnotationTypes.allObjects`.
-@property (nonatomic, copy) NSOrderedSet *editableAnnotationTypes;
-
-// The Undo/Redo buttons.
-@property (nonatomic, strong, readonly) UIBarButtonItem *undoButtonItem;
-@property (nonatomic, strong, readonly) UIBarButtonItem *redoButtonItem;
+/// Matches the toolbar appearance to the toolbar styles defined inside the pdf controller (`tintColor`, `barStyle`, etc.).
+/// Called automatically when an annotation state manager is assigned and can be manually re-called to capture any PSPDFViewController style changes.
+- (void)matchAppearanceToPDFViewControllerAppearance:(PSPDFViewController *)pdfController;
 
 @end
 
 @interface PSPDFAnnotationToolbar (SubclassingHooks)
 
-// Toolbar might be used "headless" but for state management. Manually call buttons here.
+// Instead of calling these buttons, it's better you use the `PSPDFAnnotationStateManager`.
 - (void)textButtonPressed:(id)sender; // Note
 - (void)highlightButtonPressed:(id)sender;
 - (void)strikeoutButtonPressed:(id)sender;
@@ -199,19 +152,8 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 - (void)soundButtonPressed:(id)sender;
 - (void)eraserButtonPressed:(id)sender;
 - (void)selectiontoolButtonPressed:(id)sender;
-- (void)showStylePicker:(id)sender;
+- (void)colorButtonPressed:(id)sender;
 - (void)doneButtonPressed:(id)sender NS_REQUIRES_SUPER;
-
-// Only allowed during toolbar drawing mode (ink, line, polyline, polygon, circle, ellipse)
-- (void)cancelDrawingAnimated:(BOOL)animated;
-- (void)doneDrawingAnimated:(BOOL)animated;
-- (BOOL)undoDrawing:(id)sender;
-- (BOOL)redoDrawing:(id)sender;
-
-// While we're in drawing mode, undo/redo has a different state.
-- (void)updateUndoRedoButtons NS_REQUIRES_SUPER; // Called when the button states are changed.
-- (BOOL)canUndoDrawing; // YES if we can undo drawing
-- (BOOL)canRedoDrawing; // YES if we can redo drawing
 
 // Called each time the toolbar items are re-set.
 - (void)updateToolbarButtonsAnimated:(BOOL)animated;
@@ -223,21 +165,26 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 - (UIBarButtonItem *)backButtonItem;
 
 // Called anytime the drawing toolbar is taken down.
-- (void)hideAndRemoveToolbar; // calls [self hideAndRemoveToolbarAnimated:NO completion:nil]
 - (void)hideAndRemoveToolbarAnimated:(BOOL)animated completion:(void (^)(BOOL finished))completionBlock;
 
-// Color management.
-- (void)setLastUsedColor:(UIColor *)lastUsedDrawColor annotationString:(NSString *)annotationString;
-- (UIColor *)lastUsedColorForAnnotationString:(NSString *)annotationString;
+/// By default, the toolbar position is top, so this defaults to `UIBarPositionTopAttached`.
+/// Set to `UIBarPositionBottom` if you're showing the toolbar at the bottom.
+/// @note This forwards to `positionForBar:` and is only evaluated in iOS 7 when the view is added to a window.
+@property (nonatomic, assign) UIBarPosition barPosition;
 
-// Finish up drawing. Usually called by the drawing delegate.
-- (void)finishDrawingAnimated:(BOOL)animated saveAnnotation:(BOOL)saveAnnotation;
+// The Undo/Redo buttons.
+@property (nonatomic, strong, readonly) UIBarButtonItem *undoButtonItem;
+@property (nonatomic, strong, readonly) UIBarButtonItem *redoButtonItem;
 
-// Allows to override and hook into to create custom annotations.
-- (NSArray *)annotationsWithActionList:(NSArray *)actionList bounds:(CGRect)bounds page:(NSUInteger)page;
+@end
 
-// If we're in drawing mode, this dictionary contains the PSPDFDrawView classes that are overlaid on the `PSPDFPageView`.
-// The key is the current page.
-@property (nonatomic, strong, readonly) NSDictionary *drawViews;
+
+@interface PSPDFAnnotationToolbar (Deprecated)
+
+- (void)setLastUsedColor:(UIColor *)lastUsedDrawColor annotationString:(NSString *)annotationString PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
+- (UIColor *)lastUsedColorForAnnotationString:(NSString *)annotationString PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
+;
+@property (nonatomic, copy) NSString *toolbarMode PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
+;
 
 @end

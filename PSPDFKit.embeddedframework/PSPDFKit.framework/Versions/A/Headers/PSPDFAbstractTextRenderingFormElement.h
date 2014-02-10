@@ -65,6 +65,12 @@
 /// Font calculated from the various font settings and corrected for autoresizing.
 @property (nonatomic, assign, readonly) UIFont *font;
 
+// Helper that returns a font for `contents`. Useful for auto-sized form elements.
+- (UIFont *)fontWithContents:(NSString *)contents;
+
+// Returns YES if the form element has automatic font sizing.
+- (BOOL)isAutoSizedFont;
+
 /// (Optional; inheritable) The maximum length of the field’s text, in characters.
 @property (nonatomic, assign) NSUInteger maxLength;
 

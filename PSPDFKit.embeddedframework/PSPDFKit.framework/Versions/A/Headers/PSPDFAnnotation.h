@@ -109,16 +109,21 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationFlags) {
 
 // See PDF Reference 1.7, 423ff. PSPDFKit currently only supports the `PSPDFAnnotationTriggerEventMouseDown` event.
 typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
-    PSPDFAnnotationTriggerEventCursorEnters,  // E
-    PSPDFAnnotationTriggerEventCursorExits,   // X
-    PSPDFAnnotationTriggerEventMouseDown,     /// Supported, (D)
-    PSPDFAnnotationTriggerEventMouseUp,       // U
-    PSPDFAnnotationTriggerEventReceiveFocus,  // Fo
-    PSPDFAnnotationTriggerEventLooseFocus,    // Bl
-    PSPDFAnnotationTriggerEventPageOpened,    // PO
-    PSPDFAnnotationTriggerEventPageClosed,    // PC
-    PSPDFAnnotationTriggerEventPageVisible,   // PV
-    PSPDFAnnotationTriggerEventPageInvisible, // PI
+    PSPDFAnnotationTriggerEventCursorEnters,  // E  (0)
+    PSPDFAnnotationTriggerEventCursorExits,   // X  (1)
+    PSPDFAnnotationTriggerEventMouseDown,     // D  (2, Supported)
+    PSPDFAnnotationTriggerEventMouseUp,       // U  (3)
+    PSPDFAnnotationTriggerEventReceiveFocus,  // Fo (4)
+    PSPDFAnnotationTriggerEventLooseFocus,    // Bl (5)
+    PSPDFAnnotationTriggerEventPageOpened,    // PO (6)
+    PSPDFAnnotationTriggerEventPageClosed,    // PC (7)
+    PSPDFAnnotationTriggerEventPageVisible,   // PV (8)
+
+    // Form extensions
+    PSPDFAnnotationTriggerEventFormChanged,   // K  (9)
+    PSPDFAnnotationTriggerEventFieldFormat,   // F (10)
+    PSPDFAnnotationTriggerEventFormValidate,  // V (11)
+    PSPDFAnnotationTriggerEventFormCalculate, // C (12)
 };
 
 /**
@@ -273,6 +278,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 @property (nonatomic, copy) NSArray *dashArray;
 
 /// Rectangle of specific annotation. (PDF coordinates)
+/// @note Other properties might be adjusted, depending what `shouldTransformOnBoundingBoxChange` returns.
 @property (nonatomic, assign) CGRect boundingBox;
 
 /// Rotation property (should be a multiple of 90, but there are exceptions, e.g. for stamp annotations)
@@ -337,6 +343,17 @@ extern NSString *const PSPDFAnnotationMarginKey;       // `UIEdgeInsets`.
 
 /// Helper that converts the boundingBox to a rect usable in `PSPDFPageView`.
 - (CGRect)boundingBoxForPageViewBounds:(CGRect)pageBounds;
+
+/// Some annotations might change their points/lines/size when the bounding box changes.
+/// This returns NO by default.
+- (BOOL)shouldUpdatePropertiesOnBoundsChange;
+- (BOOL)shouldUpdateOptionalPropertiesOnBoundsChange;
+
+- (void)updatePropertiesWithTransform:(CGAffineTransform)transform isSizeChange:(BOOL)isSizeChange meanScale:(CGFloat)meanScale;
+- (void)updateOptionalPropertiesWithTransform:(CGAffineTransform)transform isSizeChange:(BOOL)isSizeChange meanScale:(CGFloat)meanScale;
+
+/// Manually controls if with setting the `boundingBox` it should be transformed as well.
+- (void)setBoundingBox:(CGRect)boundingBox transform:(BOOL)transform includeOptional:(BOOL)optionalProperties;
 
 /// Copy annotation object to `UIPasteboard` (multiple formats).
 - (void)copyToClipboard;

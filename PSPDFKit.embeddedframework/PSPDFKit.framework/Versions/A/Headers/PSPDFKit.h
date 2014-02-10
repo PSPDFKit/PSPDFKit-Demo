@@ -136,6 +136,7 @@ extern "C" {
 #import "PSPDFSelectionView.h"
 #import "PSPDFDrawView.h"
 #import "PSPDFAnnotationToolbar.h"
+#import "PSPDFAnnotationStateManager.h"
 #import "PSPDFSignatureViewController.h"
 #import "PSPDFStampViewController.h"
 #import "PSPDFFontSelectorViewController.h"

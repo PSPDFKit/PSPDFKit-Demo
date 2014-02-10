@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 /// Pauses the media.
 - (void)pause;
 
-/// Seet to `time`.
+/// Seek to `time`.
 - (void)seekToTime:(CMTime)time;
 
 /// If the media is currently playing, this returns YES.

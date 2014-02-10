@@ -13,6 +13,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreMedia/CMTime.h>
 
+@class PSPDFMediaPlayerSlider;
+
 /// The scrubber view used in `PSPDFMediaPlayerView`. This view displays a slider
 /// and two labels. The slider is used to display the current play progress and
 /// for seeking. The labels display the current time (= elapsed time) and the
@@ -33,6 +35,6 @@
 
 /// The slider. `value` is considered relative, so the range of
 /// `value` should be between 0.0 and 1.0.
-@property (nonatomic, strong, readonly) UISlider *slider;
+@property (nonatomic, strong, readonly) PSPDFMediaPlayerSlider *slider;
 
 @end

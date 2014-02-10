@@ -23,7 +23,8 @@
 /// Keep a reference at the annotation.
 @property (nonatomic, strong) PSPDFAnnotation *annotation;
 
-/// Access the original YouTube URL (e.g. http://www.youtube.com/watch?v=Vo0Cazxj_yc)
+/// Access the YouTube URL. Parsed when `annotation is set`.
+/// (e.g. http://www.youtube.com/watch?v=Vo0Cazxj_yc)
 @property (nonatomic, strong, readonly) NSURL *youTubeURL;
 
 /// Set if extracting the YouTube mp4 fails.
@@ -40,5 +41,12 @@
 
 /// Control YouTube plugin -> pause.
 - (void)pause;
+
+@end
+
+@interface PSPDFYouTubeAnnotationView (Private)
+
+// Helper that converts the YouTube URL into the correct format.
++ (NSURL *)convertYouTubeURLToEmbeddedURL:(NSURL *)youtubeURL;
 
 @end

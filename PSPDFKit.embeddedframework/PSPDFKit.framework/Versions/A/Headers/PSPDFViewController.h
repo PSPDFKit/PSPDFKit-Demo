@@ -27,7 +27,7 @@
 #import "PSPDFThumbnailBar.h"
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager;
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
@@ -554,6 +554,9 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 /// Enabling this will speed up controller dismissal.
 @property (nonatomic, assign) BOOL allowBackgroundSaving;
 
+
+@property (nonatomic, strong, readonly) PSPDFAnnotationStateManager *annotationStateManager;
+
 @end
 
 @interface PSPDFViewController (Toolbar)
@@ -597,6 +600,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 
 /// If added to the left/rightBarButtonItems, the position of the `additionalRightBarButtonItems` action button can be customized.
 /// By default this button is added to the rightBarButtonItems on the left. Button only visible if `additionalRightBarButtonItems.count > 1`.
+/// @note Most implementations should use the more modern `activityButtonItem` instead.
 /// @warning Do not add this to `additionalRightBarButtonItems`.
 @property (nonatomic, strong, readonly) PSPDFMoreBarButtonItem *additionalActionsButtonItem;
 

@@ -15,6 +15,18 @@
 
 @class PSPDFResizableView, PSPDFAnnotation, PSPDFPageView;
 
+typedef NS_ENUM(NSUInteger, PSPDFResizableViewOuterKnob) {
+    PSPDFResizableViewOuterKnobUnknown,
+    PSPDFResizableViewOuterKnobTopLeft,
+    PSPDFResizableViewOuterKnobTopMiddle,
+    PSPDFResizableViewOuterKnobTopRight,
+    PSPDFResizableViewOuterKnobMiddleLeft,
+    PSPDFResizableViewOuterKnobMiddleRight,
+    PSPDFResizableViewOuterKnobBottomLeft,
+    PSPDFResizableViewOuterKnobBottomMiddle,
+    PSPDFResizableViewOuterKnobBottomRight
+};
+
 /// Delegate to be notified on session begin/end and frame changes.
 @protocol PSPDFResizableViewDelegate <NSObject>
 
@@ -24,7 +36,7 @@
 - (void)resizableViewDidBeginEditing:(PSPDFResizableView *)resizableView;
 
 /// Called after frame change.
-- (void)resizableViewChangedFrame:(PSPDFResizableView *)resizableView;
+- (void)resizableViewChangedFrame:(PSPDFResizableView *)resizableView outerKnobType:(PSPDFResizableViewOuterKnob)outerKnobType;
 
 /// The editing session has ended.
 - (void)resizableViewDidEndEditing:(PSPDFResizableView *)resizableView;

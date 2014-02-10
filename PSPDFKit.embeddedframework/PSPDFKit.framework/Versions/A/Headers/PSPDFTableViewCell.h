@@ -30,10 +30,8 @@
 // Simple subclass that disables animations during `layoutSubviews` if the popover is being resized.
 // This fixes an unexpected animation when the tableView is updated while a popover resizes.
 @interface PSPDFNonAnimatingTableViewCell : PSPDFTableViewCell
-
 @end
 
 // Never allows animations during `layoutSubviews`.
 @interface PSPDFNeverAnimatingTableViewCell : PSPDFTableViewCell
-
 @end

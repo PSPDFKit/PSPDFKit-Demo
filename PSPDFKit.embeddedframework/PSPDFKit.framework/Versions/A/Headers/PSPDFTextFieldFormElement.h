@@ -42,10 +42,20 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 /// @note Evaluates `PSPDFTextFieldFlagPassword` in the `fieldFlags`.
 - (BOOL)isPassword;
 
+/// @name Formatting Options
+
+/// Returns the content formatted in the way specified in the form element.
+- (NSString *)formattedContents;
+
+/// Validates the content according to the `formatString` set.
+/// See http://www.pdfill.com/download/FormsAPIReference.pdf for details.
+/// @warning This is still a work in progress.
+- (BOOL)validateContents:(NSString *)contents error:(NSError **)validationError;
+
 /// The input format. Some forms are number/date/time specific.
 @property (nonatomic, assign) PSPDFTextInputFormat inputFormat;
 
-/// The validation format string. (WIP)
+/// The validation format string.
 @property (nonatomic, copy) NSString *formatString;
 
 @end

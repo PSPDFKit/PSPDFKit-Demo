@@ -110,6 +110,9 @@
 /// If you set this externally, do this ONLY in your subclass of `PSPDFDocument` in `didCreateDocumentProvider:`.
 @property (nonatomic, strong) PSPDFLabelParser *labelParser;
 
+/// Get the XMP metadata in XML format, if there is any.
+- (NSString *)XMPMetadata;
+
 @end
 
 @interface PSPDFDocumentProvider (PageRange)

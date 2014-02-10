@@ -74,4 +74,7 @@ typedef NS_ENUM(NSUInteger, PSPDFVerticalAlignment) {
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL enableHorizontalResizing;
 
+/// Optionally transforms the boundingBox and re-calculates the text size with it.
+- (void)setBoundingBox:(CGRect)boundingBox transformSize:(BOOL)transformSize;
+
 @end

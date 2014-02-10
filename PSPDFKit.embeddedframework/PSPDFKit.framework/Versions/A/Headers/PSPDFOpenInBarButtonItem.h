@@ -13,6 +13,11 @@
 #import "PSPDFBarButtonItem.h"
 #import "PSPDFDocumentSharingViewController.h"
 
+// These notifications represent a small subset of `UIDocumentInteractionControllerDelegate` (but the most important ones)
+// To get all callbacks, subclass PSPDFOpenInBarButtonItem and implement the callbacks (and also call super)
+extern NSString *const PSPDFDocumentInteractionControllerWillBeginSendingToApplicationNotification;
+extern NSString *const PSPDFDocumentInteractionControllerDidEndSendingToApplicationNotification;
+
 @class PSPDFDocument;
 
 /// Open in is only possible if the `PSPDFDocument` is backed by exactly one file-based PDF.

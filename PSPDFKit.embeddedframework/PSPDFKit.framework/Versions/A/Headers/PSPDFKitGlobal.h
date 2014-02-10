@@ -22,17 +22,19 @@
 #define __PSPDFKIT_3_1_0 3100
 #define __PSPDFKIT_3_2_0 3200
 #define __PSPDFKIT_3_3_0 3300
+#define __PSPDFKIT_3_4_0 3400
+#define __PSPDFKIT_3_5_0 3500
 
 extern NSString *PSPDFVersionString(void); // Returns "PSPDFKit 3.x.x"
 extern NSDate   *PSPDFVersionDate(void);   // Returns compilation date.
 
-typedef NS_ENUM(NSInteger, PSPDFLogLevelMask) {
+typedef NS_ENUM(NSUInteger, PSPDFLogLevelMask) {
     PSPDFLogLevelMaskNothing  = 0,
     PSPDFLogLevelMaskError    = 1 << 0,
     PSPDFLogLevelMaskWarning  = 1 << 1,
     PSPDFLogLevelMaskInfo     = 1 << 2,
     PSPDFLogLevelMaskVerbose  = 1 << 3,
-    PSPDFLogLevelMaskAll      = INT_MAX
+    PSPDFLogLevelMaskAll      = UINT_MAX
 };
 
 /// Set the global PSPDFKit log level. Defaults to `PSPDFLogLevelMaskError|PSPDFLogLevelMaskWarning`.

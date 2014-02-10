@@ -13,10 +13,6 @@
 #import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
-// This flag will be set to boolean `@YES` via an associated property during popover resizing.
-// Can be used to prevent stray cell animations when the popover animation shows new cells.
-extern const char PSPDFTableViewIsResizing;
-
 /// Generic table view controller with popover resizing code.
 @interface PSPDFBaseTableViewController : UITableViewController
 

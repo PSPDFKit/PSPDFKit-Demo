@@ -233,7 +233,7 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 - (BOOL)removeAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 /// Select annotation and show the menu for it
-- (void)selectAnnotaton:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
+- (void)selectAnnotation:(PSPDFAnnotation *)annotation animated:(BOOL)animated;
 
 @end
 
@@ -283,5 +283,8 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 - (void)annotationsAddedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 - (void)annotationsRemovedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 - (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
+
+// Customize if the `annotation` object should also transform the properties.
+- (BOOL)shouldScaleAnnotationWhenResizing:(PSPDFAnnotation *)annotation;
 
 @end
