@@ -13,6 +13,7 @@
 // Basic viewController subclass that handles popovers.
 @interface PSCBasicViewController : PSPDFBaseViewController <UIPopoverControllerDelegate>
 
+// The popover controller.
 @property (nonatomic, strong) UIPopoverController *popoverController;
 
 // Helper to close a modal view

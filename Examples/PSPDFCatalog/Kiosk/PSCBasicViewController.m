@@ -9,6 +9,7 @@
 //
 
 #import "PSCBasicViewController.h"
+#import "PSCAvailability.h"
 
 #if !__has_feature(objc_arc)
 #error "Compile this file with ARC"
