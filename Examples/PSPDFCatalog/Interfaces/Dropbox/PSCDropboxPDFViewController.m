@@ -101,12 +101,12 @@
 
 - (void)outlineButtonPressed:(UIButton *)sender {
     PSPDFOutlineViewController *outlineViewController = [[PSPDFOutlineViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentModalOrInPopover:outlineViewController embeddedInNavigationController:!PSCIsIPad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAllowedPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
+    [self presentModalOrInPopover:outlineViewController embeddedInNavigationController:!PSCIsIPad() withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
 }
 
 - (void)searchButtonPressed:(UIButton *)sender {
     PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:self.document delegate:self];
-    [self presentModalOrInPopover:searchController embeddedInNavigationController:NO withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionAllowedPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
+    [self presentModalOrInPopover:searchController embeddedInNavigationController:NO withCloseButton:YES animated:YES sender:sender options:@{PSPDFPresentOptionPopoverArrowDirections : @(UIPopoverArrowDirectionUp)}];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
