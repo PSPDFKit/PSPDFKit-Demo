@@ -150,6 +150,12 @@
 /// Return YES if metadata is already parsed.
 @property (nonatomic, assign, readonly, getter=isMetadataLoaded) BOOL metadataLoaded;
 
+/// For optimization reasons, the internal documentRef might be cached.
+/// This force-clears the cache.
+/// @return YES if document could be flushed instantly (or was already nil), NO otherwise.
+/// @note This can also be used if the backing store file didn't exist and was just added, to force a re-try on document loading.
+- (BOOL)flushDocumentReference;
+
 @end
 
 @interface PSPDFDocumentProvider (SubclassingHooks)

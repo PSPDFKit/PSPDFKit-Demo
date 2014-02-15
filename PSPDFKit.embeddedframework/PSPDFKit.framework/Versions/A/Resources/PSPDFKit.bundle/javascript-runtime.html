@@ -43,7 +43,7 @@ function PDF()
 }
 
 
-// Here we set a PDF object as a global object.
+// Here we set the PDF object as a global object.
 // Other such objects are loaded in loadGlobals() where the standard objects are loaded
 
 window.pdf = new PDF();
@@ -116,13 +116,14 @@ function sizeArray(arr)
         this.clearItems = function(){
           
           this.items = [];
-          pdf.model['fields'][this.name]['items'] = [];
-          
+          pdf.model['fields'][this.name]['options'] = [];
+          pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
         }
 
         this.insertItemAt = function(cName,nIdx){
           this.items[nIdx] = cName;
-          pdf.model['fields'][this.name]['items'] = this.items;
+          pdf.model['fields'][this.name]['options'] = this.items;
+          pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
         }
     }
     
@@ -178,6 +179,8 @@ function sizeArray(arr)
         this.__defineGetter__("language", function(){
                               return "ENU";
                               /*
+                               TODO: get this information from the client app.
+
                               CHS Chinese Simplified
                               CHT Chinese Traditional
                               DAN Danish

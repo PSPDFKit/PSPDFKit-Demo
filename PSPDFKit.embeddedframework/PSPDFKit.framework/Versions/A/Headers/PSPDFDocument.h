@@ -415,6 +415,7 @@ extern NSString *const PSPDFDocumentWillSaveAnnotationsNotification;
 
 /// Control if and where PSPDFObjectsAnnotationKey are saved.
 /// Possible options are `PSPDFAnnotationSaveModeDisabled`, `PSPDFAnnotationSaveModeExternalFile`, `PSPDFAnnotationSaveModeEmbedded` and `PSPDFAnnotationSaveModeEmbeddedWithExternalFileAsFallback`. (Default)
+/// @note PSPDFKit automatically saves the document for various events. See `autosaveEnabled` in `PSPDFViewController`.
 @property (nonatomic, assign) PSPDFAnnotationSaveMode annotationSaveMode;
 
 /// Default annotation username for new annotations. Defaults to the device name.

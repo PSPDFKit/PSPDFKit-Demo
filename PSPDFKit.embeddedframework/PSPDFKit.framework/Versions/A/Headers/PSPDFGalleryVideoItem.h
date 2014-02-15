@@ -11,11 +11,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import "PSPDFGalleryItem.h"
-#import "PSPDFRemoteContentObject.h"
 
-/// A video item in a gallery.
-@interface PSPDFGalleryVideoItem : PSPDFGalleryItem <PSPDFRemoteContentObject>
+typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemQuality) {
+    PSPDFGalleryVideoItemQualityUnknown,
+    PSPDFGalleryVideoItemQuality240p,
+	PSPDFGalleryVideoItemQuality360p,
+	PSPDFGalleryVideoItemQuality720p,
+	PSPDFGalleryVideoItemQuality1080p
+};
+
+/// Converts a string into `PSPDFGalleryVideoItemQuality`.
+extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSString *string);
+
+/// A video item in a gallery. This class uses the class cluster design pattern.
+@interface PSPDFGalleryVideoItem : PSPDFGalleryItem
+
+/// @name Options
 
 /// Indicates if the item should start playing automatically. Defaults to `NO`.
 @property (nonatomic, assign) BOOL autoplayEnabled;
@@ -26,15 +39,42 @@
 /// Indicates if the playback should loop. Defaults to `NO`.
 @property (nonatomic, assign) BOOL loopEnabled;
 
-/// The URL of an image that should be displayed as the cover view as specified in the options.
-/// If this is nil, no cover image will be displayed. Defaults to `nil`.
-@property (nonatomic, strong) NSURL *coverImageURL;
+/// Contains the order of the prefered video qualities. This only works for videos where
+/// the source is capable of providing different qualities.
+@property (nonatomic, copy, readonly) NSArray *preferedQualities;
 
-/// The cover images if it has been downloaded.
-@property (nonatomic, strong, readonly) UIImage *coverImage;
+/// @name Content
 
-// PSPDFRemoteContentObject
-@property (nonatomic, strong) UIImage *remoteContent;
-@property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
+/// The cover image URL.
+@property (nonatomic, strong, readonly) NSURL *coverImageURL;
+
+/// An `PSPDFGalleryVideoItem` has an URL to a video as its content.
+- (NSURL *)content;
 
 @end
+
+@interface PSPDFGalleryVideoItem (Protected)
+
+// This method is the designated initializer for all internal classes of the class cluster.
+- (id)initInternallyWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
+
+@property (nonatomic, strong, readwrite) NSURL *coverImageURL;
+
+@end
+
+/// @name Constants
+
+/// Boolean. Indicates if the content should automatically start playing.
+extern NSString *const PSPDFGalleryOptionAutoplay;
+
+/// Boolean. Indicates if controls should be displayed.
+extern NSString *const PSPDFGalleryOptionControls;
+
+/// Boolean. Indicates if the content should loop forever.
+extern NSString *const PSPDFGalleryOptionLoop;
+
+/// NSURL. Indicates which image should be presented as a cover view.
+extern NSString *const PSPDFGalleryOptionCover;
+
+/// NSArray. The prefered video qualities.
+extern NSString *const PSPDFGalleryOptionPreferedVideoQualities;

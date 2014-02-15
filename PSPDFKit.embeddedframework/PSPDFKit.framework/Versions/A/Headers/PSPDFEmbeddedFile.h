@@ -18,7 +18,7 @@
 @interface PSPDFEmbeddedFile : PSPDFModel
 
 /// Designated initializer.
-- (id)initWithFileName:(NSString *)fileName size:(NSUInteger)fileSize description:(NSString *)description modificationDate:(NSDate *)modificationDate index:(NSUInteger)index;
+- (id)initWithFileName:(NSString *)fileName size:(NSUInteger)fileSize description:(NSString *)description modificationDate:(NSDate *)modificationDate streamPath:(NSString *)streamPath;
 
 /// File name.
 @property (nonatomic, copy, readonly) NSString *fileName;

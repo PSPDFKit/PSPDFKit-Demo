@@ -35,6 +35,10 @@ extern Class PSPDFStyleManagerClass;
 /// @note If you want to disable automatic style saving, set this to nil.
 @property (atomic, copy) NSSet *styleKeys;
 
+/// When annotations are changed and this is enabled, the defaults are updated accordingly.
+/// This defaults to YES.
+@property (nonatomic, assign) BOOL shouldUpdateDefaultsForAnnotationChanges;
+
 /// Returns the 'last used' annotation style, a special variant that is kept per annotation string type.
 /// Might return nil if there isn't anything saved yet.
 - (NSArray *)stylesForKey:(NSString *)key;

@@ -16,7 +16,7 @@
 @class PSPDFDocument, PSPDFOutlineViewController, PSPDFOutlineElement, PSPDFOutlineCell;
 
 /// Delegate for the `PSPDFOutlineViewController`.
-@protocol PSPDFOutlineViewControllerDelegate <NSObject>
+@protocol PSPDFOutlineViewControllerDelegate <PSPDFOverridable>
 
 /// Called when we tapped on a cell in the `outlineController`.
 /// Return NO if event is not processed.
@@ -62,8 +62,5 @@
 
 // Cell delegate - expand/shrink content.
 - (void)outlineCellDidTapDisclosureButton:(PSPDFOutlineCell *)cell;
-
-// Allows to change the `outlineCell` class. Defaults to `PSPDFOutlineCell.class`.
-@property (nonatomic, strong) Class outlineCellClass;
 
 @end

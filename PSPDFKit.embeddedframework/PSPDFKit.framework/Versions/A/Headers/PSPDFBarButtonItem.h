@@ -34,8 +34,7 @@
 /// Returns if any of the bar button items is active. Takes UIKit-managed popovers into account.
 + (BOOL)isPopoverVisible;
 
-/// Init with pdfController reference (later calls `presentModalViewController:embeddedInNavigationController:withCloseButton:animated:`)
-/// @note This is the only allowed contructor for `PSPDFBarButtonItem`.
+/// Designated initializer.
 - (id)initWithPDFViewController:(PSPDFViewController *)pdfViewController;
 
 /// Attached PDF controller. (weak, do not use KVO on it!)

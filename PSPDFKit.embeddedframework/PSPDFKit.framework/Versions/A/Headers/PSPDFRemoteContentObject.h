@@ -25,11 +25,11 @@
 /// The loading state of the object. This property is managed by `PSPDFDownloadManager`.
 @property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
 
-/// The download progress of the object. Only meaningful if loadingRemoteContent is YES.
-/// This property is managed by PSPDFDownloadManager.
+/// The download progress of the object. Only meaningful if `loadingRemoteContent` is YES.
+/// This property is managed by `PSPDFDownloadManager`.
 @property (nonatomic, assign) CGFloat remoteContentProgress;
 
-/// The remote content error of the object. This property is managed by PSPDFDownloadManager.
+/// The remote content error of the object. This property is managed by `PSPDFDownloadManager`.
 @property (nonatomic, strong) NSError *remoteContentError;
 
 /// Return YES if you want `PSPDFDownloadManager` to cache the remote content. Defaults to NO.
@@ -48,8 +48,10 @@
 - (NSValueTransformer *)valueTransformerForRemoteContent;
 
 /// Return `YES` if the object actually has remote content. Since most `PSPDFRemoteContentObject`s
-/// will have remote content, this method is optional. If it is not implemented, `YES` will be
-/// assumed.
+/// will have remote content, this method is optional. If it is not implemented, `YES` will be assumed.
 - (BOOL)hasRemoteContent;
+
+/// The completion block, called after loading finished.
+@property (nonatomic, copy) void (^completionBlock)(id <PSPDFRemoteContentObject> remoteObject);
 
 @end

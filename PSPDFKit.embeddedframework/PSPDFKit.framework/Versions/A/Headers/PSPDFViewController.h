@@ -490,30 +490,27 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Returns YES if the document is at the first page.
 - (BOOL)isFirstPage;
 
-/// Returns the topmost, active view controller.
-/// If you get effects like the email controller not appearing at all, override this and return the controller where modal controllers can be pushed onto. (Try "return self" first)
-- (UIViewController *)masterViewController;
-
 @end
 
 @interface PSPDFViewController (Presentation)
 
-extern NSString *const PSPDFPresentOptionRect;                          // target rect, if sender is nil for `UIPopoverController`
-extern NSString *const PSPDFPresentOptionPopoverContentSize;            // content size for `UIPopoverController`
-extern NSString *const PSPDFPresentOptionAllowedPopoverArrowDirections; // customize default arrow directions for popover.
-extern NSString *const PSPDFPresentOptionModalPresentationStyle;        // overrides UIPopoverController if set.
-extern NSString *const PSPDFPresentOptionAlwaysModal;                   // don't use UIPopoverController, even on iPad.
-extern NSString *const PSPDFPresentOptionAlwaysPopover;                 // show as popover, even on iPhone. (limited functionality!)
-extern NSString *const PSPDFPresentOptionPassthroughViews;              // customizes the click-through views.
-extern NSString *const PSPDFPresentOptionWillDismissBlock;              // dispatch_block_t called when the popover is being dismissed.
-extern NSString *const PSPDFPresentOptionHalfModalMode;                 // Shows a VC on 50% of the screen. Used for the inspector on iPhone.
-extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set to enable a persistent close button.
+extern NSString *const PSPDFPresentOptionRect;                      // Target rect, if sender is nil for `UIPopoverController`
+extern NSString *const PSPDFPresentOptionPopoverContentSize;        // Content size for `UIPopoverController`
+extern NSString *const PSPDFPresentOptionPopoverArrowDirections;    // Customize default arrow directions for popover.
+extern NSString *const PSPDFPresentOptionModalPresentationStyle;    // Overrides UIPopoverController if set.
+extern NSString *const PSPDFPresentOptionAlwaysModal;               // Always present modally
+extern NSString *const PSPDFPresentOptionAlwaysPopover;             // Show as popover, even on iPhone. (limited functionality!)
+extern NSString *const PSPDFPresentOptionHalfModalMode;             // Shows a VC on 50% of the screen.
+extern NSString *const PSPDFPresentOptionPassthroughViews;          // Customize the popover click-through views.
+extern NSString *const PSPDFPresentOptionWillDismissBlock;          // Block called when the controller is being dismissed.
+extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to enable a persistent close button.
 
 /// Show a modal view controller or a popover with automatically added close button on the left side.
 /// Use sender (`UIBarButtonItem` or `UIView`) OR rect in options (both only needed for the popover)
 - (id)presentModalOrInPopover:(UIViewController *)controller embeddedInNavigationController:(BOOL)embedded withCloseButton:(BOOL)closeButton animated:(BOOL)animated sender:(id)sender options:(NSDictionary *)options;
 
-/// Dismiss popover IF it matches `class`. Set class to nil to dismiss all popover types.
+/// Dismiss popover if it matches `class`. Set class to nil to dismiss all popover types.
+/// @note Will also dismiss the half modal controller.
 - (BOOL)dismissPopoverAnimated:(BOOL)animated class:(Class)popoverClass completion:(dispatch_block_t)completion;
 
 @end
@@ -729,6 +726,9 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode;     // Set t
 // Return page numbers that are visible. Only returns the current set page in continuous scroll mode
 // Useful to get exact pages for double page mode.
 - (NSArray *)calculatedVisiblePageNumbers;
+
+// Reload a specific page.
+- (void)updatePage:(NSUInteger)page animated:(BOOL)animated;
 
 @end
 

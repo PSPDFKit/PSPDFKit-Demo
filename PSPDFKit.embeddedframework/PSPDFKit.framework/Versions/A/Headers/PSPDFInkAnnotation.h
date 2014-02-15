@@ -41,7 +41,7 @@
 
 @end
 
-// Helper to convert `UIBezierPath` into an array of lines (of `CGPoints` inside `NSValues`).
+// Helper to convert `UIBezierPath` into an array of points (of `CGPoints` inside `NSValues`).
 NSArray *PSPDFBezierPathGetPoints(UIBezierPath *path);
 
 // Calculates the bounding box from lines.

@@ -62,7 +62,6 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @property (nonatomic, copy) NSString *searchText;
 
 /// Different behavior depending on iPhone/iPad (on the iPhone, the controller is modal, else in a `UIPopoverController`)
-/// @note This is set from PSPDFViewController in `presentModalViewController:embeddedInNavigationController:withCloseButton:animated`.
 @property (nonatomic, assign) BOOL showsCancelButton;
 
 /// Search bar for controller.

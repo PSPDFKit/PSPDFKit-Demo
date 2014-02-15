@@ -36,6 +36,7 @@
 @property (nonatomic, copy) NSString *localizedSubject;
 
 /// Stamp image. Defaults to nil. Set to render an image.
+/// @note An image set will take priority over the internal appearance stream.
 @property (nonatomic, strong) UIImage *image;
 
 /// Parses the AP stream, searches for an image and loads it.

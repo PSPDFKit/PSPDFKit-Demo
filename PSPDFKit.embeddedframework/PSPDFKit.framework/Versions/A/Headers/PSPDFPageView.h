@@ -239,6 +239,9 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 
 @interface PSPDFPageView (SubclassingHooks)
 
+// Called before the page view is reused.
+- (void)prepareForReuse;
+
 // Internally used to add annotations.
 - (void)insertAnnotations:(NSArray *)annotations forPage:(NSUInteger)page inDocument:(PSPDFDocument *)document;
 

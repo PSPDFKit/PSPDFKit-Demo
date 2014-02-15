@@ -23,11 +23,11 @@
 /// Attached document provider.
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
-/// A collection of all forms in AcroForm. Lazily evaluated.
+/// A collection of all forms (`PSPDFFormElement`) in AcroForm. Lazily evaluated.
 /// @warning Due to implementation details, make sure you first access the annotations before using this property.
 @property (nonatomic, copy) NSArray *forms;
 
-/// Finds a form element with its field name. nil if not found.
+/// Finds a form element with its field name. Returns nil if not found.
 - (PSPDFFormElement *)findAnnotationWithFieldName:(NSString *)fieldName;
 
 @end

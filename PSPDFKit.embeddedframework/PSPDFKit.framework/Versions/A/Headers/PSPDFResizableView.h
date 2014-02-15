@@ -128,6 +128,9 @@ typedef NS_ENUM(NSUInteger, PSPDFResizableViewMode) {
 /// Guide color. Defaults to `UIColor.pspdf_guideColor`.
 @property (nonatomic, strong) UIColor *guideBorderColor;
 
+/// Corner radius size. Defaults to 2.f.
+@property (nonatomic, assign) NSUInteger cornerRadius;
+
 // forward parent gesture recognizer longPress action.
 - (BOOL)longPress:(UILongPressGestureRecognizer *)recognizer;
 

@@ -20,8 +20,9 @@
 
  This button checks if the annotations can be saved (according to the `annotationSaveMode` setting in `PSPDFDocument`)
  For example, if the PDF is NOT writable but you're setting `PSPDFAnnotationSaveModeEmbedded`, the button will be disabled.
+ However, this button will always be visible if the save mode is set to `PSPDFAnnotationSaveModeDisabled`.
+ In that case we assume that annotations are only meant as temporary notes.
 
- The button will be hidden when you're setting `PSPDFAnnotationSaveModeDisabled`.
  If you implement custom saving logic, either set `annotationSaveMode` to `PSPDFAnnotationSaveModeExternalFile` and override the load/save methods in `PSPDFAnnotationManager`, or override `PSPDFAnnotationBarButtonItem` and return `YES` on `isAvailable`. (a good implementation would be 'return `self.pdfController.document.isValid`'.
 
  The annotation toolbar will be displayed on top of the `navigationController's` `navigationBar` - if it's visible.

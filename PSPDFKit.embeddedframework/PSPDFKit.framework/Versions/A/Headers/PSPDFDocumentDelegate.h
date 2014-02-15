@@ -12,9 +12,9 @@
 
 #import "PSPDFKitGlobal.h"
 
-@class PSPDFViewController;
+@class PSPDFViewController, PSPDFDocumentProvider;
 
-/// Delegate to receive events regarding PSPDFDocument.
+/// Delegate to receive events regarding `PSPDFDocument`.
 @protocol PSPDFDocumentDelegate <NSObject>
 
 @optional
@@ -25,6 +25,11 @@
 
 /// Allow resolving custom path tokens (Documents, Bundle are automatically resolved; you can add e.g. Book and resolve this here). Will only get called for unknown tokens.
 - (NSString *)pdfDocument:(PSPDFDocument *)document resolveCustomAnnotationPathToken:(NSString *)pathToken; // return nil if unknown.
+
+/// Called before the save process is started. Will assume YES if not implemented.
+/// Might be called multiple times during a save process if the document contains multiple document providers.
+/// @warning Might be called from a thread.
+- (BOOL)pdfDocument:(PSPDFDocument *)document provider:(PSPDFDocumentProvider *)documentProvider shouldSaveAnnotations:(NSArray *)annotations;
 
 /// Called after saving was successful.
 /// If there are no dirty annotations, delegates will not be called.

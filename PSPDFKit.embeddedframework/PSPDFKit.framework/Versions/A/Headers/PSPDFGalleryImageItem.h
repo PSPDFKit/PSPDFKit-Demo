@@ -11,24 +11,11 @@
 //
 
 #import "PSPDFGalleryItem.h"
-#import "PSPDFRemoteContentObject.h"
 
 /// An image item in a gallery.
-@interface PSPDFGalleryImageItem : PSPDFGalleryItem <PSPDFRemoteContentObject>
+@interface PSPDFGalleryImageItem : PSPDFGalleryItem
 
-/// @name PSPDFRemoteContentObject
-
-/// The remote content of the object. This property is managed by `PSPDFDownloadManager`.
-@property (nonatomic, strong) UIImage *remoteContent;
-
-/// The loading state of the object. This property is managed by `PSPDFDownloadManager`.
-@property (nonatomic, assign, getter = isLoadingRemoteContent) BOOL loadingRemoteContent;
-
-/// The download progress of the object. Only meaningful if `loadingRemoteContent` is YES.
-/// This property is managed by `PSPDFDownloadManager`.
-@property (nonatomic, assign) CGFloat remoteContentProgress;
-
-/// The remote content error of the object. This property is managed by `PSPDFDownloadManager`.
-@property (nonatomic, strong) NSError *remoteContentError;
+/// An `PSPDFGalleryImageItem` has an `UIImage` as its content.
+- (UIImage *)content;
 
 @end

@@ -4,23 +4,28 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
-__v3.5.1 - 14/Feb/2014__
+__v3.5.1 - 15/Feb/2014__
 
 *  New property in the `PSPDFStyleManager` to control if changes to annotations should be saved as the new defaults: `shouldUpdateDefaultsForAnnotationChanges`.
 *  Expose `cornerRadius` in `PSPDFResizableView` to customize the border appearance.
 *  Behavior Change: Setting the `annotationSaveMode` to `PSPDFAnnotationSaveModeDisabled` will no longer disable annotation editing features. To disable annotation editing, set the `editableAnnotationTypes` property of the `PSPDFDocument` to nil instead.
 *  Adds a new delegate "pdfDocument:provider:shouldSaveAnnotations:" to allow a more fine-grained control over the saving process.
 *  No longer removes unknown views from `PSPDFPageView`. Use `prepareForReuse` to manually clean up if you subclass `PSPDFPageView`.
-*  Improves compatibility with Embedded PDF Files.
+*  Improves compatibility with embedded PDF files.
 *  Ensures that document metadata is preserved after writing annotations or forms.
 *  Improves compatibility with annotation or form writing for certain less commonly used PDF subformats.
+*  Improves several UI details for iOS 7 legacy mode. (`UIUseLegacyUI` or compiled with SDK 6. This mode is not recommended, but will work.)
+*  The `PSPDFGallery` can now display YouTube videos. This will most likely replace `PSPDFYouTubeAnnotationView` in future versions.
+*  The XFDF parser can now load images within appearance streams from Adobe Acrobat.
+*  Fixes an issue on iOS 6 where the gradient background for the page position label could be too small.
+*  Fixes a stability issue on iOS 6 related to `PSPDFBarButtonItem` tint color updating.
 *  Fixes an issue that prevented to hide the thumbnail bar in `PSPDFThumbnailBarModeScrollable` unless `PSPDFHUDViewAnimationSlide` was also set.
 *  Fixes some tiny memory leaks on error situations.
-*  Fixes an issue related to re-using `PSPDFSearchViewController`.
+*  Fixes an issue related to re-using `PSPDFSearchViewController`. Thos only happend in custom code, as PSPDFKit recreates this controller as needed.
 *  Fixes an issue where subclasses of `PSPDFFileAnnotationProvider` could encounter immutable objects where mutable objects were expected.
 *  Fixes a stability issue related to autodetecting link types.
-*  Fixes a rare crash on iOS 6 related to `PSPDFBarButtonItem` tint color updating.
 *  Fixes an issue related to exporting apperance streams via XFDF.
+*  Fixes an issue where image stamp annotations in rotated documents could have an incorrect transform applied when saved via `PSPDFProcessor`.
 
 __v3.5.0 - 10/Feb/2014__
 

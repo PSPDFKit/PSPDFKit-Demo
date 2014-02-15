@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFGradientView.h"
 
 @class PSPDFViewController;
 
@@ -44,5 +45,7 @@ typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
 
 // Override to change KVO observers.
 - (NSArray *)KVOValues;
+
+@property (nonatomic, strong, readonly) PSPDFGradientView *gradientView; // iOS 6 gradient
 
 @end

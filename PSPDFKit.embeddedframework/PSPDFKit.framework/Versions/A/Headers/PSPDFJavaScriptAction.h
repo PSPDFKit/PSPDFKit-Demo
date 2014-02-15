@@ -24,6 +24,12 @@
 @property (nonatomic, copy) NSString *script;
 
 /// Tries to execute the JavaScript in the context of a view controller.
-- (void)executeScriptAppliedToViewController:(PSPDFViewController *)viewController;
+/// Execution is asynchronous and calls the passed completion block when complete
+- (void)executeScriptAppliedToViewController:(PSPDFViewController *)viewController finished:(void (^)())done;
+
+/// Tries to execute an arbirary script not attached to a specific action in the context of a view controller.
+/// Execution is asynchronous and calls the passed completion block when complete
+/// Used for testing purposes. Do not use for scripts that ref Event objects.
++ (void)executeScript:(NSString *)script appliedToViewController:(PSPDFViewController *)viewController finished:(void (^)())done;
 
 @end

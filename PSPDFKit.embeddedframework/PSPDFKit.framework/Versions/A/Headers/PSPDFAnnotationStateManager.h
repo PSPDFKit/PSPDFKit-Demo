@@ -132,6 +132,13 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 
 @end
 
+@interface PSPDFAnnotationStateManager (StateHelper)
+
+- (BOOL)isDrawingState:(NSString *)state;
+- (BOOL)isHighlightAnnotationState:(NSString *)state;
+
+@end
+
 @interface PSPDFAnnotationStateManager (SubclassingHooks)
 
 // Only allowed in drawing state (ink, line, polyline, polygon, circle, ellipse)

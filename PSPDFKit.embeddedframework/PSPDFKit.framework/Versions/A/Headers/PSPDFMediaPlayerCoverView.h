@@ -12,11 +12,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class PSPDFRemoteImageView;
+
 /// If the cover option is set, this is showed until the play button is pressed.
 @interface PSPDFMediaPlayerCoverView : UIView
 
 /// The cover image (might be w/o actual image set)
-@property (nonatomic, strong) UIImageView *coverImage;
+@property (nonatomic, strong) PSPDFRemoteImageView *coverImage;
 
 /// The play button.
 @property (nonatomic, strong) UIButton *playButton;
