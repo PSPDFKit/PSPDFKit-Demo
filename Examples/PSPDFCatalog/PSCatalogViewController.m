@@ -885,7 +885,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
                 // Not yet signed -> create new Ink annotation.
                 if (!alreadySigned) {
                     const CGFloat margin = 10.f;
-                    const CGSize maxSize = CGSizeMake(150, 75);
+                    const CGSize maxSize = CGSizeMake(150.f, 75.f);
 
                     // Prepare the lines and convert them from view space to PDF space. (PDF space is mirrored!)
                     PSPDFPageInfo *pageInfo = [document pageInfoForPage:pageIndex];
@@ -1123,14 +1123,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
 
-    // Check that words can be selected
-    [testSection addContent:[PSContent contentWithTitle:@"Test word block separation" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_word_separation_ascii2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
-        return pdfController;
-    }]];
-
     // Test that the Type... menu item is NOT visible (since Underscore/StrikeOut are disabled)
     [testSection addContent:[PSContent contentWithTitle:@"Limited annotation features (only Highlight/Ink)" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
@@ -1272,30 +1264,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-
-    // Check that "Griffin" is correctly parsed and only one word. (fi ligature)
-    [testSection addContent:[PSContent contentWithTitle:@"Test fi ligature parsing 1" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
-
-        NSArray *glyphs = [[document textParserForPage:1] glyphs];
-        NSLog(@"glyphs: %@", glyphs);
-
-        return pdfController;
-    }]];
-
-    // Check that "rather than fight" is correctly parsed and 3 words without stray spaces. (fi ligature)
-    [testSection addContent:[PSContent contentWithTitle:@"Test fi ligature parsing 2" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_rather_than_fight.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-
-        NSArray *glyphs = [[document textParserForPage:0] glyphs];
-        NSLog(@"glyphs: %@", glyphs);
-
-        return pdfController;
-    }]];
-
 
     // There's a ffi ligature on the first page.
     [testSection addContent:[PSContent contentWithTitle:@"Test ffi ligature parsing" block:^UIViewController *{
