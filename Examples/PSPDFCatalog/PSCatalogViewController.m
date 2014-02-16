@@ -1149,36 +1149,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // check that annotations work well with pageCurl (e.g. that you can't curl while adding a annotation)
-    [testSection addContent:[PSContent contentWithTitle:@"Annotations + pageCurl" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.pageTransition = PSPDFPageTransitionCurl;
-        return pdfController;
-    }]];
-
     // check that the brightness works on iPhone as well.
     [testSection addContent:[PSContent contentWithTitle:@"Brightness on iPhone" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.brightnessButtonItem, pdfController.viewModeButtonItem];
-        return pdfController;
-    }]];
-
-    // check that non-uniform pages are correctly handled.
-    [testSection addContent:[PSContent contentWithTitle:@"Centered dual-page mode" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"pepsico-slow2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
-        return pdfController;
-    }]];
-
-    // check that external links are correctly recognized and the alert is shown.
-    [testSection addContent:[PSContent contentWithTitle:@"External links test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
         return pdfController;
     }]];
 
@@ -1204,15 +1179,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
         _clearCacheNeeded = YES;
         document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(5, 15)];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.viewMode = PSPDFViewModeThumbnails;
-        return pdfController;
-    }]];
-
-    // Check that there's no transparent border around images.
-    [testSection addContent:[PSContent contentWithTitle:@"Thumbnails Aspect Ratio Test" block:^UIViewController *{
-        [PSPDFCache.sharedCache clearCache];
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_aspectratio.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.viewMode = PSPDFViewModeThumbnails;
         return pdfController;
