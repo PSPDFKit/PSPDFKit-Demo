@@ -8,6 +8,10 @@
     }
   },
   {
+    "contentURL":"http://youtu.be/jiyIcz7wUH0",
+    "type":"video"
+  },
+  {
     "contentURL":"http://www.youtube.com/watch?v=VpZmIiIXuZ0",
     "type":"video",
     "caption":"A YouTube video",
