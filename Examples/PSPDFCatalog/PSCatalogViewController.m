@@ -1122,54 +1122,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // additional test cases, just for developing and testing PSPDFKit.
     // Referenced PDF files are proprietary and not released with the downloadable package.
 #ifdef PSPDF_USE_SOURCE
-    
-    // Test rotated PDF (90, 180, 270, 0 deg).
-    [testSection addContent:[PSContent contentWithTitle:@"Rotated PDF pages" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_RotatedPages.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // Test immensely large PDF.
-    [testSection addContent:[PSContent contentWithTitle:@"Test huge sized PDF" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_HugelyOversizedMap.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Zoom out UIKit freeze bug" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"About CLA.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // test search highlighting matching, also tests that we indeed are on logical page 3.
-    [testSection addContent:[PSContent contentWithTitle:@"Search for Drammen" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"doc-1205.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 2; // pages start at 0.
-
-        int64_t delayInSeconds = 1.f;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"Drammen" options:nil animated:YES];
-        });
-
-        return pdfController;
-    }]];
-
-    // Check that 'ipsum' can be found.
-    [testSection addContent:[PSContent contentWithTitle:@"Search for ipsum" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"testcase_Search ipsum fails.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        int64_t delayInSeconds = 1.f;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController searchForString:@"lorem" options:nil animated:YES];
-        });
-
-        return pdfController;
-    }]];
 
     // Check that words can be selected
     [testSection addContent:[PSContent contentWithTitle:@"Test word block separation" block:^UIViewController *{
