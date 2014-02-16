@@ -1230,17 +1230,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return nil;
     }]];
 
-    // Test if all words are complete.
-    // Output: Preocupa la violencia contra
-    [testSection addContent:[PSContent contentWithTitle:@"TextParser test missing glypgs" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_MissingGlyphs_focussed.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        NSLog(@"Text: %@", [[document textParserForPage:0] text]);
-        NSLog(@"Glyphs: %@", [[document textParserForPage:0] glyphs]);
-        NSLog(@"Words: %@", [[document textParserForPage:0] words]);
-        return pdfController;
-    }]];
-
     // Creating press-ready artwork
     [testSection addContent:[PSContent contentWithTitle:@"TextParser test word spaces" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_wordspace.pdf"]];
