@@ -136,7 +136,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return [PSCGridViewController new];
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Tabbed Browser" contentDescription:@"Allows to open multiple documents via a tabbed interface." block:^{
         if (PSCIsIPad()) {
             return (UIViewController *)[PSCTabbedExampleViewController new];
         }else {
@@ -147,14 +147,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         }
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Open In... Inbox" contentDescription:@"Displays all files in the Inbox directory via the PSPDFDocumentPickerController." block:^{
         // Add all documents in the Documents folder and subfolders (e.g. Inbox from Open In... feature)
         PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:nil includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
         documentSelector.fullTextSearchEnabled = YES;
         return documentSelector;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Settings for a magazine" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Settings for a magazine" contentDescription:@"Large thumbnails, page curl, sliding HUD." block:^{
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
         hackerMagDoc.UID = @"HACKERMAGDOC"; // set custom UID so it doesn't interfere with other examples
         hackerMagDoc.title = @"HACKER MONTHLY Issue 12"; // Override document title.
@@ -188,7 +188,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" contentDescription:@"Automatic text link detection, continuous scrolling, default style." block:^{
         // Initialize document and enable link autodetection.
         PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
@@ -212,12 +212,12 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return (UIViewController *)nil;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" contentDescription:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
         if (PSCIsIPad()) {
             PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
             [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
             self.view.window.rootViewController = splitViewController;
-            PSC_IF_IOS7_OR_GREATER(splitViewController.view.tintColor = [UIColor blueColor];)
+            PSC_IF_IOS7_OR_GREATER(splitViewController.view.tintColor = UIColor.blueColor;)
             return (UIViewController *)nil;
         }else {
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
@@ -296,45 +296,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [customizationSection addContent:[PSContent contentWithTitle:@"Hide HUD while showing thumbnails" block:^{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSCHideHUDForThumbnailsViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Hide HUD with delayed document set" block:^UIViewController *{
-        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSCHideHUDDelayedDocumentViewController alloc] init];
-
-        int64_t delayInSeconds = 2.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            pdfController.document = hackerMagDoc;
-        });
-
-        return pdfController;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Set custom stamps" block:^UIViewController *{
-        NSMutableArray *defaultStamps = [NSMutableArray array];
-        for (NSString *stampSubject in @[@"Great!", @"Stamp", @"Like"]) {
-            PSPDFStampAnnotation *stamp = [[PSPDFStampAnnotation alloc] initWithSubject:stampSubject];
-            stamp.boundingBox = CGRectMake(0, 0, 200, 70);
-            [defaultStamps addObject:stamp];
-        }
-        // Careful with memory - you don't wanna add large images here.
-        PSPDFStampAnnotation *imageStamp = [[PSPDFStampAnnotation alloc] init];
-        imageStamp.image = [UIImage imageNamed:@"exampleimage.jpg"];
-        imageStamp.boundingBox = CGRectMake(0, 0, imageStamp.image.size.width, imageStamp.image.size.height);
-        [defaultStamps addObject:imageStamp];
-        [PSPDFStampViewController setDefaultStampAnnotations:defaultStamps];
-
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
-
-        // Add cleanup block so other examples will use the default stamps.
-        [pdfController psc_addDeallocBlock:^{
-            [PSPDFStampViewController setDefaultStampAnnotations:nil];
-        }];
-
         return pdfController;
     }]];
 

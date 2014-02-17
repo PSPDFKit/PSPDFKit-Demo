@@ -58,8 +58,8 @@
         if (example1.category < example2.category) return (NSComparisonResult)NSOrderedAscending;
         else if (example1.category > example2.category) return (NSComparisonResult)NSOrderedDescending;
         // then priority
-        else if (example1.priority > example2.priority) return (NSComparisonResult)NSOrderedAscending;
-        else if (example1.priority < example2.priority) return (NSComparisonResult)NSOrderedDescending;
+        else if (example1.priority < example2.priority) return (NSComparisonResult)NSOrderedAscending;
+        else if (example1.priority > example2.priority) return (NSComparisonResult)NSOrderedDescending;
         // then title
         else return [example1.title compare:example2.title];
     }];

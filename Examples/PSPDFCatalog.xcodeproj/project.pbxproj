@@ -197,6 +197,7 @@
 		78FEC25818B298C60012ACBD /* PSCDocumentSidebarExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25318B298C60012ACBD /* PSCDocumentSidebarExample.m */; };
 		78FEC25918B298C60012ACBD /* PSCSplitDocumentSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25518B298C60012ACBD /* PSCSplitDocumentSelectorController.m */; };
 		78FEC25A18B298C60012ACBD /* PSCSplitPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25718B298C60012ACBD /* PSCSplitPDFViewController.m */; };
+		78FEC26118B29C220012ACBD /* PSCCustomStampAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */; };
 		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
 		8CE4E39A183E71D400A2A8EA /* PSCCustomGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E399183E71D400A2A8EA /* PSCCustomGalleryExample.m */; };
 		9A6534B51806BD5300A7D0D0 /* PSCPageRangeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */; };
@@ -535,6 +536,8 @@
 		78FEC25518B298C60012ACBD /* PSCSplitDocumentSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSplitDocumentSelectorController.m; sourceTree = "<group>"; };
 		78FEC25618B298C60012ACBD /* PSCSplitPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSplitPDFViewController.h; sourceTree = "<group>"; };
 		78FEC25718B298C60012ACBD /* PSCSplitPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSplitPDFViewController.m; sourceTree = "<group>"; };
+		78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomStampAnnotationsExample.m; sourceTree = "<group>"; };
+		78FEC26018B29C220012ACBD /* PSCCustomStampAnnotationsExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomStampAnnotationsExample.h; sourceTree = "<group>"; };
 		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
 		8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGalleryExample.h; sourceTree = "<group>"; };
 		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
@@ -856,6 +859,8 @@
 				78471B3F186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m */,
 				78FE606217DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.h */,
 				78FE606117DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m */,
+				78FEC26018B29C220012ACBD /* PSCCustomStampAnnotationsExample.h */,
+				78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */,
 				78A8EE5A15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.h */,
 				78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */,
 				78B095E2183A24C800BBE328 /* PSCFreeFormImageResizeExample.h */,
@@ -1383,6 +1388,7 @@
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
 				78CE5C1A18481C4D00BE8B08 /* PSCVideoLinksExample.m in Sources */,
+				78FEC26118B29C220012ACBD /* PSCCustomStampAnnotationsExample.m in Sources */,
 				78FEC21918B286120012ACBD /* PSCCoreDataAnnotationProviderExample.m in Sources */,
 				78FEC21A18B286120012ACBD /* PSCXFDFAnnotationProviderExample.m in Sources */,
 				78FEC22418B28CC90012ACBD /* PSCSignAllPagesExample.m in Sources */,

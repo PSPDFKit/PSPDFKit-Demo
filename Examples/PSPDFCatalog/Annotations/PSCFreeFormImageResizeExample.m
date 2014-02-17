@@ -21,19 +21,16 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Free Form Image Resize";
+        self.contentDescription = @"Disables the forced aspect ratio resizing for image (stamp) annotations.";
         self.category = PSCExampleCategoryAnnotations;
     }
     return self;
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    // Set up the document.
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     [document overrideClass:PSPDFStampAnnotation.class withClass:PSCFreeFormResizeStampAnnotation.class];
-
-    // And also the controller.
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    return pdfController;
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
