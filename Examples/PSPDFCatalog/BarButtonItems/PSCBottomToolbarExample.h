@@ -1,5 +1,5 @@
 //
-//  PSCCoreDataAnnotation.m
+//  PSCBottomToolbarExample.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,10 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCoreDataAnnotation.h"
+#import "PSCExample.h"
 
-@implementation PSCCoreDataAnnotation
-
-@dynamic annotationData, page, uuid;
+@interface PSCBottomToolbarExample : PSCExample
 
 @end

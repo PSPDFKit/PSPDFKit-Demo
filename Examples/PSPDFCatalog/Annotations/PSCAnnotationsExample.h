@@ -31,8 +31,5 @@
 @interface PSCAnnotationsSaveAsForAnnotationEditingExample : PSCExample
 @end
 
-@interface PSCAnnotationsXFDFAnnotationProviderExample : PSCExample
-@end
-
 @interface PSCAnnotationsXFDFWritingExample : PSCExample
 @end

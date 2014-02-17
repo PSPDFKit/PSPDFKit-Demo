@@ -27,8 +27,10 @@ typedef UIViewController* (^PSControllerBlock)();
 @interface PSContent : NSObject
 
 + (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block;
++ (instancetype)contentWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block;
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *contentDescription;
 @property (nonatomic, copy) PSControllerBlock block;
 
 @end

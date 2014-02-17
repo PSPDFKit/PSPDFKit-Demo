@@ -20,6 +20,7 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Add pageRange filter for bookmarked pages";
+        self.contentDescription = @"Adds a toggleable button to the toolbar that allows to filter the document for bookmarked pages only.";
         self.category = PSCExampleCategoryPageRange;
     }
     return self;
@@ -27,6 +28,7 @@
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.UID = NSStringFromClass(PSCPageRangeFilterExample.class);
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     
     // Create the filter barButton
@@ -46,13 +48,9 @@
         }
         document.pageRange = set;
         
-        // After setting pageRange, we need to clear the cache and reload the controller
+        // After setting pageRange, we need to clear the cache and reload the controller.
         [PSPDFCache.sharedCache removeCacheForDocument:document deleteDocument:NO error:NULL];
         [weakController reloadData];
-        
-        // (Example-Global) Cache needs to be cleared since pages will change.
-        //TODO: fix me
-        //_clearCacheNeeded = YES;
     }];
     
     controller.rightBarButtonItems = @[filterBarButton, controller.bookmarkButtonItem, controller.outlineButtonItem, controller.annotationButtonItem, controller.viewModeButtonItem];

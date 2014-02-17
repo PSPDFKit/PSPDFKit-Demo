@@ -52,6 +52,8 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
             return @"Text Extraction / PDF creation";
         case PSCExampleCategoryPSPDFViewControllerCustomization:
             return @"PSPDFViewController customization";
+        case PSCExampleCategoryAnnotationProviders:
+            return @"Annotation Providers";
         default:
             return nil;
     }
@@ -75,6 +77,7 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryStoryboards: break;
         case PSCExampleCategoryTextExtraction: break;
         case PSCExampleCategoryPSPDFViewControllerCustomization: break;
+        case PSCExampleCategoryAnnotationProviders: break;
     }
     return nil;
 }

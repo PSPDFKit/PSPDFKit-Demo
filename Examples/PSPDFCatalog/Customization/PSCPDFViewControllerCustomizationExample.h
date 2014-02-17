@@ -10,41 +10,26 @@
 
 #import "PSCExample.h"
 
-@interface PSCPDFViewControllerCustomizationPageCurlExample : PSCExample
-
-@end
-
 @interface PSCPDFViewControllerCustomizationUsingaNIBExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationChildViewControllerContainmentExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationCustomToolbarIconExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample : PSCExample
-
 @end
 
 @interface PSCPDFViewControllerCustomizationUIAppearanceExample : PSCExample
-
 @end
-
-
-

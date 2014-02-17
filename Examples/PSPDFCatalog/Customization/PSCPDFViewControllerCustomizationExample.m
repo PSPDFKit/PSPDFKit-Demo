@@ -20,32 +20,6 @@
 #import "PSCAppearancePDFViewController.h"
 #import <UIKit/UIViewController.h>
 
-@implementation PSCPDFViewControllerCustomizationPageCurlExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"PageCurl example";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
-        self.priority = 10;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.pageMode = PSPDFPageModeSingle;
-    pdfController.pageTransition = PSPDFPageTransitionCurl;
-    return pdfController;
-}
-
-@end
-
 @implementation PSCPDFViewControllerCustomizationUsingaNIBExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

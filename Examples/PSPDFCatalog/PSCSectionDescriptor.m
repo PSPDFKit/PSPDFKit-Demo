@@ -10,9 +10,8 @@
 
 #import "PSCSectionDescriptor.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCSectionDescriptor
 
 @implementation PSCSectionDescriptor {
     NSMutableArray *_contentDescriptors;
@@ -45,22 +44,30 @@
 
 @end
 
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSContent
+
 @implementation PSContent
 
-+ (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block {
-    return [(PSContent *)[self alloc] initWithTitle:title block:block];
++ (instancetype)contentWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
+    return [(PSContent *)[self alloc] initWithTitle:title contentDescription:description block:block];
 }
 
-- (id)initWithTitle:(NSString *)title block:(PSControllerBlock)block {
++ (instancetype)contentWithTitle:(NSString *)title block:(PSControllerBlock)block {
+    return [self contentWithTitle:title contentDescription:nil block:block];
+}
+
+- (id)initWithTitle:(NSString *)title contentDescription:(NSString *)description block:(PSControllerBlock)block {
     if ((self = [super init])) {
         _title = title;
+        _contentDescription = description;
         _block = block;
     }
     return self;
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p title:%@>", self.class, self, self.title];
+    return [NSString stringWithFormat:@"<%@: %p title:%@ description:%@>", self.class, self, self.title, self.contentDescription];
 }
 
 @end

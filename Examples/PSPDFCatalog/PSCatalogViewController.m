@@ -32,7 +32,6 @@
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCCustomAnnotationProvider.h"
-#import "PSCBottomToolbarViewController.h"
 #import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCRotationLockBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
@@ -259,12 +258,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             currentSection = [PSCSectionDescriptor sectionWithTitle:PSPDFHeaderFromExampleCategory(currentCategory) footer:PSPDFFooterFromExampleCategory(currentCategory)];
             [sections addObject:currentSection];
         }
-
-        [currentSection addContent:[PSContent contentWithTitle:example.title block:^UIViewController *{
+        [currentSection addContent:[PSContent contentWithTitle:example.title contentDescription:example.contentDescription block:^UIViewController *{
             return [example invokeWithDelegate:weakSelf];
         }]];
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -280,23 +277,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         UINavigationController *navController = [[PSCAppearanceNavigationController alloc] initWithRootViewController:pdfController];
         [self presentViewController:navController animated:YES completion:NULL];
         return (PSPDFViewController *)nil;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Use a Bottom Toolbar" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        // Simple subclass that shows/hides the navigationController bottom toolbar
-        PSCBottomToolbarViewController *pdfController = [[PSCBottomToolbarViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-        pdfController.thumbnailBarMode = PSPDFThumbnailBarModeNone;
-        UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL];
-        pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
-        pdfController.leftBarButtonItems = nil;
-        pdfController.rightBarButtonItems = nil; // Important! BarButtonItems can only be displayed at one location.
-        pdfController.toolbarItems = @[space, pdfController.bookmarkButtonItem, space, pdfController.annotationButtonItem, space, pdfController.searchButtonItem, space, pdfController.outlineButtonItem, space, pdfController.emailButtonItem, space, pdfController.printButtonItem, space, pdfController.openInButtonItem, space];
-
-        // Since we show the toolbar from the bottom, match the tint.
-        PSC_IF_IOS7_OR_GREATER(pdfController.annotationButtonItem.annotationToolbar.barTintColor = self.navigationController.toolbar.barTintColor;)
-        return pdfController;
     }]];
 
     [customizationSection addContent:[PSContent contentWithTitle:@"Disable Toolbar" block:^{
@@ -425,7 +405,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [sections addObject:customizationSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    PSCSectionDescriptor *passwordSection = [PSCSectionDescriptor sectionWithTitle:@"Passwords/Security" footer:@"Password is test123"];
+    PSCSectionDescriptor *passwordSection = [PSCSectionDescriptor sectionWithTitle:@"Passwords / Security" footer:@"Password is test123"];
 
     // Bookmarks
     NSURL *protectedPDFURL = [samplesURL URLByAppendingPathComponent:@"protected.pdf"];
@@ -949,23 +929,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [subclassingSection addContent:[PSContent contentWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSCExportPDFPagesViewController *pdfController = [[PSCExportPDFPagesViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [sections addObject:subclassingSection];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Core Data Annotation Provider" block:^UIViewController *{
-        // Create document.
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"A.pdf"]];
-        // The Core Data Annotation Provider doesn't support undo/redo.
-        document.undoEnabled = NO;
-        // Set annotation provider block.
-        [document setDidCreateDocumentProviderBlock:^(PSPDFDocumentProvider *documentProvider) {
-            PSCCoreDataAnnotationProvider *provider = [[PSCCoreDataAnnotationProvider alloc] initWithDocumentProvider:documentProvider databasePath:nil];
-            documentProvider.annotationManager.annotationProviders = @[provider];
-        }];
-        // Create controller.
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -2177,7 +2140,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     if (PSCIsUIKitFlatMode()) {
         PSC_IF_IOS7_OR_GREATER([UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent animated:animated];
                                self.navigationController.navigationBar.barTintColor = UIColor.pspdfColor;
-                               self.navigationController.toolbar.tintColor = UIColor.blackColor;
+                               self.navigationController.toolbar.barTintColor = UIColor.pspdfColor;
                                self.navigationController.view.tintColor = UIColor.whiteColor;
                                // By default the system would show a white cursor.
                                [[UITextField appearance] setTintColor:UIColor.pspdfColor];
@@ -2277,7 +2240,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     static NSString *PSCCellIdentifier = @"PSCatalogCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PSCCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PSCCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PSCCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
@@ -2290,6 +2253,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }
 
     cell.textLabel.text = contentDescriptor.title;
+    cell.detailTextLabel.text = contentDescriptor.contentDescription;
     return cell;
 }
 

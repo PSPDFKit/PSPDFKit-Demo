@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryStoryboards,
     PSCExampleCategoryTextExtraction,
     PSCExampleCategoryPSPDFViewControllerCustomization,
+    PSCExampleCategoryAnnotationProviders,
     PSCExampleCategoryPageRange,
     PSCExampleCategoryDocumentDataProvider
 };
@@ -45,7 +46,7 @@ extern NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category);
 @property (nonatomic, copy) NSString *title;
 
 // The example description. Optional.
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *contentDescription;
 
 // The category for this example.
 @property (nonatomic, assign) PSCExampleCategory category;
