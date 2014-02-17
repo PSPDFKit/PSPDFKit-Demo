@@ -17,7 +17,6 @@
 @end
 
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
-    PSCExampleCategoryDocumentDataProvider,
     PSCExampleCategoryAnnotations,
     PSCExampleCategoryForms,
     PSCExampleCategoryBarButtons,
@@ -27,7 +26,8 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryPDFAnnotations,
     PSCExampleCategoryStoryboards,
     PSCExampleCategoryTextExtraction,
-    PSCExampleCategoryPSPDFViewControllerCustomization
+    PSCExampleCategoryPSPDFViewControllerCustomization,
+    PSCExampleCategoryDocumentDataProvider
 };
 
 typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {

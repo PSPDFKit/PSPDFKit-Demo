@@ -33,7 +33,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Alternative Note Interface Example";
+        self.title = @"Inline note annotation editing";
         self.category = PSCExampleCategoryAnnotations;
     }
     return self;
@@ -106,7 +106,8 @@
 // Figures out what number the annotation is.
 static NSUInteger PSCNumberOfAnnotationOfType(PSPDFAnnotation *annotation) {
     NSArray *annotations = [annotation.document annotationsForPage:annotation.absolutePage type:annotation.type];
-    return [annotations indexOfObject:annotation] + 1;
+    NSUInteger index = [annotations indexOfObject:annotation];
+    return index == NSNotFound ? NSNotFound : index + 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -414,21 +415,21 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     UIImage *noteImage = [UIImage imageNamed:@"alternative_note_image"];
 
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.f);
-
     [noteImage drawAtPoint:CGPointZero];
 
-    NSString *number = [NSString stringWithFormat:@"%tu", noteNumber];
-
-    if (PSCIsUIKitFlatMode()) {
-        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        style.alignment = NSTextAlignmentCenter;
-        NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
-                                     NSForegroundColorAttributeName : PSCCustomNewTintColor,
-                                     NSParagraphStyleAttributeName : style};
-        [number drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
-    }else {
-        [PSCCustomNewTintColor set];
-        [number drawInRect:CGRectMake(8.f, 2.f, self.bounds.size.width, self.bounds.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
+    if (noteNumber != NSNotFound) {
+        NSString *number = [NSString stringWithFormat:@"%tu", noteNumber];
+        if (PSCIsUIKitFlatMode()) {
+            NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+            style.alignment = NSTextAlignmentCenter;
+            NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
+                                         NSForegroundColorAttributeName : PSCCustomNewTintColor,
+                                         NSParagraphStyleAttributeName : style};
+            [number drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
+        }else {
+            [PSCCustomNewTintColor set];
+            [number drawInRect:CGRectMake(8.f, 2.f, self.bounds.size.width, self.bounds.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
+        }
     }
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
