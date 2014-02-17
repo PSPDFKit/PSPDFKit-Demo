@@ -36,7 +36,9 @@
 #pragma mark - Private
 
 - (void)backToCatalog {
-    [self.parentViewController dismissViewControllerAnimated:YES completion:NULL];
+    PSCSplitPDFViewController *masterController = self.masterController;
+    [masterController dismissViewControllerAnimated:YES completion:NULL];
+    [masterController.masterPopoverController dismissPopoverAnimated:YES];
 }
 
 // tests fast cycling through the pdf elements
@@ -59,7 +61,7 @@
 
 - (void)deselectAction {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    [self.masterVC displayDocument:nil page:0];
+    [self.masterController displayDocument:nil page:0];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +73,7 @@
     document = [document copy];
 #endif
 
-    PSCSplitPDFViewController *masterVC = self.masterVC;
+    PSCSplitPDFViewController *masterVC = self.masterController;
     [masterVC displayDocument:document page:pageIndex];
 
     // hide controller

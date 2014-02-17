@@ -55,7 +55,7 @@
 #if defined(PSCEnableDocumentStressTest) && PSCEnableDocumentStressTest
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [[document outlineParser] outline];
-        [[document copy] renderImageForPage:0 withSize:CGSizeMake(200, 200) clippedToRect:CGRectZero withAnnotations:nil options:nil];
+        [[document copy] renderImageForPage:0 withSize:CGSizeMake(200.f, 200.f) clippedToRect:CGRectZero withAnnotations:nil options:nil];
     });
 #endif
 

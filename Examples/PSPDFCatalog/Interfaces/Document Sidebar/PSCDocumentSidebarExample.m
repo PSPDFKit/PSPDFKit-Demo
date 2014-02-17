@@ -34,20 +34,20 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
-    UISplitViewController *splitVC = [UISplitViewController new];
-    splitVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"shoebox"] tag:3];
-    PSCSplitDocumentSelectorController *tableVC = [[PSCSplitDocumentSelectorController alloc] init];
-    UINavigationController *tableNavVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
-    PSCSplitPDFViewController *hostVC = [[PSCSplitPDFViewController alloc] init];
-    UINavigationController *hostNavVC = [[UINavigationController alloc] initWithRootViewController:hostVC];
-    tableVC.masterVC = hostVC;
-    splitVC.delegate = hostVC;
-    splitVC.viewControllers = @[tableNavVC, hostNavVC];
+    UISplitViewController *splitController = [UISplitViewController new];
+    splitController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"shoebox"] tag:3];
+    PSCSplitDocumentSelectorController *tableController = [[PSCSplitDocumentSelectorController alloc] init];
+    UINavigationController *tableNavController = [[UINavigationController alloc] initWithRootViewController:tableController];
+    PSCSplitPDFViewController *hostController = [[PSCSplitPDFViewController alloc] init];
+    UINavigationController *hostNavController = [[UINavigationController alloc] initWithRootViewController:hostController];
+    tableController.masterController = hostController;
+    splitController.delegate = hostController;
+    splitController.viewControllers = @[tableNavController, hostNavController];
 
     PSCHostingController *hostingController = [PSCHostingController new];
     hostingController.wantsFullScreenLayout = YES;
-    [hostingController addChildViewController:splitVC];
-    [hostingController.view addSubview:splitVC.view];
+    [hostingController addChildViewController:splitController];
+    [hostingController.view addSubview:splitController.view];
     [delegate.currentViewController presentViewController:hostingController animated:YES completion:NULL];
     return nil;
 }
