@@ -27,7 +27,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Sidebar Example";
+        self.title = @"Vertical Annotation/Outline Sidebar";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 1;
         self.targetDevice = PSCExampleTargetDeviceMaskPad; // Split view is iPad only.
@@ -99,6 +99,7 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    // This is required for iOS 6.
     self.pdfController.splitViewController.view.frame = self.view.bounds;
 }
 
