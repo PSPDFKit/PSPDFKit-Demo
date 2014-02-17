@@ -12,5 +12,4 @@
 #import "PSCExample.h"
 
 @interface PSCGalleryExample : PSCExample
-
 @end

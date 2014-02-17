@@ -46,7 +46,7 @@ const char PSCAlertViewKey;
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocumentPickerController *documentSelector = [[PSPDFDocumentPickerController alloc] initWithDirectory:@"/Bundle/Samples" includeSubdirectories:YES library:PSPDFLibrary.defaultLibrary delegate:self];
     documentSelector.fullTextSearchEnabled = YES;
     return documentSelector;
@@ -92,7 +92,7 @@ const char PSCAlertViewKey;
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Markup String" message:@"Experimental feature. Basic HTML is allowed."];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
@@ -135,7 +135,7 @@ const char PSCAlertViewKey;
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:@"Website/File URL" message:@"Convert websites or files to PDF (Word, Pages, Keynote, ...)"];
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
     [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];

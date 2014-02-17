@@ -22,7 +22,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     return nil;
 }
 
@@ -50,7 +50,7 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
             return @"Storyboards";
         case PSCExampleCategoryTextExtraction:
             return @"Text Extraction / PDF creation";
-        case PSCExampleCategoryPSPDFViewControllerCustomization:
+        case PSCExampleCategoryControllerCustomization:
             return @"PSPDFViewController customization";
         case PSCExampleCategoryAnnotationProviders:
             return @"Annotation Providers";
@@ -76,7 +76,7 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryViewCustomization: break;
         case PSCExampleCategoryStoryboards: break;
         case PSCExampleCategoryTextExtraction: break;
-        case PSCExampleCategoryPSPDFViewControllerCustomization: break;
+        case PSCExampleCategoryControllerCustomization: break;
         case PSCExampleCategoryAnnotationProviders: break;
     }
     return nil;

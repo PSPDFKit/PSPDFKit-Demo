@@ -26,7 +26,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     // Set up the document.
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     [document overrideClass:PSPDFStampAnnotation.class withClass:PSCFreeFormResizeStampAnnotation.class];

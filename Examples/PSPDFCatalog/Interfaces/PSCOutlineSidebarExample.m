@@ -1,5 +1,5 @@
 //
-//  PSCSidebarExample.m
+//  PSCOutlineSidebarExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSidebarExample.h"
+#import "PSCOutlineSidebarExample.h"
 #import "PSCAssetLoader.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UIBarButtonItem *pickerButtonItem;
 @end
 
-@implementation PSCSidebarExample
+@implementation PSCOutlineSidebarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -36,7 +36,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 

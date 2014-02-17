@@ -15,7 +15,6 @@
 #import "PSCButtonPDFViewController.h"
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCCustomToolbarController.h"
-#import "PSCTintablePDFViewController.h"
 #import <UIKit/UIViewController.h>
 
 @implementation PSCPDFViewControllerCustomizationUsingaNIBExample
@@ -26,13 +25,13 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Using a NIB";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 20;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
 }
 
@@ -46,18 +45,15 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Child View Controller containment";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 30;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    NSURL *testURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    PSPDFDocument *childDocument = [PSPDFDocument documentWithURL:testURL];
-    return [[PSCChildViewController alloc] initWithDocument:childDocument];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    return [[PSCChildViewController alloc] initWithDocument:document];
 }
 
 @end
@@ -70,17 +66,14 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Adding a simple UIButton";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 40;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     return [[PSCButtonPDFViewController alloc] initWithDocument:document];
 }
 
@@ -93,18 +86,16 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Adding multiple UIButtons";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.title = @"Adding multiple buttons";
+        self.contentDescription = @"Will add a custom button above all PDF images.";
+        self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 50;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     return [[PSCImageOverlayPDFViewController alloc] initWithDocument:document];
 }
 
@@ -124,37 +115,9 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     return [[PSCCustomToolbarController alloc] initWithDocument:document];
-}
-
-@end
-
-@implementation PSCPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Tinted Toolbar, Popovers, AlertView";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
-        self.priority = 80;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-    PSPDFViewController *pdfController = [[PSCTintablePDFViewController alloc] initWithDocument:document];
-    return pdfController;
 }
 
 @end

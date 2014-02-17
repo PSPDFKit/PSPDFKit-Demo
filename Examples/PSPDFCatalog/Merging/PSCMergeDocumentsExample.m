@@ -31,7 +31,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerPDFURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     NSURL *paperPDFURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];

@@ -85,7 +85,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
     PSPDFFormExampleDeregisterForRevisionCallbacks();
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     return PSPDFFormExampleInvokeWithFilename(@"W8_Formular.pdf");
 }
 @end
@@ -111,7 +111,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
     PSPDFFormExampleDeregisterForRevisionCallbacks();
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     return PSPDFFormExampleInvokeWithFilename(@"Form_example_signed.pdf");
 }
 
@@ -131,7 +131,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"Testcase_Formatted_Forms.pdf"];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     return pdfController;

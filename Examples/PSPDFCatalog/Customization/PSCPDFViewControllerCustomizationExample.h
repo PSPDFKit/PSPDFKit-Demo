@@ -24,6 +24,3 @@
 
 @interface PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample : PSCExample
 @end
-
-@interface PSCPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample : PSCExample
-@end

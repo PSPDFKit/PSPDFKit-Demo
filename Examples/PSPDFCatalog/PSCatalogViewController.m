@@ -35,7 +35,6 @@
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
 #import "PSCLinkEditorViewController.h"
-#import "PSCTintablePDFViewController.h"
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
@@ -74,7 +73,7 @@
 
 //#define kDebugTextBlocks
 
-@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSPDFDocumentPickerControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate, PSCExampleRunner> {
+@interface PSCatalogViewController () <PSPDFViewControllerDelegate, PSPDFDocumentDelegate, PSPDFDocumentPickerControllerDelegate, PSPDFSignatureViewControllerDelegate, UITextFieldDelegate, UISearchDisplayDelegate, PSCExampleRunnerDelegate> {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
@@ -120,7 +119,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
-        document = [PSPDFDocument documentWithURL:hackerMagURL];
+        document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_XMP_Metadata_and_Bookmarks.pdf"]];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
 
@@ -191,7 +190,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
         // Initialize document and enable link autodetection.
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
@@ -445,7 +444,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return decryptedData;
         }];
 
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
         return controller;
     }]];
@@ -706,14 +705,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Search for Batman, without controller" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSCHeadlessSearchPDFViewController *pdfController = [[PSCHeadlessSearchPDFViewController alloc] initWithDocument:document];
         pdfController.highlightedSearchText = @"Batman";
         return pdfController;
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Remove Ink from the annotation toolbar" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem];
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
@@ -723,7 +722,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Customize email sending (add body text)" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.emailButtonItem.mailComposeViewControllerCustomizationBlock = ^(MFMailComposeViewController *mailController) {
             [mailController setMessageBody:@"<h1 style='color:blue'>Custom message body.</h1>" isHTML:YES];
@@ -733,7 +732,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Set custom default zoom level" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Marketing.pdf"]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSPDFViewController *pdfController = [[PSCCustomDefaultZoomScaleViewController alloc] initWithDocument:document];
         [self presentViewController:pdfController animated:YES completion:NULL];
         return nil;
@@ -775,7 +774,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
         PSCExportPDFPagesViewController *pdfController = [[PSCExportPDFPagesViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -790,16 +789,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Used for stability testing.
     [testSection addContent:[PSContent contentWithTitle:@"Timing tests" block:^UIViewController *{
         return [[PSCTimingTestViewController alloc] initWithNibName:nil bundle:nil];
-    }]];
-
-    // Modal controller - check that we don't get dismissed at some point.
-    [testSection addContent:[PSContent contentWithTitle:@"Modal test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.printButtonItem, pdfController.emailButtonItem, pdfController.openInButtonItem, pdfController.viewModeButtonItem];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:pdfController];
-        [self presentViewController:navController animated:YES completion:NULL];
-        return nil; // don't push anything
     }]];
 
     // Check that a new tab will be opened
@@ -839,58 +828,13 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] init];
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             pdfController.document = hackerMagDoc;
         });
 
         return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"UITabBarController/UINavigationController embedding" block:^UIViewController *{
-        NSURL *file1 = [samplesURL URLByAppendingPathComponent:@"A.pdf"];
-        NSURL *file2 = [samplesURL URLByAppendingPathComponent:@"B.pdf"];
-        NSURL *file3 = [samplesURL URLByAppendingPathComponent:@"C.pdf"];
-        NSURL *file4 = [samplesURL URLByAppendingPathComponent:@"D.pdf"];
-        PSPDFViewController *pdfController1 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file1]];
-        PSPDFViewController *pdfController2 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file2]];
-        PSPDFViewController *pdfController3 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file3]];
-        PSPDFViewController *pdfController4 = [[PSPDFViewController alloc] initWithDocument:[PSPDFDocument documentWithURL:file4]];
-
-        pdfController1.HUDViewMode      = pdfController2.HUDViewMode      = pdfController3.HUDViewMode      = pdfController4.HUDViewMode      = PSPDFHUDViewModeAutomaticNoFirstLastPage;
-        pdfController1.HUDViewAnimation = pdfController2.HUDViewAnimation = pdfController3.HUDViewAnimation = pdfController4.HUDViewAnimation = PSPDFHUDViewAnimationNone;
-        pdfController1.HUDVisible       = pdfController2.HUDVisible       = pdfController3.HUDVisible       = pdfController4.HUDVisible       = NO;
-        pdfController1.pageMode = pdfController2.pageMode = pdfController3.pageMode = pdfController4.pageMode = PSPDFPageModeSingle;
-        pdfController1.viewMode = pdfController2.viewMode = pdfController3.viewMode = pdfController4.viewMode = PSPDFViewModeThumbnails;
-
-        void (^configureVC)(PSPDFViewController *pdfController) = ^void(PSPDFViewController *pdfController) {
-            pdfController1.leftBarButtonItems  = @[pdfController1.annotationButtonItem];
-            pdfController1.rightBarButtonItems = @[pdfController1.viewModeButtonItem];
-            pdfController1.shouldHideStatusBarWithHUD = NO;
-        };
-
-        configureVC(pdfController1);
-        pdfController1.useParentNavigationBar = YES;
-        pdfController1.useBorderedToolbarStyle = YES;
-        configureVC(pdfController2);
-        pdfController2.useParentNavigationBar = YES;
-        pdfController2.useBorderedToolbarStyle = NO;
-        configureVC(pdfController3);
-        pdfController3.useParentNavigationBar = NO;
-        pdfController3.useBorderedToolbarStyle = YES;
-        configureVC(pdfController4);
-        pdfController4.useParentNavigationBar = NO;
-        pdfController4.useBorderedToolbarStyle = NO;
-
-        UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:pdfController1];
-        UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:pdfController2];
-        UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:pdfController3];
-        UINavigationController *navigationController4 = [[UINavigationController alloc] initWithRootViewController:pdfController4];
-        UITabBarController *tabBarController = [[UITabBarController alloc] init];
-        tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3, navigationController4];
-        PSC_IF_IOS7_OR_GREATER(tabBarController.tabBar.translucent = NO;)
-        return tabBarController;
     }]];
 
     [testSection addContent:[PSContent contentWithTitle:@"PSPDFMultiDocumentViewController" block:^UIViewController *{
@@ -904,29 +848,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         pdfMultiDocController.documents = @[doc1, doc2, doc3, doc4];
         pdfMultiDocController.visibleDocument = doc1;
         return [[UINavigationController alloc] initWithRootViewController:pdfMultiDocController];
-    }]];
-
-    // Tests if the placement of the search controller is correct, even for zoomed documents.
-    [testSection addContent:[PSContent contentWithTitle:@"Inline search test" block:^UIViewController *{
-        PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:hackerMagDoc];
-        pdfController.fitToWidthEnabled = YES;
-        pdfController.rightBarButtonItems = @[pdfController.viewModeButtonItem];
-        return pdfController;
-    }]];
-
-    // Test that we don't get in a state where the toolbar disappeared completely.
-    [testSection addContent:[PSContent contentWithTitle:@"Drawing invoked with menu while toolbar is visible" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
-        double delayInSeconds = 1.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController.annotationButtonItem action:pdfController.annotationButtonItem];
-            [[[UIAlertView alloc] initWithTitle:@"Testcase" message:@"Now long-press on the page, invoke draw action, check that toolbar changes, press done or cancel, verify that the annotation toolbar is still there. Press done on the bar and verify that the main toolbar is still visible." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
-        });
-        return pdfController;
     }]];
 
     // additional test cases, just for developing and testing PSPDFKit.
@@ -1175,13 +1096,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return [[PSPDFViewController alloc] initWithDocument:document];
     }]];
 
-    // Check that this doesn't auto-play.
-    [testSection addContent:[PSContent contentWithTitle:@"Test Video No-Autoplay" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia-autostart-ios5.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
     // Ensure that videos do display.
     [testSection addContent:[PSContent contentWithTitle:@"Test large video extraction code" block:^UIViewController *{
         // clear temp directory to force video extraction.
@@ -1216,8 +1130,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
 
             // example how to create a line rect. Boxed is just shorthand for [NSValue valueWithCGRect:]
-            NSArray *lines = @[@[BOXED(CGPointMake(100,100)), BOXED(CGPointMake(100,200)), BOXED(CGPointMake(150,300))], // first line
-                               @[BOXED(CGPointMake(200,100)), BOXED(CGPointMake(200,200)), BOXED(CGPointMake(250,300))]  // second line
+            NSArray *lines = @[@[BOXED(CGPointMake(100, 100)), BOXED(CGPointMake(100, 200)), BOXED(CGPointMake(150, 300))], // first line
+                               @[BOXED(CGPointMake(200, 100)), BOXED(CGPointMake(200, 200)), BOXED(CGPointMake(250, 300))]  // second line
                                ];
 
             // convert view line points into PDF line points.
@@ -1246,43 +1160,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    // Test that stamps are correctly displayed and movable.
-    [testSection addContent:[PSContent contentWithTitle:@"Stamp annotation test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
-        return pdfController;
-    }]];
-
-    // Test that polylines are correctly displayed.
-    [testSection addContent:[PSContent contentWithTitle:@"Polyline annotation test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 9;
-        return pdfController;
-    }]];
-
     // Test that buttons are correctly displayed.
     [testSection addContent:[PSContent contentWithTitle:@"Widget annotation test" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_WidgetAnnotations.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.page = 4;
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Stamp annotation test, only allow stamp editing" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationStringStamp];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 1;
-        return pdfController;
-    }]];
-
-    // Line annotations generic, display, endings.
-    [testSection addContent:[PSContent contentWithTitle:@"Line annotation test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 7;
         return pdfController;
     }]];
 
@@ -1411,18 +1293,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"animatedgif.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // Test that we preserve the scrollEnabled setting.
-    // Check that scroll is still blocked after drawing.
-    [testSection addContent:[PSContent contentWithTitle:@"Test scroll blocking" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        // Finds the right timing to set properties.
-        [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *aPDFController, UIInterfaceOrientation toInterfaceOrientation) {
-            aPDFController.pagingScrollView.scrollEnabled = NO;
-        }];
         return pdfController;
     }]];
 
@@ -1715,27 +1585,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
     [sections addObject:delegateSection];
     ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-    // iPad only examples
-    if (PSCIsIPad()) {
-        PSCSectionDescriptor *iPadTests = [PSCSectionDescriptor sectionWithTitle:@"iPad only" footer:PSPDFVersionString()];
-        [iPadTests addContent:[PSContent contentWithTitle:@"SplitView" block:^{
-            UISplitViewController *splitVC = [[UISplitViewController alloc] init];
-            splitVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Split" image:[UIImage imageNamed:@"shoebox"] tag:3];
-            PSCSplitDocumentSelectorController *tableVC = [[PSCSplitDocumentSelectorController alloc] init];
-            UINavigationController *tableNavVC = [[UINavigationController alloc] initWithRootViewController:tableVC];
-            PSCSplitPDFViewController *hostVC = [[PSCSplitPDFViewController alloc] init];
-            UINavigationController *hostNavVC = [[UINavigationController alloc] initWithRootViewController:hostVC];
-            tableVC.masterVC = hostVC;
-            splitVC.delegate = hostVC;
-            splitVC.viewControllers = @[tableNavVC, hostNavVC];
-            // Split view controllers can't just be added to a UINavigationController
-            self.view.window.rootViewController = splitVC;
-            return (UIViewController *)nil;
-        }]];
-        [sections addObject:iPadTests];
-    }
 
     _content = sections.array;
 

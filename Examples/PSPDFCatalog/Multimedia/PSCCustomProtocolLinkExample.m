@@ -24,7 +24,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader temporaryDocumentWithString:@"Test PDF for custom protocols"];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 

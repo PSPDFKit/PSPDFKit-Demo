@@ -29,7 +29,7 @@
 // This example shows how you can create an XFDF provider instead of the default file-based one.
 // XFDF is an industry standard and the file will be interopable with Adobe Acrobat or any other standard-compliant PDF framework.
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     //NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Testcase_Form_YesNo.pdf"];

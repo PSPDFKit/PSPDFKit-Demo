@@ -37,7 +37,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     //NSURL *annotationSavingURL = [samplesURL URLByAppendingPathComponent:kPaperExampleFileName];
@@ -92,9 +92,8 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
     NSData *PDFData = [NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
     PSPDFDocument *document = [PSPDFDocument documentWithData:PDFData];
     return [[PSCEmbeddedAnnotationTestViewController alloc] initWithDocument:document];
@@ -116,11 +115,8 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
     return controller;
 }
@@ -141,7 +137,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
     NSArray *files = @[@"A.pdf", @"B.pdf", @"C.pdf", @"D.pdf"];
@@ -178,7 +174,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     
@@ -213,17 +209,16 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Annotation Links to external documents";
+        self.contentDescription = @"PDF links can point to pages within the same document, or also different documents or websites.";
         self.category = PSCExampleCategoryPDFAnnotations;
         self.priority = 60;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"one.pdf"]];
-    return [[PSPDFViewController alloc] initWithDocument:linkDocument];
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"one.pdf"];
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
@@ -236,15 +231,15 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Save as... for annotation editing";
+        self.contentDescription = @"Adds an alert after detecting annotation writes to define a new save location.";
         self.category = PSCExampleCategoryPDFAnnotations;
         self.priority = 70;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
     NSURL *writableDocumentURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
     PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:writableDocumentURL];
@@ -261,13 +256,14 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"XFDF Writing";
+        self.contentDescription = @"Custom code that creates annotations in code and exports them as XFDF.";
         self.category = PSCExampleCategoryPDFAnnotations;
         self.priority = 90;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"Annotation Test.pdf"];
     
@@ -281,30 +277,29 @@
     
     
     PSPDFLinkAnnotation *linkAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"http://pspdfkit.com"];
-    linkAnnotation.boundingBox = CGRectMake(100, 80, 200, 300);
+    linkAnnotation.boundingBox = CGRectMake(100.f, 80.f, 200.f, 300.f);
     linkAnnotation.page = 1;
     [annotations addObject:linkAnnotation];
     
     PSPDFLinkAnnotation *aStream = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8"];
-    aStream.boundingBox = CGRectMake(100, 100, 200, 300);
+    aStream.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aStream.page = 0;
     [annotations addObject:aStream];
     
-    //        PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[contentMode=2]localhost/Bundle/exampleImage.jpg"];
     PSPDFLinkAnnotation *anImage = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://ramitia.files.wordpress.com/2011/05/durian1.jpg"];
-    anImage.boundingBox = CGRectMake(100, 100, 200, 300);
+    anImage.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage.page = 3;
     [annotations addObject:anImage];
     
     
     PSPDFLinkAnnotation *aVideo2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:true]localhost/Bundle/big_buck_bunny.mp4"];
-    aVideo2.boundingBox = CGRectMake(100, 100, 200, 300);
+    aVideo2.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     aVideo2.page = 2;
     [annotations addObject:aVideo2];
     
     PSPDFLinkAnnotation *anImage3 = [[PSPDFLinkAnnotation alloc] initWithLinkAnnotationType:PSPDFLinkAnnotationImage];
     anImage3.URL = [NSURL URLWithString:[NSString stringWithFormat:@"pspdfkit://[contentMode=%zd]ramitia.files.wordpress.com/2011/05/durian1.jpg", UIViewContentModeScaleAspectFill]];
-    anImage3.boundingBox = CGRectMake(100, 100, 200, 300);
+    anImage3.boundingBox = CGRectMake(100.f, 100.f, 200.f, 300.f);
     anImage3.page = 4;
     [annotations addObject:anImage3];
     
@@ -329,9 +324,3 @@
 }
 
 @end
-
-
-
-
-
-

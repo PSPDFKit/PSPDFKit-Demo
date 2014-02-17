@@ -20,13 +20,13 @@
     if (self = [super init]) {
         self.title = @"Custom Text Selection Menu";
         self.contentDescription = @"Add option to google for selected text via the PSPDFViewControllerDelegate.";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 100;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
 }

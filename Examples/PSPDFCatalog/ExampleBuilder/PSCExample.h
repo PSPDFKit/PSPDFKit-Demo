@@ -10,7 +10,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol PSCExampleRunner <NSObject>
+@protocol PSCExampleRunnerDelegate <NSObject>
 
 - (UIViewController *)currentViewController;
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryPDFAnnotations,
     PSCExampleCategoryStoryboards,
     PSCExampleCategoryTextExtraction,
-    PSCExampleCategoryPSPDFViewControllerCustomization,
+    PSCExampleCategoryControllerCustomization,
     PSCExampleCategoryAnnotationProviders,
     PSCExampleCategoryPageRange,
     PSCExampleCategoryDocumentDataProvider
@@ -58,6 +58,6 @@ extern NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category);
 @property (nonatomic, assign) NSInteger priority;
 
 // Builds the sample and returns a new view controller that will then be pushed.
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate;
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate;
 
 @end

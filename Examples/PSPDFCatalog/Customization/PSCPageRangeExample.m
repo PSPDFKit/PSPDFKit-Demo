@@ -24,7 +24,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     // cache needs to be cleared since pages will change.
     [PSPDFCache.sharedCache clearCache];
     // TODO: fix me

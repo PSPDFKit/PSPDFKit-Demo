@@ -27,7 +27,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"A.pdf"];
     // The Core Data Annotation Provider doesn't support undo/redo.
     document.undoEnabled = NO;

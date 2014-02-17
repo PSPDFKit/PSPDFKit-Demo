@@ -14,9 +14,8 @@
 @property (nonatomic, strong) UIPopoverController *masterPopoverController;
 @end
 
-// note that it would be much better if we directly use PSPDFViewController,
-// or reuse an embedded PSPDFViewController and modify the document via the .document property
-// this technique is used to test fast creation/destroying of the viewController
+// It would be much better if we directly use PSPDFViewController, or reuse an embedded PSPDFViewController and modify the document via the .document property.
+// This technique is used to test fast creation/destroying of the viewController.
 @implementation PSCSplitPDFViewController
 
 ///////////////////////////////////////////////////////////////////////////////////////////

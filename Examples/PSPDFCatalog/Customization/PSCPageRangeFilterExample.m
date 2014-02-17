@@ -26,7 +26,7 @@
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.UID = NSStringFromClass(PSCPageRangeFilterExample.class);
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];

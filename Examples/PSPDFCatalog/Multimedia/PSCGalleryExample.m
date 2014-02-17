@@ -19,12 +19,13 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Image Gallery";
+        self.contentDescription = @"Gallery example with video, images, audio and YouTube gallery items.";
         self.category = PSCExampleCategoryMultimedia;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
@@ -39,9 +40,7 @@
         [document addAnnotations:@[galleryAnnotation]];
     }
 
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.pageTransition = PSPDFPageTransitionCurl;
-    return pdfController;
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end

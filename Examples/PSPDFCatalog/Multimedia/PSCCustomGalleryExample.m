@@ -31,12 +31,13 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Custom Image Gallery";
+        self.contentDescription = @"Changes internal gallery classes to customize the default background gradient.";
         self.category = PSCExampleCategoryMultimedia;
     }
     return self;
 }
 
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
@@ -44,15 +45,14 @@
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400, 300);
-    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
+    CGSize size = CGSizeMake(400.f, 300.f);
+    galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     [pdfController overrideClass:PSPDFGalleryViewController.class withClass:PSCCustomGalleryViewController.class];
     
-    // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView
-    // because both will be used.
+    // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
     [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
     [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
     
