@@ -1335,13 +1335,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // Test video covers
-    [testSection addContent:[PSContent contentWithTitle:@"Test multiple Video Covers" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"covertest/imrevi.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
     // Ensure that videos do display.
     [testSection addContent:[PSContent contentWithTitle:@"Test large video extraction code" block:^UIViewController *{
         // clear temp directory to force video extraction.
@@ -1430,36 +1423,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // Test that Sound is playable
-    [testSection addContent:[PSContent contentWithTitle:@"Sound annotation test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"SoundAnnotation.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
-        return pdfController;
-    }]];
-
-    // Test that Sound is playable
-    [testSection addContent:[PSContent contentWithTitle:@"Sound annotation test 2" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"SoundAnnotation2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
-        return pdfController;
-    }]];
-
-    // Test that the files can be opened.
-    [testSection addContent:[PSContent contentWithTitle:@"FileAttachment annotation test" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"FileAttachments.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.outlineButtonItem, pdfController.openInButtonItem];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Caret annotations" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Annotation_Caret.PDF"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
     [testSection addContent:[PSContent contentWithTitle:@"Stamp annotation test, only allow stamp editing" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
         document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObject:PSPDFAnnotationStringStamp];
@@ -1499,62 +1462,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    [testSection addContent:[PSContent contentWithTitle:@"Stamps test with appearance streams" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamptest.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"FreeText annotation" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"stamps2.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 2;
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Test image extraction with CMYK images" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
-
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
-        NSLog(@"Detected images: %@", images);
-
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Test image extraction - top left" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"image-topleft.pdf"]];
-
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
-        NSLog(@"Detected images: %@", images);
-
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Test image extraction - not inverted" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"inverted-image.pdf"]];
-
-        NSDictionary *images = [document objectsAtPDFRect:[document pageInfoForPage:0].rotatedPageRect page:0 options:@{PSPDFObjectsImages : @YES}];
-        NSLog(@"Detected images: %@", images);
-
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // test that even many links don't create any performance problem on saving.
-    [testSection addContent:[PSContent contentWithTitle:@"Performance with many links" block:^UIViewController *{
-
-        NSURL *documentURL = [samplesURL URLByAppendingPathComponent:@"PDFReference17.pdf"];
-        NSURL *newURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
-
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:newURL];
-        document.annotationSaveMode = PSPDFAnnotationSaveModeEmbedded;
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 2;
-        return pdfController;
-    }]];
-
     // Check that the link annotation on page one actually works, even if it's encoded in a weird way.
     [testSection addContent:[PSContent contentWithTitle:@"Test invalid URI encodings" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"weird-link-annotation-siteLinkTargetIsRaw.pdf"]];
@@ -1574,28 +1481,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Test that those links are properly visible and NOT covered by a webview (white box).
     [testSection addContent:[PSContent contentWithTitle:@"Test localhost links" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_WhiteBox.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // Check that telephone numbers are dynamically converted to annotations.
-    [testSection addContent:[PSContent contentWithTitle:@"Detect Telephone Numbers and Links" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"detect-telephone-numbers.pdf"]];
-
-        // Detect URLs in the document and create annotations
-        NSIndexSet *allPagesIndex = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)];
-        NSDictionary *annotationsPerPage = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:allPagesIndex progress:^(NSArray *annotations, NSUInteger page, BOOL *stop) {
-            NSLog(@"Detected %@ on %tu", annotations, page);
-        } error:NULL];
-
-        // Add those annotations to the page.
-        [annotationsPerPage enumerateKeysAndObjectsUsingBlock:^(NSNumber *pageNumber, NSArray *annotations, BOOL *stop) {
-            [document addAnnotations:annotations];
-        }];
-
-        NSDictionary *annotationsPerPage2 = [document annotationsFromDetectingLinkTypes:PSPDFTextCheckingTypeAll pagesInRange:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)] progress:NULL error:NULL];
-        __unused NSUInteger annotationCount = [[annotationsPerPage2.allValues valueForKeyPath:@"@max.type.@count"] unsignedIntegerValue];
-        NSAssert(annotationCount == 0, @"A second run should not create new annotations");
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1622,14 +1507,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         NSLog(@"%@", [[document textParserForPage:12] glyphs]);
 
-        return pdfController;
-    }]];
-
-    // This document has a font XObject recursion depth of > 4. Test if it's parsed correctly and doesn't crash PSPDFKit.
-    // Simply opening will crash if this isn't handled correctly.
-    [testSection addContent:[PSContent contentWithTitle:@"Test font XObject recursion depth" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"font-xobject-recursion-depth-crashtest.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -1682,34 +1559,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-
-    // Test that showing all annotations doesn't kill the app due to memory pressure.
-    [testSection addContent:[PSContent contentWithTitle:@"Test 5500 pages with annotations" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_5500_pages.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        double delayInSeconds = 1.0;
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [pdfController.outlineButtonItem action:pdfController.outlineButtonItem];
-        });
-        return pdfController;
-    }]];
-
-    // Test that showing all annotations doesn't kill the app due to memory pressure.
-    [testSection addContent:[PSContent contentWithTitle:@"Test 22000 pages with annotations" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_22000_pages.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    // Check that showing this won't crash the iPad1.
-    [testSection addContent:[PSContent contentWithTitle:@"Test memory intensive document" block:^UIViewController *{
-        [PSPDFCache.sharedCache clearCache];
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Dictionary of American Idioms and Phrasal Verbs.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
 
     // Check that GIFs are animated.
     [testSection addContent:[PSContent contentWithTitle:@"Test animated GIFs + Links" block:^UIViewController *{
@@ -1833,14 +1682,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return pdfController;
     }]];
 
-    // Check that external URLs are displayed in the inline browser (http and Http should be handled equally)
-    [testSection addContent:[PSContent contentWithTitle:@"Test links with Http:// uppercase protocol" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"testcase_Http_tdn130209_1.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = 13;
-        return pdfController;
-    }]];
-
     [testSection addContent:[PSContent contentWithTitle:@"View state restoration for continuous scrolling" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -1851,18 +1692,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation saving + NSData" block:^UIViewController *{
         PSPDFDocument *document = [PSPDFDocument documentWithData:[NSData dataWithContentsOfURL:[samplesURL URLByAppendingPathComponent:@"annotations_nsdata.pdf"]]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Test image drawing" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"imagestest.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        return pdfController;
-    }]];
-
-    [testSection addContent:[PSContent contentWithTitle:@"Test freetext annotation" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"freetext-test.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
@@ -1923,28 +1752,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
-
-    /*
-     [testSection addContent:[PSContent contentWithTitle:@"Tests thumbnail extraction" block:^UIViewController *{
-     NSURL *URL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"] URLByAppendingPathComponent:@"landscapetest.pdf"];
-     PSPDFDocument *doc = [PSPDFDocument documentWithURL:URL];
-     NSError *error = nil;
-     UIImage *thumbnail = [doc imageForPage:0 size:CGSizeMake(300, 300) clippedToRect:CGRectZero annotations:nil options:nil receipt:NULL error:&error];
-     if (!thumbnail) {
-     NSLog(@"Failed to generate thumbnail: %@", error.localizedDescription);
-     }
-     NSData *thumbnailMedium = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(150, 150) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
-     NSData *thumbnailSmall = UIImagePNGRepresentation([thumbnail pspdf_resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(80, 80) honorScaleFactor:YES interpolationQuality:kCGInterpolationHigh]);
-     NSString *filePathMedium = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"medium.png"];
-     NSString *filePathSmall = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"small.png"];
-     NSLog(@"Writing %@", filePathMedium);
-     [thumbnailMedium writeToFile:filePathMedium atomically:YES];
-     NSLog(@"Writing %@", filePathSmall);
-     [thumbnailSmall writeToFile:filePathSmall atomically:YES];
-     NSString *filePathFull = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"full.png"];
-     [UIImagePNGRepresentation(thumbnail) writeToFile:filePathFull atomically:YES];
-     return nil;
-     }]];*/
 
     // Check that there's a red note annotation in landscape mode or when you zoom out.
     [testSection addContent:[PSContent contentWithTitle:@"Test annotation outside of page" block:^UIViewController *{
@@ -2037,22 +1844,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *mergedDocument = [PSPDFDocument documentWithURL:tempURL];
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:mergedDocument];
         return controller;
-    }]];
-
-    // Form support
-    [testSection addContent:[PSContent contentWithTitle:@"Test PDF Forms" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_forms.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.emailButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
-        return pdfController;
-    }]];
-
-    // Form support
-    [testSection addContent:[PSContent contentWithTitle:@"Test PDF Forms 2" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Tool.pdf"]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.openInButtonItem, pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.viewModeButtonItem];
-        return pdfController;
     }]];
 
     // Form support

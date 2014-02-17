@@ -39,6 +39,7 @@ const char PSCAlertViewKey;
 - (id)init {
     if (self = [super init]) {
         self.title = @"Full-Text Search";
+        self.contentDescription = @"Use PSPDFDocumentPickerController to perform a full-text search across all sample documents.";
         self.category = PSCExampleCategoryTextExtraction;
         self.priority = 10;
     }
@@ -57,7 +58,7 @@ const char PSCAlertViewKey;
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
     BOOL showInGrid = [objc_getAssociatedObject(controller, &PSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
     
-    // add fade transition for navigationBar.
+    // Add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
     
     if (showInGrid) {
