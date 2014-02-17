@@ -53,7 +53,7 @@
                     [self.tableView selectRowAtIndexPath:selectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionMiddle];
                     [self tableView:self.tableView didSelectRowAtIndexPath:selectedIndexPath];
                 });
-                [NSThread sleepForTimeInterval:0.05 * arc4random_uniform(5)];
+                [NSThread sleepForTimeInterval:0.05f * arc4random_uniform(5)];
             }
         }
     });
