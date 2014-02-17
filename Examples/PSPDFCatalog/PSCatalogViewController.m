@@ -89,7 +89,6 @@
 
 const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
 const char PSCAlertViewKey;
-const char PSCSignatureCompletionBlock = 0;
 static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 @implementation PSCatalogViewController
@@ -828,102 +827,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             PSPDFPageView *pageView = pdfController.visiblePageViews.count > 0 ? pdfController.visiblePageViews[0] : nil;
             [pageView showSignatureControllerAtRect:CGRectNull withTitle:PSPDFLocalize(@"Add Signature") shouldSaveSignature:YES animated:YES];
         });
-
         return pdfController;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Sign all pages" block:^UIViewController *{
-        UIColor *penBlueColor = [UIColor colorWithRed:0.000f green:0.030f blue:0.516f alpha:1.000f];
-
-        // Show the signature controller
-        PSPDFSignatureViewController *signatureController = [[PSPDFSignatureViewController alloc] init];
-        signatureController.drawView.strokeColor = penBlueColor;
-        signatureController.drawView.lineWidth = 3.f;
-        signatureController.delegate = self;
-        UINavigationController *signatureContainer = [[UINavigationController alloc] initWithRootViewController:signatureController];
-        signatureContainer.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:signatureContainer animated:YES completion:NULL];
-
-        // To make the example more concise, we're using a callback block here.
-        void(^signatureCompletionBlock)(PSPDFSignatureViewController *theSignatureController) = ^(PSPDFSignatureViewController *theSignatureController) {
-            // Create the document.
-            PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-            document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled; // Don't pollute other examples.
-
-            // We want to add signture at the bottom of the page.
-            for (NSUInteger pageIndex = 0; pageIndex < document.pageCount; pageIndex++) {
-
-                // Check if we're already signed and ignore.
-                BOOL alreadySigned = NO;
-                NSArray *annotationsForPage = [document annotationsForPage:pageIndex type:PSPDFAnnotationTypeInk];
-                for (PSPDFInkAnnotation *ann in annotationsForPage) {
-                    if ([ann.name isEqualToString:@"Signature"]) {
-                        alreadySigned = YES; break;
-                    }
-                }
-
-                // Not yet signed -> create new Ink annotation.
-                if (!alreadySigned) {
-                    const CGFloat margin = 10.f;
-                    const CGSize maxSize = CGSizeMake(150.f, 75.f);
-
-                    // Prepare the lines and convert them from view space to PDF space. (PDF space is mirrored!)
-                    PSPDFPageInfo *pageInfo = [document pageInfoForPage:pageIndex];
-                    NSArray *lines = PSPDFConvertViewLinesToPDFLines(signatureController.lines, pageInfo.pageRect, pageInfo.pageRotation, pageInfo.pageRect);
-
-                    // Calculate the size, aspect ratio correct.
-                    CGSize annotationSize = PSPDFBoundingBoxFromLines(lines, 2).size;
-                    CGFloat scale = PSCScaleForSizeWithinSize(annotationSize, maxSize);
-                    annotationSize = CGSizeMake(lround(annotationSize.width * scale), lround(annotationSize.height * scale));
-
-                    // Create the annotation.
-                    PSPDFInkAnnotation *annotation = [PSPDFInkAnnotation new];
-                    annotation.name = @"Signature"; // Arbitrary string, will be persisted in the PDF.
-                    annotation.lines = lines;
-                    annotation.lineWidth = 3.f;
-                    // Add lines to bottom right. (PDF zero is bottom left)
-                    annotation.boundingBox = CGRectMake(pageInfo.pageRect.size.width-annotationSize.width-margin, margin, annotationSize.width, annotationSize.height);
-                    annotation.color = penBlueColor;
-                    annotation.contents = [NSString stringWithFormat:@"Signed on %@ by test user.", [NSDateFormatter localizedStringFromDate:NSDate.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle]];
-                    annotation.page = pageIndex;
-
-                    // Add annotation.
-                    [document addAnnotations:@[annotation]];
-                }
-            }
-
-            // Now we could flatten the PDF so that the signature is "burned in".
-            PSPDFAlertView *flattenAlert = [[PSPDFAlertView alloc] initWithTitle:@"Flatten Annotations" message:@"Flattening will merge the annotations with the page content"];
-            [flattenAlert addButtonWithTitle:@"Flatten" block:^{
-                NSURL *tempURL = PSCTempFileURLWithPathExtension(@"flattened_signaturetest", @"pdf");
-                // Perform in background to allow progress showing.
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                    [PSPDFProcessor.defaultProcessor generatePDFFromDocument:document pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, document.pageCount)]] outputFileURL:tempURL options:@{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-                        // Access UI only from main thread.
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [PSPDFProgressHUD showProgress:(numberOfProcessedPages+1)/(float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
-                        });
-                    } error:NULL];
-
-                    // completion
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [PSPDFProgressHUD dismiss];
-                        PSPDFDocument *flattenedDocument = [PSPDFDocument documentWithURL:tempURL];
-                        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:flattenedDocument];
-                        [self.navigationController pushViewController:pdfController animated:YES];
-                    });
-                });
-            }];
-            [flattenAlert addButtonWithTitle:@"Allow Editing" block:^{
-                PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-                [self.navigationController pushViewController:pdfController animated:YES];
-            }];
-            [flattenAlert show];
-        };
-
-        objc_setAssociatedObject(signatureController, &PSCSignatureCompletionBlock, signatureCompletionBlock, OBJC_ASSOCIATION_COPY);
-
-        return (UIViewController *)nil;
     }]];
 
     [subclassingSection addContent:[PSContent contentWithTitle:@"Allow to select and export pages in thumbnail mode" block:^UIViewController *{
@@ -933,7 +837,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [sections addObject:subclassingSection];
-
 
     ///
     /// TEST SECTION
@@ -2168,15 +2071,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
 - (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
     if (PSCIsUIKitFlatMode()) self.searchBar.searchBarStyle = UISearchBarStyleMinimal;
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFSignatureViewControllerDelegate
-
-// Sign all pages example
-- (void)signatureViewControllerDidSave:(PSPDFSignatureViewController *)signatureController {
-    void(^signatureCompletionBlock)(PSPDFSignatureViewController *signatureController) = objc_getAssociatedObject(signatureController, &PSCSignatureCompletionBlock);
-    if (signatureCompletionBlock) signatureCompletionBlock(signatureController);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
