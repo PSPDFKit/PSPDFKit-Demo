@@ -32,6 +32,8 @@
 
     // Set up the PDF controller
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.pageMode = PSPDFPageModeSingle;
+    pdfController.fitToWidthEnabled = YES;
     pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem, pdfController.activityButtonItem, pdfController.viewModeButtonItem];
     UINavigationController *navPDFController = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
@@ -43,6 +45,7 @@
     searchController.pinSearchBarToHeader = YES;
     PSPDFContainerViewController *containerController = [[PSPDFContainerViewController alloc] initWithControllers:@[outlineController, annotationController, bookmarkController, searchController] titles:nil delegate:nil];
     containerController.shouldShowCloseButton = NO;
+    containerController.shouldAnimateChanges = NO;
     UINavigationController *navContainer = [[UINavigationController alloc] initWithRootViewController:containerController];
 
     // Create the split view controller
