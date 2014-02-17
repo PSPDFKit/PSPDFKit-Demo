@@ -68,7 +68,7 @@
 
         pdfController.leftBarButtonItems = @[pdfController.closeButtonItem, pickerButtonItem];
         pdfController.barButtonItemsAlwaysEnabled = @[pickerButtonItem];
-        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.searchButtonItem, pdfController.activityButtonItem, pdfController.viewModeButtonItem];
+        pdfController.rightBarButtonItems = @[pdfController.annotationButtonItem, pdfController.brightnessButtonItem, pdfController.bookmarkButtonItem, pdfController.activityButtonItem, pdfController.viewModeButtonItem];
         self.pdfController = pdfController;
         UINavigationController *navPDFController = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
