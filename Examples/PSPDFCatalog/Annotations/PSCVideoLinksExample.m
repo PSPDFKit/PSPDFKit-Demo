@@ -19,7 +19,7 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Multimedia Gallery Example";
-        self.category = PSCExampleCategoryAnnotations;
+        self.category = PSCExampleCategoryMultimedia;
     }
     return self;
 }

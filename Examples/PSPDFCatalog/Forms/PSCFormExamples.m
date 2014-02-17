@@ -123,7 +123,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 - (id)init {
     if (self = [super init]) {
         self.title = @"PDF Form with formatted text fields.";
-        self.category = PSCExampleCategoryViewCustomization;
+        self.category = PSCExampleCategoryForms;
         self.priority = 50;
     }
     return self;

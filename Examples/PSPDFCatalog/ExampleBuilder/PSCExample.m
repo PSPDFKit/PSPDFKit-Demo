@@ -35,11 +35,11 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryForms:
             return @"Forms and Digital Signatures";
         case PSCExampleCategoryBarButtons:
-            return @"BarButtons";
+            return @"Toolbar customizations";
         case PSCExampleCategoryViewCustomization:
-            return @"ViewCustomization";
+            return @"View Customizations";
         case PSCExampleCategoryPageRange:
-            return @"PageRange";
+            return @"Range Range";
         case PSCExampleCategoryDocumentDataProvider:
             return @"PSPDFDocument data providers";
         case PSCExampleCategoryMultimedia:
@@ -64,20 +64,19 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryDocumentDataProvider:
             return @"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one.";
         case PSCExampleCategoryMultimedia:
-            return @"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation.html#multimedia for details.";
+            return @"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation for details.";
         case PSCExampleCategoryPDFAnnotations:
             return @"PSPDFKit supports all common PDF annotation types.";
-        case PSCExampleCategoryAnnotations:
+        case PSCExampleCategoryAnnotations: break;
         case PSCExampleCategoryForms:
             return @"PSPDFKit can show the original signed document even if the document has been subsequently altered.";
-        case PSCExampleCategoryBarButtons:
-        case PSCExampleCategoryViewCustomization:
-        case PSCExampleCategoryStoryboards:
-        case PSCExampleCategoryTextExtraction:
-        case PSCExampleCategoryPSPDFViewControllerCustomization:
-        default:
-            return nil;
+        case PSCExampleCategoryBarButtons: break;
+        case PSCExampleCategoryViewCustomization: break;
+        case PSCExampleCategoryStoryboards: break;
+        case PSCExampleCategoryTextExtraction: break;
+        case PSCExampleCategoryPSPDFViewControllerCustomization: break;
     }
+    return nil;
 }
 
 

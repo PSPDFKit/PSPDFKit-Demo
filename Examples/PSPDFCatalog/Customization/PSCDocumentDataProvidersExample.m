@@ -1,5 +1,5 @@
 //
-//  PSPDFDocumentDataProviders.m
+//  PSCDocumentDataProviders.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,11 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPSPDFDocumentDataProvidersExample.h"
+#import "PSCDocumentDataProvidersExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 
-@implementation PSPDFDocumentDataProvidersNSURLExample
+@implementation PSCDocumentDataProvidersNSURLExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersNSDataExample
+@implementation PSCDocumentDataProvidersNSDataExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -63,7 +63,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersCGDocumentProviderExample
+@implementation PSCDocumentDataProvidersCGDocumentProviderExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -93,7 +93,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersMultipleFilesExample
+@implementation PSCDocumentDataProvidersMultipleFilesExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -120,7 +120,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersMultipleNSDataObjectsMemoryMappedExample
+@implementation PSCDocumentDataProvidersMultipleNSDataObjectsMemoryMappedExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -161,7 +161,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersMultipleNSDataObjectsExample
+@implementation PSCDocumentDataProvidersMultipleNSDataObjectsExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -201,7 +201,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersMultipleNSDataObjectsMergedExample
+@implementation PSCDocumentDataProvidersMultipleNSDataObjectsMergedExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -242,7 +242,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersExtractSinglePagesExample
+@implementation PSCDocumentDataProvidersExtractSinglePagesExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -287,7 +287,7 @@
 
 @end
 
-@implementation PSPDFDocumentDataProvidersExtractSinglePagesFastExample
+@implementation PSCDocumentDataProvidersExtractSinglePagesFastExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -328,7 +328,7 @@
 
 @end
 
-//@implementation PSPDFDocumentDataProvidersMergeLandscapeWithPortraitPageExample
+//@implementation PSCDocumentDataProvidersMergeLandscapeWithPortraitPageExample
 //
 /////////////////////////////////////////////////////////////////////////////////////////////
 //#pragma mark - PSCExample

@@ -1,5 +1,5 @@
 //
-//  PSCPSPDFViewControllerCustomizationExample.m
+//  PSCPDFViewControllerCustomizationExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPSPDFViewControllerCustomizationExample.h"
+#import "PSCPDFViewControllerCustomizationExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCEmbeddedTestController.h"
 #import "PSCChildViewController.h"
@@ -20,7 +20,7 @@
 #import "PSCAppearancePDFViewController.h"
 #import <UIKit/UIViewController.h>
 
-@implementation PSCPSPDFViewControllerCustomizationPageCurlExample
+@implementation PSCPDFViewControllerCustomizationPageCurlExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -46,7 +46,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationUsingaNIBExample
+@implementation PSCPDFViewControllerCustomizationUsingaNIBExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -66,7 +66,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationChildViewControllerContainmentExample
+@implementation PSCPDFViewControllerCustomizationChildViewControllerContainmentExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -90,7 +90,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationAddingaSimpleUIButtonExample
+@implementation PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -114,7 +114,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationAddingMultipleUIButtonsExample
+@implementation PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -138,7 +138,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationCustomToolbarIconExample
+@implementation PSCPDFViewControllerCustomizationCustomToolbarIconExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -167,15 +167,15 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationCompletelyCustomToolbarExample
+@implementation PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Completely Custom Toolbar";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
+        self.title = @"Customized Toolbar";
+        self.category = PSCExampleCategoryBarButtons;
         self.priority = 70;
     }
     return self;
@@ -191,7 +191,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample
+@implementation PSCPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
@@ -216,7 +216,7 @@
 
 @end
 
-@implementation PSCPSPDFViewControllerCustomizationUIAppearanceExample
+@implementation PSCPDFViewControllerCustomizationUIAppearanceExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
