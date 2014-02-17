@@ -10,9 +10,6 @@
 
 #import "PSCExample.h"
 
-@interface PSCPDFViewControllerCustomizationUsingaNIBExample : PSCExample
-@end
-
 @interface PSCPDFViewControllerCustomizationChildViewControllerContainmentExample : PSCExample
 @end
 

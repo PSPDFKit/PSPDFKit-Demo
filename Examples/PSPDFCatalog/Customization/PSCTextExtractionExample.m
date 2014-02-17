@@ -14,27 +14,14 @@
 #import "UINavigationController+PSCKeyboardDismissal.h"
 #import <objc/runtime.h>
 
-@interface PSCTextExtractionFullTextSearchExample () <PSPDFDocumentPickerControllerDelegate> {
+@interface PSCFullTextSearchExample () <PSPDFDocumentPickerControllerDelegate> {
     UISearchDisplayController *_searchDisplayController;
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
 }
 @end
 
-@interface PSCTextExtractionConvertWebsiteOrFilesToPDFExample () <UITextFieldDelegate> {
-    UISearchDisplayController *_searchDisplayController;
-    BOOL _firstShown;
-    BOOL _clearCacheNeeded;
-}
-@end
-
-const char PSCShowDocumentSelectorOpenInTabbedControllerKey;
-const char PSCAlertViewKey;
-
-@implementation PSCTextExtractionFullTextSearchExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+@implementation PSCFullTextSearchExample
 
 - (id)init {
     if (self = [super init]) {
@@ -56,36 +43,27 @@ const char PSCAlertViewKey;
 #pragma mark - PSPDFDocumentPickerControllerDelegate
 
 - (void)documentPickerController:(PSPDFDocumentPickerController *)controller didSelectDocument:(PSPDFDocument *)document page:(NSUInteger)pageIndex searchString:(NSString *)searchString {
-    BOOL showInGrid = [objc_getAssociatedObject(controller, &PSCShowDocumentSelectorOpenInTabbedControllerKey) boolValue];
-    
     // Add fade transition for navigationBar.
     [controller.navigationController.navigationBar.layer addAnimation:PSCFadeTransition() forKey:kCATransition];
     
-    if (showInGrid) {
-        // create controller and merge new documents with last saved state.
-        PSPDFTabbedViewController *tabbedViewController = [PSCTabbedExampleViewController new];
-        [tabbedViewController restoreStateAndMergeWithDocuments:@[document]];
-        tabbedViewController.pdfController.page = pageIndex;
-        [controller.navigationController pushViewController:tabbedViewController animated:YES];
-    }else {
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.page = pageIndex;
-        pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
-        pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
-        [controller.navigationController pushViewController:pdfController animated:YES];
-    }
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.page = pageIndex;
+    pdfController.rightBarButtonItems = @[pdfController.searchButtonItem, pdfController.outlineButtonItem, pdfController.annotationButtonItem, pdfController.viewModeButtonItem];
+    pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
+    [controller.navigationController pushViewController:pdfController animated:YES];
 }
 
 @end
 
-@implementation PSCTextExtractionConvertMarkupStringToPDFExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+#pragma mark - PSCConvertMarkupStringToPDFExample
+
+@implementation PSCConvertMarkupStringToPDFExample
 
 - (id)init {
     if (self = [super init]) {
         self.title = @"Convert markup string to PDF";
+        self.contentDescription = @"Convert a HTML-like string to PDF.";
         self.category = PSCExampleCategoryTextExtraction;
         self.priority = 20;
     }
@@ -121,14 +99,24 @@ const char PSCAlertViewKey;
 
 @end
 
-@implementation PSCTextExtractionConvertWebsiteOrFilesToPDFExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+#pragma mark - PSCConvertWebsiteOrFilesToPDFExample
+
+@interface PSCConvertWebsiteOrFilesToPDFExample () <UITextFieldDelegate> {
+    UISearchDisplayController *_searchDisplayController;
+    BOOL _firstShown;
+    BOOL _clearCacheNeeded;
+}
+@end
+
+const char PSCAlertViewKey;
+
+@implementation PSCConvertWebsiteOrFilesToPDFExample
 
 - (id)init {
     if (self = [super init]) {
         self.title = @"Convert Website/Files to PDF";
+        self.contentDescription = @"Use PSPDFProcessor to convert web sites or office documends directly to PDF.";
         self.category = PSCExampleCategoryTextExtraction;
         self.priority = 30;
     }
@@ -172,6 +160,16 @@ const char PSCAlertViewKey;
     objc_setAssociatedObject([websitePrompt textFieldAtIndex:0], &PSCAlertViewKey, websitePrompt, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [websitePrompt show];
     return nil;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UITextFieldDelegate
+
+// enable the return key on the alert view
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    UIAlertView *alertView = objc_getAssociatedObject(textField, &PSCAlertViewKey);
+    if (alertView) { [alertView dismissWithClickedButtonIndex:1 animated:YES]; return YES;
+    }else return NO;
 }
 
 @end

@@ -10,14 +10,14 @@
 
 #import "PSCExample.h"
 
-@interface PSCTextExtractionFullTextSearchExample : PSCExample
+@interface PSCFullTextSearchExample : PSCExample
 
 @end
 
-@interface PSCTextExtractionConvertMarkupStringToPDFExample : PSCExample
+@interface PSCConvertMarkupStringToPDFExample : PSCExample
 
 @end
 
-@interface PSCTextExtractionConvertWebsiteOrFilesToPDFExample : PSCExample
+@interface PSCConvertWebsiteOrFilesToPDFExample : PSCExample
 
 @end

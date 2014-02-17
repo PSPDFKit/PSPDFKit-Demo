@@ -26,9 +26,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"multimedia.pdf"]];
+    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:@"multimedia.pdf"];
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
     pdfController.rightBarButtonItems = @[pdfController.openInButtonItem, pdfController.viewModeButtonItem];
     return pdfController;
@@ -51,9 +49,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     // dynamically add video box
@@ -81,9 +77,7 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    
-    PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     // dynamically add video box
@@ -103,7 +97,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Add inline YouTube";
+        self.title = @"Embed YouTube video into a page";
+        self.contentDescription = @"Embed a YouTube video directly on the page via PSPDFGallery.";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 40;
     }
@@ -111,12 +106,10 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-
-    PSPDFDocument *multimediaDoc = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
-    // dynamically add video box
+    // Dynamically add video box.
     PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720"];
     video.boundingBox = CGRectMake(70.f, 150.f, 470.f, 270.f);
     [multimediaDoc addAnnotations:@[video]];

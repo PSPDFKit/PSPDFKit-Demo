@@ -14,7 +14,6 @@
 #import "PSCFileHelper.h"
 #import "PSCGridViewController.h"
 #import "PSCTabbedExampleViewController.h"
-#import "PSCEmbeddedTestController.h"
 #import "PSCCustomToolbarController.h"
 #import "PSCAnnotationTestController.h"
 #import "PSCSplitDocumentSelectorController.h"
@@ -34,7 +33,6 @@
 #import "PSCRotationLockBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
-#import "PSCLinkEditorViewController.h"
 #import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
@@ -66,10 +64,6 @@
 // Crypto support
 #import "RNEncryptor.h"
 #import "RNDecryptor.h"
-
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
 
 //#define kDebugTextBlocks
 
@@ -414,26 +408,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     PSCSectionDescriptor *subclassingSection = [PSCSectionDescriptor sectionWithTitle:@"Subclassing" footer:@"Examples how to subclass PSPDFKit."];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Annotation Link Editor" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:
-                                            PSPDFAnnotationStringLink, // important!
-                                            PSPDFAnnotationStringHighlight,
-                                            PSPDFAnnotationStringUnderline,
-                                            PSPDFAnnotationStringSquiggly,
-                                            PSPDFAnnotationStringStrikeOut,
-                                            PSPDFAnnotationStringNote,
-                                            PSPDFAnnotationStringFreeText,
-                                            PSPDFAnnotationStringInk,
-                                            PSPDFAnnotationStringSquare,
-                                            PSPDFAnnotationStringCircle,
-                                            PSPDFAnnotationStringStamp,
-                                            nil];
-
-        PSPDFViewController *controller = [[PSCLinkEditorViewController alloc] initWithDocument:document];
-        return controller;
-    }]];
 
     // Bookmarks
     [subclassingSection addContent:[PSContent contentWithTitle:@"Capture Bookmarks" block:^UIViewController *{

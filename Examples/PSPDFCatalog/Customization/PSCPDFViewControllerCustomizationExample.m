@@ -10,32 +10,11 @@
 
 #import "PSCPDFViewControllerCustomizationExample.h"
 #import "PSCAssetLoader.h"
-#import "PSCEmbeddedTestController.h"
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCCustomToolbarController.h"
 #import <UIKit/UIViewController.h>
-
-@implementation PSCPDFViewControllerCustomizationUsingaNIBExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Using a NIB";
-        self.category = PSCExampleCategoryControllerCustomization;
-        self.priority = 20;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    return [[PSCEmbeddedTestController alloc] initWithNibName:@"EmbeddedNib" bundle:nil];
-}
-
-@end
 
 @implementation PSCPDFViewControllerCustomizationChildViewControllerContainmentExample
 
@@ -109,6 +88,7 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Customized Toolbar";
+        self.contentDescription = @"Uses a textual switch button for thumbnails/content.";
         self.category = PSCExampleCategoryBarButtons;
         self.priority = 70;
     }
