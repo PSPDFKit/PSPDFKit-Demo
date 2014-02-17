@@ -14,10 +14,8 @@
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCImageOverlayPDFViewController.h"
-#import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCCustomToolbarController.h"
 #import "PSCTintablePDFViewController.h"
-#import "PSCAppearancePDFViewController.h"
 #import <UIKit/UIViewController.h>
 
 @implementation PSCPDFViewControllerCustomizationUsingaNIBExample
@@ -112,35 +110,6 @@
 
 @end
 
-@implementation PSCPDFViewControllerCustomizationCustomToolbarIconExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Custom toolbar icon for bookmark item";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
-        self.priority = 60;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.title = @"Custom toolbar icon for bookmark item";
-    [pdfController overrideClass:[PSPDFBookmarkBarButtonItem class] withClass:[PSCCustomBookmarkBarButtonItem class]];
-    pdfController.bookmarkButtonItem.tapChangesBookmarkStatus = NO;
-    pdfController.rightBarButtonItems = @[pdfController.bookmarkButtonItem, pdfController.viewModeButtonItem];
-    return pdfController;
-}
-
-@end
-
 @implementation PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -186,35 +155,6 @@
     PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
     PSPDFViewController *pdfController = [[PSCTintablePDFViewController alloc] initWithDocument:document];
     return pdfController;
-}
-
-@end
-
-@implementation PSCPDFViewControllerCustomizationUIAppearanceExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"UIAppearance examples";
-        self.category = PSCExampleCategoryPSPDFViewControllerCustomization;
-        self.priority = 90;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunner>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-    PSPDFViewController *pdfController = [[PSCAppearancePDFViewController alloc] initWithDocument:document];
-    // Present modally to enable new appearance code.
-    UINavigationController *navController = [[PSCAppearanceNavigationController alloc] initWithRootViewController:pdfController];
-    
-    [delegate.currentViewController presentViewController:navController animated:YES completion:NULL];
-    return (PSPDFViewController *)nil;
 }
 
 @end

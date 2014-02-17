@@ -22,14 +22,8 @@
 @interface PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample : PSCExample
 @end
 
-@interface PSCPDFViewControllerCustomizationCustomToolbarIconExample : PSCExample
-@end
-
 @interface PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample : PSCExample
 @end
 
 @interface PSCPDFViewControllerCustomizationTintedToolbarPopoversAlertViewExample : PSCExample
-@end
-
-@interface PSCPDFViewControllerCustomizationUIAppearanceExample : PSCExample
 @end

@@ -1,5 +1,5 @@
 //
-//  PSCCustomBookmarkBarButtonItem.h
+//  PSCCustomTextSelectionMenuExample.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,6 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@interface PSCCustomBookmarkBarButtonItem : PSPDFBookmarkBarButtonItem
+#import "PSCExample.h"
+
+@interface PSCCustomTextSelectionMenuExample : PSCExample
 
 @end

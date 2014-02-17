@@ -27,7 +27,8 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Vertical Annotation/Outline Sidebar";
+        self.title = @"Always-Visible Sidebar";
+        self.contentDescription = @"Uses a split view controller to show the outline/annotation/bookmark/search view controller in an always-visible sidebar for landscape mode.";
         self.category = PSCExampleCategoryViewCustomization;
         self.priority = 1;
         self.targetDevice = PSCExampleTargetDeviceMaskPad; // Split view is iPad only.
@@ -72,12 +73,14 @@
         self.pdfController = pdfController;
         UINavigationController *navPDFController = [[UINavigationController alloc] initWithRootViewController:pdfController];
 
-        // Set up the container for annotations/outline/bookmarks/search.
+        // Set up the controller for annotations/outline/bookmarks/search.
         PSPDFOutlineViewController *outlineController = [[PSPDFOutlineViewController alloc] initWithDocument:document delegate:pdfController];
         PSPDFBookmarkViewController *bookmarkController = [[PSPDFBookmarkViewController alloc] initWithDocument:document delegate:pdfController];
         PSPDFAnnotationTableViewController *annotationController = [[PSPDFAnnotationTableViewController alloc] initWithDocument:document delegate:pdfController];
         PSPDFSearchViewController *searchController = [[PSPDFSearchViewController alloc] initWithDocument:document delegate:pdfController];
         searchController.pinSearchBarToHeader = YES;
+
+        // Create the container controller.
         PSPDFContainerViewController *containerController = [[PSPDFContainerViewController alloc] initWithControllers:@[outlineController, annotationController, bookmarkController, searchController] titles:nil delegate:nil];
         containerController.shouldShowCloseButton = NO;
         containerController.shouldAnimateChanges = NO;

@@ -71,7 +71,8 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Example of a PDF Interactive Form";
+        self.title = @"PDF AcroForm";
+        self.contentDescription = @"PSPDFKit Complete/Enterprise supports PDF AcroForms.";
         self.category = PSCExampleCategoryForms;
         self.priority = 20;
         PSPDFFormExampleAddTrustedCertificates();
@@ -97,6 +98,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 - (id)init {
     if (self = [super init]) {
         self.title = @"Example of a PDF Interactive Form with a Digital Signature";
+        self.contentDescription = @"PSPDFKit Complete/Enterprise supports Digital Signature validation.";
         self.category = PSCExampleCategoryForms;
         self.priority = 10;
         PSPDFFormExampleAddTrustedCertificates();

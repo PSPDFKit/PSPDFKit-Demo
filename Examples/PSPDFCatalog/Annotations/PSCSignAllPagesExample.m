@@ -23,7 +23,7 @@ const char PSCSignatureCompletionBlock;
 - (id)init {
     if (self = [super init]) {
         self.title = @"Sign All Pages";
-        self.contentDescription = @"Will add a signature to all pages of a document, optionally flattened.";
+        self.contentDescription = @"Will add a signature (ink annotation) to all pages of a document, optionally flattened.";
         self.category = PSCExampleCategoryAnnotations;
         self.priority = 20;
     }

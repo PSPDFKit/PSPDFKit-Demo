@@ -1,5 +1,5 @@
 //
-//  PSCustomTextSelectionMenuController.h
+//  PSCCustomBookmarkImageExample.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,6 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@interface PSCustomTextSelectionMenuController : PSPDFViewController
+#import "PSCExample.h"
+
+@interface PSCCustomBookmarkImageExample : PSCExample
 
 @end

@@ -22,6 +22,7 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Create Note from selected text";
+        self.contentDescription = @"Adds a new menu item in the selected text menu that will create a note at the selected position with the text contents.";
         self.category = PSCExampleCategoryAnnotations;
     }
     return self;

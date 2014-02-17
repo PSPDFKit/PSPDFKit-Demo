@@ -22,7 +22,6 @@
 #import "PSCBookmarkParser.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
-#import "PSCustomTextSelectionMenuController.h"
 #import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
 #import "PSCAutoScrollViewController.h"
@@ -32,7 +31,6 @@
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCCustomAnnotationProvider.h"
-#import "PSCCustomBookmarkBarButtonItem.h"
 #import "PSCRotationLockBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
 #import "PSCRotatablePDFViewController.h"
@@ -53,7 +51,6 @@
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCMultipleUsersPDFViewController.h"
-#import "PSCAppearancePDFViewController.h"
 #import "PSCShowHighlightNotesPDFController.h"
 #import "PSCTopScrobbleBar.h"
 #import "PSCExportPDFPagesViewController.h"
@@ -121,15 +118,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     PSCSectionDescriptor *appSection = [PSCSectionDescriptor sectionWithTitle:@"Example Applications" footer:nil];
 
     // Playground is convenient for testing.
-    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController Playground" block:^{
+    [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
         document = [PSPDFDocument documentWithURL:hackerMagURL];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_XMP_Metadata_and_Bookmarks.pdf"]];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"OoPdfFormExample.pdf"]];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"W8_Formular.pdf"]];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Form_Signature.pdf"]];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"2457.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
@@ -140,7 +133,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         return controller;
     }]];
 
-    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" block:^UIViewController *{
+    [appSection addContent:[PSContent contentWithTitle:@"Kiosk Grid Example" contentDescription:@"Dispays all documents in the Sample directory" block:^UIViewController *{
         return [PSCGridViewController new];
     }]];
 
@@ -199,7 +192,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [appSection addContent:[PSContent contentWithTitle:@"Settings for a scientific paper" block:^{
         // Initialize document and enable link autodetection.
         PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kPaperExampleFileName]];
-        //PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Forms_Structured-checked.pdf"]];
         document.autodetectTextLinkTypes = PSPDFTextCheckingTypeAll;
         PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
 
@@ -214,12 +206,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-
-//        __weak PSPDFViewController *weakController = controller;
-//        UIBarButtonItem *zoomButton = [[UIBarButtonItem alloc] initWithTitle:@"Zoom Test" style:UIBarButtonItemStylePlain block:^(id sender) {
-//            [weakController zoomToRect:CGRectMake(50.f, 50.f, 100.f, 100.f) page:2 animated:YES];
-//        }];
-//        controller.leftBarButtonItems = @[controller.closeButtonItem, zoomButton];
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -266,48 +252,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
     // PSPDFViewController customization examples
     PSCSectionDescriptor *customizationSection = [PSCSectionDescriptor sectionWithTitle:@"PSPDFViewController customization" footer:@""];
-
-
-    // this the default recommended way to customize the toolbar
-    [customizationSection addContent:[PSContent contentWithTitle:@"UIAppearance examples" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSCAppearancePDFViewController alloc] initWithDocument:document];
-        // Present modally to enable new appearance code.
-        UINavigationController *navController = [[PSCAppearanceNavigationController alloc] initWithRootViewController:pdfController];
-        [self presentViewController:navController animated:YES completion:NULL];
-        return (PSPDFViewController *)nil;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Disable Toolbar" block:^{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Will exit in 5 seconds." message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
-        [alertView show];
-
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        self.navigationController.navigationBarHidden = YES;
-
-        // pop back after 5 seconds.
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            [self.navigationController popViewControllerAnimated:YES];
-            [alertView dismissWithClickedButtonIndex:1 animated:YES];
-        });
-
-        // sample settings
-        pdfController.pageTransition = PSPDFPageTransitionCurl;
-        pdfController.toolbarEnabled = NO;
-        pdfController.fitToWidthEnabled = NO;
-
-        return pdfController;
-    }]];
-
-    // Text selection feature is only available in PSPDFKit Complete.
-    if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
-        [customizationSection addContent:[PSContent contentWithTitle:@"Custom Text Selection Menu" block:^{
-            PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-            return [[PSCustomTextSelectionMenuController alloc] initWithDocument:document];
-        }]];
-    }
 
     if ([PSPDFTextSelectionView isTextSelectionFeatureAvailable]) {
         [customizationSection addContent:[PSContent contentWithTitle:@"Disable text copying" block:^{

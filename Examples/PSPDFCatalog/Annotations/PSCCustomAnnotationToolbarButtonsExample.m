@@ -20,7 +20,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Add a custom button to the annotation toolbar";
-        self.category = PSCExampleCategoryAnnotations;
+        self.contentDescription = @"Will add a 'Clear' button to the annotation toolbar that removes all annotations from the visible page.";
+        self.category = PSCExampleCategoryBarButtons;
     }
     return self;
 }
