@@ -63,6 +63,7 @@
 		789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */; };
 		789AC10618B3798D00766ECB /* PSCScopedSearchExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC10418B3798D00766ECB /* PSCScopedSearchExample.m */; };
 		789AC10D18B4243B00766ECB /* PSCStampButtonExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */; };
+		789AC11518B4265C00766ECB /* PSCSearchHighlightColorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC11318B4265C00766ECB /* PSCSearchHighlightColorExample.m */; };
 		789B9D3517F2EB43008BC64B /* PSCContentViewUsageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
@@ -304,6 +305,8 @@
 		789AC10518B3798D00766ECB /* PSCScopedSearchExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCScopedSearchExample.h; sourceTree = "<group>"; };
 		789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStampButtonExample.m; sourceTree = "<group>"; };
 		789AC10C18B4243B00766ECB /* PSCStampButtonExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStampButtonExample.h; sourceTree = "<group>"; };
+		789AC11318B4265C00766ECB /* PSCSearchHighlightColorExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSearchHighlightColorExample.m; sourceTree = "<group>"; };
+		789AC11418B4265C00766ECB /* PSCSearchHighlightColorExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSearchHighlightColorExample.h; sourceTree = "<group>"; };
 		789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCContentViewUsageExample.m; sourceTree = "<group>"; };
 		789B9D3417F2EB43008BC64B /* PSCContentViewUsageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCContentViewUsageExample.h; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
@@ -1002,6 +1005,8 @@
 				78C7C5D516CB9C4D0006075D /* PSCRotatablePDFViewController.m */,
 				789AC10518B3798D00766ECB /* PSCScopedSearchExample.h */,
 				789AC10418B3798D00766ECB /* PSCScopedSearchExample.m */,
+				789AC11418B4265C00766ECB /* PSCSearchHighlightColorExample.h */,
+				789AC11318B4265C00766ECB /* PSCSearchHighlightColorExample.m */,
 				78B8FF4F18041A1F0077178A /* PSCSelectAllTextExample.h */,
 				78B8FF4E18041A1F0077178A /* PSCSelectAllTextExample.m */,
 				782D752218642FC600EC76CF /* PSCSignatureControllerCustomizationExample.h */,
@@ -1384,6 +1389,7 @@
 				78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */,
 				78471B41186F7D31008F5F9D /* PSCCreateNoteFromTextSelectionExample.m in Sources */,
 				78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */,
+				789AC11518B4265C00766ECB /* PSCSearchHighlightColorExample.m in Sources */,
 				78D4D40D1848CD4900080A96 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */,
 				9AA5BE02180FEB27003A3865 /* PSCTextExtractionExample.m in Sources */,
