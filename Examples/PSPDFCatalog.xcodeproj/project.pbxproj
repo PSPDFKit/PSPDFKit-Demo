@@ -60,6 +60,7 @@
 		7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 7885F489179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m */; };
 		78897E24179A8C8000BAAE73 /* PSCFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E21179A8C8000BAAE73 /* PSCFileHelper.m */; };
 		78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */; };
+		789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */; };
 		789B9D3517F2EB43008BC64B /* PSCContentViewUsageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
@@ -295,6 +296,8 @@
 		78897E21179A8C8000BAAE73 /* PSCFileHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCFileHelper.m; sourceTree = "<group>"; };
 		78897E22179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+PSCKeyboardDismissal.h"; sourceTree = "<group>"; };
 		78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+PSCKeyboardDismissal.m"; sourceTree = "<group>"; };
+		789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSimpleAnnotationInspectorExample.m; sourceTree = "<group>"; };
+		789AC0FC18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSimpleAnnotationInspectorExample.h; sourceTree = "<group>"; };
 		789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCContentViewUsageExample.m; sourceTree = "<group>"; };
 		789B9D3417F2EB43008BC64B /* PSCContentViewUsageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCContentViewUsageExample.h; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
@@ -868,6 +871,8 @@
 				781EF82F169E37510022556D /* PSCSaveAsPDFViewController.m */,
 				78FEC22318B28CC90012ACBD /* PSCSignAllPagesExample.h */,
 				78FEC22218B28CC90012ACBD /* PSCSignAllPagesExample.m */,
+				789AC0FC18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.h */,
+				789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */,
 				78E4E04A17DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.h */,
 				78E4E04917DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.m */,
 				78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */,
@@ -1416,6 +1421,7 @@
 				780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */,
 				78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */,
 				78D4D4111848CD4900080A96 /* UIImageView+AFNetworking.m in Sources */,
+				789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */,
 				78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */,
 				78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */,
 				780FBC9618477AB600AE9C7C /* PSCMergeDocumentsViewController.m in Sources */,
