@@ -35,6 +35,7 @@
     imageStamp.boundingBox = CGRectMake(100.f, 100.f, imageStamp.image.size.width/4.f, imageStamp.image.size.height/4.f);
 
     imageStamp.page = 0;
+    // We need to define *some* action to get a highlight. Here we just use a dummy, empty JS action.
     imageStamp.additionalActions = @{@(PSPDFAnnotationTriggerEventMouseDown) : [[PSPDFJavaScriptAction alloc] initWithScript:@""]};
 
     [document addAnnotations:@[imageStamp]];
