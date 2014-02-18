@@ -62,6 +62,7 @@
 		78897E25179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m in Sources */ = {isa = PBXBuildFile; fileRef = 78897E23179A8C8000BAAE73 /* UINavigationController+PSCKeyboardDismissal.m */; };
 		789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */; };
 		789AC10618B3798D00766ECB /* PSCScopedSearchExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC10418B3798D00766ECB /* PSCScopedSearchExample.m */; };
+		789AC10D18B4243B00766ECB /* PSCStampButtonExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */; };
 		789B9D3517F2EB43008BC64B /* PSCContentViewUsageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */; };
 		78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1315CFDAAF00328F4F /* PSCTabbedExampleViewController.m */; };
 		78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A24A1815CFDAAF00328F4F /* PSCStoryboardTableViewController.m */; };
@@ -301,6 +302,8 @@
 		789AC0FC18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSimpleAnnotationInspectorExample.h; sourceTree = "<group>"; };
 		789AC10418B3798D00766ECB /* PSCScopedSearchExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCScopedSearchExample.m; sourceTree = "<group>"; };
 		789AC10518B3798D00766ECB /* PSCScopedSearchExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCScopedSearchExample.h; sourceTree = "<group>"; };
+		789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStampButtonExample.m; sourceTree = "<group>"; };
+		789AC10C18B4243B00766ECB /* PSCStampButtonExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCStampButtonExample.h; sourceTree = "<group>"; };
 		789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCContentViewUsageExample.m; sourceTree = "<group>"; };
 		789B9D3417F2EB43008BC64B /* PSCContentViewUsageExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCContentViewUsageExample.h; sourceTree = "<group>"; };
 		78A24A1215CFDAAF00328F4F /* PSCTabbedExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCTabbedExampleViewController.h; sourceTree = "<group>"; };
@@ -876,6 +879,8 @@
 				78FEC22218B28CC90012ACBD /* PSCSignAllPagesExample.m */,
 				789AC0FC18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.h */,
 				789AC0FB18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m */,
+				789AC10C18B4243B00766ECB /* PSCStampButtonExample.h */,
+				789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */,
 				78E4E04A17DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.h */,
 				78E4E04917DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.m */,
 				78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */,
@@ -1445,6 +1450,7 @@
 				78D4D40E1848CD4900080A96 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				78C7C5E016CB9C4D0006075D /* PSCRotatablePDFViewController.m in Sources */,
 				78FDE16516CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.m in Sources */,
+				789AC10D18B4243B00766ECB /* PSCStampButtonExample.m in Sources */,
 				6F51A30D16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m in Sources */,
 				9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */,
 				78B095DC183A168C00BBE328 /* PSCAnnotationsExample.m in Sources */,
