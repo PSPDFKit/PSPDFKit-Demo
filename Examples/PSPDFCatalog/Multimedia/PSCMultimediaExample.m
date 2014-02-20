@@ -28,8 +28,8 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:@"multimedia.pdf"];
-    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"multimedia.pdf"];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.rightBarButtonItems = @[pdfController.openInButtonItem, pdfController.viewModeButtonItem];
     return pdfController;
 }
@@ -52,15 +52,15 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
     
     // dynamically add video box
-    PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
-    aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100.f, 100.f);
-    [multimediaDoc addAnnotations:@[aVideo]];
+    PSPDFLinkAnnotation *videoLink = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false, cover:true]localhost/Bundle/big_buck_bunny.mp4"];
+    videoLink.boundingBox = CGRectInset([document pageInfoForPage:0].rotatedPageRect, 100.f, 100.f);
+    [document addAnnotations:@[videoLink]];
 
-    return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
@@ -82,15 +82,15 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
 
     // Dynamically add video box.
     PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720"];
     video.boundingBox = CGRectMake(70.f, 150.f, 470.f, 270.f);
-    [multimediaDoc addAnnotations:@[video]];
+    [document addAnnotations:@[video]];
 
-    return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
+    return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
 @end
