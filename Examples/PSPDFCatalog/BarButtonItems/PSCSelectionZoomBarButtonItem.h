@@ -9,5 +9,4 @@
 //
 
 @interface PSCSelectionZoomBarButtonItem : PSPDFBarButtonItem
-
 @end

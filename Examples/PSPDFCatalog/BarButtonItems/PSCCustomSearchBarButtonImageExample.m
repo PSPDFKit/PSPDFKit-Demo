@@ -8,11 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomSearchBarButtonImageExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCCustomSearchBarButtonItem : PSPDFSearchBarButtonItem
-@end
+@interface PSCCustomSearchBarButtonImageExample : PSCExample @end
+@interface PSCCustomSearchBarButtonItem : PSPDFSearchBarButtonItem @end
 
 @implementation PSCCustomSearchBarButtonImageExample
 

@@ -8,19 +8,14 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCScopedSearchExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCScopedSearchViewController : PSPDFSearchViewController
-@end
+@interface PSCScopedSearchViewController : PSPDFSearchViewController @end
+@interface PSCScopedPDFViewController : PSPDFViewController @end
 
-@interface PSCScopedPDFViewController : PSPDFViewController
-@end
-
+@interface PSCScopedSearchExample : PSCExample @end
 @implementation PSCScopedSearchExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {

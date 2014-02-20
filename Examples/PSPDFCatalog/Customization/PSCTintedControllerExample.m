@@ -6,17 +6,14 @@
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
 //
 
-#import "PSCTintedControllerExample.h"
 #import "PSCTintColorSelectionBarButtonItem.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCTintablePDFViewController : PSPDFViewController
-@end
+@interface PSCTintablePDFViewController : PSPDFViewController @end
 
+@interface PSCTintedControllerExample : PSCExample @end
 @implementation PSCTintedControllerExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {

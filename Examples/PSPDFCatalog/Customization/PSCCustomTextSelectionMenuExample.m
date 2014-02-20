@@ -8,8 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomTextSelectionMenuExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
+
+@interface PSCCustomTextSelectionMenuExample : PSCExample @end
 
 @interface PSCustomTextSelectionMenuController : PSPDFViewController <PSPDFViewControllerDelegate>
 @end

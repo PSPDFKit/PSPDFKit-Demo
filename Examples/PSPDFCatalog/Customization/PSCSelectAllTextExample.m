@@ -8,11 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSelectAllTextExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCSelectAllTextExample () <PSPDFViewControllerDelegate>
-@end
+@interface PSCSelectAllTextExample : PSCExample <PSPDFViewControllerDelegate> @end
 
 @implementation PSCSelectAllTextExample
 

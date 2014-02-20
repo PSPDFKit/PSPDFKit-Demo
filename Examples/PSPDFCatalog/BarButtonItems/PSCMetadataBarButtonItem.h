@@ -9,5 +9,4 @@
 //
 
 @interface PSCMetadataBarButtonItem : PSPDFBarButtonItem
-
 @end

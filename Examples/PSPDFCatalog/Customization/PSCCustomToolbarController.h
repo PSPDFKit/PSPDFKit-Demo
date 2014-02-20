@@ -8,7 +8,6 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-/// Example to show how to add a custom toolbar.
+// Example to show how to add a custom toolbar.
 @interface PSCCustomToolbarController : PSPDFViewController <PSPDFViewControllerDelegate>
-
 @end

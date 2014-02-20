@@ -9,5 +9,4 @@
 //
 
 @interface PSCHideHUDDelayedDocumentViewController : PSPDFViewController
-
 @end

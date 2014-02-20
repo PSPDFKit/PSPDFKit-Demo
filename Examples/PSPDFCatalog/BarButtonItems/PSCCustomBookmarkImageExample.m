@@ -8,11 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomBookmarkImageExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCCustomBookmarkBarButtonItem : PSPDFBookmarkBarButtonItem
-@end
+@interface PSCCustomBookmarkImageExample : PSCExample @end
+@interface PSCCustomBookmarkBarButtonItem : PSPDFBookmarkBarButtonItem @end
 
 @implementation PSCCustomBookmarkImageExample
 
