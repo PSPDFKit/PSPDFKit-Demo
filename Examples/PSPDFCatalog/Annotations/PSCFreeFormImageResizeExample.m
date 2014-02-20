@@ -15,9 +15,6 @@
 
 @implementation PSCFreeFormImageResizeExample
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
 - (id)init {
     if (self = [super init]) {
         self.title = @"Free Form Image Resize";

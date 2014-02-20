@@ -9,6 +9,7 @@
 //
 
 #import "PSCDropboxPDFViewController.h"
+#import "UIImage+Tinting.h"
 
 @interface UIImage (PSCatalogAdditions)
 - (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction;
@@ -114,32 +115,6 @@
 
 - (void)pdfViewController:(PSPDFViewController *)pdfController didChangeViewMode:(PSPDFViewMode)viewMode {
     [self updateFloatingToolbarAnimated:YES];
-}
-
-@end
-
-@implementation UIImage (PSCatalogAdditions)
-
-- (UIImage *)psc_imageTintedWithColor:(UIColor *)color fraction:(CGFloat)fraction {
-    if (color) {
-        CGRect rect = (CGRect){CGPointZero, self.size};
-        UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.f);
-        [color set];
-        UIRectFill(rect);
-        [self drawInRect:rect blendMode:kCGBlendModeDestinationIn alpha:1.f];
-
-        if (fraction > 0.f) {
-            [self drawInRect:rect blendMode:kCGBlendModeSourceAtop alpha:fraction];
-        }
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-
-        // Preserve accessibility label if set.
-        if (self.accessibilityLabel) image.accessibilityLabel = self.accessibilityLabel;
-
-        return image;
-    }
-    return self;
 }
 
 @end
