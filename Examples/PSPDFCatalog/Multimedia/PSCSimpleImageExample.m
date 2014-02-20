@@ -8,9 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSimpleImageExample.h"
+#import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
+@interface PSCSimpleImageExample : PSCExample @end
 @implementation PSCSimpleImageExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +20,9 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Simple Image Annotation";
+        self.contentDescription = @"Add inline images to the PDF.";
         self.category = PSCExampleCategoryMultimedia;
+        self.priority = 400;
     }
     return self;
 }

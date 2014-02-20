@@ -40,6 +40,10 @@
 		784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 784F012D15CF247900849F81 /* PSCAppDelegate.m */; };
 		785B160F16692BB900F747B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785B160E16692BB900F747B8 /* Security.framework */; };
 		785DE9C2183EA94E00E35C97 /* alternative_note_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 785DE9C1183EA94E00E35C97 /* alternative_note_image@2x.png */; };
+		785EAE4518B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EAE4418B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m */; };
+		785EAE4718B6B0380077F9D1 /* PSCCustomProtocolLinkExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EAE4618B6B0380077F9D1 /* PSCCustomProtocolLinkExample.m */; };
+		785EAE4918B6B0660077F9D1 /* PSCSimpleImageExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EAE4818B6B0660077F9D1 /* PSCSimpleImageExample.m */; };
+		785EAE4F18B6B10C0077F9D1 /* PSCMultimediaExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 785EAE4E18B6B10C0077F9D1 /* PSCMultimediaExample.m */; };
 		78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */; };
 		78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8C16C50CB2003CB721 /* PSCGoToPageButtonItem.m */; };
 		78604C9916C50CB2003CB721 /* PSCMetadataBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 78604C8E16C50CB2003CB721 /* PSCMetadataBarButtonItem.m */; };
@@ -138,7 +142,6 @@
 		78C7C5E016CB9C4D0006075D /* PSCRotatablePDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C7C5D516CB9C4D0006075D /* PSCRotatablePDFViewController.m */; };
 		78C9613516429FE000473195 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78C9613416429FE000473195 /* MainStoryboard.storyboard */; };
 		78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */; };
-		78CE5C1A18481C4D00BE8B08 /* PSCVideoLinksExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */; };
 		78D2CB1E16A5F83800899C4A /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1716A5F83800899C4A /* RNCryptor.m */; };
 		78D2CB1F16A5F83800899C4A /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1916A5F83800899C4A /* RNCryptorEngine.m */; };
 		78D2CB2016A5F83800899C4A /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D2CB1B16A5F83800899C4A /* RNDecryptor.m */; };
@@ -204,7 +207,6 @@
 		78FEC26118B29C220012ACBD /* PSCCustomStampAnnotationsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC25F18B29C220012ACBD /* PSCCustomStampAnnotationsExample.m */; };
 		78FEC26818B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */; };
 		8CDCCD5E17F96E9000AE525F /* PSCGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */; };
-		8CE4E39A183E71D400A2A8EA /* PSCCustomGalleryExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4E399183E71D400A2A8EA /* PSCCustomGalleryExample.m */; };
 		9A6534B51806BD5300A7D0D0 /* PSCPageRangeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */; };
 		9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */; };
 		9AA5BDF9180FEAD1003A3865 /* PSCMultimediaExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BDF7180FEAD1003A3865 /* PSCMultimediaExample.m */; };
@@ -265,6 +267,10 @@
 		784F012D15CF247900849F81 /* PSCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSCAppDelegate.m; sourceTree = "<group>"; };
 		785B160E16692BB900F747B8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		785DE9C1183EA94E00E35C97 /* alternative_note_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alternative_note_image@2x.png"; sourceTree = "<group>"; };
+		785EAE4418B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomGalleryBackgroundExample.m; sourceTree = "<group>"; };
+		785EAE4618B6B0380077F9D1 /* PSCCustomProtocolLinkExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomProtocolLinkExample.m; sourceTree = "<group>"; };
+		785EAE4818B6B0660077F9D1 /* PSCSimpleImageExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSimpleImageExample.m; sourceTree = "<group>"; };
+		785EAE4E18B6B10C0077F9D1 /* PSCMultimediaExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMultimediaExample.m; sourceTree = "<group>"; };
 		78604C8516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAddDocumentsBarButtonItem.h; sourceTree = "<group>"; };
 		78604C8616C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAddDocumentsBarButtonItem.m; sourceTree = "<group>"; };
 		78604C8B16C50CB2003CB721 /* PSCGoToPageButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGoToPageButtonItem.h; sourceTree = "<group>"; };
@@ -420,8 +426,6 @@
 		78C9613416429FE000473195 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		78CC5C7816314F7A0003668E /* PSCCustomLinkAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomLinkAnnotationView.m; sourceTree = "<group>"; };
 		78CC5C7916314F7A0003668E /* PSCCustomLinkAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomLinkAnnotationView.h; sourceTree = "<group>"; };
-		78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCVideoLinksExample.m; sourceTree = "<group>"; };
-		78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCVideoLinksExample.h; sourceTree = "<group>"; };
 		78D2CB1516A5F83800899C4A /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
 		78D2CB1616A5F83800899C4A /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
 		78D2CB1716A5F83800899C4A /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
@@ -554,10 +558,7 @@
 		78FEC26618B2A0780012ACBD /* PSCAnnotationLinkEditorExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAnnotationLinkEditorExample.h; sourceTree = "<group>"; };
 		78FEC26718B2A0780012ACBD /* PSCAnnotationLinkEditorExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCAnnotationLinkEditorExample.m; sourceTree = "<group>"; };
 		78FFE5301781874E00FBA7DF /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
-		8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCGalleryExample.h; sourceTree = "<group>"; };
 		8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCGalleryExample.m; sourceTree = "<group>"; };
-		8CE4E398183E71D400A2A8EA /* PSCCustomGalleryExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCustomGalleryExample.h; sourceTree = "<group>"; };
-		8CE4E399183E71D400A2A8EA /* PSCCustomGalleryExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomGalleryExample.m; sourceTree = "<group>"; };
 		9A6534B31806BD5300A7D0D0 /* PSCPageRangeExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCPageRangeExample.h; sourceTree = "<group>"; };
 		9A6534B41806BD5300A7D0D0 /* PSCPageRangeExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeExample.m; sourceTree = "<group>"; };
 		9A6534B61806BEC100A7D0D0 /* PSCPageRangeFilterExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCPageRangeFilterExample.h; sourceTree = "<group>"; };
@@ -894,8 +895,6 @@
 				789AC10B18B4243B00766ECB /* PSCStampButtonExample.m */,
 				78E4E04A17DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.h */,
 				78E4E04917DCF1F1005ED42D /* PSCVerticalAnnotationToolbar.m */,
-				78CE5C1918481C4D00BE8B08 /* PSCVideoLinksExample.h */,
-				78CE5C1818481C4D00BE8B08 /* PSCVideoLinksExample.m */,
 			);
 			path = Annotations;
 			sourceTree = "<group>";
@@ -1213,10 +1212,11 @@
 		8CDCCD5B17F96E9000AE525F /* Multimedia */ = {
 			isa = PBXGroup;
 			children = (
-				8CDCCD5C17F96E9000AE525F /* PSCGalleryExample.h */,
+				785EAE4E18B6B10C0077F9D1 /* PSCMultimediaExample.m */,
+				785EAE4818B6B0660077F9D1 /* PSCSimpleImageExample.m */,
 				8CDCCD5D17F96E9000AE525F /* PSCGalleryExample.m */,
-				8CE4E398183E71D400A2A8EA /* PSCCustomGalleryExample.h */,
-				8CE4E399183E71D400A2A8EA /* PSCCustomGalleryExample.m */,
+				785EAE4418B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m */,
+				785EAE4618B6B0380077F9D1 /* PSCCustomProtocolLinkExample.m */,
 			);
 			path = Multimedia;
 			sourceTree = "<group>";
@@ -1373,7 +1373,6 @@
 				78FD8D0815CF280B00779E91 /* PSCatalogViewController.m in Sources */,
 				78D4D40F1848CD4900080A96 /* UIAlertView+AFNetworking.m in Sources */,
 				78DDC72715CF2EFF0030C730 /* AFDownloadRequestOperation.m in Sources */,
-				8CE4E39A183E71D400A2A8EA /* PSCCustomGalleryExample.m in Sources */,
 				7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */,
 				9AA5BDF9180FEAD1003A3865 /* PSCMultimediaExample.m in Sources */,
 				78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */,
@@ -1402,7 +1401,9 @@
 				789AC11518B4265C00766ECB /* PSCSearchHighlightColorExample.m in Sources */,
 				78D4D40D1848CD4900080A96 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				78FE606317DE68320039B54E /* PSCCustomAnnotationToolbarButtonsExample.m in Sources */,
+				785EAE4918B6B0660077F9D1 /* PSCSimpleImageExample.m in Sources */,
 				9AA5BE02180FEB27003A3865 /* PSCTextExtractionExample.m in Sources */,
+				785EAE4F18B6B10C0077F9D1 /* PSCMultimediaExample.m in Sources */,
 				78344B5415DBB6B1002491BF /* PSCExampleAnnotationViewController.m in Sources */,
 				78D8128315DC45EB00B8056B /* PSCCustomDrawingViewController.m in Sources */,
 				78DA0214161201E90097CA7D /* PSCClearTabsButtonItem.m in Sources */,
@@ -1413,7 +1414,6 @@
 				78FEC20018B27F610012ACBD /* PSCDocumentDataProvidersExample.m in Sources */,
 				78CC5C7A16314F7A0003668E /* PSCCustomLinkAnnotationView.m in Sources */,
 				786E92C2163F3CF9000E6FC6 /* PSCCustomAnnotationProvider.m in Sources */,
-				78CE5C1A18481C4D00BE8B08 /* PSCVideoLinksExample.m in Sources */,
 				78FEC26118B29C220012ACBD /* PSCCustomStampAnnotationsExample.m in Sources */,
 				78FEC21918B286120012ACBD /* PSCCoreDataAnnotationProviderExample.m in Sources */,
 				78FEC21A18B286120012ACBD /* PSCXFDFAnnotationProviderExample.m in Sources */,
@@ -1424,6 +1424,7 @@
 				78D4D4121848CD4900080A96 /* UIProgressView+AFNetworking.m in Sources */,
 				78783DF7164DBDB700076EDD /* PSCTimingTestViewController.m in Sources */,
 				78D909F01789FFF700E7D4D5 /* PSCCoreDataAnnotationProvider.m in Sources */,
+				785EAE4718B6B0380077F9D1 /* PSCCustomProtocolLinkExample.m in Sources */,
 				78FE606D17DE6B790039B54E /* PSCCustomSearchBarButtonImageExample.m in Sources */,
 				78D4D4131848CD4900080A96 /* UIWebView+AFNetworking.m in Sources */,
 				78FEC20118B27F610012ACBD /* PSCPDFViewControllerCustomizationExample.m in Sources */,
@@ -1447,6 +1448,7 @@
 				780C820716B85C44009396AF /* PSCHeadlessSearchPDFViewController.m in Sources */,
 				78604C9516C50CB2003CB721 /* PSCAddDocumentsBarButtonItem.m in Sources */,
 				78D4D4111848CD4900080A96 /* UIImageView+AFNetworking.m in Sources */,
+				785EAE4518B6AFE90077F9D1 /* PSCCustomGalleryBackgroundExample.m in Sources */,
 				789AC0FD18B3676400766ECB /* PSCSimpleAnnotationInspectorExample.m in Sources */,
 				78604C9816C50CB2003CB721 /* PSCGoToPageButtonItem.m in Sources */,
 				789AC14B18B6832900766ECB /* UIImage+Tinting.m in Sources */,

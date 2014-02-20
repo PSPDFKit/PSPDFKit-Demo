@@ -8,31 +8,25 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomGalleryExample.h"
+#import <Foundation/Foundation.h>
+#import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCCustomGalleryViewController : PSPDFGalleryViewController
-@end
+@interface PSCCustomGalleryBackgroundExample : PSCExample @end
 
-@interface PSCCustomGalleryContentView : PSPDFGalleryContentView
-@end
+@interface PSCCustomGalleryViewController : PSPDFGalleryViewController @end
+@interface PSCCustomGalleryContentView : PSPDFGalleryContentView @end
+@interface PSCCustomGalleryImageContentView : PSPDFGalleryImageContentView @end
+@interface PSCCustomGalleryContentCaptionView : PSPDFGalleryContentCaptionView @end
 
-@interface PSCCustomGalleryImageContentView : PSPDFGalleryImageContentView
-@end
-
-@interface PSCCustomGalleryContentCaptionView : PSPDFGalleryContentCaptionView
-@end
-
-@implementation PSCCustomGalleryExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+@implementation PSCCustomGalleryBackgroundExample
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Custom Image Gallery";
+        self.title = @"Custom Image Gallery Background";
         self.contentDescription = @"Changes internal gallery classes to customize the default background gradient.";
         self.category = PSCExampleCategoryMultimedia;
+        self.priority = 100;
     }
     return self;
 }

@@ -17,11 +17,11 @@
 @end
 
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
+    PSCExampleCategoryMultimedia,
     PSCExampleCategoryAnnotations,
     PSCExampleCategoryForms,
     PSCExampleCategoryBarButtons,
     PSCExampleCategoryViewCustomization,
-    PSCExampleCategoryMultimedia,
     PSCExampleCategoryPDFAnnotations,
     PSCExampleCategoryStoryboards,
     PSCExampleCategoryTextExtraction,

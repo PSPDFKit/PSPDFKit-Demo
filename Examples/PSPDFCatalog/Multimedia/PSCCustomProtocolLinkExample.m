@@ -8,9 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomProtocolLinkExample.h"
+#import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
+@interface PSCCustomProtocolLinkExample : PSCExample @end
 @implementation PSCCustomProtocolLinkExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

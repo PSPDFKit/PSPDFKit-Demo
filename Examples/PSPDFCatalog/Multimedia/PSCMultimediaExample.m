@@ -8,17 +8,19 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCMultimediaExample.h"
+#import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@implementation PSCMultimediaPDFExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+#pragma mark - PSCMultimediaPDFExample
+
+@interface PSCMultimediaPDFExample : PSCExample @end
+@implementation PSCMultimediaPDFExample
 
 - (id)init {
     if (self = [super init]) {
         self.title = @"Multimedia PDF example";
+        self.contentDescription = @"Load PDF with various multimedia addititions and an embedded video.";
         self.category = PSCExampleCategoryMultimedia;
         self.priority = 10;
     }
@@ -34,44 +36,17 @@
 
 @end
 
-@implementation PSCMultimediaDynamicallyAddedVideoExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
+#pragma mark - PSCMultimediaDynamicallyAddedVideoWithCoverExample
 
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Dynamically added video example";
-        self.category = PSCExampleCategoryMultimedia;
-        self.priority = 20;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *multimediaDoc = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    multimediaDoc.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-    
-    // dynamically add video box
-    PSPDFLinkAnnotation *aVideo = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://[autostart:false]localhost/Bundle/big_buck_bunny.mp4"];
-    aVideo.boundingBox = CGRectInset([multimediaDoc pageInfoForPage:0].rotatedPageRect, 100.f, 100.f);
-    [multimediaDoc addAnnotations:@[aVideo]];
-    
-    return [[PSPDFViewController alloc] initWithDocument:multimediaDoc];
-}
-
-@end
-
+@interface PSCMultimediaDynamicallyAddedVideoWithCoverExample : PSCExample @end
 @implementation PSCMultimediaDynamicallyAddedVideoWithCoverExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
         self.title = @"Dynamically added video with cover";
         self.category = PSCExampleCategoryMultimedia;
-        self.priority = 30;
+        self.priority = 500;
     }
     return self;
 }
@@ -90,10 +65,11 @@
 
 @end
 
-@implementation PSCYoutubeExample
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCExample
+
+@interface PSCYoutubeGalleryExample : PSCExample @end
+@implementation PSCYoutubeGalleryExample
 
 - (id)init {
     if (self = [super init]) {
