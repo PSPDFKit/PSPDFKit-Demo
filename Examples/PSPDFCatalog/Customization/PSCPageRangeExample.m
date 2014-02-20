@@ -8,13 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPageRangeExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
+@interface PSCPageRangeExample : PSCExample @end
 @implementation PSCPageRangeExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {

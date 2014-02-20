@@ -8,11 +8,15 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCTextExtractionExample.h"
 #import "PSCTabbedExampleViewController.h"
 #import "PSCFileHelper.h"
 #import "UINavigationController+PSCKeyboardDismissal.h"
 #import <objc/runtime.h>
+#import "PSCExample.h"
+
+@interface PSCFullTextSearchExample : PSCExample @end
+@interface PSCConvertMarkupStringToPDFExample : PSCExample @end
+@interface PSCConvertWebsiteOrFilesToPDFExample : PSCExample @end
 
 @interface PSCFullTextSearchExample () <PSPDFDocumentPickerControllerDelegate> {
     UISearchDisplayController *_searchDisplayController;

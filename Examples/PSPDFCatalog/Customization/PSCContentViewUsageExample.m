@@ -8,13 +8,14 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCContentViewUsageExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
 @interface PSCCustomContentViewPDFController : PSPDFViewController
 @property (nonatomic, strong) UIButton *alwaysVisibleButton;
 @end
 
+@interface PSCContentViewUsageExample : PSCExample @end
 @implementation PSCContentViewUsageExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

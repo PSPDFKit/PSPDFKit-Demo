@@ -10,5 +10,4 @@
 
 // Simple example how to add a rotation button to the PDF viewer.
 @interface PSCRotatablePDFViewController : PSPDFViewController
-
 @end

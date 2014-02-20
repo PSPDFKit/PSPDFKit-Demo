@@ -8,10 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPageRangeFilterExample.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
+@interface PSCPageRangeFilterExample : PSCExample @end
 @implementation PSCPageRangeFilterExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

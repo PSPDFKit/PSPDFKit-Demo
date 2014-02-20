@@ -8,14 +8,15 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCDefaultStampExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
 @interface PSCCustomStampAnnotationToolbar : PSPDFAnnotationToolbar @end
 @interface PSCInvisibleResizableView : PSPDFResizableView @end
 @interface PSCCustomTouchScrollView : PSPDFScrollView @end
 @interface PSCFastStampAnnotation : PSPDFStampAnnotation @end
 
+@interface PSCDefaultStampExample : PSCExample @end
 @interface PSCDefaultStampExample () <PSPDFViewControllerDelegate> @end
 
 @implementation PSCDefaultStampExample

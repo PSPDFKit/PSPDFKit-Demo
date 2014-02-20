@@ -8,12 +8,13 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSignatureControllerCustomizationExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
 @interface PSCCustomSignatureSelectorViewController : PSPDFSignatureSelectorViewController
 @end
 
+@interface PSCSignatureControllerCustomizationExample : PSCExample @end
 @implementation PSCSignatureControllerCustomizationExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

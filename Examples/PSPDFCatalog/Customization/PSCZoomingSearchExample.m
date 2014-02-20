@@ -8,12 +8,12 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCZoomingSearchExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCZoomingSearchPDFViewController : PSPDFViewController
-@end
+@interface PSCZoomingSearchPDFViewController : PSPDFViewController @end
 
+@interface PSCZoomingSearchExample : PSCExample @end
 @implementation PSCZoomingSearchExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
