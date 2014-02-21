@@ -8,18 +8,16 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCPDFViewControllerCustomizationExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCChildViewController.h"
 #import "PSCButtonPDFViewController.h"
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCCustomToolbarController.h"
+#import "PSCExample.h"
 #import <UIKit/UIViewController.h>
 
+@interface PSCPDFViewControllerCustomizationChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCPDFViewControllerCustomizationChildViewControllerContainmentExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
@@ -37,10 +35,8 @@
 
 @end
 
+@interface PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample : PSCExample @end
 @implementation PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
@@ -58,10 +54,8 @@
 
 @end
 
+@interface PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample : PSCExample @end
 @implementation PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
@@ -80,10 +74,8 @@
 
 @end
 
+@interface PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample : PSCExample @end
 @implementation PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {

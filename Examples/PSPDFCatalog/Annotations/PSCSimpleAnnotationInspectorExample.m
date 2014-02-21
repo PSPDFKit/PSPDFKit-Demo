@@ -8,22 +8,19 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSimpleAnnotationInspectorExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCSimpleAnnotationStyleViewController : PSPDFAnnotationStyleViewController
-@end
+@interface PSCSimpleAnnotationStyleViewController : PSPDFAnnotationStyleViewController @end
 
-@interface PSCSimpleAnnotationInspectorExample () <PSPDFViewControllerDelegate>
-@end
-
+@interface PSCSimpleAnnotationInspectorExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCSimpleAnnotationInspectorExample
 
 - (id)init {
     if (self = [super init]) {
         self.title = @"Simple Annotation Inspector";
         self.contentDescription = @"Shows how to customize the annotation inspector to hide certain properties, making it simpler.";
-        self.category = PSCExampleCategoryPDFAnnotations;
+        self.category = PSCExampleCategoryViewCustomization;
         self.priority = 30;
     }
     return self;

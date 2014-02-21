@@ -8,8 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCAlternativeNoteAnnotationInterfaceExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 #import <QuartzCore/QuartzCore.h>
 
 // Custom classes required
@@ -21,6 +21,7 @@
 @property (nonatomic, assign) CGRect sourceRect;
 @end
 
+@interface PSCAlternativeNoteAnnotationInterfaceExample : PSCExample @end
 @interface PSCAlternativeNoteAnnotationInterfaceExample () <PSPDFViewControllerDelegate> @end
 
 #define PSCCustomNewTintColor [UIColor colorWithRed:0.863f green:0.325f blue:0.169f alpha:1.f]

@@ -8,12 +8,12 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCustomAnnotationToolbarButtonsExample.h"
 #import "PSCAssetLoader.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
+#import "PSCExample.h"
 
-@interface PSCCustomAnnotationToolbar : PSPDFAnnotationToolbar
-@end
+@interface PSCCustomAnnotationToolbarButtonsExample : PSCExample @end
+@interface PSCCustomAnnotationToolbar : PSPDFAnnotationToolbar @end
 
 @implementation PSCCustomAnnotationToolbarButtonsExample
 

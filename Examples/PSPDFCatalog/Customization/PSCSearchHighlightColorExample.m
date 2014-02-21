@@ -8,12 +8,12 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSearchHighlightColorExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCCustomColoredSearchHighlightPDFViewController : PSPDFViewController
-@end
+@interface PSCCustomColoredSearchHighlightPDFViewController : PSPDFViewController @end
 
+@interface PSCSearchHighlightColorExample : PSCExample @end
 @implementation PSCSearchHighlightColorExample
 
 - (id)init {
@@ -44,5 +44,4 @@
 
 @end
 
-@implementation PSCCustomColoredSearchHighlightPDFViewController
-@end
+@implementation PSCCustomColoredSearchHighlightPDFViewController @end

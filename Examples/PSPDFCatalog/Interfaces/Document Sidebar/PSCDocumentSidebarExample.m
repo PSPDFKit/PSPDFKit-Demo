@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
 //
 
-#import "PSCDocumentSidebarExample.h"
 #import "PSCSplitPDFViewController.h"
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCHostingController : UIViewController
-@end
+@interface PSCHostingController : UIViewController @end
 
+@interface PSCDocumentSidebarExample : PSCExample @end
 @implementation PSCDocumentSidebarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -54,5 +54,4 @@
 
 @end
 
-@implementation PSCHostingController
-@end
+@implementation PSCHostingController @end

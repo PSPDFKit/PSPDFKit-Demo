@@ -8,12 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCStampButtonExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCStampButtonExample () <PSPDFViewControllerDelegate>
-@end
-
+@interface PSCStampButtonExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCStampButtonExample
 
 - (id)init {

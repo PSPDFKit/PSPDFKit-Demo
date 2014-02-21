@@ -8,12 +8,17 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCAnnotationsExample.h"
+#import "PSCExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
-#import "PSCExampleAnnotationViewController.h"
-#import "PSCSaveAsPDFViewController.h"
+
+@interface PSCAnnotationsWriteAnnotationsIntoThePDFExample : PSCExample @end
+@interface PSCAnnotationsPDFAnnotationWritingWithNSDataExample : PSCExample @end
+@interface PSCAnnotationsCustomAnnotationsWithMultipleFilesExample : PSCExample @end
+@interface PSCAnnotationsProgramaticallyCreateAnnotationsExample : PSCExample @end
+@interface PSCAnnotationsAnnotationLinkstoExternalDocumentsExample : PSCExample @end
+@interface PSCAnnotationsXFDFWritingExample : PSCExample @end
 
 @interface PSCAnnotationsWriteAnnotationsIntoThePDFExample () <PSPDFDocumentDelegate> {
     UISearchDisplayController *_searchDisplayController;
@@ -101,27 +106,6 @@
 
 @end
 
-@implementation PSCAnnotationsVerticalAlwaysVisibleAnnotationBarExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Vertical always-visible annotation bar";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 30;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-    PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
-    return controller;
-}
-
-@end
 
 @implementation PSCAnnotationsCustomAnnotationsWithMultipleFilesExample
 
@@ -219,31 +203,6 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:@"one.pdf"];
     return [[PSPDFViewController alloc] initWithDocument:document];
-}
-
-@end
-
-@implementation PSCAnnotationsSaveAsForAnnotationEditingExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
-- (id)init {
-    if (self = [super init]) {
-        self.title = @"Save as... for annotation editing";
-        self.contentDescription = @"Adds an alert after detecting annotation writes to define a new save location.";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 70;
-    }
-    return self;
-}
-
-- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
-    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-    NSURL *writableDocumentURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
-    PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:writableDocumentURL];
-    return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
 }
 
 @end

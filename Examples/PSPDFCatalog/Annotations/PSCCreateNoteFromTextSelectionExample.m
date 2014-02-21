@@ -8,11 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCreateNoteFromTextSelectionExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCCreateNoteFromTextSelectionExample () <PSPDFViewControllerDelegate>
-@end
+@interface PSCCreateNoteFromTextSelectionExample : PSCExample <PSPDFViewControllerDelegate> @end
 
 @implementation PSCCreateNoteFromTextSelectionExample
 

@@ -8,9 +8,9 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCOutlineSidebarExample.h"
 #import "PSCAssetLoader.h"
 #import "UIBarButtonItem+PSCBlockSupport.h"
+#import "PSCExample.h"
 
 @interface PSPDFSidebarViewController : UIViewController <PSPDFDocumentPickerControllerDelegate, UISplitViewControllerDelegate>
 - (id)initWithDocument:(PSPDFDocument *)document;
@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIBarButtonItem *pickerButtonItem;
 @end
 
+@interface PSCOutlineSidebarExample : PSCExample @end
 @implementation PSCOutlineSidebarExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -8,15 +8,14 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCHighlightAnnotationToolbarButtonExample.h"
 #import "PSCAssetLoader.h"
 #import "UIImage+Tinting.h"
 #import <objc/message.h>
+#import "PSCExample.h"
 
-@interface PSCHighlightAnnotationBarButtonItem : UIBarButtonItem
-@end
+@interface PSCHighlightAnnotationBarButtonItem : UIBarButtonItem @end
 
-@interface PSCHighlightAnnotationToolbarButtonExample ()
+@interface PSCHighlightAnnotationToolbarButtonExample : PSCExample
 @property (nonatomic, weak) PSPDFViewController *pdfController;
 @end
 

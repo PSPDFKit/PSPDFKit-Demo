@@ -8,11 +8,41 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSaveAsPDFViewController.h"
+#import "PSCExample.h"
+#import "PSCAssetLoader.h"
+#import "PSCFileHelper.h"
 
-@interface PSCSaveAsPDFViewController ()
+/// This class will ask the user as soon as the first annotation has been added/modified
+/// where the annotation should be saved, and optionally copies the file to a new location.
+@interface PSCSaveAsPDFViewController : PSPDFViewController
 @property (nonatomic, assign) BOOL hasUserBeenAskedAboutSaveLocation;
 @property (nonatomic, strong) PSPDFAlertView *annotationSaveAlertView;
+@end
+
+@interface PSCAnnotationsSaveAsForAnnotationEditingExample : PSCExample @end
+@implementation PSCAnnotationsSaveAsForAnnotationEditingExample
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Save as... for annotation editing";
+        self.contentDescription = @"Adds an alert after detecting annotation writes to define a new save location.";
+        self.category = PSCExampleCategoryPDFAnnotations;
+        self.priority = 70;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    NSURL *documentURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+    NSURL *writableDocumentURL = PSCCopyFileURLToDocumentFolderAndOverride(documentURL, YES);
+    PSPDFDocument *linkDocument = [PSPDFDocument documentWithURL:writableDocumentURL];
+    return [[PSCSaveAsPDFViewController alloc] initWithDocument:linkDocument];
+}
+
 @end
 
 @implementation PSCSaveAsPDFViewController

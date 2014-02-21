@@ -1,5 +1,5 @@
 //
-//  PSCExampleAnnotationViewController.m
+//  PSCVerticalAnnotationToolbarExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,12 +8,36 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCExampleAnnotationViewController.h"
 #import "PSCVerticalAnnotationToolbar.h"
+#import "PSCExample.h
 
-@interface PSCExampleAnnotationViewController ()
+@interface PSCExampleAnnotationViewController : PSPDFViewController
 @property (nonatomic, strong) PSCVerticalAnnotationToolbar *verticalToolbar;
 @end
+
+@interface PSCVerticalAnnotationToolbarExample : PSCExample @end
+@implementation PSCVerticalAnnotationToolbarExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Vertical always-visible annotation bar";
+        self.cont
+        self.category = PSCExampleCategoryPDFAnnotations;
+        self.priority = 30;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFViewController *controller = [[PSCExampleAnnotationViewController alloc] initWithDocument:document];
+    return controller;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCExampleAnnotationViewController
 
 @implementation PSCExampleAnnotationViewController
 

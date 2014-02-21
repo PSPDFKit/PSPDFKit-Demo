@@ -21,7 +21,6 @@
 #import "PSCBookmarkParser.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
-#import "PSCExampleAnnotationViewController.h"
 #import "PSCCustomDrawingViewController.h"
 #import "PSCAutoScrollViewController.h"
 #import "PSCPlayBarButtonItem.h"
@@ -37,7 +36,6 @@
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
-#import "PSCSaveAsPDFViewController.h"
 #import "PSCCustomThumbnailsViewController.h"
 #import "PSCHideHUDForThumbnailsViewController.h"
 #import "PSCHideHUDDelayedDocumentViewController.h"
@@ -199,6 +197,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.pagePadding = 5.f;
         controller.renderAnimationEnabled = NO;
         controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
+        controller.padding = UIEdgeInsetsMake(300.f, 0.f, 0.f, 0.f);
 
         // Present modally, so we can more easily configure it to have a different style.
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];

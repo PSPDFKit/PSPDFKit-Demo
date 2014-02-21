@@ -8,16 +8,14 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCSignAllPagesExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
 #import <objc/runtime.h>
+#import "PSCExample.h"
 
 const char PSCSignatureCompletionBlock;
 
-@interface PSCSignAllPagesExample () <PSPDFSignatureViewControllerDelegate>
-@end
-
+@interface PSCSignAllPagesExample : PSCExample <PSPDFSignatureViewControllerDelegate> @end
 @implementation PSCSignAllPagesExample
 
 - (id)init {

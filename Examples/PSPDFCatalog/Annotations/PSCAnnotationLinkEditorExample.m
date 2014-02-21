@@ -10,9 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSCAnnotationLinkEditorExample.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
+@interface PSCAnnotationLinkEditorExample : PSCExample @end
 @implementation PSCAnnotationLinkEditorExample
 
 - (id)init {

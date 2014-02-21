@@ -27,7 +27,9 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Custom Stamp Mode";
+        self.contentDescription = @"Shows how much the stamp feature can be customized.";
         self.category = PSCExampleCategoryViewCustomization;
+        self.priority = 1000;
     }
     return self;
 }

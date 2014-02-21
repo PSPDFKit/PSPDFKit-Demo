@@ -8,9 +8,9 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCFormExamples.h"
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
 static void PSPDFFormExampleAddTrustedCertificates() {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -67,6 +67,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormExample
 
+@interface PSCFormExample : PSCExample @end
 @implementation PSCFormExample
 
 - (id)init {
@@ -93,6 +94,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormDigitallySignedModifiedExample
 
+@interface PSCFormDigitallySignedModifiedExample : PSCExample @end
 @implementation PSCFormDigitallySignedModifiedExample
 
 - (id)init {
@@ -120,6 +122,7 @@ static void PSPDFFormExampleDeregisterForRevisionCallbacks() {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -  PSCFormWithFormatting
 
+@interface PSCFormWithFormatting : PSCExample @end
 @implementation PSCFormWithFormatting
 
 - (id)init {

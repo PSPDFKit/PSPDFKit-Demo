@@ -8,14 +8,15 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCMergeDocumentsExample.h"
 #import "PSCAssetLoader.h"
 #import "PSCMergeDocumentsViewController.h"
 #import "PSCFileHelper.h"
 #import "PSCCoreDataAnnotationProvider.h"
+#import "PSCExample.h"
 
 #define PSCCoreDataAnnotationProviderEnabled
 
+@interface PSCMergeDocumentsExample : PSCExample @end
 @implementation PSCMergeDocumentsExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////
