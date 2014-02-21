@@ -1,14 +1,39 @@
 //
-//  PSCRotatablePDFViewController.m
-//  PSPDFCatalog
+//  PSCRotatePagesWithGestureExample.m
+//  PSPDFCatalog-static
 //
-//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
-//
-//  The PSPDFKit Sample applications are licensed with a modified BSD license.
-//  Please see License for details. This notice may not be removed from this file.
+//  Created by Peter Steinberger on 21/02/14.
+//  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
 //
 
-#import "PSCRotatablePDFViewController.h"
+#import "PSCExample.h"
+#import "PSCAssetLoader.h"
+
+@interface PSCRotatablePDFViewController : PSPDFViewController @end
+
+@interface PSCRotatePagesWithGestureExample : PSCExample @end
+@implementation PSCRotatePagesWithGestureExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Rotate PDF pages";
+        self.contentDescription = @"Use a UIRotationGestureRecognizer to rotate pages.";
+        self.category = PSCExampleCategoryViewCustomization;
+        self.priority = 60;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    // Set up the document.
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+
+    // And also the controller.
+    PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];
+    return pdfController;
+}
+
+@end
 
 @interface PSCRotatableScrollView : PSPDFScrollView @end
 
@@ -47,7 +72,6 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
         else if (rotation < 315) rotation = 270;
         else rotation = 0;
     }
-
     return rotation;
 }
 

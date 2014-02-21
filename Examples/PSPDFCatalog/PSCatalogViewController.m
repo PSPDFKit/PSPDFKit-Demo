@@ -31,8 +31,6 @@
 #import "PSCCustomAnnotationProvider.h"
 #import "PSCRotationLockBarButtonItem.h"
 #import "PSCTimingTestViewController.h"
-#import "PSCRotatablePDFViewController.h"
-#import "PSCReaderPDFViewController.h"
 #import "PSCCustomSubviewPDFViewController.h"
 #import "PSCTwoFingerSwipeGestureViewController.h"
 #import "PSCHeadlessSearchPDFViewController.h"
@@ -259,24 +257,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         pdfController.backgroundColor = [UIColor brownColor];
-        return pdfController;
-    }]];
-
-    [customizationSection addContent:[PSContent contentWithTitle:@"Night Mode" block:^{
-        [PSPDFCache.sharedCache clearCache];
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        document.renderOptions = @{PSPDFRenderInverted : @YES};
-        document.backgroundColor = UIColor.blackColor;
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-        pdfController.backgroundColor = UIColor.blackColor;
-        _clearCacheNeeded = YES;
-        return pdfController;
-    }]];
-
-    // rotation example
-    [customizationSection addContent:[PSContent contentWithTitle:@"Rotate PDF pages" block:^{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *pdfController = [[PSCRotatablePDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];
 
@@ -593,13 +573,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         controller.rightBarButtonItems = @[playButton, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
         controller.pageTransition = PSPDFPageTransitionCurl;
         controller.pageMode = PSPDFPageModeAutomatic;
-        return controller;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Screen Reader" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];
-        PSPDFViewController *controller = [[PSCReaderPDFViewController alloc] initWithDocument:document];
-        controller.page = 3;
         return controller;
     }]];
 

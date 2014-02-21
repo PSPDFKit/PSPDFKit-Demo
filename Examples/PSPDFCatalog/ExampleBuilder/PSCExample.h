@@ -19,14 +19,13 @@
 typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryMultimedia,
     PSCExampleCategoryAnnotations,
+    PSCExampleCategoryAnnotationProviders,
     PSCExampleCategoryForms,
     PSCExampleCategoryBarButtons,
     PSCExampleCategoryViewCustomization,
-    PSCExampleCategoryPDFAnnotations,
     PSCExampleCategoryStoryboards,
     PSCExampleCategoryTextExtraction,
     PSCExampleCategoryControllerCustomization,
-    PSCExampleCategoryAnnotationProviders,
     PSCExampleCategoryPageRange,
     PSCExampleCategoryDocumentDataProvider
 };

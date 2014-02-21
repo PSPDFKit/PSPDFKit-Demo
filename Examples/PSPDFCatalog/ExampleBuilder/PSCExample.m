@@ -44,8 +44,6 @@ NSString *PSPDFHeaderFromExampleCategory(PSCExampleCategory category) {
             return @"PSPDFDocument data providers";
         case PSCExampleCategoryMultimedia:
             return @"Multimedia examples";
-        case PSCExampleCategoryPDFAnnotations:
-            return @"PDF Annotations";
         case PSCExampleCategoryStoryboards:
             return @"Storyboards";
         case PSCExampleCategoryTextExtraction:
@@ -67,8 +65,6 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
             return @"PSPDFDocument is highly flexible and allows you to merge multiple file sources to one logical one.";
         case PSCExampleCategoryMultimedia:
             return @"You can integrate videos, audio, images and HTML5 content/websites as parts of a PDF page. See http://pspdfkit.com/documentation for details.";
-        case PSCExampleCategoryPDFAnnotations:
-            return @"PSPDFKit supports all common PDF annotation types.";
         case PSCExampleCategoryAnnotations: break;
         case PSCExampleCategoryForms:
             return @"PSPDFKit can show the original signed document even if the document has been subsequently altered.";

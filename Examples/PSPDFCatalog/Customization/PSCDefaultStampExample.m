@@ -21,9 +21,6 @@
 
 @implementation PSCDefaultStampExample
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
-
 - (id)init {
     if (self = [super init]) {
         self.title = @"Custom Stamp Mode";

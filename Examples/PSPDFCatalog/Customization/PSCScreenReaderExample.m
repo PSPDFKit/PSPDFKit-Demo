@@ -1,6 +1,6 @@
 //
-//  PSCReaderPDFViewController.m
-//  PSPDFCatalog
+//  PSCScreenReaderExample.m
+///  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //
@@ -8,19 +8,42 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCReaderPDFViewController.h"
+#import "PSCExample.h"
+#import "PSCAssetLoader.h"
 
-@interface PSCReaderPDFViewController ()
+@interface PSCReaderPDFViewController : PSPDFViewController <PSPDFViewControllerDelegate>
 @property (nonatomic, strong) PSPDFSearchHighlightView *highlightView;
 @property (nonatomic, strong) NSTimer *wordTimer;
 @property (nonatomic, strong) PSPDFWord *currentWord;
 @property (nonatomic, strong) NSArray *currentWords;
 @end
 
-@implementation PSCReaderPDFViewController
+@interface PSCScreenReaderExample : PSCExample @end
+@implementation PSCScreenReaderExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Screen Reader";
+        self.contentDescription = @"Creates a sample interface for a screen-reader application";
+        self.category = PSCExampleCategoryViewCustomization;
+        self.priority = 300;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFViewController *pdfController = [[PSCReaderPDFViewController alloc] initWithDocument:document];
+    pdfController.page = 3;
+    return pdfController;
+}
+
+@end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewController
+#pragma mark - PSCReaderPDFViewController
+
+@implementation PSCReaderPDFViewController
 
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];

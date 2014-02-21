@@ -23,8 +23,9 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Customized Signature Controller";
+        self.contentDescription = @"Shows how to use overrideClass:withClass: to change the signature selector controller toolbar buttons.";
         self.category = PSCExampleCategoryViewCustomization;
-        self.priority = 12;
+        self.priority = 140;
     }
     return self;
 }

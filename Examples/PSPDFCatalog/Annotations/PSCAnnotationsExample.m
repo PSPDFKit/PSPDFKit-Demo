@@ -36,8 +36,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Write annotations into the PDF";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 10;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 1;
     }
     return self;
 }
@@ -91,8 +91,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"PDF annotation writing with NSData";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 20;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 410;
     }
     return self;
 }
@@ -115,8 +115,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Custom annotations with multiple files";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 40;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 400;
     }
     return self;
 }
@@ -152,8 +152,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Programmatically create annotations";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 50;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 500;
     }
     return self;
 }
@@ -194,8 +194,8 @@
     if (self = [super init]) {
         self.title = @"Annotation Links to external documents";
         self.contentDescription = @"PDF links can point to pages within the same document, or also different documents or websites.";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 60;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 600;
     }
     return self;
 }
@@ -216,8 +216,8 @@
     if (self = [super init]) {
         self.title = @"XFDF Writing";
         self.contentDescription = @"Custom code that creates annotations in code and exports them as XFDF.";
-        self.category = PSCExampleCategoryPDFAnnotations;
-        self.priority = 90;
+        self.category = PSCExampleCategoryAnnotations;
+        self.priority = 900;
     }
     return self;
 }

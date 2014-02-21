@@ -9,7 +9,8 @@
 //
 
 #import "PSCVerticalAnnotationToolbar.h"
-#import "PSCExample.h
+#import "PSCExample.h"
+#import "PSCAssetLoader.h"
 
 @interface PSCExampleAnnotationViewController : PSPDFViewController
 @property (nonatomic, strong) PSCVerticalAnnotationToolbar *verticalToolbar;
@@ -21,8 +22,8 @@
 - (id)init {
     if (self = [super init]) {
         self.title = @"Vertical always-visible annotation bar";
-        self.cont
-        self.category = PSCExampleCategoryPDFAnnotations;
+        self.contentDescription = @"Custom, vertically aligned annotation toolbar.";
+        self.category = PSCExampleCategoryViewCustomization;
         self.priority = 30;
     }
     return self;

@@ -18,7 +18,7 @@
     if (self = [super init]) {
         self.title = @"Stamp Annotation Button";
         self.contentDescription = @"Uses a stamp annotation as button.";
-        self.category = PSCExampleCategoryPDFAnnotations;
+        self.category = PSCExampleCategoryAnnotations;
         self.priority = 130;
     }
     return self;
