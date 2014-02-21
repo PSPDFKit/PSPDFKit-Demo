@@ -13,6 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFLineHelper.h"
 #import "PSPDFAnnotationStateManager.h"
+#import "PSPDFViewController.h"
 
 // Compatiblity with Xcode 4.6 / SDK 6 (as binary)
 #if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000 && !defined(UIBarPosition)

@@ -17,6 +17,8 @@
 
 @protocol PSPDFContainerViewControllerDelegate <NSObject>
 
+@optional
+
 /// Called every time the index is changed.
 - (void)containerViewController:(PSPDFContainerViewController *)controller didUpdateSelectedIndex:(NSUInteger)selectedIndex;
 
@@ -28,6 +30,7 @@
 /// Designated initializer.
 - (id)initWithControllers:(NSArray *)controllers titles:(NSArray *)titles delegate:(id<PSPDFContainerViewControllerDelegate>)delegate;
 
+/// The container controller delegate, notifies when the index changes.
 @property (nonatomic, weak) id<PSPDFContainerViewControllerDelegate> delegate;
 
 /// @name View Controller adding/removing
@@ -50,9 +53,14 @@
 /// Set the currently visible view controller index.
 - (void)setVisibleViewControllerIndex:(NSUInteger)visibleViewControllerIndex animated:(BOOL)animated;
 
+/// @name Settings
+
 /// Set to YES if you want to animate controller changes. Defaults to NO.
 /// @note Popover size change animation can't be blocked on iOS 6.
 @property (nonatomic, assign) BOOL shouldAnimateChanges;
+
+/// Defaults to YES, unless `isInPopover` is set. Will add a close button as leftBarButtonItems.
+@property (nonatomic, assign) BOOL shouldShowCloseButton;
 
 @end
 

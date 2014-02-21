@@ -41,7 +41,10 @@ extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSStr
 
 /// Contains the order of the prefered video qualities. This only works for videos where
 /// the source is capable of providing different qualities.
-@property (nonatomic, copy, readonly) NSArray *preferedQualities;
+@property (nonatomic, copy) NSArray *preferedQualities;
+
+/// The initial seek time. Defaults to `0.0`.
+@property (nonatomic, assign) NSTimeInterval seekTime;
 
 /// @name Content
 

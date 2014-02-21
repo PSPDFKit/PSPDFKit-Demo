@@ -72,7 +72,8 @@
 - (void)addNewSoundAnnotationAtPoint:(CGPoint)point animated:(BOOL)animated;
 
 // Returns the default color options for the specified annotation type.
-- (PSPDFOrderedDictionary *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
+// The array consists of arrays with NSString, UIColor pairs.
+- (NSArray *)defaultColorOptionsForAnnotationType:(PSPDFAnnotationType)annotationType;
 
 // Controls if the annotation inspector is used or manipulation via `UIMenuController`.
 - (BOOL)useAnnotationInspectorForAnnotations:(NSArray *)annotations;
@@ -91,6 +92,14 @@
 - (void)showMenuIfSelectedAnimated:(BOOL)animated;
 
 @end
+
+// Text Menu Items
+extern NSString *const PSPDFTextMenuCopy;
+extern NSString *const PSPDFTextMenuDefine;
+extern NSString *const PSPDFTextMenuSearch;
+extern NSString *const PSPDFTextMenuWikipedia;
+extern NSString *const PSPDFTextMenuCreateLink;
+// Text menu also uses PSPDFAnnotationMenu[Highlight|Underline|Strikeout|Squiggle].
 
 // General
 // Annotation types are used from PSPDFAnnotationString* defines
@@ -112,6 +121,7 @@ extern NSString *const PSPDFAnnotationMenuColor;
 extern NSString *const PSPDFAnnotationMenuFillColor;
 extern NSString *const PSPDFAnnotationMenuOpacity;
 extern NSString *const PSPDFAnnotationMenuCustomColor; // Color Picker
+extern NSString *const PSPDFAnnotationMenuColorClear;
 extern NSString *const PSPDFAnnotationMenuColorWhite;
 extern NSString *const PSPDFAnnotationMenuColorYellow;
 extern NSString *const PSPDFAnnotationMenuColorRed;

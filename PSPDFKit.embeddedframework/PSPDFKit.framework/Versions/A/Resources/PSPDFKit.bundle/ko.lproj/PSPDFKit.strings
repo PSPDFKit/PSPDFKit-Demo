@@ -17,6 +17,7 @@
 "Open" = "열기";
 "Untitled" = "제목 없음";
 "File Not Found" = "파일을 찾을 수 없음";
+"File couldn't be opened." = "파일을 열 수 없습니다."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "이름 없는 PDF";
 "Page %d" = "페이지 %d";
 "All (%d Pages)" = "전체 (%d 페이지)";
@@ -35,7 +36,7 @@
 "Open in" = "다음으로 열기";
 "Open" = "열기";
 "Commit" = "완료";
-"Sending to %@" = "%@에게 전송"; // Context: Open document with an application
+"Sending to %@" = "%@에게 전송"; // Open document with an application
 "Pages" = "페이지";
 "Print with annotations" = "주석을 함께 출력";
 "Print document only" = "문서만 출력";
@@ -75,14 +76,14 @@
 "Leave %@?" = "%@에서 나갈까요?";
 
 // search
-"Search Document" = "문서 검색"; // Context: to search for a string in the given document
+"Search Document" = "문서 검색"; // to search for a string in the given document
 "No matches found" = "검색 결과 없음";
 "One match found" = "검색 결과 1개 발견";
 "%d matches found" = "검색 결과 %d개 발견";
 "Searching Page %d of %d" = "2%d 페이지 중의 1%d 페이지 검색 중";
 "Search Completed" = "검색 완료";
 "Search Cancelled" = "검색 취소";
-"%d left" = "%d개 남음"; // Context: there are 5 documents left
+"%d left" = "%d개 남음"; // Indexing Documents... 5 left
 "Searching" = "검색 중";
 "%d documents indexed." = "%d개의 문서가 색인되었습니다.";
 "Done" = "완료";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Chrome에서 열기";
 "Your %@ is not configured to send emails." = "사용자의 %@은 이메일을 전송할 수 있도록 구성되지 않았습니다.";
 "The link is requesting to open %@Would you like to continue?" = "링크가 다음 경로를 열려고 합니다다: %@계속 진행하시겠습니까?";
-"an external application" = "외부 응용 프로그램";
-"the App Store" = "앱 스토어";
-"Mail" = "이메일";
+"an external application" = "외부 응용 프로그램"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "앱 스토어"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "%@을(를) 위한 핸들러가 없습니다";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "편집";
 "Undo" = "실행취소";
 "Redo" = "실행복귀";
-"Type" = "유형"; // Context: kind of Annotation can be selected
+"Type" = "유형"; // kind of Annotation can be selected
 "Size" = "크기";
 "Font" = "서체";
 "Fonts" = "서체";
@@ -148,8 +149,8 @@
 "Strikeout" = "취소선";
 "Rectangle" = "직사각형";
 "Ellipse" = "타원";
-"Line" = "선";
-"Lines" = "행"; //part of a created text. e.g.: "5 Lines"
+"Line" = "선"; // something that can be drawn
+"Lines" = "선"; // "5 Lines" were drawn
 "Polyline" = "폴리라인";
 "Polygon" = "다각형";
 "Signature" = "서명";
@@ -164,7 +165,7 @@
 "Stamp Text" = "텍스트 스탬프";
 "Add Signature" = "서명 추가";
 "My Signature" = "내 서명";
-"No Signatures" = "서명 없음"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "서명 없음"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "사용자 지정 서명";
 "Note" = "메모";
 "Text" = "텍스트";
@@ -195,7 +196,7 @@
 "Inspector" = "속성";
 "Group" = "그룹";
 "Ungroup" = "그룹해제";
-"Merge" = "병합"; //text on a Button: when clicked, two drawings are merged into one drawing
+"Merge" = "병합"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "샘플";
 "Annotation Summary for %@:\n" = "%@ 주석 요약:\n";
 "Fit to Text" = "텍스트에 맞추기";
@@ -278,7 +279,7 @@
 "Remove Link" = "링크 제거";
 "Open Link" = "링크 열기";
 "Go to Page %d" = "%d 페이지로 이동";
-"Go to Page" = "페이지로 이동";
+"Go to Page" = "페이지로 이동"; // title of a Popup
 "Save" = "저장";
 "Link Destination" = "링크 대상";
 "Enter page index or a http:// address to link to an URL." = "페이지 색인 또는 http:// 주소로 링크에 URL을 추가하세요.";
@@ -341,8 +342,8 @@
 "Signature is valid." = "유효한 서명입니다.";
 "Signature is valid, but there are some warnings." = "유효한 서명이지만, 주의사항이 있습니다.";
 "It was signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명함"; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명한 것으로 추정"; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "서명이 수용할 수 았는 개정판이 수정되지 않았습니다. 하지만 서명 이후에 문서의 내용이 수정되었습니다."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "%@이(가) %@ %@에 서명한 것으로 추정"; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "서명이 수용할 수 았는 개정판이 수정되지 않았습니다. 하지만 서명 이후에 문서의 내용이 수정되었습니다."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 서명이 유효하며, 문서에 서명이 추가된 이후 내용이 수정되지 않았습니다.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "올바르지 않은 서명 - 서명 후 문서의 내용이 수정되었거나 손상되었습니다.";
 "Unsigned Signature Field" = "서명하지 않은 서명 필드";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "인증서의 notBefore 필드에 포맷 오류가 있습니다."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "인증서의 notAfter 필드에 포맷 오류가 있습니다."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "인증서 체인에 발행인을 신뢰할 수 없고 자체 서명하지 않은 단 하나의 인증서만 포함하고 있어 서명을 확인할 수 없습니다.";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA 인증서가 유효하지 않습니다. CA가 아니거나 인증서의 확장 코드가 해당 목적에 부합하지 않습니다."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA 인증서가 유효하지 않습니다. CA가 아니거나 인증서의 확장 코드가 해당 목적에 부합하지 않습니다."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "basicConstraints pathlength 파라미터가 초과되었습니다."; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "특정 목적으로 사용 시 신뢰되지 않도록 루트 CA에 마킹되어 있습니다."; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "특정 목적으로 사용 시 신뢰되지 않도록 루트 CA에 마킹되어 있습니다."; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "특정 목적에 사용할 수 없도록 루트 CA에 마킹되어 있습니다."; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "인증서 발행인의 이름과 주체의 이름이 일치하지 않아 인증서가 거부되었습니다."; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "주체 키 식별자가 존재하지만 기관 키 식별자와 일치하지 않아 발행인 인증서가 거부되었습니다."; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "발행인이 인증서를 취소했습니다.";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "통과한 인증서는 자체-서명되었으며, 신뢰할 수 있는 인증서 목록에 포함되어 있지 않습니다.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "자체-서명한 인증서가 인증서 체인에 존재합니다. 루트 CA가 없는 상황에서 신뢰할 수 없는 인증서에 기반한 인증서 체인은 존재할 수 없습니다."; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "서명 계층에 포함된 인증서 기관(CA) 한 곳에 대한 인증서를 발견할 수 없으며, 로컬 애플리케이션으로부터 신뢰할 수 없는 CA 입니다."; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "서명 계층에 포함된 인증서 기관(CA) 한 곳에 대한 인증서를 발견할 수 없으며, 로컬 애플리케이션으로부터 신뢰할 수 없는 CA 입니다."; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "로컬 룩업 인증서가 발행인 인증서를 포함하고 있지 않습니다. 대부분 신뢰할 수 있는 인증서 목록이 불완전할 경우 발생합니다.";
 "The certificate that was provided cannot be used for its intended purpose." = "공급 받은 인증서를 특정 목적으로 사용할 수 없습니다.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "발행인 인증서의 keyUsage 확장이 인증서 서명을 허용하지 않습니다.";

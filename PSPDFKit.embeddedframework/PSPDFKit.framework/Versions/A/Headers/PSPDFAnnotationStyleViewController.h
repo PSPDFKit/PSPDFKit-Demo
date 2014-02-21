@@ -66,7 +66,14 @@
 /// @warning Only set on main thread. Set before the annotation controller is being accessed/opened.
 + (void)setPropertiesForAnnotations:(NSDictionary *)properties;
 
-/// Return current dictionary of properties.
+/** 
+ Return current dictionary of properties.
+ 
+ Following properites are currently supported:
+ - color, fillColor, alpha
+ - lineWidth, lineEnd1, lineEnd2
+ - fontName, fontSize, textAlignment
+ */
 + (NSDictionary *)propertiesForAnnotations;
 
 @end
@@ -74,7 +81,8 @@
 
 @interface PSPDFAnnotationStyleViewController (SubclassingHooks)
 
-// Returns the list of properties (`NSString`) where we want to build cells for.
+// Returns the list of properties (arrays of `NSString`) where we want to build cells for.
+// @note The arrays can be used to split the properties into different sections.
 - (NSArray *)propertiesForAnnotations:(NSArray *)annotations;
 
 // Allows to customize what cell models (`PSPDFCellModel`) we return for `property`.

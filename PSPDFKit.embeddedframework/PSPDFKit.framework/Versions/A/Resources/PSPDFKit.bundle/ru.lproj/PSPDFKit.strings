@@ -17,6 +17,7 @@
 "Open" = "Открыть";
 "Untitled" = "Без названия";
 "File Not Found" = "Файл не найден";
+"File couldn't be opened." = "Не удалось открыть файл."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Безымянный PDF";
 "Page %d" = "Страница %d";
 "All (%d Pages)" = "Все (%d страницы)";
@@ -35,7 +36,7 @@
 "Open in" = "Открыть в";
 "Open" = "Открыть";
 "Commit" = "Подтвердить";
-"Sending to %@" = "Отправка %@"; // Context: Open document with an application
+"Sending to %@" = "Отправка %@"; // Open document with an application
 "Pages" = "Страницы";
 "Print with annotations" = "Печать с комментариями";
 "Print document only" = "Печать только документа";
@@ -75,14 +76,14 @@
 "Leave %@?" = "Оставить %@?";
 
 // search
-"Search Document" = "Поиск документа"; // Context: to search for a string in the given document
+"Search Document" = "Поиск документа"; // to search for a string in the given document
 "No matches found" = "Совпадений не найдено";
 "One match found" = "Найдено одно совпадение";
 "%d matches found" = "%d совпадений найдено";
 "Searching Page %d of %d" = "Поиск страницы %d из %d";
 "Search Completed" = "Поиск завершен";
 "Search Cancelled" = "Поиск отменен";
-"%d left" = "%d осталось"; // Context: there are 5 documents left
+"%d left" = "%d осталось"; // Indexing Documents... 5 left
 "Searching" = "Поиск";
 "%d documents indexed." = "%d документов проиндексировано.\n";
 "Done" = "Готово";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Открыть в Chrome";
 "Your %@ is not configured to send emails." = "Ваш %@ не настроен на отправку электронной почты.";
 "The link is requesting to open %@Would you like to continue?" = "Требуется открытие ссылки %@. Продолжить?";
-"an external application" = "внешнее приложение";
-"the App Store" = "App Store";
-"Mail" = "Почта";
+"an external application" = "внешнее приложение"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Почта"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "Манипулятор для %@ не найден";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "Правка";
 "Undo" = "Отменить";
 "Redo" = "Повторить";
-"Type" = "Введите"; // Context: kind of Annotation can be selected
+"Type" = "Введите"; // kind of Annotation can be selected
 "Size" = "Размер";
 "Font" = "Шрифт";
 "Fonts" = "Шрифты";
@@ -148,8 +149,8 @@
 "Strikeout" = "Вычеркнуть";
 "Rectangle" = "Прямоугольник";
 "Ellipse" = "Эллипс";
-"Line" = "Линия";
-"Lines" = "Строки"; //part of a created text. e.g.: "5 Lines"
+"Line" = "Линия"; // something that can be drawn
+"Lines" = "Линии"; // "5 Lines" were drawn
 "Polyline" = "Ломаная линия";
 "Polygon" = "Многоугольник";
 "Signature" = "Подпись";
@@ -164,7 +165,7 @@
 "Stamp Text" = "Текст печати";
 "Add Signature" = "Добавить подпись";
 "My Signature" = "Моя подпись";
-"No Signatures" = "Нет подписей"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "Нет подписей"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Подпись пользователя";
 "Note" = "Заметка";
 "Text" = "Текст";
@@ -195,7 +196,7 @@
 "Inspector" = "Инспектор";
 "Group" = "Группа";
 "Ungroup" = "Разгруппировать";
-"Merge" = "Объединить"; //text on a Button: when clicked, two drawings are merged into one drawing
+"Merge" = "Объединить"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Образец";
 "Annotation Summary for %@:\n" = "Обзор комментариев для %@:";
 "Fit to Text" = "Поместить в текст";
@@ -278,7 +279,7 @@
 "Remove Link" = "Удалить ссылку";
 "Open Link" = "Открыть ссылку";
 "Go to Page %d" = "Перейти к странице %d";
-"Go to Page" = "Перейти к странице";
+"Go to Page" = "Перейти к странице"; // title of a Popup
 "Save" = "Сохранить";
 "Link Destination" = "Назначение ссылки";
 "Enter page index or a http:// address to link to an URL." = "Введите индекс страницы или адрес (http://) ссылки.";
@@ -341,8 +342,8 @@
 "Signature is valid." = "Подпись верна.";
 "Signature is valid, but there are some warnings." = "Подпись верна, но есть предупреждения.";
 "It was signed by %@ on %@ at %@." = "Документ подписан %@ %@ в %@."; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "Заявление о подписании %@ %@ в %@."; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Подписанная версия не была изменена, однако были внесены изменения в документ после его подписания."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "Заявление о подписании %@ %@ в %@."; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Подписанная версия не была изменена, однако были внесены изменения в документ после его подписания."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Подпись действительна, содержимое документа не было изменено после его подписания.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Неверная подпись - после подписания документ был изменен или нарушен.";
 "Unsigned Signature Field" = "Неподписанное поля подписи";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "Произошла ошибка формата в поле notBefore сертификата."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Произошла ошибка формата в поле notAfter сертификата."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Подписи не могут быть подтверждены, поскольку цепь сертификатов содержит лишь один сертификат, он не является самоподписанным и источник не является доверенным.";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA Сертификат недействителен, поскольку был выпущен не CA или его расширения не соответствуют назначению."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "CA Сертификат недействителен, поскольку был выпущен не CA или его расширения не соответствуют назначению."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "Превышен параметр длины базовых ограничений."; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "Root CA не помечен как доверенный для его цели."; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Root CA не помечен как доверенный для его цели."; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "Root CA помечен к отклонению указанной цели."; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Авторский сертификат был отклонен, поскольку имя субъета не совпадало с именем автора текущего сертификата."; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Авторский сертификат был отклонен, поскольку идентификатор субъекта авторизации не совпадал с идентификатором ключа авторизации текущего сертификата."; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "Сертификат был отозван.";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Пропущенный сертификат является самоподписанным и не может быть найден в списке доверенных сертификатов.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Самоподписанный сертификат существует в цепи сертификатов. Цепь сертификатов может состоять из недостоверных сертификатов, но root CA не может быть найден локально."; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Не удалось найти сертификат для одного из центров авторизации (CA) в иерархии подписей; данный CA не является доверенным для локального приложения."; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Не удалось найти сертификат для одного из центров авторизации (CA) в иерархии подписей; данный CA не является доверенным для локального приложения."; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Не удалось найти авторский сертификат. Обычно это значит, что список доверенных сертификатов не полон.";
 "The certificate that was provided cannot be used for its intended purpose." = "Предоставленный сертификат не может быть использован с этой целью.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Ключ продления авторского сертификата не разрешает подпись сертификата.";

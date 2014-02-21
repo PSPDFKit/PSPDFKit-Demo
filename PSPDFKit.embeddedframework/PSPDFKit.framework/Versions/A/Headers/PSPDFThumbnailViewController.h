@@ -47,10 +47,12 @@ typedef NS_ENUM(NSUInteger, PSPDFThumbnailViewFilter) {
 @property (nonatomic, weak) IBOutlet id<PSPDFThumbnailViewControllerDelegate> delegate;
 
 /// Get the cell for certain page. Compensates against open filters.
-- (UICollectionViewCell *)cellForPage:(NSUInteger)page;
+/// @note `document` is ignored in the default implementation.
+- (UICollectionViewCell *)cellForPage:(NSUInteger)page document:(PSPDFDocument *)document;
 
 /// Scrolls to specified page in the grid.
-- (void)scrollToPage:(NSUInteger)page animated:(BOOL)animated;
+/// @note `document` is ignored in the default implementation.
+- (void)scrollToPage:(NSUInteger)page document:(PSPDFDocument *)document animated:(BOOL)animated;
 
 /// Stops an ongoing scroll animation.
 - (void)stopScrolling;

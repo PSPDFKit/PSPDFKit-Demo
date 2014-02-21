@@ -23,4 +23,7 @@
 /// The play button.
 @property (nonatomic, strong) UIButton *playButton;
 
+/// The color of the play button. Only has an effect on iOS 7 and later.
+@property (nonatomic, strong) UIColor *playButtonColor UI_APPEARANCE_SELECTOR;
+
 @end

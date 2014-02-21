@@ -106,6 +106,9 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 /// @note If the scroll view is currently decelerating, this will show the TARGET rect, not the one that's currently animating.
 @property (nonatomic, assign, readonly) CGRect visibleRect;
 
+/// Color used to indicate link or form objects.
+@property (nonatomic, strong) UIColor *highlightColor UI_APPEARANCE_SELECTOR;
+
 /// @name Coordinate calculations and object fetching
 
 /// Convert a view point to the corresponding PDF point.
@@ -288,6 +291,6 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 - (void)annotationChangedNotification:(NSNotification *)notification NS_REQUIRES_SUPER;
 
 // Customize if the `annotation` object should also transform the properties.
-- (BOOL)shouldScaleAnnotationWhenResizing:(PSPDFAnnotation *)annotation;
+- (BOOL)shouldScaleAnnotationWhenResizing:(PSPDFAnnotation *)annotation usesResizeKnob:(BOOL)usesResizeKnob;
 
 @end

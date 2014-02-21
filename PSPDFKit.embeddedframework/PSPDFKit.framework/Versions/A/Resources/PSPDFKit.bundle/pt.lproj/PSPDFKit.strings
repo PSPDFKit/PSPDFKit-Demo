@@ -17,6 +17,7 @@
 "Open" = "Abrir";
 "Untitled" = "Sem Título";
 "File Not Found" = "Arquivo não Encontrado";
+"File couldn't be opened." = "O arquivo não pôde ser aberto."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF sem Nome";
 "Page %d" = "Página %d";
 "All (%d Pages)" = "Tudo (%d Páginas)";
@@ -35,7 +36,7 @@
 "Open in" = "Abrir com";
 "Open" = "Abrir";
 "Commit" = "Validar";
-"Sending to %@" = "Enviando para %@"; // Context: Open document with an application
+"Sending to %@" = "Enviando para %@"; // Open document with an application
 "Pages" = "Páginas";
 "Print with annotations" = "Imprimir com anotações";
 "Print document only" = "Imprimir só documento";
@@ -75,14 +76,14 @@
 "Leave %@?" = "Sair do %@?";
 
 // search
-"Search Document" = "Buscar no Documento"; // Context: to search for a string in the given document
+"Search Document" = "Buscar no Documento"; // to search for a string in the given document
 "No matches found" = "Nenhum resultado";
 "One match found" = "1 resultado encontrado";
 "%d matches found" = "%d resultados encontrados";
 "Searching Page %d of %d" = "Buscando Página %d de %d";
 "Search Completed" = "Busca Concluída";
 "Search Cancelled" = "Busca Cancelada";
-"%d left" = "%d restante(s)"; // Context: there are 5 documents left
+"%d left" = "%d restante(s)"; // Indexing Documents... 5 left
 "Searching" = "Buscando";
 "%d documents indexed." = "%d documento(s) indexado(s).";
 "Done" = "OK";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Abrir no Chrome";
 "Your %@ is not configured to send emails." = "Seu %@ não está configurado para enviar e-mails.";
 "The link is requesting to open %@Would you like to continue?" = "O link pede para abrir %@Deseja continuar?";
-"an external application" = "um aplicativo externo";
-"the App Store" = "a App Store";
-"Mail" = "Mail";
+"an external application" = "um aplicativo externo"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "a App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "Nenhum controlador encontrado para %@";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "Editar";
 "Undo" = "Desfazer";
 "Redo" = "Refazer";
-"Type" = "Tipo"; // Context: kind of Annotation can be selected
+"Type" = "Tipo"; // kind of Annotation can be selected
 "Size" = "Tamanho";
 "Font" = "Fonte";
 "Fonts" = "Fontes";
@@ -148,8 +149,8 @@
 "Strikeout" = "Riscar";
 "Rectangle" = "Retângulo";
 "Ellipse" = "Elipse";
-"Line" = "Linha";
-"Lines" = "Linhas"; //part of a created text. e.g.: "5 Lines"
+"Line" = "Linha"; // something that can be drawn
+"Lines" = "Linhas"; // "5 Lines" were drawn
 "Polyline" = "Linha Poligonal";
 "Polygon" = "Polígono";
 "Signature" = "Assinatura";
@@ -164,7 +165,7 @@
 "Stamp Text" = "Texto do Carimbo";
 "Add Signature" = "Adicionar Assinatura";
 "My Signature" = "Minha Assinatura";
-"No Signatures" = "Sem Assinaturas"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "Sem Assinaturas"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Assinatura do Cliente";
 "Note" = "Nota";
 "Text" = "Texto";
@@ -195,7 +196,7 @@
 "Inspector" = "Inspetor";
 "Group" = "Agrupar";
 "Ungroup" = "Desagrupar";
-"Merge" = "Combinar"; //text on a Button: when clicked, two drawings are merged into one drawing
+"Merge" = "Combinar"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Amostra";
 "Annotation Summary for %@:\n" = "Resumo de Anotações para %@:\n";
 "Fit to Text" = "Ajustar ao Texto";
@@ -278,7 +279,7 @@
 "Remove Link" = "Remover Link";
 "Open Link" = "Abrir Link";
 "Go to Page %d" = "Ir à Página %d";
-"Go to Page" = "Ir à Página";
+"Go to Page" = "Ir à Página"; // title of a Popup
 "Save" = "Salvar";
 "Link Destination" = "Destino do Link";
 "Enter page index or a http:// address to link to an URL." = "Digite um índice de página ou um endereço http:// para vincular a um URL.";
@@ -341,8 +342,8 @@
 "Signature is valid." = "A assinatura é válida.";
 "Signature is valid, but there are some warnings." = "A assinatura é válida, porém há alguns alertas.";
 "It was signed by %@ on %@ at %@." = "Ele foi assinado por %@ em %@ às %@."; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "Ele diz ter sido assinado por %@ em %@ às %@."; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- A revisão protegida por esta assinatura não foi modificada, porém mudanças foram feitas ao documento desde a sua assinatura."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "Ele diz ter sido assinado por %@ em %@ às %@."; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- A revisão protegida por esta assinatura não foi modificada, porém mudanças foram feitas ao documento desde a sua assinatura."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- A assinatura é válida e o conteúdo deste documento não foi modificado desde a sua assinatura.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Assinatura inválida – este documento foi modificado, manipulado ou corrompido desde a sua assinatura.";
 "Unsigned Signature Field" = "Campo de Assinatura não Preenchido";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "Há um erro de formatação no campo notBefore do certificado."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Há um erro de formatação no campo notAfter do certificado."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Nenhuma assinatura pôde ser verificada porque a cadeia de certificados contém apenas um certificado, ele não é auto-assinado e o emissor não é confiável.";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Um certificado AC não é válido porque ele não é um AC ou suas extensões não são consistentes com o fim proposto."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Um certificado AC não é válido porque ele não é um AC ou suas extensões não são consistentes com o fim proposto."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "O parâmetro do tamanho de caminho do basicConstraints foi excedido."; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "A AC de raiz não está definida como confiável para o seu fim proposto."; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "A AC de raiz não está definida como confiável para o seu fim proposto."; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "A AC de raiz está definida para rejeitar o propósito especificado."; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "O certificado do emissor foi rejeitado porque seu nome de sujeito não coincidia com o nome de emissor do certificado atual."; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "O certificado do emissor foi rejeitado porque seu identificador de chave de sujeito estava presente e não coincidia com o identificador de chave de autoridade do certificado atual."; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "O certificado foi revogado pelo emissor.";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "O certificado passado é auto-assinado e o mesmo certificado não pode ser encontrado na lista de certificados confiáveis.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Existe um certificado auto-assinado na cadeia de certificados. A cadeia de certificados pode ser construída usando certificados não confiáveis, mas o certificado AC de raiz não pôde ser encontrado localmente."; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Não foi possível encontrar o certificado para uma das autoridades de certificação (AC) na hierarquia de assinatura e esta AC não é confiada pelo aplicativo local."; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Não foi possível encontrar o certificado para uma das autoridades de certificação (AC) na hierarquia de assinatura e esta AC não é confiada pelo aplicativo local."; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "O certificado do emissor de um certificado local buscado não pôde ser encontrado. Isto normalmente significa que a lista de certificados confiáveis não está completa.";
 "The certificate that was provided cannot be used for its intended purpose." = "O certificado fornecido não pode ser usado para o seu fim proposto.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "A extensão keyUsage do certificado do emissor não permite assinatura de certificado.";

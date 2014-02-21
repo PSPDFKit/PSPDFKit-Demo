@@ -17,6 +17,7 @@
 "Open" = "開く";
 "Untitled" = "名称未設定";
 "File Not Found" = "ファイルが見つかりません";
+"File couldn't be opened." = "ファイルを開けませんでした。"; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "名称未設定のPDF";
 "Page %d" = "ページ%d";
 "All (%d Pages)" = "すべて（%dページ）";
@@ -35,7 +36,7 @@
 "Open in" = "開く";
 "Open" = "開く";
 "Commit" = "コミット";
-"Sending to %@" = "%@に送信中"; // Context: Open document with an application
+"Sending to %@" = "%@に送信中"; // Open document with an application
 "Pages" = "ページ";
 "Print with annotations" = "注釈付きでプリント";
 "Print document only" = "書類のみをプリント";
@@ -75,14 +76,14 @@
 "Leave %@?" = "%@を終了しますか。";
 
 // search
-"Search Document" = "書類を検索"; // Context: to search for a string in the given document
+"Search Document" = "書類を検索"; // to search for a string in the given document
 "No matches found" = "一致するものが見つかりませんでした";
 "One match found" = "一致するものが1件見つかりました";
 "%d matches found" = "一致するものが%d件見つかりました";
 "Searching Page %d of %d" = "ページ%d/%dを検索中";
 "Search Completed" = "検索を完了";
 "Search Cancelled" = "検索がキャンセルされました";
-"%d left" = "残り%d件"; // Context: there are 5 documents left
+"%d left" = "残り%d件"; // Indexing Documents... 5 left
 "Searching" = "検索中";
 "%d documents indexed." = "%d個の書類がインデックス済み";
 "Done" = "完了";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Chromeで開く";
 "Your %@ is not configured to send emails." = "お手持ちの%@はメールを送信するよう設定されていません。";
 "The link is requesting to open %@Would you like to continue?" = "リンクが%@を開くよう要求しています。続けてよろしいですか。";
-"an external application" = "外部アプリケーション";
-"the App Store" = "App Store";
-"Mail" = "メール";
+"an external application" = "外部アプリケーション"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "メール"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "%@のハンドラが見つかりません";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "編集";
 "Undo" = "取消";
 "Redo" = "やり直し";
-"Type" = "入力"; // Context: kind of Annotation can be selected
+"Type" = "入力"; // kind of Annotation can be selected
 "Size" = "サイズ";
 "Font" = "フォント";
 "Fonts" = "フォント";
@@ -148,8 +149,8 @@
 "Strikeout" = "取り消し線";
 "Rectangle" = "長方形";
 "Ellipse" = "楕円形";
-"Line" = "線";
-"Lines" = "線"; //part of a created text. e.g.: "5 Lines"
+"Line" = "線"; // something that can be drawn
+"Lines" = "線"; // "5 Lines" were drawn
 "Polyline" = "ポリライン";
 "Polygon" = "ポリゴン";
 "Signature" = "署名";
@@ -164,7 +165,7 @@
 "Stamp Text" = "スタンプのテキスト";
 "Add Signature" = "署名を追加";
 "My Signature" = "自分の署名";
-"No Signatures" = "署名がありません"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "署名がありません"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "カスタマーの署名";
 "Note" = "メモ";
 "Text" = "メッセージ";
@@ -195,7 +196,7 @@
 "Inspector" = "インスペクタ";
 "Group" = "グループ";
 "Ungroup" = "グループ解除";
-"Merge" = "結合"; //text on a Button: when clicked, two drawings are merged into one drawing
+"Merge" = "結合"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "サンプル";
 "Annotation Summary for %@:\n" = "%@の注釈の概要";
 "Fit to Text" = "テキストの大きさに合わせる";
@@ -278,7 +279,7 @@
 "Remove Link" = "リンクを削除";
 "Open Link" = "リンクを開く";
 "Go to Page %d" = "%dページに移動";
-"Go to Page" = "ページに移動";
+"Go to Page" = "ページに移動"; // title of a Popup
 "Save" = "保存";
 "Link Destination" = "リンク先";
 "Enter page index or a http:// address to link to an URL." = "URLにリンクするには、ページインデックスまたはhttp://アドレスを入力してください。";
@@ -341,8 +342,8 @@
 "Signature is valid." = "署名は有効です。";
 "Signature is valid, but there are some warnings." = "署名は有効ですが、警告が数件あります。";
 "It was signed by %@ on %@ at %@." = "%@により%@に%@で署名されました。"; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "%@によって%@に%@で署名されました。"; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- この署名の対象となるリビジョンは変更されていませんが、それ以降に書類に変更が加えられました。"; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "%@によって%@に%@で署名されました。"; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- この署名の対象となるリビジョンは変更されていませんが、それ以降に書類に変更が加えられました。"; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- 署名は有効で、かつ、この書類の内容はそれ以降変更されていません。";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- 無効な署名 — この書類の内容に署名された後、変更、改ざん、または破損が起きました。";
 "Unsigned Signature Field" = "未署名の署名フィールド";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "証明書のnotBeforeフィールドにフォーマットエラーがあります。"; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "証明書のnotAfterフィールドにフォーマットエラーがあります。"; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "証明書チェーンに証明書が１つしか含まれていない、自己署名されていない、そして発行元が信頼されないため、署名が認証されませんでした。";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "認証局の証明書は、それが認証局ではない、あるいはその拡張子が意図する目的と矛盾するため、有効ではありません。"; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "認証局の証明書は、それが認証局ではない、あるいはその拡張子が意図する目的と矛盾するため、有効ではありません。"; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "basicConstraintsパス長パラメーターを超えています。"; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "ルート認証局は意図した目的に信頼できるとして指定されています。"; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "ルート認証局は意図した目的に信頼できるとして指定されています。"; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "ルート認証局は指定された目的を拒否するよう指定されています。"; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "発行元証明書は、そのサブジェクト名が現在の証明書の発行元の名前と一致しないため拒否されました。"; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "発行元証明書は、そのサブジェクト鍵識別子が存在し、現在の証明書の証明書鍵識別子と一致しないため拒否されました。"; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "証明書は発行元によって取り消されました。";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "渡された証明書は自己署名されてあり、同じ証明書は信頼された証明書リストに見つけられません。";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "自己署名された証明書が証明書チェーンに存在します。証明書チェーンは信頼されない証明書を使用して立ち上げることはできませんが、ルート認証局（CA）をローカルに見つけることができませんでした。"; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "署名階層にある証明書認証局の１つに証明書を見つけることができず、認証局はローカルアプリケーションに信頼されていません。"; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "署名階層にある証明書認証局の１つに証明書を見つけることができず、認証局はローカルアプリケーションに信頼されていません。"; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "ローカルに検索した証明書の発行元証明書を見つけられませんでした。これは通常、信頼される証明書リストが完全でないことを意味します。";
 "The certificate that was provided cannot be used for its intended purpose." = "指定された証明書は意図した目的に使用できませんでした。";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "発行元証明書のkeyUsage拡張子は、証明書の署名を許可しません。";

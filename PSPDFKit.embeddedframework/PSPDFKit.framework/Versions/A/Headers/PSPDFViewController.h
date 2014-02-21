@@ -202,9 +202,14 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Area outside margin does not receive touch events, or is shown while zooming.
 @property (nonatomic, assign) UIEdgeInsets margin;
 
-/// Padding for document pages. Defaults to CGSizeZero. Padding is space that is displayed around the document. (In fact, the minimum zoom is adapted; thus you can only modify width/height here)
+/// Padding for document pages. Defaults to `CGSizeZero`.
+/// For `PSPDFPageTransitionScrollPerPage`, padding is space that is displayed around the document. (In fact, the minimum zoom is adapted; thus you can only modify `width`/`height` here (left+right/top+bottom))
+/// For `PSPDFPageTransitionScrollContinuous`, top/bottom is used to allow additional space before/after the first/last document
 /// When changing padding; the touch area is still fully active.
-@property (nonatomic, assign) CGSize padding;
+@property (nonatomic, assign) UIEdgeInsets padding;
+
+/// Page padding width between single/double pages or between pages for continuous scrolling. Defaults to 20.f.
+@property (nonatomic, assign) CGFloat pagePadding;
 
 /// This manages how the PDF image cache (thumbnail, full page) is used. Defaults to `PSPDFPageRenderingModeThumbnailIfInMemoryThenFullPage`.
 /// `PSPDFPageRenderingModeFullPageBlocking` is a great option for `PSPDFPageTransitionCurl`.
@@ -391,9 +396,6 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// Maximum zoom scale for the scrollview. Defaults to 10. Set before creating the view.
 @property (nonatomic, assign) float maximumZoomScale;
 
-/// Page padding width between single/double pages or between pages for continuous scrolling. Defaults to 20.f.
-@property (nonatomic, assign) CGFloat pagePadding;
-
 /// Enable/disable page shadow. Defaults to YES on iOS6 and NO on iOS7.
 @property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
@@ -530,6 +532,7 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 @property (nonatomic, assign, getter=isCreateAnnotationMenuEnabled) BOOL createAnnotationMenuEnabled;
 
 /// Types allowed in the create annotations menu. Defaults to the most common annotation types. (strings)
+/// See `editableAnnotationTypes` for the format expected here and also for the used ordering.
 @property (nonatomic, copy) NSSet *createAnnotationMenuTypes;
 
 /// If YES, the annotation menu will be displayed after an annotation has been created. Defaults to NO.

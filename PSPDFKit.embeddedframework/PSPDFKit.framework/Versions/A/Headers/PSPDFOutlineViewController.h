@@ -34,7 +34,6 @@
 @property (nonatomic, assign) BOOL allowCopy;
 
 /// Allows search. Defaults to YES.
-/// @warning This is currently broken and disabled on iOS 7.
 @property (nonatomic, assign) BOOL searchEnabled;
 
 /// Enables displaying page labels.

@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFViewController.h"
 
 @class PSPDFAnnotationStateManager;
 

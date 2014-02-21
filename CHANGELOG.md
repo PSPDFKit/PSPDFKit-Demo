@@ -4,6 +4,32 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.5.2 - 21/Feb/2014__
+
+*  `PSPDFYouTubeAnnotationView` has been removed in favor of the newer `PSPDFGallery`. Te gallery is a much better user experience for embedding YouTube videos.
+*  Adds a workaround to prevent unwanted `UIPopoverController` animations that might appear under certain conditions on iOS 7.0.
+*  New property `highlightColor` on `PSPDFPageView` to control the color used for link/form touch feedback.
+*  Improves reload behavior with an external animation block.
+*  The play button for the `PSPDFGallery` is now always white and configurable via `UIAppearance`.
+*  Improves fade animation of the page label under iOS 7, especially for the new blur-page label setting on iOS 7.
+*  The `PSPDFDocumentPickerController` now uses a dynamic size when displayed as a popover.
+*  Various smaller impovements related to the new sidebar example in PSPDFCatalog.
+*  `defaultColorOptionsForAnnotationType` now returns an NSArray of string, color tuples.
+*  Allows to use UIAppearance to change the default search view highlight color.
+*  The note popover now will be dismissed on tap if the annotation state manager is used for highlight mode, just as it does when using the annotation toolbar.
+*  The `allowsCopying` property in `PSPDFDocument` no longer controls if the "Copy" option for annotations is displayed. This property only controls text.
+*  Makes sure that the ink width while drawing and rotating is always the correct one.
+*  API: `padding` of `PSPDFViewController` is now of type `UIEdgeInsets` and also works with `PSPDFPageTransitionScrollContinuous`.
+*  Stamps now more closely resemble the look of Adobe Acrobat.
+*  Improves content type detection in the gallery.
+*  Various localization improvements.
+*  The XFDF parser can now write images within appearance streams to Adobe Acrobat.
+*  Fixes an issue where the text rect could be CGRectZero if the `shouldSelectText:` delegete was not set.
+*  Fixes an positioning issue related to custom scopes in `PSPDFSearchViewController`.
+*  Fixes an issue where the `PSPDFMultiDocumentViewController` would not work as expected if the delegate was not set.
+*  Fixes an issue where the `PSPDFMultiDocumentViewController` would only show the thumbnails for the first document.
+*  Fixes a stability issue related to the "Clear All" feature and the XFDF annotation provider.
+
 __v3.5.1 - 15/Feb/2014__
 
 *  New property in the `PSPDFStyleManager` to control if changes to annotations should be saved as the new defaults: `shouldUpdateDefaultsForAnnotationChanges`.

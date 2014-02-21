@@ -17,6 +17,7 @@
 "Open" = "Öffnen";
 "Untitled" = "Unbenannt";
 "File Not Found" = "Datei nicht gefunden";
+"File couldn't be opened." = "Datei konnte nicht geöffnet werden.";
 "Unnamed PDF" = "Unbenanntes PDF";
 "Page %d" = "Seite %d";
 "All (%d Pages)" = "Dokument (%d Seiten)";
@@ -126,7 +127,7 @@
 "Fill Color" = "Füllfarbe";
 "Opacity" = "Transparenz";
 "%@ %%" = "%@ %%";
-"Custom" = "Mehr";
+"Custom" = "Benutzerdefiniert";
 "Thickness" = "Stärke";
 "%@ pt" = "%@ pt";
 "Yellow" = "Gelb";
@@ -149,7 +150,7 @@
 "Rectangle" = "Rechteck";
 "Ellipse" = "Ellipse";
 "Line" = "Linie";
-"Lines" = "Zeilen";
+"Lines" = "Linien";
 "Polyline" = "Polylinie";
 "Polygon" = "Polygon";
 "Signature" = "Unterschrift";
@@ -164,7 +165,7 @@
 "Stamp Text" = "Stempel Text";
 "Add Signature" = "Unterschrift hinzufügen";
 "My Signature" = "Meine Unterschrift";
-"No Signatures" = "Keine Unterschriften"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "Keine Unterschriften"; // text on label: is shown, when there is no signature to display
 "Customer Signature" = "Kunden Unterschrift";
 "Note" = "Notiz";
 "Text" = "Text";

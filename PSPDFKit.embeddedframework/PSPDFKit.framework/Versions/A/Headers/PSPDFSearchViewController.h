@@ -58,6 +58,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Designated initializer.
 - (id)initWithDocument:(PSPDFDocument *)document delegate:(id<PSPDFSearchViewControllerDelegate>)delegate;
 
+/// The current document.
+@property (nonatomic, strong) PSPDFDocument *document;
+
 /// Current searchText. If set before showing the controller, keyboard will not be added.
 @property (nonatomic, copy) NSString *searchText;
 
@@ -88,6 +91,10 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL useOutlineForPageNames;
 
+/// Pins the search bar to the top. Defaults to YES on iPhone.
+/// @note Has to be set before the view is created.
+@property (nonatomic, assign) BOOL pinSearchBarToHeader;
+
 /// Internally used `PSPDFTextSearch` object. (is a copy of the PSPDFTextSearch class in document)
 @property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
 
@@ -106,6 +113,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 // Returns the searchResult for a cell.
 - (PSPDFSearchResult *)searchResultForIndexPath:(NSIndexPath *)indexPath;
+
+// Will return a searchbar. Called during viewDidLoad. Use to customize the toolbar.
+- (UISearchBar *)createSearchBar;
 
 // Currently loaded search results
 @property (nonatomic, copy, readonly) NSArray *searchResults;

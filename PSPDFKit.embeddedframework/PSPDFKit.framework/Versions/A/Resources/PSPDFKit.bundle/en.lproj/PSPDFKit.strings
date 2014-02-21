@@ -17,6 +17,7 @@
 "Open" = "Open";
 "Untitled" = "Untitled";
 "File Not Found" = "File Not Found";
+"File couldn't be opened." = "File couldn't be opened."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Unnamed PDF";
 "Page %d" = "Page %d";
 "All (%d Pages)" = "All (%d Pages)";
@@ -35,7 +36,7 @@
 "Open in" = "Open in";
 "Open" = "Open";
 "Commit" = "Commit";
-"Sending to %@" = "Sending to %@"; // Context: Open document with an application
+"Sending to %@" = "Sending to %@"; // Open document with an application
 "Pages" = "Pages";
 "Print with annotations" = "Print with annotations";
 "Print document only" = "Print document only";
@@ -75,14 +76,14 @@
 "Leave %@?" = "Leave %@?";
 
 // search
-"Search Document" = "Search Document"; // Context: to search for a string in the given document
+"Search Document" = "Search Document"; // to search for a string in the given document
 "No matches found" = "No matches found";
 "One match found" = "One match found";
 "%d matches found" = "%d matches found";
 "Searching Page %d of %d" = "Searching Page %d of %d";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
-"%d left" = "%d left"; // Context: Indexing Documents... 5 left
+"%d left" = "%d left"; // Indexing Documents... 5 left
 "Searching" = "Searching";
 "%d documents indexed." = "%d documents indexed.";
 "Done" = "Done";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Open in Chrome";
 "Your %@ is not configured to send emails." = "Your %@ is not configured to send emails.";
 "The link is requesting to open %@Would you like to continue?" = "The link is requesting to open %@Would you like to continue?";
-"an external application" = "an external application"; // Context: "The link is requesting to open an external application. Would you like to continue?"
-"the App Store" = "the App Store"; // Context: "The link is requesting to open the App Store. Would you like to continue?"
-"Mail" = "Mail";
+"an external application" = "an external application"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "the App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "No handler found for %@";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "Edit";
 "Undo" = "Undo";
 "Redo" = "Redo";
-"Type" = "Type"; // Context: kind of Annotation can be selected
+"Type" = "Type"; // kind of Annotation can be selected
 "Size" = "Size";
 "Font" = "Font";
 "Fonts" = "Fonts";
@@ -148,8 +149,8 @@
 "Strikeout" = "Strike Out";
 "Rectangle" = "Rectangle";
 "Ellipse" = "Ellipse";
-"Line" = "Line";
-"Lines" = "Lines";
+"Line" = "Line"; // something that can be drawn
+"Lines" = "Lines"; // "5 Lines" were drawn
 "Polyline" = "Polyline";
 "Polygon" = "Polygon";
 "Signature" = "Signature";
@@ -164,7 +165,7 @@
 "Stamp Text" = "Stamp Text";
 "Add Signature" = "Add Signature";
 "My Signature" = "My Signature";
-"No Signatures" = "No Signatures";
+"No Signatures" = "No Signatures"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Customer Signature";
 "Note" = "Note";
 "Text" = "Text";
@@ -195,7 +196,7 @@
 "Inspector" = "Inspector";
 "Group" = "Group";
 "Ungroup" = "Ungroup";
-"Merge" = "Merge";
+"Merge" = "Merge"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Sample";
 "Annotation Summary for %@:\n" = "Annotation Summary for %@:\n";
 "Fit to Text" = "Fit to Text";
@@ -278,7 +279,7 @@
 "Remove Link" = "Remove Link";
 "Open Link" = "Open Link";
 "Go to Page %d" = "Go to Page %d";
-"Go to Page" = "Go to Page";
+"Go to Page" = "Go to Page"; // title of a Popup
 "Save" = "Save";
 "Link Destination" = "Link Destination";
 "Enter page index or a http:// address to link to an URL." = "Enter page index or a http:// address to link to an URL.";
@@ -341,8 +342,8 @@
 "Signature is valid." = "Signature is valid.";
 "Signature is valid, but there are some warnings." = "Signature is valid, but there are some warnings.";
 "It was signed by %@ on %@ at %@." = "It was signed by %@ on %@ at %@."; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "It claims to have been signed by %@ on %@ at %@."; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "It claims to have been signed by %@ on %@ at %@."; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- The signature is valid and the content of this document has not been modified since it was signed.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Invalid signature — since signing the content of this document, it has been modified, tampered with, or corrupted.";
 "Unsigned Signature Field" = "Unsigned Signature Field";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "There is a format error in the notBefore field of the certificate."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "There is a format error in the notAfter field of the certificate."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted.";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "The basicConstraints pathlength parameter was exceeded."; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "The root CA is not marked as trusted for its intended purpose."; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "The root CA is not marked as trusted for its intended purpose."; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "The root CA is marked to reject the purpose specified."; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate."; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate."; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "The certificate was revoked by the issuer.";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally."; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application."; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application."; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete.";
 "The certificate that was provided cannot be used for its intended purpose." = "The certificate that was provided cannot be used for its intended purpose.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "The issuer certificate's keyUsage extension does not permit certificate signing.";

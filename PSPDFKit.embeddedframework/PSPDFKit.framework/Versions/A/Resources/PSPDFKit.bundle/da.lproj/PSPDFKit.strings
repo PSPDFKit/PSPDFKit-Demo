@@ -17,6 +17,7 @@
 "Open" = "Åbn";
 "Untitled" = "Uden navn";
 "File Not Found" = "Arkiv ikke fundet";
+"File couldn't be opened." = "Arkiv kunne ikke åbnes."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF uden navn";
 "Page %d" = "Side %d";
 "All (%d Pages)" = "Alle (%d sider)";
@@ -27,7 +28,7 @@
 // toolbar
 "Outline" = "Kontur";
 "No Outline" = "Intet indhold";
-"Search Outline" = "Søg i indholdsfortegnelse";
+"Search Outline" = "Søg i indeks";
 "Search" = "Søg";
 "Email" = "E-mail";
 "Send via Email" = "Send pr. e-mail";
@@ -35,7 +36,7 @@
 "Open in" = "Åbn i";
 "Open" = "Åbn";
 "Commit" = "Udfør";
-"Sending to %@" = "Sender til %@"; // Context: Open document with an application
+"Sending to %@" = "Sender til %@"; // Open document with an application
 "Pages" = "Sider";
 "Print with annotations" = "Udskriv med kommentarer";
 "Print document only" = "Udskriv kun dokument";
@@ -75,14 +76,14 @@
 "Leave %@?" = "Forlad %@?";
 
 // search
-"Search Document" = "Søg i dokument"; // Context: to search for a string in the given document
+"Search Document" = "Søg i dokument"; // to search for a string in the given document
 "No matches found" = "Ingen resultater";
 "One match found" = "En match fundet";
 "%d matches found" = "%d matches fundet";
 "Searching Page %d of %d" = "Søger i side %d af %d";
 "Search Completed" = "Søgning afsluttet";
 "Search Cancelled" = "Søgning annuleret";
-"%d left" = "%d tilbage"; // Context: Indexing Documents... 5 left
+"%d left" = "%d tilbage"; // Indexing Documents... 5 left
 "Searching" = "Søger";
 "%d documents indexed." = "%d dokumenter indekserede.";
 "Done" = "Færdig";
@@ -93,9 +94,9 @@
 "Open in Chrome" = "Åbn i Chrome";
 "Your %@ is not configured to send emails." = "Din %@ er ikke konfigureret til at sende e-mails.";
 "The link is requesting to open %@Would you like to continue?" = "Henvisningen ønsker at åbne %@ Vil du fortsætte?";
-"an external application" = "et eksternt program"; // Context: "The link is requesting to open an external application. Would you like to continue?"
-"the App Store" = "App Store"; // Context: "The link is requesting to open the App Store. Would you like to continue?"
-"Mail" = "Mail";
+"an external application" = "et eksternt program"; // "The link is requesting to open an external application. Would you like to continue?"
+"the App Store" = "App Store"; // "The link is requesting to open the App Store. Would you like to continue?"
+"Mail" = "Mail"; // "The link is requesting to open Mail. Would you like to continue?"
 "No handler found for %@" = "„Handler“ for blev ikke fundet %@";
 
 // text selection
@@ -110,7 +111,7 @@
 "Edit" = "Rediger";
 "Undo" = "Fortryd";
 "Redo" = "Gentag";
-"Type" = "Type"; // Context: kind of Annotation can be selected
+"Type" = "Type"; // kind of Annotation can be selected
 "Size" = "Str.";
 "Font" = "Skrift";
 "Fonts" = "Skrifter";
@@ -148,8 +149,8 @@
 "Strikeout" = "Gennemstreget";
 "Rectangle" = "Rektangel";
 "Ellipse" = "Ellipse";
-"Line" = "Linje";
-"Lines" = "Linjer"; //part of a created text. e.g.: "5 Lines"
+"Line" = "Linje"; // something that can be drawn
+"Lines" = "Linjer"; // "5 Lines" were drawn
 "Polyline" = "Polygonal";
 "Polygon" = "Polygon";
 "Signature" = "Signatur";
@@ -164,7 +165,7 @@
 "Stamp Text" = "Stempeltekst";
 "Add Signature" = "Tilføj signatur";
 "My Signature" = "Min signatur";
-"No Signatures" = "Ingen signaturer"; //text on label: is shown, when there is no signature to display
+"No Signatures" = "Ingen signaturer"; // text on label - is shown when there is no signature to display
 "Customer Signature" = "Kundesignatur";
 "Note" = "Bemærk";
 "Text" = "Tekst";
@@ -195,7 +196,7 @@
 "Inspector" = "Inspektør";
 "Group" = "Grupper";
 "Ungroup" = "Ophæv gruppe";
-"Merge" = "Kombiner"; //text on a Button: when clicked, two drawings are merged into one drawing
+"Merge" = "Kombiner"; // text on button - when clicked, two drawings are merged into one drawing
 "Sample" = "Eksempel";
 "Annotation Summary for %@:\n" = "Kommentarresumé af %@:\n";
 "Fit to Text" = "Tilpas til tekst";
@@ -278,7 +279,7 @@
 "Remove Link" = "Fjern henvisning";
 "Open Link" = "Åbn henvisning";
 "Go to Page %d" = "Gå til side %d";
-"Go to Page" = "Gå til side";
+"Go to Page" = "Gå til side"; // title of a Popup
 "Save" = "Arkiver";
 "Link Destination" = "Link-destination";
 "Enter page index or a http:// address to link to an URL." = "Angiv side-index eller en http:// adresse for at linke til en URL.";
@@ -341,8 +342,8 @@
 "Signature is valid." = "Signatur er gyldig.";
 "Signature is valid, but there are some warnings." = "Signaturen er gyldig, men der er nogle advarsler.";
 "It was signed by %@ on %@ at %@." = "Det blev signeret af %@ d. %@ kl. %@."; // the document was signed by name on date at time
-"It claims to have been signed by %@ on %@ at %@." = "Det påstår at være signeret af %@ d. %@ kl. %@."; //by name on date at time
-"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revisionen, dækket af denne signatur er ikke blevet ændret, der er dog foretaget ændringer i dokumentet efter det blev signeret."; // Context: When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
+"It claims to have been signed by %@ on %@ at %@." = "Det påstår at være signeret af %@ d. %@ kl. %@."; // by name on date at time
+"- The revision covered by this signature has not been modified, however changes have been made to the document since it was signed." = "- Revisionen, dækket af denne signatur er ikke blevet ændret, der er dog foretaget ændringer i dokumentet efter det blev signeret."; // When a document is signed, the content is frozen at that point, and any subsequent changes are appended to the document. So the version or revision of the document that was signed can later be reviewed. So this message essentially means "The signed version is intact and you could view it, but what you are looking at now has had modifications made to it." There is / will be a button for viewing these old signed revisions.
 "- The signature is valid and the content of this document has not been modified since it was signed." = "- Signaturen er gyldig, og indholdet af dette dokument er ikke blevet ændret, efter det blev signeret.";
 "- Invalid signature — since signing the content of this document has been modified, tampered with, or corrupted." = "- Ugyldig signatur — efter indholdet af dette dokument blev signeret, er det blevet ændret, fusket med eller korrumperet.";
 "Unsigned Signature Field" = "Ikke signeret signaturfelt";
@@ -356,9 +357,9 @@
 "There is a format error in the notBefore field of the certificate." = "Der er en formateringsfejl i certifikatets notBefore-felt."; // notBefore should not be translated
 "There is a format error in the notAfter field of the certificate." = "Der er en formatfejl i notAfter-feltet i certifikatet."; // notAfter should not be translated
 "No signatures could be verified because the certificate chain contains only one certificate, it is not self-signed, and the issuer is not trusted." = "Ingen signaturer kunne verificeres, fordi certifikatkæden kun indeholder et certifikat, den er ikke self-signed, og udstederen er ikke godkendt.";
-"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Et CA-certifikat er ikke gyldigt, fordi det ikke er et CA, eller dets endelser ikke svarer til dets forventede anvendelse."; // Context: CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
+"A CA certificate is not valid because it is not a CA or its extensions are not consistent with the intended purpose." = "Et CA-certifikat er ikke gyldigt, fordi det ikke er et CA, eller dets endelser ikke svarer til dets forventede anvendelse."; // CA = Certificate Authority; The sentence means: The as CA provided certificate is not a CA or can not be used as a CA because its extensions are not consistent with the intended purpose. CA sould not be translated
 "The basicConstraints pathlength parameter was exceeded." = "Stilængde-parameteren basicComstraints blev overskredet."; // basicContraints pathlength should not be translated
-"The root CA is not marked as trusted for its intended purpose." = "Rod-CA er ikke betegnet som godkendt til dets forventede formål."; //root CA sould not be translated
+"The root CA is not marked as trusted for its intended purpose." = "Rod-CA er ikke betegnet som godkendt til dets forventede formål."; // root CA sould not be translated
 "The root CA is marked to reject the purpose specified." = "Rod-CA er beregnet til at afvise det angivne formål."; // root CA sould not be translated
 "The issuer certificate was rejected because its subject name did not match the issuer name of the current certificate." = "Udstedercertifikatet blev afvist, fordi dets emne-navn ikke matcher udstedernavnet for det aktuelle certifikat."; // subject and the second issuer should not be translated
 "The issuer certificate was rejected because its subject key identifier was present and did not match the authority key identifier of the current certificate." = "Udsteder-certifikatet blev afvist, fordi dets \"subject key identifier\" var tilstede og ikke matchede \"authority key identifier\" i det aktuelle certifikat."; // subject key identifier and authority key identifier should not be translated
@@ -366,7 +367,7 @@
 "The certificate was revoked by the issuer." = "Certifikatet er tilbagekaldt af udsteder.";
 "The passed certificate is self-signed and the same certificate cannot be found in the list of trusted certificates." = "Det givne certifikat er selv-signeret og det samme certifikat findes ikke i listen med godkendte certifikater.";
 "A self-signed certificate exists in the certificate chain. The certificate chain could be built up using the untrusted certificates, but the root CA could not be found locally." = "Der findes et selv-signeret certifikat i certifikatkæden. Certifikatkæden kan bygges med ikke godkendte certifikater, men en rod-CA blev ikke fundet lokalt."; // root CA sould not be translated
-"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Kunne ikke finde certifikatet for en af certifikatautoriteterne (CAs) i  signeringshierarkiet og det CA er ikke godkendt af det lokale program."; // CAs should not be translated; 
+"Unable to find the certificate for one of the certificate authorities (CAs) in the signing hierarchy and that CA is not trusted by the local application." = "Kunne ikke finde certifikatet for en af certifikatautoriteterne (CAs) i  signeringshierarkiet og det CA er ikke godkendt af det lokale program."; // CAs should not be translated;
 "The issuer certificate of a locally looked up certificate could not be found. This normally means that the list of trusted certificates is not complete." = "Udstedercertifikatet fra et lokalt opslået certifikat blev ikke fundet. Det betyder normalt, at listen med godkendte certifikater ikke er fuldstændig.";
 "The certificate that was provided cannot be used for its intended purpose." = "Det leverede certifikat kan ikke bruges til dets forventede anvendelse.";
 "The issuer certificate's keyUsage extension does not permit certificate signing." = "Udstedercertifikatets „keyUsage extension“ tillader ikke certifikatsignering.";

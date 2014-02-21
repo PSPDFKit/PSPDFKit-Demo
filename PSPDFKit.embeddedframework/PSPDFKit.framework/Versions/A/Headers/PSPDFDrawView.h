@@ -57,7 +57,7 @@
 @property (nonatomic, strong, readonly) NSArray *actionList;
 
 /// Draw view zoom scale. Defaults to 1. Increase to allow sharp rendering when zoomed in.
-/// @warning Allows maximum zoomScale of 5. Will be disabled for older devices (iPad1)
+/// @warning Allows maximum zoomScale of 5. Will be disabled for older devices.
 @property (nonatomic, assign) CGFloat zoomScale;
 
 /// Scale value for the page on which drawing occurs.
