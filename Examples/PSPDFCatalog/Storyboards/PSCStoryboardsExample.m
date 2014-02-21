@@ -8,12 +8,10 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCStoryboardsExample.h"
+#import "PSCExample.h"
 
+@interface PSCStoryboardsInitWithStoryboardExample : PSCExample @end
 @implementation PSCStoryboardsInitWithStoryboardExample
-
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSCExample
 
 - (id)init {
     if (self = [super init]) {
