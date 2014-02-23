@@ -108,7 +108,7 @@
 
     // we (ab)use the search highlight system here.
     if (word) {
-        PSPDFSearchResult *result = [[PSPDFSearchResult alloc] initWithDocument:self.document page:self.page range:NSMakeRange(NSNotFound, 0) previewText:nil rangeInPreviewText:NSMakeRange(NSNotFound, 0) selection:[[PSPDFTextBlock alloc] initWithGlyphs:word.glyphs]];
+        PSPDFSearchResult *result = [[PSPDFSearchResult alloc] initWithDocument:self.document page:self.page range:NSMakeRange(NSNotFound, 0) previewText:nil rangeInPreviewText:NSMakeRange(NSNotFound, 0) selection:[[PSPDFTextBlock alloc] initWithGlyphs:word.glyphs] annotation:nil];
         highlightView = [[PSPDFSearchHighlightView alloc] initWithSearchResult:result];
     }
     self.highlightView = highlightView;
