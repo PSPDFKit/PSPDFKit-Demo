@@ -52,7 +52,7 @@
     if ([self.highlightedSearchText length]) {
         [self.document.textSearch searchForString:self.highlightedSearchText];
     }else {
-        [self clearHighlightedSearchResults];
+        [self.searchHighlightViewManager clearHighlightedSearchResultsAnimated:NO];
         [self.document.textSearch cancelAllOperationsAndWait];
     }
 }

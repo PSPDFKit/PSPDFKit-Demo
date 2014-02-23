@@ -106,7 +106,7 @@
 }
 
 - (void)documentPickerControllerWillEndSearch:(PSPDFDocumentPickerController *)documentPickerController {
-    [self.pdfController clearHighlightedSearchResults];
+    [self.pdfController.searchHighlightViewManager clearHighlightedSearchResultsAnimated:NO];
 }
 
 @end
