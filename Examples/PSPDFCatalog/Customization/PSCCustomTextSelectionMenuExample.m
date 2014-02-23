@@ -66,9 +66,7 @@
 
     // Add option to Google for it.
     PSPDFMenuItem *googleItem = [[PSPDFMenuItem alloc] initWithTitle:NSLocalizedString(@"Google", nil) block:^{
-        // Trim removes stuff like \n or 's.
-        NSString *trimmedSearchText = PSPDFTrimString(selectedText);
-        NSString *URLString = [NSString stringWithFormat:@"http://www.google.com/search?q=%@", [trimmedSearchText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        NSString *URLString = [NSString stringWithFormat:@"http://www.google.com/search?q=%@", [selectedText stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 
         // Create browser
         PSPDFWebViewController *browser = [[PSPDFWebViewController alloc] initWithURL:[NSURL URLWithString:URLString]];
