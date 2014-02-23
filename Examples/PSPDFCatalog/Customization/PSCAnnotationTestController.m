@@ -11,6 +11,7 @@
 #import "PSCAnnotationTestController.h"
 #import "PSCPlayBarButtonItem.h"
 #import "PSCSelectionZoomBarButtonItem.h"
+#import "PSCAvailability.h"
 #import <MapKit/MapKit.h>
 
 @implementation PSCAnnotationTestController

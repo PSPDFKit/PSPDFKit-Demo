@@ -54,6 +54,8 @@
 #import "PSCAssetLoader.h"
 #import "PSCExampleManager.h"
 #import "PSCViewHelper.h"
+#import "PSCAvailability.h"
+#import "UIColor+PSPDFCatalog.h"
 #import "PSCPopoverTestViewController.h"
 #import <objc/runtime.h>
 
