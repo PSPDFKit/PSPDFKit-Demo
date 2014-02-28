@@ -31,21 +31,21 @@
     item.title = @"Title";
     item.subtitle = @"Subtitle";
     item.progress = 0.7;
-    [item push];
+    [item pushAnimated:YES];
     [self performSelector:@selector(showError:) withObject:item afterDelay:1.0];
 }
 
 - (void)showError:(PSPDFStatusHUDItem *)oldItem {
     PSPDFStatusHUDItem *item = [PSPDFStatusHUDItem errorWithText:@"Omg!"];
     item.title = @"Error";
-    [item push];
+    [item pushAnimated:YES];
     [self performSelector:@selector(showSuccess:) withObject:item afterDelay:1.0];
 }
 
 - (void)showSuccess:(PSPDFStatusHUDItem *)oldItem {
     PSPDFStatusHUDItem *item = [PSPDFStatusHUDItem successWithText:@"Omg!"];
     item.title = @"Success";
-    [item push];
+    [item pushAnimated:YES];
     [self performSelector:@selector(switchToBlackStyle:) withObject:item afterDelay:1.0];
 }
 

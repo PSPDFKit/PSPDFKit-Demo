@@ -81,10 +81,10 @@
 
 - (void)handleGestureFrom:(UISwipeGestureRecognizer *)recognizer {
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [[PSPDFStatusHUDItem successWithText:@"Swiped Left"] pushAndPopWithDelay:2.0f];
+        [[PSPDFStatusHUDItem successWithText:@"Swiped Left"] pushAndPopWithDelay:2.0f animated:YES];
         NSLog(@"Swiped left.");
     } else {
-        [[PSPDFStatusHUDItem successWithText:@"Swiped Right"] pushAndPopWithDelay:2.0f];
+        [[PSPDFStatusHUDItem successWithText:@"Swiped Right"] pushAndPopWithDelay:2.0f animated:YES];
         NSLog(@"Swiped right.");
     }
 }

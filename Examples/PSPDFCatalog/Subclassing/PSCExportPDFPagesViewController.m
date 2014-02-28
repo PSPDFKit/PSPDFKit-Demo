@@ -120,7 +120,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
     if (selectedPages.count) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
-            [status push];
+            [status pushAnimated:YES];
             
             NSDictionary *options = flattened ? @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink)} : @{PSPDFProcessorAnnotationAsDictionary : @YES};
             // TODO: use file-based version to support larger PDFs.
@@ -129,7 +129,7 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
                 status.progress = (numberOfProcessedPages + 1) / (float)totalPages;
             } error:&error];
 
-            [status pop];
+            [status popAnimated:YES];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (data) {

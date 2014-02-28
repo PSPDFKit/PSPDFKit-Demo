@@ -153,13 +153,13 @@ const char PSCAlertViewKey;
         
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
-                [status pop];
+                [status popAnimated:YES];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }else {
                 // generate document and show it
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
-                [statusDone pushAndPopWithDelay:2.0f];
-                [status pop];
+                [statusDone pushAndPopWithDelay:2.0f animated:YES];
+                [status popAnimated:YES];
                 
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
                 PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];

@@ -309,14 +309,14 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
         PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
-        [status push];
+        [status pushAnimated:YES];
 
         // With password protected pages, PSPDFProcessor can only add link annotations.
         [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
             status.progress = numberOfProcessedPages/(float)totalPages;
         } error:NULL];
 
-        [status pop];
+        [status popAnimated:YES];
 
         // show file
         PSPDFDocument *document = [PSPDFDocument documentWithURL:tempURL];
@@ -1448,16 +1448,16 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         
         PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem indeterminateProgressWithText:@"Converting..."];
         [status setHUDStyle:PSPDFStatusHUDStyleGradient];
-        [status push];
+        [status pushAnimated:YES];
         
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
-                [status pop];
+                [status popAnimated:YES];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }else {
                 PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
                 [statusDone setHUDStyle:PSPDFStatusHUDStyleGradient];
-                [statusDone pushAndPopWithDelay:2.0f];
+                [statusDone pushAndPopWithDelay:2.0f animated:YES];
                 
                 // generate document and show it
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
