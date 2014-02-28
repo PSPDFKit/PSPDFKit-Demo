@@ -1,5 +1,5 @@
 //
-//  PSCHUDTestExmple.h
+//  PSCHUDTestExample.h
 //  PSPDFCatalog
 //
 //  Copyright (c) 2014 PSPDFKit GmbH. All rights reserved.
@@ -10,6 +10,6 @@
 
 #import "PSCExample.h"
 
-@interface PSCHUDTestExmple : PSCExample
+@interface PSCHUDTestExample : PSCExample
 
 @end
