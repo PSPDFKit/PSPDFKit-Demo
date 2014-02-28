@@ -57,6 +57,8 @@
 #import "PSCAvailability.h"
 #import "UIColor+PSPDFCatalog.h"
 #import "PSCPopoverTestViewController.h"
+#import "PSPDFStatusHUD.h"
+
 #import <objc/runtime.h>
 
 // Crypto support
@@ -306,12 +308,15 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         NSURL *tempURL = PSCTempFileURLWithPathExtension(@"protected", @"pdf");
         PSPDFDocument *hackerMagDoc = [PSPDFDocument documentWithURL:hackerMagURL];
 
+        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+        [status push];
+
         // With password protected pages, PSPDFProcessor can only add link annotations.
         [PSPDFProcessor.defaultProcessor generatePDFFromDocument:hackerMagDoc pageRanges:@[[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, hackerMagDoc.pageCount)]] outputFileURL:tempURL options:@{(id)kCGPDFContextUserPassword : password, (id)kCGPDFContextOwnerPassword : password, (id)kCGPDFContextEncryptionKeyLength : @128, PSPDFProcessorAnnotationAsDictionary : @YES, PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeLink)} progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-            [PSPDFProgressHUD showProgress:numberOfProcessedPages/(float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
+            status.progress = numberOfProcessedPages/(float)totalPages;
         } error:NULL];
 
-        [PSPDFProgressHUD dismiss];
+        [status pop];
 
         // show file
         PSPDFDocument *document = [PSPDFDocument documentWithURL:tempURL];
@@ -1440,14 +1445,21 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [testSection addContent:[PSContent contentWithTitle:@"PSPDFProcessor PPTX (Microsoft Office) conversion" block:^UIViewController *{
         NSURL *URL = [NSURL fileURLWithPath:@"/Users/steipete/Documents/Projects/PSPDFKit_meta/converts/Neu_03_VZ3_Introduction.pptx"];
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
-        [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
+        
+        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem indeterminateProgressWithText:@"Converting..."];
+        [status setHUDStyle:PSPDFStatusHUDStyleGradient];
+        [status push];
+        
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
-                [PSPDFProgressHUD dismiss];
+                [status pop];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }else {
+                PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
+                [statusDone setHUDStyle:PSPDFStatusHUDStyleGradient];
+                [statusDone pushAndPopWithDelay:2.0f];
+                
                 // generate document and show it
-                [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
                 PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
                 [self.navigationController pushViewController:pdfController animated:YES];
