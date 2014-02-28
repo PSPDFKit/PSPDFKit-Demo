@@ -10,8 +10,6 @@
 
 #import "PSCTwoFingerSwipeGestureViewController.h"
 
-#import "PSPDFStatusHUD.h"
-
 @interface PSCSwipePagingScrollView : PSPDFPagingScrollView
 @property (nonatomic, strong) UIPanGestureRecognizer *customPanRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;

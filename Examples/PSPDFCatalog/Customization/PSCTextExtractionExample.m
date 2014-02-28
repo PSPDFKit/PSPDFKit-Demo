@@ -12,7 +12,6 @@
 #import "PSCFileHelper.h"
 #import "UINavigationController+PSCKeyboardDismissal.h"
 #import "PSCExample.h"
-#import "PSPDFStatusHUD.h"
 
 #import <objc/runtime.h>
 

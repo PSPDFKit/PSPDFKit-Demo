@@ -57,7 +57,6 @@
 #import "PSCAvailability.h"
 #import "UIColor+PSPDFCatalog.h"
 #import "PSCPopoverTestViewController.h"
-#import "PSPDFStatusHUD.h"
 
 #import <objc/runtime.h>
 
@@ -113,8 +112,8 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
-        document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
-        //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_XMP_Metadata_and_Bookmarks.pdf"]];
+        //document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rotated_Complex_Form.pdf"]];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Wartungsformular_2.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
