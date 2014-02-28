@@ -167,10 +167,10 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
 
         // Show the thumbnail button on the HUD, but not on the toolbar. (we're not adding viewModeButtonItem here)
         if (!PSCIsUIKitFlatMode()) {
-            controller.documentLabel.labelStyle = PSPDFLabelStyleBordered;
-            controller.pageLabel.labelStyle = PSPDFLabelStyleBordered;
+            controller.HUDView.documentLabel.labelStyle = PSPDFLabelStyleBordered;
+            controller.HUDView.pageLabel.labelStyle = PSPDFLabelStyleBordered;
         }
-        controller.pageLabel.showThumbnailGridButton = YES;
+        controller.HUDView.pageLabel.showThumbnailGridButton = YES;
 
         controller.activityButtonItem.excludedActivityTypes = @[UIActivityTypePostToWeibo, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll];
 

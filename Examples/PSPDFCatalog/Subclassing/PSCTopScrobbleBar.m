@@ -16,7 +16,7 @@
     NSLog(@"----------CustomScrobbleBar:setToolbarFrameAndVisibility-----------");
 
     // Stick scrobble bar to the top.
-    CGRect newFrame = self.pdfController.contentRect;
+    CGRect newFrame = self.dataSource.contentRect;
     newFrame.size.height = 44.f;
     self.frame = newFrame;
 
