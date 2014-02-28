@@ -119,16 +119,19 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
     // Crunch the PDF
     if (selectedPages.count) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem progressWithText:PSPDFLocalizeWithEllipsis(@"Preparing")];
+            [status push];
+            
             NSDictionary *options = flattened ? @{PSPDFProcessorAnnotationTypes : @(PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink)} : @{PSPDFProcessorAnnotationAsDictionary : @YES};
             // TODO: use file-based version to support larger PDFs.
             NSError *error = nil;
             NSData *data = [PSPDFProcessor.defaultProcessor generatePDFFromDocument:self.document pageRanges:@[selectedPages] options:options progressBlock:^(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages) {
-                [PSPDFProgressHUD showProgress:(numberOfProcessedPages + 1) / (float)totalPages status:PSPDFLocalizeWithEllipsis(@"Preparing")];
+                status.progress = (numberOfProcessedPages + 1) / (float)totalPages;
             } error:&error];
 
-            //
+            [status pop];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                [PSPDFProgressHUD dismiss];
                 if (data) {
                     [mailViewController addAttachmentData:data mimeType:@"application/pdf" fileName:@"SelectedPages.pdf"];
                     [((PSPDFViewController *)self.parentViewController) presentModalOrInPopover:mailViewController embeddedInNavigationController:NO withCloseButton:NO animated:YES sender:nil options:@{PSPDFPresentOptionAlwaysModal : @YES}];

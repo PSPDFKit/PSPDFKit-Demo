@@ -11,8 +11,10 @@
 #import "PSCTabbedExampleViewController.h"
 #import "PSCFileHelper.h"
 #import "UINavigationController+PSCKeyboardDismissal.h"
-#import <objc/runtime.h>
 #import "PSCExample.h"
+#import "PSPDFStatusHUD.h"
+
+#import <objc/runtime.h>
 
 @interface PSCFullTextSearchExample : PSCExample @end
 @interface PSCConvertMarkupStringToPDFExample : PSCExample @end
@@ -145,14 +147,20 @@ const char PSCAlertViewKey;
         //URL = [NSURL fileURLWithPath:PSPDFResolvePathNames(@"/Bundle/Samples/test2.key", nil)];
         
         // start the conversion
-        [PSPDFProgressHUD showWithStatus:@"Converting..." maskType:PSPDFProgressHUDMaskTypeGradient];
+        PSPDFStatusHUDItem *status = [PSPDFStatusHUDItem new];
+        [status setText:@"Converting..."];
+        [status setHUDStyle:PSPDFStatusHUDStyleGradient];
+        
         [PSPDFProcessor.defaultProcessor generatePDFFromURL:URL outputFileURL:outputURL options:nil completionBlock:^(NSURL *fileURL, NSError *error) {
             if (error) {
-                [PSPDFProgressHUD dismiss];
+                [status pop];
                 [[[UIAlertView alloc] initWithTitle:@"Conversion failed" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
             }else {
                 // generate document and show it
-                [PSPDFProgressHUD showSuccessWithStatus:@"Finished"];
+                PSPDFStatusHUDItem *statusDone = [PSPDFStatusHUDItem successWithText:@"Done"];
+                [statusDone pushAndPopWithDelay:2.0f];
+                [status pop];
+                
                 PSPDFDocument *document = [PSPDFDocument documentWithURL:fileURL];
                 PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
                 

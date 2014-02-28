@@ -10,6 +10,8 @@
 
 #import "PSCTwoFingerSwipeGestureViewController.h"
 
+#import "PSPDFStatusHUD.h"
+
 @interface PSCSwipePagingScrollView : PSPDFPagingScrollView
 @property (nonatomic, strong) UIPanGestureRecognizer *customPanRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeRecognizer;
@@ -79,10 +81,10 @@
 
 - (void)handleGestureFrom:(UISwipeGestureRecognizer *)recognizer {
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [PSPDFProgressHUD showSuccessWithStatus:@"Swiped left"];
+        [[PSPDFStatusHUDItem successWithText:@"Swiped Left"] pushAndPopWithDelay:2.0f];
         NSLog(@"Swiped left.");
     } else {
-        [PSPDFProgressHUD showSuccessWithStatus:@"Swiped right"];
+        [[PSPDFStatusHUDItem successWithText:@"Swiped Right"] pushAndPopWithDelay:2.0f];
         NSLog(@"Swiped right.");
     }
 }
