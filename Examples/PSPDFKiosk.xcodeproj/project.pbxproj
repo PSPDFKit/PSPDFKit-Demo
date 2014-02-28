@@ -79,6 +79,7 @@
 		78D909B9178988A400E7D4D5 /* PSPDFKit-Version in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B2178988A400E7D4D5 /* PSPDFKit-Version */; };
 		78D909BA178988A400E7D4D5 /* PSPDFKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B3178988A400E7D4D5 /* PSPDFKit.bundle */; };
 		78D90A1B178A126600E7D4D5 /* PSCViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D90A1A178A126600E7D4D5 /* PSCViewHelper.m */; };
+		78E5CCCF18C1341F005F1A63 /* PSCRoundProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E5CCCE18C1341F005F1A63 /* PSCRoundProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +193,8 @@
 		78D90A18178A126600E7D4D5 /* PSCAvailability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCAvailability.h; sourceTree = "<group>"; };
 		78D90A19178A126600E7D4D5 /* PSCViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCViewHelper.h; sourceTree = "<group>"; };
 		78D90A1A178A126600E7D4D5 /* PSCViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCViewHelper.m; sourceTree = "<group>"; };
+		78E5CCCD18C1341F005F1A63 /* PSCRoundProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCRoundProgressView.h; sourceTree = "<group>"; };
+		78E5CCCE18C1341F005F1A63 /* PSCRoundProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCRoundProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +287,8 @@
 				785DD9E4167B9BD000559562 /* PSCMagazine.m */,
 				785DD9E5167B9BD000559562 /* PSCMagazineFolder.h */,
 				785DD9E6167B9BD000559562 /* PSCMagazineFolder.m */,
+				78E5CCCD18C1341F005F1A63 /* PSCRoundProgressView.h */,
+				78E5CCCE18C1341F005F1A63 /* PSCRoundProgressView.m */,
 				785DD9E7167B9BD000559562 /* PSCSettingsBarButtonItem.h */,
 				785DD9E8167B9BD000559562 /* PSCSettingsBarButtonItem.m */,
 				785DD9E9167B9BD000559562 /* PSCSettingsController.h */,
@@ -577,6 +582,7 @@
 				78D4D4411848CD5A00080A96 /* AFURLSessionManager.m in Sources */,
 				785DD9F4167B9BD000559562 /* PSCImageGridViewCell.m in Sources */,
 				785DD9F5167B9BD000559562 /* PSCKioskPDFViewController.m in Sources */,
+				78E5CCCF18C1341F005F1A63 /* PSCRoundProgressView.m in Sources */,
 				78D4D4441848CD5A00080A96 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				785DD9F6167B9BD000559562 /* PSCMagazine.m in Sources */,
 				785DD9F7167B9BD000559562 /* PSCMagazineFolder.m in Sources */,

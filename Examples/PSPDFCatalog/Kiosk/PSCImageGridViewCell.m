@@ -14,6 +14,7 @@
 #import "PSCDownload.h"
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "PSCRoundProgressView.h"
 #include <tgmath.h>
 
 #define PSCDownloadingKey @"downloading"
@@ -29,7 +30,7 @@
     NSMutableSet *_observedMagazineDownloads;
 }
 @property (nonatomic, strong) UIImageView *magazineCounterBadgeImage;
-@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic, strong) PSCRoundProgressView *progressView;
 @property (nonatomic, strong) PSPDFRoundedLabel *pageLabel;
 @property (nonatomic, copy) NSString *magazineTitle;
 @end
@@ -89,18 +90,12 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.deleteButton.frame = CGRectMake(self.imageView.frame.origin.x-10, self.imageView.frame.origin.y-10, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
+    self.deleteButton.frame = CGRectMake(self.imageView.frame.origin.x-10.f, self.imageView.frame.origin.y-10.f, self.deleteButton.frame.size.width, self.deleteButton.frame.size.height);
     [self.contentView bringSubviewToFront:_deleteButton];
 
     // image darkener.
     _progressViewBackground.frame = self.imageView.bounds;
-
-    // Progress bar.
-    if (!_progressView.hidden) {
-        _progressView.frame = CGRectMake(0.f, 0.f, self.imageView.frame.size.width*0.8f, 21.f);
-        CGFloat pageLabelHeight = 0.f;//self.isShowingPageLabel ? self.pageLabel.frame.size.width : 0.f;
-        _progressView.center = CGPointMake(__tg_round(CGRectGetMaxX(self.imageView.frame)/2.f), __tg_round(CGRectGetMaxY(self.imageView.frame)*9.f/10.f - pageLabelHeight));
-    }
+    _progressView.frame = self.imageView.bounds;
 
     self.selectedBackgroundView.frame = CGRectInset(self.imageView.frame, -4.f, -4.f);
 }
@@ -341,11 +336,10 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Progress
 
-- (UIProgressView *)progressView {
+- (PSCRoundProgressView *)progressView {
     if (!_progressView) {
-        _progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
-        _progressView.alpha = 0.f;
-        [self.contentView addSubview:_progressView];
+        _progressView = [[PSCRoundProgressView alloc] initWithFrame:self.imageView.bounds];
+        [self.imageView addSubview:_progressView];
         [self setNeedsLayout];
     }
     return _progressView;
@@ -386,31 +380,14 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 }
 
 - (void)setProgress:(float)theProgress animated:(BOOL)animated {
-    [[self progressView] setProgress:theProgress];
-    BOOL shouldDarkenView = theProgress < 1.f;
-    BOOL shouldShowProgress = shouldDarkenView && theProgress > 0.f;
-    [self darkenView:shouldDarkenView animated:animated];
+    BOOL shouldShowProgress = theProgress > 0.f && theProgress > 1.f;
+    [self darkenView:NO animated:animated];
 
-    // Remove progressView
-    if (!shouldShowProgress && self.progressView.superview) {
-        [UIView animateWithDuration:animated ? PSCCellAnimationDuration : 0.f animations:^{
-            self.progressView.alpha = 0.f;
-        } completion:^(BOOL finished) {
-            [self.progressView removeFromSuperview];
-            self.progressView = nil;
-        }];
-    }else if (shouldShowProgress) {
+    if (shouldShowProgress) {
+        [self.contentView addSubview:self.progressView];
         [self.contentView bringSubviewToFront:self.progressView];
-
-        // Ensure visibility.
-        if (self.progressView.alpha == 0.f || !self.progressView.superview) {
-            self.progressView.alpha = 0.f;
-            [self.contentView addSubview:self.progressView];
-            [UIView animateWithDuration:animated ? PSCCellAnimationDuration : 0.f animations:^{
-                self.progressView.alpha = 1.f;
-            }];
-        }
     }
+    [self.progressView setProgress:theProgress animated:animated];
 }
 
 - (void)setImage:(UIImage *)image animated:(BOOL)animated {
@@ -426,7 +403,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 - (void)setShowDeleteImage:(BOOL)showDeleteImage {
     _showDeleteImage = showDeleteImage;
     _deleteButton.hidden = !_showDeleteImage;
-    [self layoutSubviews];
+    [self setNeedsLayout];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
