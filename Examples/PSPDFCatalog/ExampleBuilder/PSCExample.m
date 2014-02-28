@@ -68,12 +68,7 @@ NSString *PSPDFFooterFromExampleCategory(PSCExampleCategory category) {
         case PSCExampleCategoryAnnotations: break;
         case PSCExampleCategoryForms:
             return @"PSPDFKit can show the original signed document even if the document has been subsequently altered.";
-        case PSCExampleCategoryBarButtons: break;
-        case PSCExampleCategoryViewCustomization: break;
-        case PSCExampleCategoryStoryboards: break;
-        case PSCExampleCategoryTextExtraction: break;
-        case PSCExampleCategoryControllerCustomization: break;
-        case PSCExampleCategoryAnnotationProviders: break;
+        default: break;
     }
     return nil;
 }

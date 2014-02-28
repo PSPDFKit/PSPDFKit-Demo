@@ -4,6 +4,25 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
 
+__v3.6.0 - X/Mar/2014__
+
+*  Selected text now supports text-to-speech on iOS 7+.
+*  The search now also includes annotation and form element contents. This is especially useful for note annotations and forms. (PSPDFKit Basic upwards)
+*  API: Search related methods are now in the new `searchHighlightViewManager` property of `PSPDFViewController.`
+*  Search results are now hidden on page tap (unless that tap finds an action like selecting an annotation.)
+*  PDF annotation writing will now be faster and produce a more compact trailer, reducing target file size.
+*  Adds support for mailto: links with multiple email addresses (also for cc and bcc).
+*  Saving will now use the correct z-index for annotations and forms in the same ordering as they are added. Saving changed objects will no longer change the z-ordering.
+*  Simple JavaScript actions like printing, alert boxes or adding form values now work. If you have a use case for that, please contact us at support@pspdfkit.com.
+*  The XFDF parser now parses basic rich text strings as used in Acrobat and keeps color and font informations.
+*  Increases contrast for the selection color on form choice list-boxes.
+*  `PSPDFTextSelectionView` now allows UIAppearance to customize `selectionColor` and `selectionAlpha`.
+*  Various improvements for PDF form handling.
+*  The `PSPDFActivityViewController` now checks if printing is allowed for the document before even showing the print option.
+*  API: The HUD and related views have been reorganized. You might have to update some calls (some views are now within HUDView)
+*  API: `PSPDFProgressHUD` has been replaced with the new `PSPDFStatusHUD`, which features a modern iOS 7 design and an improved API.
+*  Fixes an issue where PDF form values could become corrupted because of insufficient escaping in some PDF files.
+
 __v3.5.2 - 21/Feb/2014__
 
 *  `PSPDFYouTubeAnnotationView` has been removed in favor of the newer `PSPDFGallery`. Te gallery is a much better user experience for embedding YouTube videos.

@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, PSCExampleCategory) {
     PSCExampleCategoryTextExtraction,
     PSCExampleCategoryControllerCustomization,
     PSCExampleCategoryPageRange,
-    PSCExampleCategoryDocumentDataProvider
+    PSCExampleCategoryDocumentDataProvider,
+    PSCExampleCategoryTests
 };
 
 typedef NS_OPTIONS(NSInteger, PSCExampleTargetDeviceMask) {
