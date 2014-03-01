@@ -82,7 +82,7 @@
     PSPDFViewController *pdfController = self.pdfController;
     pdfController.tintColor = color;
     [self dismissModalOrPopoverAnimated:YES completion:NULL];
-    [pdfController createToolbarAnimated:NO];
+    [pdfController updateToolbarAnimated:NO];
 }
 
 @end

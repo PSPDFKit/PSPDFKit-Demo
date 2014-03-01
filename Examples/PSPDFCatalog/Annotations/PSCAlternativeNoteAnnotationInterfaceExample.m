@@ -15,7 +15,7 @@
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end
 @interface PSCCustomNoteViewPageView : PSPDFPageView @end
-@interface PSCCustomNoteAnnotationView : PSPDFNoteAnnotationView @end
+@interface PSCCustomNoteAnnotation : PSPDFNoteAnnotation @end
 @interface PSCCustomNoteAnnotationViewController : PSPDFNoteAnnotationViewController
 - (void)closeNoteController;
 @property (nonatomic, assign) CGRect sourceRect;
@@ -46,6 +46,7 @@
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.editableAnnotationTypes = [NSOrderedSet orderedSetWithObjects:PSPDFAnnotationStringHighlight, PSPDFAnnotationStringNote, nil];
     document.allowsCopying = NO;
+    [document overrideClass:PSPDFNoteAnnotation.class withClass:PSCCustomNoteAnnotation.class];
 
     // And also the controller.
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
@@ -53,7 +54,6 @@
     [pdfController overrideClass:PSPDFPageView.class withClass:PSCCustomNoteViewPageView.class];
     [pdfController overrideClass:PSPDFResizableView.class withClass:PSCNoteInvisibleResizableView.class];
     [pdfController overrideClass:PSPDFNoteAnnotationViewController.class withClass:PSCCustomNoteAnnotationViewController.class];
-    [pdfController overrideClass:PSPDFNoteAnnotationView.class withClass:PSCCustomNoteAnnotationView.class];
 
     // Make sure we close any open note controllers as we rotate.
     [pdfController setUpdateSettingsForRotationBlock:^(PSPDFViewController *thePdfController, UIInterfaceOrientation toInterfaceOrientation) {
@@ -226,11 +226,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 #pragma mark - Notification Processing
 
 - (void)updateNoteAnnotationImagesAnimated:(BOOL)animated {
-    for (UIView *annotationView in self.annotationContainerView.subviews) {
-        if ([annotationView isKindOfClass:PSPDFNoteAnnotationView.class]) {
-            [(PSPDFNoteAnnotationView *)annotationView updateImageAnimated:animated];
-        }
-    }
+    [self updateView];
 }
 
 - (void)annotationsAddedNotification:(NSNotification *)notification {
@@ -410,13 +406,13 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCCustomNoteAnnotationView
 
-@implementation PSCCustomNoteAnnotationView
+@implementation PSCCustomNoteAnnotation
 
-- (UIImage *)renderNoteImage {
-    NSUInteger noteNumber = PSCNumberOfAnnotationOfType(self.annotation);
+- (UIImage *)renderAnnnotationIcon {
+    NSUInteger noteNumber = PSCNumberOfAnnotationOfType(self);
     UIImage *noteImage = [UIImage imageNamed:@"alternative_note_image"];
 
-    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.f);
+    UIGraphicsBeginImageContextWithOptions(self.boundingBox.size, NO, 0.f);
     [noteImage drawAtPoint:CGPointZero];
 
     if (noteNumber != NSNotFound) {
@@ -427,10 +423,10 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
             NSDictionary *attributes = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:20.f],
                                          NSForegroundColorAttributeName : PSCCustomNewTintColor,
                                          NSParagraphStyleAttributeName : style};
-            [number drawInRect:CGRectMake(-2.f, 2.f, self.bounds.size.width, self.bounds.size.height) withAttributes:attributes];
+            [number drawInRect:CGRectMake(-2.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withAttributes:attributes];
         }else {
             [PSCCustomNewTintColor set];
-            [number drawInRect:CGRectMake(8.f, 2.f, self.bounds.size.width, self.bounds.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
+            [number drawInRect:CGRectMake(8.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
         }
     }
 
