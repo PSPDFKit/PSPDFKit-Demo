@@ -50,10 +50,10 @@
 
 - (void)updateTextHighlight {
     if ([self.highlightedSearchText length]) {
-        [self.document.textSearch searchForString:self.highlightedSearchText];
+        [self.textSearch searchForString:self.highlightedSearchText];
     }else {
         [self.searchHighlightViewManager clearHighlightedSearchResultsAnimated:NO];
-        [self.document.textSearch cancelAllOperationsAndWait];
+        [self.textSearch cancelAllOperationsAndWait];
     }
 }
 
