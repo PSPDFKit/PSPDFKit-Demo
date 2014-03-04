@@ -172,7 +172,7 @@
     for (int i=0; i<5; i++) {
         PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
         // width/height will be ignored for note annotations.
-        noteAnnotation.boundingBox = (CGRect){CGPointMake(100.f, 50.f + i*maxHeight/5), PSPDFNoteAnnotationViewFixedSize};
+        noteAnnotation.boundingBox = CGRectMake(100.f, 50.f + i*maxHeight/5, 32.f, 32.f);
         noteAnnotation.contents = [NSString stringWithFormat:@"Note %d", 5-i]; // notes are added bottom-up
         [annotations addObject:noteAnnotation];
     }

@@ -44,7 +44,7 @@
     if (selectedText.length > 0) {
         PSPDFMenuItem *createNoteMenu = [[PSPDFMenuItem alloc] initWithTitle:@"Create Note" block:^{
             PSPDFNoteAnnotation *noteAnnotation = [PSPDFNoteAnnotation new];
-            noteAnnotation.boundingBox = (CGRect){CGPointMake(CGRectGetMaxX(textRect), textRect.origin.y), PSPDFNoteAnnotationViewFixedSize};
+            noteAnnotation.boundingBox = CGRectMake(CGRectGetMaxX(textRect), textRect.origin.y, 32.f, 32.f);
             noteAnnotation.contents = selectedText;
             [pageView.document addAnnotations:@[noteAnnotation]];
             [pageView.selectionView discardSelection]; // clear text
