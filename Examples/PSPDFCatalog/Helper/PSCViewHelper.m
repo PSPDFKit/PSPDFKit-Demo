@@ -24,16 +24,16 @@ CGFloat PSCToolbarHeightForOrientation(UIInterfaceOrientation orientation) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Animations
 
-static CGFloat PSCSimulatorAnimationDragCoefficient(void) {
-    static CGFloat (*UIAnimationDragCoefficient)(void) = NULL;
 #if TARGET_IPHONE_SIMULATOR
-#import <dlfcn.h>
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        UIAnimationDragCoefficient = (CGFloat (*)(void))dlsym(RTLD_DEFAULT, "UIAnimationDragCoefficient");
-    });
+UIKIT_EXTERN CGFloat UIAnimationDragCoefficient(void); // UIKit private drag coeffient.
 #endif
-    return UIAnimationDragCoefficient ? UIAnimationDragCoefficient() : 1.f;
+
+static CGFloat PSCSimulatorAnimationDragCoefficient(void) {
+#if TARGET_IPHONE_SIMULATOR
+    return UIAnimationDragCoefficient();
+#else
+    return 1.0;
+#endif
 }
 
 CATransition *PSCFadeTransitionWithDuration(CGFloat duration) {
