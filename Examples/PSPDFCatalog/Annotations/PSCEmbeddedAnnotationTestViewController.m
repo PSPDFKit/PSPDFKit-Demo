@@ -74,12 +74,4 @@
     NSLog(@"Failed to save annotations: %@", error.localizedDescription);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark - PSPDFViewControllerDelegate
-
-// This is the default. Return nil to disable annotation selection.
-- (NSArray *)pdfViewController:(PSPDFViewController *)pdfController shouldSelectAnnotations:(NSArray *)annotations onPageView:(PSPDFPageView *)pageView {
-    return annotations;
-}
-
 @end
