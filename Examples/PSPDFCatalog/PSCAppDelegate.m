@@ -91,9 +91,9 @@
 #if !defined(CONFIGURATION_Debug) && defined(PSPDF_USE_SOURCE) && defined(HOCKEY_ENABLED)
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"This example project uses HockeyApp for crash reports and Localytics for user statistics. Make sure to either remove that or change the identifiers before shipping your app, if you use PSPDFCatalog/PSPDFKiosk as the foundation of your application.");
-        [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
-        [[BITHockeyManager sharedHockeyManager] crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
-        [[BITHockeyManager sharedHockeyManager] startManager];
+        [BITHockeyManager.sharedHockeyManager configureWithIdentifier:@"fa73e1f8f3806bcb3466c5ab16d70768" delegate:nil];
+        [BITHockeyManager.sharedHockeyManager crashManager].crashManagerStatus = BITCrashManagerStatusAutoSend;
+        [BITHockeyManager.sharedHockeyManager startManager];
     });
 #endif
     return YES;
@@ -112,7 +112,6 @@
         [self.catalog popToRootViewControllerAnimated:NO];
         [self.catalog pushViewController:pdfController animated:NO];
         return YES;
-
     // Only show alert if there's content.
     }else if ([launchURL.scheme.lowercaseString isEqualToString:@"pspdfcatalog"] && launchURL.absoluteString.length > @"pspdfcatalog://".length) {
         [[[UIAlertView alloc] initWithTitle:@"Custom Protocol Handler" message:launchURL.absoluteString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
@@ -126,13 +125,6 @@
     pdfController.additionalBarButtonItems = @[pdfController.openInButtonItem, pdfController.bookmarkButtonItem, pdfController.brightnessButtonItem, pdfController.printButtonItem, pdfController.emailButtonItem];
     return pdfController;
 }
-
-// If you need to block certain interface orientation, that's the place you want to add it.
-/*
- - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
- return UIInterfaceOrientationMaskPortrait;
- }
- */
 
 #pragma mark - BITUpdateManagerDelegate
 #ifdef HOCKEY_ENABLED
