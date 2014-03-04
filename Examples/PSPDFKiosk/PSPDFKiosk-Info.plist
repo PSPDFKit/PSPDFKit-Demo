@@ -41,5 +41,36 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>pspdfkiosk</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pdf</string>
+			</array>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>Icon.png</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>PDF Document</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.adobe.pdf</string>
+				<true/>
+			</array>
+		</dict>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>
