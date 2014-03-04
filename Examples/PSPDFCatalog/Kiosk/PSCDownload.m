@@ -109,11 +109,10 @@
         }
 
         NSString *fileName = [self.request.request.URL lastPathComponent];
-        NSString *destinationPath = [[self downloadDirectory] stringByAppendingPathComponent:fileName];
+        NSString *destinationPath = [self.downloadDirectory stringByAppendingPathComponent:fileName];
         NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
-        self.magazine.fileURL = destinationURL;
         self.status = PSCStoreDownloadStatusFinished;
 
         // Start caching thumbnail and full-image sizes so that the document will render faster.

@@ -1326,13 +1326,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     }]];
 
     [testSection addContent:[PSContent contentWithTitle:@"Test rotated documents" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_rotated-northern.pdf"]];
-        [document appendFile:@"test1.pdf"];
-        [document appendFile:@"test2.pdf"];
-        [document appendFile:@"test3.pdf"];
-        [document appendFile:@"test4.pdf"];
-        [document appendFile:@"test5.pdf"];
-        [document appendFile:@"Testcase_AllPageRotations.pdf"];
+        PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[@"Testcase_rotated-northern.pdf", @"test1.pdf", @"test2.pdf", @"test3.pdf", @"test4.pdf", @"test5.pdf", @"Testcase_AllPageRotations.pdf"]];
         PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
         return pdfController;
     }]];

@@ -304,7 +304,7 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     
-    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
+    PSPDFDocument *document = [PSPDFDocument documentWithBaseURL:samplesURL files:@[kHackerMagazineExample, kPaperExampleFileName]];
     document.undoEnabled = NO; // faster!
 
     // Here we use the `pageRange` feature to skip the intermediate `NSDate` objects we had to create in the last example.
@@ -313,7 +313,6 @@
     [pageIndexes addIndex:5];
     [pageIndexes addIndex:document.pageCount + 3]; // next document!
     
-    [document appendFile:kPaperExampleFileName]; // Append second file
     document.pageRange = pageIndexes;    // Define new page range.
 
     // Merge pages into new document.
