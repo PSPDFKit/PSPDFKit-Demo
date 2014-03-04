@@ -41,7 +41,7 @@
 // Further you don't have to call reloadData after saving - this is done for testing the saving (since annotations that are not saved would disappear)
 // If you want immediate saving after creating annotations either hook onto PSPDFAnnotationsAddedNotification and PSPDFAnnotationChangedNotification or set saveAfterToolbarHiding to YES in PSPDFAnnotationToolbar (this will not be the same, but most of the time good enough).
 - (void)saveAnnotations {
-    NSLog(@"Annotations before saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+    //NSLog(@"Annotations before saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
 
     NSDictionary *dirtyAnnotations = [[self.document annotationManagerForPage:0] dirtyAnnotations];
     NSLog(@"Dirty Annotations: %@", dirtyAnnotations);
@@ -54,7 +54,7 @@
     }else {
         [self reloadData];
         NSLog(@"---------------------------------------------------");
-        NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
+        //NSLog(@"Annotations after saving: %@", [self.document annotationsForPage:0 type:PSPDFAnnotationTypeAll]);
         //[[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Success", @"") message:[NSString stringWithFormat:NSLocalizedString(@"Saved %d annotation(s)", @""), dirtyAnnotationCount] delegate:nil cancelButtonTitle:NSLocalizedString(@"Ok", @"") otherButtonTitles:nil] show];
 
         if (self.document.data) NSLog(@"Length of NSData after saving: %tu", self.document.data.length);
