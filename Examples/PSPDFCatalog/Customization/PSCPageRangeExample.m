@@ -23,12 +23,8 @@
 }
 
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
-    // cache needs to be cleared since pages will change.
-    [PSPDFCache.sharedCache clearCache];
-    // TODO: fix me
-    //_clearCacheNeeded = YES;
-    
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    document.UID = @"PageRangeExampleUID"; // custom so this won't affect other examples.
     document.pageRange = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, 5)];
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.annotationButtonItem, controller.viewModeButtonItem];
