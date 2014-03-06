@@ -127,6 +127,7 @@ const char PSCSignatureCompletionBlock;
 
 // Sign all pages example
 - (void)signatureViewControllerDidSave:(PSPDFSignatureViewController *)signatureController {
+    [signatureController dismissViewControllerAnimated:YES completion:NULL];
     void(^signatureCompletionBlock)(PSPDFSignatureViewController *signatureController) = objc_getAssociatedObject(signatureController, &PSCSignatureCompletionBlock);
     if (signatureCompletionBlock) signatureCompletionBlock(signatureController);
 }
