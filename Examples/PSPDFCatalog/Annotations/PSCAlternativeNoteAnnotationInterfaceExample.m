@@ -10,7 +10,6 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCExample.h"
-#import <QuartzCore/QuartzCore.h>
 
 // Custom classes required
 @interface PSCNoteInvisibleResizableView : PSPDFResizableView @end

@@ -9,7 +9,6 @@
 //
 
 #import "PSCRoundProgressView.h"
-#import <QuartzCore/QuartzCore.h>
 #import <tgmath.h>
 
 @interface PSCRoundProgressView ()

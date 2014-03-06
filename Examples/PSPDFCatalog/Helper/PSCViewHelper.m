@@ -8,7 +8,6 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCViewHelper.h"
 #import <tgmath.h>
 #import <mach-o/dyld.h>
 

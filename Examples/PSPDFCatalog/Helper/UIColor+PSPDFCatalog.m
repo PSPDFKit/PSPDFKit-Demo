@@ -8,8 +8,6 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "UIColor+PSPDFCatalog.h"
-
 @implementation UIColor (PSPDFCatalogAdditions)
 
 + (UIColor *)pspdfColor {

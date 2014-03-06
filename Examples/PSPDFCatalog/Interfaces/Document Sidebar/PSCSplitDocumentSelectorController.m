@@ -10,7 +10,6 @@
 
 #import "PSCSplitDocumentSelectorController.h"
 #import "PSCSplitPDFViewController.h"
-#import "PSCAppDelegate.h"
 
 @implementation PSCSplitDocumentSelectorController
 

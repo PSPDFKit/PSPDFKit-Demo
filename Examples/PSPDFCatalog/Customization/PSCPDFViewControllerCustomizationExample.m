@@ -14,7 +14,6 @@
 #import "PSCImageOverlayPDFViewController.h"
 #import "PSCCustomToolbarController.h"
 #import "PSCExample.h"
-#import <UIKit/UIViewController.h>
 
 @interface PSCPDFViewControllerCustomizationChildViewControllerContainmentExample : PSCExample @end
 @implementation PSCPDFViewControllerCustomizationChildViewControllerContainmentExample

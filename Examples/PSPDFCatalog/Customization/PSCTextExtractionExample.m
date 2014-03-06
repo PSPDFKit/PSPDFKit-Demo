@@ -8,11 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCTabbedExampleViewController.h"
 #import "PSCFileHelper.h"
-#import "UINavigationController+PSCKeyboardDismissal.h"
 #import "PSCExample.h"
-
 #import <objc/runtime.h>
 
 @interface PSCFullTextSearchExample : PSCExample @end

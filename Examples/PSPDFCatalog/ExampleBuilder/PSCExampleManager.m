@@ -9,7 +9,6 @@
 //
 
 #import "PSCExampleManager.h"
-#import "PSCExample.h"
 #import <objc/runtime.h>
 
 @interface PSCExampleManager ()

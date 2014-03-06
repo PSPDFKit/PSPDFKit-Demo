@@ -9,7 +9,6 @@
 //
 
 #import "PSCAssetLoader.h"
-#import "UIBarButtonItem+PSCBlockSupport.h"
 #import "PSCExample.h"
 
 @interface PSCCustomAnnotationToolbarButtonsExample : PSCExample @end
