@@ -16,8 +16,6 @@
 #import "PSCTabbedExampleViewController.h"
 #import "PSCCustomToolbarController.h"
 #import "PSCAnnotationTestController.h"
-#import "PSCSplitDocumentSelectorController.h"
-#import "PSCSplitPDFViewController.h"
 #import "PSCBookmarkParser.h"
 #import "PSCKioskPDFViewController.h"
 #import "PSCEmbeddedAnnotationTestViewController.h"
