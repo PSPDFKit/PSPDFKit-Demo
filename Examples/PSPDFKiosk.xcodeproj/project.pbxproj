@@ -17,7 +17,7 @@
 		783043A216FBE2F600D3EAB4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7830439A16FBE2F600D3EAB4 /* Icon@2x.png */; };
 		78479D2217393F430006D87D /* PSCGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78479D2117393F430006D87D /* PSCGridViewController.m */; };
 		785DD9B0167B9BAE00559562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9AF167B9BAE00559562 /* UIKit.framework */; };
-		785DD9B2167B9BAE00559562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B1167B9BAE00559562 /* Foundation.framework */; };
+		785DD9B2167B9BAE00559562 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B1167B9BAE00559562 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		785DD9B4167B9BAE00559562 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DD9B3167B9BAE00559562 /* CoreGraphics.framework */; };
 		785DD9BA167B9BAE00559562 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 785DD9B8167B9BAE00559562 /* InfoPlist.strings */; };
 		785DD9BC167B9BAE00559562 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9BB167B9BAE00559562 /* main.m */; };
@@ -38,8 +38,8 @@
 		785DD9FA167B9BD000559562 /* PSCShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9EC167B9BD000559562 /* PSCShadowView.m */; };
 		785DD9FB167B9BD000559562 /* PSCStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DD9EE167B9BD000559562 /* PSCStoreManager.m */; };
 		785DDA34167B9C8C00559562 /* AFDownloadRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 785DDA32167B9C8C00559562 /* AFDownloadRequestOperation.m */; };
-		785DDA39167B9D3200559562 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA38167B9D3200559562 /* SystemConfiguration.framework */; };
-		785DDA3B167B9D3700559562 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA3A167B9D3700559562 /* MobileCoreServices.framework */; };
+		785DDA39167B9D3200559562 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA38167B9D3200559562 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		785DDA3B167B9D3700559562 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 785DDA3A167B9D3700559562 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		785DDA54167B9EB700559562 /* badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA3F167B9EB700559562 /* badge.png */; };
 		785DDA55167B9EB700559562 /* badge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA40167B9EB700559562 /* badge@2x.png */; };
 		785DDA56167B9EB700559562 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 785DDA42167B9EB700559562 /* Localizable.strings */; };
@@ -72,7 +72,7 @@
 		78D4D4471848CD5A00080A96 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4D4331848CD5A00080A96 /* UIImageView+AFNetworking.m */; };
 		78D4D4481848CD5A00080A96 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4D4361848CD5A00080A96 /* UIProgressView+AFNetworking.m */; };
 		78D4D4491848CD5A00080A96 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D4D4381848CD5A00080A96 /* UIWebView+AFNetworking.m */; };
-		78D909B5178988A400E7D4D5 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D909AD178988A400E7D4D5 /* PSPDFKit.framework */; };
+		78D909B5178988A400E7D4D5 /* PSPDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D909AD178988A400E7D4D5 /* PSPDFKit.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		78D909B6178988A400E7D4D5 /* PSPDFKit-Acknowledgements in Resources */ = {isa = PBXBuildFile; fileRef = 78D909AF178988A400E7D4D5 /* PSPDFKit-Acknowledgements */; };
 		78D909B7178988A400E7D4D5 /* PSPDFKit-License in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B0178988A400E7D4D5 /* PSPDFKit-License */; };
 		78D909B8178988A400E7D4D5 /* PSPDFKit-License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 78D909B1178988A400E7D4D5 /* PSPDFKit-License.pdf */; };
@@ -141,6 +141,7 @@
 		785DDA4B167B9EB700559562 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Localizable.strings; sourceTree = "<group>"; };
 		785DDA4E167B9EB700559562 /* linen_texture_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linen_texture_dark.png; path = PSPDFCatalog/Resources/Kiosk/linen_texture_dark.png; sourceTree = SOURCE_ROOT; };
 		785DDA4F167B9EB700559562 /* linen_texture_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "linen_texture_dark@2x.png"; path = "PSPDFCatalog/Resources/Kiosk/linen_texture_dark@2x.png"; sourceTree = SOURCE_ROOT; };
+		78A4D90818C91DF700355F12 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		78AE9C6B177AFC28000E308D /* settings-landscape-legacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings-landscape-legacy.png"; path = "PSPDFCatalog/Resources/Kiosk/settings-landscape-legacy.png"; sourceTree = SOURCE_ROOT; };
 		78AE9C6C177AFC28000E308D /* settings-landscape-legacy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings-landscape-legacy@2x.png"; path = "PSPDFCatalog/Resources/Kiosk/settings-landscape-legacy@2x.png"; sourceTree = SOURCE_ROOT; };
 		78AE9C6D177AFC28000E308D /* settings-legacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings-legacy.png"; path = "PSPDFCatalog/Resources/Kiosk/settings-legacy.png"; sourceTree = SOURCE_ROOT; };
@@ -217,6 +218,7 @@
 		785DD9A3167B9BAE00559562 = {
 			isa = PBXGroup;
 			children = (
+				78A4D90818C91DF700355F12 /* AVFoundation.framework */,
 				785DD9B5167B9BAE00559562 /* PSPDFKiosk */,
 				785DD9AE167B9BAE00559562 /* Frameworks */,
 				785DD9AD167B9BAE00559562 /* Products */,

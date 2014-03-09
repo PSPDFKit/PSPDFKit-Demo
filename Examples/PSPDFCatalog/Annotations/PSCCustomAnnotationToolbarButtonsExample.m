@@ -13,7 +13,6 @@
 
 @interface PSCCustomAnnotationToolbarButtonsExample : PSCExample @end
 @interface PSCCustomAnnotationToolbar : PSPDFAnnotationToolbar @end
-
 @implementation PSCCustomAnnotationToolbarButtonsExample
 
 - (id)init {

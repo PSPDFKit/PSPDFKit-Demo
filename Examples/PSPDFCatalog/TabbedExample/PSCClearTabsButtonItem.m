@@ -33,14 +33,8 @@
     }];
     [actionSheet setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:NULL];
 
-    // Be a nice citizen and first ask the delegate system if we are allowed to present this popover/actionSheet.
-    BOOL shouldShow = [pdfController delegateShouldShowController:actionSheet embeddedInController:nil options:nil animated:animated];
-    if (shouldShow) {
-        [actionSheet showWithSender:sender fallbackView:pdfController.masterViewController.view animated:animated];
-        return actionSheet;
-    }else {
-        return nil;
-    }
+    [actionSheet showWithSender:sender fallbackView:pdfController.masterViewController.view animated:animated];
+    return actionSheet;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
