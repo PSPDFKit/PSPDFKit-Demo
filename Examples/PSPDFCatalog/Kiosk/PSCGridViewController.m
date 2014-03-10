@@ -16,14 +16,10 @@
 #import "PSCSettingsController.h"
 #import "PSCShadowView.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 #define _(string) NSLocalizedString(string, @"")
 
 #define PSCGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
-#define kPSCLargeThumbnailSize CGSizeMake(170, 240)
+#define kPSCLargeThumbnailSize CGSizeMake(170.f, 240.f)
 
 // The delete button target is small enough that we don't need to ask for confirmation.
 #define PSCShouldShowDeleteConfirmationDialog NO

@@ -38,10 +38,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [self removeMagazineFolderReferences];
-}
-
 - (NSString *)description {
     NSString *description = [NSString stringWithFormat:@"<%@ %p: %@, %tu magazines>", self.class, self, self.title, self.magazines.count];
     return description;
@@ -64,15 +60,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public
-
-// only deregister if delegate belongs to us
-- (void)removeMagazineFolderReferences {
-    for (PSCMagazine *magazine in _magazines) {
-        if (magazine.folder == self) {
-            magazine.folder = nil;
-        }
-    }
-}
 
 - (void)addMagazineFolderReferences {
     for (PSCMagazine *magazine in _magazines) {
@@ -108,7 +95,6 @@
 
 - (void)setMagazines:(NSArray *)magazines {
     if (magazines != _magazines) {
-        [self removeMagazineFolderReferences];
         _magazines = [magazines mutableCopy];
         [self addMagazineFolderReferences];
         [self sortMagazines];

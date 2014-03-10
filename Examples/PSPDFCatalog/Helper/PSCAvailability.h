@@ -10,12 +10,6 @@
 
 #import <Foundation/Foundation.h>
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 70000
-@interface NSArray (PSCModernizer)
-- (id)firstObject; // first declared in SDK 7.
-@end
-#endif
-
 // Logging
 #define kPSCLogEnabled
 #ifdef kPSCLogEnabled
@@ -24,7 +18,7 @@
 #define PSCLog(...)
 #endif
 
-// iOS7 compatibility
+// iOS 7 Compatibility
 #ifndef kCFCoreFoundationVersionNumber_iOS_7_0
 #define kCFCoreFoundationVersionNumber_iOS_7_0 847.18
 #endif

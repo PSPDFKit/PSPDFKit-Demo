@@ -19,7 +19,7 @@
 // Array of PSPDFMagazine
 @property (nonatomic, copy) NSArray *magazines;
 
-/// The folder title
+// The folder title
 @property (nonatomic, copy) NSString *title;
 
 - (BOOL)isSingleMagazine;

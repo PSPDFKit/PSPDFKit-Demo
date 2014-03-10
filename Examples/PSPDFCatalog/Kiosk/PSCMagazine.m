@@ -23,14 +23,6 @@
     return magazine;
 }
 
-- (id)init {
-    if ((self = [super init])) {
-        // most magazines can enable this to speed up display (aspect ration doesn't need to be recalculated)
-        //aspectRatioEqual_ = YES;
-    }
-    return self;
-}
-
 - (NSString *)description {
     return [NSString stringWithFormat:@"<%@ %p: UID:%@ pageCount:%tu URL:%@ baseURL:%@, files:%@>", self.class, self, self.UID, self.pageCount, self.URL, self.baseURL, self.files];
 }
@@ -50,7 +42,7 @@
     @autoreleasepool {
         if (self.isLocked) {
             if (!CGSizeEqualToSize(size, CGSizeZero)) {
-                UIGraphicsBeginImageContextWithOptions(size, YES, 0.0f);
+                UIGraphicsBeginImageContextWithOptions(size, YES, 0.f);
                 [[UIColor colorWithWhite:0.9f alpha:1.f] setFill];
                 CGContextFillRect(UIGraphicsGetCurrentContext(), (CGRect){.size=size});
                 UIImage *lockImage = [UIImage imageNamed:@"lock"];
@@ -79,7 +71,7 @@
         }
         @catch (NSException *exception) {
             PSCLog(@"Failed to load saved viewState: %@", exception);
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.UID];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:self.UID];
         }
     }
     return viewState;
@@ -89,20 +81,12 @@
     if (self.isValid) {
         if (lastViewState) {
             NSData *viewStateData = [NSKeyedArchiver archivedDataWithRootObject:lastViewState];
-            [[NSUserDefaults standardUserDefaults] setObject:viewStateData forKey:self.UID];
+            [NSUserDefaults.standardUserDefaults setObject:viewStateData forKey:self.UID];
         }else {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:self.UID];
+            [NSUserDefaults.standardUserDefaults removeObjectForKey:self.UID];
         }
     }
 }
-
-// example how to manually rotate a page
-/*
- - (PSPDFPageInfo *)pageInfoForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef {
- PSPDFPageInfo *pi = [super pageInfoForPage:page pageRef:pageRef];
- pi.pageRotation = (pi.pageRotation + 90) % 360;
- return pi;
- }*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Public

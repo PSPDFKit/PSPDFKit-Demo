@@ -243,7 +243,7 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
                 if (self.immediatelyLoadCellImages) {
                     [imageLoadOperation start]; // start directly.
                 }else {
-                    [[self.class thumbnailQueue] addOperation:imageLoadOperation];
+                    [self.class.thumbnailQueue addOperation:imageLoadOperation];
                     _imageLoadOperation = imageLoadOperation;
                 }
             }
@@ -269,8 +269,8 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
         [self clearProgressObservers];
         _magazineFolder = magazineFolder;
 
-        for (PSCMagazine *aMagazine in _magazineFolder.magazines) {
-            [self checkMagazineAndObserveProgressIfDownloading:aMagazine];
+        for (PSCMagazine *magazine in _magazineFolder.magazines) {
+            [self checkMagazineAndObserveProgressIfDownloading:magazine];
         }
 
         // setup for folder

@@ -196,9 +196,9 @@ static CGFloat pscSettingsLastYOffset = 0;
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    // restore last scroll state
+    // Restore last scroll state
     if (pscSettingsLastYOffset > 0) {
-        self.tableView.contentOffset = CGPointMake(0, pscSettingsLastYOffset);
+        self.tableView.contentOffset = CGPointMake(0.f, pscSettingsLastYOffset);
     }
 }
 
@@ -479,7 +479,7 @@ static CGFloat pscSettingsLastYOffset = 0;
     NSString *pdfName = @"Document.pdf";
     PSPDFViewController *pdfController = [self currentPDFController];
     if (pdfController.document.fileURL) {
-        pdfName = [pdfController.document.fileURL lastPathComponent];
+        pdfName = pdfController.document.fileURL.lastPathComponent;
     }
 
     UIViewController *configViewController = [PSCBasicViewController new];

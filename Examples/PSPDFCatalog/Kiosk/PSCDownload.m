@@ -47,7 +47,7 @@
 #pragma mark - Public
 
 - (NSString *)downloadDirectory {
-    return [[PSCStoreManager storagePath] stringByAppendingPathComponent:@"downloads"];
+    return [PSCStoreManager.storagePath stringByAppendingPathComponent:@"downloads"];
 }
 
 - (PSCMagazine *)magazine {
@@ -58,8 +58,8 @@
     return _magazine;
 }
 
-- (void)setStatus:(PSCStoreDownloadStatus)aStatus {
-    _status = aStatus;
+- (void)setStatus:(PSCStoreDownloadStatus)status {
+    _status = status;
 
     // remove progress view, animated
     if (_progressView && _status != PSCStoreDownloadStatusLoading) {
@@ -94,7 +94,7 @@
 
     // create request
     NSURLRequest *request = [NSURLRequest requestWithURL:self.URL];
-    AFDownloadRequestOperation *pdfRequest = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:[self downloadDirectory] shouldResume:YES];
+    AFDownloadRequestOperation *pdfRequest = [[AFDownloadRequestOperation alloc] initWithRequest:request targetPath:self.downloadDirectory shouldResume:YES];
     __weak AFDownloadRequestOperation *pdfRequestWeak = pdfRequest;
     [pdfRequest setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
         PSCLog(@"Download background time expired for %@", pdfRequestWeak);
@@ -108,12 +108,14 @@
             return;
         }
 
-        NSString *fileName = [self.request.request.URL lastPathComponent];
+        NSString *fileName = self.request.request.URL.lastPathComponent;
         NSString *destinationPath = [self.downloadDirectory stringByAppendingPathComponent:fileName];
         NSURL *destinationURL = [NSURL fileURLWithPath:destinationPath];
         self.magazine.available = YES;
         self.magazine.downloading = NO;
         self.status = PSCStoreDownloadStatusFinished;
+        // This is readonly, but we're lazy here.
+        [self.magazine setValue:destinationURL forKey:@"fileURL"];
 
         // Start caching thumbnail and full-image sizes so that the document will render faster.
         [PSPDFCache.sharedCache cacheDocument:self.magazine startAtPage:0 sizes:@[BOXED(PSPDFCache.sharedCache.thumbnailSize), BOXED(UIScreen.mainScreen.bounds.size)] diskCacheStrategy:PSPDFDiskCacheStrategyNearPages];
