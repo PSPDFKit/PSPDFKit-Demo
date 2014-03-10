@@ -14,7 +14,7 @@
 #import "AFDownloadRequestOperation.h"
 
 @interface PSCDownload () {
-    UIProgressView *progressView_;
+    UIProgressView *_progressView;
 }
 @property (nonatomic, strong) NSURL *URL;
 @property (nonatomic, assign) PSCStoreDownloadStatus status;
@@ -36,7 +36,7 @@
 }
 
 - (void)dealloc {
-    [progressView_ removeFromSuperview];
+    [_progressView removeFromSuperview];
 }
 
 - (NSString *)description {
@@ -62,13 +62,13 @@
     _status = aStatus;
 
     // remove progress view, animated
-    if (progressView_ && _status != PSCStoreDownloadStatusLoading) {
-        [UIView animateWithDuration:0.25 delay:0 options:0 animations:^{
-            progressView_.alpha = 0.f;
+    if (_progressView && _status != PSCStoreDownloadStatusLoading) {
+        [UIView animateWithDuration:0.25f delay:0.f options:0 animations:^{
+            _progressView.alpha = 0.f;
         } completion:^(BOOL finished) {
             if (finished) {
-                progressView_.hidden = YES;
-                [progressView_ removeFromSuperview];
+                _progressView.hidden = YES;
+                [_progressView removeFromSuperview];
             }
         }];
     }
@@ -79,15 +79,15 @@
 }
 
 - (void)startDownload {
-    NSString *dirPath = [self downloadDirectory];
-    NSString *destPath = [dirPath stringByAppendingPathComponent:[self.URL lastPathComponent]];
+    NSString *dirPath = self.downloadDirectory;
+    NSString *destPath = [dirPath stringByAppendingPathComponent:self.URL.lastPathComponent];
 
     // create folder
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     if (![fileManager fileExistsAtPath:dirPath]) {
         NSError *fileError = nil;
         if (![fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:NO attributes:nil error:&fileError]) {
-            PSCLog(@"Error while creating directory: %@", [fileError localizedDescription]);
+            PSCLog(@"Error while creating directory: %@", fileError.localizedDescription);
         }
     }
     PSCLog(@"downloading pdf from %@ to %@", self.URL, destPath);
@@ -151,19 +151,10 @@
     assert([NSFileManager.defaultManager fileExistsAtPath:URL.path]);
     BOOL success = NO;
 
-    // Weak-linking of NSURLIsExcludedFromBackupKey works in Xcode 4.5 and above.
-    // http://stackoverflow.com/questions/9620651/use-nsurlisexcludedfrombackupkey-without-crashing-on-ios-5-0
-    if (kCFCoreFoundationVersionNumber >= 690.1) { // iOS_5_1
-        NSError *error = nil;
-        success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
-        if (!success){
-            NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
-        }
-    // only works with 5.0.1 and above
-    }else {
-        success = YES;
-        u_int8_t b = 1;
-        setxattr([URL.path fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+    NSError *error = nil;
+    success = [URL setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:&error];
+    if (!success){
+        NSLog(@"Error excluding %@ from backup %@", URL.lastPathComponent, error);
     }
     return success;
 }
