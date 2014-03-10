@@ -24,7 +24,7 @@
 //  DEALINGS IN THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "RNCryptor.h"
 
 @interface RNEncryptor : RNCryptor

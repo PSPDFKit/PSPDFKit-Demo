@@ -42,7 +42,7 @@
 #import "PSCAvailability.h"
 #import "PSCPopoverTestViewController.h"
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 // Crypto support
 #import "RNEncryptor.h"

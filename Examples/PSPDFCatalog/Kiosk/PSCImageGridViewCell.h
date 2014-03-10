@@ -8,8 +8,8 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import UIKit;
 
 @class PSCMagazine, PSCMagazineFolder;
 

@@ -10,7 +10,7 @@
 
 #import "PSCAssetLoader.h"
 #import "PSCFileHelper.h"
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 #import "PSCExample.h"
 
 const char PSCSignatureCompletionBlock;

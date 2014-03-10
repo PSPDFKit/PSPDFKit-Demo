@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 // Progress view, similar to the app download animation on iOS 7.
 @interface PSCRoundProgressView : UIView

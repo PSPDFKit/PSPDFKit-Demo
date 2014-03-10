@@ -36,7 +36,7 @@
 #endif
 
 // If we use core data and split the document into single pages, we need a global provider since there is only one database, but there is one annotation provider per page afterwards.
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 const char *PSCCoreDataAnnotationProviderStorageKey;
 static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(PSPDFDocument *document) {
     return document ? objc_getAssociatedObject(document, &PSCCoreDataAnnotationProviderStorageKey) : nil;

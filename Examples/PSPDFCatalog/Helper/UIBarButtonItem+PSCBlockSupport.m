@@ -9,7 +9,7 @@
 //
 
 #import "UIBarButtonItem+PSCBlockSupport.h"
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 const char PSCBlockSupportKey;
 

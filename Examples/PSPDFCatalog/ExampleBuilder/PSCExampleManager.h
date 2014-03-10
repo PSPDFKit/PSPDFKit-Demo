@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "PSCExample.h"
 
 // Manages all examples (all subclasses of `PSCExample`).

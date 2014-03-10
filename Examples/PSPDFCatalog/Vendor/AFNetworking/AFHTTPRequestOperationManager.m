@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPRequestOperation.h"
@@ -29,7 +29,7 @@
 #import <Security/Security.h>
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-#import <UIKit/UIKit.h>
+@import UIKit;
 #endif
 
 @interface AFHTTPRequestOperationManager ()
