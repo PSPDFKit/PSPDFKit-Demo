@@ -85,7 +85,7 @@
 
     if (!self.currentWord) {
         if (self.currentWords.count > 0) {
-            self.currentWord = [self.currentWords objectAtIndex:0];
+            self.currentWord = (self.currentWords)[0];
         }
     }else {
         NSUInteger index = [self.currentWords indexOfObjectIdenticalTo:self.currentWord];

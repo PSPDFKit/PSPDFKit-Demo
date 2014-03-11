@@ -161,7 +161,7 @@ static PSCCoreDataAnnotationProvider *PSCCoreDataAnnotationProviderForDocument(P
 - (void)replacePage {
     [self updateDocumentWithMutatingFiles:^(NSMutableArray *files) {
         NSString *replacementFile = self.leftDocument.files[self.leftController.page];
-        [files replaceObjectAtIndex:self.rightController.page withObject:replacementFile];
+        files[self.rightController.page] = replacementFile;
     }];
 }
 
