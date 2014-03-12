@@ -12,10 +12,6 @@
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
 
-#import "PSPDFDigitalCertificate.h"
-#import "PSPDFDigitalSigningIdentity.h"
-#import "PSPDFFileManager.h"
-
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:filename]];
@@ -92,7 +88,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 - (NSArray *)signingHandlers {return @[];}
 - (NSArray *)verificationHandlers {return @[];}
 - (NSString *)outputPathForSignedDocumentFromDocument:(PSPDFDocument *)document {
-    NSString *path = [PSPDFFileManager.defaultManager.documentDirectory stringByAppendingPathComponent:document.fileName];
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:document.fileName];
     return path;
 }
 @end
