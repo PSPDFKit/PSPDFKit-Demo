@@ -8,12 +8,13 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
+#import "PSCExample.h"
 #import "PSCAppDelegate.h"
 #import "PSCAssetLoader.h"
-#import "PSCExample.h"
 
 #import "PSPDFDigitalCertificate.h"
 #import "PSPDFDigitalSigningIdentity.h"
+#import "PSPDFFileManager.h"
 
 static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filename) {
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -27,7 +28,6 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @property (atomic, strong) NSArray *identities;
 @end
 
-// Use a singleton to control reactions to signature related events.
 @implementation PSCFormExampleSignatureDelegate
 
 + (PSCFormExampleSignatureDelegate *)sharedDelegate {
@@ -91,6 +91,10 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 - (NSArray *)signingDelegates {return @[self];}
 - (NSArray *)signingHandlers {return @[];}
 - (NSArray *)verificationHandlers {return @[];}
+- (NSString *)outputPathForSignedDocumentFromDocument:(PSPDFDocument *)document {
+    NSString *path = [PSPDFFileManager.defaultManager.documentDirectory stringByAppendingPathComponent:document.fileName];
+    return path;
+}
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
