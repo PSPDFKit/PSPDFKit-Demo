@@ -14,7 +14,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCImageGalleryExample
 
-@interface PSCImageGalleryExample : PSCExample @end
+@interface PSCImageGalleryExample : PSCExample <PSPDFViewControllerDelegate>
+@end
 @implementation PSCImageGalleryExample
 
 - (id)init {
@@ -34,11 +35,20 @@
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400, 300);
+    CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
 
-    return [[PSPDFViewController alloc] initWithDocument:document];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.delegate = self;
+    return pdfController;
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
+        PSPDFGalleryViewController *galleryController = ((PSPDFGalleryAnnotationView *)annotationView).galleryViewController;
+        galleryController.blurBackground = YES;
+    }
 }
 
 @end
