@@ -87,10 +87,6 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 - (NSArray *)signingDelegates {return @[self];}
 - (NSArray *)signingHandlers {return @[];}
 - (NSArray *)verificationHandlers {return @[];}
-- (NSString *)outputPathForSignedDocumentFromDocument:(PSPDFDocument *)document {
-    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:document.fileName];
-    return path;
-}
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
