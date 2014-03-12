@@ -11,10 +11,12 @@
 #import "PSCAppDelegate.h"
 #import "PSCatalogViewController.h"
 
+@interface PSCAppDelegate () <UINavigationControllerDelegate
 #ifdef HOCKEY_ENABLED
 #import <HockeySDK/HockeySDK.h>
-@interface PSCAppDelegate () <BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate> @end
+BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
 #endif
+> @end
 
 @implementation PSCAppDelegate
 
@@ -77,6 +79,7 @@
     PSCatalogViewController *catalogController = [[PSCatalogViewController alloc] initWithStyle:UITableViewStyleGrouped];
     // PSPDFNavigationController is a simple subclass that forwards iOS6 rotation methods.
     self.catalog = [[PSPDFNavigationController alloc] initWithRootViewController:catalogController];
+    self.catalog.delegate = self;
     self.window  = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     self.window.rootViewController = self.catalog;
     [self.window makeKeyAndVisible];
@@ -137,5 +140,17 @@
     return nil;
 }
 #endif
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([viewController isKindOfClass:PSPDFViewController.class]) {
+        if (PSCIsUIKitFlatMode()) {
+            PSPDFViewController *pdfController = (PSPDFViewController *)viewController;
+            pdfController.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
+        }
+    }
+}
 
 @end

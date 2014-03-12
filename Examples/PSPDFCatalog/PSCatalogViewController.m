@@ -87,7 +87,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Common paths
     NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
     NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
-
     NSMutableOrderedSet *sections = [NSMutableOrderedSet orderedSet];
 
     // Full Apps
@@ -101,11 +100,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
-        controller.statusBarStyleSetting = PSPDFStatusBarStyleDefault;
-        if (PSCIsUIKitFlatMode()) {
-            controller.statusBarStyleSetting = PSPDFStatusBarStyleLightContentHideOnIpad;
-            controller.tintColor = UIColor.pspdfColor; // navBarTintColor
-        }
         return controller;
     }]];
 
