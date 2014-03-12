@@ -10,10 +10,6 @@
 
 #import "PSCAppDelegate.h"
 
-#if !__has_feature(objc_arc)
-#error "Compile this file with ARC"
-#endif
-
 int main(int argc, char *argv[]) {
     @autoreleasepool {
         NSClassFromString(@"PSCLicenseKey"); // internal license initialization (ignore)
