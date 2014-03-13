@@ -12,14 +12,11 @@
 
 // This is an example how you could store your annotations with CoreData in the simplest possible way.
 // Note: It's not a great idea performance-wise to use `NSKeyedArchiver` for data serialization.
-@interface PSCCoreDataAnnotationProvider : NSObject <PSPDFAnnotationProvider>
+@interface PSCCoreDataAnnotationProvider : PSPDFContainerAnnotationProvider
 
 // Designated initializer.
 // If `databasePath` is nil, a default path will be used.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath;
-
-// Associated `documentProvider`.
-@property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
 // Database path/filename.
 @property (nonatomic, copy, readonly) NSString *databasePath;

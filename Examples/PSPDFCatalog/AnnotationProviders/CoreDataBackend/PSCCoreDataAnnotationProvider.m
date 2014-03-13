@@ -11,14 +11,11 @@
 #import "PSCCoreDataAnnotationProvider.h"
 #import "PSCCoreDataAnnotation.h"
 
-@interface PSCCoreDataAnnotationProvider() {
-    dispatch_queue_t _annotationProviderQueue;
-}
+@interface PSCCoreDataAnnotationProvider()
 @property (nonatomic, copy) NSString *databasePath;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, strong) NSMutableDictionary *annotationCache;
 @end
 
 @implementation PSCCoreDataAnnotationProvider
@@ -27,11 +24,7 @@
 #pragma mark - NSObject
 
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider databasePath:(NSString *)databasePath {
-    if (self = [super init]) {
-        _documentProvider = documentProvider;
-        _annotationCache = [[NSMutableDictionary alloc] initWithCapacity:documentProvider.pageCount];
-        _annotationProviderQueue = dispatch_queue_create([NSString stringWithFormat:@"com.PSPDFCatalog.%@", self].UTF8String, DISPATCH_QUEUE_SERIAL);
-
+    if (self = [super initWithDocumentProvider:documentProvider]) {
         // Save database path or set up default.
         _databasePath = databasePath ?: [documentProvider.document.dataDirectory stringByAppendingPathComponent:@"PSCCoreDataExample.sqlite"];
 
@@ -46,8 +39,8 @@
 - (NSArray *)annotationsForPage:(NSUInteger)page {
     __block NSArray *annotations = nil;
 
-    dispatch_sync(_annotationProviderQueue, ^{
-        annotations = _annotationCache[@(page)];
+    [self performBlockForReading:^{
+        annotations = [super annotationsForPage:page];
         if (!annotations) {
             [self.managedObjectContext performBlockAndWait:^{
                 // We don't care about sorting
@@ -74,75 +67,41 @@
 
                 // Save in the annotation cache
                 annotations = [NSArray arrayWithArray:newAnnotations]; // immutable copy
-                self.annotationCache[@(page)] = newAnnotations; // save as mutable
+                [self setAnnotations:newAnnotations forPage:page append:NO];
             }];
         }
-    });
-    return annotations;
-}
+    }];
 
-NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
-    !NSThread.isMainThread ? dispatch_async(dispatch_get_main_queue(), block) : block();
+    return annotations;
 }
 
 - (NSArray *)addAnnotations:(NSArray *)annotations {
     if (annotations.count == 0) return annotations;
 
-    dispatch_async(_annotationProviderQueue, ^{
-        [_managedObjectContext performBlock:^{
-            // Iterate over all annotations and create objects in CoreData.
-            for (PSPDFAnnotation *annotation in annotations) {
-                [self convertAnnotationToCoreData:annotation initialInsert:YES];
+    [self.managedObjectContext performBlock:^{
+        // Iterate over all annotations and create objects in CoreData.
+        for (PSPDFAnnotation *annotation in annotations) {
+            [self convertAnnotationToCoreData:annotation initialInsert:YES];
+        }
+    }];
 
-                // Update cache, add annotation
-                NSUInteger page = [self pageForAnnotation:annotation];
-                NSMutableArray *cachedAnnotations = self.annotationCache[@(page)];
-                if ([cachedAnnotations indexOfObjectIdenticalTo:annotation] == NSNotFound) {
-                    [cachedAnnotations addObject:annotation];
-                }
-            }
-        }];
-    });
-
-    // Send notification.
-    // Timing is important here. If on main thread, must be sent instantly!
-    psc_dispatch_main_async(^{
-        [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsAddedNotification object:annotations];
-    });
-
-    return annotations;
+    return [super addAnnotations:annotations];
 }
 
 - (NSArray *)removeAnnotations:(NSArray *)annotations {
     if (annotations.count == 0) return annotations;
 
-    NSMutableArray *removedAnnotations = [NSMutableArray array];
-    dispatch_sync(_annotationProviderQueue, ^{
-        [_managedObjectContext performBlockAndWait:^{
-            for (PSPDFAnnotation *annotation in annotations) {
-                // Iterate over all annotations and create objects in CoreData.
-                PSCCoreDataAnnotation *coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
-                if (coreDataAnnotation) {
-                    [_managedObjectContext deleteObject:coreDataAnnotation];
-                    [removedAnnotations addObject:annotation];
-                }
-
-                // Update cache
-                NSUInteger page = [self pageForAnnotation:annotation];
-                NSMutableArray *cachedAnnotations = self.annotationCache[@(page)];
-                [cachedAnnotations removeObject:annotation];
+    [self.managedObjectContext performBlockAndWait:^{
+        for (PSPDFAnnotation *annotation in annotations) {
+            // Iterate over all annotations and create objects in CoreData.
+            PSCCoreDataAnnotation *coreDataAnnotation = [self coreDataAnnotationFromAnnotation:annotation];
+            if (coreDataAnnotation) {
+                [self.managedObjectContext deleteObject:coreDataAnnotation];
             }
-        }];
-    });
+        }
+    }];
 
-    // Send notification.
-    if (removedAnnotations.count > 0) {
-        psc_dispatch_main_async(^{
-            [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationsRemovedNotification object:removedAnnotations];
-        });
-    }
-
-    return removedAnnotations;
+    return [super removeAnnotations:annotations];
 }
 
 - (PSCCoreDataAnnotation *)coreDataAnnotationFromAnnotation:(PSPDFAnnotation *)annotation {
@@ -182,25 +141,10 @@ NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
 // Saves the context.
 - (BOOL)saveAnnotationsWithOptions:(NSDictionary *)options error:(NSError *__autoreleasing*)error {
     __block BOOL success;
-    dispatch_sync(_annotationProviderQueue, ^{
-        success = [_managedObjectContext save:error];
-    });
+    [self.managedObjectContext performBlockAndWait:^{
+        success = [self.managedObjectContext save:error];
+    }];
     return success;
-}
-
-// Return all cached annotations so we tell PSPDFKit that we always want to be saved.
-- (NSDictionary *)dirtyAnnotations {
-    NSMutableDictionary *dirtyAnnotations = [NSMutableDictionary new];
-    dispatch_sync(_annotationProviderQueue, ^{
-        [self.annotationCache enumerateKeysAndObjectsUsingBlock:^(NSNumber *page, NSArray *annotations, BOOL *stop) {
-            dirtyAnnotations[page] = [annotations copy];
-        }];
-    });
-    return dirtyAnnotations;
-}
-
-- (BOOL)shouldSaveAnnotations {
-    return YES; // always save.
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -214,63 +158,59 @@ NS_INLINE void psc_dispatch_main_async(dispatch_block_t block) {
 #pragma mark - Advanced Annotation Moving
 
 - (void)insertPagesAtRange:(NSRange)pageRange {
-    dispatch_sync(_annotationProviderQueue, ^{
-        [self.managedObjectContext performBlockAndWait:^{
+    [self.managedObjectContext performBlockAndWait:^{
 
-            // Get all affected annotations
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
-            request.predicate = [NSPredicate predicateWithFormat:@"page >= %d", pageRange.location];
+        // Get all affected annotations
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
+        request.predicate = [NSPredicate predicateWithFormat:@"page >= %d", pageRange.location];
 
-            NSError *error = nil;
-            NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
-            if (error) {
-                NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
-            }
+        NSError *error = nil;
+        NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
+        }
 
-            // Move pages up!
-            for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
-                coreDataAnnotation.page += pageRange.length;
-            }
+        // Move pages up!
+        for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
+            coreDataAnnotation.page += pageRange.length;
+        }
 
-            // Completely trash cache.
-            [self.annotationCache removeAllObjects];
-        }];
-        
-        // Save changes.
-        [self.managedObjectContext save:NULL];
-    });
+        // Completely trash cache.
+        [self removeAllAnnotationsAndSendNotification:NO];
+    }];
+
+    // Save changes.
+    [self.managedObjectContext save:NULL];
 }
 
 - (void)deletePagesInRange:(NSRange)pageRange {
-    dispatch_sync(_annotationProviderQueue, ^{
-        [self.managedObjectContext performBlockAndWait:^{
+    [self.managedObjectContext performBlockAndWait:^{
 
-            // Get all affected annotations
-            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
-            request.predicate = [NSPredicate predicateWithFormat:@"page >= %d", pageRange.location];
+        // Get all affected annotations
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
+        request.predicate = [NSPredicate predicateWithFormat:@"page >= %d", pageRange.location];
 
-            NSError *error = nil;
-            NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
-            if (error) {
-                NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
+        NSError *error = nil;
+        NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
+        }
+
+        // Either delete entries or move pages around.
+        for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
+            if (NSLocationInRange(coreDataAnnotation.page, pageRange)) {
+                [self.managedObjectContext deleteObject:coreDataAnnotation];
+            }else {
+                coreDataAnnotation.page -= pageRange.length;
             }
+        }
 
-            // Either delete entries or move pages around.
-            for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
-                if (NSLocationInRange(coreDataAnnotation.page, pageRange)) {
-                    [self.managedObjectContext deleteObject:coreDataAnnotation];
-                }else {
-                    coreDataAnnotation.page -= pageRange.length;
-                }
-            }
+        // Completely trash cache.
+        [self removeAllAnnotationsAndSendNotification:NO];
+    }];
 
-            // Completely trash cache.
-            [self.annotationCache removeAllObjects];
-        }];
-
-        // Save changes.
-        [self.managedObjectContext save:NULL];
-    });
+    // Save changes.
+    [self.managedObjectContext save:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
