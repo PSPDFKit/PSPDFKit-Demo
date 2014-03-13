@@ -11,9 +11,10 @@
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
 
-@interface PSCCustomHUDView : PSPDFHUDView
-@end
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCTopScrobbleBarExample
 
+@interface PSCCustomHUDView : PSPDFHUDView @end
 @interface PSCTopScrobbleBarExample : PSCExample @end
 @implementation PSCTopScrobbleBarExample
 
@@ -46,6 +47,43 @@
     CGRect newFrame = self.dataSource.contentRect;
     newFrame.size.height = 44.f;
     self.scrobbleBar.frame = newFrame;
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCHUDViewGapExample
+
+@interface PSCHUDGapPDFViewController : PSPDFViewController @end
+@interface PSCHUDViewGapExample : PSCExample @end
+@implementation PSCHUDViewGapExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Leave some bottom space for the HUD";
+        self.contentDescription = @"Useful if you e.g. also have a UITabBar.";
+        self.category = PSCExampleCategoryViewCustomization;
+        self.priority = 410;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFViewController *pdfController = [[PSCHUDGapPDFViewController alloc] initWithDocument:document];
+    return pdfController;
+}
+
+@end
+
+@implementation PSCHUDGapPDFViewController
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+
+    CGRect HUDFrame = self.view.bounds;
+    HUDFrame.size.height -= 100.f;
+    self.HUDView.frame = HUDFrame;
 }
 
 @end
