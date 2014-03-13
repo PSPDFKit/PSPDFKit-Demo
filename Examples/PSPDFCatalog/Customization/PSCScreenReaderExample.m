@@ -1,6 +1,6 @@
 //
 //  PSCScreenReaderExample.m
-///  PSPDFCatalog
+//  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
 //

@@ -34,7 +34,6 @@
 #import "PSCAnnotationTrailerCaptureDocument.h"
 #import "PSCMultipleUsersPDFViewController.h"
 #import "PSCShowHighlightNotesPDFController.h"
-#import "PSCTopScrobbleBar.h"
 #import "PSCExportPDFPagesViewController.h"
 #import "PSCiBooksHighlightingViewController.h"
 #import "PSCAssetLoader.h"
@@ -100,6 +99,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 
         PSPDFViewController *controller = [[PSCKioskPDFViewController alloc] initWithDocument:document];
+        //controller.HUDViewAnimation = PSPDFHUDViewAnimationSlide;
         return controller;
     }]];
 
@@ -634,18 +634,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
         [PSPDFNoteAnnotationViewController setTextViewCustomizationBlock:^(PSPDFNoteAnnotationViewController *noteController) {
             noteController.textView.font = [UIFont fontWithName:@"Helvetica" size:20];
         }];
-        return pdfController;
-    }]];
-
-    [subclassingSection addContent:[PSContent contentWithTitle:@"Change scrobble bar position" block:^UIViewController *{
-        PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:kHackerMagazineExample]];
-        PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-
-        // Register our subclass.
-        [pdfController overrideClass:PSPDFScrobbleBar.class withClass:PSCTopScrobbleBar.class];
-
-
-        pdfController.pageLabelDistance = 0.f;
         return pdfController;
     }]];
 
