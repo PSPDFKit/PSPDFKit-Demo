@@ -70,7 +70,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"CGDocumentProvider";
+        self.title = @"Use one CGDataProviderRef";
         self.category = PSCExampleCategoryDocumentDataProvider;
         self.priority = 30;
     }
@@ -88,6 +88,39 @@
     CGDataProviderRelease(dataProvider);
     PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
     controller.rightBarButtonItems = @[controller.emailButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
+    return controller;
+}
+
+@end
+
+@interface PSCMultipleCGDataProvidersExample : PSCExample @end
+@implementation PSCMultipleCGDataProvidersExample
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Multiple CGDataProviderRef";
+        self.category = PSCExampleCategoryDocumentDataProvider;
+        self.priority = 30;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    NSURL *hackerMagURL = [samplesURL URLByAppendingPathComponent:kHackerMagazineExample];
+
+    NSData *data = [NSData dataWithContentsOfURL:hackerMagURL options:NSDataReadingMappedIfSafe error:NULL];
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData((CFDataRef)(data));
+    CGDataProviderRef dataProvider2 = CGDataProviderCreateWithCFData((CFDataRef)(data));
+    CGDataProviderRef dataProvider3 = CGDataProviderCreateWithCFData((CFDataRef)(data));
+    CGDataProviderRef dataProvider4 = CGDataProviderCreateWithCFData((CFDataRef)(data));
+    PSPDFDocument *document = [PSPDFDocument documentWithDataProviderArray:@[CFBridgingRelease(dataProvider), CFBridgingRelease(dataProvider2), CFBridgingRelease(dataProvider3), CFBridgingRelease(dataProvider4)]];
+    document.title = @"CGDataProviderRef PDF";
+    PSPDFViewController *controller = [[PSPDFViewController alloc] initWithDocument:document];
+    controller.rightBarButtonItems = @[controller.activityButtonItem, controller.searchButtonItem, controller.outlineButtonItem, controller.viewModeButtonItem];
     return controller;
 }
 
