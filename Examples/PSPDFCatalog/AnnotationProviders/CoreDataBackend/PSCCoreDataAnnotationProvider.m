@@ -38,39 +38,40 @@
 
 - (NSArray *)annotationsForPage:(NSUInteger)page {
     __block NSArray *annotations = nil;
-
     [self performBlockForReading:^{
         annotations = [super annotationsForPage:page];
-        if (!annotations) {
-            [self.managedObjectContext performBlockAndWait:^{
-                // We don't care about sorting
-                NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
-                request.predicate = [NSPredicate predicateWithFormat:@"page = %d", page];
-                NSError *error = nil;
-                NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
-                if (error) {
-                    NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
-                }
-
-                NSMutableArray *newAnnotations = [NSMutableArray array];
-                for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
-                    PSPDFAnnotation *annotation = nil;
-                    @try {
-                        annotation = [NSKeyedUnarchiver unarchiveObjectWithData:coreDataAnnotation.annotationData];
-                        annotation.page = page; // Don't trust the page saved inside the archive, always manually set.
-                    }
-                    @catch (NSException *exception) {
-                        NSLog(@"Failed to unarchive annotation: %@", exception);
-                    }
-                    if (annotation) [newAnnotations addObject:annotation];
-                }
-
-                // Save in the annotation cache
-                annotations = [NSArray arrayWithArray:newAnnotations]; // immutable copy
-                [self setAnnotations:newAnnotations forPage:page append:NO];
-            }];
-        }
     }];
+
+    // If no annotations are cached, load them from the core data store.
+    if (!annotations) {
+        [self.managedObjectContext performBlockAndWait:^{
+            // We don't care about sorting
+            NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass(PSCCoreDataAnnotation.class)];
+            request.predicate = [NSPredicate predicateWithFormat:@"page = %d", page];
+            NSError *error = nil;
+            NSArray *fetchedAnnotations = [self.managedObjectContext executeFetchRequest:request error:&error];
+            if (error) {
+                NSLog(@"Error while fetching annotations: %@", error.localizedDescription);
+            }
+
+            NSMutableArray *newAnnotations = [NSMutableArray array];
+            for (PSCCoreDataAnnotation *coreDataAnnotation in fetchedAnnotations) {
+                PSPDFAnnotation *annotation = nil;
+                @try {
+                    annotation = [NSKeyedUnarchiver unarchiveObjectWithData:coreDataAnnotation.annotationData];
+                    annotation.page = page; // Don't trust the page saved inside the archive, always manually set.
+                }
+                @catch (NSException *exception) {
+                    NSLog(@"Failed to unarchive annotation: %@", exception);
+                }
+                if (annotation) [newAnnotations addObject:annotation];
+            }
+
+            // Save in the annotation cache
+            annotations = [NSArray arrayWithArray:newAnnotations]; // immutable copy
+            [self setAnnotations:newAnnotations forPage:page append:NO];
+        }];
+    }
 
     return annotations;
 }
