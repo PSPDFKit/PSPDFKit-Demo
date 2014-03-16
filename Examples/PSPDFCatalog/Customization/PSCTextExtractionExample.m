@@ -10,7 +10,7 @@
 
 #import "PSCFileHelper.h"
 #import "PSCExample.h"
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 
 @interface PSCFullTextSearchExample : PSCExample @end
 @interface PSCConvertMarkupStringToPDFExample : PSCExample @end

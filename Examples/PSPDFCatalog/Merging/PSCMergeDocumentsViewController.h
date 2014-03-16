@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 // Simple variant of a document merge UI to get you started.
 // Designed for iOS 6 and iOS 7.

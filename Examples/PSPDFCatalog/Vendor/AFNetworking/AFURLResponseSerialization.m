@@ -26,7 +26,7 @@ extern NSString * const AFNetworkingErrorDomain;
 extern NSString * const AFNetworkingOperationFailingURLResponseErrorKey;
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-@import UIKit;
+#import <UIKit/UIKit.h>
 #elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
 #import <Cocoa/Cocoa.h>
 #endif

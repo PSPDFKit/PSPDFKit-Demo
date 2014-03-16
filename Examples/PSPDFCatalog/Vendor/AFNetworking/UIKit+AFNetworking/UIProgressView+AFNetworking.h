@@ -20,13 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 #import <Availability.h>
 
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @class AFURLConnectionOperation;
 

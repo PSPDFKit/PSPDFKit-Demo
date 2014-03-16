@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import QuickLook;
+#import <QuickLook/QuickLook.h>
 #import "PSCatalogViewController.h"
 #import "PSCSectionDescriptor.h"
 #import "PSCFileHelper.h"
@@ -41,7 +41,7 @@
 #import "PSCAvailability.h"
 #import "PSCPopoverTestViewController.h"
 
-@import ObjectiveC.runtime;
+#import <objc/runtime.h>
 
 // Crypto support
 #import "RNEncryptor.h"

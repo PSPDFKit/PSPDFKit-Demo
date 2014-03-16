@@ -8,9 +8,9 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import Foundation;
-@import UIKit;
-@import QuartzCore.QuartzCore;
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #pragma mark - Common Metrics
 

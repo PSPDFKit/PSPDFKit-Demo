@@ -8,7 +8,7 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 // Creates a temp URL.
 NSURL *PSCTempFileURLWithPathExtension(NSString *prefix, NSString *pathExtension);
