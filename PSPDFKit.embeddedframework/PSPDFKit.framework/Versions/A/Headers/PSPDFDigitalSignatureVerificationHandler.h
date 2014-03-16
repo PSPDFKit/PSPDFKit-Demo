@@ -13,6 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFDigitalSignatureDictionary.h"
+#import "PSPDFBaseViewController.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
     PSPDFDigitalSignatureVerificationStatusSeverityOK      = 1,
@@ -20,6 +21,7 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
     PSPDFDigitalSignatureVerificationStatusSeverityError   = 3,
 };
 
+/// Only available for PSPDFKit Complete with OpenSSL.
 @protocol PSPDFDigitalSignatureVerificationHandler <NSObject>
 
 /** Filter and subfilter are used in the signature meta data in the pdf to represent which signature handler can be used to deal with
@@ -37,6 +39,9 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
 @property (nonatomic, strong, readonly) PSPDFDigitalSignatureDictionary *signature;
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;
 
+/// A view controller to be presented to the user showing the results of the verification.
+- (UIViewController *)resultsViewController;
+
 /// Whether or not the signature verifies.
 @property (nonatomic, assign, readonly) BOOL verified;
 
@@ -52,8 +57,8 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureVerificationStatusSeverity) {
 
 @end
 
-
 /// Return objects conforming to this protocol during a custom signature verification.
+/// Only available for PSPDFKit Complete with OpenSSL.
 @protocol PSPDFSignatureVerificationStatus <NSObject>
 
 /** The severity of the status.

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class PSPDFCacheInfo, PSPDFRenderReceipt;
 

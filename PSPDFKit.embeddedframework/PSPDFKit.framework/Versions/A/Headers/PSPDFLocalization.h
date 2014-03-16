@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 // Returns the (localized) name of the current app.
 extern NSString *PSPDFAppName(void);

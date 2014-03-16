@@ -123,9 +123,9 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 /// Change the protocol that's used to parse PSPDFKit-additions (links, audio, video). Defaults to `pspdfkit://`.
 /// @note This will affect all parsers that generate PSPDFAction objects.
 /// @warning Set this early on or manually clear the cache to update the parsers.
-@property (nonatomic, copy) NSString *protocolString;
+@property (nonatomic, copy) NSArray *protocolStrings;
 
-/// The fileType translation table is used when we encounter `pspdfkit://` links (or whatever is set to `document.protocolString`)
+/// The fileType translation table is used when we encounter `pspdfkit://` links (or whatever is set to `document.protocolStrings`)
 /// Maps e.g. "mpg" to `PSPDFLinkAnnotationVideo`. (NSString -> NSNumber)
 + (NSDictionary *)fileTypeTranslationTable;
 

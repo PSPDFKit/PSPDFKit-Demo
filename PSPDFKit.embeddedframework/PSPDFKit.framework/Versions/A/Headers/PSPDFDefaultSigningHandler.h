@@ -1,5 +1,5 @@
 //
-//  PSPDFCenteredLabelView.h
+//  PSPDFDefaultSigningHandler.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
@@ -10,16 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
-#import "PSPDFActivityLabel.h"
+#import "PSPDFKitGlobal.h"
+#import "PSPDFDigitalSignatureSigningHandler.h"
 
-// A non-touchable view with a centered label.
-@interface PSPDFCenteredLabelView : UIView
+extern NSString *const PSPDFDefaultSigningHandlerOptionsIdentityKey;
+extern NSString *const PSPDFDefaultSigningHandlerOptionsPasswordKey;
 
-// Will set the text and update the label bounds accordingly.
-- (void)setCenteredLabelText:(NSString *)text;
-
-// The centered label.
-@property (nonatomic, strong) PSPDFActivityLabel *centeredLabel;
+@interface PSPDFDefaultSigningHandler : NSObject <PSPDFDigitalSignatureSigningHandler>
 
 @end

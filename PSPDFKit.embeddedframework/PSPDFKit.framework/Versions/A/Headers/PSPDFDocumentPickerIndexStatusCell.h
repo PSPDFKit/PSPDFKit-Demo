@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "PSPDFSpinnerCell.h"
 
 @class PSPDFLibrary;

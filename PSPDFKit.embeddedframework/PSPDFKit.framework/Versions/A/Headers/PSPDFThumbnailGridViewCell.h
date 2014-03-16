@@ -25,7 +25,7 @@
 /// Allow a margin. Defaults to `UIEdgeInsetsZero`.
 @property (nonatomic, assign) UIEdgeInsets edgeInsets;
 
-/// Enables thumbnail shadow. defaults to YES, except on old devices.
+/// Enables thumbnail shadow. defaults to No for iOS 7 flat mode, else YES.
 @property (nonatomic, assign, getter=isShadowEnabled) BOOL shadowEnabled;
 
 /// Enable page label.

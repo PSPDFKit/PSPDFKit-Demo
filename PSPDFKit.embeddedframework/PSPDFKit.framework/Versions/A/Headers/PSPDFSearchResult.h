@@ -12,6 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFModel.h"
+#import "PSPDFAnnotation.h"
 
 @class PSPDFTextBlock, PSPDFDocument;
 
@@ -19,7 +20,7 @@
 @interface PSPDFSearchResult : PSPDFModel
 
 /// Designated initializer.
-- (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection;
+- (id)initWithDocument:(PSPDFDocument *)document page:(NSUInteger)page range:(NSRange)range previewText:(NSString *)previewText rangeInPreviewText:(NSRange)rangeInPreviewText selection:(PSPDFTextBlock *)selection annotation:(PSPDFAnnotation *)annotation;
 
 /// Referenced page.
 @property (nonatomic, assign, readonly) NSUInteger pageIndex;
@@ -38,6 +39,9 @@
 
 /// Referenced document.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
+
+/// If the search result references an annotation, the object is set.
+@property (nonatomic, strong, readonly) PSPDFAnnotation *annotation;
 
 /// Compare with other search result.
 - (BOOL)isEqualToSearchResult:(PSPDFSearchResult *)otherSearchResult;

@@ -10,9 +10,9 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView;
+@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView, PSPDFBlurView;
 
 /// Used to group the error, loading and gallery view and to properly lay them out.
 @interface PSPDFGalleryContainerView : UIView
@@ -25,5 +25,8 @@
 
 /// The loading view. Will not be created by this view but must be set.
 @property (nonatomic, strong) PSPDFGalleryLoadingView *loadingView;
+
+/// The background view.
+@property (nonatomic, strong) PSPDFBlurView *backgroundView;
 
 @end

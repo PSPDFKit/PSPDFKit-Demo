@@ -64,6 +64,7 @@
 "All" = "Todo";
 
 // password
+"Password" = "Contraseña"; // text on a label
 "Unlock" = "Desbloquear";
 "Please enter the password." = "Escriba la contraseña.";
 "This document cannot be unlocked. %@ is unsupported." = "Este documento no se puede desbloquear. %@ no es compatible.";
@@ -157,6 +158,9 @@
 "Signatures" = "Firmas";
 "Signed" = "Firmado";
 "Sign" = "Firmar";
+"Sign using %@" = "Firmar con %@"; // e.g. Adobe.PPKLite
+"Methods" = "Métodos"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Seleccionar identidad"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "Sello";
 "Stamps" = "Sellos";
 "Custom" = "Personalizado";
@@ -302,6 +306,7 @@
 "Merge files" = "Combinar archivos";
 
 // sound annotations
+"Speak" = "Voz"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "Reproducir";
 "Pause" = "Pausa";
 "Pause Recording" = "Pausar grabación";

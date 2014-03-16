@@ -11,6 +11,7 @@
 //
 
 #import "PSPDFKitGlobal.h"
+#import "PSPDFAnnotation.h"
 #import "PSPDFSearchOperation.h"
 
 @class PSPDFDocument, PSPDFTextSearch;
@@ -39,7 +40,8 @@
 /// Copying will preserve all settings except the delegate.
 @interface PSPDFTextSearch : NSObject <PSPDFSearchOperationDelegate, NSCopying>
 
-/// Initialize with the document;
+/// Initialize with the document.
+/// @note The document must not be nil.
 - (id)initWithDocument:(PSPDFDocument *)document;
 
 /// Searches for text occurrence. If document was not yet parsed, it will be now. Searches entire document.
@@ -53,10 +55,6 @@
 /// Stops all operations. Blocks until all operations are finished.
 - (void)cancelAllOperationsAndWait;
 
-/// Changes the search mode. Default is `PSPDFSearchModeHighlighting`.
-/// There's practically no speed difference so `PSPDFSearchWithHighlighting` should be preferred.
-@property (nonatomic, assign) PSPDFSearchMode searchMode;
-
 /// Defaults to `NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch|NSWidthInsensitiveSearch|NSRegularExpressionSearch`.
 /// With `NSDiacriticInsensitiveSearch`, e.g. an ö character will be treated like an o.
 /// See NSString comparison documentation for details.
@@ -64,13 +62,16 @@
 /// If `NSRegularExpressionSearch` is enabled, hyphenations and newlines between the body text will be ignored (which is good, better results)
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
 
+/// Will include annotations that have a matching type into the search results. (contents will be searched). PSPDFKit Basic/Complete feature.
+@property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
+
 /// We have to limit the number of search results to something reasonable. Defaults to 600.
 @property (nonatomic, assign) NSUInteger maximumNumberOfSearchResults;
 
 /// The document that is searched.
 @property (nonatomic, weak, readonly) PSPDFDocument *document;
 
-/// Search delegate.
+/// The search delegate.
 @property (atomic, weak) id<PSPDFTextSearchDelegate> delegate;
 
 @end

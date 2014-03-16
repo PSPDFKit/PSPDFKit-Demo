@@ -13,7 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFRenderQueue.h"
 #import "PSPDFResizableView.h"
-#import "PSPDFHUDView.h"
+#import "PSPDFRelayTouchesView.h"
 #import "PSPDFLongPressGestureRecognizer.h"
 #import "PSPDFSignatureViewController.h"
 #import "PSPDFSignatureSelectorViewController.h"
@@ -31,7 +31,7 @@
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFLinkAnnotation, PSPDFPageInfo, PSPDFScrollView, PSPDFDocument, PSPDFViewController, PSPDFTextParser, PSPDFTextSelectionView, PSPDFAnnotation, PSPDFRenderStatusView, PSPDFNoteAnnotation, PSPDFOrderedDictionary, PSPDFMenuItem, PSPDFFreeTextAnnotation;
 
-@interface PSPDFAnnotationContainerView : PSPDFHUDView @end
+@interface PSPDFAnnotationContainerView : PSPDFRelayTouchesView @end
 
 // Notification is fired when the `selectedAnnotations` value changed.
 // `object` is the pageView.
@@ -52,7 +52,7 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 - (void)displayDocument:(PSPDFDocument *)document page:(NSUInteger)page pageRect:(CGRect)pageRect scale:(CGFloat)scale delayPageAnnotations:(BOOL)delayPageAnnotations pdfController:(PSPDFViewController *)pdfController;
 
 /// Prepares the `PSPDFPageView` for reuse. Removes all unknown internal `UIViews`.
-- (void)prepareForReuse;
+- (void)prepareForReuse NS_REQUIRES_SUPER;
 
 /// @name Internal views and rendering
 
@@ -66,10 +66,10 @@ extern NSString *const PSPDFPageViewSelectedAnnotationsDidChangeNotification;
 /// (Most PDF annotations are actually rendered into the page; except annotations that return YES for `isOverlay`, like links or notes.
 - (UIView <PSPDFAnnotationViewProtocol> *)annotationViewForAnnotation:(PSPDFAnnotation *)annotation;
 
-/// UIImageView displaying the whole document. Readonly.
+/// UIImageView displaying the whole document.
 @property (nonatomic, strong, readonly) UIImageView *contentView;
 
-/// UIImageView for the zoomed in state. Readonly.
+/// UIImageView for the zoomed in state.
 @property (nonatomic, strong, readonly) UIImageView *renderView;
 
 /**

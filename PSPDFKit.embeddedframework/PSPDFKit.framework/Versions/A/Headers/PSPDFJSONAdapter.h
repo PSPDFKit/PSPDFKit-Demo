@@ -12,7 +12,7 @@
 //  Based on GitHub's Mantle project, MIT licensed.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class PSPDFModel;
 

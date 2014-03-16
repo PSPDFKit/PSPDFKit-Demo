@@ -64,6 +64,7 @@
 "All" = "전체";
 
 // password
+"Password" = "비밀번호"; // text on a label
 "Unlock" = "잠금해제";
 "Please enter the password." = "암호를 입력하세요.";
 "This document cannot be unlocked. %@ is unsupported." = "이 문서를 잠금해제할 수 없습니다. %@을(를) 지원하지 않습니다.";
@@ -157,6 +158,9 @@
 "Signatures" = "서명";
 "Signed" = "서명됨";
 "Sign" = "서명";
+"Sign using %@" = "%@(으)로 서명"; // e.g. Adobe.PPKLite
+"Methods" = "처리방식"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "신원 선택"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "스탬프";
 "Stamps" = "스탬프";
 "Custom" = "사용자 지정";
@@ -302,6 +306,7 @@
 "Merge files" = "파일 병합";
 
 // sound annotations
+"Speak" = "말하기"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "재생";
 "Pause" = "일시정지";
 "Pause Recording" = "녹음 일시정지";

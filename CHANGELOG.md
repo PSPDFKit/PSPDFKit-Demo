@@ -2,26 +2,65 @@
 
 Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/master.atom) | [Twitter](http://twitter.com/PSPDFKit)
 
-We now have a blog highlighting the best new features and changes: [http://blog.pspdfkit.com]([http://blog.pspdfkit.com)
+We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
-__v3.6.0 - X/Mar/2014__
+__v3.6.0 - 16/Mar/2014__
 
-*  Selected text now supports text-to-speech on iOS 7+.
-*  The search now also includes annotation and form element contents. This is especially useful for note annotations and forms. (PSPDFKit Basic upwards)
-*  API: Search related methods are now in the new `searchHighlightViewManager` property of `PSPDFViewController.`
+We're proud to ship the next milestone of PSPDFKit. Version 3.6 features a completely new annotation toolbar, search within annotation text, note annotations that show up in the thumbnails and countless other improvements.
+This release has been fully tested with Xcode 5.1 and iOS 7.1. We now require at least Xcode 5.0.2 and SDK 7 to compile and have dropped support for Xcode 4.6 (Apple no longer accepts apps built with SDK 6/Xcode 4.6)
+Applications built with PSPDFKit will still run and work great under iOS 6.
+
+*  Fully compatible and tested with iOS 7.1 and Xcode 5.1.
+*  God dag! We've added Swedish to the list of presupplied localization files.
+*  All-new flexible annotation toolbar (`PSPDFFlexibleAnnotationToolbar`) that can be dragged to be vertical or horizontal.
+   See `PSPDFAnnotationToolbarType` in the `PSPDFAnnotationBarButtonItem` to optionally keep using the old annotation toolbar.
+*  PSPDFKit Complete can now create digital signatures. This feature is still in beta - we need more documents to test all possible conditions.
+   If you're having issues with this, please contact us so we can further increase the test coverage.
+*  Text selection now supports text-to-speech on iOS 7+. See `PSPDFSpeechSynthesizer` for details and options to customize the language.
+*  Forms on iPhone/iOS 7 now have an automatic zoom feature that makes it a lot easier to enter text.
+*  Search now also includes annotation and form element contents. This is especially useful for note annotations and forms. (PSPDFKit Basic/Complete)
 *  Search results are now hidden on page tap (unless that tap finds an action like selecting an annotation.)
+*  Note annotations are now always rendererd at the same size and also visible in the thumbnails.
 *  PDF annotation writing will now be faster and produce a more compact trailer, reducing target file size.
-*  Adds support for mailto: links with multiple email addresses (also for cc and bcc).
+*  Adds support for mailto: links with multiple email addresses (also for CC and BCC).
 *  Saving will now use the correct z-index for annotations and forms in the same ordering as they are added. Saving changed objects will no longer change the z-ordering.
 *  Simple JavaScript actions like printing, alert boxes or adding form values now work. If you have a use case for that, please contact us at support@pspdfkit.com.
 *  The XFDF parser now parses basic rich text strings as used in Acrobat and keeps color and font informations.
 *  Increases contrast for the selection color on form choice list-boxes.
 *  `PSPDFTextSelectionView` now allows UIAppearance to customize `selectionColor` and `selectionAlpha`.
-*  Various improvements for PDF form handling.
 *  The `PSPDFActivityViewController` now checks if printing is allowed for the document before even showing the print option.
-*  API: The HUD and related views have been reorganized. You might have to update some calls (some views are now within HUDView)
-*  API: `PSPDFProgressHUD` has been replaced with the new `PSPDFStatusHUD`, which features a modern iOS 7 design and an improved API.
+*  No longer ends the text view edit mode when zooming on iOS 7 (flat mode) and above.
+*  File annotations are now evaluated lazily, which improves startup performance for documents with many such annotations.
+*  Note annotations now also create popup annotation on PDF saving. These are optional but increase compatibility with certain less standard-compliant 3rd-party software.
+*  The behavior of the pdfViewController:didTapOnPage:View:atPoint: has been updated when no `PSPDFPageView` was hit to return nil here, and coordinates relative to the current PSPDFViewController.
+*  The `PSPDFThumbnailBar` has a new parameter to optionally enable the page labels: `showPageLabels` (defaults to NO).
+*  Many improvements related to PDF AcroForm handling and input validation.
+*  Calls to `didHidePageView:` and `didShowPageView:` of views with the `PSPDFAnnotationViewProtocol` are now properly balanced.
+*  The text parser now has a more sophisticated text shadow/overlay detection, which improves search results by removing duplicated glyphs.
+*  The gallery has a new mode that enables live-blur behind the content (see `blurEnabled` on `PSPDFGalleryViewController`).
+*  Fixes an issue where the popover might open at an unexpected location when using the inline multimedia system with the popover:true parameter.
+*  Font annotations are now rendered with their AP stream for greater document accuracy.
+*  Annotations now support the additional action mouse up event.
+*  Greatly improves speed for the XFDF image deserialization process.
+*  API: PSPDFKit now requires the Accelerate.framework. If you're using the PSPDFKit.xcconfig file, you don't need to change anything.
+*  API: Search related methods are now in the new `searchHighlightViewManager` property of `PSPDFViewController.`
+*  API: The HUD and related views have been reorganized. You might have to update some calls (some views are now within `HUDView`)
+*  API: `PSPDFProgressHUD` has been replaced with the all-new `PSPDFStatusHUD`, which features a modern iOS 7 design and an improved API.
+*  API: `PSPDFDocument` should be treated as an immutable object (apart from settings). Thus, the `files` and `fileURL` properties have been made readonly, and `appendFile:` has been removed. Create a new document with the new files/data objects instead. Use the new helper `documentByAppendingObjects:` to create a modified document with a new file or data objects.
+*  API: The `PSPDFAnnotationManager` now supports various protocol strings, thus the property `protocolString` has been renamed to `protocolStrings` and is now an NSArray that takes NSStrings. We've added `embed://` as a second, neutral protocol format.
+*  API: The `textSearch` class has been moved from PSPDFDocument to PSPDFViewController.
+*  API: `PSPDFNoteAnnotationViewFixedSize` has been removed. Notes are now drawn with a fixed size, however you can define the bounding box to whatever you like. We recommend using 32px, but this value is being ignored by both PSPDFKit and Adobe Acrobat. Other, less capable renderers like Apple Preview.app might use the value, so 32px is a good value - but also depends how large or small your document is.
+*  API: The `PSPDFSignatureViewController` no longer dismisses itself. Dismiss the controller in the delegate callbacks.
+*  API: Code and subclassing hooks that could be used to change the `PSPDFScrobbleBar` frame have been moved to `PSPDFHUDView`.
+*  API: Removes various deprecated code.
+*  Fixes an issue related to YouTube video parsing - now compatible with even more video subtypes.
+*  Fixes a weird scrolling behavior for some form elements.
+*  Fixes an issue where the free text tool wouldn't work if highlighting was selected before that.
 *  Fixes an issue where PDF form values could become corrupted because of insufficient escaping in some PDF files.
+*  Fixes an issue where drawings could be created on multiple pages if the page is changed while in drawing mode.
+*  Fixes multiple issues related to forms on rotated pages.
+*  Fixes an issue related to annotation fetching and the `pageRange` feature of `PSPDFDocument`.
+*  Fixes multiple issues related to the ink eraser.
 
 __v3.5.2 - 21/Feb/2014__
 

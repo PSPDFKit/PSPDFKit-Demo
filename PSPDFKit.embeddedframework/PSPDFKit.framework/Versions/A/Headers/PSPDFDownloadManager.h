@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "PSPDFReachabilityObserver.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFDownloadManagerObjectState) {
@@ -90,6 +90,9 @@ typedef NS_ENUM(NSUInteger, PSPDFDownloadManagerObjectState) {
 
 /// Contains all objects that have failed because of a network error and are scheduled for retry.
 @property (nonatomic, copy, readonly) NSArray *failedObjects;
+
+// Helper that iterates loadingObjects, waitingObjects and failedObjects (in that order) and returns all matches.
+- (NSArray *)objectsPassingTest:(BOOL (^)(id obj, NSUInteger index, BOOL *stop))predicate;
 
 /**
  * Checks if the given object is currently handled by the download manager.

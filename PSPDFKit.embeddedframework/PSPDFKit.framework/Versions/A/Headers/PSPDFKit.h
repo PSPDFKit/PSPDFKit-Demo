@@ -20,13 +20,12 @@ extern "C" {
 #endif
 
 // common
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"
 #import "PSPDFViewController.h"
 #import "PSPDFViewControllerDelegate.h"
-#import "PSPDFViewController+Delegates.h"
 #import "PSPDFDocument.h"
 #import "PSPDFDocumentDelegate.h"
 #import "PSPDFPageView.h"
@@ -39,7 +38,7 @@ extern "C" {
 #import "PSPDFTransparentToolbar.h"
 #import "PSPDFPageRenderer.h"
 #import "PSPDFPageInfo.h"
-#import "PSPDFHUDView.h"
+#import "PSPDFRelayTouchesView.h"
 #import "PSPDFContentScrollView.h"
 #import "PSPDFPageViewController.h"
 #import "PSPDFSinglePageViewController.h"
@@ -55,6 +54,7 @@ extern "C" {
 #import "PSPDFUndoController.h"
 #import "PSPDFDownloadManager.h"
 #import "PSPDFRemoteFileObject.h"
+#import "PSPDFSearchHighlightViewManager.h"
 
 // actions
 #import "PSPDFAction.h"
@@ -71,10 +71,9 @@ extern "C" {
 
 // views
 #import "PSPDFPageLabelView.h"
-#import "PSPDFDocumentLabelView.h"
-#import "PSPDFRenderStatusView.h"
 #import "PSPDFPasswordView.h"
 #import "PSPDFActivityLabel.h"
+#import "PSPDFHUDView.h"
 
 // search
 #import "PSPDFTextSearch.h"
@@ -107,6 +106,7 @@ extern "C" {
 #import "PSPDFAnnotation.h"
 #import "PSPDFAnnotationSet.h"
 #import "PSPDFAnnotationProvider.h"
+#import "PSPDFContainerAnnotationProvider.h"
 #import "PSPDFFileAnnotationProvider.h"
 #import "PSPDFHighlightAnnotation.h"
 #import "PSPDFUnderlineAnnotation.h"
@@ -132,7 +132,6 @@ extern "C" {
 #import "PSPDFAnnotationViewProtocol.h"
 #import "PSPDFLinkAnnotationView.h"
 #import "PSPDFFreeTextAnnotationView.h"
-#import "PSPDFNoteAnnotationView.h"
 #import "PSPDFWebAnnotationView.h"
 #import "PSPDFWebViewController.h"
 #import "PSPDFSelectionView.h"
@@ -176,10 +175,11 @@ extern "C" {
 #import "PSPDFActionSheet.h"
 #import "PSPDFMenuItem.h"
 #import "PSPDFProcessor.h"
-#import "PSPDFProgressHUD.h"
+#import "PSPDFStatusHUD.h"
 #import "PSPDFColorButton.h"
 #import "PSPDFHSVColorPickerController.h"
 #import "PSPDFNavigationController.h"
+#import "PSPDFSpeechSynthesizer.h"
 
 // model
 #import "PSPDFModel.h"
@@ -224,6 +224,10 @@ extern "C" {
 
 // audio
 #import "PSPDFAudioHelper.h"
+
+// OpenSSL
+#import "PSPDFDigitalCertificate.h"
+#import "PSPDFDigitalSigningIdentity.h"
 
 #ifdef __cplusplus
 }

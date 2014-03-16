@@ -45,7 +45,6 @@
 @end
 
 /// The annotation toolbar allows creation of most annotation types supported by PSPDFKit.
-/// @note This class does a lot of state management, so you might also just use it in a headless state calling down to the various action methods expoxed in the SubclassingHooks category.
 /// To customize which annotation icons should be displayed, edit `editableAnnotationTypes` in PSPDFDocument.
 @interface PSPDFAnnotationToolbar : UIToolbar <PSPDFAnnotationStateManagerDelegate>
 
@@ -176,16 +175,5 @@ extern NSString *const PSPDFAnnotationGroupKeyGroup;
 // The Undo/Redo buttons.
 @property (nonatomic, strong, readonly) UIBarButtonItem *undoButtonItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem *redoButtonItem;
-
-@end
-
-
-@interface PSPDFAnnotationToolbar (Deprecated)
-
-- (void)setLastUsedColor:(UIColor *)lastUsedDrawColor annotationString:(NSString *)annotationString PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
-- (UIColor *)lastUsedColorForAnnotationString:(NSString *)annotationString PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
-;
-@property (nonatomic, copy) NSString *toolbarMode PSPDF_DEPRECATED(3.4.3, "Use PSPDFAnnotationStateManager instead.");
-;
 
 @end

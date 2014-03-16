@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;
 #import "PSPDFGalleryContentView.h"
 #import "PSPDFMediaPlayerView.h"
 

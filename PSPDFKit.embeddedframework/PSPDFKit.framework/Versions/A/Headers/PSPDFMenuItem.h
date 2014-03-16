@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /**
  This subclass adds support for a block-based action on `UIMenuItem`.

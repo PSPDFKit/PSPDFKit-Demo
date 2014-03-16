@@ -12,26 +12,32 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFCache.h"
+#import "PSPDFConfigurationDataSource.h"
 
-@class PSPDFViewController;
+@class PSPDFScrobbleBar;
+
+@protocol PSPDFScrobbleBarDelegate <NSObject>
+
+- (void)scrobbleBar:(PSPDFScrobbleBar *)scrobbleBar didSelectPage:(NSUInteger)page;
+
+@end
 
 /// PDF thumbnail scrobble bar - similar to iBooks.
 @interface PSPDFScrobbleBar : UIView <PSPDFCacheDelegate>
 
-/// PDF controller delegate. We use KVO, thus no weak here.
-/// Re-set pdfController to update `tintColor`.
-@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
+/// The delegate for touch events
+@property (nonatomic, weak) id <PSPDFScrobbleBarDelegate> delegate;
+
+/// The data source.
+@property (nonatomic, weak) id <PSPDFConfigurationDataSource> dataSource;
 
 /// Updates toolbar, re-aligns page screenshots. Registers in the runloop and works later.
 - (void)updateToolbarAnimated:(BOOL)animated;
 
-/// Updates the toolbar position.
-- (void)updateToolbarPositionAnimated:(BOOL)animated;
-
 /// *Instantly* updates toolbar.
 - (void)updateToolbarForced;
 
-/// Updates the page marker. call manually after alpha > 0 !
+/// Updates the page marker.
 - (void)updatePageMarker;
 
 /// Current selected page.
@@ -54,12 +60,6 @@
 
 
 @interface PSPDFScrobbleBar (SubclassingHooks)
-
-// Updates the frame and the visibility depending if toolbar is displayed or not.
-- (void)setToolbarFrameAndVisibility:(BOOL)shouldShow animated:(BOOL)animated;
-
-// Implementation detail: if you override `setToolbarFrameAndVisibility`, you need to set this to NO after you're done setting/animating the frame.
-@property (nonatomic, assign, getter=isViewLocked) BOOL viewLocked;
 
 // Returns YES if toolbar is in landscape+iPhone mode.
 - (BOOL)isSmallToolbar;

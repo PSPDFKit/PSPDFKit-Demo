@@ -49,8 +49,9 @@ typedef NS_ENUM(NSUInteger, PSPDFTextInputFormat) {
 
 /// Validates the content according to the `formatString` set.
 /// See http://www.pdfill.com/download/FormsAPIReference.pdf for details.
+/// `isFinal` defines if the user is typing (NO) or if the string should be commited (YES).
 /// @warning This is still a work in progress.
-- (BOOL)validateContents:(NSString *)contents error:(NSError **)validationError;
+- (BOOL)validateContents:(NSString *)contents isFinal:(BOOL)isFinal error:(NSError **)validationError;
 
 /// The input format. Some forms are number/date/time specific.
 @property (nonatomic, assign) PSPDFTextInputFormat inputFormat;

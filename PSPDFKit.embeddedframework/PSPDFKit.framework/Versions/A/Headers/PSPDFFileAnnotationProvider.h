@@ -13,17 +13,15 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFDocument.h"
+#import "PSPDFContainerAnnotationProvider.h"
 
 @class PSPDFLinkAnnotation, PSPDFDocument;
 
 /// Default implementation of the `PSPDFAnnotationProvider` protocol that uses the PDF document as source/target to load/save annotations. You almost always want to use the `PSPDFFileAnnotationProvider` in your `PSPDFAnnotationManager`. You can also use the `PSPDFFileAnnotationProvider` inside a custom annotation provider, to parse PDF annotations once and then manage them in your custom database.
-@interface PSPDFFileAnnotationProvider : NSObject <PSPDFAnnotationProvider>
+@interface PSPDFFileAnnotationProvider : PSPDFContainerAnnotationProvider
 
 /// Designated initializer.
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider;
-
-/// Associated `documentProvider`.
-@property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
 /// Default annotation username. Defaults to nil.
 /// Written as the "T" (title/user) property of newly created annotations.
@@ -39,15 +37,6 @@
  The default implementation is lazy loaded (and of course thread safe); hitting a dictionary cache first and blocks if no cache is found. After the first expensive call, this method is basically free. Ensure that you're using a similar cache if you replace this method with your own.
 */
 - (NSArray *)annotationsForPage:(NSUInteger)page pageRef:(CGPDFPageRef)pageRef;
-
-/**
- You can add your own annotations (like videos, links) here.
- @note Usually it's a better idea to implement a custom AnnotationProvider, but this is kept for backwards compatibility.
-
- You will override any already set annotations, so if you want to mix in annotations from the PDF, use `addAnnotations:page:` instead.
- Setting nil as annotations will re-evaluate the pdf for annotations on the next access. Use an empty array if you want to clear annotations instead.
-*/
-- (void)setAnnotations:(NSArray *)annotations forPage:(NSUInteger)page;
 
 /// Will add the annotation to the current annotation array. Will accept any annotations.
 - (NSArray *)addAnnotations:(NSArray *)annotations;
@@ -73,6 +62,10 @@
 /// @warning Never exclude PSPDFAnnotationTypeWidget - Forms are specially handled.
 @property (nonatomic, assign) PSPDFAnnotationType saveableTypes;
 
+/// Allows to customize what annotation types should be parsed from the PDF.
+/// Defaults to `PSPDFAnnotationTypeAll`.
+@property (nonatomic, assign) PSPDFAnnotationType parsableTypes;
+
 /// Path where annotations are being saved if saving to external file is enabled.
 /// Default's to `self.documentProvider.document.cacheDirectory` + "annotations_%d.pspdfkit" (%d = number of the documentProvider)
 /// If set to nil, will revert back to the default value.
@@ -93,8 +86,5 @@
 
 // Load annotations (returning NO + eventually an error if it fails)
 - (NSDictionary *)loadAnnotationsWithError:(NSError **)error;
-
-// Removes all annotations that are marked as deleted.
-- (NSUInteger)removeDeletedAnnotations;
 
 @end

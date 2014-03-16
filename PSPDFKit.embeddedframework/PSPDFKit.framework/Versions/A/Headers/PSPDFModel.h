@@ -9,10 +9,10 @@
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
 //
-//  Based on GitHub's Mantle project, MIT licensed.
+//  Based on GitHub's Mantle project, MIT licensed. See ACKNOWLEDGEMENTS for details.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 // An abstract base class for model objects, using reflection to provide
 // sensible default behaviors.

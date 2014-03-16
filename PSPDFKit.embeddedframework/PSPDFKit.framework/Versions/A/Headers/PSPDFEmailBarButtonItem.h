@@ -11,7 +11,7 @@
 //
 
 #import "PSPDFBarButtonItem.h"
-#import <MessageUI/MessageUI.h>
+@import MessageUI;
 #import "PSPDFDocumentSharingViewController.h"
 
 /**

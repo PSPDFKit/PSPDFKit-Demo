@@ -64,6 +64,7 @@
 "All" = "すべて";
 
 // password
+"Password" = "パスワード"; // text on a label
 "Unlock" = "ロック解除";
 "Please enter the password." = "パスワードを入力してください。";
 "This document cannot be unlocked. %@ is unsupported." = "この書類をロック解除できません。%@はサポートされていません。";
@@ -157,6 +158,9 @@
 "Signatures" = "署名";
 "Signed" = "署名入り";
 "Sign" = "署名";
+"Sign using %@" = "%@を使って署名"; // e.g. Adobe.PPKLite
+"Methods" = "方法"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "固有名を選択"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "スタンプ";
 "Stamps" = "スタンプ";
 "Custom" = "カスタム";
@@ -302,6 +306,7 @@
 "Merge files" = "ファイルを結合";
 
 // sound annotations
+"Speak" = "読み上げ"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "再生";
 "Pause" = "一時停止";
 "Pause Recording" = "録音を一時停止";

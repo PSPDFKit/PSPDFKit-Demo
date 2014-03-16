@@ -12,11 +12,12 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFHighlightAnnotation.h"
+@import AVFoundation;
 
 @class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
 
 /// Handles text and image selection. PSPDFKit Basic/Complete feature.
-@interface PSPDFTextSelectionView : UIView
+@interface PSPDFTextSelectionView : UIView <AVSpeechSynthesizerDelegate>
 
 /// Currently selected glyphs.
 /// @note Use `sortedGlyphs:` to pre-sort your glyphs if you manually set this.
@@ -30,10 +31,10 @@
 @property (nonatomic, strong) PSPDFImageInfo *selectedImage;
 
 /// The selection color. Defaults to `UIColor.pspdf_selectionColor`.
-@property (nonatomic, strong) UIColor *selectionColor;
+@property (nonatomic, strong) UIColor *selectionColor UI_APPEARANCE_SELECTOR;
 
 /// The selection alpha value. Defaults to `UIColor.pspdf_selectionAlpha`.
-@property (nonatomic, assign) CGFloat selectionAlpha;
+@property (nonatomic, assign) CGFloat selectionAlpha UI_APPEARANCE_SELECTOR;
 
 /// In simple selection mode, the initial selection switches to moving the drag handles directly, much like iBooks handles selection. Defaults to NO.
 @property (nonatomic, assign) BOOL simpleSelectionModeEnabled;
@@ -47,7 +48,7 @@
 /// Rects for the current selection, in view coordinate space.
 @property (nonatomic, assign, readonly) CGRect firstLineRect;
 @property (nonatomic, assign, readonly) CGRect lastLineRect;
-@property (nonatomic, assign, readonly) CGRect selectionRect;\
+@property (nonatomic, assign, readonly) CGRect selectionRect;
 
 /// To make it easier to select text, we slightly increase the frame margins. Defaults to 4 pixels.
 @property (nonatomic, assign) CGFloat selectionHitTestExtension;

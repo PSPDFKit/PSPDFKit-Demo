@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class PSPDFSignatureSelectorViewController, PSPDFInkAnnotation;
 
@@ -20,6 +20,9 @@
 /// Shared object.
 + (instancetype)sharedSignatureStore;
 
+/// Designated initializer.
+- (id)initWithStoreName:(NSString *)storeName;
+
 /// Add signature to store.
 - (void)addSignature:(PSPDFInkAnnotation *)signature;
 
@@ -28,6 +31,9 @@
 
 /// Access the saved signatures (`PSPDFInkAnnotation` objects).
 @property (atomic, copy) NSArray *signatures;
+
+/// The store name used for the keychain storage.
+@property (nonatomic, copy, readonly) NSString *storeName;
 
 /// If this is set to NO, PSPDFKit will not differentiate between My Signature/Customer signature.
 /// Defaults to YES.

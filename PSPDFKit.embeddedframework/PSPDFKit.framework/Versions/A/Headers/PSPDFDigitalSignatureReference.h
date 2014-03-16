@@ -26,24 +26,26 @@ typedef NS_ENUM(NSUInteger, PSPDFDigitalSignatureReferenceTransformMethod) {
     PSPDFDigitalSignatureReferenceTransformMethodIdentity = 1 << (4-1)
 };
 
+/// Only available for PSPDFKit Complete with OpenSSL.
 @interface PSPDFDigitalSignatureReference : PSPDFModel
 
+/// Designated initializer.
 - (id)initWithDictionary:(CGPDFDictionaryRef)dict;
 
 /// (Required) The name of the transform method (see Section 8.7.1, “Transform Methods”) that guides the object digest computation or modification analysis that takes place when the signature is validated.
 @property (nonatomic, assign) PSPDFDigitalSignatureReferenceTransformMethod transformMethod;
 
 /// (Optional) A dictionary specifying transform parameters (variable data) for the transform method specified by TransformMethod. Each method except Identity takes its own set of parameters. See each of the sections specified above for details on the individual transform parameter dictionaries
-@property (nonatomic, strong) NSDictionary *transformParams;
+@property (nonatomic, copy) NSDictionary *transformParams;
 
 /// (Required when TransformMethod is FieldMDP or Identity) An indirect reference to the object in the document over which the digest was computed or upon which the object modification analysis should be performed. For transform methods other than FieldMDP and Identity, this object is implicitly defined.
 @property (nonatomic, assign) CGPDFObjectRef data;
 
 /// (Optional) A name identifying the algorithm to be used when computing the digest. Valid values are MD5 and SHA1. (See implementation note 144 in Appendix H.) Default value: MD5.
-@property (nonatomic, strong) NSString *digestMethod;
+@property (nonatomic, copy) NSString *digestMethod;
 
 /// (Required in some situations) When present, the computed value of the digest. See Section 8.7.1, “Transform Methods, for details on when this entry is required.
-@property (nonatomic, strong) NSString *digestValue;
+@property (nonatomic, copy) NSString *digestValue;
 
 /// (Required when DigestValue is required and TransformMethod is FieldMDP or DocMDP) An array of two integers specifying the location in the PDF file of the DigestValue string. The integers represent the starting offset and length in bytes, respectively. This entry is required when DigestValue is written directly to the PDF file, bypassing any encryption that has been performed on the document. When specified, the values must be used to read DigestValue directly from the file during validation.
 @property (nonatomic, assign) NSRange digestLocation;

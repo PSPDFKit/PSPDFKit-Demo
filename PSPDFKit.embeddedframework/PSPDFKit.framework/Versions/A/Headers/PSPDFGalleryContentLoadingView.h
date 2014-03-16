@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /// A round progress view used in `PSPDFContentView`.
 @interface PSPDFGalleryContentLoadingView : UIView

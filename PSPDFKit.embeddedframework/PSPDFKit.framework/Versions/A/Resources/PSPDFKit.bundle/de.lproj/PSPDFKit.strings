@@ -64,8 +64,9 @@
 "All" = "Alle";
 
 // password
+"Password" = "Kennwort";
 "Unlock" = "Entsperren";
-"Please enter the password." = "Bitte geben Sie das Passwort ein.";
+"Please enter the password." = "Bitte geben Sie das Kennwort ein.";
 "This document cannot be unlocked. %@ is unsupported." = "Dieses Dokument kann nicht geöffnet werden. %@ nicht unterstützt.";
 
 // page
@@ -100,7 +101,7 @@
 "No handler found for %@" = "Link konnte nicht geöffnet werden: %@";
 
 // text selection
-"Save To Camera Roll" = "Bild speichern";
+"Save To Camera Roll" = "Bild sichern";
 "Failed to extract image." = "Bild konnte nicht extrahiert werden.";
 "Type value or pick from list" = "Text eingeben oder von der Liste wählen";
 
@@ -157,6 +158,9 @@
 "Signatures" = "Unterschriften";
 "Signed" = "Unterschrieben";
 "Sign" = "Unterschrift hier";
+"Sign using %@" = "Unterschreiben mit %@";
+"Methods" = "Methoden";
+"Choose Identity" = "Identität auswählen";
 "Stamp" = "Stempel";
 "Stamps" = "Stempel";
 "Custom" = "Benutzerdefiniert";
@@ -280,7 +284,7 @@
 "Open Link" = "Link öffnen";
 "Go to Page %d" = "Zu Seite %d wechseln";
 "Go to Page" = "Zu Seite wechseln";
-"Save" = "Speichern";
+"Save" = "Sichern";
 "Link Destination" = "Ziel des Links";
 "Enter page index or a http:// address to link to an URL." = "Seite oder Hyperlink eingeben";
 
@@ -291,7 +295,7 @@
 // PSPDFDocumentSharingViewController
 "Ignore Annotations" = "Annotationen ignorieren";
 "The PDF will not contain any annotations." = "Das PDF wird keine Annotationen enthalten.";
-"Embed Annotations" = "Annotationen speichern";
+"Embed Annotations" = "Annotationen sichern";
 "Annotations will remain editable and are embedded into the PDF." = "Annotationen bleiben editierbar und werden im PDF gespeichert.";
 "Flatten Annotations" = "Annotationen zeichnen";
 "Annotations are drawn into the PDF and are readonly." = "Annotationen werden in das PDF gezeichnet und sind nicht änderbar.";
@@ -302,6 +306,7 @@
 "Merge files" = "Dateien zusammenführen";
 
 // sound annotations
+"Speak" = "Sprechen...";
 "Play" = "Abspielen";
 "Pause" = "Pause";
 "Pause Recording" = "Aufnahme pausieren";

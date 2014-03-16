@@ -9,7 +9,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 // Audio playback notifications.
 extern NSString *const PSPDFAudioPlayerWillStartPlaybackNotification;

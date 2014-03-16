@@ -1,0 +1,26 @@
+//
+//  PSPDFDigitalSigningIdentity.h
+//  PSPDFKit
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
+//
+//  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
+//  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
+//  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
+//  This notice may not be removed from this file.
+//
+
+#import "PSPDFKitGlobal.h"
+
+// Only available for PSPDFKit Complete with OpenSSL integrated.
+@interface PSPDFDigitalSigningIdentity : NSObject
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, strong, readonly) NSData *pkcs12data;
+
++ (instancetype)signingIdentityWithFilePath:(NSString *)path name:(NSString *)name;
++ (instancetype)signingIdentityWithData:(NSData *)pkcs12data name:(NSString *)name;
+
+- (instancetype)initWithFileAtPath:(NSString *)path;
+- (instancetype)initWithData:(NSData *)pkcs12data;
+
+@end

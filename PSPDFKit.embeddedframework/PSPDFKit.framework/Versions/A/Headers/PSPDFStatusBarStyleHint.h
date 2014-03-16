@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /// Allows better guessing of the status bar style. Implement in your `UIViewController` subclass and use the presentation options in `PSPDFViewController` to use.
 /// @note As of iOS 7 the system has adopted this as well.

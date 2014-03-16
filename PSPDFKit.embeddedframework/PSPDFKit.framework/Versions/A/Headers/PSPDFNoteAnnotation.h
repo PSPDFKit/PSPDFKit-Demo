@@ -12,10 +12,9 @@
 
 #import "PSPDFAnnotation.h"
 
-// We extend the width/height of note annotation to make them easier touch targets.
-extern CGSize PSPDFNoteAnnotationViewFixedSize;
-
 /// PDF Note (Text) Annotation.
+/// Note annotations are rendered as fixed size; much like how Adobe Acrobat renders them.
+/// We recommend a size of 32px for the boundingBox.
 @interface PSPDFNoteAnnotation : PSPDFAnnotation
 
 /// Designated initializer.
@@ -25,7 +24,14 @@ extern CGSize PSPDFNoteAnnotationViewFixedSize;
 /// If set to zero, it will return to the default "Comment".
 @property (nonatomic, copy) NSString *iconName;
 
-/// Custom HitTest because we have custom width/height here.
-- (BOOL)hitTest:(CGPoint)point withViewBounds:(CGRect)bounds;
+@end
+
+@interface PSPDFNoteAnnotation (SubclassingHooks)
+
+// Image that is rendered.
+- (UIImage *)renderAnnnotationIcon;
+
+// Called to render the note image.
+- (void)drawImageInContext:(CGContextRef)context boundingBox:(CGRect)boundingBox;
 
 @end

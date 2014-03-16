@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 // Preconfigured label subclass that optionally shows an activity indicator.
 @interface PSPDFActivityLabel : UILabel

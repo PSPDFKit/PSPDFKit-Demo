@@ -1,8 +1,8 @@
 //
-//  PSPDFDocumentLabelView.h
+//  PSPDFRelayTouchesView.h
 //  PSPDFKit
 //
-//  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
+//  Copyright (c) 2011-2014 PSPDFKit GmbH. All rights reserved.
 //
 //  THIS SOURCE CODE AND ANY ACCOMPANYING DOCUMENTATION ARE PROTECTED BY INTERNATIONAL COPYRIGHT LAW
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
@@ -10,9 +10,10 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFLabelView.h"
+#import "PSPDFKitGlobal.h"
 
-/// Shows the title of the document. Default just used on iPhone.
-@interface PSPDFDocumentLabelView : PSPDFLabelView
+/// The HUD will relay touches of subviews, but won't react on touches on this actual view.
+/// This is achieved with overriding `pointInside:withEvent:`.
+@interface PSPDFRelayTouchesView : UIView
 
 @end

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <script id="pdf">
-/*
+
 //  javscript-runtime.html
 //  PSPDFKit
 //
@@ -13,31 +13,48 @@
 //  AND MAY NOT BE RESOLD OR REDISTRIBUTED. USAGE IS BOUND TO THE PSPDFKIT LICENSE AGREEMENT.
 //  UNAUTHORIZED REPRODUCTION OR DISTRIBUTION IS SUBJECT TO CIVIL AND CRIMINAL PENALTIES.
 //  This notice may not be removed from this file.
-*/
-    /*
-     pdf object constructor
-     
-     The pdf object is used to store the data model representing the PDF object
-     in context as well as the actions dictionary.
-     */
 
+/*
+ pdf object constructor
+
+ The pdf object is used to store the data model representing the PDF object
+ in context as well as the actions dictionary.
+*/
 function PDF()
 {
     this.actions = {};
     this.model = {};
+    this.dirtyKeys = {};
+    this.event = {};
     
-    this.setModel = function(str)
-    {
+    this.setModel = function(str) {
         this.model = JSON.parse(str);
+        this.actions = {};
+        this.dirtyKeys = {};
+        this.event = {};
     }
     
-    this.getModel = function()
-    {
+    this.getModel = function() {
         return JSON.stringify(this.model);
     }
     
-    this.jsonStringOfPostActions = function()
-    {
+    this.jsonStringOfPostActions = function() {
+        return JSON.stringify(this.actions);
+    }
+
+    this.setEvent = function(evnt){
+        this.event = JSON.parse(evnt);
+    }
+    
+    this.getEvent = function(){
+        return JSON.stringify(this.event);
+    }
+    
+    this.getDirtyKeys = function() {
+        return JSON.stringify(Object.keys(this.dirtyKeys));
+    }
+    
+    this.getActions = function() {
         return JSON.stringify(this.actions);
     }
 }
@@ -52,31 +69,32 @@ window.pdf = new PDF();
 <script id="util">
     
     /*
-     Functions used throughout the rest of the execution environmet that do not alter global variables or carry state.
+     Functions used throughout the rest of the execution environment that do not alter global variables or carry state.
      */
 
-function logArray(arr)
-{
+function logArray(arr){
     var ret = '';
-    for(var i = 0 ; i < arr.length-1; i++)
-    {
+    for(var i = 0 ; i < arr.length-1; i++) {
         if(typeof arr[i] != 'undefined')ret=ret+arr[i]+',';
     }
-    
     if(typeof arr[arr.length-1] != 'undefined')ret=ret+arr[arr.length-1];
-    
     return ret;
-    
 }
 
-function sizeArray(arr)
-{
+function sizeArray(arr){
     var ret = 0;
-    for(var i = 0 ; i < arr.length; i++)
-    {
+    for(var i = 0 ; i < arr.length; i++) {
         if(typeof arr[i] != 'undefined')ret++;
     }
     return ret;
+}
+
+
+function fieldCorrectedValue(val){
+
+    if(!isNaN(val)){
+        return +val;
+    }else return val;
 }
     
 </script>
@@ -84,63 +102,80 @@ function sizeArray(arr)
 <script id="field">
 
     // The field object constructor
-    
-    function Field(name) {
+function Field(name) {
         
         this.name = name;
         this.items = [];
     
         var itemsb = pdf.model['fields'][this.name]['options'];
         
-        if(itemsb != null)
-        {
+        if(itemsb != null){
             if(itemsb.length == 0)this.items = [];
-            else
-            this.items = itemsb;
+            else this.items = itemsb;
         }
         
+        /*
+         Returns the value of a field as a JavaScript string.
+         It differs from value, which attempts to convert the contents of a field contents to an accepted format. For example, for a field with a value of “020”, value returns the integer 20, while valueAsString returns the string “020”.
+         */
+
+        this.__defineGetter__("valueAsString", function(){
+                              return (pdf.model['fields'][this.name]['value']).toString();
+        });
+
         this.__defineGetter__("value", function(){
-        pdf.model['fields'][this.name]['value'];
+            return fieldCorrectedValue(pdf.model['fields'][this.name]['value']);
         });
 
-        this.__defineSetter__("value", function(_value){
-        pdf.model['fields'][this.name]['value'] = _value;
+        this.__defineSetter__("value", function(_value) {
+            pdf.dirtyKeys['fields.'+this.name+'.value'] = true;
+            pdf.model['fields'][this.name]['value'] = _value.toString();
         });
 
-        this.__defineGetter__("numItems", function(){
-        return sizeArray(this.items);
+        this.__defineGetter__("numItems", function() {
+            return sizeArray(this.items);
         });
 
-        this.setAction = function(cTrigger,cScript){}
-
-        this.clearItems = function(){
-          
-          this.items = [];
-          pdf.model['fields'][this.name]['options'] = [];
-          pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
+        this.setAction = function(cTrigger,cScript){
+           // TODO
         }
 
-        this.insertItemAt = function(cName,nIdx){
+        this.clearItems = function() {
+           this.items = [];
+           pdf.model['fields'][this.name]['options'] = [];
+           pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
+        }
+
+        this.insertItemAt = function(cName,nIdx) {
           this.items[nIdx] = cName;
           pdf.model['fields'][this.name]['options'] = this.items;
           pdf.dirtyKeys['fields.'+this.name+'.options'] = true;
         }
-    }
+}
     
 </script>
 
 <script id="event">
     
     // The event object contrsuctor
-    
-    function Event()
-    {
+    function Event() {
+      this.rc = true; 
+      
        this.__defineGetter__("value", function(){
-                              return pdf.model['EventValue'];
+                              return pdf.event["value"];
                               });
                               
+       this.__defineGetter__("source", function(){
+                              return getField(pdf.event["source"]);
+                              });
+
+       this.__defineGetter__("target", function(){
+                             return getField(pdf.event["target"]);
+                             });
+
+
        this.__defineGetter__("willCommit", function(){
-                            return true;
+                            return pdf.event["willCommit"];
                             });
     }
 
@@ -152,8 +187,7 @@ function sizeArray(arr)
     
     // The event object contrsuctor
     
-    function Media()
-    {
+    function Media(){
         
     }
 
@@ -165,18 +199,15 @@ function sizeArray(arr)
     /*
      A static JavaScript object that represents the Acrobat application. It defines a number of Acrobat-specific functions plus a variety of utility routines and convenience functions.
      */
-    
-    function App()
-    {
-        
-        this.__defineGetter__("activeDocs", function(){
+    function App() {
+        this.__defineGetter__("activeDocs", function() {
                               return new Array(0);
                               /*
                                Acrobat contextual. Returns array of active docs.*/
                               });
 
         
-        this.__defineGetter__("language", function(){
+        this.__defineGetter__("language", function() {
                               return "ENU";
                               /*
                                TODO: get this information from the client app.
@@ -196,7 +227,7 @@ function sizeArray(arr)
         this.media = new Media();
         
         
-        this.__defineGetter__("platorm", function(){
+        this.__defineGetter__("platorm", function() {
                               return "UNIX";
                               /*
                                The platform that the script is currently executing on. 
@@ -206,89 +237,84 @@ function sizeArray(arr)
                                UNIX*/
                               });
                               
-      this.__defineGetter__("printerNames", function(){
+      this.__defineGetter__("printerNames", function() {
                             return new Array(0);
                             /*
                              A list of available printers
                              */
                             });
-      this.__defineGetter__("viewerType", function(){
+
+      this.__defineGetter__("viewerType", function() {
                               return "PSPDFKit";
                               /*
                                A string that indicates which viewer application is running.
                                */
                               });
-                          
-        this.alert = function(message)
-        {
-            window.alert(message);
+
+        this.print = function(interactive) {
+            window.pdf.actions['app.print'] = [interactive];
+        }
+
+        this.alert = function(message) {
+            window.pdf.actions['app.alert'] = [message];
         }
         
-        
-        this.execMenuItem = function(cMenuItem,oDoc)
-        {
-            
-            //Executes a menu item.
+        this.execMenuItem = function(cMenuItem, oDoc) {
+            // Executes a menu item.
         }
         
-        this.goForeward = function()
-        {
+        this.goForeward = function() {
             // Refs the view stack
-             window.pdf.actions['app.goForeward'] = new Array(0);
+            window.pdf.actions['app.goForeward'] = new Array(0);
         }
         
-        this.goBack = function()
-        {
+        this.goBack = function() {
             // Refs the view stack
-              window.pdf.actions['app.goBack'] = new Array(0);
+            window.pdf.actions['app.goBack'] = new Array(0);
         }
         
-        this.beep = function()
-        {
+        this.beep = function() {
             // Should play a beep
             window.pdf.actions['app.beep'] = new Array(0);
         }
         
-        this.launchURL = function(cURL,bNewFrame)
-        {
+        this.launchURL = function(cURL,bNewFrame) {
             // Lauch a url resource eg webpage. bNewFrame indicates whether we have a new window.
-            window.pdf.actions['app.launchURL'] = new Array(cURL,bNewFrame);
+            window.pdf.actions['app.launchURL'] = new Array(cURL, bNewFrame);
         }
     }
-    
 </script>
 
 <script id="doc">
     
     // doc object points to root 'this' (window)
-    
-    function loadGlobals()
-    {
+    function loadGlobals() {
+
         // global static objects
-        
         window.app = new App();
         window.event = new Event();
-        
+
+        // forward app methods to this (e.g. this.print(true))
+        for (var f in window.app) {
+            if (typeof window.app[f] == 'function') this[f] = window.app[f];
+        }
+
         /*
-         
          Here we define the doc class. The doc class is essentially extended from
          the root window object of the UIWebView dom.
-         
          */
         
         // document methods
-        
-        window.getField = function(cName){return new Field(cName);}
+        window.getField = function(cName) {return new Field(cName);}
         
         // document properties
-        
-        window.__defineGetter__("pageNum", function(){
+        window.__defineGetter__("pageNum", function() {
                                 return pdf.model.pageNum;
         });
-        window.__defineSetter__("pageNum", function(_value){
+        window.__defineSetter__("pageNum", function(_value) {
                                 pdf.model.pageNum = _value;
+                                pdf.dirtyKeys['pageNum'] = true;
         });
-        
     }
     
 </script>

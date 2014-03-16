@@ -33,18 +33,9 @@ typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
 /// Customize label style. Defaults to `PSPDFLabelStyleFlat` on iOS6 and `PSPDFLabelStyleModern` on iOS7+.
 @property (nonatomic, assign) PSPDFLabelStyle labelStyle;
 
-/// Weak reference to the pdf controller. We use KVO for updates.
-@property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
-
-/// Update view.
-- (void)updateAnimated:(BOOL)animated;
-
 @end
 
 @interface PSPDFLabelView (SubclassingHooks)
-
-// Override to change KVO observers.
-- (NSArray *)KVOValues;
 
 @property (nonatomic, strong, readonly) PSPDFGradientView *gradientView; // iOS 6 gradient
 

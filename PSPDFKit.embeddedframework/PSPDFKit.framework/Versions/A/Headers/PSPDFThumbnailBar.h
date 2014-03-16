@@ -53,4 +53,7 @@
 /// Class used for thumbnails (defaults to `PSPDFThumbnailGridViewCell`)
 @property (nonatomic, strong) Class thumbnailCellClass;
 
+/// Show page labels. Defaults to NO.
+@property (nonatomic, assign) BOOL showPageLabels;
+
 @end

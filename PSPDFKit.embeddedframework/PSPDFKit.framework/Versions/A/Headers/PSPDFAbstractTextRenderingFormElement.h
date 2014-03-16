@@ -12,7 +12,7 @@
 
 #import "PSPDFFormElement.h"
 #import "PSPDFFreeTextAnnotation.h" // for PSPDFVerticalAlignment
-#import <CoreText/CoreText.h>
+@import CoreText;
 
 @protocol PSPDFTextOptionsProtocol <NSObject>
 - (CGFloat)fontSize;
@@ -71,6 +71,9 @@
 // Returns YES if the form element has automatic font sizing.
 - (BOOL)isAutoSizedFont;
 
+// Auto size a font within a rectangle.
+- (UIFont *)autoSizedFontWithContents:(NSString *)contents forRect:(CGRect)rect;
+
 /// (Optional; inheritable) The maximum length of the field’s text, in characters.
 @property (nonatomic, assign) NSUInteger maxLength;
 
@@ -94,5 +97,7 @@
 
 - (void)drawText:(NSString *)contents inContext:(CGContextRef)context withOptions:(id<PSPDFTextOptionsProtocol>)options;
 - (void)drawText:(NSString *)contents withCombLength:(NSUInteger)combLength inContext:(CGContextRef)context withOptions:(id<PSPDFTextOptionsProtocol>)options;
+
+- (void)drawText:(NSString *)text atMaximumSizeInRect:(CGRect)rect font:(UIFont *)font context:(CGContextRef)context;
 
 @end

@@ -10,20 +10,26 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFFormElement.h"
+#import "PSPDFAbstractTextRenderingFormElement.h"
 #import "PSPDFDigitalSignatureVerificationController.h"
+#import "PSPDFDigitalSignatureSigningHandler.h"
 
 @class PSPDFInkAnnotation;
 
 /// Signature Form Element.
-@interface PSPDFSignatureFormElement : PSPDFFormElement
+@interface PSPDFSignatureFormElement : PSPDFAbstractTextRenderingFormElement
 
 @property (nonatomic, weak, readonly) id<PSPDFDigitalSignatureVerificationHandler> verificationHandler;
-
 @property (nonatomic, assign, readonly) BOOL verified;
 
 /// Searches the document for an ink signature that overlaps the form element.
 /// @note This can be used as a replacement for a digital signature.
 - (PSPDFInkAnnotation *)overlappingInkSignature;
+
+@end
+
+@interface PSPDFSignatureFormElement (SubclassingHooks)
+
+- (void)drawArrowWithText:(NSString *)text andColor:(UIColor *)color inContext:(CGContextRef)context;
 
 @end

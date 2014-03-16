@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, PSPDFNamedActionType) {
     PSPDFNamedActionTypeGoForward,
     PSPDFNamedActionTypeGoToPage, // not implemented
     PSPDFNamedActionTypeFind,
-    PSPDFNamedActionTypePrint,    // not implemented
+    PSPDFNamedActionTypePrint,
     PSPDFNamedActionTypeOutline,
     PSPDFNamedActionTypeSearch,
     PSPDFNamedActionTypeBrightness,

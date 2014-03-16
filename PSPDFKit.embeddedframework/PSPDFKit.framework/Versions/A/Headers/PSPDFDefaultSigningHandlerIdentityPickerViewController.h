@@ -1,5 +1,5 @@
 //
-//  PSPDFGalleryImageItem.h
+//  PSPDFDefaultSigningHandlerIdentityPickerViewController.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFGalleryItem.h"
+#import "PSPDFKitGlobal.h"
+#import "PSPDFBaseTableViewController.h"
+#import "PSPDFDigitalSigningIdentity.h"
 
-/// An image item in a gallery.
-@interface PSPDFGalleryImageItem : PSPDFGalleryItem
+@interface PSPDFDefaultSigningHandlerIdentityPickerViewController : PSPDFBaseTableViewController
 
-/// An `PSPDFGalleryImageItem` has an `UIImage` as its content.
-- (UIImage *)content;
+- (instancetype)initWithSelectionBlock:(void (^)(PSPDFDigitalSigningIdentity *))block;
 
 @end

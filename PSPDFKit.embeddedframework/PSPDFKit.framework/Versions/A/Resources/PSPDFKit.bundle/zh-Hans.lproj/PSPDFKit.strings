@@ -64,6 +64,7 @@
 "All" = "全部";
 
 // password
+"Password" = "密码"; // text on a label
 "Unlock" = "解锁";
 "Please enter the password." = "请输入密码。";
 "This document cannot be unlocked. %@ is unsupported." = "此文稿无法解锁。不支持 %@。";
@@ -157,6 +158,9 @@
 "Signatures" = "签名";
 "Signed" = "已签名";
 "Sign" = "签名";
+"Sign using %@" = "使用 %@ 签名"; // e.g. Adobe.PPKLite
+"Methods" = "方法"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "选择身份"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "印章";
 "Stamps" = "印章";
 "Custom" = "自定";
@@ -302,6 +306,7 @@
 "Merge files" = "合并文件";
 
 // sound annotations
+"Speak" = "朗读"; // should be translated like the "Speak" Menu in UIKit
 "Play" = "播放";
 "Pause" = "暂停";
 "Pause Recording" = "暂停录制";

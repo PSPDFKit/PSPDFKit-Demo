@@ -12,7 +12,7 @@
 
 #import "PSPDFAction.h"
 
-@class PSPDFAnnotationManager;
+@class PSPDFAnnotationManager, MFMailComposeViewController;
 
 /// Opens a URL target.
 /// This can be similar to a `PSPDFRemoteGoToAction` if a pspdfkit:// URL with a page target is used.
@@ -29,6 +29,9 @@
 
 /// The annotation URL target.
 @property (nonatomic, strong) NSURL *URL;
+
+/// The unmodified and unparsed URL.
+@property (nonatomic, strong, readonly) NSURL *unmodifiedURL;
 
 /// This will convert pspdfkit:// URLS or localhost-URLs that use path tokens  into their expanded form, and will override the options dictionary with any option found in the URL. If the URL has already been processed, this will not do anything.
 /// @return YES if the URL has been updated.
@@ -56,5 +59,9 @@
 
 /// Regenerates a pspdfkit:// style sring IF `isPSPDFPrefixed` is set.
 - (NSString *)prefixedURLStringWithAnnotationManager:(PSPDFAnnotationManager *)annotationManager;
+
+// Helper to determine if the URL is an email and to configure the mail controller for email, subject, cc, bcc and body.
+- (BOOL)isEmailURL;
+- (BOOL)configureMailComposeViewController:(MFMailComposeViewController *)mailComposeViewController;
 
 @end

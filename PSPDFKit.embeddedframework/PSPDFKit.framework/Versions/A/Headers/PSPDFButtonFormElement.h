@@ -22,9 +22,6 @@ typedef NS_OPTIONS(NSUInteger, PSPDFButtonFlag) {
 /// Button Form Element (check boxes, radio buttons, regular form push buttons)
 @interface PSPDFButtonFormElement : PSPDFFormElement
 
-/// Designated initializer.
-- (id)initWithAnnotationDictionary:(CGPDFDictionaryRef)annotDict documentRef:(CGPDFDocumentRef)documentRef parent:(PSPDFFormElement *)parentFormElement fieldsAddressMap:(NSMutableDictionary *)fieldsAddressMap;
-
 /// A push button is a purely interactive control that responds immediately to user input without retaining a permanent value (see 12.7.4.2.2, “Pushbuttons”).
 - (BOOL)isPushButton;
 
@@ -44,7 +41,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFButtonFlag) {
 - (void)deselect;
 
 /// Toggle button selection state. Will send a change notification for `value`.
-- (BOOL)toggleButtonSelectionState;
+- (BOOL)toggleButtonSelectionStateAndSendNotification:(BOOL)sendNotification;
 
 /// (Optional; inheritable; PDF 1.4) An array containing one entry for each widget annotation in the Kids array of the radio button or check box field. Each entry shall be a text string representing the on state of the corresponding widget annotation. When this entry is present, the names used to represent the on state in the AP dictionary of each annotation (for example, /1, /2) numerical position (starting with 0) of the annotation in the Kids array, encoded as a name object. This allows distinguishing between the annotations even if two or more of them have the same value in the Opt array.
 @property (nonatomic, copy) NSArray *opt;

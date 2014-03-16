@@ -1,5 +1,5 @@
 //
-//  PSPDFImagePickerController.h
+//  PSPDFDigitalSignatureSigningDelegate.h
 //  PSPDFKit
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.
@@ -10,12 +10,12 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+#import "PSPDFKitGlobal.h"
+#import "PSPDFSignatureFormElement.h"
 
-/// Allows to subclass the image picker controller, for example if you need to block portrait:
-/// http://stackoverflow.com/questions/11467361/taking-a-photo-in-an-ios-landscape-only-app
-///
-/// Sets `allowsEditing` in init. Subclass to change this property.
-@interface PSPDFImagePickerController : UIImagePickerController
+/// Only available for PSPDFKit Complete with OpenSSL.
+@protocol PSPDFDigitalSignatureSigningDelegate <NSObject>
+
+- (void)pdfSigned:(PSPDFDocument *)pdf signingHandler:(id<PSPDFDigitalSignatureSigningHandler>)handler;
 
 @end

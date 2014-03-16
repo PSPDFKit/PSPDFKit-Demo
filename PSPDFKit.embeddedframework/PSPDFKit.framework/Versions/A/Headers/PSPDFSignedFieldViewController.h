@@ -13,6 +13,7 @@
 #import "PSPDFBaseViewController.h"
 #import "PSPDFDigitalSignatureVerificationController.h"
 
+/// Only available for PSPDFKit Complete with OpenSSL.
 @interface PSPDFSignedFieldViewController : PSPDFBaseViewController
 
 - (id)initWithVerificationController:(id<PSPDFDigitalSignatureVerificationHandler>)verificationHandler;

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 /// ScrollView subclass that listens to keyboard events and moves itself up accordingly.
 @interface PSPDFKeyboardAvoidingScrollView : UIScrollView

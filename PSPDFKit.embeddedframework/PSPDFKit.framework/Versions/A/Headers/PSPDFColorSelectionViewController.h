@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "PSPDFSimplePageViewController.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFColorPickerStyle) {

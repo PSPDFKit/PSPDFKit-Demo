@@ -46,7 +46,13 @@ extern NSString *const PSPDFAnnotationStringFile;
 extern NSString *const PSPDFAnnotationStringRichMedia;
 extern NSString *const PSPDFAnnotationStringScreen;
 extern NSString *const PSPDFAnnotationStringCaret;      // There's no menu entry for Caret.
-extern NSString *const PSPDFAnnotationStringPopup;      // Placeholder. Not yet supported.
+
+// Placeholders. Not yet supported.
+extern NSString *const PSPDFAnnotationStringPopup;
+extern NSString *const PSPDFAnnotationStringWatermark;
+extern NSString *const PSPDFAnnotationStringTrapNet;
+extern NSString *const PSPDFAnnotationString3D;
+extern NSString *const PSPDFAnnotationStringRedact;
 
 /// PDF Annotations types.
 typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
@@ -73,6 +79,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFAnnotationType) {
     PSPDFAnnotationTypePolygon     = 1 << 15,
     PSPDFAnnotationTypePolyLine    = 1 << 16,
     PSPDFAnnotationTypePopup       = 1 << 21, /// Popup annotations are not yet supported.
+    PSPDFANnotationTypeWatermark   = 1 << 22, /// Not supported.
+    PSPDFAnnotationTypeTrapNet     = 1 << 23, /// Not supported.
+    PSPDFAnnotationType3D          = 1 << 24, /// Not supported.
+    PSPDFAnnotationTypeRedact      = 1 << 25, /// Not supported.
     PSPDFAnnotationTypeAll         = NSUIntegerMax
 };
 
@@ -112,7 +122,7 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
     PSPDFAnnotationTriggerEventCursorEnters,  // E  (0)
     PSPDFAnnotationTriggerEventCursorExits,   // X  (1)
     PSPDFAnnotationTriggerEventMouseDown,     // D  (2, Supported)
-    PSPDFAnnotationTriggerEventMouseUp,       // U  (3)
+    PSPDFAnnotationTriggerEventMouseUp,       // U  (3, Supported)
     PSPDFAnnotationTriggerEventReceiveFocus,  // Fo (4)
     PSPDFAnnotationTriggerEventLooseFocus,    // Bl (5)
     PSPDFAnnotationTriggerEventPageOpened,    // PO (6)
@@ -154,6 +164,9 @@ typedef NS_ENUM(UInt8, PSPDFAnnotationTriggerEvent) {
 
 /// Returns YES if this annotation type has a fixed size, no matter the internal bounding box.
 + (BOOL)isFixedSize;
+
+/// Returns YES if this annotation requires an implicit popup annotation.
++ (BOOL)requriesPopupAnnotation;
 
 /// Returns YES if this annotation type is moveable.
 - (BOOL)isMovable;

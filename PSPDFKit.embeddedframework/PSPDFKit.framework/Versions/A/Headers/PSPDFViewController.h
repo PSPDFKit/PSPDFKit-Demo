@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <MessageUI/MessageUI.h>
+@import MessageUI;
 #import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFBaseViewController.h"
@@ -25,9 +25,11 @@
 #import "PSPDFSearchViewController.h"
 #import "PSPDFStatusBarStyleHint.h"
 #import "PSPDFThumbnailBar.h"
+#import "PSPDFConfigurationDataSource.h"
+#import "PSPDFHUDView.h"
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
-@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFHUDView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager;
+@class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager;
 
 /// Page Transition. Can be scrolling or something more fancy.
 typedef NS_ENUM(NSUInteger, PSPDFPageTransition) {
@@ -65,25 +67,6 @@ typedef NS_ENUM(NSUInteger, PSPDFStatusBarStyle) {
     PSPDFStatusBarStyleDisable                 /// Never show status bar.
 };
 
-typedef NS_ENUM(NSUInteger, PSPDFHUDViewMode) {
-    PSPDFHUDViewModeAlways,                   /// Always show the HUD.
-    PSPDFHUDViewModeAutomatic,                /// Show HUD on touch and first/last page.
-    PSPDFHUDViewModeAutomaticNoFirstLastPage, /// Show HUD on touch.
-    PSPDFHUDViewModeNever                     /// Never show the HUD.
-};
-
-typedef NS_ENUM(NSUInteger, PSPDFHUDViewAnimation) {
-    PSPDFHUDViewAnimationNone,            /// Don't animate HUD appearance
-    PSPDFHUDViewAnimationFade,            /// Fade HUD in/out
-    PSPDFHUDViewAnimationSlide            /// Slide HUD.
-};
-
-typedef NS_ENUM(NSUInteger, PSPDFThumbnailBarMode) {
-    PSPDFThumbnailBarModeNone,            /// Don't show thumbnail bottom bar.
-    PSPDFThumbnailBarModeScrobbleBar,     /// Show scrobble bar (like iBooks, PSPDFScrobbleBar)
-    PSPDFThumbnailBarModeScrollable       /// Show scrollable thumbnail bar (PSPDFThumbnailBar)
-};
-
 /// Default action for PDF link annotations.
 typedef NS_ENUM(NSUInteger, PSPDFLinkAction) {
     PSPDFLinkActionNone,         /// Link actions are ignored.
@@ -107,6 +90,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
     PSPDFTextSelectionMenuActionSearch    = 1 << 0, /// Allow search from selected text.
     PSPDFTextSelectionMenuActionDefine    = 1 << 1, /// Offers to show "Define" on selected text.
     PSPDFTextSelectionMenuActionWikipedia = 1 << 2, /// Offers a toggle for Wikipedia.
+    PSPDFTextSelectionMenuActionSpeak     = 1 << 3, /// Allows text-to-speech (iOS 7+)
     PSPDFTextSelectionMenuActionAll       = NSUIntegerMax
 };
 
@@ -119,7 +103,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
 
  The best time for setting the properties is during initialization in `commonInitWithDocument:`. Some properties require a call to `reloadData` if they are changed after the controller has been displayed. Do not set properties during a rotation phase or view appearance (e.g. use `viewDidAppear:` instead of `viewWillAppear:`) since that could corrupt internal state, instead use `updateSettingsForRotation:`.
 */
-@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFSearchViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, PSPDFThumbnailBarDelegate, PSPDFOverridable, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PSPDFViewController : PSPDFBaseViewController <PSPDFOutlineViewControllerDelegate, PSPDFPasswordViewDelegate, PSPDFTextSearchDelegate, PSPDFWebViewControllerDelegate, PSPDFBookmarkViewControllerDelegate, PSPDFSearchViewControllerDelegate, PSPDFAnnotationTableViewControllerDelegate, PSPDFThumbnailViewControllerDelegate, PSPDFThumbnailBarDelegate, PSPDFOverridable, UIPopoverControllerDelegate, MFMailComposeViewControllerDelegate, PSPDFConfigurationDataSource, PSPDFPageLabelViewDelegate>
 
 /// @name Initialization and essential properties.
 
@@ -194,6 +178,14 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// The only valid option is `PSPDFViewControllerSearchHeadlessKey` to disable the search UI.
 - (void)searchForString:(NSString *)searchText options:(NSDictionary *)options animated:(BOOL)animated;
 
+/// The search view manager
+@property (nonatomic, strong, readonly) PSPDFSearchHighlightViewManager *searchHighlightViewManager;
+
+/// Text extraction class for current document.
+/// The delegate is set to this controller. Don't change but create your own text search class instead if you need a different delegate.
+/// Will be recreated as the document changes. Returns nil if the document is nil. Thread safe.
+@property (nonatomic, strong, readonly) PSPDFTextSearch *textSearch;
+
 
 /// @name Properties
 
@@ -219,6 +211,10 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// If set to YES, tries to find the text blocks on the page and zooms into the tapped block.
 /// NO will perform a generic zoom into the tap area. Defaults to YES.
 @property (nonatomic, assign, getter=isSmartZoomEnabled) BOOL smartZoomEnabled;
+
+/// If set to YES, automatically focuses on selected form elements on iOS7. Defaults to YES on iPhone.
+/// @note Will be ignored on iOS 6.
+@property (nonatomic, assign, getter=isFormElementZoomEnabled) BOOL formElementZoomEnabled;
 
 /// Enable/disable scrolling. Can be used in special cases where scrolling is turned off (temporarily). Defaults to YES.
 @property (nonatomic, assign, getter=isScrollingEnabled) BOOL scrollingEnabled;
@@ -278,7 +274,7 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 
 /// @name HUD Controls
 
-/// View that is displayed as HUD. Make a KVO on viewMode if you build a different HUD for thumbnails view.
+/// View that is displayed as HUD.
 /// The `HUDView` is created in viewDidLoad.
 @property (nonatomic, strong, readonly) PSPDFHUDView *HUDView;
 
@@ -290,6 +286,22 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 
 /// Sets the way the HUD will be animated. Defaults to `PSPDFHUDViewAnimationFade`.
 @property (nonatomic, assign) PSPDFHUDViewAnimation HUDViewAnimation;
+
+/// Sets the thumbnail bar mode. Defaults to `PSPDFThumbnailBarModeScrobbleBar`.
+@property (nonatomic, assign) PSPDFThumbnailBarMode thumbnailBarMode;
+
+/// Enables/Disables the bottom document site position overlay.
+/// Defaults to YES. Animatable. Will be added to the HUDView.
+@property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
+
+/// Enable/disable the top document label overlay. Defaults to YES on iPhone and NO on iPad.
+/// (On iPad, there's enough space to show the title in the navigationBar)
+@property (nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
+
+/// Specifies the distance between the page label view and the top of the scrobble bar or the
+/// bottom of the screen, depending on whether the scrobble bar is enabled. Defaults to 10.f
+@property (nonatomic, assign) CGFloat pageLabelDistance;
+
 
 /// Automatically hides the HUD when the user starts scrolling to different pages in the document. Defaults to YES.
 @property (nonatomic, assign) BOOL shouldHideHUDOnPageChange;
@@ -324,24 +336,13 @@ extern NSString *const PSPDFViewControllerSearchHeadlessKey;
 /// @warning Requires `isToolbarEnabled = YES` to work.
 @property (nonatomic, assign) BOOL allowToolbarTitleChange;
 
-/// Sets the thumbnail bar mode. Defaults to `PSPDFThumbnailBarModeScrobbleBar`.
-@property (nonatomic, assign) PSPDFThumbnailBarMode thumbnailBarMode;
-
-/// Enables/Disables the bottom document site position overlay.
-/// Defaults to YES. Animatable. Will be added to the HUDView.
-@property (nonatomic, assign, getter=isPageLabelEnabled) BOOL pageLabelEnabled;
-
-/// Enable/disable the top document label overlay. Defaults to YES on iPhone and NO on iPad.
-/// (On iPad, there's enough space to show the title in the navigationBar)
-@property (nonatomic, assign, getter=isDocumentLabelEnabled) BOOL documentLabelEnabled;
-
 /// If YES, shows an `UIActivityIndicator` on the top right while page is rendering. Defaults to YES.
 @property (nonatomic, assign, getter=isRenderAnimationEnabled) BOOL renderAnimationEnabled;
 
 /// Content view. Use this if you want to add any always-visible UI elements.
 /// Created in `viewDidLoad.` `contentView` is behind `HUDView` but always visible.
 /// ContentView does NOT overlay the `navigationBar`/`statusBar`, even if that one is transparent.
-@property (nonatomic, strong, readonly) PSPDFHUDView *contentView;
+@property (nonatomic, strong, readonly) PSPDFRelayTouchesView *contentView;
 
 /// @name Appearance Properties
 
@@ -661,9 +662,6 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 
 /// Override if you're changing the toolbar to your own.
 /// The toolbar is only displayed, if `PSPDFViewController` is inside a `UINavigationController`.
-- (void)createToolbarAnimated:(BOOL)animated;
-
-/// Updates the toolbar buttons.
 - (void)updateToolbarAnimated:(BOOL)animated;
 
 // Fine-tune what buttons are being set on left/right side of the navigation bar.
@@ -681,18 +679,6 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 /// Convenience method for `updateSettingsForRotation:`.
 - (void)setUpdateSettingsForRotationBlock:(void (^)(PSPDFViewController *pdfController, UIInterfaceOrientation toInterfaceOrientation))block;
 
-// Clears the highlight views.
-- (void)clearHighlightedSearchResults;
-
-// Adds the highlight views.
-- (void)addHighlightSearchResults:(NSArray *)searchResults;
-
-// Animates a certain search highlight.
-- (void)animateSearchHighlight:(PSPDFSearchResult *)searchResult;
-
-// Will be called whenever the thumbnail bar changes it's frame.
-- (void)updateThumbnailBarFrameAnimated:(BOOL)animated;
-
 /// Access internal `UIViewController` for displaying the PDF content
 @property (nonatomic, strong, readonly) UIViewController<PSPDFTransitionProtocol> *pageTransitionController;
 
@@ -702,22 +688,6 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 
 /// Will return the annotation bar if currently one is visible.
 - (PSPDFAnnotationToolbar *)visibleAnnotationToolbar;
-
-/// Document page label view.
-@property (nonatomic, strong) PSPDFPageLabelView *pageLabel;
-
-/// Specifies the distance between the page label view and the top of the scrobble bar or the
-/// bottom of the screen, depending on whether the scrobble bar is enabled. Defaults to 30.f
-@property (nonatomic, assign) CGFloat pageLabelDistance;
-
-/// Document title label view. (default iPhone only)
-@property (nonatomic, strong) PSPDFDocumentLabelView *documentLabel;
-
-/// Scrobble bar. Created lazily. Available if `PSPDFThumbnailBarModeScrobbleBar` is set.
-@property (nonatomic, strong, readonly) PSPDFScrobbleBar *scrobbleBar;
-
-/// Thumbnail bar. Created lazily. Available if `PSPDFThumbnailBarModeScrollable` is set.
-@property (nonatomic, strong, readonly) PSPDFThumbnailBar *thumbnailBar;
 
 // Allows access to the annotation cache.
 @property (nonatomic, strong, readonly) PSPDFAnnotationViewCache *annotationViewCache;
@@ -732,14 +702,5 @@ extern NSString *const PSPDFPresentOptionPersistentCloseButtonMode; // Set to en
 
 // Reload a specific page.
 - (void)updatePage:(NSUInteger)page animated:(BOOL)animated;
-
-@end
-
-@interface PSPDFViewController (Deprecated)
-
-- (void)zoomToRect:(CGRect)rect animated:(BOOL)animated PSPDF_DEPRECATED(3.2.3, "Please use zoomToRect:page:animated: instead.");
-
-extern const NSUInteger PSPDFStatusBarStyleSmartBlack PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContent");
-extern const NSUInteger PSPDFStatusBarStyleSmartBlackHideOnIpad PSPDF_DEPRECATED(3.3, "Please use PSPDFStatusBarStyleLightContentHideOnIpad");
 
 @end

@@ -13,6 +13,7 @@
 #import "PSPDFKitGlobal.h"
 #import "PSPDFSignatureFormElement.h"
 
+/// Only available for PSPDFKit Complete with OpenSSL.
 @protocol PSPDFDigitalSignatureRevisionDelegate <NSObject>
 
 - (void)pdfRevisionRequested:(PSPDFDocument *)pdf verificationHandler:(id<PSPDFDigitalSignatureVerificationHandler>)handler;

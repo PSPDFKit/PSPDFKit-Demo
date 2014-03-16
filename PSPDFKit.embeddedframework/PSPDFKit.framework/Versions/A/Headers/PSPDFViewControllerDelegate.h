@@ -16,6 +16,12 @@
 @protocol PSPDFAnnotationViewProtocol;
 @class PSPDFDocument, PSPDFPageInfo, PSPDFImageInfo, PSPDFAnnotation, PSPDFPageView, PSPDFScrollView;
 
+// NSNotification equivalent to `didShowPageView:` delegate.
+extern NSString *const PSPDFViewControllerDidShowPageViewNotification;
+
+// NSNotification equivalent to `didLoadPageView:` delegate.
+extern NSString *const PSPDFViewControllerDidLoadPageViewNotification;
+
 /// Implement this delegate in your `UIViewController` to get notified of `PSPDFViewController` events.
 @protocol PSPDFViewControllerDelegate <NSObject>
 
@@ -87,7 +93,10 @@
 - (PSPDFDocument *)pdfViewController:(PSPDFViewController *)pdfController documentForRelativePath:(NSString *)relativePath;
 
 /**
- `didTapOnPageView:` will be called if a user taps on the screen. Taps outside `pageView` will be reported too (with negative offset)
+ `didTapOnPageView:` will be called if a user taps on the page view.
+
+ Taps that can't be associated to a specific `pageView` will still be reported, but `pageView` is nil and the point will be relative to the view of the `PSPDFViewController`.
+ 
  Return YES if you want to set this touch as processed; this will disable automatic touch processing like showing/hiding the HUDView or scrolling to the next/previous page.
 
  @note This will not send events when the controller is in thumbnail view.

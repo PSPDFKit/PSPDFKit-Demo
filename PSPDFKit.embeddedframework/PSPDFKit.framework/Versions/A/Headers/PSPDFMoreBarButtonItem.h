@@ -14,4 +14,8 @@
 
 @interface PSPDFMoreBarButtonItem : PSPDFBarButtonItem
 
+/// If there's only one valid action in the list, instead directly use this button.
+/// Defaults to YES.
+@property (nonatomic, assign) BOOL shouldConsolidateIfOnlyOneOptionAvailable;
+
 @end

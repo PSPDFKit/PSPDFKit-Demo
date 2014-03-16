@@ -11,14 +11,9 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFTextSearch.h"
+#import "PSPDFAnnotation.h"
 
 @class PSPDFDocument, PSPDFSearchOperation;
-
-typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
-    PSPDFSearchModeBasic,        // don't show highlight positions
-    PSPDFSearchModeHighlighting, // show highlights
-};
 
 /// Get updates while the search operation is running.
 @protocol PSPDFSearchOperationDelegate <NSObject>
@@ -52,11 +47,11 @@ typedef NS_ENUM(NSInteger, PSPDFSearchMode) {
 /// We have to limit the number of search results to something reasonable (memory constraints)
 @property (nonatomic, assign) NSUInteger maximumNumberOfSearchResults;
 
-/// Set the searchMode for the search. Defaults to `PSPDFSearchModeHighlighting`.
-@property (nonatomic, assign) PSPDFSearchMode searchMode;
-
 /// Set compareOptions for the search.
 @property (nonatomic, assign) NSStringCompareOptions compareOptions;
+
+/// Will include annotations that have a matching type into the search results. (contents will be searched). PSPDFKit Basic/Complete feature.
+@property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
 
 /// Search delegate.
 @property (nonatomic, weak) id<PSPDFSearchOperationDelegate> delegate;

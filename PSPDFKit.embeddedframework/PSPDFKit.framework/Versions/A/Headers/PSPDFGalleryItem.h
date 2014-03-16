@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class PSPDFLinkAnnotation;
 
@@ -81,7 +81,7 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 + (PSPDFGalleryItem *)itemFromLinkAnnotation:(PSPDFLinkAnnotation *)annotation;
 
 /// Create an item from a given dictionary. The dictionary will usually be parsed JSON.
-/// @note This is the designated initalizer.
+/// @note This is the designated initializer.
 - (id)initWithDictionary:(NSDictionary *)dictionary error:(NSError **)error;
 
 /// Initialize with `contentURL` and `caption`. `contentURL` can be local or remote; `caption` and

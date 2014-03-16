@@ -12,9 +12,9 @@
 
 #import "PSPDFLocalization.h"
 #import "PSPDFOverridable.h"
-#import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-#import <UIKit/UIKit.h>
+@import Foundation;
+@import CoreGraphics;
+@import UIKit;
 
 // PSPDFKit version detection.
 #define __PSPDFKIT_IOS__
@@ -24,6 +24,7 @@
 #define __PSPDFKIT_3_3_0 3300
 #define __PSPDFKIT_3_4_0 3400
 #define __PSPDFKIT_3_5_0 3500
+#define __PSPDFKIT_3_6_0 3600
 
 extern NSString *PSPDFVersionString(void); // Returns "PSPDFKit 3.x.x"
 extern NSDate   *PSPDFVersionDate(void);   // Returns compilation date.
@@ -60,9 +61,6 @@ extern void PSPDFSetXCallbackString(NSString *callbackString);
 // Compares sizes and allows aspect ratio changes.
 extern BOOL PSPDFSizeAspectRatioEqualToSize(CGSize containerSize, CGSize size);
 
-// Trims down a string, removing characters like \n 's etc.
-extern NSString *PSPDFTrimString(NSString *string);
-
 // Convert an `NSArray` of `NSNumber's` to an `NSIndexSet`.
 extern NSIndexSet *PSPDFIndexSetFromArray(NSArray *array);
 
@@ -97,12 +95,11 @@ extern CGRect PSPDFConvertViewRectToPDFRect(CGRect viewRect, CGRect cropBox, NSU
 #define PSPDFKeyForClass(CLASS, KEY) @#KEY
 #endif
 
-// Defines a yet undocumented compiler attribute to add a warning if super isn't called.
-#ifndef NS_REQUIRES_SUPER
-#if __has_attribute(objc_requires_super)
-#define NS_REQUIRES_SUPER __attribute((objc_requires_super))
+#ifndef NS_DESIGNATED_INITIALIZER
+#if __has_attribute(objc_designated_initializer)
+#define NS_DESIGNATED_INITIALIZER __attribute((objc_designated_initializer))
 #else
-#define NS_REQUIRES_SUPER
+#define NS_DESIGNATED_INITIALIZER
 #endif
 #endif
 

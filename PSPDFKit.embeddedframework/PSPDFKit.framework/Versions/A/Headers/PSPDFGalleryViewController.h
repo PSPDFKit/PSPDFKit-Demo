@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "PSPDFBaseViewController.h"
 #import "PSPDFGalleryItem.h"
 
@@ -72,6 +72,12 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// The color that is displayed behind images in the gallery. Set this to `[UIColor clearColor]`
 /// if you need a transparent mode. Defaults to black.
 @property (nonatomic, strong) UIColor *backgroundColor;
+
+/// Setting this to `YES` will blur the background. Defaults to `NO`.
+/// @note Blurring is not available when in fullscreen mode.
+/// @warning Blurring might be slow on older devices or versions of iOS. Before using, make sure
+/// to test your application on those devices!
+@property (nonatomic, assign) BOOL blurBackground;
 
 /// The color that is displayed behind images in the gallery when in fullscreen mode.
 /// Set this to `[UIColor clearColor]` if you need a transparent mode. Defaults to black.

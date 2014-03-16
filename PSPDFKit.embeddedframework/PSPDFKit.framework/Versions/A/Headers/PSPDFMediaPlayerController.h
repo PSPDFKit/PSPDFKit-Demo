@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+@import UIKit;
+@import AVFoundation;
 
 typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControlStyle) {
     /// Shows no controls whatsoever.

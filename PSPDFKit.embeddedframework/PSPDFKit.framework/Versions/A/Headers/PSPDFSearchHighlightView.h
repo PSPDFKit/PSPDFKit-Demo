@@ -29,4 +29,7 @@
 /// Default background color is yellow, 50% alpha.
 @property (nonatomic, strong) UIColor *selectionBackgroundColor UI_APPEARANCE_SELECTOR;
 
+/// Default corner radius is 4.f
+@property (nonatomic, assign) NSUInteger cornerRadius UI_APPEARANCE_SELECTOR;
+
 @end

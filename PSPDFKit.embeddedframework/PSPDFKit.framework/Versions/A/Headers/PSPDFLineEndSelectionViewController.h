@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "PSPDFStaticTableViewController.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFLineHelper.h"

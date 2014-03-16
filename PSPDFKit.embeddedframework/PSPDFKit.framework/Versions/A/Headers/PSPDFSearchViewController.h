@@ -11,12 +11,13 @@
 //
 
 #import "PSPDFKitGlobal.h"
-#import "PSPDFTextSearch.h"
-#import "PSPDFCache.h"
 #import "PSPDFExtendedPopoverController.h"
-#import "PSPDFStatusBarStyleHint.h"
-#import "PSPDFStyleable.h"
 #import "PSPDFBaseTableViewController.h"
+#import "PSPDFStatusBarStyleHint.h"
+#import "PSPDFTextSearch.h"
+#import "PSPDFAnnotation.h"
+#import "PSPDFStyleable.h"
+#import "PSPDFCache.h"
 
 @class PSPDFDocument, PSPDFViewController, PSPDFSearchResult, PSPDFSearchResultCell;
 
@@ -49,6 +50,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 /// Allows to narrow down the search rage if a scope is set.
 - (NSIndexSet *)searchViewController:(PSPDFSearchViewController *)searchController searchRangeForScope:(NSString *)scope;
+
+/// Requests the text search class. Creates a custom class if not implemented.
+- (PSPDFTextSearch *)searchViewControllerTextSearchObject:(PSPDFSearchViewController *)searchController;
 
 @end
 
@@ -91,6 +95,10 @@ extern NSUInteger PSPDFMinimumSearchLength;
 /// Defaults to YES.
 @property (nonatomic, assign) BOOL useOutlineForPageNames;
 
+/// Will include annotations that have a matching type into the search results. (contents will be searched).
+/// Defaults to PSPDFAnnotationTypeAll. PSPDFKit Basic/Complete feature.
+@property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
+
 /// Pins the search bar to the top. Defaults to YES on iPhone.
 /// @note Has to be set before the view is created.
 @property (nonatomic, assign) BOOL pinSearchBarToHeader;
@@ -100,6 +108,9 @@ extern NSUInteger PSPDFMinimumSearchLength;
 
 /// The search view controller delegate.
 @property (nonatomic, weak) id<PSPDFSearchViewControllerDelegate> delegate;
+
+/// Call to force a search restart. Useful if the underlying content has changed.
+- (void)restartSearch;
 
 @end
 

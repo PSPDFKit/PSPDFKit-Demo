@@ -12,6 +12,7 @@
 
 #import "PSPDFDigitalSignatureVerificationHandler.h"
 
+/// Only available for PSPDFKit Complete with OpenSSL.
 @interface PSPDFDigitalSignatureX509VerificationStatus : NSObject <PSPDFSignatureVerificationStatus>
 
 - (id)initWithError:(int)error;

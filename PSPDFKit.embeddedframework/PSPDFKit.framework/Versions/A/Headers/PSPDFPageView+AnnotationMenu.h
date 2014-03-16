@@ -12,6 +12,8 @@
 
 #import "PSPDFPageView.h"
 
+@class PSPDFSignatureFormElement;
+
 @interface PSPDFPageView (AnnotationMenu) <PSPDFSignatureViewControllerDelegate, PSPDFSignatureSelectorViewControllerDelegate, PSPDFAnnotationStyleViewControllerDelegate, PSPDFColorSelectionViewControllerDelegate, PSPDFNoteAnnotationViewControllerDelegate, PSPDFFontSelectorViewControllerDelegate, PSPDFFontStyleViewControllerDelegate>
 
 /// Returns available `PSPDFMenuItem's` for the current annotation.
@@ -65,6 +67,9 @@
 // Show signature menu.
 - (void)showNewSignatureMenuAtRect:(CGRect)rect animated:(BOOL)animated;
 
+// Show digital signature menu.
+- (BOOL)showDigitalSignatureMenuForSignatureField:(PSPDFSignatureFormElement *)signatureField animated:(BOOL)animated;
+
 // Show image menu.
 - (void)showNewImageMenuAtPoint:(CGPoint)point animated:(BOOL)animated;
 
@@ -99,6 +104,8 @@ extern NSString *const PSPDFTextMenuDefine;
 extern NSString *const PSPDFTextMenuSearch;
 extern NSString *const PSPDFTextMenuWikipedia;
 extern NSString *const PSPDFTextMenuCreateLink;
+extern NSString *const PSPDFTextMenuSpeak;
+extern NSString *const PSPDFTextMenuPause;
 // Text menu also uses PSPDFAnnotationMenu[Highlight|Underline|Strikeout|Squiggle].
 
 // General

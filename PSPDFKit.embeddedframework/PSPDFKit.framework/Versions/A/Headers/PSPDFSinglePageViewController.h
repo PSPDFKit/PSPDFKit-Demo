@@ -35,7 +35,7 @@
 /// Attached pdfController.
 @property (nonatomic, unsafe_unretained) PSPDFViewController *pdfController;
 
-/// internally used pageView.
+/// internally used page view.
 @property (nonatomic, strong, readonly) PSPDFPageView *pageView;
 
 /// current visible page.

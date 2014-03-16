@@ -14,7 +14,8 @@
 #import "PSPDFSquareAnnotation.h"
 #import "PSPDFPolygonAnnotation.h"
 #import "PSPDFLineHelper.h"
-#import <QuartzCore/QuartzCore.h>
+#import "PSPDFAnnotationViewProtocol.h"
+@import QuartzCore.QuartzCore;
 
 @class PSPDFDrawView, PSPDFDrawAction;
 
@@ -32,7 +33,7 @@
 @end
 
 /// Class that allows drawing on top of a `PSPDFPageView`.
-@interface PSPDFDrawView : UIView
+@interface PSPDFDrawView : UIView <PSPDFAnnotationViewProtocol>
 
 /// Current stroke color.
 @property (nonatomic, strong) UIColor *strokeColor;

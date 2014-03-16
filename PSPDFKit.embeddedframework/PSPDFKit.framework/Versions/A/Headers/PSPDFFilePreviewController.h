@@ -10,10 +10,13 @@
 //  This notice may not be removed from this file.
 //
 
-#import <QuickLook/QuickLook.h>
+@import QuickLook;
 
 /// Use QuickLook to preview an item.
 @interface PSPDFFilePreviewController : QLPreviewController <QLPreviewControllerDataSource, QLPreviewControllerDelegate>
+
+/// Designated initializer.
+- (id)initWithPreviewURL:(NSURL *)previewURL;
 
 /// URL to then item that should be previewed.
 @property (nonatomic, strong) NSURL *previewURL;

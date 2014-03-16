@@ -127,13 +127,3 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 @property (nonatomic, strong, readonly) NSError *error;
 
 @end
-
-@interface PSPDFProcessor (Deprecated)
-
-- (BOOL)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead.");
-- (NSData *)generatePDFFromDocument:(PSPDFDocument *)document pageRange:(NSIndexSet *)pageRange options:(NSDictionary *)options progressBlock:(PSPDFProgressBlock)progressBlock error:(NSError **)error PSPDF_DEPRECATED(3.3.2, "Use the variant with pageRanges (NSArray) instead.");
-
-- (BOOL)generatePDFFromHTMLString:(NSString *)HTML outputFileURL:(NSURL *)fileURL options:(NSDictionary *)options PSPDF_DEPRECATED(3.4.3, "Use the variant with error: instead.");
-- (NSData *)generatePDFFromHTMLString:(NSString *)HTML options:(NSDictionary *)options PSPDF_DEPRECATED(3.4.3, "Use the variant with error: instead.");
-
-@end

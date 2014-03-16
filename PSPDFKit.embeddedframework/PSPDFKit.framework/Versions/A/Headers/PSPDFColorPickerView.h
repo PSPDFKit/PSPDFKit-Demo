@@ -11,8 +11,8 @@
 //  Based on work of Ryan Sullivan. BSD licensed.
 //
 
-#import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
+@import UIKit;
+@import QuartzCore.QuartzCore;
 
 @class PSPDFColorPickerView, PSPDFLoupeLayer, PSPDFBrightnessSlider;
 

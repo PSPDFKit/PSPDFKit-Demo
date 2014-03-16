@@ -26,10 +26,13 @@
 - (NSArray *)parseWithError:(NSError **)error;
 
 /// Return all annotations as array. Annotations are sorted by page.
-@property (nonatomic, readonly) NSArray * annotations;
+@property (nonatomic, copy, readonly) NSArray *annotations;
+
+/// Returns YES while we're parsing.
+@property (atomic, assign, readonly, getter = isParsing) BOOL parsing;
 
 /// Returns YES if parsing has ended for `inputStream`.
-@property (nonatomic, assign, readonly) BOOL parsingEnded;
+@property (atomic, assign, readonly) BOOL parsingEnded;
 
 /// The attached document provider.
 @property (nonatomic, weak, readonly) PSPDFDocumentProvider *documentProvider;

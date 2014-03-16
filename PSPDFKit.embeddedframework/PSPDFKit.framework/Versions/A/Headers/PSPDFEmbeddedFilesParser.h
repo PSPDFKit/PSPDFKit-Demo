@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @class PSPDFDocumentProvider, PSPDFEmbeddedFile;
 
@@ -25,8 +25,5 @@
 
 /// Array of `PSPDFEmbeddedFile` objects.
 @property (nonatomic, copy, readonly) NSArray *embeddedFiles;
-
-/// Get the parsed and extracted URL from the file.
-- (NSURL *)URLForEmbeddedFile:(PSPDFEmbeddedFile *)file error:(NSError **)error;
 
 @end

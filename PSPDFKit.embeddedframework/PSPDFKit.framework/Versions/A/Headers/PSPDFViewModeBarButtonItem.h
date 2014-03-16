@@ -30,6 +30,6 @@ typedef NS_ENUM(NSUInteger, PSPDFViewModeBarButtonStyle) {
 
 /// The internally used segment. Only valid for `PSPDFViewModeBarButtonStyleSwitch`.
 /// @note The custom subclass `PSPDFSegmentedControl` is used here which allows changing the image on selection.
-@property (nonatomic, strong, readonly) PSPDFSegmentedControl *viewModeSegment;
+@property (nonatomic, strong, readonly) PSPDFCustomImagesSegmentedControl *viewModeSegment;
 
 @end

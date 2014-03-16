@@ -15,7 +15,7 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFOverridable.h"
-#import <CoreGraphics/CoreGraphics.h>
+@import CoreGraphics;
 
 @class PSPDFFormParser, PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationManager, PSPDFViewController, PSPDFTextParser,PSPDFDocumentProvider, PSPDFBookmarkParser, PSPDFRenderReceipt;
 
@@ -51,14 +51,14 @@
 /// In most cases, you really want to use a `fileURL` instead. When using `NSData`, PSPDFKit is unable to automatically save annotation changes back into the PDF. Also, keep in mind that iOS is an environment without virtual memory. Loading a 100MB PDF will simply get your app killed by the iOS watchdog while you try to allocate more memory than is available. If you use `NSData` because of encryption, look into `CGDataProvider` instead for a way to dynamically decrypt the needed portions of the PDF.
 + (instancetype)documentWithData:(NSData *)data;
 
-/// Initialize `PSPDFDocument` with multiple data objects
+/// Initialize `PSPDFDocument` with multiple (NSData) data objects.
 + (instancetype)documentWithDataArray:(NSArray *)dataArray;
 
 /// Initialize `PSPDFDocument` with a `dataProvider`.
 /// @warning You might need to manually set a UID to enable caching if the dataProvider is too big to be copied into memory.
 + (instancetype)documentWithDataProvider:(CGDataProviderRef)dataProvider;
 
-/// Initialize `PSPDFDocument` with one or multiple `dataProviders`.
+/// Initialize `PSPDFDocument` with one or multiple `dataProviders` (CGDataProviderRef).
 + (instancetype)documentWithDataProviderArray:(NSArray *)dataProviders;
 
 /// Initialize `PSPDFDocument` with distinct path and an array of files.
@@ -70,7 +70,7 @@
 + (instancetype)documentWithBaseURL:(NSURL *)baseURL fileTemplate:(NSString *)fileTemplate startPage:(NSInteger)startPage endPage:(NSInteger)endPage;
 
 // Regular init methods.
-- (id)init;
+- (id)init NS_DESIGNATED_INITIALIZER;
 - (id)initWithURL:(NSURL *)URL;
 - (id)initWithData:(NSData *)data;
 - (id)initWithDataArray:(NSArray *)data;
@@ -87,10 +87,6 @@
 @property (atomic, weak) id<PSPDFDocumentDelegate> delegate;
 
 /// @name File Access / Modification
-
-/// Appends a file to the current document. No PDF gets modified, just displayed together. Can be a name or partial path (full path if basePath is nil)
-/// Adding the same file multiple times is allowed.
-- (void)appendFile:(NSString *)file;
 
 /// Returns path for a single page (in case pages are split up). Page starts at 0.
 /// @note Uses `fileIndexForPage:` and `URLForFileIndex:` internally. Override those instead of pathForPage.
@@ -121,11 +117,10 @@
 /// Array of `NSString` pdf files. If basePath is set, this will be combined with the file name.
 /// If `basePath` is not set, add the full path (as `NSString`) to the files.
 /// @note It's currently not possible to add the file multiple times, this will fail to display correctly.
-@property (nonatomic, copy) NSArray *files;
+@property (nonatomic, copy, readonly) NSArray *files;
 
-/// Usually, you have one single file URL representing the pdf. This is a shortcut setter for basePath* files. Overrides all current settings if set.
-/// nil if the document was initialized with `initWithData:`
-@property (nonatomic, strong) NSURL *fileURL;
+/// Defines the `basePath` for the PDF `files` strings.
+@property (nonatomic, strong, readonly) NSURL *fileURL;
 
 /// PDF data when initialized with initWithData: otherwise nil.
 /// This is a shortcut to the first entry of dataArray.
@@ -137,6 +132,11 @@
 
 /// PDF dataProviders (can be used to dynamically decrypt a document). Will be retained when set.
 @property (nonatomic, copy, readonly) NSArray *dataProviderArray;
+
+/// Creates a new document with adding `objects`.
+/// objects can be an `NSString` (file), `NSData` or a `CGDataProviderRef`.
+/// @note This uses `NSCopying` to preserve custom settings.
+- (instancetype)documentByAppendingObjects:(NSArray *)objects;
 
 /// The unique UID for the document.
 ///
@@ -194,10 +194,6 @@
 
 /// @name Attached Parsers
 
-/// Text extraction class for current document.
-/// Be careful where you're setting the delegate. You can also create a custom `PSPDFTextSearch` class.
-@property (nonatomic, strong) PSPDFTextSearch *textSearch;
-
 /// Outline extraction class for current document.
 /// @warning Only returns the parser for the first PDF file.
 @property (nonatomic, strong, readonly) PSPDFOutlineParser *outlineParser;
@@ -251,9 +247,9 @@
  * If the document is unlocked with only user permissions, `unlockWithPassword:` attempts to obtain full owner permissions with the password string.
  * If the string fails, the document maintains its user permissions. In either case, this method returns YES.
  *
- * After unlocking a document, you need to call reloadData on the `PSPDFViewController`.
+ * After unlocking a document, you need to call `reloadData` on the `PSPDFViewController`.
  *
- * If you're using multiple files or appendFile, all new files will be unlocked with the password.
+ * If you're using multiple files or `appendFile:`, all new files will be unlocked with the password.
  * This doesn't harm if the document is already unlocked.
  *
  * If you have a mixture of files with multiple different passwords, you need to subclass `didCreateDocumentProvider:` and unlock the `documentProvider` directly there.
@@ -658,7 +654,3 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 - (NSUInteger)documentProviderRelativePageWithPageRangeCompensated:(NSUInteger)page;
 
 @end
-
-// The way how the document UID is generated has been changed in PSPDFKit 2.1.0. Previously, for files it used the full app path. However since the app UID could change after an upgrade, we had to change this behavior. This is only important if you used bookmarks or allowed annotations saving into the internal storage - not for embedded annotation data. Set the global variable `PSPDFUseLegacyUIDGenerationMethod` to YES to continue using the old path. Those files are in Library/PrivateDocuments. You might want to write a custom migration step to rename the custom data paths from the old UID to the new UID system. The `PSPDFUseLegacyUIDGenerationMethod` can be changed at any time to switch between old and new UID (generate a new PSPDFDocument instance to force UID regeneration). The default for this is NO.
-extern BOOL PSPDFUseLegacyUIDGenerationMethod;
-

@@ -26,7 +26,7 @@
 - (id)initWithStream:(CGPDFStreamRef)stream;
 
 /// The complete page text, including extrapolated spaces and newline characters.
-@property (nonatomic, strong) NSString *text;
+@property (nonatomic, copy, readonly) NSString *text;
 
 /// Complete list of `PSPDFGlyph` objects. Corresponds to the text.
 @property (nonatomic, strong, readonly) NSArray *glyphs;
@@ -53,8 +53,12 @@
 
 @interface PSPDFTextParser (SubclassingHooks)
 
-// Performance.
-@property (atomic, strong) NSString *transformedText;
+// Will be called on each character, allows to cancel individual characters.
+// The default implementation will simply return YES.
+- (BOOL)shouldParseCharacter:(uint16_t)character;
+
+// Exposes the current marked content stack.
+@property (nonatomic, strong, readonly) NSArray *markedContentStack;
 
 // Access the internal lock.
 @property (nonatomic, assign, readonly) dispatch_queue_t parsingQueue;

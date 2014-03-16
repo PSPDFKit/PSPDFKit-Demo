@@ -37,6 +37,7 @@ extern NSUInteger PSPDFDictionaryGetIntegerC(CGPDFDictionaryRef pdfDict, const c
 extern NSString *PSPDFDictionaryGetStringForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSArray *PSPDFDictionaryGetArrayForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 extern NSDictionary *PSPDFDictionaryGetDictionaryForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
+extern NSUInteger PSPDFDictionaryGetIntegerForPath(CGPDFDictionaryRef pdfDict, NSString *keyPath);
 
 // Convert a single PDF object to the corresponding CoreFoundation-object.
 extern id PSPDFConvertPDFObject(CGPDFObjectRef objectRef);

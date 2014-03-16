@@ -10,10 +10,16 @@
 //  This notice may not be removed from this file.
 //
 
-#import "PSPDFBarButtonItem.h"
+#import "PSPDFSelectableBarButtonItem.h"
 #import "PSPDFAnnotationToolbar.h"
+#import "PSPDFFlexibleAnnotationToolbar.h"
 
 @class PSPDFAnnotationToolbar;
+
+typedef NS_ENUM(NSUInteger, PSPDFAnnotationToolbarType) {
+    PSPDFAnnotationToolbarTypeSystem,  /// A `UIToolbar` based annotation toolbar type (old)
+    PSPDFAnnotationToolbarTypeFlexible /// Draggable annotation toolbar type (modern, iOS 7 only)
+};
 
 /**
  Show/Hide the annotation toolbar.
@@ -29,16 +35,27 @@
  If not, `PSPDFAnnotationBarButtonItem` looks for the `UIToolbar` it is embedded in (you can override `targetToolbarForBarButtonItem`). The `annotationToolbar` will copy the style of the current UIToolbar. (`barStyle`, `translucent`, `tintColor`)
  If everything else fails, the toolbar will be displayed above the `PSPDFViewController's` view anchored at the top.
  */
-@interface PSPDFAnnotationBarButtonItem : PSPDFBarButtonItem <PSPDFAnnotationToolbarDelegate>
+@interface PSPDFAnnotationBarButtonItem : PSPDFSelectableBarButtonItem <PSPDFAnnotationToolbarDelegate>
 
 /// Non-async check for isAvailable.
 - (BOOL)isAvailableBlocking;
 
-/// Override if you are using multiple `UIToolbars` and want to change on what toolbar the annotation bar should be displayed.
-/// Returns `UIToolbar` or `UINavigationBar`.
-- (UIView *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
+/// The selected toolbar type will be used the next time the bar button action is invoked.
+/// Defaults to `PSPDFAnnotationToolbarTypeFlexible` on iOS 7.
+@property (nonatomic, assign) PSPDFAnnotationToolbarType annotationToolbarType;
 
 /// Internally used and displayed annotation toolbar.
 @property (nonatomic, strong, readonly) PSPDFAnnotationToolbar *annotationToolbar;
+
+/// Internally used and displayed flexible annotation toolbar.
+@property (nonatomic, strong, readonly) PSPDFFlexibleAnnotationToolbar *flexibleAnnotationToolbar;
+
+@end
+
+@interface PSPDFAnnotationBarButtonItem (SubclassingHooks)
+
+/// Override if you are using multiple `UIToolbars` and want to change on what toolbar the annotation bar should be displayed.
+/// Returns `UIToolbar` or `UINavigationBar`.
+- (UIView *)targetToolbarForBarButtonItem:(UIBarButtonItem *)barButtonItem;
 
 @end

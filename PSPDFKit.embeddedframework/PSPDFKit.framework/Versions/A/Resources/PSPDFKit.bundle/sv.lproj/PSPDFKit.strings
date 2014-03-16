@@ -64,7 +64,7 @@
 "All" = "Alla";
 
 // password
-"Password" = "Password"; // text on a label
+"Password" = "Lösenord"; // text on a label
 "Unlock" = "Lås upp";
 "Please enter the password." = "Ange lösenordet.";
 "This document cannot be unlocked. %@ is unsupported." = "Dokumentet kan inte låsas upp. %@ stöds ej.";
@@ -158,9 +158,9 @@
 "Signatures" = "Underskrifter";
 "Signed" = "Underskrivet";
 "Sign" = "Skriv under";
-"Sign using %@" = "Sign using %@"; // e.g. Adobe.PPKLite
-"Methods" = "Methods"; // text on a button. An example for a method would be signing.
-"Choose Identity" = "Choose Identity"; // text on a label. the user should choose an identity that is used for signing.
+"Sign using %@" = "Signera med %@"; // e.g. Adobe.PPKLite
+"Methods" = "Metoder"; // text on a button. An example for a method would be signing.
+"Choose Identity" = "Välj identitet"; // text on a label. the user should choose an identity that is used for signing.
 "Stamp" = "Stämpel";
 "Stamps" = "Stämplar";
 "Custom" = "Anpassad";
