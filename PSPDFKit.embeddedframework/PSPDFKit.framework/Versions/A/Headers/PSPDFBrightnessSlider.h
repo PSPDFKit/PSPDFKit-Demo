@@ -11,7 +11,7 @@
 //  Based on work of Ryan Sullivan. BSD licensed.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, PSPDFSliderBackgroundStyle) {
     PSPDFSliderBackgroundStyleDefault = 0,

@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
-@import QuartzCore.QuartzCore;
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 #import "PSPDFAnnotation.h"
 
 #define PSPDFAllLineEndsAreInside   1                   // Define to 1 to keep all line endings extruding from the line/polyline coordinates to a minimum

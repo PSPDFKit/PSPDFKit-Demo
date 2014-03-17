@@ -12,7 +12,7 @@
 
 #import "PSPDFFormElement.h"
 #import "PSPDFFreeTextAnnotation.h" // for PSPDFVerticalAlignment
-@import CoreText;
+#import <CoreText/CoreText.h>
 
 @protocol PSPDFTextOptionsProtocol <NSObject>
 - (CGFloat)fontSize;

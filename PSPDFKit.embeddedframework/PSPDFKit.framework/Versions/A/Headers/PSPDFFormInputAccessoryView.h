@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "PSPDFFormInputAccessoryViewDelegate.h"
 
 // Notification when someone pressed "Clear Field".

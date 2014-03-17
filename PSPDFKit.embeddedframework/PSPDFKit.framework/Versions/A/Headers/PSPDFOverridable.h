@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 // Allows to override specific subclasses of a controller/view/model.
 @protocol PSPDFOverridable <NSObject>

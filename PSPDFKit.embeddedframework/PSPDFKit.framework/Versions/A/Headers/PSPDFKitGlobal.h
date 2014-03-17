@@ -12,9 +12,9 @@
 
 #import "PSPDFLocalization.h"
 #import "PSPDFOverridable.h"
-@import Foundation;
-@import CoreGraphics;
-@import UIKit;
+#import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 
 // PSPDFKit version detection.
 #define __PSPDFKIT_IOS__

@@ -12,7 +12,7 @@
 //  Based on GitHub's Mantle project, MIT licensed. See ACKNOWLEDGEMENTS for details.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 // An abstract base class for model objects, using reflection to provide
 // sensible default behaviors.

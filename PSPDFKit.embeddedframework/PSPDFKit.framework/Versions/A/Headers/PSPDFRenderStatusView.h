@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /// The render status view is used within `PSPDFPageView` to show a progress indicator while we render the PDF.
 @interface PSPDFRenderStatusView : UIView

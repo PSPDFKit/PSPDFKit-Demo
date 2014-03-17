@@ -15,7 +15,7 @@
 #import "PSPDFPolygonAnnotation.h"
 #import "PSPDFLineHelper.h"
 #import "PSPDFAnnotationViewProtocol.h"
-@import QuartzCore.QuartzCore;
+#import <QuartzCore/QuartzCore.h>
 
 @class PSPDFDrawView, PSPDFDrawAction;
 

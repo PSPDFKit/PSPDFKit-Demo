@@ -12,7 +12,7 @@
 
 #import "PSPDFKitGlobal.h"
 #import "PSPDFHighlightAnnotation.h"
-@import AVFoundation;
+#import <AVFoundation/AVFoundation.h>
 
 @class PSPDFTextParser, PSPDFWord, PSPDFImageInfo, PSPDFPageView, PSPDFHighlightAnnotation, PSPDFLinkAnnotation, PSPDFAnnotation, PSPDFNoteAnnotation, PSPDFLoupeView, PSPDFLongPressGestureRecognizer;
 

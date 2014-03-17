@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonKeyDerivation.h>
 
 extern NSString *const PSPDFCryptorErrorDomain;

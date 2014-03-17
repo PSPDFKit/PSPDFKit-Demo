@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 
 /// Generic table view controller with popover resizing code.

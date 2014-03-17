@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
-@import AVFoundation;
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import "PSPDFGalleryItem.h"
 
 typedef NS_ENUM(NSUInteger, PSPDFGalleryVideoItemQuality) {

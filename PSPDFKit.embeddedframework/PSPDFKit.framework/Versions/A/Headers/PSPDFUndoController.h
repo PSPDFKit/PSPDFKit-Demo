@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "PSPDFUndoProtocol.h"
 
 // Sent once we have new undo operations available.

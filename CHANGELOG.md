@@ -4,6 +4,12 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.6.1 - 17/Mar/2014__
+
+*  Before a document is saved, we now set the annotation state mode to nil, which commits any open annotations like inks.
+*  Reverted the use of @import with modules. Apple's module feature seems to have issues with projects that also use C++.
+*  Fixes an issue with saving annotations in certain PDFs with corrupted page IDs.
+
 __v3.6.0 - 16/Mar/2014__
 
 We're proud to ship the next milestone of PSPDFKit. Version 3.6 features a completely new annotation toolbar, search within annotation text, note annotations that show up in the thumbnails and countless other improvements.

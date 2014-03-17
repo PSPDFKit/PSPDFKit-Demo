@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFUndoCoalescing) {
     /// Does not coalesce events with the same key at all but rather creates one new undo event for every single change.

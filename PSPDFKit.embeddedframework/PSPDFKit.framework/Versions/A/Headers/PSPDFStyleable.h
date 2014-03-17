@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "PSPDFStatusBarStyleHint.h"
 
 /// Implement in your `UIViewController` subclass to be able to match the style of PSPDFViewController.

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import QuickLook;
+#import <QuickLook/QuickLook.h>
 
 /// Use QuickLook to preview an item.
 @interface PSPDFFilePreviewController : QLPreviewController <QLPreviewControllerDataSource, QLPreviewControllerDelegate>

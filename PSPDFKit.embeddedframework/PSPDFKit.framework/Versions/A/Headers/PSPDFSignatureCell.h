@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 // A cell that centers its image.
 @interface PSPDFSignatureCell : UITableViewCell

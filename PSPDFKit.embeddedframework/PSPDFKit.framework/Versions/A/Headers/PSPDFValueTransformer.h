@@ -11,7 +11,7 @@
 //  Based on GitHub's Mantle project, MIT licensed.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 /// A value transformer supporting block-based transformation.
 @interface PSPDFValueTransformer : NSValueTransformer

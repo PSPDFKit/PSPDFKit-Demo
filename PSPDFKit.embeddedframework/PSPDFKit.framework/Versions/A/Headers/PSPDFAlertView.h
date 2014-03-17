@@ -9,7 +9,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /// Helper to add block features to `UIAlertView`.
 /// @note After block has been executed, it is set to nil, breaking potential retain cycles.

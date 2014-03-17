@@ -15,7 +15,7 @@
 #import "PSPDFAnnotation.h"
 #import "PSPDFDocumentProvider.h"
 #import "PSPDFOverridable.h"
-@import CoreGraphics;
+#import <CoreGraphics/CoreGraphics.h>
 
 @class PSPDFFormParser, PSPDFTextSearch, PSPDFOutlineParser, PSPDFPageInfo, PSPDFAnnotationManager, PSPDFViewController, PSPDFTextParser,PSPDFDocumentProvider, PSPDFBookmarkParser, PSPDFRenderReceipt;
 

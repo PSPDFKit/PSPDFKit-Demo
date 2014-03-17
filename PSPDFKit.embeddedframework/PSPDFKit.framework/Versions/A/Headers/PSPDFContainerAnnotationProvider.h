@@ -14,6 +14,7 @@
 #import "PSPDFAnnotationProvider.h"
 #import "PSPDFUndoProtocol.h"
 
+/// Default container for annotations. It's cruicial that you use this class as your base class if you implement a custom annotation provider, as this class offers efficient undo/redo which otherwise is almost impossible to replicate unless you understand the PSPDFKit internals extremely well.
 @interface PSPDFContainerAnnotationProvider : NSObject <PSPDFAnnotationProvider, PSPDFUndoProtocol>
 
 /// Designated initializer.
@@ -26,40 +27,44 @@
 
 @interface PSPDFContainerAnnotationProvider (SubclassingHooks)
 
-// Called before new annotations are inserted. Subclass to perform custom actions.
-- (void)willInsertAnnotations:(NSArray *)annotations;
-
-@end
-
-@interface PSPDFContainerAnnotationProvider (Private)
-
-// Allows synchronization with the internal queue.
+// Allows synchronization with the internal reader/writer queue.
+// You shouldn't call any of the methods below inside such synchronization blocks, or you will risk a deadlock.
 - (void)performBlockForReading:(void (^)())block;
 - (void)performBlockForWriting:(void (^)())block;
 - (void)performBlockForWritingAndWait:(void (^)())block;
 
-// Modify the internal store.
+// Modify the internal store. Optionally appends annotations instead of replacing them.
+// @note The page set in the `annotations` need to match the `page`.
 - (void)setAnnotations:(NSArray *)annotations forPage:(NSUInteger)page append:(BOOL)append;
 
 // Set annotations, evaluate the page value of each annotation.
 - (void)setAnnotations:(NSArray *)annotations append:(BOOL)append;
 
-// Remove notifications and optionally sends notifications.
+// Remove annotations and optionally sends notifications.
 - (NSArray *)removeAnnotations:(NSArray *)annotations sendNotifications:(BOOL)sendNotifications;
 
-// Remove all annotations.
+// Remove all annotations (effectively clears the cache).
 - (void)removeAllAnnotationsAndSendNotification:(BOOL)sendNotification;
 
-// Returns all annotations of all pages.
+// Returns all annotations of all pages in one array.
 - (NSArray *)allAnnotations;
+
+// Returns all annotations as a page->annotations per page dictionary.
 - (NSDictionary *)annotations;
 
+// Adding/Removing annotations triggers an internal flag that the provider requires saving.
+// This method can clear this flag.
 - (void)clearNeedsSaveFlag;
 
 // Allows to override the annotation cache directly. Faster than using `setAnnotations:`.
 - (void)setAnnotationCacheDirect:(NSDictionary *)annotationCache;
-- (void)registerObjectsForUndo:(NSArray *)annotations;
+- (void)registerAnnotationsForUndo:(NSArray *)annotations;
 
+// Allows to directly access the internally used annotation cache.
+// Be extremely careful when accessing this, and use the locking methods.
 @property (nonatomic, strong, readonly) NSMutableDictionary *annotationCache;
+
+// Called before new annotations are inserted. Subclass to perform custom actions.
+- (void)willInsertAnnotations:(NSArray *)annotations;
 
 @end

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 // The PSPDFKit Error Domain.
 extern NSString *const PSPDFErrorDomain;

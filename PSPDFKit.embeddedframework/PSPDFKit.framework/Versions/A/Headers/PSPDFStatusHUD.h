@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, PSPDFStatusHUDStyle) {
     PSPDFStatusHUDStyleNone = 0, // user interactions enabled, no UI mask

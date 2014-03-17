@@ -10,8 +10,8 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
-@import AVFoundation;
+#import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
 /// Controls text-to-speach features. iOS 7+ only.
 @interface PSPDFSpeechSynthesizer : NSObject

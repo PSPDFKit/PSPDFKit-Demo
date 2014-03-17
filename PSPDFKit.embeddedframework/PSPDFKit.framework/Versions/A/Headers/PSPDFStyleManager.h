@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "PSPDFAnnotationStyle.h"
 
 // This key will return the last used style.

@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "PSPDFEmbeddedFilesViewController.h"
 
 @interface PSPDFViewController (EmbeddedFileSupport) <PSPDFEmbeddedFilesViewControllerDelegate>

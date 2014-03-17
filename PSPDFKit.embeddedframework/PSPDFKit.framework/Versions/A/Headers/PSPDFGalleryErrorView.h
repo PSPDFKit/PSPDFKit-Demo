@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /// The error view used in `PSPDFGalleryContentView` and `PSPDFGalleryViewController`.
 @interface PSPDFGalleryErrorView : UIView

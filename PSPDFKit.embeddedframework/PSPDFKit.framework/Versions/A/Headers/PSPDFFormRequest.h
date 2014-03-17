@@ -17,7 +17,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFSubmitFormActionFormat) {
     PSPDFSubmitFormActionFormatPDF,
 };
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @interface PSPDFFormRequest : NSObject
 

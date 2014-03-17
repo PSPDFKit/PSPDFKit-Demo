@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "PSPDFRelayTouchesView.h"
 #import "PSPDFScrobbleBar.h"
 #import "PSPDFLabelView.h"

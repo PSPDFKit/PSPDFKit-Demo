@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /// `UIPopoverController` compatible replacement for the iPhone.
 /// This will work well for simple cases, but isn't as advanced as `UIPopoverController`.

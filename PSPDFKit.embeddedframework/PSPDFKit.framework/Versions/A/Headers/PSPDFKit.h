@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 // common
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "PSPDFKitGlobal.h"
 #import "PSPDFConverter.h"
 #import "PSPDFGlobalLock.h"

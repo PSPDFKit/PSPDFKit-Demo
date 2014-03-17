@@ -10,7 +10,7 @@
 //  This notice may not be removed from this file.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 /// The loading view used in `PSPDFGalleryViewController`.
 @interface PSPDFGalleryLoadingView : UIView

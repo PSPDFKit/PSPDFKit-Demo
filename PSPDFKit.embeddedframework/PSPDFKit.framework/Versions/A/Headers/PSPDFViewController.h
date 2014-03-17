@@ -10,7 +10,6 @@
 //  This notice may not be removed from this file.
 //
 
-@import MessageUI;
 #import "PSPDFKitGlobal.h"
 #import "PSPDFAnnotation.h"
 #import "PSPDFBaseViewController.h"
@@ -27,6 +26,7 @@
 #import "PSPDFThumbnailBar.h"
 #import "PSPDFConfigurationDataSource.h"
 #import "PSPDFHUDView.h"
+#import <MessageUI/MessageUI.h>
 
 @protocol PSPDFViewControllerDelegate, PSPDFAnnotationSetStore, PSPDFFormSubmissionDelegate;
 @class PSPDFDocument, PSPDFScrollView, PSPDFScrobbleBar, PSPDFPageView, PSPDFRelayTouchesView, PSPDFPageViewController, PSPDFSearchResult, PSPDFViewState, PSPDFBarButtonItem, PSPDFPageLabelView, PSPDFDocumentLabelView, PSPDFEmailBarButtonItem, PSPDFOpenInBarButtonItem, PSPDFCloseBarButtonItem, PSPDFMoreBarButtonItem, PSPDFBrightnessBarButtonItem, PSPDFBookmarkBarButtonItem, PSPDFViewModeBarButtonItem, PSPDFActivityBarButtonItem, PSPDFAnnotationBarButtonItem, PSPDFSearchBarButtonItem, PSPDFOutlineBarButtonItem, PSPDFPrintBarButtonItem, PSPDFAnnotationToolbar, PSPDFAnnotationViewCache, PSPDFAnnotationStateManager, PSPDFSearchHighlightViewManager;
