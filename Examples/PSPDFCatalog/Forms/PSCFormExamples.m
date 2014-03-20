@@ -116,6 +116,47 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Programmatic Form Filling
+
+@interface PSCFormFillingExample : PSCExample @end
+@implementation PSCFormFillingExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Programmatic Form Filling";
+        self.contentDescription = @"Automatically fills out all forms in code.";
+        self.category = PSCExampleCategoryForms;
+        self.priority = 30;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
+    PSPDFDocument *document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Form_example.pdf"]];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+
+    // Get all form objects and fill them in.
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSArray *annotations = [document annotationsForPage:0 type:PSPDFAnnotationTypeWidget];
+        for (PSPDFFormElement *formElement in annotations) {
+            if ([formElement isKindOfClass:PSPDFTextFieldFormElement.class]) {
+                [NSThread sleepForTimeInterval:1.f];
+
+                // Change model on main thread and send a change notification.
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    formElement.contents = [NSString stringWithFormat:@"Test %@", formElement.fieldName];
+                    [NSNotificationCenter.defaultCenter postNotificationName:PSPDFAnnotationChangedNotification object:formElement userInfo:@{PSPDFAnnotationChangedNotificationKeyPathKey : @[@"contents"]}];
+                });
+            }
+        }
+    });
+
+    return [[PSPDFViewController alloc] initWithDocument:document];
+}
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCFormDigitallySignedModifiedExample
 
 @interface PSCFormDigitallySignedModifiedExample : PSCExample @end
