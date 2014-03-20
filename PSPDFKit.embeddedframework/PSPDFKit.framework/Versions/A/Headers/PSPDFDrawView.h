@@ -98,6 +98,14 @@
 @property (nonatomic, strong, readonly) CAShapeLayer *fillLayer;
 @property (nonatomic, strong, readonly) CALayer *previewLayer;
 
+// Drawing
+- (BOOL)shouldProcessTouches:(NSSet *)touches withEvent:(UIEvent *)event;
+
+- (void)startDrawingAtPoint:(CGPoint)location;
+- (void)continueDrawingAtPoint:(CGPoint)location;
+- (void)endDrawing;    // commits
+- (void)cancelDrawing; // cancels
+
 @end
 
 

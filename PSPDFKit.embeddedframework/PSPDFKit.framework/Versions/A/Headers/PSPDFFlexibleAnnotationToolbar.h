@@ -17,6 +17,7 @@
  The annotation toolbar allows the creation of most annotation types supported by PSPDFKit.
  
  To customize which annotation icons should be displayed, edit `editableAnnotationTypes` in PSPDFDocument.
+ Further appearance customization options are documented in the superclass header (`PSPDFFlexibleToolbar.h`).
  
  This class is conceptually similar to `PSPDFAnnotationToolbar`, but since it inherits from `PSPDFFlexibleToolbar` instead of
  `UIToolbar` it features some additional functionality (mainly the ability to drag & drop the toolbar to various positions).
@@ -44,6 +45,11 @@
 /// Annotation types that are defined in the group but are missing in `annotationStateManager.editableAnnotationTypes` will be ignored silently.
 /// Use `PSPDFAnnotationGroupKeyChoice` and `PSPDFAnnotationGroupKeyGroup`, define in `PSPDFAnnotationToolbar`, as constants to configure the array.
 @property (nonatomic, copy) NSArray *annotationGroups;
+
+/// Allows custom `UIButton` objects to be added after the buttons in `annotationGroups`.
+/// For best results use `PSPDFFlexibleToolbarButton` objects.
+/// Defaults to nil.
+@property (nonatomic, copy) NSArray *additionalButtons;
 
 /// This will issue a save event after the toolbar has been dismissed.
 /// @note Since saving can take some time, this defaults to NO.

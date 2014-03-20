@@ -4,6 +4,23 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.6.2 - 21/Mar/2014__
+
+*  Improves appearance customization options for the new `PSPDFFlexibleAnnotationToolbar`.
+*  The new `PSPDFFlexibleAnnotationToolbar` is easier to customize and also has an `additionalButtons` property to add custom actions.
+*  Makes sure the `PSPDFFlexibleAnnotationToolbar` is always removed from the view hierarchy as the `PSPDFViewController` disappears.
+*  The `PSPDFGallery` now better deals with custom quality properties for YouTube videos.
+*  Ensures that the status bar doesn't change on iOS 7 with view controller based status bar appearance enabled when the `PSPDFStatusHUD` is displayed.
+*  Improves the XFDF writer/parser to deal with more action types (`PSPDFRenditionAction`, `PSPDFRichMediaExecuteAction`, `PSPDFSubmitFormAction`, `PSPDFResetFormAction`, `PSPDFHideAction`).
+*  Improves popover positioning logic, especially for the search popover.
+*  Improves stability when using the new container annotation provider class.
+*  API: Removes `aspectRatioEqual` and `aspectRatioVariance` from `PSPDFDocument`. Other performance improvements made this option no longer useful.
+*  API: Clarifies usage of the `PSPDFGalleryViewController` by renaming the `allowFullscreen` property to `displayModeUserInteractionEnabled`.
+*  Fixes a potential issue with an over-release of NSError when printing a single page with PSPDFKit Viewer.
+*  Fixes a stability issue when serializing annotations for certain PDF AcroForm buttons with icons in the appearance characteristics dictionary.
+*  Fixes an issue where changing the page via the annotation table view controller could end up on a page that wasn't correctly centered.
+*  Fixes a small selection issue with handling multiple equal grouped annotations on the same page.
+
 __v3.6.1 - 17/Mar/2014__
 
 *  Before a document is saved, we now set the annotation state mode to nil, which commits any open annotations like inks.

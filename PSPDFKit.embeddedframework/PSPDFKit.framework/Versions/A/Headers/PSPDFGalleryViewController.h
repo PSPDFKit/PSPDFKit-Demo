@@ -50,10 +50,11 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// To disable prefetching, set this to zero.
 @property (nonatomic, assign) NSUInteger maxPrefetchDownloads;
 
-/// Control if the user can enter the fullscreen mode by double-tapping. Defaults to YES.
-/// @note This only affects user interaction. If you call `setFullscreen:YES` manually, the fullscreen mode will
-/// still be entered.
-@property (nonatomic, assign) BOOL allowFullscreen;
+/// Controls if the user can switch between the fullscreen mode and embedded mode by double-tapping
+/// or panning. Defaults to `YES`.
+/// @note This only affects user interaction. If you call `setFullscreen:animated:` programmatically,
+/// the mode will still be set accordingly.
+@property (nonatomic, assign) BOOL displayModeUserInteractionEnabled;
 
 /// The treshold in points after which the fullscreen mode is exited after a pan. Defaults to 80pt.
 @property (nonatomic, assign) CGFloat fullscreenDismissPanTreshold;

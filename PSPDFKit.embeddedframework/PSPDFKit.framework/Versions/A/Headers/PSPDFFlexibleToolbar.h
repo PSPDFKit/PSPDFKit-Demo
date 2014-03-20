@@ -56,8 +56,11 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 /**
  A custom toolbar, that can dragged around the screen and anchored to different positions.
- As opposed to `UIToolbar`, this class holds an array of `UIButtons` objects directly.
- This class should be used in combination with a `PSPDFFlexibleToolbarContainer` instance.
+
+ This class holds an array of `UIButton` objects. For best results use `PSPDFFlexibleToolbarButton` or one of it's subclasses.
+ PSPDFFlexibleToolbar should be used in combination with a `PSPDFFlexibleToolbarContainer` instance.
+ The bar's visual appearance can be customized using UIAppearance compliant properties.
+
  @see `PSPDFFlexibleToolbarContainer`
  */
 @interface PSPDFFlexibleToolbar : UIView
@@ -79,7 +82,7 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 /// Currently set buttons. Needs to be an array of UIButton instances.
 /// For best results use `PSPDFFlexibleToolbarButton` and it's subclasses.
 /// Use `PSPDFFlexibleToolbarSpacerButton` to add fixed or flexible space to the toolbar.
-@property (nonatomic, strong) NSArray *buttons;
+@property (nonatomic, copy) NSArray *buttons;
 
 /// Sets the buttons and optionally performs a cross-fade animation between the previous and new button set.
 - (void)setButtons:(NSArray *)buttons animated:(BOOL)animated;
@@ -112,27 +115,28 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 
 /// The bar tint color. Gets passed on to the background view (setting it's `barTintColor` if implemented,
 /// otherwise it's backgroundColor).
-@property (nonatomic, strong) UIColor *barTintColor;
+@property (nonatomic, strong) UIColor *barTintColor UI_APPEARANCE_SELECTOR;
 
 /// The tint color for selected buttons.
 /// Only available in UIKit flat mode.
 /// Defaults to `barTintColor`.
-@property (nonatomic, strong) UIColor *selectedTintColor;
+@property (nonatomic, strong) UIColor *selectedTintColor UI_APPEARANCE_SELECTOR;
 
 /// The selection bezel color.
 /// Defaults to self.tintColor in UIKit flat mode and 50% white otherwise.
-@property (nonatomic, strong) UIColor *selectedBackgroundColor;
+@property (nonatomic, strong) UIColor *selectedBackgroundColor UI_APPEARANCE_SELECTOR;
 
 /// Toolbar positions that draw a thin border around the toolbar.
 /// Defaults to `PSPDFFlexibleToolbarPositionsAll`.
-@property (nonatomic, assign) PSPDFFlexibleToolbarPosition borderedToolbarPositions;
+@property (nonatomic, assign) PSPDFFlexibleToolbarPosition borderedToolbarPositions UI_APPEARANCE_SELECTOR;
 
 /// Toolbar positions that draw a faint shadow around the toolbar.
 /// Defaults to `PSPDFFlexibleToolbarPositionsVertical`.
-@property (nonatomic, assign) PSPDFFlexibleToolbarPosition shadowedToolbarPositions;
+@property (nonatomic, assign) PSPDFFlexibleToolbarPosition shadowedToolbarPositions UI_APPEARANCE_SELECTOR;
 
 /// Matches the background view appearance to the provided UINavigationBar or UIToolbar.
 /// Includes barTintColor, barStyle, translucency, etc.
+/// Some appearance attributes are only matched if there are't any existing UIAppearance presets for that attribute.
 - (void)matchUIBarAppearance:(UIView *)navigationBarOrToolbar;
 
 /// @name Metrics

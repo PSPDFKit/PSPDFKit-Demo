@@ -634,14 +634,6 @@ extern NSString *const PSPDFMetadataKeyTrapped;
 /// PSPDFKit will use the box value set in the `PDFBox` property, which defaults to `kCGPDFCropBox`.
 - (CGRect)boxRect:(CGPDFBox)boxType forPage:(NSUInteger)page error:(NSError **)error;
 
-/// Scan the whole document and analyzes if the aspect ratio is equal or not.
-/// If this returns 0 or a very small value, it's perfectly suitable for pageCurl.
-/// @note this might take a second on larger documents, as the page structure needs to be parsed.
-- (CGFloat)aspectRatioVariance;
-
-/// If aspect ratio is equal on all pages, you can enable this for even better performance. Defaults to NO.
-@property (nonatomic, assign, getter=isAspectRatioEqual) BOOL aspectRatioEqual;
-
 /// Enable/Disable undo. Set this before `undoController` is first accessed! Defaults to YES for modern devices (not the iPad 1).
 @property (nonatomic, assign, getter=isUndoEnabled) BOOL undoEnabled;
 

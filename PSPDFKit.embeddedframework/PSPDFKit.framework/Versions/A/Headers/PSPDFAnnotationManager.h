@@ -127,6 +127,8 @@ extern NSString *const PSPDFAnnotationChangedNotificationKeyPathKey;            
 
 /// The fileType translation table is used when we encounter `pspdfkit://` links (or whatever is set to `document.protocolStrings`)
 /// Maps e.g. "mpg" to `PSPDFLinkAnnotationVideo`. (NSString -> NSNumber)
+/// @note If you need file translation catigorization that is not related to annotations,
+/// use `PSPDFFileHelperGetFileCategory()` instead.
 + (NSDictionary *)fileTypeTranslationTable;
 
 /// Document provider for annotation parser.

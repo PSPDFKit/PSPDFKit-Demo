@@ -16,7 +16,7 @@
 
 /// Allows conversion of a `CGPDFStreamRef` to a file object.
 /// A Stream has dictionary data and stream data. Might be anything (like page commands, a video, an image)
-@interface PSPDFStream : NSObject
+@interface PSPDFStream : NSObject <NSCopying>
 
 /// Designated initializer
 - (id)initWithStream:(CGPDFStreamRef)stream;
@@ -54,4 +54,5 @@
 // Returns `CGRectZero` if stream BBox not found.
 extern CGRect PSPDFBoundingBoxFromStream(CGPDFStreamRef streamRef);
 
+// Extract the transform matrix from a stream object, if any set.
 extern CGAffineTransform PSPDFMatrixFromStream(CGPDFStreamRef streamRef);
