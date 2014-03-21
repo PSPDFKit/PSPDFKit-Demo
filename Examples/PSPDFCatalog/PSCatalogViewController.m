@@ -94,7 +94,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     // Playground is convenient for testing.
     [appSection addContent:[PSContent contentWithTitle:@"PSPDFViewController playground" contentDescription:@"Simple Test-Bed for the PSPDFViewController" block:^{
         PSPDFDocument *document;
-        document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+        document = [PSCAssetLoader sampleDocumentWithName:kPSPDFQuickStart];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"Testcase_Rotated_Complex_Form.pdf"]];
         //document = [PSPDFDocument documentWithURL:[samplesURL URLByAppendingPathComponent:@"CMYK-image-mokafive.pdf"]];
 

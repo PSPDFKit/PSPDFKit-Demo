@@ -13,12 +13,14 @@
 #define kDevelopersGuideFileName @"DevelopersGuide.pdf"
 #define kPaperExampleFileName    @"amazon-dynamo-sosp2007.pdf"
 #define kHackerMagazineExample   @"hackermonthly-issue039.pdf"
+#define kPSPDFQuickStart         @"PSPDFKit QuickStart Guide.pdf"
 
 @interface PSCAssetLoader : NSObject
 
+// Load sample file with file `name`.
 + (PSPDFDocument *)sampleDocumentWithName:(NSString *)name;
 
-// Generates a test PDF.
+// Generates a test PDF with `string` as content.
 + (PSPDFDocument *)temporaryDocumentWithString:(NSString *)string;
 
 @end
