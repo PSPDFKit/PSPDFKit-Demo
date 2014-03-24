@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, PSCStoreDownloadStatus) {
 @property (nonatomic, assign, readonly) float downloadProgress;
 
 /// Download URL.
-@property (nonatomic, strong, readonly) NSURL *URL;
+@property (nonatomic, copy, readonly) NSURL *URL;
 
 /// Magazine that's being downloaded.
 @property (nonatomic, strong) PSCMagazine *magazine;

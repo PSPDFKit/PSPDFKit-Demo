@@ -16,7 +16,7 @@
 @interface PSCDownload () {
     UIProgressView *_progressView;
 }
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, copy) NSURL *URL;
 @property (nonatomic, assign) PSCStoreDownloadStatus status;
 @property (nonatomic, assign) float downloadProgress;
 @property (nonatomic, strong) NSError *error;

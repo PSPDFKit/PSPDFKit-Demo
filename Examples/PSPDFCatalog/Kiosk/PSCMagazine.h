@@ -24,10 +24,10 @@
 @property (nonatomic, weak) PSCMagazineFolder *folder; // weak!
 
 /// URL for downloading the pdf.
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, copy) NSURL *URL;
 
 /// URL for downloading image.
-@property (nonatomic, strong) NSURL *imageURL;
+@property (nonatomic, copy) NSURL *imageURL;
 
 /// Handles serialization/deserialization of the last known viewState (page, ...)
 @property (nonatomic, strong) PSPDFViewState *lastViewState;
