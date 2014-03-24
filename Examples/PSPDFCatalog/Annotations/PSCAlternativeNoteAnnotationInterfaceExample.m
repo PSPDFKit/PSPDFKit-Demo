@@ -293,7 +293,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
     }else {
         NSUInteger noteNumber = PSCNumberOfAnnotationOfType(self.annotation);
         // Use custom view to make this non-clickable.
-        UIBarButtonItem *titleButton = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:PSPDFLocalize(@"Note %d"), noteNumber] style:UIBarButtonItemStylePlain target:nil action:NULL];
+        UIBarButtonItem *titleButton = [[UIBarButtonItem alloc] initWithTitle:PSPDFLocalizeFormatted(@"Note %tu", noteNumber) style:UIBarButtonItemStylePlain target:nil action:NULL];
         // TODO: add any other buttons here (clock button...)
         _noteToolbar.items = @[titleButton, spacer];
         _noteToolbar.userInteractionEnabled = NO; // So title isn't clickable.
@@ -428,7 +428,7 @@ static NSArray *PSCNoteAnnotationsAtPoint(PSPDFPageView *pageView, CGPoint viewP
             [number drawInRect:CGRectMake(8.f, 2.f, self.boundingBox.size.width, self.boundingBox.size.height) withFont:[UIFont boldSystemFontOfSize:20.f]];
         }
     }
-
+    
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsGetCurrentContext();
     return image;

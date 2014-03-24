@@ -219,8 +219,6 @@ static NSArray * AFPublicKeyTrustChainForServerTrust(SecTrustRef serverTrust) {
             }
         }
             break;
-        default:
-            break;
     }
 
     return NO;

@@ -1523,7 +1523,23 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wdocumentation",
+					"-Wno-static-in-inline",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wcast-align",
+					"-Wmissing-declarations",
+					"-Wmissing-prototypes",
+					"-Woverlength-strings",
+					"-Wshadow",
+					"-Wundeclared-selector",
+					"-Wunreachable-code",
+					"-Wformat=2",
+				);
 			};
 			name = Debug;
 		};
@@ -1574,7 +1590,23 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				WARNING_CFLAGS = "-Wall";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wextra",
+					"-Wno-unused-parameter",
+					"-Wno-sign-compare",
+					"-Wdocumentation",
+					"-Wno-static-in-inline",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wcast-align",
+					"-Wmissing-declarations",
+					"-Wmissing-prototypes",
+					"-Woverlength-strings",
+					"-Wshadow",
+					"-Wundeclared-selector",
+					"-Wunreachable-code",
+					"-Wformat=2",
+				);
 			};
 			name = Release;
 		};

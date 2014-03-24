@@ -293,7 +293,7 @@ static CGFloat pscSettingsLastYOffset = 0;
             switch (indexPath.row) {
                 case 0: _settings[@"renderInvertEnabled"] = value; break;
                 default: break;
-            }break;
+            }
         }break;
         default: break;
     }
@@ -432,10 +432,11 @@ static CGFloat pscSettingsLastYOffset = 0;
         case PSPDFClearCacheButton: [PSPDFCache.sharedCache clearCache]; break;
         case PSPDFOpenAPIButton: {
 #if TARGET_IPHONE_SIMULATOR
-            system("open 'http://pspdfkit.com/documentation/'"); break;
-#endif
+            system("open 'http://pspdfkit.com/documentation/'");
+#else
             UINavigationController *webController = [PSPDFWebViewController modalWebViewWithURL:[NSURL URLWithString:@"http://pspdfkit.com/documentation/"]];
             [self.masterViewController presentViewController:webController animated:YES completion:NULL];
+#endif
         }break;
         case PSPDFShowConfigButton: [self showConfigButton]; break;
         case PSPDFPageInfoButton: [self showPageInfoButton]; break;

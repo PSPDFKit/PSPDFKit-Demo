@@ -282,15 +282,16 @@ static NSString *PSCStripPDFFileType(NSString *pdfFileName) {
 }
 
 static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
+    NSString *label = @"";
     switch (state) {
-        case UIGestureRecognizerStateBegan:     return @"Began";
-        case UIGestureRecognizerStateChanged:   return @"Changed";
-        case UIGestureRecognizerStateEnded:     return @"Ended";
-        case UIGestureRecognizerStateCancelled: return @"Cancelled";
-        case UIGestureRecognizerStateFailed:    return @"Failed";
-        case UIGestureRecognizerStatePossible:  return @"Possible";
-        default: return @"";
+        case UIGestureRecognizerStateBegan:     label = @"Began"; break;
+        case UIGestureRecognizerStateChanged:   label = @"Changed"; break;
+        case UIGestureRecognizerStateEnded:     label = @"Ended"; break;
+        case UIGestureRecognizerStateCancelled: label = @"Cancelled"; break;
+        case UIGestureRecognizerStateFailed:    label = @"Failed"; break;
+        case UIGestureRecognizerStatePossible:  label = @"Possible"; break;
     }
+    return label;
 }
 
 - (BOOL)pdfViewController:(PSPDFViewController *)pdfController didLongPressOnPageView:(PSPDFPageView *)pageView atPoint:(CGPoint)viewPoint gestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {

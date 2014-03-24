@@ -21,9 +21,6 @@
 #define PSCGridFadeAnimationDuration 0.3f * PSPDFSimulatorAnimationDragCoefficient()
 #define kPSCLargeThumbnailSize CGSizeMake(170.f, 240.f)
 
-// The delete button target is small enough that we don't need to ask for confirmation.
-#define PSCShouldShowDeleteConfirmationDialog NO
-
 @interface PSCGridViewController() <UISearchBarDelegate> {
     NSArray *_filteredData;
     NSUInteger _animationCellIndex;
@@ -555,7 +552,6 @@
     PSCMagazine *magazine = cell.magazine;
     PSCMagazineFolder *folder = cell.magazineFolder;
 
-    BOOL canDelete = YES;
     __unused NSString *message = nil;
     if (folder.magazines.count > 1 && !self.magazineFolder) {
         // Clang doesn't understand that we translate to strings with extra arguments.
@@ -565,9 +561,6 @@
     }else {
         message = [NSString stringWithFormat:_(@"DeleteMagazineSingle"), magazine.title];
 #pragma clang diagnostic pop
-        if (PSCShouldShowDeleteConfirmationDialog) {
-            canDelete = magazine.isAvailable || magazine.isDownloading;
-        }
     }
 
     dispatch_block_t deleteBlock = ^{
@@ -582,18 +575,7 @@
         }
     };
 
-    if (PSCShouldShowDeleteConfirmationDialog) {
-        if (canDelete) {
-            PSPDFActionSheet *deleteAction = [[PSPDFActionSheet alloc] initWithTitle:message];
-            deleteAction.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-            [deleteAction setDestructiveButtonWithTitle:_(@"Delete") block:deleteBlock];
-            [deleteAction setCancelButtonWithTitle:_(@"Cancel") block:nil];
-            CGRect cellFrame = [cell convertRect:cell.imageView.frame toView:self.view];
-            [deleteAction showFromRect:cellFrame inView:self.view animated:YES];
-        }
-    }else {
-        deleteBlock();
-    }
+    deleteBlock();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
