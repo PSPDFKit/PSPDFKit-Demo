@@ -112,10 +112,10 @@ typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfPr
 - (id)initWithURL:(NSURL *)inputURL options:(NSDictionary *)options completionBlock:(void (^)(NSData *fileData, NSError *error))completionBlock;
 
 /// Input. Needs to be a file URL.
-@property (nonatomic, strong, readonly) NSURL *inputURL;
+@property (nonatomic, copy, readonly) NSURL *inputURL;
 
 /// Output. Needs to be a file URL.
-@property (nonatomic, strong, readonly) NSURL *outputFileURL;
+@property (nonatomic, copy, readonly) NSURL *outputFileURL;
 
 /// Output data, if data constructor was used.
 @property (nonatomic, strong, readonly) NSData *outputData;

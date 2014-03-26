@@ -19,8 +19,8 @@
 "File Not Found" = "未找到文件";
 "File couldn't be opened." = "无法打开文件。"; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "未命名 PDF";
-"Page %d" = "第 %d 页";
-"All (%d Pages)" = "全部（%d 页）";
+"Page %tu" = "第 %tu 页";
+"All (%tu Pages)" = "全部（%tu 页）";
 "Next" = "下一步";
 "Previous" = "上一页";
 "Error" = "错误";
@@ -45,8 +45,8 @@
 "Annotation" = "批注";
 "Annotations" = "批注";
 "No Annotations" = "没有批注";
-"%d Annotation" = "%d 批注";
-"%d Annotations" = "%d 条批注";
+"%tu Annotation" = "%tu 批注";
+"%tu Annotations" = "%tu 条批注";
 "Bookmarks" = "书签";
 "No Bookmarks" = "没有书签";
 "Add Bookmark" = "添加书签";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "此文稿无法解锁。不支持 %@。";
 
 // page
-"%d of %d" = "%d/%d";
-"%d-%d of %d" = "%d-%d/%d";
-"%@ (%d of %d)" = "%@ (%d/%d)";
-"%@, Page %d" = "%@，第 %d 页";
+"%tu of %tu" = "%tu/%tu";
+"%tu-%tu of %tu" = "%tu-%tu/%tu";
+"%@ (%tu of %tu)" = "%@ (%tu/%tu)";
+"%@, Page %tu" = "%@，第 %tu 页";
 "Leave %@?" = "离开 %@？";
 
 // search
 "Search Document" = "搜索文稿"; // to search for a string in the given document
 "No matches found" = "未找到匹配";
 "One match found" = "找到一个匹配";
-"%d matches found" = "找到 %d 个匹配";
-"Searching Page %d of %d" = "正在搜索第 %d 页（共 %d 页）";
+"%tu matches found" = "找到 %tu 个匹配";
+"Searching Page %tu of %tu" = "正在搜索第 %tu 页（共 %tu 页）";
 "Search Completed" = "搜索完成";
 "Search Cancelled" = "搜索取消";
-"%d left" = "剩下 %d"; // Indexing Documents... 5 left
+"%tu left" = "剩下 %tu"; // Indexing Documents... 5 left
 "Searching" = "正在搜索";
-"%d documents indexed." = "%d 个文稿已加索引。";
+"%tu documents indexed." = "%tu 个文稿已加索引。";
 "Done" = "完成";
 "Indexing Documents" = "正在索引文稿";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "对接";
 "Line Start" = "直线起点";
 "Line End" = "直线终点";
-"%d Points" = "%d 点";
+"%tu Points" = "%tu 点";
 
 // link annotation editing
 "Create Link" = "创建链接";
@@ -282,7 +282,7 @@
 "Move Link" = "移动链接";
 "Remove Link" = "移除链接";
 "Open Link" = "打开链接";
-"Go to Page %d" = "前往第 %d 页";
+"Go to Page %tu" = "前往第 %tu 页";
 "Go to Page" = "前往页面"; // title of a Popup
 "Save" = "保存";
 "Link Destination" = "链接目标";

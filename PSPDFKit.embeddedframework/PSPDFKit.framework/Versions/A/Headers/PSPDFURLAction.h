@@ -28,10 +28,10 @@
 - (id)initWithPDFDictionary:(CGPDFDictionaryRef)actionDictionary documentRef:(CGPDFDocumentRef)documentRef;
 
 /// The annotation URL target.
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, copy) NSURL *URL;
 
 /// The unmodified and unparsed URL.
-@property (nonatomic, strong, readonly) NSURL *unmodifiedURL;
+@property (nonatomic, copy, readonly) NSURL *unmodifiedURL;
 
 /// This will convert pspdfkit:// URLS or localhost-URLs that use path tokens  into their expanded form, and will override the options dictionary with any option found in the URL. If the URL has already been processed, this will not do anything.
 /// @return YES if the URL has been updated.

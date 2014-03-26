@@ -49,7 +49,7 @@ extern PSPDFGalleryVideoItemQuality PSPDFGalleryVideoItemQualityFromString(NSStr
 /// @name Content
 
 /// The cover image URL.
-@property (nonatomic, strong, readonly) NSURL *coverImageURL;
+@property (nonatomic, copy, readonly) NSURL *coverImageURL;
 
 /// An `PSPDFGalleryVideoItem` has an URL to a video as its content.
 - (NSURL *)content;

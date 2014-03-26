@@ -19,8 +19,8 @@
 "File Not Found" = "Файл не найден";
 "File couldn't be opened." = "Не удалось открыть файл."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Безымянный PDF";
-"Page %d" = "Страница %d";
-"All (%d Pages)" = "Все (%d страницы)";
+"Page %tu" = "Страница %tu";
+"All (%tu Pages)" = "Все (%tu страницы)";
 "Next" = "Далее";
 "Previous" = "Назад";
 "Error" = "Ошибка";
@@ -45,8 +45,8 @@
 "Annotation" = "Комментарий";
 "Annotations" = "Аннотации";
 "No Annotations" = "Нет комментариев";
-"%d Annotation" = "%d комментарий";
-"%d Annotations" = "%d комментарии";
+"%tu Annotation" = "%tu комментарий";
+"%tu Annotations" = "%tu комментарии";
 "Bookmarks" = "Закладки";
 "No Bookmarks" = "Нет закладок";
 "Add Bookmark" = "Добавить закладку";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Документ не может быть разблокирован. %@ не поддерживается.";
 
 // page
-"%d of %d" = "%d из %d";
-"%d-%d of %d" = "%d-%d из %d";
-"%@ (%d of %d)" = "%@ (%d из %d)";
-"%@, Page %d" = "%@, страница %d";
+"%tu of %tu" = "%tu из %tu";
+"%tu-%tu of %tu" = "%tu-%tu из %tu";
+"%@ (%tu of %tu)" = "%@ (%tu из %tu)";
+"%@, Page %tu" = "%@, страница %tu";
 "Leave %@?" = "Оставить %@?";
 
 // search
 "Search Document" = "Поиск документа"; // to search for a string in the given document
 "No matches found" = "Совпадений не найдено";
 "One match found" = "Найдено одно совпадение";
-"%d matches found" = "%d совпадений найдено";
-"Searching Page %d of %d" = "Поиск страницы %d из %d";
+"%tu matches found" = "%tu совпадений найдено";
+"Searching Page %tu of %tu" = "Поиск страницы %tu из %tu";
 "Search Completed" = "Поиск завершен";
 "Search Cancelled" = "Поиск отменен";
-"%d left" = "%d осталось"; // Indexing Documents... 5 left
+"%tu left" = "%tu осталось"; // Indexing Documents... 5 left
 "Searching" = "Поиск";
-"%d documents indexed." = "%d документов проиндексировано.\n";
+"%tu documents indexed." = "%tu документов проиндексировано.\n";
 "Done" = "Готово";
 "Indexing Documents" = "Индексация документов";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Конец";
 "Line Start" = "Начало линии";
 "Line End" = "Конец линии";
-"%d Points" = "%d очки";
+"%tu Points" = "%tu очки";
 
 // link annotation editing
 "Create Link" = "Создать ссылку";
@@ -282,7 +282,7 @@
 "Move Link" = "Переместить ссылку";
 "Remove Link" = "Удалить ссылку";
 "Open Link" = "Открыть ссылку";
-"Go to Page %d" = "Перейти к странице %d";
+"Go to Page %tu" = "Перейти к странице %tu";
 "Go to Page" = "Перейти к странице"; // title of a Popup
 "Save" = "Сохранить";
 "Link Destination" = "Назначение ссылки";

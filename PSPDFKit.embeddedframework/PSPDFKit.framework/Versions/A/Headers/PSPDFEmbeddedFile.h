@@ -36,7 +36,7 @@
 @property (nonatomic, weak) PSPDFDocumentProvider *documentProvider;
 
 /// If the file URL has been extracted by XFDF or external saving, it is set here.
-@property (nonatomic, strong) NSURL *fileURL;
+@property (nonatomic, copy) NSURL *fileURL;
 
 /// Loads the file URL, getting and saving a temporary file from the document if required.
 - (NSURL *)fileURLWithError:(NSError **)error;

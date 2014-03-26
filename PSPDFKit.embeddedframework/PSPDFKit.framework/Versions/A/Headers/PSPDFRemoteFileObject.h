@@ -19,8 +19,8 @@
 - (id)initWithRemoteURL:(NSURL *)remoteURL targetURL:(NSURL *)targetFileURL;
 
 // The remote URL to fetch the content from.
-@property (nonatomic, strong, readonly) NSURL *remoteURL;
-@property (nonatomic, strong, readonly) NSURL *targetURL;
+@property (nonatomic, copy, readonly) NSURL *remoteURL;
+@property (nonatomic, copy, readonly) NSURL *targetURL;
 
 /// @name PSPDFRemoteContentObject
 

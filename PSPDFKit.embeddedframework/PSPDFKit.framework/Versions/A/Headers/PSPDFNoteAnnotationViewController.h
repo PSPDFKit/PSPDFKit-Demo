@@ -98,7 +98,11 @@
 @property (nonatomic, strong) PSPDFGradientView *backgroundView;
 
 // Option view (note annotations)
+// This is an UIView on iOS 6, and an UIToolbar on iOS 7.
 @property (nonatomic, strong) UIView *optionsView;
+
+// The border color of items in the option view.
+@property (nonatomic, strong) UIColor *borderColor;
 
 // Tap gesture on the textView to enable/disable edit mode.
 @property (nonatomic, strong) UITapGestureRecognizer *tapGesture;

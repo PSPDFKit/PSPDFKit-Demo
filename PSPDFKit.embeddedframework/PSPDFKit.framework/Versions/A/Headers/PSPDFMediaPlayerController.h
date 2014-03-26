@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, PSPDFMediaPlayerControllerState) {
 - (id)initWithContentURL:(NSURL *)contentURL;
 
 /// The content URL of the item that the player plays.
-@property (nonatomic, strong, readonly) NSURL *contentURL;
+@property (nonatomic, copy, readonly) NSURL *contentURL;
 
 /// If an error occured while preparing the content for playback, this will bet set.
 @property (nonatomic, strong, readonly) NSError *contentError;

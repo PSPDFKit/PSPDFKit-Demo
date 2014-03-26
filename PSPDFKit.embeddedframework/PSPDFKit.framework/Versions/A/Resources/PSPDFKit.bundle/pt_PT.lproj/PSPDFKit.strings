@@ -19,8 +19,8 @@
 "File Not Found" = "Ficheiro não encontrado";
 "File couldn't be opened." = "Não foi possível abrir o ficheiro."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF sem nome";
-"Page %d" = "Página %d";
-"All (%d Pages)" = "Tudo (%d páginas)";
+"Page %tu" = "Página %tu";
+"All (%tu Pages)" = "Tudo (%tu páginas)";
 "Next" = "Seguinte";
 "Previous" = "Anterior";
 "Error" = "Erro";
@@ -45,8 +45,8 @@
 "Annotation" = "Anotação";
 "Annotations" = "Anotações";
 "No Annotations" = "Nenhuma anotação";
-"%d Annotation" = "%d anotação";
-"%d Annotations" = "%d anotações";
+"%tu Annotation" = "%tu anotação";
+"%tu Annotations" = "%tu anotações";
 "Bookmarks" = "Marcadores";
 "No Bookmarks" = "Nenhum marcador";
 "Add Bookmark" = "Adicionar marcador";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Não é possível desbloquear este documento. %@ não é suportado.";
 
 // page
-"%d of %d" = "%d de %d";
-"%d-%d of %d" = "%d-%d de %d";
-"%@ (%d of %d)" = "%@ (%d de %d)";
-"%@, Page %d" = "%@, página %d";
+"%tu of %tu" = "%tu de %tu";
+"%tu-%tu of %tu" = "%tu-%tu de %tu";
+"%@ (%tu of %tu)" = "%@ (%tu de %tu)";
+"%@, Page %tu" = "%@, página %tu";
 "Leave %@?" = "Abandonar %@?";
 
 // search
 "Search Document" = "Pesquisar documento"; // to search for a string in the given document
 "No matches found" = "Nenhuma correspondência encontrada";
 "One match found" = "Uma correspondência encontrada";
-"%d matches found" = "%d correspondências encontradas";
-"Searching Page %d of %d" = "A pesquisar página %d de %d";
+"%tu matches found" = "%tu correspondências encontradas";
+"Searching Page %tu of %tu" = "A pesquisar página %tu de %tu";
 "Search Completed" = "Pesquisa concluída";
 "Search Cancelled" = "Pesquisa cancelada";
-"%d left" = "%d restantes"; // Indexing Documents... 5 left
+"%tu left" = "%tu restantes"; // Indexing Documents... 5 left
 "Searching" = "A pesquisar";
-"%d documents indexed." = "%d documentos indexados.";
+"%tu documents indexed." = "%tu documentos indexados.";
 "Done" = "Feito";
 "Indexing Documents" = "A indexar documentos";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Puxador";
 "Line Start" = "Início de linha";
 "Line End" = "Fim de linha";
-"%d Points" = "%d pontos";
+"%tu Points" = "%tu pontos";
 
 // link annotation editing
 "Create Link" = "Criar link";
@@ -282,7 +282,7 @@
 "Move Link" = "Mover link";
 "Remove Link" = "Remover link";
 "Open Link" = "Abrir link";
-"Go to Page %d" = "Ir para página %d";
+"Go to Page %tu" = "Ir para página %tu";
 "Go to Page" = "Ir para página"; // title of a Popup
 "Save" = "Guardar";
 "Link Destination" = "Destino do link";

@@ -14,6 +14,9 @@
 
 @class PSPDFFontInfo, PSPDFGraphicsState, PSPDFHighlightAnnotation, PSPDFDocument;
 
+// Defaults to 5. Increase for certain documents.
+extern NSUInteger PSPDFMaxShadowGlyphSearchDepth;
+
 /// Parses the text of a PDF page.
 @interface PSPDFTextParser : NSObject <NSCoding>
 

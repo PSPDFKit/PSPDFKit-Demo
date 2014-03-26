@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSString *renderFingerprintString;
 
 /// The last time the image has been accessed. Atomic because it might change at any time.
-@property (atomic, strong) NSDate *lastAccessTime;
+@property (atomic, assign) NSTimeInterval lastAccessTime;
 
 /// If the entry has a disk representation, it's set here.
 @property (nonatomic, assign) NSUInteger diskSize;

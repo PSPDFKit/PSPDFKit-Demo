@@ -28,7 +28,7 @@ extern NSString *const PSPDFSoundAnnotationEncodingALaw;
 @property (nonatomic, copy) NSString *iconName;
 
 /// URL to the sound content.
-@property (nonatomic, strong) NSURL *soundURL;
+@property (nonatomic, copy) NSURL *soundURL;
 
 /// Bits of the sound stream.
 @property (nonatomic, assign, readonly) NSUInteger bits;

@@ -30,7 +30,8 @@ typedef NS_ENUM(NSUInteger, PSPDFLabelStyle) {
 /// Margin that is between the text and this view. Defaults to 2 on iPhone and 3 on iPad.
 @property (nonatomic, assign) CGFloat labelMargin;
 
-/// Customize label style. Defaults to `PSPDFLabelStyleFlat` on iOS6 and `PSPDFLabelStyleModern` on iOS7+.
+/// Customize label style. Defaults to `PSPDFLabelStyleFlat` on iOS 6 and `PSPDFLabelStyleModern` on iOS 7+.
+/// @note iPhone 4 is special-cased here, since it doesn't support live-blur, so it will fall back to `PSPDFLabelStyleFlat`.
 @property (nonatomic, assign) PSPDFLabelStyle labelStyle;
 
 @end

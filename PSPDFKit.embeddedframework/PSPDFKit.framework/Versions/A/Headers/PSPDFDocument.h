@@ -112,7 +112,7 @@
 - (NSString *)fileName; // Page 0
 
 /// Common base URL for PDF files. Set to nil to use absolute paths for files.
-@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, copy) NSURL *baseURL;
 
 /// Array of `NSString` pdf files. If basePath is set, this will be combined with the file name.
 /// If `basePath` is not set, add the full path (as `NSString`) to the files.
@@ -120,7 +120,7 @@
 @property (nonatomic, copy, readonly) NSArray *files;
 
 /// Defines the `basePath` for the PDF `files` strings.
-@property (nonatomic, strong, readonly) NSURL *fileURL;
+@property (nonatomic, copy, readonly) NSURL *fileURL;
 
 /// PDF data when initialized with initWithData: otherwise nil.
 /// This is a shortcut to the first entry of dataArray.

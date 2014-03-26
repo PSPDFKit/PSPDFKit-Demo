@@ -115,21 +115,41 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 - (BOOL)canRedo;
 
 /// Shows the style picker for the current annotation class and configures it with annotation state manager style attributes.
+/// @see showStylePickerFrom:presentationOptions:
+- (void)showStylePickerFrom:(id)sender;
+
+/// Shows the style picker for the current annotation class and configures it with annotation state manager style attributes.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
-/// @param passThroughViews Pass through views for the popover controller.
-- (void)showStylePickerFrom:(id)sender withPassThroughViews:(NSArray *)passThroughViews;
+/// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
+- (void)showStylePickerFrom:(id)sender presentationOptions:(NSDictionary *)options;
+
+/// Displays a `PSPDFSignatureViewController` and toggles the state to `PSPDFAnnotationStringSignature`.
+/// @see toggleSignatureControllerFrom:presentationOptions:
+- (void)toggleSignatureControllerFrom:(id)sender;
 
 /// Displays a `PSPDFSignatureViewController` and toggles the state to `PSPDFAnnotationStringSignature`.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
-- (void)toggleSignatureControllerFrom:(id)sender;
+/// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
+- (void)toggleSignatureControllerFrom:(id)sender presentationOptions:(NSDictionary *)options;
+
+/// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringStamp`.
+/// @see toggleStampControllerFrom:includeSavedAnnotations:presentationOptions:
+- (void)toggleStampControllerFrom:(id)sender includeSavedAnnotations:(BOOL)includeSavedAnnotations;
 
 /// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringStamp`.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
-- (void)toggleStampControllerFrom:(id)sender includeSavedAnnotations:(BOOL)includeSavedAnnotations;
+/// @param includeSavedAnnotations Whether to include saved annotation using PSPDFSavedAnnotationsViewController or not.
+/// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
+- (void)toggleStampControllerFrom:(id)sender includeSavedAnnotations:(BOOL)includeSavedAnnotations presentationOptions:(NSDictionary *)options;
+
+/// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringImage`.
+/// @see toggleImagePickerControllerFrom:presentationOptions:
+- (void)toggleImagePickerControllerFrom:(id)sender;
 
 /// Displays a `PSPDFStampViewController` and toggles the state to `PSPDFAnnotationStringImage`.
 /// @param sender A `UIView` or `UIBarButtonItem` used as the anchor view for the popover controller (iPad only).
-- (void)toggleImagePickerControllerFrom:(id)sender;
+/// @param options A dictionary of presentation options. See PSPDFViewController.h (Presentation category) for possible values.
+- (void)toggleImagePickerControllerFrom:(id)sender presentationOptions:(NSDictionary *)options;
 
 @end
 
@@ -159,6 +179,9 @@ extern NSString *const PSPDFAnnotationStringSavedAnnotations;
 
 // Allows to override and hook into to create custom annotations.
 - (NSArray *)annotationsWithActionList:(NSArray *)actionList bounds:(CGRect)bounds page:(NSUInteger)page;
+
+// Subclass to control if the state supports a style picker.
+- (BOOL)stateShowsStylePicker:(NSString *)state;
 
 // If we're in drawing state, this dictionary contains the `PSPDFDrawView` classes that are overlaid on the `PSPDFPageView`.
 // The key is the current page.

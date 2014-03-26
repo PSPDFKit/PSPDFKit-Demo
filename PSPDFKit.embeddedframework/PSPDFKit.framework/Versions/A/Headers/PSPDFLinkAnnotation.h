@@ -65,7 +65,7 @@ typedef NS_ENUM(UInt8, PSPDFLinkAnnotationType) {
 - (PSPDFURLAction *)URLAction;
 
 /// Convenience method, will create a new `PSPDFURLAction` and get the URL from it.
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, copy) NSURL *URL;
 
 /// Will be YES if this is a regular link or a multimedia link annotation that should be displayed as link. (e.g. if `isPopover/isModal` is set to yes)
 @property (nonatomic, assign, readonly) BOOL showAsLinkView;

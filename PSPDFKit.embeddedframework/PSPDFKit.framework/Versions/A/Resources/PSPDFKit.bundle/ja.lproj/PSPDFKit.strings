@@ -19,8 +19,8 @@
 "File Not Found" = "ファイルが見つかりません";
 "File couldn't be opened." = "ファイルを開けませんでした。"; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "名称未設定のPDF";
-"Page %d" = "ページ%d";
-"All (%d Pages)" = "すべて（%dページ）";
+"Page %tu" = "ページ%tu";
+"All (%tu Pages)" = "すべて（%tuページ）";
 "Next" = "次へ";
 "Previous" = "前へ";
 "Error" = "エラー";
@@ -45,8 +45,8 @@
 "Annotation" = "注釈";
 "Annotations" = "注釈";
 "No Annotations" = "注釈なし";
-"%d Annotation" = "%d件の注釈";
-"%d Annotations" = "%d件の注釈";
+"%tu Annotation" = "%tu件の注釈";
+"%tu Annotations" = "%tu件の注釈";
 "Bookmarks" = "ブックマーク";
 "No Bookmarks" = "ブックマークがありません";
 "Add Bookmark" = "ブックマークを追加";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "この書類をロック解除できません。%@はサポートされていません。";
 
 // page
-"%d of %d" = "%d/%d";
-"%d-%d of %d" = "%d-%d／%d";
-"%@ (%d of %d)" = "%@（%d/%d）";
-"%@, Page %d" = "%@、ページ%d";
+"%tu of %tu" = "%tu/%tu";
+"%tu-%tu of %tu" = "%tu-%tu／%tu";
+"%@ (%tu of %tu)" = "%@（%tu/%tu）";
+"%@, Page %tu" = "%@、ページ%tu";
 "Leave %@?" = "%@を終了しますか。";
 
 // search
 "Search Document" = "書類を検索"; // to search for a string in the given document
 "No matches found" = "一致するものが見つかりませんでした";
 "One match found" = "一致するものが1件見つかりました";
-"%d matches found" = "一致するものが%d件見つかりました";
-"Searching Page %d of %d" = "ページ%d/%dを検索中";
+"%tu matches found" = "一致するものが%tu件見つかりました";
+"Searching Page %tu of %tu" = "ページ%tu/%tuを検索中";
 "Search Completed" = "検索を完了";
 "Search Cancelled" = "検索がキャンセルされました";
-"%d left" = "残り%d件"; // Indexing Documents... 5 left
+"%tu left" = "残り%tu件"; // Indexing Documents... 5 left
 "Searching" = "検索中";
-"%d documents indexed." = "%d個の書類がインデックス済み";
+"%tu documents indexed." = "%tu個の書類がインデックス済み";
 "Done" = "完了";
 "Indexing Documents" = "書類に索引を付けています";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "端点";
 "Line Start" = "線の始点";
 "Line End" = "線の終点";
-"%d Points" = "%dポイント";
+"%tu Points" = "%tuポイント";
 
 // link annotation editing
 "Create Link" = "リンクを作成";
@@ -282,7 +282,7 @@
 "Move Link" = "リンクを移動";
 "Remove Link" = "リンクを削除";
 "Open Link" = "リンクを開く";
-"Go to Page %d" = "%dページに移動";
+"Go to Page %tu" = "%tuページに移動";
 "Go to Page" = "ページに移動"; // title of a Popup
 "Save" = "保存";
 "Link Destination" = "リンク先";

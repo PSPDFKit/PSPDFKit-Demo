@@ -45,7 +45,7 @@ extern NSString *NSStringFromPSPDFGalleryItemContentState(PSPDFGalleryItemConten
 @property (nonatomic, copy, readonly) NSString *caption;
 
 /// The content URL of the item.
-@property (nonatomic, strong, readonly) NSURL *contentURL;
+@property (nonatomic, copy, readonly) NSURL *contentURL;
 
 /// The options dictionary of the item. Subclasses should implement
 /// dedicated setters to access the supported options.

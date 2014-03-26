@@ -4,6 +4,16 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.6.3 - 26/Mar/2014__
+
+*  Improves placement precision of draft ink annotations when the device is rotated while in drawing mode.
+*  Improves popover placement for the flexible annotation toolbar in vertical mode.
+*  Multiple performance and memory improvements, especially for searching and scrolling large documents, and for usage on an iPhone 4.
+*  Various cosmetic updates (improved thumbnail scroll bar, better support for iPhone 4 which doesn't support live-blur)
+*  Improves search highlighting accuracy for certain document types.
+*  Fixes an issue that could move the scroll view for keyboard events that were not inside the scroll view.
+*  Small localization updates.
+
 __v3.6.2 - 21/Mar/2014__
 
 *  Improves appearance customization options for the new `PSPDFFlexibleAnnotationToolbar`.

@@ -19,8 +19,8 @@
 "File Not Found" = "File Not Found";
 "File couldn't be opened." = "File couldn't be opened."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Unnamed PDF";
-"Page %d" = "Page %d";
-"All (%d Pages)" = "All (%d Pages)";
+"Page %tu" = "Page %tu";
+"All (%tu Pages)" = "All (%tu Pages)";
 "Next" = "Next";
 "Previous" = "Previous";
 "Error" = "Error";
@@ -45,8 +45,8 @@
 "Annotation" = "Annotation";
 "Annotations" = "Annotations";
 "No Annotations" = "No Annotations";
-"%d Annotation" = "%d Annotation";
-"%d Annotations" = "%d Annotations";
+"%tu Annotation" = "%tu Annotation";
+"%tu Annotations" = "%tu Annotations";
 "Bookmarks" = "Bookmarks";
 "No Bookmarks" = "No Bookmarks";
 "Add Bookmark" = "Add Bookmark";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "This document cannot be unlocked. %@ is unsupported.";
 
 // page
-"%d of %d" = "%d of %d";
-"%d-%d of %d" = "%d-%d of %d";
-"%@ (%d of %d)" = "%@ (%d of %d)";
-"%@, Page %d" = "%@, Page %d";
+"%tu of %tu" = "%tu of %tu";
+"%tu-%tu of %tu" = "%tu-%tu of %tu";
+"%@ (%tu of %tu)" = "%@ (%tu of %tu)";
+"%@, Page %tu" = "%@, Page %tu";
 "Leave %@?" = "Leave %@?";
 
 // search
 "Search Document" = "Search Document"; // to search for a string in the given document
 "No matches found" = "No matches found";
 "One match found" = "One match found";
-"%d matches found" = "%d matches found";
-"Searching Page %d of %d" = "Searching Page %d of %d";
+"%tu matches found" = "%tu matches found";
+"Searching Page %tu of %tu" = "Searching Page %tu of %tu";
 "Search Completed" = "Search Completed";
 "Search Cancelled" = "Search Cancelled";
-"%d left" = "%d left"; // Indexing Documents... 5 left
+"%tu left" = "%tu left"; // Indexing Documents... 5 left
 "Searching" = "Searching";
-"%d documents indexed." = "%d documents indexed.";
+"%tu documents indexed." = "%tu documents indexed.";
 "Done" = "Done";
 "Indexing Documents" = "Indexing Documents";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Butt";
 "Line Start" = "Line Start";
 "Line End" = "Line End";
-"%d Points" = "%d Points";
+"%tu Points" = "%tu Points";
 
 // link annotation editing
 "Create Link" = "Create Link";
@@ -282,7 +282,7 @@
 "Move Link" = "Move Link";
 "Remove Link" = "Remove Link";
 "Open Link" = "Open Link";
-"Go to Page %d" = "Go to Page %d";
+"Go to Page %tu" = "Go to Page %tu";
 "Go to Page" = "Go to Page"; // title of a Popup
 "Save" = "Save";
 "Link Destination" = "Link Destination";

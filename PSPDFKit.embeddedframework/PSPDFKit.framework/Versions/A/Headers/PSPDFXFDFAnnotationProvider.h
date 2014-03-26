@@ -23,6 +23,6 @@
 - (id)initWithDocumentProvider:(PSPDFDocumentProvider *)documentProvider fileURL:(NSURL *)XFDFFileURL;
 
 /// The XFDF file URL.
-@property (nonatomic, strong, readonly) NSURL *fileURL;
+@property (nonatomic, copy, readonly) NSURL *fileURL;
 
 @end

@@ -92,18 +92,18 @@ typedef NS_ENUM(NSUInteger, PSPDFRenderQueuePriority) {
 // The internal hash is cached and you'll get weird results if renderJob is changed after being added to the queue.
 @interface PSPDFRenderJob : NSObject
 
-@property (atomic,    strong, readonly) PSPDFDocument *document;
+@property (nonatomic, strong, readonly) PSPDFDocument *document;
 @property (nonatomic, assign, readonly) NSUInteger page;
 @property (nonatomic, assign, readonly) CGSize size;
 @property (nonatomic, assign, readonly) CGRect clipRect;
 @property (nonatomic, assign, readonly) float zoomScale;
-@property (nonatomic, copy)   NSArray *annotations;
-@property (nonatomic, assign) PSPDFRenderQueuePriority priority;
-@property (nonatomic, copy)   NSDictionary *options;
-@property (nonatomic, weak)   id<PSPDFRenderDelegate> delegate;
-@property (nonatomic, strong) UIImage *renderedImage;
-@property (nonatomic, strong) PSPDFRenderReceipt *renderReceipt;
-@property (nonatomic, assign) uint64_t renderTime;
+@property (nonatomic, copy,   readonly) NSArray *annotations;
+@property (nonatomic, assign, readonly) PSPDFRenderQueuePriority priority;
+@property (nonatomic, copy,   readonly) NSDictionary *options;
+@property (nonatomic, weak,   readonly) id<PSPDFRenderDelegate> delegate;
+@property (nonatomic, strong, readonly) UIImage *renderedImage;
+@property (nonatomic, strong, readonly) PSPDFRenderReceipt *renderReceipt;
+@property (nonatomic, assign, readonly) uint64_t renderTime;
 
 @end
 

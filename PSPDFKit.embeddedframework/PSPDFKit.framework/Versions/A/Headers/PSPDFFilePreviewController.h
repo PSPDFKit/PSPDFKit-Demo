@@ -19,7 +19,7 @@
 - (id)initWithPreviewURL:(NSURL *)previewURL;
 
 /// URL to then item that should be previewed.
-@property (nonatomic, strong) NSURL *previewURL;
+@property (nonatomic, copy) NSURL *previewURL;
 
 /// Can be set to provide a better animation. Optional.
 @property (nonatomic, weak) UIView *sourceView;

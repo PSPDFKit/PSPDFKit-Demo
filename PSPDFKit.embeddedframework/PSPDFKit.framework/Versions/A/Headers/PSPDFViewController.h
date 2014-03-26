@@ -156,7 +156,7 @@ typedef NS_OPTIONS(NSUInteger, PSPDFTextSelectionMenuAction) {
 - (void)zoomToRect:(CGRect)rect page:(NSUInteger)page animated:(BOOL)animated;
 
 /// Zoom to specific scale, optionally animated.
-- (void)setZoomScale:(float)scale animated:(BOOL)animated;
+- (void)setZoomScale:(CGFloat)scale animated:(BOOL)animated;
 
 
 /// @name View State Restoration

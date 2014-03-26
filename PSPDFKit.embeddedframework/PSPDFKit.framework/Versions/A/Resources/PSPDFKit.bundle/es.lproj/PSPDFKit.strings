@@ -19,8 +19,8 @@
 "File Not Found" = "Archivo no encontrado";
 "File couldn't be opened." = "El archivo no ha podido abrirse."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF sin nombre";
-"Page %d" = "Página %d";
-"All (%d Pages)" = "Todas (%d páginas)";
+"Page %tu" = "Página %tu";
+"All (%tu Pages)" = "Todas (%tu páginas)";
 "Next" = "Siguiente";
 "Previous" = "Anterior";
 "Error" = "Error";
@@ -45,8 +45,8 @@
 "Annotation" = "Anotación";
 "Annotations" = "Anotaciones";
 "No Annotations" = "No hay anotaciones";
-"%d Annotation" = "%d anotación";
-"%d Annotations" = "%d anotaciones";
+"%tu Annotation" = "%tu anotación";
+"%tu Annotations" = "%tu anotaciones";
 "Bookmarks" = "Marcadores";
 "No Bookmarks" = "No hay marcadores";
 "Add Bookmark" = "Añadir marcador";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Este documento no se puede desbloquear. %@ no es compatible.";
 
 // page
-"%d of %d" = "%d de %d";
-"%d-%d of %d" = "%d-%d de %d";
-"%@ (%d of %d)" = "%@ (%d de %d)";
-"%@, Page %d" = "%@, página %d";
+"%tu of %tu" = "%tu de %tu";
+"%tu-%tu of %tu" = "%tu-%tu de %tu";
+"%@ (%tu of %tu)" = "%@ (%tu de %tu)";
+"%@, Page %tu" = "%@, página %tu";
 "Leave %@?" = "¿Salir de %@?";
 
 // search
 "Search Document" = "Buscar en documento"; // to search for a string in the given document
 "No matches found" = "No hay resultados";
 "One match found" = "Un resultado";
-"%d matches found" = "%d resultados";
-"Searching Page %d of %d" = "Buscando en página %d de %d";
+"%tu matches found" = "%tu resultados";
+"Searching Page %tu of %tu" = "Buscando en página %tu de %tu";
 "Search Completed" = "Búsqueda completada";
 "Search Cancelled" = "Búsqueda cancelada";
-"%d left" = "%d restantes"; // Indexing Documents... 5 left
+"%tu left" = "%tu restantes"; // Indexing Documents... 5 left
 "Searching" = "Buscando";
-"%d documents indexed." = "%d documentos indexados.";
+"%tu documents indexed." = "%tu documentos indexados.";
 "Done" = "OK";
 "Indexing Documents" = "Indexando documentos";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Romo";
 "Line Start" = "Fin";
 "Line End" = "Inicio";
-"%d Points" = "%d puntos";
+"%tu Points" = "%tu puntos";
 
 // link annotation editing
 "Create Link" = "Crear enlace";
@@ -282,7 +282,7 @@
 "Move Link" = "Mover enlace";
 "Remove Link" = "Eliminar enlace";
 "Open Link" = "Abrir enlace";
-"Go to Page %d" = "Ir a la página %d";
+"Go to Page %tu" = "Ir a la página %tu";
 "Go to Page" = "Ir a la página"; // title of a Popup
 "Save" = "Guardar";
 "Link Destination" = "Destino del enlace";

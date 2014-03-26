@@ -19,8 +19,8 @@
 "File Not Found" = "Hittade inte filen";
 "File couldn't be opened." = "Kunde inte öppna filen."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "Namnlös PDF";
-"Page %d" = "Sida %d";
-"All (%d Pages)" = "Alla (%d sidor)";
+"Page %tu" = "Sida %tu";
+"All (%tu Pages)" = "Alla (%tu sidor)";
 "Next" = "Nästa";
 "Previous" = "Föregående";
 "Error" = "Fel";
@@ -45,8 +45,8 @@
 "Annotation" = "Anteckning";
 "Annotations" = "Anteckningar";
 "No Annotations" = "Inga anteckningar";
-"%d Annotation" = "%d anteckning";
-"%d Annotations" = "%d anteckningar";
+"%tu Annotation" = "%tu anteckning";
+"%tu Annotations" = "%tu anteckningar";
 "Bookmarks" = "Bokmärken";
 "No Bookmarks" = "Inga bokmärken";
 "Add Bookmark" = "Lägg till bokmärke";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Dokumentet kan inte låsas upp. %@ stöds ej.";
 
 // page
-"%d of %d" = "%d av %d";
-"%d-%d of %d" = "%d-%d av %d";
-"%@ (%d of %d)" = "%@ (%d av %d)";
-"%@, Page %d" = "%@, sida %d";
+"%tu of %tu" = "%tu av %tu";
+"%tu-%tu of %tu" = "%tu-%tu av %tu";
+"%@ (%tu of %tu)" = "%@ (%tu av %tu)";
+"%@, Page %tu" = "%@, sida %tu";
 "Leave %@?" = "Lämna %@?";
 
 // search
 "Search Document" = "Sök dokument"; // to search for a string in the given document
 "No matches found" = "Hittade inga träffar";
 "One match found" = "Hittade en träff";
-"%d matches found" = "Hittade %d träffar";
-"Searching Page %d of %d" = "Söker sida %d av %d";
+"%tu matches found" = "Hittade %tu träffar";
+"Searching Page %tu of %tu" = "Söker sida %tu av %tu";
 "Search Completed" = "Sökningen är klar";
 "Search Cancelled" = "Sökningen avbröts";
-"%d left" = "%d kvar"; // Indexing Documents... 5 left
+"%tu left" = "%tu kvar"; // Indexing Documents... 5 left
 "Searching" = "Söker";
-"%d documents indexed." = "Indexerat %d dokument.";
+"%tu documents indexed." = "Indexerat %tu dokument.";
 "Done" = "Klar";
 "Indexing Documents" = "Indexerar dokument";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Intill";
 "Line Start" = "Linjestart";
 "Line End" = "Linjeslut";
-"%d Points" = "%d punkter";
+"%tu Points" = "%tu punkter";
 
 // link annotation editing
 "Create Link" = "Skapa länk";
@@ -282,7 +282,7 @@
 "Move Link" = "Flytta länk";
 "Remove Link" = "Ta bort länk";
 "Open Link" = "Öppna länk";
-"Go to Page %d" = "Gå till sida %d";
+"Go to Page %tu" = "Gå till sida %tu";
 "Go to Page" = "Gå till sida"; // title of a Popup
 "Save" = "Spara";
 "Link Destination" = "Länkmål";

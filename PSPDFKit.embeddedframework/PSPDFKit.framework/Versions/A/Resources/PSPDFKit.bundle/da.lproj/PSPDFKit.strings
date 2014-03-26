@@ -19,8 +19,8 @@
 "File Not Found" = "Arkiv ikke fundet";
 "File couldn't be opened." = "Arkiv kunne ikke åbnes."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF uden navn";
-"Page %d" = "Side %d";
-"All (%d Pages)" = "Alle (%d sider)";
+"Page %tu" = "Side %tu";
+"All (%tu Pages)" = "Alle (%tu sider)";
 "Next" = "Næste";
 "Previous" = "Forrige";
 "Error" = "Fejl";
@@ -45,8 +45,8 @@
 "Annotation" = "Kommentar";
 "Annotations" = "Kommentarer";
 "No Annotations" = "Ingen kommentarer";
-"%d Annotation" = "%d-kommentar";
-"%d Annotations" = "%d kommentarer";
+"%tu Annotation" = "%tu-kommentar";
+"%tu Annotations" = "%tu kommentarer";
 "Bookmarks" = "Bogmærker";
 "No Bookmarks" = "Ingen bogmærker";
 "Add Bookmark" = "Tilføj bogmærke";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Dette dokument kan ikke låses op. %@ er ikke understøttet.";
 
 // page
-"%d of %d" = "%d af %d";
-"%d-%d of %d" = "%d-%d af %d";
-"%@ (%d of %d)" = "%@ (%d af %d)";
-"%@, Page %d" = "%@, side %d";
+"%tu of %tu" = "%tu af %tu";
+"%tu-%tu of %tu" = "%tu-%tu af %tu";
+"%@ (%tu of %tu)" = "%@ (%tu af %tu)";
+"%@, Page %tu" = "%@, side %tu";
 "Leave %@?" = "Forlad %@?";
 
 // search
 "Search Document" = "Søg i dokument"; // to search for a string in the given document
 "No matches found" = "Ingen resultater";
 "One match found" = "En match fundet";
-"%d matches found" = "%d matches fundet";
-"Searching Page %d of %d" = "Søger i side %d af %d";
+"%tu matches found" = "%tu matches fundet";
+"Searching Page %tu of %tu" = "Søger i side %tu af %tu";
 "Search Completed" = "Søgning afsluttet";
 "Search Cancelled" = "Søgning annuleret";
-"%d left" = "%d tilbage"; // Indexing Documents... 5 left
+"%tu left" = "%tu tilbage"; // Indexing Documents... 5 left
 "Searching" = "Søger";
-"%d documents indexed." = "%d dokumenter indekserede.";
+"%tu documents indexed." = "%tu dokumenter indekserede.";
 "Done" = "Færdig";
 "Indexing Documents" = "Indekserer dokumenter";
 
@@ -273,7 +273,7 @@
 "Line.Butt" = "Knop";
 "Line Start" = "Linjestart";
 "Line End" = "Linjeslut";
-"%d Points" = "%d punkter";
+"%tu Points" = "%tu punkter";
 
 // link annotation editing
 "Create Link" = "Opret henvisning";
@@ -282,7 +282,7 @@
 "Move Link" = "Fly henvisning";
 "Remove Link" = "Fjern henvisning";
 "Open Link" = "Åbn henvisning";
-"Go to Page %d" = "Gå til side %d";
+"Go to Page %tu" = "Gå til side %tu";
 "Go to Page" = "Gå til side"; // title of a Popup
 "Save" = "Arkiver";
 "Link Destination" = "Link-destination";

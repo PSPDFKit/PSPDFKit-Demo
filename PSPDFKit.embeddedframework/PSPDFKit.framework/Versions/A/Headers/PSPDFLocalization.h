@@ -17,10 +17,12 @@ extern NSString *PSPDFAppName(void);
 
 /// Localizes strings.
 /// Will first look up the string in the PSPDFKit.bundle
-extern NSString *PSPDFLocalize(NSString *stringToken);
+extern NSString *PSPDFLocalize(NSString *stringToken) NS_FORMAT_ARGUMENT(1);
+extern NSString *PSPDFLocalizeFormatted(NSString *stringToken, ...) NS_FORMAT_FUNCTION(1,2);
 
 /// Same as `PSPDFLocalize()` but will add an ellipsis (...) at the end.
-extern NSString *PSPDFLocalizeWithEllipsis(NSString *stringToken);
+extern NSString *PSPDFLocalizeWithEllipsis(NSString *stringToken) NS_FORMAT_ARGUMENT(1);
+extern NSString *PSPDFLocalizeWithEllipsisFormatted(NSString *stringToken, ...) NS_FORMAT_FUNCTION(1,2);
 
 /// Allows to set a custom dictionary that contains dictionaries with language locales.
 /// Will override localization found in the bundle, if a value is found.

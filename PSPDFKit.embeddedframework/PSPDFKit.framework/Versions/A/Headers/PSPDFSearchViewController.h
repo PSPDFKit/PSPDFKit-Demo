@@ -96,7 +96,7 @@ extern NSUInteger PSPDFMinimumSearchLength;
 @property (nonatomic, assign) BOOL useOutlineForPageNames;
 
 /// Will include annotations that have a matching type into the search results. (contents will be searched).
-/// Defaults to PSPDFAnnotationTypeAll. PSPDFKit Basic/Complete feature.
+/// Defaults to PSPDFAnnotationTypeAll&~PSPDFAnnotationTypeLink. PSPDFKit Basic/Complete feature.
 @property (nonatomic, assign) PSPDFAnnotationType searchableAnnotationTypes;
 
 /// Pins the search bar to the top. Defaults to YES on iPhone.

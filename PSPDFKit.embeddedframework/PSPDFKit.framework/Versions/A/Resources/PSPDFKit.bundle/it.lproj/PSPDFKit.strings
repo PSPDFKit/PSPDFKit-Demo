@@ -19,8 +19,8 @@
 "File Not Found" = "File non trovato";
 "File couldn't be opened." = "Impossibile aprire il file."; // error message, when embedded files could not be parsed
 "Unnamed PDF" = "PDF senza nome";
-"Page %d" = "Pagina %d";
-"All (%d Pages)" = "Tutte (%d pagine)";
+"Page %tu" = "Pagina %tu";
+"All (%tu Pages)" = "Tutte (%tu pagine)";
 "Next" = "Avanti";
 "Previous" = "Precedente";
 "Error" = "Errore";
@@ -45,8 +45,8 @@
 "Annotation" = "Annotazione";
 "Annotations" = "Annotazioni";
 "No Annotations" = "Nessuna annotazione";
-"%d Annotation" = "%d annotazioni";
-"%d Annotations" = "%d annotazioni";
+"%tu Annotation" = "%tu annotazioni";
+"%tu Annotations" = "%tu annotazioni";
 "Bookmarks" = "Preferiti";
 "No Bookmarks" = "Nessun preferito";
 "Add Bookmark" = "Aggiungi ai preferiti";
@@ -70,23 +70,23 @@
 "This document cannot be unlocked. %@ is unsupported." = "Impossibile aprire il documento. %@ non è supportato.";
 
 // page
-"%d of %d" = "%d di %d";
-"%d-%d of %d" = "%d-%d di %d";
-"%@ (%d of %d)" = "%@ (%d di %d)";
-"%@, Page %d" = "%@, pagina %d";
+"%tu of %tu" = "%tu di %tu";
+"%tu-%tu of %tu" = "%tu-%tu di %tu";
+"%@ (%tu of %tu)" = "%@ (%tu di %tu)";
+"%@, Page %tu" = "%@, pagina %tu";
 "Leave %@?" = "Uscire da %@?";
 
 // search
 "Search Document" = "Cerca nel documento"; // to search for a string in the given document
 "No matches found" = "Nessun risultato";
 "One match found" = "Un risultato";
-"%d matches found" = "%d risultati";
-"Searching Page %d of %d" = "Cerco pagina %d di %d";
+"%tu matches found" = "%tu risultati";
+"Searching Page %tu of %tu" = "Cerco pagina %tu di %tu";
 "Search Completed" = "Ricerca completata";
 "Search Cancelled" = "Ricerca annullata";
-"%d left" = "%d lasciati"; // Indexing Documents... 5 left
+"%tu left" = "%tu lasciati"; // Indexing Documents... 5 left
 "Searching" = "Cerco";
-"%d documents indexed." = "%d documenti indicizzati.";
+"%tu documents indexed." = "%tu documenti indicizzati.";
 "Done" = "Fatto";
 "Indexing Documents" = "Indicizzazione documenti";
 
@@ -183,7 +183,7 @@
 "Medium Quality" = "Qualità media";
 "High Quality" = "Qualità alta";
 "Clear All" = "Cancella tutto";
-"Clear" = "Effacer";
+"Clear" = "Pulisci";
 "Style" = "Stile";
 "Link" = "Collega";
 "Ink" = "Inchiostro";
@@ -273,7 +273,7 @@
 "Line.Butt" = "Piatta";
 "Line Start" = "Inizio linea";
 "Line End" = "Fine linea";
-"%d Points" = "%d punti";
+"%tu Points" = "%tu punti";
 
 // link annotation editing
 "Create Link" = "Crea link";
@@ -282,7 +282,7 @@
 "Move Link" = "Sposta link";
 "Remove Link" = "Rimuovi link";
 "Open Link" = "Apri il link";
-"Go to Page %d" = "Vai alla pagina %d";
+"Go to Page %tu" = "Vai alla pagina %tu";
 "Go to Page" = "Vai a pagina"; // title of a Popup
 "Save" = "Salva";
 "Link Destination" = "Collega destinazione";
