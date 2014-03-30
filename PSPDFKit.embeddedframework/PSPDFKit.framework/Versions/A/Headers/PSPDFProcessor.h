@@ -28,6 +28,9 @@ extern NSString *const PSPDFProcessorAdditionalDelay;  // Defaults to 0.05 secon
 extern NSString *const PSPDFProcessorStripEmptyPages;  // Defaults to NO. Adds an additional step to strip white pages if you're getting any at the end.
 extern NSString *const PSPDFProcessorSkipPDFCreation;  // Defaults to NO. Will assume output is already a valid PDF and just perform annotation saving.
 
+// Careful, this code is executed on background threads. Only use thread-safe drawing methods.
+extern NSString *const PSPDFProcessorDrawRectBlock;    // Allows a drawing block `PSPDFPageDrawRectBlock` being called for each page.
+
 // Common page sizes. Use for `PSPDFProcessorPageRect`.
 extern CGRect const PSPDFPaperSizeA4;
 extern CGRect const PSPDFPaperSizeLetter;
@@ -36,6 +39,7 @@ extern CGRect const PSPDFPaperSizeLetter;
 extern NSString *const PSPDFProcessorDocumentTitle;    // Will override any defaults if set.
 
 typedef void (^PSPDFProgressBlock)(NSUInteger currentPage, NSUInteger numberOfProcessedPages, NSUInteger totalPages);
+typedef void (^PSPDFPageDrawRectBlock)(CGContextRef context, NSUInteger currentPage, CGRect cropBox);
 
 /// Create, merge or modify PDF documents. Also allows to flatten annotation data.
 @interface PSPDFProcessor : NSObject

@@ -36,7 +36,15 @@
 - (void)reload;
 
 /// Returns the `PSPDFGalleryContentView` for the given item index or nil if does not exist or is not part of `activeContentViews`.
+/// @warning If `loopEnabled` is `YES`, this method will throw an exception. Always use
+/// `-contentViewsForItemAtIndex:` when enabling the loop feature!
 - (PSPDFGalleryContentView *)contentViewForItemAtIndex:(NSUInteger)index;
+
+/// Returns the `PSPDFGalleryContentView`s for the given item index or an empty set if does not exist
+/// or is not part of `activeContentViews`.
+/// @note This method will usually return one view per index. However, if `loopEnabled` is `YES`,
+/// under certain circumstances there will be more than one view per index!
+- (NSSet *)contentViewsForItemAtIndex:(NSUInteger)index;
 
 /// Returns the index for a given content view or `NSNotFound` if the content view cannot be matched to an index.
 - (NSUInteger)itemIndexForContentView:(PSPDFGalleryContentView *)contentView;
@@ -49,6 +57,9 @@
 
 /// The currently active content views, that is the content views that are visible or are next to a visible content view.
 - (NSSet *)activeContentViews;
+
+/// Enables the loop mode, where the gallery wraps around at both ends. Defaults to `NO`.
+@property (nonatomic, assign, getter = isLoopEnabled) BOOL loopEnabled;
 
 @end
 

@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView, PSPDFBlurView;
+@class PSPDFGalleryView, PSPDFGalleryErrorView, PSPDFGalleryLoadingView, PSPDFBlurView, PSPDFStatusHUDView;
 
 /// Used to group the error, loading and gallery view and to properly lay them out.
 @interface PSPDFGalleryContainerView : UIView
@@ -28,5 +28,8 @@
 
 /// The background view.
 @property (nonatomic, strong) PSPDFBlurView *backgroundView;
+
+/// The status HUD view.
+@property (nonatomic, strong) PSPDFStatusHUDView *statusHUDView;
 
 @end

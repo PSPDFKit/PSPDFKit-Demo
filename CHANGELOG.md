@@ -4,6 +4,19 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.6.4 - 30/Mar/2014__
+
+*  The flexible annotation toolbar now automatically consolidates buttons if space becomes too short.
+*  The image/video gallery now loops content by default, unless it's just a single item. (This is controllable by the new `loopEnabled` flag)
+*  Improve documentation around gallery-usage and proper removal from full-screen.
+*  The percent driven back animation of the inspector now animates the current selected cell out or restores it based on the animation progress.
+*  Changes the HMAC format for the PSPDFCryptor from SHA1 to SHA256 to be more consistent with the RNCryptor data format.
+*  The `moreBarButtonItem` action sheet is now dismissed when tapped on the button while it being open (instead of showing it again).
+*  Allows to add global processor options via a new delegate to `PSPDFDocumentSharingViewController`.
+*  `PSPDFProcessor` now has a new drawing hook (`PSPDFProcessorDrawRectBlock`) which can be used to watermark documents on exporting.
+*  Fixes an issue that could prevent showing some search highlights if there are multiple on the same page.
+*  Fixes a regression where sometimes the original view port wasn't correctly restored when the keyboard is dismissed after free text editing.
+
 __v3.6.3 - 26/Mar/2014__
 
 *  Improves placement precision of draft ink annotations when the device is rotated while in drawing mode.

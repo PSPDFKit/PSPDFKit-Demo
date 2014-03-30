@@ -13,6 +13,7 @@
 #import "PSPDFStaticTableViewController.h"
 #import "PSPDFStyleable.h"
 #import "PSPDFOverridable.h"
+#import "PSPDFProcessor.h"
 
 @class PSPDFDocument;
 
@@ -53,6 +54,10 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 /// Allows to override the default subtitle string for a specific option.
 - (NSString *)documentSharingViewController:(PSPDFDocumentSharingViewController *)shareController subtitleForOption:(PSPDFDocumentSharingOptions)option;
 
+/// Allows to return custom options for `PSPDFProcessor`, such as watermarking.
+- (NSDictionary *)processorOptionsForDocumentSharingViewController:(PSPDFDocumentSharingViewController *)shareController;
+
+/// Allows to return a custom temporary directory that is used during the export process.
 - (NSString *)temporaryDirectoryForDocumentSharingViewController:(PSPDFDocumentSharingViewController *)shareController;
 
 @end
@@ -95,5 +100,9 @@ typedef NS_OPTIONS(NSUInteger, PSPDFDocumentSharingOptions) {
 
 // Generates an annotation summary for all `pages` in `document`.
 + (NSAttributedString *)annotationSummaryForDocument:(PSPDFDocument *)document pages:(NSIndexSet *)pages;
+
+// Will query the delegate for `processorOptionsForDocumentSharingViewController:`.
+// Subclass this method if you want to add options to all sharing actions.
+- (NSDictionary *)delegateProcessorOptions;
 
 @end

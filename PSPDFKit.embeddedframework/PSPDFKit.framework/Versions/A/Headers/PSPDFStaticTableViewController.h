@@ -59,9 +59,13 @@
 // Defines the content for a section in `UITableView`.
 @interface PSPDFSectionModel : NSObject
 
-+ (instancetype)sectionWithTitle:(NSString *)title;
++ (instancetype)sectionWithTitle:(NSString *)headerTitle;
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *headerTitle;
+@property (nonatomic, copy) NSString *footerTitle;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIView *footerView;
+
 @property (nonatomic, strong) NSArray *cells;
 
 @end
@@ -83,6 +87,7 @@
 // Handles changing the checkboxes on tap.
 @interface PSPDFCheckboxSectionModel : PSPDFSectionModel
 @property (nonatomic, strong) PSPDFCellModel *checkedCellModel;
+@property (nonatomic, copy) void (^updateBlock)(PSPDFStaticTableViewController *viewController, PSPDFCheckboxSectionModel *checkboxSectionModel);
 @end
 
 // Automatically handles checkbox setting within a section.

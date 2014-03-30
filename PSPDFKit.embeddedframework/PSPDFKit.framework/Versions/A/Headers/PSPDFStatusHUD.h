@@ -44,3 +44,7 @@ typedef NS_ENUM(NSUInteger, PSPDFStatusHUDStyle) {
 - (void)popAnimated:(BOOL)animated;
 
 @end
+
+@interface PSPDFStatusHUDView : UIView
+@property (nonatomic, strong) PSPDFStatusHUDItem *item;
+@end

@@ -12,6 +12,8 @@
 
 @class PSPDFFlexibleToolbarDragView;
 @class PSPDFFlexibleToolbar;
+@class PSPDFFlexibleToolbarCollapsedButton;
+@class PSPDFMenuItem;
 
 typedef NS_OPTIONS(NSUInteger, PSPDFFlexibleToolbarPosition) {
     PSPDFFlexibleToolbarPositionNone = 0,
@@ -32,6 +34,8 @@ extern CGFloat const PSPDFFlexibleToolbarHeight;
 extern CGFloat const PSPDFFlexibleToolbarHeightPhoneLandscape;
 extern CGFloat const PSPDFFlexibleToolbarTopAttachedExtensionHeight;
 extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
+
+#define PSPDFFlexibleToolbarGroupIndicatorPositionForToolbarPosition(position) ((position == PSPDFFlexibleToolbarPositionRight) ? PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomLeft : PSPDFFlexibleToolbarGroupButtonIndicatorPositionBottomRight)
 
 #define PSPDFFlexibleToolbarPositionIsHorizontal(position) ((position) == PSPDFFlexibleToolbarPositionInTopBar)
 #define PSPDFFlexibleToolbarPositionIsVertical(position) ((position) == PSPDFFlexibleToolbarPositionLeft || (position) == PSPDFFlexibleToolbarPositionRight)
@@ -150,6 +154,33 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 /// Internally used by the container view to correctly position the toolbar and anchor views during drag & drop.
 - (CGSize)preferredExtendedSizeFitting:(CGSize)availableSize forToolbarPosition:(PSPDFFlexibleToolbarPosition)position;
 
+/// @name Overflow handling
+
+/// An array of buttons that have been collapsed into `collapsedButton` due to lack of toolbar space.
+/// Collapsable buttons need to be `PSPDFFlexibleToolbarButton` with the `collapsible` flag set to yes.
+@property (nonatomic, strong, readonly) NSArray *collapsedButtons;
+
+/// Added to the toolbar when toolbar buttons get collapsed due to lack of toolbar space.
+/// @see collapsedButtons
+/// @see showMenuForCollapsedButtons:fromButton:animated:
+@property (nonatomic, strong, readonly) PSPDFFlexibleToolbarCollapsedButton *collapsedButton;
+
+/// @name Menu
+
+/// Shows a menu (UIMenuController) for a specific button.
+/// @param menuItems An array of PSPDFMenuItem objects.
+/// @param target The target view (most commonly on of the buttons) used to anchor the menu arrow.
+/// @param animated Whether to animate the menu presentation or not.
+- (void)showMenuWithItems:(NSArray *)menuItems target:(UIView *)target animated:(BOOL)animated;
+
+/// Called when the `collapsedButton` menu action is invoked.
+/// The default implementation uses `menuItemForButton:` to convert buttons into menu items
+/// and than calls through to `showMenuWithItems:target:animated:`.
+- (void)showMenuForCollapsedButtons:(NSArray *)buttons fromButton:(UIButton *)sourceButton animated:(BOOL)animated;
+
+/// Converts buttons into similarly styled menu items
+- (PSPDFMenuItem *)menuItemForButton:(UIButton *)button;
+
 @end
 
 /// Toolbar drag & drop indicator view.
@@ -170,6 +201,10 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 /// A UIButton subclass that mimic the appearance of plain style UIBarButtonItems. 
 @interface PSPDFFlexibleToolbarButton : UIButton
 
+/// Designates the button to be collapsible into one item, if toolbar space is limited.
+/// Defaults to YES. 
+@property (nonatomic, assign, getter = isCollapsible) BOOL collapsible;
+
 /// Styles the provided image and sets it as the button image for several button states.
 - (void)setImage:(UIImage *)image;
 
@@ -185,6 +220,9 @@ extern CGFloat const PSPDFFlexibleToolbarPreferredVerticalHeight;
 @property (nonatomic, assign) PSPDFFlexibleToolbarGroupButtonIndicatorPosition groupIndicatorPosition;
 
 @end
+
+/// Special `PSPDFFlexibleToolbarGroupButton` used for the collapsed button item.
+@interface PSPDFFlexibleToolbarCollapsedButton : PSPDFFlexibleToolbarGroupButton @end
 
 /// Buttons that can be used as spaces for the flexible toolbar
 /// (similar to UIBarButtonSystemItemFlexibleSpace and UIBarButtonSystemItemFixedSpace).

@@ -84,6 +84,15 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 /// Set this to `[UIColor clearColor]` if you need a transparent mode. Defaults to black.
 @property (nonatomic, strong) UIColor *fullscreenBackgroundColor;
 
+/// Controls if the gallery should loop infinitely, that is if the user can keep scrolling forever
+/// and the content will repeat itself. Defaults to `YES`. Ignored if there's only one item set.
+@property (nonatomic, assign, getter = isLoopEnabled) BOOL loopEnabled;
+
+/// Setting this to `YES` will present a HUD whenever the user goes from the last image to the
+/// first one. Defaults to `YES`.
+/// @note This propery has no effect if `loopEnabled` is set to `NO`.
+@property (nonatomic, assign, getter = isLoopHUDEnabled) BOOL loopHUDEnabled;
+
 /// @name State
 
 /// The current state.
@@ -99,6 +108,8 @@ typedef NS_ENUM(NSUInteger, PSPDFGalleryViewControllerState) {
 @property (nonatomic, assign, getter=isFullscreen) BOOL fullscreen;
 
 /// Used to enter or exit the fullscreen mode with or without animation.
+/// @warning If you use this property programmatically, you must set it to `NO` once
+/// you're done with your instance of `PSPDFGalleryViewController`!
 - (void)setFullscreen:(BOOL)fullscreen animated:(BOOL)animated;
 
 /// The current zoom scale. Only valid when displayed as an embedded gallery within a PDF document.
