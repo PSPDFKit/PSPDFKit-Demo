@@ -45,6 +45,7 @@
 - (NSDictionary *)delegateProcessorOptions {
     // Create watermark drawing block. This will be called once per page on exporting, after the PDF and the annotations have been drawn.
     PSPDFPageDrawRectBlock drawBlock = ^(CGContextRef context, NSUInteger currentPage, CGRect cropBox) {
+        // Careful, this code is executed on background threads. Only use thread-safe drawing methods.
         NSString *text = @"PSPDFKit Example Watermark";
         NSStringDrawingContext *stringDrawingContext = [NSStringDrawingContext new];
         stringDrawingContext.minimumScaleFactor = 0.1f;
