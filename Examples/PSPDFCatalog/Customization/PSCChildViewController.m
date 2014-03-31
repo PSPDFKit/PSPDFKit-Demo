@@ -10,7 +10,7 @@
 
 #import "PSCChildViewController.h"
 
-@interface PSCChildViewController() <PSPDFViewControllerDelegate>
+@interface PSCChildViewController() <PSPDFViewControllerDelegate, UIToolbarDelegate>
 @property (nonatomic, strong) PSPDFViewController *pdfController;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @end
@@ -53,7 +53,12 @@
 
     // As an example, here we're not using the UINavigationController but instead a custom UIToolbar.
     // Note that if you're going that way, you'll loose some features that PSPDFKit provides, like dynamic toolbar updating or accessibility.
-    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
+    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.f, PSCIsUIKitFlatMode() ? 20.f : 0.f, CGRectGetWidth(self.view.bounds), PSCToolbarHeightForOrientation(self.interfaceOrientation))];
+    // Ensure we're top attached. iOS 7 only feature.
+    if ([toolbar respondsToSelector:@selector(setBarTintColor:)]) {
+        toolbar.barTintColor = UIColor.pspdfColor;
+        toolbar.delegate = self;
+    }
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
@@ -71,6 +76,10 @@
     self.toolbar = toolbar;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
@@ -81,7 +90,7 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     // Center view with margins.
-    self.pdfController.view.frame = CGRectInset(CGRectMake(0, self.toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.toolbar.bounds.size.height), 50, 50);
+    self.pdfController.view.frame = CGRectInset(CGRectMake(0, self.toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.toolbar.bounds.size.height), 50.f, 50.f);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,6 +120,13 @@
 
 - (void)doneButtonPressed:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - UIBarPositioningDelegate
+
+- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar {
+    return UIBarPositionTopAttached;
 }
 
 @end
