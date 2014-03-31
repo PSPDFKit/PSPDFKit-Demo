@@ -4,6 +4,11 @@ Subscribe to updates: [RSS](https://github.com/PSPDFKit/PSPDFKit-Demo/commits/ma
 
 We have a blog that highlights the best new features and changes: [http://blog.pspdfkit.com](http://blog.pspdfkit.com)
 
+__v3.6.5 - 31/Mar/2014__
+
+*  Some internal improvements to prepare for the upcoming stylus support.
+*  Improves section styling of the annotation inspector under iOS 7.
+
 __v3.6.4 - 30/Mar/2014__
 
 *  The flexible annotation toolbar now automatically consolidates buttons if space becomes too short.
