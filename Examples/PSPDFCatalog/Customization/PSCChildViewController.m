@@ -36,8 +36,6 @@
     self.pdfController.pageTransition = PSPDFPageTransitionScrollContinuous;
     self.pdfController.scrollDirection = PSPDFScrollDirectionVertical;
     self.pdfController.fitToWidthEnabled = YES;
-    //self.pdfController.toolbarEnabled = NO;
-    //self.pdfController.HUDViewMode = PSPDFHUDViewModeNever;
     self.pdfController.pagePadding = 0.f;
     self.pdfController.shadowEnabled = NO;
     self.pdfController.smartZoomEnabled = NO;
@@ -46,6 +44,9 @@
     // Those need to be nilled out if you use the barButton items externally!
     self.pdfController.leftBarButtonItems = nil;
     self.pdfController.rightBarButtonItems = nil;
+
+    // Also blocks code that is responsible for showing the HUD.
+    self.pdfController.shouldHideNavigationBarWithHUD = NO;
 
     [self addChildViewController:self.pdfController];
     [self.pdfController didMoveToParentViewController:self];

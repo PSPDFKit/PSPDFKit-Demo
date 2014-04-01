@@ -15,12 +15,12 @@
 #import "PSCCustomToolbarController.h"
 #import "PSCExample.h"
 
-@interface PSCPDFViewControllerCustomizationChildViewControllerContainmentExample : PSCExample @end
-@implementation PSCPDFViewControllerCustomizationChildViewControllerContainmentExample
+@interface PSCChildViewControllerContainmentExample : PSCExample @end
+@implementation PSCChildViewControllerContainmentExample
 
 - (id)init {
     if (self = [super init]) {
-        self.title = @"Child View Controller containment";
+        self.title = @"Child View Controller containment, windowed";
         self.category = PSCExampleCategoryControllerCustomization;
         self.priority = 30;
     }
@@ -30,6 +30,36 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     return [[PSCChildViewController alloc] initWithDocument:document];
+}
+
+@end
+
+@interface PSCFullScreenChildViewControllerContainmentExample : PSCExample @end
+@implementation PSCFullScreenChildViewControllerContainmentExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Child View Controller containment, fullscreen";
+        self.category = PSCExampleCategoryControllerCustomization;
+        self.priority = 31;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    // Manually configure the top lable distance.
+    pdfController.HUDView.documentLabelDistance = 80.f;
+
+    // Create simple view controller container.
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [viewController addChildViewController:pdfController];
+    [viewController.view addSubview:pdfController.view];
+    pdfController.view.frame = viewController.view.bounds;
+    [pdfController didMoveToParentViewController:viewController];
+
+    return viewController;
 }
 
 @end
