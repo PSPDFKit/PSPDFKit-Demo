@@ -74,9 +74,7 @@
     document.editableAnnotationTypes = nil; // disable free text editing here as we use them as labels.
 
     {
-        PSPDFFreeTextAnnotation *galleryText = [PSPDFFreeTextAnnotation new];
-        galleryText.contents = @"Gallery that opens inline\nPSPDFActionOptionButton : @YES";
-        [galleryText sizeToFit];
+        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline\nPSPDFActionOptionButton : @YES"];
         galleryText.boundingBox = CGRectMake(20.f, 700.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
 
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
@@ -87,9 +85,7 @@
     }
 
     {
-        PSPDFFreeTextAnnotation *galleryText = [PSPDFFreeTextAnnotation new];
-        galleryText.contents = @"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/1h2N1r333N0V/webimage2.png\"";
-        [galleryText sizeToFit];
+        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/1h2N1r333N0V/webimage2.png\""];
         galleryText.boundingBox = CGRectMake(20.f, 400.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
 
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
@@ -100,9 +96,7 @@
     }
 
     {
-        PSPDFFreeTextAnnotation *webText = [PSPDFFreeTextAnnotation new];
-        webText.contents = @"Link that opens modally.\nPSPDFActionOptionButton : @YES,\nPSPDFActionOptionModal : @YES,\nPSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f)";
-        [webText sizeToFit];
+        PSPDFFreeTextAnnotation *webText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Link that opens modally.\nPSPDFActionOptionButton : @YES,\nPSPDFActionOptionModal : @YES,\nPSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f)"];
         webText.boundingBox = CGRectMake(20.f, 100.f, webText.boundingBox.size.width, webText.boundingBox.size.height);
 
         PSPDFLinkAnnotation *webAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://www.apple.com/ipad/"];
