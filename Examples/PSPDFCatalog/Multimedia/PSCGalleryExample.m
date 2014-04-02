@@ -14,8 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCImageGalleryExample
 
-@interface PSCImageGalleryExample : PSCExample <PSPDFViewControllerDelegate>
-@end
+@interface PSCImageGalleryExample : PSCExample <PSPDFViewControllerDelegate> @end
 @implementation PSCImageGalleryExample
 
 - (id)init {
@@ -31,13 +30,86 @@
 - (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
     PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
     document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
-    
+
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
+
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    pdfController.delegate = self;
+    return pdfController;
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
+    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
+        PSPDFGalleryViewController *galleryController = ((PSPDFGalleryAnnotationView *)annotationView).galleryViewController;
+        galleryController.blurBackground = YES;
+    }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCButtonImageGalleryExample
+
+@interface PSCButtonImageGalleryExample : PSCExample <PSPDFViewControllerDelegate> @end
+@implementation PSCButtonImageGalleryExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Image Gallery with button activation";
+        self.contentDescription = @"Buttons that show/hide the gallery or videos.";
+        self.category = PSCExampleCategoryMultimedia;
+        self.priority = 51;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader temporaryDocumentWithString:@"Image Gallery with Buttons Example"];
+    document.annotationSaveMode = PSPDFAnnotationSaveModeDisabled;
+    document.editableAnnotationTypes = nil; // disable free text editing here as we use them as labels.
+
+    {
+        PSPDFFreeTextAnnotation *galleryText = [PSPDFFreeTextAnnotation new];
+        galleryText.contents = @"Gallery that opens inline\nPSPDFActionOptionButton : @YES";
+        [galleryText sizeToFit];
+        galleryText.boundingBox = CGRectMake(20.f, 700.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
+
+        PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
+        // Setting the button option to yes will show the default button.
+        galleryAnnotation.action.options = @{PSPDFActionOptionButton : @YES};
+        galleryAnnotation.boundingBox = CGRectMake(200.f, 560.f, 400.f, 300.f);
+        [document addAnnotations:@[galleryText, galleryAnnotation]];
+    }
+
+    {
+        PSPDFFreeTextAnnotation *galleryText = [PSPDFFreeTextAnnotation new];
+        galleryText.contents = @"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/1h2N1r333N0V/webimage2.png\"";
+        [galleryText sizeToFit];
+        galleryText.boundingBox = CGRectMake(20.f, 400.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
+
+        PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
+        // Setting the button option to an URL will load this URL. The URL can be local or remote. Use pspdfkit://localhost for local URLs.
+        galleryAnnotation.action.options = @{PSPDFActionOptionButton : @"http://cl.ly/image/1h2N1r333N0V/webimage2.png"};
+        galleryAnnotation.boundingBox = CGRectMake(200.f, 350.f, 250.f, 200.f);
+        [document addAnnotations:@[galleryText, galleryAnnotation]];
+    }
+
+    {
+        PSPDFFreeTextAnnotation *webText = [PSPDFFreeTextAnnotation new];
+        webText.contents = @"Link that opens modally.\nPSPDFActionOptionButton : @YES,\nPSPDFActionOptionModal : @YES,\nPSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f)";
+        [webText sizeToFit];
+        webText.boundingBox = CGRectMake(20.f, 100.f, webText.boundingBox.size.width, webText.boundingBox.size.height);
+
+        PSPDFLinkAnnotation *webAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://www.apple.com/ipad/"];
+        webAnnotation.action.options = @{PSPDFActionOptionButton : @YES, PSPDFActionOptionModal : @YES, PSPDFActionOptionSize : BOXED(CGSizeMake(550.f, 550.f))};
+        webAnnotation.boundingBox = CGRectMake(200.f, 100.f, 200.f, 200.f);
+        [document addAnnotations:@[webText, webAnnotation]];
+    }
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     pdfController.delegate = self;
@@ -134,7 +206,7 @@
     videoEmbedded.boundingBox = CGRectMake(pageRect.size.width-imageSize.width, pageRect.size.height-imageSize.height-64.f,
                                            imageSize.width, imageSize.height);
     [document addAnnotations:@[videoEmbedded]];
-
+    
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
 
