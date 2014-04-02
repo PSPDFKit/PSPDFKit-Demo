@@ -60,18 +60,23 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationAddedOrRemovedNotification:) name:PSPDFAnnotationsRemovedNotification object:nil];
 }
 
+- (void)dealloc {
+    // Clear document cache, so we don't get annotation-artefacts when loading the doc again.
+    [PSPDFCache.sharedCache removeCacheForDocument:self.document deleteDocument:NO error:NULL];
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Private
 
 - (void)annotationChangedNotification:(NSNotification *)notification {
     [self processChangeForAnnotation:notification.object];
 }
+
 - (void)annotationAddedOrRemovedNotification:(NSNotification *)notification {
     for (PSPDFAnnotation *annotation in notification.object) {
         [self processChangeForAnnotation:annotation];
     }
 }
-
 
 - (void)processChangeForAnnotation:(PSPDFAnnotation *)annotation {
     if (annotation.document == self.document) {
