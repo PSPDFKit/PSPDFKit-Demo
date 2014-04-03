@@ -64,8 +64,42 @@
 
 @end
 
-@interface PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample : PSCExample @end
-@implementation PSCPDFViewControllerCustomizationAddingaSimpleUIButtonExample
+@interface PSCNoToolbarChildViewControllerContainmentExample : PSCExample @end
+@implementation PSCNoToolbarChildViewControllerContainmentExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Child View Controller containment, no toolbar";
+        self.category = PSCExampleCategoryControllerCustomization;
+        self.priority = 32;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+    PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kHackerMagazineExample];
+    PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    // Manually configure the top lable distance.
+    //pdfController.HUDView.documentLabelDistance = 80.f;
+
+    // Create simple view controller container.
+    UIViewController *viewController = [[UIViewController alloc] init];
+    [viewController addChildViewController:pdfController];
+    [viewController.view addSubview:pdfController.view];
+    pdfController.view.frame = viewController.view.bounds;
+    [pdfController didMoveToParentViewController:viewController];
+    [delegate.currentViewController.navigationController presentViewController:viewController animated:YES completion:NULL];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [viewController dismissViewControllerAnimated:YES completion:NULL];
+    });
+    return nil;
+}
+
+@end
+
+@interface PSAddingButtonExample : PSCExample @end
+@implementation PSAddingButtonExample
 
 - (id)init {
     if (self = [super init]) {
@@ -83,8 +117,8 @@
 
 @end
 
-@interface PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample : PSCExample @end
-@implementation PSCPDFViewControllerCustomizationAddingMultipleUIButtonsExample
+@interface PSCAddingMultipleUIButtonsExample : PSCExample @end
+@implementation PSCAddingMultipleUIButtonsExample
 
 - (id)init {
     if (self = [super init]) {
@@ -103,8 +137,8 @@
 
 @end
 
-@interface PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample : PSCExample @end
-@implementation PSCPDFViewControllerCustomizationCompletelyCustomToolbarExample
+@interface PSCCompletelyCustomToolbarExample : PSCExample @end
+@implementation PSCCompletelyCustomToolbarExample
 
 - (id)init {
     if (self = [super init]) {
