@@ -89,7 +89,7 @@
 
     // Dynamically add video box.
     [document.undoController performBlockWithoutUndo:^{
-        PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720"];
+        PSPDFLinkAnnotation *video = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://youtube.com/embed/8B-y4idg700?VQ=HD720&start=10&end=20"];
         video.boundingBox = CGRectMake(70.f, 150.f, 470.f, 270.f);
         [document addAnnotations:@[video]];
     }];

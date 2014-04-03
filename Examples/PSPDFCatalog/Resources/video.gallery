@@ -9,14 +9,16 @@
   },
   {
     "contentURL":"http://youtu.be/jiyIcz7wUH0",
-    "type":"video"
+    "type":"video",
   },
   {
     "contentURL":"http://www.youtube.com/watch?v=VpZmIiIXuZ0",
     "type":"video",
     "caption":"A YouTube video",
     "options": {
-        "preferedVideoQualities":["1080p", "720p", "360p", "240p"]
+        "preferedVideoQualities":["1080p", "720p", "360p", "240p"],
+        "start":10,
+        "end":30
     }
   },
   {
