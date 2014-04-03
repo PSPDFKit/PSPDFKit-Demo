@@ -113,6 +113,8 @@
 		78A50BCF16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A50BCE16D6B287003EFFC0 /* PSCCustomDefaultZoomScaleViewController.m */; };
 		78A8EE5C15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */; };
 		78AAC6F115D1760E009B53C6 /* PSCBookmarkParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */; };
+		78ABC8B518EE041F007578C2 /* PSCCustomOutlineControllerExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */; };
+		78ABC8B718EE042D007578C2 /* PSCExportWatermarkExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC8B618EE042D007578C2 /* PSCExportWatermarkExample.m */; };
 		78AE9C65177AFB12000E308D /* settings-landscape-legacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AE9C5F177AFB12000E308D /* settings-landscape-legacy.png */; };
 		78AE9C66177AFB12000E308D /* settings-landscape-legacy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AE9C60177AFB12000E308D /* settings-landscape-legacy@2x.png */; };
 		78AE9C67177AFB12000E308D /* settings-legacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 78AE9C61177AFB12000E308D /* settings-legacy.png */; };
@@ -369,6 +371,8 @@
 		78A8EE5B15D6ADA900400DE7 /* PSCEmbeddedAnnotationTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCEmbeddedAnnotationTestViewController.m; sourceTree = "<group>"; };
 		78AAC6EF15D1760E009B53C6 /* PSCBookmarkParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCBookmarkParser.h; sourceTree = "<group>"; };
 		78AAC6F015D1760E009B53C6 /* PSCBookmarkParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBookmarkParser.m; sourceTree = "<group>"; };
+		78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCustomOutlineControllerExample.m; sourceTree = "<group>"; };
+		78ABC8B618EE042D007578C2 /* PSCExportWatermarkExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCExportWatermarkExample.m; sourceTree = "<group>"; };
 		78AE9C5F177AFB12000E308D /* settings-landscape-legacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-landscape-legacy.png"; sourceTree = "<group>"; };
 		78AE9C60177AFB12000E308D /* settings-landscape-legacy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-landscape-legacy@2x.png"; sourceTree = "<group>"; };
 		78AE9C61177AFB12000E308D /* settings-legacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-legacy.png"; sourceTree = "<group>"; };
@@ -941,6 +945,7 @@
 				78C7C5CC16CB9C4D0006075D /* PSCChildViewController.h */,
 				78C7C5CD16CB9C4D0006075D /* PSCChildViewController.m */,
 				789B9D3317F2EB43008BC64B /* PSCContentViewUsageExample.m */,
+				78ABC8B418EE041F007578C2 /* PSCCustomOutlineControllerExample.m */,
 				78C7C5CE16CB9C4D0006075D /* PSCCustomThumbnailsViewController.h */,
 				78C7C5CF16CB9C4D0006075D /* PSCCustomThumbnailsViewController.m */,
 				78C7C5D016CB9C4D0006075D /* PSCCustomToolbarController.h */,
@@ -948,6 +953,7 @@
 				78BEE6F7183973CF007345B7 /* PSCDefaultStampExample.m */,
 				78FEC1FD18B27F610012ACBD /* PSCDocumentDataProvidersExample.h */,
 				78FEC1FC18B27F610012ACBD /* PSCDocumentDataProvidersExample.m */,
+				78ABC8B618EE042D007578C2 /* PSCExportWatermarkExample.m */,
 				6F51A30B16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.h */,
 				6F51A30C16CE0AE80020B9BC /* PSCHideHUDDelayedDocumentViewController.m */,
 				78FDE16316CC209A005044D2 /* PSCHideHUDForThumbnailsViewController.h */,
@@ -1309,6 +1315,7 @@
 				78D4D4031848CD4900080A96 /* AFHTTPRequestOperation.m in Sources */,
 				78E5CCCC18C1340F005F1A63 /* PSCRoundProgressView.m in Sources */,
 				78B8FF5018041A1F0077178A /* PSCSelectAllTextExample.m in Sources */,
+				78ABC8B518EE041F007578C2 /* PSCCustomOutlineControllerExample.m in Sources */,
 				785C5F2D18D19A4100DD1592 /* PSCTopScrobbleBarExample.m in Sources */,
 				784F012A15CF247900849F81 /* main.m in Sources */,
 				78E4E06617DD151C005ED42D /* PSCExampleManager.m in Sources */,
@@ -1316,6 +1323,7 @@
 				78FEC23118B291E20012ACBD /* PSCCustomBookmarkImageExample.m in Sources */,
 				784F012E15CF247900849F81 /* PSCAppDelegate.m in Sources */,
 				78D4D40B1848CD4900080A96 /* AFURLSessionManager.m in Sources */,
+				78ABC8B718EE042D007578C2 /* PSCExportWatermarkExample.m in Sources */,
 				78B115C517B9915200DCD45A /* PSCiBooksHighlightingViewController.m in Sources */,
 				78B1482118B79CD90039DB99 /* PSCVerticalAnnotationToolbar.m in Sources */,
 				78D909EE1789FFF700E7D4D5 /* CoreDataAnnotationExample.xcdatamodeld in Sources */,
