@@ -85,12 +85,12 @@
     }
 
     {
-        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/1h2N1r333N0V/webimage2.png\""];
+        PSPDFFreeTextAnnotation *galleryText = [[PSPDFFreeTextAnnotation alloc] initWithContents:@"Gallery that opens inline with a custom button image\nPSPDFActionOptionButton : @\"http://cl.ly/image/2W1d020O1N2g/webimage2@2x.png\""];
         galleryText.boundingBox = CGRectMake(20.f, 400.f, galleryText.boundingBox.size.width, galleryText.boundingBox.size.height);
 
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
         // Setting the button option to an URL will load this URL. The URL can be local or remote. Use pspdfkit://localhost for local URLs.
-        galleryAnnotation.action.options = @{PSPDFActionOptionButton : @"http://cl.ly/image/1h2N1r333N0V/webimage2.png"};
+        galleryAnnotation.action.options = @{PSPDFActionOptionButton : @"http://cl.ly/image/1h2N1r333N0V/webimage2@2x.png"};
         galleryAnnotation.boundingBox = CGRectMake(200.f, 350.f, 250.f, 200.f);
         [document addAnnotations:@[galleryText, galleryAnnotation]];
     }
