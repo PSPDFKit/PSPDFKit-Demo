@@ -83,13 +83,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = UIColor.lightGrayColor;
     [self createPDFViewController];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+	// viewWillAppear: is too early for this, we need to hide the navBar here (UISearchDisplayController related issue)
+	self.navigationController.navigationBarHidden = YES;
     // Center view with margins.
     self.pdfController.view.frame = CGRectInset(CGRectMake(0, self.toolbar.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height-self.toolbar.bounds.size.height), 50.f, 50.f);
 }
