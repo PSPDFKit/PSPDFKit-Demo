@@ -8,10 +8,11 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCCoreDataAnnotationProviderExample.h"
 #import "PSCCoreDataAnnotationProvider.h"
 #import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
+@interface PSCCoreDataAnnotationProviderExample : PSCExample @end
 @implementation PSCCoreDataAnnotationProviderExample
 
 ///////////////////////////////////////////////////////////////////////////////////////////

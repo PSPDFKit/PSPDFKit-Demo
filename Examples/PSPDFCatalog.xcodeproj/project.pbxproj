@@ -527,8 +527,6 @@
 		78FEC1FD18B27F610012ACBD /* PSCDocumentDataProvidersExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCDocumentDataProvidersExample.h; sourceTree = "<group>"; };
 		78FEC1FE18B27F610012ACBD /* PSCPDFViewControllerCustomizationExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPDFViewControllerCustomizationExample.m; sourceTree = "<group>"; };
 		78FEC21118B285FC0012ACBD /* PSCBottomToolbarExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCBottomToolbarExample.m; sourceTree = "<group>"; };
-		78FEC21518B286120012ACBD /* PSCXFDFAnnotationProviderExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCXFDFAnnotationProviderExample.h; sourceTree = "<group>"; };
-		78FEC21618B286120012ACBD /* PSCCoreDataAnnotationProviderExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCCoreDataAnnotationProviderExample.h; sourceTree = "<group>"; };
 		78FEC21718B286120012ACBD /* PSCCoreDataAnnotationProviderExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCCoreDataAnnotationProviderExample.m; sourceTree = "<group>"; };
 		78FEC21818B286120012ACBD /* PSCXFDFAnnotationProviderExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCXFDFAnnotationProviderExample.m; sourceTree = "<group>"; };
 		78FEC22218B28CC90012ACBD /* PSCSignAllPagesExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSignAllPagesExample.m; sourceTree = "<group>"; };
@@ -1071,9 +1069,7 @@
 			isa = PBXGroup;
 			children = (
 				78D909E71789FFF700E7D4D5 /* CoreDataBackend */,
-				78FEC21618B286120012ACBD /* PSCCoreDataAnnotationProviderExample.h */,
 				78FEC21718B286120012ACBD /* PSCCoreDataAnnotationProviderExample.m */,
-				78FEC21518B286120012ACBD /* PSCXFDFAnnotationProviderExample.h */,
 				78FEC21818B286120012ACBD /* PSCXFDFAnnotationProviderExample.m */,
 			);
 			path = AnnotationProviders;
