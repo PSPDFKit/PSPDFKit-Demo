@@ -142,9 +142,13 @@
     PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
     CGRect pageRect = [document pageInfoForPage:0].rotatedPageRect;
     CGPoint center = CGPointMake(CGRectGetMidX(pageRect), CGRectGetMidY(pageRect));
-    CGSize size = CGSizeMake(400, 300);
+    CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
+
+    PSPDFLinkAnnotation *galleryAnnotation2 = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/video.gallery"];
+    galleryAnnotation2.boundingBox = CGRectMake(50.f, 50.f, 150.f, 150.f);
+    [document addAnnotations:@[galleryAnnotation2]];
 
     return [[PSPDFViewController alloc] initWithDocument:document];
 }
