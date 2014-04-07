@@ -139,7 +139,9 @@
                 NSLog(@"Failed to move file: %@", error.localizedDescription); return;
             }
             // Finally update the fileURL, this will clear the current document cache.
-            self.document = [PSPDFDocument documentWithURL:newURL];
+            PSPDFDocument *newDocument = [PSPDFDocument documentWithURL:newURL];
+            newDocument.title = self.document.title; // preserve title.
+            self.document = newDocument;
         }
     }];
 #pragma clang diagnostic pop
