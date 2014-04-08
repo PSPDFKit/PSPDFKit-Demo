@@ -117,4 +117,12 @@
     [self updateFloatingToolbarAnimated:YES];
 }
 
+- (void)pdfViewController:(PSPDFViewController *)pdfController didShowPageView:(PSPDFPageView *)pageView {
+    NSLog(@"didShowPageView: page:%tu", pageView.page);
+}
+
+- (void)pdfViewController:(PSPDFViewController *)pdfController didRenderPageView:(PSPDFPageView *)pageView {
+    NSLog(@"didRenderPageView: page:%tu", pageView.page);
+}
+
 @end
