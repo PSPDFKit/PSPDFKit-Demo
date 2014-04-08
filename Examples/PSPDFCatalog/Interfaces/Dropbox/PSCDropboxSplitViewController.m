@@ -68,9 +68,7 @@
 #pragma mark - Private
 
 - (void)backToCatalog:(id)sender {
-    [self.masterPopoverController dismissPopoverAnimated:NO];
-    [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
-    self.view.window.rootViewController = ((PSCAppDelegate *)UIApplication.sharedApplication.delegate).catalog;
+    [self.parentViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

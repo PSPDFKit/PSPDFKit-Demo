@@ -186,9 +186,11 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
     [appSection addContent:[PSContent contentWithTitle:@"Dropbox-like interface" contentDescription:@"Replicates the floating toolbar interface of the Dropbox app, which also uses PSPDFKit." block:^{
         if (PSCIsIPad()) {
             PSCDropboxSplitViewController *splitViewController = [PSCDropboxSplitViewController new];
-            [self.view.window.layer addAnimation:PSCFadeTransition() forKey:nil];
-            self.view.window.rootViewController = splitViewController;
-            PSC_IF_IOS7_OR_GREATER(splitViewController.view.tintColor = UIColor.blueColor;)
+            UIViewController *containerController = [[UIViewController alloc] init];
+            [containerController addChildViewController:splitViewController];
+            [containerController.view addSubview:splitViewController.view];
+            [splitViewController didMoveToParentViewController:containerController];
+            [self presentViewController:containerController animated:YES completion:NULL];
             return (UIViewController *)nil;
         }else {
             PSPDFDocument *document = [PSPDFDocument documentWithURL:hackerMagURL];

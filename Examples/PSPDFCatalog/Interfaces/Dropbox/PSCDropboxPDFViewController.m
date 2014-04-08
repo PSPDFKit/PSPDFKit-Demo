@@ -45,7 +45,7 @@
     [super viewDidLoad];
 
     // Add the floating toolbar to the HUD.
-    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(20.f, PSCIsUIKitFlatMode() ? 80.f : 20.f, 0.f, 0.f)];
+    self.floatingToolbar = [[PSCDropboxFloatingToolbar alloc] initWithFrame:CGRectMake(20.f, 20.f, 0.f, 0.f)];
     [self updateFloatingToolbarAnimated:NO]; // will update size.
     [self.HUDView addSubview:self.floatingToolbar];
 }
