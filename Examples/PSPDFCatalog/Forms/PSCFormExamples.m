@@ -75,6 +75,7 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     }
     return self.certificates;
 }
+
 - (NSArray *)signingIdentities {
     if (!self.identities) {
         NSURL *samplesURL = [NSBundle.mainBundle.resourceURL URLByAppendingPathComponent:@"Samples"];
@@ -82,11 +83,13 @@ static PSPDFViewController *PSPDFFormExampleInvokeWithFilename(NSString *filenam
     }
     return self.identities;
 }
+
 - (BOOL)useAdobeCA {return YES;}
 - (NSArray *)revisionDelegates {return @[self];}
 - (NSArray *)signingDelegates {return @[self];}
 - (NSArray *)signingHandlers {return @[];}
 - (NSArray *)verificationHandlers {return @[];}
+
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////
