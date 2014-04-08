@@ -18,6 +18,22 @@
 - (void)commonInitWithDocument:(PSPDFDocument *)document {
     [super commonInitWithDocument:document];
     self.delegate = self;
+
+    // Add handler that notifies us when annotations are added and react accordingly.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(annotationsAddedNotification:) name:PSPDFAnnotationsAddedNotification object:nil];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Notifications
+
+- (void)annotationsAddedNotification:(NSNotification *)notification {
+    for (PSPDFAnnotation *annotation in notification.object) {
+        if (annotation.document == self.document && annotation.type == PSPDFAnnotationTypeHighlight) {
+            PSPDFPageView *pageView = [self pageViewForPage:annotation.absolutePage];
+            [pageView showNoteControllerForAnnotation:annotation showKeyboard:YES animated:YES];
+            break;
+        }
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
