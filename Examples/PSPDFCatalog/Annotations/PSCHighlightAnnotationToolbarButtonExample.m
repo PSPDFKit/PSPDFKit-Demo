@@ -76,7 +76,10 @@
 
 - (void)buttonClicked:(id)sender {
     _highlightButton.selected = !_highlightButton.isSelected;
-    objc_msgSend(self.target, self.action, sender); // forward action.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [self.target performSelector:self.action withObject:sender];
+#pragma clang diagnostic pop
 }
 
 @end
