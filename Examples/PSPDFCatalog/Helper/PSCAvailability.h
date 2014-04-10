@@ -10,6 +10,15 @@
 
 #import <Foundation/Foundation.h>
 
+#define BOXED(val) ({ typeof(val) _tmp_val = (val); [NSValue valueWithBytes:&(_tmp_val) objCType:@encode(typeof(val))]; })
+
+// Compiler-checked selectors and performance optimized at runtime.
+#if DEBUG
+#define PROPERTY(property) NSStringFromSelector(@selector(property))
+#else
+#define PROPERTY(property) @#property
+#endif
+
 // Logging
 #define kPSCLogEnabled
 #ifdef kPSCLogEnabled

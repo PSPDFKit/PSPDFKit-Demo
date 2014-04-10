@@ -1,5 +1,5 @@
 //
-//  PSCSaveAsPDFViewController.m
+//  PSCSaveAsPDFExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2013-2014 PSPDFKit GmbH. All rights reserved.

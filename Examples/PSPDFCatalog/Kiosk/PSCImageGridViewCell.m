@@ -15,6 +15,7 @@
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
 #import "PSCRoundProgressView.h"
+#import "PSCAvailability.h"
 #include <tgmath.h>
 
 #define PSCDownloadingKey @"downloading"
