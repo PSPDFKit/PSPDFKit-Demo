@@ -120,7 +120,10 @@
 #pragma mark - Annotation toolbar
 
 - (void)toggleToolbar:(id)sender {
-	if (self.flexibleToolbarContainer) [self.flexibleToolbarContainer hideAndRemoveAnimated:YES completion:nil];
+	if (self.flexibleToolbarContainer) {
+        [self.flexibleToolbarContainer hideAndRemoveAnimated:YES completion:NULL];
+        return;
+    }
 	
 	PSPDFAnnotationStateManager *manager = self.pdfController.annotationStateManager;
 	PSPDFFlexibleAnnotationToolbar *toolbar = [[PSPDFFlexibleAnnotationToolbar alloc] initWithAnnotationStateManager:manager];
