@@ -19,7 +19,7 @@
     "options": {
         "preferedVideoQualities":["1080p", "720p", "360p", "240p"],
         "start":10,
-        "end":30
+        "end":30,
         "coverMode":"none"
     }
   },
