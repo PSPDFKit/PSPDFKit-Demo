@@ -1,5 +1,5 @@
 //
-//  PSCManualToolbarViewController.m
+//  PSCManualToolbarSetupExample.m
 //  PSPDFCatalog
 //
 //  Copyright (c) 2012-2014 PSPDFKit GmbH. All rights reserved.
@@ -8,12 +8,38 @@
 //  Please see License for details. This notice may not be removed from this file.
 //
 
-#import "PSCManualToolbarSetupViewController.h"
+#import "PSCAssetLoader.h"
+#import "PSCExample.h"
 
-@interface PSCManualToolbarSetupViewController () <UIToolbarDelegate, PSPDFFlexibleToolbarContainerDelegate>
+@interface PSCManualToolbarSetupExample : PSCExample @end
+
+@interface PSCManualToolbarSetupViewController : UIViewController <UIToolbarDelegate, PSPDFFlexibleToolbarContainerDelegate>
+@property (nonatomic, strong) PSPDFDocument *document;
 @property (nonatomic, strong) PSPDFViewController *pdfController;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @property (nonatomic, strong) PSPDFFlexibleToolbarContainer *flexibleToolbarContainer;
+- (id)initWithDocument:(PSPDFDocument *)document;
+@end
+
+@implementation PSCManualToolbarSetupExample
+
+- (id)init {
+    if (self = [super init]) {
+        self.title = @"Manual annotation toolbar setup and management";
+        self.contentDescription = @"Flexible toolbar handling without UINavigationController or PSPDFAnnotationBarButtonItem.";
+        self.category = PSCExampleCategoryBarButtons;
+    }
+    return self;
+}
+
+- (UIViewController *)invokeWithDelegate:(id<PSCExampleRunnerDelegate>)delegate {
+	PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
+	PSCManualToolbarSetupViewController *controller = [[PSCManualToolbarSetupViewController alloc] initWithDocument:document];
+	// Present modally, so we can more easily configure it to have a different style.
+	[delegate.currentViewController presentViewController:controller animated:YES completion:NULL];
+	return (UIViewController *)nil;
+}
+
 @end
 
 @implementation PSCManualToolbarSetupViewController

@@ -40,7 +40,6 @@
 #import "PSCExampleManager.h"
 #import "PSCAvailability.h"
 #import "PSCPopoverTestViewController.h"
-#import "PSCManualToolbarSetupViewController.h"
 
 #import <objc/runtime.h>
 
@@ -220,21 +219,6 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return [example invokeWithDelegate:weakSelf];
         }]];
     }
-	
-	///////////////////////////////////////////////////////////////////////////////////////////
-	
-    // Toolbar customizations examples
-    PSCSectionDescriptor *toolbarCustomizationSection = [PSCSectionDescriptor sectionWithTitle:@"Toolbar customizations" footer:@""];
-	
-	[toolbarCustomizationSection addContent:[PSContent contentWithTitle:@"Manual annotation toolbar setup and management" contentDescription:@"Flexible toolbar handling without UINavigationController or PSPDFAnnotationBarButtonItem." block:^{
-        PSPDFDocument *document = [PSCAssetLoader sampleDocumentWithName:kPaperExampleFileName];
-		PSCManualToolbarSetupViewController *controller = [[PSCManualToolbarSetupViewController alloc] initWithDocument:document];
-        // Present modally, so we can more easily configure it to have a different style.
-        [self.navigationController presentViewController:controller animated:YES completion:NULL];
-        return (UIViewController *)nil;
-    }]];
-
-	[sections addObject:toolbarCustomizationSection];
 	
     ///////////////////////////////////////////////////////////////////////////////////////////
 
