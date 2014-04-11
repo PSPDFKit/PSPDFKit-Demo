@@ -219,6 +219,7 @@
 		9A6534B81806BEC100A7D0D0 /* PSCPageRangeFilterExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */; };
 		9AA5BE02180FEB27003A3865 /* PSCTextExtractionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */; };
 		9AA5BE05180FEB58003A3865 /* PSCStoryboardsExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */; };
+		D2C011DC18F84740005D55A6 /* PSCManualToolbarSetupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C011DB18F84740005D55A6 /* PSCManualToolbarSetupExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -545,6 +546,7 @@
 		9A6534B71806BEC100A7D0D0 /* PSCPageRangeFilterExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPageRangeFilterExample.m; sourceTree = "<group>"; };
 		9AA5BE01180FEB27003A3865 /* PSCTextExtractionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCTextExtractionExample.m; sourceTree = "<group>"; };
 		9AA5BE04180FEB58003A3865 /* PSCStoryboardsExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCStoryboardsExample.m; sourceTree = "<group>"; };
+		D2C011DB18F84740005D55A6 /* PSCManualToolbarSetupExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCManualToolbarSetupExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -972,6 +974,7 @@
 				78FEC23618B293730012ACBD /* PSCTintedControllerExample.m */,
 				785C5F2C18D19A4100DD1592 /* PSCTopScrobbleBarExample.m */,
 				78F9FE821847493B005A05F4 /* PSCZoomingSearchExample.m */,
+				D2C011DB18F84740005D55A6 /* PSCManualToolbarSetupExample.m */,
 			);
 			path = Customization;
 			sourceTree = "<group>";
@@ -1329,6 +1332,7 @@
 				7885F48A179DD8CA00B89714 /* UIBarButtonItem+PSCBlockSupport.m in Sources */,
 				78D90A14178A0A0300E7D4D5 /* PSCViewHelper.m in Sources */,
 				789B9D3517F2EB43008BC64B /* PSCContentViewUsageExample.m in Sources */,
+				D2C011DC18F84740005D55A6 /* PSCManualToolbarSetupExample.m in Sources */,
 				78A24A4B15CFDAAF00328F4F /* PSCTabbedExampleViewController.m in Sources */,
 				78A24A4E15CFDAAF00328F4F /* PSCStoryboardTableViewController.m in Sources */,
 				78A24A5015CFDAAF00328F4F /* PSCBasicViewController.m in Sources */,
