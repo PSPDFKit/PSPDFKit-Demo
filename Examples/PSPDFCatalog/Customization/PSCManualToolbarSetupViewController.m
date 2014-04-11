@@ -9,8 +9,6 @@
 //
 
 #import "PSCManualToolbarSetupViewController.h"
-#import "PSPDFFlexibleToolbarContainer.h"
-#import "PSPDFFlexibleAnnotationToolbar.h"
 
 @interface PSCManualToolbarSetupViewController () <UIToolbarDelegate, PSPDFFlexibleToolbarContainerDelegate>
 @property (nonatomic, strong) PSPDFViewController *pdfController;
