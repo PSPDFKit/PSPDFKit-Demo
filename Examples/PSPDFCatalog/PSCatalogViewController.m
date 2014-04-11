@@ -219,7 +219,7 @@ static NSString *const PSCLastIndexPath = @"PSCLastIndexPath";
             return [example invokeWithDelegate:weakSelf];
         }]];
     }
-
+	
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // PSPDFViewController customization examples
