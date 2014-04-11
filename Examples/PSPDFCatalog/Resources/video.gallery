@@ -18,12 +18,9 @@
     "caption":"A YouTube video",
     "options": {
         "preferedVideoQualities":["1080p", "720p", "360p", "240p"],
-<<<<<<< Updated upstream
         "start":10,
         "end":30
-=======
         "coverMode":"none"
->>>>>>> Stashed changes
     }
   },
   {
