@@ -25,7 +25,6 @@
     BOOL _firstShown;
     BOOL _clearCacheNeeded;
 }
-
 @end
 
 @implementation PSCAnnotationsWriteAnnotationsIntoThePDFExample
