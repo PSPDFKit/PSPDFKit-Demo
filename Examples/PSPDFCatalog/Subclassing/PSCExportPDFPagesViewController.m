@@ -93,10 +93,10 @@ static NSString *const PSPDFActionBar = @"PSPDFActionBar";
 // Shows the popover to flatten/not flatten.
 - (void)sendSelectedPagesViaEmail:(id)sender {
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
-    [actionSheet addButtonWithTitle:@"Pages with Annotations" block:^{
+    [actionSheet addButtonWithTitle:@"Pages with Annotations" block:^(NSInteger buttonIndex) {
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:NO];
     }];
-    [actionSheet addButtonWithTitle:@"Flattened Pages" block:^{
+    [actionSheet addButtonWithTitle:@"Flattened Pages" block:^(NSInteger buttonIndex) {
         [self createTemporaryPDFAndOpenEmailControllerWithAnnotationsFlattened:YES];
     }];
     [actionSheet setCancelButtonWithTitle:@"Cancel" block:nil]; // iPhone support

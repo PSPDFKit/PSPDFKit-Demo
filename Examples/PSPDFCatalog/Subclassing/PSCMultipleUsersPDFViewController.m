@@ -53,11 +53,9 @@
     [[userPrompt textFieldAtIndex:0] setText:self.currentUsername];
 
     [userPrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    [userPrompt addButtonWithTitle:@"Switch" block:^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-        NSString *username = [userPrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
+    __weak PSPDFAlertView *weakUserPrompt = userPrompt;
+    [userPrompt addButtonWithTitle:@"Switch" block:^(NSInteger buttonIndex) {
+        NSString *username = [weakUserPrompt textFieldAtIndex:0].text ?: @"";
 
         // TODO: In a real application you want to make the username unique and also check for characters that are trouble on file systems.
 

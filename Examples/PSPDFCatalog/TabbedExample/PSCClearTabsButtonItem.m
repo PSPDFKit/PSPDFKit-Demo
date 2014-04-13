@@ -27,7 +27,7 @@
     PSPDFViewController *pdfController = self.pdfController;
     PSPDFActionSheet *actionSheet = [[PSPDFActionSheet alloc] initWithTitle:nil];
 
-    [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Close all tabs") block:^{
+    [actionSheet setDestructiveButtonWithTitle:PSPDFLocalize(@"Close all tabs") block:^(NSInteger buttonIndex) {
         PSPDFTabbedViewController *tabbedController = self.tabbedController;
         [tabbedController removeDocuments:tabbedController.documents animated:animated];
     }];

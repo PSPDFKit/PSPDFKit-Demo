@@ -78,12 +78,10 @@
     [[websitePrompt textFieldAtIndex:0] setText:@"<br><br><br><h1>This is a <i>test</i> in <span style='color:red'>color.</span></h1>"];
     
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    [websitePrompt addButtonWithTitle:@"Convert" block:^{
+    __weak PSPDFAlertView *weakAlert = websitePrompt;
+    [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
         // Get data
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-        NSString *html = [websitePrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
+        NSString *html = [weakAlert textFieldAtIndex:0].text ?: @"";
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");
         
         // Create pdf (blocks).
@@ -131,12 +129,10 @@ const char PSCAlertViewKey;
     [[websitePrompt textFieldAtIndex:0] setText:@"http://apple.com/iphone"];
     
     [websitePrompt setCancelButtonWithTitle:@"Cancel" block:nil];
-    [websitePrompt addButtonWithTitle:@"Convert" block:^{
+    __weak PSPDFAlertView *weakAlert = websitePrompt;
+    [websitePrompt addButtonWithTitle:@"Convert" block:^(NSInteger buttonIndex) {
         // get URL
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-retain-cycles"
-        NSString *website = [websitePrompt textFieldAtIndex:0].text ?: @"";
-#pragma clang diagnostic pop
+        NSString *website = [weakAlert textFieldAtIndex:0].text ?: @"";
         if (![website.lowercaseString hasPrefix:@"http"]) website = [NSString stringWithFormat:@"http://%@", website];
         NSURL *URL = [NSURL URLWithString:website];
         NSURL *outputURL = PSCTempFileURLWithPathExtension(@"converted", @"pdf");

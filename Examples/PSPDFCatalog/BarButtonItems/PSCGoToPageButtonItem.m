@@ -41,12 +41,12 @@ const char PSCAlertViewKey;
 
     PSPDFViewController *pdfController = self.pdfController;
     PSPDFAlertView *websitePrompt = [[PSPDFAlertView alloc] initWithTitle:PSPDFLocalize(@"Go to Page") message:nil];
+    __weak PSPDFAlertView *weakAlert = websitePrompt;
     websitePrompt.alertViewStyle = UIAlertViewStylePlainTextInput;
 
     [websitePrompt setCancelButtonWithTitle:PSPDFLocalize(@"Cancel") block:nil];
-    [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") extendedBlock:^(PSPDFAlertView *alert, NSInteger buttonIndex) {
-
-        NSString *pageLabel = [alert textFieldAtIndex:0].text ?: @"";
+    [websitePrompt addButtonWithTitle:PSPDFLocalize(@"Go to") block:^(NSInteger buttonIndex) {
+        NSString *pageLabel = [weakAlert textFieldAtIndex:0].text ?: @"";
         NSUInteger pageIndex = [pdfController.document pageForPageLabel:pageLabel partialMatching:self.enablePartialLabelMatching];
 
         // if input is just numeric, convert to page
