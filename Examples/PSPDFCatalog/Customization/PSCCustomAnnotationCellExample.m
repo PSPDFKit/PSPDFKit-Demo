@@ -21,6 +21,9 @@
 + (void)toggleAnnotationSharingStatus:(PSPDFAnnotation *)annotation;
 @end
 
+@interface PSCCustomFlexibleAnnotationToolbar : PSPDFFlexibleAnnotationToolbar @end
+@interface PSCCustomAnnotationStateManager : PSPDFAnnotationStateManager @end
+
 @interface PSCCustomAnnotationCellExample : PSCExample @end
 @implementation PSCCustomAnnotationCellExample
 
@@ -42,6 +45,9 @@
     // Register the class overrides.
     [pdfController overrideClass:PSPDFAnnotationCell.class withClass:PSCCustomAnnotationCell.class];
     [pdfController overrideClass:PSPDFAnnotationTableViewController.class withClass:PSCCustomAnnotationTableViewController.class];
+
+    [pdfController overrideClass:PSPDFFlexibleAnnotationToolbar.class withClass:PSCCustomFlexibleAnnotationToolbar.class];
+    [pdfController overrideClass:PSPDFAnnotationStateManager.class withClass:PSCCustomAnnotationStateManager.class];
 
     // Automate pressing the outline button.
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -200,6 +206,28 @@
         // Just in case, end editing.
         [self setEditing:NO animated:YES];
     }
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCCustomFlexibleAnnotationToolbar
+
+@implementation PSCCustomFlexibleAnnotationToolbar
+
+- (id)initWithAnnotationStateManager:(PSPDFAnnotationStateManager *)annotationStateManager {
+    return [super initWithAnnotationStateManager:annotationStateManager];
+}
+
+@end
+
+///////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - PSCCustomAnnotationStateManager
+
+@implementation PSCCustomAnnotationStateManager
+
+- (BOOL)stateShowsStylePicker:(NSString *)state {
+    return NO;
 }
 
 @end
