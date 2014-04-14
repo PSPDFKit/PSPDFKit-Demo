@@ -10,6 +10,7 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
+#import "PSPDFGalleryContainerView.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCImageGalleryExample
@@ -37,17 +38,12 @@
     CGSize size = CGSizeMake(400.f, 300.f);
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.0f, center.y - size.height / 2.0f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
+    
+    // Customize.
+    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.delegate = self;
     return pdfController;
-}
-
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
-        PSPDFGalleryViewController *galleryController = ((PSPDFGalleryAnnotationView *)annotationView).galleryViewController;
-        galleryController.blurBackground = YES;
-    }
 }
 
 @end
@@ -104,17 +100,11 @@
         webAnnotation.boundingBox = CGRectMake(200.f, 100.f, 200.f, 200.f);
         [document addAnnotations:@[webText, webAnnotation]];
     }
+    
+    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    pdfController.delegate = self;
     return pdfController;
-}
-
-- (void)pdfViewController:(PSPDFViewController *)pdfController willShowAnnotationView:(UIView<PSPDFAnnotationViewProtocol> *)annotationView onPageView:(PSPDFPageView *)pageView {
-    if ([annotationView isKindOfClass:[PSPDFGalleryAnnotationView class]]) {
-        PSPDFGalleryViewController *galleryController = ((PSPDFGalleryAnnotationView *)annotationView).galleryViewController;
-        galleryController.blurBackground = YES;
-    }
 }
 
 @end

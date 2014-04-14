@@ -10,10 +10,10 @@
 
 #import "PSCExample.h"
 #import "PSCAssetLoader.h"
+#import "PSPDFGalleryContainerView.h"
 
 @interface PSCCustomGalleryBackgroundExample : PSCExample @end
 
-@interface PSCCustomGalleryViewController : PSPDFGalleryViewController @end
 @interface PSCCustomGalleryContentView : PSPDFGalleryContentView @end
 @interface PSCCustomGalleryImageContentView : PSPDFGalleryImageContentView @end
 @interface PSCCustomGalleryContentCaptionView : PSPDFGalleryContentCaptionView @end
@@ -42,26 +42,16 @@
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
     
+    [[PSPDFGalleryFullscreenBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
+    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
+    
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
-    [pdfController overrideClass:PSPDFGalleryViewController.class withClass:PSCCustomGalleryViewController.class];
     
     // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
     [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
     [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
     
     return pdfController;
-}
-
-@end
-
-@implementation PSCCustomGalleryViewController
-
-- (id)initWithLinkAnnotation:(PSPDFLinkAnnotation *)annotation {
-    if ((self = [super initWithLinkAnnotation:annotation])) {
-        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
-        self.fullscreenBackgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
-    }
-    return self;
 }
 
 @end
