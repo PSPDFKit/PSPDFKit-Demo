@@ -12,6 +12,9 @@
 #import "PSCAssetLoader.h"
 #import "PSPDFGalleryContainerView.h"
 
+@interface PSCGalleryExampleCustomEmbeddedBackgroundView : PSPDFGalleryEmbeddedBackgroundView @end
+@implementation PSCGalleryExampleCustomEmbeddedBackgroundView @end
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSCImageGalleryExample
 
@@ -40,9 +43,10 @@
     [document addAnnotations:@[galleryAnnotation]];
     
     // Customize.
-    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
+    [[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 
@@ -101,9 +105,10 @@
         [document addAnnotations:@[webText, webAnnotation]];
     }
     
-    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
+    [[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
+    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
     return pdfController;
 }
 

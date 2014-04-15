@@ -17,6 +17,8 @@
 @interface PSCCustomGalleryContentView : PSPDFGalleryContentView @end
 @interface PSCCustomGalleryImageContentView : PSPDFGalleryImageContentView @end
 @interface PSCCustomGalleryContentCaptionView : PSPDFGalleryContentCaptionView @end
+@interface PSCCustomGalleryEmbeddedBackgroundView : PSPDFGalleryEmbeddedBackgroundView @end
+@interface PSCCustomGalleryFullscreenBackgroundView : PSPDFGalleryFullscreenBackgroundView @end
 
 @implementation PSCCustomGalleryBackgroundExample
 
@@ -42,14 +44,16 @@
     galleryAnnotation.boundingBox = CGRectMake(center.x - size.width / 2.f, center.y - size.height / 2.f, size.width, size.height);
     [document addAnnotations:@[galleryAnnotation]];
     
-    [[PSPDFGalleryFullscreenBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
-    [[PSPDFGalleryEmbeddedBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
+    [[PSCCustomGalleryEmbeddedBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
+    [[PSCCustomGalleryFullscreenBackgroundView appearance] setBackgroundColor:[UIColor colorWithWhite:0.0f alpha:0.5f]];
     
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     
     // You need to override both, PSPDFGalleryContentView and PSPDFScrollableGalleryContentView - both will be used.
     [pdfController overrideClass:PSPDFGalleryContentView.class withClass:PSCCustomGalleryContentView.class];
     [pdfController overrideClass:PSPDFGalleryImageContentView.class withClass:PSCCustomGalleryImageContentView.class];
+    [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCCustomGalleryEmbeddedBackgroundView.class];
+    [pdfController overrideClass:PSPDFGalleryFullscreenBackgroundView.class withClass:PSCCustomGalleryFullscreenBackgroundView.class];
     
     return pdfController;
 }
@@ -89,3 +93,6 @@
 }
 
 @end
+
+@implementation PSCCustomGalleryEmbeddedBackgroundView @end
+@implementation PSCCustomGalleryFullscreenBackgroundView @end
