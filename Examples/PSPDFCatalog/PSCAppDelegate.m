@@ -64,9 +64,6 @@ BITHockeyManagerDelegate, BITUpdateManagerDelegate, BITCrashManagerDelegate
     PSPDFLogLevel = PSPDFLogLevelMaskInfo|PSPDFLogLevelMaskWarning|PSPDFLogLevelMaskError;
 #endif
 
-    // Enable if you're having memory issues.
-    //PSPDFLowMemoryMode = YES;
-
     // Set your license key here. PSPDFKit is commercial software.
     // Each PSPDFKit license is bound to a specific app bundle id.
     // Visit http://customers.pspdfkit.com to get your license key.
