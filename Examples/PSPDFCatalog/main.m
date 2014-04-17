@@ -12,7 +12,6 @@
 
 int main(int argc, char *argv[]) {
     @autoreleasepool {
-        NSClassFromString(@"PSCLicenseKey"); // internal license initialization (ignore)
         return UIApplicationMain(argc, argv, nil, NSStringFromClass(PSCAppDelegate.class));
     }
 }
