@@ -79,6 +79,7 @@
         PSPDFLinkAnnotation *galleryAnnotation = [[PSPDFLinkAnnotation alloc] initWithURLString:@"pspdfkit://localhost/Bundle/sample.gallery"];
         // Setting the button option to yes will show the default button.
         galleryAnnotation.action.options = @{PSPDFActionOptionButton : @YES};
+        //galleryAnnotation.action.options = @{PSPDFActionOptionButton : @"pspdfkit://localhost/Bundle/eye.png"};
         galleryAnnotation.boundingBox = CGRectMake(200.f, 560.f, 400.f, 300.f);
         [document addAnnotations:@[galleryText, galleryAnnotation]];
     }
@@ -104,7 +105,7 @@
         [document addAnnotations:@[webText, webAnnotation]];
     }
     
-    [[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
+    //[[PSCGalleryExampleCustomEmbeddedBackgroundView appearance] setBlurEnabledObject:@YES];
 
     PSPDFViewController *pdfController = [[PSPDFViewController alloc] initWithDocument:document];
     [pdfController overrideClass:PSPDFGalleryEmbeddedBackgroundView.class withClass:PSCGalleryExampleCustomEmbeddedBackgroundView.class.class];
