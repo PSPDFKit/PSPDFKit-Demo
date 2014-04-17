@@ -163,9 +163,8 @@
     CGFloat diff = pageRatio - screenRatio;
 
     if (diff > 0.1) {
-        pageInfo = [pageInfo copy];
         CGFloat cutX = pageInfo.pageRect.size.width * diff/2;
-        pageInfo.pageRect = CGRectIntegral(CGRectMake(cutX/2, 0, pageInfo.pageRect.size.width-cutX, pageInfo.pageRect.size.height));
+        pageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:CGRectIntegral(CGRectMake(cutX/2, 0, pageInfo.pageRect.size.width-cutX, pageInfo.pageRect.size.height)) rotation:pageInfo.pageRotation documentProvider:pageInfo.documentProvider];
     }
 
     return pageInfo;

@@ -84,11 +84,13 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
     if (rotateAll) {
         for (NSUInteger pageIndex=0; pageIndex < self.document.pageCount; pageIndex++) {
             PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:pageIndex];
-            pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation - 90);
+            PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation - 90) documentProvider:pageInfo.documentProvider];
+            [self.document setPageInfo:newPageInfo forPage:pageIndex];
         }
     }else {
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
-        pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation - 90);
+        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation - 90) documentProvider:pageInfo.documentProvider];
+        [self.document setPageInfo:newPageInfo forPage:self.page];
     }
 
     // Request an immediate rendering of the current page, will block the main thread but prevent flashing.
@@ -125,7 +127,8 @@ static NSUInteger PSCNormalizeRotation(NSInteger rotation) {
         // Get rotation and snap to the closest position.
         PSPDFPageInfo *pageInfo = [self.document pageInfoForPage:self.page];
         NSUInteger degrees = (NSUInteger)PSCRadiansToDegrees(atan2(self.transform.b, self.transform.a));
-        pageInfo.pageRotation = PSCNormalizeRotation(pageInfo.pageRotation+degrees);
+        PSPDFPageInfo *newPageInfo = [[PSPDFPageInfo alloc] initWithPage:pageInfo.page rect:pageInfo.pageRect rotation:PSCNormalizeRotation(pageInfo.pageRotation + degrees) documentProvider:pageInfo.documentProvider];
+        [self.document setPageInfo:newPageInfo forPage:pageInfo.page];
         PSCLog(@"Snap rotation to: %tu", pageInfo.pageRotation);
 
         // Request an immediate rendering, will block the main thread but prevent flashing.
